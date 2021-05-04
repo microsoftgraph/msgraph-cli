@@ -38,7 +38,7 @@
     <Compile Include="Product.wxs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include=".\resources\windowsazure.ico" />
+    <None Include=".\resources\graph.ico" />
   </ItemGroup>
   <!-- UI -->
   <ItemGroup>

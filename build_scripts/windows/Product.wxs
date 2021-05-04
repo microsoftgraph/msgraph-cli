@@ -23,7 +23,7 @@
 
     <Media Id="1" Cabinet="WindowsAzureCLI.cab" EmbedCab="yes" CompressionLevel="high" />
 
-    <Icon Id="AzureIcon" SourceFile="$(var.ProductResources)windowsazure.ico" />
+    <Icon Id="AzureIcon" SourceFile="$(var.ProductResources)graph.ico" />
 
     <Property Id="ARPPRODUCTICON" Value="AzureIcon" />
     <Property Id="ARPHELPLINK" Value="https://docs.microsoft.com/cli/azure" />
