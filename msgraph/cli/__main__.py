@@ -5,7 +5,8 @@
 # --------------------------------------------------------------------------
 
 import sys
-from os import path
+import signal
+from os import path, devnull, dup2, open, O_WRONLY
 
 from colorama import init, Fore
 
@@ -47,5 +48,8 @@ def cli_main(cli, args):
     return cli.invoke(args)
 
 
-exit_code = cli_main(mg_cli, sys.argv[1:])
-sys.exit(exit_code)
+try:
+    exit_code = cli_main(mg_cli, sys.argv[1:])
+    sys.exit(exit_code)
+except KeyboardInterrupt:
+    sys.exit(1)
