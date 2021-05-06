@@ -6,6 +6,8 @@
 from knack.cli import logger
 from knack.util import CLIError
 
+from azure.core.pipeline.policies import UserAgentPolicy
+
 from msgraph.cli.core.authentication import Authentication
 from msgraph.cli.core.profile import ProfileProvider
 from msgraph.core import GraphSession
@@ -39,6 +41,7 @@ def resolve_client_arg_name(operation, kwargs):
 
 
 def get_mgmt_service_client(cli_ctx, client_type, **kwargs):
+    from msgraph.cli.core import __version__
 
     auth = Authentication()
     record = auth.get_auth_record()
@@ -46,7 +49,11 @@ def get_mgmt_service_client(cli_ctx, client_type, **kwargs):
     graph_session = GraphSession(credential=credential)
 
     base_url = _get_base_url()
-    client = client_type({}, session=graph_session, base_url=base_url)
+    client = client_type(
+        {},
+        session=graph_session,
+        base_url=base_url,
+        user_agent_policy=UserAgentPolicy(base_user_agent=f'msgraph-cli-{__version__}'))
     return client
 
 
