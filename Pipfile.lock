@@ -247,6 +247,10 @@
             "index": "pypi",
             "version": "==0.2.2"
         },
+        "msgraph": {
+            "path": ".",
+            "version": "==1.0.1"
+        },
         "msrest": {
             "hashes": [
                 "sha256:72661bc7bedc2dc2040e8f170b6e9ef226ee6d3892e01affd4d26b06474d68d8",
@@ -460,6 +464,14 @@
             ],
             "index": "pypi",
             "version": "==1.15.0"
+        },
+        "sshtunnel": {
+            "hashes": [
+                "sha256:4a07cf989712e8ba76a370584bec922d14775054b3ff18e5d075507a298dc3ed",
+                "sha256:98e54c26f726ab8bd42b47a3a21fca5c3e60f58956f0f70de2fb8ab0046d0606",
+                "sha256:e7cb0ea774db81bf91844db22de72a40aae8f7b0f9bb9ba0f666d474ef6bf9fc"
+            ],
+            "version": "==0.4.0"
         },
         "tabulate": {
             "hashes": [

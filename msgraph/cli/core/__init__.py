@@ -17,6 +17,7 @@ from msgraph.cli.core.constants import EXCLUDED_PARAMS
 from msgraph.cli.core.command_loaders import MainCommandsLoader, ExtensionCommandsLoader
 from msgraph.cli.core.mglogging import MgCliLogging
 
+
 __version__ = "0.1.0"
 
 
