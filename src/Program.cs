@@ -1,6 +1,4 @@
 ﻿using System.CommandLine;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.Hosting;
 
 namespace Microsoft.Graph.Cli
 {
