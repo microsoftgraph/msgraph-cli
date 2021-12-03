@@ -15,8 +15,9 @@ jobs:
       - name: Add NuGet kiota source
         # TODO: Add NUGET_USER and NUGET_PASSWORD secrets
         # TODO: Add NUGET_URL to env
+        # NOTE: Password encryption is not supported for the linux platform (Encryption is only supported on Windows platforms.)
         run: |
-          dotnet nuget add source ${{env.NUGET_URL}} -n github -u ${{secrets.NUGET_USER}} -p ${{secrets.NUGET_PASSWORD}}
+          dotnet nuget add source ${{env.NUGET_URL}} -n github -u ${{secrets.NUGET_USER}} -p ${{secrets.NUGET_PASSWORD}} --store-password-in-clear-text
       - uses: actions/cache@v2
         with:
           path: ~/.nuget/packages
