@@ -10,6 +10,11 @@ jobs:
         uses: actions/setup-dotnet@v1
         with:
           dotnet-version: 6.x
+      - name: Add NuGet kiota source
+        # TODO: Add NUGET_USER and NUGET_PASSWORD secrets
+        # TODO: Add NUGET_URL to env
+        run: |
+          dotnet nuget add source ${{env.NUGET_URL}} -n github -u ${{secrets.NUGET_USER}} -p ${{secrets.NUGET_PASSWORD}}
       - uses: actions/cache@v2
         with:
           path: ~/.nuget/packages
