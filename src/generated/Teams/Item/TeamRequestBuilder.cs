@@ -40,11 +40,11 @@ namespace ApiSdk.Teams.Item {
         public Command BuildChannelsCommand() {
             var command = new Command("channels");
             var builder = new ApiSdk.Teams.Item.Channels.ChannelsRequestBuilder(PathParameters, RequestAdapter);
-            command.AddCommand(builder.BuildListCommand());
-            command.AddCommand(builder.BuildCreateCommand());
             foreach (var cmd in builder.BuildCommand()) {
                 command.AddCommand(cmd);
             }
+            command.AddCommand(builder.BuildCreateCommand());
+            command.AddCommand(builder.BuildListCommand());
             return command;
         }
         public Command BuildCloneCommand() {
@@ -110,32 +110,32 @@ namespace ApiSdk.Teams.Item {
         public Command BuildInstalledAppsCommand() {
             var command = new Command("installed-apps");
             var builder = new ApiSdk.Teams.Item.InstalledApps.InstalledAppsRequestBuilder(PathParameters, RequestAdapter);
-            command.AddCommand(builder.BuildListCommand());
-            command.AddCommand(builder.BuildCreateCommand());
             foreach (var cmd in builder.BuildCommand()) {
                 command.AddCommand(cmd);
             }
+            command.AddCommand(builder.BuildCreateCommand());
+            command.AddCommand(builder.BuildListCommand());
             return command;
         }
         public Command BuildMembersCommand() {
             var command = new Command("members");
             var builder = new ApiSdk.Teams.Item.Members.MembersRequestBuilder(PathParameters, RequestAdapter);
-            command.AddCommand(builder.BuildListCommand());
-            command.AddCommand(builder.BuildCreateCommand());
+            command.AddCommand(builder.BuildAddCommand());
             foreach (var cmd in builder.BuildCommand()) {
                 command.AddCommand(cmd);
             }
-            command.AddCommand(builder.BuildAddCommand());
+            command.AddCommand(builder.BuildCreateCommand());
+            command.AddCommand(builder.BuildListCommand());
             return command;
         }
         public Command BuildOperationsCommand() {
             var command = new Command("operations");
             var builder = new ApiSdk.Teams.Item.Operations.OperationsRequestBuilder(PathParameters, RequestAdapter);
-            command.AddCommand(builder.BuildListCommand());
-            command.AddCommand(builder.BuildCreateCommand());
             foreach (var cmd in builder.BuildCommand()) {
                 command.AddCommand(cmd);
             }
+            command.AddCommand(builder.BuildCreateCommand());
+            command.AddCommand(builder.BuildListCommand());
             return command;
         }
         /// <summary>
@@ -161,34 +161,34 @@ namespace ApiSdk.Teams.Item {
         public Command BuildPrimaryChannelCommand() {
             var command = new Command("primary-channel");
             var builder = new ApiSdk.Teams.Item.PrimaryChannel.PrimaryChannelRequestBuilder(PathParameters, RequestAdapter);
-            command.AddCommand(builder.BuildRemoveEmailCommand());
             command.AddCommand(builder.BuildCompleteMigrationCommand());
-            command.AddCommand(builder.BuildProvisionEmailCommand());
-            command.AddCommand(builder.BuildPatchCommand());
-            command.AddCommand(builder.BuildTabsCommand());
+            command.AddCommand(builder.BuildDeleteCommand());
             command.AddCommand(builder.BuildFilesFolderCommand());
             command.AddCommand(builder.BuildGetCommand());
-            command.AddCommand(builder.BuildMessagesCommand());
-            command.AddCommand(builder.BuildDeleteCommand());
             command.AddCommand(builder.BuildMembersCommand());
+            command.AddCommand(builder.BuildMessagesCommand());
+            command.AddCommand(builder.BuildPatchCommand());
+            command.AddCommand(builder.BuildProvisionEmailCommand());
+            command.AddCommand(builder.BuildRemoveEmailCommand());
+            command.AddCommand(builder.BuildTabsCommand());
             return command;
         }
         public Command BuildScheduleCommand() {
             var command = new Command("schedule");
             var builder = new ApiSdk.Teams.Item.Schedule.ScheduleRequestBuilder(PathParameters, RequestAdapter);
-            command.AddCommand(builder.BuildOpenShiftsCommand());
-            command.AddCommand(builder.BuildGetCommand());
-            command.AddCommand(builder.BuildSwapShiftsChangeRequestsCommand());
-            command.AddCommand(builder.BuildTimesOffCommand());
-            command.AddCommand(builder.BuildOfferShiftRequestsCommand());
-            command.AddCommand(builder.BuildSchedulingGroupsCommand());
-            command.AddCommand(builder.BuildShiftsCommand());
-            command.AddCommand(builder.BuildTimeOffReasonsCommand());
-            command.AddCommand(builder.BuildOpenShiftChangeRequestsCommand());
-            command.AddCommand(builder.BuildShareCommand());
-            command.AddCommand(builder.BuildPatchCommand());
             command.AddCommand(builder.BuildDeleteCommand());
+            command.AddCommand(builder.BuildGetCommand());
+            command.AddCommand(builder.BuildOfferShiftRequestsCommand());
+            command.AddCommand(builder.BuildOpenShiftChangeRequestsCommand());
+            command.AddCommand(builder.BuildOpenShiftsCommand());
+            command.AddCommand(builder.BuildPatchCommand());
+            command.AddCommand(builder.BuildSchedulingGroupsCommand());
+            command.AddCommand(builder.BuildShareCommand());
+            command.AddCommand(builder.BuildShiftsCommand());
+            command.AddCommand(builder.BuildSwapShiftsChangeRequestsCommand());
+            command.AddCommand(builder.BuildTimeOffReasonsCommand());
             command.AddCommand(builder.BuildTimeOffRequestsCommand());
+            command.AddCommand(builder.BuildTimesOffCommand());
             return command;
         }
         public Command BuildSendActivityNotificationCommand() {
@@ -279,36 +279,39 @@ namespace ApiSdk.Teams.Item {
         }
         /// <summary>
         /// Delete entity from teams
+        /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="h">Request headers</param>
         /// <param name="o">Request options</param>
         /// <param name="responseHandler">Response handler to use in place of the default response handling provided by the core service</param>
         /// </summary>
-        public async Task DeleteAsync(Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default) {
+        public async Task DeleteAsync(Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default, CancellationToken cancellationToken = default) {
             var requestInfo = CreateDeleteRequestInformation(h, o);
-            await RequestAdapter.SendNoContentAsync(requestInfo, responseHandler);
+            await RequestAdapter.SendNoContentAsync(requestInfo, responseHandler, cancellationToken);
         }
         /// <summary>
         /// Get entity from teams by key
+        /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="h">Request headers</param>
         /// <param name="o">Request options</param>
         /// <param name="q">Request query parameters</param>
         /// <param name="responseHandler">Response handler to use in place of the default response handling provided by the core service</param>
         /// </summary>
-        public async Task<ApiSdk.Models.Microsoft.Graph.Team> GetAsync(Action<GetQueryParameters> q = default, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default) {
+        public async Task<ApiSdk.Models.Microsoft.Graph.Team> GetAsync(Action<GetQueryParameters> q = default, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default, CancellationToken cancellationToken = default) {
             var requestInfo = CreateGetRequestInformation(q, h, o);
-            return await RequestAdapter.SendAsync<ApiSdk.Models.Microsoft.Graph.Team>(requestInfo, responseHandler);
+            return await RequestAdapter.SendAsync<ApiSdk.Models.Microsoft.Graph.Team>(requestInfo, responseHandler, cancellationToken);
         }
         /// <summary>
         /// Update entity in teams
+        /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="h">Request headers</param>
         /// <param name="model"></param>
         /// <param name="o">Request options</param>
         /// <param name="responseHandler">Response handler to use in place of the default response handling provided by the core service</param>
         /// </summary>
-        public async Task PatchAsync(ApiSdk.Models.Microsoft.Graph.Team model, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default) {
+        public async Task PatchAsync(ApiSdk.Models.Microsoft.Graph.Team model, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default, CancellationToken cancellationToken = default) {
             _ = model ?? throw new ArgumentNullException(nameof(model));
             var requestInfo = CreatePatchRequestInformation(model, h, o);
-            await RequestAdapter.SendNoContentAsync(requestInfo, responseHandler);
+            await RequestAdapter.SendNoContentAsync(requestInfo, responseHandler, cancellationToken);
         }
         /// <summary>Get entity from teams by key</summary>
         public class GetQueryParameters : QueryParametersBase {

@@ -49,9 +49,9 @@ namespace ApiSdk.Print.TaskDefinitions.Item.Tasks.Item.Definition {
         public Command BuildRefCommand() {
             var command = new Command("ref");
             var builder = new ApiSdk.Print.TaskDefinitions.Item.Tasks.Item.Definition.@Ref.RefRequestBuilder(PathParameters, RequestAdapter);
-            command.AddCommand(builder.BuildPutCommand());
-            command.AddCommand(builder.BuildGetCommand());
             command.AddCommand(builder.BuildDeleteCommand());
+            command.AddCommand(builder.BuildGetCommand());
+            command.AddCommand(builder.BuildPutCommand());
             return command;
         }
         /// <summary>
@@ -90,14 +90,15 @@ namespace ApiSdk.Print.TaskDefinitions.Item.Tasks.Item.Definition {
         }
         /// <summary>
         /// The printTaskDefinition that was used to create this task. Read-only.
+        /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="h">Request headers</param>
         /// <param name="o">Request options</param>
         /// <param name="q">Request query parameters</param>
         /// <param name="responseHandler">Response handler to use in place of the default response handling provided by the core service</param>
         /// </summary>
-        public async Task<PrintTaskDefinition> GetAsync(Action<GetQueryParameters> q = default, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default) {
+        public async Task<PrintTaskDefinition> GetAsync(Action<GetQueryParameters> q = default, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default, CancellationToken cancellationToken = default) {
             var requestInfo = CreateGetRequestInformation(q, h, o);
-            return await RequestAdapter.SendAsync<PrintTaskDefinition>(requestInfo, responseHandler);
+            return await RequestAdapter.SendAsync<PrintTaskDefinition>(requestInfo, responseHandler, cancellationToken);
         }
         /// <summary>The printTaskDefinition that was used to create this task. Read-only.</summary>
         public class GetQueryParameters : QueryParametersBase {

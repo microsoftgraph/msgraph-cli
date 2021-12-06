@@ -98,14 +98,15 @@ namespace ApiSdk.ServicePrincipals.Item.OwnedObjects {
         }
         /// <summary>
         /// Directory objects that are owned by this service principal. Read-only. Nullable. Supports $expand.
+        /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="h">Request headers</param>
         /// <param name="o">Request options</param>
         /// <param name="q">Request query parameters</param>
         /// <param name="responseHandler">Response handler to use in place of the default response handling provided by the core service</param>
         /// </summary>
-        public async Task<OwnedObjectsResponse> GetAsync(Action<GetQueryParameters> q = default, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default) {
+        public async Task<OwnedObjectsResponse> GetAsync(Action<GetQueryParameters> q = default, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default, CancellationToken cancellationToken = default) {
             var requestInfo = CreateGetRequestInformation(q, h, o);
-            return await RequestAdapter.SendAsync<OwnedObjectsResponse>(requestInfo, responseHandler);
+            return await RequestAdapter.SendAsync<OwnedObjectsResponse>(requestInfo, responseHandler, cancellationToken);
         }
         /// <summary>Directory objects that are owned by this service principal. Read-only. Nullable. Supports $expand.</summary>
         public class GetQueryParameters : QueryParametersBase {

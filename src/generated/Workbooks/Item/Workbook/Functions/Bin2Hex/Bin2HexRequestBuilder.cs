@@ -76,15 +76,16 @@ namespace ApiSdk.Workbooks.Item.Workbook.Functions.Bin2Hex {
         }
         /// <summary>
         /// Invoke action bin2Hex
+        /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="h">Request headers</param>
         /// <param name="model"></param>
         /// <param name="o">Request options</param>
         /// <param name="responseHandler">Response handler to use in place of the default response handling provided by the core service</param>
         /// </summary>
-        public async Task<Bin2HexResponse> PostAsync(Bin2HexRequestBody model, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default) {
+        public async Task<Bin2HexResponse> PostAsync(Bin2HexRequestBody model, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default, CancellationToken cancellationToken = default) {
             _ = model ?? throw new ArgumentNullException(nameof(model));
             var requestInfo = CreatePostRequestInformation(model, h, o);
-            return await RequestAdapter.SendAsync<Bin2HexResponse>(requestInfo, responseHandler);
+            return await RequestAdapter.SendAsync<Bin2HexResponse>(requestInfo, responseHandler, cancellationToken);
         }
         /// <summary>Union type wrapper for classes workbookFunctionResult</summary>
         public class Bin2HexResponse : IParsable {

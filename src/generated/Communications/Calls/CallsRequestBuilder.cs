@@ -20,30 +20,30 @@ namespace ApiSdk.Communications.Calls {
         private IRequestAdapter RequestAdapter { get; set; }
         /// <summary>Url template to use to build the URL for the current request builder</summary>
         private string UrlTemplate { get; set; }
-        public Command[] BuildCommand() {
+        public List<Command> BuildCommand() {
             var builder = new CallRequestBuilder(PathParameters, RequestAdapter);
             var commands = new List<Command> { 
-                builder.BuildTransferCommand(),
-                builder.BuildGetCommand(),
-                builder.BuildRedirectCommand(),
-                builder.BuildChangeScreenSharingRoleCommand(),
-                builder.BuildPlayPromptCommand(),
-                builder.BuildCancelMediaProcessingCommand(),
                 builder.BuildAnswerCommand(),
-                builder.BuildUnmuteCommand(),
-                builder.BuildSubscribeToToneCommand(),
-                builder.BuildOperationsCommand(),
-                builder.BuildDeleteCommand(),
-                builder.BuildKeepAliveCommand(),
-                builder.BuildRecordResponseCommand(),
-                builder.BuildRejectCommand(),
-                builder.BuildUpdateRecordingStatusCommand(),
-                builder.BuildPatchCommand(),
-                builder.BuildMuteCommand(),
                 builder.BuildAudioRoutingGroupsCommand(),
+                builder.BuildCancelMediaProcessingCommand(),
+                builder.BuildChangeScreenSharingRoleCommand(),
+                builder.BuildDeleteCommand(),
+                builder.BuildGetCommand(),
+                builder.BuildKeepAliveCommand(),
+                builder.BuildMuteCommand(),
+                builder.BuildOperationsCommand(),
                 builder.BuildParticipantsCommand(),
+                builder.BuildPatchCommand(),
+                builder.BuildPlayPromptCommand(),
+                builder.BuildRecordResponseCommand(),
+                builder.BuildRedirectCommand(),
+                builder.BuildRejectCommand(),
+                builder.BuildSubscribeToToneCommand(),
+                builder.BuildTransferCommand(),
+                builder.BuildUnmuteCommand(),
+                builder.BuildUpdateRecordingStatusCommand(),
             };
-            return commands.ToArray();
+            return commands;
         }
         /// <summary>
         /// Create new navigation property to calls for communications
@@ -163,26 +163,28 @@ namespace ApiSdk.Communications.Calls {
         }
         /// <summary>
         /// Get calls from communications
+        /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="h">Request headers</param>
         /// <param name="o">Request options</param>
         /// <param name="q">Request query parameters</param>
         /// <param name="responseHandler">Response handler to use in place of the default response handling provided by the core service</param>
         /// </summary>
-        public async Task<CallsResponse> GetAsync(Action<GetQueryParameters> q = default, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default) {
+        public async Task<CallsResponse> GetAsync(Action<GetQueryParameters> q = default, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default, CancellationToken cancellationToken = default) {
             var requestInfo = CreateGetRequestInformation(q, h, o);
-            return await RequestAdapter.SendAsync<CallsResponse>(requestInfo, responseHandler);
+            return await RequestAdapter.SendAsync<CallsResponse>(requestInfo, responseHandler, cancellationToken);
         }
         /// <summary>
         /// Create new navigation property to calls for communications
+        /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="h">Request headers</param>
         /// <param name="model"></param>
         /// <param name="o">Request options</param>
         /// <param name="responseHandler">Response handler to use in place of the default response handling provided by the core service</param>
         /// </summary>
-        public async Task<Call> PostAsync(Call model, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default) {
+        public async Task<Call> PostAsync(Call model, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default, CancellationToken cancellationToken = default) {
             _ = model ?? throw new ArgumentNullException(nameof(model));
             var requestInfo = CreatePostRequestInformation(model, h, o);
-            return await RequestAdapter.SendAsync<Call>(requestInfo, responseHandler);
+            return await RequestAdapter.SendAsync<Call>(requestInfo, responseHandler, cancellationToken);
         }
         /// <summary>Get calls from communications</summary>
         public class GetQueryParameters : QueryParametersBase {

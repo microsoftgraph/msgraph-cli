@@ -76,15 +76,16 @@ namespace ApiSdk.Workbooks.Item.Workbook.Functions.PercentRank_Inc {
         }
         /// <summary>
         /// Invoke action percentRank_Inc
+        /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="h">Request headers</param>
         /// <param name="model"></param>
         /// <param name="o">Request options</param>
         /// <param name="responseHandler">Response handler to use in place of the default response handling provided by the core service</param>
         /// </summary>
-        public async Task<PercentRank_IncResponse> PostAsync(PercentRank_IncRequestBody model, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default) {
+        public async Task<PercentRank_IncResponse> PostAsync(PercentRank_IncRequestBody model, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default, CancellationToken cancellationToken = default) {
             _ = model ?? throw new ArgumentNullException(nameof(model));
             var requestInfo = CreatePostRequestInformation(model, h, o);
-            return await RequestAdapter.SendAsync<PercentRank_IncResponse>(requestInfo, responseHandler);
+            return await RequestAdapter.SendAsync<PercentRank_IncResponse>(requestInfo, responseHandler, cancellationToken);
         }
         /// <summary>Union type wrapper for classes workbookFunctionResult</summary>
         public class PercentRank_IncResponse : IParsable {

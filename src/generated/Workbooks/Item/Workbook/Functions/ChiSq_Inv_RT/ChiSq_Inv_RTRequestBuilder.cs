@@ -76,15 +76,16 @@ namespace ApiSdk.Workbooks.Item.Workbook.Functions.ChiSq_Inv_RT {
         }
         /// <summary>
         /// Invoke action chiSq_Inv_RT
+        /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="h">Request headers</param>
         /// <param name="model"></param>
         /// <param name="o">Request options</param>
         /// <param name="responseHandler">Response handler to use in place of the default response handling provided by the core service</param>
         /// </summary>
-        public async Task<ChiSq_Inv_RTResponse> PostAsync(ChiSq_Inv_RTRequestBody model, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default) {
+        public async Task<ChiSq_Inv_RTResponse> PostAsync(ChiSq_Inv_RTRequestBody model, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default, CancellationToken cancellationToken = default) {
             _ = model ?? throw new ArgumentNullException(nameof(model));
             var requestInfo = CreatePostRequestInformation(model, h, o);
-            return await RequestAdapter.SendAsync<ChiSq_Inv_RTResponse>(requestInfo, responseHandler);
+            return await RequestAdapter.SendAsync<ChiSq_Inv_RTResponse>(requestInfo, responseHandler, cancellationToken);
         }
         /// <summary>Union type wrapper for classes workbookFunctionResult</summary>
         public class ChiSq_Inv_RTResponse : IParsable {

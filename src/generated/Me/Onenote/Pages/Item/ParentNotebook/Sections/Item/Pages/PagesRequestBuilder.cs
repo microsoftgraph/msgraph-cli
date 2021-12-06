@@ -19,17 +19,17 @@ namespace ApiSdk.Me.Onenote.Pages.Item.ParentNotebook.Sections.Item.Pages {
         private IRequestAdapter RequestAdapter { get; set; }
         /// <summary>Url template to use to build the URL for the current request builder</summary>
         private string UrlTemplate { get; set; }
-        public Command[] BuildCommand() {
+        public List<Command> BuildCommand() {
             var builder = new OnenotePageRequestBuilder(PathParameters, RequestAdapter);
             var commands = new List<Command> { 
                 builder.BuildContentCommand(),
-                builder.BuildPatchCommand(),
                 builder.BuildCopyToSectionCommand(),
+                builder.BuildDeleteCommand(),
                 builder.BuildGetCommand(),
                 builder.BuildOnenotePatchContentCommand(),
-                builder.BuildDeleteCommand(),
+                builder.BuildPatchCommand(),
             };
-            return commands.ToArray();
+            return commands;
         }
         /// <summary>
         /// The collection of pages in the section.  Read-only. Nullable.
@@ -151,26 +151,28 @@ namespace ApiSdk.Me.Onenote.Pages.Item.ParentNotebook.Sections.Item.Pages {
         }
         /// <summary>
         /// The collection of pages in the section.  Read-only. Nullable.
+        /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="h">Request headers</param>
         /// <param name="o">Request options</param>
         /// <param name="q">Request query parameters</param>
         /// <param name="responseHandler">Response handler to use in place of the default response handling provided by the core service</param>
         /// </summary>
-        public async Task<PagesResponse> GetAsync(Action<GetQueryParameters> q = default, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default) {
+        public async Task<PagesResponse> GetAsync(Action<GetQueryParameters> q = default, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default, CancellationToken cancellationToken = default) {
             var requestInfo = CreateGetRequestInformation(q, h, o);
-            return await RequestAdapter.SendAsync<PagesResponse>(requestInfo, responseHandler);
+            return await RequestAdapter.SendAsync<PagesResponse>(requestInfo, responseHandler, cancellationToken);
         }
         /// <summary>
         /// The collection of pages in the section.  Read-only. Nullable.
+        /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="h">Request headers</param>
         /// <param name="model"></param>
         /// <param name="o">Request options</param>
         /// <param name="responseHandler">Response handler to use in place of the default response handling provided by the core service</param>
         /// </summary>
-        public async Task<OnenotePage> PostAsync(OnenotePage model, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default) {
+        public async Task<OnenotePage> PostAsync(OnenotePage model, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default, CancellationToken cancellationToken = default) {
             _ = model ?? throw new ArgumentNullException(nameof(model));
             var requestInfo = CreatePostRequestInformation(model, h, o);
-            return await RequestAdapter.SendAsync<OnenotePage>(requestInfo, responseHandler);
+            return await RequestAdapter.SendAsync<OnenotePage>(requestInfo, responseHandler, cancellationToken);
         }
         /// <summary>The collection of pages in the section.  Read-only. Nullable.</summary>
         public class GetQueryParameters : QueryParametersBase {

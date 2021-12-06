@@ -78,15 +78,16 @@ namespace ApiSdk.Communications.Calls.Item.Participants.Item.Mute {
         }
         /// <summary>
         /// Invoke action mute
+        /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="h">Request headers</param>
         /// <param name="model"></param>
         /// <param name="o">Request options</param>
         /// <param name="responseHandler">Response handler to use in place of the default response handling provided by the core service</param>
         /// </summary>
-        public async Task<MuteResponse> PostAsync(MuteRequestBody model, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default) {
+        public async Task<MuteResponse> PostAsync(MuteRequestBody model, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default, CancellationToken cancellationToken = default) {
             _ = model ?? throw new ArgumentNullException(nameof(model));
             var requestInfo = CreatePostRequestInformation(model, h, o);
-            return await RequestAdapter.SendAsync<MuteResponse>(requestInfo, responseHandler);
+            return await RequestAdapter.SendAsync<MuteResponse>(requestInfo, responseHandler, cancellationToken);
         }
         /// <summary>Union type wrapper for classes muteParticipantOperation</summary>
         public class MuteResponse : IParsable {

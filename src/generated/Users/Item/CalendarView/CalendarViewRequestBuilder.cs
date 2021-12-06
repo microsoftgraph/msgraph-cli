@@ -20,27 +20,27 @@ namespace ApiSdk.Users.Item.CalendarView {
         private IRequestAdapter RequestAdapter { get; set; }
         /// <summary>Url template to use to build the URL for the current request builder</summary>
         private string UrlTemplate { get; set; }
-        public Command[] BuildCommand() {
+        public List<Command> BuildCommand() {
             var builder = new EventRequestBuilder(PathParameters, RequestAdapter);
             var commands = new List<Command> { 
-                builder.BuildGetCommand(),
-                builder.BuildInstancesCommand(),
-                builder.BuildExtensionsCommand(),
-                builder.BuildMultiValueExtendedPropertiesCommand(),
-                builder.BuildForwardCommand(),
+                builder.BuildAcceptCommand(),
+                builder.BuildAttachmentsCommand(),
                 builder.BuildCalendarCommand(),
-                builder.BuildTentativelyAcceptCommand(),
                 builder.BuildCancelCommand(),
                 builder.BuildDeclineCommand(),
-                builder.BuildAcceptCommand(),
                 builder.BuildDeleteCommand(),
                 builder.BuildDismissReminderCommand(),
+                builder.BuildExtensionsCommand(),
+                builder.BuildForwardCommand(),
+                builder.BuildGetCommand(),
+                builder.BuildInstancesCommand(),
+                builder.BuildMultiValueExtendedPropertiesCommand(),
                 builder.BuildPatchCommand(),
-                builder.BuildSnoozeReminderCommand(),
                 builder.BuildSingleValueExtendedPropertiesCommand(),
-                builder.BuildAttachmentsCommand(),
+                builder.BuildSnoozeReminderCommand(),
+                builder.BuildTentativelyAcceptCommand(),
             };
-            return commands.ToArray();
+            return commands;
         }
         /// <summary>
         /// The calendar view for the calendar. Read-only. Nullable.
@@ -164,26 +164,28 @@ namespace ApiSdk.Users.Item.CalendarView {
         }
         /// <summary>
         /// The calendar view for the calendar. Read-only. Nullable.
+        /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="h">Request headers</param>
         /// <param name="o">Request options</param>
         /// <param name="q">Request query parameters</param>
         /// <param name="responseHandler">Response handler to use in place of the default response handling provided by the core service</param>
         /// </summary>
-        public async Task<CalendarViewResponse> GetAsync(Action<GetQueryParameters> q = default, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default) {
+        public async Task<CalendarViewResponse> GetAsync(Action<GetQueryParameters> q = default, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default, CancellationToken cancellationToken = default) {
             var requestInfo = CreateGetRequestInformation(q, h, o);
-            return await RequestAdapter.SendAsync<CalendarViewResponse>(requestInfo, responseHandler);
+            return await RequestAdapter.SendAsync<CalendarViewResponse>(requestInfo, responseHandler, cancellationToken);
         }
         /// <summary>
         /// The calendar view for the calendar. Read-only. Nullable.
+        /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="h">Request headers</param>
         /// <param name="model"></param>
         /// <param name="o">Request options</param>
         /// <param name="responseHandler">Response handler to use in place of the default response handling provided by the core service</param>
         /// </summary>
-        public async Task<@Event> PostAsync(@Event model, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default) {
+        public async Task<@Event> PostAsync(@Event model, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default, CancellationToken cancellationToken = default) {
             _ = model ?? throw new ArgumentNullException(nameof(model));
             var requestInfo = CreatePostRequestInformation(model, h, o);
-            return await RequestAdapter.SendAsync<@Event>(requestInfo, responseHandler);
+            return await RequestAdapter.SendAsync<@Event>(requestInfo, responseHandler, cancellationToken);
         }
         /// <summary>The calendar view for the calendar. Read-only. Nullable.</summary>
         public class GetQueryParameters : QueryParametersBase {

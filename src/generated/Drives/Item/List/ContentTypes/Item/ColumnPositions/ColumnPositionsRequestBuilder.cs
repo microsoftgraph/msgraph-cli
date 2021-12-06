@@ -100,14 +100,15 @@ namespace ApiSdk.Drives.Item.List.ContentTypes.Item.ColumnPositions {
         }
         /// <summary>
         /// Column order information in a content type.
+        /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="h">Request headers</param>
         /// <param name="o">Request options</param>
         /// <param name="q">Request query parameters</param>
         /// <param name="responseHandler">Response handler to use in place of the default response handling provided by the core service</param>
         /// </summary>
-        public async Task<ColumnPositionsResponse> GetAsync(Action<GetQueryParameters> q = default, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default) {
+        public async Task<ColumnPositionsResponse> GetAsync(Action<GetQueryParameters> q = default, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default, CancellationToken cancellationToken = default) {
             var requestInfo = CreateGetRequestInformation(q, h, o);
-            return await RequestAdapter.SendAsync<ColumnPositionsResponse>(requestInfo, responseHandler);
+            return await RequestAdapter.SendAsync<ColumnPositionsResponse>(requestInfo, responseHandler, cancellationToken);
         }
         /// <summary>Column order information in a content type.</summary>
         public class GetQueryParameters : QueryParametersBase {

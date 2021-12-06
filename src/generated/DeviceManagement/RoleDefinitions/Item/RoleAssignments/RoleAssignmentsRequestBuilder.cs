@@ -19,15 +19,15 @@ namespace ApiSdk.DeviceManagement.RoleDefinitions.Item.RoleAssignments {
         private IRequestAdapter RequestAdapter { get; set; }
         /// <summary>Url template to use to build the URL for the current request builder</summary>
         private string UrlTemplate { get; set; }
-        public Command[] BuildCommand() {
+        public List<Command> BuildCommand() {
             var builder = new RoleAssignmentRequestBuilder(PathParameters, RequestAdapter);
             var commands = new List<Command> { 
-                builder.BuildRoleDefinitionCommand(),
-                builder.BuildPatchCommand(),
-                builder.BuildGetCommand(),
                 builder.BuildDeleteCommand(),
+                builder.BuildGetCommand(),
+                builder.BuildPatchCommand(),
+                builder.BuildRoleDefinitionCommand(),
             };
-            return commands.ToArray();
+            return commands;
         }
         /// <summary>
         /// List of Role assignments for this role definition.
@@ -145,26 +145,28 @@ namespace ApiSdk.DeviceManagement.RoleDefinitions.Item.RoleAssignments {
         }
         /// <summary>
         /// List of Role assignments for this role definition.
+        /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="h">Request headers</param>
         /// <param name="o">Request options</param>
         /// <param name="q">Request query parameters</param>
         /// <param name="responseHandler">Response handler to use in place of the default response handling provided by the core service</param>
         /// </summary>
-        public async Task<RoleAssignmentsResponse> GetAsync(Action<GetQueryParameters> q = default, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default) {
+        public async Task<RoleAssignmentsResponse> GetAsync(Action<GetQueryParameters> q = default, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default, CancellationToken cancellationToken = default) {
             var requestInfo = CreateGetRequestInformation(q, h, o);
-            return await RequestAdapter.SendAsync<RoleAssignmentsResponse>(requestInfo, responseHandler);
+            return await RequestAdapter.SendAsync<RoleAssignmentsResponse>(requestInfo, responseHandler, cancellationToken);
         }
         /// <summary>
         /// List of Role assignments for this role definition.
+        /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="h">Request headers</param>
         /// <param name="model"></param>
         /// <param name="o">Request options</param>
         /// <param name="responseHandler">Response handler to use in place of the default response handling provided by the core service</param>
         /// </summary>
-        public async Task<RoleAssignment> PostAsync(RoleAssignment model, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default) {
+        public async Task<RoleAssignment> PostAsync(RoleAssignment model, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default, CancellationToken cancellationToken = default) {
             _ = model ?? throw new ArgumentNullException(nameof(model));
             var requestInfo = CreatePostRequestInformation(model, h, o);
-            return await RequestAdapter.SendAsync<RoleAssignment>(requestInfo, responseHandler);
+            return await RequestAdapter.SendAsync<RoleAssignment>(requestInfo, responseHandler, cancellationToken);
         }
         /// <summary>List of Role assignments for this role definition.</summary>
         public class GetQueryParameters : QueryParametersBase {

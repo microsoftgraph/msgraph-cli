@@ -80,15 +80,16 @@ namespace ApiSdk.Users.Item.MailFolders.Item.Messages.Item.CreateReplyAll {
         }
         /// <summary>
         /// Invoke action createReplyAll
+        /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="h">Request headers</param>
         /// <param name="model"></param>
         /// <param name="o">Request options</param>
         /// <param name="responseHandler">Response handler to use in place of the default response handling provided by the core service</param>
         /// </summary>
-        public async Task<CreateReplyAllResponse> PostAsync(CreateReplyAllRequestBody model, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default) {
+        public async Task<CreateReplyAllResponse> PostAsync(CreateReplyAllRequestBody model, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default, CancellationToken cancellationToken = default) {
             _ = model ?? throw new ArgumentNullException(nameof(model));
             var requestInfo = CreatePostRequestInformation(model, h, o);
-            return await RequestAdapter.SendAsync<CreateReplyAllResponse>(requestInfo, responseHandler);
+            return await RequestAdapter.SendAsync<CreateReplyAllResponse>(requestInfo, responseHandler, cancellationToken);
         }
         /// <summary>Union type wrapper for classes message</summary>
         public class CreateReplyAllResponse : IParsable {

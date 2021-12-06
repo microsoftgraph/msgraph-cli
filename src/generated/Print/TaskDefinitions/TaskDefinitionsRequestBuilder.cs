@@ -19,15 +19,15 @@ namespace ApiSdk.Print.TaskDefinitions {
         private IRequestAdapter RequestAdapter { get; set; }
         /// <summary>Url template to use to build the URL for the current request builder</summary>
         private string UrlTemplate { get; set; }
-        public Command[] BuildCommand() {
+        public List<Command> BuildCommand() {
             var builder = new PrintTaskDefinitionRequestBuilder(PathParameters, RequestAdapter);
             var commands = new List<Command> { 
-                builder.BuildTasksCommand(),
-                builder.BuildPatchCommand(),
-                builder.BuildGetCommand(),
                 builder.BuildDeleteCommand(),
+                builder.BuildGetCommand(),
+                builder.BuildPatchCommand(),
+                builder.BuildTasksCommand(),
             };
-            return commands.ToArray();
+            return commands;
         }
         /// <summary>
         /// List of abstract definition for a task that can be triggered when various events occur within Universal Print.
@@ -141,26 +141,28 @@ namespace ApiSdk.Print.TaskDefinitions {
         }
         /// <summary>
         /// List of abstract definition for a task that can be triggered when various events occur within Universal Print.
+        /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="h">Request headers</param>
         /// <param name="o">Request options</param>
         /// <param name="q">Request query parameters</param>
         /// <param name="responseHandler">Response handler to use in place of the default response handling provided by the core service</param>
         /// </summary>
-        public async Task<TaskDefinitionsResponse> GetAsync(Action<GetQueryParameters> q = default, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default) {
+        public async Task<TaskDefinitionsResponse> GetAsync(Action<GetQueryParameters> q = default, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default, CancellationToken cancellationToken = default) {
             var requestInfo = CreateGetRequestInformation(q, h, o);
-            return await RequestAdapter.SendAsync<TaskDefinitionsResponse>(requestInfo, responseHandler);
+            return await RequestAdapter.SendAsync<TaskDefinitionsResponse>(requestInfo, responseHandler, cancellationToken);
         }
         /// <summary>
         /// List of abstract definition for a task that can be triggered when various events occur within Universal Print.
+        /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="h">Request headers</param>
         /// <param name="model"></param>
         /// <param name="o">Request options</param>
         /// <param name="responseHandler">Response handler to use in place of the default response handling provided by the core service</param>
         /// </summary>
-        public async Task<PrintTaskDefinition> PostAsync(PrintTaskDefinition model, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default) {
+        public async Task<PrintTaskDefinition> PostAsync(PrintTaskDefinition model, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default, CancellationToken cancellationToken = default) {
             _ = model ?? throw new ArgumentNullException(nameof(model));
             var requestInfo = CreatePostRequestInformation(model, h, o);
-            return await RequestAdapter.SendAsync<PrintTaskDefinition>(requestInfo, responseHandler);
+            return await RequestAdapter.SendAsync<PrintTaskDefinition>(requestInfo, responseHandler, cancellationToken);
         }
         /// <summary>List of abstract definition for a task that can be triggered when various events occur within Universal Print.</summary>
         public class GetQueryParameters : QueryParametersBase {

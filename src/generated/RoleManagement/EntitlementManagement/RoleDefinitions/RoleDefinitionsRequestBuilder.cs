@@ -19,15 +19,15 @@ namespace ApiSdk.RoleManagement.EntitlementManagement.RoleDefinitions {
         private IRequestAdapter RequestAdapter { get; set; }
         /// <summary>Url template to use to build the URL for the current request builder</summary>
         private string UrlTemplate { get; set; }
-        public Command[] BuildCommand() {
+        public List<Command> BuildCommand() {
             var builder = new UnifiedRoleDefinitionRequestBuilder(PathParameters, RequestAdapter);
             var commands = new List<Command> { 
+                builder.BuildDeleteCommand(),
+                builder.BuildGetCommand(),
                 builder.BuildInheritsPermissionsFromCommand(),
                 builder.BuildPatchCommand(),
-                builder.BuildGetCommand(),
-                builder.BuildDeleteCommand(),
             };
-            return commands.ToArray();
+            return commands;
         }
         /// <summary>
         /// Resource representing the roles allowed by RBAC providers and the permissions assigned to the roles.
@@ -141,26 +141,28 @@ namespace ApiSdk.RoleManagement.EntitlementManagement.RoleDefinitions {
         }
         /// <summary>
         /// Resource representing the roles allowed by RBAC providers and the permissions assigned to the roles.
+        /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="h">Request headers</param>
         /// <param name="o">Request options</param>
         /// <param name="q">Request query parameters</param>
         /// <param name="responseHandler">Response handler to use in place of the default response handling provided by the core service</param>
         /// </summary>
-        public async Task<RoleDefinitionsResponse> GetAsync(Action<GetQueryParameters> q = default, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default) {
+        public async Task<RoleDefinitionsResponse> GetAsync(Action<GetQueryParameters> q = default, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default, CancellationToken cancellationToken = default) {
             var requestInfo = CreateGetRequestInformation(q, h, o);
-            return await RequestAdapter.SendAsync<RoleDefinitionsResponse>(requestInfo, responseHandler);
+            return await RequestAdapter.SendAsync<RoleDefinitionsResponse>(requestInfo, responseHandler, cancellationToken);
         }
         /// <summary>
         /// Resource representing the roles allowed by RBAC providers and the permissions assigned to the roles.
+        /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="h">Request headers</param>
         /// <param name="model"></param>
         /// <param name="o">Request options</param>
         /// <param name="responseHandler">Response handler to use in place of the default response handling provided by the core service</param>
         /// </summary>
-        public async Task<UnifiedRoleDefinition> PostAsync(UnifiedRoleDefinition model, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default) {
+        public async Task<UnifiedRoleDefinition> PostAsync(UnifiedRoleDefinition model, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default, CancellationToken cancellationToken = default) {
             _ = model ?? throw new ArgumentNullException(nameof(model));
             var requestInfo = CreatePostRequestInformation(model, h, o);
-            return await RequestAdapter.SendAsync<UnifiedRoleDefinition>(requestInfo, responseHandler);
+            return await RequestAdapter.SendAsync<UnifiedRoleDefinition>(requestInfo, responseHandler, cancellationToken);
         }
         /// <summary>Resource representing the roles allowed by RBAC providers and the permissions assigned to the roles.</summary>
         public class GetQueryParameters : QueryParametersBase {

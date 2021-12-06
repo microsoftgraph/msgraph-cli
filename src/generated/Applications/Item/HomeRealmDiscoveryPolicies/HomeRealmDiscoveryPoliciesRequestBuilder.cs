@@ -98,14 +98,15 @@ namespace ApiSdk.Applications.Item.HomeRealmDiscoveryPolicies {
         }
         /// <summary>
         /// Get homeRealmDiscoveryPolicies from applications
+        /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="h">Request headers</param>
         /// <param name="o">Request options</param>
         /// <param name="q">Request query parameters</param>
         /// <param name="responseHandler">Response handler to use in place of the default response handling provided by the core service</param>
         /// </summary>
-        public async Task<HomeRealmDiscoveryPoliciesResponse> GetAsync(Action<GetQueryParameters> q = default, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default) {
+        public async Task<HomeRealmDiscoveryPoliciesResponse> GetAsync(Action<GetQueryParameters> q = default, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default, CancellationToken cancellationToken = default) {
             var requestInfo = CreateGetRequestInformation(q, h, o);
-            return await RequestAdapter.SendAsync<HomeRealmDiscoveryPoliciesResponse>(requestInfo, responseHandler);
+            return await RequestAdapter.SendAsync<HomeRealmDiscoveryPoliciesResponse>(requestInfo, responseHandler, cancellationToken);
         }
         /// <summary>Get homeRealmDiscoveryPolicies from applications</summary>
         public class GetQueryParameters : QueryParametersBase {

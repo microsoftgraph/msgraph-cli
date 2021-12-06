@@ -83,21 +83,21 @@ namespace ApiSdk.Me.Insights.Used.Item {
         public Command BuildResourceCommand() {
             var command = new Command("resource");
             var builder = new ApiSdk.Me.Insights.Used.Item.Resource.ResourceRequestBuilder(PathParameters, RequestAdapter);
-            command.AddCommand(builder.BuildWorkbookRangeViewCommand());
-            command.AddCommand(builder.BuildMobileAppContentFileCommand());
-            command.AddCommand(builder.BuildWindowsInformationProtectionCommand());
-            command.AddCommand(builder.BuildPrintDocumentCommand());
-            command.AddCommand(builder.BuildTargetedManagedAppProtectionCommand());
-            command.AddCommand(builder.BuildWorkbookRangeCommand());
-            command.AddCommand(builder.BuildWorkbookRangeFormatCommand());
-            command.AddCommand(builder.BuildWorkbookRangeFillCommand());
             command.AddCommand(builder.BuildCalendarSharingMessageCommand());
-            command.AddCommand(builder.BuildWorkbookRangeSortCommand());
             command.AddCommand(builder.BuildGetCommand());
+            command.AddCommand(builder.BuildManagedAppProtectionCommand());
+            command.AddCommand(builder.BuildMobileAppContentFileCommand());
+            command.AddCommand(builder.BuildPrintDocumentCommand());
+            command.AddCommand(builder.BuildPrintJobCommand());
             command.AddCommand(builder.BuildRefCommand());
             command.AddCommand(builder.BuildScheduleChangeRequestCommand());
-            command.AddCommand(builder.BuildManagedAppProtectionCommand());
-            command.AddCommand(builder.BuildPrintJobCommand());
+            command.AddCommand(builder.BuildTargetedManagedAppProtectionCommand());
+            command.AddCommand(builder.BuildWindowsInformationProtectionCommand());
+            command.AddCommand(builder.BuildWorkbookRangeCommand());
+            command.AddCommand(builder.BuildWorkbookRangeFillCommand());
+            command.AddCommand(builder.BuildWorkbookRangeFormatCommand());
+            command.AddCommand(builder.BuildWorkbookRangeSortCommand());
+            command.AddCommand(builder.BuildWorkbookRangeViewCommand());
             return command;
         }
         /// <summary>
@@ -169,36 +169,39 @@ namespace ApiSdk.Me.Insights.Used.Item {
         }
         /// <summary>
         /// Calculated relationship identifying the latest documents viewed or modified by a user, including OneDrive for Business and SharePoint documents, ranked by recency of use.
+        /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="h">Request headers</param>
         /// <param name="o">Request options</param>
         /// <param name="responseHandler">Response handler to use in place of the default response handling provided by the core service</param>
         /// </summary>
-        public async Task DeleteAsync(Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default) {
+        public async Task DeleteAsync(Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default, CancellationToken cancellationToken = default) {
             var requestInfo = CreateDeleteRequestInformation(h, o);
-            await RequestAdapter.SendNoContentAsync(requestInfo, responseHandler);
+            await RequestAdapter.SendNoContentAsync(requestInfo, responseHandler, cancellationToken);
         }
         /// <summary>
         /// Calculated relationship identifying the latest documents viewed or modified by a user, including OneDrive for Business and SharePoint documents, ranked by recency of use.
+        /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="h">Request headers</param>
         /// <param name="o">Request options</param>
         /// <param name="q">Request query parameters</param>
         /// <param name="responseHandler">Response handler to use in place of the default response handling provided by the core service</param>
         /// </summary>
-        public async Task<UsedInsight> GetAsync(Action<GetQueryParameters> q = default, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default) {
+        public async Task<UsedInsight> GetAsync(Action<GetQueryParameters> q = default, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default, CancellationToken cancellationToken = default) {
             var requestInfo = CreateGetRequestInformation(q, h, o);
-            return await RequestAdapter.SendAsync<UsedInsight>(requestInfo, responseHandler);
+            return await RequestAdapter.SendAsync<UsedInsight>(requestInfo, responseHandler, cancellationToken);
         }
         /// <summary>
         /// Calculated relationship identifying the latest documents viewed or modified by a user, including OneDrive for Business and SharePoint documents, ranked by recency of use.
+        /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="h">Request headers</param>
         /// <param name="model"></param>
         /// <param name="o">Request options</param>
         /// <param name="responseHandler">Response handler to use in place of the default response handling provided by the core service</param>
         /// </summary>
-        public async Task PatchAsync(UsedInsight model, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default) {
+        public async Task PatchAsync(UsedInsight model, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default, CancellationToken cancellationToken = default) {
             _ = model ?? throw new ArgumentNullException(nameof(model));
             var requestInfo = CreatePatchRequestInformation(model, h, o);
-            await RequestAdapter.SendNoContentAsync(requestInfo, responseHandler);
+            await RequestAdapter.SendNoContentAsync(requestInfo, responseHandler, cancellationToken);
         }
         /// <summary>Calculated relationship identifying the latest documents viewed or modified by a user, including OneDrive for Business and SharePoint documents, ranked by recency of use.</summary>
         public class GetQueryParameters : QueryParametersBase {

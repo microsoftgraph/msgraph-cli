@@ -61,37 +61,37 @@ namespace ApiSdk.Admin.ServiceAnnouncement {
         public Command BuildHealthOverviewsCommand() {
             var command = new Command("health-overviews");
             var builder = new ApiSdk.Admin.ServiceAnnouncement.HealthOverviews.HealthOverviewsRequestBuilder(PathParameters, RequestAdapter);
-            command.AddCommand(builder.BuildListCommand());
-            command.AddCommand(builder.BuildCreateCommand());
             foreach (var cmd in builder.BuildCommand()) {
                 command.AddCommand(cmd);
             }
+            command.AddCommand(builder.BuildCreateCommand());
+            command.AddCommand(builder.BuildListCommand());
             return command;
         }
         public Command BuildIssuesCommand() {
             var command = new Command("issues");
             var builder = new ApiSdk.Admin.ServiceAnnouncement.Issues.IssuesRequestBuilder(PathParameters, RequestAdapter);
-            command.AddCommand(builder.BuildListCommand());
-            command.AddCommand(builder.BuildCreateCommand());
             foreach (var cmd in builder.BuildCommand()) {
                 command.AddCommand(cmd);
             }
+            command.AddCommand(builder.BuildCreateCommand());
+            command.AddCommand(builder.BuildListCommand());
             return command;
         }
         public Command BuildMessagesCommand() {
             var command = new Command("messages");
             var builder = new ApiSdk.Admin.ServiceAnnouncement.Messages.MessagesRequestBuilder(PathParameters, RequestAdapter);
-            command.AddCommand(builder.BuildUnfavoriteCommand());
+            command.AddCommand(builder.BuildArchiveCommand());
             foreach (var cmd in builder.BuildCommand()) {
                 command.AddCommand(cmd);
             }
-            command.AddCommand(builder.BuildArchiveCommand());
-            command.AddCommand(builder.BuildFavoriteCommand());
             command.AddCommand(builder.BuildCreateCommand());
-            command.AddCommand(builder.BuildMarkUnreadCommand());
-            command.AddCommand(builder.BuildUnarchiveCommand());
+            command.AddCommand(builder.BuildFavoriteCommand());
             command.AddCommand(builder.BuildListCommand());
             command.AddCommand(builder.BuildMarkReadCommand());
+            command.AddCommand(builder.BuildMarkUnreadCommand());
+            command.AddCommand(builder.BuildUnarchiveCommand());
+            command.AddCommand(builder.BuildUnfavoriteCommand());
             return command;
         }
         /// <summary>
@@ -181,36 +181,39 @@ namespace ApiSdk.Admin.ServiceAnnouncement {
         }
         /// <summary>
         /// A container for service communications resources. Read-only.
+        /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="h">Request headers</param>
         /// <param name="o">Request options</param>
         /// <param name="responseHandler">Response handler to use in place of the default response handling provided by the core service</param>
         /// </summary>
-        public async Task DeleteAsync(Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default) {
+        public async Task DeleteAsync(Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default, CancellationToken cancellationToken = default) {
             var requestInfo = CreateDeleteRequestInformation(h, o);
-            await RequestAdapter.SendNoContentAsync(requestInfo, responseHandler);
+            await RequestAdapter.SendNoContentAsync(requestInfo, responseHandler, cancellationToken);
         }
         /// <summary>
         /// A container for service communications resources. Read-only.
+        /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="h">Request headers</param>
         /// <param name="o">Request options</param>
         /// <param name="q">Request query parameters</param>
         /// <param name="responseHandler">Response handler to use in place of the default response handling provided by the core service</param>
         /// </summary>
-        public async Task<ApiSdk.Models.Microsoft.Graph.ServiceAnnouncement> GetAsync(Action<GetQueryParameters> q = default, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default) {
+        public async Task<ApiSdk.Models.Microsoft.Graph.ServiceAnnouncement> GetAsync(Action<GetQueryParameters> q = default, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default, CancellationToken cancellationToken = default) {
             var requestInfo = CreateGetRequestInformation(q, h, o);
-            return await RequestAdapter.SendAsync<ApiSdk.Models.Microsoft.Graph.ServiceAnnouncement>(requestInfo, responseHandler);
+            return await RequestAdapter.SendAsync<ApiSdk.Models.Microsoft.Graph.ServiceAnnouncement>(requestInfo, responseHandler, cancellationToken);
         }
         /// <summary>
         /// A container for service communications resources. Read-only.
+        /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="h">Request headers</param>
         /// <param name="model"></param>
         /// <param name="o">Request options</param>
         /// <param name="responseHandler">Response handler to use in place of the default response handling provided by the core service</param>
         /// </summary>
-        public async Task PatchAsync(ApiSdk.Models.Microsoft.Graph.ServiceAnnouncement model, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default) {
+        public async Task PatchAsync(ApiSdk.Models.Microsoft.Graph.ServiceAnnouncement model, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default, CancellationToken cancellationToken = default) {
             _ = model ?? throw new ArgumentNullException(nameof(model));
             var requestInfo = CreatePatchRequestInformation(model, h, o);
-            await RequestAdapter.SendNoContentAsync(requestInfo, responseHandler);
+            await RequestAdapter.SendNoContentAsync(requestInfo, responseHandler, cancellationToken);
         }
         /// <summary>A container for service communications resources. Read-only.</summary>
         public class GetQueryParameters : QueryParametersBase {

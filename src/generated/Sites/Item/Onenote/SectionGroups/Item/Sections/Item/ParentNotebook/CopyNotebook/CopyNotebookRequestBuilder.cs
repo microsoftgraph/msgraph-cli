@@ -80,15 +80,16 @@ namespace ApiSdk.Sites.Item.Onenote.SectionGroups.Item.Sections.Item.ParentNoteb
         }
         /// <summary>
         /// Invoke action copyNotebook
+        /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="h">Request headers</param>
         /// <param name="model"></param>
         /// <param name="o">Request options</param>
         /// <param name="responseHandler">Response handler to use in place of the default response handling provided by the core service</param>
         /// </summary>
-        public async Task<CopyNotebookResponse> PostAsync(CopyNotebookRequestBody model, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default) {
+        public async Task<CopyNotebookResponse> PostAsync(CopyNotebookRequestBody model, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default, CancellationToken cancellationToken = default) {
             _ = model ?? throw new ArgumentNullException(nameof(model));
             var requestInfo = CreatePostRequestInformation(model, h, o);
-            return await RequestAdapter.SendAsync<CopyNotebookResponse>(requestInfo, responseHandler);
+            return await RequestAdapter.SendAsync<CopyNotebookResponse>(requestInfo, responseHandler, cancellationToken);
         }
         /// <summary>Union type wrapper for classes onenoteOperation</summary>
         public class CopyNotebookResponse : IParsable {

@@ -19,21 +19,21 @@ namespace ApiSdk.Education.Classes.Item.Assignments.Item.Submissions {
         private IRequestAdapter RequestAdapter { get; set; }
         /// <summary>Url template to use to build the URL for the current request builder</summary>
         private string UrlTemplate { get; set; }
-        public Command[] BuildCommand() {
+        public List<Command> BuildCommand() {
             var builder = new EducationSubmissionRequestBuilder(PathParameters, RequestAdapter);
             var commands = new List<Command> { 
-                builder.BuildReturnCommand(),
-                builder.BuildResourcesCommand(),
-                builder.BuildPatchCommand(),
-                builder.BuildSetUpResourcesFolderCommand(),
-                builder.BuildSubmittedResourcesCommand(),
-                builder.BuildSubmitCommand(),
+                builder.BuildDeleteCommand(),
                 builder.BuildGetCommand(),
                 builder.BuildOutcomesCommand(),
-                builder.BuildDeleteCommand(),
+                builder.BuildPatchCommand(),
+                builder.BuildResourcesCommand(),
+                builder.BuildReturnCommand(),
+                builder.BuildSetUpResourcesFolderCommand(),
+                builder.BuildSubmitCommand(),
+                builder.BuildSubmittedResourcesCommand(),
                 builder.BuildUnsubmitCommand(),
             };
-            return commands.ToArray();
+            return commands;
         }
         /// <summary>
         /// Once published, there is a submission object for each student representing their work and grade.  Read-only. Nullable.
@@ -155,26 +155,28 @@ namespace ApiSdk.Education.Classes.Item.Assignments.Item.Submissions {
         }
         /// <summary>
         /// Once published, there is a submission object for each student representing their work and grade.  Read-only. Nullable.
+        /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="h">Request headers</param>
         /// <param name="o">Request options</param>
         /// <param name="q">Request query parameters</param>
         /// <param name="responseHandler">Response handler to use in place of the default response handling provided by the core service</param>
         /// </summary>
-        public async Task<SubmissionsResponse> GetAsync(Action<GetQueryParameters> q = default, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default) {
+        public async Task<SubmissionsResponse> GetAsync(Action<GetQueryParameters> q = default, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default, CancellationToken cancellationToken = default) {
             var requestInfo = CreateGetRequestInformation(q, h, o);
-            return await RequestAdapter.SendAsync<SubmissionsResponse>(requestInfo, responseHandler);
+            return await RequestAdapter.SendAsync<SubmissionsResponse>(requestInfo, responseHandler, cancellationToken);
         }
         /// <summary>
         /// Once published, there is a submission object for each student representing their work and grade.  Read-only. Nullable.
+        /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="h">Request headers</param>
         /// <param name="model"></param>
         /// <param name="o">Request options</param>
         /// <param name="responseHandler">Response handler to use in place of the default response handling provided by the core service</param>
         /// </summary>
-        public async Task<EducationSubmission> PostAsync(EducationSubmission model, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default) {
+        public async Task<EducationSubmission> PostAsync(EducationSubmission model, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default, CancellationToken cancellationToken = default) {
             _ = model ?? throw new ArgumentNullException(nameof(model));
             var requestInfo = CreatePostRequestInformation(model, h, o);
-            return await RequestAdapter.SendAsync<EducationSubmission>(requestInfo, responseHandler);
+            return await RequestAdapter.SendAsync<EducationSubmission>(requestInfo, responseHandler, cancellationToken);
         }
         /// <summary>Once published, there is a submission object for each student representing their work and grade.  Read-only. Nullable.</summary>
         public class GetQueryParameters : QueryParametersBase {

@@ -48,21 +48,21 @@ namespace ApiSdk.Workbooks.Item.Workbook.Names.Item.Worksheet.Tables.Item.Column
         public Command BuildFilterCommand() {
             var command = new Command("filter");
             var builder = new ApiSdk.Workbooks.Item.Workbook.Names.Item.Worksheet.Tables.Item.Columns.Item.Filter.FilterRequestBuilder(PathParameters, RequestAdapter);
-            command.AddCommand(builder.BuildApplyTopItemsFilterCommand());
-            command.AddCommand(builder.BuildApplyBottomPercentFilterCommand());
-            command.AddCommand(builder.BuildApplyFontColorFilterCommand());
-            command.AddCommand(builder.BuildApplyDynamicFilterCommand());
-            command.AddCommand(builder.BuildApplyCustomFilterCommand());
-            command.AddCommand(builder.BuildApplyTopPercentFilterCommand());
-            command.AddCommand(builder.BuildClearCommand());
-            command.AddCommand(builder.BuildPatchCommand());
             command.AddCommand(builder.BuildApplyBottomItemsFilterCommand());
-            command.AddCommand(builder.BuildApplyCommand());
-            command.AddCommand(builder.BuildGetCommand());
+            command.AddCommand(builder.BuildApplyBottomPercentFilterCommand());
             command.AddCommand(builder.BuildApplyCellColorFilterCommand());
-            command.AddCommand(builder.BuildDeleteCommand());
-            command.AddCommand(builder.BuildApplyValuesFilterCommand());
+            command.AddCommand(builder.BuildApplyCommand());
+            command.AddCommand(builder.BuildApplyCustomFilterCommand());
+            command.AddCommand(builder.BuildApplyDynamicFilterCommand());
+            command.AddCommand(builder.BuildApplyFontColorFilterCommand());
             command.AddCommand(builder.BuildApplyIconFilterCommand());
+            command.AddCommand(builder.BuildApplyTopItemsFilterCommand());
+            command.AddCommand(builder.BuildApplyTopPercentFilterCommand());
+            command.AddCommand(builder.BuildApplyValuesFilterCommand());
+            command.AddCommand(builder.BuildClearCommand());
+            command.AddCommand(builder.BuildDeleteCommand());
+            command.AddCommand(builder.BuildGetCommand());
+            command.AddCommand(builder.BuildPatchCommand());
             return command;
         }
         /// <summary>
@@ -197,24 +197,26 @@ namespace ApiSdk.Workbooks.Item.Workbook.Names.Item.Worksheet.Tables.Item.Column
         }
         /// <summary>
         /// Represents a collection of all the columns in the table. Read-only.
+        /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="h">Request headers</param>
         /// <param name="o">Request options</param>
         /// <param name="responseHandler">Response handler to use in place of the default response handling provided by the core service</param>
         /// </summary>
-        public async Task DeleteAsync(Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default) {
+        public async Task DeleteAsync(Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default, CancellationToken cancellationToken = default) {
             var requestInfo = CreateDeleteRequestInformation(h, o);
-            await RequestAdapter.SendNoContentAsync(requestInfo, responseHandler);
+            await RequestAdapter.SendNoContentAsync(requestInfo, responseHandler, cancellationToken);
         }
         /// <summary>
         /// Represents a collection of all the columns in the table. Read-only.
+        /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="h">Request headers</param>
         /// <param name="o">Request options</param>
         /// <param name="q">Request query parameters</param>
         /// <param name="responseHandler">Response handler to use in place of the default response handling provided by the core service</param>
         /// </summary>
-        public async Task<WorkbookTableColumn> GetAsync(Action<GetQueryParameters> q = default, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default) {
+        public async Task<WorkbookTableColumn> GetAsync(Action<GetQueryParameters> q = default, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default, CancellationToken cancellationToken = default) {
             var requestInfo = CreateGetRequestInformation(q, h, o);
-            return await RequestAdapter.SendAsync<WorkbookTableColumn>(requestInfo, responseHandler);
+            return await RequestAdapter.SendAsync<WorkbookTableColumn>(requestInfo, responseHandler, cancellationToken);
         }
         /// <summary>
         /// Builds and executes requests for operations under \workbooks\{driveItem-id}\workbook\names\{workbookNamedItem-id}\worksheet\tables\{workbookTable-id}\columns\{workbookTableColumn-id}\microsoft.graph.headerRowRange()
@@ -224,15 +226,16 @@ namespace ApiSdk.Workbooks.Item.Workbook.Names.Item.Worksheet.Tables.Item.Column
         }
         /// <summary>
         /// Represents a collection of all the columns in the table. Read-only.
+        /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="h">Request headers</param>
         /// <param name="model"></param>
         /// <param name="o">Request options</param>
         /// <param name="responseHandler">Response handler to use in place of the default response handling provided by the core service</param>
         /// </summary>
-        public async Task PatchAsync(WorkbookTableColumn model, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default) {
+        public async Task PatchAsync(WorkbookTableColumn model, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default, CancellationToken cancellationToken = default) {
             _ = model ?? throw new ArgumentNullException(nameof(model));
             var requestInfo = CreatePatchRequestInformation(model, h, o);
-            await RequestAdapter.SendNoContentAsync(requestInfo, responseHandler);
+            await RequestAdapter.SendNoContentAsync(requestInfo, responseHandler, cancellationToken);
         }
         /// <summary>
         /// Builds and executes requests for operations under \workbooks\{driveItem-id}\workbook\names\{workbookNamedItem-id}\worksheet\tables\{workbookTable-id}\columns\{workbookTableColumn-id}\microsoft.graph.range()

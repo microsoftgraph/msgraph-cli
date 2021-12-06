@@ -20,27 +20,27 @@ namespace ApiSdk.Teams {
         private IRequestAdapter RequestAdapter { get; set; }
         /// <summary>Url template to use to build the URL for the current request builder</summary>
         private string UrlTemplate { get; set; }
-        public Command[] BuildCommand() {
+        public List<Command> BuildCommand() {
             var builder = new TeamRequestBuilder(PathParameters, RequestAdapter);
             var commands = new List<Command> { 
                 builder.BuildArchiveCommand(),
-                builder.BuildCompleteMigrationCommand(),
-                builder.BuildGroupCommand(),
-                builder.BuildCloneCommand(),
-                builder.BuildTemplateCommand(),
-                builder.BuildSendActivityNotificationCommand(),
-                builder.BuildPatchCommand(),
-                builder.BuildScheduleCommand(),
                 builder.BuildChannelsCommand(),
-                builder.BuildOperationsCommand(),
-                builder.BuildUnarchiveCommand(),
-                builder.BuildGetCommand(),
+                builder.BuildCloneCommand(),
+                builder.BuildCompleteMigrationCommand(),
                 builder.BuildDeleteCommand(),
+                builder.BuildGetCommand(),
+                builder.BuildGroupCommand(),
                 builder.BuildInstalledAppsCommand(),
                 builder.BuildMembersCommand(),
+                builder.BuildOperationsCommand(),
+                builder.BuildPatchCommand(),
                 builder.BuildPrimaryChannelCommand(),
+                builder.BuildScheduleCommand(),
+                builder.BuildSendActivityNotificationCommand(),
+                builder.BuildTemplateCommand(),
+                builder.BuildUnarchiveCommand(),
             };
-            return commands.ToArray();
+            return commands;
         }
         /// <summary>
         /// Add new entity to teams
@@ -160,26 +160,28 @@ namespace ApiSdk.Teams {
         }
         /// <summary>
         /// Get entities from teams
+        /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="h">Request headers</param>
         /// <param name="o">Request options</param>
         /// <param name="q">Request query parameters</param>
         /// <param name="responseHandler">Response handler to use in place of the default response handling provided by the core service</param>
         /// </summary>
-        public async Task<TeamsResponse> GetAsync(Action<GetQueryParameters> q = default, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default) {
+        public async Task<TeamsResponse> GetAsync(Action<GetQueryParameters> q = default, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default, CancellationToken cancellationToken = default) {
             var requestInfo = CreateGetRequestInformation(q, h, o);
-            return await RequestAdapter.SendAsync<TeamsResponse>(requestInfo, responseHandler);
+            return await RequestAdapter.SendAsync<TeamsResponse>(requestInfo, responseHandler, cancellationToken);
         }
         /// <summary>
         /// Add new entity to teams
+        /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="h">Request headers</param>
         /// <param name="model"></param>
         /// <param name="o">Request options</param>
         /// <param name="responseHandler">Response handler to use in place of the default response handling provided by the core service</param>
         /// </summary>
-        public async Task<ApiSdk.Models.Microsoft.Graph.Team> PostAsync(ApiSdk.Models.Microsoft.Graph.Team model, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default) {
+        public async Task<ApiSdk.Models.Microsoft.Graph.Team> PostAsync(ApiSdk.Models.Microsoft.Graph.Team model, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default, CancellationToken cancellationToken = default) {
             _ = model ?? throw new ArgumentNullException(nameof(model));
             var requestInfo = CreatePostRequestInformation(model, h, o);
-            return await RequestAdapter.SendAsync<ApiSdk.Models.Microsoft.Graph.Team>(requestInfo, responseHandler);
+            return await RequestAdapter.SendAsync<ApiSdk.Models.Microsoft.Graph.Team>(requestInfo, responseHandler, cancellationToken);
         }
         /// <summary>Get entities from teams</summary>
         public class GetQueryParameters : QueryParametersBase {

@@ -19,17 +19,17 @@ namespace ApiSdk.Print.Shares {
         private IRequestAdapter RequestAdapter { get; set; }
         /// <summary>Url template to use to build the URL for the current request builder</summary>
         private string UrlTemplate { get; set; }
-        public Command[] BuildCommand() {
+        public List<Command> BuildCommand() {
             var builder = new PrinterShareRequestBuilder(PathParameters, RequestAdapter);
             var commands = new List<Command> { 
-                builder.BuildAllowedUsersCommand(),
-                builder.BuildPatchCommand(),
                 builder.BuildAllowedGroupsCommand(),
-                builder.BuildGetCommand(),
+                builder.BuildAllowedUsersCommand(),
                 builder.BuildDeleteCommand(),
+                builder.BuildGetCommand(),
+                builder.BuildPatchCommand(),
                 builder.BuildPrinterCommand(),
             };
-            return commands.ToArray();
+            return commands;
         }
         /// <summary>
         /// The list of printer shares registered in the tenant.
@@ -143,26 +143,28 @@ namespace ApiSdk.Print.Shares {
         }
         /// <summary>
         /// The list of printer shares registered in the tenant.
+        /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="h">Request headers</param>
         /// <param name="o">Request options</param>
         /// <param name="q">Request query parameters</param>
         /// <param name="responseHandler">Response handler to use in place of the default response handling provided by the core service</param>
         /// </summary>
-        public async Task<SharesResponse> GetAsync(Action<GetQueryParameters> q = default, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default) {
+        public async Task<SharesResponse> GetAsync(Action<GetQueryParameters> q = default, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default, CancellationToken cancellationToken = default) {
             var requestInfo = CreateGetRequestInformation(q, h, o);
-            return await RequestAdapter.SendAsync<SharesResponse>(requestInfo, responseHandler);
+            return await RequestAdapter.SendAsync<SharesResponse>(requestInfo, responseHandler, cancellationToken);
         }
         /// <summary>
         /// The list of printer shares registered in the tenant.
+        /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="h">Request headers</param>
         /// <param name="model"></param>
         /// <param name="o">Request options</param>
         /// <param name="responseHandler">Response handler to use in place of the default response handling provided by the core service</param>
         /// </summary>
-        public async Task<PrinterShare> PostAsync(PrinterShare model, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default) {
+        public async Task<PrinterShare> PostAsync(PrinterShare model, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default, CancellationToken cancellationToken = default) {
             _ = model ?? throw new ArgumentNullException(nameof(model));
             var requestInfo = CreatePostRequestInformation(model, h, o);
-            return await RequestAdapter.SendAsync<PrinterShare>(requestInfo, responseHandler);
+            return await RequestAdapter.SendAsync<PrinterShare>(requestInfo, responseHandler, cancellationToken);
         }
         /// <summary>The list of printer shares registered in the tenant.</summary>
         public class GetQueryParameters : QueryParametersBase {

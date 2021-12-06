@@ -19,14 +19,14 @@ namespace ApiSdk.Me.DeviceManagementTroubleshootingEvents {
         private IRequestAdapter RequestAdapter { get; set; }
         /// <summary>Url template to use to build the URL for the current request builder</summary>
         private string UrlTemplate { get; set; }
-        public Command[] BuildCommand() {
+        public List<Command> BuildCommand() {
             var builder = new DeviceManagementTroubleshootingEventRequestBuilder(PathParameters, RequestAdapter);
             var commands = new List<Command> { 
-                builder.BuildPatchCommand(),
-                builder.BuildGetCommand(),
                 builder.BuildDeleteCommand(),
+                builder.BuildGetCommand(),
+                builder.BuildPatchCommand(),
             };
-            return commands.ToArray();
+            return commands;
         }
         /// <summary>
         /// The list of troubleshooting events for this user.
@@ -140,26 +140,28 @@ namespace ApiSdk.Me.DeviceManagementTroubleshootingEvents {
         }
         /// <summary>
         /// The list of troubleshooting events for this user.
+        /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="h">Request headers</param>
         /// <param name="o">Request options</param>
         /// <param name="q">Request query parameters</param>
         /// <param name="responseHandler">Response handler to use in place of the default response handling provided by the core service</param>
         /// </summary>
-        public async Task<DeviceManagementTroubleshootingEventsResponse> GetAsync(Action<GetQueryParameters> q = default, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default) {
+        public async Task<DeviceManagementTroubleshootingEventsResponse> GetAsync(Action<GetQueryParameters> q = default, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default, CancellationToken cancellationToken = default) {
             var requestInfo = CreateGetRequestInformation(q, h, o);
-            return await RequestAdapter.SendAsync<DeviceManagementTroubleshootingEventsResponse>(requestInfo, responseHandler);
+            return await RequestAdapter.SendAsync<DeviceManagementTroubleshootingEventsResponse>(requestInfo, responseHandler, cancellationToken);
         }
         /// <summary>
         /// The list of troubleshooting events for this user.
+        /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="h">Request headers</param>
         /// <param name="model"></param>
         /// <param name="o">Request options</param>
         /// <param name="responseHandler">Response handler to use in place of the default response handling provided by the core service</param>
         /// </summary>
-        public async Task<DeviceManagementTroubleshootingEvent> PostAsync(DeviceManagementTroubleshootingEvent model, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default) {
+        public async Task<DeviceManagementTroubleshootingEvent> PostAsync(DeviceManagementTroubleshootingEvent model, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default, CancellationToken cancellationToken = default) {
             _ = model ?? throw new ArgumentNullException(nameof(model));
             var requestInfo = CreatePostRequestInformation(model, h, o);
-            return await RequestAdapter.SendAsync<DeviceManagementTroubleshootingEvent>(requestInfo, responseHandler);
+            return await RequestAdapter.SendAsync<DeviceManagementTroubleshootingEvent>(requestInfo, responseHandler, cancellationToken);
         }
         /// <summary>The list of troubleshooting events for this user.</summary>
         public class GetQueryParameters : QueryParametersBase {

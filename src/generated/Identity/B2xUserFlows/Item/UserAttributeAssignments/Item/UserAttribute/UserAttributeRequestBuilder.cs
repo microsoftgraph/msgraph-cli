@@ -49,9 +49,9 @@ namespace ApiSdk.Identity.B2xUserFlows.Item.UserAttributeAssignments.Item.UserAt
         public Command BuildRefCommand() {
             var command = new Command("ref");
             var builder = new ApiSdk.Identity.B2xUserFlows.Item.UserAttributeAssignments.Item.UserAttribute.@Ref.RefRequestBuilder(PathParameters, RequestAdapter);
-            command.AddCommand(builder.BuildPutCommand());
-            command.AddCommand(builder.BuildGetCommand());
             command.AddCommand(builder.BuildDeleteCommand());
+            command.AddCommand(builder.BuildGetCommand());
+            command.AddCommand(builder.BuildPutCommand());
             return command;
         }
         /// <summary>
@@ -90,14 +90,15 @@ namespace ApiSdk.Identity.B2xUserFlows.Item.UserAttributeAssignments.Item.UserAt
         }
         /// <summary>
         /// The user attribute that you want to add to your user flow.
+        /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="h">Request headers</param>
         /// <param name="o">Request options</param>
         /// <param name="q">Request query parameters</param>
         /// <param name="responseHandler">Response handler to use in place of the default response handling provided by the core service</param>
         /// </summary>
-        public async Task<IdentityUserFlowAttribute> GetAsync(Action<GetQueryParameters> q = default, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default) {
+        public async Task<IdentityUserFlowAttribute> GetAsync(Action<GetQueryParameters> q = default, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default, CancellationToken cancellationToken = default) {
             var requestInfo = CreateGetRequestInformation(q, h, o);
-            return await RequestAdapter.SendAsync<IdentityUserFlowAttribute>(requestInfo, responseHandler);
+            return await RequestAdapter.SendAsync<IdentityUserFlowAttribute>(requestInfo, responseHandler, cancellationToken);
         }
         /// <summary>The user attribute that you want to add to your user flow.</summary>
         public class GetQueryParameters : QueryParametersBase {

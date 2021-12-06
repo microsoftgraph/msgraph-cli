@@ -24,13 +24,13 @@ namespace ApiSdk.Workbooks.Item.Workbook.Names.Item.Worksheet.Charts.Item.Axes {
         public Command BuildCategoryAxisCommand() {
             var command = new Command("category-axis");
             var builder = new ApiSdk.Workbooks.Item.Workbook.Names.Item.Worksheet.Charts.Item.Axes.CategoryAxis.CategoryAxisRequestBuilder(PathParameters, RequestAdapter);
-            command.AddCommand(builder.BuildMajorGridlinesCommand());
-            command.AddCommand(builder.BuildTitleCommand());
-            command.AddCommand(builder.BuildMinorGridlinesCommand());
-            command.AddCommand(builder.BuildPatchCommand());
+            command.AddCommand(builder.BuildDeleteCommand());
             command.AddCommand(builder.BuildFormatCommand());
             command.AddCommand(builder.BuildGetCommand());
-            command.AddCommand(builder.BuildDeleteCommand());
+            command.AddCommand(builder.BuildMajorGridlinesCommand());
+            command.AddCommand(builder.BuildMinorGridlinesCommand());
+            command.AddCommand(builder.BuildPatchCommand());
+            command.AddCommand(builder.BuildTitleCommand());
             return command;
         }
         /// <summary>
@@ -109,25 +109,25 @@ namespace ApiSdk.Workbooks.Item.Workbook.Names.Item.Worksheet.Charts.Item.Axes {
         public Command BuildSeriesAxisCommand() {
             var command = new Command("series-axis");
             var builder = new ApiSdk.Workbooks.Item.Workbook.Names.Item.Worksheet.Charts.Item.Axes.SeriesAxis.SeriesAxisRequestBuilder(PathParameters, RequestAdapter);
-            command.AddCommand(builder.BuildMajorGridlinesCommand());
-            command.AddCommand(builder.BuildTitleCommand());
-            command.AddCommand(builder.BuildMinorGridlinesCommand());
-            command.AddCommand(builder.BuildPatchCommand());
+            command.AddCommand(builder.BuildDeleteCommand());
             command.AddCommand(builder.BuildFormatCommand());
             command.AddCommand(builder.BuildGetCommand());
-            command.AddCommand(builder.BuildDeleteCommand());
+            command.AddCommand(builder.BuildMajorGridlinesCommand());
+            command.AddCommand(builder.BuildMinorGridlinesCommand());
+            command.AddCommand(builder.BuildPatchCommand());
+            command.AddCommand(builder.BuildTitleCommand());
             return command;
         }
         public Command BuildValueAxisCommand() {
             var command = new Command("value-axis");
             var builder = new ApiSdk.Workbooks.Item.Workbook.Names.Item.Worksheet.Charts.Item.Axes.ValueAxis.ValueAxisRequestBuilder(PathParameters, RequestAdapter);
-            command.AddCommand(builder.BuildMajorGridlinesCommand());
-            command.AddCommand(builder.BuildTitleCommand());
-            command.AddCommand(builder.BuildMinorGridlinesCommand());
-            command.AddCommand(builder.BuildPatchCommand());
+            command.AddCommand(builder.BuildDeleteCommand());
             command.AddCommand(builder.BuildFormatCommand());
             command.AddCommand(builder.BuildGetCommand());
-            command.AddCommand(builder.BuildDeleteCommand());
+            command.AddCommand(builder.BuildMajorGridlinesCommand());
+            command.AddCommand(builder.BuildMinorGridlinesCommand());
+            command.AddCommand(builder.BuildPatchCommand());
+            command.AddCommand(builder.BuildTitleCommand());
             return command;
         }
         /// <summary>
@@ -199,36 +199,39 @@ namespace ApiSdk.Workbooks.Item.Workbook.Names.Item.Worksheet.Charts.Item.Axes {
         }
         /// <summary>
         /// Represents chart axes. Read-only.
+        /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="h">Request headers</param>
         /// <param name="o">Request options</param>
         /// <param name="responseHandler">Response handler to use in place of the default response handling provided by the core service</param>
         /// </summary>
-        public async Task DeleteAsync(Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default) {
+        public async Task DeleteAsync(Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default, CancellationToken cancellationToken = default) {
             var requestInfo = CreateDeleteRequestInformation(h, o);
-            await RequestAdapter.SendNoContentAsync(requestInfo, responseHandler);
+            await RequestAdapter.SendNoContentAsync(requestInfo, responseHandler, cancellationToken);
         }
         /// <summary>
         /// Represents chart axes. Read-only.
+        /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="h">Request headers</param>
         /// <param name="o">Request options</param>
         /// <param name="q">Request query parameters</param>
         /// <param name="responseHandler">Response handler to use in place of the default response handling provided by the core service</param>
         /// </summary>
-        public async Task<WorkbookChartAxes> GetAsync(Action<GetQueryParameters> q = default, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default) {
+        public async Task<WorkbookChartAxes> GetAsync(Action<GetQueryParameters> q = default, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default, CancellationToken cancellationToken = default) {
             var requestInfo = CreateGetRequestInformation(q, h, o);
-            return await RequestAdapter.SendAsync<WorkbookChartAxes>(requestInfo, responseHandler);
+            return await RequestAdapter.SendAsync<WorkbookChartAxes>(requestInfo, responseHandler, cancellationToken);
         }
         /// <summary>
         /// Represents chart axes. Read-only.
+        /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="h">Request headers</param>
         /// <param name="model"></param>
         /// <param name="o">Request options</param>
         /// <param name="responseHandler">Response handler to use in place of the default response handling provided by the core service</param>
         /// </summary>
-        public async Task PatchAsync(WorkbookChartAxes model, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default) {
+        public async Task PatchAsync(WorkbookChartAxes model, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default, CancellationToken cancellationToken = default) {
             _ = model ?? throw new ArgumentNullException(nameof(model));
             var requestInfo = CreatePatchRequestInformation(model, h, o);
-            await RequestAdapter.SendNoContentAsync(requestInfo, responseHandler);
+            await RequestAdapter.SendNoContentAsync(requestInfo, responseHandler, cancellationToken);
         }
         /// <summary>Represents chart axes. Read-only.</summary>
         public class GetQueryParameters : QueryParametersBase {

@@ -19,34 +19,34 @@ namespace ApiSdk.Workbooks {
         private IRequestAdapter RequestAdapter { get; set; }
         /// <summary>Url template to use to build the URL for the current request builder</summary>
         private string UrlTemplate { get; set; }
-        public Command[] BuildCommand() {
+        public List<Command> BuildCommand() {
             var builder = new DriveItemRequestBuilder(PathParameters, RequestAdapter);
             var commands = new List<Command> { 
-                builder.BuildVersionsCommand(),
-                builder.BuildGetCommand(),
-                builder.BuildUnfollowCommand(),
-                builder.BuildThumbnailsCommand(),
-                builder.BuildValidatePermissionCommand(),
-                builder.BuildFollowCommand(),
-                builder.BuildCreateLinkCommand(),
-                builder.BuildPermissionsCommand(),
-                builder.BuildCheckinCommand(),
-                builder.BuildPreviewCommand(),
-                builder.BuildDeleteCommand(),
                 builder.BuildAnalyticsCommand(),
-                builder.BuildContentCommand(),
-                builder.BuildInviteCommand(),
-                builder.BuildRestoreCommand(),
-                builder.BuildCopyCommand(),
-                builder.BuildPatchCommand(),
+                builder.BuildCheckinCommand(),
                 builder.BuildCheckoutCommand(),
-                builder.BuildCreateUploadSessionCommand(),
-                builder.BuildSubscriptionsCommand(),
-                builder.BuildWorkbookCommand(),
                 builder.BuildChildrenCommand(),
+                builder.BuildContentCommand(),
+                builder.BuildCopyCommand(),
+                builder.BuildCreateLinkCommand(),
+                builder.BuildCreateUploadSessionCommand(),
+                builder.BuildDeleteCommand(),
+                builder.BuildFollowCommand(),
+                builder.BuildGetCommand(),
+                builder.BuildInviteCommand(),
                 builder.BuildListItemCommand(),
+                builder.BuildPatchCommand(),
+                builder.BuildPermissionsCommand(),
+                builder.BuildPreviewCommand(),
+                builder.BuildRestoreCommand(),
+                builder.BuildSubscriptionsCommand(),
+                builder.BuildThumbnailsCommand(),
+                builder.BuildUnfollowCommand(),
+                builder.BuildValidatePermissionCommand(),
+                builder.BuildVersionsCommand(),
+                builder.BuildWorkbookCommand(),
             };
-            return commands.ToArray();
+            return commands;
         }
         /// <summary>
         /// Add new entity to workbooks
@@ -160,26 +160,28 @@ namespace ApiSdk.Workbooks {
         }
         /// <summary>
         /// Get entities from workbooks
+        /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="h">Request headers</param>
         /// <param name="o">Request options</param>
         /// <param name="q">Request query parameters</param>
         /// <param name="responseHandler">Response handler to use in place of the default response handling provided by the core service</param>
         /// </summary>
-        public async Task<WorkbooksResponse> GetAsync(Action<GetQueryParameters> q = default, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default) {
+        public async Task<WorkbooksResponse> GetAsync(Action<GetQueryParameters> q = default, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default, CancellationToken cancellationToken = default) {
             var requestInfo = CreateGetRequestInformation(q, h, o);
-            return await RequestAdapter.SendAsync<WorkbooksResponse>(requestInfo, responseHandler);
+            return await RequestAdapter.SendAsync<WorkbooksResponse>(requestInfo, responseHandler, cancellationToken);
         }
         /// <summary>
         /// Add new entity to workbooks
+        /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="h">Request headers</param>
         /// <param name="model"></param>
         /// <param name="o">Request options</param>
         /// <param name="responseHandler">Response handler to use in place of the default response handling provided by the core service</param>
         /// </summary>
-        public async Task<ApiSdk.Models.Microsoft.Graph.DriveItem> PostAsync(ApiSdk.Models.Microsoft.Graph.DriveItem model, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default) {
+        public async Task<ApiSdk.Models.Microsoft.Graph.DriveItem> PostAsync(ApiSdk.Models.Microsoft.Graph.DriveItem model, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default, CancellationToken cancellationToken = default) {
             _ = model ?? throw new ArgumentNullException(nameof(model));
             var requestInfo = CreatePostRequestInformation(model, h, o);
-            return await RequestAdapter.SendAsync<ApiSdk.Models.Microsoft.Graph.DriveItem>(requestInfo, responseHandler);
+            return await RequestAdapter.SendAsync<ApiSdk.Models.Microsoft.Graph.DriveItem>(requestInfo, responseHandler, cancellationToken);
         }
         /// <summary>Get entities from workbooks</summary>
         public class GetQueryParameters : QueryParametersBase {

@@ -31,12 +31,12 @@ namespace ApiSdk.Workbooks.Item.Workbook.Names.Item.Worksheet {
         public Command BuildChartsCommand() {
             var command = new Command("charts");
             var builder = new ApiSdk.Workbooks.Item.Workbook.Names.Item.Worksheet.Charts.ChartsRequestBuilder(PathParameters, RequestAdapter);
+            command.AddCommand(builder.BuildAddCommand());
             foreach (var cmd in builder.BuildCommand()) {
                 command.AddCommand(cmd);
             }
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
-            command.AddCommand(builder.BuildAddCommand());
             return command;
         }
         /// <summary>
@@ -87,13 +87,13 @@ namespace ApiSdk.Workbooks.Item.Workbook.Names.Item.Worksheet {
         public Command BuildNamesCommand() {
             var command = new Command("names");
             var builder = new ApiSdk.Workbooks.Item.Workbook.Names.Item.Worksheet.Names.NamesRequestBuilder(PathParameters, RequestAdapter);
-            command.AddCommand(builder.BuildListCommand());
-            command.AddCommand(builder.BuildCreateCommand());
+            command.AddCommand(builder.BuildAddCommand());
+            command.AddCommand(builder.BuildAddFormulaLocalCommand());
             foreach (var cmd in builder.BuildCommand()) {
                 command.AddCommand(cmd);
             }
-            command.AddCommand(builder.BuildAddFormulaLocalCommand());
-            command.AddCommand(builder.BuildAddCommand());
+            command.AddCommand(builder.BuildCreateCommand());
+            command.AddCommand(builder.BuildListCommand());
             return command;
         }
         /// <summary>
@@ -125,29 +125,29 @@ namespace ApiSdk.Workbooks.Item.Workbook.Names.Item.Worksheet {
                 command.AddCommand(cmd);
             }
             command.AddCommand(builder.BuildCreateCommand());
-            command.AddCommand(builder.BuildRefreshAllCommand());
             command.AddCommand(builder.BuildListCommand());
+            command.AddCommand(builder.BuildRefreshAllCommand());
             return command;
         }
         public Command BuildProtectionCommand() {
             var command = new Command("protection");
             var builder = new ApiSdk.Workbooks.Item.Workbook.Names.Item.Worksheet.Protection.ProtectionRequestBuilder(PathParameters, RequestAdapter);
+            command.AddCommand(builder.BuildDeleteCommand());
+            command.AddCommand(builder.BuildGetCommand());
+            command.AddCommand(builder.BuildPatchCommand());
             command.AddCommand(builder.BuildProtectCommand());
             command.AddCommand(builder.BuildUnprotectCommand());
-            command.AddCommand(builder.BuildPatchCommand());
-            command.AddCommand(builder.BuildGetCommand());
-            command.AddCommand(builder.BuildDeleteCommand());
             return command;
         }
         public Command BuildTablesCommand() {
             var command = new Command("tables");
             var builder = new ApiSdk.Workbooks.Item.Workbook.Names.Item.Worksheet.Tables.TablesRequestBuilder(PathParameters, RequestAdapter);
+            command.AddCommand(builder.BuildAddCommand());
             foreach (var cmd in builder.BuildCommand()) {
                 command.AddCommand(cmd);
             }
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
-            command.AddCommand(builder.BuildAddCommand());
             return command;
         }
         /// <summary>
@@ -229,36 +229,39 @@ namespace ApiSdk.Workbooks.Item.Workbook.Names.Item.Worksheet {
         }
         /// <summary>
         /// Returns the worksheet on which the named item is scoped to. Available only if the item is scoped to the worksheet. Read-only.
+        /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="h">Request headers</param>
         /// <param name="o">Request options</param>
         /// <param name="responseHandler">Response handler to use in place of the default response handling provided by the core service</param>
         /// </summary>
-        public async Task DeleteAsync(Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default) {
+        public async Task DeleteAsync(Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default, CancellationToken cancellationToken = default) {
             var requestInfo = CreateDeleteRequestInformation(h, o);
-            await RequestAdapter.SendNoContentAsync(requestInfo, responseHandler);
+            await RequestAdapter.SendNoContentAsync(requestInfo, responseHandler, cancellationToken);
         }
         /// <summary>
         /// Returns the worksheet on which the named item is scoped to. Available only if the item is scoped to the worksheet. Read-only.
+        /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="h">Request headers</param>
         /// <param name="o">Request options</param>
         /// <param name="q">Request query parameters</param>
         /// <param name="responseHandler">Response handler to use in place of the default response handling provided by the core service</param>
         /// </summary>
-        public async Task<WorkbookWorksheet> GetAsync(Action<GetQueryParameters> q = default, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default) {
+        public async Task<WorkbookWorksheet> GetAsync(Action<GetQueryParameters> q = default, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default, CancellationToken cancellationToken = default) {
             var requestInfo = CreateGetRequestInformation(q, h, o);
-            return await RequestAdapter.SendAsync<WorkbookWorksheet>(requestInfo, responseHandler);
+            return await RequestAdapter.SendAsync<WorkbookWorksheet>(requestInfo, responseHandler, cancellationToken);
         }
         /// <summary>
         /// Returns the worksheet on which the named item is scoped to. Available only if the item is scoped to the worksheet. Read-only.
+        /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="h">Request headers</param>
         /// <param name="model"></param>
         /// <param name="o">Request options</param>
         /// <param name="responseHandler">Response handler to use in place of the default response handling provided by the core service</param>
         /// </summary>
-        public async Task PatchAsync(WorkbookWorksheet model, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default) {
+        public async Task PatchAsync(WorkbookWorksheet model, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default, CancellationToken cancellationToken = default) {
             _ = model ?? throw new ArgumentNullException(nameof(model));
             var requestInfo = CreatePatchRequestInformation(model, h, o);
-            await RequestAdapter.SendNoContentAsync(requestInfo, responseHandler);
+            await RequestAdapter.SendNoContentAsync(requestInfo, responseHandler, cancellationToken);
         }
         /// <summary>
         /// Builds and executes requests for operations under \workbooks\{driveItem-id}\workbook\names\{workbookNamedItem-id}\worksheet\microsoft.graph.range()

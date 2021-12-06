@@ -69,13 +69,14 @@ namespace ApiSdk.Teams.Item.PrimaryChannel.ProvisionEmail {
         }
         /// <summary>
         /// Invoke action provisionEmail
+        /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="h">Request headers</param>
         /// <param name="o">Request options</param>
         /// <param name="responseHandler">Response handler to use in place of the default response handling provided by the core service</param>
         /// </summary>
-        public async Task<ProvisionEmailResponse> PostAsync(Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default) {
+        public async Task<ProvisionEmailResponse> PostAsync(Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default, CancellationToken cancellationToken = default) {
             var requestInfo = CreatePostRequestInformation(h, o);
-            return await RequestAdapter.SendAsync<ProvisionEmailResponse>(requestInfo, responseHandler);
+            return await RequestAdapter.SendAsync<ProvisionEmailResponse>(requestInfo, responseHandler, cancellationToken);
         }
         /// <summary>Union type wrapper for classes provisionChannelEmailResult</summary>
         public class ProvisionEmailResponse : IParsable {

@@ -23,55 +23,55 @@ namespace ApiSdk.Groups {
         private IRequestAdapter RequestAdapter { get; set; }
         /// <summary>Url template to use to build the URL for the current request builder</summary>
         private string UrlTemplate { get; set; }
-        public Command[] BuildCommand() {
+        public List<Command> BuildCommand() {
             var builder = new GroupRequestBuilder(PathParameters, RequestAdapter);
             var commands = new List<Command> { 
-                builder.BuildGetMemberGroupsCommand(),
-                builder.BuildCheckMemberObjectsCommand(),
-                builder.BuildGetMemberObjectsCommand(),
-                builder.BuildCheckMemberGroupsCommand(),
-                builder.BuildResetUnseenCountCommand(),
-                builder.BuildValidatePropertiesCommand(),
-                builder.BuildDriveCommand(),
-                builder.BuildPlannerCommand(),
-                builder.BuildDeleteCommand(),
-                builder.BuildRenewCommand(),
-                builder.BuildMembersWithLicenseErrorsCommand(),
-                builder.BuildCalendarViewCommand(),
-                builder.BuildPhotosCommand(),
-                builder.BuildMembersCommand(),
-                builder.BuildUnsubscribeByMailCommand(),
-                builder.BuildOwnersCommand(),
                 builder.BuildAcceptedSendersCommand(),
-                builder.BuildRestoreCommand(),
-                builder.BuildAssignLicenseCommand(),
-                builder.BuildConversationsCommand(),
-                builder.BuildTransitiveMemberOfCommand(),
-                builder.BuildAppRoleAssignmentsCommand(),
-                builder.BuildMemberOfCommand(),
-                builder.BuildCreatedOnBehalfOfCommand(),
-                builder.BuildOnenoteCommand(),
-                builder.BuildPhotoCommand(),
-                builder.BuildGroupLifecyclePoliciesCommand(),
-                builder.BuildDrivesCommand(),
-                builder.BuildRejectedSendersCommand(),
-                builder.BuildSubscribeByMailCommand(),
-                builder.BuildEventsCommand(),
-                builder.BuildThreadsCommand(),
-                builder.BuildCalendarCommand(),
-                builder.BuildTransitiveMembersCommand(),
-                builder.BuildSitesCommand(),
-                builder.BuildGetCommand(),
-                builder.BuildSettingsCommand(),
                 builder.BuildAddFavoriteCommand(),
-                builder.BuildExtensionsCommand(),
-                builder.BuildRemoveFavoriteCommand(),
+                builder.BuildAppRoleAssignmentsCommand(),
+                builder.BuildAssignLicenseCommand(),
+                builder.BuildCalendarCommand(),
+                builder.BuildCalendarViewCommand(),
                 builder.BuildCheckGrantedPermissionsForAppCommand(),
-                builder.BuildPermissionGrantsCommand(),
+                builder.BuildCheckMemberGroupsCommand(),
+                builder.BuildCheckMemberObjectsCommand(),
+                builder.BuildConversationsCommand(),
+                builder.BuildCreatedOnBehalfOfCommand(),
+                builder.BuildDeleteCommand(),
+                builder.BuildDriveCommand(),
+                builder.BuildDrivesCommand(),
+                builder.BuildEventsCommand(),
+                builder.BuildExtensionsCommand(),
+                builder.BuildGetCommand(),
+                builder.BuildGetMemberGroupsCommand(),
+                builder.BuildGetMemberObjectsCommand(),
+                builder.BuildGroupLifecyclePoliciesCommand(),
+                builder.BuildMemberOfCommand(),
+                builder.BuildMembersCommand(),
+                builder.BuildMembersWithLicenseErrorsCommand(),
+                builder.BuildOnenoteCommand(),
+                builder.BuildOwnersCommand(),
                 builder.BuildPatchCommand(),
+                builder.BuildPermissionGrantsCommand(),
+                builder.BuildPhotoCommand(),
+                builder.BuildPhotosCommand(),
+                builder.BuildPlannerCommand(),
+                builder.BuildRejectedSendersCommand(),
+                builder.BuildRemoveFavoriteCommand(),
+                builder.BuildRenewCommand(),
+                builder.BuildResetUnseenCountCommand(),
+                builder.BuildRestoreCommand(),
+                builder.BuildSettingsCommand(),
+                builder.BuildSitesCommand(),
+                builder.BuildSubscribeByMailCommand(),
                 builder.BuildTeamCommand(),
+                builder.BuildThreadsCommand(),
+                builder.BuildTransitiveMemberOfCommand(),
+                builder.BuildTransitiveMembersCommand(),
+                builder.BuildUnsubscribeByMailCommand(),
+                builder.BuildValidatePropertiesCommand(),
             };
-            return commands.ToArray();
+            return commands;
         }
         /// <summary>
         /// Add new entity to groups
@@ -209,26 +209,28 @@ namespace ApiSdk.Groups {
         }
         /// <summary>
         /// Get entities from groups
+        /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="h">Request headers</param>
         /// <param name="o">Request options</param>
         /// <param name="q">Request query parameters</param>
         /// <param name="responseHandler">Response handler to use in place of the default response handling provided by the core service</param>
         /// </summary>
-        public async Task<GroupsResponse> GetAsync(Action<GetQueryParameters> q = default, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default) {
+        public async Task<GroupsResponse> GetAsync(Action<GetQueryParameters> q = default, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default, CancellationToken cancellationToken = default) {
             var requestInfo = CreateGetRequestInformation(q, h, o);
-            return await RequestAdapter.SendAsync<GroupsResponse>(requestInfo, responseHandler);
+            return await RequestAdapter.SendAsync<GroupsResponse>(requestInfo, responseHandler, cancellationToken);
         }
         /// <summary>
         /// Add new entity to groups
+        /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="h">Request headers</param>
         /// <param name="model"></param>
         /// <param name="o">Request options</param>
         /// <param name="responseHandler">Response handler to use in place of the default response handling provided by the core service</param>
         /// </summary>
-        public async Task<ApiSdk.Models.Microsoft.Graph.Group> PostAsync(ApiSdk.Models.Microsoft.Graph.Group model, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default) {
+        public async Task<ApiSdk.Models.Microsoft.Graph.Group> PostAsync(ApiSdk.Models.Microsoft.Graph.Group model, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default, CancellationToken cancellationToken = default) {
             _ = model ?? throw new ArgumentNullException(nameof(model));
             var requestInfo = CreatePostRequestInformation(model, h, o);
-            return await RequestAdapter.SendAsync<ApiSdk.Models.Microsoft.Graph.Group>(requestInfo, responseHandler);
+            return await RequestAdapter.SendAsync<ApiSdk.Models.Microsoft.Graph.Group>(requestInfo, responseHandler, cancellationToken);
         }
         /// <summary>Get entities from groups</summary>
         public class GetQueryParameters : QueryParametersBase {

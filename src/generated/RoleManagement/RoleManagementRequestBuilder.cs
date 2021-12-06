@@ -23,21 +23,21 @@ namespace ApiSdk.RoleManagement {
         public Command BuildDirectoryCommand() {
             var command = new Command("directory");
             var builder = new ApiSdk.RoleManagement.Directory.DirectoryRequestBuilder(PathParameters, RequestAdapter);
-            command.AddCommand(builder.BuildRoleAssignmentsCommand());
-            command.AddCommand(builder.BuildPatchCommand());
-            command.AddCommand(builder.BuildRoleDefinitionsCommand());
-            command.AddCommand(builder.BuildGetCommand());
             command.AddCommand(builder.BuildDeleteCommand());
+            command.AddCommand(builder.BuildGetCommand());
+            command.AddCommand(builder.BuildPatchCommand());
+            command.AddCommand(builder.BuildRoleAssignmentsCommand());
+            command.AddCommand(builder.BuildRoleDefinitionsCommand());
             return command;
         }
         public Command BuildEntitlementManagementCommand() {
             var command = new Command("entitlement-management");
             var builder = new ApiSdk.RoleManagement.EntitlementManagement.EntitlementManagementRequestBuilder(PathParameters, RequestAdapter);
-            command.AddCommand(builder.BuildRoleAssignmentsCommand());
-            command.AddCommand(builder.BuildPatchCommand());
-            command.AddCommand(builder.BuildRoleDefinitionsCommand());
-            command.AddCommand(builder.BuildGetCommand());
             command.AddCommand(builder.BuildDeleteCommand());
+            command.AddCommand(builder.BuildGetCommand());
+            command.AddCommand(builder.BuildPatchCommand());
+            command.AddCommand(builder.BuildRoleAssignmentsCommand());
+            command.AddCommand(builder.BuildRoleDefinitionsCommand());
             return command;
         }
         /// <summary>
@@ -135,26 +135,28 @@ namespace ApiSdk.RoleManagement {
         }
         /// <summary>
         /// Get roleManagement
+        /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="h">Request headers</param>
         /// <param name="o">Request options</param>
         /// <param name="q">Request query parameters</param>
         /// <param name="responseHandler">Response handler to use in place of the default response handling provided by the core service</param>
         /// </summary>
-        public async Task<ApiSdk.Models.Microsoft.Graph.RoleManagement> GetAsync(Action<GetQueryParameters> q = default, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default) {
+        public async Task<ApiSdk.Models.Microsoft.Graph.RoleManagement> GetAsync(Action<GetQueryParameters> q = default, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default, CancellationToken cancellationToken = default) {
             var requestInfo = CreateGetRequestInformation(q, h, o);
-            return await RequestAdapter.SendAsync<ApiSdk.Models.Microsoft.Graph.RoleManagement>(requestInfo, responseHandler);
+            return await RequestAdapter.SendAsync<ApiSdk.Models.Microsoft.Graph.RoleManagement>(requestInfo, responseHandler, cancellationToken);
         }
         /// <summary>
         /// Update roleManagement
+        /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="h">Request headers</param>
         /// <param name="model"></param>
         /// <param name="o">Request options</param>
         /// <param name="responseHandler">Response handler to use in place of the default response handling provided by the core service</param>
         /// </summary>
-        public async Task PatchAsync(ApiSdk.Models.Microsoft.Graph.RoleManagement model, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default) {
+        public async Task PatchAsync(ApiSdk.Models.Microsoft.Graph.RoleManagement model, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default, CancellationToken cancellationToken = default) {
             _ = model ?? throw new ArgumentNullException(nameof(model));
             var requestInfo = CreatePatchRequestInformation(model, h, o);
-            await RequestAdapter.SendNoContentAsync(requestInfo, responseHandler);
+            await RequestAdapter.SendNoContentAsync(requestInfo, responseHandler, cancellationToken);
         }
         /// <summary>Get roleManagement</summary>
         public class GetQueryParameters : QueryParametersBase {

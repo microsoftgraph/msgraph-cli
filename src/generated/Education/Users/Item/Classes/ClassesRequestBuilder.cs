@@ -105,14 +105,15 @@ namespace ApiSdk.Education.Users.Item.Classes {
         }
         /// <summary>
         /// Classes to which the user belongs. Nullable.
+        /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="h">Request headers</param>
         /// <param name="o">Request options</param>
         /// <param name="q">Request query parameters</param>
         /// <param name="responseHandler">Response handler to use in place of the default response handling provided by the core service</param>
         /// </summary>
-        public async Task<ClassesResponse> GetAsync(Action<GetQueryParameters> q = default, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default) {
+        public async Task<ClassesResponse> GetAsync(Action<GetQueryParameters> q = default, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default, CancellationToken cancellationToken = default) {
             var requestInfo = CreateGetRequestInformation(q, h, o);
-            return await RequestAdapter.SendAsync<ClassesResponse>(requestInfo, responseHandler);
+            return await RequestAdapter.SendAsync<ClassesResponse>(requestInfo, responseHandler, cancellationToken);
         }
         /// <summary>Classes to which the user belongs. Nullable.</summary>
         public class GetQueryParameters : QueryParametersBase {

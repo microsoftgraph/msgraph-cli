@@ -29,23 +29,23 @@ namespace ApiSdk.Workbooks.Item.Workbook.Names.Item.Worksheet.Charts {
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
-        public Command[] BuildCommand() {
+        public List<Command> BuildCommand() {
             var builder = new WorkbookChartRequestBuilder(PathParameters, RequestAdapter);
             var commands = new List<Command> { 
                 builder.BuildAxesCommand(),
-                builder.BuildGetCommand(),
-                builder.BuildTitleCommand(),
-                builder.BuildWorksheetCommand(),
-                builder.BuildSeriesCommand(),
                 builder.BuildDataLabelsCommand(),
                 builder.BuildDeleteCommand(),
+                builder.BuildFormatCommand(),
+                builder.BuildGetCommand(),
                 builder.BuildLegendCommand(),
                 builder.BuildPatchCommand(),
-                builder.BuildSetPositionCommand(),
-                builder.BuildFormatCommand(),
+                builder.BuildSeriesCommand(),
                 builder.BuildSetDataCommand(),
+                builder.BuildSetPositionCommand(),
+                builder.BuildTitleCommand(),
+                builder.BuildWorksheetCommand(),
             };
-            return commands.ToArray();
+            return commands;
         }
         /// <summary>
         /// Returns collection of charts that are part of the worksheet. Read-only.
@@ -173,14 +173,15 @@ namespace ApiSdk.Workbooks.Item.Workbook.Names.Item.Worksheet.Charts {
         }
         /// <summary>
         /// Returns collection of charts that are part of the worksheet. Read-only.
+        /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="h">Request headers</param>
         /// <param name="o">Request options</param>
         /// <param name="q">Request query parameters</param>
         /// <param name="responseHandler">Response handler to use in place of the default response handling provided by the core service</param>
         /// </summary>
-        public async Task<ChartsResponse> GetAsync(Action<GetQueryParameters> q = default, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default) {
+        public async Task<ChartsResponse> GetAsync(Action<GetQueryParameters> q = default, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default, CancellationToken cancellationToken = default) {
             var requestInfo = CreateGetRequestInformation(q, h, o);
-            return await RequestAdapter.SendAsync<ChartsResponse>(requestInfo, responseHandler);
+            return await RequestAdapter.SendAsync<ChartsResponse>(requestInfo, responseHandler, cancellationToken);
         }
         /// <summary>
         /// Builds and executes requests for operations under \workbooks\{driveItem-id}\workbook\names\{workbookNamedItem-id}\worksheet\charts\microsoft.graph.itemAt(index={index})
@@ -200,15 +201,16 @@ namespace ApiSdk.Workbooks.Item.Workbook.Names.Item.Worksheet.Charts {
         }
         /// <summary>
         /// Returns collection of charts that are part of the worksheet. Read-only.
+        /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="h">Request headers</param>
         /// <param name="model"></param>
         /// <param name="o">Request options</param>
         /// <param name="responseHandler">Response handler to use in place of the default response handling provided by the core service</param>
         /// </summary>
-        public async Task<WorkbookChart> PostAsync(WorkbookChart model, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default) {
+        public async Task<WorkbookChart> PostAsync(WorkbookChart model, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default, CancellationToken cancellationToken = default) {
             _ = model ?? throw new ArgumentNullException(nameof(model));
             var requestInfo = CreatePostRequestInformation(model, h, o);
-            return await RequestAdapter.SendAsync<WorkbookChart>(requestInfo, responseHandler);
+            return await RequestAdapter.SendAsync<WorkbookChart>(requestInfo, responseHandler, cancellationToken);
         }
         /// <summary>Returns collection of charts that are part of the worksheet. Read-only.</summary>
         public class GetQueryParameters : QueryParametersBase {

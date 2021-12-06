@@ -19,18 +19,18 @@ namespace ApiSdk.DeviceAppManagement.ManagedAppRegistrations.Item.IntendedPolici
         private IRequestAdapter RequestAdapter { get; set; }
         /// <summary>Url template to use to build the URL for the current request builder</summary>
         private string UrlTemplate { get; set; }
-        public Command[] BuildCommand() {
+        public List<Command> BuildCommand() {
             var builder = new ManagedAppPolicyRequestBuilder(PathParameters, RequestAdapter);
             var commands = new List<Command> { 
-                builder.BuildWindowsInformationProtectionCommand(),
-                builder.BuildTargetedManagedAppProtectionCommand(),
+                builder.BuildDeleteCommand(),
+                builder.BuildGetCommand(),
+                builder.BuildManagedAppProtectionCommand(),
                 builder.BuildPatchCommand(),
                 builder.BuildTargetAppsCommand(),
-                builder.BuildGetCommand(),
-                builder.BuildDeleteCommand(),
-                builder.BuildManagedAppProtectionCommand(),
+                builder.BuildTargetedManagedAppProtectionCommand(),
+                builder.BuildWindowsInformationProtectionCommand(),
             };
-            return commands.ToArray();
+            return commands;
         }
         /// <summary>
         /// Zero or more policies admin intended for the app as of now.
@@ -148,26 +148,28 @@ namespace ApiSdk.DeviceAppManagement.ManagedAppRegistrations.Item.IntendedPolici
         }
         /// <summary>
         /// Zero or more policies admin intended for the app as of now.
+        /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="h">Request headers</param>
         /// <param name="o">Request options</param>
         /// <param name="q">Request query parameters</param>
         /// <param name="responseHandler">Response handler to use in place of the default response handling provided by the core service</param>
         /// </summary>
-        public async Task<IntendedPoliciesResponse> GetAsync(Action<GetQueryParameters> q = default, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default) {
+        public async Task<IntendedPoliciesResponse> GetAsync(Action<GetQueryParameters> q = default, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default, CancellationToken cancellationToken = default) {
             var requestInfo = CreateGetRequestInformation(q, h, o);
-            return await RequestAdapter.SendAsync<IntendedPoliciesResponse>(requestInfo, responseHandler);
+            return await RequestAdapter.SendAsync<IntendedPoliciesResponse>(requestInfo, responseHandler, cancellationToken);
         }
         /// <summary>
         /// Zero or more policies admin intended for the app as of now.
+        /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="h">Request headers</param>
         /// <param name="model"></param>
         /// <param name="o">Request options</param>
         /// <param name="responseHandler">Response handler to use in place of the default response handling provided by the core service</param>
         /// </summary>
-        public async Task<ManagedAppPolicy> PostAsync(ManagedAppPolicy model, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default) {
+        public async Task<ManagedAppPolicy> PostAsync(ManagedAppPolicy model, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default, CancellationToken cancellationToken = default) {
             _ = model ?? throw new ArgumentNullException(nameof(model));
             var requestInfo = CreatePostRequestInformation(model, h, o);
-            return await RequestAdapter.SendAsync<ManagedAppPolicy>(requestInfo, responseHandler);
+            return await RequestAdapter.SendAsync<ManagedAppPolicy>(requestInfo, responseHandler, cancellationToken);
         }
         /// <summary>Zero or more policies admin intended for the app as of now.</summary>
         public class GetQueryParameters : QueryParametersBase {

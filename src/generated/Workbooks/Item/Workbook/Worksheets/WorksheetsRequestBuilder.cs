@@ -26,19 +26,19 @@ namespace ApiSdk.Workbooks.Item.Workbook.Worksheets {
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
-        public Command[] BuildCommand() {
+        public List<Command> BuildCommand() {
             var builder = new WorkbookWorksheetRequestBuilder(PathParameters, RequestAdapter);
             var commands = new List<Command> { 
-                builder.BuildProtectionCommand(),
-                builder.BuildPatchCommand(),
                 builder.BuildChartsCommand(),
-                builder.BuildPivotTablesCommand(),
-                builder.BuildTablesCommand(),
-                builder.BuildGetCommand(),
                 builder.BuildDeleteCommand(),
+                builder.BuildGetCommand(),
                 builder.BuildNamesCommand(),
+                builder.BuildPatchCommand(),
+                builder.BuildPivotTablesCommand(),
+                builder.BuildProtectionCommand(),
+                builder.BuildTablesCommand(),
             };
-            return commands.ToArray();
+            return commands;
         }
         /// <summary>
         /// Represents a collection of worksheets associated with the workbook. Read-only.
@@ -156,26 +156,28 @@ namespace ApiSdk.Workbooks.Item.Workbook.Worksheets {
         }
         /// <summary>
         /// Represents a collection of worksheets associated with the workbook. Read-only.
+        /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="h">Request headers</param>
         /// <param name="o">Request options</param>
         /// <param name="q">Request query parameters</param>
         /// <param name="responseHandler">Response handler to use in place of the default response handling provided by the core service</param>
         /// </summary>
-        public async Task<WorksheetsResponse> GetAsync(Action<GetQueryParameters> q = default, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default) {
+        public async Task<WorksheetsResponse> GetAsync(Action<GetQueryParameters> q = default, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default, CancellationToken cancellationToken = default) {
             var requestInfo = CreateGetRequestInformation(q, h, o);
-            return await RequestAdapter.SendAsync<WorksheetsResponse>(requestInfo, responseHandler);
+            return await RequestAdapter.SendAsync<WorksheetsResponse>(requestInfo, responseHandler, cancellationToken);
         }
         /// <summary>
         /// Represents a collection of worksheets associated with the workbook. Read-only.
+        /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="h">Request headers</param>
         /// <param name="model"></param>
         /// <param name="o">Request options</param>
         /// <param name="responseHandler">Response handler to use in place of the default response handling provided by the core service</param>
         /// </summary>
-        public async Task<WorkbookWorksheet> PostAsync(WorkbookWorksheet model, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default) {
+        public async Task<WorkbookWorksheet> PostAsync(WorkbookWorksheet model, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default, CancellationToken cancellationToken = default) {
             _ = model ?? throw new ArgumentNullException(nameof(model));
             var requestInfo = CreatePostRequestInformation(model, h, o);
-            return await RequestAdapter.SendAsync<WorkbookWorksheet>(requestInfo, responseHandler);
+            return await RequestAdapter.SendAsync<WorkbookWorksheet>(requestInfo, responseHandler, cancellationToken);
         }
         /// <summary>Represents a collection of worksheets associated with the workbook. Read-only.</summary>
         public class GetQueryParameters : QueryParametersBase {
