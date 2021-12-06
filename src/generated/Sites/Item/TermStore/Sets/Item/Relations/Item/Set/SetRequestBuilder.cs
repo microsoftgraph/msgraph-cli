@@ -9,6 +9,7 @@ using System.CommandLine.Invocation;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 namespace ApiSdk.Sites.Item.TermStore.Sets.Item.Relations.Item.Set {
     /// <summary>Builds and executes requests for operations under \sites\{site-id}\termStore\sets\{set-id}\relations\{relation-id}\set</summary>

@@ -7,6 +7,7 @@ using System.CommandLine.Invocation;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 namespace ApiSdk.Organization.Item.SetMobileDeviceManagementAuthority {
     /// <summary>Builds and executes requests for operations under \organization\{organization-id}\microsoft.graph.setMobileDeviceManagementAuthority</summary>

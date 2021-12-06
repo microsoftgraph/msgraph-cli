@@ -7,6 +7,7 @@ using System.CommandLine.Invocation;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 namespace ApiSdk.Drive.List.ContentTypes.Item.@Base.Unpublish {
     /// <summary>Builds and executes requests for operations under \drive\list\contentTypes\{contentType-id}\base\microsoft.graph.unpublish</summary>

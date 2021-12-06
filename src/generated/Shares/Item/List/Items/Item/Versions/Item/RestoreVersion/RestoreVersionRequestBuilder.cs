@@ -7,6 +7,7 @@ using System.CommandLine.Invocation;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 namespace ApiSdk.Shares.Item.List.Items.Item.Versions.Item.RestoreVersion {
     /// <summary>Builds and executes requests for operations under \shares\{sharedDriveItem-id}\list\items\{listItem-id}\versions\{listItemVersion-id}\microsoft.graph.restoreVersion</summary>

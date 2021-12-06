@@ -8,6 +8,7 @@ using System.CommandLine.Invocation;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 namespace ApiSdk.Me.Calendar.Events.Item.Attachments.CreateUploadSession {
     /// <summary>Builds and executes requests for operations under \me\calendar\events\{event-id}\attachments\microsoft.graph.createUploadSession</summary>

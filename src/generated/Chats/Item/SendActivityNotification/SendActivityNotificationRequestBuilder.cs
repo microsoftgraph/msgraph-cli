@@ -7,6 +7,7 @@ using System.CommandLine.Invocation;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 namespace ApiSdk.Chats.Item.SendActivityNotification {
     /// <summary>Builds and executes requests for operations under \chats\{chat-id}\microsoft.graph.sendActivityNotification</summary>

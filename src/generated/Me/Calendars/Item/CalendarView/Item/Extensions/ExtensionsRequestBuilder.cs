@@ -9,6 +9,7 @@ using System.CommandLine.Invocation;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 namespace ApiSdk.Me.Calendars.Item.CalendarView.Item.Extensions {
     /// <summary>Builds and executes requests for operations under \me\calendars\{calendar-id}\calendarView\{event-id}\extensions</summary>

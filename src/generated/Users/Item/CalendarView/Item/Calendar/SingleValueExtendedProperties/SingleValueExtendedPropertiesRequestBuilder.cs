@@ -9,6 +9,7 @@ using System.CommandLine.Invocation;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 namespace ApiSdk.Users.Item.CalendarView.Item.Calendar.SingleValueExtendedProperties {
     /// <summary>Builds and executes requests for operations under \users\{user-id}\calendarView\{event-id}\calendar\singleValueExtendedProperties</summary>

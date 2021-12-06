@@ -7,6 +7,7 @@ using System.CommandLine.Invocation;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 namespace ApiSdk.Groups.Item.CalendarView.Item.Calendar.Events.Item.Decline {
     /// <summary>Builds and executes requests for operations under \groups\{group-id}\calendarView\{event-id}\calendar\events\{event-id1}\microsoft.graph.decline</summary>

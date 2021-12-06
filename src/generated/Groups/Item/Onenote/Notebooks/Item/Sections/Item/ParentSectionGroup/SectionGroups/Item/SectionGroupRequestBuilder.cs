@@ -8,6 +8,7 @@ using System.CommandLine.Invocation;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 namespace ApiSdk.Groups.Item.Onenote.Notebooks.Item.Sections.Item.ParentSectionGroup.SectionGroups.Item {
     /// <summary>Builds and executes requests for operations under \groups\{group-id}\onenote\notebooks\{notebook-id}\sections\{onenoteSection-id}\parentSectionGroup\sectionGroups\{sectionGroup-id}</summary>

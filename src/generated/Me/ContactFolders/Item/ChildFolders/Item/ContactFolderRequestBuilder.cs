@@ -8,6 +8,7 @@ using System.CommandLine.Invocation;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 namespace ApiSdk.Me.ContactFolders.Item.ChildFolders.Item {
     /// <summary>Builds and executes requests for operations under \me\contactFolders\{contactFolder-id}\childFolders\{contactFolder-id1}</summary>

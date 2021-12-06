@@ -7,6 +7,7 @@ using System.CommandLine.Invocation;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 namespace ApiSdk.RoleManagement.EntitlementManagement.RoleAssignments.Item.RoleDefinition.@Ref {
     /// <summary>Builds and executes requests for operations under \roleManagement\entitlementManagement\roleAssignments\{unifiedRoleAssignment-id}\roleDefinition\$ref</summary>

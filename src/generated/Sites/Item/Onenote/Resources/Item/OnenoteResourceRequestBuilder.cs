@@ -9,6 +9,7 @@ using System.CommandLine.Invocation;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 namespace ApiSdk.Sites.Item.Onenote.Resources.Item {
     /// <summary>Builds and executes requests for operations under \sites\{site-id}\onenote\resources\{onenoteResource-id}</summary>

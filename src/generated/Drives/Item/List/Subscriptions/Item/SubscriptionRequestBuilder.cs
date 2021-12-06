@@ -8,6 +8,7 @@ using System.CommandLine.Invocation;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 namespace ApiSdk.Drives.Item.List.Subscriptions.Item {
     /// <summary>Builds and executes requests for operations under \drives\{drive-id}\list\subscriptions\{subscription-id}</summary>

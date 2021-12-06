@@ -8,6 +8,7 @@ using System.CommandLine.Invocation;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 namespace ApiSdk.Agreements.Item.File.Localizations.Item.Versions.Item {
     /// <summary>Builds and executes requests for operations under \agreements\{agreement-id}\file\localizations\{agreementFileLocalization-id}\versions\{agreementFileVersion-id}</summary>

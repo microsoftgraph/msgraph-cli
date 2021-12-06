@@ -9,6 +9,7 @@ using System.CommandLine.Invocation;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 namespace ApiSdk.Sites.Item.TermStore.Groups.Item.Sets.Item.Children.Item.Children {
     /// <summary>Builds and executes requests for operations under \sites\{site-id}\termStore\groups\{group-id}\sets\{set-id}\children\{term-id}\children</summary>

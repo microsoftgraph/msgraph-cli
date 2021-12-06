@@ -7,6 +7,7 @@ using System.CommandLine.Invocation;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 namespace ApiSdk.Groups.Item.Calendar.Events.Item.Instances.Item.TentativelyAccept {
     /// <summary>Builds and executes requests for operations under \groups\{group-id}\calendar\events\{event-id}\instances\{event-id1}\microsoft.graph.tentativelyAccept</summary>

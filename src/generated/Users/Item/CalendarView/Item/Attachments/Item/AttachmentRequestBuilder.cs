@@ -8,6 +8,7 @@ using System.CommandLine.Invocation;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 namespace ApiSdk.Users.Item.CalendarView.Item.Attachments.Item {
     /// <summary>Builds and executes requests for operations under \users\{user-id}\calendarView\{event-id}\attachments\{attachment-id}</summary>

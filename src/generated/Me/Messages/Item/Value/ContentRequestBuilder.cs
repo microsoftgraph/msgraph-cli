@@ -7,6 +7,7 @@ using System.CommandLine.Invocation;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 namespace ApiSdk.Me.Messages.Item.Value {
     /// <summary>Builds and executes requests for operations under \me\messages\{message-id}\$value</summary>

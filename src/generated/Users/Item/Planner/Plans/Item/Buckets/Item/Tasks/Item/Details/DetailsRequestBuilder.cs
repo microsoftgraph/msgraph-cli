@@ -8,6 +8,7 @@ using System.CommandLine.Invocation;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 namespace ApiSdk.Users.Item.Planner.Plans.Item.Buckets.Item.Tasks.Item.Details {
     /// <summary>Builds and executes requests for operations under \users\{user-id}\planner\plans\{plannerPlan-id}\buckets\{plannerBucket-id}\tasks\{plannerTask-id}\details</summary>

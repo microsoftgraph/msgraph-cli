@@ -7,6 +7,7 @@ using System.CommandLine.Invocation;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 namespace ApiSdk.Teams.Item.Channels.Item.Members.@Add {
     /// <summary>Builds and executes requests for operations under \teams\{team-id}\channels\{channel-id}\members\microsoft.graph.add</summary>

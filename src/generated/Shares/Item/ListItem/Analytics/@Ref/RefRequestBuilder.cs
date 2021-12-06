@@ -7,6 +7,7 @@ using System.CommandLine.Invocation;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 namespace ApiSdk.Shares.Item.ListItem.Analytics.@Ref {
     /// <summary>Builds and executes requests for operations under \shares\{sharedDriveItem-id}\listItem\analytics\$ref</summary>

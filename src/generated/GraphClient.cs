@@ -74,6 +74,7 @@ using System.CommandLine.Invocation;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 namespace ApiSdk {
     /// <summary>The main entry point of the SDK, exposes the configuration and the fluent API.</summary>

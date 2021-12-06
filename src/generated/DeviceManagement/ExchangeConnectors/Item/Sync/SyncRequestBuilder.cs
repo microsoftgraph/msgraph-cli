@@ -7,6 +7,7 @@ using System.CommandLine.Invocation;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 namespace ApiSdk.DeviceManagement.ExchangeConnectors.Item.Sync {
     /// <summary>Builds and executes requests for operations under \deviceManagement\exchangeConnectors\{deviceManagementExchangeConnector-id}\microsoft.graph.sync</summary>

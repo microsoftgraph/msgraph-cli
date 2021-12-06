@@ -9,6 +9,7 @@ using System.CommandLine.Invocation;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 namespace ApiSdk.Groups.Item.Calendar.Events.Item.Extensions {
     /// <summary>Builds and executes requests for operations under \groups\{group-id}\calendar\events\{event-id}\extensions</summary>

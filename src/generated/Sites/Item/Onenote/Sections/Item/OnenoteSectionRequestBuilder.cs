@@ -13,6 +13,7 @@ using System.CommandLine.Invocation;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 namespace ApiSdk.Sites.Item.Onenote.Sections.Item {
     /// <summary>Builds and executes requests for operations under \sites\{site-id}\onenote\sections\{onenoteSection-id}</summary>

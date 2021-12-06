@@ -7,6 +7,7 @@ using System.CommandLine.Invocation;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 namespace ApiSdk.Me.Insights.Shared.Item.LastSharedMethod.MobileAppContentFile.RenewUpload {
     /// <summary>Builds and executes requests for operations under \me\insights\shared\{sharedInsight-id}\lastSharedMethod\microsoft.graph.mobileAppContentFile\microsoft.graph.renewUpload</summary>

@@ -7,6 +7,7 @@ using System.CommandLine.Invocation;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 namespace ApiSdk.Users.Item.Messages.Delta {
     /// <summary>Builds and executes requests for operations under \users\{user-id}\messages\microsoft.graph.delta()</summary>

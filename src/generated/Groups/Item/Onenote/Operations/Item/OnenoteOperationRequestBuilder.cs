@@ -8,6 +8,7 @@ using System.CommandLine.Invocation;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 namespace ApiSdk.Groups.Item.Onenote.Operations.Item {
     /// <summary>Builds and executes requests for operations under \groups\{group-id}\onenote\operations\{onenoteOperation-id}</summary>

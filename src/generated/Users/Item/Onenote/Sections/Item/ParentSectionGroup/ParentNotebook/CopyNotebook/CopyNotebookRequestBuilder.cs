@@ -8,6 +8,7 @@ using System.CommandLine.Invocation;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 namespace ApiSdk.Users.Item.Onenote.Sections.Item.ParentSectionGroup.ParentNotebook.CopyNotebook {
     /// <summary>Builds and executes requests for operations under \users\{user-id}\onenote\sections\{onenoteSection-id}\parentSectionGroup\parentNotebook\microsoft.graph.copyNotebook</summary>

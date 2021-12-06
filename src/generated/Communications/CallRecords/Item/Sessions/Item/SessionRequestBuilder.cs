@@ -9,6 +9,7 @@ using System.CommandLine.Invocation;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 namespace ApiSdk.Communications.CallRecords.Item.Sessions.Item {
     /// <summary>Builds and executes requests for operations under \communications\callRecords\{callRecord-id}\sessions\{session-id}</summary>

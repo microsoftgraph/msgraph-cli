@@ -8,6 +8,7 @@ using System.CommandLine.Invocation;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 namespace ApiSdk.Workbooks.Item.Workbook.Tables.ItemAtWithIndex {
     /// <summary>Builds and executes requests for operations under \workbooks\{driveItem-id}\workbook\tables\microsoft.graph.itemAt(index={index})</summary>

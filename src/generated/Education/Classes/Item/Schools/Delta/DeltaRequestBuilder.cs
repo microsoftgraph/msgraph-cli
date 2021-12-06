@@ -7,6 +7,7 @@ using System.CommandLine.Invocation;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 namespace ApiSdk.Education.Classes.Item.Schools.Delta {
     /// <summary>Builds and executes requests for operations under \education\classes\{educationClass-id}\schools\microsoft.graph.delta()</summary>

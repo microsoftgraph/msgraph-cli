@@ -9,6 +9,7 @@ using System.CommandLine.Invocation;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 namespace ApiSdk.Me.Teamwork.InstalledApps.Item.Chat {
     /// <summary>Builds and executes requests for operations under \me\teamwork\installedApps\{userScopeTeamsAppInstallation-id}\chat</summary>

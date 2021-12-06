@@ -9,6 +9,7 @@ using System.CommandLine.Invocation;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 namespace ApiSdk.RoleManagement.EntitlementManagement.RoleDefinitions.Item.InheritsPermissionsFrom {
     /// <summary>Builds and executes requests for operations under \roleManagement\entitlementManagement\roleDefinitions\{unifiedRoleDefinition-id}\inheritsPermissionsFrom</summary>

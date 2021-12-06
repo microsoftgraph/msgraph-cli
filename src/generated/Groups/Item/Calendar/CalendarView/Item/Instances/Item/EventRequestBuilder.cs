@@ -15,6 +15,7 @@ using System.CommandLine.Invocation;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 namespace ApiSdk.Groups.Item.Calendar.CalendarView.Item.Instances.Item {
     /// <summary>Builds and executes requests for operations under \groups\{group-id}\calendar\calendarView\{event-id}\instances\{event-id1}</summary>

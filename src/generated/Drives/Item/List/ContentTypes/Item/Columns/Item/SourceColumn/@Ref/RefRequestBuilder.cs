@@ -7,6 +7,7 @@ using System.CommandLine.Invocation;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 namespace ApiSdk.Drives.Item.List.ContentTypes.Item.Columns.Item.SourceColumn.@Ref {
     /// <summary>Builds and executes requests for operations under \drives\{drive-id}\list\contentTypes\{contentType-id}\columns\{columnDefinition-id}\sourceColumn\$ref</summary>
