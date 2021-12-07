@@ -87,9 +87,6 @@ namespace ApiSdk.InformationProtection.ThreatAssessmentRequests.Item {
         public Command BuildResultsCommand() {
             var command = new Command("results");
             var builder = new ApiSdk.InformationProtection.ThreatAssessmentRequests.Item.Results.ResultsRequestBuilder(PathParameters, RequestAdapter);
-            foreach (var cmd in builder.BuildCommand()) {
-                command.AddCommand(cmd);
-            }
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;

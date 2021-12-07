@@ -67,9 +67,6 @@ namespace ApiSdk.IdentityGovernance.AccessReviews.Definitions.Item {
         public Command BuildInstancesCommand() {
             var command = new Command("instances");
             var builder = new ApiSdk.IdentityGovernance.AccessReviews.Definitions.Item.Instances.InstancesRequestBuilder(PathParameters, RequestAdapter);
-            foreach (var cmd in builder.BuildCommand()) {
-                command.AddCommand(cmd);
-            }
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;

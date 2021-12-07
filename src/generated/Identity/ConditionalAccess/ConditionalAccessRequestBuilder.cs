@@ -63,9 +63,6 @@ namespace ApiSdk.Identity.ConditionalAccess {
         public Command BuildNamedLocationsCommand() {
             var command = new Command("named-locations");
             var builder = new ApiSdk.Identity.ConditionalAccess.NamedLocations.NamedLocationsRequestBuilder(PathParameters, RequestAdapter);
-            foreach (var cmd in builder.BuildCommand()) {
-                command.AddCommand(cmd);
-            }
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;
@@ -92,9 +89,6 @@ namespace ApiSdk.Identity.ConditionalAccess {
         public Command BuildPoliciesCommand() {
             var command = new Command("policies");
             var builder = new ApiSdk.Identity.ConditionalAccess.Policies.PoliciesRequestBuilder(PathParameters, RequestAdapter);
-            foreach (var cmd in builder.BuildCommand()) {
-                command.AddCommand(cmd);
-            }
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;

@@ -28,9 +28,6 @@ namespace ApiSdk.Print {
         public Command BuildConnectorsCommand() {
             var command = new Command("connectors");
             var builder = new ApiSdk.Print.Connectors.ConnectorsRequestBuilder(PathParameters, RequestAdapter);
-            foreach (var cmd in builder.BuildCommand()) {
-                command.AddCommand(cmd);
-            }
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;
@@ -62,9 +59,6 @@ namespace ApiSdk.Print {
         public Command BuildOperationsCommand() {
             var command = new Command("operations");
             var builder = new ApiSdk.Print.Operations.OperationsRequestBuilder(PathParameters, RequestAdapter);
-            foreach (var cmd in builder.BuildCommand()) {
-                command.AddCommand(cmd);
-            }
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;
@@ -91,9 +85,6 @@ namespace ApiSdk.Print {
         public Command BuildPrintersCommand() {
             var command = new Command("printers");
             var builder = new ApiSdk.Print.Printers.PrintersRequestBuilder(PathParameters, RequestAdapter);
-            foreach (var cmd in builder.BuildCommand()) {
-                command.AddCommand(cmd);
-            }
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;
@@ -101,9 +92,6 @@ namespace ApiSdk.Print {
         public Command BuildServicesCommand() {
             var command = new Command("services");
             var builder = new ApiSdk.Print.Services.ServicesRequestBuilder(PathParameters, RequestAdapter);
-            foreach (var cmd in builder.BuildCommand()) {
-                command.AddCommand(cmd);
-            }
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;
@@ -111,9 +99,6 @@ namespace ApiSdk.Print {
         public Command BuildSharesCommand() {
             var command = new Command("shares");
             var builder = new ApiSdk.Print.Shares.SharesRequestBuilder(PathParameters, RequestAdapter);
-            foreach (var cmd in builder.BuildCommand()) {
-                command.AddCommand(cmd);
-            }
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;
@@ -121,9 +106,6 @@ namespace ApiSdk.Print {
         public Command BuildTaskDefinitionsCommand() {
             var command = new Command("task-definitions");
             var builder = new ApiSdk.Print.TaskDefinitions.TaskDefinitionsRequestBuilder(PathParameters, RequestAdapter);
-            foreach (var cmd in builder.BuildCommand()) {
-                command.AddCommand(cmd);
-            }
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;

@@ -47,9 +47,6 @@ namespace ApiSdk.IdentityGovernance.AccessReviews.Definitions.Item.Instances.Ite
         public Command BuildDecisionsCommand() {
             var command = new Command("decisions");
             var builder = new ApiSdk.IdentityGovernance.AccessReviews.Definitions.Item.Instances.Item.Decisions.DecisionsRequestBuilder(PathParameters, RequestAdapter);
-            foreach (var cmd in builder.BuildCommand()) {
-                command.AddCommand(cmd);
-            }
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;

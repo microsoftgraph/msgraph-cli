@@ -23,9 +23,6 @@ namespace ApiSdk.AppCatalogs.TeamsApps.Item {
         public Command BuildAppDefinitionsCommand() {
             var command = new Command("app-definitions");
             var builder = new ApiSdk.AppCatalogs.TeamsApps.Item.AppDefinitions.AppDefinitionsRequestBuilder(PathParameters, RequestAdapter);
-            foreach (var cmd in builder.BuildCommand()) {
-                command.AddCommand(cmd);
-            }
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;

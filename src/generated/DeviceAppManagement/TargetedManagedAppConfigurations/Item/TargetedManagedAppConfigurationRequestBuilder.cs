@@ -27,9 +27,6 @@ namespace ApiSdk.DeviceAppManagement.TargetedManagedAppConfigurations.Item {
         public Command BuildAppsCommand() {
             var command = new Command("apps");
             var builder = new ApiSdk.DeviceAppManagement.TargetedManagedAppConfigurations.Item.Apps.AppsRequestBuilder(PathParameters, RequestAdapter);
-            foreach (var cmd in builder.BuildCommand()) {
-                command.AddCommand(cmd);
-            }
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;
@@ -43,9 +40,6 @@ namespace ApiSdk.DeviceAppManagement.TargetedManagedAppConfigurations.Item {
         public Command BuildAssignmentsCommand() {
             var command = new Command("assignments");
             var builder = new ApiSdk.DeviceAppManagement.TargetedManagedAppConfigurations.Item.Assignments.AssignmentsRequestBuilder(PathParameters, RequestAdapter);
-            foreach (var cmd in builder.BuildCommand()) {
-                command.AddCommand(cmd);
-            }
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;

@@ -91,9 +91,6 @@ namespace ApiSdk.Groups.Item.Conversations.Item {
         public Command BuildThreadsCommand() {
             var command = new Command("threads");
             var builder = new ApiSdk.Groups.Item.Conversations.Item.Threads.ThreadsRequestBuilder(PathParameters, RequestAdapter);
-            foreach (var cmd in builder.BuildCommand()) {
-                command.AddCommand(cmd);
-            }
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;

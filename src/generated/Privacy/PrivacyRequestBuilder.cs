@@ -66,9 +66,6 @@ namespace ApiSdk.Privacy {
         public Command BuildSubjectRightsRequestsCommand() {
             var command = new Command("subject-rights-requests");
             var builder = new ApiSdk.Privacy.SubjectRightsRequests.SubjectRightsRequestsRequestBuilder(PathParameters, RequestAdapter);
-            foreach (var cmd in builder.BuildCommand()) {
-                command.AddCommand(cmd);
-            }
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;

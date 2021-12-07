@@ -87,9 +87,6 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.AccessPackageAssignmen
         public Command BuildStagesCommand() {
             var command = new Command("stages");
             var builder = new ApiSdk.IdentityGovernance.EntitlementManagement.AccessPackageAssignmentApprovals.Item.Stages.StagesRequestBuilder(PathParameters, RequestAdapter);
-            foreach (var cmd in builder.BuildCommand()) {
-                command.AddCommand(cmd);
-            }
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;

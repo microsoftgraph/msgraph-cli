@@ -26,9 +26,6 @@ namespace ApiSdk.Education {
         public Command BuildClassesCommand() {
             var command = new Command("classes");
             var builder = new ApiSdk.Education.Classes.ClassesRequestBuilder(PathParameters, RequestAdapter);
-            foreach (var cmd in builder.BuildCommand()) {
-                command.AddCommand(cmd);
-            }
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;
@@ -92,9 +89,6 @@ namespace ApiSdk.Education {
         public Command BuildSchoolsCommand() {
             var command = new Command("schools");
             var builder = new ApiSdk.Education.Schools.SchoolsRequestBuilder(PathParameters, RequestAdapter);
-            foreach (var cmd in builder.BuildCommand()) {
-                command.AddCommand(cmd);
-            }
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;
@@ -102,9 +96,6 @@ namespace ApiSdk.Education {
         public Command BuildUsersCommand() {
             var command = new Command("users");
             var builder = new ApiSdk.Education.Users.UsersRequestBuilder(PathParameters, RequestAdapter);
-            foreach (var cmd in builder.BuildCommand()) {
-                command.AddCommand(cmd);
-            }
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;

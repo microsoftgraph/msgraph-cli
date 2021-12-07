@@ -75,9 +75,6 @@ namespace ApiSdk.Organization.Item {
         public Command BuildExtensionsCommand() {
             var command = new Command("extensions");
             var builder = new ApiSdk.Organization.Item.Extensions.ExtensionsRequestBuilder(PathParameters, RequestAdapter);
-            foreach (var cmd in builder.BuildCommand()) {
-                command.AddCommand(cmd);
-            }
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;

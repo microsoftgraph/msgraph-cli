@@ -36,9 +36,6 @@ namespace ApiSdk.DeviceManagement.DeviceConfigurations.Item {
         public Command BuildAssignmentsCommand() {
             var command = new Command("assignments");
             var builder = new ApiSdk.DeviceManagement.DeviceConfigurations.Item.Assignments.AssignmentsRequestBuilder(PathParameters, RequestAdapter);
-            foreach (var cmd in builder.BuildCommand()) {
-                command.AddCommand(cmd);
-            }
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;
@@ -63,9 +60,6 @@ namespace ApiSdk.DeviceManagement.DeviceConfigurations.Item {
         public Command BuildDeviceSettingStateSummariesCommand() {
             var command = new Command("device-setting-state-summaries");
             var builder = new ApiSdk.DeviceManagement.DeviceConfigurations.Item.DeviceSettingStateSummaries.DeviceSettingStateSummariesRequestBuilder(PathParameters, RequestAdapter);
-            foreach (var cmd in builder.BuildCommand()) {
-                command.AddCommand(cmd);
-            }
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;
@@ -73,9 +67,6 @@ namespace ApiSdk.DeviceManagement.DeviceConfigurations.Item {
         public Command BuildDeviceStatusesCommand() {
             var command = new Command("device-statuses");
             var builder = new ApiSdk.DeviceManagement.DeviceConfigurations.Item.DeviceStatuses.DeviceStatusesRequestBuilder(PathParameters, RequestAdapter);
-            foreach (var cmd in builder.BuildCommand()) {
-                command.AddCommand(cmd);
-            }
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;
@@ -138,9 +129,6 @@ namespace ApiSdk.DeviceManagement.DeviceConfigurations.Item {
         public Command BuildUserStatusesCommand() {
             var command = new Command("user-statuses");
             var builder = new ApiSdk.DeviceManagement.DeviceConfigurations.Item.UserStatuses.UserStatusesRequestBuilder(PathParameters, RequestAdapter);
-            foreach (var cmd in builder.BuildCommand()) {
-                command.AddCommand(cmd);
-            }
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;

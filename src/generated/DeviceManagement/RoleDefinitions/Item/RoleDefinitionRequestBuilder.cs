@@ -87,9 +87,6 @@ namespace ApiSdk.DeviceManagement.RoleDefinitions.Item {
         public Command BuildRoleAssignmentsCommand() {
             var command = new Command("role-assignments");
             var builder = new ApiSdk.DeviceManagement.RoleDefinitions.Item.RoleAssignments.RoleAssignmentsRequestBuilder(PathParameters, RequestAdapter);
-            foreach (var cmd in builder.BuildCommand()) {
-                command.AddCommand(cmd);
-            }
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;

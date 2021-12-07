@@ -25,7 +25,6 @@ namespace ApiSdk.CertificateBasedAuthConfiguration {
                 builder.BuildCreateCommand(),
                 builder.BuildListCommand(),
             };
-            commands.AddRange(BuildCommand());
             return commands;
         }
         /// <summary>

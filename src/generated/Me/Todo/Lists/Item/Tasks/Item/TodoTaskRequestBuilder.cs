@@ -43,9 +43,6 @@ namespace ApiSdk.Me.Todo.Lists.Item.Tasks.Item {
         public Command BuildExtensionsCommand() {
             var command = new Command("extensions");
             var builder = new ApiSdk.Me.Todo.Lists.Item.Tasks.Item.Extensions.ExtensionsRequestBuilder(PathParameters, RequestAdapter);
-            foreach (var cmd in builder.BuildCommand()) {
-                command.AddCommand(cmd);
-            }
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;
@@ -81,9 +78,6 @@ namespace ApiSdk.Me.Todo.Lists.Item.Tasks.Item {
         public Command BuildLinkedResourcesCommand() {
             var command = new Command("linked-resources");
             var builder = new ApiSdk.Me.Todo.Lists.Item.Tasks.Item.LinkedResources.LinkedResourcesRequestBuilder(PathParameters, RequestAdapter);
-            foreach (var cmd in builder.BuildCommand()) {
-                command.AddCommand(cmd);
-            }
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;

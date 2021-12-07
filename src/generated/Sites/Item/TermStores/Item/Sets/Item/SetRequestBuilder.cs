@@ -26,9 +26,6 @@ namespace ApiSdk.Sites.Item.TermStores.Item.Sets.Item {
         public Command BuildChildrenCommand() {
             var command = new Command("children");
             var builder = new ApiSdk.Sites.Item.TermStores.Item.Sets.Item.Children.ChildrenRequestBuilder(PathParameters, RequestAdapter);
-            foreach (var cmd in builder.BuildCommand()) {
-                command.AddCommand(cmd);
-            }
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;
@@ -121,9 +118,6 @@ namespace ApiSdk.Sites.Item.TermStores.Item.Sets.Item {
         public Command BuildRelationsCommand() {
             var command = new Command("relations");
             var builder = new ApiSdk.Sites.Item.TermStores.Item.Sets.Item.Relations.RelationsRequestBuilder(PathParameters, RequestAdapter);
-            foreach (var cmd in builder.BuildCommand()) {
-                command.AddCommand(cmd);
-            }
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;
@@ -131,9 +125,6 @@ namespace ApiSdk.Sites.Item.TermStores.Item.Sets.Item {
         public Command BuildTermsCommand() {
             var command = new Command("terms");
             var builder = new ApiSdk.Sites.Item.TermStores.Item.Sets.Item.Terms.TermsRequestBuilder(PathParameters, RequestAdapter);
-            foreach (var cmd in builder.BuildCommand()) {
-                command.AddCommand(cmd);
-            }
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;

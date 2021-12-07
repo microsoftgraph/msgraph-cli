@@ -86,9 +86,6 @@ namespace ApiSdk.DeviceManagement.ManagedDevices.Item {
         public Command BuildDeviceCompliancePolicyStatesCommand() {
             var command = new Command("device-compliance-policy-states");
             var builder = new ApiSdk.DeviceManagement.ManagedDevices.Item.DeviceCompliancePolicyStates.DeviceCompliancePolicyStatesRequestBuilder(PathParameters, RequestAdapter);
-            foreach (var cmd in builder.BuildCommand()) {
-                command.AddCommand(cmd);
-            }
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;
@@ -96,9 +93,6 @@ namespace ApiSdk.DeviceManagement.ManagedDevices.Item {
         public Command BuildDeviceConfigurationStatesCommand() {
             var command = new Command("device-configuration-states");
             var builder = new ApiSdk.DeviceManagement.ManagedDevices.Item.DeviceConfigurationStates.DeviceConfigurationStatesRequestBuilder(PathParameters, RequestAdapter);
-            foreach (var cmd in builder.BuildCommand()) {
-                command.AddCommand(cmd);
-            }
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;

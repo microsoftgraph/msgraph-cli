@@ -94,9 +94,6 @@ namespace ApiSdk.Groups.Item.Onenote.Notebooks.Item.SectionGroups.Item.Sections.
         public Command BuildPagesCommand() {
             var command = new Command("pages");
             var builder = new ApiSdk.Groups.Item.Onenote.Notebooks.Item.SectionGroups.Item.Sections.Item.Pages.PagesRequestBuilder(PathParameters, RequestAdapter);
-            foreach (var cmd in builder.BuildCommand()) {
-                command.AddCommand(cmd);
-            }
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;

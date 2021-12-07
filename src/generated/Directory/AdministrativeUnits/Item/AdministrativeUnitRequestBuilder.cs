@@ -42,9 +42,6 @@ namespace ApiSdk.Directory.AdministrativeUnits.Item {
         public Command BuildExtensionsCommand() {
             var command = new Command("extensions");
             var builder = new ApiSdk.Directory.AdministrativeUnits.Item.Extensions.ExtensionsRequestBuilder(PathParameters, RequestAdapter);
-            foreach (var cmd in builder.BuildCommand()) {
-                command.AddCommand(cmd);
-            }
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;
@@ -106,9 +103,6 @@ namespace ApiSdk.Directory.AdministrativeUnits.Item {
         public Command BuildScopedRoleMembersCommand() {
             var command = new Command("scoped-role-members");
             var builder = new ApiSdk.Directory.AdministrativeUnits.Item.ScopedRoleMembers.ScopedRoleMembersRequestBuilder(PathParameters, RequestAdapter);
-            foreach (var cmd in builder.BuildCommand()) {
-                command.AddCommand(cmd);
-            }
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;

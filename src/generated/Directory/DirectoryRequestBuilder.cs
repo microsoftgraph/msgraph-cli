@@ -24,9 +24,6 @@ namespace ApiSdk.Directory {
         public Command BuildAdministrativeUnitsCommand() {
             var command = new Command("administrative-units");
             var builder = new ApiSdk.Directory.AdministrativeUnits.AdministrativeUnitsRequestBuilder(PathParameters, RequestAdapter);
-            foreach (var cmd in builder.BuildCommand()) {
-                command.AddCommand(cmd);
-            }
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;
@@ -34,9 +31,6 @@ namespace ApiSdk.Directory {
         public Command BuildDeletedItemsCommand() {
             var command = new Command("deleted-items");
             var builder = new ApiSdk.Directory.DeletedItems.DeletedItemsRequestBuilder(PathParameters, RequestAdapter);
-            foreach (var cmd in builder.BuildCommand()) {
-                command.AddCommand(cmd);
-            }
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;

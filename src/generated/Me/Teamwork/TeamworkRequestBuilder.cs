@@ -63,9 +63,6 @@ namespace ApiSdk.Me.Teamwork {
         public Command BuildInstalledAppsCommand() {
             var command = new Command("installed-apps");
             var builder = new ApiSdk.Me.Teamwork.InstalledApps.InstalledAppsRequestBuilder(PathParameters, RequestAdapter);
-            foreach (var cmd in builder.BuildCommand()) {
-                command.AddCommand(cmd);
-            }
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;

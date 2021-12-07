@@ -88,9 +88,6 @@ namespace ApiSdk.Teams.Item.PrimaryChannel {
             var command = new Command("members");
             var builder = new ApiSdk.Teams.Item.PrimaryChannel.Members.MembersRequestBuilder(PathParameters, RequestAdapter);
             command.AddCommand(builder.BuildAddCommand());
-            foreach (var cmd in builder.BuildCommand()) {
-                command.AddCommand(cmd);
-            }
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;
@@ -98,9 +95,6 @@ namespace ApiSdk.Teams.Item.PrimaryChannel {
         public Command BuildMessagesCommand() {
             var command = new Command("messages");
             var builder = new ApiSdk.Teams.Item.PrimaryChannel.Messages.MessagesRequestBuilder(PathParameters, RequestAdapter);
-            foreach (var cmd in builder.BuildCommand()) {
-                command.AddCommand(cmd);
-            }
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;
@@ -141,9 +135,6 @@ namespace ApiSdk.Teams.Item.PrimaryChannel {
         public Command BuildTabsCommand() {
             var command = new Command("tabs");
             var builder = new ApiSdk.Teams.Item.PrimaryChannel.Tabs.TabsRequestBuilder(PathParameters, RequestAdapter);
-            foreach (var cmd in builder.BuildCommand()) {
-                command.AddCommand(cmd);
-            }
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;

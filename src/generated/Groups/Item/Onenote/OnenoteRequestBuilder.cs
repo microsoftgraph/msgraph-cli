@@ -71,9 +71,6 @@ namespace ApiSdk.Groups.Item.Onenote {
         public Command BuildNotebooksCommand() {
             var command = new Command("notebooks");
             var builder = new ApiSdk.Groups.Item.Onenote.Notebooks.NotebooksRequestBuilder(PathParameters, RequestAdapter);
-            foreach (var cmd in builder.BuildCommand()) {
-                command.AddCommand(cmd);
-            }
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildGetNotebookFromWebUrlCommand());
             command.AddCommand(builder.BuildListCommand());
@@ -82,9 +79,6 @@ namespace ApiSdk.Groups.Item.Onenote {
         public Command BuildOperationsCommand() {
             var command = new Command("operations");
             var builder = new ApiSdk.Groups.Item.Onenote.Operations.OperationsRequestBuilder(PathParameters, RequestAdapter);
-            foreach (var cmd in builder.BuildCommand()) {
-                command.AddCommand(cmd);
-            }
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;
@@ -92,9 +86,6 @@ namespace ApiSdk.Groups.Item.Onenote {
         public Command BuildPagesCommand() {
             var command = new Command("pages");
             var builder = new ApiSdk.Groups.Item.Onenote.Pages.PagesRequestBuilder(PathParameters, RequestAdapter);
-            foreach (var cmd in builder.BuildCommand()) {
-                command.AddCommand(cmd);
-            }
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;
@@ -123,9 +114,6 @@ namespace ApiSdk.Groups.Item.Onenote {
         public Command BuildResourcesCommand() {
             var command = new Command("resources");
             var builder = new ApiSdk.Groups.Item.Onenote.Resources.ResourcesRequestBuilder(PathParameters, RequestAdapter);
-            foreach (var cmd in builder.BuildCommand()) {
-                command.AddCommand(cmd);
-            }
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;
@@ -133,9 +121,6 @@ namespace ApiSdk.Groups.Item.Onenote {
         public Command BuildSectionGroupsCommand() {
             var command = new Command("section-groups");
             var builder = new ApiSdk.Groups.Item.Onenote.SectionGroups.SectionGroupsRequestBuilder(PathParameters, RequestAdapter);
-            foreach (var cmd in builder.BuildCommand()) {
-                command.AddCommand(cmd);
-            }
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;
@@ -143,9 +128,6 @@ namespace ApiSdk.Groups.Item.Onenote {
         public Command BuildSectionsCommand() {
             var command = new Command("sections");
             var builder = new ApiSdk.Groups.Item.Onenote.Sections.SectionsRequestBuilder(PathParameters, RequestAdapter);
-            foreach (var cmd in builder.BuildCommand()) {
-                command.AddCommand(cmd);
-            }
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;

@@ -100,9 +100,6 @@ namespace ApiSdk.Groups.Item.Conversations.Item.Threads.Item {
         public Command BuildPostsCommand() {
             var command = new Command("posts");
             var builder = new ApiSdk.Groups.Item.Conversations.Item.Threads.Item.Posts.PostsRequestBuilder(PathParameters, RequestAdapter);
-            foreach (var cmd in builder.BuildCommand()) {
-                command.AddCommand(cmd);
-            }
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;

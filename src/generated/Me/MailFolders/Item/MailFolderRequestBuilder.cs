@@ -29,9 +29,6 @@ namespace ApiSdk.Me.MailFolders.Item {
         public Command BuildChildFoldersCommand() {
             var command = new Command("child-folders");
             var builder = new ApiSdk.Me.MailFolders.Item.ChildFolders.ChildFoldersRequestBuilder(PathParameters, RequestAdapter);
-            foreach (var cmd in builder.BuildCommand()) {
-                command.AddCommand(cmd);
-            }
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;
@@ -86,9 +83,6 @@ namespace ApiSdk.Me.MailFolders.Item {
         public Command BuildMessageRulesCommand() {
             var command = new Command("message-rules");
             var builder = new ApiSdk.Me.MailFolders.Item.MessageRules.MessageRulesRequestBuilder(PathParameters, RequestAdapter);
-            foreach (var cmd in builder.BuildCommand()) {
-                command.AddCommand(cmd);
-            }
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;
@@ -96,9 +90,6 @@ namespace ApiSdk.Me.MailFolders.Item {
         public Command BuildMessagesCommand() {
             var command = new Command("messages");
             var builder = new ApiSdk.Me.MailFolders.Item.Messages.MessagesRequestBuilder(PathParameters, RequestAdapter);
-            foreach (var cmd in builder.BuildCommand()) {
-                command.AddCommand(cmd);
-            }
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;
@@ -112,9 +103,6 @@ namespace ApiSdk.Me.MailFolders.Item {
         public Command BuildMultiValueExtendedPropertiesCommand() {
             var command = new Command("multi-value-extended-properties");
             var builder = new ApiSdk.Me.MailFolders.Item.MultiValueExtendedProperties.MultiValueExtendedPropertiesRequestBuilder(PathParameters, RequestAdapter);
-            foreach (var cmd in builder.BuildCommand()) {
-                command.AddCommand(cmd);
-            }
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;
@@ -143,9 +131,6 @@ namespace ApiSdk.Me.MailFolders.Item {
         public Command BuildSingleValueExtendedPropertiesCommand() {
             var command = new Command("single-value-extended-properties");
             var builder = new ApiSdk.Me.MailFolders.Item.SingleValueExtendedProperties.SingleValueExtendedPropertiesRequestBuilder(PathParameters, RequestAdapter);
-            foreach (var cmd in builder.BuildCommand()) {
-                command.AddCommand(cmd);
-            }
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;

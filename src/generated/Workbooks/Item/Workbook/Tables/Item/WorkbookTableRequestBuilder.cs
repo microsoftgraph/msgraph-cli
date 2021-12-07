@@ -40,9 +40,6 @@ namespace ApiSdk.Workbooks.Item.Workbook.Tables.Item {
             var command = new Command("columns");
             var builder = new ApiSdk.Workbooks.Item.Workbook.Tables.Item.Columns.ColumnsRequestBuilder(PathParameters, RequestAdapter);
             command.AddCommand(builder.BuildAddCommand());
-            foreach (var cmd in builder.BuildCommand()) {
-                command.AddCommand(cmd);
-            }
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;
@@ -133,9 +130,6 @@ namespace ApiSdk.Workbooks.Item.Workbook.Tables.Item {
             var command = new Command("rows");
             var builder = new ApiSdk.Workbooks.Item.Workbook.Tables.Item.Rows.RowsRequestBuilder(PathParameters, RequestAdapter);
             command.AddCommand(builder.BuildAddCommand());
-            foreach (var cmd in builder.BuildCommand()) {
-                command.AddCommand(cmd);
-            }
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;

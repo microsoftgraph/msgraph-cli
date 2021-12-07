@@ -25,7 +25,6 @@ namespace ApiSdk.Me.LicenseDetails {
                 builder.BuildCreateCommand(),
                 builder.BuildListCommand(),
             };
-            commands.AddRange(BuildCommand());
             return commands;
         }
         /// <summary>

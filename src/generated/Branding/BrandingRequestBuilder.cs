@@ -47,9 +47,6 @@ namespace ApiSdk.Branding {
         public Command BuildLocalizationsCommand() {
             var command = new Command("localizations");
             var builder = new ApiSdk.Branding.Localizations.LocalizationsRequestBuilder(PathParameters, RequestAdapter);
-            foreach (var cmd in builder.BuildCommand()) {
-                command.AddCommand(cmd);
-            }
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;

@@ -41,9 +41,6 @@ namespace ApiSdk.Teams.Item {
         public Command BuildChannelsCommand() {
             var command = new Command("channels");
             var builder = new ApiSdk.Teams.Item.Channels.ChannelsRequestBuilder(PathParameters, RequestAdapter);
-            foreach (var cmd in builder.BuildCommand()) {
-                command.AddCommand(cmd);
-            }
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;
@@ -113,9 +110,6 @@ namespace ApiSdk.Teams.Item {
         public Command BuildInstalledAppsCommand() {
             var command = new Command("installed-apps");
             var builder = new ApiSdk.Teams.Item.InstalledApps.InstalledAppsRequestBuilder(PathParameters, RequestAdapter);
-            foreach (var cmd in builder.BuildCommand()) {
-                command.AddCommand(cmd);
-            }
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;
@@ -124,9 +118,6 @@ namespace ApiSdk.Teams.Item {
             var command = new Command("members");
             var builder = new ApiSdk.Teams.Item.Members.MembersRequestBuilder(PathParameters, RequestAdapter);
             command.AddCommand(builder.BuildAddCommand());
-            foreach (var cmd in builder.BuildCommand()) {
-                command.AddCommand(cmd);
-            }
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;
@@ -134,9 +125,6 @@ namespace ApiSdk.Teams.Item {
         public Command BuildOperationsCommand() {
             var command = new Command("operations");
             var builder = new ApiSdk.Teams.Item.Operations.OperationsRequestBuilder(PathParameters, RequestAdapter);
-            foreach (var cmd in builder.BuildCommand()) {
-                command.AddCommand(cmd);
-            }
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;

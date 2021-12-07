@@ -82,9 +82,6 @@ namespace ApiSdk.RoleManagement.Directory {
         public Command BuildRoleAssignmentsCommand() {
             var command = new Command("role-assignments");
             var builder = new ApiSdk.RoleManagement.Directory.RoleAssignments.RoleAssignmentsRequestBuilder(PathParameters, RequestAdapter);
-            foreach (var cmd in builder.BuildCommand()) {
-                command.AddCommand(cmd);
-            }
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;
@@ -92,9 +89,6 @@ namespace ApiSdk.RoleManagement.Directory {
         public Command BuildRoleDefinitionsCommand() {
             var command = new Command("role-definitions");
             var builder = new ApiSdk.RoleManagement.Directory.RoleDefinitions.RoleDefinitionsRequestBuilder(PathParameters, RequestAdapter);
-            foreach (var cmd in builder.BuildCommand()) {
-                command.AddCommand(cmd);
-            }
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;

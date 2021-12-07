@@ -24,9 +24,6 @@ namespace ApiSdk.DeviceManagement.TermsAndConditions.Item {
         public Command BuildAcceptanceStatusesCommand() {
             var command = new Command("acceptance-statuses");
             var builder = new ApiSdk.DeviceManagement.TermsAndConditions.Item.AcceptanceStatuses.AcceptanceStatusesRequestBuilder(PathParameters, RequestAdapter);
-            foreach (var cmd in builder.BuildCommand()) {
-                command.AddCommand(cmd);
-            }
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;
@@ -34,9 +31,6 @@ namespace ApiSdk.DeviceManagement.TermsAndConditions.Item {
         public Command BuildAssignmentsCommand() {
             var command = new Command("assignments");
             var builder = new ApiSdk.DeviceManagement.TermsAndConditions.Item.Assignments.AssignmentsRequestBuilder(PathParameters, RequestAdapter);
-            foreach (var cmd in builder.BuildCommand()) {
-                command.AddCommand(cmd);
-            }
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;

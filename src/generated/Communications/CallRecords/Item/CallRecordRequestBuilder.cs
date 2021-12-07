@@ -87,9 +87,6 @@ namespace ApiSdk.Communications.CallRecords.Item {
         public Command BuildSessionsCommand() {
             var command = new Command("sessions");
             var builder = new ApiSdk.Communications.CallRecords.Item.Sessions.SessionsRequestBuilder(PathParameters, RequestAdapter);
-            foreach (var cmd in builder.BuildCommand()) {
-                command.AddCommand(cmd);
-            }
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;

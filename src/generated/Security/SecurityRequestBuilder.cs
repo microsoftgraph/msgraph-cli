@@ -25,9 +25,6 @@ namespace ApiSdk.Security {
         public Command BuildAlertsCommand() {
             var command = new Command("alerts");
             var builder = new ApiSdk.Security.Alerts.AlertsRequestBuilder(PathParameters, RequestAdapter);
-            foreach (var cmd in builder.BuildCommand()) {
-                command.AddCommand(cmd);
-            }
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;
@@ -78,9 +75,6 @@ namespace ApiSdk.Security {
         public Command BuildSecureScoreControlProfilesCommand() {
             var command = new Command("secure-score-control-profiles");
             var builder = new ApiSdk.Security.SecureScoreControlProfiles.SecureScoreControlProfilesRequestBuilder(PathParameters, RequestAdapter);
-            foreach (var cmd in builder.BuildCommand()) {
-                command.AddCommand(cmd);
-            }
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;
@@ -88,9 +82,6 @@ namespace ApiSdk.Security {
         public Command BuildSecureScoresCommand() {
             var command = new Command("secure-scores");
             var builder = new ApiSdk.Security.SecureScores.SecureScoresRequestBuilder(PathParameters, RequestAdapter);
-            foreach (var cmd in builder.BuildCommand()) {
-                command.AddCommand(cmd);
-            }
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;

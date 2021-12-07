@@ -23,9 +23,6 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.Catalogs.Item {
         public Command BuildAccessPackagesCommand() {
             var command = new Command("access-packages");
             var builder = new ApiSdk.IdentityGovernance.EntitlementManagement.Catalogs.Item.AccessPackages.AccessPackagesRequestBuilder(PathParameters, RequestAdapter);
-            foreach (var cmd in builder.BuildCommand()) {
-                command.AddCommand(cmd);
-            }
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;

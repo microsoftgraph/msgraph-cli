@@ -63,9 +63,6 @@ namespace ApiSdk.DeviceManagement {
         public Command BuildComplianceManagementPartnersCommand() {
             var command = new Command("compliance-management-partners");
             var builder = new ApiSdk.DeviceManagement.ComplianceManagementPartners.ComplianceManagementPartnersRequestBuilder(PathParameters, RequestAdapter);
-            foreach (var cmd in builder.BuildCommand()) {
-                command.AddCommand(cmd);
-            }
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;
@@ -81,9 +78,6 @@ namespace ApiSdk.DeviceManagement {
         public Command BuildDetectedAppsCommand() {
             var command = new Command("detected-apps");
             var builder = new ApiSdk.DeviceManagement.DetectedApps.DetectedAppsRequestBuilder(PathParameters, RequestAdapter);
-            foreach (var cmd in builder.BuildCommand()) {
-                command.AddCommand(cmd);
-            }
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;
@@ -91,9 +85,6 @@ namespace ApiSdk.DeviceManagement {
         public Command BuildDeviceCategoriesCommand() {
             var command = new Command("device-categories");
             var builder = new ApiSdk.DeviceManagement.DeviceCategories.DeviceCategoriesRequestBuilder(PathParameters, RequestAdapter);
-            foreach (var cmd in builder.BuildCommand()) {
-                command.AddCommand(cmd);
-            }
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;
@@ -101,9 +92,6 @@ namespace ApiSdk.DeviceManagement {
         public Command BuildDeviceCompliancePoliciesCommand() {
             var command = new Command("device-compliance-policies");
             var builder = new ApiSdk.DeviceManagement.DeviceCompliancePolicies.DeviceCompliancePoliciesRequestBuilder(PathParameters, RequestAdapter);
-            foreach (var cmd in builder.BuildCommand()) {
-                command.AddCommand(cmd);
-            }
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;
@@ -119,9 +107,6 @@ namespace ApiSdk.DeviceManagement {
         public Command BuildDeviceCompliancePolicySettingStateSummariesCommand() {
             var command = new Command("device-compliance-policy-setting-state-summaries");
             var builder = new ApiSdk.DeviceManagement.DeviceCompliancePolicySettingStateSummaries.DeviceCompliancePolicySettingStateSummariesRequestBuilder(PathParameters, RequestAdapter);
-            foreach (var cmd in builder.BuildCommand()) {
-                command.AddCommand(cmd);
-            }
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;
@@ -137,9 +122,6 @@ namespace ApiSdk.DeviceManagement {
         public Command BuildDeviceConfigurationsCommand() {
             var command = new Command("device-configurations");
             var builder = new ApiSdk.DeviceManagement.DeviceConfigurations.DeviceConfigurationsRequestBuilder(PathParameters, RequestAdapter);
-            foreach (var cmd in builder.BuildCommand()) {
-                command.AddCommand(cmd);
-            }
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;
@@ -147,9 +129,6 @@ namespace ApiSdk.DeviceManagement {
         public Command BuildDeviceEnrollmentConfigurationsCommand() {
             var command = new Command("device-enrollment-configurations");
             var builder = new ApiSdk.DeviceManagement.DeviceEnrollmentConfigurations.DeviceEnrollmentConfigurationsRequestBuilder(PathParameters, RequestAdapter);
-            foreach (var cmd in builder.BuildCommand()) {
-                command.AddCommand(cmd);
-            }
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;
@@ -157,9 +136,6 @@ namespace ApiSdk.DeviceManagement {
         public Command BuildDeviceManagementPartnersCommand() {
             var command = new Command("device-management-partners");
             var builder = new ApiSdk.DeviceManagement.DeviceManagementPartners.DeviceManagementPartnersRequestBuilder(PathParameters, RequestAdapter);
-            foreach (var cmd in builder.BuildCommand()) {
-                command.AddCommand(cmd);
-            }
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;
@@ -167,9 +143,6 @@ namespace ApiSdk.DeviceManagement {
         public Command BuildExchangeConnectorsCommand() {
             var command = new Command("exchange-connectors");
             var builder = new ApiSdk.DeviceManagement.ExchangeConnectors.ExchangeConnectorsRequestBuilder(PathParameters, RequestAdapter);
-            foreach (var cmd in builder.BuildCommand()) {
-                command.AddCommand(cmd);
-            }
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;
@@ -201,9 +174,6 @@ namespace ApiSdk.DeviceManagement {
         public Command BuildImportedWindowsAutopilotDeviceIdentitiesCommand() {
             var command = new Command("imported-windows-autopilot-device-identities");
             var builder = new ApiSdk.DeviceManagement.ImportedWindowsAutopilotDeviceIdentities.ImportedWindowsAutopilotDeviceIdentitiesRequestBuilder(PathParameters, RequestAdapter);
-            foreach (var cmd in builder.BuildCommand()) {
-                command.AddCommand(cmd);
-            }
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildImportCommand());
             command.AddCommand(builder.BuildListCommand());
@@ -212,9 +182,6 @@ namespace ApiSdk.DeviceManagement {
         public Command BuildIosUpdateStatusesCommand() {
             var command = new Command("ios-update-statuses");
             var builder = new ApiSdk.DeviceManagement.IosUpdateStatuses.IosUpdateStatusesRequestBuilder(PathParameters, RequestAdapter);
-            foreach (var cmd in builder.BuildCommand()) {
-                command.AddCommand(cmd);
-            }
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;
@@ -229,9 +196,6 @@ namespace ApiSdk.DeviceManagement {
         public Command BuildManagedDevicesCommand() {
             var command = new Command("managed-devices");
             var builder = new ApiSdk.DeviceManagement.ManagedDevices.ManagedDevicesRequestBuilder(PathParameters, RequestAdapter);
-            foreach (var cmd in builder.BuildCommand()) {
-                command.AddCommand(cmd);
-            }
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;
@@ -239,9 +203,6 @@ namespace ApiSdk.DeviceManagement {
         public Command BuildMobileThreatDefenseConnectorsCommand() {
             var command = new Command("mobile-threat-defense-connectors");
             var builder = new ApiSdk.DeviceManagement.MobileThreatDefenseConnectors.MobileThreatDefenseConnectorsRequestBuilder(PathParameters, RequestAdapter);
-            foreach (var cmd in builder.BuildCommand()) {
-                command.AddCommand(cmd);
-            }
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;
@@ -249,9 +210,6 @@ namespace ApiSdk.DeviceManagement {
         public Command BuildNotificationMessageTemplatesCommand() {
             var command = new Command("notification-message-templates");
             var builder = new ApiSdk.DeviceManagement.NotificationMessageTemplates.NotificationMessageTemplatesRequestBuilder(PathParameters, RequestAdapter);
-            foreach (var cmd in builder.BuildCommand()) {
-                command.AddCommand(cmd);
-            }
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;
@@ -278,9 +236,6 @@ namespace ApiSdk.DeviceManagement {
         public Command BuildRemoteAssistancePartnersCommand() {
             var command = new Command("remote-assistance-partners");
             var builder = new ApiSdk.DeviceManagement.RemoteAssistancePartners.RemoteAssistancePartnersRequestBuilder(PathParameters, RequestAdapter);
-            foreach (var cmd in builder.BuildCommand()) {
-                command.AddCommand(cmd);
-            }
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;
@@ -313,9 +268,6 @@ namespace ApiSdk.DeviceManagement {
         public Command BuildResourceOperationsCommand() {
             var command = new Command("resource-operations");
             var builder = new ApiSdk.DeviceManagement.ResourceOperations.ResourceOperationsRequestBuilder(PathParameters, RequestAdapter);
-            foreach (var cmd in builder.BuildCommand()) {
-                command.AddCommand(cmd);
-            }
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;
@@ -323,9 +275,6 @@ namespace ApiSdk.DeviceManagement {
         public Command BuildRoleAssignmentsCommand() {
             var command = new Command("role-assignments");
             var builder = new ApiSdk.DeviceManagement.RoleAssignments.RoleAssignmentsRequestBuilder(PathParameters, RequestAdapter);
-            foreach (var cmd in builder.BuildCommand()) {
-                command.AddCommand(cmd);
-            }
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;
@@ -333,9 +282,6 @@ namespace ApiSdk.DeviceManagement {
         public Command BuildRoleDefinitionsCommand() {
             var command = new Command("role-definitions");
             var builder = new ApiSdk.DeviceManagement.RoleDefinitions.RoleDefinitionsRequestBuilder(PathParameters, RequestAdapter);
-            foreach (var cmd in builder.BuildCommand()) {
-                command.AddCommand(cmd);
-            }
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;
@@ -350,9 +296,6 @@ namespace ApiSdk.DeviceManagement {
         public Command BuildTelecomExpenseManagementPartnersCommand() {
             var command = new Command("telecom-expense-management-partners");
             var builder = new ApiSdk.DeviceManagement.TelecomExpenseManagementPartners.TelecomExpenseManagementPartnersRequestBuilder(PathParameters, RequestAdapter);
-            foreach (var cmd in builder.BuildCommand()) {
-                command.AddCommand(cmd);
-            }
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;
@@ -360,9 +303,6 @@ namespace ApiSdk.DeviceManagement {
         public Command BuildTermsAndConditionsCommand() {
             var command = new Command("terms-and-conditions");
             var builder = new ApiSdk.DeviceManagement.TermsAndConditions.TermsAndConditionsRequestBuilder(PathParameters, RequestAdapter);
-            foreach (var cmd in builder.BuildCommand()) {
-                command.AddCommand(cmd);
-            }
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;
@@ -370,9 +310,6 @@ namespace ApiSdk.DeviceManagement {
         public Command BuildTroubleshootingEventsCommand() {
             var command = new Command("troubleshooting-events");
             var builder = new ApiSdk.DeviceManagement.TroubleshootingEvents.TroubleshootingEventsRequestBuilder(PathParameters, RequestAdapter);
-            foreach (var cmd in builder.BuildCommand()) {
-                command.AddCommand(cmd);
-            }
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;
@@ -380,9 +317,6 @@ namespace ApiSdk.DeviceManagement {
         public Command BuildWindowsAutopilotDeviceIdentitiesCommand() {
             var command = new Command("windows-autopilot-device-identities");
             var builder = new ApiSdk.DeviceManagement.WindowsAutopilotDeviceIdentities.WindowsAutopilotDeviceIdentitiesRequestBuilder(PathParameters, RequestAdapter);
-            foreach (var cmd in builder.BuildCommand()) {
-                command.AddCommand(cmd);
-            }
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;
@@ -390,9 +324,6 @@ namespace ApiSdk.DeviceManagement {
         public Command BuildWindowsInformationProtectionAppLearningSummariesCommand() {
             var command = new Command("windows-information-protection-app-learning-summaries");
             var builder = new ApiSdk.DeviceManagement.WindowsInformationProtectionAppLearningSummaries.WindowsInformationProtectionAppLearningSummariesRequestBuilder(PathParameters, RequestAdapter);
-            foreach (var cmd in builder.BuildCommand()) {
-                command.AddCommand(cmd);
-            }
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;
@@ -400,9 +331,6 @@ namespace ApiSdk.DeviceManagement {
         public Command BuildWindowsInformationProtectionNetworkLearningSummariesCommand() {
             var command = new Command("windows-information-protection-network-learning-summaries");
             var builder = new ApiSdk.DeviceManagement.WindowsInformationProtectionNetworkLearningSummaries.WindowsInformationProtectionNetworkLearningSummariesRequestBuilder(PathParameters, RequestAdapter);
-            foreach (var cmd in builder.BuildCommand()) {
-                command.AddCommand(cmd);
-            }
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;

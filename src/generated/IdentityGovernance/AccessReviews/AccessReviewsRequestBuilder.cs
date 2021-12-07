@@ -23,9 +23,6 @@ namespace ApiSdk.IdentityGovernance.AccessReviews {
         public Command BuildDefinitionsCommand() {
             var command = new Command("definitions");
             var builder = new ApiSdk.IdentityGovernance.AccessReviews.Definitions.DefinitionsRequestBuilder(PathParameters, RequestAdapter);
-            foreach (var cmd in builder.BuildCommand()) {
-                command.AddCommand(cmd);
-            }
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;

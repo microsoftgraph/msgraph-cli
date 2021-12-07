@@ -110,9 +110,6 @@ namespace ApiSdk.Print.Printers.Item {
         public Command BuildTaskTriggersCommand() {
             var command = new Command("task-triggers");
             var builder = new ApiSdk.Print.Printers.Item.TaskTriggers.TaskTriggersRequestBuilder(PathParameters, RequestAdapter);
-            foreach (var cmd in builder.BuildCommand()) {
-                command.AddCommand(cmd);
-            }
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;

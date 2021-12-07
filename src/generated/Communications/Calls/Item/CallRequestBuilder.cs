@@ -44,9 +44,6 @@ namespace ApiSdk.Communications.Calls.Item {
         public Command BuildAudioRoutingGroupsCommand() {
             var command = new Command("audio-routing-groups");
             var builder = new ApiSdk.Communications.Calls.Item.AudioRoutingGroups.AudioRoutingGroupsRequestBuilder(PathParameters, RequestAdapter);
-            foreach (var cmd in builder.BuildCommand()) {
-                command.AddCommand(cmd);
-            }
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;
@@ -121,9 +118,6 @@ namespace ApiSdk.Communications.Calls.Item {
         public Command BuildOperationsCommand() {
             var command = new Command("operations");
             var builder = new ApiSdk.Communications.Calls.Item.Operations.OperationsRequestBuilder(PathParameters, RequestAdapter);
-            foreach (var cmd in builder.BuildCommand()) {
-                command.AddCommand(cmd);
-            }
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;
@@ -131,9 +125,6 @@ namespace ApiSdk.Communications.Calls.Item {
         public Command BuildParticipantsCommand() {
             var command = new Command("participants");
             var builder = new ApiSdk.Communications.Calls.Item.Participants.ParticipantsRequestBuilder(PathParameters, RequestAdapter);
-            foreach (var cmd in builder.BuildCommand()) {
-                command.AddCommand(cmd);
-            }
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildInviteCommand());
             command.AddCommand(builder.BuildListCommand());

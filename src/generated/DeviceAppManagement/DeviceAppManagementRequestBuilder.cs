@@ -37,9 +37,6 @@ namespace ApiSdk.DeviceAppManagement {
         public Command BuildAndroidManagedAppProtectionsCommand() {
             var command = new Command("android-managed-app-protections");
             var builder = new ApiSdk.DeviceAppManagement.AndroidManagedAppProtections.AndroidManagedAppProtectionsRequestBuilder(PathParameters, RequestAdapter);
-            foreach (var cmd in builder.BuildCommand()) {
-                command.AddCommand(cmd);
-            }
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;
@@ -47,9 +44,6 @@ namespace ApiSdk.DeviceAppManagement {
         public Command BuildDefaultManagedAppProtectionsCommand() {
             var command = new Command("default-managed-app-protections");
             var builder = new ApiSdk.DeviceAppManagement.DefaultManagedAppProtections.DefaultManagedAppProtectionsRequestBuilder(PathParameters, RequestAdapter);
-            foreach (var cmd in builder.BuildCommand()) {
-                command.AddCommand(cmd);
-            }
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;
@@ -81,9 +75,6 @@ namespace ApiSdk.DeviceAppManagement {
         public Command BuildIosManagedAppProtectionsCommand() {
             var command = new Command("ios-managed-app-protections");
             var builder = new ApiSdk.DeviceAppManagement.IosManagedAppProtections.IosManagedAppProtectionsRequestBuilder(PathParameters, RequestAdapter);
-            foreach (var cmd in builder.BuildCommand()) {
-                command.AddCommand(cmd);
-            }
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;
@@ -91,9 +82,6 @@ namespace ApiSdk.DeviceAppManagement {
         public Command BuildManagedAppPoliciesCommand() {
             var command = new Command("managed-app-policies");
             var builder = new ApiSdk.DeviceAppManagement.ManagedAppPolicies.ManagedAppPoliciesRequestBuilder(PathParameters, RequestAdapter);
-            foreach (var cmd in builder.BuildCommand()) {
-                command.AddCommand(cmd);
-            }
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;
@@ -101,9 +89,6 @@ namespace ApiSdk.DeviceAppManagement {
         public Command BuildManagedAppRegistrationsCommand() {
             var command = new Command("managed-app-registrations");
             var builder = new ApiSdk.DeviceAppManagement.ManagedAppRegistrations.ManagedAppRegistrationsRequestBuilder(PathParameters, RequestAdapter);
-            foreach (var cmd in builder.BuildCommand()) {
-                command.AddCommand(cmd);
-            }
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;
@@ -111,9 +96,6 @@ namespace ApiSdk.DeviceAppManagement {
         public Command BuildManagedAppStatusesCommand() {
             var command = new Command("managed-app-statuses");
             var builder = new ApiSdk.DeviceAppManagement.ManagedAppStatuses.ManagedAppStatusesRequestBuilder(PathParameters, RequestAdapter);
-            foreach (var cmd in builder.BuildCommand()) {
-                command.AddCommand(cmd);
-            }
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;
@@ -121,9 +103,6 @@ namespace ApiSdk.DeviceAppManagement {
         public Command BuildManagedEBooksCommand() {
             var command = new Command("managed-e-books");
             var builder = new ApiSdk.DeviceAppManagement.ManagedEBooks.ManagedEBooksRequestBuilder(PathParameters, RequestAdapter);
-            foreach (var cmd in builder.BuildCommand()) {
-                command.AddCommand(cmd);
-            }
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;
@@ -131,9 +110,6 @@ namespace ApiSdk.DeviceAppManagement {
         public Command BuildMdmWindowsInformationProtectionPoliciesCommand() {
             var command = new Command("mdm-windows-information-protection-policies");
             var builder = new ApiSdk.DeviceAppManagement.MdmWindowsInformationProtectionPolicies.MdmWindowsInformationProtectionPoliciesRequestBuilder(PathParameters, RequestAdapter);
-            foreach (var cmd in builder.BuildCommand()) {
-                command.AddCommand(cmd);
-            }
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;
@@ -141,9 +117,6 @@ namespace ApiSdk.DeviceAppManagement {
         public Command BuildMobileAppCategoriesCommand() {
             var command = new Command("mobile-app-categories");
             var builder = new ApiSdk.DeviceAppManagement.MobileAppCategories.MobileAppCategoriesRequestBuilder(PathParameters, RequestAdapter);
-            foreach (var cmd in builder.BuildCommand()) {
-                command.AddCommand(cmd);
-            }
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;
@@ -151,9 +124,6 @@ namespace ApiSdk.DeviceAppManagement {
         public Command BuildMobileAppConfigurationsCommand() {
             var command = new Command("mobile-app-configurations");
             var builder = new ApiSdk.DeviceAppManagement.MobileAppConfigurations.MobileAppConfigurationsRequestBuilder(PathParameters, RequestAdapter);
-            foreach (var cmd in builder.BuildCommand()) {
-                command.AddCommand(cmd);
-            }
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;
@@ -161,9 +131,6 @@ namespace ApiSdk.DeviceAppManagement {
         public Command BuildMobileAppsCommand() {
             var command = new Command("mobile-apps");
             var builder = new ApiSdk.DeviceAppManagement.MobileApps.MobileAppsRequestBuilder(PathParameters, RequestAdapter);
-            foreach (var cmd in builder.BuildCommand()) {
-                command.AddCommand(cmd);
-            }
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;
@@ -196,9 +163,6 @@ namespace ApiSdk.DeviceAppManagement {
         public Command BuildTargetedManagedAppConfigurationsCommand() {
             var command = new Command("targeted-managed-app-configurations");
             var builder = new ApiSdk.DeviceAppManagement.TargetedManagedAppConfigurations.TargetedManagedAppConfigurationsRequestBuilder(PathParameters, RequestAdapter);
-            foreach (var cmd in builder.BuildCommand()) {
-                command.AddCommand(cmd);
-            }
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;
@@ -206,9 +170,6 @@ namespace ApiSdk.DeviceAppManagement {
         public Command BuildVppTokensCommand() {
             var command = new Command("vpp-tokens");
             var builder = new ApiSdk.DeviceAppManagement.VppTokens.VppTokensRequestBuilder(PathParameters, RequestAdapter);
-            foreach (var cmd in builder.BuildCommand()) {
-                command.AddCommand(cmd);
-            }
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;
@@ -216,9 +177,6 @@ namespace ApiSdk.DeviceAppManagement {
         public Command BuildWindowsInformationProtectionPoliciesCommand() {
             var command = new Command("windows-information-protection-policies");
             var builder = new ApiSdk.DeviceAppManagement.WindowsInformationProtectionPolicies.WindowsInformationProtectionPoliciesRequestBuilder(PathParameters, RequestAdapter);
-            foreach (var cmd in builder.BuildCommand()) {
-                command.AddCommand(cmd);
-            }
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;

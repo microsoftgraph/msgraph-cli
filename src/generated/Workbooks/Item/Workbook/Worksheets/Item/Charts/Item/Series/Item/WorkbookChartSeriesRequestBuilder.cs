@@ -116,9 +116,6 @@ namespace ApiSdk.Workbooks.Item.Workbook.Worksheets.Item.Charts.Item.Series.Item
         public Command BuildPointsCommand() {
             var command = new Command("points");
             var builder = new ApiSdk.Workbooks.Item.Workbook.Worksheets.Item.Charts.Item.Series.Item.Points.PointsRequestBuilder(PathParameters, RequestAdapter);
-            foreach (var cmd in builder.BuildCommand()) {
-                command.AddCommand(cmd);
-            }
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;

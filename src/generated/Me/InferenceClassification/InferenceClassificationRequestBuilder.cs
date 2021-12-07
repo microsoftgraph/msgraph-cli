@@ -60,9 +60,6 @@ namespace ApiSdk.Me.InferenceClassification {
         public Command BuildOverridesCommand() {
             var command = new Command("overrides");
             var builder = new ApiSdk.Me.InferenceClassification.Overrides.OverridesRequestBuilder(PathParameters, RequestAdapter);
-            foreach (var cmd in builder.BuildCommand()) {
-                command.AddCommand(cmd);
-            }
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;

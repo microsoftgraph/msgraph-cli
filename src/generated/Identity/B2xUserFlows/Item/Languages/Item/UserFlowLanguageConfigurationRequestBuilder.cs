@@ -24,9 +24,6 @@ namespace ApiSdk.Identity.B2xUserFlows.Item.Languages.Item {
         public Command BuildDefaultPagesCommand() {
             var command = new Command("default-pages");
             var builder = new ApiSdk.Identity.B2xUserFlows.Item.Languages.Item.DefaultPages.DefaultPagesRequestBuilder(PathParameters, RequestAdapter);
-            foreach (var cmd in builder.BuildCommand()) {
-                command.AddCommand(cmd);
-            }
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;
@@ -81,9 +78,6 @@ namespace ApiSdk.Identity.B2xUserFlows.Item.Languages.Item {
         public Command BuildOverridesPagesCommand() {
             var command = new Command("overrides-pages");
             var builder = new ApiSdk.Identity.B2xUserFlows.Item.Languages.Item.OverridesPages.OverridesPagesRequestBuilder(PathParameters, RequestAdapter);
-            foreach (var cmd in builder.BuildCommand()) {
-                command.AddCommand(cmd);
-            }
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;

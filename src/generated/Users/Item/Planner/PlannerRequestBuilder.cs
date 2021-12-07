@@ -88,9 +88,6 @@ namespace ApiSdk.Users.Item.Planner {
         public Command BuildPlansCommand() {
             var command = new Command("plans");
             var builder = new ApiSdk.Users.Item.Planner.Plans.PlansRequestBuilder(PathParameters, RequestAdapter);
-            foreach (var cmd in builder.BuildCommand()) {
-                command.AddCommand(cmd);
-            }
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;
@@ -98,9 +95,6 @@ namespace ApiSdk.Users.Item.Planner {
         public Command BuildTasksCommand() {
             var command = new Command("tasks");
             var builder = new ApiSdk.Users.Item.Planner.Tasks.TasksRequestBuilder(PathParameters, RequestAdapter);
-            foreach (var cmd in builder.BuildCommand()) {
-                command.AddCommand(cmd);
-            }
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;

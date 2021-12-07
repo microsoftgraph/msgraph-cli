@@ -23,9 +23,6 @@ namespace ApiSdk.AuthenticationMethodsPolicy {
         public Command BuildAuthenticationMethodConfigurationsCommand() {
             var command = new Command("authentication-method-configurations");
             var builder = new ApiSdk.AuthenticationMethodsPolicy.AuthenticationMethodConfigurations.AuthenticationMethodConfigurationsRequestBuilder(PathParameters, RequestAdapter);
-            foreach (var cmd in builder.BuildCommand()) {
-                command.AddCommand(cmd);
-            }
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;

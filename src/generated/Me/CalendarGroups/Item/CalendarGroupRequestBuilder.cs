@@ -23,9 +23,6 @@ namespace ApiSdk.Me.CalendarGroups.Item {
         public Command BuildCalendarsCommand() {
             var command = new Command("calendars");
             var builder = new ApiSdk.Me.CalendarGroups.Item.Calendars.CalendarsRequestBuilder(PathParameters, RequestAdapter);
-            foreach (var cmd in builder.BuildCommand()) {
-                command.AddCommand(cmd);
-            }
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;

@@ -41,9 +41,6 @@ namespace ApiSdk.Policies.PermissionGrantPolicies.Item {
         public Command BuildExcludesCommand() {
             var command = new Command("excludes");
             var builder = new ApiSdk.Policies.PermissionGrantPolicies.Item.Excludes.ExcludesRequestBuilder(PathParameters, RequestAdapter);
-            foreach (var cmd in builder.BuildCommand()) {
-                command.AddCommand(cmd);
-            }
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;
@@ -77,9 +74,6 @@ namespace ApiSdk.Policies.PermissionGrantPolicies.Item {
         public Command BuildIncludesCommand() {
             var command = new Command("includes");
             var builder = new ApiSdk.Policies.PermissionGrantPolicies.Item.Includes.IncludesRequestBuilder(PathParameters, RequestAdapter);
-            foreach (var cmd in builder.BuildCommand()) {
-                command.AddCommand(cmd);
-            }
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;

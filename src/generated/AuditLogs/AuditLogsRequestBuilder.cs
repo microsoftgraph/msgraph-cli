@@ -26,9 +26,6 @@ namespace ApiSdk.AuditLogs {
         public Command BuildDirectoryAuditsCommand() {
             var command = new Command("directory-audits");
             var builder = new ApiSdk.AuditLogs.DirectoryAudits.DirectoryAuditsRequestBuilder(PathParameters, RequestAdapter);
-            foreach (var cmd in builder.BuildCommand()) {
-                command.AddCommand(cmd);
-            }
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;
@@ -79,9 +76,6 @@ namespace ApiSdk.AuditLogs {
         public Command BuildProvisioningCommand() {
             var command = new Command("provisioning");
             var builder = new ApiSdk.AuditLogs.Provisioning.ProvisioningRequestBuilder(PathParameters, RequestAdapter);
-            foreach (var cmd in builder.BuildCommand()) {
-                command.AddCommand(cmd);
-            }
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;
@@ -89,9 +83,6 @@ namespace ApiSdk.AuditLogs {
         public Command BuildRestrictedSignInsCommand() {
             var command = new Command("restricted-sign-ins");
             var builder = new ApiSdk.AuditLogs.RestrictedSignIns.RestrictedSignInsRequestBuilder(PathParameters, RequestAdapter);
-            foreach (var cmd in builder.BuildCommand()) {
-                command.AddCommand(cmd);
-            }
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;
@@ -99,9 +90,6 @@ namespace ApiSdk.AuditLogs {
         public Command BuildSignInsCommand() {
             var command = new Command("sign-ins");
             var builder = new ApiSdk.AuditLogs.SignIns.SignInsRequestBuilder(PathParameters, RequestAdapter);
-            foreach (var cmd in builder.BuildCommand()) {
-                command.AddCommand(cmd);
-            }
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;

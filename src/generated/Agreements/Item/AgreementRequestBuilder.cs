@@ -25,9 +25,6 @@ namespace ApiSdk.Agreements.Item {
         public Command BuildAcceptancesCommand() {
             var command = new Command("acceptances");
             var builder = new ApiSdk.Agreements.Item.Acceptances.AcceptancesRequestBuilder(PathParameters, RequestAdapter);
-            foreach (var cmd in builder.BuildCommand()) {
-                command.AddCommand(cmd);
-            }
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;
@@ -61,9 +58,6 @@ namespace ApiSdk.Agreements.Item {
         public Command BuildFilesCommand() {
             var command = new Command("files");
             var builder = new ApiSdk.Agreements.Item.Files.FilesRequestBuilder(PathParameters, RequestAdapter);
-            foreach (var cmd in builder.BuildCommand()) {
-                command.AddCommand(cmd);
-            }
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;

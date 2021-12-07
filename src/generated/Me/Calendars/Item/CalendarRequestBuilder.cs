@@ -37,9 +37,6 @@ namespace ApiSdk.Me.Calendars.Item {
         public Command BuildCalendarPermissionsCommand() {
             var command = new Command("calendar-permissions");
             var builder = new ApiSdk.Me.Calendars.Item.CalendarPermissions.CalendarPermissionsRequestBuilder(PathParameters, RequestAdapter);
-            foreach (var cmd in builder.BuildCommand()) {
-                command.AddCommand(cmd);
-            }
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;
@@ -47,9 +44,6 @@ namespace ApiSdk.Me.Calendars.Item {
         public Command BuildCalendarViewCommand() {
             var command = new Command("calendar-view");
             var builder = new ApiSdk.Me.Calendars.Item.CalendarView.CalendarViewRequestBuilder(PathParameters, RequestAdapter);
-            foreach (var cmd in builder.BuildCommand()) {
-                command.AddCommand(cmd);
-            }
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;
@@ -74,9 +68,6 @@ namespace ApiSdk.Me.Calendars.Item {
         public Command BuildEventsCommand() {
             var command = new Command("events");
             var builder = new ApiSdk.Me.Calendars.Item.Events.EventsRequestBuilder(PathParameters, RequestAdapter);
-            foreach (var cmd in builder.BuildCommand()) {
-                command.AddCommand(cmd);
-            }
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;
@@ -114,9 +105,6 @@ namespace ApiSdk.Me.Calendars.Item {
         public Command BuildMultiValueExtendedPropertiesCommand() {
             var command = new Command("multi-value-extended-properties");
             var builder = new ApiSdk.Me.Calendars.Item.MultiValueExtendedProperties.MultiValueExtendedPropertiesRequestBuilder(PathParameters, RequestAdapter);
-            foreach (var cmd in builder.BuildCommand()) {
-                command.AddCommand(cmd);
-            }
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;
@@ -145,9 +133,6 @@ namespace ApiSdk.Me.Calendars.Item {
         public Command BuildSingleValueExtendedPropertiesCommand() {
             var command = new Command("single-value-extended-properties");
             var builder = new ApiSdk.Me.Calendars.Item.SingleValueExtendedProperties.SingleValueExtendedPropertiesRequestBuilder(PathParameters, RequestAdapter);
-            foreach (var cmd in builder.BuildCommand()) {
-                command.AddCommand(cmd);
-            }
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;

@@ -28,9 +28,6 @@ namespace ApiSdk.Education.Classes.Item.Assignments.Item {
         public Command BuildCategoriesCommand() {
             var command = new Command("categories");
             var builder = new ApiSdk.Education.Classes.Item.Assignments.Item.Categories.CategoriesRequestBuilder(PathParameters, RequestAdapter);
-            foreach (var cmd in builder.BuildCommand()) {
-                command.AddCommand(cmd);
-            }
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;
@@ -114,9 +111,6 @@ namespace ApiSdk.Education.Classes.Item.Assignments.Item {
         public Command BuildResourcesCommand() {
             var command = new Command("resources");
             var builder = new ApiSdk.Education.Classes.Item.Assignments.Item.Resources.ResourcesRequestBuilder(PathParameters, RequestAdapter);
-            foreach (var cmd in builder.BuildCommand()) {
-                command.AddCommand(cmd);
-            }
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;
@@ -138,9 +132,6 @@ namespace ApiSdk.Education.Classes.Item.Assignments.Item {
         public Command BuildSubmissionsCommand() {
             var command = new Command("submissions");
             var builder = new ApiSdk.Education.Classes.Item.Assignments.Item.Submissions.SubmissionsRequestBuilder(PathParameters, RequestAdapter);
-            foreach (var cmd in builder.BuildCommand()) {
-                command.AddCommand(cmd);
-            }
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;

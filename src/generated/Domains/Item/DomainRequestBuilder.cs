@@ -104,9 +104,6 @@ namespace ApiSdk.Domains.Item {
         public Command BuildServiceConfigurationRecordsCommand() {
             var command = new Command("service-configuration-records");
             var builder = new ApiSdk.Domains.Item.ServiceConfigurationRecords.ServiceConfigurationRecordsRequestBuilder(PathParameters, RequestAdapter);
-            foreach (var cmd in builder.BuildCommand()) {
-                command.AddCommand(cmd);
-            }
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;
@@ -114,9 +111,6 @@ namespace ApiSdk.Domains.Item {
         public Command BuildVerificationDnsRecordsCommand() {
             var command = new Command("verification-dns-records");
             var builder = new ApiSdk.Domains.Item.VerificationDnsRecords.VerificationDnsRecordsRequestBuilder(PathParameters, RequestAdapter);
-            foreach (var cmd in builder.BuildCommand()) {
-                command.AddCommand(cmd);
-            }
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;

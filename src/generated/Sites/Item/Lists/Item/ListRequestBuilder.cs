@@ -27,9 +27,6 @@ namespace ApiSdk.Sites.Item.Lists.Item {
         public Command BuildColumnsCommand() {
             var command = new Command("columns");
             var builder = new ApiSdk.Sites.Item.Lists.Item.Columns.ColumnsRequestBuilder(PathParameters, RequestAdapter);
-            foreach (var cmd in builder.BuildCommand()) {
-                command.AddCommand(cmd);
-            }
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;
@@ -38,9 +35,6 @@ namespace ApiSdk.Sites.Item.Lists.Item {
             var command = new Command("content-types");
             var builder = new ApiSdk.Sites.Item.Lists.Item.ContentTypes.ContentTypesRequestBuilder(PathParameters, RequestAdapter);
             command.AddCommand(builder.BuildAddCopyCommand());
-            foreach (var cmd in builder.BuildCommand()) {
-                command.AddCommand(cmd);
-            }
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;
@@ -103,9 +97,6 @@ namespace ApiSdk.Sites.Item.Lists.Item {
         public Command BuildItemsCommand() {
             var command = new Command("items");
             var builder = new ApiSdk.Sites.Item.Lists.Item.Items.ItemsRequestBuilder(PathParameters, RequestAdapter);
-            foreach (var cmd in builder.BuildCommand()) {
-                command.AddCommand(cmd);
-            }
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;
@@ -136,9 +127,6 @@ namespace ApiSdk.Sites.Item.Lists.Item {
         public Command BuildSubscriptionsCommand() {
             var command = new Command("subscriptions");
             var builder = new ApiSdk.Sites.Item.Lists.Item.Subscriptions.SubscriptionsRequestBuilder(PathParameters, RequestAdapter);
-            foreach (var cmd in builder.BuildCommand()) {
-                command.AddCommand(cmd);
-            }
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;
