@@ -23,6 +23,7 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.AssignmentRequests.Ite
         /// </summary>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
+            command.Description = "Delete ref of navigation property assignment for identityGovernance";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--accesspackageassignmentrequest-id", description: "key: id of accessPackageAssignmentRequest"));
             command.Handler = CommandHandler.Create<string>(async (accessPackageAssignmentRequestId) => {
@@ -39,6 +40,7 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.AssignmentRequests.Ite
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
+            command.Description = "Get ref of assignment from identityGovernance";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--accesspackageassignmentrequest-id", description: "key: id of accessPackageAssignmentRequest"));
             command.Handler = CommandHandler.Create<string>(async (accessPackageAssignmentRequestId) => {
@@ -60,6 +62,7 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.AssignmentRequests.Ite
         /// </summary>
         public Command BuildPutCommand() {
             var command = new Command("put");
+            command.Description = "Update the ref of navigation property assignment in identityGovernance";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--accesspackageassignmentrequest-id", description: "key: id of accessPackageAssignmentRequest"));
             command.AddOption(new Option<string>("--body"));

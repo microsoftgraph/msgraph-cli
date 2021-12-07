@@ -42,6 +42,7 @@ namespace ApiSdk.DirectoryRoleTemplates {
         /// </summary>
         public Command BuildCreateCommand() {
             var command = new Command("create");
+            command.Description = "Add new entity to directoryRoleTemplates";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--body"));
             command.Handler = CommandHandler.Create<string>(async (body) => {
@@ -77,6 +78,7 @@ namespace ApiSdk.DirectoryRoleTemplates {
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
+            command.Description = "Get entities from directoryRoleTemplates";
             // Create options for all the parameters
             command.AddOption(new Option<int?>("--skip", description: "Skip the first n items"));
             command.AddOption(new Option<string>("--search", description: "Search items by search phrases"));

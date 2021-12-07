@@ -23,6 +23,7 @@ namespace ApiSdk.Drives.Item.Root.Content {
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
+            command.Description = "Get media content for the navigation property root from drives";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--drive-id", description: "key: id of drive"));
             command.AddOption(new Option<FileInfo>("--output"));
@@ -49,6 +50,7 @@ namespace ApiSdk.Drives.Item.Root.Content {
         /// </summary>
         public Command BuildPutCommand() {
             var command = new Command("put");
+            command.Description = "Update media content for the navigation property root in drives";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--drive-id", description: "key: id of drive"));
             command.AddOption(new Option<Stream>("--file", description: "Binary request body"));

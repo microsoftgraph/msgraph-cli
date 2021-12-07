@@ -23,6 +23,7 @@ namespace ApiSdk.Groups.Item.Onenote.Notebooks.GetRecentNotebooksWithIncludePers
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
+            command.Description = "Invoke function getRecentNotebooks";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--group-id", description: "key: id of group"));
             command.AddOption(new Option<bool?>("--includepersonalnotebooks", description: "Usage: includePersonalNotebooks={includePersonalNotebooks}"));

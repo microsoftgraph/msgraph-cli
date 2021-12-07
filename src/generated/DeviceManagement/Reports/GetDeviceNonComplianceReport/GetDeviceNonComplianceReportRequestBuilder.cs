@@ -23,6 +23,7 @@ namespace ApiSdk.DeviceManagement.Reports.GetDeviceNonComplianceReport {
         /// </summary>
         public Command BuildPostCommand() {
             var command = new Command("post");
+            command.Description = "Invoke action getDeviceNonComplianceReport";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--body"));
             command.AddOption(new Option<FileInfo>("--output"));

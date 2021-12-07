@@ -34,6 +34,7 @@ namespace ApiSdk.Education.Classes.Item.AssignmentCategories {
         /// </summary>
         public Command BuildCreateCommand() {
             var command = new Command("create");
+            command.Description = "Create new navigation property to assignmentCategories for education";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--educationclass-id", description: "key: id of educationClass"));
             command.AddOption(new Option<string>("--body"));
@@ -59,6 +60,7 @@ namespace ApiSdk.Education.Classes.Item.AssignmentCategories {
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
+            command.Description = "Get assignmentCategories from education";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--educationclass-id", description: "key: id of educationClass"));
             command.AddOption(new Option<int?>("--top", description: "Show only the first n items"));

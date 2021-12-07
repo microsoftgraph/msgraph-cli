@@ -25,6 +25,7 @@ namespace ApiSdk.Shares.Item.List.Items.Item.Analytics {
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
+            command.Description = "Analytics about the view activities that took place on this item.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--shareddriveitem-id", description: "key: id of sharedDriveItem"));
             command.AddOption(new Option<string>("--listitem-id", description: "key: id of listItem"));

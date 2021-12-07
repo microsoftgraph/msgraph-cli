@@ -23,6 +23,7 @@ namespace ApiSdk.Identity.B2xUserFlows.Item.UserFlowIdentityProviders.@Ref {
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
+            command.Description = "Get ref of userFlowIdentityProviders from identity";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--b2xidentityuserflow-id", description: "key: id of b2xIdentityUserFlow"));
             command.AddOption(new Option<int?>("--top", description: "Show only the first n items"));
@@ -56,6 +57,7 @@ namespace ApiSdk.Identity.B2xUserFlows.Item.UserFlowIdentityProviders.@Ref {
         /// </summary>
         public Command BuildPostCommand() {
             var command = new Command("post");
+            command.Description = "Create new navigation property ref to userFlowIdentityProviders for identity";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--b2xidentityuserflow-id", description: "key: id of b2xIdentityUserFlow"));
             command.AddOption(new Option<string>("--body"));

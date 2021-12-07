@@ -23,6 +23,7 @@ namespace ApiSdk.Identity.B2xUserFlows.Item.Languages.Item.DefaultPages.Item.Val
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
+            command.Description = "Get media content for the navigation property defaultPages from identity";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--b2xidentityuserflow-id", description: "key: id of b2xIdentityUserFlow"));
             command.AddOption(new Option<string>("--userflowlanguageconfiguration-id", description: "key: id of userFlowLanguageConfiguration"));
@@ -53,6 +54,7 @@ namespace ApiSdk.Identity.B2xUserFlows.Item.Languages.Item.DefaultPages.Item.Val
         /// </summary>
         public Command BuildPutCommand() {
             var command = new Command("put");
+            command.Description = "Update media content for the navigation property defaultPages in identity";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--b2xidentityuserflow-id", description: "key: id of b2xIdentityUserFlow"));
             command.AddOption(new Option<string>("--userflowlanguageconfiguration-id", description: "key: id of userFlowLanguageConfiguration"));

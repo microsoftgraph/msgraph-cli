@@ -23,6 +23,7 @@ namespace ApiSdk.Groups.Item.GetMemberGroups {
         /// </summary>
         public Command BuildPostCommand() {
             var command = new Command("post");
+            command.Description = "Invoke action getMemberGroups";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--group-id", description: "key: id of group"));
             command.AddOption(new Option<string>("--body"));

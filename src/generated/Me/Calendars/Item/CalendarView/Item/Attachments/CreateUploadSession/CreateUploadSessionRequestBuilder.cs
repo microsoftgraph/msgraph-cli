@@ -24,6 +24,7 @@ namespace ApiSdk.Me.Calendars.Item.CalendarView.Item.Attachments.CreateUploadSes
         /// </summary>
         public Command BuildPostCommand() {
             var command = new Command("post");
+            command.Description = "Invoke action createUploadSession";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--calendar-id", description: "key: id of calendar"));
             command.AddOption(new Option<string>("--event-id", description: "key: id of event"));

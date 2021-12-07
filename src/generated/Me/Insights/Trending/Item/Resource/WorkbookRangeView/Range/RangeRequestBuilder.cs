@@ -24,6 +24,7 @@ namespace ApiSdk.Me.Insights.Trending.Item.Resource.WorkbookRangeView.Range {
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
+            command.Description = "Invoke function range";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--trending-id", description: "key: id of trending"));
             command.Handler = CommandHandler.Create<string>(async (trendingId) => {

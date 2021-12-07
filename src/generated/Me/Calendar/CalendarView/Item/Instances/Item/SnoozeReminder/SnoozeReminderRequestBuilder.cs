@@ -23,6 +23,7 @@ namespace ApiSdk.Me.Calendar.CalendarView.Item.Instances.Item.SnoozeReminder {
         /// </summary>
         public Command BuildPostCommand() {
             var command = new Command("post");
+            command.Description = "Invoke action snoozeReminder";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--event-id", description: "key: id of event"));
             command.AddOption(new Option<string>("--event-id1", description: "key: id of event"));

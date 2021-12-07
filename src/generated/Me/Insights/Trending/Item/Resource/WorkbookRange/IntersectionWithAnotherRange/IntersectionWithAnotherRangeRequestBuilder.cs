@@ -24,6 +24,7 @@ namespace ApiSdk.Me.Insights.Trending.Item.Resource.WorkbookRange.IntersectionWi
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
+            command.Description = "Invoke function intersection";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--trending-id", description: "key: id of trending"));
             command.AddOption(new Option<string>("--anotherrange", description: "Usage: anotherRange={anotherRange}"));

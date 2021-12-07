@@ -23,6 +23,7 @@ namespace ApiSdk.Drive.List.Items.Item.Versions.Item.RestoreVersion {
         /// </summary>
         public Command BuildPostCommand() {
             var command = new Command("post");
+            command.Description = "Invoke action restoreVersion";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--listitem-id", description: "key: id of listItem"));
             command.AddOption(new Option<string>("--listitemversion-id", description: "key: id of listItemVersion"));

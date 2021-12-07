@@ -24,6 +24,7 @@ namespace ApiSdk.Groups.Item.Conversations.Item.Threads.Item.Posts.Item.SingleVa
         /// </summary>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
+            command.Description = "The collection of single-value extended properties defined for the post. Read-only. Nullable.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--group-id", description: "key: id of group"));
             command.AddOption(new Option<string>("--conversation-id", description: "key: id of conversation"));
@@ -48,6 +49,7 @@ namespace ApiSdk.Groups.Item.Conversations.Item.Threads.Item.Posts.Item.SingleVa
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
+            command.Description = "The collection of single-value extended properties defined for the post. Read-only. Nullable.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--group-id", description: "key: id of group"));
             command.AddOption(new Option<string>("--conversation-id", description: "key: id of conversation"));
@@ -81,6 +83,7 @@ namespace ApiSdk.Groups.Item.Conversations.Item.Threads.Item.Posts.Item.SingleVa
         /// </summary>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
+            command.Description = "The collection of single-value extended properties defined for the post. Read-only. Nullable.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--group-id", description: "key: id of group"));
             command.AddOption(new Option<string>("--conversation-id", description: "key: id of conversation"));

@@ -24,6 +24,7 @@ namespace ApiSdk.DeviceManagement.NotificationMessageTemplates.Item.LocalizedNot
         /// </summary>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
+            command.Description = "The list of localized messages for this Notification Message Template.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--notificationmessagetemplate-id", description: "key: id of notificationMessageTemplate"));
             command.AddOption(new Option<string>("--localizednotificationmessage-id", description: "key: id of localizedNotificationMessage"));
@@ -42,6 +43,7 @@ namespace ApiSdk.DeviceManagement.NotificationMessageTemplates.Item.LocalizedNot
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
+            command.Description = "The list of localized messages for this Notification Message Template.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--notificationmessagetemplate-id", description: "key: id of notificationMessageTemplate"));
             command.AddOption(new Option<string>("--localizednotificationmessage-id", description: "key: id of localizedNotificationMessage"));
@@ -69,6 +71,7 @@ namespace ApiSdk.DeviceManagement.NotificationMessageTemplates.Item.LocalizedNot
         /// </summary>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
+            command.Description = "The list of localized messages for this Notification Message Template.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--notificationmessagetemplate-id", description: "key: id of notificationMessageTemplate"));
             command.AddOption(new Option<string>("--localizednotificationmessage-id", description: "key: id of localizedNotificationMessage"));

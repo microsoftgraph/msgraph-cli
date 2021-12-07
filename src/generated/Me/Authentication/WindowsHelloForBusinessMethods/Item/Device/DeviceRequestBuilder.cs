@@ -24,6 +24,7 @@ namespace ApiSdk.Me.Authentication.WindowsHelloForBusinessMethods.Item.Device {
         /// </summary>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
+            command.Description = "The registered device on which this Windows Hello for Business key resides.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--windowshelloforbusinessauthenticationmethod-id", description: "key: id of windowsHelloForBusinessAuthenticationMethod"));
             command.Handler = CommandHandler.Create<string>(async (windowsHelloForBusinessAuthenticationMethodId) => {
@@ -40,6 +41,7 @@ namespace ApiSdk.Me.Authentication.WindowsHelloForBusinessMethods.Item.Device {
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
+            command.Description = "The registered device on which this Windows Hello for Business key resides.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--windowshelloforbusinessauthenticationmethod-id", description: "key: id of windowsHelloForBusinessAuthenticationMethod"));
             command.AddOption(new Option<object>("--select", description: "Select properties to be returned"));
@@ -65,6 +67,7 @@ namespace ApiSdk.Me.Authentication.WindowsHelloForBusinessMethods.Item.Device {
         /// </summary>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
+            command.Description = "The registered device on which this Windows Hello for Business key resides.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--windowshelloforbusinessauthenticationmethod-id", description: "key: id of windowsHelloForBusinessAuthenticationMethod"));
             command.AddOption(new Option<string>("--body"));

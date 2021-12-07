@@ -42,6 +42,7 @@ namespace ApiSdk.Me.Events.Item.Calendar.Events {
         /// </summary>
         public Command BuildCreateCommand() {
             var command = new Command("create");
+            command.Description = "The events in the calendar. Navigation property. Read-only.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--event-id", description: "key: id of event"));
             command.AddOption(new Option<string>("--body"));
@@ -67,6 +68,7 @@ namespace ApiSdk.Me.Events.Item.Calendar.Events {
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
+            command.Description = "The events in the calendar. Navigation property. Read-only.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--event-id", description: "key: id of event"));
             command.AddOption(new Option<int?>("--top", description: "Show only the first n items"));

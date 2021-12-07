@@ -23,6 +23,7 @@ namespace ApiSdk.DirectoryRoles.Item.CheckMemberObjects {
         /// </summary>
         public Command BuildPostCommand() {
             var command = new Command("post");
+            command.Description = "Invoke action checkMemberObjects";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--directoryrole-id", description: "key: id of directoryRole"));
             command.AddOption(new Option<string>("--body"));

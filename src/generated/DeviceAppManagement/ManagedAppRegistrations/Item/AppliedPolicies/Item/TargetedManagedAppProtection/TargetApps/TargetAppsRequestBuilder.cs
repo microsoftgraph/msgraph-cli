@@ -23,6 +23,7 @@ namespace ApiSdk.DeviceAppManagement.ManagedAppRegistrations.Item.AppliedPolicie
         /// </summary>
         public Command BuildPostCommand() {
             var command = new Command("post");
+            command.Description = "Invoke action targetApps";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--managedappregistration-id", description: "key: id of managedAppRegistration"));
             command.AddOption(new Option<string>("--managedapppolicy-id", description: "key: id of managedAppPolicy"));

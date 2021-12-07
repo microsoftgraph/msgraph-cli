@@ -23,6 +23,7 @@ namespace ApiSdk.Communications.Calls.Item.ChangeScreenSharingRole {
         /// </summary>
         public Command BuildPostCommand() {
             var command = new Command("post");
+            command.Description = "Invoke action changeScreenSharingRole";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--call-id", description: "key: id of call"));
             command.AddOption(new Option<string>("--body"));

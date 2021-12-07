@@ -27,6 +27,7 @@ namespace ApiSdk.Chats.Item.InstalledApps.Item {
         /// </summary>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
+            command.Description = "A collection of all the apps in the chat. Nullable.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--chat-id", description: "key: id of chat"));
             command.AddOption(new Option<string>("--teamsappinstallation-id", description: "key: id of teamsAppInstallation"));
@@ -45,6 +46,7 @@ namespace ApiSdk.Chats.Item.InstalledApps.Item {
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
+            command.Description = "A collection of all the apps in the chat. Nullable.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--chat-id", description: "key: id of chat"));
             command.AddOption(new Option<string>("--teamsappinstallation-id", description: "key: id of teamsAppInstallation"));
@@ -72,6 +74,7 @@ namespace ApiSdk.Chats.Item.InstalledApps.Item {
         /// </summary>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
+            command.Description = "A collection of all the apps in the chat. Nullable.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--chat-id", description: "key: id of chat"));
             command.AddOption(new Option<string>("--teamsappinstallation-id", description: "key: id of teamsAppInstallation"));

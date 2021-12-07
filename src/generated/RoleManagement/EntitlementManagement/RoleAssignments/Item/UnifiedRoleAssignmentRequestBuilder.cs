@@ -36,6 +36,7 @@ namespace ApiSdk.RoleManagement.EntitlementManagement.RoleAssignments.Item {
         /// </summary>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
+            command.Description = "Resource to grant access to users or groups.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--unifiedroleassignment-id", description: "key: id of unifiedRoleAssignment"));
             command.Handler = CommandHandler.Create<string>(async (unifiedRoleAssignmentId) => {
@@ -59,6 +60,7 @@ namespace ApiSdk.RoleManagement.EntitlementManagement.RoleAssignments.Item {
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
+            command.Description = "Resource to grant access to users or groups.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--unifiedroleassignment-id", description: "key: id of unifiedRoleAssignment"));
             command.AddOption(new Option<object>("--select", description: "Select properties to be returned"));
@@ -84,6 +86,7 @@ namespace ApiSdk.RoleManagement.EntitlementManagement.RoleAssignments.Item {
         /// </summary>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
+            command.Description = "Resource to grant access to users or groups.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--unifiedroleassignment-id", description: "key: id of unifiedRoleAssignment"));
             command.AddOption(new Option<string>("--body"));

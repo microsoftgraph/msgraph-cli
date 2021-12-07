@@ -24,6 +24,7 @@ namespace ApiSdk.DirectoryRoleTemplates.Item.Restore {
         /// </summary>
         public Command BuildPostCommand() {
             var command = new Command("post");
+            command.Description = "Invoke action restore";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--directoryroletemplate-id", description: "key: id of directoryRoleTemplate"));
             command.Handler = CommandHandler.Create<string>(async (directoryRoleTemplateId) => {

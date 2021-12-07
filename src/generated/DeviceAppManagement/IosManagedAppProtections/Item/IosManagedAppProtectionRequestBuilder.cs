@@ -36,6 +36,7 @@ namespace ApiSdk.DeviceAppManagement.IosManagedAppProtections.Item {
         /// </summary>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
+            command.Description = "iOS managed app policies.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--iosmanagedappprotection-id", description: "key: id of iosManagedAppProtection"));
             command.Handler = CommandHandler.Create<string>(async (iosManagedAppProtectionId) => {
@@ -60,6 +61,7 @@ namespace ApiSdk.DeviceAppManagement.IosManagedAppProtections.Item {
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
+            command.Description = "iOS managed app policies.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--iosmanagedappprotection-id", description: "key: id of iosManagedAppProtection"));
             command.AddOption(new Option<object>("--select", description: "Select properties to be returned"));
@@ -85,6 +87,7 @@ namespace ApiSdk.DeviceAppManagement.IosManagedAppProtections.Item {
         /// </summary>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
+            command.Description = "iOS managed app policies.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--iosmanagedappprotection-id", description: "key: id of iosManagedAppProtection"));
             command.AddOption(new Option<string>("--body"));

@@ -25,6 +25,7 @@ namespace ApiSdk.Users.Item.Activities.Item.HistoryItems.Item.Activity {
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
+            command.Description = "Optional. NavigationProperty/Containment; navigation property to the associated activity.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--user-id", description: "key: id of user"));
             command.AddOption(new Option<string>("--useractivity-id", description: "key: id of userActivity"));

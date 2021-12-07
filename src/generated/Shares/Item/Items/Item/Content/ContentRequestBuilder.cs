@@ -23,6 +23,7 @@ namespace ApiSdk.Shares.Item.Items.Item.Content {
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
+            command.Description = "Get media content for the navigation property items from shares";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--shareddriveitem-id", description: "key: id of sharedDriveItem"));
             command.AddOption(new Option<string>("--driveitem-id", description: "key: id of driveItem"));
@@ -51,6 +52,7 @@ namespace ApiSdk.Shares.Item.Items.Item.Content {
         /// </summary>
         public Command BuildPutCommand() {
             var command = new Command("put");
+            command.Description = "Update media content for the navigation property items in shares";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--shareddriveitem-id", description: "key: id of sharedDriveItem"));
             command.AddOption(new Option<string>("--driveitem-id", description: "key: id of driveItem"));

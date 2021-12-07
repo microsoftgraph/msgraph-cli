@@ -35,6 +35,7 @@ namespace ApiSdk.DeviceManagement.RoleDefinitions.Item.RoleAssignments {
         /// </summary>
         public Command BuildCreateCommand() {
             var command = new Command("create");
+            command.Description = "List of Role assignments for this role definition.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--roledefinition-id", description: "key: id of roleDefinition"));
             command.AddOption(new Option<string>("--body"));
@@ -60,6 +61,7 @@ namespace ApiSdk.DeviceManagement.RoleDefinitions.Item.RoleAssignments {
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
+            command.Description = "List of Role assignments for this role definition.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--roledefinition-id", description: "key: id of roleDefinition"));
             command.AddOption(new Option<int?>("--top", description: "Show only the first n items"));

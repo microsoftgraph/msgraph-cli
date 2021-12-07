@@ -39,6 +39,7 @@ namespace ApiSdk.Sites.Item.Onenote.Notebooks.Item.SectionGroups.Item.Sections {
         /// </summary>
         public Command BuildCreateCommand() {
             var command = new Command("create");
+            command.Description = "The sections in the section group. Read-only. Nullable.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--site-id", description: "key: id of site"));
             command.AddOption(new Option<string>("--notebook-id", description: "key: id of notebook"));
@@ -68,6 +69,7 @@ namespace ApiSdk.Sites.Item.Onenote.Notebooks.Item.SectionGroups.Item.Sections {
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
+            command.Description = "The sections in the section group. Read-only. Nullable.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--site-id", description: "key: id of site"));
             command.AddOption(new Option<string>("--notebook-id", description: "key: id of notebook"));

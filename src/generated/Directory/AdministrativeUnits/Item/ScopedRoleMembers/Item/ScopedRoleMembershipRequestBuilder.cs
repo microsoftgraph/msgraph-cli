@@ -24,6 +24,7 @@ namespace ApiSdk.Directory.AdministrativeUnits.Item.ScopedRoleMembers.Item {
         /// </summary>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
+            command.Description = "Scoped-role members of this Administrative Unit.  HTTP Methods: GET (list scopedRoleMemberships), POST (add scopedRoleMembership), DELETE (remove scopedRoleMembership).";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--administrativeunit-id", description: "key: id of administrativeUnit"));
             command.AddOption(new Option<string>("--scopedrolemembership-id", description: "key: id of scopedRoleMembership"));
@@ -42,6 +43,7 @@ namespace ApiSdk.Directory.AdministrativeUnits.Item.ScopedRoleMembers.Item {
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
+            command.Description = "Scoped-role members of this Administrative Unit.  HTTP Methods: GET (list scopedRoleMemberships), POST (add scopedRoleMembership), DELETE (remove scopedRoleMembership).";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--administrativeunit-id", description: "key: id of administrativeUnit"));
             command.AddOption(new Option<string>("--scopedrolemembership-id", description: "key: id of scopedRoleMembership"));
@@ -69,6 +71,7 @@ namespace ApiSdk.Directory.AdministrativeUnits.Item.ScopedRoleMembers.Item {
         /// </summary>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
+            command.Description = "Scoped-role members of this Administrative Unit.  HTTP Methods: GET (list scopedRoleMemberships), POST (add scopedRoleMembership), DELETE (remove scopedRoleMembership).";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--administrativeunit-id", description: "key: id of administrativeUnit"));
             command.AddOption(new Option<string>("--scopedrolemembership-id", description: "key: id of scopedRoleMembership"));

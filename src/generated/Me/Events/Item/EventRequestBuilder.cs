@@ -80,6 +80,7 @@ namespace ApiSdk.Me.Events.Item {
         /// </summary>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
+            command.Description = "The user's events. Default is to show Events under the Default Calendar. Read-only. Nullable.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--event-id", description: "key: id of event"));
             command.Handler = CommandHandler.Create<string>(async (eventId) => {
@@ -118,6 +119,7 @@ namespace ApiSdk.Me.Events.Item {
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
+            command.Description = "The user's events. Default is to show Events under the Default Calendar. Read-only. Nullable.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--event-id", description: "key: id of event"));
             command.AddOption(new Option<object>("--select", description: "Select properties to be returned"));
@@ -161,6 +163,7 @@ namespace ApiSdk.Me.Events.Item {
         /// </summary>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
+            command.Description = "The user's events. Default is to show Events under the Default Calendar. Read-only. Nullable.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--event-id", description: "key: id of event"));
             command.AddOption(new Option<string>("--body"));

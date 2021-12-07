@@ -24,6 +24,7 @@ namespace ApiSdk.Reports.DailyPrintUsageByUser.Item {
         /// </summary>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
+            command.Description = "Delete navigation property dailyPrintUsageByUser for reports";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--printusagebyuser-id", description: "key: id of printUsageByUser"));
             command.Handler = CommandHandler.Create<string>(async (printUsageByUserId) => {
@@ -40,6 +41,7 @@ namespace ApiSdk.Reports.DailyPrintUsageByUser.Item {
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
+            command.Description = "Get dailyPrintUsageByUser from reports";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--printusagebyuser-id", description: "key: id of printUsageByUser"));
             command.AddOption(new Option<object>("--select", description: "Select properties to be returned"));
@@ -65,6 +67,7 @@ namespace ApiSdk.Reports.DailyPrintUsageByUser.Item {
         /// </summary>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
+            command.Description = "Update the navigation property dailyPrintUsageByUser in reports";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--printusagebyuser-id", description: "key: id of printUsageByUser"));
             command.AddOption(new Option<string>("--body"));

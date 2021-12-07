@@ -23,6 +23,7 @@ namespace ApiSdk.ServicePrincipals.Item.RemoveKey {
         /// </summary>
         public Command BuildPostCommand() {
             var command = new Command("post");
+            command.Description = "Invoke action removeKey";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--serviceprincipal-id", description: "key: id of servicePrincipal"));
             command.AddOption(new Option<string>("--body"));

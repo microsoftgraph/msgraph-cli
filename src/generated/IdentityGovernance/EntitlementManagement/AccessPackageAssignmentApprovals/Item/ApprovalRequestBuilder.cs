@@ -25,6 +25,7 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.AccessPackageAssignmen
         /// </summary>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
+            command.Description = "Delete navigation property accessPackageAssignmentApprovals for identityGovernance";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--approval-id", description: "key: id of approval"));
             command.Handler = CommandHandler.Create<string>(async (approvalId) => {
@@ -41,6 +42,7 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.AccessPackageAssignmen
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
+            command.Description = "Get accessPackageAssignmentApprovals from identityGovernance";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--approval-id", description: "key: id of approval"));
             command.AddOption(new Option<object>("--select", description: "Select properties to be returned"));
@@ -66,6 +68,7 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.AccessPackageAssignmen
         /// </summary>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
+            command.Description = "Update the navigation property accessPackageAssignmentApprovals in identityGovernance";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--approval-id", description: "key: id of approval"));
             command.AddOption(new Option<string>("--body"));

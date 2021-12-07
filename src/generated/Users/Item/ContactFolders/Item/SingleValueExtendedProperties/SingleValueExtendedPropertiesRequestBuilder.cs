@@ -34,6 +34,7 @@ namespace ApiSdk.Users.Item.ContactFolders.Item.SingleValueExtendedProperties {
         /// </summary>
         public Command BuildCreateCommand() {
             var command = new Command("create");
+            command.Description = "The collection of single-value extended properties defined for the contactFolder. Read-only. Nullable.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--user-id", description: "key: id of user"));
             command.AddOption(new Option<string>("--contactfolder-id", description: "key: id of contactFolder"));
@@ -61,6 +62,7 @@ namespace ApiSdk.Users.Item.ContactFolders.Item.SingleValueExtendedProperties {
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
+            command.Description = "The collection of single-value extended properties defined for the contactFolder. Read-only. Nullable.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--user-id", description: "key: id of user"));
             command.AddOption(new Option<string>("--contactfolder-id", description: "key: id of contactFolder"));

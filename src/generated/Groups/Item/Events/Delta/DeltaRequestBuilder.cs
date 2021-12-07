@@ -23,6 +23,7 @@ namespace ApiSdk.Groups.Item.Events.Delta {
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
+            command.Description = "Invoke function delta";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--group-id", description: "key: id of group"));
             command.Handler = CommandHandler.Create<string>(async (groupId) => {

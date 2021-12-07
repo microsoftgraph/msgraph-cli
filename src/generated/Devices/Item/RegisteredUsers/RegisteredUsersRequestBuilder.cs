@@ -24,6 +24,7 @@ namespace ApiSdk.Devices.Item.RegisteredUsers {
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
+            command.Description = "Collection of registered users of the device. For cloud joined devices and registered personal devices, registered users are set to the same value as registered owners at the time of registration. Read-only. Nullable. Supports $expand.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--device-id", description: "key: id of device"));
             command.AddOption(new Option<int?>("--top", description: "Show only the first n items"));

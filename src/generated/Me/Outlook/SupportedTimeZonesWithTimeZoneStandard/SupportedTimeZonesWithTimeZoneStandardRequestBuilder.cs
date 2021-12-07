@@ -23,6 +23,7 @@ namespace ApiSdk.Me.Outlook.SupportedTimeZonesWithTimeZoneStandard {
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
+            command.Description = "Invoke function supportedTimeZones";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--timezonestandard", description: "Usage: TimeZoneStandard={TimeZoneStandard}"));
             command.Handler = CommandHandler.Create<string>(async (TimeZoneStandard) => {

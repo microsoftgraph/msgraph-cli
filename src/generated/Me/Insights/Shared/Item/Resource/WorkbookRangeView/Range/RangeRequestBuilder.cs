@@ -24,6 +24,7 @@ namespace ApiSdk.Me.Insights.Shared.Item.Resource.WorkbookRangeView.Range {
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
+            command.Description = "Invoke function range";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--sharedinsight-id", description: "key: id of sharedInsight"));
             command.Handler = CommandHandler.Create<string>(async (sharedInsightId) => {

@@ -24,6 +24,7 @@ namespace ApiSdk.Workbooks.Item.Workbook.TableRowOperationResultWithKey {
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
+            command.Description = "Invoke function tableRowOperationResult";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--driveitem-id", description: "key: id of driveItem"));
             command.AddOption(new Option<string>("--key", description: "Usage: key={key}"));

@@ -24,6 +24,7 @@ namespace ApiSdk.Users.Item.Authentication.MicrosoftAuthenticatorMethods.Item.De
         /// </summary>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
+            command.Description = "The registered device on which Microsoft Authenticator resides. This property is null if the device is not registered for passwordless Phone Sign-In.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--user-id", description: "key: id of user"));
             command.AddOption(new Option<string>("--microsoftauthenticatorauthenticationmethod-id", description: "key: id of microsoftAuthenticatorAuthenticationMethod"));
@@ -42,6 +43,7 @@ namespace ApiSdk.Users.Item.Authentication.MicrosoftAuthenticatorMethods.Item.De
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
+            command.Description = "The registered device on which Microsoft Authenticator resides. This property is null if the device is not registered for passwordless Phone Sign-In.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--user-id", description: "key: id of user"));
             command.AddOption(new Option<string>("--microsoftauthenticatorauthenticationmethod-id", description: "key: id of microsoftAuthenticatorAuthenticationMethod"));
@@ -69,6 +71,7 @@ namespace ApiSdk.Users.Item.Authentication.MicrosoftAuthenticatorMethods.Item.De
         /// </summary>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
+            command.Description = "The registered device on which Microsoft Authenticator resides. This property is null if the device is not registered for passwordless Phone Sign-In.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--user-id", description: "key: id of user"));
             command.AddOption(new Option<string>("--microsoftauthenticatorauthenticationmethod-id", description: "key: id of microsoftAuthenticatorAuthenticationMethod"));

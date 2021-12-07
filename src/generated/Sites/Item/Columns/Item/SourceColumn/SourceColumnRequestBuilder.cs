@@ -25,6 +25,7 @@ namespace ApiSdk.Sites.Item.Columns.Item.SourceColumn {
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
+            command.Description = "The source column for the content type column.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--site-id", description: "key: id of site"));
             command.AddOption(new Option<string>("--columndefinition-id", description: "key: id of columnDefinition"));

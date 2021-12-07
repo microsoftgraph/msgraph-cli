@@ -23,6 +23,7 @@ namespace ApiSdk.DeviceManagement.ManagedDevices.Item.Retire {
         /// </summary>
         public Command BuildPostCommand() {
             var command = new Command("post");
+            command.Description = "Retire a device";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--manageddevice-id", description: "key: id of managedDevice"));
             command.Handler = CommandHandler.Create<string>(async (managedDeviceId) => {

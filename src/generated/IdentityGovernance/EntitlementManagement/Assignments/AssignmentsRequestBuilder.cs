@@ -37,6 +37,7 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.Assignments {
         /// </summary>
         public Command BuildCreateCommand() {
             var command = new Command("create");
+            command.Description = "Create new navigation property to assignments for identityGovernance";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--body"));
             command.Handler = CommandHandler.Create<string>(async (body) => {
@@ -60,6 +61,7 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.Assignments {
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
+            command.Description = "Get assignments from identityGovernance";
             // Create options for all the parameters
             command.AddOption(new Option<int?>("--top", description: "Show only the first n items"));
             command.AddOption(new Option<int?>("--skip", description: "Skip the first n items"));

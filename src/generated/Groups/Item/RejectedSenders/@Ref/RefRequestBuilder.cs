@@ -23,6 +23,7 @@ namespace ApiSdk.Groups.Item.RejectedSenders.@Ref {
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
+            command.Description = "The list of users or groups that are not allowed to create posts or calendar events in this group. Nullable";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--group-id", description: "key: id of group"));
             command.AddOption(new Option<int?>("--top", description: "Show only the first n items"));
@@ -54,6 +55,7 @@ namespace ApiSdk.Groups.Item.RejectedSenders.@Ref {
         /// </summary>
         public Command BuildPostCommand() {
             var command = new Command("post");
+            command.Description = "The list of users or groups that are not allowed to create posts or calendar events in this group. Nullable";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--group-id", description: "key: id of group"));
             command.AddOption(new Option<string>("--body"));

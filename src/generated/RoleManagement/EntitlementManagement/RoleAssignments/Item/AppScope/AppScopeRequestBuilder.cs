@@ -24,6 +24,7 @@ namespace ApiSdk.RoleManagement.EntitlementManagement.RoleAssignments.Item.AppSc
         /// </summary>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
+            command.Description = "Read-only property with details of the app specific scope when the assignment scope is app specific. Containment entity. Supports $expand.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--unifiedroleassignment-id", description: "key: id of unifiedRoleAssignment"));
             command.Handler = CommandHandler.Create<string>(async (unifiedRoleAssignmentId) => {
@@ -40,6 +41,7 @@ namespace ApiSdk.RoleManagement.EntitlementManagement.RoleAssignments.Item.AppSc
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
+            command.Description = "Read-only property with details of the app specific scope when the assignment scope is app specific. Containment entity. Supports $expand.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--unifiedroleassignment-id", description: "key: id of unifiedRoleAssignment"));
             command.AddOption(new Option<object>("--select", description: "Select properties to be returned"));
@@ -65,6 +67,7 @@ namespace ApiSdk.RoleManagement.EntitlementManagement.RoleAssignments.Item.AppSc
         /// </summary>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
+            command.Description = "Read-only property with details of the app specific scope when the assignment scope is app specific. Containment entity. Supports $expand.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--unifiedroleassignment-id", description: "key: id of unifiedRoleAssignment"));
             command.AddOption(new Option<string>("--body"));

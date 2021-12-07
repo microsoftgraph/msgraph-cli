@@ -24,6 +24,7 @@ namespace ApiSdk.Reports.GetSkypeForBusinessActivityUserDetailWithDate {
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
+            command.Description = "Invoke function getSkypeForBusinessActivityUserDetail";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--date", description: "Usage: date={date}"));
             command.Handler = CommandHandler.Create<string>(async (date) => {

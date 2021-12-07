@@ -24,6 +24,7 @@ namespace ApiSdk.DeviceManagement.DeviceConfigurations.Item.DeviceSettingStateSu
         /// </summary>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
+            command.Description = "Device Configuration Setting State Device Summary";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--deviceconfiguration-id", description: "key: id of deviceConfiguration"));
             command.AddOption(new Option<string>("--settingstatedevicesummary-id", description: "key: id of settingStateDeviceSummary"));
@@ -42,6 +43,7 @@ namespace ApiSdk.DeviceManagement.DeviceConfigurations.Item.DeviceSettingStateSu
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
+            command.Description = "Device Configuration Setting State Device Summary";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--deviceconfiguration-id", description: "key: id of deviceConfiguration"));
             command.AddOption(new Option<string>("--settingstatedevicesummary-id", description: "key: id of settingStateDeviceSummary"));
@@ -69,6 +71,7 @@ namespace ApiSdk.DeviceManagement.DeviceConfigurations.Item.DeviceSettingStateSu
         /// </summary>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
+            command.Description = "Device Configuration Setting State Device Summary";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--deviceconfiguration-id", description: "key: id of deviceConfiguration"));
             command.AddOption(new Option<string>("--settingstatedevicesummary-id", description: "key: id of settingStateDeviceSummary"));

@@ -23,6 +23,7 @@ namespace ApiSdk.DeviceManagement.GetEffectivePermissionsWithScope {
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
+            command.Description = "Retrieves the effective permissions of the currently authenticated user";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--scope", description: "Usage: scope={scope}"));
             command.Handler = CommandHandler.Create<string>(async (scope) => {

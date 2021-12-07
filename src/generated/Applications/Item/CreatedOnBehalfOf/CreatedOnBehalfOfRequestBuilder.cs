@@ -25,6 +25,7 @@ namespace ApiSdk.Applications.Item.CreatedOnBehalfOf {
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
+            command.Description = "Read-only.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--application-id", description: "key: id of application"));
             command.AddOption(new Option<object>("--select", description: "Select properties to be returned"));

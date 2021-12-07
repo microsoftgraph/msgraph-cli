@@ -34,6 +34,7 @@ namespace ApiSdk.DeviceManagement.DeviceCompliancePolicies.Item.DeviceSettingSta
         /// </summary>
         public Command BuildCreateCommand() {
             var command = new Command("create");
+            command.Description = "Compliance Setting State Device Summary";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--devicecompliancepolicy-id", description: "key: id of deviceCompliancePolicy"));
             command.AddOption(new Option<string>("--body"));
@@ -59,6 +60,7 @@ namespace ApiSdk.DeviceManagement.DeviceCompliancePolicies.Item.DeviceSettingSta
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
+            command.Description = "Compliance Setting State Device Summary";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--devicecompliancepolicy-id", description: "key: id of deviceCompliancePolicy"));
             command.AddOption(new Option<int?>("--top", description: "Show only the first n items"));

@@ -25,6 +25,7 @@ namespace ApiSdk.Education.Classes.Item.Schools {
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
+            command.Description = "All schools that this class is associated with. Nullable.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--educationclass-id", description: "key: id of educationClass"));
             command.AddOption(new Option<int?>("--top", description: "Show only the first n items"));

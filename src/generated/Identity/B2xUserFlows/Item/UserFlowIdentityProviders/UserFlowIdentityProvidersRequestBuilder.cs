@@ -31,6 +31,7 @@ namespace ApiSdk.Identity.B2xUserFlows.Item.UserFlowIdentityProviders {
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
+            command.Description = "Get userFlowIdentityProviders from identity";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--b2xidentityuserflow-id", description: "key: id of b2xIdentityUserFlow"));
             command.AddOption(new Option<int?>("--top", description: "Show only the first n items"));

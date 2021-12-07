@@ -25,6 +25,7 @@ namespace ApiSdk.Me.Insights.Used.Item {
         /// </summary>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
+            command.Description = "Calculated relationship identifying the latest documents viewed or modified by a user, including OneDrive for Business and SharePoint documents, ranked by recency of use.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--usedinsight-id", description: "key: id of usedInsight"));
             command.Handler = CommandHandler.Create<string>(async (usedInsightId) => {
@@ -41,6 +42,7 @@ namespace ApiSdk.Me.Insights.Used.Item {
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
+            command.Description = "Calculated relationship identifying the latest documents viewed or modified by a user, including OneDrive for Business and SharePoint documents, ranked by recency of use.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--usedinsight-id", description: "key: id of usedInsight"));
             command.AddOption(new Option<object>("--select", description: "Select properties to be returned"));
@@ -66,6 +68,7 @@ namespace ApiSdk.Me.Insights.Used.Item {
         /// </summary>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
+            command.Description = "Calculated relationship identifying the latest documents viewed or modified by a user, including OneDrive for Business and SharePoint documents, ranked by recency of use.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--usedinsight-id", description: "key: id of usedInsight"));
             command.AddOption(new Option<string>("--body"));

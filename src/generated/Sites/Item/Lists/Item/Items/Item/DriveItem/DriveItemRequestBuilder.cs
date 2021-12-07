@@ -32,6 +32,7 @@ namespace ApiSdk.Sites.Item.Lists.Item.Items.Item.DriveItem {
         /// </summary>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
+            command.Description = "For document libraries, the driveItem relationship exposes the listItem as a [driveItem][]";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--site-id", description: "key: id of site"));
             command.AddOption(new Option<string>("--list-id", description: "key: id of list"));
@@ -52,6 +53,7 @@ namespace ApiSdk.Sites.Item.Lists.Item.Items.Item.DriveItem {
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
+            command.Description = "For document libraries, the driveItem relationship exposes the listItem as a [driveItem][]";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--site-id", description: "key: id of site"));
             command.AddOption(new Option<string>("--list-id", description: "key: id of list"));
@@ -81,6 +83,7 @@ namespace ApiSdk.Sites.Item.Lists.Item.Items.Item.DriveItem {
         /// </summary>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
+            command.Description = "For document libraries, the driveItem relationship exposes the listItem as a [driveItem][]";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--site-id", description: "key: id of site"));
             command.AddOption(new Option<string>("--list-id", description: "key: id of list"));

@@ -25,6 +25,7 @@ namespace ApiSdk.Agreements.Item.File {
         /// </summary>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
+            command.Description = "Default PDF linked to this agreement.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--agreement-id", description: "key: id of agreement"));
             command.Handler = CommandHandler.Create<string>(async (agreementId) => {
@@ -41,6 +42,7 @@ namespace ApiSdk.Agreements.Item.File {
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
+            command.Description = "Default PDF linked to this agreement.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--agreement-id", description: "key: id of agreement"));
             command.AddOption(new Option<object>("--select", description: "Select properties to be returned"));
@@ -76,6 +78,7 @@ namespace ApiSdk.Agreements.Item.File {
         /// </summary>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
+            command.Description = "Default PDF linked to this agreement.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--agreement-id", description: "key: id of agreement"));
             command.AddOption(new Option<string>("--body"));

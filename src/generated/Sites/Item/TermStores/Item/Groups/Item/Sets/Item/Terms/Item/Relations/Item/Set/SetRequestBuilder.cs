@@ -25,6 +25,7 @@ namespace ApiSdk.Sites.Item.TermStores.Item.Groups.Item.Sets.Item.Terms.Item.Rel
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
+            command.Description = "The [set] in which the relation is relevant.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--site-id", description: "key: id of site"));
             command.AddOption(new Option<string>("--store-id", description: "key: id of store"));

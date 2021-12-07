@@ -34,6 +34,7 @@ namespace ApiSdk.Workbooks.Item.Workbook.Operations {
         /// </summary>
         public Command BuildCreateCommand() {
             var command = new Command("create");
+            command.Description = "The status of workbook operations. Getting an operation collection is not supported, but you can get the status of a long-running operation if the Location header is returned in the response. Read-only.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--driveitem-id", description: "key: id of driveItem"));
             command.AddOption(new Option<string>("--body"));
@@ -59,6 +60,7 @@ namespace ApiSdk.Workbooks.Item.Workbook.Operations {
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
+            command.Description = "The status of workbook operations. Getting an operation collection is not supported, but you can get the status of a long-running operation if the Location header is returned in the response. Read-only.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--driveitem-id", description: "key: id of driveItem"));
             command.AddOption(new Option<string>("--search", description: "Search items by search phrases"));

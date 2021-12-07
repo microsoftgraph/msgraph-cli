@@ -24,6 +24,7 @@ namespace ApiSdk.Me.Chats.Item {
         /// </summary>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
+            command.Description = "Delete navigation property chats for me";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--chat-id", description: "key: id of chat"));
             command.Handler = CommandHandler.Create<string>(async (chatId) => {
@@ -40,6 +41,7 @@ namespace ApiSdk.Me.Chats.Item {
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
+            command.Description = "Get chats from me";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--chat-id", description: "key: id of chat"));
             command.AddOption(new Option<object>("--select", description: "Select properties to be returned"));
@@ -65,6 +67,7 @@ namespace ApiSdk.Me.Chats.Item {
         /// </summary>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
+            command.Description = "Update the navigation property chats in me";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--chat-id", description: "key: id of chat"));
             command.AddOption(new Option<string>("--body"));

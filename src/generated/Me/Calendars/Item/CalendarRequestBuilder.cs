@@ -59,6 +59,7 @@ namespace ApiSdk.Me.Calendars.Item {
         /// </summary>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
+            command.Description = "The user's calendars. Read-only. Nullable.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--calendar-id", description: "key: id of calendar"));
             command.Handler = CommandHandler.Create<string>(async (calendarId) => {
@@ -85,6 +86,7 @@ namespace ApiSdk.Me.Calendars.Item {
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
+            command.Description = "The user's calendars. Read-only. Nullable.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--calendar-id", description: "key: id of calendar"));
             command.AddOption(new Option<object>("--select", description: "Select properties to be returned"));
@@ -124,6 +126,7 @@ namespace ApiSdk.Me.Calendars.Item {
         /// </summary>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
+            command.Description = "The user's calendars. Read-only. Nullable.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--calendar-id", description: "key: id of calendar"));
             command.AddOption(new Option<string>("--body"));

@@ -25,6 +25,7 @@ namespace ApiSdk.DeviceManagement.RoleDefinitions.Item.RoleAssignments.Item.Role
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
+            command.Description = "Role definition this assignment is part of.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--roledefinition-id", description: "key: id of roleDefinition"));
             command.AddOption(new Option<string>("--roleassignment-id", description: "key: id of roleAssignment"));

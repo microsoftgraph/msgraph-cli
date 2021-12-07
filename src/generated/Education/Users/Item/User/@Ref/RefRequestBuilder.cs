@@ -23,6 +23,7 @@ namespace ApiSdk.Education.Users.Item.User.@Ref {
         /// </summary>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
+            command.Description = "The directory user corresponding to this user.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--educationuser-id", description: "key: id of educationUser"));
             command.Handler = CommandHandler.Create<string>(async (educationUserId) => {
@@ -39,6 +40,7 @@ namespace ApiSdk.Education.Users.Item.User.@Ref {
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
+            command.Description = "The directory user corresponding to this user.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--educationuser-id", description: "key: id of educationUser"));
             command.Handler = CommandHandler.Create<string>(async (educationUserId) => {
@@ -60,6 +62,7 @@ namespace ApiSdk.Education.Users.Item.User.@Ref {
         /// </summary>
         public Command BuildPutCommand() {
             var command = new Command("put");
+            command.Description = "The directory user corresponding to this user.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--educationuser-id", description: "key: id of educationUser"));
             command.AddOption(new Option<string>("--body"));

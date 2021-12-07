@@ -24,6 +24,7 @@ namespace ApiSdk.Groups.Item.GroupLifecyclePolicies.Item {
         /// </summary>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
+            command.Description = "The collection of lifecycle policies for this group. Read-only. Nullable.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--group-id", description: "key: id of group"));
             command.AddOption(new Option<string>("--grouplifecyclepolicy-id", description: "key: id of groupLifecyclePolicy"));
@@ -42,6 +43,7 @@ namespace ApiSdk.Groups.Item.GroupLifecyclePolicies.Item {
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
+            command.Description = "The collection of lifecycle policies for this group. Read-only. Nullable.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--group-id", description: "key: id of group"));
             command.AddOption(new Option<string>("--grouplifecyclepolicy-id", description: "key: id of groupLifecyclePolicy"));
@@ -69,6 +71,7 @@ namespace ApiSdk.Groups.Item.GroupLifecyclePolicies.Item {
         /// </summary>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
+            command.Description = "The collection of lifecycle policies for this group. Read-only. Nullable.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--group-id", description: "key: id of group"));
             command.AddOption(new Option<string>("--grouplifecyclepolicy-id", description: "key: id of groupLifecyclePolicy"));

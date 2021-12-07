@@ -23,6 +23,7 @@ namespace ApiSdk.Users.Item.CalendarView.Item.Calendar.Events.Item.DismissRemind
         /// </summary>
         public Command BuildPostCommand() {
             var command = new Command("post");
+            command.Description = "Invoke action dismissReminder";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--user-id", description: "key: id of user"));
             command.AddOption(new Option<string>("--event-id", description: "key: id of event"));

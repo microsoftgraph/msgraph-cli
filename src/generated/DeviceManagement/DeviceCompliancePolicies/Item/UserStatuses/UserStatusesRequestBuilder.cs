@@ -34,6 +34,7 @@ namespace ApiSdk.DeviceManagement.DeviceCompliancePolicies.Item.UserStatuses {
         /// </summary>
         public Command BuildCreateCommand() {
             var command = new Command("create");
+            command.Description = "List of DeviceComplianceUserStatus.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--devicecompliancepolicy-id", description: "key: id of deviceCompliancePolicy"));
             command.AddOption(new Option<string>("--body"));
@@ -59,6 +60,7 @@ namespace ApiSdk.DeviceManagement.DeviceCompliancePolicies.Item.UserStatuses {
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
+            command.Description = "List of DeviceComplianceUserStatus.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--devicecompliancepolicy-id", description: "key: id of deviceCompliancePolicy"));
             command.AddOption(new Option<int?>("--top", description: "Show only the first n items"));

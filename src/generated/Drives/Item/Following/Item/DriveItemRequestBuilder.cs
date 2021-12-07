@@ -32,6 +32,7 @@ namespace ApiSdk.Drives.Item.Following.Item {
         /// </summary>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
+            command.Description = "The list of items the user is following. Only in OneDrive for Business.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--drive-id", description: "key: id of drive"));
             command.AddOption(new Option<string>("--driveitem-id", description: "key: id of driveItem"));
@@ -50,6 +51,7 @@ namespace ApiSdk.Drives.Item.Following.Item {
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
+            command.Description = "The list of items the user is following. Only in OneDrive for Business.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--drive-id", description: "key: id of drive"));
             command.AddOption(new Option<string>("--driveitem-id", description: "key: id of driveItem"));
@@ -77,6 +79,7 @@ namespace ApiSdk.Drives.Item.Following.Item {
         /// </summary>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
+            command.Description = "The list of items the user is following. Only in OneDrive for Business.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--drive-id", description: "key: id of drive"));
             command.AddOption(new Option<string>("--driveitem-id", description: "key: id of driveItem"));

@@ -24,6 +24,7 @@ namespace ApiSdk.RoleManagement.Directory.RoleDefinitions.Item.InheritsPermissio
         /// </summary>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
+            command.Description = "Read-only collection of role definitions that the given role definition inherits from. Only Azure AD built-in roles (isBuiltIn is true) support this attribute. Supports $expand.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--unifiedroledefinition-id", description: "key: id of unifiedRoleDefinition"));
             command.AddOption(new Option<string>("--unifiedroledefinition-id1", description: "key: id of unifiedRoleDefinition"));
@@ -42,6 +43,7 @@ namespace ApiSdk.RoleManagement.Directory.RoleDefinitions.Item.InheritsPermissio
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
+            command.Description = "Read-only collection of role definitions that the given role definition inherits from. Only Azure AD built-in roles (isBuiltIn is true) support this attribute. Supports $expand.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--unifiedroledefinition-id", description: "key: id of unifiedRoleDefinition"));
             command.AddOption(new Option<string>("--unifiedroledefinition-id1", description: "key: id of unifiedRoleDefinition"));
@@ -69,6 +71,7 @@ namespace ApiSdk.RoleManagement.Directory.RoleDefinitions.Item.InheritsPermissio
         /// </summary>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
+            command.Description = "Read-only collection of role definitions that the given role definition inherits from. Only Azure AD built-in roles (isBuiltIn is true) support this attribute. Supports $expand.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--unifiedroledefinition-id", description: "key: id of unifiedRoleDefinition"));
             command.AddOption(new Option<string>("--unifiedroledefinition-id1", description: "key: id of unifiedRoleDefinition"));

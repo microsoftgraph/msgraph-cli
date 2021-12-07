@@ -23,6 +23,7 @@ namespace ApiSdk.Drive.List.Items.Item.GetActivitiesByIntervalWithStartDateTimeW
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
+            command.Description = "Invoke function getActivitiesByInterval";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--listitem-id", description: "key: id of listItem"));
             command.AddOption(new Option<string>("--startdatetime", description: "Usage: startDateTime={startDateTime}"));

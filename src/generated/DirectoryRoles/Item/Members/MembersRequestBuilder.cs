@@ -24,6 +24,7 @@ namespace ApiSdk.DirectoryRoles.Item.Members {
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
+            command.Description = "Users that are members of this directory role. HTTP Methods: GET, POST, DELETE. Read-only. Nullable.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--directoryrole-id", description: "key: id of directoryRole"));
             command.AddOption(new Option<int?>("--top", description: "Show only the first n items"));

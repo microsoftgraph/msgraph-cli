@@ -25,6 +25,7 @@ namespace ApiSdk.Invitations.Item {
         /// </summary>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
+            command.Description = "Delete entity from invitations";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--invitation-id", description: "key: id of invitation"));
             command.Handler = CommandHandler.Create<string>(async (invitationId) => {
@@ -41,6 +42,7 @@ namespace ApiSdk.Invitations.Item {
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
+            command.Description = "Get entity from invitations by key";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--invitation-id", description: "key: id of invitation"));
             command.AddOption(new Option<object>("--select", description: "Select properties to be returned"));
@@ -73,6 +75,7 @@ namespace ApiSdk.Invitations.Item {
         /// </summary>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
+            command.Description = "Update entity in invitations";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--invitation-id", description: "key: id of invitation"));
             command.AddOption(new Option<string>("--body"));

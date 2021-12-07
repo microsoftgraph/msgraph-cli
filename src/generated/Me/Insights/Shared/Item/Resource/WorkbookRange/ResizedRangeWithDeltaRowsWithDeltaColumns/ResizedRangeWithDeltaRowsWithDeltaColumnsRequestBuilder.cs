@@ -24,6 +24,7 @@ namespace ApiSdk.Me.Insights.Shared.Item.Resource.WorkbookRange.ResizedRangeWith
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
+            command.Description = "Invoke function resizedRange";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--sharedinsight-id", description: "key: id of sharedInsight"));
             command.AddOption(new Option<int?>("--deltarows", description: "Usage: deltaRows={deltaRows}"));

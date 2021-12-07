@@ -34,6 +34,7 @@ namespace ApiSdk.Me.CalendarGroups.Item.Calendars.Item.Events.Item.MultiValueExt
         /// </summary>
         public Command BuildCreateCommand() {
             var command = new Command("create");
+            command.Description = "The collection of multi-value extended properties defined for the event. Read-only. Nullable.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--calendargroup-id", description: "key: id of calendarGroup"));
             command.AddOption(new Option<string>("--calendar-id", description: "key: id of calendar"));
@@ -63,6 +64,7 @@ namespace ApiSdk.Me.CalendarGroups.Item.Calendars.Item.Events.Item.MultiValueExt
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
+            command.Description = "The collection of multi-value extended properties defined for the event. Read-only. Nullable.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--calendargroup-id", description: "key: id of calendarGroup"));
             command.AddOption(new Option<string>("--calendar-id", description: "key: id of calendar"));

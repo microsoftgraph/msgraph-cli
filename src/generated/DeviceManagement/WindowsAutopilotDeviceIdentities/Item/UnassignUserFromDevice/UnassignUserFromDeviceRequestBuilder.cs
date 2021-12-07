@@ -23,6 +23,7 @@ namespace ApiSdk.DeviceManagement.WindowsAutopilotDeviceIdentities.Item.Unassign
         /// </summary>
         public Command BuildPostCommand() {
             var command = new Command("post");
+            command.Description = "Unassigns the user from an Autopilot device.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--windowsautopilotdeviceidentity-id", description: "key: id of windowsAutopilotDeviceIdentity"));
             command.Handler = CommandHandler.Create<string>(async (windowsAutopilotDeviceIdentityId) => {

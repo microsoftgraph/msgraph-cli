@@ -23,6 +23,7 @@ namespace ApiSdk.Users.Item.Manager.@Ref {
         /// </summary>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
+            command.Description = "The user or contact that is this user's manager. Read-only. (HTTP Methods: GET, PUT, DELETE.). Supports $expand.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--user-id", description: "key: id of user"));
             command.Handler = CommandHandler.Create<string>(async (userId) => {
@@ -39,6 +40,7 @@ namespace ApiSdk.Users.Item.Manager.@Ref {
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
+            command.Description = "The user or contact that is this user's manager. Read-only. (HTTP Methods: GET, PUT, DELETE.). Supports $expand.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--user-id", description: "key: id of user"));
             command.Handler = CommandHandler.Create<string>(async (userId) => {
@@ -60,6 +62,7 @@ namespace ApiSdk.Users.Item.Manager.@Ref {
         /// </summary>
         public Command BuildPutCommand() {
             var command = new Command("put");
+            command.Description = "The user or contact that is this user's manager. Read-only. (HTTP Methods: GET, PUT, DELETE.). Supports $expand.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--user-id", description: "key: id of user"));
             command.AddOption(new Option<string>("--body"));

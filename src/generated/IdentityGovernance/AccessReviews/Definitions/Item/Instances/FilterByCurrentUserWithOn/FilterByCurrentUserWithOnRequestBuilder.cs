@@ -23,6 +23,7 @@ namespace ApiSdk.IdentityGovernance.AccessReviews.Definitions.Item.Instances.Fil
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
+            command.Description = "Invoke function filterByCurrentUser";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--accessreviewscheduledefinition-id", description: "key: id of accessReviewScheduleDefinition"));
             command.AddOption(new Option<string>("--on", description: "Usage: on={on}"));

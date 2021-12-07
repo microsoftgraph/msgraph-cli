@@ -25,6 +25,7 @@ namespace ApiSdk.Teams.Item.InstalledApps.Item.TeamsAppDefinition {
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
+            command.Description = "The details of this version of the app.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--team-id", description: "key: id of team"));
             command.AddOption(new Option<string>("--teamsappinstallation-id", description: "key: id of teamsAppInstallation"));

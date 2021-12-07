@@ -23,6 +23,7 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.Catalogs.Item.AccessPa
         /// </summary>
         public Command BuildPostCommand() {
             var command = new Command("post");
+            command.Description = "Invoke action getApplicablePolicyRequirements";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--accesspackagecatalog-id", description: "key: id of accessPackageCatalog"));
             command.AddOption(new Option<string>("--accesspackage-id", description: "key: id of accessPackage"));

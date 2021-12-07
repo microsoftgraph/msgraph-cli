@@ -42,6 +42,7 @@ namespace ApiSdk.Groups.Item.Events.Item.Instances {
         /// </summary>
         public Command BuildCreateCommand() {
             var command = new Command("create");
+            command.Description = "The occurrences of a recurring series, if the event is a series master. This property includes occurrences that are part of the recurrence pattern, and exceptions that have been modified, but does not include occurrences that have been cancelled from the series. Navigation property. Read-only. Nullable.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--group-id", description: "key: id of group"));
             command.AddOption(new Option<string>("--event-id", description: "key: id of event"));
@@ -69,6 +70,7 @@ namespace ApiSdk.Groups.Item.Events.Item.Instances {
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
+            command.Description = "The occurrences of a recurring series, if the event is a series master. This property includes occurrences that are part of the recurrence pattern, and exceptions that have been modified, but does not include occurrences that have been cancelled from the series. Navigation property. Read-only. Nullable.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--group-id", description: "key: id of group"));
             command.AddOption(new Option<string>("--event-id", description: "key: id of event"));

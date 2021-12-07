@@ -23,6 +23,7 @@ namespace ApiSdk.Drives.Item.List.Items.Item.DriveItem.Content {
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
+            command.Description = "Get media content for the navigation property driveItem from drives";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--drive-id", description: "key: id of drive"));
             command.AddOption(new Option<string>("--listitem-id", description: "key: id of listItem"));
@@ -51,6 +52,7 @@ namespace ApiSdk.Drives.Item.List.Items.Item.DriveItem.Content {
         /// </summary>
         public Command BuildPutCommand() {
             var command = new Command("put");
+            command.Description = "Update media content for the navigation property driveItem in drives";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--drive-id", description: "key: id of drive"));
             command.AddOption(new Option<string>("--listitem-id", description: "key: id of listItem"));

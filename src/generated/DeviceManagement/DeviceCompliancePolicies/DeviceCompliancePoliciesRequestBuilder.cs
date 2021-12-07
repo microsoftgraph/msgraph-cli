@@ -43,6 +43,7 @@ namespace ApiSdk.DeviceManagement.DeviceCompliancePolicies {
         /// </summary>
         public Command BuildCreateCommand() {
             var command = new Command("create");
+            command.Description = "The device compliance policies.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--body"));
             command.Handler = CommandHandler.Create<string>(async (body) => {
@@ -66,6 +67,7 @@ namespace ApiSdk.DeviceManagement.DeviceCompliancePolicies {
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
+            command.Description = "The device compliance policies.";
             // Create options for all the parameters
             command.AddOption(new Option<int?>("--top", description: "Show only the first n items"));
             command.AddOption(new Option<int?>("--skip", description: "Skip the first n items"));

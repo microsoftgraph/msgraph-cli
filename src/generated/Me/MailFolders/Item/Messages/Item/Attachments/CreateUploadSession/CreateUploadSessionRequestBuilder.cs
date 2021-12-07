@@ -24,6 +24,7 @@ namespace ApiSdk.Me.MailFolders.Item.Messages.Item.Attachments.CreateUploadSessi
         /// </summary>
         public Command BuildPostCommand() {
             var command = new Command("post");
+            command.Description = "Invoke action createUploadSession";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--mailfolder-id", description: "key: id of mailFolder"));
             command.AddOption(new Option<string>("--message-id", description: "key: id of message"));

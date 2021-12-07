@@ -24,6 +24,7 @@ namespace ApiSdk.Drives.Item.List.ContentTypes.Item.ColumnLinks.Item {
         /// </summary>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
+            command.Description = "The collection of columns that are required by this content type.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--drive-id", description: "key: id of drive"));
             command.AddOption(new Option<string>("--contenttype-id", description: "key: id of contentType"));
@@ -44,6 +45,7 @@ namespace ApiSdk.Drives.Item.List.ContentTypes.Item.ColumnLinks.Item {
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
+            command.Description = "The collection of columns that are required by this content type.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--drive-id", description: "key: id of drive"));
             command.AddOption(new Option<string>("--contenttype-id", description: "key: id of contentType"));
@@ -73,6 +75,7 @@ namespace ApiSdk.Drives.Item.List.ContentTypes.Item.ColumnLinks.Item {
         /// </summary>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
+            command.Description = "The collection of columns that are required by this content type.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--drive-id", description: "key: id of drive"));
             command.AddOption(new Option<string>("--contenttype-id", description: "key: id of contentType"));

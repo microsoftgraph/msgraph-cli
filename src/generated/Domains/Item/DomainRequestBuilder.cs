@@ -29,6 +29,7 @@ namespace ApiSdk.Domains.Item {
         /// </summary>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
+            command.Description = "Delete entity from domains";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--domain-id", description: "key: id of domain"));
             command.Handler = CommandHandler.Create<string>(async (domainId) => {
@@ -58,6 +59,7 @@ namespace ApiSdk.Domains.Item {
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
+            command.Description = "Get entity from domains by key";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--domain-id", description: "key: id of domain"));
             command.AddOption(new Option<object>("--select", description: "Select properties to be returned"));
@@ -83,6 +85,7 @@ namespace ApiSdk.Domains.Item {
         /// </summary>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
+            command.Description = "Update entity in domains";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--domain-id", description: "key: id of domain"));
             command.AddOption(new Option<string>("--body"));

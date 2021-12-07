@@ -24,6 +24,7 @@ namespace ApiSdk.DeviceManagement.DeviceCompliancePolicies.Item.UserStatusOvervi
         /// </summary>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
+            command.Description = "Device compliance users status overview";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--devicecompliancepolicy-id", description: "key: id of deviceCompliancePolicy"));
             command.Handler = CommandHandler.Create<string>(async (deviceCompliancePolicyId) => {
@@ -40,6 +41,7 @@ namespace ApiSdk.DeviceManagement.DeviceCompliancePolicies.Item.UserStatusOvervi
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
+            command.Description = "Device compliance users status overview";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--devicecompliancepolicy-id", description: "key: id of deviceCompliancePolicy"));
             command.AddOption(new Option<object>("--select", description: "Select properties to be returned"));
@@ -65,6 +67,7 @@ namespace ApiSdk.DeviceManagement.DeviceCompliancePolicies.Item.UserStatusOvervi
         /// </summary>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
+            command.Description = "Device compliance users status overview";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--devicecompliancepolicy-id", description: "key: id of deviceCompliancePolicy"));
             command.AddOption(new Option<string>("--body"));

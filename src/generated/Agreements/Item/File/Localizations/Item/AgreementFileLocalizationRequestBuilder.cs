@@ -25,6 +25,7 @@ namespace ApiSdk.Agreements.Item.File.Localizations.Item {
         /// </summary>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
+            command.Description = "Delete navigation property localizations for agreements";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--agreement-id", description: "key: id of agreement"));
             command.AddOption(new Option<string>("--agreementfilelocalization-id", description: "key: id of agreementFileLocalization"));
@@ -43,6 +44,7 @@ namespace ApiSdk.Agreements.Item.File.Localizations.Item {
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
+            command.Description = "Get localizations from agreements";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--agreement-id", description: "key: id of agreement"));
             command.AddOption(new Option<string>("--agreementfilelocalization-id", description: "key: id of agreementFileLocalization"));
@@ -70,6 +72,7 @@ namespace ApiSdk.Agreements.Item.File.Localizations.Item {
         /// </summary>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
+            command.Description = "Update the navigation property localizations in agreements";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--agreement-id", description: "key: id of agreement"));
             command.AddOption(new Option<string>("--agreementfilelocalization-id", description: "key: id of agreementFileLocalization"));

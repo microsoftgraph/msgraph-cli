@@ -23,6 +23,7 @@ namespace ApiSdk.Me.Insights.Trending.Item.Resource.WorkbookRange.Merge {
         /// </summary>
         public Command BuildPostCommand() {
             var command = new Command("post");
+            command.Description = "Invoke action merge";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--trending-id", description: "key: id of trending"));
             command.AddOption(new Option<string>("--body"));

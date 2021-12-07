@@ -23,6 +23,7 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.Catalogs.Item.AccessPa
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
+            command.Description = "Invoke function filterByCurrentUser";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--accesspackagecatalog-id", description: "key: id of accessPackageCatalog"));
             command.AddOption(new Option<string>("--on", description: "Usage: on={on}"));

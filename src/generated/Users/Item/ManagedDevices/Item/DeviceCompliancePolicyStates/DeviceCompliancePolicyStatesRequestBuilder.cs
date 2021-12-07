@@ -34,6 +34,7 @@ namespace ApiSdk.Users.Item.ManagedDevices.Item.DeviceCompliancePolicyStates {
         /// </summary>
         public Command BuildCreateCommand() {
             var command = new Command("create");
+            command.Description = "Device compliance policy states for this device.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--user-id", description: "key: id of user"));
             command.AddOption(new Option<string>("--manageddevice-id", description: "key: id of managedDevice"));
@@ -61,6 +62,7 @@ namespace ApiSdk.Users.Item.ManagedDevices.Item.DeviceCompliancePolicyStates {
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
+            command.Description = "Device compliance policy states for this device.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--user-id", description: "key: id of user"));
             command.AddOption(new Option<string>("--manageddevice-id", description: "key: id of managedDevice"));

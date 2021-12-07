@@ -25,6 +25,7 @@ namespace ApiSdk.Sites.Item.TermStore.Sets.Item.Terms.Item.Relations.Item.FromTe
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
+            command.Description = "The from [term] of the relation. The term from which the relationship is defined. A null value would indicate the relation is directly with the [set].";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--site-id", description: "key: id of site"));
             command.AddOption(new Option<string>("--set-id", description: "key: id of set"));

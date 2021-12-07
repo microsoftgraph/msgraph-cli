@@ -26,6 +26,7 @@ namespace ApiSdk.IdentityGovernance.AccessReviews.Definitions.Item {
         /// </summary>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
+            command.Description = "Delete navigation property definitions for identityGovernance";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--accessreviewscheduledefinition-id", description: "key: id of accessReviewScheduleDefinition"));
             command.Handler = CommandHandler.Create<string>(async (accessReviewScheduleDefinitionId) => {
@@ -42,6 +43,7 @@ namespace ApiSdk.IdentityGovernance.AccessReviews.Definitions.Item {
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
+            command.Description = "Get definitions from identityGovernance";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--accessreviewscheduledefinition-id", description: "key: id of accessReviewScheduleDefinition"));
             command.AddOption(new Option<object>("--select", description: "Select properties to be returned"));
@@ -77,6 +79,7 @@ namespace ApiSdk.IdentityGovernance.AccessReviews.Definitions.Item {
         /// </summary>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
+            command.Description = "Update the navigation property definitions in identityGovernance";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--accessreviewscheduledefinition-id", description: "key: id of accessReviewScheduleDefinition"));
             command.AddOption(new Option<string>("--body"));

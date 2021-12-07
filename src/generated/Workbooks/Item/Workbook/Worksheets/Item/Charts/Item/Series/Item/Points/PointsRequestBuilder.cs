@@ -37,6 +37,7 @@ namespace ApiSdk.Workbooks.Item.Workbook.Worksheets.Item.Charts.Item.Series.Item
         /// </summary>
         public Command BuildCreateCommand() {
             var command = new Command("create");
+            command.Description = "Represents a collection of all points in the series. Read-only.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--driveitem-id", description: "key: id of driveItem"));
             command.AddOption(new Option<string>("--workbookworksheet-id", description: "key: id of workbookWorksheet"));
@@ -68,6 +69,7 @@ namespace ApiSdk.Workbooks.Item.Workbook.Worksheets.Item.Charts.Item.Series.Item
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
+            command.Description = "Represents a collection of all points in the series. Read-only.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--driveitem-id", description: "key: id of driveItem"));
             command.AddOption(new Option<string>("--workbookworksheet-id", description: "key: id of workbookWorksheet"));

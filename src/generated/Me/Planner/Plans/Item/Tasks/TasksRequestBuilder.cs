@@ -38,6 +38,7 @@ namespace ApiSdk.Me.Planner.Plans.Item.Tasks {
         /// </summary>
         public Command BuildCreateCommand() {
             var command = new Command("create");
+            command.Description = "Read-only. Nullable. Collection of tasks in the plan.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--plannerplan-id", description: "key: id of plannerPlan"));
             command.AddOption(new Option<string>("--body"));
@@ -63,6 +64,7 @@ namespace ApiSdk.Me.Planner.Plans.Item.Tasks {
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
+            command.Description = "Read-only. Nullable. Collection of tasks in the plan.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--plannerplan-id", description: "key: id of plannerPlan"));
             command.AddOption(new Option<int?>("--top", description: "Show only the first n items"));

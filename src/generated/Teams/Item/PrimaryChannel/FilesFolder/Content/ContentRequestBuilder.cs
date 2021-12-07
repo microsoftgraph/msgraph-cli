@@ -23,6 +23,7 @@ namespace ApiSdk.Teams.Item.PrimaryChannel.FilesFolder.Content {
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
+            command.Description = "Get media content for the navigation property filesFolder from teams";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--team-id", description: "key: id of team"));
             command.AddOption(new Option<FileInfo>("--output"));
@@ -49,6 +50,7 @@ namespace ApiSdk.Teams.Item.PrimaryChannel.FilesFolder.Content {
         /// </summary>
         public Command BuildPutCommand() {
             var command = new Command("put");
+            command.Description = "Update media content for the navigation property filesFolder in teams";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--team-id", description: "key: id of team"));
             command.AddOption(new Option<Stream>("--file", description: "Binary request body"));

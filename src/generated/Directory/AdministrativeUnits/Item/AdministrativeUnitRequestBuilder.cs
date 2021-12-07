@@ -27,6 +27,7 @@ namespace ApiSdk.Directory.AdministrativeUnits.Item {
         /// </summary>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
+            command.Description = "Conceptual container for user and group directory objects.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--administrativeunit-id", description: "key: id of administrativeUnit"));
             command.Handler = CommandHandler.Create<string>(async (administrativeUnitId) => {
@@ -53,6 +54,7 @@ namespace ApiSdk.Directory.AdministrativeUnits.Item {
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
+            command.Description = "Conceptual container for user and group directory objects.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--administrativeunit-id", description: "key: id of administrativeUnit"));
             command.AddOption(new Option<object>("--select", description: "Select properties to be returned"));
@@ -85,6 +87,7 @@ namespace ApiSdk.Directory.AdministrativeUnits.Item {
         /// </summary>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
+            command.Description = "Conceptual container for user and group directory objects.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--administrativeunit-id", description: "key: id of administrativeUnit"));
             command.AddOption(new Option<string>("--body"));

@@ -34,6 +34,7 @@ namespace ApiSdk.Domains.Item.ServiceConfigurationRecords {
         /// </summary>
         public Command BuildCreateCommand() {
             var command = new Command("create");
+            command.Description = "DNS records the customer adds to the DNS zone file of the domain before the domain can be used by Microsoft Online services. Read-only, Nullable";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--domain-id", description: "key: id of domain"));
             command.AddOption(new Option<string>("--body"));
@@ -59,6 +60,7 @@ namespace ApiSdk.Domains.Item.ServiceConfigurationRecords {
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
+            command.Description = "DNS records the customer adds to the DNS zone file of the domain before the domain can be used by Microsoft Online services. Read-only, Nullable";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--domain-id", description: "key: id of domain"));
             command.AddOption(new Option<int?>("--top", description: "Show only the first n items"));

@@ -23,6 +23,7 @@ namespace ApiSdk.Print.Shares.Item.AllowedUsers.@Ref {
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
+            command.Description = "The users who have access to print using the printer.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--printershare-id", description: "key: id of printerShare"));
             command.AddOption(new Option<int?>("--top", description: "Show only the first n items"));
@@ -56,6 +57,7 @@ namespace ApiSdk.Print.Shares.Item.AllowedUsers.@Ref {
         /// </summary>
         public Command BuildPostCommand() {
             var command = new Command("post");
+            command.Description = "The users who have access to print using the printer.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--printershare-id", description: "key: id of printerShare"));
             command.AddOption(new Option<string>("--body"));

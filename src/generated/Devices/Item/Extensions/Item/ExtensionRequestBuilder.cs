@@ -24,6 +24,7 @@ namespace ApiSdk.Devices.Item.Extensions.Item {
         /// </summary>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
+            command.Description = "The collection of open extensions defined for the device. Read-only. Nullable.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--device-id", description: "key: id of device"));
             command.AddOption(new Option<string>("--extension-id", description: "key: id of extension"));
@@ -42,6 +43,7 @@ namespace ApiSdk.Devices.Item.Extensions.Item {
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
+            command.Description = "The collection of open extensions defined for the device. Read-only. Nullable.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--device-id", description: "key: id of device"));
             command.AddOption(new Option<string>("--extension-id", description: "key: id of extension"));
@@ -69,6 +71,7 @@ namespace ApiSdk.Devices.Item.Extensions.Item {
         /// </summary>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
+            command.Description = "The collection of open extensions defined for the device. Read-only. Nullable.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--device-id", description: "key: id of device"));
             command.AddOption(new Option<string>("--extension-id", description: "key: id of extension"));

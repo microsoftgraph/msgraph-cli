@@ -43,6 +43,7 @@ namespace ApiSdk.Workbooks.Item.Workbook.Tables.Item.Rows {
         /// </summary>
         public Command BuildCreateCommand() {
             var command = new Command("create");
+            command.Description = "Represents a collection of all the rows in the table. Read-only.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--driveitem-id", description: "key: id of driveItem"));
             command.AddOption(new Option<string>("--workbooktable-id", description: "key: id of workbookTable"));
@@ -70,6 +71,7 @@ namespace ApiSdk.Workbooks.Item.Workbook.Tables.Item.Rows {
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
+            command.Description = "Represents a collection of all the rows in the table. Read-only.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--driveitem-id", description: "key: id of driveItem"));
             command.AddOption(new Option<string>("--workbooktable-id", description: "key: id of workbookTable"));

@@ -24,6 +24,7 @@ namespace ApiSdk.External.Connections.Item {
         /// </summary>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
+            command.Description = "Delete navigation property connections for external";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--externalconnection-id", description: "key: id of externalConnection"));
             command.Handler = CommandHandler.Create<string>(async (externalConnectionId) => {
@@ -40,6 +41,7 @@ namespace ApiSdk.External.Connections.Item {
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
+            command.Description = "Get connections from external";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--externalconnection-id", description: "key: id of externalConnection"));
             command.AddOption(new Option<object>("--select", description: "Select properties to be returned"));
@@ -65,6 +67,7 @@ namespace ApiSdk.External.Connections.Item {
         /// </summary>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
+            command.Description = "Update the navigation property connections in external";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--externalconnection-id", description: "key: id of externalConnection"));
             command.AddOption(new Option<string>("--body"));

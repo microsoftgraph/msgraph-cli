@@ -24,6 +24,7 @@ namespace ApiSdk.IdentityGovernance.TermsOfUse.Agreements.Item {
         /// </summary>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
+            command.Description = "Delete navigation property agreements for identityGovernance";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--agreement-id", description: "key: id of agreement"));
             command.Handler = CommandHandler.Create<string>(async (agreementId) => {
@@ -40,6 +41,7 @@ namespace ApiSdk.IdentityGovernance.TermsOfUse.Agreements.Item {
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
+            command.Description = "Get agreements from identityGovernance";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--agreement-id", description: "key: id of agreement"));
             command.AddOption(new Option<object>("--select", description: "Select properties to be returned"));
@@ -65,6 +67,7 @@ namespace ApiSdk.IdentityGovernance.TermsOfUse.Agreements.Item {
         /// </summary>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
+            command.Description = "Update the navigation property agreements in identityGovernance";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--agreement-id", description: "key: id of agreement"));
             command.AddOption(new Option<string>("--body"));

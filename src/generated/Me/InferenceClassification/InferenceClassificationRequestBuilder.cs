@@ -25,6 +25,7 @@ namespace ApiSdk.Me.InferenceClassification {
         /// </summary>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
+            command.Description = "Relevance classification of the user's messages based on explicit designations which override inferred relevance or importance.";
             // Create options for all the parameters
             command.Handler = CommandHandler.Create(async () => {
                 var requestInfo = CreateDeleteRequestInformation();
@@ -39,6 +40,7 @@ namespace ApiSdk.Me.InferenceClassification {
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
+            command.Description = "Relevance classification of the user's messages based on explicit designations which override inferred relevance or importance.";
             // Create options for all the parameters
             command.AddOption(new Option<object>("--select", description: "Select properties to be returned"));
             command.Handler = CommandHandler.Create<object>(async (select) => {
@@ -70,6 +72,7 @@ namespace ApiSdk.Me.InferenceClassification {
         /// </summary>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
+            command.Description = "Relevance classification of the user's messages based on explicit designations which override inferred relevance or importance.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--body"));
             command.Handler = CommandHandler.Create<string>(async (body) => {

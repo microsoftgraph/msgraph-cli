@@ -23,6 +23,7 @@ namespace ApiSdk.Identity.B2xUserFlows.Item.UserFlowIdentityProviders.AvailableP
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
+            command.Description = "Invoke function availableProviderTypes";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--b2xidentityuserflow-id", description: "key: id of b2xIdentityUserFlow"));
             command.Handler = CommandHandler.Create<string>(async (b2xIdentityUserFlowId) => {

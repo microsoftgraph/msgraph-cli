@@ -24,6 +24,7 @@ namespace ApiSdk.Privacy.SubjectRightsRequests.Item.Notes.Item {
         /// </summary>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
+            command.Description = "List of notes associcated with the request.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--subjectrightsrequest-id", description: "key: id of subjectRightsRequest"));
             command.AddOption(new Option<string>("--authorednote-id", description: "key: id of authoredNote"));
@@ -42,6 +43,7 @@ namespace ApiSdk.Privacy.SubjectRightsRequests.Item.Notes.Item {
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
+            command.Description = "List of notes associcated with the request.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--subjectrightsrequest-id", description: "key: id of subjectRightsRequest"));
             command.AddOption(new Option<string>("--authorednote-id", description: "key: id of authoredNote"));
@@ -69,6 +71,7 @@ namespace ApiSdk.Privacy.SubjectRightsRequests.Item.Notes.Item {
         /// </summary>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
+            command.Description = "List of notes associcated with the request.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--subjectrightsrequest-id", description: "key: id of subjectRightsRequest"));
             command.AddOption(new Option<string>("--authorednote-id", description: "key: id of authoredNote"));

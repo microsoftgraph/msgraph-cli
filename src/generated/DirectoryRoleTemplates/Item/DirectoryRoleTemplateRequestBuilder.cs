@@ -41,6 +41,7 @@ namespace ApiSdk.DirectoryRoleTemplates.Item {
         /// </summary>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
+            command.Description = "Delete entity from directoryRoleTemplates";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--directoryroletemplate-id", description: "key: id of directoryRoleTemplate"));
             command.Handler = CommandHandler.Create<string>(async (directoryRoleTemplateId) => {
@@ -57,6 +58,7 @@ namespace ApiSdk.DirectoryRoleTemplates.Item {
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
+            command.Description = "Get entity from directoryRoleTemplates by key";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--directoryroletemplate-id", description: "key: id of directoryRoleTemplate"));
             command.AddOption(new Option<object>("--select", description: "Select properties to be returned"));
@@ -94,6 +96,7 @@ namespace ApiSdk.DirectoryRoleTemplates.Item {
         /// </summary>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
+            command.Description = "Update entity in directoryRoleTemplates";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--directoryroletemplate-id", description: "key: id of directoryRoleTemplate"));
             command.AddOption(new Option<string>("--body"));

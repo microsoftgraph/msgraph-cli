@@ -24,6 +24,7 @@ namespace ApiSdk.Teams.Item.Schedule.TimeOffRequests.Item {
         /// </summary>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
+            command.Description = "Delete navigation property timeOffRequests for teams";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--team-id", description: "key: id of team"));
             command.AddOption(new Option<string>("--timeoffrequest-id", description: "key: id of timeOffRequest"));
@@ -42,6 +43,7 @@ namespace ApiSdk.Teams.Item.Schedule.TimeOffRequests.Item {
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
+            command.Description = "Get timeOffRequests from teams";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--team-id", description: "key: id of team"));
             command.AddOption(new Option<string>("--timeoffrequest-id", description: "key: id of timeOffRequest"));
@@ -67,6 +69,7 @@ namespace ApiSdk.Teams.Item.Schedule.TimeOffRequests.Item {
         /// </summary>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
+            command.Description = "Update the navigation property timeOffRequests in teams";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--team-id", description: "key: id of team"));
             command.AddOption(new Option<string>("--timeoffrequest-id", description: "key: id of timeOffRequest"));

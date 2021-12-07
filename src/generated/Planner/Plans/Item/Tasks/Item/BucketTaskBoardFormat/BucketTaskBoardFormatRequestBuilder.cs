@@ -24,6 +24,7 @@ namespace ApiSdk.Planner.Plans.Item.Tasks.Item.BucketTaskBoardFormat {
         /// </summary>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
+            command.Description = "Read-only. Nullable. Used to render the task correctly in the task board view when grouped by bucket.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--plannerplan-id", description: "key: id of plannerPlan"));
             command.AddOption(new Option<string>("--plannertask-id", description: "key: id of plannerTask"));
@@ -42,6 +43,7 @@ namespace ApiSdk.Planner.Plans.Item.Tasks.Item.BucketTaskBoardFormat {
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
+            command.Description = "Read-only. Nullable. Used to render the task correctly in the task board view when grouped by bucket.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--plannerplan-id", description: "key: id of plannerPlan"));
             command.AddOption(new Option<string>("--plannertask-id", description: "key: id of plannerTask"));
@@ -69,6 +71,7 @@ namespace ApiSdk.Planner.Plans.Item.Tasks.Item.BucketTaskBoardFormat {
         /// </summary>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
+            command.Description = "Read-only. Nullable. Used to render the task correctly in the task board view when grouped by bucket.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--plannerplan-id", description: "key: id of plannerPlan"));
             command.AddOption(new Option<string>("--plannertask-id", description: "key: id of plannerTask"));

@@ -25,6 +25,7 @@ namespace ApiSdk.Me.ManagedAppRegistrations {
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
+            command.Description = "Zero or more managed app registrations that belong to the user.";
             // Create options for all the parameters
             command.AddOption(new Option<int?>("--top", description: "Show only the first n items"));
             command.AddOption(new Option<int?>("--skip", description: "Skip the first n items"));

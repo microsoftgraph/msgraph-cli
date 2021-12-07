@@ -24,6 +24,7 @@ namespace ApiSdk.Identity.ConditionalAccess.Policies.Item {
         /// </summary>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
+            command.Description = "Read-only. Nullable. Returns a collection of the specified Conditional Access (CA) policies.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--conditionalaccesspolicy-id", description: "key: id of conditionalAccessPolicy"));
             command.Handler = CommandHandler.Create<string>(async (conditionalAccessPolicyId) => {
@@ -40,6 +41,7 @@ namespace ApiSdk.Identity.ConditionalAccess.Policies.Item {
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
+            command.Description = "Read-only. Nullable. Returns a collection of the specified Conditional Access (CA) policies.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--conditionalaccesspolicy-id", description: "key: id of conditionalAccessPolicy"));
             command.AddOption(new Option<object>("--select", description: "Select properties to be returned"));
@@ -65,6 +67,7 @@ namespace ApiSdk.Identity.ConditionalAccess.Policies.Item {
         /// </summary>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
+            command.Description = "Read-only. Nullable. Returns a collection of the specified Conditional Access (CA) policies.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--conditionalaccesspolicy-id", description: "key: id of conditionalAccessPolicy"));
             command.AddOption(new Option<string>("--body"));

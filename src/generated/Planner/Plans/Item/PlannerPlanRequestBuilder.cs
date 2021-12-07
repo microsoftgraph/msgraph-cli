@@ -37,6 +37,7 @@ namespace ApiSdk.Planner.Plans.Item {
         /// </summary>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
+            command.Description = "Read-only. Nullable. Returns a collection of the specified plans";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--plannerplan-id", description: "key: id of plannerPlan"));
             command.Handler = CommandHandler.Create<string>(async (plannerPlanId) => {
@@ -61,6 +62,7 @@ namespace ApiSdk.Planner.Plans.Item {
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
+            command.Description = "Read-only. Nullable. Returns a collection of the specified plans";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--plannerplan-id", description: "key: id of plannerPlan"));
             command.AddOption(new Option<object>("--select", description: "Select properties to be returned"));
@@ -86,6 +88,7 @@ namespace ApiSdk.Planner.Plans.Item {
         /// </summary>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
+            command.Description = "Read-only. Nullable. Returns a collection of the specified plans";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--plannerplan-id", description: "key: id of plannerPlan"));
             command.AddOption(new Option<string>("--body"));

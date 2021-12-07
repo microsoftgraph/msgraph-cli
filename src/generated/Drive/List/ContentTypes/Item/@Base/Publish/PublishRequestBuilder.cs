@@ -23,6 +23,7 @@ namespace ApiSdk.Drive.List.ContentTypes.Item.@Base.Publish {
         /// </summary>
         public Command BuildPostCommand() {
             var command = new Command("post");
+            command.Description = "Invoke action publish";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--contenttype-id", description: "key: id of contentType"));
             command.Handler = CommandHandler.Create<string>(async (contentTypeId) => {

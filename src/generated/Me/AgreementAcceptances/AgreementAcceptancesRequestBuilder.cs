@@ -24,6 +24,7 @@ namespace ApiSdk.Me.AgreementAcceptances {
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
+            command.Description = "The user's terms of use acceptance statuses. Read-only. Nullable.";
             // Create options for all the parameters
             command.AddOption(new Option<int?>("--top", description: "Show only the first n items"));
             command.AddOption(new Option<int?>("--skip", description: "Skip the first n items"));

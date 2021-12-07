@@ -23,6 +23,7 @@ namespace ApiSdk.Drive.List.ContentTypes.Item.@Base.AssociateWithHubSites {
         /// </summary>
         public Command BuildPostCommand() {
             var command = new Command("post");
+            command.Description = "Invoke action associateWithHubSites";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--contenttype-id", description: "key: id of contentType"));
             command.AddOption(new Option<string>("--body"));

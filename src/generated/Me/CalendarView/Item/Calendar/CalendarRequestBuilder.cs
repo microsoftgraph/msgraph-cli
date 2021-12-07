@@ -59,6 +59,7 @@ namespace ApiSdk.Me.CalendarView.Item.Calendar {
         /// </summary>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
+            command.Description = "The calendar that contains the event. Navigation property. Read-only.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--event-id", description: "key: id of event"));
             command.Handler = CommandHandler.Create<string>(async (eventId) => {
@@ -85,6 +86,7 @@ namespace ApiSdk.Me.CalendarView.Item.Calendar {
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
+            command.Description = "The calendar that contains the event. Navigation property. Read-only.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--event-id", description: "key: id of event"));
             command.AddOption(new Option<object>("--select", description: "Select properties to be returned"));
@@ -124,6 +126,7 @@ namespace ApiSdk.Me.CalendarView.Item.Calendar {
         /// </summary>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
+            command.Description = "The calendar that contains the event. Navigation property. Read-only.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--event-id", description: "key: id of event"));
             command.AddOption(new Option<string>("--body"));

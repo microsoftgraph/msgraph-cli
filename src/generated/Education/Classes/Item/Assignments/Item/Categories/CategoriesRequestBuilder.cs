@@ -34,6 +34,7 @@ namespace ApiSdk.Education.Classes.Item.Assignments.Item.Categories {
         /// </summary>
         public Command BuildCreateCommand() {
             var command = new Command("create");
+            command.Description = "When set, enables users to easily find assignments of a given type.  Read-only. Nullable.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--educationclass-id", description: "key: id of educationClass"));
             command.AddOption(new Option<string>("--educationassignment-id", description: "key: id of educationAssignment"));
@@ -61,6 +62,7 @@ namespace ApiSdk.Education.Classes.Item.Assignments.Item.Categories {
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
+            command.Description = "When set, enables users to easily find assignments of a given type.  Read-only. Nullable.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--educationclass-id", description: "key: id of educationClass"));
             command.AddOption(new Option<string>("--educationassignment-id", description: "key: id of educationAssignment"));

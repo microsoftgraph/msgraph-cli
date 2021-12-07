@@ -24,6 +24,7 @@ namespace ApiSdk.DeviceAppManagement.TargetedManagedAppConfigurations.Item.Assig
         /// </summary>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
+            command.Description = "Navigation property to list of inclusion and exclusion groups to which the policy is deployed.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--targetedmanagedappconfiguration-id", description: "key: id of targetedManagedAppConfiguration"));
             command.AddOption(new Option<string>("--targetedmanagedapppolicyassignment-id", description: "key: id of targetedManagedAppPolicyAssignment"));
@@ -42,6 +43,7 @@ namespace ApiSdk.DeviceAppManagement.TargetedManagedAppConfigurations.Item.Assig
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
+            command.Description = "Navigation property to list of inclusion and exclusion groups to which the policy is deployed.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--targetedmanagedappconfiguration-id", description: "key: id of targetedManagedAppConfiguration"));
             command.AddOption(new Option<string>("--targetedmanagedapppolicyassignment-id", description: "key: id of targetedManagedAppPolicyAssignment"));
@@ -69,6 +71,7 @@ namespace ApiSdk.DeviceAppManagement.TargetedManagedAppConfigurations.Item.Assig
         /// </summary>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
+            command.Description = "Navigation property to list of inclusion and exclusion groups to which the policy is deployed.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--targetedmanagedappconfiguration-id", description: "key: id of targetedManagedAppConfiguration"));
             command.AddOption(new Option<string>("--targetedmanagedapppolicyassignment-id", description: "key: id of targetedManagedAppPolicyAssignment"));

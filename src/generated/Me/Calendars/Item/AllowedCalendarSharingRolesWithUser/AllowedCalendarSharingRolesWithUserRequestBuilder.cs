@@ -23,6 +23,7 @@ namespace ApiSdk.Me.Calendars.Item.AllowedCalendarSharingRolesWithUser {
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
+            command.Description = "Invoke function allowedCalendarSharingRoles";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--calendar-id", description: "key: id of calendar"));
             command.AddOption(new Option<string>("--user", description: "Usage: User={User}"));

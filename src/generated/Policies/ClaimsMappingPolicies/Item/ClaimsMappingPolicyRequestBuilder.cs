@@ -24,6 +24,7 @@ namespace ApiSdk.Policies.ClaimsMappingPolicies.Item {
         /// </summary>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
+            command.Description = "The claim-mapping policies for WS-Fed, SAML, OAuth 2.0, and OpenID Connect protocols, for tokens issued to a specific application.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--claimsmappingpolicy-id", description: "key: id of claimsMappingPolicy"));
             command.Handler = CommandHandler.Create<string>(async (claimsMappingPolicyId) => {
@@ -40,6 +41,7 @@ namespace ApiSdk.Policies.ClaimsMappingPolicies.Item {
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
+            command.Description = "The claim-mapping policies for WS-Fed, SAML, OAuth 2.0, and OpenID Connect protocols, for tokens issued to a specific application.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--claimsmappingpolicy-id", description: "key: id of claimsMappingPolicy"));
             command.AddOption(new Option<object>("--select", description: "Select properties to be returned"));
@@ -65,6 +67,7 @@ namespace ApiSdk.Policies.ClaimsMappingPolicies.Item {
         /// </summary>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
+            command.Description = "The claim-mapping policies for WS-Fed, SAML, OAuth 2.0, and OpenID Connect protocols, for tokens issued to a specific application.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--claimsmappingpolicy-id", description: "key: id of claimsMappingPolicy"));
             command.AddOption(new Option<string>("--body"));

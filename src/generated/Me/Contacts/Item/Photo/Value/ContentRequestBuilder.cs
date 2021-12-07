@@ -23,6 +23,7 @@ namespace ApiSdk.Me.Contacts.Item.Photo.Value {
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
+            command.Description = "The user's profile photo. Read-only.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--contact-id", description: "key: id of contact"));
             command.AddOption(new Option<FileInfo>("--output"));
@@ -49,6 +50,7 @@ namespace ApiSdk.Me.Contacts.Item.Photo.Value {
         /// </summary>
         public Command BuildPutCommand() {
             var command = new Command("put");
+            command.Description = "The user's profile photo. Read-only.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--contact-id", description: "key: id of contact"));
             command.AddOption(new Option<Stream>("--file", description: "Binary request body"));

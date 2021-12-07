@@ -23,6 +23,7 @@ namespace ApiSdk.Communications.Presences.Item.SetPresence {
         /// </summary>
         public Command BuildPostCommand() {
             var command = new Command("post");
+            command.Description = "Invoke action setPresence";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--presence-id", description: "key: id of presence"));
             command.AddOption(new Option<string>("--body"));

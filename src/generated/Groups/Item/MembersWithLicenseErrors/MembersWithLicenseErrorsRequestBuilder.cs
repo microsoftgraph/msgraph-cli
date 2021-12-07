@@ -24,6 +24,7 @@ namespace ApiSdk.Groups.Item.MembersWithLicenseErrors {
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
+            command.Description = "A list of group members with license errors from this group-based license assignment. Read-only.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--group-id", description: "key: id of group"));
             command.AddOption(new Option<int?>("--top", description: "Show only the first n items"));

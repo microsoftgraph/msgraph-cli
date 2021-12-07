@@ -25,6 +25,7 @@ namespace ApiSdk.Invitations.Item.InvitedUser {
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
+            command.Description = "The user created as part of the invitation creation. Read-Only";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--invitation-id", description: "key: id of invitation"));
             command.AddOption(new Option<object>("--select", description: "Select properties to be returned"));

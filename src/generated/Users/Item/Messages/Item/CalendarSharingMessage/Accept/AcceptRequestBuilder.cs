@@ -24,6 +24,7 @@ namespace ApiSdk.Users.Item.Messages.Item.CalendarSharingMessage.Accept {
         /// </summary>
         public Command BuildPostCommand() {
             var command = new Command("post");
+            command.Description = "Invoke action accept";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--user-id", description: "key: id of user"));
             command.AddOption(new Option<string>("--message-id", description: "key: id of message"));

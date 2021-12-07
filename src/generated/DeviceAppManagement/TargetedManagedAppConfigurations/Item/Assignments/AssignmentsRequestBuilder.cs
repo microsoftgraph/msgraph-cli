@@ -34,6 +34,7 @@ namespace ApiSdk.DeviceAppManagement.TargetedManagedAppConfigurations.Item.Assig
         /// </summary>
         public Command BuildCreateCommand() {
             var command = new Command("create");
+            command.Description = "Navigation property to list of inclusion and exclusion groups to which the policy is deployed.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--targetedmanagedappconfiguration-id", description: "key: id of targetedManagedAppConfiguration"));
             command.AddOption(new Option<string>("--body"));
@@ -59,6 +60,7 @@ namespace ApiSdk.DeviceAppManagement.TargetedManagedAppConfigurations.Item.Assig
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
+            command.Description = "Navigation property to list of inclusion and exclusion groups to which the policy is deployed.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--targetedmanagedappconfiguration-id", description: "key: id of targetedManagedAppConfiguration"));
             command.AddOption(new Option<int?>("--top", description: "Show only the first n items"));

@@ -23,6 +23,7 @@ namespace ApiSdk.Groups.Item.Calendar.Events.Item.Calendar.AllowedCalendarSharin
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
+            command.Description = "Invoke function allowedCalendarSharingRoles";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--group-id", description: "key: id of group"));
             command.AddOption(new Option<string>("--event-id", description: "key: id of event"));

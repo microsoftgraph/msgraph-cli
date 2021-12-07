@@ -25,6 +25,7 @@ namespace ApiSdk.Groups.Item.CreatedOnBehalfOf {
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
+            command.Description = "The user (or application) that created the group. NOTE: This is not set if the user is an administrator. Read-only.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--group-id", description: "key: id of group"));
             command.AddOption(new Option<object>("--select", description: "Select properties to be returned"));

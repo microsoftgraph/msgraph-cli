@@ -24,6 +24,7 @@ namespace ApiSdk.Drives.Item.List.ContentTypes.AddCopy {
         /// </summary>
         public Command BuildPostCommand() {
             var command = new Command("post");
+            command.Description = "Invoke action addCopy";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--drive-id", description: "key: id of drive"));
             command.AddOption(new Option<string>("--body"));

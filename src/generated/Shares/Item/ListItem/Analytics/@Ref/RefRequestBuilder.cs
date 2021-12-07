@@ -23,6 +23,7 @@ namespace ApiSdk.Shares.Item.ListItem.Analytics.@Ref {
         /// </summary>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
+            command.Description = "Analytics about the view activities that took place on this item.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--shareddriveitem-id", description: "key: id of sharedDriveItem"));
             command.Handler = CommandHandler.Create<string>(async (sharedDriveItemId) => {
@@ -39,6 +40,7 @@ namespace ApiSdk.Shares.Item.ListItem.Analytics.@Ref {
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
+            command.Description = "Analytics about the view activities that took place on this item.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--shareddriveitem-id", description: "key: id of sharedDriveItem"));
             command.Handler = CommandHandler.Create<string>(async (sharedDriveItemId) => {
@@ -60,6 +62,7 @@ namespace ApiSdk.Shares.Item.ListItem.Analytics.@Ref {
         /// </summary>
         public Command BuildPutCommand() {
             var command = new Command("put");
+            command.Description = "Analytics about the view activities that took place on this item.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--shareddriveitem-id", description: "key: id of sharedDriveItem"));
             command.AddOption(new Option<string>("--body"));

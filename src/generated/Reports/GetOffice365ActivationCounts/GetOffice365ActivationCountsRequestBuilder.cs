@@ -24,6 +24,7 @@ namespace ApiSdk.Reports.GetOffice365ActivationCounts {
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
+            command.Description = "Invoke function getOffice365ActivationCounts";
             // Create options for all the parameters
             command.Handler = CommandHandler.Create(async () => {
                 var requestInfo = CreateGetRequestInformation();

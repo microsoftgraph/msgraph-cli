@@ -26,6 +26,7 @@ namespace ApiSdk.Me.Todo.Lists.Item {
         /// </summary>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
+            command.Description = "The task lists in the users mailbox.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--todotasklist-id", description: "key: id of todoTaskList"));
             command.Handler = CommandHandler.Create<string>(async (todoTaskListId) => {
@@ -52,6 +53,7 @@ namespace ApiSdk.Me.Todo.Lists.Item {
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
+            command.Description = "The task lists in the users mailbox.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--todotasklist-id", description: "key: id of todoTaskList"));
             command.AddOption(new Option<object>("--select", description: "Select properties to be returned"));
@@ -77,6 +79,7 @@ namespace ApiSdk.Me.Todo.Lists.Item {
         /// </summary>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
+            command.Description = "The task lists in the users mailbox.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--todotasklist-id", description: "key: id of todoTaskList"));
             command.AddOption(new Option<string>("--body"));

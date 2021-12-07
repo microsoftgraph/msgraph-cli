@@ -24,6 +24,7 @@ namespace ApiSdk.Contacts.Item.TransitiveMemberOf {
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
+            command.Description = "Get transitiveMemberOf from contacts";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--orgcontact-id", description: "key: id of orgContact"));
             command.AddOption(new Option<int?>("--top", description: "Show only the first n items"));

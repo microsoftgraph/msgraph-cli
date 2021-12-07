@@ -28,6 +28,7 @@ namespace ApiSdk.Identity.B2xUserFlows.Item {
         /// </summary>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
+            command.Description = "Represents entry point for B2X/self-service sign-up identity userflows.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--b2xidentityuserflow-id", description: "key: id of b2xIdentityUserFlow"));
             command.Handler = CommandHandler.Create<string>(async (b2xIdentityUserFlowId) => {
@@ -44,6 +45,7 @@ namespace ApiSdk.Identity.B2xUserFlows.Item {
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
+            command.Description = "Represents entry point for B2X/self-service sign-up identity userflows.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--b2xidentityuserflow-id", description: "key: id of b2xIdentityUserFlow"));
             command.AddOption(new Option<object>("--select", description: "Select properties to be returned"));
@@ -86,6 +88,7 @@ namespace ApiSdk.Identity.B2xUserFlows.Item {
         /// </summary>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
+            command.Description = "Represents entry point for B2X/self-service sign-up identity userflows.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--b2xidentityuserflow-id", description: "key: id of b2xIdentityUserFlow"));
             command.AddOption(new Option<string>("--body"));

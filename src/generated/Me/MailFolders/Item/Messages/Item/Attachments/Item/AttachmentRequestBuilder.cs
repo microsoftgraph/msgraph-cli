@@ -24,6 +24,7 @@ namespace ApiSdk.Me.MailFolders.Item.Messages.Item.Attachments.Item {
         /// </summary>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
+            command.Description = "The fileAttachment and itemAttachment attachments for the message.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--mailfolder-id", description: "key: id of mailFolder"));
             command.AddOption(new Option<string>("--message-id", description: "key: id of message"));
@@ -44,6 +45,7 @@ namespace ApiSdk.Me.MailFolders.Item.Messages.Item.Attachments.Item {
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
+            command.Description = "The fileAttachment and itemAttachment attachments for the message.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--mailfolder-id", description: "key: id of mailFolder"));
             command.AddOption(new Option<string>("--message-id", description: "key: id of message"));
@@ -73,6 +75,7 @@ namespace ApiSdk.Me.MailFolders.Item.Messages.Item.Attachments.Item {
         /// </summary>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
+            command.Description = "The fileAttachment and itemAttachment attachments for the message.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--mailfolder-id", description: "key: id of mailFolder"));
             command.AddOption(new Option<string>("--message-id", description: "key: id of message"));

@@ -24,6 +24,7 @@ namespace ApiSdk.Users.Item.Onenote.Pages.Item.ParentSection.CopyToNotebook {
         /// </summary>
         public Command BuildPostCommand() {
             var command = new Command("post");
+            command.Description = "Invoke action copyToNotebook";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--user-id", description: "key: id of user"));
             command.AddOption(new Option<string>("--onenotepage-id", description: "key: id of onenotePage"));

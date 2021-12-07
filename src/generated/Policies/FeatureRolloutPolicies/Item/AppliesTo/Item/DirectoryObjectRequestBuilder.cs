@@ -24,6 +24,7 @@ namespace ApiSdk.Policies.FeatureRolloutPolicies.Item.AppliesTo.Item {
         /// </summary>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
+            command.Description = "Nullable. Specifies a list of directoryObjects that feature is enabled for.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--featurerolloutpolicy-id", description: "key: id of featureRolloutPolicy"));
             command.AddOption(new Option<string>("--directoryobject-id", description: "key: id of directoryObject"));
@@ -42,6 +43,7 @@ namespace ApiSdk.Policies.FeatureRolloutPolicies.Item.AppliesTo.Item {
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
+            command.Description = "Nullable. Specifies a list of directoryObjects that feature is enabled for.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--featurerolloutpolicy-id", description: "key: id of featureRolloutPolicy"));
             command.AddOption(new Option<string>("--directoryobject-id", description: "key: id of directoryObject"));
@@ -69,6 +71,7 @@ namespace ApiSdk.Policies.FeatureRolloutPolicies.Item.AppliesTo.Item {
         /// </summary>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
+            command.Description = "Nullable. Specifies a list of directoryObjects that feature is enabled for.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--featurerolloutpolicy-id", description: "key: id of featureRolloutPolicy"));
             command.AddOption(new Option<string>("--directoryobject-id", description: "key: id of directoryObject"));

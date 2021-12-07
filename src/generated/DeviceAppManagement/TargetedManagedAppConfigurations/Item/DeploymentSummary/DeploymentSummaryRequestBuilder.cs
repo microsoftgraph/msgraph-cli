@@ -24,6 +24,7 @@ namespace ApiSdk.DeviceAppManagement.TargetedManagedAppConfigurations.Item.Deplo
         /// </summary>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
+            command.Description = "Navigation property to deployment summary of the configuration.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--targetedmanagedappconfiguration-id", description: "key: id of targetedManagedAppConfiguration"));
             command.Handler = CommandHandler.Create<string>(async (targetedManagedAppConfigurationId) => {
@@ -40,6 +41,7 @@ namespace ApiSdk.DeviceAppManagement.TargetedManagedAppConfigurations.Item.Deplo
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
+            command.Description = "Navigation property to deployment summary of the configuration.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--targetedmanagedappconfiguration-id", description: "key: id of targetedManagedAppConfiguration"));
             command.AddOption(new Option<object>("--select", description: "Select properties to be returned"));
@@ -65,6 +67,7 @@ namespace ApiSdk.DeviceAppManagement.TargetedManagedAppConfigurations.Item.Deplo
         /// </summary>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
+            command.Description = "Navigation property to deployment summary of the configuration.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--targetedmanagedappconfiguration-id", description: "key: id of targetedManagedAppConfiguration"));
             command.AddOption(new Option<string>("--body"));

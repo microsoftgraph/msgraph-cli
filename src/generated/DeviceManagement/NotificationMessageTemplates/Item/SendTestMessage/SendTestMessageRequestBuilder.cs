@@ -23,6 +23,7 @@ namespace ApiSdk.DeviceManagement.NotificationMessageTemplates.Item.SendTestMess
         /// </summary>
         public Command BuildPostCommand() {
             var command = new Command("post");
+            command.Description = "Sends test message using the specified notificationMessageTemplate in the default locale";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--notificationmessagetemplate-id", description: "key: id of notificationMessageTemplate"));
             command.Handler = CommandHandler.Create<string>(async (notificationMessageTemplateId) => {

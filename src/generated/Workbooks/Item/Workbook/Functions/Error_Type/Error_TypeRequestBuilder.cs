@@ -24,6 +24,7 @@ namespace ApiSdk.Workbooks.Item.Workbook.Functions.Error_Type {
         /// </summary>
         public Command BuildPostCommand() {
             var command = new Command("post");
+            command.Description = "Invoke action error_Type";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--driveitem-id", description: "key: id of driveItem"));
             command.AddOption(new Option<string>("--body"));

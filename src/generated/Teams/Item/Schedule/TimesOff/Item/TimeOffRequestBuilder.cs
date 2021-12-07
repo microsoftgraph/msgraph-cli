@@ -24,6 +24,7 @@ namespace ApiSdk.Teams.Item.Schedule.TimesOff.Item {
         /// </summary>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
+            command.Description = "The instances of times off in the schedule.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--team-id", description: "key: id of team"));
             command.AddOption(new Option<string>("--timeoff-id", description: "key: id of timeOff"));
@@ -42,6 +43,7 @@ namespace ApiSdk.Teams.Item.Schedule.TimesOff.Item {
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
+            command.Description = "The instances of times off in the schedule.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--team-id", description: "key: id of team"));
             command.AddOption(new Option<string>("--timeoff-id", description: "key: id of timeOff"));
@@ -67,6 +69,7 @@ namespace ApiSdk.Teams.Item.Schedule.TimesOff.Item {
         /// </summary>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
+            command.Description = "The instances of times off in the schedule.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--team-id", description: "key: id of team"));
             command.AddOption(new Option<string>("--timeoff-id", description: "key: id of timeOff"));

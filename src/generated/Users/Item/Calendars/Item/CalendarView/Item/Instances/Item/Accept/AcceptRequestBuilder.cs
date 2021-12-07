@@ -23,6 +23,7 @@ namespace ApiSdk.Users.Item.Calendars.Item.CalendarView.Item.Instances.Item.Acce
         /// </summary>
         public Command BuildPostCommand() {
             var command = new Command("post");
+            command.Description = "Invoke action accept";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--user-id", description: "key: id of user"));
             command.AddOption(new Option<string>("--calendar-id", description: "key: id of calendar"));

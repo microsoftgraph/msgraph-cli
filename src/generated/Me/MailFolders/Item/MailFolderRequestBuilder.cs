@@ -47,6 +47,7 @@ namespace ApiSdk.Me.MailFolders.Item {
         /// </summary>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
+            command.Description = "The user's mail folders. Read-only. Nullable.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--mailfolder-id", description: "key: id of mailFolder"));
             command.Handler = CommandHandler.Create<string>(async (mailFolderId) => {
@@ -63,6 +64,7 @@ namespace ApiSdk.Me.MailFolders.Item {
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
+            command.Description = "The user's mail folders. Read-only. Nullable.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--mailfolder-id", description: "key: id of mailFolder"));
             command.AddOption(new Option<object>("--select", description: "Select properties to be returned"));
@@ -122,6 +124,7 @@ namespace ApiSdk.Me.MailFolders.Item {
         /// </summary>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
+            command.Description = "The user's mail folders. Read-only. Nullable.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--mailfolder-id", description: "key: id of mailFolder"));
             command.AddOption(new Option<string>("--body"));

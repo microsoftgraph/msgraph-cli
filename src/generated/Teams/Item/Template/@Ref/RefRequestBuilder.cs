@@ -23,6 +23,7 @@ namespace ApiSdk.Teams.Item.Template.@Ref {
         /// </summary>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
+            command.Description = "The template this team was created from. See available templates.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--team-id", description: "key: id of team"));
             command.Handler = CommandHandler.Create<string>(async (teamId) => {
@@ -39,6 +40,7 @@ namespace ApiSdk.Teams.Item.Template.@Ref {
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
+            command.Description = "The template this team was created from. See available templates.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--team-id", description: "key: id of team"));
             command.Handler = CommandHandler.Create<string>(async (teamId) => {
@@ -60,6 +62,7 @@ namespace ApiSdk.Teams.Item.Template.@Ref {
         /// </summary>
         public Command BuildPutCommand() {
             var command = new Command("put");
+            command.Description = "The template this team was created from. See available templates.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--team-id", description: "key: id of team"));
             command.AddOption(new Option<string>("--body"));

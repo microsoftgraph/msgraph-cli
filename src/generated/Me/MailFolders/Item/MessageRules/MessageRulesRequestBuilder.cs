@@ -34,6 +34,7 @@ namespace ApiSdk.Me.MailFolders.Item.MessageRules {
         /// </summary>
         public Command BuildCreateCommand() {
             var command = new Command("create");
+            command.Description = "The collection of rules that apply to the user's Inbox folder.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--mailfolder-id", description: "key: id of mailFolder"));
             command.AddOption(new Option<string>("--body"));
@@ -59,6 +60,7 @@ namespace ApiSdk.Me.MailFolders.Item.MessageRules {
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
+            command.Description = "The collection of rules that apply to the user's Inbox folder.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--mailfolder-id", description: "key: id of mailFolder"));
             command.AddOption(new Option<int?>("--top", description: "Show only the first n items"));

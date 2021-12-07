@@ -24,6 +24,7 @@ namespace ApiSdk.Me.ReprocessLicenseAssignment {
         /// </summary>
         public Command BuildPostCommand() {
             var command = new Command("post");
+            command.Description = "Invoke action reprocessLicenseAssignment";
             // Create options for all the parameters
             command.Handler = CommandHandler.Create(async () => {
                 var requestInfo = CreatePostRequestInformation();

@@ -34,6 +34,7 @@ namespace ApiSdk.Sites.Item.TermStore.Sets.Item.ParentGroup.Sets {
         /// </summary>
         public Command BuildCreateCommand() {
             var command = new Command("create");
+            command.Description = "All sets under the group in a term [store].";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--site-id", description: "key: id of site"));
             command.AddOption(new Option<string>("--set-id", description: "key: id of set"));
@@ -61,6 +62,7 @@ namespace ApiSdk.Sites.Item.TermStore.Sets.Item.ParentGroup.Sets {
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
+            command.Description = "All sets under the group in a term [store].";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--site-id", description: "key: id of site"));
             command.AddOption(new Option<string>("--set-id", description: "key: id of set"));

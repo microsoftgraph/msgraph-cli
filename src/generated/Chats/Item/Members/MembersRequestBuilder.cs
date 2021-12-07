@@ -41,6 +41,7 @@ namespace ApiSdk.Chats.Item.Members {
         /// </summary>
         public Command BuildCreateCommand() {
             var command = new Command("create");
+            command.Description = "A collection of all the members in the chat. Nullable.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--chat-id", description: "key: id of chat"));
             command.AddOption(new Option<string>("--body"));
@@ -66,6 +67,7 @@ namespace ApiSdk.Chats.Item.Members {
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
+            command.Description = "A collection of all the members in the chat. Nullable.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--chat-id", description: "key: id of chat"));
             command.AddOption(new Option<int?>("--top", description: "Show only the first n items"));

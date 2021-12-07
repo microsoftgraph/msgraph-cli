@@ -23,6 +23,7 @@ namespace ApiSdk.Users.Item.Insights.Used.Item.Resource.@Ref {
         /// </summary>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
+            command.Description = "Used for navigating to the item that was used. For file attachments, the type is fileAttachment. For linked attachments, the type is driveItem.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--user-id", description: "key: id of user"));
             command.AddOption(new Option<string>("--usedinsight-id", description: "key: id of usedInsight"));
@@ -41,6 +42,7 @@ namespace ApiSdk.Users.Item.Insights.Used.Item.Resource.@Ref {
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
+            command.Description = "Used for navigating to the item that was used. For file attachments, the type is fileAttachment. For linked attachments, the type is driveItem.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--user-id", description: "key: id of user"));
             command.AddOption(new Option<string>("--usedinsight-id", description: "key: id of usedInsight"));
@@ -64,6 +66,7 @@ namespace ApiSdk.Users.Item.Insights.Used.Item.Resource.@Ref {
         /// </summary>
         public Command BuildPutCommand() {
             var command = new Command("put");
+            command.Description = "Used for navigating to the item that was used. For file attachments, the type is fileAttachment. For linked attachments, the type is driveItem.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--user-id", description: "key: id of user"));
             command.AddOption(new Option<string>("--usedinsight-id", description: "key: id of usedInsight"));

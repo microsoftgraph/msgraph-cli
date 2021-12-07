@@ -24,6 +24,7 @@ namespace ApiSdk.Me.Insights.Trending.Item.Resource.PrintDocument.CreateUploadSe
         /// </summary>
         public Command BuildPostCommand() {
             var command = new Command("post");
+            command.Description = "Invoke action createUploadSession";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--trending-id", description: "key: id of trending"));
             command.AddOption(new Option<string>("--body"));

@@ -34,6 +34,7 @@ namespace ApiSdk.Me.CalendarGroups.Item.Calendars.Item.CalendarPermissions {
         /// </summary>
         public Command BuildCreateCommand() {
             var command = new Command("create");
+            command.Description = "The permissions of the users with whom the calendar is shared.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--calendargroup-id", description: "key: id of calendarGroup"));
             command.AddOption(new Option<string>("--calendar-id", description: "key: id of calendar"));
@@ -61,6 +62,7 @@ namespace ApiSdk.Me.CalendarGroups.Item.Calendars.Item.CalendarPermissions {
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
+            command.Description = "The permissions of the users with whom the calendar is shared.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--calendargroup-id", description: "key: id of calendarGroup"));
             command.AddOption(new Option<string>("--calendar-id", description: "key: id of calendar"));

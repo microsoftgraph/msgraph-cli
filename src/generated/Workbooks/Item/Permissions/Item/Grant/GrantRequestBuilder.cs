@@ -23,6 +23,7 @@ namespace ApiSdk.Workbooks.Item.Permissions.Item.Grant {
         /// </summary>
         public Command BuildPostCommand() {
             var command = new Command("post");
+            command.Description = "Invoke action grant";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--driveitem-id", description: "key: id of driveItem"));
             command.AddOption(new Option<string>("--permission-id", description: "key: id of permission"));

@@ -23,6 +23,7 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.Assignments.Item.Acces
         /// </summary>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
+            command.Description = "Read-only. Nullable.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--accesspackageassignment-id", description: "key: id of accessPackageAssignment"));
             command.Handler = CommandHandler.Create<string>(async (accessPackageAssignmentId) => {
@@ -39,6 +40,7 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.Assignments.Item.Acces
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
+            command.Description = "Read-only. Nullable.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--accesspackageassignment-id", description: "key: id of accessPackageAssignment"));
             command.Handler = CommandHandler.Create<string>(async (accessPackageAssignmentId) => {
@@ -60,6 +62,7 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.Assignments.Item.Acces
         /// </summary>
         public Command BuildPutCommand() {
             var command = new Command("put");
+            command.Description = "Read-only. Nullable.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--accesspackageassignment-id", description: "key: id of accessPackageAssignment"));
             command.AddOption(new Option<string>("--body"));

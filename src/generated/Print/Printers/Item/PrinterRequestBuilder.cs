@@ -35,6 +35,7 @@ namespace ApiSdk.Print.Printers.Item {
         /// </summary>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
+            command.Description = "The list of printers registered in the tenant.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--printer-id", description: "key: id of printer"));
             command.Handler = CommandHandler.Create<string>(async (printerId) => {
@@ -51,6 +52,7 @@ namespace ApiSdk.Print.Printers.Item {
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
+            command.Description = "The list of printers registered in the tenant.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--printer-id", description: "key: id of printer"));
             command.AddOption(new Option<object>("--select", description: "Select properties to be returned"));
@@ -76,6 +78,7 @@ namespace ApiSdk.Print.Printers.Item {
         /// </summary>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
+            command.Description = "The list of printers registered in the tenant.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--printer-id", description: "key: id of printer"));
             command.AddOption(new Option<string>("--body"));

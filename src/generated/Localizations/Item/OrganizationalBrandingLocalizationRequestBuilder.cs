@@ -24,6 +24,7 @@ namespace ApiSdk.Localizations.Item {
         /// </summary>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
+            command.Description = "Delete entity from localizations";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--organizationalbrandinglocalization-id", description: "key: id of organizationalBrandingLocalization"));
             command.Handler = CommandHandler.Create<string>(async (organizationalBrandingLocalizationId) => {
@@ -40,6 +41,7 @@ namespace ApiSdk.Localizations.Item {
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
+            command.Description = "Get entity from localizations by key";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--organizationalbrandinglocalization-id", description: "key: id of organizationalBrandingLocalization"));
             command.AddOption(new Option<object>("--select", description: "Select properties to be returned"));
@@ -65,6 +67,7 @@ namespace ApiSdk.Localizations.Item {
         /// </summary>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
+            command.Description = "Update entity in localizations";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--organizationalbrandinglocalization-id", description: "key: id of organizationalBrandingLocalization"));
             command.AddOption(new Option<string>("--body"));

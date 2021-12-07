@@ -24,6 +24,7 @@ namespace ApiSdk.Branding.Localizations.Item {
         /// </summary>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
+            command.Description = "Add different branding based on a locale.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--organizationalbrandinglocalization-id", description: "key: id of organizationalBrandingLocalization"));
             command.Handler = CommandHandler.Create<string>(async (organizationalBrandingLocalizationId) => {
@@ -40,6 +41,7 @@ namespace ApiSdk.Branding.Localizations.Item {
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
+            command.Description = "Add different branding based on a locale.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--organizationalbrandinglocalization-id", description: "key: id of organizationalBrandingLocalization"));
             command.AddOption(new Option<object>("--select", description: "Select properties to be returned"));
@@ -65,6 +67,7 @@ namespace ApiSdk.Branding.Localizations.Item {
         /// </summary>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
+            command.Description = "Add different branding based on a locale.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--organizationalbrandinglocalization-id", description: "key: id of organizationalBrandingLocalization"));
             command.AddOption(new Option<string>("--body"));

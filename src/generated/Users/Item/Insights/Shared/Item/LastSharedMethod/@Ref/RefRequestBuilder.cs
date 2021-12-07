@@ -23,6 +23,7 @@ namespace ApiSdk.Users.Item.Insights.Shared.Item.LastSharedMethod.@Ref {
         /// </summary>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
+            command.Description = "Delete ref of navigation property lastSharedMethod for users";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--user-id", description: "key: id of user"));
             command.AddOption(new Option<string>("--sharedinsight-id", description: "key: id of sharedInsight"));
@@ -41,6 +42,7 @@ namespace ApiSdk.Users.Item.Insights.Shared.Item.LastSharedMethod.@Ref {
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
+            command.Description = "Get ref of lastSharedMethod from users";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--user-id", description: "key: id of user"));
             command.AddOption(new Option<string>("--sharedinsight-id", description: "key: id of sharedInsight"));
@@ -64,6 +66,7 @@ namespace ApiSdk.Users.Item.Insights.Shared.Item.LastSharedMethod.@Ref {
         /// </summary>
         public Command BuildPutCommand() {
             var command = new Command("put");
+            command.Description = "Update the ref of navigation property lastSharedMethod in users";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--user-id", description: "key: id of user"));
             command.AddOption(new Option<string>("--sharedinsight-id", description: "key: id of sharedInsight"));

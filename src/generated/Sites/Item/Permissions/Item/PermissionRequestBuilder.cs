@@ -25,6 +25,7 @@ namespace ApiSdk.Sites.Item.Permissions.Item {
         /// </summary>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
+            command.Description = "The permissions associated with the site. Nullable.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--site-id", description: "key: id of site"));
             command.AddOption(new Option<string>("--permission-id", description: "key: id of permission"));
@@ -43,6 +44,7 @@ namespace ApiSdk.Sites.Item.Permissions.Item {
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
+            command.Description = "The permissions associated with the site. Nullable.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--site-id", description: "key: id of site"));
             command.AddOption(new Option<string>("--permission-id", description: "key: id of permission"));
@@ -76,6 +78,7 @@ namespace ApiSdk.Sites.Item.Permissions.Item {
         /// </summary>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
+            command.Description = "The permissions associated with the site. Nullable.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--site-id", description: "key: id of site"));
             command.AddOption(new Option<string>("--permission-id", description: "key: id of permission"));

@@ -23,6 +23,7 @@ namespace ApiSdk.Drive.List.Items.Item.GetActivitiesByInterval {
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
+            command.Description = "Invoke function getActivitiesByInterval";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--listitem-id", description: "key: id of listItem"));
             command.Handler = CommandHandler.Create<string>(async (listItemId) => {

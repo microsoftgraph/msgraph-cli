@@ -25,6 +25,7 @@ namespace ApiSdk.Identity.ApiConnectors.Item {
         /// </summary>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
+            command.Description = "Represents entry point for API connectors.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--identityapiconnector-id", description: "key: id of identityApiConnector"));
             command.Handler = CommandHandler.Create<string>(async (identityApiConnectorId) => {
@@ -41,6 +42,7 @@ namespace ApiSdk.Identity.ApiConnectors.Item {
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
+            command.Description = "Represents entry point for API connectors.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--identityapiconnector-id", description: "key: id of identityApiConnector"));
             command.AddOption(new Option<object>("--select", description: "Select properties to be returned"));
@@ -66,6 +68,7 @@ namespace ApiSdk.Identity.ApiConnectors.Item {
         /// </summary>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
+            command.Description = "Represents entry point for API connectors.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--identityapiconnector-id", description: "key: id of identityApiConnector"));
             command.AddOption(new Option<string>("--body"));

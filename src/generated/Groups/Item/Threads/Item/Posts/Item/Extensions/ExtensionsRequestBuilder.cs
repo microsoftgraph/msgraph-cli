@@ -34,6 +34,7 @@ namespace ApiSdk.Groups.Item.Threads.Item.Posts.Item.Extensions {
         /// </summary>
         public Command BuildCreateCommand() {
             var command = new Command("create");
+            command.Description = "The collection of open extensions defined for the post. Read-only. Nullable. Supports $expand.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--group-id", description: "key: id of group"));
             command.AddOption(new Option<string>("--conversationthread-id", description: "key: id of conversationThread"));
@@ -63,6 +64,7 @@ namespace ApiSdk.Groups.Item.Threads.Item.Posts.Item.Extensions {
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
+            command.Description = "The collection of open extensions defined for the post. Read-only. Nullable. Supports $expand.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--group-id", description: "key: id of group"));
             command.AddOption(new Option<string>("--conversationthread-id", description: "key: id of conversationThread"));

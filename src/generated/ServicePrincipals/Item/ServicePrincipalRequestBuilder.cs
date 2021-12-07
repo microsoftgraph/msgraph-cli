@@ -115,6 +115,7 @@ namespace ApiSdk.ServicePrincipals.Item {
         /// </summary>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
+            command.Description = "Delete entity from servicePrincipals";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--serviceprincipal-id", description: "key: id of servicePrincipal"));
             command.Handler = CommandHandler.Create<string>(async (servicePrincipalId) => {
@@ -141,6 +142,7 @@ namespace ApiSdk.ServicePrincipals.Item {
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
+            command.Description = "Get entity from servicePrincipals by key";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--serviceprincipal-id", description: "key: id of servicePrincipal"));
             command.AddOption(new Option<object>("--select", description: "Select properties to be returned"));
@@ -213,6 +215,7 @@ namespace ApiSdk.ServicePrincipals.Item {
         /// </summary>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
+            command.Description = "Update entity in servicePrincipals";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--serviceprincipal-id", description: "key: id of servicePrincipal"));
             command.AddOption(new Option<string>("--body"));

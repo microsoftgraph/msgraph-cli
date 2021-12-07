@@ -24,6 +24,7 @@ namespace ApiSdk.Security.SecureScores.Item {
         /// </summary>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
+            command.Description = "Delete navigation property secureScores for security";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--securescore-id", description: "key: id of secureScore"));
             command.Handler = CommandHandler.Create<string>(async (secureScoreId) => {
@@ -40,6 +41,7 @@ namespace ApiSdk.Security.SecureScores.Item {
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
+            command.Description = "Get secureScores from security";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--securescore-id", description: "key: id of secureScore"));
             command.AddOption(new Option<object>("--select", description: "Select properties to be returned"));
@@ -65,6 +67,7 @@ namespace ApiSdk.Security.SecureScores.Item {
         /// </summary>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
+            command.Description = "Update the navigation property secureScores in security";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--securescore-id", description: "key: id of secureScore"));
             command.AddOption(new Option<string>("--body"));

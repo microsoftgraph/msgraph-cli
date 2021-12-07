@@ -23,6 +23,7 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.AssignmentRequests.Ite
         /// </summary>
         public Command BuildPostCommand() {
             var command = new Command("post");
+            command.Description = "Invoke action cancel";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--accesspackageassignmentrequest-id", description: "key: id of accessPackageAssignmentRequest"));
             command.Handler = CommandHandler.Create<string>(async (accessPackageAssignmentRequestId) => {

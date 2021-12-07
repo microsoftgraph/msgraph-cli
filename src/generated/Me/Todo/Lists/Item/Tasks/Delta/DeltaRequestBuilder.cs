@@ -23,6 +23,7 @@ namespace ApiSdk.Me.Todo.Lists.Item.Tasks.Delta {
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
+            command.Description = "Invoke function delta";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--todotasklist-id", description: "key: id of todoTaskList"));
             command.Handler = CommandHandler.Create<string>(async (todoTaskListId) => {

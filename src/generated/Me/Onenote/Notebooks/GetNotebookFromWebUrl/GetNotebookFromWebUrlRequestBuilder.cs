@@ -24,6 +24,7 @@ namespace ApiSdk.Me.Onenote.Notebooks.GetNotebookFromWebUrl {
         /// </summary>
         public Command BuildPostCommand() {
             var command = new Command("post");
+            command.Description = "Invoke action getNotebookFromWebUrl";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--body"));
             command.Handler = CommandHandler.Create<string>(async (body) => {

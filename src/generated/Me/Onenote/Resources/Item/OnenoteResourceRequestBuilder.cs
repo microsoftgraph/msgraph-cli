@@ -32,6 +32,7 @@ namespace ApiSdk.Me.Onenote.Resources.Item {
         /// </summary>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
+            command.Description = "The image and other file resources in OneNote pages. Getting a resources collection is not supported, but you can get the binary content of a specific resource. Read-only. Nullable.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--onenoteresource-id", description: "key: id of onenoteResource"));
             command.Handler = CommandHandler.Create<string>(async (onenoteResourceId) => {
@@ -48,6 +49,7 @@ namespace ApiSdk.Me.Onenote.Resources.Item {
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
+            command.Description = "The image and other file resources in OneNote pages. Getting a resources collection is not supported, but you can get the binary content of a specific resource. Read-only. Nullable.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--onenoteresource-id", description: "key: id of onenoteResource"));
             command.AddOption(new Option<object>("--select", description: "Select properties to be returned"));
@@ -73,6 +75,7 @@ namespace ApiSdk.Me.Onenote.Resources.Item {
         /// </summary>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
+            command.Description = "The image and other file resources in OneNote pages. Getting a resources collection is not supported, but you can get the binary content of a specific resource. Read-only. Nullable.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--onenoteresource-id", description: "key: id of onenoteResource"));
             command.AddOption(new Option<string>("--body"));

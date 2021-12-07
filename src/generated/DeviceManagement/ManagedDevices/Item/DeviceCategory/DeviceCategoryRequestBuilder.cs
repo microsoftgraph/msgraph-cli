@@ -24,6 +24,7 @@ namespace ApiSdk.DeviceManagement.ManagedDevices.Item.DeviceCategory {
         /// </summary>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
+            command.Description = "Device category";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--manageddevice-id", description: "key: id of managedDevice"));
             command.Handler = CommandHandler.Create<string>(async (managedDeviceId) => {
@@ -40,6 +41,7 @@ namespace ApiSdk.DeviceManagement.ManagedDevices.Item.DeviceCategory {
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
+            command.Description = "Device category";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--manageddevice-id", description: "key: id of managedDevice"));
             command.AddOption(new Option<object>("--select", description: "Select properties to be returned"));
@@ -65,6 +67,7 @@ namespace ApiSdk.DeviceManagement.ManagedDevices.Item.DeviceCategory {
         /// </summary>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
+            command.Description = "Device category";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--manageddevice-id", description: "key: id of managedDevice"));
             command.AddOption(new Option<string>("--body"));

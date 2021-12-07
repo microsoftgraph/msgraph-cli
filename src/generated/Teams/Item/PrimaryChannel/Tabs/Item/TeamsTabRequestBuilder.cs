@@ -25,6 +25,7 @@ namespace ApiSdk.Teams.Item.PrimaryChannel.Tabs.Item {
         /// </summary>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
+            command.Description = "A collection of all the tabs in the channel. A navigation property.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--team-id", description: "key: id of team"));
             command.AddOption(new Option<string>("--teamstab-id", description: "key: id of teamsTab"));
@@ -43,6 +44,7 @@ namespace ApiSdk.Teams.Item.PrimaryChannel.Tabs.Item {
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
+            command.Description = "A collection of all the tabs in the channel. A navigation property.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--team-id", description: "key: id of team"));
             command.AddOption(new Option<string>("--teamstab-id", description: "key: id of teamsTab"));
@@ -70,6 +72,7 @@ namespace ApiSdk.Teams.Item.PrimaryChannel.Tabs.Item {
         /// </summary>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
+            command.Description = "A collection of all the tabs in the channel. A navigation property.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--team-id", description: "key: id of team"));
             command.AddOption(new Option<string>("--teamstab-id", description: "key: id of teamsTab"));

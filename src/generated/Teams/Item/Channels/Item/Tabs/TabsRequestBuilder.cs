@@ -35,6 +35,7 @@ namespace ApiSdk.Teams.Item.Channels.Item.Tabs {
         /// </summary>
         public Command BuildCreateCommand() {
             var command = new Command("create");
+            command.Description = "A collection of all the tabs in the channel. A navigation property.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--team-id", description: "key: id of team"));
             command.AddOption(new Option<string>("--channel-id", description: "key: id of channel"));
@@ -62,6 +63,7 @@ namespace ApiSdk.Teams.Item.Channels.Item.Tabs {
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
+            command.Description = "A collection of all the tabs in the channel. A navigation property.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--team-id", description: "key: id of team"));
             command.AddOption(new Option<string>("--channel-id", description: "key: id of channel"));

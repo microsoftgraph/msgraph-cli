@@ -33,6 +33,7 @@ namespace ApiSdk.Print.TaskDefinitions.Item.Tasks.Item {
         /// </summary>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
+            command.Description = "A list of tasks that have been created based on this definition. The list includes currently running tasks and recently completed tasks. Read-only.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--printtaskdefinition-id", description: "key: id of printTaskDefinition"));
             command.AddOption(new Option<string>("--printtask-id", description: "key: id of printTask"));
@@ -51,6 +52,7 @@ namespace ApiSdk.Print.TaskDefinitions.Item.Tasks.Item {
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
+            command.Description = "A list of tasks that have been created based on this definition. The list includes currently running tasks and recently completed tasks. Read-only.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--printtaskdefinition-id", description: "key: id of printTaskDefinition"));
             command.AddOption(new Option<string>("--printtask-id", description: "key: id of printTask"));
@@ -78,6 +80,7 @@ namespace ApiSdk.Print.TaskDefinitions.Item.Tasks.Item {
         /// </summary>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
+            command.Description = "A list of tasks that have been created based on this definition. The list includes currently running tasks and recently completed tasks. Read-only.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--printtaskdefinition-id", description: "key: id of printTaskDefinition"));
             command.AddOption(new Option<string>("--printtask-id", description: "key: id of printTask"));

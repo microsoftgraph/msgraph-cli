@@ -23,6 +23,7 @@ namespace ApiSdk.DeviceManagement.RemoteAssistancePartners.Item.Disconnect {
         /// </summary>
         public Command BuildPostCommand() {
             var command = new Command("post");
+            command.Description = "A request to remove the active TeamViewer connector";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--remoteassistancepartner-id", description: "key: id of remoteAssistancePartner"));
             command.Handler = CommandHandler.Create<string>(async (remoteAssistancePartnerId) => {

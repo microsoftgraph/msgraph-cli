@@ -23,6 +23,7 @@ namespace ApiSdk.ServicePrincipals.Item.TokenIssuancePolicies.@Ref {
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
+            command.Description = "The tokenIssuancePolicies assigned to this service principal.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--serviceprincipal-id", description: "key: id of servicePrincipal"));
             command.AddOption(new Option<int?>("--top", description: "Show only the first n items"));
@@ -56,6 +57,7 @@ namespace ApiSdk.ServicePrincipals.Item.TokenIssuancePolicies.@Ref {
         /// </summary>
         public Command BuildPostCommand() {
             var command = new Command("post");
+            command.Description = "The tokenIssuancePolicies assigned to this service principal.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--serviceprincipal-id", description: "key: id of servicePrincipal"));
             command.AddOption(new Option<string>("--body"));

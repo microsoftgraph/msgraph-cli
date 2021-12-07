@@ -23,6 +23,7 @@ namespace ApiSdk.Drive.SearchWithQ {
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
+            command.Description = "Invoke function search";
             // Create options for all the parameters
             command.AddOption(new Option<string>("-q", description: "Usage: q={q}"));
             command.Handler = CommandHandler.Create<string>(async (q) => {

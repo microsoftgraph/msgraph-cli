@@ -25,6 +25,7 @@ namespace ApiSdk.Me.Teamwork.InstalledApps.Item.Chat {
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
+            command.Description = "The chat between the user and Teams app.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--userscopeteamsappinstallation-id", description: "key: id of userScopeTeamsAppInstallation"));
             command.AddOption(new Option<object>("--select", description: "Select properties to be returned"));

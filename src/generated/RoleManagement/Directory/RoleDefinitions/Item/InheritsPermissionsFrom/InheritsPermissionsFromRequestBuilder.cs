@@ -34,6 +34,7 @@ namespace ApiSdk.RoleManagement.Directory.RoleDefinitions.Item.InheritsPermissio
         /// </summary>
         public Command BuildCreateCommand() {
             var command = new Command("create");
+            command.Description = "Read-only collection of role definitions that the given role definition inherits from. Only Azure AD built-in roles (isBuiltIn is true) support this attribute. Supports $expand.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--unifiedroledefinition-id", description: "key: id of unifiedRoleDefinition"));
             command.AddOption(new Option<string>("--body"));
@@ -59,6 +60,7 @@ namespace ApiSdk.RoleManagement.Directory.RoleDefinitions.Item.InheritsPermissio
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
+            command.Description = "Read-only collection of role definitions that the given role definition inherits from. Only Azure AD built-in roles (isBuiltIn is true) support this attribute. Supports $expand.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--unifiedroledefinition-id", description: "key: id of unifiedRoleDefinition"));
             command.AddOption(new Option<int?>("--top", description: "Show only the first n items"));

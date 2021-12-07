@@ -42,6 +42,7 @@ namespace ApiSdk.Sites.Item.Lists.Item.ContentTypes.Item.@Base {
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
+            command.Description = "Parent contentType from which this content type is derived.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--site-id", description: "key: id of site"));
             command.AddOption(new Option<string>("--list-id", description: "key: id of list"));

@@ -26,6 +26,7 @@ namespace ApiSdk.Policies.PermissionGrantPolicies.Item {
         /// </summary>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
+            command.Description = "The policy that specifies the conditions under which consent can be granted.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--permissiongrantpolicy-id", description: "key: id of permissionGrantPolicy"));
             command.Handler = CommandHandler.Create<string>(async (permissionGrantPolicyId) => {
@@ -52,6 +53,7 @@ namespace ApiSdk.Policies.PermissionGrantPolicies.Item {
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
+            command.Description = "The policy that specifies the conditions under which consent can be granted.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--permissiongrantpolicy-id", description: "key: id of permissionGrantPolicy"));
             command.AddOption(new Option<object>("--select", description: "Select properties to be returned"));
@@ -87,6 +89,7 @@ namespace ApiSdk.Policies.PermissionGrantPolicies.Item {
         /// </summary>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
+            command.Description = "The policy that specifies the conditions under which consent can be granted.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--permissiongrantpolicy-id", description: "key: id of permissionGrantPolicy"));
             command.AddOption(new Option<string>("--body"));

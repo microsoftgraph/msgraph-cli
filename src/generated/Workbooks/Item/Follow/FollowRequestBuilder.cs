@@ -24,6 +24,7 @@ namespace ApiSdk.Workbooks.Item.Follow {
         /// </summary>
         public Command BuildPostCommand() {
             var command = new Command("post");
+            command.Description = "Invoke action follow";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--driveitem-id", description: "key: id of driveItem"));
             command.Handler = CommandHandler.Create<string>(async (driveItemId) => {

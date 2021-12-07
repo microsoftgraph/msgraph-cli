@@ -23,6 +23,7 @@ namespace ApiSdk.Communications.Calls.Item.KeepAlive {
         /// </summary>
         public Command BuildPostCommand() {
             var command = new Command("post");
+            command.Description = "Invoke action keepAlive";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--call-id", description: "key: id of call"));
             command.Handler = CommandHandler.Create<string>(async (callId) => {

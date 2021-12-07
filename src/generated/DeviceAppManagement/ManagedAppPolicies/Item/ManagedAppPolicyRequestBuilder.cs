@@ -28,6 +28,7 @@ namespace ApiSdk.DeviceAppManagement.ManagedAppPolicies.Item {
         /// </summary>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
+            command.Description = "Managed app policies.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--managedapppolicy-id", description: "key: id of managedAppPolicy"));
             command.Handler = CommandHandler.Create<string>(async (managedAppPolicyId) => {
@@ -44,6 +45,7 @@ namespace ApiSdk.DeviceAppManagement.ManagedAppPolicies.Item {
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
+            command.Description = "Managed app policies.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--managedapppolicy-id", description: "key: id of managedAppPolicy"));
             command.AddOption(new Option<object>("--select", description: "Select properties to be returned"));
@@ -75,6 +77,7 @@ namespace ApiSdk.DeviceAppManagement.ManagedAppPolicies.Item {
         /// </summary>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
+            command.Description = "Managed app policies.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--managedapppolicy-id", description: "key: id of managedAppPolicy"));
             command.AddOption(new Option<string>("--body"));

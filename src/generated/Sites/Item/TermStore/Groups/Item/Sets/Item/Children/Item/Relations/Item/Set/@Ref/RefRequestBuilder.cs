@@ -23,6 +23,7 @@ namespace ApiSdk.Sites.Item.TermStore.Groups.Item.Sets.Item.Children.Item.Relati
         /// </summary>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
+            command.Description = "The [set] in which the relation is relevant.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--site-id", description: "key: id of site"));
             command.AddOption(new Option<string>("--group-id", description: "key: id of group"));
@@ -47,6 +48,7 @@ namespace ApiSdk.Sites.Item.TermStore.Groups.Item.Sets.Item.Children.Item.Relati
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
+            command.Description = "The [set] in which the relation is relevant.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--site-id", description: "key: id of site"));
             command.AddOption(new Option<string>("--group-id", description: "key: id of group"));
@@ -76,6 +78,7 @@ namespace ApiSdk.Sites.Item.TermStore.Groups.Item.Sets.Item.Children.Item.Relati
         /// </summary>
         public Command BuildPutCommand() {
             var command = new Command("put");
+            command.Description = "The [set] in which the relation is relevant.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--site-id", description: "key: id of site"));
             command.AddOption(new Option<string>("--group-id", description: "key: id of group"));

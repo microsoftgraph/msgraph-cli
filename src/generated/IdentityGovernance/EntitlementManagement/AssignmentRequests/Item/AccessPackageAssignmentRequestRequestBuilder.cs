@@ -49,6 +49,7 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.AssignmentRequests.Ite
         /// </summary>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
+            command.Description = "Delete navigation property assignmentRequests for identityGovernance";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--accesspackageassignmentrequest-id", description: "key: id of accessPackageAssignmentRequest"));
             command.Handler = CommandHandler.Create<string>(async (accessPackageAssignmentRequestId) => {
@@ -65,6 +66,7 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.AssignmentRequests.Ite
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
+            command.Description = "Get assignmentRequests from identityGovernance";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--accesspackageassignmentrequest-id", description: "key: id of accessPackageAssignmentRequest"));
             command.AddOption(new Option<object>("--select", description: "Select properties to be returned"));
@@ -90,6 +92,7 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.AssignmentRequests.Ite
         /// </summary>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
+            command.Description = "Update the navigation property assignmentRequests in identityGovernance";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--accesspackageassignmentrequest-id", description: "key: id of accessPackageAssignmentRequest"));
             command.AddOption(new Option<string>("--body"));

@@ -23,6 +23,7 @@ namespace ApiSdk.DeviceManagement.SoftwareUpdateStatusSummary.@Ref {
         /// </summary>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
+            command.Description = "The software update status summary.";
             // Create options for all the parameters
             command.Handler = CommandHandler.Create(async () => {
                 var requestInfo = CreateDeleteRequestInformation();
@@ -37,6 +38,7 @@ namespace ApiSdk.DeviceManagement.SoftwareUpdateStatusSummary.@Ref {
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
+            command.Description = "The software update status summary.";
             // Create options for all the parameters
             command.Handler = CommandHandler.Create(async () => {
                 var requestInfo = CreateGetRequestInformation();
@@ -56,6 +58,7 @@ namespace ApiSdk.DeviceManagement.SoftwareUpdateStatusSummary.@Ref {
         /// </summary>
         public Command BuildPutCommand() {
             var command = new Command("put");
+            command.Description = "The software update status summary.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--body"));
             command.Handler = CommandHandler.Create<string>(async (body) => {

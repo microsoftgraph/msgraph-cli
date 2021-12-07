@@ -25,6 +25,7 @@ namespace ApiSdk.Users.Item.Todo {
         /// </summary>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
+            command.Description = "Represents the To Do services available to a user.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--user-id", description: "key: id of user"));
             command.Handler = CommandHandler.Create<string>(async (userId) => {
@@ -41,6 +42,7 @@ namespace ApiSdk.Users.Item.Todo {
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
+            command.Description = "Represents the To Do services available to a user.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--user-id", description: "key: id of user"));
             command.AddOption(new Option<object>("--select", description: "Select properties to be returned"));
@@ -76,6 +78,7 @@ namespace ApiSdk.Users.Item.Todo {
         /// </summary>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
+            command.Description = "Represents the To Do services available to a user.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--user-id", description: "key: id of user"));
             command.AddOption(new Option<string>("--body"));

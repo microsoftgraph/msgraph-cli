@@ -34,6 +34,7 @@ namespace ApiSdk.Teams.Item.Schedule.TimeOffRequests {
         /// </summary>
         public Command BuildCreateCommand() {
             var command = new Command("create");
+            command.Description = "Create new navigation property to timeOffRequests for teams";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--team-id", description: "key: id of team"));
             command.AddOption(new Option<string>("--body"));
@@ -59,6 +60,7 @@ namespace ApiSdk.Teams.Item.Schedule.TimeOffRequests {
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
+            command.Description = "Get timeOffRequests from teams";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--team-id", description: "key: id of team"));
             command.AddOption(new Option<int?>("--top", description: "Show only the first n items"));

@@ -34,6 +34,7 @@ namespace ApiSdk.DirectoryRoles.Item.ScopedMembers {
         /// </summary>
         public Command BuildCreateCommand() {
             var command = new Command("create");
+            command.Description = "Members of this directory role that are scoped to administrative units. Read-only. Nullable.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--directoryrole-id", description: "key: id of directoryRole"));
             command.AddOption(new Option<string>("--body"));
@@ -59,6 +60,7 @@ namespace ApiSdk.DirectoryRoles.Item.ScopedMembers {
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
+            command.Description = "Members of this directory role that are scoped to administrative units. Read-only. Nullable.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--directoryrole-id", description: "key: id of directoryRole"));
             command.AddOption(new Option<int?>("--top", description: "Show only the first n items"));

@@ -38,6 +38,7 @@ namespace ApiSdk.DeviceAppManagement.ManagedAppRegistrations.Item.AppliedPolicie
         /// </summary>
         public Command BuildCreateCommand() {
             var command = new Command("create");
+            command.Description = "Zero or more policys already applied on the registered app when it last synchronized with managment service.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--managedappregistration-id", description: "key: id of managedAppRegistration"));
             command.AddOption(new Option<string>("--body"));
@@ -63,6 +64,7 @@ namespace ApiSdk.DeviceAppManagement.ManagedAppRegistrations.Item.AppliedPolicie
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
+            command.Description = "Zero or more policys already applied on the registered app when it last synchronized with managment service.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--managedappregistration-id", description: "key: id of managedAppRegistration"));
             command.AddOption(new Option<int?>("--top", description: "Show only the first n items"));

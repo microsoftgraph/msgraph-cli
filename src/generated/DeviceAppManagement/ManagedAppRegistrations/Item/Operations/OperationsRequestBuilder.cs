@@ -34,6 +34,7 @@ namespace ApiSdk.DeviceAppManagement.ManagedAppRegistrations.Item.Operations {
         /// </summary>
         public Command BuildCreateCommand() {
             var command = new Command("create");
+            command.Description = "Zero or more long running operations triggered on the app registration.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--managedappregistration-id", description: "key: id of managedAppRegistration"));
             command.AddOption(new Option<string>("--body"));
@@ -59,6 +60,7 @@ namespace ApiSdk.DeviceAppManagement.ManagedAppRegistrations.Item.Operations {
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
+            command.Description = "Zero or more long running operations triggered on the app registration.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--managedappregistration-id", description: "key: id of managedAppRegistration"));
             command.AddOption(new Option<int?>("--top", description: "Show only the first n items"));

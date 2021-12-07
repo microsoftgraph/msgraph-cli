@@ -23,6 +23,7 @@ namespace ApiSdk.Sites.Item.TermStore.Groups.Item.Sets.Item.Relations.Item.ToTer
         /// </summary>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
+            command.Description = "The to [term] of the relation. The term to which the relationship is defined.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--site-id", description: "key: id of site"));
             command.AddOption(new Option<string>("--group-id", description: "key: id of group"));
@@ -45,6 +46,7 @@ namespace ApiSdk.Sites.Item.TermStore.Groups.Item.Sets.Item.Relations.Item.ToTer
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
+            command.Description = "The to [term] of the relation. The term to which the relationship is defined.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--site-id", description: "key: id of site"));
             command.AddOption(new Option<string>("--group-id", description: "key: id of group"));
@@ -72,6 +74,7 @@ namespace ApiSdk.Sites.Item.TermStore.Groups.Item.Sets.Item.Relations.Item.ToTer
         /// </summary>
         public Command BuildPutCommand() {
             var command = new Command("put");
+            command.Description = "The to [term] of the relation. The term to which the relationship is defined.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--site-id", description: "key: id of site"));
             command.AddOption(new Option<string>("--group-id", description: "key: id of group"));

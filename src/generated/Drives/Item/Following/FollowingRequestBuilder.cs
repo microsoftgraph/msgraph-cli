@@ -35,6 +35,7 @@ namespace ApiSdk.Drives.Item.Following {
         /// </summary>
         public Command BuildCreateCommand() {
             var command = new Command("create");
+            command.Description = "The list of items the user is following. Only in OneDrive for Business.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--drive-id", description: "key: id of drive"));
             command.AddOption(new Option<string>("--body"));
@@ -60,6 +61,7 @@ namespace ApiSdk.Drives.Item.Following {
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
+            command.Description = "The list of items the user is following. Only in OneDrive for Business.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--drive-id", description: "key: id of drive"));
             command.AddOption(new Option<int?>("--top", description: "Show only the first n items"));

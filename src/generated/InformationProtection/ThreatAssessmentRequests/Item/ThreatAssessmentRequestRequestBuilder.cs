@@ -25,6 +25,7 @@ namespace ApiSdk.InformationProtection.ThreatAssessmentRequests.Item {
         /// </summary>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
+            command.Description = "Delete navigation property threatAssessmentRequests for informationProtection";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--threatassessmentrequest-id", description: "key: id of threatAssessmentRequest"));
             command.Handler = CommandHandler.Create<string>(async (threatAssessmentRequestId) => {
@@ -41,6 +42,7 @@ namespace ApiSdk.InformationProtection.ThreatAssessmentRequests.Item {
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
+            command.Description = "Get threatAssessmentRequests from informationProtection";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--threatassessmentrequest-id", description: "key: id of threatAssessmentRequest"));
             command.AddOption(new Option<object>("--select", description: "Select properties to be returned"));
@@ -66,6 +68,7 @@ namespace ApiSdk.InformationProtection.ThreatAssessmentRequests.Item {
         /// </summary>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
+            command.Description = "Update the navigation property threatAssessmentRequests in informationProtection";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--threatassessmentrequest-id", description: "key: id of threatAssessmentRequest"));
             command.AddOption(new Option<string>("--body"));

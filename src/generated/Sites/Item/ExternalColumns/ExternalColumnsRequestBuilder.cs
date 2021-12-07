@@ -24,6 +24,7 @@ namespace ApiSdk.Sites.Item.ExternalColumns {
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
+            command.Description = "The collection of column definitions available in the site that are referenced from the sites in the parent hierarchy of the current site.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--site-id", description: "key: id of site"));
             command.AddOption(new Option<int?>("--top", description: "Show only the first n items"));

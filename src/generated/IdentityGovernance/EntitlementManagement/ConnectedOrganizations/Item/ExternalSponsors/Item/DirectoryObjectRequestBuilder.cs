@@ -24,6 +24,7 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.ConnectedOrganizations
         /// </summary>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
+            command.Description = "Nullable.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--connectedorganization-id", description: "key: id of connectedOrganization"));
             command.AddOption(new Option<string>("--directoryobject-id", description: "key: id of directoryObject"));
@@ -42,6 +43,7 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.ConnectedOrganizations
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
+            command.Description = "Nullable.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--connectedorganization-id", description: "key: id of connectedOrganization"));
             command.AddOption(new Option<string>("--directoryobject-id", description: "key: id of directoryObject"));
@@ -69,6 +71,7 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.ConnectedOrganizations
         /// </summary>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
+            command.Description = "Nullable.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--connectedorganization-id", description: "key: id of connectedOrganization"));
             command.AddOption(new Option<string>("--directoryobject-id", description: "key: id of directoryObject"));

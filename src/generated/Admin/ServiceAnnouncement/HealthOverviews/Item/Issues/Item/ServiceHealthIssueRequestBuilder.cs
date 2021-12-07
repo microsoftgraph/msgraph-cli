@@ -25,6 +25,7 @@ namespace ApiSdk.Admin.ServiceAnnouncement.HealthOverviews.Item.Issues.Item {
         /// </summary>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
+            command.Description = "A collection of issues happened on the service, with detailed information for each issue.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--servicehealth-id", description: "key: id of serviceHealth"));
             command.AddOption(new Option<string>("--servicehealthissue-id", description: "key: id of serviceHealthIssue"));
@@ -43,6 +44,7 @@ namespace ApiSdk.Admin.ServiceAnnouncement.HealthOverviews.Item.Issues.Item {
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
+            command.Description = "A collection of issues happened on the service, with detailed information for each issue.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--servicehealth-id", description: "key: id of serviceHealth"));
             command.AddOption(new Option<string>("--servicehealthissue-id", description: "key: id of serviceHealthIssue"));
@@ -70,6 +72,7 @@ namespace ApiSdk.Admin.ServiceAnnouncement.HealthOverviews.Item.Issues.Item {
         /// </summary>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
+            command.Description = "A collection of issues happened on the service, with detailed information for each issue.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--servicehealth-id", description: "key: id of serviceHealth"));
             command.AddOption(new Option<string>("--servicehealthissue-id", description: "key: id of serviceHealthIssue"));

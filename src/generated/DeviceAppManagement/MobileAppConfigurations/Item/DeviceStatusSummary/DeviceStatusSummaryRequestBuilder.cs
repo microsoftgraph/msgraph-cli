@@ -24,6 +24,7 @@ namespace ApiSdk.DeviceAppManagement.MobileAppConfigurations.Item.DeviceStatusSu
         /// </summary>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
+            command.Description = "App configuration device status summary.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--manageddevicemobileappconfiguration-id", description: "key: id of managedDeviceMobileAppConfiguration"));
             command.Handler = CommandHandler.Create<string>(async (managedDeviceMobileAppConfigurationId) => {
@@ -40,6 +41,7 @@ namespace ApiSdk.DeviceAppManagement.MobileAppConfigurations.Item.DeviceStatusSu
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
+            command.Description = "App configuration device status summary.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--manageddevicemobileappconfiguration-id", description: "key: id of managedDeviceMobileAppConfiguration"));
             command.AddOption(new Option<object>("--select", description: "Select properties to be returned"));
@@ -65,6 +67,7 @@ namespace ApiSdk.DeviceAppManagement.MobileAppConfigurations.Item.DeviceStatusSu
         /// </summary>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
+            command.Description = "App configuration device status summary.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--manageddevicemobileappconfiguration-id", description: "key: id of managedDeviceMobileAppConfiguration"));
             command.AddOption(new Option<string>("--body"));

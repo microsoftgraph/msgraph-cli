@@ -23,6 +23,7 @@ namespace ApiSdk.Education.Classes.Item.Group.@Ref {
         /// </summary>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
+            command.Description = "The underlying Microsoft 365 group object.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--educationclass-id", description: "key: id of educationClass"));
             command.Handler = CommandHandler.Create<string>(async (educationClassId) => {
@@ -39,6 +40,7 @@ namespace ApiSdk.Education.Classes.Item.Group.@Ref {
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
+            command.Description = "The underlying Microsoft 365 group object.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--educationclass-id", description: "key: id of educationClass"));
             command.Handler = CommandHandler.Create<string>(async (educationClassId) => {
@@ -60,6 +62,7 @@ namespace ApiSdk.Education.Classes.Item.Group.@Ref {
         /// </summary>
         public Command BuildPutCommand() {
             var command = new Command("put");
+            command.Description = "The underlying Microsoft 365 group object.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--educationclass-id", description: "key: id of educationClass"));
             command.AddOption(new Option<string>("--body"));

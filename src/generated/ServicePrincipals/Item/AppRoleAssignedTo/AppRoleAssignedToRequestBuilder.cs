@@ -34,6 +34,7 @@ namespace ApiSdk.ServicePrincipals.Item.AppRoleAssignedTo {
         /// </summary>
         public Command BuildCreateCommand() {
             var command = new Command("create");
+            command.Description = "App role assignments for this app or service, granted to users, groups, and other service principals. Supports $expand.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--serviceprincipal-id", description: "key: id of servicePrincipal"));
             command.AddOption(new Option<string>("--body"));
@@ -59,6 +60,7 @@ namespace ApiSdk.ServicePrincipals.Item.AppRoleAssignedTo {
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
+            command.Description = "App role assignments for this app or service, granted to users, groups, and other service principals. Supports $expand.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--serviceprincipal-id", description: "key: id of servicePrincipal"));
             command.AddOption(new Option<int?>("--top", description: "Show only the first n items"));

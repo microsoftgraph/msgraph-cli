@@ -24,6 +24,7 @@ namespace ApiSdk.Communications.Calls.Item.AudioRoutingGroups.Item {
         /// </summary>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
+            command.Description = "Read-only. Nullable.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--call-id", description: "key: id of call"));
             command.AddOption(new Option<string>("--audioroutinggroup-id", description: "key: id of audioRoutingGroup"));
@@ -42,6 +43,7 @@ namespace ApiSdk.Communications.Calls.Item.AudioRoutingGroups.Item {
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
+            command.Description = "Read-only. Nullable.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--call-id", description: "key: id of call"));
             command.AddOption(new Option<string>("--audioroutinggroup-id", description: "key: id of audioRoutingGroup"));
@@ -69,6 +71,7 @@ namespace ApiSdk.Communications.Calls.Item.AudioRoutingGroups.Item {
         /// </summary>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
+            command.Description = "Read-only. Nullable.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--call-id", description: "key: id of call"));
             command.AddOption(new Option<string>("--audioroutinggroup-id", description: "key: id of audioRoutingGroup"));

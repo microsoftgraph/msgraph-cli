@@ -25,6 +25,7 @@ namespace ApiSdk.Print.TaskDefinitions.Item {
         /// </summary>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
+            command.Description = "List of abstract definition for a task that can be triggered when various events occur within Universal Print.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--printtaskdefinition-id", description: "key: id of printTaskDefinition"));
             command.Handler = CommandHandler.Create<string>(async (printTaskDefinitionId) => {
@@ -41,6 +42,7 @@ namespace ApiSdk.Print.TaskDefinitions.Item {
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
+            command.Description = "List of abstract definition for a task that can be triggered when various events occur within Universal Print.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--printtaskdefinition-id", description: "key: id of printTaskDefinition"));
             command.AddOption(new Option<object>("--select", description: "Select properties to be returned"));
@@ -66,6 +68,7 @@ namespace ApiSdk.Print.TaskDefinitions.Item {
         /// </summary>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
+            command.Description = "List of abstract definition for a task that can be triggered when various events occur within Universal Print.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--printtaskdefinition-id", description: "key: id of printTaskDefinition"));
             command.AddOption(new Option<string>("--body"));

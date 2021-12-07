@@ -75,6 +75,7 @@ namespace ApiSdk.Me.CalendarGroups.Item.Calendars.Item.CalendarView.Item {
         /// </summary>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
+            command.Description = "The calendar view for the calendar. Navigation property. Read-only.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--calendargroup-id", description: "key: id of calendarGroup"));
             command.AddOption(new Option<string>("--calendar-id", description: "key: id of calendar"));
@@ -117,6 +118,7 @@ namespace ApiSdk.Me.CalendarGroups.Item.Calendars.Item.CalendarView.Item {
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
+            command.Description = "The calendar view for the calendar. Navigation property. Read-only.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--calendargroup-id", description: "key: id of calendarGroup"));
             command.AddOption(new Option<string>("--calendar-id", description: "key: id of calendar"));
@@ -164,6 +166,7 @@ namespace ApiSdk.Me.CalendarGroups.Item.Calendars.Item.CalendarView.Item {
         /// </summary>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
+            command.Description = "The calendar view for the calendar. Navigation property. Read-only.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--calendargroup-id", description: "key: id of calendarGroup"));
             command.AddOption(new Option<string>("--calendar-id", description: "key: id of calendar"));

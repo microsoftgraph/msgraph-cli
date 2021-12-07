@@ -23,6 +23,7 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.AccessPackages.Item.Ge
         /// </summary>
         public Command BuildPostCommand() {
             var command = new Command("post");
+            command.Description = "Invoke action getApplicablePolicyRequirements";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--accesspackage-id", description: "key: id of accessPackage"));
             command.Handler = CommandHandler.Create<string>(async (accessPackageId) => {

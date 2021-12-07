@@ -23,6 +23,7 @@ namespace ApiSdk.Me.CalendarGroups.Item.Calendars.Item.Events.Item.Calendar.Allo
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
+            command.Description = "Invoke function allowedCalendarSharingRoles";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--calendargroup-id", description: "key: id of calendarGroup"));
             command.AddOption(new Option<string>("--calendar-id", description: "key: id of calendar"));

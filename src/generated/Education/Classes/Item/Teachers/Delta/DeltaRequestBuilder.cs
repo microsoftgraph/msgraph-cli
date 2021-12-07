@@ -23,6 +23,7 @@ namespace ApiSdk.Education.Classes.Item.Teachers.Delta {
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
+            command.Description = "Invoke function delta";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--educationclass-id", description: "key: id of educationClass"));
             command.Handler = CommandHandler.Create<string>(async (educationClassId) => {

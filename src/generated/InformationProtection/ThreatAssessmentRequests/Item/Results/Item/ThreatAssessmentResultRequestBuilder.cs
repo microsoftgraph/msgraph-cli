@@ -24,6 +24,7 @@ namespace ApiSdk.InformationProtection.ThreatAssessmentRequests.Item.Results.Ite
         /// </summary>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
+            command.Description = "A collection of threat assessment results. Read-only. By default, a GET /threatAssessmentRequests/{id} does not return this property unless you apply $expand on it.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--threatassessmentrequest-id", description: "key: id of threatAssessmentRequest"));
             command.AddOption(new Option<string>("--threatassessmentresult-id", description: "key: id of threatAssessmentResult"));
@@ -42,6 +43,7 @@ namespace ApiSdk.InformationProtection.ThreatAssessmentRequests.Item.Results.Ite
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
+            command.Description = "A collection of threat assessment results. Read-only. By default, a GET /threatAssessmentRequests/{id} does not return this property unless you apply $expand on it.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--threatassessmentrequest-id", description: "key: id of threatAssessmentRequest"));
             command.AddOption(new Option<string>("--threatassessmentresult-id", description: "key: id of threatAssessmentResult"));
@@ -69,6 +71,7 @@ namespace ApiSdk.InformationProtection.ThreatAssessmentRequests.Item.Results.Ite
         /// </summary>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
+            command.Description = "A collection of threat assessment results. Read-only. By default, a GET /threatAssessmentRequests/{id} does not return this property unless you apply $expand on it.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--threatassessmentrequest-id", description: "key: id of threatAssessmentRequest"));
             command.AddOption(new Option<string>("--threatassessmentresult-id", description: "key: id of threatAssessmentResult"));

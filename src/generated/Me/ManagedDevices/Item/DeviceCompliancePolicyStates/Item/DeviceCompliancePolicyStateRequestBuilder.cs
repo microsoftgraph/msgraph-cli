@@ -24,6 +24,7 @@ namespace ApiSdk.Me.ManagedDevices.Item.DeviceCompliancePolicyStates.Item {
         /// </summary>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
+            command.Description = "Device compliance policy states for this device.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--manageddevice-id", description: "key: id of managedDevice"));
             command.AddOption(new Option<string>("--devicecompliancepolicystate-id", description: "key: id of deviceCompliancePolicyState"));
@@ -42,6 +43,7 @@ namespace ApiSdk.Me.ManagedDevices.Item.DeviceCompliancePolicyStates.Item {
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
+            command.Description = "Device compliance policy states for this device.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--manageddevice-id", description: "key: id of managedDevice"));
             command.AddOption(new Option<string>("--devicecompliancepolicystate-id", description: "key: id of deviceCompliancePolicyState"));
@@ -69,6 +71,7 @@ namespace ApiSdk.Me.ManagedDevices.Item.DeviceCompliancePolicyStates.Item {
         /// </summary>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
+            command.Description = "Device compliance policy states for this device.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--manageddevice-id", description: "key: id of managedDevice"));
             command.AddOption(new Option<string>("--devicecompliancepolicystate-id", description: "key: id of deviceCompliancePolicyState"));

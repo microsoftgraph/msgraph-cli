@@ -23,6 +23,7 @@ namespace ApiSdk.Invitations.Item.InvitedUser.@Ref {
         /// </summary>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
+            command.Description = "The user created as part of the invitation creation. Read-Only";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--invitation-id", description: "key: id of invitation"));
             command.Handler = CommandHandler.Create<string>(async (invitationId) => {
@@ -39,6 +40,7 @@ namespace ApiSdk.Invitations.Item.InvitedUser.@Ref {
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
+            command.Description = "The user created as part of the invitation creation. Read-Only";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--invitation-id", description: "key: id of invitation"));
             command.Handler = CommandHandler.Create<string>(async (invitationId) => {
@@ -60,6 +62,7 @@ namespace ApiSdk.Invitations.Item.InvitedUser.@Ref {
         /// </summary>
         public Command BuildPutCommand() {
             var command = new Command("put");
+            command.Description = "The user created as part of the invitation creation. Read-Only";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--invitation-id", description: "key: id of invitation"));
             command.AddOption(new Option<string>("--body"));

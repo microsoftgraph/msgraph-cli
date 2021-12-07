@@ -24,6 +24,7 @@ namespace ApiSdk.Users.Item.Outlook.MasterCategories.Item {
         /// </summary>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
+            command.Description = "A list of categories defined for the user.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--user-id", description: "key: id of user"));
             command.AddOption(new Option<string>("--outlookcategory-id", description: "key: id of outlookCategory"));
@@ -42,6 +43,7 @@ namespace ApiSdk.Users.Item.Outlook.MasterCategories.Item {
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
+            command.Description = "A list of categories defined for the user.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--user-id", description: "key: id of user"));
             command.AddOption(new Option<string>("--outlookcategory-id", description: "key: id of outlookCategory"));
@@ -67,6 +69,7 @@ namespace ApiSdk.Users.Item.Outlook.MasterCategories.Item {
         /// </summary>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
+            command.Description = "A list of categories defined for the user.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--user-id", description: "key: id of user"));
             command.AddOption(new Option<string>("--outlookcategory-id", description: "key: id of outlookCategory"));

@@ -45,6 +45,7 @@ namespace ApiSdk.Contacts.Item {
         /// </summary>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
+            command.Description = "Delete entity from contacts";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--orgcontact-id", description: "key: id of orgContact"));
             command.Handler = CommandHandler.Create<string>(async (orgContactId) => {
@@ -68,6 +69,7 @@ namespace ApiSdk.Contacts.Item {
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
+            command.Description = "Get entity from contacts by key";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--orgcontact-id", description: "key: id of orgContact"));
             command.AddOption(new Option<object>("--select", description: "Select properties to be returned"));
@@ -119,6 +121,7 @@ namespace ApiSdk.Contacts.Item {
         /// </summary>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
+            command.Description = "Update entity in contacts";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--orgcontact-id", description: "key: id of orgContact"));
             command.AddOption(new Option<string>("--body"));

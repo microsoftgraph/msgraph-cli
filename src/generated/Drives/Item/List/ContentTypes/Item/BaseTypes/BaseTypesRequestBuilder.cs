@@ -31,6 +31,7 @@ namespace ApiSdk.Drives.Item.List.ContentTypes.Item.BaseTypes {
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
+            command.Description = "The collection of content types that are ancestors of this content type.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--drive-id", description: "key: id of drive"));
             command.AddOption(new Option<string>("--contenttype-id", description: "key: id of contentType"));

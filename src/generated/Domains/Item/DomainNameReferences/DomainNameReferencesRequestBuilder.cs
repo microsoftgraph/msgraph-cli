@@ -24,6 +24,7 @@ namespace ApiSdk.Domains.Item.DomainNameReferences {
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
+            command.Description = "Read-only, Nullable";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--domain-id", description: "key: id of domain"));
             command.AddOption(new Option<int?>("--top", description: "Show only the first n items"));

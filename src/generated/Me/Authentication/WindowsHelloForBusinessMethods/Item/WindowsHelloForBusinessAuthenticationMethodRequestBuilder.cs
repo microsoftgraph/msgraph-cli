@@ -25,6 +25,7 @@ namespace ApiSdk.Me.Authentication.WindowsHelloForBusinessMethods.Item {
         /// </summary>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
+            command.Description = "Delete navigation property windowsHelloForBusinessMethods for me";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--windowshelloforbusinessauthenticationmethod-id", description: "key: id of windowsHelloForBusinessAuthenticationMethod"));
             command.Handler = CommandHandler.Create<string>(async (windowsHelloForBusinessAuthenticationMethodId) => {
@@ -49,6 +50,7 @@ namespace ApiSdk.Me.Authentication.WindowsHelloForBusinessMethods.Item {
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
+            command.Description = "Get windowsHelloForBusinessMethods from me";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--windowshelloforbusinessauthenticationmethod-id", description: "key: id of windowsHelloForBusinessAuthenticationMethod"));
             command.AddOption(new Option<object>("--select", description: "Select properties to be returned"));
@@ -74,6 +76,7 @@ namespace ApiSdk.Me.Authentication.WindowsHelloForBusinessMethods.Item {
         /// </summary>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
+            command.Description = "Update the navigation property windowsHelloForBusinessMethods in me";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--windowshelloforbusinessauthenticationmethod-id", description: "key: id of windowsHelloForBusinessAuthenticationMethod"));
             command.AddOption(new Option<string>("--body"));

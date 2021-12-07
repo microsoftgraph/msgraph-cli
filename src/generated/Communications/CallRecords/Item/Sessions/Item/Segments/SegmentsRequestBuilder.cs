@@ -34,6 +34,7 @@ namespace ApiSdk.Communications.CallRecords.Item.Sessions.Item.Segments {
         /// </summary>
         public Command BuildCreateCommand() {
             var command = new Command("create");
+            command.Description = "The list of segments involved in the session. Read-only. Nullable.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--callrecord-id", description: "key: id of callRecord"));
             command.AddOption(new Option<string>("--session-id", description: "key: id of session"));
@@ -61,6 +62,7 @@ namespace ApiSdk.Communications.CallRecords.Item.Sessions.Item.Segments {
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
+            command.Description = "The list of segments involved in the session. Read-only. Nullable.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--callrecord-id", description: "key: id of callRecord"));
             command.AddOption(new Option<string>("--session-id", description: "key: id of session"));

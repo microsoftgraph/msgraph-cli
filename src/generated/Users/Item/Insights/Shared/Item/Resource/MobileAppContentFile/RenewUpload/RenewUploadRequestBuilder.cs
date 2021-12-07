@@ -23,6 +23,7 @@ namespace ApiSdk.Users.Item.Insights.Shared.Item.Resource.MobileAppContentFile.R
         /// </summary>
         public Command BuildPostCommand() {
             var command = new Command("post");
+            command.Description = "Renews the SAS URI for an application file upload.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--user-id", description: "key: id of user"));
             command.AddOption(new Option<string>("--sharedinsight-id", description: "key: id of sharedInsight"));

@@ -24,6 +24,7 @@ namespace ApiSdk.DeviceAppManagement.DefaultManagedAppProtections.Item.Deploymen
         /// </summary>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
+            command.Description = "Navigation property to deployment summary of the configuration.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--defaultmanagedappprotection-id", description: "key: id of defaultManagedAppProtection"));
             command.Handler = CommandHandler.Create<string>(async (defaultManagedAppProtectionId) => {
@@ -40,6 +41,7 @@ namespace ApiSdk.DeviceAppManagement.DefaultManagedAppProtections.Item.Deploymen
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
+            command.Description = "Navigation property to deployment summary of the configuration.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--defaultmanagedappprotection-id", description: "key: id of defaultManagedAppProtection"));
             command.AddOption(new Option<object>("--select", description: "Select properties to be returned"));
@@ -65,6 +67,7 @@ namespace ApiSdk.DeviceAppManagement.DefaultManagedAppProtections.Item.Deploymen
         /// </summary>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
+            command.Description = "Navigation property to deployment summary of the configuration.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--defaultmanagedappprotection-id", description: "key: id of defaultManagedAppProtection"));
             command.AddOption(new Option<string>("--body"));

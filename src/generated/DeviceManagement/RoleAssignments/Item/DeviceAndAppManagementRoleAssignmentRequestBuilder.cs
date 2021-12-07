@@ -24,6 +24,7 @@ namespace ApiSdk.DeviceManagement.RoleAssignments.Item {
         /// </summary>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
+            command.Description = "The Role Assignments.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--deviceandappmanagementroleassignment-id", description: "key: id of deviceAndAppManagementRoleAssignment"));
             command.Handler = CommandHandler.Create<string>(async (deviceAndAppManagementRoleAssignmentId) => {
@@ -40,6 +41,7 @@ namespace ApiSdk.DeviceManagement.RoleAssignments.Item {
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
+            command.Description = "The Role Assignments.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--deviceandappmanagementroleassignment-id", description: "key: id of deviceAndAppManagementRoleAssignment"));
             command.AddOption(new Option<object>("--select", description: "Select properties to be returned"));
@@ -65,6 +67,7 @@ namespace ApiSdk.DeviceManagement.RoleAssignments.Item {
         /// </summary>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
+            command.Description = "The Role Assignments.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--deviceandappmanagementroleassignment-id", description: "key: id of deviceAndAppManagementRoleAssignment"));
             command.AddOption(new Option<string>("--body"));

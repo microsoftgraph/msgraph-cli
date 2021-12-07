@@ -24,6 +24,7 @@ namespace ApiSdk.DirectoryObjects.Item.Restore {
         /// </summary>
         public Command BuildPostCommand() {
             var command = new Command("post");
+            command.Description = "Invoke action restore";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--directoryobject-id", description: "key: id of directoryObject"));
             command.Handler = CommandHandler.Create<string>(async (directoryObjectId) => {

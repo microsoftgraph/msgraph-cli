@@ -23,6 +23,7 @@ namespace ApiSdk.Groups.Item.CreatedOnBehalfOf.@Ref {
         /// </summary>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
+            command.Description = "The user (or application) that created the group. NOTE: This is not set if the user is an administrator. Read-only.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--group-id", description: "key: id of group"));
             command.Handler = CommandHandler.Create<string>(async (groupId) => {
@@ -39,6 +40,7 @@ namespace ApiSdk.Groups.Item.CreatedOnBehalfOf.@Ref {
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
+            command.Description = "The user (or application) that created the group. NOTE: This is not set if the user is an administrator. Read-only.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--group-id", description: "key: id of group"));
             command.Handler = CommandHandler.Create<string>(async (groupId) => {
@@ -60,6 +62,7 @@ namespace ApiSdk.Groups.Item.CreatedOnBehalfOf.@Ref {
         /// </summary>
         public Command BuildPutCommand() {
             var command = new Command("put");
+            command.Description = "The user (or application) that created the group. NOTE: This is not set if the user is an administrator. Read-only.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--group-id", description: "key: id of group"));
             command.AddOption(new Option<string>("--body"));

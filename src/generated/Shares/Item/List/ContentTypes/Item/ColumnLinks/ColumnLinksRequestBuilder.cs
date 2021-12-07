@@ -34,6 +34,7 @@ namespace ApiSdk.Shares.Item.List.ContentTypes.Item.ColumnLinks {
         /// </summary>
         public Command BuildCreateCommand() {
             var command = new Command("create");
+            command.Description = "The collection of columns that are required by this content type.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--shareddriveitem-id", description: "key: id of sharedDriveItem"));
             command.AddOption(new Option<string>("--contenttype-id", description: "key: id of contentType"));
@@ -61,6 +62,7 @@ namespace ApiSdk.Shares.Item.List.ContentTypes.Item.ColumnLinks {
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
+            command.Description = "The collection of columns that are required by this content type.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--shareddriveitem-id", description: "key: id of sharedDriveItem"));
             command.AddOption(new Option<string>("--contenttype-id", description: "key: id of contentType"));

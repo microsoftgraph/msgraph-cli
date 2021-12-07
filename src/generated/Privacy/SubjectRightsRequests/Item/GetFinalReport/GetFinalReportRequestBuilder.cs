@@ -23,6 +23,7 @@ namespace ApiSdk.Privacy.SubjectRightsRequests.Item.GetFinalReport {
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
+            command.Description = "Invoke function getFinalReport";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--subjectrightsrequest-id", description: "key: id of subjectRightsRequest"));
             command.AddOption(new Option<FileInfo>("--output"));

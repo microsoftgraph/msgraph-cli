@@ -26,6 +26,7 @@ namespace ApiSdk.Print.Shares.Item.Printer {
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
+            command.Description = "The printer that this printer share is related to.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--printershare-id", description: "key: id of printerShare"));
             command.AddOption(new Option<object>("--select", description: "Select properties to be returned"));

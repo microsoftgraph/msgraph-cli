@@ -24,6 +24,7 @@ namespace ApiSdk.Education.Me.Rubrics.Item {
         /// </summary>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
+            command.Description = "Delete navigation property rubrics for education";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--educationrubric-id", description: "key: id of educationRubric"));
             command.Handler = CommandHandler.Create<string>(async (educationRubricId) => {
@@ -40,6 +41,7 @@ namespace ApiSdk.Education.Me.Rubrics.Item {
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
+            command.Description = "Get rubrics from education";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--educationrubric-id", description: "key: id of educationRubric"));
             command.AddOption(new Option<object>("--select", description: "Select properties to be returned"));
@@ -65,6 +67,7 @@ namespace ApiSdk.Education.Me.Rubrics.Item {
         /// </summary>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
+            command.Description = "Update the navigation property rubrics in education";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--educationrubric-id", description: "key: id of educationRubric"));
             command.AddOption(new Option<string>("--body"));

@@ -24,6 +24,7 @@ namespace ApiSdk.Me.Onenote.SectionGroups.Item.ParentNotebook.Sections.Item.Copy
         /// </summary>
         public Command BuildPostCommand() {
             var command = new Command("post");
+            command.Description = "Invoke action copyToNotebook";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--sectiongroup-id", description: "key: id of sectionGroup"));
             command.AddOption(new Option<string>("--onenotesection-id", description: "key: id of onenoteSection"));

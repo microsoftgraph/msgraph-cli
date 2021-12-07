@@ -57,6 +57,7 @@ namespace ApiSdk.Users.Item.ManagedDevices.Item {
         /// </summary>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
+            command.Description = "The managed devices associated with the user.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--user-id", description: "key: id of user"));
             command.AddOption(new Option<string>("--manageddevice-id", description: "key: id of managedDevice"));
@@ -115,6 +116,7 @@ namespace ApiSdk.Users.Item.ManagedDevices.Item {
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
+            command.Description = "The managed devices associated with the user.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--user-id", description: "key: id of user"));
             command.AddOption(new Option<string>("--manageddevice-id", description: "key: id of managedDevice"));
@@ -154,6 +156,7 @@ namespace ApiSdk.Users.Item.ManagedDevices.Item {
         /// </summary>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
+            command.Description = "The managed devices associated with the user.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--user-id", description: "key: id of user"));
             command.AddOption(new Option<string>("--manageddevice-id", description: "key: id of managedDevice"));

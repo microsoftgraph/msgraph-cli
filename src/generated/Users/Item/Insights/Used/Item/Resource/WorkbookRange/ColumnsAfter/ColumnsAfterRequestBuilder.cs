@@ -24,6 +24,7 @@ namespace ApiSdk.Users.Item.Insights.Used.Item.Resource.WorkbookRange.ColumnsAft
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
+            command.Description = "Invoke function columnsAfter";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--user-id", description: "key: id of user"));
             command.AddOption(new Option<string>("--usedinsight-id", description: "key: id of usedInsight"));

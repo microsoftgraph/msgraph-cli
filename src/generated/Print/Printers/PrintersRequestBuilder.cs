@@ -45,6 +45,7 @@ namespace ApiSdk.Print.Printers {
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
+            command.Description = "The list of printers registered in the tenant.";
             // Create options for all the parameters
             command.AddOption(new Option<int?>("--top", description: "Show only the first n items"));
             command.AddOption(new Option<int?>("--skip", description: "Skip the first n items"));

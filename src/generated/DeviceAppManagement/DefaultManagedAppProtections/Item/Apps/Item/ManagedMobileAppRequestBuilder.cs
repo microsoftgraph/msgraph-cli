@@ -24,6 +24,7 @@ namespace ApiSdk.DeviceAppManagement.DefaultManagedAppProtections.Item.Apps.Item
         /// </summary>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
+            command.Description = "List of apps to which the policy is deployed.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--defaultmanagedappprotection-id", description: "key: id of defaultManagedAppProtection"));
             command.AddOption(new Option<string>("--managedmobileapp-id", description: "key: id of managedMobileApp"));
@@ -42,6 +43,7 @@ namespace ApiSdk.DeviceAppManagement.DefaultManagedAppProtections.Item.Apps.Item
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
+            command.Description = "List of apps to which the policy is deployed.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--defaultmanagedappprotection-id", description: "key: id of defaultManagedAppProtection"));
             command.AddOption(new Option<string>("--managedmobileapp-id", description: "key: id of managedMobileApp"));
@@ -69,6 +71,7 @@ namespace ApiSdk.DeviceAppManagement.DefaultManagedAppProtections.Item.Apps.Item
         /// </summary>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
+            command.Description = "List of apps to which the policy is deployed.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--defaultmanagedappprotection-id", description: "key: id of defaultManagedAppProtection"));
             command.AddOption(new Option<string>("--managedmobileapp-id", description: "key: id of managedMobileApp"));

@@ -24,6 +24,7 @@ namespace ApiSdk.Education.Classes.Item.AssignmentCategories.Item {
         /// </summary>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
+            command.Description = "Delete navigation property assignmentCategories for education";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--educationclass-id", description: "key: id of educationClass"));
             command.AddOption(new Option<string>("--educationcategory-id", description: "key: id of educationCategory"));
@@ -42,6 +43,7 @@ namespace ApiSdk.Education.Classes.Item.AssignmentCategories.Item {
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
+            command.Description = "Get assignmentCategories from education";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--educationclass-id", description: "key: id of educationClass"));
             command.AddOption(new Option<string>("--educationcategory-id", description: "key: id of educationCategory"));
@@ -69,6 +71,7 @@ namespace ApiSdk.Education.Classes.Item.AssignmentCategories.Item {
         /// </summary>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
+            command.Description = "Update the navigation property assignmentCategories in education";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--educationclass-id", description: "key: id of educationClass"));
             command.AddOption(new Option<string>("--educationcategory-id", description: "key: id of educationCategory"));

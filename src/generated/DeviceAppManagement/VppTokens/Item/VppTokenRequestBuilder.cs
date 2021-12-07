@@ -25,6 +25,7 @@ namespace ApiSdk.DeviceAppManagement.VppTokens.Item {
         /// </summary>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
+            command.Description = "List of Vpp tokens for this organization.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--vpptoken-id", description: "key: id of vppToken"));
             command.Handler = CommandHandler.Create<string>(async (vppTokenId) => {
@@ -41,6 +42,7 @@ namespace ApiSdk.DeviceAppManagement.VppTokens.Item {
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
+            command.Description = "List of Vpp tokens for this organization.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--vpptoken-id", description: "key: id of vppToken"));
             command.AddOption(new Option<object>("--select", description: "Select properties to be returned"));
@@ -66,6 +68,7 @@ namespace ApiSdk.DeviceAppManagement.VppTokens.Item {
         /// </summary>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
+            command.Description = "List of Vpp tokens for this organization.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--vpptoken-id", description: "key: id of vppToken"));
             command.AddOption(new Option<string>("--body"));

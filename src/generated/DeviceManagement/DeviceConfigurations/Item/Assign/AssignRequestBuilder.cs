@@ -23,6 +23,7 @@ namespace ApiSdk.DeviceManagement.DeviceConfigurations.Item.Assign {
         /// </summary>
         public Command BuildPostCommand() {
             var command = new Command("post");
+            command.Description = "Invoke action assign";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--deviceconfiguration-id", description: "key: id of deviceConfiguration"));
             command.AddOption(new Option<string>("--body"));

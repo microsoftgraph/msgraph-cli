@@ -24,6 +24,7 @@ namespace ApiSdk.Reports.GetOffice365ActiveUserDetailWithDate {
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
+            command.Description = "Invoke function getOffice365ActiveUserDetail";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--date", description: "Usage: date={date}"));
             command.Handler = CommandHandler.Create<string>(async (date) => {

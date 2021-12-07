@@ -23,6 +23,7 @@ namespace ApiSdk.Sites.Item.Lists.Item.ContentTypes.Item.@Base.@Ref {
         /// </summary>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
+            command.Description = "Parent contentType from which this content type is derived.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--site-id", description: "key: id of site"));
             command.AddOption(new Option<string>("--list-id", description: "key: id of list"));
@@ -43,6 +44,7 @@ namespace ApiSdk.Sites.Item.Lists.Item.ContentTypes.Item.@Base.@Ref {
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
+            command.Description = "Parent contentType from which this content type is derived.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--site-id", description: "key: id of site"));
             command.AddOption(new Option<string>("--list-id", description: "key: id of list"));
@@ -68,6 +70,7 @@ namespace ApiSdk.Sites.Item.Lists.Item.ContentTypes.Item.@Base.@Ref {
         /// </summary>
         public Command BuildPutCommand() {
             var command = new Command("put");
+            command.Description = "Parent contentType from which this content type is derived.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--site-id", description: "key: id of site"));
             command.AddOption(new Option<string>("--list-id", description: "key: id of list"));

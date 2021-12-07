@@ -24,6 +24,7 @@ namespace ApiSdk.DeviceManagement.Reports.ExportJobs.Item {
         /// </summary>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
+            command.Description = "Entity representing a job to export a report";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--devicemanagementexportjob-id", description: "key: id of deviceManagementExportJob"));
             command.Handler = CommandHandler.Create<string>(async (deviceManagementExportJobId) => {
@@ -40,6 +41,7 @@ namespace ApiSdk.DeviceManagement.Reports.ExportJobs.Item {
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
+            command.Description = "Entity representing a job to export a report";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--devicemanagementexportjob-id", description: "key: id of deviceManagementExportJob"));
             command.AddOption(new Option<object>("--select", description: "Select properties to be returned"));
@@ -65,6 +67,7 @@ namespace ApiSdk.DeviceManagement.Reports.ExportJobs.Item {
         /// </summary>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
+            command.Description = "Entity representing a job to export a report";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--devicemanagementexportjob-id", description: "key: id of deviceManagementExportJob"));
             command.AddOption(new Option<string>("--body"));

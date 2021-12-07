@@ -24,6 +24,7 @@ namespace ApiSdk.Shares.Item.List.ContentTypes.Item.BaseTypes.AddCopy {
         /// </summary>
         public Command BuildPostCommand() {
             var command = new Command("post");
+            command.Description = "Invoke action addCopy";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--shareddriveitem-id", description: "key: id of sharedDriveItem"));
             command.AddOption(new Option<string>("--contenttype-id", description: "key: id of contentType"));

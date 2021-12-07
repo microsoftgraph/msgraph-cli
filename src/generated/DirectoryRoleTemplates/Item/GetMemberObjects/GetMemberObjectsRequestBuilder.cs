@@ -23,6 +23,7 @@ namespace ApiSdk.DirectoryRoleTemplates.Item.GetMemberObjects {
         /// </summary>
         public Command BuildPostCommand() {
             var command = new Command("post");
+            command.Description = "Invoke action getMemberObjects";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--directoryroletemplate-id", description: "key: id of directoryRoleTemplate"));
             command.AddOption(new Option<string>("--body"));

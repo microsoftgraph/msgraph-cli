@@ -28,6 +28,7 @@ namespace ApiSdk.Users.Item.Authentication {
         /// </summary>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
+            command.Description = "Delete navigation property authentication for users";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--user-id", description: "key: id of user"));
             command.Handler = CommandHandler.Create<string>(async (userId) => {
@@ -54,6 +55,7 @@ namespace ApiSdk.Users.Item.Authentication {
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
+            command.Description = "Get authentication from users";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--user-id", description: "key: id of user"));
             command.AddOption(new Option<object>("--select", description: "Select properties to be returned"));
@@ -99,6 +101,7 @@ namespace ApiSdk.Users.Item.Authentication {
         /// </summary>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
+            command.Description = "Update the navigation property authentication in users";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--user-id", description: "key: id of user"));
             command.AddOption(new Option<string>("--body"));

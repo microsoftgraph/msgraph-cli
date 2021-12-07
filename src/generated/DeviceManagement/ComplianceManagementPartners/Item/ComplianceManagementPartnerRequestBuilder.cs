@@ -24,6 +24,7 @@ namespace ApiSdk.DeviceManagement.ComplianceManagementPartners.Item {
         /// </summary>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
+            command.Description = "The list of Compliance Management Partners configured by the tenant.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--compliancemanagementpartner-id", description: "key: id of complianceManagementPartner"));
             command.Handler = CommandHandler.Create<string>(async (complianceManagementPartnerId) => {
@@ -40,6 +41,7 @@ namespace ApiSdk.DeviceManagement.ComplianceManagementPartners.Item {
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
+            command.Description = "The list of Compliance Management Partners configured by the tenant.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--compliancemanagementpartner-id", description: "key: id of complianceManagementPartner"));
             command.AddOption(new Option<object>("--select", description: "Select properties to be returned"));
@@ -65,6 +67,7 @@ namespace ApiSdk.DeviceManagement.ComplianceManagementPartners.Item {
         /// </summary>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
+            command.Description = "The list of Compliance Management Partners configured by the tenant.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--compliancemanagementpartner-id", description: "key: id of complianceManagementPartner"));
             command.AddOption(new Option<string>("--body"));

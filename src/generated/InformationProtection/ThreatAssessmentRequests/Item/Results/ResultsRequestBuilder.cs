@@ -34,6 +34,7 @@ namespace ApiSdk.InformationProtection.ThreatAssessmentRequests.Item.Results {
         /// </summary>
         public Command BuildCreateCommand() {
             var command = new Command("create");
+            command.Description = "A collection of threat assessment results. Read-only. By default, a GET /threatAssessmentRequests/{id} does not return this property unless you apply $expand on it.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--threatassessmentrequest-id", description: "key: id of threatAssessmentRequest"));
             command.AddOption(new Option<string>("--body"));
@@ -59,6 +60,7 @@ namespace ApiSdk.InformationProtection.ThreatAssessmentRequests.Item.Results {
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
+            command.Description = "A collection of threat assessment results. Read-only. By default, a GET /threatAssessmentRequests/{id} does not return this property unless you apply $expand on it.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--threatassessmentrequest-id", description: "key: id of threatAssessmentRequest"));
             command.AddOption(new Option<int?>("--top", description: "Show only the first n items"));

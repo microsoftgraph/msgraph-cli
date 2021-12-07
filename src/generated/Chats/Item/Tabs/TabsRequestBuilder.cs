@@ -35,6 +35,7 @@ namespace ApiSdk.Chats.Item.Tabs {
         /// </summary>
         public Command BuildCreateCommand() {
             var command = new Command("create");
+            command.Description = "Create new navigation property to tabs for chats";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--chat-id", description: "key: id of chat"));
             command.AddOption(new Option<string>("--body"));
@@ -60,6 +61,7 @@ namespace ApiSdk.Chats.Item.Tabs {
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
+            command.Description = "Get tabs from chats";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--chat-id", description: "key: id of chat"));
             command.AddOption(new Option<int?>("--top", description: "Show only the first n items"));

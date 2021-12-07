@@ -23,6 +23,7 @@ namespace ApiSdk.IdentityGovernance.AccessReviews.Definitions.Item.Stop {
         /// </summary>
         public Command BuildPostCommand() {
             var command = new Command("post");
+            command.Description = "Invoke action stop";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--accessreviewscheduledefinition-id", description: "key: id of accessReviewScheduleDefinition"));
             command.Handler = CommandHandler.Create<string>(async (accessReviewScheduleDefinitionId) => {

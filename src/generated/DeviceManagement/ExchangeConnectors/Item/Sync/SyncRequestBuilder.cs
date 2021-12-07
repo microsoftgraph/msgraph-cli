@@ -23,6 +23,7 @@ namespace ApiSdk.DeviceManagement.ExchangeConnectors.Item.Sync {
         /// </summary>
         public Command BuildPostCommand() {
             var command = new Command("post");
+            command.Description = "Invoke action sync";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--devicemanagementexchangeconnector-id", description: "key: id of deviceManagementExchangeConnector"));
             command.AddOption(new Option<string>("--body"));

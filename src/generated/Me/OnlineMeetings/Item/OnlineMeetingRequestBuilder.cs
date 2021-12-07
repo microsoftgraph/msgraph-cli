@@ -32,6 +32,7 @@ namespace ApiSdk.Me.OnlineMeetings.Item {
         /// </summary>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
+            command.Description = "Delete navigation property onlineMeetings for me";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--onlinemeeting-id", description: "key: id of onlineMeeting"));
             command.Handler = CommandHandler.Create<string>(async (onlineMeetingId) => {
@@ -48,6 +49,7 @@ namespace ApiSdk.Me.OnlineMeetings.Item {
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
+            command.Description = "Get onlineMeetings from me";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--onlinemeeting-id", description: "key: id of onlineMeeting"));
             command.AddOption(new Option<object>("--select", description: "Select properties to be returned"));
@@ -73,6 +75,7 @@ namespace ApiSdk.Me.OnlineMeetings.Item {
         /// </summary>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
+            command.Description = "Update the navigation property onlineMeetings in me";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--onlinemeeting-id", description: "key: id of onlineMeeting"));
             command.AddOption(new Option<string>("--body"));

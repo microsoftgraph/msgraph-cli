@@ -32,6 +32,7 @@ namespace ApiSdk.Shares.Item.Root {
         /// </summary>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
+            command.Description = "Used to access the underlying driveItem. Deprecated -- use driveItem instead.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--shareddriveitem-id", description: "key: id of sharedDriveItem"));
             command.Handler = CommandHandler.Create<string>(async (sharedDriveItemId) => {
@@ -48,6 +49,7 @@ namespace ApiSdk.Shares.Item.Root {
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
+            command.Description = "Used to access the underlying driveItem. Deprecated -- use driveItem instead.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--shareddriveitem-id", description: "key: id of sharedDriveItem"));
             command.AddOption(new Option<object>("--select", description: "Select properties to be returned"));
@@ -73,6 +75,7 @@ namespace ApiSdk.Shares.Item.Root {
         /// </summary>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
+            command.Description = "Used to access the underlying driveItem. Deprecated -- use driveItem instead.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--shareddriveitem-id", description: "key: id of sharedDriveItem"));
             command.AddOption(new Option<string>("--body"));

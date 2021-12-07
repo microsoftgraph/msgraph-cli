@@ -25,6 +25,7 @@ namespace ApiSdk.Sites.Item.TermStores.Item.Sets.Item.Children.Item.Set {
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
+            command.Description = "The [set] in which the term is created.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--site-id", description: "key: id of site"));
             command.AddOption(new Option<string>("--store-id", description: "key: id of store"));

@@ -23,6 +23,7 @@ namespace ApiSdk.DeviceManagement.Reports.GetReportFilters {
         /// </summary>
         public Command BuildPostCommand() {
             var command = new Command("post");
+            command.Description = "Invoke action getReportFilters";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--body"));
             command.AddOption(new Option<FileInfo>("--output"));

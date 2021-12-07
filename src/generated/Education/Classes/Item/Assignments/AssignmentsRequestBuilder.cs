@@ -40,6 +40,7 @@ namespace ApiSdk.Education.Classes.Item.Assignments {
         /// </summary>
         public Command BuildCreateCommand() {
             var command = new Command("create");
+            command.Description = "All assignments associated with this class. Nullable.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--educationclass-id", description: "key: id of educationClass"));
             command.AddOption(new Option<string>("--body"));
@@ -65,6 +66,7 @@ namespace ApiSdk.Education.Classes.Item.Assignments {
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
+            command.Description = "All assignments associated with this class. Nullable.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--educationclass-id", description: "key: id of educationClass"));
             command.AddOption(new Option<int?>("--top", description: "Show only the first n items"));

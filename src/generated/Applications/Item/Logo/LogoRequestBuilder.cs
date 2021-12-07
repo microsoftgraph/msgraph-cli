@@ -23,6 +23,7 @@ namespace ApiSdk.Applications.Item.Logo {
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
+            command.Description = "The main logo for the application. Not nullable.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--application-id", description: "key: id of application"));
             command.AddOption(new Option<FileInfo>("--output"));
@@ -49,6 +50,7 @@ namespace ApiSdk.Applications.Item.Logo {
         /// </summary>
         public Command BuildPutCommand() {
             var command = new Command("put");
+            command.Description = "The main logo for the application. Not nullable.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--application-id", description: "key: id of application"));
             command.AddOption(new Option<Stream>("--file", description: "Binary request body"));

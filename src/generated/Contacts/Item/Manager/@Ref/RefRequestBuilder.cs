@@ -23,6 +23,7 @@ namespace ApiSdk.Contacts.Item.Manager.@Ref {
         /// </summary>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
+            command.Description = "The user or contact that is this contact's manager. Read-only. Supports $expand.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--orgcontact-id", description: "key: id of orgContact"));
             command.Handler = CommandHandler.Create<string>(async (orgContactId) => {
@@ -39,6 +40,7 @@ namespace ApiSdk.Contacts.Item.Manager.@Ref {
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
+            command.Description = "The user or contact that is this contact's manager. Read-only. Supports $expand.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--orgcontact-id", description: "key: id of orgContact"));
             command.Handler = CommandHandler.Create<string>(async (orgContactId) => {
@@ -60,6 +62,7 @@ namespace ApiSdk.Contacts.Item.Manager.@Ref {
         /// </summary>
         public Command BuildPutCommand() {
             var command = new Command("put");
+            command.Description = "The user or contact that is this contact's manager. Read-only. Supports $expand.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--orgcontact-id", description: "key: id of orgContact"));
             command.AddOption(new Option<string>("--body"));

@@ -24,6 +24,7 @@ namespace ApiSdk.DeviceAppManagement.MobileApps.Item.Categories {
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
+            command.Description = "The list of categories for this app.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--mobileapp-id", description: "key: id of mobileApp"));
             command.AddOption(new Option<int?>("--top", description: "Show only the first n items"));

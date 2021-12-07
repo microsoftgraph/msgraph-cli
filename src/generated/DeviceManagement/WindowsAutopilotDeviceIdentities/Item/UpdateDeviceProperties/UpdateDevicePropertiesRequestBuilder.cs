@@ -23,6 +23,7 @@ namespace ApiSdk.DeviceManagement.WindowsAutopilotDeviceIdentities.Item.UpdateDe
         /// </summary>
         public Command BuildPostCommand() {
             var command = new Command("post");
+            command.Description = "Updates properties on Autopilot devices.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--windowsautopilotdeviceidentity-id", description: "key: id of windowsAutopilotDeviceIdentity"));
             command.AddOption(new Option<string>("--body"));

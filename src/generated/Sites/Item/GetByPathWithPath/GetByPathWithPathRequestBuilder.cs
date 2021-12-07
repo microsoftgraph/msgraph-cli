@@ -24,6 +24,7 @@ namespace ApiSdk.Sites.Item.GetByPathWithPath {
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
+            command.Description = "Invoke function getByPath";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--site-id", description: "key: id of site"));
             command.AddOption(new Option<string>("--path", description: "Usage: path={path}"));

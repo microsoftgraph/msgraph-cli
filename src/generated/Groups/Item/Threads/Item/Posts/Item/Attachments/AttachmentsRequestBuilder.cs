@@ -35,6 +35,7 @@ namespace ApiSdk.Groups.Item.Threads.Item.Posts.Item.Attachments {
         /// </summary>
         public Command BuildCreateCommand() {
             var command = new Command("create");
+            command.Description = "Read-only. Nullable. Supports $expand.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--group-id", description: "key: id of group"));
             command.AddOption(new Option<string>("--conversationthread-id", description: "key: id of conversationThread"));
@@ -70,6 +71,7 @@ namespace ApiSdk.Groups.Item.Threads.Item.Posts.Item.Attachments {
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
+            command.Description = "Read-only. Nullable. Supports $expand.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--group-id", description: "key: id of group"));
             command.AddOption(new Option<string>("--conversationthread-id", description: "key: id of conversationThread"));

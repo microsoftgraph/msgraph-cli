@@ -24,6 +24,7 @@ namespace ApiSdk.Education.Classes.Item.Assignments.Item.Submissions.Item.SetUpR
         /// </summary>
         public Command BuildPostCommand() {
             var command = new Command("post");
+            command.Description = "Invoke action setUpResourcesFolder";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--educationclass-id", description: "key: id of educationClass"));
             command.AddOption(new Option<string>("--educationassignment-id", description: "key: id of educationAssignment"));

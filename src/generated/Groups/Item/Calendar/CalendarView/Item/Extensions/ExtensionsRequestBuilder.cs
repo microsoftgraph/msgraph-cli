@@ -34,6 +34,7 @@ namespace ApiSdk.Groups.Item.Calendar.CalendarView.Item.Extensions {
         /// </summary>
         public Command BuildCreateCommand() {
             var command = new Command("create");
+            command.Description = "The collection of open extensions defined for the event. Nullable.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--group-id", description: "key: id of group"));
             command.AddOption(new Option<string>("--event-id", description: "key: id of event"));
@@ -61,6 +62,7 @@ namespace ApiSdk.Groups.Item.Calendar.CalendarView.Item.Extensions {
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
+            command.Description = "The collection of open extensions defined for the event. Nullable.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--group-id", description: "key: id of group"));
             command.AddOption(new Option<string>("--event-id", description: "key: id of event"));

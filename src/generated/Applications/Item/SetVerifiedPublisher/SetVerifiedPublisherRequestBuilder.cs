@@ -23,6 +23,7 @@ namespace ApiSdk.Applications.Item.SetVerifiedPublisher {
         /// </summary>
         public Command BuildPostCommand() {
             var command = new Command("post");
+            command.Description = "Invoke action setVerifiedPublisher";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--application-id", description: "key: id of application"));
             command.AddOption(new Option<string>("--body"));

@@ -23,6 +23,7 @@ namespace ApiSdk.Users.Item.MemberOf.@Ref {
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
+            command.Description = "The groups and directory roles that the user is a member of. Read-only. Nullable. Supports $expand.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--user-id", description: "key: id of user"));
             command.AddOption(new Option<int?>("--top", description: "Show only the first n items"));
@@ -56,6 +57,7 @@ namespace ApiSdk.Users.Item.MemberOf.@Ref {
         /// </summary>
         public Command BuildPostCommand() {
             var command = new Command("post");
+            command.Description = "The groups and directory roles that the user is a member of. Read-only. Nullable. Supports $expand.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--user-id", description: "key: id of user"));
             command.AddOption(new Option<string>("--body"));

@@ -24,6 +24,7 @@ namespace ApiSdk.DeviceManagement.IosUpdateStatuses.Item {
         /// </summary>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
+            command.Description = "The IOS software update installation statuses for this account.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--iosupdatedevicestatus-id", description: "key: id of iosUpdateDeviceStatus"));
             command.Handler = CommandHandler.Create<string>(async (iosUpdateDeviceStatusId) => {
@@ -40,6 +41,7 @@ namespace ApiSdk.DeviceManagement.IosUpdateStatuses.Item {
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
+            command.Description = "The IOS software update installation statuses for this account.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--iosupdatedevicestatus-id", description: "key: id of iosUpdateDeviceStatus"));
             command.AddOption(new Option<object>("--select", description: "Select properties to be returned"));
@@ -65,6 +67,7 @@ namespace ApiSdk.DeviceManagement.IosUpdateStatuses.Item {
         /// </summary>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
+            command.Description = "The IOS software update installation statuses for this account.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--iosupdatedevicestatus-id", description: "key: id of iosUpdateDeviceStatus"));
             command.AddOption(new Option<string>("--body"));

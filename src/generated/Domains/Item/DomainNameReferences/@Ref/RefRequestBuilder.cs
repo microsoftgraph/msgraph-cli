@@ -23,6 +23,7 @@ namespace ApiSdk.Domains.Item.DomainNameReferences.@Ref {
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
+            command.Description = "Read-only, Nullable";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--domain-id", description: "key: id of domain"));
             command.AddOption(new Option<int?>("--top", description: "Show only the first n items"));
@@ -56,6 +57,7 @@ namespace ApiSdk.Domains.Item.DomainNameReferences.@Ref {
         /// </summary>
         public Command BuildPostCommand() {
             var command = new Command("post");
+            command.Description = "Read-only, Nullable";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--domain-id", description: "key: id of domain"));
             command.AddOption(new Option<string>("--body"));

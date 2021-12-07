@@ -24,6 +24,7 @@ namespace ApiSdk.Me.Insights.Used.Item.Resource.WorkbookRange.OffsetRangeWithRow
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
+            command.Description = "Invoke function offsetRange";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--usedinsight-id", description: "key: id of usedInsight"));
             command.AddOption(new Option<int?>("--rowoffset", description: "Usage: rowOffset={rowOffset}"));

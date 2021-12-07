@@ -24,6 +24,7 @@ namespace ApiSdk.Agreements.Item.Acceptances.Item {
         /// </summary>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
+            command.Description = "Read-only. Information about acceptances of this agreement.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--agreement-id", description: "key: id of agreement"));
             command.AddOption(new Option<string>("--agreementacceptance-id", description: "key: id of agreementAcceptance"));
@@ -42,6 +43,7 @@ namespace ApiSdk.Agreements.Item.Acceptances.Item {
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
+            command.Description = "Read-only. Information about acceptances of this agreement.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--agreement-id", description: "key: id of agreement"));
             command.AddOption(new Option<string>("--agreementacceptance-id", description: "key: id of agreementAcceptance"));
@@ -69,6 +71,7 @@ namespace ApiSdk.Agreements.Item.Acceptances.Item {
         /// </summary>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
+            command.Description = "Read-only. Information about acceptances of this agreement.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--agreement-id", description: "key: id of agreement"));
             command.AddOption(new Option<string>("--agreementacceptance-id", description: "key: id of agreementAcceptance"));

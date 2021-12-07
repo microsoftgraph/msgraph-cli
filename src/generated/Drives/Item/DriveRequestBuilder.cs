@@ -43,6 +43,7 @@ namespace ApiSdk.Drives.Item {
         /// </summary>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
+            command.Description = "Delete entity from drives";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--drive-id", description: "key: id of drive"));
             command.Handler = CommandHandler.Create<string>(async (driveId) => {
@@ -69,6 +70,7 @@ namespace ApiSdk.Drives.Item {
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
+            command.Description = "Get entity from drives by key";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--drive-id", description: "key: id of drive"));
             command.AddOption(new Option<object>("--select", description: "Select properties to be returned"));
@@ -117,6 +119,7 @@ namespace ApiSdk.Drives.Item {
         /// </summary>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
+            command.Description = "Update entity in drives";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--drive-id", description: "key: id of drive"));
             command.AddOption(new Option<string>("--body"));

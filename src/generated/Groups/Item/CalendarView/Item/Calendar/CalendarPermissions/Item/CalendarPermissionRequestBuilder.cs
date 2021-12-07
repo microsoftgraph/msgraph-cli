@@ -24,6 +24,7 @@ namespace ApiSdk.Groups.Item.CalendarView.Item.Calendar.CalendarPermissions.Item
         /// </summary>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
+            command.Description = "The permissions of the users with whom the calendar is shared.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--group-id", description: "key: id of group"));
             command.AddOption(new Option<string>("--event-id", description: "key: id of event"));
@@ -44,6 +45,7 @@ namespace ApiSdk.Groups.Item.CalendarView.Item.Calendar.CalendarPermissions.Item
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
+            command.Description = "The permissions of the users with whom the calendar is shared.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--group-id", description: "key: id of group"));
             command.AddOption(new Option<string>("--event-id", description: "key: id of event"));
@@ -71,6 +73,7 @@ namespace ApiSdk.Groups.Item.CalendarView.Item.Calendar.CalendarPermissions.Item
         /// </summary>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
+            command.Description = "The permissions of the users with whom the calendar is shared.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--group-id", description: "key: id of group"));
             command.AddOption(new Option<string>("--event-id", description: "key: id of event"));

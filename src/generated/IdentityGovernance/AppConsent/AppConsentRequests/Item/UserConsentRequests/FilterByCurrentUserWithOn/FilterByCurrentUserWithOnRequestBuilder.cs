@@ -23,6 +23,7 @@ namespace ApiSdk.IdentityGovernance.AppConsent.AppConsentRequests.Item.UserConse
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
+            command.Description = "Invoke function filterByCurrentUser";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--appconsentrequest-id", description: "key: id of appConsentRequest"));
             command.AddOption(new Option<string>("--on", description: "Usage: on={on}"));

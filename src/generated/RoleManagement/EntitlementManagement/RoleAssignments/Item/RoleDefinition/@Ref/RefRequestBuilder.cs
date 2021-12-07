@@ -23,6 +23,7 @@ namespace ApiSdk.RoleManagement.EntitlementManagement.RoleAssignments.Item.RoleD
         /// </summary>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
+            command.Description = "The roleDefinition the assignment is for.  Supports $expand. roleDefinition.Id will be auto expanded.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--unifiedroleassignment-id", description: "key: id of unifiedRoleAssignment"));
             command.Handler = CommandHandler.Create<string>(async (unifiedRoleAssignmentId) => {
@@ -39,6 +40,7 @@ namespace ApiSdk.RoleManagement.EntitlementManagement.RoleAssignments.Item.RoleD
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
+            command.Description = "The roleDefinition the assignment is for.  Supports $expand. roleDefinition.Id will be auto expanded.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--unifiedroleassignment-id", description: "key: id of unifiedRoleAssignment"));
             command.Handler = CommandHandler.Create<string>(async (unifiedRoleAssignmentId) => {
@@ -60,6 +62,7 @@ namespace ApiSdk.RoleManagement.EntitlementManagement.RoleAssignments.Item.RoleD
         /// </summary>
         public Command BuildPutCommand() {
             var command = new Command("put");
+            command.Description = "The roleDefinition the assignment is for.  Supports $expand. roleDefinition.Id will be auto expanded.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--unifiedroleassignment-id", description: "key: id of unifiedRoleAssignment"));
             command.AddOption(new Option<string>("--body"));

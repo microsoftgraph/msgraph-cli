@@ -24,6 +24,7 @@ namespace ApiSdk.Me.Onenote.SectionGroups.Item.ParentNotebook.Sections.Item.Page
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
+            command.Description = "Invoke function preview";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--sectiongroup-id", description: "key: id of sectionGroup"));
             command.AddOption(new Option<string>("--onenotesection-id", description: "key: id of onenoteSection"));

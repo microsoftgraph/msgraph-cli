@@ -24,6 +24,7 @@ namespace ApiSdk.Education.Classes.Item.Assignments.Item.Submissions.Item.Outcom
         /// </summary>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
+            command.Description = "Read-Write. Nullable.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--educationclass-id", description: "key: id of educationClass"));
             command.AddOption(new Option<string>("--educationassignment-id", description: "key: id of educationAssignment"));
@@ -46,6 +47,7 @@ namespace ApiSdk.Education.Classes.Item.Assignments.Item.Submissions.Item.Outcom
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
+            command.Description = "Read-Write. Nullable.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--educationclass-id", description: "key: id of educationClass"));
             command.AddOption(new Option<string>("--educationassignment-id", description: "key: id of educationAssignment"));
@@ -77,6 +79,7 @@ namespace ApiSdk.Education.Classes.Item.Assignments.Item.Submissions.Item.Outcom
         /// </summary>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
+            command.Description = "Read-Write. Nullable.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--educationclass-id", description: "key: id of educationClass"));
             command.AddOption(new Option<string>("--educationassignment-id", description: "key: id of educationAssignment"));

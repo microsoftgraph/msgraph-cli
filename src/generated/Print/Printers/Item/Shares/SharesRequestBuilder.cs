@@ -24,6 +24,7 @@ namespace ApiSdk.Print.Printers.Item.Shares {
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
+            command.Description = "The list of printerShares that are associated with the printer. Currently, only one printerShare can be associated with the printer. Read-only. Nullable.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--printer-id", description: "key: id of printer"));
             command.AddOption(new Option<int?>("--top", description: "Show only the first n items"));

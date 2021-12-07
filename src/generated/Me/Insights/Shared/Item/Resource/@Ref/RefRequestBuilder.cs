@@ -23,6 +23,7 @@ namespace ApiSdk.Me.Insights.Shared.Item.Resource.@Ref {
         /// </summary>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
+            command.Description = "Used for navigating to the item that was shared. For file attachments, the type is fileAttachment. For linked attachments, the type is driveItem.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--sharedinsight-id", description: "key: id of sharedInsight"));
             command.Handler = CommandHandler.Create<string>(async (sharedInsightId) => {
@@ -39,6 +40,7 @@ namespace ApiSdk.Me.Insights.Shared.Item.Resource.@Ref {
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
+            command.Description = "Used for navigating to the item that was shared. For file attachments, the type is fileAttachment. For linked attachments, the type is driveItem.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--sharedinsight-id", description: "key: id of sharedInsight"));
             command.Handler = CommandHandler.Create<string>(async (sharedInsightId) => {
@@ -60,6 +62,7 @@ namespace ApiSdk.Me.Insights.Shared.Item.Resource.@Ref {
         /// </summary>
         public Command BuildPutCommand() {
             var command = new Command("put");
+            command.Description = "Used for navigating to the item that was shared. For file attachments, the type is fileAttachment. For linked attachments, the type is driveItem.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--sharedinsight-id", description: "key: id of sharedInsight"));
             command.AddOption(new Option<string>("--body"));

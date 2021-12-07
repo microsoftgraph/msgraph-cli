@@ -44,6 +44,7 @@ namespace ApiSdk.Users.Item.Planner.Tasks.Item {
         /// </summary>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
+            command.Description = "Read-only. Nullable. Returns the plannerPlans shared with the user.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--user-id", description: "key: id of user"));
             command.AddOption(new Option<string>("--plannertask-id", description: "key: id of plannerTask"));
@@ -70,6 +71,7 @@ namespace ApiSdk.Users.Item.Planner.Tasks.Item {
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
+            command.Description = "Read-only. Nullable. Returns the plannerPlans shared with the user.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--user-id", description: "key: id of user"));
             command.AddOption(new Option<string>("--plannertask-id", description: "key: id of plannerTask"));
@@ -97,6 +99,7 @@ namespace ApiSdk.Users.Item.Planner.Tasks.Item {
         /// </summary>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
+            command.Description = "Read-only. Nullable. Returns the plannerPlans shared with the user.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--user-id", description: "key: id of user"));
             command.AddOption(new Option<string>("--plannertask-id", description: "key: id of plannerTask"));

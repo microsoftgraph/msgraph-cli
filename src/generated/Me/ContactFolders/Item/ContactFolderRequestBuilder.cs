@@ -48,6 +48,7 @@ namespace ApiSdk.Me.ContactFolders.Item {
         /// </summary>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
+            command.Description = "The user's contacts folders. Read-only. Nullable.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--contactfolder-id", description: "key: id of contactFolder"));
             command.Handler = CommandHandler.Create<string>(async (contactFolderId) => {
@@ -64,6 +65,7 @@ namespace ApiSdk.Me.ContactFolders.Item {
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
+            command.Description = "The user's contacts folders. Read-only. Nullable.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--contactfolder-id", description: "key: id of contactFolder"));
             command.AddOption(new Option<object>("--select", description: "Select properties to be returned"));
@@ -97,6 +99,7 @@ namespace ApiSdk.Me.ContactFolders.Item {
         /// </summary>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
+            command.Description = "The user's contacts folders. Read-only. Nullable.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--contactfolder-id", description: "key: id of contactFolder"));
             command.AddOption(new Option<string>("--body"));

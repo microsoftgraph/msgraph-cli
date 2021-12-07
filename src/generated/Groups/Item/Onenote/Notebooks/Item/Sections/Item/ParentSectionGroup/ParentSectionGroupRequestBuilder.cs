@@ -27,6 +27,7 @@ namespace ApiSdk.Groups.Item.Onenote.Notebooks.Item.Sections.Item.ParentSectionG
         /// </summary>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
+            command.Description = "The section group that contains the section.  Read-only.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--group-id", description: "key: id of group"));
             command.AddOption(new Option<string>("--notebook-id", description: "key: id of notebook"));
@@ -47,6 +48,7 @@ namespace ApiSdk.Groups.Item.Onenote.Notebooks.Item.Sections.Item.ParentSectionG
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
+            command.Description = "The section group that contains the section.  Read-only.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--group-id", description: "key: id of group"));
             command.AddOption(new Option<string>("--notebook-id", description: "key: id of notebook"));
@@ -97,6 +99,7 @@ namespace ApiSdk.Groups.Item.Onenote.Notebooks.Item.Sections.Item.ParentSectionG
         /// </summary>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
+            command.Description = "The section group that contains the section.  Read-only.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--group-id", description: "key: id of group"));
             command.AddOption(new Option<string>("--notebook-id", description: "key: id of notebook"));

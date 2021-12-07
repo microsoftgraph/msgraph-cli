@@ -35,6 +35,7 @@ namespace ApiSdk.Teams.Item.PrimaryChannel.Messages.Item.Replies {
         /// </summary>
         public Command BuildCreateCommand() {
             var command = new Command("create");
+            command.Description = "Replies for a specified message.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--team-id", description: "key: id of team"));
             command.AddOption(new Option<string>("--chatmessage-id", description: "key: id of chatMessage"));
@@ -62,6 +63,7 @@ namespace ApiSdk.Teams.Item.PrimaryChannel.Messages.Item.Replies {
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
+            command.Description = "Replies for a specified message.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--team-id", description: "key: id of team"));
             command.AddOption(new Option<string>("--chatmessage-id", description: "key: id of chatMessage"));

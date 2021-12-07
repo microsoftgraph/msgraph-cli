@@ -24,6 +24,7 @@ namespace ApiSdk.Me.Onenote.Sections.Item.ParentSectionGroup.ParentSectionGroup 
         /// </summary>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
+            command.Description = "The section group that contains the section group. Read-only.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--onenotesection-id", description: "key: id of onenoteSection"));
             command.Handler = CommandHandler.Create<string>(async (onenoteSectionId) => {
@@ -40,6 +41,7 @@ namespace ApiSdk.Me.Onenote.Sections.Item.ParentSectionGroup.ParentSectionGroup 
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
+            command.Description = "The section group that contains the section group. Read-only.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--onenotesection-id", description: "key: id of onenoteSection"));
             command.AddOption(new Option<object>("--select", description: "Select properties to be returned"));
@@ -65,6 +67,7 @@ namespace ApiSdk.Me.Onenote.Sections.Item.ParentSectionGroup.ParentSectionGroup 
         /// </summary>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
+            command.Description = "The section group that contains the section group. Read-only.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--onenotesection-id", description: "key: id of onenoteSection"));
             command.AddOption(new Option<string>("--body"));

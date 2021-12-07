@@ -24,6 +24,7 @@ namespace ApiSdk.DeviceAppManagement.ManagedEBooks.Item.UserStateSummary.Item.De
         /// </summary>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
+            command.Description = "The install state of the eBook.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--managedebook-id", description: "key: id of managedEBook"));
             command.AddOption(new Option<string>("--userinstallstatesummary-id", description: "key: id of userInstallStateSummary"));
@@ -44,6 +45,7 @@ namespace ApiSdk.DeviceAppManagement.ManagedEBooks.Item.UserStateSummary.Item.De
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
+            command.Description = "The install state of the eBook.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--managedebook-id", description: "key: id of managedEBook"));
             command.AddOption(new Option<string>("--userinstallstatesummary-id", description: "key: id of userInstallStateSummary"));
@@ -73,6 +75,7 @@ namespace ApiSdk.DeviceAppManagement.ManagedEBooks.Item.UserStateSummary.Item.De
         /// </summary>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
+            command.Description = "The install state of the eBook.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--managedebook-id", description: "key: id of managedEBook"));
             command.AddOption(new Option<string>("--userinstallstatesummary-id", description: "key: id of userInstallStateSummary"));

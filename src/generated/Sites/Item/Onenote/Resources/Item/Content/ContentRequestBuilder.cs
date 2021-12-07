@@ -23,6 +23,7 @@ namespace ApiSdk.Sites.Item.Onenote.Resources.Item.Content {
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
+            command.Description = "Get media content for the navigation property resources from sites";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--site-id", description: "key: id of site"));
             command.AddOption(new Option<string>("--onenoteresource-id", description: "key: id of onenoteResource"));
@@ -51,6 +52,7 @@ namespace ApiSdk.Sites.Item.Onenote.Resources.Item.Content {
         /// </summary>
         public Command BuildPutCommand() {
             var command = new Command("put");
+            command.Description = "Update media content for the navigation property resources in sites";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--site-id", description: "key: id of site"));
             command.AddOption(new Option<string>("--onenoteresource-id", description: "key: id of onenoteResource"));

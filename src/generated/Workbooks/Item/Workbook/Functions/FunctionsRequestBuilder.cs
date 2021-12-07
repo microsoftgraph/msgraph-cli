@@ -960,6 +960,7 @@ namespace ApiSdk.Workbooks.Item.Workbook.Functions {
         /// </summary>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
+            command.Description = "Delete navigation property functions for workbooks";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--driveitem-id", description: "key: id of driveItem"));
             command.Handler = CommandHandler.Create<string>(async (driveItemId) => {
@@ -1300,6 +1301,7 @@ namespace ApiSdk.Workbooks.Item.Workbook.Functions {
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
+            command.Description = "Get functions from workbooks";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--driveitem-id", description: "key: id of driveItem"));
             command.AddOption(new Option<object>("--select", description: "Select properties to be returned"));
@@ -1955,6 +1957,7 @@ namespace ApiSdk.Workbooks.Item.Workbook.Functions {
         /// </summary>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
+            command.Description = "Update the navigation property functions in workbooks";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--driveitem-id", description: "key: id of driveItem"));
             command.AddOption(new Option<string>("--body"));

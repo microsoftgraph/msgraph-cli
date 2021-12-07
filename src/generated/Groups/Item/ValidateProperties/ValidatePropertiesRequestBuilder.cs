@@ -23,6 +23,7 @@ namespace ApiSdk.Groups.Item.ValidateProperties {
         /// </summary>
         public Command BuildPostCommand() {
             var command = new Command("post");
+            command.Description = "Invoke action validateProperties";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--group-id", description: "key: id of group"));
             command.AddOption(new Option<string>("--body"));

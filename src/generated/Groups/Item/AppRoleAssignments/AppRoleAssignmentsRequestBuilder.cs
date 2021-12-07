@@ -34,6 +34,7 @@ namespace ApiSdk.Groups.Item.AppRoleAssignments {
         /// </summary>
         public Command BuildCreateCommand() {
             var command = new Command("create");
+            command.Description = "Represents the app roles a group has been granted for an application. Supports $expand.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--group-id", description: "key: id of group"));
             command.AddOption(new Option<string>("--body"));
@@ -59,6 +60,7 @@ namespace ApiSdk.Groups.Item.AppRoleAssignments {
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
+            command.Description = "Represents the app roles a group has been granted for an application. Supports $expand.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--group-id", description: "key: id of group"));
             command.AddOption(new Option<int?>("--top", description: "Show only the first n items"));

@@ -33,6 +33,7 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.AccessPackages.Item {
         /// </summary>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
+            command.Description = "Delete navigation property accessPackages for identityGovernance";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--accesspackage-id", description: "key: id of accessPackage"));
             command.Handler = CommandHandler.Create<string>(async (accessPackageId) => {
@@ -55,6 +56,7 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.AccessPackages.Item {
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
+            command.Description = "Get accessPackages from identityGovernance";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--accesspackage-id", description: "key: id of accessPackage"));
             command.AddOption(new Option<object>("--select", description: "Select properties to be returned"));
@@ -80,6 +82,7 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.AccessPackages.Item {
         /// </summary>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
+            command.Description = "Update the navigation property accessPackages in identityGovernance";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--accesspackage-id", description: "key: id of accessPackage"));
             command.AddOption(new Option<string>("--body"));

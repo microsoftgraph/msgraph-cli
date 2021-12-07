@@ -23,6 +23,7 @@ namespace ApiSdk.Users.Item.Photos.Item.Value {
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
+            command.Description = "Get media content for the navigation property photos from users";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--user-id", description: "key: id of user"));
             command.AddOption(new Option<string>("--profilephoto-id", description: "key: id of profilePhoto"));
@@ -51,6 +52,7 @@ namespace ApiSdk.Users.Item.Photos.Item.Value {
         /// </summary>
         public Command BuildPutCommand() {
             var command = new Command("put");
+            command.Description = "Update media content for the navigation property photos in users";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--user-id", description: "key: id of user"));
             command.AddOption(new Option<string>("--profilephoto-id", description: "key: id of profilePhoto"));

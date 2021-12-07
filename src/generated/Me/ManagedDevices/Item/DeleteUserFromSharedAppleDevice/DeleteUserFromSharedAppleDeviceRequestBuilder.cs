@@ -23,6 +23,7 @@ namespace ApiSdk.Me.ManagedDevices.Item.DeleteUserFromSharedAppleDevice {
         /// </summary>
         public Command BuildPostCommand() {
             var command = new Command("post");
+            command.Description = "Delete user from shared Apple device";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--manageddevice-id", description: "key: id of managedDevice"));
             command.AddOption(new Option<string>("--body"));

@@ -75,6 +75,7 @@ namespace ApiSdk.Me.Calendar.CalendarView.Item {
         /// </summary>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
+            command.Description = "The calendar view for the calendar. Navigation property. Read-only.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--event-id", description: "key: id of event"));
             command.Handler = CommandHandler.Create<string>(async (eventId) => {
@@ -113,6 +114,7 @@ namespace ApiSdk.Me.Calendar.CalendarView.Item {
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
+            command.Description = "The calendar view for the calendar. Navigation property. Read-only.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--event-id", description: "key: id of event"));
             command.AddOption(new Option<string>("--startdatetime", description: "The start date and time of the time range, represented in ISO 8601 format. For example, 2019-11-08T19:00:00-08:00"));
@@ -160,6 +162,7 @@ namespace ApiSdk.Me.Calendar.CalendarView.Item {
         /// </summary>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
+            command.Description = "The calendar view for the calendar. Navigation property. Read-only.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--event-id", description: "key: id of event"));
             command.AddOption(new Option<string>("--body"));

@@ -24,6 +24,7 @@ namespace ApiSdk.DeviceManagement.WindowsInformationProtectionNetworkLearningSum
         /// </summary>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
+            command.Description = "The windows information protection network learning summaries.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--windowsinformationprotectionnetworklearningsummary-id", description: "key: id of windowsInformationProtectionNetworkLearningSummary"));
             command.Handler = CommandHandler.Create<string>(async (windowsInformationProtectionNetworkLearningSummaryId) => {
@@ -40,6 +41,7 @@ namespace ApiSdk.DeviceManagement.WindowsInformationProtectionNetworkLearningSum
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
+            command.Description = "The windows information protection network learning summaries.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--windowsinformationprotectionnetworklearningsummary-id", description: "key: id of windowsInformationProtectionNetworkLearningSummary"));
             command.AddOption(new Option<object>("--select", description: "Select properties to be returned"));
@@ -65,6 +67,7 @@ namespace ApiSdk.DeviceManagement.WindowsInformationProtectionNetworkLearningSum
         /// </summary>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
+            command.Description = "The windows information protection network learning summaries.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--windowsinformationprotectionnetworklearningsummary-id", description: "key: id of windowsInformationProtectionNetworkLearningSummary"));
             command.AddOption(new Option<string>("--body"));

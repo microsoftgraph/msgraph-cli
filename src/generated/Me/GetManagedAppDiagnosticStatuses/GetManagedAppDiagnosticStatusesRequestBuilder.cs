@@ -23,6 +23,7 @@ namespace ApiSdk.Me.GetManagedAppDiagnosticStatuses {
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
+            command.Description = "Gets diagnostics validation status for a given user.";
             // Create options for all the parameters
             command.Handler = CommandHandler.Create(async () => {
                 var requestInfo = CreateGetRequestInformation();

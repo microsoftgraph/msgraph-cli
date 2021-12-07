@@ -24,6 +24,7 @@ namespace ApiSdk.DeviceAppManagement.WindowsInformationProtectionPolicies.Item {
         /// </summary>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
+            command.Description = "Windows information protection for apps running on devices which are not MDM enrolled.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--windowsinformationprotectionpolicy-id", description: "key: id of windowsInformationProtectionPolicy"));
             command.Handler = CommandHandler.Create<string>(async (windowsInformationProtectionPolicyId) => {
@@ -40,6 +41,7 @@ namespace ApiSdk.DeviceAppManagement.WindowsInformationProtectionPolicies.Item {
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
+            command.Description = "Windows information protection for apps running on devices which are not MDM enrolled.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--windowsinformationprotectionpolicy-id", description: "key: id of windowsInformationProtectionPolicy"));
             command.AddOption(new Option<object>("--select", description: "Select properties to be returned"));
@@ -65,6 +67,7 @@ namespace ApiSdk.DeviceAppManagement.WindowsInformationProtectionPolicies.Item {
         /// </summary>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
+            command.Description = "Windows information protection for apps running on devices which are not MDM enrolled.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--windowsinformationprotectionpolicy-id", description: "key: id of windowsInformationProtectionPolicy"));
             command.AddOption(new Option<string>("--body"));

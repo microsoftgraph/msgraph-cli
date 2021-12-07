@@ -24,6 +24,7 @@ namespace ApiSdk.Sites.Item.Onenote.Sections.Item.Pages.Item.CopyToSection {
         /// </summary>
         public Command BuildPostCommand() {
             var command = new Command("post");
+            command.Description = "Invoke action copyToSection";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--site-id", description: "key: id of site"));
             command.AddOption(new Option<string>("--onenotesection-id", description: "key: id of onenoteSection"));

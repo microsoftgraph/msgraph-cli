@@ -32,6 +32,7 @@ namespace ApiSdk.Users.Item.Photo {
         /// </summary>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
+            command.Description = "The user's profile photo. Read-only.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--user-id", description: "key: id of user"));
             command.Handler = CommandHandler.Create<string>(async (userId) => {
@@ -48,6 +49,7 @@ namespace ApiSdk.Users.Item.Photo {
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
+            command.Description = "The user's profile photo. Read-only.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--user-id", description: "key: id of user"));
             command.AddOption(new Option<object>("--select", description: "Select properties to be returned"));
@@ -71,6 +73,7 @@ namespace ApiSdk.Users.Item.Photo {
         /// </summary>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
+            command.Description = "The user's profile photo. Read-only.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--user-id", description: "key: id of user"));
             command.AddOption(new Option<string>("--body"));

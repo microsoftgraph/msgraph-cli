@@ -23,6 +23,7 @@ namespace ApiSdk.Users.Item.Onenote.SectionGroups.Item.ParentNotebook.Sections.I
         /// </summary>
         public Command BuildPostCommand() {
             var command = new Command("post");
+            command.Description = "Invoke action onenotePatchContent";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--user-id", description: "key: id of user"));
             command.AddOption(new Option<string>("--sectiongroup-id", description: "key: id of sectionGroup"));

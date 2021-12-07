@@ -23,6 +23,7 @@ namespace ApiSdk.Me.Outlook.SupportedTimeZones {
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
+            command.Description = "Invoke function supportedTimeZones";
             // Create options for all the parameters
             command.Handler = CommandHandler.Create(async () => {
                 var requestInfo = CreateGetRequestInformation();

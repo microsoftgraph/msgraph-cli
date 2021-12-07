@@ -24,6 +24,7 @@ namespace ApiSdk.Admin.ServiceAnnouncement.Messages.Item {
         /// </summary>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
+            command.Description = "A collection of service messages for tenant. This property is a contained navigation property, it is nullable and readonly.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--serviceupdatemessage-id", description: "key: id of serviceUpdateMessage"));
             command.Handler = CommandHandler.Create<string>(async (serviceUpdateMessageId) => {
@@ -40,6 +41,7 @@ namespace ApiSdk.Admin.ServiceAnnouncement.Messages.Item {
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
+            command.Description = "A collection of service messages for tenant. This property is a contained navigation property, it is nullable and readonly.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--serviceupdatemessage-id", description: "key: id of serviceUpdateMessage"));
             command.AddOption(new Option<object>("--select", description: "Select properties to be returned"));
@@ -65,6 +67,7 @@ namespace ApiSdk.Admin.ServiceAnnouncement.Messages.Item {
         /// </summary>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
+            command.Description = "A collection of service messages for tenant. This property is a contained navigation property, it is nullable and readonly.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--serviceupdatemessage-id", description: "key: id of serviceUpdateMessage"));
             command.AddOption(new Option<string>("--body"));

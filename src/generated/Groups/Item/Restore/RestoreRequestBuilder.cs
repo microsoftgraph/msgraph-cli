@@ -24,6 +24,7 @@ namespace ApiSdk.Groups.Item.Restore {
         /// </summary>
         public Command BuildPostCommand() {
             var command = new Command("post");
+            command.Description = "Invoke action restore";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--group-id", description: "key: id of group"));
             command.Handler = CommandHandler.Create<string>(async (groupId) => {

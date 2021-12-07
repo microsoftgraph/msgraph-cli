@@ -24,6 +24,7 @@ namespace ApiSdk.Teams.Item.PrimaryChannel.Members.Item {
         /// </summary>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
+            command.Description = "A collection of membership records associated with the channel.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--team-id", description: "key: id of team"));
             command.AddOption(new Option<string>("--conversationmember-id", description: "key: id of conversationMember"));
@@ -42,6 +43,7 @@ namespace ApiSdk.Teams.Item.PrimaryChannel.Members.Item {
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
+            command.Description = "A collection of membership records associated with the channel.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--team-id", description: "key: id of team"));
             command.AddOption(new Option<string>("--conversationmember-id", description: "key: id of conversationMember"));
@@ -69,6 +71,7 @@ namespace ApiSdk.Teams.Item.PrimaryChannel.Members.Item {
         /// </summary>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
+            command.Description = "A collection of membership records associated with the channel.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--team-id", description: "key: id of team"));
             command.AddOption(new Option<string>("--conversationmember-id", description: "key: id of conversationMember"));

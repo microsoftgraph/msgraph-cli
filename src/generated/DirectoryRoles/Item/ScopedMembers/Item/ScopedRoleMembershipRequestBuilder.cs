@@ -24,6 +24,7 @@ namespace ApiSdk.DirectoryRoles.Item.ScopedMembers.Item {
         /// </summary>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
+            command.Description = "Members of this directory role that are scoped to administrative units. Read-only. Nullable.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--directoryrole-id", description: "key: id of directoryRole"));
             command.AddOption(new Option<string>("--scopedrolemembership-id", description: "key: id of scopedRoleMembership"));
@@ -42,6 +43,7 @@ namespace ApiSdk.DirectoryRoles.Item.ScopedMembers.Item {
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
+            command.Description = "Members of this directory role that are scoped to administrative units. Read-only. Nullable.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--directoryrole-id", description: "key: id of directoryRole"));
             command.AddOption(new Option<string>("--scopedrolemembership-id", description: "key: id of scopedRoleMembership"));
@@ -69,6 +71,7 @@ namespace ApiSdk.DirectoryRoles.Item.ScopedMembers.Item {
         /// </summary>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
+            command.Description = "Members of this directory role that are scoped to administrative units. Read-only. Nullable.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--directoryrole-id", description: "key: id of directoryRole"));
             command.AddOption(new Option<string>("--scopedrolemembership-id", description: "key: id of scopedRoleMembership"));

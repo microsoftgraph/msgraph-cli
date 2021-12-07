@@ -34,6 +34,7 @@ namespace ApiSdk.Education.Classes.Item.Assignments.Item.Submissions.Item.Resour
         /// </summary>
         public Command BuildCreateCommand() {
             var command = new Command("create");
+            command.Description = "Nullable.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--educationclass-id", description: "key: id of educationClass"));
             command.AddOption(new Option<string>("--educationassignment-id", description: "key: id of educationAssignment"));
@@ -63,6 +64,7 @@ namespace ApiSdk.Education.Classes.Item.Assignments.Item.Submissions.Item.Resour
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
+            command.Description = "Nullable.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--educationclass-id", description: "key: id of educationClass"));
             command.AddOption(new Option<string>("--educationassignment-id", description: "key: id of educationAssignment"));

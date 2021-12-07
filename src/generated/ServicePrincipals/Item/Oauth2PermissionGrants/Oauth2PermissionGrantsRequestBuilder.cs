@@ -24,6 +24,7 @@ namespace ApiSdk.ServicePrincipals.Item.Oauth2PermissionGrants {
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
+            command.Description = "Delegated permission grants authorizing this service principal to access an API on behalf of a signed-in user. Read-only. Nullable.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--serviceprincipal-id", description: "key: id of servicePrincipal"));
             command.AddOption(new Option<int?>("--top", description: "Show only the first n items"));

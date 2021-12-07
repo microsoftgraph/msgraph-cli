@@ -24,6 +24,7 @@ namespace ApiSdk.Domains.Item.VerificationDnsRecords.Item {
         /// </summary>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
+            command.Description = "DNS records that the customer adds to the DNS zone file of the domain before the customer can complete domain ownership verification with Azure AD. Read-only, Nullable";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--domain-id", description: "key: id of domain"));
             command.AddOption(new Option<string>("--domaindnsrecord-id", description: "key: id of domainDnsRecord"));
@@ -42,6 +43,7 @@ namespace ApiSdk.Domains.Item.VerificationDnsRecords.Item {
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
+            command.Description = "DNS records that the customer adds to the DNS zone file of the domain before the customer can complete domain ownership verification with Azure AD. Read-only, Nullable";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--domain-id", description: "key: id of domain"));
             command.AddOption(new Option<string>("--domaindnsrecord-id", description: "key: id of domainDnsRecord"));
@@ -69,6 +71,7 @@ namespace ApiSdk.Domains.Item.VerificationDnsRecords.Item {
         /// </summary>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
+            command.Description = "DNS records that the customer adds to the DNS zone file of the domain before the customer can complete domain ownership verification with Azure AD. Read-only, Nullable";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--domain-id", description: "key: id of domain"));
             command.AddOption(new Option<string>("--domaindnsrecord-id", description: "key: id of domainDnsRecord"));

@@ -24,6 +24,7 @@ namespace ApiSdk.ServicePrincipals.Item.AppRoleAssignedTo.Item {
         /// </summary>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
+            command.Description = "App role assignments for this app or service, granted to users, groups, and other service principals. Supports $expand.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--serviceprincipal-id", description: "key: id of servicePrincipal"));
             command.AddOption(new Option<string>("--approleassignment-id", description: "key: id of appRoleAssignment"));
@@ -42,6 +43,7 @@ namespace ApiSdk.ServicePrincipals.Item.AppRoleAssignedTo.Item {
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
+            command.Description = "App role assignments for this app or service, granted to users, groups, and other service principals. Supports $expand.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--serviceprincipal-id", description: "key: id of servicePrincipal"));
             command.AddOption(new Option<string>("--approleassignment-id", description: "key: id of appRoleAssignment"));
@@ -69,6 +71,7 @@ namespace ApiSdk.ServicePrincipals.Item.AppRoleAssignedTo.Item {
         /// </summary>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
+            command.Description = "App role assignments for this app or service, granted to users, groups, and other service principals. Supports $expand.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--serviceprincipal-id", description: "key: id of servicePrincipal"));
             command.AddOption(new Option<string>("--approleassignment-id", description: "key: id of appRoleAssignment"));

@@ -25,6 +25,7 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.AccessPackages.Item.Ca
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
+            command.Description = "Get catalog from identityGovernance";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--accesspackage-id", description: "key: id of accessPackage"));
             command.AddOption(new Option<object>("--select", description: "Select properties to be returned"));

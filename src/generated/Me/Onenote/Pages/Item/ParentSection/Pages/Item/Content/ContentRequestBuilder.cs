@@ -23,6 +23,7 @@ namespace ApiSdk.Me.Onenote.Pages.Item.ParentSection.Pages.Item.Content {
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
+            command.Description = "Get media content for the navigation property pages from me";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--onenotepage-id", description: "key: id of onenotePage"));
             command.AddOption(new Option<string>("--onenotepage-id1", description: "key: id of onenotePage"));
@@ -51,6 +52,7 @@ namespace ApiSdk.Me.Onenote.Pages.Item.ParentSection.Pages.Item.Content {
         /// </summary>
         public Command BuildPutCommand() {
             var command = new Command("put");
+            command.Description = "Update media content for the navigation property pages in me";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--onenotepage-id", description: "key: id of onenotePage"));
             command.AddOption(new Option<string>("--onenotepage-id1", description: "key: id of onenotePage"));

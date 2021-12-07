@@ -24,6 +24,7 @@ namespace ApiSdk.ServicePrincipals.Item.DelegatedPermissionClassifications.Item 
         /// </summary>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
+            command.Description = "The permission classifications for delegated permissions exposed by the app that this service principal represents. Supports $expand.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--serviceprincipal-id", description: "key: id of servicePrincipal"));
             command.AddOption(new Option<string>("--delegatedpermissionclassification-id", description: "key: id of delegatedPermissionClassification"));
@@ -42,6 +43,7 @@ namespace ApiSdk.ServicePrincipals.Item.DelegatedPermissionClassifications.Item 
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
+            command.Description = "The permission classifications for delegated permissions exposed by the app that this service principal represents. Supports $expand.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--serviceprincipal-id", description: "key: id of servicePrincipal"));
             command.AddOption(new Option<string>("--delegatedpermissionclassification-id", description: "key: id of delegatedPermissionClassification"));
@@ -69,6 +71,7 @@ namespace ApiSdk.ServicePrincipals.Item.DelegatedPermissionClassifications.Item 
         /// </summary>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
+            command.Description = "The permission classifications for delegated permissions exposed by the app that this service principal represents. Supports $expand.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--serviceprincipal-id", description: "key: id of servicePrincipal"));
             command.AddOption(new Option<string>("--delegatedpermissionclassification-id", description: "key: id of delegatedPermissionClassification"));

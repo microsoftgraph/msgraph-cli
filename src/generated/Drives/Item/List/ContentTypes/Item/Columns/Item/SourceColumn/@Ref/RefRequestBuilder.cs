@@ -23,6 +23,7 @@ namespace ApiSdk.Drives.Item.List.ContentTypes.Item.Columns.Item.SourceColumn.@R
         /// </summary>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
+            command.Description = "The source column for the content type column.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--drive-id", description: "key: id of drive"));
             command.AddOption(new Option<string>("--contenttype-id", description: "key: id of contentType"));
@@ -43,6 +44,7 @@ namespace ApiSdk.Drives.Item.List.ContentTypes.Item.Columns.Item.SourceColumn.@R
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
+            command.Description = "The source column for the content type column.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--drive-id", description: "key: id of drive"));
             command.AddOption(new Option<string>("--contenttype-id", description: "key: id of contentType"));
@@ -68,6 +70,7 @@ namespace ApiSdk.Drives.Item.List.ContentTypes.Item.Columns.Item.SourceColumn.@R
         /// </summary>
         public Command BuildPutCommand() {
             var command = new Command("put");
+            command.Description = "The source column for the content type column.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--drive-id", description: "key: id of drive"));
             command.AddOption(new Option<string>("--contenttype-id", description: "key: id of contentType"));

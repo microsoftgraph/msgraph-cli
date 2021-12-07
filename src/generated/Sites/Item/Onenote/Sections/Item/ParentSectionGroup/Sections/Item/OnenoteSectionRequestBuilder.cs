@@ -38,6 +38,7 @@ namespace ApiSdk.Sites.Item.Onenote.Sections.Item.ParentSectionGroup.Sections.It
         /// </summary>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
+            command.Description = "The sections in the section group. Read-only. Nullable.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--site-id", description: "key: id of site"));
             command.AddOption(new Option<string>("--onenotesection-id", description: "key: id of onenoteSection"));
@@ -58,6 +59,7 @@ namespace ApiSdk.Sites.Item.Onenote.Sections.Item.ParentSectionGroup.Sections.It
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
+            command.Description = "The sections in the section group. Read-only. Nullable.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--site-id", description: "key: id of site"));
             command.AddOption(new Option<string>("--onenotesection-id", description: "key: id of onenoteSection"));
@@ -87,6 +89,7 @@ namespace ApiSdk.Sites.Item.Onenote.Sections.Item.ParentSectionGroup.Sections.It
         /// </summary>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
+            command.Description = "The sections in the section group. Read-only. Nullable.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--site-id", description: "key: id of site"));
             command.AddOption(new Option<string>("--onenotesection-id", description: "key: id of onenoteSection"));

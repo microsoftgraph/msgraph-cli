@@ -24,6 +24,7 @@ namespace ApiSdk.Planner.Plans.Item.Buckets.Item.Tasks.Item.ProgressTaskBoardFor
         /// </summary>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
+            command.Description = "Read-only. Nullable. Used to render the task correctly in the task board view when grouped by progress.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--plannerplan-id", description: "key: id of plannerPlan"));
             command.AddOption(new Option<string>("--plannerbucket-id", description: "key: id of plannerBucket"));
@@ -44,6 +45,7 @@ namespace ApiSdk.Planner.Plans.Item.Buckets.Item.Tasks.Item.ProgressTaskBoardFor
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
+            command.Description = "Read-only. Nullable. Used to render the task correctly in the task board view when grouped by progress.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--plannerplan-id", description: "key: id of plannerPlan"));
             command.AddOption(new Option<string>("--plannerbucket-id", description: "key: id of plannerBucket"));
@@ -73,6 +75,7 @@ namespace ApiSdk.Planner.Plans.Item.Buckets.Item.Tasks.Item.ProgressTaskBoardFor
         /// </summary>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
+            command.Description = "Read-only. Nullable. Used to render the task correctly in the task board view when grouped by progress.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--plannerplan-id", description: "key: id of plannerPlan"));
             command.AddOption(new Option<string>("--plannerbucket-id", description: "key: id of plannerBucket"));

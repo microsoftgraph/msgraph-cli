@@ -24,6 +24,7 @@ namespace ApiSdk.Reports.GetSharePointActivityFileCountsWithPeriod {
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
+            command.Description = "Invoke function getSharePointActivityFileCounts";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--period", description: "Usage: period={period}"));
             command.Handler = CommandHandler.Create<string>(async (period) => {

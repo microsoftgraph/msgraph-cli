@@ -25,6 +25,7 @@ namespace ApiSdk.DeviceManagement.ApplePushNotificationCertificate {
         /// </summary>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
+            command.Description = "Apple push notification certificate.";
             // Create options for all the parameters
             command.Handler = CommandHandler.Create(async () => {
                 var requestInfo = CreateDeleteRequestInformation();
@@ -39,6 +40,7 @@ namespace ApiSdk.DeviceManagement.ApplePushNotificationCertificate {
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
+            command.Description = "Apple push notification certificate.";
             // Create options for all the parameters
             command.AddOption(new Option<object>("--select", description: "Select properties to be returned"));
             command.AddOption(new Option<object>("--expand", description: "Expand related entities"));
@@ -62,6 +64,7 @@ namespace ApiSdk.DeviceManagement.ApplePushNotificationCertificate {
         /// </summary>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
+            command.Description = "Apple push notification certificate.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--body"));
             command.Handler = CommandHandler.Create<string>(async (body) => {

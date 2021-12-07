@@ -23,6 +23,7 @@ namespace ApiSdk.GroupSettingTemplates.Item.CheckMemberObjects {
         /// </summary>
         public Command BuildPostCommand() {
             var command = new Command("post");
+            command.Description = "Invoke action checkMemberObjects";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--groupsettingtemplate-id", description: "key: id of groupSettingTemplate"));
             command.AddOption(new Option<string>("--body"));

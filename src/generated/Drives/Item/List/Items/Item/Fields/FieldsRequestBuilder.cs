@@ -24,6 +24,7 @@ namespace ApiSdk.Drives.Item.List.Items.Item.Fields {
         /// </summary>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
+            command.Description = "The values of the columns set on this list item.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--drive-id", description: "key: id of drive"));
             command.AddOption(new Option<string>("--listitem-id", description: "key: id of listItem"));
@@ -42,6 +43,7 @@ namespace ApiSdk.Drives.Item.List.Items.Item.Fields {
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
+            command.Description = "The values of the columns set on this list item.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--drive-id", description: "key: id of drive"));
             command.AddOption(new Option<string>("--listitem-id", description: "key: id of listItem"));
@@ -69,6 +71,7 @@ namespace ApiSdk.Drives.Item.List.Items.Item.Fields {
         /// </summary>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
+            command.Description = "The values of the columns set on this list item.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--drive-id", description: "key: id of drive"));
             command.AddOption(new Option<string>("--listitem-id", description: "key: id of listItem"));

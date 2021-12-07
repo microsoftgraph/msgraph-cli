@@ -25,6 +25,7 @@ namespace ApiSdk.Users.Item.ManagedAppRegistrations {
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
+            command.Description = "Zero or more managed app registrations that belong to the user.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--user-id", description: "key: id of user"));
             command.AddOption(new Option<int?>("--top", description: "Show only the first n items"));

@@ -39,6 +39,7 @@ namespace ApiSdk.Me.Onenote.SectionGroups.Item.ParentNotebook.Sections.Item.Page
         /// </summary>
         public Command BuildCreateCommand() {
             var command = new Command("create");
+            command.Description = "The collection of pages in the section.  Read-only. Nullable.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--sectiongroup-id", description: "key: id of sectionGroup"));
             command.AddOption(new Option<string>("--onenotesection-id", description: "key: id of onenoteSection"));
@@ -66,6 +67,7 @@ namespace ApiSdk.Me.Onenote.SectionGroups.Item.ParentNotebook.Sections.Item.Page
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
+            command.Description = "The collection of pages in the section.  Read-only. Nullable.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--sectiongroup-id", description: "key: id of sectionGroup"));
             command.AddOption(new Option<string>("--onenotesection-id", description: "key: id of onenoteSection"));

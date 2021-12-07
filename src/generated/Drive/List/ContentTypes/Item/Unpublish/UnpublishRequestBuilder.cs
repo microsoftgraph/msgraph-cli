@@ -23,6 +23,7 @@ namespace ApiSdk.Drive.List.ContentTypes.Item.Unpublish {
         /// </summary>
         public Command BuildPostCommand() {
             var command = new Command("post");
+            command.Description = "Invoke action unpublish";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--contenttype-id", description: "key: id of contentType"));
             command.Handler = CommandHandler.Create<string>(async (contentTypeId) => {

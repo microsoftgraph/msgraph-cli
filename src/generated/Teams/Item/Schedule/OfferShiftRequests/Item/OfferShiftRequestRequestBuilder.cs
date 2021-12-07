@@ -24,6 +24,7 @@ namespace ApiSdk.Teams.Item.Schedule.OfferShiftRequests.Item {
         /// </summary>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
+            command.Description = "Delete navigation property offerShiftRequests for teams";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--team-id", description: "key: id of team"));
             command.AddOption(new Option<string>("--offershiftrequest-id", description: "key: id of offerShiftRequest"));
@@ -42,6 +43,7 @@ namespace ApiSdk.Teams.Item.Schedule.OfferShiftRequests.Item {
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
+            command.Description = "Get offerShiftRequests from teams";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--team-id", description: "key: id of team"));
             command.AddOption(new Option<string>("--offershiftrequest-id", description: "key: id of offerShiftRequest"));
@@ -69,6 +71,7 @@ namespace ApiSdk.Teams.Item.Schedule.OfferShiftRequests.Item {
         /// </summary>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
+            command.Description = "Update the navigation property offerShiftRequests in teams";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--team-id", description: "key: id of team"));
             command.AddOption(new Option<string>("--offershiftrequest-id", description: "key: id of offerShiftRequest"));

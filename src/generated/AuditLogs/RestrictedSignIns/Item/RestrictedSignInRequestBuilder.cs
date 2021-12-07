@@ -24,6 +24,7 @@ namespace ApiSdk.AuditLogs.RestrictedSignIns.Item {
         /// </summary>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
+            command.Description = "Delete navigation property restrictedSignIns for auditLogs";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--restrictedsignin-id", description: "key: id of restrictedSignIn"));
             command.Handler = CommandHandler.Create<string>(async (restrictedSignInId) => {
@@ -40,6 +41,7 @@ namespace ApiSdk.AuditLogs.RestrictedSignIns.Item {
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
+            command.Description = "Get restrictedSignIns from auditLogs";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--restrictedsignin-id", description: "key: id of restrictedSignIn"));
             command.AddOption(new Option<object>("--select", description: "Select properties to be returned"));
@@ -65,6 +67,7 @@ namespace ApiSdk.AuditLogs.RestrictedSignIns.Item {
         /// </summary>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
+            command.Description = "Update the navigation property restrictedSignIns in auditLogs";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--restrictedsignin-id", description: "key: id of restrictedSignIn"));
             command.AddOption(new Option<string>("--body"));

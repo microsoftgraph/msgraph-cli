@@ -32,6 +32,7 @@ namespace ApiSdk.Print.Printers.Item.TaskTriggers.Item {
         /// </summary>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
+            command.Description = "A list of task triggers that are associated with the printer.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--printer-id", description: "key: id of printer"));
             command.AddOption(new Option<string>("--printtasktrigger-id", description: "key: id of printTaskTrigger"));
@@ -50,6 +51,7 @@ namespace ApiSdk.Print.Printers.Item.TaskTriggers.Item {
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
+            command.Description = "A list of task triggers that are associated with the printer.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--printer-id", description: "key: id of printer"));
             command.AddOption(new Option<string>("--printtasktrigger-id", description: "key: id of printTaskTrigger"));
@@ -77,6 +79,7 @@ namespace ApiSdk.Print.Printers.Item.TaskTriggers.Item {
         /// </summary>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
+            command.Description = "A list of task triggers that are associated with the printer.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--printer-id", description: "key: id of printer"));
             command.AddOption(new Option<string>("--printtasktrigger-id", description: "key: id of printTaskTrigger"));

@@ -23,6 +23,7 @@ namespace ApiSdk.Me.OnlineMeetings.Item.AttendeeReport {
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
+            command.Description = "Get media content for the navigation property onlineMeetings from me";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--onlinemeeting-id", description: "key: id of onlineMeeting"));
             command.AddOption(new Option<FileInfo>("--output"));
@@ -49,6 +50,7 @@ namespace ApiSdk.Me.OnlineMeetings.Item.AttendeeReport {
         /// </summary>
         public Command BuildPutCommand() {
             var command = new Command("put");
+            command.Description = "Update media content for the navigation property onlineMeetings in me";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--onlinemeeting-id", description: "key: id of onlineMeeting"));
             command.AddOption(new Option<Stream>("--file", description: "Binary request body"));

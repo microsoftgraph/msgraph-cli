@@ -24,6 +24,7 @@ namespace ApiSdk.Contacts.Item.Restore {
         /// </summary>
         public Command BuildPostCommand() {
             var command = new Command("post");
+            command.Description = "Invoke action restore";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--orgcontact-id", description: "key: id of orgContact"));
             command.Handler = CommandHandler.Create<string>(async (orgContactId) => {

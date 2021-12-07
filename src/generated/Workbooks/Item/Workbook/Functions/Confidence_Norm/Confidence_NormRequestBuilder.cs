@@ -24,6 +24,7 @@ namespace ApiSdk.Workbooks.Item.Workbook.Functions.Confidence_Norm {
         /// </summary>
         public Command BuildPostCommand() {
             var command = new Command("post");
+            command.Description = "Invoke action confidence_Norm";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--driveitem-id", description: "key: id of driveItem"));
             command.AddOption(new Option<string>("--body"));

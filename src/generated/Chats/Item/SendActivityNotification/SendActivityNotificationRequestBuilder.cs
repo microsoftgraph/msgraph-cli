@@ -23,6 +23,7 @@ namespace ApiSdk.Chats.Item.SendActivityNotification {
         /// </summary>
         public Command BuildPostCommand() {
             var command = new Command("post");
+            command.Description = "Invoke action sendActivityNotification";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--chat-id", description: "key: id of chat"));
             command.AddOption(new Option<string>("--body"));

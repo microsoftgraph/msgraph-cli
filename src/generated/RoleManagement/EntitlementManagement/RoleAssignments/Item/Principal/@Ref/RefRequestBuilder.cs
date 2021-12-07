@@ -23,6 +23,7 @@ namespace ApiSdk.RoleManagement.EntitlementManagement.RoleAssignments.Item.Princ
         /// </summary>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
+            command.Description = "Referencing the assigned principal. Read-only. Supports $expand.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--unifiedroleassignment-id", description: "key: id of unifiedRoleAssignment"));
             command.Handler = CommandHandler.Create<string>(async (unifiedRoleAssignmentId) => {
@@ -39,6 +40,7 @@ namespace ApiSdk.RoleManagement.EntitlementManagement.RoleAssignments.Item.Princ
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
+            command.Description = "Referencing the assigned principal. Read-only. Supports $expand.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--unifiedroleassignment-id", description: "key: id of unifiedRoleAssignment"));
             command.Handler = CommandHandler.Create<string>(async (unifiedRoleAssignmentId) => {
@@ -60,6 +62,7 @@ namespace ApiSdk.RoleManagement.EntitlementManagement.RoleAssignments.Item.Princ
         /// </summary>
         public Command BuildPutCommand() {
             var command = new Command("put");
+            command.Description = "Referencing the assigned principal. Read-only. Supports $expand.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--unifiedroleassignment-id", description: "key: id of unifiedRoleAssignment"));
             command.AddOption(new Option<string>("--body"));

@@ -24,6 +24,7 @@ namespace ApiSdk.Me.Authentication.Methods.Item {
         /// </summary>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
+            command.Description = "Delete navigation property methods for me";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--authenticationmethod-id", description: "key: id of authenticationMethod"));
             command.Handler = CommandHandler.Create<string>(async (authenticationMethodId) => {
@@ -40,6 +41,7 @@ namespace ApiSdk.Me.Authentication.Methods.Item {
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
+            command.Description = "Get methods from me";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--authenticationmethod-id", description: "key: id of authenticationMethod"));
             command.AddOption(new Option<object>("--select", description: "Select properties to be returned"));
@@ -65,6 +67,7 @@ namespace ApiSdk.Me.Authentication.Methods.Item {
         /// </summary>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
+            command.Description = "Update the navigation property methods in me";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--authenticationmethod-id", description: "key: id of authenticationMethod"));
             command.AddOption(new Option<string>("--body"));

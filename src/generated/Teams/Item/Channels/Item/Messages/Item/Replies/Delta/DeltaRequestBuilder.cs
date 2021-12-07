@@ -23,6 +23,7 @@ namespace ApiSdk.Teams.Item.Channels.Item.Messages.Item.Replies.Delta {
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
+            command.Description = "Invoke function delta";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--team-id", description: "key: id of team"));
             command.AddOption(new Option<string>("--channel-id", description: "key: id of channel"));

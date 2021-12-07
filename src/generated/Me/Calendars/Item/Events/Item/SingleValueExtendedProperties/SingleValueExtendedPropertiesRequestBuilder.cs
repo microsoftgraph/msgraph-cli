@@ -34,6 +34,7 @@ namespace ApiSdk.Me.Calendars.Item.Events.Item.SingleValueExtendedProperties {
         /// </summary>
         public Command BuildCreateCommand() {
             var command = new Command("create");
+            command.Description = "The collection of single-value extended properties defined for the event. Read-only. Nullable.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--calendar-id", description: "key: id of calendar"));
             command.AddOption(new Option<string>("--event-id", description: "key: id of event"));
@@ -61,6 +62,7 @@ namespace ApiSdk.Me.Calendars.Item.Events.Item.SingleValueExtendedProperties {
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
+            command.Description = "The collection of single-value extended properties defined for the event. Read-only. Nullable.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--calendar-id", description: "key: id of calendar"));
             command.AddOption(new Option<string>("--event-id", description: "key: id of event"));

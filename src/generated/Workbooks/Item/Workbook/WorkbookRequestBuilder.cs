@@ -67,6 +67,7 @@ namespace ApiSdk.Workbooks.Item.Workbook {
         /// </summary>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
+            command.Description = "For files that are Excel spreadsheets, accesses the workbook API to work with the spreadsheet's contents. Nullable.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--driveitem-id", description: "key: id of driveItem"));
             command.Handler = CommandHandler.Create<string>(async (driveItemId) => {
@@ -457,6 +458,7 @@ namespace ApiSdk.Workbooks.Item.Workbook {
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
+            command.Description = "For files that are Excel spreadsheets, accesses the workbook API to work with the spreadsheet's contents. Nullable.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--driveitem-id", description: "key: id of driveItem"));
             command.AddOption(new Option<object>("--expand", description: "Expand related entities"));
@@ -502,6 +504,7 @@ namespace ApiSdk.Workbooks.Item.Workbook {
         /// </summary>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
+            command.Description = "For files that are Excel spreadsheets, accesses the workbook API to work with the spreadsheet's contents. Nullable.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--driveitem-id", description: "key: id of driveItem"));
             command.AddOption(new Option<string>("--body"));

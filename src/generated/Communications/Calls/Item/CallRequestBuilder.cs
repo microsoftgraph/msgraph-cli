@@ -68,6 +68,7 @@ namespace ApiSdk.Communications.Calls.Item {
         /// </summary>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
+            command.Description = "Delete navigation property calls for communications";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--call-id", description: "key: id of call"));
             command.Handler = CommandHandler.Create<string>(async (callId) => {
@@ -84,6 +85,7 @@ namespace ApiSdk.Communications.Calls.Item {
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
+            command.Description = "Get calls from communications";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--call-id", description: "key: id of call"));
             command.AddOption(new Option<object>("--select", description: "Select properties to be returned"));
@@ -142,6 +144,7 @@ namespace ApiSdk.Communications.Calls.Item {
         /// </summary>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
+            command.Description = "Update the navigation property calls in communications";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--call-id", description: "key: id of call"));
             command.AddOption(new Option<string>("--body"));

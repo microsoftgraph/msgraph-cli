@@ -25,6 +25,7 @@ namespace ApiSdk.Privacy.SubjectRightsRequests.Item.Team {
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
+            command.Description = "Information about the Microsoft Teams team that was created for the request.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--subjectrightsrequest-id", description: "key: id of subjectRightsRequest"));
             command.AddOption(new Option<object>("--select", description: "Select properties to be returned"));

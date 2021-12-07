@@ -42,6 +42,7 @@ namespace ApiSdk.Drives.Item.List.ContentTypes.Item.@Base {
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
+            command.Description = "Parent contentType from which this content type is derived.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--drive-id", description: "key: id of drive"));
             command.AddOption(new Option<string>("--contenttype-id", description: "key: id of contentType"));

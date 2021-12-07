@@ -24,6 +24,7 @@ namespace ApiSdk.Me.Insights.Shared.Item.LastSharedMethod.WorkbookRange.UsedRang
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
+            command.Description = "Invoke function usedRange";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--sharedinsight-id", description: "key: id of sharedInsight"));
             command.AddOption(new Option<bool?>("--valuesonly", description: "Usage: valuesOnly={valuesOnly}"));

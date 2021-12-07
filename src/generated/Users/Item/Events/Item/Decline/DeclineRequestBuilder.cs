@@ -23,6 +23,7 @@ namespace ApiSdk.Users.Item.Events.Item.Decline {
         /// </summary>
         public Command BuildPostCommand() {
             var command = new Command("post");
+            command.Description = "Invoke action decline";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--user-id", description: "key: id of user"));
             command.AddOption(new Option<string>("--event-id", description: "key: id of event"));

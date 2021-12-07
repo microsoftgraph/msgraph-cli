@@ -24,6 +24,7 @@ namespace ApiSdk.DeviceAppManagement.MobileAppCategories.Item {
         /// </summary>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
+            command.Description = "The mobile app categories.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--mobileappcategory-id", description: "key: id of mobileAppCategory"));
             command.Handler = CommandHandler.Create<string>(async (mobileAppCategoryId) => {
@@ -40,6 +41,7 @@ namespace ApiSdk.DeviceAppManagement.MobileAppCategories.Item {
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
+            command.Description = "The mobile app categories.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--mobileappcategory-id", description: "key: id of mobileAppCategory"));
             command.AddOption(new Option<object>("--select", description: "Select properties to be returned"));
@@ -65,6 +67,7 @@ namespace ApiSdk.DeviceAppManagement.MobileAppCategories.Item {
         /// </summary>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
+            command.Description = "The mobile app categories.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--mobileappcategory-id", description: "key: id of mobileAppCategory"));
             command.AddOption(new Option<string>("--body"));

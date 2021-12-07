@@ -27,6 +27,7 @@ namespace ApiSdk.Sites.Item.TermStores.Item.Sets.Item.Terms.Item.Relations.Item 
         /// </summary>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
+            command.Description = "To indicate which terms are related to the current term as either pinned or reused.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--site-id", description: "key: id of site"));
             command.AddOption(new Option<string>("--store-id", description: "key: id of store"));
@@ -58,6 +59,7 @@ namespace ApiSdk.Sites.Item.TermStores.Item.Sets.Item.Terms.Item.Relations.Item 
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
+            command.Description = "To indicate which terms are related to the current term as either pinned or reused.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--site-id", description: "key: id of site"));
             command.AddOption(new Option<string>("--store-id", description: "key: id of store"));
@@ -91,6 +93,7 @@ namespace ApiSdk.Sites.Item.TermStores.Item.Sets.Item.Terms.Item.Relations.Item 
         /// </summary>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
+            command.Description = "To indicate which terms are related to the current term as either pinned or reused.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--site-id", description: "key: id of site"));
             command.AddOption(new Option<string>("--store-id", description: "key: id of store"));

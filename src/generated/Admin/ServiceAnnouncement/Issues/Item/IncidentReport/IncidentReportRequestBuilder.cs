@@ -23,6 +23,7 @@ namespace ApiSdk.Admin.ServiceAnnouncement.Issues.Item.IncidentReport {
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
+            command.Description = "Invoke function incidentReport";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--servicehealthissue-id", description: "key: id of serviceHealthIssue"));
             command.AddOption(new Option<FileInfo>("--output"));

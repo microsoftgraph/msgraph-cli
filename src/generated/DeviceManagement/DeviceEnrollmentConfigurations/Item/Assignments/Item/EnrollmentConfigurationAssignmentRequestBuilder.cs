@@ -24,6 +24,7 @@ namespace ApiSdk.DeviceManagement.DeviceEnrollmentConfigurations.Item.Assignment
         /// </summary>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
+            command.Description = "The list of group assignments for the device configuration profile";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--deviceenrollmentconfiguration-id", description: "key: id of deviceEnrollmentConfiguration"));
             command.AddOption(new Option<string>("--enrollmentconfigurationassignment-id", description: "key: id of enrollmentConfigurationAssignment"));
@@ -42,6 +43,7 @@ namespace ApiSdk.DeviceManagement.DeviceEnrollmentConfigurations.Item.Assignment
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
+            command.Description = "The list of group assignments for the device configuration profile";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--deviceenrollmentconfiguration-id", description: "key: id of deviceEnrollmentConfiguration"));
             command.AddOption(new Option<string>("--enrollmentconfigurationassignment-id", description: "key: id of enrollmentConfigurationAssignment"));
@@ -69,6 +71,7 @@ namespace ApiSdk.DeviceManagement.DeviceEnrollmentConfigurations.Item.Assignment
         /// </summary>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
+            command.Description = "The list of group assignments for the device configuration profile";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--deviceenrollmentconfiguration-id", description: "key: id of deviceEnrollmentConfiguration"));
             command.AddOption(new Option<string>("--enrollmentconfigurationassignment-id", description: "key: id of enrollmentConfigurationAssignment"));

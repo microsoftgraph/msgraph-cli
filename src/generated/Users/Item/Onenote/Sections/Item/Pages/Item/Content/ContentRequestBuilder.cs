@@ -23,6 +23,7 @@ namespace ApiSdk.Users.Item.Onenote.Sections.Item.Pages.Item.Content {
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
+            command.Description = "Get media content for the navigation property pages from users";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--user-id", description: "key: id of user"));
             command.AddOption(new Option<string>("--onenotesection-id", description: "key: id of onenoteSection"));
@@ -53,6 +54,7 @@ namespace ApiSdk.Users.Item.Onenote.Sections.Item.Pages.Item.Content {
         /// </summary>
         public Command BuildPutCommand() {
             var command = new Command("put");
+            command.Description = "Update media content for the navigation property pages in users";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--user-id", description: "key: id of user"));
             command.AddOption(new Option<string>("--onenotesection-id", description: "key: id of onenoteSection"));

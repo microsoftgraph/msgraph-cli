@@ -35,6 +35,7 @@ namespace ApiSdk.AppCatalogs.TeamsApps.Item {
         /// </summary>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
+            command.Description = "Delete navigation property teamsApps for appCatalogs";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--teamsapp-id", description: "key: id of teamsApp"));
             command.Handler = CommandHandler.Create<string>(async (teamsAppId) => {
@@ -51,6 +52,7 @@ namespace ApiSdk.AppCatalogs.TeamsApps.Item {
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
+            command.Description = "Get teamsApps from appCatalogs";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--teamsapp-id", description: "key: id of teamsApp"));
             command.AddOption(new Option<object>("--select", description: "Select properties to be returned"));
@@ -76,6 +78,7 @@ namespace ApiSdk.AppCatalogs.TeamsApps.Item {
         /// </summary>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
+            command.Description = "Update the navigation property teamsApps in appCatalogs";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--teamsapp-id", description: "key: id of teamsApp"));
             command.AddOption(new Option<string>("--body"));

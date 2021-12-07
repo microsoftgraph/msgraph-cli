@@ -24,6 +24,7 @@ namespace ApiSdk.Applications.Item.ExtensionProperties.Item {
         /// </summary>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
+            command.Description = "Read-only. Nullable.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--application-id", description: "key: id of application"));
             command.AddOption(new Option<string>("--extensionproperty-id", description: "key: id of extensionProperty"));
@@ -42,6 +43,7 @@ namespace ApiSdk.Applications.Item.ExtensionProperties.Item {
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
+            command.Description = "Read-only. Nullable.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--application-id", description: "key: id of application"));
             command.AddOption(new Option<string>("--extensionproperty-id", description: "key: id of extensionProperty"));
@@ -69,6 +71,7 @@ namespace ApiSdk.Applications.Item.ExtensionProperties.Item {
         /// </summary>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
+            command.Description = "Read-only. Nullable.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--application-id", description: "key: id of application"));
             command.AddOption(new Option<string>("--extensionproperty-id", description: "key: id of extensionProperty"));

@@ -38,6 +38,7 @@ namespace ApiSdk.Me.Onenote.Pages.Item.ParentSection.ParentNotebook.Sections.Ite
         /// </summary>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
+            command.Description = "The sections in the notebook. Read-only. Nullable.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--onenotepage-id", description: "key: id of onenotePage"));
             command.AddOption(new Option<string>("--onenotesection-id", description: "key: id of onenoteSection"));
@@ -56,6 +57,7 @@ namespace ApiSdk.Me.Onenote.Pages.Item.ParentSection.ParentNotebook.Sections.Ite
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
+            command.Description = "The sections in the notebook. Read-only. Nullable.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--onenotepage-id", description: "key: id of onenotePage"));
             command.AddOption(new Option<string>("--onenotesection-id", description: "key: id of onenoteSection"));
@@ -83,6 +85,7 @@ namespace ApiSdk.Me.Onenote.Pages.Item.ParentSection.ParentNotebook.Sections.Ite
         /// </summary>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
+            command.Description = "The sections in the notebook. Read-only. Nullable.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--onenotepage-id", description: "key: id of onenotePage"));
             command.AddOption(new Option<string>("--onenotesection-id", description: "key: id of onenoteSection"));

@@ -24,6 +24,7 @@ namespace ApiSdk.Connections.Item.Groups.Item.Members.Item {
         /// </summary>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
+            command.Description = "A member added to an externalGroup. You can add Azure Active Directory users, Azure Active Directory groups, or an externalGroup as members.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--externalconnection-id", description: "key: id of externalConnection"));
             command.AddOption(new Option<string>("--externalgroup-id", description: "key: id of externalGroup"));
@@ -44,6 +45,7 @@ namespace ApiSdk.Connections.Item.Groups.Item.Members.Item {
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
+            command.Description = "A member added to an externalGroup. You can add Azure Active Directory users, Azure Active Directory groups, or an externalGroup as members.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--externalconnection-id", description: "key: id of externalConnection"));
             command.AddOption(new Option<string>("--externalgroup-id", description: "key: id of externalGroup"));
@@ -73,6 +75,7 @@ namespace ApiSdk.Connections.Item.Groups.Item.Members.Item {
         /// </summary>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
+            command.Description = "A member added to an externalGroup. You can add Azure Active Directory users, Azure Active Directory groups, or an externalGroup as members.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--externalconnection-id", description: "key: id of externalConnection"));
             command.AddOption(new Option<string>("--externalgroup-id", description: "key: id of externalGroup"));

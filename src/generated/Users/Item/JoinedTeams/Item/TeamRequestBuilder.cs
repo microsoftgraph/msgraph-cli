@@ -24,6 +24,7 @@ namespace ApiSdk.Users.Item.JoinedTeams.Item {
         /// </summary>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
+            command.Description = "The Microsoft Teams teams that the user is a member of. Read-only. Nullable.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--user-id", description: "key: id of user"));
             command.AddOption(new Option<string>("--team-id", description: "key: id of team"));
@@ -42,6 +43,7 @@ namespace ApiSdk.Users.Item.JoinedTeams.Item {
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
+            command.Description = "The Microsoft Teams teams that the user is a member of. Read-only. Nullable.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--user-id", description: "key: id of user"));
             command.AddOption(new Option<string>("--team-id", description: "key: id of team"));
@@ -69,6 +71,7 @@ namespace ApiSdk.Users.Item.JoinedTeams.Item {
         /// </summary>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
+            command.Description = "The Microsoft Teams teams that the user is a member of. Read-only. Nullable.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--user-id", description: "key: id of user"));
             command.AddOption(new Option<string>("--team-id", description: "key: id of team"));

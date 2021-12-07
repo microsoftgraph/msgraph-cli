@@ -28,6 +28,7 @@ namespace ApiSdk.DeviceAppManagement.ManagedAppRegistrations.Item.IntendedPolici
         /// </summary>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
+            command.Description = "Zero or more policies admin intended for the app as of now.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--managedappregistration-id", description: "key: id of managedAppRegistration"));
             command.AddOption(new Option<string>("--managedapppolicy-id", description: "key: id of managedAppPolicy"));
@@ -46,6 +47,7 @@ namespace ApiSdk.DeviceAppManagement.ManagedAppRegistrations.Item.IntendedPolici
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
+            command.Description = "Zero or more policies admin intended for the app as of now.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--managedappregistration-id", description: "key: id of managedAppRegistration"));
             command.AddOption(new Option<string>("--managedapppolicy-id", description: "key: id of managedAppPolicy"));
@@ -79,6 +81,7 @@ namespace ApiSdk.DeviceAppManagement.ManagedAppRegistrations.Item.IntendedPolici
         /// </summary>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
+            command.Description = "Zero or more policies admin intended for the app as of now.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--managedappregistration-id", description: "key: id of managedAppRegistration"));
             command.AddOption(new Option<string>("--managedapppolicy-id", description: "key: id of managedAppPolicy"));

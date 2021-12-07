@@ -24,6 +24,7 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.AccessPackageAssignmen
         /// </summary>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
+            command.Description = "A collection of stages in the approval decision.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--approval-id", description: "key: id of approval"));
             command.AddOption(new Option<string>("--approvalstage-id", description: "key: id of approvalStage"));
@@ -42,6 +43,7 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.AccessPackageAssignmen
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
+            command.Description = "A collection of stages in the approval decision.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--approval-id", description: "key: id of approval"));
             command.AddOption(new Option<string>("--approvalstage-id", description: "key: id of approvalStage"));
@@ -69,6 +71,7 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.AccessPackageAssignmen
         /// </summary>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
+            command.Description = "A collection of stages in the approval decision.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--approval-id", description: "key: id of approval"));
             command.AddOption(new Option<string>("--approvalstage-id", description: "key: id of approvalStage"));

@@ -23,6 +23,7 @@ namespace ApiSdk.Contracts.Item.CheckMemberGroups {
         /// </summary>
         public Command BuildPostCommand() {
             var command = new Command("post");
+            command.Description = "Invoke action checkMemberGroups";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--contract-id", description: "key: id of contract"));
             command.AddOption(new Option<string>("--body"));

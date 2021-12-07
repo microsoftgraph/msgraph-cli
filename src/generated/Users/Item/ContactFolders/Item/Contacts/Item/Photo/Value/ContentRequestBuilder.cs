@@ -23,6 +23,7 @@ namespace ApiSdk.Users.Item.ContactFolders.Item.Contacts.Item.Photo.Value {
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
+            command.Description = "The user's profile photo. Read-only.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--user-id", description: "key: id of user"));
             command.AddOption(new Option<string>("--contactfolder-id", description: "key: id of contactFolder"));
@@ -53,6 +54,7 @@ namespace ApiSdk.Users.Item.ContactFolders.Item.Contacts.Item.Photo.Value {
         /// </summary>
         public Command BuildPutCommand() {
             var command = new Command("put");
+            command.Description = "The user's profile photo. Read-only.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--user-id", description: "key: id of user"));
             command.AddOption(new Option<string>("--contactfolder-id", description: "key: id of contactFolder"));

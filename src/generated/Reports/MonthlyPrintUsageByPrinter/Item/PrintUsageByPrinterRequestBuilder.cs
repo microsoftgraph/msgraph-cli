@@ -24,6 +24,7 @@ namespace ApiSdk.Reports.MonthlyPrintUsageByPrinter.Item {
         /// </summary>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
+            command.Description = "Delete navigation property monthlyPrintUsageByPrinter for reports";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--printusagebyprinter-id", description: "key: id of printUsageByPrinter"));
             command.Handler = CommandHandler.Create<string>(async (printUsageByPrinterId) => {
@@ -40,6 +41,7 @@ namespace ApiSdk.Reports.MonthlyPrintUsageByPrinter.Item {
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
+            command.Description = "Get monthlyPrintUsageByPrinter from reports";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--printusagebyprinter-id", description: "key: id of printUsageByPrinter"));
             command.AddOption(new Option<object>("--select", description: "Select properties to be returned"));
@@ -65,6 +67,7 @@ namespace ApiSdk.Reports.MonthlyPrintUsageByPrinter.Item {
         /// </summary>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
+            command.Description = "Update the navigation property monthlyPrintUsageByPrinter in reports";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--printusagebyprinter-id", description: "key: id of printUsageByPrinter"));
             command.AddOption(new Option<string>("--body"));

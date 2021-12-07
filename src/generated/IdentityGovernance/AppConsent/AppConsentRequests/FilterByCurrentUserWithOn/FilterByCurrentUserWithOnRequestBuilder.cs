@@ -23,6 +23,7 @@ namespace ApiSdk.IdentityGovernance.AppConsent.AppConsentRequests.FilterByCurren
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
+            command.Description = "Invoke function filterByCurrentUser";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--on", description: "Usage: on={on}"));
             command.Handler = CommandHandler.Create<string>(async (on) => {

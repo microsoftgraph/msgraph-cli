@@ -23,6 +23,7 @@ namespace ApiSdk.DeviceManagement.DeviceCompliancePolicies.Item.Assign {
         /// </summary>
         public Command BuildPostCommand() {
             var command = new Command("post");
+            command.Description = "Invoke action assign";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--devicecompliancepolicy-id", description: "key: id of deviceCompliancePolicy"));
             command.AddOption(new Option<string>("--body"));

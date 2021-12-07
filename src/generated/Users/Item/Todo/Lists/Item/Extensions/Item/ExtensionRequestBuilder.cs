@@ -24,6 +24,7 @@ namespace ApiSdk.Users.Item.Todo.Lists.Item.Extensions.Item {
         /// </summary>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
+            command.Description = "The collection of open extensions defined for the task list. Nullable.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--user-id", description: "key: id of user"));
             command.AddOption(new Option<string>("--todotasklist-id", description: "key: id of todoTaskList"));
@@ -44,6 +45,7 @@ namespace ApiSdk.Users.Item.Todo.Lists.Item.Extensions.Item {
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
+            command.Description = "The collection of open extensions defined for the task list. Nullable.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--user-id", description: "key: id of user"));
             command.AddOption(new Option<string>("--todotasklist-id", description: "key: id of todoTaskList"));
@@ -73,6 +75,7 @@ namespace ApiSdk.Users.Item.Todo.Lists.Item.Extensions.Item {
         /// </summary>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
+            command.Description = "The collection of open extensions defined for the task list. Nullable.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--user-id", description: "key: id of user"));
             command.AddOption(new Option<string>("--todotasklist-id", description: "key: id of todoTaskList"));

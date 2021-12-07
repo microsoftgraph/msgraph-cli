@@ -34,6 +34,7 @@ namespace ApiSdk.Groups.Item.Drives {
         /// </summary>
         public Command BuildCreateCommand() {
             var command = new Command("create");
+            command.Description = "The group's drives. Read-only.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--group-id", description: "key: id of group"));
             command.AddOption(new Option<string>("--body"));
@@ -59,6 +60,7 @@ namespace ApiSdk.Groups.Item.Drives {
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
+            command.Description = "The group's drives. Read-only.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--group-id", description: "key: id of group"));
             command.AddOption(new Option<int?>("--top", description: "Show only the first n items"));

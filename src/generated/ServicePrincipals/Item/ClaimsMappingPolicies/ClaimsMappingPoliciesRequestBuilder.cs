@@ -24,6 +24,7 @@ namespace ApiSdk.ServicePrincipals.Item.ClaimsMappingPolicies {
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
+            command.Description = "The claimsMappingPolicies assigned to this service principal. Supports $expand.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--serviceprincipal-id", description: "key: id of servicePrincipal"));
             command.AddOption(new Option<int?>("--top", description: "Show only the first n items"));

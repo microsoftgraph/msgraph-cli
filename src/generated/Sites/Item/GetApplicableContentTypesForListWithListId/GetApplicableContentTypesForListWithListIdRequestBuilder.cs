@@ -23,6 +23,7 @@ namespace ApiSdk.Sites.Item.GetApplicableContentTypesForListWithListId {
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
+            command.Description = "Invoke function getApplicableContentTypesForList";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--site-id", description: "key: id of site"));
             command.AddOption(new Option<string>("--listid", description: "Usage: listId={listId}"));

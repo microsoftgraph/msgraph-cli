@@ -34,6 +34,7 @@ namespace ApiSdk.Organization.Item.Extensions {
         /// </summary>
         public Command BuildCreateCommand() {
             var command = new Command("create");
+            command.Description = "The collection of open extensions defined for the organization. Read-only. Nullable.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--organization-id", description: "key: id of organization"));
             command.AddOption(new Option<string>("--body"));
@@ -59,6 +60,7 @@ namespace ApiSdk.Organization.Item.Extensions {
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
+            command.Description = "The collection of open extensions defined for the organization. Read-only. Nullable.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--organization-id", description: "key: id of organization"));
             command.AddOption(new Option<int?>("--top", description: "Show only the first n items"));

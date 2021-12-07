@@ -23,6 +23,7 @@ namespace ApiSdk.Chats.Item.Messages.Item.Replies.Delta {
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
+            command.Description = "Invoke function delta";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--chat-id", description: "key: id of chat"));
             command.AddOption(new Option<string>("--chatmessage-id", description: "key: id of chatMessage"));

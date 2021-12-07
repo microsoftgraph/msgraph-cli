@@ -24,6 +24,7 @@ namespace ApiSdk.Me.Insights.Used.Item.Resource.PrintDocument.CreateUploadSessio
         /// </summary>
         public Command BuildPostCommand() {
             var command = new Command("post");
+            command.Description = "Invoke action createUploadSession";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--usedinsight-id", description: "key: id of usedInsight"));
             command.AddOption(new Option<string>("--body"));

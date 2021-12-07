@@ -42,6 +42,7 @@ namespace ApiSdk.Users.Item.CalendarView.Item.Calendar.CalendarView {
         /// </summary>
         public Command BuildCreateCommand() {
             var command = new Command("create");
+            command.Description = "The calendar view for the calendar. Navigation property. Read-only.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--user-id", description: "key: id of user"));
             command.AddOption(new Option<string>("--event-id", description: "key: id of event"));
@@ -69,6 +70,7 @@ namespace ApiSdk.Users.Item.CalendarView.Item.Calendar.CalendarView {
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
+            command.Description = "The calendar view for the calendar. Navigation property. Read-only.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--user-id", description: "key: id of user"));
             command.AddOption(new Option<string>("--event-id", description: "key: id of event"));

@@ -23,6 +23,7 @@ namespace ApiSdk.Workbooks.Item.Children.Item.Content {
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
+            command.Description = "The content stream, if the item represents a file.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--driveitem-id", description: "key: id of driveItem"));
             command.AddOption(new Option<string>("--driveitem-id1", description: "key: id of driveItem"));
@@ -51,6 +52,7 @@ namespace ApiSdk.Workbooks.Item.Children.Item.Content {
         /// </summary>
         public Command BuildPutCommand() {
             var command = new Command("put");
+            command.Description = "The content stream, if the item represents a file.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--driveitem-id", description: "key: id of driveItem"));
             command.AddOption(new Option<string>("--driveitem-id1", description: "key: id of driveItem"));

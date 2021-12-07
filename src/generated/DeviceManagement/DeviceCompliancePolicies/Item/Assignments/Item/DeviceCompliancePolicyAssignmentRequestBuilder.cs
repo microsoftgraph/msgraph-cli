@@ -24,6 +24,7 @@ namespace ApiSdk.DeviceManagement.DeviceCompliancePolicies.Item.Assignments.Item
         /// </summary>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
+            command.Description = "The collection of assignments for this compliance policy.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--devicecompliancepolicy-id", description: "key: id of deviceCompliancePolicy"));
             command.AddOption(new Option<string>("--devicecompliancepolicyassignment-id", description: "key: id of deviceCompliancePolicyAssignment"));
@@ -42,6 +43,7 @@ namespace ApiSdk.DeviceManagement.DeviceCompliancePolicies.Item.Assignments.Item
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
+            command.Description = "The collection of assignments for this compliance policy.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--devicecompliancepolicy-id", description: "key: id of deviceCompliancePolicy"));
             command.AddOption(new Option<string>("--devicecompliancepolicyassignment-id", description: "key: id of deviceCompliancePolicyAssignment"));
@@ -69,6 +71,7 @@ namespace ApiSdk.DeviceManagement.DeviceCompliancePolicies.Item.Assignments.Item
         /// </summary>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
+            command.Description = "The collection of assignments for this compliance policy.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--devicecompliancepolicy-id", description: "key: id of deviceCompliancePolicy"));
             command.AddOption(new Option<string>("--devicecompliancepolicyassignment-id", description: "key: id of deviceCompliancePolicyAssignment"));

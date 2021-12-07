@@ -25,6 +25,7 @@ namespace ApiSdk.Contacts.Item.Manager {
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
+            command.Description = "The user or contact that is this contact's manager. Read-only. Supports $expand.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--orgcontact-id", description: "key: id of orgContact"));
             command.AddOption(new Option<object>("--select", description: "Select properties to be returned"));

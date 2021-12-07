@@ -24,6 +24,7 @@ namespace ApiSdk.Me.InferenceClassification.Overrides.Item {
         /// </summary>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
+            command.Description = "A set of overrides for a user to always classify messages from specific senders in certain ways: focused, or other. Read-only. Nullable.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--inferenceclassificationoverride-id", description: "key: id of inferenceClassificationOverride"));
             command.Handler = CommandHandler.Create<string>(async (inferenceClassificationOverrideId) => {
@@ -40,6 +41,7 @@ namespace ApiSdk.Me.InferenceClassification.Overrides.Item {
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
+            command.Description = "A set of overrides for a user to always classify messages from specific senders in certain ways: focused, or other. Read-only. Nullable.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--inferenceclassificationoverride-id", description: "key: id of inferenceClassificationOverride"));
             command.AddOption(new Option<object>("--select", description: "Select properties to be returned"));
@@ -63,6 +65,7 @@ namespace ApiSdk.Me.InferenceClassification.Overrides.Item {
         /// </summary>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
+            command.Description = "A set of overrides for a user to always classify messages from specific senders in certain ways: focused, or other. Read-only. Nullable.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--inferenceclassificationoverride-id", description: "key: id of inferenceClassificationOverride"));
             command.AddOption(new Option<string>("--body"));

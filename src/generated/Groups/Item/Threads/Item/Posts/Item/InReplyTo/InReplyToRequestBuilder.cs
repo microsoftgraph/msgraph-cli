@@ -26,6 +26,7 @@ namespace ApiSdk.Groups.Item.Threads.Item.Posts.Item.InReplyTo {
         /// </summary>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
+            command.Description = "Read-only. Supports $expand.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--group-id", description: "key: id of group"));
             command.AddOption(new Option<string>("--conversationthread-id", description: "key: id of conversationThread"));
@@ -52,6 +53,7 @@ namespace ApiSdk.Groups.Item.Threads.Item.Posts.Item.InReplyTo {
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
+            command.Description = "Read-only. Supports $expand.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--group-id", description: "key: id of group"));
             command.AddOption(new Option<string>("--conversationthread-id", description: "key: id of conversationThread"));
@@ -81,6 +83,7 @@ namespace ApiSdk.Groups.Item.Threads.Item.Posts.Item.InReplyTo {
         /// </summary>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
+            command.Description = "Read-only. Supports $expand.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--group-id", description: "key: id of group"));
             command.AddOption(new Option<string>("--conversationthread-id", description: "key: id of conversationThread"));

@@ -24,6 +24,7 @@ namespace ApiSdk.AgreementAcceptances.Item {
         /// </summary>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
+            command.Description = "Delete entity from agreementAcceptances";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--agreementacceptance-id", description: "key: id of agreementAcceptance"));
             command.Handler = CommandHandler.Create<string>(async (agreementAcceptanceId) => {
@@ -40,6 +41,7 @@ namespace ApiSdk.AgreementAcceptances.Item {
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
+            command.Description = "Get entity from agreementAcceptances by key";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--agreementacceptance-id", description: "key: id of agreementAcceptance"));
             command.AddOption(new Option<object>("--select", description: "Select properties to be returned"));
@@ -63,6 +65,7 @@ namespace ApiSdk.AgreementAcceptances.Item {
         /// </summary>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
+            command.Description = "Update entity in agreementAcceptances";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--agreementacceptance-id", description: "key: id of agreementAcceptance"));
             command.AddOption(new Option<string>("--body"));

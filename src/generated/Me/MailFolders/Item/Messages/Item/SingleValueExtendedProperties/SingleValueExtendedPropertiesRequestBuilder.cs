@@ -34,6 +34,7 @@ namespace ApiSdk.Me.MailFolders.Item.Messages.Item.SingleValueExtendedProperties
         /// </summary>
         public Command BuildCreateCommand() {
             var command = new Command("create");
+            command.Description = "The collection of single-value extended properties defined for the message. Nullable.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--mailfolder-id", description: "key: id of mailFolder"));
             command.AddOption(new Option<string>("--message-id", description: "key: id of message"));
@@ -61,6 +62,7 @@ namespace ApiSdk.Me.MailFolders.Item.Messages.Item.SingleValueExtendedProperties
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
+            command.Description = "The collection of single-value extended properties defined for the message. Nullable.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--mailfolder-id", description: "key: id of mailFolder"));
             command.AddOption(new Option<string>("--message-id", description: "key: id of message"));

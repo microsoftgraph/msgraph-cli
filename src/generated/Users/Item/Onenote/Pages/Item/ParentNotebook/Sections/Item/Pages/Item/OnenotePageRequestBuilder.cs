@@ -41,6 +41,7 @@ namespace ApiSdk.Users.Item.Onenote.Pages.Item.ParentNotebook.Sections.Item.Page
         /// </summary>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
+            command.Description = "The collection of pages in the section.  Read-only. Nullable.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--user-id", description: "key: id of user"));
             command.AddOption(new Option<string>("--onenotepage-id", description: "key: id of onenotePage"));
@@ -63,6 +64,7 @@ namespace ApiSdk.Users.Item.Onenote.Pages.Item.ParentNotebook.Sections.Item.Page
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
+            command.Description = "The collection of pages in the section.  Read-only. Nullable.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--user-id", description: "key: id of user"));
             command.AddOption(new Option<string>("--onenotepage-id", description: "key: id of onenotePage"));
@@ -100,6 +102,7 @@ namespace ApiSdk.Users.Item.Onenote.Pages.Item.ParentNotebook.Sections.Item.Page
         /// </summary>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
+            command.Description = "The collection of pages in the section.  Read-only. Nullable.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--user-id", description: "key: id of user"));
             command.AddOption(new Option<string>("--onenotepage-id", description: "key: id of onenotePage"));

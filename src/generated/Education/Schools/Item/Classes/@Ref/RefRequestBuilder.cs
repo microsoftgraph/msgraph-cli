@@ -23,6 +23,7 @@ namespace ApiSdk.Education.Schools.Item.Classes.@Ref {
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
+            command.Description = "Classes taught at the school. Nullable.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--educationschool-id", description: "key: id of educationSchool"));
             command.AddOption(new Option<int?>("--top", description: "Show only the first n items"));
@@ -56,6 +57,7 @@ namespace ApiSdk.Education.Schools.Item.Classes.@Ref {
         /// </summary>
         public Command BuildPostCommand() {
             var command = new Command("post");
+            command.Description = "Classes taught at the school. Nullable.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--educationschool-id", description: "key: id of educationSchool"));
             command.AddOption(new Option<string>("--body"));

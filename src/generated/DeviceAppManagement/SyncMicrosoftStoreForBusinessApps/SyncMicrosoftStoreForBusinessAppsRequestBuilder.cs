@@ -23,6 +23,7 @@ namespace ApiSdk.DeviceAppManagement.SyncMicrosoftStoreForBusinessApps {
         /// </summary>
         public Command BuildPostCommand() {
             var command = new Command("post");
+            command.Description = "Syncs Intune account with Microsoft Store For Business";
             // Create options for all the parameters
             command.Handler = CommandHandler.Create(async () => {
                 var requestInfo = CreatePostRequestInformation();

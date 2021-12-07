@@ -24,6 +24,7 @@ namespace ApiSdk.Me.Insights.Shared.Item.Resource.PrintJob.Start {
         /// </summary>
         public Command BuildPostCommand() {
             var command = new Command("post");
+            command.Description = "Invoke action start";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--sharedinsight-id", description: "key: id of sharedInsight"));
             command.Handler = CommandHandler.Create<string>(async (sharedInsightId) => {

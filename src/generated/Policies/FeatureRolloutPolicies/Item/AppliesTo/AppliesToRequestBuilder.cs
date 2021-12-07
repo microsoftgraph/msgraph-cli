@@ -34,6 +34,7 @@ namespace ApiSdk.Policies.FeatureRolloutPolicies.Item.AppliesTo {
         /// </summary>
         public Command BuildCreateCommand() {
             var command = new Command("create");
+            command.Description = "Nullable. Specifies a list of directoryObjects that feature is enabled for.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--featurerolloutpolicy-id", description: "key: id of featureRolloutPolicy"));
             command.AddOption(new Option<string>("--body"));
@@ -59,6 +60,7 @@ namespace ApiSdk.Policies.FeatureRolloutPolicies.Item.AppliesTo {
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
+            command.Description = "Nullable. Specifies a list of directoryObjects that feature is enabled for.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--featurerolloutpolicy-id", description: "key: id of featureRolloutPolicy"));
             command.AddOption(new Option<int?>("--top", description: "Show only the first n items"));

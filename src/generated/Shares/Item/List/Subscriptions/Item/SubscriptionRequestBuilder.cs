@@ -24,6 +24,7 @@ namespace ApiSdk.Shares.Item.List.Subscriptions.Item {
         /// </summary>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
+            command.Description = "The set of subscriptions on the list.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--shareddriveitem-id", description: "key: id of sharedDriveItem"));
             command.AddOption(new Option<string>("--subscription-id", description: "key: id of subscription"));
@@ -42,6 +43,7 @@ namespace ApiSdk.Shares.Item.List.Subscriptions.Item {
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
+            command.Description = "The set of subscriptions on the list.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--shareddriveitem-id", description: "key: id of sharedDriveItem"));
             command.AddOption(new Option<string>("--subscription-id", description: "key: id of subscription"));
@@ -69,6 +71,7 @@ namespace ApiSdk.Shares.Item.List.Subscriptions.Item {
         /// </summary>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
+            command.Description = "The set of subscriptions on the list.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--shareddriveitem-id", description: "key: id of sharedDriveItem"));
             command.AddOption(new Option<string>("--subscription-id", description: "key: id of subscription"));

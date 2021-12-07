@@ -23,6 +23,7 @@ namespace ApiSdk.Me.Insights.Trending.Item.Resource.@Ref {
         /// </summary>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
+            command.Description = "Used for navigating to the trending document.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--trending-id", description: "key: id of trending"));
             command.Handler = CommandHandler.Create<string>(async (trendingId) => {
@@ -39,6 +40,7 @@ namespace ApiSdk.Me.Insights.Trending.Item.Resource.@Ref {
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
+            command.Description = "Used for navigating to the trending document.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--trending-id", description: "key: id of trending"));
             command.Handler = CommandHandler.Create<string>(async (trendingId) => {
@@ -60,6 +62,7 @@ namespace ApiSdk.Me.Insights.Trending.Item.Resource.@Ref {
         /// </summary>
         public Command BuildPutCommand() {
             var command = new Command("put");
+            command.Description = "Used for navigating to the trending document.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--trending-id", description: "key: id of trending"));
             command.AddOption(new Option<string>("--body"));

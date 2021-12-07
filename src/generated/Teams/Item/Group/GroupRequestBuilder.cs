@@ -25,6 +25,7 @@ namespace ApiSdk.Teams.Item.Group {
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
+            command.Description = "Get group from teams";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--team-id", description: "key: id of team"));
             command.AddOption(new Option<object>("--select", description: "Select properties to be returned"));

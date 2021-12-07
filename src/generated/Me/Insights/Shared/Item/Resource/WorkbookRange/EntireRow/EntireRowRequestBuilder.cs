@@ -24,6 +24,7 @@ namespace ApiSdk.Me.Insights.Shared.Item.Resource.WorkbookRange.EntireRow {
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
+            command.Description = "Invoke function entireRow";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--sharedinsight-id", description: "key: id of sharedInsight"));
             command.Handler = CommandHandler.Create<string>(async (sharedInsightId) => {

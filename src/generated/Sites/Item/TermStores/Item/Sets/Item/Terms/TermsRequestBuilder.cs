@@ -37,6 +37,7 @@ namespace ApiSdk.Sites.Item.TermStores.Item.Sets.Item.Terms {
         /// </summary>
         public Command BuildCreateCommand() {
             var command = new Command("create");
+            command.Description = "All the terms under the set.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--site-id", description: "key: id of site"));
             command.AddOption(new Option<string>("--store-id", description: "key: id of store"));
@@ -66,6 +67,7 @@ namespace ApiSdk.Sites.Item.TermStores.Item.Sets.Item.Terms {
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
+            command.Description = "All the terms under the set.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--site-id", description: "key: id of site"));
             command.AddOption(new Option<string>("--store-id", description: "key: id of store"));

@@ -23,6 +23,7 @@ namespace ApiSdk.DeviceManagement.WindowsAutopilotDeviceIdentities.Item.AssignUs
         /// </summary>
         public Command BuildPostCommand() {
             var command = new Command("post");
+            command.Description = "Assigns user to Autopilot devices.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--windowsautopilotdeviceidentity-id", description: "key: id of windowsAutopilotDeviceIdentity"));
             command.AddOption(new Option<string>("--body"));

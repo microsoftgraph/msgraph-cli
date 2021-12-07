@@ -24,6 +24,7 @@ namespace ApiSdk.Me.Insights.Used.Item.Resource.WorkbookRange.EntireColumn {
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
+            command.Description = "Invoke function entireColumn";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--usedinsight-id", description: "key: id of usedInsight"));
             command.Handler = CommandHandler.Create<string>(async (usedInsightId) => {

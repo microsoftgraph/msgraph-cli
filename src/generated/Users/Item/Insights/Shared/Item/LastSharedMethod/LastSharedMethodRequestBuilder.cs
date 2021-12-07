@@ -44,6 +44,7 @@ namespace ApiSdk.Users.Item.Insights.Shared.Item.LastSharedMethod {
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
+            command.Description = "Get lastSharedMethod from users";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--user-id", description: "key: id of user"));
             command.AddOption(new Option<string>("--sharedinsight-id", description: "key: id of sharedInsight"));

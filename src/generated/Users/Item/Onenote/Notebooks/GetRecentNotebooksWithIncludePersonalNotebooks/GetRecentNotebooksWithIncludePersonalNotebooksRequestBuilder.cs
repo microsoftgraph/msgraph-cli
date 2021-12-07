@@ -23,6 +23,7 @@ namespace ApiSdk.Users.Item.Onenote.Notebooks.GetRecentNotebooksWithIncludePerso
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
+            command.Description = "Invoke function getRecentNotebooks";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--user-id", description: "key: id of user"));
             command.AddOption(new Option<bool?>("--includepersonalnotebooks", description: "Usage: includePersonalNotebooks={includePersonalNotebooks}"));

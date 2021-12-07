@@ -24,6 +24,7 @@ namespace ApiSdk.DirectoryRoles.Item.Restore {
         /// </summary>
         public Command BuildPostCommand() {
             var command = new Command("post");
+            command.Description = "Invoke action restore";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--directoryrole-id", description: "key: id of directoryRole"));
             command.Handler = CommandHandler.Create<string>(async (directoryRoleId) => {

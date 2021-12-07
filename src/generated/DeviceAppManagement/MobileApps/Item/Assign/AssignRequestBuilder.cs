@@ -23,6 +23,7 @@ namespace ApiSdk.DeviceAppManagement.MobileApps.Item.Assign {
         /// </summary>
         public Command BuildPostCommand() {
             var command = new Command("post");
+            command.Description = "Invoke action assign";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--mobileapp-id", description: "key: id of mobileApp"));
             command.AddOption(new Option<string>("--body"));

@@ -24,6 +24,7 @@ namespace ApiSdk.Applications.Item.Owners {
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
+            command.Description = "Directory objects that are owners of the application. Read-only. Nullable. Supports $expand.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--application-id", description: "key: id of application"));
             command.AddOption(new Option<int?>("--top", description: "Show only the first n items"));

@@ -24,6 +24,7 @@ namespace ApiSdk.DeviceAppManagement.MobileApps.Item.Assignments.Item {
         /// </summary>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
+            command.Description = "The list of group assignments for this mobile app.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--mobileapp-id", description: "key: id of mobileApp"));
             command.AddOption(new Option<string>("--mobileappassignment-id", description: "key: id of mobileAppAssignment"));
@@ -42,6 +43,7 @@ namespace ApiSdk.DeviceAppManagement.MobileApps.Item.Assignments.Item {
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
+            command.Description = "The list of group assignments for this mobile app.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--mobileapp-id", description: "key: id of mobileApp"));
             command.AddOption(new Option<string>("--mobileappassignment-id", description: "key: id of mobileAppAssignment"));
@@ -69,6 +71,7 @@ namespace ApiSdk.DeviceAppManagement.MobileApps.Item.Assignments.Item {
         /// </summary>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
+            command.Description = "The list of group assignments for this mobile app.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--mobileapp-id", description: "key: id of mobileApp"));
             command.AddOption(new Option<string>("--mobileappassignment-id", description: "key: id of mobileAppAssignment"));

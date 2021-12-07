@@ -35,6 +35,7 @@ namespace ApiSdk.AppCatalogs.TeamsApps.Item.AppDefinitions {
         /// </summary>
         public Command BuildCreateCommand() {
             var command = new Command("create");
+            command.Description = "The details for each version of the app.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--teamsapp-id", description: "key: id of teamsApp"));
             command.AddOption(new Option<string>("--body"));
@@ -60,6 +61,7 @@ namespace ApiSdk.AppCatalogs.TeamsApps.Item.AppDefinitions {
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
+            command.Description = "The details for each version of the app.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--teamsapp-id", description: "key: id of teamsApp"));
             command.AddOption(new Option<int?>("--top", description: "Show only the first n items"));

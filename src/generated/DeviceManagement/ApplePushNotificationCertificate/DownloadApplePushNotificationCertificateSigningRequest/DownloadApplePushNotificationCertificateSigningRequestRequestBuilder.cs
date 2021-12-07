@@ -23,6 +23,7 @@ namespace ApiSdk.DeviceManagement.ApplePushNotificationCertificate.DownloadApple
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
+            command.Description = "Download Apple push notification certificate signing request";
             // Create options for all the parameters
             command.Handler = CommandHandler.Create(async () => {
                 var requestInfo = CreateGetRequestInformation();

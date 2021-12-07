@@ -24,6 +24,7 @@ namespace ApiSdk.Chats.Item.Messages.Item.HostedContents.Item {
         /// </summary>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
+            command.Description = "Content in a message hosted by Microsoft Teams - for example, images or code snippets.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--chat-id", description: "key: id of chat"));
             command.AddOption(new Option<string>("--chatmessage-id", description: "key: id of chatMessage"));
@@ -44,6 +45,7 @@ namespace ApiSdk.Chats.Item.Messages.Item.HostedContents.Item {
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
+            command.Description = "Content in a message hosted by Microsoft Teams - for example, images or code snippets.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--chat-id", description: "key: id of chat"));
             command.AddOption(new Option<string>("--chatmessage-id", description: "key: id of chatMessage"));
@@ -73,6 +75,7 @@ namespace ApiSdk.Chats.Item.Messages.Item.HostedContents.Item {
         /// </summary>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
+            command.Description = "Content in a message hosted by Microsoft Teams - for example, images or code snippets.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--chat-id", description: "key: id of chat"));
             command.AddOption(new Option<string>("--chatmessage-id", description: "key: id of chatMessage"));

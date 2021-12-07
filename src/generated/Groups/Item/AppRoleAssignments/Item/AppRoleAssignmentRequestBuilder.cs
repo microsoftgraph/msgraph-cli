@@ -24,6 +24,7 @@ namespace ApiSdk.Groups.Item.AppRoleAssignments.Item {
         /// </summary>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
+            command.Description = "Represents the app roles a group has been granted for an application. Supports $expand.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--group-id", description: "key: id of group"));
             command.AddOption(new Option<string>("--approleassignment-id", description: "key: id of appRoleAssignment"));
@@ -42,6 +43,7 @@ namespace ApiSdk.Groups.Item.AppRoleAssignments.Item {
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
+            command.Description = "Represents the app roles a group has been granted for an application. Supports $expand.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--group-id", description: "key: id of group"));
             command.AddOption(new Option<string>("--approleassignment-id", description: "key: id of appRoleAssignment"));
@@ -69,6 +71,7 @@ namespace ApiSdk.Groups.Item.AppRoleAssignments.Item {
         /// </summary>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
+            command.Description = "Represents the app roles a group has been granted for an application. Supports $expand.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--group-id", description: "key: id of group"));
             command.AddOption(new Option<string>("--approleassignment-id", description: "key: id of appRoleAssignment"));

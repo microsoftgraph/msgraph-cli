@@ -23,6 +23,7 @@ namespace ApiSdk.Users.Item.WipeManagedAppRegistrationsByDeviceTag {
         /// </summary>
         public Command BuildPostCommand() {
             var command = new Command("post");
+            command.Description = "Issues a wipe operation on an app registration with specified device tag.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--user-id", description: "key: id of user"));
             command.AddOption(new Option<string>("--body"));

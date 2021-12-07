@@ -23,6 +23,7 @@ namespace ApiSdk.PermissionGrants.Item.GetMemberGroups {
         /// </summary>
         public Command BuildPostCommand() {
             var command = new Command("post");
+            command.Description = "Invoke action getMemberGroups";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--resourcespecificpermissiongrant-id", description: "key: id of resourceSpecificPermissionGrant"));
             command.AddOption(new Option<string>("--body"));

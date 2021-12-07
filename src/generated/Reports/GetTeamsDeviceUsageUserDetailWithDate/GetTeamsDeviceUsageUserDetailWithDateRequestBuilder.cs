@@ -23,6 +23,7 @@ namespace ApiSdk.Reports.GetTeamsDeviceUsageUserDetailWithDate {
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
+            command.Description = "Invoke function getTeamsDeviceUsageUserDetail";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--date", description: "Usage: date={date}"));
             command.AddOption(new Option<FileInfo>("--output"));

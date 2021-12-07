@@ -34,6 +34,7 @@ namespace ApiSdk.Sites.Item.Lists.Item.ContentTypes.Item.ColumnLinks {
         /// </summary>
         public Command BuildCreateCommand() {
             var command = new Command("create");
+            command.Description = "The collection of columns that are required by this content type.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--site-id", description: "key: id of site"));
             command.AddOption(new Option<string>("--list-id", description: "key: id of list"));
@@ -63,6 +64,7 @@ namespace ApiSdk.Sites.Item.Lists.Item.ContentTypes.Item.ColumnLinks {
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
+            command.Description = "The collection of columns that are required by this content type.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--site-id", description: "key: id of site"));
             command.AddOption(new Option<string>("--list-id", description: "key: id of list"));

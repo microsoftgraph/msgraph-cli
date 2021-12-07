@@ -46,6 +46,7 @@ namespace ApiSdk.DeviceManagement.TermsAndConditions.Item {
         /// </summary>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
+            command.Description = "The terms and conditions associated with device management of the company.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--termsandconditions-id", description: "key: id of termsAndConditions"));
             command.Handler = CommandHandler.Create<string>(async (termsAndConditionsId) => {
@@ -62,6 +63,7 @@ namespace ApiSdk.DeviceManagement.TermsAndConditions.Item {
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
+            command.Description = "The terms and conditions associated with device management of the company.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--termsandconditions-id", description: "key: id of termsAndConditions"));
             command.AddOption(new Option<object>("--select", description: "Select properties to be returned"));
@@ -87,6 +89,7 @@ namespace ApiSdk.DeviceManagement.TermsAndConditions.Item {
         /// </summary>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
+            command.Description = "The terms and conditions associated with device management of the company.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--termsandconditions-id", description: "key: id of termsAndConditions"));
             command.AddOption(new Option<string>("--body"));

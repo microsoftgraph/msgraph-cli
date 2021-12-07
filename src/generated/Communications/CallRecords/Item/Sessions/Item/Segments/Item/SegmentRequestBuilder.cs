@@ -24,6 +24,7 @@ namespace ApiSdk.Communications.CallRecords.Item.Sessions.Item.Segments.Item {
         /// </summary>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
+            command.Description = "The list of segments involved in the session. Read-only. Nullable.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--callrecord-id", description: "key: id of callRecord"));
             command.AddOption(new Option<string>("--session-id", description: "key: id of session"));
@@ -44,6 +45,7 @@ namespace ApiSdk.Communications.CallRecords.Item.Sessions.Item.Segments.Item {
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
+            command.Description = "The list of segments involved in the session. Read-only. Nullable.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--callrecord-id", description: "key: id of callRecord"));
             command.AddOption(new Option<string>("--session-id", description: "key: id of session"));
@@ -73,6 +75,7 @@ namespace ApiSdk.Communications.CallRecords.Item.Sessions.Item.Segments.Item {
         /// </summary>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
+            command.Description = "The list of segments involved in the session. Read-only. Nullable.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--callrecord-id", description: "key: id of callRecord"));
             command.AddOption(new Option<string>("--session-id", description: "key: id of session"));

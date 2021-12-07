@@ -23,6 +23,7 @@ namespace ApiSdk.Privacy.SubjectRightsRequests.Item.Team.@Ref {
         /// </summary>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
+            command.Description = "Information about the Microsoft Teams team that was created for the request.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--subjectrightsrequest-id", description: "key: id of subjectRightsRequest"));
             command.Handler = CommandHandler.Create<string>(async (subjectRightsRequestId) => {
@@ -39,6 +40,7 @@ namespace ApiSdk.Privacy.SubjectRightsRequests.Item.Team.@Ref {
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
+            command.Description = "Information about the Microsoft Teams team that was created for the request.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--subjectrightsrequest-id", description: "key: id of subjectRightsRequest"));
             command.Handler = CommandHandler.Create<string>(async (subjectRightsRequestId) => {
@@ -60,6 +62,7 @@ namespace ApiSdk.Privacy.SubjectRightsRequests.Item.Team.@Ref {
         /// </summary>
         public Command BuildPutCommand() {
             var command = new Command("put");
+            command.Description = "Information about the Microsoft Teams team that was created for the request.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--subjectrightsrequest-id", description: "key: id of subjectRightsRequest"));
             command.AddOption(new Option<string>("--body"));

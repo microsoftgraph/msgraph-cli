@@ -24,6 +24,7 @@ namespace ApiSdk.Users.Item.ReprocessLicenseAssignment {
         /// </summary>
         public Command BuildPostCommand() {
             var command = new Command("post");
+            command.Description = "Invoke action reprocessLicenseAssignment";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--user-id", description: "key: id of user"));
             command.Handler = CommandHandler.Create<string>(async (userId) => {

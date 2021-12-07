@@ -23,6 +23,7 @@ namespace ApiSdk.Me.ContactFolders.Item.ChildFolders.Delta {
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
+            command.Description = "Invoke function delta";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--contactfolder-id", description: "key: id of contactFolder"));
             command.Handler = CommandHandler.Create<string>(async (contactFolderId) => {

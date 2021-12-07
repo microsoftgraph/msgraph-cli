@@ -24,6 +24,7 @@ namespace ApiSdk.Reports.GetSkypeForBusinessOrganizerActivityCountsWithPeriod {
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
+            command.Description = "Invoke function getSkypeForBusinessOrganizerActivityCounts";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--period", description: "Usage: period={period}"));
             command.Handler = CommandHandler.Create<string>(async (period) => {

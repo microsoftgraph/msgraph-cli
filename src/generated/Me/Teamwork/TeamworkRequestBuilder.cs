@@ -26,6 +26,7 @@ namespace ApiSdk.Me.Teamwork {
         /// </summary>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
+            command.Description = "A container for Microsoft Teams features available for the user. Read-only. Nullable.";
             // Create options for all the parameters
             command.Handler = CommandHandler.Create(async () => {
                 var requestInfo = CreateDeleteRequestInformation();
@@ -40,6 +41,7 @@ namespace ApiSdk.Me.Teamwork {
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
+            command.Description = "A container for Microsoft Teams features available for the user. Read-only. Nullable.";
             // Create options for all the parameters
             command.AddOption(new Option<object>("--select", description: "Select properties to be returned"));
             command.AddOption(new Option<object>("--expand", description: "Expand related entities"));
@@ -73,6 +75,7 @@ namespace ApiSdk.Me.Teamwork {
         /// </summary>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
+            command.Description = "A container for Microsoft Teams features available for the user. Read-only. Nullable.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--body"));
             command.Handler = CommandHandler.Create<string>(async (body) => {

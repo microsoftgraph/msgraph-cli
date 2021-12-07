@@ -38,6 +38,7 @@ namespace ApiSdk.Sites.Item.TermStore.Groups.Item.Sets.Item {
         /// </summary>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
+            command.Description = "All sets under the group in a term [store].";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--site-id", description: "key: id of site"));
             command.AddOption(new Option<string>("--group-id", description: "key: id of group"));
@@ -58,6 +59,7 @@ namespace ApiSdk.Sites.Item.TermStore.Groups.Item.Sets.Item {
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
+            command.Description = "All sets under the group in a term [store].";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--site-id", description: "key: id of site"));
             command.AddOption(new Option<string>("--group-id", description: "key: id of group"));
@@ -95,6 +97,7 @@ namespace ApiSdk.Sites.Item.TermStore.Groups.Item.Sets.Item {
         /// </summary>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
+            command.Description = "All sets under the group in a term [store].";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--site-id", description: "key: id of site"));
             command.AddOption(new Option<string>("--group-id", description: "key: id of group"));

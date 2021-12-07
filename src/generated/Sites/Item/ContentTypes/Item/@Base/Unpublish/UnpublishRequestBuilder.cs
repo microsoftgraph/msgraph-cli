@@ -23,6 +23,7 @@ namespace ApiSdk.Sites.Item.ContentTypes.Item.@Base.Unpublish {
         /// </summary>
         public Command BuildPostCommand() {
             var command = new Command("post");
+            command.Description = "Invoke action unpublish";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--site-id", description: "key: id of site"));
             command.AddOption(new Option<string>("--contenttype-id", description: "key: id of contentType"));

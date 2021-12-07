@@ -24,6 +24,7 @@ namespace ApiSdk.IdentityGovernance.AppConsent.AppConsentRequests.Item.UserConse
         /// </summary>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
+            command.Description = "A collection of stages in the approval decision.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--appconsentrequest-id", description: "key: id of appConsentRequest"));
             command.AddOption(new Option<string>("--userconsentrequest-id", description: "key: id of userConsentRequest"));
@@ -44,6 +45,7 @@ namespace ApiSdk.IdentityGovernance.AppConsent.AppConsentRequests.Item.UserConse
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
+            command.Description = "A collection of stages in the approval decision.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--appconsentrequest-id", description: "key: id of appConsentRequest"));
             command.AddOption(new Option<string>("--userconsentrequest-id", description: "key: id of userConsentRequest"));
@@ -73,6 +75,7 @@ namespace ApiSdk.IdentityGovernance.AppConsent.AppConsentRequests.Item.UserConse
         /// </summary>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
+            command.Description = "A collection of stages in the approval decision.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--appconsentrequest-id", description: "key: id of appConsentRequest"));
             command.AddOption(new Option<string>("--userconsentrequest-id", description: "key: id of userConsentRequest"));

@@ -24,6 +24,7 @@ namespace ApiSdk.Users.Item.Authentication.Fido2Methods.Item {
         /// </summary>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
+            command.Description = "Delete navigation property fido2Methods for users";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--user-id", description: "key: id of user"));
             command.AddOption(new Option<string>("--fido2authenticationmethod-id", description: "key: id of fido2AuthenticationMethod"));
@@ -42,6 +43,7 @@ namespace ApiSdk.Users.Item.Authentication.Fido2Methods.Item {
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
+            command.Description = "Get fido2Methods from users";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--user-id", description: "key: id of user"));
             command.AddOption(new Option<string>("--fido2authenticationmethod-id", description: "key: id of fido2AuthenticationMethod"));
@@ -69,6 +71,7 @@ namespace ApiSdk.Users.Item.Authentication.Fido2Methods.Item {
         /// </summary>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
+            command.Description = "Update the navigation property fido2Methods in users";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--user-id", description: "key: id of user"));
             command.AddOption(new Option<string>("--fido2authenticationmethod-id", description: "key: id of fido2AuthenticationMethod"));

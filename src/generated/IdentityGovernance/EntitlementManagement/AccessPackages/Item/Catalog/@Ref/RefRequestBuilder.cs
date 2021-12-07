@@ -23,6 +23,7 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.AccessPackages.Item.Ca
         /// </summary>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
+            command.Description = "Delete ref of navigation property catalog for identityGovernance";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--accesspackage-id", description: "key: id of accessPackage"));
             command.Handler = CommandHandler.Create<string>(async (accessPackageId) => {
@@ -39,6 +40,7 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.AccessPackages.Item.Ca
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
+            command.Description = "Get ref of catalog from identityGovernance";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--accesspackage-id", description: "key: id of accessPackage"));
             command.Handler = CommandHandler.Create<string>(async (accessPackageId) => {
@@ -60,6 +62,7 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.AccessPackages.Item.Ca
         /// </summary>
         public Command BuildPutCommand() {
             var command = new Command("put");
+            command.Description = "Update the ref of navigation property catalog in identityGovernance";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--accesspackage-id", description: "key: id of accessPackage"));
             command.AddOption(new Option<string>("--body"));

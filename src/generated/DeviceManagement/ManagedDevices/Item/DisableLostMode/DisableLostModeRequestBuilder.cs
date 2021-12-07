@@ -23,6 +23,7 @@ namespace ApiSdk.DeviceManagement.ManagedDevices.Item.DisableLostMode {
         /// </summary>
         public Command BuildPostCommand() {
             var command = new Command("post");
+            command.Description = "Disable lost mode";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--manageddevice-id", description: "key: id of managedDevice"));
             command.Handler = CommandHandler.Create<string>(async (managedDeviceId) => {

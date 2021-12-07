@@ -25,6 +25,7 @@ namespace ApiSdk.Communications.CallRecords.Item {
         /// </summary>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
+            command.Description = "Delete navigation property callRecords for communications";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--callrecord-id", description: "key: id of callRecord"));
             command.Handler = CommandHandler.Create<string>(async (callRecordId) => {
@@ -41,6 +42,7 @@ namespace ApiSdk.Communications.CallRecords.Item {
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
+            command.Description = "Get callRecords from communications";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--callrecord-id", description: "key: id of callRecord"));
             command.AddOption(new Option<object>("--select", description: "Select properties to be returned"));
@@ -66,6 +68,7 @@ namespace ApiSdk.Communications.CallRecords.Item {
         /// </summary>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
+            command.Description = "Update the navigation property callRecords in communications";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--callrecord-id", description: "key: id of callRecord"));
             command.AddOption(new Option<string>("--body"));

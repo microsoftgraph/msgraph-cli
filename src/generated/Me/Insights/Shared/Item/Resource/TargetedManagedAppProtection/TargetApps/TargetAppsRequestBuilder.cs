@@ -23,6 +23,7 @@ namespace ApiSdk.Me.Insights.Shared.Item.Resource.TargetedManagedAppProtection.T
         /// </summary>
         public Command BuildPostCommand() {
             var command = new Command("post");
+            command.Description = "Invoke action targetApps";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--sharedinsight-id", description: "key: id of sharedInsight"));
             command.AddOption(new Option<string>("--body"));

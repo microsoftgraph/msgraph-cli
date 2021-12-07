@@ -36,6 +36,7 @@ namespace ApiSdk.Education.Users.Item {
         /// </summary>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
+            command.Description = "Delete navigation property users for education";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--educationuser-id", description: "key: id of educationUser"));
             command.Handler = CommandHandler.Create<string>(async (educationUserId) => {
@@ -52,6 +53,7 @@ namespace ApiSdk.Education.Users.Item {
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
+            command.Description = "Get users from education";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--educationuser-id", description: "key: id of educationUser"));
             command.AddOption(new Option<object>("--select", description: "Select properties to be returned"));
@@ -77,6 +79,7 @@ namespace ApiSdk.Education.Users.Item {
         /// </summary>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
+            command.Description = "Update the navigation property users in education";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--educationuser-id", description: "key: id of educationUser"));
             command.AddOption(new Option<string>("--body"));

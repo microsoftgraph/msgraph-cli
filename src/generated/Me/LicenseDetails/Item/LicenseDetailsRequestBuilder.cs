@@ -24,6 +24,7 @@ namespace ApiSdk.Me.LicenseDetails.Item {
         /// </summary>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
+            command.Description = "A collection of this user's license details. Read-only.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--licensedetails-id", description: "key: id of licenseDetails"));
             command.Handler = CommandHandler.Create<string>(async (licenseDetailsId) => {
@@ -40,6 +41,7 @@ namespace ApiSdk.Me.LicenseDetails.Item {
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
+            command.Description = "A collection of this user's license details. Read-only.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--licensedetails-id", description: "key: id of licenseDetails"));
             command.AddOption(new Option<object>("--select", description: "Select properties to be returned"));
@@ -65,6 +67,7 @@ namespace ApiSdk.Me.LicenseDetails.Item {
         /// </summary>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
+            command.Description = "A collection of this user's license details. Read-only.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--licensedetails-id", description: "key: id of licenseDetails"));
             command.AddOption(new Option<string>("--body"));

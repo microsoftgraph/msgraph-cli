@@ -26,6 +26,7 @@ namespace ApiSdk.Groups.Item.Conversations.Item.Threads.Item {
         /// </summary>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
+            command.Description = "A collection of all the conversation threads in the conversation. A navigation property. Read-only. Nullable.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--group-id", description: "key: id of group"));
             command.AddOption(new Option<string>("--conversation-id", description: "key: id of conversation"));
@@ -46,6 +47,7 @@ namespace ApiSdk.Groups.Item.Conversations.Item.Threads.Item {
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
+            command.Description = "A collection of all the conversation threads in the conversation. A navigation property. Read-only. Nullable.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--group-id", description: "key: id of group"));
             command.AddOption(new Option<string>("--conversation-id", description: "key: id of conversation"));
@@ -75,6 +77,7 @@ namespace ApiSdk.Groups.Item.Conversations.Item.Threads.Item {
         /// </summary>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
+            command.Description = "A collection of all the conversation threads in the conversation. A navigation property. Read-only. Nullable.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--group-id", description: "key: id of group"));
             command.AddOption(new Option<string>("--conversation-id", description: "key: id of conversation"));

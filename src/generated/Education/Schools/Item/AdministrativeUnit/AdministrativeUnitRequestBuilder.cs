@@ -25,6 +25,7 @@ namespace ApiSdk.Education.Schools.Item.AdministrativeUnit {
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
+            command.Description = "The underlying administrativeUnit for this school.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--educationschool-id", description: "key: id of educationSchool"));
             command.AddOption(new Option<object>("--select", description: "Select properties to be returned"));

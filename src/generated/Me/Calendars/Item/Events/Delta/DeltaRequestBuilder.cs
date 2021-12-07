@@ -23,6 +23,7 @@ namespace ApiSdk.Me.Calendars.Item.Events.Delta {
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
+            command.Description = "Invoke function delta";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--calendar-id", description: "key: id of calendar"));
             command.Handler = CommandHandler.Create<string>(async (calendarId) => {

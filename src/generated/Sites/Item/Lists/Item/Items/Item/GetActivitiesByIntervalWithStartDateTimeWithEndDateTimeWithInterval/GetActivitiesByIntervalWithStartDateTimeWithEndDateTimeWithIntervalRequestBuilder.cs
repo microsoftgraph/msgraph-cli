@@ -23,6 +23,7 @@ namespace ApiSdk.Sites.Item.Lists.Item.Items.Item.GetActivitiesByIntervalWithSta
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
+            command.Description = "Invoke function getActivitiesByInterval";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--site-id", description: "key: id of site"));
             command.AddOption(new Option<string>("--list-id", description: "key: id of list"));

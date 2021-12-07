@@ -23,6 +23,7 @@ namespace ApiSdk.Workbooks.Item.Versions.Item.RestoreVersion {
         /// </summary>
         public Command BuildPostCommand() {
             var command = new Command("post");
+            command.Description = "Invoke action restoreVersion";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--driveitem-id", description: "key: id of driveItem"));
             command.AddOption(new Option<string>("--driveitemversion-id", description: "key: id of driveItemVersion"));

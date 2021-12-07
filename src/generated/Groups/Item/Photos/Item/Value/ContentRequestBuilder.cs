@@ -23,6 +23,7 @@ namespace ApiSdk.Groups.Item.Photos.Item.Value {
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
+            command.Description = "Get media content for the navigation property photos from groups";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--group-id", description: "key: id of group"));
             command.AddOption(new Option<string>("--profilephoto-id", description: "key: id of profilePhoto"));
@@ -51,6 +52,7 @@ namespace ApiSdk.Groups.Item.Photos.Item.Value {
         /// </summary>
         public Command BuildPutCommand() {
             var command = new Command("put");
+            command.Description = "Update media content for the navigation property photos in groups";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--group-id", description: "key: id of group"));
             command.AddOption(new Option<string>("--profilephoto-id", description: "key: id of profilePhoto"));

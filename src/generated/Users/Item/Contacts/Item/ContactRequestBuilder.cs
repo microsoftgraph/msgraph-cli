@@ -28,6 +28,7 @@ namespace ApiSdk.Users.Item.Contacts.Item {
         /// </summary>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
+            command.Description = "The user's contacts. Read-only. Nullable.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--user-id", description: "key: id of user"));
             command.AddOption(new Option<string>("--contact-id", description: "key: id of contact"));
@@ -56,6 +57,7 @@ namespace ApiSdk.Users.Item.Contacts.Item {
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
+            command.Description = "The user's contacts. Read-only. Nullable.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--user-id", description: "key: id of user"));
             command.AddOption(new Option<string>("--contact-id", description: "key: id of contact"));
@@ -91,6 +93,7 @@ namespace ApiSdk.Users.Item.Contacts.Item {
         /// </summary>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
+            command.Description = "The user's contacts. Read-only. Nullable.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--user-id", description: "key: id of user"));
             command.AddOption(new Option<string>("--contact-id", description: "key: id of contact"));

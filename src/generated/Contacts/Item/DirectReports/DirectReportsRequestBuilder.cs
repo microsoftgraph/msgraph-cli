@@ -24,6 +24,7 @@ namespace ApiSdk.Contacts.Item.DirectReports {
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
+            command.Description = "The contact's direct reports. (The users and contacts that have their manager property set to this contact.) Read-only. Nullable. Supports $expand.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--orgcontact-id", description: "key: id of orgContact"));
             command.AddOption(new Option<int?>("--top", description: "Show only the first n items"));

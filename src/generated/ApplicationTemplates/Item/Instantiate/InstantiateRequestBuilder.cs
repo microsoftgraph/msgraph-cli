@@ -24,6 +24,7 @@ namespace ApiSdk.ApplicationTemplates.Item.Instantiate {
         /// </summary>
         public Command BuildPostCommand() {
             var command = new Command("post");
+            command.Description = "Invoke action instantiate";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--applicationtemplate-id", description: "key: id of applicationTemplate"));
             command.AddOption(new Option<string>("--body"));

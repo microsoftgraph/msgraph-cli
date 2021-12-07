@@ -23,6 +23,7 @@ namespace ApiSdk.Education.Schools.Item.AdministrativeUnit.@Ref {
         /// </summary>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
+            command.Description = "The underlying administrativeUnit for this school.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--educationschool-id", description: "key: id of educationSchool"));
             command.Handler = CommandHandler.Create<string>(async (educationSchoolId) => {
@@ -39,6 +40,7 @@ namespace ApiSdk.Education.Schools.Item.AdministrativeUnit.@Ref {
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
+            command.Description = "The underlying administrativeUnit for this school.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--educationschool-id", description: "key: id of educationSchool"));
             command.Handler = CommandHandler.Create<string>(async (educationSchoolId) => {
@@ -60,6 +62,7 @@ namespace ApiSdk.Education.Schools.Item.AdministrativeUnit.@Ref {
         /// </summary>
         public Command BuildPutCommand() {
             var command = new Command("put");
+            command.Description = "The underlying administrativeUnit for this school.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--educationschool-id", description: "key: id of educationSchool"));
             command.AddOption(new Option<string>("--body"));

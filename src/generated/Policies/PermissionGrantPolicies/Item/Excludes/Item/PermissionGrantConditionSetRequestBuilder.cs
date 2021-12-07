@@ -24,6 +24,7 @@ namespace ApiSdk.Policies.PermissionGrantPolicies.Item.Excludes.Item {
         /// </summary>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
+            command.Description = "Condition sets which are excluded in this permission grant policy. Automatically expanded on GET.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--permissiongrantpolicy-id", description: "key: id of permissionGrantPolicy"));
             command.AddOption(new Option<string>("--permissiongrantconditionset-id", description: "key: id of permissionGrantConditionSet"));
@@ -42,6 +43,7 @@ namespace ApiSdk.Policies.PermissionGrantPolicies.Item.Excludes.Item {
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
+            command.Description = "Condition sets which are excluded in this permission grant policy. Automatically expanded on GET.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--permissiongrantpolicy-id", description: "key: id of permissionGrantPolicy"));
             command.AddOption(new Option<string>("--permissiongrantconditionset-id", description: "key: id of permissionGrantConditionSet"));
@@ -69,6 +71,7 @@ namespace ApiSdk.Policies.PermissionGrantPolicies.Item.Excludes.Item {
         /// </summary>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
+            command.Description = "Condition sets which are excluded in this permission grant policy. Automatically expanded on GET.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--permissiongrantpolicy-id", description: "key: id of permissionGrantPolicy"));
             command.AddOption(new Option<string>("--permissiongrantconditionset-id", description: "key: id of permissionGrantConditionSet"));

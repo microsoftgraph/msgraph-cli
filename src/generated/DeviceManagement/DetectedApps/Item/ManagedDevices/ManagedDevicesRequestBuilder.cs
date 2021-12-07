@@ -24,6 +24,7 @@ namespace ApiSdk.DeviceManagement.DetectedApps.Item.ManagedDevices {
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
+            command.Description = "The devices that have the discovered application installed";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--detectedapp-id", description: "key: id of detectedApp"));
             command.AddOption(new Option<int?>("--top", description: "Show only the first n items"));

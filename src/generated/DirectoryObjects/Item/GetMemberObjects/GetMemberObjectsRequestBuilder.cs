@@ -23,6 +23,7 @@ namespace ApiSdk.DirectoryObjects.Item.GetMemberObjects {
         /// </summary>
         public Command BuildPostCommand() {
             var command = new Command("post");
+            command.Description = "Invoke action getMemberObjects";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--directoryobject-id", description: "key: id of directoryObject"));
             command.AddOption(new Option<string>("--body"));

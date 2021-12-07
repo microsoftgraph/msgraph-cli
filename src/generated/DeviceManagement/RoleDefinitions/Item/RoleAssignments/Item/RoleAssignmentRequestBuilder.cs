@@ -25,6 +25,7 @@ namespace ApiSdk.DeviceManagement.RoleDefinitions.Item.RoleAssignments.Item {
         /// </summary>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
+            command.Description = "List of Role assignments for this role definition.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--roledefinition-id", description: "key: id of roleDefinition"));
             command.AddOption(new Option<string>("--roleassignment-id", description: "key: id of roleAssignment"));
@@ -43,6 +44,7 @@ namespace ApiSdk.DeviceManagement.RoleDefinitions.Item.RoleAssignments.Item {
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
+            command.Description = "List of Role assignments for this role definition.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--roledefinition-id", description: "key: id of roleDefinition"));
             command.AddOption(new Option<string>("--roleassignment-id", description: "key: id of roleAssignment"));
@@ -70,6 +72,7 @@ namespace ApiSdk.DeviceManagement.RoleDefinitions.Item.RoleAssignments.Item {
         /// </summary>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
+            command.Description = "List of Role assignments for this role definition.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--roledefinition-id", description: "key: id of roleDefinition"));
             command.AddOption(new Option<string>("--roleassignment-id", description: "key: id of roleAssignment"));

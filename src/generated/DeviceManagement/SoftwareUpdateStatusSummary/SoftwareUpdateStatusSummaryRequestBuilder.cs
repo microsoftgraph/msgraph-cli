@@ -25,6 +25,7 @@ namespace ApiSdk.DeviceManagement.SoftwareUpdateStatusSummary {
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
+            command.Description = "The software update status summary.";
             // Create options for all the parameters
             command.AddOption(new Option<object>("--select", description: "Select properties to be returned"));
             command.AddOption(new Option<object>("--expand", description: "Expand related entities"));

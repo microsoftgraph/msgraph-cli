@@ -35,6 +35,7 @@ namespace ApiSdk.Print.Printers.Item.TaskTriggers {
         /// </summary>
         public Command BuildCreateCommand() {
             var command = new Command("create");
+            command.Description = "A list of task triggers that are associated with the printer.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--printer-id", description: "key: id of printer"));
             command.AddOption(new Option<string>("--body"));
@@ -60,6 +61,7 @@ namespace ApiSdk.Print.Printers.Item.TaskTriggers {
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
+            command.Description = "A list of task triggers that are associated with the printer.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--printer-id", description: "key: id of printer"));
             command.AddOption(new Option<int?>("--top", description: "Show only the first n items"));

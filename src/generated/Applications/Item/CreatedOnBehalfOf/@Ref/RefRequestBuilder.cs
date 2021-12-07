@@ -23,6 +23,7 @@ namespace ApiSdk.Applications.Item.CreatedOnBehalfOf.@Ref {
         /// </summary>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
+            command.Description = "Read-only.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--application-id", description: "key: id of application"));
             command.Handler = CommandHandler.Create<string>(async (applicationId) => {
@@ -39,6 +40,7 @@ namespace ApiSdk.Applications.Item.CreatedOnBehalfOf.@Ref {
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
+            command.Description = "Read-only.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--application-id", description: "key: id of application"));
             command.Handler = CommandHandler.Create<string>(async (applicationId) => {
@@ -60,6 +62,7 @@ namespace ApiSdk.Applications.Item.CreatedOnBehalfOf.@Ref {
         /// </summary>
         public Command BuildPutCommand() {
             var command = new Command("put");
+            command.Description = "Read-only.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--application-id", description: "key: id of application"));
             command.AddOption(new Option<string>("--body"));

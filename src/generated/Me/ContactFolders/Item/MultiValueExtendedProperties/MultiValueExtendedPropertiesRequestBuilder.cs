@@ -34,6 +34,7 @@ namespace ApiSdk.Me.ContactFolders.Item.MultiValueExtendedProperties {
         /// </summary>
         public Command BuildCreateCommand() {
             var command = new Command("create");
+            command.Description = "The collection of multi-value extended properties defined for the contactFolder. Read-only. Nullable.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--contactfolder-id", description: "key: id of contactFolder"));
             command.AddOption(new Option<string>("--body"));
@@ -59,6 +60,7 @@ namespace ApiSdk.Me.ContactFolders.Item.MultiValueExtendedProperties {
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
+            command.Description = "The collection of multi-value extended properties defined for the contactFolder. Read-only. Nullable.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--contactfolder-id", description: "key: id of contactFolder"));
             command.AddOption(new Option<int?>("--top", description: "Show only the first n items"));

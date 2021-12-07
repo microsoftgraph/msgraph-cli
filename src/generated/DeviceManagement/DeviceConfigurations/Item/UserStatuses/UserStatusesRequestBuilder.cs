@@ -34,6 +34,7 @@ namespace ApiSdk.DeviceManagement.DeviceConfigurations.Item.UserStatuses {
         /// </summary>
         public Command BuildCreateCommand() {
             var command = new Command("create");
+            command.Description = "Device configuration installation status by user.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--deviceconfiguration-id", description: "key: id of deviceConfiguration"));
             command.AddOption(new Option<string>("--body"));
@@ -59,6 +60,7 @@ namespace ApiSdk.DeviceManagement.DeviceConfigurations.Item.UserStatuses {
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
+            command.Description = "Device configuration installation status by user.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--deviceconfiguration-id", description: "key: id of deviceConfiguration"));
             command.AddOption(new Option<int?>("--top", description: "Show only the first n items"));

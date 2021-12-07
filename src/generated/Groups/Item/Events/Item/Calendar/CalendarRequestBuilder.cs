@@ -59,6 +59,7 @@ namespace ApiSdk.Groups.Item.Events.Item.Calendar {
         /// </summary>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
+            command.Description = "The calendar that contains the event. Navigation property. Read-only.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--group-id", description: "key: id of group"));
             command.AddOption(new Option<string>("--event-id", description: "key: id of event"));
@@ -87,6 +88,7 @@ namespace ApiSdk.Groups.Item.Events.Item.Calendar {
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
+            command.Description = "The calendar that contains the event. Navigation property. Read-only.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--group-id", description: "key: id of group"));
             command.AddOption(new Option<string>("--event-id", description: "key: id of event"));
@@ -128,6 +130,7 @@ namespace ApiSdk.Groups.Item.Events.Item.Calendar {
         /// </summary>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
+            command.Description = "The calendar that contains the event. Navigation property. Read-only.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--group-id", description: "key: id of group"));
             command.AddOption(new Option<string>("--event-id", description: "key: id of event"));

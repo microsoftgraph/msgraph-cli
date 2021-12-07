@@ -24,6 +24,7 @@ namespace ApiSdk.DeviceManagement.TermsAndConditions.Item.Assignments.Item {
         /// </summary>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
+            command.Description = "The list of assignments for this T&C policy.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--termsandconditions-id", description: "key: id of termsAndConditions"));
             command.AddOption(new Option<string>("--termsandconditionsassignment-id", description: "key: id of termsAndConditionsAssignment"));
@@ -42,6 +43,7 @@ namespace ApiSdk.DeviceManagement.TermsAndConditions.Item.Assignments.Item {
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
+            command.Description = "The list of assignments for this T&C policy.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--termsandconditions-id", description: "key: id of termsAndConditions"));
             command.AddOption(new Option<string>("--termsandconditionsassignment-id", description: "key: id of termsAndConditionsAssignment"));
@@ -69,6 +71,7 @@ namespace ApiSdk.DeviceManagement.TermsAndConditions.Item.Assignments.Item {
         /// </summary>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
+            command.Description = "The list of assignments for this T&C policy.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--termsandconditions-id", description: "key: id of termsAndConditions"));
             command.AddOption(new Option<string>("--termsandconditionsassignment-id", description: "key: id of termsAndConditionsAssignment"));

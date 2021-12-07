@@ -23,6 +23,7 @@ namespace ApiSdk.DirectoryObjects.Item.CheckMemberGroups {
         /// </summary>
         public Command BuildPostCommand() {
             var command = new Command("post");
+            command.Description = "Invoke action checkMemberGroups";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--directoryobject-id", description: "key: id of directoryObject"));
             command.AddOption(new Option<string>("--body"));

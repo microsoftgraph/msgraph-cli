@@ -23,6 +23,7 @@ namespace ApiSdk.Me.ReminderViewWithStartDateTimeWithEndDateTime {
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
+            command.Description = "Invoke function reminderView";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--startdatetime", description: "Usage: StartDateTime={StartDateTime}"));
             command.AddOption(new Option<string>("--enddatetime", description: "Usage: EndDateTime={EndDateTime}"));

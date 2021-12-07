@@ -23,6 +23,7 @@ namespace ApiSdk.Drive.Root.Content {
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
+            command.Description = "Get media content for the navigation property root from drive";
             // Create options for all the parameters
             command.AddOption(new Option<FileInfo>("--output"));
             command.Handler = CommandHandler.Create<FileInfo>(async (output) => {
@@ -47,6 +48,7 @@ namespace ApiSdk.Drive.Root.Content {
         /// </summary>
         public Command BuildPutCommand() {
             var command = new Command("put");
+            command.Description = "Update media content for the navigation property root in drive";
             // Create options for all the parameters
             command.AddOption(new Option<Stream>("--file", description: "Binary request body"));
             command.Handler = CommandHandler.Create<FileInfo>(async (file) => {

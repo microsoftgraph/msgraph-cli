@@ -23,6 +23,7 @@ namespace ApiSdk.Education.Users.Item.TaughtClasses.@Ref {
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
+            command.Description = "Classes for which the user is a teacher.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--educationuser-id", description: "key: id of educationUser"));
             command.AddOption(new Option<int?>("--top", description: "Show only the first n items"));
@@ -56,6 +57,7 @@ namespace ApiSdk.Education.Users.Item.TaughtClasses.@Ref {
         /// </summary>
         public Command BuildPostCommand() {
             var command = new Command("post");
+            command.Description = "Classes for which the user is a teacher.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--educationuser-id", description: "key: id of educationUser"));
             command.AddOption(new Option<string>("--body"));

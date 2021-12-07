@@ -26,6 +26,7 @@ namespace ApiSdk.Chats.Item.Messages.Item {
         /// </summary>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
+            command.Description = "A collection of all the messages in the chat. Nullable.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--chat-id", description: "key: id of chat"));
             command.AddOption(new Option<string>("--chatmessage-id", description: "key: id of chatMessage"));
@@ -44,6 +45,7 @@ namespace ApiSdk.Chats.Item.Messages.Item {
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
+            command.Description = "A collection of all the messages in the chat. Nullable.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--chat-id", description: "key: id of chat"));
             command.AddOption(new Option<string>("--chatmessage-id", description: "key: id of chatMessage"));
@@ -81,6 +83,7 @@ namespace ApiSdk.Chats.Item.Messages.Item {
         /// </summary>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
+            command.Description = "A collection of all the messages in the chat. Nullable.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--chat-id", description: "key: id of chat"));
             command.AddOption(new Option<string>("--chatmessage-id", description: "key: id of chatMessage"));

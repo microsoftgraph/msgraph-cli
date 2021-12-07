@@ -35,6 +35,7 @@ namespace ApiSdk.Drives.Item.List.ContentTypes.Item.Columns {
         /// </summary>
         public Command BuildCreateCommand() {
             var command = new Command("create");
+            command.Description = "The collection of column definitions for this contentType.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--drive-id", description: "key: id of drive"));
             command.AddOption(new Option<string>("--contenttype-id", description: "key: id of contentType"));
@@ -62,6 +63,7 @@ namespace ApiSdk.Drives.Item.List.ContentTypes.Item.Columns {
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
+            command.Description = "The collection of column definitions for this contentType.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--drive-id", description: "key: id of drive"));
             command.AddOption(new Option<string>("--contenttype-id", description: "key: id of contentType"));

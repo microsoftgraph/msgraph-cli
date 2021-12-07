@@ -25,6 +25,7 @@ namespace ApiSdk.Shares.Item.List.Columns.Item.SourceColumn {
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
+            command.Description = "The source column for the content type column.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--shareddriveitem-id", description: "key: id of sharedDriveItem"));
             command.AddOption(new Option<string>("--columndefinition-id", description: "key: id of columnDefinition"));

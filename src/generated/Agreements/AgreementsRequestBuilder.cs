@@ -37,6 +37,7 @@ namespace ApiSdk.Agreements {
         /// </summary>
         public Command BuildCreateCommand() {
             var command = new Command("create");
+            command.Description = "Add new entity to agreements";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--body"));
             command.Handler = CommandHandler.Create<string>(async (body) => {
@@ -60,6 +61,7 @@ namespace ApiSdk.Agreements {
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
+            command.Description = "Get entities from agreements";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--search", description: "Search items by search phrases"));
             command.AddOption(new Option<object>("--select", description: "Select properties to be returned"));

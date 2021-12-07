@@ -23,6 +23,7 @@ namespace ApiSdk.Reports.GetTeamsDeviceUsageDistributionUserCountsWithPeriod {
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
+            command.Description = "Invoke function getTeamsDeviceUsageDistributionUserCounts";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--period", description: "Usage: period={period}"));
             command.AddOption(new Option<FileInfo>("--output"));

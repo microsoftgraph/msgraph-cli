@@ -24,6 +24,7 @@ namespace ApiSdk.Teams.Item.Schedule.TimeOffReasons.Item {
         /// </summary>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
+            command.Description = "The set of reasons for a time off in the schedule.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--team-id", description: "key: id of team"));
             command.AddOption(new Option<string>("--timeoffreason-id", description: "key: id of timeOffReason"));
@@ -42,6 +43,7 @@ namespace ApiSdk.Teams.Item.Schedule.TimeOffReasons.Item {
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
+            command.Description = "The set of reasons for a time off in the schedule.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--team-id", description: "key: id of team"));
             command.AddOption(new Option<string>("--timeoffreason-id", description: "key: id of timeOffReason"));
@@ -67,6 +69,7 @@ namespace ApiSdk.Teams.Item.Schedule.TimeOffReasons.Item {
         /// </summary>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
+            command.Description = "The set of reasons for a time off in the schedule.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--team-id", description: "key: id of team"));
             command.AddOption(new Option<string>("--timeoffreason-id", description: "key: id of timeOffReason"));

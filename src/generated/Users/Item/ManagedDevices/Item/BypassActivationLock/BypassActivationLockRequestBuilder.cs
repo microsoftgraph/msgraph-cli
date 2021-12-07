@@ -23,6 +23,7 @@ namespace ApiSdk.Users.Item.ManagedDevices.Item.BypassActivationLock {
         /// </summary>
         public Command BuildPostCommand() {
             var command = new Command("post");
+            command.Description = "Bypass activation lock";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--user-id", description: "key: id of user"));
             command.AddOption(new Option<string>("--manageddevice-id", description: "key: id of managedDevice"));

@@ -24,6 +24,7 @@ namespace ApiSdk.Me.Onenote.Sections.Item.Pages.Item.Preview {
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
+            command.Description = "Invoke function preview";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--onenotesection-id", description: "key: id of onenoteSection"));
             command.AddOption(new Option<string>("--onenotepage-id", description: "key: id of onenotePage"));

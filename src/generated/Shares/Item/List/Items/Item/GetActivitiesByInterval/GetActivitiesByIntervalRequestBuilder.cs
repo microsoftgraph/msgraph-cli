@@ -23,6 +23,7 @@ namespace ApiSdk.Shares.Item.List.Items.Item.GetActivitiesByInterval {
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
+            command.Description = "Invoke function getActivitiesByInterval";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--shareddriveitem-id", description: "key: id of sharedDriveItem"));
             command.AddOption(new Option<string>("--listitem-id", description: "key: id of listItem"));

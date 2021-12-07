@@ -24,6 +24,7 @@ namespace ApiSdk.Policies.TokenLifetimePolicies.Item {
         /// </summary>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
+            command.Description = "The policy that controls the lifetime of a JWT access token, an ID token, or a SAML 1.1/2.0 token issued by Azure AD.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--tokenlifetimepolicy-id", description: "key: id of tokenLifetimePolicy"));
             command.Handler = CommandHandler.Create<string>(async (tokenLifetimePolicyId) => {
@@ -40,6 +41,7 @@ namespace ApiSdk.Policies.TokenLifetimePolicies.Item {
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
+            command.Description = "The policy that controls the lifetime of a JWT access token, an ID token, or a SAML 1.1/2.0 token issued by Azure AD.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--tokenlifetimepolicy-id", description: "key: id of tokenLifetimePolicy"));
             command.AddOption(new Option<object>("--select", description: "Select properties to be returned"));
@@ -65,6 +67,7 @@ namespace ApiSdk.Policies.TokenLifetimePolicies.Item {
         /// </summary>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
+            command.Description = "The policy that controls the lifetime of a JWT access token, an ID token, or a SAML 1.1/2.0 token issued by Azure AD.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--tokenlifetimepolicy-id", description: "key: id of tokenLifetimePolicy"));
             command.AddOption(new Option<string>("--body"));

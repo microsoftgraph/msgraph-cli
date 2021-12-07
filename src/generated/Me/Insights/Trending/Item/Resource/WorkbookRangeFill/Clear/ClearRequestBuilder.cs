@@ -23,6 +23,7 @@ namespace ApiSdk.Me.Insights.Trending.Item.Resource.WorkbookRangeFill.Clear {
         /// </summary>
         public Command BuildPostCommand() {
             var command = new Command("post");
+            command.Description = "Invoke action clear";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--trending-id", description: "key: id of trending"));
             command.Handler = CommandHandler.Create<string>(async (trendingId) => {

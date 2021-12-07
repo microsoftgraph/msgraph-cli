@@ -25,6 +25,7 @@ namespace ApiSdk.Sites.Item.Lists.Item.Items.Item.Analytics {
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
+            command.Description = "Analytics about the view activities that took place on this item.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--site-id", description: "key: id of site"));
             command.AddOption(new Option<string>("--list-id", description: "key: id of list"));

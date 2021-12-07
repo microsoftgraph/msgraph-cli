@@ -24,6 +24,7 @@ namespace ApiSdk.Reports.ManagedDeviceEnrollmentFailureDetailsWithSkipWithTopWit
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
+            command.Description = "Invoke function managedDeviceEnrollmentFailureDetails";
             // Create options for all the parameters
             command.AddOption(new Option<int?>("--skip", description: "Usage: skip={skip}"));
             command.AddOption(new Option<int?>("--top", description: "Usage: top={top}"));

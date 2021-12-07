@@ -37,6 +37,7 @@ namespace ApiSdk.Drive.List.Items.Item {
         /// </summary>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
+            command.Description = "All items contained in the list.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--listitem-id", description: "key: id of listItem"));
             command.Handler = CommandHandler.Create<string>(async (listItemId) => {
@@ -70,6 +71,7 @@ namespace ApiSdk.Drive.List.Items.Item {
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
+            command.Description = "All items contained in the list.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--listitem-id", description: "key: id of listItem"));
             command.AddOption(new Option<object>("--select", description: "Select properties to be returned"));
@@ -95,6 +97,7 @@ namespace ApiSdk.Drive.List.Items.Item {
         /// </summary>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
+            command.Description = "All items contained in the list.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--listitem-id", description: "key: id of listItem"));
             command.AddOption(new Option<string>("--body"));

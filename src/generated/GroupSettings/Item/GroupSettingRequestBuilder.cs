@@ -24,6 +24,7 @@ namespace ApiSdk.GroupSettings.Item {
         /// </summary>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
+            command.Description = "Delete entity from groupSettings";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--groupsetting-id", description: "key: id of groupSetting"));
             command.Handler = CommandHandler.Create<string>(async (groupSettingId) => {
@@ -40,6 +41,7 @@ namespace ApiSdk.GroupSettings.Item {
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
+            command.Description = "Get entity from groupSettings by key";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--groupsetting-id", description: "key: id of groupSetting"));
             command.AddOption(new Option<object>("--select", description: "Select properties to be returned"));
@@ -65,6 +67,7 @@ namespace ApiSdk.GroupSettings.Item {
         /// </summary>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
+            command.Description = "Update entity in groupSettings";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--groupsetting-id", description: "key: id of groupSetting"));
             command.AddOption(new Option<string>("--body"));

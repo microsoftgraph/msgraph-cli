@@ -34,6 +34,7 @@ namespace ApiSdk.Agreements.Item.Files.Item.Versions {
         /// </summary>
         public Command BuildCreateCommand() {
             var command = new Command("create");
+            command.Description = "Create new navigation property to versions for agreements";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--agreement-id", description: "key: id of agreement"));
             command.AddOption(new Option<string>("--agreementfilelocalization-id", description: "key: id of agreementFileLocalization"));
@@ -61,6 +62,7 @@ namespace ApiSdk.Agreements.Item.Files.Item.Versions {
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
+            command.Description = "Get versions from agreements";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--agreement-id", description: "key: id of agreement"));
             command.AddOption(new Option<string>("--agreementfilelocalization-id", description: "key: id of agreementFileLocalization"));

@@ -38,6 +38,7 @@ namespace ApiSdk.Communications.Calls.Item.Participants {
         /// </summary>
         public Command BuildCreateCommand() {
             var command = new Command("create");
+            command.Description = "Read-only. Nullable.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--call-id", description: "key: id of call"));
             command.AddOption(new Option<string>("--body"));
@@ -69,6 +70,7 @@ namespace ApiSdk.Communications.Calls.Item.Participants {
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
+            command.Description = "Read-only. Nullable.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--call-id", description: "key: id of call"));
             command.AddOption(new Option<int?>("--top", description: "Show only the first n items"));

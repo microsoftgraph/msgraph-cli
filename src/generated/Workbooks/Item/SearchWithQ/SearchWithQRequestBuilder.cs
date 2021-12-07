@@ -23,6 +23,7 @@ namespace ApiSdk.Workbooks.Item.SearchWithQ {
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
+            command.Description = "Invoke function search";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--driveitem-id", description: "key: id of driveItem"));
             command.AddOption(new Option<string>("-q", description: "Usage: q={q}"));

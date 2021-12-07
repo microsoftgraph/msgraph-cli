@@ -50,6 +50,7 @@ namespace ApiSdk.DeviceAppManagement.MobileApps.Item {
         /// </summary>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
+            command.Description = "The mobile apps.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--mobileapp-id", description: "key: id of mobileApp"));
             command.Handler = CommandHandler.Create<string>(async (mobileAppId) => {
@@ -66,6 +67,7 @@ namespace ApiSdk.DeviceAppManagement.MobileApps.Item {
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
+            command.Description = "The mobile apps.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--mobileapp-id", description: "key: id of mobileApp"));
             command.AddOption(new Option<object>("--select", description: "Select properties to be returned"));
@@ -91,6 +93,7 @@ namespace ApiSdk.DeviceAppManagement.MobileApps.Item {
         /// </summary>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
+            command.Description = "The mobile apps.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--mobileapp-id", description: "key: id of mobileApp"));
             command.AddOption(new Option<string>("--body"));

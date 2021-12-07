@@ -24,6 +24,7 @@ namespace ApiSdk.Me.Insights.Trending.Item.Resource.WorkbookRange.ColumnWithColu
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
+            command.Description = "Invoke function column";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--trending-id", description: "key: id of trending"));
             command.AddOption(new Option<int?>("--column", description: "Usage: column={column}"));

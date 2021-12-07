@@ -24,6 +24,7 @@ namespace ApiSdk.Me.Insights.Trending.Item.Resource.WorkbookRange.CellWithRowWit
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
+            command.Description = "Invoke function cell";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--trending-id", description: "key: id of trending"));
             command.AddOption(new Option<int?>("--row", description: "Usage: row={row}"));

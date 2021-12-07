@@ -24,6 +24,7 @@ namespace ApiSdk.DeviceAppManagement.ManagedEBooks.Item.InstallSummary {
         /// </summary>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
+            command.Description = "Mobile App Install Summary.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--managedebook-id", description: "key: id of managedEBook"));
             command.Handler = CommandHandler.Create<string>(async (managedEBookId) => {
@@ -40,6 +41,7 @@ namespace ApiSdk.DeviceAppManagement.ManagedEBooks.Item.InstallSummary {
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
+            command.Description = "Mobile App Install Summary.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--managedebook-id", description: "key: id of managedEBook"));
             command.AddOption(new Option<object>("--select", description: "Select properties to be returned"));
@@ -65,6 +67,7 @@ namespace ApiSdk.DeviceAppManagement.ManagedEBooks.Item.InstallSummary {
         /// </summary>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
+            command.Description = "Mobile App Install Summary.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--managedebook-id", description: "key: id of managedEBook"));
             command.AddOption(new Option<string>("--body"));

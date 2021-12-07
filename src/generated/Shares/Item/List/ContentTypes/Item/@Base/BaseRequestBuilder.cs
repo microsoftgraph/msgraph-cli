@@ -42,6 +42,7 @@ namespace ApiSdk.Shares.Item.List.ContentTypes.Item.@Base {
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
+            command.Description = "Parent contentType from which this content type is derived.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--shareddriveitem-id", description: "key: id of sharedDriveItem"));
             command.AddOption(new Option<string>("--contenttype-id", description: "key: id of contentType"));

@@ -24,6 +24,7 @@ namespace ApiSdk.Workbooks.Item.Workbook.Functions.Ceiling_Math {
         /// </summary>
         public Command BuildPostCommand() {
             var command = new Command("post");
+            command.Description = "Invoke action ceiling_Math";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--driveitem-id", description: "key: id of driveItem"));
             command.AddOption(new Option<string>("--body"));

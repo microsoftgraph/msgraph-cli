@@ -23,6 +23,7 @@ namespace ApiSdk.DeviceManagement.DeviceEnrollmentConfigurations.Item.SetPriorit
         /// </summary>
         public Command BuildPostCommand() {
             var command = new Command("post");
+            command.Description = "Invoke action setPriority";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--deviceenrollmentconfiguration-id", description: "key: id of deviceEnrollmentConfiguration"));
             command.AddOption(new Option<string>("--body"));

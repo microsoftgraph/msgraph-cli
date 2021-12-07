@@ -23,6 +23,7 @@ namespace ApiSdk.DeviceManagement.TermsAndConditions.Item.AcceptanceStatuses.Ite
         /// </summary>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
+            command.Description = "Navigation link to the terms and conditions that are assigned.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--termsandconditions-id", description: "key: id of termsAndConditions"));
             command.AddOption(new Option<string>("--termsandconditionsacceptancestatus-id", description: "key: id of termsAndConditionsAcceptanceStatus"));
@@ -41,6 +42,7 @@ namespace ApiSdk.DeviceManagement.TermsAndConditions.Item.AcceptanceStatuses.Ite
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
+            command.Description = "Navigation link to the terms and conditions that are assigned.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--termsandconditions-id", description: "key: id of termsAndConditions"));
             command.AddOption(new Option<string>("--termsandconditionsacceptancestatus-id", description: "key: id of termsAndConditionsAcceptanceStatus"));
@@ -64,6 +66,7 @@ namespace ApiSdk.DeviceManagement.TermsAndConditions.Item.AcceptanceStatuses.Ite
         /// </summary>
         public Command BuildPutCommand() {
             var command = new Command("put");
+            command.Description = "Navigation link to the terms and conditions that are assigned.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--termsandconditions-id", description: "key: id of termsAndConditions"));
             command.AddOption(new Option<string>("--termsandconditionsacceptancestatus-id", description: "key: id of termsAndConditionsAcceptanceStatus"));

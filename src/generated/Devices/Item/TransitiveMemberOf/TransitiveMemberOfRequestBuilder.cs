@@ -24,6 +24,7 @@ namespace ApiSdk.Devices.Item.TransitiveMemberOf {
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
+            command.Description = "Groups that the device is a member of. This operation is transitive. Supports $expand.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--device-id", description: "key: id of device"));
             command.AddOption(new Option<int?>("--top", description: "Show only the first n items"));

@@ -23,6 +23,7 @@ namespace ApiSdk.Reports.GetTeamsUserActivityCountsWithPeriod {
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
+            command.Description = "Invoke function getTeamsUserActivityCounts";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--period", description: "Usage: period={period}"));
             command.AddOption(new Option<FileInfo>("--output"));

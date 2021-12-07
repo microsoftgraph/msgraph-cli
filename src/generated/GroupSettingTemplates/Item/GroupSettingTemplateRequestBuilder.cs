@@ -41,6 +41,7 @@ namespace ApiSdk.GroupSettingTemplates.Item {
         /// </summary>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
+            command.Description = "Delete entity from groupSettingTemplates";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--groupsettingtemplate-id", description: "key: id of groupSettingTemplate"));
             command.Handler = CommandHandler.Create<string>(async (groupSettingTemplateId) => {
@@ -57,6 +58,7 @@ namespace ApiSdk.GroupSettingTemplates.Item {
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
+            command.Description = "Get entity from groupSettingTemplates by key";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--groupsettingtemplate-id", description: "key: id of groupSettingTemplate"));
             command.AddOption(new Option<object>("--select", description: "Select properties to be returned"));
@@ -94,6 +96,7 @@ namespace ApiSdk.GroupSettingTemplates.Item {
         /// </summary>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
+            command.Description = "Update entity in groupSettingTemplates";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--groupsettingtemplate-id", description: "key: id of groupSettingTemplate"));
             command.AddOption(new Option<string>("--body"));

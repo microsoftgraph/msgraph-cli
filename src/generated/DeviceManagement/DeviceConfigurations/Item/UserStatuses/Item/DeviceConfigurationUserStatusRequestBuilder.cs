@@ -24,6 +24,7 @@ namespace ApiSdk.DeviceManagement.DeviceConfigurations.Item.UserStatuses.Item {
         /// </summary>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
+            command.Description = "Device configuration installation status by user.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--deviceconfiguration-id", description: "key: id of deviceConfiguration"));
             command.AddOption(new Option<string>("--deviceconfigurationuserstatus-id", description: "key: id of deviceConfigurationUserStatus"));
@@ -42,6 +43,7 @@ namespace ApiSdk.DeviceManagement.DeviceConfigurations.Item.UserStatuses.Item {
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
+            command.Description = "Device configuration installation status by user.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--deviceconfiguration-id", description: "key: id of deviceConfiguration"));
             command.AddOption(new Option<string>("--deviceconfigurationuserstatus-id", description: "key: id of deviceConfigurationUserStatus"));
@@ -69,6 +71,7 @@ namespace ApiSdk.DeviceManagement.DeviceConfigurations.Item.UserStatuses.Item {
         /// </summary>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
+            command.Description = "Device configuration installation status by user.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--deviceconfiguration-id", description: "key: id of deviceConfiguration"));
             command.AddOption(new Option<string>("--deviceconfigurationuserstatus-id", description: "key: id of deviceConfigurationUserStatus"));

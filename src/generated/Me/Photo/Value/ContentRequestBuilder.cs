@@ -23,6 +23,7 @@ namespace ApiSdk.Me.Photo.Value {
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
+            command.Description = "The user's profile photo. Read-only.";
             // Create options for all the parameters
             command.AddOption(new Option<FileInfo>("--output"));
             command.Handler = CommandHandler.Create<FileInfo>(async (output) => {
@@ -47,6 +48,7 @@ namespace ApiSdk.Me.Photo.Value {
         /// </summary>
         public Command BuildPutCommand() {
             var command = new Command("put");
+            command.Description = "The user's profile photo. Read-only.";
             // Create options for all the parameters
             command.AddOption(new Option<Stream>("--file", description: "Binary request body"));
             command.Handler = CommandHandler.Create<FileInfo>(async (file) => {

@@ -23,6 +23,7 @@ namespace ApiSdk.Users.Item.Insights.Shared.Item.LastSharedMethod.ScheduleChange
         /// </summary>
         public Command BuildPostCommand() {
             var command = new Command("post");
+            command.Description = "Invoke action approve";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--user-id", description: "key: id of user"));
             command.AddOption(new Option<string>("--sharedinsight-id", description: "key: id of sharedInsight"));

@@ -24,6 +24,7 @@ namespace ApiSdk.Sites.Item.Items.Item {
         /// </summary>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
+            command.Description = "Used to address any item contained in this site. This collection can't be enumerated.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--site-id", description: "key: id of site"));
             command.AddOption(new Option<string>("--baseitem-id", description: "key: id of baseItem"));
@@ -42,6 +43,7 @@ namespace ApiSdk.Sites.Item.Items.Item {
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
+            command.Description = "Used to address any item contained in this site. This collection can't be enumerated.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--site-id", description: "key: id of site"));
             command.AddOption(new Option<string>("--baseitem-id", description: "key: id of baseItem"));
@@ -69,6 +71,7 @@ namespace ApiSdk.Sites.Item.Items.Item {
         /// </summary>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
+            command.Description = "Used to address any item contained in this site. This collection can't be enumerated.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--site-id", description: "key: id of site"));
             command.AddOption(new Option<string>("--baseitem-id", description: "key: id of baseItem"));

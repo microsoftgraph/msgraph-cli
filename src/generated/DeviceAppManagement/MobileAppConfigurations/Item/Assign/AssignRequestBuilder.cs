@@ -23,6 +23,7 @@ namespace ApiSdk.DeviceAppManagement.MobileAppConfigurations.Item.Assign {
         /// </summary>
         public Command BuildPostCommand() {
             var command = new Command("post");
+            command.Description = "Invoke action assign";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--manageddevicemobileappconfiguration-id", description: "key: id of managedDeviceMobileAppConfiguration"));
             command.AddOption(new Option<string>("--body"));

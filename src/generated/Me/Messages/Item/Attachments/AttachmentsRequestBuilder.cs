@@ -35,6 +35,7 @@ namespace ApiSdk.Me.Messages.Item.Attachments {
         /// </summary>
         public Command BuildCreateCommand() {
             var command = new Command("create");
+            command.Description = "The fileAttachment and itemAttachment attachments for the message.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--message-id", description: "key: id of message"));
             command.AddOption(new Option<string>("--body"));
@@ -66,6 +67,7 @@ namespace ApiSdk.Me.Messages.Item.Attachments {
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
+            command.Description = "The fileAttachment and itemAttachment attachments for the message.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--message-id", description: "key: id of message"));
             command.AddOption(new Option<int?>("--top", description: "Show only the first n items"));

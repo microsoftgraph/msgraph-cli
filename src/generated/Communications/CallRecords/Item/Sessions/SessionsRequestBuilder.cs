@@ -35,6 +35,7 @@ namespace ApiSdk.Communications.CallRecords.Item.Sessions {
         /// </summary>
         public Command BuildCreateCommand() {
             var command = new Command("create");
+            command.Description = "List of sessions involved in the call. Peer-to-peer calls typically only have one session, whereas group calls typically have at least one session per participant. Read-only. Nullable.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--callrecord-id", description: "key: id of callRecord"));
             command.AddOption(new Option<string>("--body"));
@@ -60,6 +61,7 @@ namespace ApiSdk.Communications.CallRecords.Item.Sessions {
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
+            command.Description = "List of sessions involved in the call. Peer-to-peer calls typically only have one session, whereas group calls typically have at least one session per participant. Read-only. Nullable.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--callrecord-id", description: "key: id of callRecord"));
             command.AddOption(new Option<int?>("--top", description: "Show only the first n items"));

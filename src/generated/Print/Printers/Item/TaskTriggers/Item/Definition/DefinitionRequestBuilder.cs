@@ -25,6 +25,7 @@ namespace ApiSdk.Print.Printers.Item.TaskTriggers.Item.Definition {
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
+            command.Description = "An abstract definition that will be used to create a printTask when triggered by a print event. Read-only.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--printer-id", description: "key: id of printer"));
             command.AddOption(new Option<string>("--printtasktrigger-id", description: "key: id of printTaskTrigger"));

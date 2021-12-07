@@ -24,6 +24,7 @@ namespace ApiSdk.DeviceAppManagement.VppTokens.Item.SyncLicenses {
         /// </summary>
         public Command BuildPostCommand() {
             var command = new Command("post");
+            command.Description = "Syncs licenses associated with a specific appleVolumePurchaseProgramToken";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--vpptoken-id", description: "key: id of vppToken"));
             command.Handler = CommandHandler.Create<string>(async (vppTokenId) => {

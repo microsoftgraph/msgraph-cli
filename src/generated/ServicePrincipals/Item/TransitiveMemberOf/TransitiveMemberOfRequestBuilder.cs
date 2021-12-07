@@ -24,6 +24,7 @@ namespace ApiSdk.ServicePrincipals.Item.TransitiveMemberOf {
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
+            command.Description = "Get transitiveMemberOf from servicePrincipals";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--serviceprincipal-id", description: "key: id of servicePrincipal"));
             command.AddOption(new Option<int?>("--top", description: "Show only the first n items"));

@@ -23,6 +23,7 @@ namespace ApiSdk.Me.Insights.Trending.Item.Resource.MobileAppContentFile.Commit 
         /// </summary>
         public Command BuildPostCommand() {
             var command = new Command("post");
+            command.Description = "Commits a file of a given app.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--trending-id", description: "key: id of trending"));
             command.AddOption(new Option<string>("--body"));

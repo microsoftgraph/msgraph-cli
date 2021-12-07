@@ -32,6 +32,7 @@ namespace ApiSdk.Users.Item.OnlineMeetings.Item {
         /// </summary>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
+            command.Description = "Delete navigation property onlineMeetings for users";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--user-id", description: "key: id of user"));
             command.AddOption(new Option<string>("--onlinemeeting-id", description: "key: id of onlineMeeting"));
@@ -50,6 +51,7 @@ namespace ApiSdk.Users.Item.OnlineMeetings.Item {
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
+            command.Description = "Get onlineMeetings from users";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--user-id", description: "key: id of user"));
             command.AddOption(new Option<string>("--onlinemeeting-id", description: "key: id of onlineMeeting"));
@@ -77,6 +79,7 @@ namespace ApiSdk.Users.Item.OnlineMeetings.Item {
         /// </summary>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
+            command.Description = "Update the navigation property onlineMeetings in users";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--user-id", description: "key: id of user"));
             command.AddOption(new Option<string>("--onlinemeeting-id", description: "key: id of onlineMeeting"));

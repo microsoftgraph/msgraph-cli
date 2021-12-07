@@ -48,6 +48,7 @@ namespace ApiSdk.Users.Item.CalendarView {
         /// </summary>
         public Command BuildCreateCommand() {
             var command = new Command("create");
+            command.Description = "The calendar view for the calendar. Read-only. Nullable.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--user-id", description: "key: id of user"));
             command.AddOption(new Option<string>("--body"));
@@ -73,6 +74,7 @@ namespace ApiSdk.Users.Item.CalendarView {
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
+            command.Description = "The calendar view for the calendar. Read-only. Nullable.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--user-id", description: "key: id of user"));
             command.AddOption(new Option<string>("--startdatetime", description: "The start date and time of the time range, represented in ISO 8601 format. For example, 2019-11-08T19:00:00-08:00"));

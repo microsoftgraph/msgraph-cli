@@ -23,6 +23,7 @@ namespace ApiSdk.DeviceManagement.VerifyWindowsEnrollmentAutoDiscoveryWithDomain
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
+            command.Description = "Invoke function verifyWindowsEnrollmentAutoDiscovery";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--domainname", description: "Usage: domainName={domainName}"));
             command.Handler = CommandHandler.Create<string>(async (domainName) => {

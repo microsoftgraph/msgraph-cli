@@ -23,6 +23,7 @@ namespace ApiSdk.Users.Item.Activities.Item.HistoryItems.Item.Activity.@Ref {
         /// </summary>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
+            command.Description = "Optional. NavigationProperty/Containment; navigation property to the associated activity.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--user-id", description: "key: id of user"));
             command.AddOption(new Option<string>("--useractivity-id", description: "key: id of userActivity"));
@@ -43,6 +44,7 @@ namespace ApiSdk.Users.Item.Activities.Item.HistoryItems.Item.Activity.@Ref {
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
+            command.Description = "Optional. NavigationProperty/Containment; navigation property to the associated activity.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--user-id", description: "key: id of user"));
             command.AddOption(new Option<string>("--useractivity-id", description: "key: id of userActivity"));
@@ -68,6 +70,7 @@ namespace ApiSdk.Users.Item.Activities.Item.HistoryItems.Item.Activity.@Ref {
         /// </summary>
         public Command BuildPutCommand() {
             var command = new Command("put");
+            command.Description = "Optional. NavigationProperty/Containment; navigation property to the associated activity.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--user-id", description: "key: id of user"));
             command.AddOption(new Option<string>("--useractivity-id", description: "key: id of userActivity"));

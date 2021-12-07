@@ -23,6 +23,7 @@ namespace ApiSdk.Chats.Item.Tabs.Item.TeamsApp.@Ref {
         /// </summary>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
+            command.Description = "The application that is linked to the tab. This cannot be changed after tab creation.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--chat-id", description: "key: id of chat"));
             command.AddOption(new Option<string>("--teamstab-id", description: "key: id of teamsTab"));
@@ -41,6 +42,7 @@ namespace ApiSdk.Chats.Item.Tabs.Item.TeamsApp.@Ref {
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
+            command.Description = "The application that is linked to the tab. This cannot be changed after tab creation.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--chat-id", description: "key: id of chat"));
             command.AddOption(new Option<string>("--teamstab-id", description: "key: id of teamsTab"));
@@ -64,6 +66,7 @@ namespace ApiSdk.Chats.Item.Tabs.Item.TeamsApp.@Ref {
         /// </summary>
         public Command BuildPutCommand() {
             var command = new Command("put");
+            command.Description = "The application that is linked to the tab. This cannot be changed after tab creation.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--chat-id", description: "key: id of chat"));
             command.AddOption(new Option<string>("--teamstab-id", description: "key: id of teamsTab"));

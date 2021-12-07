@@ -28,6 +28,7 @@ namespace ApiSdk.Privacy.SubjectRightsRequests.Item {
         /// </summary>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
+            command.Description = "Delete navigation property subjectRightsRequests for privacy";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--subjectrightsrequest-id", description: "key: id of subjectRightsRequest"));
             command.Handler = CommandHandler.Create<string>(async (subjectRightsRequestId) => {
@@ -44,6 +45,7 @@ namespace ApiSdk.Privacy.SubjectRightsRequests.Item {
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
+            command.Description = "Get subjectRightsRequests from privacy";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--subjectrightsrequest-id", description: "key: id of subjectRightsRequest"));
             command.AddOption(new Option<object>("--select", description: "Select properties to be returned"));
@@ -79,6 +81,7 @@ namespace ApiSdk.Privacy.SubjectRightsRequests.Item {
         /// </summary>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
+            command.Description = "Update the navigation property subjectRightsRequests in privacy";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--subjectrightsrequest-id", description: "key: id of subjectRightsRequest"));
             command.AddOption(new Option<string>("--body"));

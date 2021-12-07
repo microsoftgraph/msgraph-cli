@@ -25,6 +25,7 @@ namespace ApiSdk.Education.Classes.Item.Group {
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
+            command.Description = "The underlying Microsoft 365 group object.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--educationclass-id", description: "key: id of educationClass"));
             command.AddOption(new Option<object>("--select", description: "Select properties to be returned"));

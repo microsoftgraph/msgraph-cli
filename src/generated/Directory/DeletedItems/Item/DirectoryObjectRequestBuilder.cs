@@ -24,6 +24,7 @@ namespace ApiSdk.Directory.DeletedItems.Item {
         /// </summary>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
+            command.Description = "Recently deleted items. Read-only. Nullable.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--directoryobject-id", description: "key: id of directoryObject"));
             command.Handler = CommandHandler.Create<string>(async (directoryObjectId) => {
@@ -40,6 +41,7 @@ namespace ApiSdk.Directory.DeletedItems.Item {
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
+            command.Description = "Recently deleted items. Read-only. Nullable.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--directoryobject-id", description: "key: id of directoryObject"));
             command.AddOption(new Option<object>("--select", description: "Select properties to be returned"));
@@ -65,6 +67,7 @@ namespace ApiSdk.Directory.DeletedItems.Item {
         /// </summary>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
+            command.Description = "Recently deleted items. Read-only. Nullable.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--directoryobject-id", description: "key: id of directoryObject"));
             command.AddOption(new Option<string>("--body"));

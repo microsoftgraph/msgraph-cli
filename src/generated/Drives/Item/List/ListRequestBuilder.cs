@@ -50,6 +50,7 @@ namespace ApiSdk.Drives.Item.List {
         /// </summary>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
+            command.Description = "For drives in SharePoint, the underlying document library list. Read-only. Nullable.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--drive-id", description: "key: id of drive"));
             command.Handler = CommandHandler.Create<string>(async (driveId) => {
@@ -74,6 +75,7 @@ namespace ApiSdk.Drives.Item.List {
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
+            command.Description = "For drives in SharePoint, the underlying document library list. Read-only. Nullable.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--drive-id", description: "key: id of drive"));
             command.AddOption(new Option<object>("--select", description: "Select properties to be returned"));
@@ -109,6 +111,7 @@ namespace ApiSdk.Drives.Item.List {
         /// </summary>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
+            command.Description = "For drives in SharePoint, the underlying document library list. Read-only. Nullable.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--drive-id", description: "key: id of drive"));
             command.AddOption(new Option<string>("--body"));

@@ -24,6 +24,7 @@ namespace ApiSdk.Organization.Item.Branding {
         /// </summary>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
+            command.Description = "Delete navigation property branding for organization";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--organization-id", description: "key: id of organization"));
             command.Handler = CommandHandler.Create<string>(async (organizationId) => {
@@ -40,6 +41,7 @@ namespace ApiSdk.Organization.Item.Branding {
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
+            command.Description = "Get branding from organization";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--organization-id", description: "key: id of organization"));
             command.AddOption(new Option<object>("--select", description: "Select properties to be returned"));
@@ -65,6 +67,7 @@ namespace ApiSdk.Organization.Item.Branding {
         /// </summary>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
+            command.Description = "Update the navigation property branding in organization";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--organization-id", description: "key: id of organization"));
             command.AddOption(new Option<string>("--body"));

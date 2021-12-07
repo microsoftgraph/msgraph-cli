@@ -24,6 +24,7 @@ namespace ApiSdk.Reports.ManagedDeviceEnrollmentFailureDetails {
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
+            command.Description = "Invoke function managedDeviceEnrollmentFailureDetails";
             // Create options for all the parameters
             command.Handler = CommandHandler.Create(async () => {
                 var requestInfo = CreateGetRequestInformation();

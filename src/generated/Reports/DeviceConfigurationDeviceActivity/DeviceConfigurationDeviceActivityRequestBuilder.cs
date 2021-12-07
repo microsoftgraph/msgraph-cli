@@ -24,6 +24,7 @@ namespace ApiSdk.Reports.DeviceConfigurationDeviceActivity {
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
+            command.Description = "Metadata for the device configuration device activity report";
             // Create options for all the parameters
             command.Handler = CommandHandler.Create(async () => {
                 var requestInfo = CreateGetRequestInformation();

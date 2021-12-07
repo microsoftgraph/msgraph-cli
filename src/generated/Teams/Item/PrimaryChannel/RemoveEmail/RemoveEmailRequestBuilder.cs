@@ -23,6 +23,7 @@ namespace ApiSdk.Teams.Item.PrimaryChannel.RemoveEmail {
         /// </summary>
         public Command BuildPostCommand() {
             var command = new Command("post");
+            command.Description = "Invoke action removeEmail";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--team-id", description: "key: id of team"));
             command.Handler = CommandHandler.Create<string>(async (teamId) => {

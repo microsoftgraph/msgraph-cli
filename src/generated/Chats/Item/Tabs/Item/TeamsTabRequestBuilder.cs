@@ -25,6 +25,7 @@ namespace ApiSdk.Chats.Item.Tabs.Item {
         /// </summary>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
+            command.Description = "Delete navigation property tabs for chats";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--chat-id", description: "key: id of chat"));
             command.AddOption(new Option<string>("--teamstab-id", description: "key: id of teamsTab"));
@@ -43,6 +44,7 @@ namespace ApiSdk.Chats.Item.Tabs.Item {
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
+            command.Description = "Get tabs from chats";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--chat-id", description: "key: id of chat"));
             command.AddOption(new Option<string>("--teamstab-id", description: "key: id of teamsTab"));
@@ -70,6 +72,7 @@ namespace ApiSdk.Chats.Item.Tabs.Item {
         /// </summary>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
+            command.Description = "Update the navigation property tabs in chats";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--chat-id", description: "key: id of chat"));
             command.AddOption(new Option<string>("--teamstab-id", description: "key: id of teamsTab"));

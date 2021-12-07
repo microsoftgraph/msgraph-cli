@@ -24,6 +24,7 @@ namespace ApiSdk.GroupSettingTemplates.Item.Restore {
         /// </summary>
         public Command BuildPostCommand() {
             var command = new Command("post");
+            command.Description = "Invoke action restore";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--groupsettingtemplate-id", description: "key: id of groupSettingTemplate"));
             command.Handler = CommandHandler.Create<string>(async (groupSettingTemplateId) => {

@@ -32,6 +32,7 @@ namespace ApiSdk.Groups.Item.Photo {
         /// </summary>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
+            command.Description = "The group's profile photo";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--group-id", description: "key: id of group"));
             command.Handler = CommandHandler.Create<string>(async (groupId) => {
@@ -48,6 +49,7 @@ namespace ApiSdk.Groups.Item.Photo {
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
+            command.Description = "The group's profile photo";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--group-id", description: "key: id of group"));
             command.AddOption(new Option<object>("--select", description: "Select properties to be returned"));
@@ -71,6 +73,7 @@ namespace ApiSdk.Groups.Item.Photo {
         /// </summary>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
+            command.Description = "The group's profile photo";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--group-id", description: "key: id of group"));
             command.AddOption(new Option<string>("--body"));

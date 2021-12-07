@@ -23,6 +23,7 @@ namespace ApiSdk.Drives.Item.List.ContentTypes.Item.@Base.IsPublished {
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
+            command.Description = "Invoke function isPublished";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--drive-id", description: "key: id of drive"));
             command.AddOption(new Option<string>("--contenttype-id", description: "key: id of contentType"));

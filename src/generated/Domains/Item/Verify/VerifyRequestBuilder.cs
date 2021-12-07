@@ -24,6 +24,7 @@ namespace ApiSdk.Domains.Item.Verify {
         /// </summary>
         public Command BuildPostCommand() {
             var command = new Command("post");
+            command.Description = "Invoke action verify";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--domain-id", description: "key: id of domain"));
             command.Handler = CommandHandler.Create<string>(async (domainId) => {

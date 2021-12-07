@@ -24,6 +24,7 @@ namespace ApiSdk.Connections.Item.Items.Item {
         /// </summary>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
+            command.Description = "Read-only. Nullable.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--externalconnection-id", description: "key: id of externalConnection"));
             command.AddOption(new Option<string>("--externalitem-id", description: "key: id of externalItem"));
@@ -42,6 +43,7 @@ namespace ApiSdk.Connections.Item.Items.Item {
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
+            command.Description = "Read-only. Nullable.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--externalconnection-id", description: "key: id of externalConnection"));
             command.AddOption(new Option<string>("--externalitem-id", description: "key: id of externalItem"));
@@ -69,6 +71,7 @@ namespace ApiSdk.Connections.Item.Items.Item {
         /// </summary>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
+            command.Description = "Read-only. Nullable.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--externalconnection-id", description: "key: id of externalConnection"));
             command.AddOption(new Option<string>("--externalitem-id", description: "key: id of externalItem"));

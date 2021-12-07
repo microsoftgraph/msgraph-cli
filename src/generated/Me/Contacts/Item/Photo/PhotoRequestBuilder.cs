@@ -32,6 +32,7 @@ namespace ApiSdk.Me.Contacts.Item.Photo {
         /// </summary>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
+            command.Description = "Optional contact picture. You can get or set a photo for a contact.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--contact-id", description: "key: id of contact"));
             command.Handler = CommandHandler.Create<string>(async (contactId) => {
@@ -48,6 +49,7 @@ namespace ApiSdk.Me.Contacts.Item.Photo {
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
+            command.Description = "Optional contact picture. You can get or set a photo for a contact.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--contact-id", description: "key: id of contact"));
             command.AddOption(new Option<object>("--select", description: "Select properties to be returned"));
@@ -71,6 +73,7 @@ namespace ApiSdk.Me.Contacts.Item.Photo {
         /// </summary>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
+            command.Description = "Optional contact picture. You can get or set a photo for a contact.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--contact-id", description: "key: id of contact"));
             command.AddOption(new Option<string>("--body"));

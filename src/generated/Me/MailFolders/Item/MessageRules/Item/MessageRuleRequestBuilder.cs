@@ -24,6 +24,7 @@ namespace ApiSdk.Me.MailFolders.Item.MessageRules.Item {
         /// </summary>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
+            command.Description = "The collection of rules that apply to the user's Inbox folder.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--mailfolder-id", description: "key: id of mailFolder"));
             command.AddOption(new Option<string>("--messagerule-id", description: "key: id of messageRule"));
@@ -42,6 +43,7 @@ namespace ApiSdk.Me.MailFolders.Item.MessageRules.Item {
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
+            command.Description = "The collection of rules that apply to the user's Inbox folder.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--mailfolder-id", description: "key: id of mailFolder"));
             command.AddOption(new Option<string>("--messagerule-id", description: "key: id of messageRule"));
@@ -67,6 +69,7 @@ namespace ApiSdk.Me.MailFolders.Item.MessageRules.Item {
         /// </summary>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
+            command.Description = "The collection of rules that apply to the user's Inbox folder.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--mailfolder-id", description: "key: id of mailFolder"));
             command.AddOption(new Option<string>("--messagerule-id", description: "key: id of messageRule"));

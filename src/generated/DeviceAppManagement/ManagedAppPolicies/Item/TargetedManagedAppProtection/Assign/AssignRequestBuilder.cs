@@ -23,6 +23,7 @@ namespace ApiSdk.DeviceAppManagement.ManagedAppPolicies.Item.TargetedManagedAppP
         /// </summary>
         public Command BuildPostCommand() {
             var command = new Command("post");
+            command.Description = "Invoke action assign";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--managedapppolicy-id", description: "key: id of managedAppPolicy"));
             command.AddOption(new Option<string>("--body"));

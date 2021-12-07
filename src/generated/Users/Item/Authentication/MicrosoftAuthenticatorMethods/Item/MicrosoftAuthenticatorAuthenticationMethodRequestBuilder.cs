@@ -25,6 +25,7 @@ namespace ApiSdk.Users.Item.Authentication.MicrosoftAuthenticatorMethods.Item {
         /// </summary>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
+            command.Description = "Delete navigation property microsoftAuthenticatorMethods for users";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--user-id", description: "key: id of user"));
             command.AddOption(new Option<string>("--microsoftauthenticatorauthenticationmethod-id", description: "key: id of microsoftAuthenticatorAuthenticationMethod"));
@@ -51,6 +52,7 @@ namespace ApiSdk.Users.Item.Authentication.MicrosoftAuthenticatorMethods.Item {
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
+            command.Description = "Get microsoftAuthenticatorMethods from users";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--user-id", description: "key: id of user"));
             command.AddOption(new Option<string>("--microsoftauthenticatorauthenticationmethod-id", description: "key: id of microsoftAuthenticatorAuthenticationMethod"));
@@ -78,6 +80,7 @@ namespace ApiSdk.Users.Item.Authentication.MicrosoftAuthenticatorMethods.Item {
         /// </summary>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
+            command.Description = "Update the navigation property microsoftAuthenticatorMethods in users";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--user-id", description: "key: id of user"));
             command.AddOption(new Option<string>("--microsoftauthenticatorauthenticationmethod-id", description: "key: id of microsoftAuthenticatorAuthenticationMethod"));

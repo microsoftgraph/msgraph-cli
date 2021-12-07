@@ -23,6 +23,7 @@ namespace ApiSdk.Drive.List.ContentTypes.Item.@Base.CopyToDefaultContentLocation
         /// </summary>
         public Command BuildPostCommand() {
             var command = new Command("post");
+            command.Description = "Invoke action copyToDefaultContentLocation";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--contenttype-id", description: "key: id of contentType"));
             command.AddOption(new Option<string>("--body"));

@@ -25,6 +25,7 @@ namespace ApiSdk.Education.Users.Item.User {
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
+            command.Description = "The directory user corresponding to this user.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--educationuser-id", description: "key: id of educationUser"));
             command.AddOption(new Option<object>("--select", description: "Select properties to be returned"));

@@ -31,6 +31,7 @@ namespace ApiSdk.Sites.Item.Lists.Item.ContentTypes.Item.BaseTypes {
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
+            command.Description = "The collection of content types that are ancestors of this content type.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--site-id", description: "key: id of site"));
             command.AddOption(new Option<string>("--list-id", description: "key: id of list"));

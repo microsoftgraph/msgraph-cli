@@ -24,6 +24,7 @@ namespace ApiSdk.Devices.Item.Restore {
         /// </summary>
         public Command BuildPostCommand() {
             var command = new Command("post");
+            command.Description = "Invoke action restore";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--device-id", description: "key: id of device"));
             command.Handler = CommandHandler.Create<string>(async (deviceId) => {

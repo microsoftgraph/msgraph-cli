@@ -24,6 +24,7 @@ namespace ApiSdk.DeviceManagement.DeviceCompliancePolicySettingStateSummaries.It
         /// </summary>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
+            command.Description = "Not yet documented";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--devicecompliancepolicysettingstatesummary-id", description: "key: id of deviceCompliancePolicySettingStateSummary"));
             command.AddOption(new Option<string>("--devicecompliancesettingstate-id", description: "key: id of deviceComplianceSettingState"));
@@ -42,6 +43,7 @@ namespace ApiSdk.DeviceManagement.DeviceCompliancePolicySettingStateSummaries.It
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
+            command.Description = "Not yet documented";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--devicecompliancepolicysettingstatesummary-id", description: "key: id of deviceCompliancePolicySettingStateSummary"));
             command.AddOption(new Option<string>("--devicecompliancesettingstate-id", description: "key: id of deviceComplianceSettingState"));
@@ -69,6 +71,7 @@ namespace ApiSdk.DeviceManagement.DeviceCompliancePolicySettingStateSummaries.It
         /// </summary>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
+            command.Description = "Not yet documented";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--devicecompliancepolicysettingstatesummary-id", description: "key: id of deviceCompliancePolicySettingStateSummary"));
             command.AddOption(new Option<string>("--devicecompliancesettingstate-id", description: "key: id of deviceComplianceSettingState"));

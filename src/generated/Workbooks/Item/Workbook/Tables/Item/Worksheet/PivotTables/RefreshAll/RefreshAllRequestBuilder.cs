@@ -23,6 +23,7 @@ namespace ApiSdk.Workbooks.Item.Workbook.Tables.Item.Worksheet.PivotTables.Refre
         /// </summary>
         public Command BuildPostCommand() {
             var command = new Command("post");
+            command.Description = "Invoke action refreshAll";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--driveitem-id", description: "key: id of driveItem"));
             command.AddOption(new Option<string>("--workbooktable-id", description: "key: id of workbookTable"));

@@ -23,6 +23,7 @@ namespace ApiSdk.Organization.Item.SetMobileDeviceManagementAuthority {
         /// </summary>
         public Command BuildPostCommand() {
             var command = new Command("post");
+            command.Description = "Set mobile device management authority";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--organization-id", description: "key: id of organization"));
             command.Handler = CommandHandler.Create<string>(async (organizationId) => {

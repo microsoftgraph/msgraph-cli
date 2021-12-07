@@ -23,6 +23,7 @@ namespace ApiSdk.DeviceManagement.RemoteAssistancePartners.Item.BeginOnboarding 
         /// </summary>
         public Command BuildPostCommand() {
             var command = new Command("post");
+            command.Description = "A request to start onboarding.  Must be coupled with the appropriate TeamViewer account information";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--remoteassistancepartner-id", description: "key: id of remoteAssistancePartner"));
             command.Handler = CommandHandler.Create<string>(async (remoteAssistancePartnerId) => {

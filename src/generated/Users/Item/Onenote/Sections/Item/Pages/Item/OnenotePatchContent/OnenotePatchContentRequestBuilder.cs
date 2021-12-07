@@ -23,6 +23,7 @@ namespace ApiSdk.Users.Item.Onenote.Sections.Item.Pages.Item.OnenotePatchContent
         /// </summary>
         public Command BuildPostCommand() {
             var command = new Command("post");
+            command.Description = "Invoke action onenotePatchContent";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--user-id", description: "key: id of user"));
             command.AddOption(new Option<string>("--onenotesection-id", description: "key: id of onenoteSection"));

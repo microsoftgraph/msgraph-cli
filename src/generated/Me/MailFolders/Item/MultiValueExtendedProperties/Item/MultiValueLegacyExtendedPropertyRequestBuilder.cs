@@ -24,6 +24,7 @@ namespace ApiSdk.Me.MailFolders.Item.MultiValueExtendedProperties.Item {
         /// </summary>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
+            command.Description = "The collection of multi-value extended properties defined for the mailFolder. Read-only. Nullable.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--mailfolder-id", description: "key: id of mailFolder"));
             command.AddOption(new Option<string>("--multivaluelegacyextendedproperty-id", description: "key: id of multiValueLegacyExtendedProperty"));
@@ -42,6 +43,7 @@ namespace ApiSdk.Me.MailFolders.Item.MultiValueExtendedProperties.Item {
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
+            command.Description = "The collection of multi-value extended properties defined for the mailFolder. Read-only. Nullable.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--mailfolder-id", description: "key: id of mailFolder"));
             command.AddOption(new Option<string>("--multivaluelegacyextendedproperty-id", description: "key: id of multiValueLegacyExtendedProperty"));
@@ -69,6 +71,7 @@ namespace ApiSdk.Me.MailFolders.Item.MultiValueExtendedProperties.Item {
         /// </summary>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
+            command.Description = "The collection of multi-value extended properties defined for the mailFolder. Read-only. Nullable.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--mailfolder-id", description: "key: id of mailFolder"));
             command.AddOption(new Option<string>("--multivaluelegacyextendedproperty-id", description: "key: id of multiValueLegacyExtendedProperty"));

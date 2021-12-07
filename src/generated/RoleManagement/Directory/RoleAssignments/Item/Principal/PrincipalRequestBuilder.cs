@@ -25,6 +25,7 @@ namespace ApiSdk.RoleManagement.Directory.RoleAssignments.Item.Principal {
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
+            command.Description = "Referencing the assigned principal. Read-only. Supports $expand.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--unifiedroleassignment-id", description: "key: id of unifiedRoleAssignment"));
             command.AddOption(new Option<object>("--select", description: "Select properties to be returned"));

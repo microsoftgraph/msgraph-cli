@@ -23,6 +23,7 @@ namespace ApiSdk.Print.Shares.Item.Printer.RestoreFactoryDefaults {
         /// </summary>
         public Command BuildPostCommand() {
             var command = new Command("post");
+            command.Description = "Invoke action restoreFactoryDefaults";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--printershare-id", description: "key: id of printerShare"));
             command.Handler = CommandHandler.Create<string>(async (printerShareId) => {

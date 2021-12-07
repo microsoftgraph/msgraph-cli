@@ -24,6 +24,7 @@ namespace ApiSdk.Oauth2PermissionGrants.Item {
         /// </summary>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
+            command.Description = "Delete entity from oauth2PermissionGrants";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--oauth2permissiongrant-id", description: "key: id of oAuth2PermissionGrant"));
             command.Handler = CommandHandler.Create<string>(async (oAuth2PermissionGrantId) => {
@@ -40,6 +41,7 @@ namespace ApiSdk.Oauth2PermissionGrants.Item {
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
+            command.Description = "Get entity from oauth2PermissionGrants by key";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--oauth2permissiongrant-id", description: "key: id of oAuth2PermissionGrant"));
             command.AddOption(new Option<object>("--select", description: "Select properties to be returned"));
@@ -65,6 +67,7 @@ namespace ApiSdk.Oauth2PermissionGrants.Item {
         /// </summary>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
+            command.Description = "Update entity in oauth2PermissionGrants";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--oauth2permissiongrant-id", description: "key: id of oAuth2PermissionGrant"));
             command.AddOption(new Option<string>("--body"));

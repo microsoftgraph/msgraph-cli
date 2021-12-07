@@ -23,6 +23,7 @@ namespace ApiSdk.Drives.Item.SharedWithMe {
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
+            command.Description = "Invoke function sharedWithMe";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--drive-id", description: "key: id of drive"));
             command.Handler = CommandHandler.Create<string>(async (driveId) => {

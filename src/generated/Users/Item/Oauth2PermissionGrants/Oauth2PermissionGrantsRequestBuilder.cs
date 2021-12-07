@@ -24,6 +24,7 @@ namespace ApiSdk.Users.Item.Oauth2PermissionGrants {
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
+            command.Description = "Get oauth2PermissionGrants from users";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--user-id", description: "key: id of user"));
             command.AddOption(new Option<int?>("--top", description: "Show only the first n items"));

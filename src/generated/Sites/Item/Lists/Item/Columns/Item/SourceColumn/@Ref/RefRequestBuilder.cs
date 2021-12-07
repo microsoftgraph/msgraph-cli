@@ -23,6 +23,7 @@ namespace ApiSdk.Sites.Item.Lists.Item.Columns.Item.SourceColumn.@Ref {
         /// </summary>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
+            command.Description = "The source column for the content type column.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--site-id", description: "key: id of site"));
             command.AddOption(new Option<string>("--list-id", description: "key: id of list"));
@@ -43,6 +44,7 @@ namespace ApiSdk.Sites.Item.Lists.Item.Columns.Item.SourceColumn.@Ref {
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
+            command.Description = "The source column for the content type column.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--site-id", description: "key: id of site"));
             command.AddOption(new Option<string>("--list-id", description: "key: id of list"));
@@ -68,6 +70,7 @@ namespace ApiSdk.Sites.Item.Lists.Item.Columns.Item.SourceColumn.@Ref {
         /// </summary>
         public Command BuildPutCommand() {
             var command = new Command("put");
+            command.Description = "The source column for the content type column.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--site-id", description: "key: id of site"));
             command.AddOption(new Option<string>("--list-id", description: "key: id of list"));

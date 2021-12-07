@@ -23,6 +23,7 @@ namespace ApiSdk.Me.RevokeSignInSessions {
         /// </summary>
         public Command BuildPostCommand() {
             var command = new Command("post");
+            command.Description = "Invoke action revokeSignInSessions";
             // Create options for all the parameters
             command.Handler = CommandHandler.Create(async () => {
                 var requestInfo = CreatePostRequestInformation();

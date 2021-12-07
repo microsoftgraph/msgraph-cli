@@ -25,6 +25,7 @@ namespace ApiSdk.Drive.List.Columns.Item {
         /// </summary>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
+            command.Description = "The collection of field definitions for this list.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--columndefinition-id", description: "key: id of columnDefinition"));
             command.Handler = CommandHandler.Create<string>(async (columnDefinitionId) => {
@@ -41,6 +42,7 @@ namespace ApiSdk.Drive.List.Columns.Item {
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
+            command.Description = "The collection of field definitions for this list.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--columndefinition-id", description: "key: id of columnDefinition"));
             command.AddOption(new Option<object>("--select", description: "Select properties to be returned"));
@@ -66,6 +68,7 @@ namespace ApiSdk.Drive.List.Columns.Item {
         /// </summary>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
+            command.Description = "The collection of field definitions for this list.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--columndefinition-id", description: "key: id of columnDefinition"));
             command.AddOption(new Option<string>("--body"));

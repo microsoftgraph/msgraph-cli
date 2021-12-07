@@ -24,6 +24,7 @@ namespace ApiSdk.Sites.Item.Drives.Item {
         /// </summary>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
+            command.Description = "The collection of drives (document libraries) under this site.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--site-id", description: "key: id of site"));
             command.AddOption(new Option<string>("--drive-id", description: "key: id of drive"));
@@ -42,6 +43,7 @@ namespace ApiSdk.Sites.Item.Drives.Item {
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
+            command.Description = "The collection of drives (document libraries) under this site.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--site-id", description: "key: id of site"));
             command.AddOption(new Option<string>("--drive-id", description: "key: id of drive"));
@@ -69,6 +71,7 @@ namespace ApiSdk.Sites.Item.Drives.Item {
         /// </summary>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
+            command.Description = "The collection of drives (document libraries) under this site.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--site-id", description: "key: id of site"));
             command.AddOption(new Option<string>("--drive-id", description: "key: id of drive"));

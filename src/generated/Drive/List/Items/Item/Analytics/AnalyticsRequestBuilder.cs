@@ -25,6 +25,7 @@ namespace ApiSdk.Drive.List.Items.Item.Analytics {
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
+            command.Description = "Analytics about the view activities that took place on this item.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--listitem-id", description: "key: id of listItem"));
             command.AddOption(new Option<object>("--select", description: "Select properties to be returned"));

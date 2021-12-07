@@ -25,6 +25,7 @@ namespace ApiSdk.Sites.Item.TermStore.Sets.Item.Relations.Item.ToTerm {
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
+            command.Description = "The to [term] of the relation. The term to which the relationship is defined.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--site-id", description: "key: id of site"));
             command.AddOption(new Option<string>("--set-id", description: "key: id of set"));

@@ -23,6 +23,7 @@ namespace ApiSdk.Reports.GetPrinterArchivedPrintJobsWithPrinterIdWithStartDateTi
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
+            command.Description = "Invoke function getPrinterArchivedPrintJobs";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--printerid", description: "Usage: printerId={printerId}"));
             command.AddOption(new Option<DateTimeOffset?>("--startdatetime", description: "Usage: startDateTime={startDateTime}"));

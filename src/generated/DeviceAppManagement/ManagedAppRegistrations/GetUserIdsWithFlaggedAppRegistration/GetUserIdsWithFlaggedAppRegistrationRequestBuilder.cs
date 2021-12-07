@@ -23,6 +23,7 @@ namespace ApiSdk.DeviceAppManagement.ManagedAppRegistrations.GetUserIdsWithFlagg
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
+            command.Description = "Invoke function getUserIdsWithFlaggedAppRegistration";
             // Create options for all the parameters
             command.Handler = CommandHandler.Create(async () => {
                 var requestInfo = CreateGetRequestInformation();

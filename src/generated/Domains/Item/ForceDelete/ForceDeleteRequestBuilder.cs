@@ -23,6 +23,7 @@ namespace ApiSdk.Domains.Item.ForceDelete {
         /// </summary>
         public Command BuildPostCommand() {
             var command = new Command("post");
+            command.Description = "Invoke action forceDelete";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--domain-id", description: "key: id of domain"));
             command.AddOption(new Option<string>("--body"));

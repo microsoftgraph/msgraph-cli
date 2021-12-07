@@ -23,6 +23,7 @@ namespace ApiSdk.Users.Item.RemoveAllDevicesFromManagement {
         /// </summary>
         public Command BuildPostCommand() {
             var command = new Command("post");
+            command.Description = "Retire all devices from management for this user";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--user-id", description: "key: id of user"));
             command.Handler = CommandHandler.Create<string>(async (userId) => {

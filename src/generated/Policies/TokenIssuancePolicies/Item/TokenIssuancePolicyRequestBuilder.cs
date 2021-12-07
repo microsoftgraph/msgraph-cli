@@ -24,6 +24,7 @@ namespace ApiSdk.Policies.TokenIssuancePolicies.Item {
         /// </summary>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
+            command.Description = "The policy that specifies the characteristics of SAML tokens issued by Azure AD.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--tokenissuancepolicy-id", description: "key: id of tokenIssuancePolicy"));
             command.Handler = CommandHandler.Create<string>(async (tokenIssuancePolicyId) => {
@@ -40,6 +41,7 @@ namespace ApiSdk.Policies.TokenIssuancePolicies.Item {
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
+            command.Description = "The policy that specifies the characteristics of SAML tokens issued by Azure AD.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--tokenissuancepolicy-id", description: "key: id of tokenIssuancePolicy"));
             command.AddOption(new Option<object>("--select", description: "Select properties to be returned"));
@@ -65,6 +67,7 @@ namespace ApiSdk.Policies.TokenIssuancePolicies.Item {
         /// </summary>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
+            command.Description = "The policy that specifies the characteristics of SAML tokens issued by Azure AD.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--tokenissuancepolicy-id", description: "key: id of tokenIssuancePolicy"));
             command.AddOption(new Option<string>("--body"));

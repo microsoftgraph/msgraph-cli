@@ -34,6 +34,7 @@ namespace ApiSdk.Teams.Item.Schedule {
         /// </summary>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
+            command.Description = "The schedule of shifts for this team.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--team-id", description: "key: id of team"));
             command.Handler = CommandHandler.Create<string>(async (teamId) => {
@@ -50,6 +51,7 @@ namespace ApiSdk.Teams.Item.Schedule {
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
+            command.Description = "The schedule of shifts for this team.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--team-id", description: "key: id of team"));
             command.AddOption(new Option<object>("--select", description: "Select properties to be returned"));
@@ -105,6 +107,7 @@ namespace ApiSdk.Teams.Item.Schedule {
         /// </summary>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
+            command.Description = "The schedule of shifts for this team.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--team-id", description: "key: id of team"));
             command.AddOption(new Option<string>("--body"));

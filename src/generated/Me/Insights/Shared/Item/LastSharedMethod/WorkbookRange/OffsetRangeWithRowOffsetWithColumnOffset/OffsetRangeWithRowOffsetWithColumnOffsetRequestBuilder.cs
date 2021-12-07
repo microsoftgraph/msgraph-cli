@@ -24,6 +24,7 @@ namespace ApiSdk.Me.Insights.Shared.Item.LastSharedMethod.WorkbookRange.OffsetRa
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
+            command.Description = "Invoke function offsetRange";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--sharedinsight-id", description: "key: id of sharedInsight"));
             command.AddOption(new Option<int?>("--rowoffset", description: "Usage: rowOffset={rowOffset}"));

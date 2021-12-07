@@ -23,6 +23,7 @@ namespace ApiSdk.Users.Item.Insights.Used.Item.Resource.WorkbookRangeSort.Apply 
         /// </summary>
         public Command BuildPostCommand() {
             var command = new Command("post");
+            command.Description = "Invoke action apply";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--user-id", description: "key: id of user"));
             command.AddOption(new Option<string>("--usedinsight-id", description: "key: id of usedInsight"));

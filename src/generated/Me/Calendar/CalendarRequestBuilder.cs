@@ -59,6 +59,7 @@ namespace ApiSdk.Me.Calendar {
         /// </summary>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
+            command.Description = "The user's primary calendar. Read-only.";
             // Create options for all the parameters
             command.Handler = CommandHandler.Create(async () => {
                 var requestInfo = CreateDeleteRequestInformation();
@@ -83,6 +84,7 @@ namespace ApiSdk.Me.Calendar {
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
+            command.Description = "The user's primary calendar. Read-only.";
             // Create options for all the parameters
             command.AddOption(new Option<object>("--select", description: "Select properties to be returned"));
             command.Handler = CommandHandler.Create<object>(async (select) => {
@@ -120,6 +122,7 @@ namespace ApiSdk.Me.Calendar {
         /// </summary>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
+            command.Description = "The user's primary calendar. Read-only.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--body"));
             command.Handler = CommandHandler.Create<string>(async (body) => {

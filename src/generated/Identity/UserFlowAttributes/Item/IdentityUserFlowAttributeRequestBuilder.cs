@@ -24,6 +24,7 @@ namespace ApiSdk.Identity.UserFlowAttributes.Item {
         /// </summary>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
+            command.Description = "Represents entry point for identity userflow attributes.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--identityuserflowattribute-id", description: "key: id of identityUserFlowAttribute"));
             command.Handler = CommandHandler.Create<string>(async (identityUserFlowAttributeId) => {
@@ -40,6 +41,7 @@ namespace ApiSdk.Identity.UserFlowAttributes.Item {
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
+            command.Description = "Represents entry point for identity userflow attributes.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--identityuserflowattribute-id", description: "key: id of identityUserFlowAttribute"));
             command.AddOption(new Option<object>("--select", description: "Select properties to be returned"));
@@ -65,6 +67,7 @@ namespace ApiSdk.Identity.UserFlowAttributes.Item {
         /// </summary>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
+            command.Description = "Represents entry point for identity userflow attributes.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--identityuserflowattribute-id", description: "key: id of identityUserFlowAttribute"));
             command.AddOption(new Option<string>("--body"));

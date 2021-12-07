@@ -34,6 +34,7 @@ namespace ApiSdk.Me.Todo.Lists.Item.Tasks.Item.LinkedResources {
         /// </summary>
         public Command BuildCreateCommand() {
             var command = new Command("create");
+            command.Description = "A collection of resources linked to the task.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--todotasklist-id", description: "key: id of todoTaskList"));
             command.AddOption(new Option<string>("--todotask-id", description: "key: id of todoTask"));
@@ -61,6 +62,7 @@ namespace ApiSdk.Me.Todo.Lists.Item.Tasks.Item.LinkedResources {
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
+            command.Description = "A collection of resources linked to the task.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--todotasklist-id", description: "key: id of todoTaskList"));
             command.AddOption(new Option<string>("--todotask-id", description: "key: id of todoTask"));

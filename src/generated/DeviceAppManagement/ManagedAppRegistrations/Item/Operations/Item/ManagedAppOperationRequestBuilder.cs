@@ -24,6 +24,7 @@ namespace ApiSdk.DeviceAppManagement.ManagedAppRegistrations.Item.Operations.Ite
         /// </summary>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
+            command.Description = "Zero or more long running operations triggered on the app registration.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--managedappregistration-id", description: "key: id of managedAppRegistration"));
             command.AddOption(new Option<string>("--managedappoperation-id", description: "key: id of managedAppOperation"));
@@ -42,6 +43,7 @@ namespace ApiSdk.DeviceAppManagement.ManagedAppRegistrations.Item.Operations.Ite
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
+            command.Description = "Zero or more long running operations triggered on the app registration.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--managedappregistration-id", description: "key: id of managedAppRegistration"));
             command.AddOption(new Option<string>("--managedappoperation-id", description: "key: id of managedAppOperation"));
@@ -69,6 +71,7 @@ namespace ApiSdk.DeviceAppManagement.ManagedAppRegistrations.Item.Operations.Ite
         /// </summary>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
+            command.Description = "Zero or more long running operations triggered on the app registration.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--managedappregistration-id", description: "key: id of managedAppRegistration"));
             command.AddOption(new Option<string>("--managedappoperation-id", description: "key: id of managedAppOperation"));

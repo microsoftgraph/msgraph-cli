@@ -24,6 +24,7 @@ namespace ApiSdk.Teamwork.WorkforceIntegrations.Item {
         /// </summary>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
+            command.Description = "Delete navigation property workforceIntegrations for teamwork";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--workforceintegration-id", description: "key: id of workforceIntegration"));
             command.Handler = CommandHandler.Create<string>(async (workforceIntegrationId) => {
@@ -40,6 +41,7 @@ namespace ApiSdk.Teamwork.WorkforceIntegrations.Item {
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
+            command.Description = "Get workforceIntegrations from teamwork";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--workforceintegration-id", description: "key: id of workforceIntegration"));
             command.AddOption(new Option<object>("--select", description: "Select properties to be returned"));
@@ -65,6 +67,7 @@ namespace ApiSdk.Teamwork.WorkforceIntegrations.Item {
         /// </summary>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
+            command.Description = "Update the navigation property workforceIntegrations in teamwork";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--workforceintegration-id", description: "key: id of workforceIntegration"));
             command.AddOption(new Option<string>("--body"));

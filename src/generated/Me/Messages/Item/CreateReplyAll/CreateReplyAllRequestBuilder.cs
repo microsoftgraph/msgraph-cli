@@ -24,6 +24,7 @@ namespace ApiSdk.Me.Messages.Item.CreateReplyAll {
         /// </summary>
         public Command BuildPostCommand() {
             var command = new Command("post");
+            command.Description = "Invoke action createReplyAll";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--message-id", description: "key: id of message"));
             command.AddOption(new Option<string>("--body"));

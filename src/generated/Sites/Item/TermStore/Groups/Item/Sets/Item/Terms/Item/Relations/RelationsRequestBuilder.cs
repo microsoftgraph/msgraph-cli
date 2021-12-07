@@ -37,6 +37,7 @@ namespace ApiSdk.Sites.Item.TermStore.Groups.Item.Sets.Item.Terms.Item.Relations
         /// </summary>
         public Command BuildCreateCommand() {
             var command = new Command("create");
+            command.Description = "To indicate which terms are related to the current term as either pinned or reused.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--site-id", description: "key: id of site"));
             command.AddOption(new Option<string>("--group-id", description: "key: id of group"));
@@ -68,6 +69,7 @@ namespace ApiSdk.Sites.Item.TermStore.Groups.Item.Sets.Item.Terms.Item.Relations
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
+            command.Description = "To indicate which terms are related to the current term as either pinned or reused.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--site-id", description: "key: id of site"));
             command.AddOption(new Option<string>("--group-id", description: "key: id of group"));

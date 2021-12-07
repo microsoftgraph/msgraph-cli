@@ -24,6 +24,7 @@ namespace ApiSdk.Reports.GetOffice365GroupsActivityDetailWithDate {
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
+            command.Description = "Invoke function getOffice365GroupsActivityDetail";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--date", description: "Usage: date={date}"));
             command.Handler = CommandHandler.Create<string>(async (date) => {

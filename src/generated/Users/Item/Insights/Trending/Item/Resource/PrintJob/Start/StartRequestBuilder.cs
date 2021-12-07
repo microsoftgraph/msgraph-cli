@@ -24,6 +24,7 @@ namespace ApiSdk.Users.Item.Insights.Trending.Item.Resource.PrintJob.Start {
         /// </summary>
         public Command BuildPostCommand() {
             var command = new Command("post");
+            command.Description = "Invoke action start";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--user-id", description: "key: id of user"));
             command.AddOption(new Option<string>("--trending-id", description: "key: id of trending"));

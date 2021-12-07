@@ -35,6 +35,7 @@ namespace ApiSdk.Policies.FeatureRolloutPolicies.Item {
         /// </summary>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
+            command.Description = "The feature rollout policy associated with a directory object.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--featurerolloutpolicy-id", description: "key: id of featureRolloutPolicy"));
             command.Handler = CommandHandler.Create<string>(async (featureRolloutPolicyId) => {
@@ -51,6 +52,7 @@ namespace ApiSdk.Policies.FeatureRolloutPolicies.Item {
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
+            command.Description = "The feature rollout policy associated with a directory object.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--featurerolloutpolicy-id", description: "key: id of featureRolloutPolicy"));
             command.AddOption(new Option<object>("--select", description: "Select properties to be returned"));
@@ -76,6 +78,7 @@ namespace ApiSdk.Policies.FeatureRolloutPolicies.Item {
         /// </summary>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
+            command.Description = "The feature rollout policy associated with a directory object.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--featurerolloutpolicy-id", description: "key: id of featureRolloutPolicy"));
             command.AddOption(new Option<string>("--body"));

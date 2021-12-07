@@ -23,6 +23,7 @@ namespace ApiSdk.Reports.GetGroupArchivedPrintJobsWithGroupIdWithStartDateTimeWi
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
+            command.Description = "Invoke function getGroupArchivedPrintJobs";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--groupid", description: "Usage: groupId={groupId}"));
             command.AddOption(new Option<DateTimeOffset?>("--startdatetime", description: "Usage: startDateTime={startDateTime}"));

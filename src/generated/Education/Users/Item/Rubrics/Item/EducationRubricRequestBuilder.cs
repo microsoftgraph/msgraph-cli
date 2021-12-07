@@ -24,6 +24,7 @@ namespace ApiSdk.Education.Users.Item.Rubrics.Item {
         /// </summary>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
+            command.Description = "Delete navigation property rubrics for education";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--educationuser-id", description: "key: id of educationUser"));
             command.AddOption(new Option<string>("--educationrubric-id", description: "key: id of educationRubric"));
@@ -42,6 +43,7 @@ namespace ApiSdk.Education.Users.Item.Rubrics.Item {
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
+            command.Description = "Get rubrics from education";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--educationuser-id", description: "key: id of educationUser"));
             command.AddOption(new Option<string>("--educationrubric-id", description: "key: id of educationRubric"));
@@ -69,6 +71,7 @@ namespace ApiSdk.Education.Users.Item.Rubrics.Item {
         /// </summary>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
+            command.Description = "Update the navigation property rubrics in education";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--educationuser-id", description: "key: id of educationUser"));
             command.AddOption(new Option<string>("--educationrubric-id", description: "key: id of educationRubric"));

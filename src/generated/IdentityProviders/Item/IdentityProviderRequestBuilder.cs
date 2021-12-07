@@ -24,6 +24,7 @@ namespace ApiSdk.IdentityProviders.Item {
         /// </summary>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
+            command.Description = "Delete entity from identityProviders";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--identityprovider-id", description: "key: id of identityProvider"));
             command.Handler = CommandHandler.Create<string>(async (identityProviderId) => {
@@ -40,6 +41,7 @@ namespace ApiSdk.IdentityProviders.Item {
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
+            command.Description = "Get entity from identityProviders by key";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--identityprovider-id", description: "key: id of identityProvider"));
             command.AddOption(new Option<object>("--select", description: "Select properties to be returned"));
@@ -65,6 +67,7 @@ namespace ApiSdk.IdentityProviders.Item {
         /// </summary>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
+            command.Description = "Update entity in identityProviders";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--identityprovider-id", description: "key: id of identityProvider"));
             command.AddOption(new Option<string>("--body"));

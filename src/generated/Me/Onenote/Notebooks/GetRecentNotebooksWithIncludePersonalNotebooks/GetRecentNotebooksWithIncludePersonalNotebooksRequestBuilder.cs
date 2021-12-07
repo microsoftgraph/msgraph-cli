@@ -23,6 +23,7 @@ namespace ApiSdk.Me.Onenote.Notebooks.GetRecentNotebooksWithIncludePersonalNoteb
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
+            command.Description = "Invoke function getRecentNotebooks";
             // Create options for all the parameters
             command.AddOption(new Option<bool?>("--includepersonalnotebooks", description: "Usage: includePersonalNotebooks={includePersonalNotebooks}"));
             command.Handler = CommandHandler.Create<bool?>(async (includePersonalNotebooks) => {

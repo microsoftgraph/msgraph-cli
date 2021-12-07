@@ -38,6 +38,7 @@ namespace ApiSdk.Planner.Buckets.Item.Tasks {
         /// </summary>
         public Command BuildCreateCommand() {
             var command = new Command("create");
+            command.Description = "Read-only. Nullable. The collection of tasks in the bucket.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--plannerbucket-id", description: "key: id of plannerBucket"));
             command.AddOption(new Option<string>("--body"));
@@ -63,6 +64,7 @@ namespace ApiSdk.Planner.Buckets.Item.Tasks {
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
+            command.Description = "Read-only. Nullable. The collection of tasks in the bucket.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--plannerbucket-id", description: "key: id of plannerBucket"));
             command.AddOption(new Option<int?>("--top", description: "Show only the first n items"));

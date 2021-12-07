@@ -41,6 +41,7 @@ namespace ApiSdk.Education.Classes.Item.Assignments.Item.Submissions {
         /// </summary>
         public Command BuildCreateCommand() {
             var command = new Command("create");
+            command.Description = "Once published, there is a submission object for each student representing their work and grade.  Read-only. Nullable.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--educationclass-id", description: "key: id of educationClass"));
             command.AddOption(new Option<string>("--educationassignment-id", description: "key: id of educationAssignment"));
@@ -68,6 +69,7 @@ namespace ApiSdk.Education.Classes.Item.Assignments.Item.Submissions {
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
+            command.Description = "Once published, there is a submission object for each student representing their work and grade.  Read-only. Nullable.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--educationclass-id", description: "key: id of educationClass"));
             command.AddOption(new Option<string>("--educationassignment-id", description: "key: id of educationAssignment"));

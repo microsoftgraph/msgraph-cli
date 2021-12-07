@@ -23,6 +23,7 @@ namespace ApiSdk.Me.Messages.Item.Value {
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
+            command.Description = "Get media content for the navigation property messages from me";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--message-id", description: "key: id of message"));
             command.AddOption(new Option<FileInfo>("--output"));
@@ -49,6 +50,7 @@ namespace ApiSdk.Me.Messages.Item.Value {
         /// </summary>
         public Command BuildPutCommand() {
             var command = new Command("put");
+            command.Description = "Update media content for the navigation property messages in me";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--message-id", description: "key: id of message"));
             command.AddOption(new Option<Stream>("--file", description: "Binary request body"));

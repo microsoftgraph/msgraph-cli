@@ -35,6 +35,7 @@ namespace ApiSdk.Me.Activities.Item.HistoryItems {
         /// </summary>
         public Command BuildCreateCommand() {
             var command = new Command("create");
+            command.Description = "Optional. NavigationProperty/Containment; navigation property to the activity's historyItems.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--useractivity-id", description: "key: id of userActivity"));
             command.AddOption(new Option<string>("--body"));
@@ -60,6 +61,7 @@ namespace ApiSdk.Me.Activities.Item.HistoryItems {
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
+            command.Description = "Optional. NavigationProperty/Containment; navigation property to the activity's historyItems.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--useractivity-id", description: "key: id of userActivity"));
             command.AddOption(new Option<int?>("--top", description: "Show only the first n items"));

@@ -33,6 +33,7 @@ namespace ApiSdk.AppCatalogs.TeamsApps.Item.AppDefinitions.Item {
         /// </summary>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
+            command.Description = "The details for each version of the app.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--teamsapp-id", description: "key: id of teamsApp"));
             command.AddOption(new Option<string>("--teamsappdefinition-id", description: "key: id of teamsAppDefinition"));
@@ -51,6 +52,7 @@ namespace ApiSdk.AppCatalogs.TeamsApps.Item.AppDefinitions.Item {
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
+            command.Description = "The details for each version of the app.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--teamsapp-id", description: "key: id of teamsApp"));
             command.AddOption(new Option<string>("--teamsappdefinition-id", description: "key: id of teamsAppDefinition"));
@@ -78,6 +80,7 @@ namespace ApiSdk.AppCatalogs.TeamsApps.Item.AppDefinitions.Item {
         /// </summary>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
+            command.Description = "The details for each version of the app.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--teamsapp-id", description: "key: id of teamsApp"));
             command.AddOption(new Option<string>("--teamsappdefinition-id", description: "key: id of teamsAppDefinition"));

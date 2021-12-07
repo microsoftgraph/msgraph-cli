@@ -30,6 +30,7 @@ namespace ApiSdk.Sites.Item.Onenote {
         /// </summary>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
+            command.Description = "Calls the OneNote service for notebook related operations.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--site-id", description: "key: id of site"));
             command.Handler = CommandHandler.Create<string>(async (siteId) => {
@@ -46,6 +47,7 @@ namespace ApiSdk.Sites.Item.Onenote {
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
+            command.Description = "Calls the OneNote service for notebook related operations.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--site-id", description: "key: id of site"));
             command.AddOption(new Option<object>("--select", description: "Select properties to be returned"));
@@ -102,6 +104,7 @@ namespace ApiSdk.Sites.Item.Onenote {
         /// </summary>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
+            command.Description = "Calls the OneNote service for notebook related operations.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--site-id", description: "key: id of site"));
             command.AddOption(new Option<string>("--body"));

@@ -23,6 +23,7 @@ namespace ApiSdk.Teams.Item.SendActivityNotification {
         /// </summary>
         public Command BuildPostCommand() {
             var command = new Command("post");
+            command.Description = "Invoke action sendActivityNotification";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--team-id", description: "key: id of team"));
             command.AddOption(new Option<string>("--body"));

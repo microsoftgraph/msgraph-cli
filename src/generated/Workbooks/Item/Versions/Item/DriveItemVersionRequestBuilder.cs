@@ -33,6 +33,7 @@ namespace ApiSdk.Workbooks.Item.Versions.Item {
         /// </summary>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
+            command.Description = "The list of previous versions of the item. For more info, see [getting previous versions][]. Read-only. Nullable.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--driveitem-id", description: "key: id of driveItem"));
             command.AddOption(new Option<string>("--driveitemversion-id", description: "key: id of driveItemVersion"));
@@ -51,6 +52,7 @@ namespace ApiSdk.Workbooks.Item.Versions.Item {
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
+            command.Description = "The list of previous versions of the item. For more info, see [getting previous versions][]. Read-only. Nullable.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--driveitem-id", description: "key: id of driveItem"));
             command.AddOption(new Option<string>("--driveitemversion-id", description: "key: id of driveItemVersion"));
@@ -78,6 +80,7 @@ namespace ApiSdk.Workbooks.Item.Versions.Item {
         /// </summary>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
+            command.Description = "The list of previous versions of the item. For more info, see [getting previous versions][]. Read-only. Nullable.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--driveitem-id", description: "key: id of driveItem"));
             command.AddOption(new Option<string>("--driveitemversion-id", description: "key: id of driveItemVersion"));

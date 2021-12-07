@@ -24,6 +24,7 @@ namespace ApiSdk.Teams.Item.Channels.Item.Messages.Item.Replies.Item {
         /// </summary>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
+            command.Description = "Replies for a specified message.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--team-id", description: "key: id of team"));
             command.AddOption(new Option<string>("--channel-id", description: "key: id of channel"));
@@ -46,6 +47,7 @@ namespace ApiSdk.Teams.Item.Channels.Item.Messages.Item.Replies.Item {
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
+            command.Description = "Replies for a specified message.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--team-id", description: "key: id of team"));
             command.AddOption(new Option<string>("--channel-id", description: "key: id of channel"));
@@ -77,6 +79,7 @@ namespace ApiSdk.Teams.Item.Channels.Item.Messages.Item.Replies.Item {
         /// </summary>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
+            command.Description = "Replies for a specified message.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--team-id", description: "key: id of team"));
             command.AddOption(new Option<string>("--channel-id", description: "key: id of channel"));

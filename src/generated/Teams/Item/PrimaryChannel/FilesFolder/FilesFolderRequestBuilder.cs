@@ -32,6 +32,7 @@ namespace ApiSdk.Teams.Item.PrimaryChannel.FilesFolder {
         /// </summary>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
+            command.Description = "Metadata for the location where the channel's files are stored.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--team-id", description: "key: id of team"));
             command.Handler = CommandHandler.Create<string>(async (teamId) => {
@@ -48,6 +49,7 @@ namespace ApiSdk.Teams.Item.PrimaryChannel.FilesFolder {
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
+            command.Description = "Metadata for the location where the channel's files are stored.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--team-id", description: "key: id of team"));
             command.AddOption(new Option<object>("--select", description: "Select properties to be returned"));
@@ -73,6 +75,7 @@ namespace ApiSdk.Teams.Item.PrimaryChannel.FilesFolder {
         /// </summary>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
+            command.Description = "Metadata for the location where the channel's files are stored.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--team-id", description: "key: id of team"));
             command.AddOption(new Option<string>("--body"));

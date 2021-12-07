@@ -32,6 +32,7 @@ namespace ApiSdk.Shares.Item.Items.Item {
         /// </summary>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
+            command.Description = "All driveItems contained in the sharing root. This collection cannot be enumerated.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--shareddriveitem-id", description: "key: id of sharedDriveItem"));
             command.AddOption(new Option<string>("--driveitem-id", description: "key: id of driveItem"));
@@ -50,6 +51,7 @@ namespace ApiSdk.Shares.Item.Items.Item {
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
+            command.Description = "All driveItems contained in the sharing root. This collection cannot be enumerated.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--shareddriveitem-id", description: "key: id of sharedDriveItem"));
             command.AddOption(new Option<string>("--driveitem-id", description: "key: id of driveItem"));
@@ -77,6 +79,7 @@ namespace ApiSdk.Shares.Item.Items.Item {
         /// </summary>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
+            command.Description = "All driveItems contained in the sharing root. This collection cannot be enumerated.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--shareddriveitem-id", description: "key: id of sharedDriveItem"));
             command.AddOption(new Option<string>("--driveitem-id", description: "key: id of driveItem"));

@@ -24,6 +24,7 @@ namespace ApiSdk.Organization.Item.CertificateBasedAuthConfiguration {
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
+            command.Description = "Navigation property to manage certificate-based authentication configuration. Only a single instance of certificateBasedAuthConfiguration can be created in the collection.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--organization-id", description: "key: id of organization"));
             command.AddOption(new Option<int?>("--top", description: "Show only the first n items"));

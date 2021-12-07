@@ -26,6 +26,7 @@ namespace ApiSdk.Drive.List.Items.Item.Versions.Item {
         /// </summary>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
+            command.Description = "The list of previous versions of the list item.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--listitem-id", description: "key: id of listItem"));
             command.AddOption(new Option<string>("--listitemversion-id", description: "key: id of listItemVersion"));
@@ -52,6 +53,7 @@ namespace ApiSdk.Drive.List.Items.Item.Versions.Item {
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
+            command.Description = "The list of previous versions of the list item.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--listitem-id", description: "key: id of listItem"));
             command.AddOption(new Option<string>("--listitemversion-id", description: "key: id of listItemVersion"));
@@ -79,6 +81,7 @@ namespace ApiSdk.Drive.List.Items.Item.Versions.Item {
         /// </summary>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
+            command.Description = "The list of previous versions of the list item.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--listitem-id", description: "key: id of listItem"));
             command.AddOption(new Option<string>("--listitemversion-id", description: "key: id of listItemVersion"));

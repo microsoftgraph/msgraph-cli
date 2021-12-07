@@ -203,6 +203,7 @@ namespace ApiSdk {
         }
         public Command BuildCommand() {
             var command = new RootCommand();
+            command.Description = "Instantiates a new GraphClient and sets the default values.";
             command.AddCommand(BuildAdminCommand());
             command.AddCommand(BuildAgreementAcceptancesCommand());
             command.AddCommand(BuildAgreementsCommand());

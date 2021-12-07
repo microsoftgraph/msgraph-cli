@@ -24,6 +24,7 @@ namespace ApiSdk.Education.Classes.Item.AssignmentDefaults {
         /// </summary>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
+            command.Description = "Delete navigation property assignmentDefaults for education";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--educationclass-id", description: "key: id of educationClass"));
             command.Handler = CommandHandler.Create<string>(async (educationClassId) => {
@@ -40,6 +41,7 @@ namespace ApiSdk.Education.Classes.Item.AssignmentDefaults {
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
+            command.Description = "Get assignmentDefaults from education";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--educationclass-id", description: "key: id of educationClass"));
             command.AddOption(new Option<object>("--select", description: "Select properties to be returned"));
@@ -65,6 +67,7 @@ namespace ApiSdk.Education.Classes.Item.AssignmentDefaults {
         /// </summary>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
+            command.Description = "Update the navigation property assignmentDefaults in education";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--educationclass-id", description: "key: id of educationClass"));
             command.AddOption(new Option<string>("--body"));

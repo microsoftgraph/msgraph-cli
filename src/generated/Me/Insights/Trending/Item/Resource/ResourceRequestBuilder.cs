@@ -44,6 +44,7 @@ namespace ApiSdk.Me.Insights.Trending.Item.Resource {
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
+            command.Description = "Used for navigating to the trending document.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--trending-id", description: "key: id of trending"));
             command.AddOption(new Option<object>("--select", description: "Select properties to be returned"));

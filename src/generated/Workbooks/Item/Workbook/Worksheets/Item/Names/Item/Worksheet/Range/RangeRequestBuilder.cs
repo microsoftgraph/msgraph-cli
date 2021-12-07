@@ -24,6 +24,7 @@ namespace ApiSdk.Workbooks.Item.Workbook.Worksheets.Item.Names.Item.Worksheet.Ra
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
+            command.Description = "Invoke function range";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--driveitem-id", description: "key: id of driveItem"));
             command.AddOption(new Option<string>("--workbookworksheet-id", description: "key: id of workbookWorksheet"));

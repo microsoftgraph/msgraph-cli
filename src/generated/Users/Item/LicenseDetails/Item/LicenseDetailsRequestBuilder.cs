@@ -24,6 +24,7 @@ namespace ApiSdk.Users.Item.LicenseDetails.Item {
         /// </summary>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
+            command.Description = "A collection of this user's license details. Read-only.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--user-id", description: "key: id of user"));
             command.AddOption(new Option<string>("--licensedetails-id", description: "key: id of licenseDetails"));
@@ -42,6 +43,7 @@ namespace ApiSdk.Users.Item.LicenseDetails.Item {
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
+            command.Description = "A collection of this user's license details. Read-only.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--user-id", description: "key: id of user"));
             command.AddOption(new Option<string>("--licensedetails-id", description: "key: id of licenseDetails"));
@@ -69,6 +71,7 @@ namespace ApiSdk.Users.Item.LicenseDetails.Item {
         /// </summary>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
+            command.Description = "A collection of this user's license details. Read-only.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--user-id", description: "key: id of user"));
             command.AddOption(new Option<string>("--licensedetails-id", description: "key: id of licenseDetails"));

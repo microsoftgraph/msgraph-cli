@@ -24,6 +24,7 @@ namespace ApiSdk.Policies.HomeRealmDiscoveryPolicies.Item {
         /// </summary>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
+            command.Description = "The policy to control Azure AD authentication behavior for federated users.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--homerealmdiscoverypolicy-id", description: "key: id of homeRealmDiscoveryPolicy"));
             command.Handler = CommandHandler.Create<string>(async (homeRealmDiscoveryPolicyId) => {
@@ -40,6 +41,7 @@ namespace ApiSdk.Policies.HomeRealmDiscoveryPolicies.Item {
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
+            command.Description = "The policy to control Azure AD authentication behavior for federated users.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--homerealmdiscoverypolicy-id", description: "key: id of homeRealmDiscoveryPolicy"));
             command.AddOption(new Option<object>("--select", description: "Select properties to be returned"));
@@ -65,6 +67,7 @@ namespace ApiSdk.Policies.HomeRealmDiscoveryPolicies.Item {
         /// </summary>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
+            command.Description = "The policy to control Azure AD authentication behavior for federated users.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--homerealmdiscoverypolicy-id", description: "key: id of homeRealmDiscoveryPolicy"));
             command.AddOption(new Option<string>("--body"));

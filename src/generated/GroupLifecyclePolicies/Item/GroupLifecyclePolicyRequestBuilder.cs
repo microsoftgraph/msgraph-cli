@@ -32,6 +32,7 @@ namespace ApiSdk.GroupLifecyclePolicies.Item {
         /// </summary>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
+            command.Description = "Delete entity from groupLifecyclePolicies";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--grouplifecyclepolicy-id", description: "key: id of groupLifecyclePolicy"));
             command.Handler = CommandHandler.Create<string>(async (groupLifecyclePolicyId) => {
@@ -48,6 +49,7 @@ namespace ApiSdk.GroupLifecyclePolicies.Item {
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
+            command.Description = "Get entity from groupLifecyclePolicies by key";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--grouplifecyclepolicy-id", description: "key: id of groupLifecyclePolicy"));
             command.AddOption(new Option<object>("--select", description: "Select properties to be returned"));
@@ -73,6 +75,7 @@ namespace ApiSdk.GroupLifecyclePolicies.Item {
         /// </summary>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
+            command.Description = "Update entity in groupLifecyclePolicies";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--grouplifecyclepolicy-id", description: "key: id of groupLifecyclePolicy"));
             command.AddOption(new Option<string>("--body"));

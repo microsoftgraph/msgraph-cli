@@ -23,6 +23,7 @@ namespace ApiSdk.Applications.Item.UnsetVerifiedPublisher {
         /// </summary>
         public Command BuildPostCommand() {
             var command = new Command("post");
+            command.Description = "Invoke action unsetVerifiedPublisher";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--application-id", description: "key: id of application"));
             command.Handler = CommandHandler.Create<string>(async (applicationId) => {

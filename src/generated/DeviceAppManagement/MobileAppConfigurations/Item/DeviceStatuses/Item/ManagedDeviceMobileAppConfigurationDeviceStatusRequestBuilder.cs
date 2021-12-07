@@ -24,6 +24,7 @@ namespace ApiSdk.DeviceAppManagement.MobileAppConfigurations.Item.DeviceStatuses
         /// </summary>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
+            command.Description = "List of ManagedDeviceMobileAppConfigurationDeviceStatus.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--manageddevicemobileappconfiguration-id", description: "key: id of managedDeviceMobileAppConfiguration"));
             command.AddOption(new Option<string>("--manageddevicemobileappconfigurationdevicestatus-id", description: "key: id of managedDeviceMobileAppConfigurationDeviceStatus"));
@@ -42,6 +43,7 @@ namespace ApiSdk.DeviceAppManagement.MobileAppConfigurations.Item.DeviceStatuses
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
+            command.Description = "List of ManagedDeviceMobileAppConfigurationDeviceStatus.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--manageddevicemobileappconfiguration-id", description: "key: id of managedDeviceMobileAppConfiguration"));
             command.AddOption(new Option<string>("--manageddevicemobileappconfigurationdevicestatus-id", description: "key: id of managedDeviceMobileAppConfigurationDeviceStatus"));
@@ -69,6 +71,7 @@ namespace ApiSdk.DeviceAppManagement.MobileAppConfigurations.Item.DeviceStatuses
         /// </summary>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
+            command.Description = "List of ManagedDeviceMobileAppConfigurationDeviceStatus.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--manageddevicemobileappconfiguration-id", description: "key: id of managedDeviceMobileAppConfiguration"));
             command.AddOption(new Option<string>("--manageddevicemobileappconfigurationdevicestatus-id", description: "key: id of managedDeviceMobileAppConfigurationDeviceStatus"));

@@ -24,6 +24,7 @@ namespace ApiSdk.Policies.ActivityBasedTimeoutPolicies.Item {
         /// </summary>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
+            command.Description = "The policy that controls the idle time out for web sessions for applications.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--activitybasedtimeoutpolicy-id", description: "key: id of activityBasedTimeoutPolicy"));
             command.Handler = CommandHandler.Create<string>(async (activityBasedTimeoutPolicyId) => {
@@ -40,6 +41,7 @@ namespace ApiSdk.Policies.ActivityBasedTimeoutPolicies.Item {
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
+            command.Description = "The policy that controls the idle time out for web sessions for applications.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--activitybasedtimeoutpolicy-id", description: "key: id of activityBasedTimeoutPolicy"));
             command.AddOption(new Option<object>("--select", description: "Select properties to be returned"));
@@ -65,6 +67,7 @@ namespace ApiSdk.Policies.ActivityBasedTimeoutPolicies.Item {
         /// </summary>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
+            command.Description = "The policy that controls the idle time out for web sessions for applications.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--activitybasedtimeoutpolicy-id", description: "key: id of activityBasedTimeoutPolicy"));
             command.AddOption(new Option<string>("--body"));

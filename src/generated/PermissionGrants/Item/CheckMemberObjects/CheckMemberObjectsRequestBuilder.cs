@@ -23,6 +23,7 @@ namespace ApiSdk.PermissionGrants.Item.CheckMemberObjects {
         /// </summary>
         public Command BuildPostCommand() {
             var command = new Command("post");
+            command.Description = "Invoke action checkMemberObjects";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--resourcespecificpermissiongrant-id", description: "key: id of resourceSpecificPermissionGrant"));
             command.AddOption(new Option<string>("--body"));

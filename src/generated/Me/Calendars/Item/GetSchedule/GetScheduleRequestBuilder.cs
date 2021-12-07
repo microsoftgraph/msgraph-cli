@@ -23,6 +23,7 @@ namespace ApiSdk.Me.Calendars.Item.GetSchedule {
         /// </summary>
         public Command BuildPostCommand() {
             var command = new Command("post");
+            command.Description = "Invoke action getSchedule";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--calendar-id", description: "key: id of calendar"));
             command.AddOption(new Option<string>("--body"));

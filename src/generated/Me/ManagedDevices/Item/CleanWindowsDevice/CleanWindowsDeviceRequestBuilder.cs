@@ -23,6 +23,7 @@ namespace ApiSdk.Me.ManagedDevices.Item.CleanWindowsDevice {
         /// </summary>
         public Command BuildPostCommand() {
             var command = new Command("post");
+            command.Description = "Clean Windows device";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--manageddevice-id", description: "key: id of managedDevice"));
             command.AddOption(new Option<string>("--body"));

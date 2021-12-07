@@ -37,6 +37,7 @@ namespace ApiSdk.Users.Item.Todo.Lists {
         /// </summary>
         public Command BuildCreateCommand() {
             var command = new Command("create");
+            command.Description = "The task lists in the users mailbox.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--user-id", description: "key: id of user"));
             command.AddOption(new Option<string>("--body"));
@@ -62,6 +63,7 @@ namespace ApiSdk.Users.Item.Todo.Lists {
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
+            command.Description = "The task lists in the users mailbox.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--user-id", description: "key: id of user"));
             command.AddOption(new Option<int?>("--top", description: "Show only the first n items"));

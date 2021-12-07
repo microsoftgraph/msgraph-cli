@@ -25,6 +25,7 @@ namespace ApiSdk.Print.TaskDefinitions.Item.Tasks.Item.Definition {
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
+            command.Description = "The printTaskDefinition that was used to create this task. Read-only.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--printtaskdefinition-id", description: "key: id of printTaskDefinition"));
             command.AddOption(new Option<string>("--printtask-id", description: "key: id of printTask"));

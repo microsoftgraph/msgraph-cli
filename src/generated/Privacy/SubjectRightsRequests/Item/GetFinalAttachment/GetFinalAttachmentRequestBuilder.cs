@@ -23,6 +23,7 @@ namespace ApiSdk.Privacy.SubjectRightsRequests.Item.GetFinalAttachment {
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
+            command.Description = "Invoke function getFinalAttachment";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--subjectrightsrequest-id", description: "key: id of subjectRightsRequest"));
             command.AddOption(new Option<FileInfo>("--output"));

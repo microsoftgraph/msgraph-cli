@@ -23,6 +23,7 @@ namespace ApiSdk.GroupLifecyclePolicies.Item.RemoveGroup {
         /// </summary>
         public Command BuildPostCommand() {
             var command = new Command("post");
+            command.Description = "Invoke action removeGroup";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--grouplifecyclepolicy-id", description: "key: id of groupLifecyclePolicy"));
             command.AddOption(new Option<string>("--body"));

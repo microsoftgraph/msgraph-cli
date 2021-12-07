@@ -23,6 +23,7 @@ namespace ApiSdk.Sites.Item.ContentTypes.Item.ColumnPositions.@Ref {
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
+            command.Description = "Column order information in a content type.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--site-id", description: "key: id of site"));
             command.AddOption(new Option<string>("--contenttype-id", description: "key: id of contentType"));
@@ -58,6 +59,7 @@ namespace ApiSdk.Sites.Item.ContentTypes.Item.ColumnPositions.@Ref {
         /// </summary>
         public Command BuildPostCommand() {
             var command = new Command("post");
+            command.Description = "Column order information in a content type.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--site-id", description: "key: id of site"));
             command.AddOption(new Option<string>("--contenttype-id", description: "key: id of contentType"));

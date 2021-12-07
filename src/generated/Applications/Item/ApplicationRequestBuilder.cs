@@ -73,6 +73,7 @@ namespace ApiSdk.Applications.Item {
         /// </summary>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
+            command.Description = "Delete entity from applications";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--application-id", description: "key: id of application"));
             command.Handler = CommandHandler.Create<string>(async (applicationId) => {
@@ -99,6 +100,7 @@ namespace ApiSdk.Applications.Item {
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
+            command.Description = "Get entity from applications by key";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--application-id", description: "key: id of application"));
             command.AddOption(new Option<object>("--select", description: "Select properties to be returned"));
@@ -157,6 +159,7 @@ namespace ApiSdk.Applications.Item {
         /// </summary>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
+            command.Description = "Update entity in applications";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--application-id", description: "key: id of application"));
             command.AddOption(new Option<string>("--body"));
