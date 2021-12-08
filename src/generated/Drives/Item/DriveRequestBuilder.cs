@@ -31,9 +31,6 @@ namespace ApiSdk.Drives.Item {
         public Command BuildBundlesCommand() {
             var command = new Command("bundles");
             var builder = new ApiSdk.Drives.Item.Bundles.BundlesRequestBuilder(PathParameters, RequestAdapter);
-            foreach (var cmd in builder.BuildCommand()) {
-                command.AddCommand(cmd);
-            }
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;
@@ -58,9 +55,6 @@ namespace ApiSdk.Drives.Item {
         public Command BuildFollowingCommand() {
             var command = new Command("following");
             var builder = new ApiSdk.Drives.Item.Following.FollowingRequestBuilder(PathParameters, RequestAdapter);
-            foreach (var cmd in builder.BuildCommand()) {
-                command.AddCommand(cmd);
-            }
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;
@@ -94,9 +88,6 @@ namespace ApiSdk.Drives.Item {
         public Command BuildItemsCommand() {
             var command = new Command("items");
             var builder = new ApiSdk.Drives.Item.Items.ItemsRequestBuilder(PathParameters, RequestAdapter);
-            foreach (var cmd in builder.BuildCommand()) {
-                command.AddCommand(cmd);
-            }
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;
@@ -147,9 +138,6 @@ namespace ApiSdk.Drives.Item {
         public Command BuildSpecialCommand() {
             var command = new Command("special");
             var builder = new ApiSdk.Drives.Item.Special.SpecialRequestBuilder(PathParameters, RequestAdapter);
-            foreach (var cmd in builder.BuildCommand()) {
-                command.AddCommand(cmd);
-            }
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;

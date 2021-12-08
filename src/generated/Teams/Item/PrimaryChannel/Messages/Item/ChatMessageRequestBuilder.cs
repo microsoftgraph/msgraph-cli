@@ -71,9 +71,6 @@ namespace ApiSdk.Teams.Item.PrimaryChannel.Messages.Item {
         public Command BuildHostedContentsCommand() {
             var command = new Command("hosted-contents");
             var builder = new ApiSdk.Teams.Item.PrimaryChannel.Messages.Item.HostedContents.HostedContentsRequestBuilder(PathParameters, RequestAdapter);
-            foreach (var cmd in builder.BuildCommand()) {
-                command.AddCommand(cmd);
-            }
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;
@@ -104,9 +101,6 @@ namespace ApiSdk.Teams.Item.PrimaryChannel.Messages.Item {
         public Command BuildRepliesCommand() {
             var command = new Command("replies");
             var builder = new ApiSdk.Teams.Item.PrimaryChannel.Messages.Item.Replies.RepliesRequestBuilder(PathParameters, RequestAdapter);
-            foreach (var cmd in builder.BuildCommand()) {
-                command.AddCommand(cmd);
-            }
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;

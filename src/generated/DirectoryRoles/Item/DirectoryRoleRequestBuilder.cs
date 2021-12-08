@@ -130,9 +130,6 @@ namespace ApiSdk.DirectoryRoles.Item {
         public Command BuildScopedMembersCommand() {
             var command = new Command("scoped-members");
             var builder = new ApiSdk.DirectoryRoles.Item.ScopedMembers.ScopedMembersRequestBuilder(PathParameters, RequestAdapter);
-            foreach (var cmd in builder.BuildCommand()) {
-                command.AddCommand(cmd);
-            }
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;

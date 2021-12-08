@@ -23,9 +23,6 @@ namespace ApiSdk.Policies.FeatureRolloutPolicies.Item {
         public Command BuildAppliesToCommand() {
             var command = new Command("applies-to");
             var builder = new ApiSdk.Policies.FeatureRolloutPolicies.Item.AppliesTo.AppliesToRequestBuilder(PathParameters, RequestAdapter);
-            foreach (var cmd in builder.BuildCommand()) {
-                command.AddCommand(cmd);
-            }
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;

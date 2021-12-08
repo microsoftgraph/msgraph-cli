@@ -43,9 +43,6 @@ namespace ApiSdk.Users.Item.Authentication {
         public Command BuildFido2MethodsCommand() {
             var command = new Command("fido2-methods");
             var builder = new ApiSdk.Users.Item.Authentication.Fido2Methods.Fido2MethodsRequestBuilder(PathParameters, RequestAdapter);
-            foreach (var cmd in builder.BuildCommand()) {
-                command.AddCommand(cmd);
-            }
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;
@@ -79,9 +76,6 @@ namespace ApiSdk.Users.Item.Authentication {
         public Command BuildMethodsCommand() {
             var command = new Command("methods");
             var builder = new ApiSdk.Users.Item.Authentication.Methods.MethodsRequestBuilder(PathParameters, RequestAdapter);
-            foreach (var cmd in builder.BuildCommand()) {
-                command.AddCommand(cmd);
-            }
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;
@@ -89,9 +83,6 @@ namespace ApiSdk.Users.Item.Authentication {
         public Command BuildMicrosoftAuthenticatorMethodsCommand() {
             var command = new Command("microsoft-authenticator-methods");
             var builder = new ApiSdk.Users.Item.Authentication.MicrosoftAuthenticatorMethods.MicrosoftAuthenticatorMethodsRequestBuilder(PathParameters, RequestAdapter);
-            foreach (var cmd in builder.BuildCommand()) {
-                command.AddCommand(cmd);
-            }
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;
@@ -120,9 +111,6 @@ namespace ApiSdk.Users.Item.Authentication {
         public Command BuildWindowsHelloForBusinessMethodsCommand() {
             var command = new Command("windows-hello-for-business-methods");
             var builder = new ApiSdk.Users.Item.Authentication.WindowsHelloForBusinessMethods.WindowsHelloForBusinessMethodsRequestBuilder(PathParameters, RequestAdapter);
-            foreach (var cmd in builder.BuildCommand()) {
-                command.AddCommand(cmd);
-            }
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;

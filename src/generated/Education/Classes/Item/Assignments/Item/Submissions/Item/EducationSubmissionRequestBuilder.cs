@@ -80,9 +80,6 @@ namespace ApiSdk.Education.Classes.Item.Assignments.Item.Submissions.Item {
         public Command BuildOutcomesCommand() {
             var command = new Command("outcomes");
             var builder = new ApiSdk.Education.Classes.Item.Assignments.Item.Submissions.Item.Outcomes.OutcomesRequestBuilder(PathParameters, RequestAdapter);
-            foreach (var cmd in builder.BuildCommand()) {
-                command.AddCommand(cmd);
-            }
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;
@@ -115,9 +112,6 @@ namespace ApiSdk.Education.Classes.Item.Assignments.Item.Submissions.Item {
         public Command BuildResourcesCommand() {
             var command = new Command("resources");
             var builder = new ApiSdk.Education.Classes.Item.Assignments.Item.Submissions.Item.Resources.ResourcesRequestBuilder(PathParameters, RequestAdapter);
-            foreach (var cmd in builder.BuildCommand()) {
-                command.AddCommand(cmd);
-            }
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;
@@ -143,9 +137,6 @@ namespace ApiSdk.Education.Classes.Item.Assignments.Item.Submissions.Item {
         public Command BuildSubmittedResourcesCommand() {
             var command = new Command("submitted-resources");
             var builder = new ApiSdk.Education.Classes.Item.Assignments.Item.Submissions.Item.SubmittedResources.SubmittedResourcesRequestBuilder(PathParameters, RequestAdapter);
-            foreach (var cmd in builder.BuildCommand()) {
-                command.AddCommand(cmd);
-            }
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;

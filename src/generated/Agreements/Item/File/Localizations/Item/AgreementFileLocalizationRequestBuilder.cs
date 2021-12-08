@@ -93,9 +93,6 @@ namespace ApiSdk.Agreements.Item.File.Localizations.Item {
         public Command BuildVersionsCommand() {
             var command = new Command("versions");
             var builder = new ApiSdk.Agreements.Item.File.Localizations.Item.Versions.VersionsRequestBuilder(PathParameters, RequestAdapter);
-            foreach (var cmd in builder.BuildCommand()) {
-                command.AddCommand(cmd);
-            }
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;

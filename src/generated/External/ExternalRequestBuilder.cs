@@ -23,9 +23,6 @@ namespace ApiSdk.External {
         public Command BuildConnectionsCommand() {
             var command = new Command("connections");
             var builder = new ApiSdk.External.Connections.ConnectionsRequestBuilder(PathParameters, RequestAdapter);
-            foreach (var cmd in builder.BuildCommand()) {
-                command.AddCommand(cmd);
-            }
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;

@@ -115,9 +115,6 @@ namespace ApiSdk.Users.Item.Onenote.SectionGroups.Item {
         public Command BuildSectionGroupsCommand() {
             var command = new Command("section-groups");
             var builder = new ApiSdk.Users.Item.Onenote.SectionGroups.Item.SectionGroups.SectionGroupsRequestBuilder(PathParameters, RequestAdapter);
-            foreach (var cmd in builder.BuildCommand()) {
-                command.AddCommand(cmd);
-            }
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;
@@ -125,9 +122,6 @@ namespace ApiSdk.Users.Item.Onenote.SectionGroups.Item {
         public Command BuildSectionsCommand() {
             var command = new Command("sections");
             var builder = new ApiSdk.Users.Item.Onenote.SectionGroups.Item.Sections.SectionsRequestBuilder(PathParameters, RequestAdapter);
-            foreach (var cmd in builder.BuildCommand()) {
-                command.AddCommand(cmd);
-            }
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;

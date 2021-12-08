@@ -82,9 +82,6 @@ namespace ApiSdk.Me.Planner {
         public Command BuildPlansCommand() {
             var command = new Command("plans");
             var builder = new ApiSdk.Me.Planner.Plans.PlansRequestBuilder(PathParameters, RequestAdapter);
-            foreach (var cmd in builder.BuildCommand()) {
-                command.AddCommand(cmd);
-            }
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;
@@ -92,9 +89,6 @@ namespace ApiSdk.Me.Planner {
         public Command BuildTasksCommand() {
             var command = new Command("tasks");
             var builder = new ApiSdk.Me.Planner.Tasks.TasksRequestBuilder(PathParameters, RequestAdapter);
-            foreach (var cmd in builder.BuildCommand()) {
-                command.AddCommand(cmd);
-            }
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;

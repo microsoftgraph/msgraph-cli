@@ -93,9 +93,6 @@ namespace ApiSdk.Workbooks.Item.Workbook.Comments.Item {
         public Command BuildRepliesCommand() {
             var command = new Command("replies");
             var builder = new ApiSdk.Workbooks.Item.Workbook.Comments.Item.Replies.RepliesRequestBuilder(PathParameters, RequestAdapter);
-            foreach (var cmd in builder.BuildCommand()) {
-                command.AddCommand(cmd);
-            }
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;

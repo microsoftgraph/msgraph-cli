@@ -66,9 +66,6 @@ namespace ApiSdk.Agreements.Item.File {
         public Command BuildLocalizationsCommand() {
             var command = new Command("localizations");
             var builder = new ApiSdk.Agreements.Item.File.Localizations.LocalizationsRequestBuilder(PathParameters, RequestAdapter);
-            foreach (var cmd in builder.BuildCommand()) {
-                command.AddCommand(cmd);
-            }
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;

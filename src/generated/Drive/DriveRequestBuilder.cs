@@ -31,9 +31,6 @@ namespace ApiSdk.Drive {
         public Command BuildBundlesCommand() {
             var command = new Command("bundles");
             var builder = new ApiSdk.Drive.Bundles.BundlesRequestBuilder(PathParameters, RequestAdapter);
-            foreach (var cmd in builder.BuildCommand()) {
-                command.AddCommand(cmd);
-            }
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;
@@ -41,9 +38,6 @@ namespace ApiSdk.Drive {
         public Command BuildFollowingCommand() {
             var command = new Command("following");
             var builder = new ApiSdk.Drive.Following.FollowingRequestBuilder(PathParameters, RequestAdapter);
-            foreach (var cmd in builder.BuildCommand()) {
-                command.AddCommand(cmd);
-            }
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;
@@ -75,9 +69,6 @@ namespace ApiSdk.Drive {
         public Command BuildItemsCommand() {
             var command = new Command("items");
             var builder = new ApiSdk.Drive.Items.ItemsRequestBuilder(PathParameters, RequestAdapter);
-            foreach (var cmd in builder.BuildCommand()) {
-                command.AddCommand(cmd);
-            }
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;
@@ -126,9 +117,6 @@ namespace ApiSdk.Drive {
         public Command BuildSpecialCommand() {
             var command = new Command("special");
             var builder = new ApiSdk.Drive.Special.SpecialRequestBuilder(PathParameters, RequestAdapter);
-            foreach (var cmd in builder.BuildCommand()) {
-                command.AddCommand(cmd);
-            }
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;

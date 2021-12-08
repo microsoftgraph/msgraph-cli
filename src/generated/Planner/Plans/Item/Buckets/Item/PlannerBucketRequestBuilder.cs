@@ -93,9 +93,6 @@ namespace ApiSdk.Planner.Plans.Item.Buckets.Item {
         public Command BuildTasksCommand() {
             var command = new Command("tasks");
             var builder = new ApiSdk.Planner.Plans.Item.Buckets.Item.Tasks.TasksRequestBuilder(PathParameters, RequestAdapter);
-            foreach (var cmd in builder.BuildCommand()) {
-                command.AddCommand(cmd);
-            }
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;

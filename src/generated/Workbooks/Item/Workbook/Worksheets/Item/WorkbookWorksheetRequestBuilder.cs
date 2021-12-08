@@ -33,9 +33,6 @@ namespace ApiSdk.Workbooks.Item.Workbook.Worksheets.Item {
             var command = new Command("charts");
             var builder = new ApiSdk.Workbooks.Item.Workbook.Worksheets.Item.Charts.ChartsRequestBuilder(PathParameters, RequestAdapter);
             command.AddCommand(builder.BuildAddCommand());
-            foreach (var cmd in builder.BuildCommand()) {
-                command.AddCommand(cmd);
-            }
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;
@@ -92,9 +89,6 @@ namespace ApiSdk.Workbooks.Item.Workbook.Worksheets.Item {
             var builder = new ApiSdk.Workbooks.Item.Workbook.Worksheets.Item.Names.NamesRequestBuilder(PathParameters, RequestAdapter);
             command.AddCommand(builder.BuildAddCommand());
             command.AddCommand(builder.BuildAddFormulaLocalCommand());
-            foreach (var cmd in builder.BuildCommand()) {
-                command.AddCommand(cmd);
-            }
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;
@@ -125,9 +119,6 @@ namespace ApiSdk.Workbooks.Item.Workbook.Worksheets.Item {
         public Command BuildPivotTablesCommand() {
             var command = new Command("pivot-tables");
             var builder = new ApiSdk.Workbooks.Item.Workbook.Worksheets.Item.PivotTables.PivotTablesRequestBuilder(PathParameters, RequestAdapter);
-            foreach (var cmd in builder.BuildCommand()) {
-                command.AddCommand(cmd);
-            }
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             command.AddCommand(builder.BuildRefreshAllCommand());
@@ -147,9 +138,6 @@ namespace ApiSdk.Workbooks.Item.Workbook.Worksheets.Item {
             var command = new Command("tables");
             var builder = new ApiSdk.Workbooks.Item.Workbook.Worksheets.Item.Tables.TablesRequestBuilder(PathParameters, RequestAdapter);
             command.AddCommand(builder.BuildAddCommand());
-            foreach (var cmd in builder.BuildCommand()) {
-                command.AddCommand(cmd);
-            }
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;

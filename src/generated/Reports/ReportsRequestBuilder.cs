@@ -118,9 +118,6 @@ namespace ApiSdk.Reports {
         public Command BuildDailyPrintUsageByPrinterCommand() {
             var command = new Command("daily-print-usage-by-printer");
             var builder = new ApiSdk.Reports.DailyPrintUsageByPrinter.DailyPrintUsageByPrinterRequestBuilder(PathParameters, RequestAdapter);
-            foreach (var cmd in builder.BuildCommand()) {
-                command.AddCommand(cmd);
-            }
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;
@@ -128,9 +125,6 @@ namespace ApiSdk.Reports {
         public Command BuildDailyPrintUsageByUserCommand() {
             var command = new Command("daily-print-usage-by-user");
             var builder = new ApiSdk.Reports.DailyPrintUsageByUser.DailyPrintUsageByUserRequestBuilder(PathParameters, RequestAdapter);
-            foreach (var cmd in builder.BuildCommand()) {
-                command.AddCommand(cmd);
-            }
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;
@@ -162,9 +156,6 @@ namespace ApiSdk.Reports {
         public Command BuildMonthlyPrintUsageByPrinterCommand() {
             var command = new Command("monthly-print-usage-by-printer");
             var builder = new ApiSdk.Reports.MonthlyPrintUsageByPrinter.MonthlyPrintUsageByPrinterRequestBuilder(PathParameters, RequestAdapter);
-            foreach (var cmd in builder.BuildCommand()) {
-                command.AddCommand(cmd);
-            }
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;
@@ -172,9 +163,6 @@ namespace ApiSdk.Reports {
         public Command BuildMonthlyPrintUsageByUserCommand() {
             var command = new Command("monthly-print-usage-by-user");
             var builder = new ApiSdk.Reports.MonthlyPrintUsageByUser.MonthlyPrintUsageByUserRequestBuilder(PathParameters, RequestAdapter);
-            foreach (var cmd in builder.BuildCommand()) {
-                command.AddCommand(cmd);
-            }
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;

@@ -76,9 +76,6 @@ namespace ApiSdk.Identity.B2xUserFlows.Item {
         public Command BuildLanguagesCommand() {
             var command = new Command("languages");
             var builder = new ApiSdk.Identity.B2xUserFlows.Item.Languages.LanguagesRequestBuilder(PathParameters, RequestAdapter);
-            foreach (var cmd in builder.BuildCommand()) {
-                command.AddCommand(cmd);
-            }
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;
@@ -107,9 +104,6 @@ namespace ApiSdk.Identity.B2xUserFlows.Item {
         public Command BuildUserAttributeAssignmentsCommand() {
             var command = new Command("user-attribute-assignments");
             var builder = new ApiSdk.Identity.B2xUserFlows.Item.UserAttributeAssignments.UserAttributeAssignmentsRequestBuilder(PathParameters, RequestAdapter);
-            foreach (var cmd in builder.BuildCommand()) {
-                command.AddCommand(cmd);
-            }
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             command.AddCommand(builder.BuildSetOrderCommand());

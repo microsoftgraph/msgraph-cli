@@ -66,9 +66,6 @@ namespace ApiSdk.Me.Activities.Item {
         public Command BuildHistoryItemsCommand() {
             var command = new Command("history-items");
             var builder = new ApiSdk.Me.Activities.Item.HistoryItems.HistoryItemsRequestBuilder(PathParameters, RequestAdapter);
-            foreach (var cmd in builder.BuildCommand()) {
-                command.AddCommand(cmd);
-            }
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;

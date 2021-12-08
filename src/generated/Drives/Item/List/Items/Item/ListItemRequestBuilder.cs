@@ -122,9 +122,6 @@ namespace ApiSdk.Drives.Item.List.Items.Item {
         public Command BuildVersionsCommand() {
             var command = new Command("versions");
             var builder = new ApiSdk.Drives.Item.List.Items.Item.Versions.VersionsRequestBuilder(PathParameters, RequestAdapter);
-            foreach (var cmd in builder.BuildCommand()) {
-                command.AddCommand(cmd);
-            }
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;

@@ -25,9 +25,6 @@ namespace ApiSdk.DeviceAppManagement.ManagedAppRegistrations.Item {
         public Command BuildAppliedPoliciesCommand() {
             var command = new Command("applied-policies");
             var builder = new ApiSdk.DeviceAppManagement.ManagedAppRegistrations.Item.AppliedPolicies.AppliedPoliciesRequestBuilder(PathParameters, RequestAdapter);
-            foreach (var cmd in builder.BuildCommand()) {
-                command.AddCommand(cmd);
-            }
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;
@@ -78,9 +75,6 @@ namespace ApiSdk.DeviceAppManagement.ManagedAppRegistrations.Item {
         public Command BuildIntendedPoliciesCommand() {
             var command = new Command("intended-policies");
             var builder = new ApiSdk.DeviceAppManagement.ManagedAppRegistrations.Item.IntendedPolicies.IntendedPoliciesRequestBuilder(PathParameters, RequestAdapter);
-            foreach (var cmd in builder.BuildCommand()) {
-                command.AddCommand(cmd);
-            }
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;
@@ -88,9 +82,6 @@ namespace ApiSdk.DeviceAppManagement.ManagedAppRegistrations.Item {
         public Command BuildOperationsCommand() {
             var command = new Command("operations");
             var builder = new ApiSdk.DeviceAppManagement.ManagedAppRegistrations.Item.Operations.OperationsRequestBuilder(PathParameters, RequestAdapter);
-            foreach (var cmd in builder.BuildCommand()) {
-                command.AddCommand(cmd);
-            }
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;

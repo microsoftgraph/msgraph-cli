@@ -98,9 +98,6 @@ namespace ApiSdk.Education.Users.Item {
         public Command BuildRubricsCommand() {
             var command = new Command("rubrics");
             var builder = new ApiSdk.Education.Users.Item.Rubrics.RubricsRequestBuilder(PathParameters, RequestAdapter);
-            foreach (var cmd in builder.BuildCommand()) {
-                command.AddCommand(cmd);
-            }
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;

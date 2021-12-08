@@ -66,9 +66,6 @@ namespace ApiSdk.Admin.ServiceAnnouncement.HealthOverviews.Item {
         public Command BuildIssuesCommand() {
             var command = new Command("issues");
             var builder = new ApiSdk.Admin.ServiceAnnouncement.HealthOverviews.Item.Issues.IssuesRequestBuilder(PathParameters, RequestAdapter);
-            foreach (var cmd in builder.BuildCommand()) {
-                command.AddCommand(cmd);
-            }
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;

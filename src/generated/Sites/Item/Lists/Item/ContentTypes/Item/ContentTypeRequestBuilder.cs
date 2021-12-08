@@ -57,9 +57,6 @@ namespace ApiSdk.Sites.Item.Lists.Item.ContentTypes.Item {
         public Command BuildColumnLinksCommand() {
             var command = new Command("column-links");
             var builder = new ApiSdk.Sites.Item.Lists.Item.ContentTypes.Item.ColumnLinks.ColumnLinksRequestBuilder(PathParameters, RequestAdapter);
-            foreach (var cmd in builder.BuildCommand()) {
-                command.AddCommand(cmd);
-            }
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;
@@ -74,9 +71,6 @@ namespace ApiSdk.Sites.Item.Lists.Item.ContentTypes.Item {
         public Command BuildColumnsCommand() {
             var command = new Command("columns");
             var builder = new ApiSdk.Sites.Item.Lists.Item.ContentTypes.Item.Columns.ColumnsRequestBuilder(PathParameters, RequestAdapter);
-            foreach (var cmd in builder.BuildCommand()) {
-                command.AddCommand(cmd);
-            }
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;

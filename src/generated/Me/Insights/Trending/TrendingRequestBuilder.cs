@@ -25,7 +25,6 @@ namespace ApiSdk.Me.Insights.Trending {
                 builder.BuildCreateCommand(),
                 builder.BuildListCommand(),
             };
-            commands.AddRange(BuildCommand());
             return commands;
         }
         /// <summary>

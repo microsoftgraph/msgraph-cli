@@ -31,7 +31,6 @@ namespace ApiSdk.Organization {
                 builder.BuildListCommand(),
                 builder.BuildValidatePropertiesCommand(),
             };
-            commands.AddRange(BuildCommand());
             return commands;
         }
         /// <summary>

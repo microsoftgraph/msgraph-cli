@@ -33,9 +33,6 @@ namespace ApiSdk.Workbooks.Item.Workbook.Names.Item.Worksheet {
             var command = new Command("charts");
             var builder = new ApiSdk.Workbooks.Item.Workbook.Names.Item.Worksheet.Charts.ChartsRequestBuilder(PathParameters, RequestAdapter);
             command.AddCommand(builder.BuildAddCommand());
-            foreach (var cmd in builder.BuildCommand()) {
-                command.AddCommand(cmd);
-            }
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;
@@ -92,9 +89,6 @@ namespace ApiSdk.Workbooks.Item.Workbook.Names.Item.Worksheet {
             var builder = new ApiSdk.Workbooks.Item.Workbook.Names.Item.Worksheet.Names.NamesRequestBuilder(PathParameters, RequestAdapter);
             command.AddCommand(builder.BuildAddCommand());
             command.AddCommand(builder.BuildAddFormulaLocalCommand());
-            foreach (var cmd in builder.BuildCommand()) {
-                command.AddCommand(cmd);
-            }
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;
@@ -125,9 +119,6 @@ namespace ApiSdk.Workbooks.Item.Workbook.Names.Item.Worksheet {
         public Command BuildPivotTablesCommand() {
             var command = new Command("pivot-tables");
             var builder = new ApiSdk.Workbooks.Item.Workbook.Names.Item.Worksheet.PivotTables.PivotTablesRequestBuilder(PathParameters, RequestAdapter);
-            foreach (var cmd in builder.BuildCommand()) {
-                command.AddCommand(cmd);
-            }
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             command.AddCommand(builder.BuildRefreshAllCommand());
@@ -147,9 +138,6 @@ namespace ApiSdk.Workbooks.Item.Workbook.Names.Item.Worksheet {
             var command = new Command("tables");
             var builder = new ApiSdk.Workbooks.Item.Workbook.Names.Item.Worksheet.Tables.TablesRequestBuilder(PathParameters, RequestAdapter);
             command.AddCommand(builder.BuildAddCommand());
-            foreach (var cmd in builder.BuildCommand()) {
-                command.AddCommand(cmd);
-            }
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;

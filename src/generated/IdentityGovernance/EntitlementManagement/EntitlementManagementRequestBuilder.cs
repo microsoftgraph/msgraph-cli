@@ -29,9 +29,6 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement {
         public Command BuildAccessPackageAssignmentApprovalsCommand() {
             var command = new Command("access-package-assignment-approvals");
             var builder = new ApiSdk.IdentityGovernance.EntitlementManagement.AccessPackageAssignmentApprovals.AccessPackageAssignmentApprovalsRequestBuilder(PathParameters, RequestAdapter);
-            foreach (var cmd in builder.BuildCommand()) {
-                command.AddCommand(cmd);
-            }
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;
@@ -39,9 +36,6 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement {
         public Command BuildAccessPackagesCommand() {
             var command = new Command("access-packages");
             var builder = new ApiSdk.IdentityGovernance.EntitlementManagement.AccessPackages.AccessPackagesRequestBuilder(PathParameters, RequestAdapter);
-            foreach (var cmd in builder.BuildCommand()) {
-                command.AddCommand(cmd);
-            }
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;
@@ -49,9 +43,6 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement {
         public Command BuildAssignmentRequestsCommand() {
             var command = new Command("assignment-requests");
             var builder = new ApiSdk.IdentityGovernance.EntitlementManagement.AssignmentRequests.AssignmentRequestsRequestBuilder(PathParameters, RequestAdapter);
-            foreach (var cmd in builder.BuildCommand()) {
-                command.AddCommand(cmd);
-            }
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;
@@ -59,9 +50,6 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement {
         public Command BuildAssignmentsCommand() {
             var command = new Command("assignments");
             var builder = new ApiSdk.IdentityGovernance.EntitlementManagement.Assignments.AssignmentsRequestBuilder(PathParameters, RequestAdapter);
-            foreach (var cmd in builder.BuildCommand()) {
-                command.AddCommand(cmd);
-            }
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;
@@ -69,9 +57,6 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement {
         public Command BuildCatalogsCommand() {
             var command = new Command("catalogs");
             var builder = new ApiSdk.IdentityGovernance.EntitlementManagement.Catalogs.CatalogsRequestBuilder(PathParameters, RequestAdapter);
-            foreach (var cmd in builder.BuildCommand()) {
-                command.AddCommand(cmd);
-            }
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;
@@ -79,9 +64,6 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement {
         public Command BuildConnectedOrganizationsCommand() {
             var command = new Command("connected-organizations");
             var builder = new ApiSdk.IdentityGovernance.EntitlementManagement.ConnectedOrganizations.ConnectedOrganizationsRequestBuilder(PathParameters, RequestAdapter);
-            foreach (var cmd in builder.BuildCommand()) {
-                command.AddCommand(cmd);
-            }
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;

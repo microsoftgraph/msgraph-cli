@@ -30,9 +30,6 @@ namespace ApiSdk.Education.Classes.Item {
         public Command BuildAssignmentCategoriesCommand() {
             var command = new Command("assignment-categories");
             var builder = new ApiSdk.Education.Classes.Item.AssignmentCategories.AssignmentCategoriesRequestBuilder(PathParameters, RequestAdapter);
-            foreach (var cmd in builder.BuildCommand()) {
-                command.AddCommand(cmd);
-            }
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;
@@ -48,9 +45,6 @@ namespace ApiSdk.Education.Classes.Item {
         public Command BuildAssignmentsCommand() {
             var command = new Command("assignments");
             var builder = new ApiSdk.Education.Classes.Item.Assignments.AssignmentsRequestBuilder(PathParameters, RequestAdapter);
-            foreach (var cmd in builder.BuildCommand()) {
-                command.AddCommand(cmd);
-            }
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;

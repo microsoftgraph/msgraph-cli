@@ -99,9 +99,6 @@ namespace ApiSdk.Sites.Item.TermStores.Item.Groups.Item {
         public Command BuildSetsCommand() {
             var command = new Command("sets");
             var builder = new ApiSdk.Sites.Item.TermStores.Item.Groups.Item.Sets.SetsRequestBuilder(PathParameters, RequestAdapter);
-            foreach (var cmd in builder.BuildCommand()) {
-                command.AddCommand(cmd);
-            }
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;

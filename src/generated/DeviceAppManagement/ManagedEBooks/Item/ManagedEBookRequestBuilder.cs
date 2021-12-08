@@ -33,9 +33,6 @@ namespace ApiSdk.DeviceAppManagement.ManagedEBooks.Item {
         public Command BuildAssignmentsCommand() {
             var command = new Command("assignments");
             var builder = new ApiSdk.DeviceAppManagement.ManagedEBooks.Item.Assignments.AssignmentsRequestBuilder(PathParameters, RequestAdapter);
-            foreach (var cmd in builder.BuildCommand()) {
-                command.AddCommand(cmd);
-            }
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;
@@ -60,9 +57,6 @@ namespace ApiSdk.DeviceAppManagement.ManagedEBooks.Item {
         public Command BuildDeviceStatesCommand() {
             var command = new Command("device-states");
             var builder = new ApiSdk.DeviceAppManagement.ManagedEBooks.Item.DeviceStates.DeviceStatesRequestBuilder(PathParameters, RequestAdapter);
-            foreach (var cmd in builder.BuildCommand()) {
-                command.AddCommand(cmd);
-            }
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;
@@ -125,9 +119,6 @@ namespace ApiSdk.DeviceAppManagement.ManagedEBooks.Item {
         public Command BuildUserStateSummaryCommand() {
             var command = new Command("user-state-summary");
             var builder = new ApiSdk.DeviceAppManagement.ManagedEBooks.Item.UserStateSummary.UserStateSummaryRequestBuilder(PathParameters, RequestAdapter);
-            foreach (var cmd in builder.BuildCommand()) {
-                command.AddCommand(cmd);
-            }
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;

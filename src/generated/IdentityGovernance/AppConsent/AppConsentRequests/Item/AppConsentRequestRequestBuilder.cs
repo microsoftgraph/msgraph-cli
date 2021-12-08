@@ -87,9 +87,6 @@ namespace ApiSdk.IdentityGovernance.AppConsent.AppConsentRequests.Item {
         public Command BuildUserConsentRequestsCommand() {
             var command = new Command("user-consent-requests");
             var builder = new ApiSdk.IdentityGovernance.AppConsent.AppConsentRequests.Item.UserConsentRequests.UserConsentRequestsRequestBuilder(PathParameters, RequestAdapter);
-            foreach (var cmd in builder.BuildCommand()) {
-                command.AddCommand(cmd);
-            }
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;

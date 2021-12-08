@@ -57,9 +57,6 @@ namespace ApiSdk.ServicePrincipals.Item {
         public Command BuildAppRoleAssignedToCommand() {
             var command = new Command("app-role-assigned-to");
             var builder = new ApiSdk.ServicePrincipals.Item.AppRoleAssignedTo.AppRoleAssignedToRequestBuilder(PathParameters, RequestAdapter);
-            foreach (var cmd in builder.BuildCommand()) {
-                command.AddCommand(cmd);
-            }
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;
@@ -67,9 +64,6 @@ namespace ApiSdk.ServicePrincipals.Item {
         public Command BuildAppRoleAssignmentsCommand() {
             var command = new Command("app-role-assignments");
             var builder = new ApiSdk.ServicePrincipals.Item.AppRoleAssignments.AppRoleAssignmentsRequestBuilder(PathParameters, RequestAdapter);
-            foreach (var cmd in builder.BuildCommand()) {
-                command.AddCommand(cmd);
-            }
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;
@@ -103,9 +97,6 @@ namespace ApiSdk.ServicePrincipals.Item {
         public Command BuildDelegatedPermissionClassificationsCommand() {
             var command = new Command("delegated-permission-classifications");
             var builder = new ApiSdk.ServicePrincipals.Item.DelegatedPermissionClassifications.DelegatedPermissionClassificationsRequestBuilder(PathParameters, RequestAdapter);
-            foreach (var cmd in builder.BuildCommand()) {
-                command.AddCommand(cmd);
-            }
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;
@@ -130,9 +121,6 @@ namespace ApiSdk.ServicePrincipals.Item {
         public Command BuildEndpointsCommand() {
             var command = new Command("endpoints");
             var builder = new ApiSdk.ServicePrincipals.Item.Endpoints.EndpointsRequestBuilder(PathParameters, RequestAdapter);
-            foreach (var cmd in builder.BuildCommand()) {
-                command.AddCommand(cmd);
-            }
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;

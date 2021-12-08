@@ -83,9 +83,6 @@ namespace ApiSdk.Me.Insights {
         public Command BuildSharedCommand() {
             var command = new Command("shared");
             var builder = new ApiSdk.Me.Insights.Shared.SharedRequestBuilder(PathParameters, RequestAdapter);
-            foreach (var cmd in builder.BuildCommand()) {
-                command.AddCommand(cmd);
-            }
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;
@@ -93,9 +90,6 @@ namespace ApiSdk.Me.Insights {
         public Command BuildTrendingCommand() {
             var command = new Command("trending");
             var builder = new ApiSdk.Me.Insights.Trending.TrendingRequestBuilder(PathParameters, RequestAdapter);
-            foreach (var cmd in builder.BuildCommand()) {
-                command.AddCommand(cmd);
-            }
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;
@@ -103,9 +97,6 @@ namespace ApiSdk.Me.Insights {
         public Command BuildUsedCommand() {
             var command = new Command("used");
             var builder = new ApiSdk.Me.Insights.Used.UsedRequestBuilder(PathParameters, RequestAdapter);
-            foreach (var cmd in builder.BuildCommand()) {
-                command.AddCommand(cmd);
-            }
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;

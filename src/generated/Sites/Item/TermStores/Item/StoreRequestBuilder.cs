@@ -71,9 +71,6 @@ namespace ApiSdk.Sites.Item.TermStores.Item {
         public Command BuildGroupsCommand() {
             var command = new Command("groups");
             var builder = new ApiSdk.Sites.Item.TermStores.Item.Groups.GroupsRequestBuilder(PathParameters, RequestAdapter);
-            foreach (var cmd in builder.BuildCommand()) {
-                command.AddCommand(cmd);
-            }
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;
@@ -104,9 +101,6 @@ namespace ApiSdk.Sites.Item.TermStores.Item {
         public Command BuildSetsCommand() {
             var command = new Command("sets");
             var builder = new ApiSdk.Sites.Item.TermStores.Item.Sets.SetsRequestBuilder(PathParameters, RequestAdapter);
-            foreach (var cmd in builder.BuildCommand()) {
-                command.AddCommand(cmd);
-            }
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;

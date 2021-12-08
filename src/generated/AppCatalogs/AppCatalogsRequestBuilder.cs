@@ -66,9 +66,6 @@ namespace ApiSdk.AppCatalogs {
         public Command BuildTeamsAppsCommand() {
             var command = new Command("teams-apps");
             var builder = new ApiSdk.AppCatalogs.TeamsApps.TeamsAppsRequestBuilder(PathParameters, RequestAdapter);
-            foreach (var cmd in builder.BuildCommand()) {
-                command.AddCommand(cmd);
-            }
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;

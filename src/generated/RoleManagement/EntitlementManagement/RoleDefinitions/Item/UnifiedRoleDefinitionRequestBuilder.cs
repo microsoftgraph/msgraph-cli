@@ -66,9 +66,6 @@ namespace ApiSdk.RoleManagement.EntitlementManagement.RoleDefinitions.Item {
         public Command BuildInheritsPermissionsFromCommand() {
             var command = new Command("inherits-permissions-from");
             var builder = new ApiSdk.RoleManagement.EntitlementManagement.RoleDefinitions.Item.InheritsPermissionsFrom.InheritsPermissionsFromRequestBuilder(PathParameters, RequestAdapter);
-            foreach (var cmd in builder.BuildCommand()) {
-                command.AddCommand(cmd);
-            }
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;

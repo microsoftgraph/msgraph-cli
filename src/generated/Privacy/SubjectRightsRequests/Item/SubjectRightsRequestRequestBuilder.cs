@@ -69,9 +69,6 @@ namespace ApiSdk.Privacy.SubjectRightsRequests.Item {
         public Command BuildNotesCommand() {
             var command = new Command("notes");
             var builder = new ApiSdk.Privacy.SubjectRightsRequests.Item.Notes.NotesRequestBuilder(PathParameters, RequestAdapter);
-            foreach (var cmd in builder.BuildCommand()) {
-                command.AddCommand(cmd);
-            }
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;

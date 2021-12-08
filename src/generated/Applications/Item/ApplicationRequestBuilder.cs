@@ -88,9 +88,6 @@ namespace ApiSdk.Applications.Item {
         public Command BuildExtensionPropertiesCommand() {
             var command = new Command("extension-properties");
             var builder = new ApiSdk.Applications.Item.ExtensionProperties.ExtensionPropertiesRequestBuilder(PathParameters, RequestAdapter);
-            foreach (var cmd in builder.BuildCommand()) {
-                command.AddCommand(cmd);
-            }
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;

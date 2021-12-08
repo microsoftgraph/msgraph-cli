@@ -64,9 +64,6 @@ namespace ApiSdk.Admin.ServiceAnnouncement {
         public Command BuildHealthOverviewsCommand() {
             var command = new Command("health-overviews");
             var builder = new ApiSdk.Admin.ServiceAnnouncement.HealthOverviews.HealthOverviewsRequestBuilder(PathParameters, RequestAdapter);
-            foreach (var cmd in builder.BuildCommand()) {
-                command.AddCommand(cmd);
-            }
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;
@@ -74,9 +71,6 @@ namespace ApiSdk.Admin.ServiceAnnouncement {
         public Command BuildIssuesCommand() {
             var command = new Command("issues");
             var builder = new ApiSdk.Admin.ServiceAnnouncement.Issues.IssuesRequestBuilder(PathParameters, RequestAdapter);
-            foreach (var cmd in builder.BuildCommand()) {
-                command.AddCommand(cmd);
-            }
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;
@@ -85,9 +79,6 @@ namespace ApiSdk.Admin.ServiceAnnouncement {
             var command = new Command("messages");
             var builder = new ApiSdk.Admin.ServiceAnnouncement.Messages.MessagesRequestBuilder(PathParameters, RequestAdapter);
             command.AddCommand(builder.BuildArchiveCommand());
-            foreach (var cmd in builder.BuildCommand()) {
-                command.AddCommand(cmd);
-            }
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildFavoriteCommand());
             command.AddCommand(builder.BuildListCommand());

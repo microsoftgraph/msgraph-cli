@@ -93,9 +93,6 @@ namespace ApiSdk.Communications.CallRecords.Item.Sessions.Item {
         public Command BuildSegmentsCommand() {
             var command = new Command("segments");
             var builder = new ApiSdk.Communications.CallRecords.Item.Sessions.Item.Segments.SegmentsRequestBuilder(PathParameters, RequestAdapter);
-            foreach (var cmd in builder.BuildCommand()) {
-                command.AddCommand(cmd);
-            }
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;

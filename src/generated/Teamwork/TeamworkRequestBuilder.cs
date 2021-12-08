@@ -66,9 +66,6 @@ namespace ApiSdk.Teamwork {
         public Command BuildWorkforceIntegrationsCommand() {
             var command = new Command("workforce-integrations");
             var builder = new ApiSdk.Teamwork.WorkforceIntegrations.WorkforceIntegrationsRequestBuilder(PathParameters, RequestAdapter);
-            foreach (var cmd in builder.BuildCommand()) {
-                command.AddCommand(cmd);
-            }
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;

@@ -27,9 +27,6 @@ namespace ApiSdk.Communications {
         public Command BuildCallRecordsCommand() {
             var command = new Command("call-records");
             var builder = new ApiSdk.Communications.CallRecords.CallRecordsRequestBuilder(PathParameters, RequestAdapter);
-            foreach (var cmd in builder.BuildCommand()) {
-                command.AddCommand(cmd);
-            }
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;
@@ -37,9 +34,6 @@ namespace ApiSdk.Communications {
         public Command BuildCallsCommand() {
             var command = new Command("calls");
             var builder = new ApiSdk.Communications.Calls.CallsRequestBuilder(PathParameters, RequestAdapter);
-            foreach (var cmd in builder.BuildCommand()) {
-                command.AddCommand(cmd);
-            }
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             command.AddCommand(builder.BuildLogTeleconferenceDeviceQualityCommand());
@@ -78,9 +72,6 @@ namespace ApiSdk.Communications {
         public Command BuildOnlineMeetingsCommand() {
             var command = new Command("online-meetings");
             var builder = new ApiSdk.Communications.OnlineMeetings.OnlineMeetingsRequestBuilder(PathParameters, RequestAdapter);
-            foreach (var cmd in builder.BuildCommand()) {
-                command.AddCommand(cmd);
-            }
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildCreateOrGetCommand());
             command.AddCommand(builder.BuildListCommand());
@@ -108,9 +99,6 @@ namespace ApiSdk.Communications {
         public Command BuildPresencesCommand() {
             var command = new Command("presences");
             var builder = new ApiSdk.Communications.Presences.PresencesRequestBuilder(PathParameters, RequestAdapter);
-            foreach (var cmd in builder.BuildCommand()) {
-                command.AddCommand(cmd);
-            }
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;

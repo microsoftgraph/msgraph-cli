@@ -25,7 +25,6 @@ namespace ApiSdk.DeviceManagement.TermsAndConditions {
                 builder.BuildCreateCommand(),
                 builder.BuildListCommand(),
             };
-            commands.AddRange(BuildCommand());
             return commands;
         }
         /// <summary>

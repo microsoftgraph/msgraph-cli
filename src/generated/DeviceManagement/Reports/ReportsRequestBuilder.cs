@@ -54,9 +54,6 @@ namespace ApiSdk.DeviceManagement.Reports {
         public Command BuildExportJobsCommand() {
             var command = new Command("export-jobs");
             var builder = new ApiSdk.DeviceManagement.Reports.ExportJobs.ExportJobsRequestBuilder(PathParameters, RequestAdapter);
-            foreach (var cmd in builder.BuildCommand()) {
-                command.AddCommand(cmd);
-            }
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;

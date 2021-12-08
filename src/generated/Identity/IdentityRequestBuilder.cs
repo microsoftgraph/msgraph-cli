@@ -27,9 +27,6 @@ namespace ApiSdk.Identity {
         public Command BuildApiConnectorsCommand() {
             var command = new Command("api-connectors");
             var builder = new ApiSdk.Identity.ApiConnectors.ApiConnectorsRequestBuilder(PathParameters, RequestAdapter);
-            foreach (var cmd in builder.BuildCommand()) {
-                command.AddCommand(cmd);
-            }
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;
@@ -37,9 +34,6 @@ namespace ApiSdk.Identity {
         public Command BuildB2xUserFlowsCommand() {
             var command = new Command("b2x-user-flows");
             var builder = new ApiSdk.Identity.B2xUserFlows.B2xUserFlowsRequestBuilder(PathParameters, RequestAdapter);
-            foreach (var cmd in builder.BuildCommand()) {
-                command.AddCommand(cmd);
-            }
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;
@@ -81,9 +75,6 @@ namespace ApiSdk.Identity {
         public Command BuildIdentityProvidersCommand() {
             var command = new Command("identity-providers");
             var builder = new ApiSdk.Identity.IdentityProviders.IdentityProvidersRequestBuilder(PathParameters, RequestAdapter);
-            foreach (var cmd in builder.BuildCommand()) {
-                command.AddCommand(cmd);
-            }
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;
@@ -110,9 +101,6 @@ namespace ApiSdk.Identity {
         public Command BuildUserFlowAttributesCommand() {
             var command = new Command("user-flow-attributes");
             var builder = new ApiSdk.Identity.UserFlowAttributes.UserFlowAttributesRequestBuilder(PathParameters, RequestAdapter);
-            foreach (var cmd in builder.BuildCommand()) {
-                command.AddCommand(cmd);
-            }
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;

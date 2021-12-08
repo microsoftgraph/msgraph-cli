@@ -116,9 +116,6 @@ namespace ApiSdk.Shares.Item.ListItem {
         public Command BuildVersionsCommand() {
             var command = new Command("versions");
             var builder = new ApiSdk.Shares.Item.ListItem.Versions.VersionsRequestBuilder(PathParameters, RequestAdapter);
-            foreach (var cmd in builder.BuildCommand()) {
-                command.AddCommand(cmd);
-            }
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;

@@ -67,9 +67,6 @@ namespace ApiSdk.DeviceManagement.NotificationMessageTemplates.Item {
         public Command BuildLocalizedNotificationMessagesCommand() {
             var command = new Command("localized-notification-messages");
             var builder = new ApiSdk.DeviceManagement.NotificationMessageTemplates.Item.LocalizedNotificationMessages.LocalizedNotificationMessagesRequestBuilder(PathParameters, RequestAdapter);
-            foreach (var cmd in builder.BuildCommand()) {
-                command.AddCommand(cmd);
-            }
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;

@@ -63,9 +63,6 @@ namespace ApiSdk.Me.Outlook {
         public Command BuildMasterCategoriesCommand() {
             var command = new Command("master-categories");
             var builder = new ApiSdk.Me.Outlook.MasterCategories.MasterCategoriesRequestBuilder(PathParameters, RequestAdapter);
-            foreach (var cmd in builder.BuildCommand()) {
-                command.AddCommand(cmd);
-            }
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;

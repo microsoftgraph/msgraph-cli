@@ -70,9 +70,6 @@ namespace ApiSdk.Connections.Item.Groups.Item {
         public Command BuildMembersCommand() {
             var command = new Command("members");
             var builder = new ApiSdk.Connections.Item.Groups.Item.Members.MembersRequestBuilder(PathParameters, RequestAdapter);
-            foreach (var cmd in builder.BuildCommand()) {
-                command.AddCommand(cmd);
-            }
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;

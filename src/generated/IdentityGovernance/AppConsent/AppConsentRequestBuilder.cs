@@ -23,9 +23,6 @@ namespace ApiSdk.IdentityGovernance.AppConsent {
         public Command BuildAppConsentRequestsCommand() {
             var command = new Command("app-consent-requests");
             var builder = new ApiSdk.IdentityGovernance.AppConsent.AppConsentRequests.AppConsentRequestsRequestBuilder(PathParameters, RequestAdapter);
-            foreach (var cmd in builder.BuildCommand()) {
-                command.AddCommand(cmd);
-            }
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;

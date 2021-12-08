@@ -66,9 +66,6 @@ namespace ApiSdk.Users.Item.Todo {
         public Command BuildListsCommand() {
             var command = new Command("lists");
             var builder = new ApiSdk.Users.Item.Todo.Lists.ListsRequestBuilder(PathParameters, RequestAdapter);
-            foreach (var cmd in builder.BuildCommand()) {
-                command.AddCommand(cmd);
-            }
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;

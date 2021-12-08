@@ -66,9 +66,6 @@ namespace ApiSdk.Workbooks.Item {
         public Command BuildChildrenCommand() {
             var command = new Command("children");
             var builder = new ApiSdk.Workbooks.Item.Children.ChildrenRequestBuilder(PathParameters, RequestAdapter);
-            foreach (var cmd in builder.BuildCommand()) {
-                command.AddCommand(cmd);
-            }
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;
@@ -189,9 +186,6 @@ namespace ApiSdk.Workbooks.Item {
         public Command BuildPermissionsCommand() {
             var command = new Command("permissions");
             var builder = new ApiSdk.Workbooks.Item.Permissions.PermissionsRequestBuilder(PathParameters, RequestAdapter);
-            foreach (var cmd in builder.BuildCommand()) {
-                command.AddCommand(cmd);
-            }
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;
@@ -211,9 +205,6 @@ namespace ApiSdk.Workbooks.Item {
         public Command BuildSubscriptionsCommand() {
             var command = new Command("subscriptions");
             var builder = new ApiSdk.Workbooks.Item.Subscriptions.SubscriptionsRequestBuilder(PathParameters, RequestAdapter);
-            foreach (var cmd in builder.BuildCommand()) {
-                command.AddCommand(cmd);
-            }
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;
@@ -221,9 +212,6 @@ namespace ApiSdk.Workbooks.Item {
         public Command BuildThumbnailsCommand() {
             var command = new Command("thumbnails");
             var builder = new ApiSdk.Workbooks.Item.Thumbnails.ThumbnailsRequestBuilder(PathParameters, RequestAdapter);
-            foreach (var cmd in builder.BuildCommand()) {
-                command.AddCommand(cmd);
-            }
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;
@@ -243,9 +231,6 @@ namespace ApiSdk.Workbooks.Item {
         public Command BuildVersionsCommand() {
             var command = new Command("versions");
             var builder = new ApiSdk.Workbooks.Item.Versions.VersionsRequestBuilder(PathParameters, RequestAdapter);
-            foreach (var cmd in builder.BuildCommand()) {
-                command.AddCommand(cmd);
-            }
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;

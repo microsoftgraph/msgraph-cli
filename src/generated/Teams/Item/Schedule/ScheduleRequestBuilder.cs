@@ -75,9 +75,6 @@ namespace ApiSdk.Teams.Item.Schedule {
         public Command BuildOfferShiftRequestsCommand() {
             var command = new Command("offer-shift-requests");
             var builder = new ApiSdk.Teams.Item.Schedule.OfferShiftRequests.OfferShiftRequestsRequestBuilder(PathParameters, RequestAdapter);
-            foreach (var cmd in builder.BuildCommand()) {
-                command.AddCommand(cmd);
-            }
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;
@@ -85,9 +82,6 @@ namespace ApiSdk.Teams.Item.Schedule {
         public Command BuildOpenShiftChangeRequestsCommand() {
             var command = new Command("open-shift-change-requests");
             var builder = new ApiSdk.Teams.Item.Schedule.OpenShiftChangeRequests.OpenShiftChangeRequestsRequestBuilder(PathParameters, RequestAdapter);
-            foreach (var cmd in builder.BuildCommand()) {
-                command.AddCommand(cmd);
-            }
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;
@@ -95,9 +89,6 @@ namespace ApiSdk.Teams.Item.Schedule {
         public Command BuildOpenShiftsCommand() {
             var command = new Command("open-shifts");
             var builder = new ApiSdk.Teams.Item.Schedule.OpenShifts.OpenShiftsRequestBuilder(PathParameters, RequestAdapter);
-            foreach (var cmd in builder.BuildCommand()) {
-                command.AddCommand(cmd);
-            }
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;
@@ -126,9 +117,6 @@ namespace ApiSdk.Teams.Item.Schedule {
         public Command BuildSchedulingGroupsCommand() {
             var command = new Command("scheduling-groups");
             var builder = new ApiSdk.Teams.Item.Schedule.SchedulingGroups.SchedulingGroupsRequestBuilder(PathParameters, RequestAdapter);
-            foreach (var cmd in builder.BuildCommand()) {
-                command.AddCommand(cmd);
-            }
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;
@@ -142,9 +130,6 @@ namespace ApiSdk.Teams.Item.Schedule {
         public Command BuildShiftsCommand() {
             var command = new Command("shifts");
             var builder = new ApiSdk.Teams.Item.Schedule.Shifts.ShiftsRequestBuilder(PathParameters, RequestAdapter);
-            foreach (var cmd in builder.BuildCommand()) {
-                command.AddCommand(cmd);
-            }
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;
@@ -152,9 +137,6 @@ namespace ApiSdk.Teams.Item.Schedule {
         public Command BuildSwapShiftsChangeRequestsCommand() {
             var command = new Command("swap-shifts-change-requests");
             var builder = new ApiSdk.Teams.Item.Schedule.SwapShiftsChangeRequests.SwapShiftsChangeRequestsRequestBuilder(PathParameters, RequestAdapter);
-            foreach (var cmd in builder.BuildCommand()) {
-                command.AddCommand(cmd);
-            }
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;
@@ -162,9 +144,6 @@ namespace ApiSdk.Teams.Item.Schedule {
         public Command BuildTimeOffReasonsCommand() {
             var command = new Command("time-off-reasons");
             var builder = new ApiSdk.Teams.Item.Schedule.TimeOffReasons.TimeOffReasonsRequestBuilder(PathParameters, RequestAdapter);
-            foreach (var cmd in builder.BuildCommand()) {
-                command.AddCommand(cmd);
-            }
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;
@@ -172,9 +151,6 @@ namespace ApiSdk.Teams.Item.Schedule {
         public Command BuildTimeOffRequestsCommand() {
             var command = new Command("time-off-requests");
             var builder = new ApiSdk.Teams.Item.Schedule.TimeOffRequests.TimeOffRequestsRequestBuilder(PathParameters, RequestAdapter);
-            foreach (var cmd in builder.BuildCommand()) {
-                command.AddCommand(cmd);
-            }
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;
@@ -182,9 +158,6 @@ namespace ApiSdk.Teams.Item.Schedule {
         public Command BuildTimesOffCommand() {
             var command = new Command("times-off");
             var builder = new ApiSdk.Teams.Item.Schedule.TimesOff.TimesOffRequestBuilder(PathParameters, RequestAdapter);
-            foreach (var cmd in builder.BuildCommand()) {
-                command.AddCommand(cmd);
-            }
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;
