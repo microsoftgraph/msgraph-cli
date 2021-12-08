@@ -9,6 +9,7 @@ using System.CommandLine.Invocation;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 namespace ApiSdk.DeviceManagement.Reports.ExportJobs {
     /// <summary>Builds and executes requests for operations under \deviceManagement\reports\exportJobs</summary>
@@ -19,20 +20,21 @@ namespace ApiSdk.DeviceManagement.Reports.ExportJobs {
         private IRequestAdapter RequestAdapter { get; set; }
         /// <summary>Url template to use to build the URL for the current request builder</summary>
         private string UrlTemplate { get; set; }
-        public Command[] BuildCommand() {
+        public List<Command> BuildCommand() {
             var builder = new DeviceManagementExportJobRequestBuilder(PathParameters, RequestAdapter);
             var commands = new List<Command> { 
-                builder.BuildPatchCommand(),
-                builder.BuildGetCommand(),
                 builder.BuildDeleteCommand(),
+                builder.BuildGetCommand(),
+                builder.BuildPatchCommand(),
             };
-            return commands.ToArray();
+            return commands;
         }
         /// <summary>
         /// Entity representing a job to export a report
         /// </summary>
         public Command BuildCreateCommand() {
             var command = new Command("create");
+            command.Description = "Entity representing a job to export a report";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--body"));
             command.Handler = CommandHandler.Create<string>(async (body) => {
@@ -56,6 +58,7 @@ namespace ApiSdk.DeviceManagement.Reports.ExportJobs {
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
+            command.Description = "Entity representing a job to export a report";
             // Create options for all the parameters
             command.AddOption(new Option<int?>("--top", description: "Show only the first n items"));
             command.AddOption(new Option<int?>("--skip", description: "Skip the first n items"));
@@ -140,26 +143,28 @@ namespace ApiSdk.DeviceManagement.Reports.ExportJobs {
         }
         /// <summary>
         /// Entity representing a job to export a report
+        /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="h">Request headers</param>
         /// <param name="o">Request options</param>
         /// <param name="q">Request query parameters</param>
         /// <param name="responseHandler">Response handler to use in place of the default response handling provided by the core service</param>
         /// </summary>
-        public async Task<ExportJobsResponse> GetAsync(Action<GetQueryParameters> q = default, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default) {
+        public async Task<ExportJobsResponse> GetAsync(Action<GetQueryParameters> q = default, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default, CancellationToken cancellationToken = default) {
             var requestInfo = CreateGetRequestInformation(q, h, o);
-            return await RequestAdapter.SendAsync<ExportJobsResponse>(requestInfo, responseHandler);
+            return await RequestAdapter.SendAsync<ExportJobsResponse>(requestInfo, responseHandler, cancellationToken);
         }
         /// <summary>
         /// Entity representing a job to export a report
+        /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="h">Request headers</param>
         /// <param name="model"></param>
         /// <param name="o">Request options</param>
         /// <param name="responseHandler">Response handler to use in place of the default response handling provided by the core service</param>
         /// </summary>
-        public async Task<DeviceManagementExportJob> PostAsync(DeviceManagementExportJob model, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default) {
+        public async Task<DeviceManagementExportJob> PostAsync(DeviceManagementExportJob model, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default, CancellationToken cancellationToken = default) {
             _ = model ?? throw new ArgumentNullException(nameof(model));
             var requestInfo = CreatePostRequestInformation(model, h, o);
-            return await RequestAdapter.SendAsync<DeviceManagementExportJob>(requestInfo, responseHandler);
+            return await RequestAdapter.SendAsync<DeviceManagementExportJob>(requestInfo, responseHandler, cancellationToken);
         }
         /// <summary>Entity representing a job to export a report</summary>
         public class GetQueryParameters : QueryParametersBase {

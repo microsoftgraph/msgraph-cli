@@ -7,6 +7,7 @@ using System.CommandLine.Invocation;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 namespace ApiSdk.Me.MailFolders.Item.Messages.Item.Value {
     /// <summary>Builds and executes requests for operations under \me\mailFolders\{mailFolder-id}\messages\{message-id}\$value</summary>
@@ -22,6 +23,7 @@ namespace ApiSdk.Me.MailFolders.Item.Messages.Item.Value {
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
+            command.Description = "Get media content for the navigation property messages from me";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--mailfolder-id", description: "key: id of mailFolder"));
             command.AddOption(new Option<string>("--message-id", description: "key: id of message"));
@@ -50,6 +52,7 @@ namespace ApiSdk.Me.MailFolders.Item.Messages.Item.Value {
         /// </summary>
         public Command BuildPutCommand() {
             var command = new Command("put");
+            command.Description = "Update media content for the navigation property messages in me";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--mailfolder-id", description: "key: id of mailFolder"));
             command.AddOption(new Option<string>("--message-id", description: "key: id of message"));
@@ -113,25 +116,27 @@ namespace ApiSdk.Me.MailFolders.Item.Messages.Item.Value {
         }
         /// <summary>
         /// Get media content for the navigation property messages from me
+        /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="h">Request headers</param>
         /// <param name="o">Request options</param>
         /// <param name="responseHandler">Response handler to use in place of the default response handling provided by the core service</param>
         /// </summary>
-        public async Task<Stream> GetAsync(Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default) {
+        public async Task<Stream> GetAsync(Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default, CancellationToken cancellationToken = default) {
             var requestInfo = CreateGetRequestInformation(h, o);
-            return await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, responseHandler);
+            return await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, responseHandler, cancellationToken);
         }
         /// <summary>
         /// Update media content for the navigation property messages in me
+        /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="h">Request headers</param>
         /// <param name="o">Request options</param>
         /// <param name="responseHandler">Response handler to use in place of the default response handling provided by the core service</param>
         /// <param name="stream">Binary request body</param>
         /// </summary>
-        public async Task PutAsync(Stream stream, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default) {
+        public async Task PutAsync(Stream stream, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default, CancellationToken cancellationToken = default) {
             _ = stream ?? throw new ArgumentNullException(nameof(stream));
             var requestInfo = CreatePutRequestInformation(stream, h, o);
-            await RequestAdapter.SendNoContentAsync(requestInfo, responseHandler);
+            await RequestAdapter.SendNoContentAsync(requestInfo, responseHandler, cancellationToken);
         }
     }
 }

@@ -7,6 +7,7 @@ using System.CommandLine.Invocation;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 namespace ApiSdk.Teams.Item.Channels.Item.RemoveEmail {
     /// <summary>Builds and executes requests for operations under \teams\{team-id}\channels\{channel-id}\microsoft.graph.removeEmail</summary>
@@ -22,6 +23,7 @@ namespace ApiSdk.Teams.Item.Channels.Item.RemoveEmail {
         /// </summary>
         public Command BuildPostCommand() {
             var command = new Command("post");
+            command.Description = "Invoke action removeEmail";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--team-id", description: "key: id of team"));
             command.AddOption(new Option<string>("--channel-id", description: "key: id of channel"));
@@ -65,13 +67,14 @@ namespace ApiSdk.Teams.Item.Channels.Item.RemoveEmail {
         }
         /// <summary>
         /// Invoke action removeEmail
+        /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="h">Request headers</param>
         /// <param name="o">Request options</param>
         /// <param name="responseHandler">Response handler to use in place of the default response handling provided by the core service</param>
         /// </summary>
-        public async Task PostAsync(Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default) {
+        public async Task PostAsync(Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default, CancellationToken cancellationToken = default) {
             var requestInfo = CreatePostRequestInformation(h, o);
-            await RequestAdapter.SendNoContentAsync(requestInfo, responseHandler);
+            await RequestAdapter.SendNoContentAsync(requestInfo, responseHandler, cancellationToken);
         }
     }
 }

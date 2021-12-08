@@ -10,6 +10,7 @@ using System.CommandLine.Invocation;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 namespace ApiSdk.Shares.Item.ListItem.Versions.Item {
     /// <summary>Builds and executes requests for operations under \shares\{sharedDriveItem-id}\listItem\versions\{listItemVersion-id}</summary>
@@ -25,6 +26,7 @@ namespace ApiSdk.Shares.Item.ListItem.Versions.Item {
         /// </summary>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
+            command.Description = "The list of previous versions of the list item.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--shareddriveitem-id", description: "key: id of sharedDriveItem"));
             command.AddOption(new Option<string>("--listitemversion-id", description: "key: id of listItemVersion"));
@@ -41,9 +43,9 @@ namespace ApiSdk.Shares.Item.ListItem.Versions.Item {
         public Command BuildFieldsCommand() {
             var command = new Command("fields");
             var builder = new ApiSdk.Shares.Item.ListItem.Versions.Item.Fields.FieldsRequestBuilder(PathParameters, RequestAdapter);
-            command.AddCommand(builder.BuildPatchCommand());
-            command.AddCommand(builder.BuildGetCommand());
             command.AddCommand(builder.BuildDeleteCommand());
+            command.AddCommand(builder.BuildGetCommand());
+            command.AddCommand(builder.BuildPatchCommand());
             return command;
         }
         /// <summary>
@@ -51,6 +53,7 @@ namespace ApiSdk.Shares.Item.ListItem.Versions.Item {
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
+            command.Description = "The list of previous versions of the list item.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--shareddriveitem-id", description: "key: id of sharedDriveItem"));
             command.AddOption(new Option<string>("--listitemversion-id", description: "key: id of listItemVersion"));
@@ -78,6 +81,7 @@ namespace ApiSdk.Shares.Item.ListItem.Versions.Item {
         /// </summary>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
+            command.Description = "The list of previous versions of the list item.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--shareddriveitem-id", description: "key: id of sharedDriveItem"));
             command.AddOption(new Option<string>("--listitemversion-id", description: "key: id of listItemVersion"));
@@ -170,36 +174,39 @@ namespace ApiSdk.Shares.Item.ListItem.Versions.Item {
         }
         /// <summary>
         /// The list of previous versions of the list item.
+        /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="h">Request headers</param>
         /// <param name="o">Request options</param>
         /// <param name="responseHandler">Response handler to use in place of the default response handling provided by the core service</param>
         /// </summary>
-        public async Task DeleteAsync(Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default) {
+        public async Task DeleteAsync(Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default, CancellationToken cancellationToken = default) {
             var requestInfo = CreateDeleteRequestInformation(h, o);
-            await RequestAdapter.SendNoContentAsync(requestInfo, responseHandler);
+            await RequestAdapter.SendNoContentAsync(requestInfo, responseHandler, cancellationToken);
         }
         /// <summary>
         /// The list of previous versions of the list item.
+        /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="h">Request headers</param>
         /// <param name="o">Request options</param>
         /// <param name="q">Request query parameters</param>
         /// <param name="responseHandler">Response handler to use in place of the default response handling provided by the core service</param>
         /// </summary>
-        public async Task<ListItemVersion> GetAsync(Action<GetQueryParameters> q = default, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default) {
+        public async Task<ListItemVersion> GetAsync(Action<GetQueryParameters> q = default, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default, CancellationToken cancellationToken = default) {
             var requestInfo = CreateGetRequestInformation(q, h, o);
-            return await RequestAdapter.SendAsync<ListItemVersion>(requestInfo, responseHandler);
+            return await RequestAdapter.SendAsync<ListItemVersion>(requestInfo, responseHandler, cancellationToken);
         }
         /// <summary>
         /// The list of previous versions of the list item.
+        /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="h">Request headers</param>
         /// <param name="model"></param>
         /// <param name="o">Request options</param>
         /// <param name="responseHandler">Response handler to use in place of the default response handling provided by the core service</param>
         /// </summary>
-        public async Task PatchAsync(ListItemVersion model, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default) {
+        public async Task PatchAsync(ListItemVersion model, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default, CancellationToken cancellationToken = default) {
             _ = model ?? throw new ArgumentNullException(nameof(model));
             var requestInfo = CreatePatchRequestInformation(model, h, o);
-            await RequestAdapter.SendNoContentAsync(requestInfo, responseHandler);
+            await RequestAdapter.SendNoContentAsync(requestInfo, responseHandler, cancellationToken);
         }
         /// <summary>The list of previous versions of the list item.</summary>
         public class GetQueryParameters : QueryParametersBase {

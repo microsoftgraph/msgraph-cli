@@ -7,6 +7,7 @@ using System.CommandLine.Invocation;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 namespace ApiSdk.IdentityGovernance.EntitlementManagement.Catalogs.Item.AccessPackages.Item.Catalog.@Ref {
     /// <summary>Builds and executes requests for operations under \identityGovernance\entitlementManagement\catalogs\{accessPackageCatalog-id}\accessPackages\{accessPackage-id}\catalog\$ref</summary>
@@ -22,6 +23,7 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.Catalogs.Item.AccessPa
         /// </summary>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
+            command.Description = "Delete ref of navigation property catalog for identityGovernance";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--accesspackagecatalog-id", description: "key: id of accessPackageCatalog"));
             command.AddOption(new Option<string>("--accesspackage-id", description: "key: id of accessPackage"));
@@ -40,6 +42,7 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.Catalogs.Item.AccessPa
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
+            command.Description = "Get ref of catalog from identityGovernance";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--accesspackagecatalog-id", description: "key: id of accessPackageCatalog"));
             command.AddOption(new Option<string>("--accesspackage-id", description: "key: id of accessPackage"));
@@ -63,6 +66,7 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.Catalogs.Item.AccessPa
         /// </summary>
         public Command BuildPutCommand() {
             var command = new Command("put");
+            command.Description = "Update the ref of navigation property catalog in identityGovernance";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--accesspackagecatalog-id", description: "key: id of accessPackageCatalog"));
             command.AddOption(new Option<string>("--accesspackage-id", description: "key: id of accessPackage"));
@@ -143,35 +147,38 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.Catalogs.Item.AccessPa
         }
         /// <summary>
         /// Delete ref of navigation property catalog for identityGovernance
+        /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="h">Request headers</param>
         /// <param name="o">Request options</param>
         /// <param name="responseHandler">Response handler to use in place of the default response handling provided by the core service</param>
         /// </summary>
-        public async Task DeleteAsync(Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default) {
+        public async Task DeleteAsync(Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default, CancellationToken cancellationToken = default) {
             var requestInfo = CreateDeleteRequestInformation(h, o);
-            await RequestAdapter.SendNoContentAsync(requestInfo, responseHandler);
+            await RequestAdapter.SendNoContentAsync(requestInfo, responseHandler, cancellationToken);
         }
         /// <summary>
         /// Get ref of catalog from identityGovernance
+        /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="h">Request headers</param>
         /// <param name="o">Request options</param>
         /// <param name="responseHandler">Response handler to use in place of the default response handling provided by the core service</param>
         /// </summary>
-        public async Task<string> GetAsync(Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default) {
+        public async Task<string> GetAsync(Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default, CancellationToken cancellationToken = default) {
             var requestInfo = CreateGetRequestInformation(h, o);
-            return await RequestAdapter.SendPrimitiveAsync<string>(requestInfo, responseHandler);
+            return await RequestAdapter.SendPrimitiveAsync<string>(requestInfo, responseHandler, cancellationToken);
         }
         /// <summary>
         /// Update the ref of navigation property catalog in identityGovernance
+        /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="h">Request headers</param>
         /// <param name="model"></param>
         /// <param name="o">Request options</param>
         /// <param name="responseHandler">Response handler to use in place of the default response handling provided by the core service</param>
         /// </summary>
-        public async Task PutAsync(ApiSdk.IdentityGovernance.EntitlementManagement.Catalogs.Item.AccessPackages.Item.Catalog.@Ref.@Ref model, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default) {
+        public async Task PutAsync(ApiSdk.IdentityGovernance.EntitlementManagement.Catalogs.Item.AccessPackages.Item.Catalog.@Ref.@Ref model, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default, CancellationToken cancellationToken = default) {
             _ = model ?? throw new ArgumentNullException(nameof(model));
             var requestInfo = CreatePutRequestInformation(model, h, o);
-            await RequestAdapter.SendNoContentAsync(requestInfo, responseHandler);
+            await RequestAdapter.SendNoContentAsync(requestInfo, responseHandler, cancellationToken);
         }
     }
 }

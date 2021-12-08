@@ -10,6 +10,7 @@ using System.CommandLine.Invocation;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 namespace ApiSdk.Users.Item.Onenote.Notebooks.Item.Sections.Item.ParentSectionGroup.Sections.Item {
     /// <summary>Builds and executes requests for operations under \users\{user-id}\onenote\notebooks\{notebook-id}\sections\{onenoteSection-id}\parentSectionGroup\sections\{onenoteSection-id1}</summary>
@@ -37,6 +38,7 @@ namespace ApiSdk.Users.Item.Onenote.Notebooks.Item.Sections.Item.ParentSectionGr
         /// </summary>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
+            command.Description = "The sections in the section group. Read-only. Nullable.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--user-id", description: "key: id of user"));
             command.AddOption(new Option<string>("--notebook-id", description: "key: id of notebook"));
@@ -59,6 +61,7 @@ namespace ApiSdk.Users.Item.Onenote.Notebooks.Item.Sections.Item.ParentSectionGr
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
+            command.Description = "The sections in the section group. Read-only. Nullable.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--user-id", description: "key: id of user"));
             command.AddOption(new Option<string>("--notebook-id", description: "key: id of notebook"));
@@ -90,6 +93,7 @@ namespace ApiSdk.Users.Item.Onenote.Notebooks.Item.Sections.Item.ParentSectionGr
         /// </summary>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
+            command.Description = "The sections in the section group. Read-only. Nullable.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--user-id", description: "key: id of user"));
             command.AddOption(new Option<string>("--notebook-id", description: "key: id of notebook"));
@@ -180,36 +184,39 @@ namespace ApiSdk.Users.Item.Onenote.Notebooks.Item.Sections.Item.ParentSectionGr
         }
         /// <summary>
         /// The sections in the section group. Read-only. Nullable.
+        /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="h">Request headers</param>
         /// <param name="o">Request options</param>
         /// <param name="responseHandler">Response handler to use in place of the default response handling provided by the core service</param>
         /// </summary>
-        public async Task DeleteAsync(Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default) {
+        public async Task DeleteAsync(Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default, CancellationToken cancellationToken = default) {
             var requestInfo = CreateDeleteRequestInformation(h, o);
-            await RequestAdapter.SendNoContentAsync(requestInfo, responseHandler);
+            await RequestAdapter.SendNoContentAsync(requestInfo, responseHandler, cancellationToken);
         }
         /// <summary>
         /// The sections in the section group. Read-only. Nullable.
+        /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="h">Request headers</param>
         /// <param name="o">Request options</param>
         /// <param name="q">Request query parameters</param>
         /// <param name="responseHandler">Response handler to use in place of the default response handling provided by the core service</param>
         /// </summary>
-        public async Task<OnenoteSection> GetAsync(Action<GetQueryParameters> q = default, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default) {
+        public async Task<OnenoteSection> GetAsync(Action<GetQueryParameters> q = default, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default, CancellationToken cancellationToken = default) {
             var requestInfo = CreateGetRequestInformation(q, h, o);
-            return await RequestAdapter.SendAsync<OnenoteSection>(requestInfo, responseHandler);
+            return await RequestAdapter.SendAsync<OnenoteSection>(requestInfo, responseHandler, cancellationToken);
         }
         /// <summary>
         /// The sections in the section group. Read-only. Nullable.
+        /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="h">Request headers</param>
         /// <param name="model"></param>
         /// <param name="o">Request options</param>
         /// <param name="responseHandler">Response handler to use in place of the default response handling provided by the core service</param>
         /// </summary>
-        public async Task PatchAsync(OnenoteSection model, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default) {
+        public async Task PatchAsync(OnenoteSection model, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default, CancellationToken cancellationToken = default) {
             _ = model ?? throw new ArgumentNullException(nameof(model));
             var requestInfo = CreatePatchRequestInformation(model, h, o);
-            await RequestAdapter.SendNoContentAsync(requestInfo, responseHandler);
+            await RequestAdapter.SendNoContentAsync(requestInfo, responseHandler, cancellationToken);
         }
         /// <summary>The sections in the section group. Read-only. Nullable.</summary>
         public class GetQueryParameters : QueryParametersBase {

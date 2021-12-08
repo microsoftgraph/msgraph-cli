@@ -9,6 +9,7 @@ using System.CommandLine.Invocation;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 namespace ApiSdk.Education.Classes.Item.Group {
     /// <summary>Builds and executes requests for operations under \education\classes\{educationClass-id}\group</summary>
@@ -24,6 +25,7 @@ namespace ApiSdk.Education.Classes.Item.Group {
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
+            command.Description = "The underlying Microsoft 365 group object.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--educationclass-id", description: "key: id of educationClass"));
             command.AddOption(new Option<object>("--select", description: "Select properties to be returned"));
@@ -47,9 +49,9 @@ namespace ApiSdk.Education.Classes.Item.Group {
         public Command BuildRefCommand() {
             var command = new Command("ref");
             var builder = new ApiSdk.Education.Classes.Item.Group.@Ref.RefRequestBuilder(PathParameters, RequestAdapter);
-            command.AddCommand(builder.BuildPutCommand());
-            command.AddCommand(builder.BuildGetCommand());
             command.AddCommand(builder.BuildDeleteCommand());
+            command.AddCommand(builder.BuildGetCommand());
+            command.AddCommand(builder.BuildPutCommand());
             return command;
         }
         /// <summary>
@@ -88,14 +90,15 @@ namespace ApiSdk.Education.Classes.Item.Group {
         }
         /// <summary>
         /// The underlying Microsoft 365 group object.
+        /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="h">Request headers</param>
         /// <param name="o">Request options</param>
         /// <param name="q">Request query parameters</param>
         /// <param name="responseHandler">Response handler to use in place of the default response handling provided by the core service</param>
         /// </summary>
-        public async Task<ApiSdk.Models.Microsoft.Graph.Group> GetAsync(Action<GetQueryParameters> q = default, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default) {
+        public async Task<ApiSdk.Models.Microsoft.Graph.Group> GetAsync(Action<GetQueryParameters> q = default, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default, CancellationToken cancellationToken = default) {
             var requestInfo = CreateGetRequestInformation(q, h, o);
-            return await RequestAdapter.SendAsync<ApiSdk.Models.Microsoft.Graph.Group>(requestInfo, responseHandler);
+            return await RequestAdapter.SendAsync<ApiSdk.Models.Microsoft.Graph.Group>(requestInfo, responseHandler, cancellationToken);
         }
         /// <summary>The underlying Microsoft 365 group object.</summary>
         public class GetQueryParameters : QueryParametersBase {

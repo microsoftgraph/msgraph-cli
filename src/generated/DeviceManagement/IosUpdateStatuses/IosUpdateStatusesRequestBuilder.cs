@@ -9,6 +9,7 @@ using System.CommandLine.Invocation;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 namespace ApiSdk.DeviceManagement.IosUpdateStatuses {
     /// <summary>Builds and executes requests for operations under \deviceManagement\iosUpdateStatuses</summary>
@@ -19,20 +20,21 @@ namespace ApiSdk.DeviceManagement.IosUpdateStatuses {
         private IRequestAdapter RequestAdapter { get; set; }
         /// <summary>Url template to use to build the URL for the current request builder</summary>
         private string UrlTemplate { get; set; }
-        public Command[] BuildCommand() {
+        public List<Command> BuildCommand() {
             var builder = new IosUpdateDeviceStatusRequestBuilder(PathParameters, RequestAdapter);
             var commands = new List<Command> { 
-                builder.BuildPatchCommand(),
-                builder.BuildGetCommand(),
                 builder.BuildDeleteCommand(),
+                builder.BuildGetCommand(),
+                builder.BuildPatchCommand(),
             };
-            return commands.ToArray();
+            return commands;
         }
         /// <summary>
         /// The IOS software update installation statuses for this account.
         /// </summary>
         public Command BuildCreateCommand() {
             var command = new Command("create");
+            command.Description = "The IOS software update installation statuses for this account.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--body"));
             command.Handler = CommandHandler.Create<string>(async (body) => {
@@ -56,6 +58,7 @@ namespace ApiSdk.DeviceManagement.IosUpdateStatuses {
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
+            command.Description = "The IOS software update installation statuses for this account.";
             // Create options for all the parameters
             command.AddOption(new Option<int?>("--top", description: "Show only the first n items"));
             command.AddOption(new Option<int?>("--skip", description: "Skip the first n items"));
@@ -140,26 +143,28 @@ namespace ApiSdk.DeviceManagement.IosUpdateStatuses {
         }
         /// <summary>
         /// The IOS software update installation statuses for this account.
+        /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="h">Request headers</param>
         /// <param name="o">Request options</param>
         /// <param name="q">Request query parameters</param>
         /// <param name="responseHandler">Response handler to use in place of the default response handling provided by the core service</param>
         /// </summary>
-        public async Task<IosUpdateStatusesResponse> GetAsync(Action<GetQueryParameters> q = default, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default) {
+        public async Task<IosUpdateStatusesResponse> GetAsync(Action<GetQueryParameters> q = default, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default, CancellationToken cancellationToken = default) {
             var requestInfo = CreateGetRequestInformation(q, h, o);
-            return await RequestAdapter.SendAsync<IosUpdateStatusesResponse>(requestInfo, responseHandler);
+            return await RequestAdapter.SendAsync<IosUpdateStatusesResponse>(requestInfo, responseHandler, cancellationToken);
         }
         /// <summary>
         /// The IOS software update installation statuses for this account.
+        /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="h">Request headers</param>
         /// <param name="model"></param>
         /// <param name="o">Request options</param>
         /// <param name="responseHandler">Response handler to use in place of the default response handling provided by the core service</param>
         /// </summary>
-        public async Task<IosUpdateDeviceStatus> PostAsync(IosUpdateDeviceStatus model, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default) {
+        public async Task<IosUpdateDeviceStatus> PostAsync(IosUpdateDeviceStatus model, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default, CancellationToken cancellationToken = default) {
             _ = model ?? throw new ArgumentNullException(nameof(model));
             var requestInfo = CreatePostRequestInformation(model, h, o);
-            return await RequestAdapter.SendAsync<IosUpdateDeviceStatus>(requestInfo, responseHandler);
+            return await RequestAdapter.SendAsync<IosUpdateDeviceStatus>(requestInfo, responseHandler, cancellationToken);
         }
         /// <summary>The IOS software update installation statuses for this account.</summary>
         public class GetQueryParameters : QueryParametersBase {

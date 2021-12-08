@@ -16,6 +16,7 @@ using System.CommandLine.Invocation;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 namespace ApiSdk.DeviceManagement.DeviceConfigurations.Item {
     /// <summary>Builds and executes requests for operations under \deviceManagement\deviceConfigurations\{deviceConfiguration-id}</summary>
@@ -35,11 +36,11 @@ namespace ApiSdk.DeviceManagement.DeviceConfigurations.Item {
         public Command BuildAssignmentsCommand() {
             var command = new Command("assignments");
             var builder = new ApiSdk.DeviceManagement.DeviceConfigurations.Item.Assignments.AssignmentsRequestBuilder(PathParameters, RequestAdapter);
-            command.AddCommand(builder.BuildListCommand());
-            command.AddCommand(builder.BuildCreateCommand());
             foreach (var cmd in builder.BuildCommand()) {
                 command.AddCommand(cmd);
             }
+            command.AddCommand(builder.BuildCreateCommand());
+            command.AddCommand(builder.BuildListCommand());
             return command;
         }
         /// <summary>
@@ -47,6 +48,7 @@ namespace ApiSdk.DeviceManagement.DeviceConfigurations.Item {
         /// </summary>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
+            command.Description = "The device configurations.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--deviceconfiguration-id", description: "key: id of deviceConfiguration"));
             command.Handler = CommandHandler.Create<string>(async (deviceConfigurationId) => {
@@ -61,29 +63,29 @@ namespace ApiSdk.DeviceManagement.DeviceConfigurations.Item {
         public Command BuildDeviceSettingStateSummariesCommand() {
             var command = new Command("device-setting-state-summaries");
             var builder = new ApiSdk.DeviceManagement.DeviceConfigurations.Item.DeviceSettingStateSummaries.DeviceSettingStateSummariesRequestBuilder(PathParameters, RequestAdapter);
-            command.AddCommand(builder.BuildListCommand());
-            command.AddCommand(builder.BuildCreateCommand());
             foreach (var cmd in builder.BuildCommand()) {
                 command.AddCommand(cmd);
             }
+            command.AddCommand(builder.BuildCreateCommand());
+            command.AddCommand(builder.BuildListCommand());
             return command;
         }
         public Command BuildDeviceStatusesCommand() {
             var command = new Command("device-statuses");
             var builder = new ApiSdk.DeviceManagement.DeviceConfigurations.Item.DeviceStatuses.DeviceStatusesRequestBuilder(PathParameters, RequestAdapter);
-            command.AddCommand(builder.BuildListCommand());
-            command.AddCommand(builder.BuildCreateCommand());
             foreach (var cmd in builder.BuildCommand()) {
                 command.AddCommand(cmd);
             }
+            command.AddCommand(builder.BuildCreateCommand());
+            command.AddCommand(builder.BuildListCommand());
             return command;
         }
         public Command BuildDeviceStatusOverviewCommand() {
             var command = new Command("device-status-overview");
             var builder = new ApiSdk.DeviceManagement.DeviceConfigurations.Item.DeviceStatusOverview.DeviceStatusOverviewRequestBuilder(PathParameters, RequestAdapter);
-            command.AddCommand(builder.BuildPatchCommand());
-            command.AddCommand(builder.BuildGetCommand());
             command.AddCommand(builder.BuildDeleteCommand());
+            command.AddCommand(builder.BuildGetCommand());
+            command.AddCommand(builder.BuildPatchCommand());
             return command;
         }
         /// <summary>
@@ -91,6 +93,7 @@ namespace ApiSdk.DeviceManagement.DeviceConfigurations.Item {
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
+            command.Description = "The device configurations.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--deviceconfiguration-id", description: "key: id of deviceConfiguration"));
             command.AddOption(new Option<object>("--select", description: "Select properties to be returned"));
@@ -116,6 +119,7 @@ namespace ApiSdk.DeviceManagement.DeviceConfigurations.Item {
         /// </summary>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
+            command.Description = "The device configurations.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--deviceconfiguration-id", description: "key: id of deviceConfiguration"));
             command.AddOption(new Option<string>("--body"));
@@ -134,19 +138,19 @@ namespace ApiSdk.DeviceManagement.DeviceConfigurations.Item {
         public Command BuildUserStatusesCommand() {
             var command = new Command("user-statuses");
             var builder = new ApiSdk.DeviceManagement.DeviceConfigurations.Item.UserStatuses.UserStatusesRequestBuilder(PathParameters, RequestAdapter);
-            command.AddCommand(builder.BuildListCommand());
-            command.AddCommand(builder.BuildCreateCommand());
             foreach (var cmd in builder.BuildCommand()) {
                 command.AddCommand(cmd);
             }
+            command.AddCommand(builder.BuildCreateCommand());
+            command.AddCommand(builder.BuildListCommand());
             return command;
         }
         public Command BuildUserStatusOverviewCommand() {
             var command = new Command("user-status-overview");
             var builder = new ApiSdk.DeviceManagement.DeviceConfigurations.Item.UserStatusOverview.UserStatusOverviewRequestBuilder(PathParameters, RequestAdapter);
-            command.AddCommand(builder.BuildPatchCommand());
-            command.AddCommand(builder.BuildGetCommand());
             command.AddCommand(builder.BuildDeleteCommand());
+            command.AddCommand(builder.BuildGetCommand());
+            command.AddCommand(builder.BuildPatchCommand());
             return command;
         }
         /// <summary>
@@ -218,24 +222,26 @@ namespace ApiSdk.DeviceManagement.DeviceConfigurations.Item {
         }
         /// <summary>
         /// The device configurations.
+        /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="h">Request headers</param>
         /// <param name="o">Request options</param>
         /// <param name="responseHandler">Response handler to use in place of the default response handling provided by the core service</param>
         /// </summary>
-        public async Task DeleteAsync(Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default) {
+        public async Task DeleteAsync(Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default, CancellationToken cancellationToken = default) {
             var requestInfo = CreateDeleteRequestInformation(h, o);
-            await RequestAdapter.SendNoContentAsync(requestInfo, responseHandler);
+            await RequestAdapter.SendNoContentAsync(requestInfo, responseHandler, cancellationToken);
         }
         /// <summary>
         /// The device configurations.
+        /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="h">Request headers</param>
         /// <param name="o">Request options</param>
         /// <param name="q">Request query parameters</param>
         /// <param name="responseHandler">Response handler to use in place of the default response handling provided by the core service</param>
         /// </summary>
-        public async Task<DeviceConfiguration> GetAsync(Action<GetQueryParameters> q = default, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default) {
+        public async Task<DeviceConfiguration> GetAsync(Action<GetQueryParameters> q = default, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default, CancellationToken cancellationToken = default) {
             var requestInfo = CreateGetRequestInformation(q, h, o);
-            return await RequestAdapter.SendAsync<DeviceConfiguration>(requestInfo, responseHandler);
+            return await RequestAdapter.SendAsync<DeviceConfiguration>(requestInfo, responseHandler, cancellationToken);
         }
         /// <summary>
         /// Builds and executes requests for operations under \deviceManagement\deviceConfigurations\{deviceConfiguration-id}\microsoft.graph.getOmaSettingPlainTextValue(secretReferenceValueId='{secretReferenceValueId}')
@@ -247,15 +253,16 @@ namespace ApiSdk.DeviceManagement.DeviceConfigurations.Item {
         }
         /// <summary>
         /// The device configurations.
+        /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="h">Request headers</param>
         /// <param name="model"></param>
         /// <param name="o">Request options</param>
         /// <param name="responseHandler">Response handler to use in place of the default response handling provided by the core service</param>
         /// </summary>
-        public async Task PatchAsync(DeviceConfiguration model, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default) {
+        public async Task PatchAsync(DeviceConfiguration model, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default, CancellationToken cancellationToken = default) {
             _ = model ?? throw new ArgumentNullException(nameof(model));
             var requestInfo = CreatePatchRequestInformation(model, h, o);
-            await RequestAdapter.SendNoContentAsync(requestInfo, responseHandler);
+            await RequestAdapter.SendNoContentAsync(requestInfo, responseHandler, cancellationToken);
         }
         /// <summary>The device configurations.</summary>
         public class GetQueryParameters : QueryParametersBase {

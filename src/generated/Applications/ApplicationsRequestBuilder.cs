@@ -13,6 +13,7 @@ using System.CommandLine.Invocation;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 namespace ApiSdk.Applications {
     /// <summary>Builds and executes requests for operations under \applications</summary>
@@ -23,38 +24,39 @@ namespace ApiSdk.Applications {
         private IRequestAdapter RequestAdapter { get; set; }
         /// <summary>Url template to use to build the URL for the current request builder</summary>
         private string UrlTemplate { get; set; }
-        public Command[] BuildCommand() {
+        public List<Command> BuildCommand() {
             var builder = new ApplicationRequestBuilder(PathParameters, RequestAdapter);
             var commands = new List<Command> { 
-                builder.BuildLogoCommand(),
-                builder.BuildAddPasswordCommand(),
-                builder.BuildGetCommand(),
-                builder.BuildCreatedOnBehalfOfCommand(),
-                builder.BuildCheckMemberObjectsCommand(),
-                builder.BuildCheckMemberGroupsCommand(),
-                builder.BuildTokenLifetimePoliciesCommand(),
-                builder.BuildExtensionPropertiesCommand(),
-                builder.BuildGetMemberObjectsCommand(),
                 builder.BuildAddKeyCommand(),
-                builder.BuildUnsetVerifiedPublisherCommand(),
-                builder.BuildOwnersCommand(),
+                builder.BuildAddPasswordCommand(),
+                builder.BuildCheckMemberGroupsCommand(),
+                builder.BuildCheckMemberObjectsCommand(),
+                builder.BuildCreatedOnBehalfOfCommand(),
                 builder.BuildDeleteCommand(),
+                builder.BuildExtensionPropertiesCommand(),
+                builder.BuildGetCommand(),
                 builder.BuildGetMemberGroupsCommand(),
-                builder.BuildRestoreCommand(),
-                builder.BuildPatchCommand(),
-                builder.BuildRemovePasswordCommand(),
+                builder.BuildGetMemberObjectsCommand(),
                 builder.BuildHomeRealmDiscoveryPoliciesCommand(),
+                builder.BuildLogoCommand(),
+                builder.BuildOwnersCommand(),
+                builder.BuildPatchCommand(),
                 builder.BuildRemoveKeyCommand(),
+                builder.BuildRemovePasswordCommand(),
+                builder.BuildRestoreCommand(),
                 builder.BuildSetVerifiedPublisherCommand(),
                 builder.BuildTokenIssuancePoliciesCommand(),
+                builder.BuildTokenLifetimePoliciesCommand(),
+                builder.BuildUnsetVerifiedPublisherCommand(),
             };
-            return commands.ToArray();
+            return commands;
         }
         /// <summary>
         /// Add new entity to applications
         /// </summary>
         public Command BuildCreateCommand() {
             var command = new Command("create");
+            command.Description = "Add new entity to applications";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--body"));
             command.Handler = CommandHandler.Create<string>(async (body) => {
@@ -90,6 +92,7 @@ namespace ApiSdk.Applications {
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
+            command.Description = "Get entities from applications";
             // Create options for all the parameters
             command.AddOption(new Option<int?>("--top", description: "Show only the first n items"));
             command.AddOption(new Option<int?>("--skip", description: "Skip the first n items"));
@@ -186,26 +189,28 @@ namespace ApiSdk.Applications {
         }
         /// <summary>
         /// Get entities from applications
+        /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="h">Request headers</param>
         /// <param name="o">Request options</param>
         /// <param name="q">Request query parameters</param>
         /// <param name="responseHandler">Response handler to use in place of the default response handling provided by the core service</param>
         /// </summary>
-        public async Task<ApplicationsResponse> GetAsync(Action<GetQueryParameters> q = default, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default) {
+        public async Task<ApplicationsResponse> GetAsync(Action<GetQueryParameters> q = default, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default, CancellationToken cancellationToken = default) {
             var requestInfo = CreateGetRequestInformation(q, h, o);
-            return await RequestAdapter.SendAsync<ApplicationsResponse>(requestInfo, responseHandler);
+            return await RequestAdapter.SendAsync<ApplicationsResponse>(requestInfo, responseHandler, cancellationToken);
         }
         /// <summary>
         /// Add new entity to applications
+        /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="h">Request headers</param>
         /// <param name="model"></param>
         /// <param name="o">Request options</param>
         /// <param name="responseHandler">Response handler to use in place of the default response handling provided by the core service</param>
         /// </summary>
-        public async Task<ApiSdk.Models.Microsoft.Graph.Application> PostAsync(ApiSdk.Models.Microsoft.Graph.Application model, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default) {
+        public async Task<ApiSdk.Models.Microsoft.Graph.Application> PostAsync(ApiSdk.Models.Microsoft.Graph.Application model, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default, CancellationToken cancellationToken = default) {
             _ = model ?? throw new ArgumentNullException(nameof(model));
             var requestInfo = CreatePostRequestInformation(model, h, o);
-            return await RequestAdapter.SendAsync<ApiSdk.Models.Microsoft.Graph.Application>(requestInfo, responseHandler);
+            return await RequestAdapter.SendAsync<ApiSdk.Models.Microsoft.Graph.Application>(requestInfo, responseHandler, cancellationToken);
         }
         /// <summary>Get entities from applications</summary>
         public class GetQueryParameters : QueryParametersBase {

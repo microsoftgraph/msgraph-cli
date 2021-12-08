@@ -11,6 +11,7 @@ using System.CommandLine.Invocation;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 namespace ApiSdk.DeviceManagement.DeviceEnrollmentConfigurations.Item {
     /// <summary>Builds and executes requests for operations under \deviceManagement\deviceEnrollmentConfigurations\{deviceEnrollmentConfiguration-id}</summary>
@@ -30,11 +31,11 @@ namespace ApiSdk.DeviceManagement.DeviceEnrollmentConfigurations.Item {
         public Command BuildAssignmentsCommand() {
             var command = new Command("assignments");
             var builder = new ApiSdk.DeviceManagement.DeviceEnrollmentConfigurations.Item.Assignments.AssignmentsRequestBuilder(PathParameters, RequestAdapter);
-            command.AddCommand(builder.BuildListCommand());
-            command.AddCommand(builder.BuildCreateCommand());
             foreach (var cmd in builder.BuildCommand()) {
                 command.AddCommand(cmd);
             }
+            command.AddCommand(builder.BuildCreateCommand());
+            command.AddCommand(builder.BuildListCommand());
             return command;
         }
         /// <summary>
@@ -42,6 +43,7 @@ namespace ApiSdk.DeviceManagement.DeviceEnrollmentConfigurations.Item {
         /// </summary>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
+            command.Description = "The list of device enrollment configurations";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--deviceenrollmentconfiguration-id", description: "key: id of deviceEnrollmentConfiguration"));
             command.Handler = CommandHandler.Create<string>(async (deviceEnrollmentConfigurationId) => {
@@ -58,6 +60,7 @@ namespace ApiSdk.DeviceManagement.DeviceEnrollmentConfigurations.Item {
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
+            command.Description = "The list of device enrollment configurations";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--deviceenrollmentconfiguration-id", description: "key: id of deviceEnrollmentConfiguration"));
             command.AddOption(new Option<object>("--select", description: "Select properties to be returned"));
@@ -83,6 +86,7 @@ namespace ApiSdk.DeviceManagement.DeviceEnrollmentConfigurations.Item {
         /// </summary>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
+            command.Description = "The list of device enrollment configurations";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--deviceenrollmentconfiguration-id", description: "key: id of deviceEnrollmentConfiguration"));
             command.AddOption(new Option<string>("--body"));
@@ -173,36 +177,39 @@ namespace ApiSdk.DeviceManagement.DeviceEnrollmentConfigurations.Item {
         }
         /// <summary>
         /// The list of device enrollment configurations
+        /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="h">Request headers</param>
         /// <param name="o">Request options</param>
         /// <param name="responseHandler">Response handler to use in place of the default response handling provided by the core service</param>
         /// </summary>
-        public async Task DeleteAsync(Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default) {
+        public async Task DeleteAsync(Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default, CancellationToken cancellationToken = default) {
             var requestInfo = CreateDeleteRequestInformation(h, o);
-            await RequestAdapter.SendNoContentAsync(requestInfo, responseHandler);
+            await RequestAdapter.SendNoContentAsync(requestInfo, responseHandler, cancellationToken);
         }
         /// <summary>
         /// The list of device enrollment configurations
+        /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="h">Request headers</param>
         /// <param name="o">Request options</param>
         /// <param name="q">Request query parameters</param>
         /// <param name="responseHandler">Response handler to use in place of the default response handling provided by the core service</param>
         /// </summary>
-        public async Task<DeviceEnrollmentConfiguration> GetAsync(Action<GetQueryParameters> q = default, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default) {
+        public async Task<DeviceEnrollmentConfiguration> GetAsync(Action<GetQueryParameters> q = default, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default, CancellationToken cancellationToken = default) {
             var requestInfo = CreateGetRequestInformation(q, h, o);
-            return await RequestAdapter.SendAsync<DeviceEnrollmentConfiguration>(requestInfo, responseHandler);
+            return await RequestAdapter.SendAsync<DeviceEnrollmentConfiguration>(requestInfo, responseHandler, cancellationToken);
         }
         /// <summary>
         /// The list of device enrollment configurations
+        /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="h">Request headers</param>
         /// <param name="model"></param>
         /// <param name="o">Request options</param>
         /// <param name="responseHandler">Response handler to use in place of the default response handling provided by the core service</param>
         /// </summary>
-        public async Task PatchAsync(DeviceEnrollmentConfiguration model, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default) {
+        public async Task PatchAsync(DeviceEnrollmentConfiguration model, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default, CancellationToken cancellationToken = default) {
             _ = model ?? throw new ArgumentNullException(nameof(model));
             var requestInfo = CreatePatchRequestInformation(model, h, o);
-            await RequestAdapter.SendNoContentAsync(requestInfo, responseHandler);
+            await RequestAdapter.SendNoContentAsync(requestInfo, responseHandler, cancellationToken);
         }
         /// <summary>The list of device enrollment configurations</summary>
         public class GetQueryParameters : QueryParametersBase {

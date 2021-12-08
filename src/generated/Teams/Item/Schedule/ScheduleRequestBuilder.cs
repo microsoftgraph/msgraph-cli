@@ -18,6 +18,7 @@ using System.CommandLine.Invocation;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 namespace ApiSdk.Teams.Item.Schedule {
     /// <summary>Builds and executes requests for operations under \teams\{team-id}\schedule</summary>
@@ -33,6 +34,7 @@ namespace ApiSdk.Teams.Item.Schedule {
         /// </summary>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
+            command.Description = "The schedule of shifts for this team.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--team-id", description: "key: id of team"));
             command.Handler = CommandHandler.Create<string>(async (teamId) => {
@@ -49,6 +51,7 @@ namespace ApiSdk.Teams.Item.Schedule {
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
+            command.Description = "The schedule of shifts for this team.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--team-id", description: "key: id of team"));
             command.AddOption(new Option<object>("--select", description: "Select properties to be returned"));
@@ -72,31 +75,31 @@ namespace ApiSdk.Teams.Item.Schedule {
         public Command BuildOfferShiftRequestsCommand() {
             var command = new Command("offer-shift-requests");
             var builder = new ApiSdk.Teams.Item.Schedule.OfferShiftRequests.OfferShiftRequestsRequestBuilder(PathParameters, RequestAdapter);
-            command.AddCommand(builder.BuildListCommand());
-            command.AddCommand(builder.BuildCreateCommand());
             foreach (var cmd in builder.BuildCommand()) {
                 command.AddCommand(cmd);
             }
+            command.AddCommand(builder.BuildCreateCommand());
+            command.AddCommand(builder.BuildListCommand());
             return command;
         }
         public Command BuildOpenShiftChangeRequestsCommand() {
             var command = new Command("open-shift-change-requests");
             var builder = new ApiSdk.Teams.Item.Schedule.OpenShiftChangeRequests.OpenShiftChangeRequestsRequestBuilder(PathParameters, RequestAdapter);
-            command.AddCommand(builder.BuildListCommand());
-            command.AddCommand(builder.BuildCreateCommand());
             foreach (var cmd in builder.BuildCommand()) {
                 command.AddCommand(cmd);
             }
+            command.AddCommand(builder.BuildCreateCommand());
+            command.AddCommand(builder.BuildListCommand());
             return command;
         }
         public Command BuildOpenShiftsCommand() {
             var command = new Command("open-shifts");
             var builder = new ApiSdk.Teams.Item.Schedule.OpenShifts.OpenShiftsRequestBuilder(PathParameters, RequestAdapter);
-            command.AddCommand(builder.BuildListCommand());
-            command.AddCommand(builder.BuildCreateCommand());
             foreach (var cmd in builder.BuildCommand()) {
                 command.AddCommand(cmd);
             }
+            command.AddCommand(builder.BuildCreateCommand());
+            command.AddCommand(builder.BuildListCommand());
             return command;
         }
         /// <summary>
@@ -104,6 +107,7 @@ namespace ApiSdk.Teams.Item.Schedule {
         /// </summary>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
+            command.Description = "The schedule of shifts for this team.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--team-id", description: "key: id of team"));
             command.AddOption(new Option<string>("--body"));
@@ -122,11 +126,11 @@ namespace ApiSdk.Teams.Item.Schedule {
         public Command BuildSchedulingGroupsCommand() {
             var command = new Command("scheduling-groups");
             var builder = new ApiSdk.Teams.Item.Schedule.SchedulingGroups.SchedulingGroupsRequestBuilder(PathParameters, RequestAdapter);
-            command.AddCommand(builder.BuildListCommand());
-            command.AddCommand(builder.BuildCreateCommand());
             foreach (var cmd in builder.BuildCommand()) {
                 command.AddCommand(cmd);
             }
+            command.AddCommand(builder.BuildCreateCommand());
+            command.AddCommand(builder.BuildListCommand());
             return command;
         }
         public Command BuildShareCommand() {
@@ -138,51 +142,51 @@ namespace ApiSdk.Teams.Item.Schedule {
         public Command BuildShiftsCommand() {
             var command = new Command("shifts");
             var builder = new ApiSdk.Teams.Item.Schedule.Shifts.ShiftsRequestBuilder(PathParameters, RequestAdapter);
-            command.AddCommand(builder.BuildListCommand());
-            command.AddCommand(builder.BuildCreateCommand());
             foreach (var cmd in builder.BuildCommand()) {
                 command.AddCommand(cmd);
             }
+            command.AddCommand(builder.BuildCreateCommand());
+            command.AddCommand(builder.BuildListCommand());
             return command;
         }
         public Command BuildSwapShiftsChangeRequestsCommand() {
             var command = new Command("swap-shifts-change-requests");
             var builder = new ApiSdk.Teams.Item.Schedule.SwapShiftsChangeRequests.SwapShiftsChangeRequestsRequestBuilder(PathParameters, RequestAdapter);
-            command.AddCommand(builder.BuildListCommand());
-            command.AddCommand(builder.BuildCreateCommand());
             foreach (var cmd in builder.BuildCommand()) {
                 command.AddCommand(cmd);
             }
+            command.AddCommand(builder.BuildCreateCommand());
+            command.AddCommand(builder.BuildListCommand());
             return command;
         }
         public Command BuildTimeOffReasonsCommand() {
             var command = new Command("time-off-reasons");
             var builder = new ApiSdk.Teams.Item.Schedule.TimeOffReasons.TimeOffReasonsRequestBuilder(PathParameters, RequestAdapter);
-            command.AddCommand(builder.BuildListCommand());
-            command.AddCommand(builder.BuildCreateCommand());
             foreach (var cmd in builder.BuildCommand()) {
                 command.AddCommand(cmd);
             }
+            command.AddCommand(builder.BuildCreateCommand());
+            command.AddCommand(builder.BuildListCommand());
             return command;
         }
         public Command BuildTimeOffRequestsCommand() {
             var command = new Command("time-off-requests");
             var builder = new ApiSdk.Teams.Item.Schedule.TimeOffRequests.TimeOffRequestsRequestBuilder(PathParameters, RequestAdapter);
-            command.AddCommand(builder.BuildListCommand());
-            command.AddCommand(builder.BuildCreateCommand());
             foreach (var cmd in builder.BuildCommand()) {
                 command.AddCommand(cmd);
             }
+            command.AddCommand(builder.BuildCreateCommand());
+            command.AddCommand(builder.BuildListCommand());
             return command;
         }
         public Command BuildTimesOffCommand() {
             var command = new Command("times-off");
             var builder = new ApiSdk.Teams.Item.Schedule.TimesOff.TimesOffRequestBuilder(PathParameters, RequestAdapter);
-            command.AddCommand(builder.BuildListCommand());
-            command.AddCommand(builder.BuildCreateCommand());
             foreach (var cmd in builder.BuildCommand()) {
                 command.AddCommand(cmd);
             }
+            command.AddCommand(builder.BuildCreateCommand());
+            command.AddCommand(builder.BuildListCommand());
             return command;
         }
         /// <summary>
@@ -254,36 +258,39 @@ namespace ApiSdk.Teams.Item.Schedule {
         }
         /// <summary>
         /// The schedule of shifts for this team.
+        /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="h">Request headers</param>
         /// <param name="o">Request options</param>
         /// <param name="responseHandler">Response handler to use in place of the default response handling provided by the core service</param>
         /// </summary>
-        public async Task DeleteAsync(Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default) {
+        public async Task DeleteAsync(Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default, CancellationToken cancellationToken = default) {
             var requestInfo = CreateDeleteRequestInformation(h, o);
-            await RequestAdapter.SendNoContentAsync(requestInfo, responseHandler);
+            await RequestAdapter.SendNoContentAsync(requestInfo, responseHandler, cancellationToken);
         }
         /// <summary>
         /// The schedule of shifts for this team.
+        /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="h">Request headers</param>
         /// <param name="o">Request options</param>
         /// <param name="q">Request query parameters</param>
         /// <param name="responseHandler">Response handler to use in place of the default response handling provided by the core service</param>
         /// </summary>
-        public async Task<ApiSdk.Models.Microsoft.Graph.Schedule> GetAsync(Action<GetQueryParameters> q = default, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default) {
+        public async Task<ApiSdk.Models.Microsoft.Graph.Schedule> GetAsync(Action<GetQueryParameters> q = default, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default, CancellationToken cancellationToken = default) {
             var requestInfo = CreateGetRequestInformation(q, h, o);
-            return await RequestAdapter.SendAsync<ApiSdk.Models.Microsoft.Graph.Schedule>(requestInfo, responseHandler);
+            return await RequestAdapter.SendAsync<ApiSdk.Models.Microsoft.Graph.Schedule>(requestInfo, responseHandler, cancellationToken);
         }
         /// <summary>
         /// The schedule of shifts for this team.
+        /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="h">Request headers</param>
         /// <param name="model"></param>
         /// <param name="o">Request options</param>
         /// <param name="responseHandler">Response handler to use in place of the default response handling provided by the core service</param>
         /// </summary>
-        public async Task PatchAsync(ApiSdk.Models.Microsoft.Graph.Schedule model, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default) {
+        public async Task PatchAsync(ApiSdk.Models.Microsoft.Graph.Schedule model, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default, CancellationToken cancellationToken = default) {
             _ = model ?? throw new ArgumentNullException(nameof(model));
             var requestInfo = CreatePatchRequestInformation(model, h, o);
-            await RequestAdapter.SendNoContentAsync(requestInfo, responseHandler);
+            await RequestAdapter.SendNoContentAsync(requestInfo, responseHandler, cancellationToken);
         }
         /// <summary>The schedule of shifts for this team.</summary>
         public class GetQueryParameters : QueryParametersBase {

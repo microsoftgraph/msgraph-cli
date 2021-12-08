@@ -15,6 +15,7 @@ using System.CommandLine.Invocation;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 namespace ApiSdk.Me.Calendar {
     /// <summary>Builds and executes requests for operations under \me\calendar</summary>
@@ -36,21 +37,21 @@ namespace ApiSdk.Me.Calendar {
         public Command BuildCalendarPermissionsCommand() {
             var command = new Command("calendar-permissions");
             var builder = new ApiSdk.Me.Calendar.CalendarPermissions.CalendarPermissionsRequestBuilder(PathParameters, RequestAdapter);
-            command.AddCommand(builder.BuildListCommand());
-            command.AddCommand(builder.BuildCreateCommand());
             foreach (var cmd in builder.BuildCommand()) {
                 command.AddCommand(cmd);
             }
+            command.AddCommand(builder.BuildCreateCommand());
+            command.AddCommand(builder.BuildListCommand());
             return command;
         }
         public Command BuildCalendarViewCommand() {
             var command = new Command("calendar-view");
             var builder = new ApiSdk.Me.Calendar.CalendarView.CalendarViewRequestBuilder(PathParameters, RequestAdapter);
-            command.AddCommand(builder.BuildListCommand());
-            command.AddCommand(builder.BuildCreateCommand());
             foreach (var cmd in builder.BuildCommand()) {
                 command.AddCommand(cmd);
             }
+            command.AddCommand(builder.BuildCreateCommand());
+            command.AddCommand(builder.BuildListCommand());
             return command;
         }
         /// <summary>
@@ -58,6 +59,7 @@ namespace ApiSdk.Me.Calendar {
         /// </summary>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
+            command.Description = "The user's primary calendar. Read-only.";
             // Create options for all the parameters
             command.Handler = CommandHandler.Create(async () => {
                 var requestInfo = CreateDeleteRequestInformation();
@@ -70,11 +72,11 @@ namespace ApiSdk.Me.Calendar {
         public Command BuildEventsCommand() {
             var command = new Command("events");
             var builder = new ApiSdk.Me.Calendar.Events.EventsRequestBuilder(PathParameters, RequestAdapter);
-            command.AddCommand(builder.BuildListCommand());
-            command.AddCommand(builder.BuildCreateCommand());
             foreach (var cmd in builder.BuildCommand()) {
                 command.AddCommand(cmd);
             }
+            command.AddCommand(builder.BuildCreateCommand());
+            command.AddCommand(builder.BuildListCommand());
             return command;
         }
         /// <summary>
@@ -82,6 +84,7 @@ namespace ApiSdk.Me.Calendar {
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
+            command.Description = "The user's primary calendar. Read-only.";
             // Create options for all the parameters
             command.AddOption(new Option<object>("--select", description: "Select properties to be returned"));
             command.Handler = CommandHandler.Create<object>(async (select) => {
@@ -107,11 +110,11 @@ namespace ApiSdk.Me.Calendar {
         public Command BuildMultiValueExtendedPropertiesCommand() {
             var command = new Command("multi-value-extended-properties");
             var builder = new ApiSdk.Me.Calendar.MultiValueExtendedProperties.MultiValueExtendedPropertiesRequestBuilder(PathParameters, RequestAdapter);
-            command.AddCommand(builder.BuildListCommand());
-            command.AddCommand(builder.BuildCreateCommand());
             foreach (var cmd in builder.BuildCommand()) {
                 command.AddCommand(cmd);
             }
+            command.AddCommand(builder.BuildCreateCommand());
+            command.AddCommand(builder.BuildListCommand());
             return command;
         }
         /// <summary>
@@ -119,6 +122,7 @@ namespace ApiSdk.Me.Calendar {
         /// </summary>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
+            command.Description = "The user's primary calendar. Read-only.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--body"));
             command.Handler = CommandHandler.Create<string>(async (body) => {
@@ -135,11 +139,11 @@ namespace ApiSdk.Me.Calendar {
         public Command BuildSingleValueExtendedPropertiesCommand() {
             var command = new Command("single-value-extended-properties");
             var builder = new ApiSdk.Me.Calendar.SingleValueExtendedProperties.SingleValueExtendedPropertiesRequestBuilder(PathParameters, RequestAdapter);
-            command.AddCommand(builder.BuildListCommand());
-            command.AddCommand(builder.BuildCreateCommand());
             foreach (var cmd in builder.BuildCommand()) {
                 command.AddCommand(cmd);
             }
+            command.AddCommand(builder.BuildCreateCommand());
+            command.AddCommand(builder.BuildListCommand());
             return command;
         }
         /// <summary>
@@ -211,36 +215,39 @@ namespace ApiSdk.Me.Calendar {
         }
         /// <summary>
         /// The user's primary calendar. Read-only.
+        /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="h">Request headers</param>
         /// <param name="o">Request options</param>
         /// <param name="responseHandler">Response handler to use in place of the default response handling provided by the core service</param>
         /// </summary>
-        public async Task DeleteAsync(Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default) {
+        public async Task DeleteAsync(Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default, CancellationToken cancellationToken = default) {
             var requestInfo = CreateDeleteRequestInformation(h, o);
-            await RequestAdapter.SendNoContentAsync(requestInfo, responseHandler);
+            await RequestAdapter.SendNoContentAsync(requestInfo, responseHandler, cancellationToken);
         }
         /// <summary>
         /// The user's primary calendar. Read-only.
+        /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="h">Request headers</param>
         /// <param name="o">Request options</param>
         /// <param name="q">Request query parameters</param>
         /// <param name="responseHandler">Response handler to use in place of the default response handling provided by the core service</param>
         /// </summary>
-        public async Task<ApiSdk.Models.Microsoft.Graph.Calendar> GetAsync(Action<GetQueryParameters> q = default, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default) {
+        public async Task<ApiSdk.Models.Microsoft.Graph.Calendar> GetAsync(Action<GetQueryParameters> q = default, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default, CancellationToken cancellationToken = default) {
             var requestInfo = CreateGetRequestInformation(q, h, o);
-            return await RequestAdapter.SendAsync<ApiSdk.Models.Microsoft.Graph.Calendar>(requestInfo, responseHandler);
+            return await RequestAdapter.SendAsync<ApiSdk.Models.Microsoft.Graph.Calendar>(requestInfo, responseHandler, cancellationToken);
         }
         /// <summary>
         /// The user's primary calendar. Read-only.
+        /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="h">Request headers</param>
         /// <param name="model"></param>
         /// <param name="o">Request options</param>
         /// <param name="responseHandler">Response handler to use in place of the default response handling provided by the core service</param>
         /// </summary>
-        public async Task PatchAsync(ApiSdk.Models.Microsoft.Graph.Calendar model, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default) {
+        public async Task PatchAsync(ApiSdk.Models.Microsoft.Graph.Calendar model, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default, CancellationToken cancellationToken = default) {
             _ = model ?? throw new ArgumentNullException(nameof(model));
             var requestInfo = CreatePatchRequestInformation(model, h, o);
-            await RequestAdapter.SendNoContentAsync(requestInfo, responseHandler);
+            await RequestAdapter.SendNoContentAsync(requestInfo, responseHandler, cancellationToken);
         }
         /// <summary>The user's primary calendar. Read-only.</summary>
         public class GetQueryParameters : QueryParametersBase {

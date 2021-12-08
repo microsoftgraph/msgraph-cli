@@ -9,6 +9,7 @@ using System.CommandLine.Invocation;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 namespace ApiSdk.AppCatalogs.TeamsApps {
     /// <summary>Builds and executes requests for operations under \appCatalogs\teamsApps</summary>
@@ -19,21 +20,22 @@ namespace ApiSdk.AppCatalogs.TeamsApps {
         private IRequestAdapter RequestAdapter { get; set; }
         /// <summary>Url template to use to build the URL for the current request builder</summary>
         private string UrlTemplate { get; set; }
-        public Command[] BuildCommand() {
+        public List<Command> BuildCommand() {
             var builder = new TeamsAppRequestBuilder(PathParameters, RequestAdapter);
             var commands = new List<Command> { 
-                builder.BuildPatchCommand(),
-                builder.BuildGetCommand(),
                 builder.BuildAppDefinitionsCommand(),
                 builder.BuildDeleteCommand(),
+                builder.BuildGetCommand(),
+                builder.BuildPatchCommand(),
             };
-            return commands.ToArray();
+            return commands;
         }
         /// <summary>
         /// Create new navigation property to teamsApps for appCatalogs
         /// </summary>
         public Command BuildCreateCommand() {
             var command = new Command("create");
+            command.Description = "Create new navigation property to teamsApps for appCatalogs";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--body"));
             command.Handler = CommandHandler.Create<string>(async (body) => {
@@ -57,6 +59,7 @@ namespace ApiSdk.AppCatalogs.TeamsApps {
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
+            command.Description = "Get teamsApps from appCatalogs";
             // Create options for all the parameters
             command.AddOption(new Option<int?>("--top", description: "Show only the first n items"));
             command.AddOption(new Option<int?>("--skip", description: "Skip the first n items"));
@@ -141,26 +144,28 @@ namespace ApiSdk.AppCatalogs.TeamsApps {
         }
         /// <summary>
         /// Get teamsApps from appCatalogs
+        /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="h">Request headers</param>
         /// <param name="o">Request options</param>
         /// <param name="q">Request query parameters</param>
         /// <param name="responseHandler">Response handler to use in place of the default response handling provided by the core service</param>
         /// </summary>
-        public async Task<TeamsAppsResponse> GetAsync(Action<GetQueryParameters> q = default, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default) {
+        public async Task<TeamsAppsResponse> GetAsync(Action<GetQueryParameters> q = default, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default, CancellationToken cancellationToken = default) {
             var requestInfo = CreateGetRequestInformation(q, h, o);
-            return await RequestAdapter.SendAsync<TeamsAppsResponse>(requestInfo, responseHandler);
+            return await RequestAdapter.SendAsync<TeamsAppsResponse>(requestInfo, responseHandler, cancellationToken);
         }
         /// <summary>
         /// Create new navigation property to teamsApps for appCatalogs
+        /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="h">Request headers</param>
         /// <param name="model"></param>
         /// <param name="o">Request options</param>
         /// <param name="responseHandler">Response handler to use in place of the default response handling provided by the core service</param>
         /// </summary>
-        public async Task<ApiSdk.Models.Microsoft.Graph.TeamsApp> PostAsync(ApiSdk.Models.Microsoft.Graph.TeamsApp model, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default) {
+        public async Task<ApiSdk.Models.Microsoft.Graph.TeamsApp> PostAsync(ApiSdk.Models.Microsoft.Graph.TeamsApp model, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default, CancellationToken cancellationToken = default) {
             _ = model ?? throw new ArgumentNullException(nameof(model));
             var requestInfo = CreatePostRequestInformation(model, h, o);
-            return await RequestAdapter.SendAsync<ApiSdk.Models.Microsoft.Graph.TeamsApp>(requestInfo, responseHandler);
+            return await RequestAdapter.SendAsync<ApiSdk.Models.Microsoft.Graph.TeamsApp>(requestInfo, responseHandler, cancellationToken);
         }
         /// <summary>Get teamsApps from appCatalogs</summary>
         public class GetQueryParameters : QueryParametersBase {

@@ -15,6 +15,7 @@ using System.CommandLine.Invocation;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 namespace ApiSdk.IdentityGovernance.EntitlementManagement {
     /// <summary>Builds and executes requests for operations under \identityGovernance\entitlementManagement</summary>
@@ -28,61 +29,61 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement {
         public Command BuildAccessPackageAssignmentApprovalsCommand() {
             var command = new Command("access-package-assignment-approvals");
             var builder = new ApiSdk.IdentityGovernance.EntitlementManagement.AccessPackageAssignmentApprovals.AccessPackageAssignmentApprovalsRequestBuilder(PathParameters, RequestAdapter);
-            command.AddCommand(builder.BuildListCommand());
-            command.AddCommand(builder.BuildCreateCommand());
             foreach (var cmd in builder.BuildCommand()) {
                 command.AddCommand(cmd);
             }
+            command.AddCommand(builder.BuildCreateCommand());
+            command.AddCommand(builder.BuildListCommand());
             return command;
         }
         public Command BuildAccessPackagesCommand() {
             var command = new Command("access-packages");
             var builder = new ApiSdk.IdentityGovernance.EntitlementManagement.AccessPackages.AccessPackagesRequestBuilder(PathParameters, RequestAdapter);
-            command.AddCommand(builder.BuildListCommand());
-            command.AddCommand(builder.BuildCreateCommand());
             foreach (var cmd in builder.BuildCommand()) {
                 command.AddCommand(cmd);
             }
+            command.AddCommand(builder.BuildCreateCommand());
+            command.AddCommand(builder.BuildListCommand());
             return command;
         }
         public Command BuildAssignmentRequestsCommand() {
             var command = new Command("assignment-requests");
             var builder = new ApiSdk.IdentityGovernance.EntitlementManagement.AssignmentRequests.AssignmentRequestsRequestBuilder(PathParameters, RequestAdapter);
-            command.AddCommand(builder.BuildListCommand());
-            command.AddCommand(builder.BuildCreateCommand());
             foreach (var cmd in builder.BuildCommand()) {
                 command.AddCommand(cmd);
             }
+            command.AddCommand(builder.BuildCreateCommand());
+            command.AddCommand(builder.BuildListCommand());
             return command;
         }
         public Command BuildAssignmentsCommand() {
             var command = new Command("assignments");
             var builder = new ApiSdk.IdentityGovernance.EntitlementManagement.Assignments.AssignmentsRequestBuilder(PathParameters, RequestAdapter);
-            command.AddCommand(builder.BuildListCommand());
-            command.AddCommand(builder.BuildCreateCommand());
             foreach (var cmd in builder.BuildCommand()) {
                 command.AddCommand(cmd);
             }
+            command.AddCommand(builder.BuildCreateCommand());
+            command.AddCommand(builder.BuildListCommand());
             return command;
         }
         public Command BuildCatalogsCommand() {
             var command = new Command("catalogs");
             var builder = new ApiSdk.IdentityGovernance.EntitlementManagement.Catalogs.CatalogsRequestBuilder(PathParameters, RequestAdapter);
-            command.AddCommand(builder.BuildListCommand());
-            command.AddCommand(builder.BuildCreateCommand());
             foreach (var cmd in builder.BuildCommand()) {
                 command.AddCommand(cmd);
             }
+            command.AddCommand(builder.BuildCreateCommand());
+            command.AddCommand(builder.BuildListCommand());
             return command;
         }
         public Command BuildConnectedOrganizationsCommand() {
             var command = new Command("connected-organizations");
             var builder = new ApiSdk.IdentityGovernance.EntitlementManagement.ConnectedOrganizations.ConnectedOrganizationsRequestBuilder(PathParameters, RequestAdapter);
-            command.AddCommand(builder.BuildListCommand());
-            command.AddCommand(builder.BuildCreateCommand());
             foreach (var cmd in builder.BuildCommand()) {
                 command.AddCommand(cmd);
             }
+            command.AddCommand(builder.BuildCreateCommand());
+            command.AddCommand(builder.BuildListCommand());
             return command;
         }
         /// <summary>
@@ -90,6 +91,7 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement {
         /// </summary>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
+            command.Description = "Delete navigation property entitlementManagement for identityGovernance";
             // Create options for all the parameters
             command.Handler = CommandHandler.Create(async () => {
                 var requestInfo = CreateDeleteRequestInformation();
@@ -104,6 +106,7 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement {
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
+            command.Description = "Get entitlementManagement from identityGovernance";
             // Create options for all the parameters
             command.AddOption(new Option<object>("--select", description: "Select properties to be returned"));
             command.AddOption(new Option<object>("--expand", description: "Expand related entities"));
@@ -127,6 +130,7 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement {
         /// </summary>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
+            command.Description = "Update the navigation property entitlementManagement in identityGovernance";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--body"));
             command.Handler = CommandHandler.Create<string>(async (body) => {
@@ -143,9 +147,9 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement {
         public Command BuildSettingsCommand() {
             var command = new Command("settings");
             var builder = new ApiSdk.IdentityGovernance.EntitlementManagement.Settings.SettingsRequestBuilder(PathParameters, RequestAdapter);
-            command.AddCommand(builder.BuildPatchCommand());
-            command.AddCommand(builder.BuildGetCommand());
             command.AddCommand(builder.BuildDeleteCommand());
+            command.AddCommand(builder.BuildGetCommand());
+            command.AddCommand(builder.BuildPatchCommand());
             return command;
         }
         /// <summary>
@@ -217,36 +221,39 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement {
         }
         /// <summary>
         /// Delete navigation property entitlementManagement for identityGovernance
+        /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="h">Request headers</param>
         /// <param name="o">Request options</param>
         /// <param name="responseHandler">Response handler to use in place of the default response handling provided by the core service</param>
         /// </summary>
-        public async Task DeleteAsync(Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default) {
+        public async Task DeleteAsync(Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default, CancellationToken cancellationToken = default) {
             var requestInfo = CreateDeleteRequestInformation(h, o);
-            await RequestAdapter.SendNoContentAsync(requestInfo, responseHandler);
+            await RequestAdapter.SendNoContentAsync(requestInfo, responseHandler, cancellationToken);
         }
         /// <summary>
         /// Get entitlementManagement from identityGovernance
+        /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="h">Request headers</param>
         /// <param name="o">Request options</param>
         /// <param name="q">Request query parameters</param>
         /// <param name="responseHandler">Response handler to use in place of the default response handling provided by the core service</param>
         /// </summary>
-        public async Task<ApiSdk.Models.Microsoft.Graph.EntitlementManagement> GetAsync(Action<GetQueryParameters> q = default, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default) {
+        public async Task<ApiSdk.Models.Microsoft.Graph.EntitlementManagement> GetAsync(Action<GetQueryParameters> q = default, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default, CancellationToken cancellationToken = default) {
             var requestInfo = CreateGetRequestInformation(q, h, o);
-            return await RequestAdapter.SendAsync<ApiSdk.Models.Microsoft.Graph.EntitlementManagement>(requestInfo, responseHandler);
+            return await RequestAdapter.SendAsync<ApiSdk.Models.Microsoft.Graph.EntitlementManagement>(requestInfo, responseHandler, cancellationToken);
         }
         /// <summary>
         /// Update the navigation property entitlementManagement in identityGovernance
+        /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="h">Request headers</param>
         /// <param name="model"></param>
         /// <param name="o">Request options</param>
         /// <param name="responseHandler">Response handler to use in place of the default response handling provided by the core service</param>
         /// </summary>
-        public async Task PatchAsync(ApiSdk.Models.Microsoft.Graph.EntitlementManagement model, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default) {
+        public async Task PatchAsync(ApiSdk.Models.Microsoft.Graph.EntitlementManagement model, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default, CancellationToken cancellationToken = default) {
             _ = model ?? throw new ArgumentNullException(nameof(model));
             var requestInfo = CreatePatchRequestInformation(model, h, o);
-            await RequestAdapter.SendNoContentAsync(requestInfo, responseHandler);
+            await RequestAdapter.SendNoContentAsync(requestInfo, responseHandler, cancellationToken);
         }
         /// <summary>Get entitlementManagement from identityGovernance</summary>
         public class GetQueryParameters : QueryParametersBase {

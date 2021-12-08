@@ -8,6 +8,7 @@ using System.CommandLine.Invocation;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 namespace ApiSdk.Sites.Item.ExternalColumns {
     /// <summary>Builds and executes requests for operations under \sites\{site-id}\externalColumns</summary>
@@ -23,6 +24,7 @@ namespace ApiSdk.Sites.Item.ExternalColumns {
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
+            command.Description = "The collection of column definitions available in the site that are referenced from the sites in the parent hierarchy of the current site.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--site-id", description: "key: id of site"));
             command.AddOption(new Option<int?>("--top", description: "Show only the first n items"));
@@ -98,14 +100,15 @@ namespace ApiSdk.Sites.Item.ExternalColumns {
         }
         /// <summary>
         /// The collection of column definitions available in the site that are referenced from the sites in the parent hierarchy of the current site.
+        /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="h">Request headers</param>
         /// <param name="o">Request options</param>
         /// <param name="q">Request query parameters</param>
         /// <param name="responseHandler">Response handler to use in place of the default response handling provided by the core service</param>
         /// </summary>
-        public async Task<ExternalColumnsResponse> GetAsync(Action<GetQueryParameters> q = default, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default) {
+        public async Task<ExternalColumnsResponse> GetAsync(Action<GetQueryParameters> q = default, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default, CancellationToken cancellationToken = default) {
             var requestInfo = CreateGetRequestInformation(q, h, o);
-            return await RequestAdapter.SendAsync<ExternalColumnsResponse>(requestInfo, responseHandler);
+            return await RequestAdapter.SendAsync<ExternalColumnsResponse>(requestInfo, responseHandler, cancellationToken);
         }
         /// <summary>The collection of column definitions available in the site that are referenced from the sites in the parent hierarchy of the current site.</summary>
         public class GetQueryParameters : QueryParametersBase {

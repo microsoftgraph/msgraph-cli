@@ -8,6 +8,7 @@ using System.CommandLine.Invocation;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 namespace ApiSdk.Users.Item.Insights.Used.Item.Resource.WorkbookRange.RowsBelowWithCount {
     /// <summary>Builds and executes requests for operations under \users\{user-id}\insights\used\{usedInsight-id}\resource\microsoft.graph.workbookRange\microsoft.graph.rowsBelow(count={count})</summary>
@@ -23,6 +24,7 @@ namespace ApiSdk.Users.Item.Insights.Used.Item.Resource.WorkbookRange.RowsBelowW
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
+            command.Description = "Invoke function rowsBelow";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--user-id", description: "key: id of user"));
             command.AddOption(new Option<string>("--usedinsight-id", description: "key: id of usedInsight"));
@@ -75,13 +77,14 @@ namespace ApiSdk.Users.Item.Insights.Used.Item.Resource.WorkbookRange.RowsBelowW
         }
         /// <summary>
         /// Invoke function rowsBelow
+        /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="h">Request headers</param>
         /// <param name="o">Request options</param>
         /// <param name="responseHandler">Response handler to use in place of the default response handling provided by the core service</param>
         /// </summary>
-        public async Task<RowsBelowWithCountResponse> GetAsync(Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default) {
+        public async Task<RowsBelowWithCountResponse> GetAsync(Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default, CancellationToken cancellationToken = default) {
             var requestInfo = CreateGetRequestInformation(h, o);
-            return await RequestAdapter.SendAsync<RowsBelowWithCountResponse>(requestInfo, responseHandler);
+            return await RequestAdapter.SendAsync<RowsBelowWithCountResponse>(requestInfo, responseHandler, cancellationToken);
         }
         /// <summary>Union type wrapper for classes workbookRange</summary>
         public class RowsBelowWithCountResponse : IParsable {

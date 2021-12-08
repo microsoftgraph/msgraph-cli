@@ -8,6 +8,7 @@ using System.CommandLine.Invocation;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 namespace ApiSdk.Me.Insights.Trending.Item.Resource.WorkbookRange.Insert {
     /// <summary>Builds and executes requests for operations under \me\insights\trending\{trending-id}\resource\microsoft.graph.workbookRange\microsoft.graph.insert</summary>
@@ -23,6 +24,7 @@ namespace ApiSdk.Me.Insights.Trending.Item.Resource.WorkbookRange.Insert {
         /// </summary>
         public Command BuildPostCommand() {
             var command = new Command("post");
+            command.Description = "Invoke action insert";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--trending-id", description: "key: id of trending"));
             command.AddOption(new Option<string>("--body"));
@@ -76,15 +78,16 @@ namespace ApiSdk.Me.Insights.Trending.Item.Resource.WorkbookRange.Insert {
         }
         /// <summary>
         /// Invoke action insert
+        /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="h">Request headers</param>
         /// <param name="model"></param>
         /// <param name="o">Request options</param>
         /// <param name="responseHandler">Response handler to use in place of the default response handling provided by the core service</param>
         /// </summary>
-        public async Task<InsertResponse> PostAsync(InsertRequestBody model, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default) {
+        public async Task<InsertResponse> PostAsync(InsertRequestBody model, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default, CancellationToken cancellationToken = default) {
             _ = model ?? throw new ArgumentNullException(nameof(model));
             var requestInfo = CreatePostRequestInformation(model, h, o);
-            return await RequestAdapter.SendAsync<InsertResponse>(requestInfo, responseHandler);
+            return await RequestAdapter.SendAsync<InsertResponse>(requestInfo, responseHandler, cancellationToken);
         }
         /// <summary>Union type wrapper for classes workbookRange</summary>
         public class InsertResponse : IParsable {

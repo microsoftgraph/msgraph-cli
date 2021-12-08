@@ -8,6 +8,7 @@ using System.CommandLine.Invocation;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 namespace ApiSdk.Directory.AdministrativeUnits.Item.Members {
     /// <summary>Builds and executes requests for operations under \directory\administrativeUnits\{administrativeUnit-id}\members</summary>
@@ -23,6 +24,7 @@ namespace ApiSdk.Directory.AdministrativeUnits.Item.Members {
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
+            command.Description = "Users and groups that are members of this Adminsitrative Unit. HTTP Methods: GET (list members), POST (add members), DELETE (remove members).";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--administrativeunit-id", description: "key: id of administrativeUnit"));
             command.AddOption(new Option<int?>("--top", description: "Show only the first n items"));
@@ -98,14 +100,15 @@ namespace ApiSdk.Directory.AdministrativeUnits.Item.Members {
         }
         /// <summary>
         /// Users and groups that are members of this Adminsitrative Unit. HTTP Methods: GET (list members), POST (add members), DELETE (remove members).
+        /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="h">Request headers</param>
         /// <param name="o">Request options</param>
         /// <param name="q">Request query parameters</param>
         /// <param name="responseHandler">Response handler to use in place of the default response handling provided by the core service</param>
         /// </summary>
-        public async Task<MembersResponse> GetAsync(Action<GetQueryParameters> q = default, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default) {
+        public async Task<MembersResponse> GetAsync(Action<GetQueryParameters> q = default, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default, CancellationToken cancellationToken = default) {
             var requestInfo = CreateGetRequestInformation(q, h, o);
-            return await RequestAdapter.SendAsync<MembersResponse>(requestInfo, responseHandler);
+            return await RequestAdapter.SendAsync<MembersResponse>(requestInfo, responseHandler, cancellationToken);
         }
         /// <summary>Users and groups that are members of this Adminsitrative Unit. HTTP Methods: GET (list members), POST (add members), DELETE (remove members).</summary>
         public class GetQueryParameters : QueryParametersBase {

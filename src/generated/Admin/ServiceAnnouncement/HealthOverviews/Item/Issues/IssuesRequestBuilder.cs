@@ -9,6 +9,7 @@ using System.CommandLine.Invocation;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 namespace ApiSdk.Admin.ServiceAnnouncement.HealthOverviews.Item.Issues {
     /// <summary>Builds and executes requests for operations under \admin\serviceAnnouncement\healthOverviews\{serviceHealth-id}\issues</summary>
@@ -19,20 +20,21 @@ namespace ApiSdk.Admin.ServiceAnnouncement.HealthOverviews.Item.Issues {
         private IRequestAdapter RequestAdapter { get; set; }
         /// <summary>Url template to use to build the URL for the current request builder</summary>
         private string UrlTemplate { get; set; }
-        public Command[] BuildCommand() {
+        public List<Command> BuildCommand() {
             var builder = new ServiceHealthIssueRequestBuilder(PathParameters, RequestAdapter);
             var commands = new List<Command> { 
-                builder.BuildPatchCommand(),
-                builder.BuildGetCommand(),
                 builder.BuildDeleteCommand(),
+                builder.BuildGetCommand(),
+                builder.BuildPatchCommand(),
             };
-            return commands.ToArray();
+            return commands;
         }
         /// <summary>
         /// A collection of issues happened on the service, with detailed information for each issue.
         /// </summary>
         public Command BuildCreateCommand() {
             var command = new Command("create");
+            command.Description = "A collection of issues happened on the service, with detailed information for each issue.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--servicehealth-id", description: "key: id of serviceHealth"));
             command.AddOption(new Option<string>("--body"));
@@ -58,6 +60,7 @@ namespace ApiSdk.Admin.ServiceAnnouncement.HealthOverviews.Item.Issues {
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
+            command.Description = "A collection of issues happened on the service, with detailed information for each issue.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--servicehealth-id", description: "key: id of serviceHealth"));
             command.AddOption(new Option<int?>("--top", description: "Show only the first n items"));
@@ -144,26 +147,28 @@ namespace ApiSdk.Admin.ServiceAnnouncement.HealthOverviews.Item.Issues {
         }
         /// <summary>
         /// A collection of issues happened on the service, with detailed information for each issue.
+        /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="h">Request headers</param>
         /// <param name="o">Request options</param>
         /// <param name="q">Request query parameters</param>
         /// <param name="responseHandler">Response handler to use in place of the default response handling provided by the core service</param>
         /// </summary>
-        public async Task<IssuesResponse> GetAsync(Action<GetQueryParameters> q = default, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default) {
+        public async Task<IssuesResponse> GetAsync(Action<GetQueryParameters> q = default, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default, CancellationToken cancellationToken = default) {
             var requestInfo = CreateGetRequestInformation(q, h, o);
-            return await RequestAdapter.SendAsync<IssuesResponse>(requestInfo, responseHandler);
+            return await RequestAdapter.SendAsync<IssuesResponse>(requestInfo, responseHandler, cancellationToken);
         }
         /// <summary>
         /// A collection of issues happened on the service, with detailed information for each issue.
+        /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="h">Request headers</param>
         /// <param name="model"></param>
         /// <param name="o">Request options</param>
         /// <param name="responseHandler">Response handler to use in place of the default response handling provided by the core service</param>
         /// </summary>
-        public async Task<ServiceHealthIssue> PostAsync(ServiceHealthIssue model, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default) {
+        public async Task<ServiceHealthIssue> PostAsync(ServiceHealthIssue model, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default, CancellationToken cancellationToken = default) {
             _ = model ?? throw new ArgumentNullException(nameof(model));
             var requestInfo = CreatePostRequestInformation(model, h, o);
-            return await RequestAdapter.SendAsync<ServiceHealthIssue>(requestInfo, responseHandler);
+            return await RequestAdapter.SendAsync<ServiceHealthIssue>(requestInfo, responseHandler, cancellationToken);
         }
         /// <summary>A collection of issues happened on the service, with detailed information for each issue.</summary>
         public class GetQueryParameters : QueryParametersBase {

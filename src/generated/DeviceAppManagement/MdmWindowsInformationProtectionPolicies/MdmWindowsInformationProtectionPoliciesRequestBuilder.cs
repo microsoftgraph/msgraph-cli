@@ -9,6 +9,7 @@ using System.CommandLine.Invocation;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 namespace ApiSdk.DeviceAppManagement.MdmWindowsInformationProtectionPolicies {
     /// <summary>Builds and executes requests for operations under \deviceAppManagement\mdmWindowsInformationProtectionPolicies</summary>
@@ -19,20 +20,21 @@ namespace ApiSdk.DeviceAppManagement.MdmWindowsInformationProtectionPolicies {
         private IRequestAdapter RequestAdapter { get; set; }
         /// <summary>Url template to use to build the URL for the current request builder</summary>
         private string UrlTemplate { get; set; }
-        public Command[] BuildCommand() {
+        public List<Command> BuildCommand() {
             var builder = new MdmWindowsInformationProtectionPolicyRequestBuilder(PathParameters, RequestAdapter);
             var commands = new List<Command> { 
-                builder.BuildPatchCommand(),
-                builder.BuildGetCommand(),
                 builder.BuildDeleteCommand(),
+                builder.BuildGetCommand(),
+                builder.BuildPatchCommand(),
             };
-            return commands.ToArray();
+            return commands;
         }
         /// <summary>
         /// Windows information protection for apps running on devices which are MDM enrolled.
         /// </summary>
         public Command BuildCreateCommand() {
             var command = new Command("create");
+            command.Description = "Windows information protection for apps running on devices which are MDM enrolled.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--body"));
             command.Handler = CommandHandler.Create<string>(async (body) => {
@@ -56,6 +58,7 @@ namespace ApiSdk.DeviceAppManagement.MdmWindowsInformationProtectionPolicies {
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
+            command.Description = "Windows information protection for apps running on devices which are MDM enrolled.";
             // Create options for all the parameters
             command.AddOption(new Option<int?>("--top", description: "Show only the first n items"));
             command.AddOption(new Option<int?>("--skip", description: "Skip the first n items"));
@@ -140,26 +143,28 @@ namespace ApiSdk.DeviceAppManagement.MdmWindowsInformationProtectionPolicies {
         }
         /// <summary>
         /// Windows information protection for apps running on devices which are MDM enrolled.
+        /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="h">Request headers</param>
         /// <param name="o">Request options</param>
         /// <param name="q">Request query parameters</param>
         /// <param name="responseHandler">Response handler to use in place of the default response handling provided by the core service</param>
         /// </summary>
-        public async Task<MdmWindowsInformationProtectionPoliciesResponse> GetAsync(Action<GetQueryParameters> q = default, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default) {
+        public async Task<MdmWindowsInformationProtectionPoliciesResponse> GetAsync(Action<GetQueryParameters> q = default, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default, CancellationToken cancellationToken = default) {
             var requestInfo = CreateGetRequestInformation(q, h, o);
-            return await RequestAdapter.SendAsync<MdmWindowsInformationProtectionPoliciesResponse>(requestInfo, responseHandler);
+            return await RequestAdapter.SendAsync<MdmWindowsInformationProtectionPoliciesResponse>(requestInfo, responseHandler, cancellationToken);
         }
         /// <summary>
         /// Windows information protection for apps running on devices which are MDM enrolled.
+        /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="h">Request headers</param>
         /// <param name="model"></param>
         /// <param name="o">Request options</param>
         /// <param name="responseHandler">Response handler to use in place of the default response handling provided by the core service</param>
         /// </summary>
-        public async Task<MdmWindowsInformationProtectionPolicy> PostAsync(MdmWindowsInformationProtectionPolicy model, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default) {
+        public async Task<MdmWindowsInformationProtectionPolicy> PostAsync(MdmWindowsInformationProtectionPolicy model, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default, CancellationToken cancellationToken = default) {
             _ = model ?? throw new ArgumentNullException(nameof(model));
             var requestInfo = CreatePostRequestInformation(model, h, o);
-            return await RequestAdapter.SendAsync<MdmWindowsInformationProtectionPolicy>(requestInfo, responseHandler);
+            return await RequestAdapter.SendAsync<MdmWindowsInformationProtectionPolicy>(requestInfo, responseHandler, cancellationToken);
         }
         /// <summary>Windows information protection for apps running on devices which are MDM enrolled.</summary>
         public class GetQueryParameters : QueryParametersBase {

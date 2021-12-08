@@ -8,6 +8,7 @@ using System.CommandLine.Invocation;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 namespace ApiSdk.Agreements.Item.Files.Item.Versions.Item {
     /// <summary>Builds and executes requests for operations under \agreements\{agreement-id}\files\{agreementFileLocalization-id}\versions\{agreementFileVersion-id}</summary>
@@ -23,6 +24,7 @@ namespace ApiSdk.Agreements.Item.Files.Item.Versions.Item {
         /// </summary>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
+            command.Description = "Delete navigation property versions for agreements";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--agreement-id", description: "key: id of agreement"));
             command.AddOption(new Option<string>("--agreementfilelocalization-id", description: "key: id of agreementFileLocalization"));
@@ -43,6 +45,7 @@ namespace ApiSdk.Agreements.Item.Files.Item.Versions.Item {
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
+            command.Description = "Get versions from agreements";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--agreement-id", description: "key: id of agreement"));
             command.AddOption(new Option<string>("--agreementfilelocalization-id", description: "key: id of agreementFileLocalization"));
@@ -72,6 +75,7 @@ namespace ApiSdk.Agreements.Item.Files.Item.Versions.Item {
         /// </summary>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
+            command.Description = "Update the navigation property versions in agreements";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--agreement-id", description: "key: id of agreement"));
             command.AddOption(new Option<string>("--agreementfilelocalization-id", description: "key: id of agreementFileLocalization"));
@@ -160,36 +164,39 @@ namespace ApiSdk.Agreements.Item.Files.Item.Versions.Item {
         }
         /// <summary>
         /// Delete navigation property versions for agreements
+        /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="h">Request headers</param>
         /// <param name="o">Request options</param>
         /// <param name="responseHandler">Response handler to use in place of the default response handling provided by the core service</param>
         /// </summary>
-        public async Task DeleteAsync(Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default) {
+        public async Task DeleteAsync(Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default, CancellationToken cancellationToken = default) {
             var requestInfo = CreateDeleteRequestInformation(h, o);
-            await RequestAdapter.SendNoContentAsync(requestInfo, responseHandler);
+            await RequestAdapter.SendNoContentAsync(requestInfo, responseHandler, cancellationToken);
         }
         /// <summary>
         /// Get versions from agreements
+        /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="h">Request headers</param>
         /// <param name="o">Request options</param>
         /// <param name="q">Request query parameters</param>
         /// <param name="responseHandler">Response handler to use in place of the default response handling provided by the core service</param>
         /// </summary>
-        public async Task<AgreementFileVersion> GetAsync(Action<GetQueryParameters> q = default, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default) {
+        public async Task<AgreementFileVersion> GetAsync(Action<GetQueryParameters> q = default, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default, CancellationToken cancellationToken = default) {
             var requestInfo = CreateGetRequestInformation(q, h, o);
-            return await RequestAdapter.SendAsync<AgreementFileVersion>(requestInfo, responseHandler);
+            return await RequestAdapter.SendAsync<AgreementFileVersion>(requestInfo, responseHandler, cancellationToken);
         }
         /// <summary>
         /// Update the navigation property versions in agreements
+        /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="h">Request headers</param>
         /// <param name="model"></param>
         /// <param name="o">Request options</param>
         /// <param name="responseHandler">Response handler to use in place of the default response handling provided by the core service</param>
         /// </summary>
-        public async Task PatchAsync(AgreementFileVersion model, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default) {
+        public async Task PatchAsync(AgreementFileVersion model, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default, CancellationToken cancellationToken = default) {
             _ = model ?? throw new ArgumentNullException(nameof(model));
             var requestInfo = CreatePatchRequestInformation(model, h, o);
-            await RequestAdapter.SendNoContentAsync(requestInfo, responseHandler);
+            await RequestAdapter.SendNoContentAsync(requestInfo, responseHandler, cancellationToken);
         }
         /// <summary>Get versions from agreements</summary>
         public class GetQueryParameters : QueryParametersBase {

@@ -9,6 +9,7 @@ using System.CommandLine.Invocation;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 namespace ApiSdk.Workbooks.Item.Children.Item {
     /// <summary>Builds and executes requests for operations under \workbooks\{driveItem-id}\children\{driveItem-id1}</summary>
@@ -22,8 +23,8 @@ namespace ApiSdk.Workbooks.Item.Children.Item {
         public Command BuildContentCommand() {
             var command = new Command("content");
             var builder = new ApiSdk.Workbooks.Item.Children.Item.Content.ContentRequestBuilder(PathParameters, RequestAdapter);
-            command.AddCommand(builder.BuildPutCommand());
             command.AddCommand(builder.BuildGetCommand());
+            command.AddCommand(builder.BuildPutCommand());
             return command;
         }
         /// <summary>
@@ -31,6 +32,7 @@ namespace ApiSdk.Workbooks.Item.Children.Item {
         /// </summary>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
+            command.Description = "Collection containing Item objects for the immediate children of Item. Only items representing folders have children. Read-only. Nullable.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--driveitem-id", description: "key: id of driveItem"));
             command.AddOption(new Option<string>("--driveitem-id1", description: "key: id of driveItem"));
@@ -49,6 +51,7 @@ namespace ApiSdk.Workbooks.Item.Children.Item {
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
+            command.Description = "Collection containing Item objects for the immediate children of Item. Only items representing folders have children. Read-only. Nullable.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--driveitem-id", description: "key: id of driveItem"));
             command.AddOption(new Option<string>("--driveitem-id1", description: "key: id of driveItem"));
@@ -76,6 +79,7 @@ namespace ApiSdk.Workbooks.Item.Children.Item {
         /// </summary>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
+            command.Description = "Collection containing Item objects for the immediate children of Item. Only items representing folders have children. Read-only. Nullable.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--driveitem-id", description: "key: id of driveItem"));
             command.AddOption(new Option<string>("--driveitem-id1", description: "key: id of driveItem"));
@@ -162,36 +166,39 @@ namespace ApiSdk.Workbooks.Item.Children.Item {
         }
         /// <summary>
         /// Collection containing Item objects for the immediate children of Item. Only items representing folders have children. Read-only. Nullable.
+        /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="h">Request headers</param>
         /// <param name="o">Request options</param>
         /// <param name="responseHandler">Response handler to use in place of the default response handling provided by the core service</param>
         /// </summary>
-        public async Task DeleteAsync(Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default) {
+        public async Task DeleteAsync(Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default, CancellationToken cancellationToken = default) {
             var requestInfo = CreateDeleteRequestInformation(h, o);
-            await RequestAdapter.SendNoContentAsync(requestInfo, responseHandler);
+            await RequestAdapter.SendNoContentAsync(requestInfo, responseHandler, cancellationToken);
         }
         /// <summary>
         /// Collection containing Item objects for the immediate children of Item. Only items representing folders have children. Read-only. Nullable.
+        /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="h">Request headers</param>
         /// <param name="o">Request options</param>
         /// <param name="q">Request query parameters</param>
         /// <param name="responseHandler">Response handler to use in place of the default response handling provided by the core service</param>
         /// </summary>
-        public async Task<ApiSdk.Models.Microsoft.Graph.DriveItem> GetAsync(Action<GetQueryParameters> q = default, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default) {
+        public async Task<ApiSdk.Models.Microsoft.Graph.DriveItem> GetAsync(Action<GetQueryParameters> q = default, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default, CancellationToken cancellationToken = default) {
             var requestInfo = CreateGetRequestInformation(q, h, o);
-            return await RequestAdapter.SendAsync<ApiSdk.Models.Microsoft.Graph.DriveItem>(requestInfo, responseHandler);
+            return await RequestAdapter.SendAsync<ApiSdk.Models.Microsoft.Graph.DriveItem>(requestInfo, responseHandler, cancellationToken);
         }
         /// <summary>
         /// Collection containing Item objects for the immediate children of Item. Only items representing folders have children. Read-only. Nullable.
+        /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="h">Request headers</param>
         /// <param name="model"></param>
         /// <param name="o">Request options</param>
         /// <param name="responseHandler">Response handler to use in place of the default response handling provided by the core service</param>
         /// </summary>
-        public async Task PatchAsync(ApiSdk.Models.Microsoft.Graph.DriveItem model, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default) {
+        public async Task PatchAsync(ApiSdk.Models.Microsoft.Graph.DriveItem model, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default, CancellationToken cancellationToken = default) {
             _ = model ?? throw new ArgumentNullException(nameof(model));
             var requestInfo = CreatePatchRequestInformation(model, h, o);
-            await RequestAdapter.SendNoContentAsync(requestInfo, responseHandler);
+            await RequestAdapter.SendNoContentAsync(requestInfo, responseHandler, cancellationToken);
         }
         /// <summary>Collection containing Item objects for the immediate children of Item. Only items representing folders have children. Read-only. Nullable.</summary>
         public class GetQueryParameters : QueryParametersBase {

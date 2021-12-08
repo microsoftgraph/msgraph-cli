@@ -8,6 +8,7 @@ using System.CommandLine.Invocation;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 namespace ApiSdk.Workbooks.Item.Workbook.Functions.Binom_Dist_Range {
     /// <summary>Builds and executes requests for operations under \workbooks\{driveItem-id}\workbook\functions\microsoft.graph.binom_Dist_Range</summary>
@@ -23,6 +24,7 @@ namespace ApiSdk.Workbooks.Item.Workbook.Functions.Binom_Dist_Range {
         /// </summary>
         public Command BuildPostCommand() {
             var command = new Command("post");
+            command.Description = "Invoke action binom_Dist_Range";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--driveitem-id", description: "key: id of driveItem"));
             command.AddOption(new Option<string>("--body"));
@@ -76,15 +78,16 @@ namespace ApiSdk.Workbooks.Item.Workbook.Functions.Binom_Dist_Range {
         }
         /// <summary>
         /// Invoke action binom_Dist_Range
+        /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="h">Request headers</param>
         /// <param name="model"></param>
         /// <param name="o">Request options</param>
         /// <param name="responseHandler">Response handler to use in place of the default response handling provided by the core service</param>
         /// </summary>
-        public async Task<Binom_Dist_RangeResponse> PostAsync(Binom_Dist_RangeRequestBody model, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default) {
+        public async Task<Binom_Dist_RangeResponse> PostAsync(Binom_Dist_RangeRequestBody model, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default, CancellationToken cancellationToken = default) {
             _ = model ?? throw new ArgumentNullException(nameof(model));
             var requestInfo = CreatePostRequestInformation(model, h, o);
-            return await RequestAdapter.SendAsync<Binom_Dist_RangeResponse>(requestInfo, responseHandler);
+            return await RequestAdapter.SendAsync<Binom_Dist_RangeResponse>(requestInfo, responseHandler, cancellationToken);
         }
         /// <summary>Union type wrapper for classes workbookFunctionResult</summary>
         public class Binom_Dist_RangeResponse : IParsable {

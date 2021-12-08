@@ -7,6 +7,7 @@ using System.CommandLine.Invocation;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 namespace ApiSdk.Workbooks.Item.Workbook.Tables.Item.Worksheet.Charts.Item.Legend.Format.Fill.SetSolidColor {
     /// <summary>Builds and executes requests for operations under \workbooks\{driveItem-id}\workbook\tables\{workbookTable-id}\worksheet\charts\{workbookChart-id}\legend\format\fill\microsoft.graph.setSolidColor</summary>
@@ -22,6 +23,7 @@ namespace ApiSdk.Workbooks.Item.Workbook.Tables.Item.Worksheet.Charts.Item.Legen
         /// </summary>
         public Command BuildPostCommand() {
             var command = new Command("post");
+            command.Description = "Invoke action setSolidColor";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--driveitem-id", description: "key: id of driveItem"));
             command.AddOption(new Option<string>("--workbooktable-id", description: "key: id of workbookTable"));
@@ -74,15 +76,16 @@ namespace ApiSdk.Workbooks.Item.Workbook.Tables.Item.Worksheet.Charts.Item.Legen
         }
         /// <summary>
         /// Invoke action setSolidColor
+        /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="h">Request headers</param>
         /// <param name="model"></param>
         /// <param name="o">Request options</param>
         /// <param name="responseHandler">Response handler to use in place of the default response handling provided by the core service</param>
         /// </summary>
-        public async Task PostAsync(SetSolidColorRequestBody model, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default) {
+        public async Task PostAsync(SetSolidColorRequestBody model, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default, CancellationToken cancellationToken = default) {
             _ = model ?? throw new ArgumentNullException(nameof(model));
             var requestInfo = CreatePostRequestInformation(model, h, o);
-            await RequestAdapter.SendNoContentAsync(requestInfo, responseHandler);
+            await RequestAdapter.SendNoContentAsync(requestInfo, responseHandler, cancellationToken);
         }
     }
 }

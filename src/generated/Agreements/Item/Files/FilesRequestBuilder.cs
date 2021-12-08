@@ -9,6 +9,7 @@ using System.CommandLine.Invocation;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 namespace ApiSdk.Agreements.Item.Files {
     /// <summary>Builds and executes requests for operations under \agreements\{agreement-id}\files</summary>
@@ -19,21 +20,22 @@ namespace ApiSdk.Agreements.Item.Files {
         private IRequestAdapter RequestAdapter { get; set; }
         /// <summary>Url template to use to build the URL for the current request builder</summary>
         private string UrlTemplate { get; set; }
-        public Command[] BuildCommand() {
+        public List<Command> BuildCommand() {
             var builder = new AgreementFileLocalizationRequestBuilder(PathParameters, RequestAdapter);
             var commands = new List<Command> { 
-                builder.BuildVersionsCommand(),
-                builder.BuildPatchCommand(),
-                builder.BuildGetCommand(),
                 builder.BuildDeleteCommand(),
+                builder.BuildGetCommand(),
+                builder.BuildPatchCommand(),
+                builder.BuildVersionsCommand(),
             };
-            return commands.ToArray();
+            return commands;
         }
         /// <summary>
         /// PDFs linked to this agreement. This property is in the process of being deprecated. Use the  file property instead.
         /// </summary>
         public Command BuildCreateCommand() {
             var command = new Command("create");
+            command.Description = "PDFs linked to this agreement. This property is in the process of being deprecated. Use the  file property instead.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--agreement-id", description: "key: id of agreement"));
             command.AddOption(new Option<string>("--body"));
@@ -59,6 +61,7 @@ namespace ApiSdk.Agreements.Item.Files {
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
+            command.Description = "PDFs linked to this agreement. This property is in the process of being deprecated. Use the  file property instead.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--agreement-id", description: "key: id of agreement"));
             command.AddOption(new Option<int?>("--top", description: "Show only the first n items"));
@@ -145,26 +148,28 @@ namespace ApiSdk.Agreements.Item.Files {
         }
         /// <summary>
         /// PDFs linked to this agreement. This property is in the process of being deprecated. Use the  file property instead.
+        /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="h">Request headers</param>
         /// <param name="o">Request options</param>
         /// <param name="q">Request query parameters</param>
         /// <param name="responseHandler">Response handler to use in place of the default response handling provided by the core service</param>
         /// </summary>
-        public async Task<FilesResponse> GetAsync(Action<GetQueryParameters> q = default, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default) {
+        public async Task<FilesResponse> GetAsync(Action<GetQueryParameters> q = default, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default, CancellationToken cancellationToken = default) {
             var requestInfo = CreateGetRequestInformation(q, h, o);
-            return await RequestAdapter.SendAsync<FilesResponse>(requestInfo, responseHandler);
+            return await RequestAdapter.SendAsync<FilesResponse>(requestInfo, responseHandler, cancellationToken);
         }
         /// <summary>
         /// PDFs linked to this agreement. This property is in the process of being deprecated. Use the  file property instead.
+        /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="h">Request headers</param>
         /// <param name="model"></param>
         /// <param name="o">Request options</param>
         /// <param name="responseHandler">Response handler to use in place of the default response handling provided by the core service</param>
         /// </summary>
-        public async Task<AgreementFileLocalization> PostAsync(AgreementFileLocalization model, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default) {
+        public async Task<AgreementFileLocalization> PostAsync(AgreementFileLocalization model, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default, CancellationToken cancellationToken = default) {
             _ = model ?? throw new ArgumentNullException(nameof(model));
             var requestInfo = CreatePostRequestInformation(model, h, o);
-            return await RequestAdapter.SendAsync<AgreementFileLocalization>(requestInfo, responseHandler);
+            return await RequestAdapter.SendAsync<AgreementFileLocalization>(requestInfo, responseHandler, cancellationToken);
         }
         /// <summary>PDFs linked to this agreement. This property is in the process of being deprecated. Use the  file property instead.</summary>
         public class GetQueryParameters : QueryParametersBase {

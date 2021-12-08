@@ -15,6 +15,7 @@ using System.CommandLine.Invocation;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 namespace ApiSdk.Shares.Item {
     /// <summary>Builds and executes requests for operations under \shares\{sharedDriveItem-id}</summary>
@@ -30,6 +31,7 @@ namespace ApiSdk.Shares.Item {
         /// </summary>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
+            command.Description = "Delete entity from shares";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--shareddriveitem-id", description: "key: id of sharedDriveItem"));
             command.Handler = CommandHandler.Create<string>(async (sharedDriveItemId) => {
@@ -45,9 +47,9 @@ namespace ApiSdk.Shares.Item {
             var command = new Command("drive-item");
             var builder = new ApiSdk.Shares.Item.DriveItem.DriveItemRequestBuilder(PathParameters, RequestAdapter);
             command.AddCommand(builder.BuildContentCommand());
-            command.AddCommand(builder.BuildPatchCommand());
-            command.AddCommand(builder.BuildGetCommand());
             command.AddCommand(builder.BuildDeleteCommand());
+            command.AddCommand(builder.BuildGetCommand());
+            command.AddCommand(builder.BuildPatchCommand());
             return command;
         }
         /// <summary>
@@ -55,6 +57,7 @@ namespace ApiSdk.Shares.Item {
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
+            command.Description = "Get entity from shares by key";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--shareddriveitem-id", description: "key: id of sharedDriveItem"));
             command.AddOption(new Option<object>("--select", description: "Select properties to be returned"));
@@ -78,36 +81,36 @@ namespace ApiSdk.Shares.Item {
         public Command BuildItemsCommand() {
             var command = new Command("items");
             var builder = new ApiSdk.Shares.Item.Items.ItemsRequestBuilder(PathParameters, RequestAdapter);
-            command.AddCommand(builder.BuildListCommand());
-            command.AddCommand(builder.BuildCreateCommand());
             foreach (var cmd in builder.BuildCommand()) {
                 command.AddCommand(cmd);
             }
+            command.AddCommand(builder.BuildCreateCommand());
+            command.AddCommand(builder.BuildListCommand());
             return command;
         }
         public Command BuildListCommand() {
             var command = new Command("list");
             var builder = new ApiSdk.Shares.Item.List.ListRequestBuilder(PathParameters, RequestAdapter);
-            command.AddCommand(builder.BuildDriveCommand());
             command.AddCommand(builder.BuildColumnsCommand());
             command.AddCommand(builder.BuildContentTypesCommand());
-            command.AddCommand(builder.BuildPatchCommand());
-            command.AddCommand(builder.BuildGetCommand());
-            command.AddCommand(builder.BuildSubscriptionsCommand());
             command.AddCommand(builder.BuildDeleteCommand());
+            command.AddCommand(builder.BuildDriveCommand());
+            command.AddCommand(builder.BuildGetCommand());
             command.AddCommand(builder.BuildItemsCommand());
+            command.AddCommand(builder.BuildPatchCommand());
+            command.AddCommand(builder.BuildSubscriptionsCommand());
             return command;
         }
         public Command BuildListItemCommand() {
             var command = new Command("list-item");
             var builder = new ApiSdk.Shares.Item.ListItem.ListItemRequestBuilder(PathParameters, RequestAdapter);
-            command.AddCommand(builder.BuildVersionsCommand());
             command.AddCommand(builder.BuildAnalyticsCommand());
-            command.AddCommand(builder.BuildPatchCommand());
-            command.AddCommand(builder.BuildDriveItemCommand());
-            command.AddCommand(builder.BuildGetCommand());
-            command.AddCommand(builder.BuildFieldsCommand());
             command.AddCommand(builder.BuildDeleteCommand());
+            command.AddCommand(builder.BuildDriveItemCommand());
+            command.AddCommand(builder.BuildFieldsCommand());
+            command.AddCommand(builder.BuildGetCommand());
+            command.AddCommand(builder.BuildPatchCommand());
+            command.AddCommand(builder.BuildVersionsCommand());
             return command;
         }
         /// <summary>
@@ -115,6 +118,7 @@ namespace ApiSdk.Shares.Item {
         /// </summary>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
+            command.Description = "Update entity in shares";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--shareddriveitem-id", description: "key: id of sharedDriveItem"));
             command.AddOption(new Option<string>("--body"));
@@ -133,27 +137,27 @@ namespace ApiSdk.Shares.Item {
         public Command BuildPermissionCommand() {
             var command = new Command("permission");
             var builder = new ApiSdk.Shares.Item.Permission.PermissionRequestBuilder(PathParameters, RequestAdapter);
+            command.AddCommand(builder.BuildDeleteCommand());
+            command.AddCommand(builder.BuildGetCommand());
             command.AddCommand(builder.BuildGrantCommand());
             command.AddCommand(builder.BuildPatchCommand());
-            command.AddCommand(builder.BuildGetCommand());
-            command.AddCommand(builder.BuildDeleteCommand());
             return command;
         }
         public Command BuildRootCommand() {
             var command = new Command("root");
             var builder = new ApiSdk.Shares.Item.Root.RootRequestBuilder(PathParameters, RequestAdapter);
             command.AddCommand(builder.BuildContentCommand());
-            command.AddCommand(builder.BuildPatchCommand());
-            command.AddCommand(builder.BuildGetCommand());
             command.AddCommand(builder.BuildDeleteCommand());
+            command.AddCommand(builder.BuildGetCommand());
+            command.AddCommand(builder.BuildPatchCommand());
             return command;
         }
         public Command BuildSiteCommand() {
             var command = new Command("site");
             var builder = new ApiSdk.Shares.Item.Site.SiteRequestBuilder(PathParameters, RequestAdapter);
-            command.AddCommand(builder.BuildPatchCommand());
-            command.AddCommand(builder.BuildGetCommand());
             command.AddCommand(builder.BuildDeleteCommand());
+            command.AddCommand(builder.BuildGetCommand());
+            command.AddCommand(builder.BuildPatchCommand());
             return command;
         }
         /// <summary>
@@ -225,36 +229,39 @@ namespace ApiSdk.Shares.Item {
         }
         /// <summary>
         /// Delete entity from shares
+        /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="h">Request headers</param>
         /// <param name="o">Request options</param>
         /// <param name="responseHandler">Response handler to use in place of the default response handling provided by the core service</param>
         /// </summary>
-        public async Task DeleteAsync(Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default) {
+        public async Task DeleteAsync(Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default, CancellationToken cancellationToken = default) {
             var requestInfo = CreateDeleteRequestInformation(h, o);
-            await RequestAdapter.SendNoContentAsync(requestInfo, responseHandler);
+            await RequestAdapter.SendNoContentAsync(requestInfo, responseHandler, cancellationToken);
         }
         /// <summary>
         /// Get entity from shares by key
+        /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="h">Request headers</param>
         /// <param name="o">Request options</param>
         /// <param name="q">Request query parameters</param>
         /// <param name="responseHandler">Response handler to use in place of the default response handling provided by the core service</param>
         /// </summary>
-        public async Task<SharedDriveItem> GetAsync(Action<GetQueryParameters> q = default, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default) {
+        public async Task<SharedDriveItem> GetAsync(Action<GetQueryParameters> q = default, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default, CancellationToken cancellationToken = default) {
             var requestInfo = CreateGetRequestInformation(q, h, o);
-            return await RequestAdapter.SendAsync<SharedDriveItem>(requestInfo, responseHandler);
+            return await RequestAdapter.SendAsync<SharedDriveItem>(requestInfo, responseHandler, cancellationToken);
         }
         /// <summary>
         /// Update entity in shares
+        /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="h">Request headers</param>
         /// <param name="model"></param>
         /// <param name="o">Request options</param>
         /// <param name="responseHandler">Response handler to use in place of the default response handling provided by the core service</param>
         /// </summary>
-        public async Task PatchAsync(SharedDriveItem model, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default) {
+        public async Task PatchAsync(SharedDriveItem model, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default, CancellationToken cancellationToken = default) {
             _ = model ?? throw new ArgumentNullException(nameof(model));
             var requestInfo = CreatePatchRequestInformation(model, h, o);
-            await RequestAdapter.SendNoContentAsync(requestInfo, responseHandler);
+            await RequestAdapter.SendNoContentAsync(requestInfo, responseHandler, cancellationToken);
         }
         /// <summary>Get entity from shares by key</summary>
         public class GetQueryParameters : QueryParametersBase {

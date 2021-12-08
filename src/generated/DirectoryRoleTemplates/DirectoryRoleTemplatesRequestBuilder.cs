@@ -12,6 +12,7 @@ using System.CommandLine.Invocation;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 namespace ApiSdk.DirectoryRoleTemplates {
     /// <summary>Builds and executes requests for operations under \directoryRoleTemplates</summary>
@@ -22,25 +23,26 @@ namespace ApiSdk.DirectoryRoleTemplates {
         private IRequestAdapter RequestAdapter { get; set; }
         /// <summary>Url template to use to build the URL for the current request builder</summary>
         private string UrlTemplate { get; set; }
-        public Command[] BuildCommand() {
+        public List<Command> BuildCommand() {
             var builder = new DirectoryRoleTemplateRequestBuilder(PathParameters, RequestAdapter);
             var commands = new List<Command> { 
                 builder.BuildCheckMemberGroupsCommand(),
-                builder.BuildRestoreCommand(),
-                builder.BuildGetMemberGroupsCommand(),
-                builder.BuildPatchCommand(),
-                builder.BuildGetMemberObjectsCommand(),
-                builder.BuildGetCommand(),
                 builder.BuildCheckMemberObjectsCommand(),
                 builder.BuildDeleteCommand(),
+                builder.BuildGetCommand(),
+                builder.BuildGetMemberGroupsCommand(),
+                builder.BuildGetMemberObjectsCommand(),
+                builder.BuildPatchCommand(),
+                builder.BuildRestoreCommand(),
             };
-            return commands.ToArray();
+            return commands;
         }
         /// <summary>
         /// Add new entity to directoryRoleTemplates
         /// </summary>
         public Command BuildCreateCommand() {
             var command = new Command("create");
+            command.Description = "Add new entity to directoryRoleTemplates";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--body"));
             command.Handler = CommandHandler.Create<string>(async (body) => {
@@ -76,6 +78,7 @@ namespace ApiSdk.DirectoryRoleTemplates {
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
+            command.Description = "Get entities from directoryRoleTemplates";
             // Create options for all the parameters
             command.AddOption(new Option<int?>("--skip", description: "Skip the first n items"));
             command.AddOption(new Option<string>("--search", description: "Search items by search phrases"));
@@ -164,26 +167,28 @@ namespace ApiSdk.DirectoryRoleTemplates {
         }
         /// <summary>
         /// Get entities from directoryRoleTemplates
+        /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="h">Request headers</param>
         /// <param name="o">Request options</param>
         /// <param name="q">Request query parameters</param>
         /// <param name="responseHandler">Response handler to use in place of the default response handling provided by the core service</param>
         /// </summary>
-        public async Task<DirectoryRoleTemplatesResponse> GetAsync(Action<GetQueryParameters> q = default, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default) {
+        public async Task<DirectoryRoleTemplatesResponse> GetAsync(Action<GetQueryParameters> q = default, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default, CancellationToken cancellationToken = default) {
             var requestInfo = CreateGetRequestInformation(q, h, o);
-            return await RequestAdapter.SendAsync<DirectoryRoleTemplatesResponse>(requestInfo, responseHandler);
+            return await RequestAdapter.SendAsync<DirectoryRoleTemplatesResponse>(requestInfo, responseHandler, cancellationToken);
         }
         /// <summary>
         /// Add new entity to directoryRoleTemplates
+        /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="h">Request headers</param>
         /// <param name="model"></param>
         /// <param name="o">Request options</param>
         /// <param name="responseHandler">Response handler to use in place of the default response handling provided by the core service</param>
         /// </summary>
-        public async Task<DirectoryRoleTemplate> PostAsync(DirectoryRoleTemplate model, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default) {
+        public async Task<DirectoryRoleTemplate> PostAsync(DirectoryRoleTemplate model, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default, CancellationToken cancellationToken = default) {
             _ = model ?? throw new ArgumentNullException(nameof(model));
             var requestInfo = CreatePostRequestInformation(model, h, o);
-            return await RequestAdapter.SendAsync<DirectoryRoleTemplate>(requestInfo, responseHandler);
+            return await RequestAdapter.SendAsync<DirectoryRoleTemplate>(requestInfo, responseHandler, cancellationToken);
         }
         /// <summary>Get entities from directoryRoleTemplates</summary>
         public class GetQueryParameters : QueryParametersBase {

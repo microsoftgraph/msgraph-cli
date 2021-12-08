@@ -9,6 +9,7 @@ using System.CommandLine.Invocation;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 namespace ApiSdk.Sites.Item.ContentTypes.Item.Columns.Item {
     /// <summary>Builds and executes requests for operations under \sites\{site-id}\contentTypes\{contentType-id}\columns\{columnDefinition-id}</summary>
@@ -24,6 +25,7 @@ namespace ApiSdk.Sites.Item.ContentTypes.Item.Columns.Item {
         /// </summary>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
+            command.Description = "The collection of column definitions for this contentType.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--site-id", description: "key: id of site"));
             command.AddOption(new Option<string>("--contenttype-id", description: "key: id of contentType"));
@@ -44,6 +46,7 @@ namespace ApiSdk.Sites.Item.ContentTypes.Item.Columns.Item {
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
+            command.Description = "The collection of column definitions for this contentType.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--site-id", description: "key: id of site"));
             command.AddOption(new Option<string>("--contenttype-id", description: "key: id of contentType"));
@@ -73,6 +76,7 @@ namespace ApiSdk.Sites.Item.ContentTypes.Item.Columns.Item {
         /// </summary>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
+            command.Description = "The collection of column definitions for this contentType.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--site-id", description: "key: id of site"));
             command.AddOption(new Option<string>("--contenttype-id", description: "key: id of contentType"));
@@ -168,36 +172,39 @@ namespace ApiSdk.Sites.Item.ContentTypes.Item.Columns.Item {
         }
         /// <summary>
         /// The collection of column definitions for this contentType.
+        /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="h">Request headers</param>
         /// <param name="o">Request options</param>
         /// <param name="responseHandler">Response handler to use in place of the default response handling provided by the core service</param>
         /// </summary>
-        public async Task DeleteAsync(Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default) {
+        public async Task DeleteAsync(Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default, CancellationToken cancellationToken = default) {
             var requestInfo = CreateDeleteRequestInformation(h, o);
-            await RequestAdapter.SendNoContentAsync(requestInfo, responseHandler);
+            await RequestAdapter.SendNoContentAsync(requestInfo, responseHandler, cancellationToken);
         }
         /// <summary>
         /// The collection of column definitions for this contentType.
+        /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="h">Request headers</param>
         /// <param name="o">Request options</param>
         /// <param name="q">Request query parameters</param>
         /// <param name="responseHandler">Response handler to use in place of the default response handling provided by the core service</param>
         /// </summary>
-        public async Task<ColumnDefinition> GetAsync(Action<GetQueryParameters> q = default, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default) {
+        public async Task<ColumnDefinition> GetAsync(Action<GetQueryParameters> q = default, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default, CancellationToken cancellationToken = default) {
             var requestInfo = CreateGetRequestInformation(q, h, o);
-            return await RequestAdapter.SendAsync<ColumnDefinition>(requestInfo, responseHandler);
+            return await RequestAdapter.SendAsync<ColumnDefinition>(requestInfo, responseHandler, cancellationToken);
         }
         /// <summary>
         /// The collection of column definitions for this contentType.
+        /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="h">Request headers</param>
         /// <param name="model"></param>
         /// <param name="o">Request options</param>
         /// <param name="responseHandler">Response handler to use in place of the default response handling provided by the core service</param>
         /// </summary>
-        public async Task PatchAsync(ColumnDefinition model, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default) {
+        public async Task PatchAsync(ColumnDefinition model, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default, CancellationToken cancellationToken = default) {
             _ = model ?? throw new ArgumentNullException(nameof(model));
             var requestInfo = CreatePatchRequestInformation(model, h, o);
-            await RequestAdapter.SendNoContentAsync(requestInfo, responseHandler);
+            await RequestAdapter.SendNoContentAsync(requestInfo, responseHandler, cancellationToken);
         }
         /// <summary>The collection of column definitions for this contentType.</summary>
         public class GetQueryParameters : QueryParametersBase {

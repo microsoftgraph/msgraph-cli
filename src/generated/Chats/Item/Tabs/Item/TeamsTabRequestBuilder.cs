@@ -9,6 +9,7 @@ using System.CommandLine.Invocation;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 namespace ApiSdk.Chats.Item.Tabs.Item {
     /// <summary>Builds and executes requests for operations under \chats\{chat-id}\tabs\{teamsTab-id}</summary>
@@ -24,6 +25,7 @@ namespace ApiSdk.Chats.Item.Tabs.Item {
         /// </summary>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
+            command.Description = "Delete navigation property tabs for chats";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--chat-id", description: "key: id of chat"));
             command.AddOption(new Option<string>("--teamstab-id", description: "key: id of teamsTab"));
@@ -42,6 +44,7 @@ namespace ApiSdk.Chats.Item.Tabs.Item {
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
+            command.Description = "Get tabs from chats";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--chat-id", description: "key: id of chat"));
             command.AddOption(new Option<string>("--teamstab-id", description: "key: id of teamsTab"));
@@ -69,6 +72,7 @@ namespace ApiSdk.Chats.Item.Tabs.Item {
         /// </summary>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
+            command.Description = "Update the navigation property tabs in chats";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--chat-id", description: "key: id of chat"));
             command.AddOption(new Option<string>("--teamstab-id", description: "key: id of teamsTab"));
@@ -162,36 +166,39 @@ namespace ApiSdk.Chats.Item.Tabs.Item {
         }
         /// <summary>
         /// Delete navigation property tabs for chats
+        /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="h">Request headers</param>
         /// <param name="o">Request options</param>
         /// <param name="responseHandler">Response handler to use in place of the default response handling provided by the core service</param>
         /// </summary>
-        public async Task DeleteAsync(Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default) {
+        public async Task DeleteAsync(Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default, CancellationToken cancellationToken = default) {
             var requestInfo = CreateDeleteRequestInformation(h, o);
-            await RequestAdapter.SendNoContentAsync(requestInfo, responseHandler);
+            await RequestAdapter.SendNoContentAsync(requestInfo, responseHandler, cancellationToken);
         }
         /// <summary>
         /// Get tabs from chats
+        /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="h">Request headers</param>
         /// <param name="o">Request options</param>
         /// <param name="q">Request query parameters</param>
         /// <param name="responseHandler">Response handler to use in place of the default response handling provided by the core service</param>
         /// </summary>
-        public async Task<TeamsTab> GetAsync(Action<GetQueryParameters> q = default, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default) {
+        public async Task<TeamsTab> GetAsync(Action<GetQueryParameters> q = default, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default, CancellationToken cancellationToken = default) {
             var requestInfo = CreateGetRequestInformation(q, h, o);
-            return await RequestAdapter.SendAsync<TeamsTab>(requestInfo, responseHandler);
+            return await RequestAdapter.SendAsync<TeamsTab>(requestInfo, responseHandler, cancellationToken);
         }
         /// <summary>
         /// Update the navigation property tabs in chats
+        /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="h">Request headers</param>
         /// <param name="model"></param>
         /// <param name="o">Request options</param>
         /// <param name="responseHandler">Response handler to use in place of the default response handling provided by the core service</param>
         /// </summary>
-        public async Task PatchAsync(TeamsTab model, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default) {
+        public async Task PatchAsync(TeamsTab model, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default, CancellationToken cancellationToken = default) {
             _ = model ?? throw new ArgumentNullException(nameof(model));
             var requestInfo = CreatePatchRequestInformation(model, h, o);
-            await RequestAdapter.SendNoContentAsync(requestInfo, responseHandler);
+            await RequestAdapter.SendNoContentAsync(requestInfo, responseHandler, cancellationToken);
         }
         /// <summary>Get tabs from chats</summary>
         public class GetQueryParameters : QueryParametersBase {

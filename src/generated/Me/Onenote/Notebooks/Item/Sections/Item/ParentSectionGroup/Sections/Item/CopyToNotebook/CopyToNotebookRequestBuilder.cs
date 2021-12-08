@@ -8,6 +8,7 @@ using System.CommandLine.Invocation;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 namespace ApiSdk.Me.Onenote.Notebooks.Item.Sections.Item.ParentSectionGroup.Sections.Item.CopyToNotebook {
     /// <summary>Builds and executes requests for operations under \me\onenote\notebooks\{notebook-id}\sections\{onenoteSection-id}\parentSectionGroup\sections\{onenoteSection-id1}\microsoft.graph.copyToNotebook</summary>
@@ -23,6 +24,7 @@ namespace ApiSdk.Me.Onenote.Notebooks.Item.Sections.Item.ParentSectionGroup.Sect
         /// </summary>
         public Command BuildPostCommand() {
             var command = new Command("post");
+            command.Description = "Invoke action copyToNotebook";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--notebook-id", description: "key: id of notebook"));
             command.AddOption(new Option<string>("--onenotesection-id", description: "key: id of onenoteSection"));
@@ -80,15 +82,16 @@ namespace ApiSdk.Me.Onenote.Notebooks.Item.Sections.Item.ParentSectionGroup.Sect
         }
         /// <summary>
         /// Invoke action copyToNotebook
+        /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="h">Request headers</param>
         /// <param name="model"></param>
         /// <param name="o">Request options</param>
         /// <param name="responseHandler">Response handler to use in place of the default response handling provided by the core service</param>
         /// </summary>
-        public async Task<CopyToNotebookResponse> PostAsync(CopyToNotebookRequestBody model, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default) {
+        public async Task<CopyToNotebookResponse> PostAsync(CopyToNotebookRequestBody model, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default, CancellationToken cancellationToken = default) {
             _ = model ?? throw new ArgumentNullException(nameof(model));
             var requestInfo = CreatePostRequestInformation(model, h, o);
-            return await RequestAdapter.SendAsync<CopyToNotebookResponse>(requestInfo, responseHandler);
+            return await RequestAdapter.SendAsync<CopyToNotebookResponse>(requestInfo, responseHandler, cancellationToken);
         }
         /// <summary>Union type wrapper for classes onenoteOperation</summary>
         public class CopyToNotebookResponse : IParsable {

@@ -8,6 +8,7 @@ using System.CommandLine.Invocation;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 namespace ApiSdk.DeviceManagement.DetectedApps.Item.ManagedDevices {
     /// <summary>Builds and executes requests for operations under \deviceManagement\detectedApps\{detectedApp-id}\managedDevices</summary>
@@ -23,6 +24,7 @@ namespace ApiSdk.DeviceManagement.DetectedApps.Item.ManagedDevices {
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
+            command.Description = "The devices that have the discovered application installed";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--detectedapp-id", description: "key: id of detectedApp"));
             command.AddOption(new Option<int?>("--top", description: "Show only the first n items"));
@@ -98,14 +100,15 @@ namespace ApiSdk.DeviceManagement.DetectedApps.Item.ManagedDevices {
         }
         /// <summary>
         /// The devices that have the discovered application installed
+        /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="h">Request headers</param>
         /// <param name="o">Request options</param>
         /// <param name="q">Request query parameters</param>
         /// <param name="responseHandler">Response handler to use in place of the default response handling provided by the core service</param>
         /// </summary>
-        public async Task<ManagedDevicesResponse> GetAsync(Action<GetQueryParameters> q = default, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default) {
+        public async Task<ManagedDevicesResponse> GetAsync(Action<GetQueryParameters> q = default, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default, CancellationToken cancellationToken = default) {
             var requestInfo = CreateGetRequestInformation(q, h, o);
-            return await RequestAdapter.SendAsync<ManagedDevicesResponse>(requestInfo, responseHandler);
+            return await RequestAdapter.SendAsync<ManagedDevicesResponse>(requestInfo, responseHandler, cancellationToken);
         }
         /// <summary>The devices that have the discovered application installed</summary>
         public class GetQueryParameters : QueryParametersBase {

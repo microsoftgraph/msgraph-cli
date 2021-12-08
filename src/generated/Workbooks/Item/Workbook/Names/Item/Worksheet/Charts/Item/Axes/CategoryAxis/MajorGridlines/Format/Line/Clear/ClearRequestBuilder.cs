@@ -7,6 +7,7 @@ using System.CommandLine.Invocation;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 namespace ApiSdk.Workbooks.Item.Workbook.Names.Item.Worksheet.Charts.Item.Axes.CategoryAxis.MajorGridlines.Format.Line.Clear {
     /// <summary>Builds and executes requests for operations under \workbooks\{driveItem-id}\workbook\names\{workbookNamedItem-id}\worksheet\charts\{workbookChart-id}\axes\categoryAxis\majorGridlines\format\line\microsoft.graph.clear</summary>
@@ -22,6 +23,7 @@ namespace ApiSdk.Workbooks.Item.Workbook.Names.Item.Worksheet.Charts.Item.Axes.C
         /// </summary>
         public Command BuildPostCommand() {
             var command = new Command("post");
+            command.Description = "Invoke action clear";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--driveitem-id", description: "key: id of driveItem"));
             command.AddOption(new Option<string>("--workbooknameditem-id", description: "key: id of workbookNamedItem"));
@@ -67,13 +69,14 @@ namespace ApiSdk.Workbooks.Item.Workbook.Names.Item.Worksheet.Charts.Item.Axes.C
         }
         /// <summary>
         /// Invoke action clear
+        /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="h">Request headers</param>
         /// <param name="o">Request options</param>
         /// <param name="responseHandler">Response handler to use in place of the default response handling provided by the core service</param>
         /// </summary>
-        public async Task PostAsync(Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default) {
+        public async Task PostAsync(Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default, CancellationToken cancellationToken = default) {
             var requestInfo = CreatePostRequestInformation(h, o);
-            await RequestAdapter.SendNoContentAsync(requestInfo, responseHandler);
+            await RequestAdapter.SendNoContentAsync(requestInfo, responseHandler, cancellationToken);
         }
     }
 }

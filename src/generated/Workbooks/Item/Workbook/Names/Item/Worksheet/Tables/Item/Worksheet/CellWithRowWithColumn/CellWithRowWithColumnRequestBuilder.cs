@@ -8,6 +8,7 @@ using System.CommandLine.Invocation;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 namespace ApiSdk.Workbooks.Item.Workbook.Names.Item.Worksheet.Tables.Item.Worksheet.CellWithRowWithColumn {
     /// <summary>Builds and executes requests for operations under \workbooks\{driveItem-id}\workbook\names\{workbookNamedItem-id}\worksheet\tables\{workbookTable-id}\worksheet\microsoft.graph.cell(row={row},column={column})</summary>
@@ -23,6 +24,7 @@ namespace ApiSdk.Workbooks.Item.Workbook.Names.Item.Worksheet.Tables.Item.Worksh
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
+            command.Description = "Invoke function cell";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--driveitem-id", description: "key: id of driveItem"));
             command.AddOption(new Option<string>("--workbooknameditem-id", description: "key: id of workbookNamedItem"));
@@ -81,13 +83,14 @@ namespace ApiSdk.Workbooks.Item.Workbook.Names.Item.Worksheet.Tables.Item.Worksh
         }
         /// <summary>
         /// Invoke function cell
+        /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="h">Request headers</param>
         /// <param name="o">Request options</param>
         /// <param name="responseHandler">Response handler to use in place of the default response handling provided by the core service</param>
         /// </summary>
-        public async Task<CellWithRowWithColumnResponse> GetAsync(Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default) {
+        public async Task<CellWithRowWithColumnResponse> GetAsync(Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default, CancellationToken cancellationToken = default) {
             var requestInfo = CreateGetRequestInformation(h, o);
-            return await RequestAdapter.SendAsync<CellWithRowWithColumnResponse>(requestInfo, responseHandler);
+            return await RequestAdapter.SendAsync<CellWithRowWithColumnResponse>(requestInfo, responseHandler, cancellationToken);
         }
         /// <summary>Union type wrapper for classes workbookRange</summary>
         public class CellWithRowWithColumnResponse : IParsable {

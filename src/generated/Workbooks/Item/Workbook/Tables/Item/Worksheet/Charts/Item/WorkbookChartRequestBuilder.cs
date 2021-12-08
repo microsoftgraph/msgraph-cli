@@ -21,6 +21,7 @@ using System.CommandLine.Invocation;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 namespace ApiSdk.Workbooks.Item.Workbook.Tables.Item.Worksheet.Charts.Item {
     /// <summary>Builds and executes requests for operations under \workbooks\{driveItem-id}\workbook\tables\{workbookTable-id}\worksheet\charts\{workbookChart-id}</summary>
@@ -34,21 +35,21 @@ namespace ApiSdk.Workbooks.Item.Workbook.Tables.Item.Worksheet.Charts.Item {
         public Command BuildAxesCommand() {
             var command = new Command("axes");
             var builder = new ApiSdk.Workbooks.Item.Workbook.Tables.Item.Worksheet.Charts.Item.Axes.AxesRequestBuilder(PathParameters, RequestAdapter);
-            command.AddCommand(builder.BuildSeriesAxisCommand());
-            command.AddCommand(builder.BuildPatchCommand());
             command.AddCommand(builder.BuildCategoryAxisCommand());
-            command.AddCommand(builder.BuildGetCommand());
             command.AddCommand(builder.BuildDeleteCommand());
+            command.AddCommand(builder.BuildGetCommand());
+            command.AddCommand(builder.BuildPatchCommand());
+            command.AddCommand(builder.BuildSeriesAxisCommand());
             command.AddCommand(builder.BuildValueAxisCommand());
             return command;
         }
         public Command BuildDataLabelsCommand() {
             var command = new Command("data-labels");
             var builder = new ApiSdk.Workbooks.Item.Workbook.Tables.Item.Worksheet.Charts.Item.DataLabels.DataLabelsRequestBuilder(PathParameters, RequestAdapter);
-            command.AddCommand(builder.BuildPatchCommand());
+            command.AddCommand(builder.BuildDeleteCommand());
             command.AddCommand(builder.BuildFormatCommand());
             command.AddCommand(builder.BuildGetCommand());
-            command.AddCommand(builder.BuildDeleteCommand());
+            command.AddCommand(builder.BuildPatchCommand());
             return command;
         }
         /// <summary>
@@ -56,6 +57,7 @@ namespace ApiSdk.Workbooks.Item.Workbook.Tables.Item.Worksheet.Charts.Item {
         /// </summary>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
+            command.Description = "Returns collection of charts that are part of the worksheet. Read-only.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--driveitem-id", description: "key: id of driveItem"));
             command.AddOption(new Option<string>("--workbooktable-id", description: "key: id of workbookTable"));
@@ -74,11 +76,11 @@ namespace ApiSdk.Workbooks.Item.Workbook.Tables.Item.Worksheet.Charts.Item {
         public Command BuildFormatCommand() {
             var command = new Command("format");
             var builder = new ApiSdk.Workbooks.Item.Workbook.Tables.Item.Worksheet.Charts.Item.Format.FormatRequestBuilder(PathParameters, RequestAdapter);
+            command.AddCommand(builder.BuildDeleteCommand());
             command.AddCommand(builder.BuildFillCommand());
             command.AddCommand(builder.BuildFontCommand());
-            command.AddCommand(builder.BuildPatchCommand());
             command.AddCommand(builder.BuildGetCommand());
-            command.AddCommand(builder.BuildDeleteCommand());
+            command.AddCommand(builder.BuildPatchCommand());
             return command;
         }
         /// <summary>
@@ -86,6 +88,7 @@ namespace ApiSdk.Workbooks.Item.Workbook.Tables.Item.Worksheet.Charts.Item {
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
+            command.Description = "Returns collection of charts that are part of the worksheet. Read-only.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--driveitem-id", description: "key: id of driveItem"));
             command.AddOption(new Option<string>("--workbooktable-id", description: "key: id of workbookTable"));
@@ -113,10 +116,10 @@ namespace ApiSdk.Workbooks.Item.Workbook.Tables.Item.Worksheet.Charts.Item {
         public Command BuildLegendCommand() {
             var command = new Command("legend");
             var builder = new ApiSdk.Workbooks.Item.Workbook.Tables.Item.Worksheet.Charts.Item.Legend.LegendRequestBuilder(PathParameters, RequestAdapter);
-            command.AddCommand(builder.BuildPatchCommand());
+            command.AddCommand(builder.BuildDeleteCommand());
             command.AddCommand(builder.BuildFormatCommand());
             command.AddCommand(builder.BuildGetCommand());
-            command.AddCommand(builder.BuildDeleteCommand());
+            command.AddCommand(builder.BuildPatchCommand());
             return command;
         }
         /// <summary>
@@ -124,6 +127,7 @@ namespace ApiSdk.Workbooks.Item.Workbook.Tables.Item.Worksheet.Charts.Item {
         /// </summary>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
+            command.Description = "Returns collection of charts that are part of the worksheet. Read-only.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--driveitem-id", description: "key: id of driveItem"));
             command.AddOption(new Option<string>("--workbooktable-id", description: "key: id of workbookTable"));
@@ -168,18 +172,18 @@ namespace ApiSdk.Workbooks.Item.Workbook.Tables.Item.Worksheet.Charts.Item {
         public Command BuildTitleCommand() {
             var command = new Command("title");
             var builder = new ApiSdk.Workbooks.Item.Workbook.Tables.Item.Worksheet.Charts.Item.Title.TitleRequestBuilder(PathParameters, RequestAdapter);
-            command.AddCommand(builder.BuildPatchCommand());
+            command.AddCommand(builder.BuildDeleteCommand());
             command.AddCommand(builder.BuildFormatCommand());
             command.AddCommand(builder.BuildGetCommand());
-            command.AddCommand(builder.BuildDeleteCommand());
+            command.AddCommand(builder.BuildPatchCommand());
             return command;
         }
         public Command BuildWorksheetCommand() {
             var command = new Command("worksheet");
             var builder = new ApiSdk.Workbooks.Item.Workbook.Tables.Item.Worksheet.Charts.Item.Worksheet.WorksheetRequestBuilder(PathParameters, RequestAdapter);
-            command.AddCommand(builder.BuildPatchCommand());
-            command.AddCommand(builder.BuildGetCommand());
             command.AddCommand(builder.BuildDeleteCommand());
+            command.AddCommand(builder.BuildGetCommand());
+            command.AddCommand(builder.BuildPatchCommand());
             return command;
         }
         /// <summary>
@@ -251,24 +255,26 @@ namespace ApiSdk.Workbooks.Item.Workbook.Tables.Item.Worksheet.Charts.Item {
         }
         /// <summary>
         /// Returns collection of charts that are part of the worksheet. Read-only.
+        /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="h">Request headers</param>
         /// <param name="o">Request options</param>
         /// <param name="responseHandler">Response handler to use in place of the default response handling provided by the core service</param>
         /// </summary>
-        public async Task DeleteAsync(Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default) {
+        public async Task DeleteAsync(Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default, CancellationToken cancellationToken = default) {
             var requestInfo = CreateDeleteRequestInformation(h, o);
-            await RequestAdapter.SendNoContentAsync(requestInfo, responseHandler);
+            await RequestAdapter.SendNoContentAsync(requestInfo, responseHandler, cancellationToken);
         }
         /// <summary>
         /// Returns collection of charts that are part of the worksheet. Read-only.
+        /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="h">Request headers</param>
         /// <param name="o">Request options</param>
         /// <param name="q">Request query parameters</param>
         /// <param name="responseHandler">Response handler to use in place of the default response handling provided by the core service</param>
         /// </summary>
-        public async Task<WorkbookChart> GetAsync(Action<GetQueryParameters> q = default, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default) {
+        public async Task<WorkbookChart> GetAsync(Action<GetQueryParameters> q = default, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default, CancellationToken cancellationToken = default) {
             var requestInfo = CreateGetRequestInformation(q, h, o);
-            return await RequestAdapter.SendAsync<WorkbookChart>(requestInfo, responseHandler);
+            return await RequestAdapter.SendAsync<WorkbookChart>(requestInfo, responseHandler, cancellationToken);
         }
         /// <summary>
         /// Builds and executes requests for operations under \workbooks\{driveItem-id}\workbook\tables\{workbookTable-id}\worksheet\charts\{workbookChart-id}\microsoft.graph.image()
@@ -308,15 +314,16 @@ namespace ApiSdk.Workbooks.Item.Workbook.Tables.Item.Worksheet.Charts.Item {
         }
         /// <summary>
         /// Returns collection of charts that are part of the worksheet. Read-only.
+        /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="h">Request headers</param>
         /// <param name="model"></param>
         /// <param name="o">Request options</param>
         /// <param name="responseHandler">Response handler to use in place of the default response handling provided by the core service</param>
         /// </summary>
-        public async Task PatchAsync(WorkbookChart model, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default) {
+        public async Task PatchAsync(WorkbookChart model, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default, CancellationToken cancellationToken = default) {
             _ = model ?? throw new ArgumentNullException(nameof(model));
             var requestInfo = CreatePatchRequestInformation(model, h, o);
-            await RequestAdapter.SendNoContentAsync(requestInfo, responseHandler);
+            await RequestAdapter.SendNoContentAsync(requestInfo, responseHandler, cancellationToken);
         }
         /// <summary>Returns collection of charts that are part of the worksheet. Read-only.</summary>
         public class GetQueryParameters : QueryParametersBase {

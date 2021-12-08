@@ -12,6 +12,7 @@ using System.CommandLine.Invocation;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 namespace ApiSdk.Users.Item.Onenote.Pages.Item.ParentSection.ParentNotebook.SectionGroups.Item {
     /// <summary>Builds and executes requests for operations under \users\{user-id}\onenote\pages\{onenotePage-id}\parentSection\parentNotebook\sectionGroups\{sectionGroup-id}</summary>
@@ -27,6 +28,7 @@ namespace ApiSdk.Users.Item.Onenote.Pages.Item.ParentSection.ParentNotebook.Sect
         /// </summary>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
+            command.Description = "The section groups in the notebook. Read-only. Nullable.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--user-id", description: "key: id of user"));
             command.AddOption(new Option<string>("--onenotepage-id", description: "key: id of onenotePage"));
@@ -47,6 +49,7 @@ namespace ApiSdk.Users.Item.Onenote.Pages.Item.ParentSection.ParentNotebook.Sect
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
+            command.Description = "The section groups in the notebook. Read-only. Nullable.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--user-id", description: "key: id of user"));
             command.AddOption(new Option<string>("--onenotepage-id", description: "key: id of onenotePage"));
@@ -75,17 +78,17 @@ namespace ApiSdk.Users.Item.Onenote.Pages.Item.ParentSection.ParentNotebook.Sect
             var command = new Command("parent-notebook");
             var builder = new ApiSdk.Users.Item.Onenote.Pages.Item.ParentSection.ParentNotebook.SectionGroups.Item.ParentNotebook.ParentNotebookRequestBuilder(PathParameters, RequestAdapter);
             command.AddCommand(builder.BuildCopyNotebookCommand());
-            command.AddCommand(builder.BuildPatchCommand());
-            command.AddCommand(builder.BuildGetCommand());
             command.AddCommand(builder.BuildDeleteCommand());
+            command.AddCommand(builder.BuildGetCommand());
+            command.AddCommand(builder.BuildPatchCommand());
             return command;
         }
         public Command BuildParentSectionGroupCommand() {
             var command = new Command("parent-section-group");
             var builder = new ApiSdk.Users.Item.Onenote.Pages.Item.ParentSection.ParentNotebook.SectionGroups.Item.ParentSectionGroup.ParentSectionGroupRequestBuilder(PathParameters, RequestAdapter);
-            command.AddCommand(builder.BuildPatchCommand());
-            command.AddCommand(builder.BuildGetCommand());
             command.AddCommand(builder.BuildDeleteCommand());
+            command.AddCommand(builder.BuildGetCommand());
+            command.AddCommand(builder.BuildPatchCommand());
             return command;
         }
         /// <summary>
@@ -93,6 +96,7 @@ namespace ApiSdk.Users.Item.Onenote.Pages.Item.ParentSection.ParentNotebook.Sect
         /// </summary>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
+            command.Description = "The section groups in the notebook. Read-only. Nullable.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--user-id", description: "key: id of user"));
             command.AddOption(new Option<string>("--onenotepage-id", description: "key: id of onenotePage"));
@@ -115,21 +119,21 @@ namespace ApiSdk.Users.Item.Onenote.Pages.Item.ParentSection.ParentNotebook.Sect
         public Command BuildSectionGroupsCommand() {
             var command = new Command("section-groups");
             var builder = new ApiSdk.Users.Item.Onenote.Pages.Item.ParentSection.ParentNotebook.SectionGroups.Item.SectionGroups.SectionGroupsRequestBuilder(PathParameters, RequestAdapter);
-            command.AddCommand(builder.BuildListCommand());
-            command.AddCommand(builder.BuildCreateCommand());
             foreach (var cmd in builder.BuildCommand()) {
                 command.AddCommand(cmd);
             }
+            command.AddCommand(builder.BuildCreateCommand());
+            command.AddCommand(builder.BuildListCommand());
             return command;
         }
         public Command BuildSectionsCommand() {
             var command = new Command("sections");
             var builder = new ApiSdk.Users.Item.Onenote.Pages.Item.ParentSection.ParentNotebook.SectionGroups.Item.Sections.SectionsRequestBuilder(PathParameters, RequestAdapter);
-            command.AddCommand(builder.BuildListCommand());
-            command.AddCommand(builder.BuildCreateCommand());
             foreach (var cmd in builder.BuildCommand()) {
                 command.AddCommand(cmd);
             }
+            command.AddCommand(builder.BuildCreateCommand());
+            command.AddCommand(builder.BuildListCommand());
             return command;
         }
         /// <summary>
@@ -201,36 +205,39 @@ namespace ApiSdk.Users.Item.Onenote.Pages.Item.ParentSection.ParentNotebook.Sect
         }
         /// <summary>
         /// The section groups in the notebook. Read-only. Nullable.
+        /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="h">Request headers</param>
         /// <param name="o">Request options</param>
         /// <param name="responseHandler">Response handler to use in place of the default response handling provided by the core service</param>
         /// </summary>
-        public async Task DeleteAsync(Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default) {
+        public async Task DeleteAsync(Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default, CancellationToken cancellationToken = default) {
             var requestInfo = CreateDeleteRequestInformation(h, o);
-            await RequestAdapter.SendNoContentAsync(requestInfo, responseHandler);
+            await RequestAdapter.SendNoContentAsync(requestInfo, responseHandler, cancellationToken);
         }
         /// <summary>
         /// The section groups in the notebook. Read-only. Nullable.
+        /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="h">Request headers</param>
         /// <param name="o">Request options</param>
         /// <param name="q">Request query parameters</param>
         /// <param name="responseHandler">Response handler to use in place of the default response handling provided by the core service</param>
         /// </summary>
-        public async Task<SectionGroup> GetAsync(Action<GetQueryParameters> q = default, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default) {
+        public async Task<SectionGroup> GetAsync(Action<GetQueryParameters> q = default, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default, CancellationToken cancellationToken = default) {
             var requestInfo = CreateGetRequestInformation(q, h, o);
-            return await RequestAdapter.SendAsync<SectionGroup>(requestInfo, responseHandler);
+            return await RequestAdapter.SendAsync<SectionGroup>(requestInfo, responseHandler, cancellationToken);
         }
         /// <summary>
         /// The section groups in the notebook. Read-only. Nullable.
+        /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="h">Request headers</param>
         /// <param name="model"></param>
         /// <param name="o">Request options</param>
         /// <param name="responseHandler">Response handler to use in place of the default response handling provided by the core service</param>
         /// </summary>
-        public async Task PatchAsync(SectionGroup model, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default) {
+        public async Task PatchAsync(SectionGroup model, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default, CancellationToken cancellationToken = default) {
             _ = model ?? throw new ArgumentNullException(nameof(model));
             var requestInfo = CreatePatchRequestInformation(model, h, o);
-            await RequestAdapter.SendNoContentAsync(requestInfo, responseHandler);
+            await RequestAdapter.SendNoContentAsync(requestInfo, responseHandler, cancellationToken);
         }
         /// <summary>The section groups in the notebook. Read-only. Nullable.</summary>
         public class GetQueryParameters : QueryParametersBase {

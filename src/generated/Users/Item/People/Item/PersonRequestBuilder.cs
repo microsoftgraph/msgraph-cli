@@ -8,6 +8,7 @@ using System.CommandLine.Invocation;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 namespace ApiSdk.Users.Item.People.Item {
     /// <summary>Builds and executes requests for operations under \users\{user-id}\people\{person-id}</summary>
@@ -23,6 +24,7 @@ namespace ApiSdk.Users.Item.People.Item {
         /// </summary>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
+            command.Description = "People that are relevant to the user. Read-only. Nullable.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--user-id", description: "key: id of user"));
             command.AddOption(new Option<string>("--person-id", description: "key: id of person"));
@@ -41,6 +43,7 @@ namespace ApiSdk.Users.Item.People.Item {
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
+            command.Description = "People that are relevant to the user. Read-only. Nullable.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--user-id", description: "key: id of user"));
             command.AddOption(new Option<string>("--person-id", description: "key: id of person"));
@@ -66,6 +69,7 @@ namespace ApiSdk.Users.Item.People.Item {
         /// </summary>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
+            command.Description = "People that are relevant to the user. Read-only. Nullable.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--user-id", description: "key: id of user"));
             command.AddOption(new Option<string>("--person-id", description: "key: id of person"));
@@ -152,36 +156,39 @@ namespace ApiSdk.Users.Item.People.Item {
         }
         /// <summary>
         /// People that are relevant to the user. Read-only. Nullable.
+        /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="h">Request headers</param>
         /// <param name="o">Request options</param>
         /// <param name="responseHandler">Response handler to use in place of the default response handling provided by the core service</param>
         /// </summary>
-        public async Task DeleteAsync(Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default) {
+        public async Task DeleteAsync(Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default, CancellationToken cancellationToken = default) {
             var requestInfo = CreateDeleteRequestInformation(h, o);
-            await RequestAdapter.SendNoContentAsync(requestInfo, responseHandler);
+            await RequestAdapter.SendNoContentAsync(requestInfo, responseHandler, cancellationToken);
         }
         /// <summary>
         /// People that are relevant to the user. Read-only. Nullable.
+        /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="h">Request headers</param>
         /// <param name="o">Request options</param>
         /// <param name="q">Request query parameters</param>
         /// <param name="responseHandler">Response handler to use in place of the default response handling provided by the core service</param>
         /// </summary>
-        public async Task<Person> GetAsync(Action<GetQueryParameters> q = default, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default) {
+        public async Task<Person> GetAsync(Action<GetQueryParameters> q = default, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default, CancellationToken cancellationToken = default) {
             var requestInfo = CreateGetRequestInformation(q, h, o);
-            return await RequestAdapter.SendAsync<Person>(requestInfo, responseHandler);
+            return await RequestAdapter.SendAsync<Person>(requestInfo, responseHandler, cancellationToken);
         }
         /// <summary>
         /// People that are relevant to the user. Read-only. Nullable.
+        /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="h">Request headers</param>
         /// <param name="model"></param>
         /// <param name="o">Request options</param>
         /// <param name="responseHandler">Response handler to use in place of the default response handling provided by the core service</param>
         /// </summary>
-        public async Task PatchAsync(Person model, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default) {
+        public async Task PatchAsync(Person model, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default, CancellationToken cancellationToken = default) {
             _ = model ?? throw new ArgumentNullException(nameof(model));
             var requestInfo = CreatePatchRequestInformation(model, h, o);
-            await RequestAdapter.SendNoContentAsync(requestInfo, responseHandler);
+            await RequestAdapter.SendNoContentAsync(requestInfo, responseHandler, cancellationToken);
         }
         /// <summary>People that are relevant to the user. Read-only. Nullable.</summary>
         public class GetQueryParameters : QueryParametersBase {

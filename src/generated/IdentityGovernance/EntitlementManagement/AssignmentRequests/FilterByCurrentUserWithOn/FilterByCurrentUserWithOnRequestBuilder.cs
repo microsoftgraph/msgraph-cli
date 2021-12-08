@@ -7,6 +7,7 @@ using System.CommandLine.Invocation;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 namespace ApiSdk.IdentityGovernance.EntitlementManagement.AssignmentRequests.FilterByCurrentUserWithOn {
     /// <summary>Builds and executes requests for operations under \identityGovernance\entitlementManagement\assignmentRequests\microsoft.graph.filterByCurrentUser(on={on})</summary>
@@ -22,6 +23,7 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.AssignmentRequests.Fil
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
+            command.Description = "Invoke function filterByCurrentUser";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--on", description: "Usage: on={on}"));
             command.Handler = CommandHandler.Create<string>(async (on) => {
@@ -70,13 +72,14 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.AssignmentRequests.Fil
         }
         /// <summary>
         /// Invoke function filterByCurrentUser
+        /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="h">Request headers</param>
         /// <param name="o">Request options</param>
         /// <param name="responseHandler">Response handler to use in place of the default response handling provided by the core service</param>
         /// </summary>
-        public async Task<IEnumerable<ApiSdk.IdentityGovernance.EntitlementManagement.AssignmentRequests.FilterByCurrentUserWithOn.FilterByCurrentUserWithOn>> GetAsync(Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default) {
+        public async Task<IEnumerable<ApiSdk.IdentityGovernance.EntitlementManagement.AssignmentRequests.FilterByCurrentUserWithOn.FilterByCurrentUserWithOn>> GetAsync(Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default, CancellationToken cancellationToken = default) {
             var requestInfo = CreateGetRequestInformation(h, o);
-            return await RequestAdapter.SendCollectionAsync<ApiSdk.IdentityGovernance.EntitlementManagement.AssignmentRequests.FilterByCurrentUserWithOn.FilterByCurrentUserWithOn>(requestInfo, responseHandler);
+            return await RequestAdapter.SendCollectionAsync<ApiSdk.IdentityGovernance.EntitlementManagement.AssignmentRequests.FilterByCurrentUserWithOn.FilterByCurrentUserWithOn>(requestInfo, responseHandler, cancellationToken);
         }
     }
 }

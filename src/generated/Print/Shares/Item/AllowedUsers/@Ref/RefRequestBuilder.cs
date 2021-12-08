@@ -7,6 +7,7 @@ using System.CommandLine.Invocation;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 namespace ApiSdk.Print.Shares.Item.AllowedUsers.@Ref {
     /// <summary>Builds and executes requests for operations under \print\shares\{printerShare-id}\allowedUsers\$ref</summary>
@@ -22,6 +23,7 @@ namespace ApiSdk.Print.Shares.Item.AllowedUsers.@Ref {
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
+            command.Description = "The users who have access to print using the printer.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--printershare-id", description: "key: id of printerShare"));
             command.AddOption(new Option<int?>("--top", description: "Show only the first n items"));
@@ -55,6 +57,7 @@ namespace ApiSdk.Print.Shares.Item.AllowedUsers.@Ref {
         /// </summary>
         public Command BuildPostCommand() {
             var command = new Command("post");
+            command.Description = "The users who have access to print using the printer.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--printershare-id", description: "key: id of printerShare"));
             command.AddOption(new Option<string>("--body"));
@@ -129,26 +132,28 @@ namespace ApiSdk.Print.Shares.Item.AllowedUsers.@Ref {
         }
         /// <summary>
         /// The users who have access to print using the printer.
+        /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="h">Request headers</param>
         /// <param name="o">Request options</param>
         /// <param name="q">Request query parameters</param>
         /// <param name="responseHandler">Response handler to use in place of the default response handling provided by the core service</param>
         /// </summary>
-        public async Task<RefResponse> GetAsync(Action<GetQueryParameters> q = default, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default) {
+        public async Task<RefResponse> GetAsync(Action<GetQueryParameters> q = default, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default, CancellationToken cancellationToken = default) {
             var requestInfo = CreateGetRequestInformation(q, h, o);
-            return await RequestAdapter.SendAsync<RefResponse>(requestInfo, responseHandler);
+            return await RequestAdapter.SendAsync<RefResponse>(requestInfo, responseHandler, cancellationToken);
         }
         /// <summary>
         /// The users who have access to print using the printer.
+        /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="h">Request headers</param>
         /// <param name="model"></param>
         /// <param name="o">Request options</param>
         /// <param name="responseHandler">Response handler to use in place of the default response handling provided by the core service</param>
         /// </summary>
-        public async Task<ApiSdk.Print.Shares.Item.AllowedUsers.@Ref.@Ref> PostAsync(ApiSdk.Print.Shares.Item.AllowedUsers.@Ref.@Ref model, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default) {
+        public async Task<ApiSdk.Print.Shares.Item.AllowedUsers.@Ref.@Ref> PostAsync(ApiSdk.Print.Shares.Item.AllowedUsers.@Ref.@Ref model, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default, CancellationToken cancellationToken = default) {
             _ = model ?? throw new ArgumentNullException(nameof(model));
             var requestInfo = CreatePostRequestInformation(model, h, o);
-            return await RequestAdapter.SendAsync<ApiSdk.Print.Shares.Item.AllowedUsers.@Ref.@Ref>(requestInfo, responseHandler);
+            return await RequestAdapter.SendAsync<ApiSdk.Print.Shares.Item.AllowedUsers.@Ref.@Ref>(requestInfo, responseHandler, cancellationToken);
         }
         /// <summary>The users who have access to print using the printer.</summary>
         public class GetQueryParameters : QueryParametersBase {

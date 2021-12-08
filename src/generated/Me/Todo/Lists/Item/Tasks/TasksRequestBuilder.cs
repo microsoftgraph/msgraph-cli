@@ -10,6 +10,7 @@ using System.CommandLine.Invocation;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 namespace ApiSdk.Me.Todo.Lists.Item.Tasks {
     /// <summary>Builds and executes requests for operations under \me\todo\lists\{todoTaskList-id}\tasks</summary>
@@ -20,22 +21,23 @@ namespace ApiSdk.Me.Todo.Lists.Item.Tasks {
         private IRequestAdapter RequestAdapter { get; set; }
         /// <summary>Url template to use to build the URL for the current request builder</summary>
         private string UrlTemplate { get; set; }
-        public Command[] BuildCommand() {
+        public List<Command> BuildCommand() {
             var builder = new TodoTaskRequestBuilder(PathParameters, RequestAdapter);
             var commands = new List<Command> { 
+                builder.BuildDeleteCommand(),
                 builder.BuildExtensionsCommand(),
+                builder.BuildGetCommand(),
                 builder.BuildLinkedResourcesCommand(),
                 builder.BuildPatchCommand(),
-                builder.BuildGetCommand(),
-                builder.BuildDeleteCommand(),
             };
-            return commands.ToArray();
+            return commands;
         }
         /// <summary>
         /// The tasks in this task list. Read-only. Nullable.
         /// </summary>
         public Command BuildCreateCommand() {
             var command = new Command("create");
+            command.Description = "The tasks in this task list. Read-only. Nullable.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--todotasklist-id", description: "key: id of todoTaskList"));
             command.AddOption(new Option<string>("--body"));
@@ -61,6 +63,7 @@ namespace ApiSdk.Me.Todo.Lists.Item.Tasks {
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
+            command.Description = "The tasks in this task list. Read-only. Nullable.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--todotasklist-id", description: "key: id of todoTaskList"));
             command.AddOption(new Option<int?>("--top", description: "Show only the first n items"));
@@ -153,26 +156,28 @@ namespace ApiSdk.Me.Todo.Lists.Item.Tasks {
         }
         /// <summary>
         /// The tasks in this task list. Read-only. Nullable.
+        /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="h">Request headers</param>
         /// <param name="o">Request options</param>
         /// <param name="q">Request query parameters</param>
         /// <param name="responseHandler">Response handler to use in place of the default response handling provided by the core service</param>
         /// </summary>
-        public async Task<TasksResponse> GetAsync(Action<GetQueryParameters> q = default, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default) {
+        public async Task<TasksResponse> GetAsync(Action<GetQueryParameters> q = default, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default, CancellationToken cancellationToken = default) {
             var requestInfo = CreateGetRequestInformation(q, h, o);
-            return await RequestAdapter.SendAsync<TasksResponse>(requestInfo, responseHandler);
+            return await RequestAdapter.SendAsync<TasksResponse>(requestInfo, responseHandler, cancellationToken);
         }
         /// <summary>
         /// The tasks in this task list. Read-only. Nullable.
+        /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="h">Request headers</param>
         /// <param name="model"></param>
         /// <param name="o">Request options</param>
         /// <param name="responseHandler">Response handler to use in place of the default response handling provided by the core service</param>
         /// </summary>
-        public async Task<TodoTask> PostAsync(TodoTask model, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default) {
+        public async Task<TodoTask> PostAsync(TodoTask model, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default, CancellationToken cancellationToken = default) {
             _ = model ?? throw new ArgumentNullException(nameof(model));
             var requestInfo = CreatePostRequestInformation(model, h, o);
-            return await RequestAdapter.SendAsync<TodoTask>(requestInfo, responseHandler);
+            return await RequestAdapter.SendAsync<TodoTask>(requestInfo, responseHandler, cancellationToken);
         }
         /// <summary>The tasks in this task list. Read-only. Nullable.</summary>
         public class GetQueryParameters : QueryParametersBase {

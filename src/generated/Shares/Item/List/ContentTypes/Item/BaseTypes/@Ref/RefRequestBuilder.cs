@@ -7,6 +7,7 @@ using System.CommandLine.Invocation;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 namespace ApiSdk.Shares.Item.List.ContentTypes.Item.BaseTypes.@Ref {
     /// <summary>Builds and executes requests for operations under \shares\{sharedDriveItem-id}\list\contentTypes\{contentType-id}\baseTypes\$ref</summary>
@@ -22,6 +23,7 @@ namespace ApiSdk.Shares.Item.List.ContentTypes.Item.BaseTypes.@Ref {
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
+            command.Description = "The collection of content types that are ancestors of this content type.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--shareddriveitem-id", description: "key: id of sharedDriveItem"));
             command.AddOption(new Option<string>("--contenttype-id", description: "key: id of contentType"));
@@ -57,6 +59,7 @@ namespace ApiSdk.Shares.Item.List.ContentTypes.Item.BaseTypes.@Ref {
         /// </summary>
         public Command BuildPostCommand() {
             var command = new Command("post");
+            command.Description = "The collection of content types that are ancestors of this content type.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--shareddriveitem-id", description: "key: id of sharedDriveItem"));
             command.AddOption(new Option<string>("--contenttype-id", description: "key: id of contentType"));
@@ -133,26 +136,28 @@ namespace ApiSdk.Shares.Item.List.ContentTypes.Item.BaseTypes.@Ref {
         }
         /// <summary>
         /// The collection of content types that are ancestors of this content type.
+        /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="h">Request headers</param>
         /// <param name="o">Request options</param>
         /// <param name="q">Request query parameters</param>
         /// <param name="responseHandler">Response handler to use in place of the default response handling provided by the core service</param>
         /// </summary>
-        public async Task<RefResponse> GetAsync(Action<GetQueryParameters> q = default, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default) {
+        public async Task<RefResponse> GetAsync(Action<GetQueryParameters> q = default, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default, CancellationToken cancellationToken = default) {
             var requestInfo = CreateGetRequestInformation(q, h, o);
-            return await RequestAdapter.SendAsync<RefResponse>(requestInfo, responseHandler);
+            return await RequestAdapter.SendAsync<RefResponse>(requestInfo, responseHandler, cancellationToken);
         }
         /// <summary>
         /// The collection of content types that are ancestors of this content type.
+        /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="h">Request headers</param>
         /// <param name="model"></param>
         /// <param name="o">Request options</param>
         /// <param name="responseHandler">Response handler to use in place of the default response handling provided by the core service</param>
         /// </summary>
-        public async Task<ApiSdk.Shares.Item.List.ContentTypes.Item.BaseTypes.@Ref.@Ref> PostAsync(ApiSdk.Shares.Item.List.ContentTypes.Item.BaseTypes.@Ref.@Ref model, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default) {
+        public async Task<ApiSdk.Shares.Item.List.ContentTypes.Item.BaseTypes.@Ref.@Ref> PostAsync(ApiSdk.Shares.Item.List.ContentTypes.Item.BaseTypes.@Ref.@Ref model, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default, CancellationToken cancellationToken = default) {
             _ = model ?? throw new ArgumentNullException(nameof(model));
             var requestInfo = CreatePostRequestInformation(model, h, o);
-            return await RequestAdapter.SendAsync<ApiSdk.Shares.Item.List.ContentTypes.Item.BaseTypes.@Ref.@Ref>(requestInfo, responseHandler);
+            return await RequestAdapter.SendAsync<ApiSdk.Shares.Item.List.ContentTypes.Item.BaseTypes.@Ref.@Ref>(requestInfo, responseHandler, cancellationToken);
         }
         /// <summary>The collection of content types that are ancestors of this content type.</summary>
         public class GetQueryParameters : QueryParametersBase {

@@ -8,6 +8,7 @@ using System.CommandLine.Invocation;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 namespace ApiSdk.Me.MailFolders.Item.Messages.Item.CreateReplyAll {
     /// <summary>Builds and executes requests for operations under \me\mailFolders\{mailFolder-id}\messages\{message-id}\microsoft.graph.createReplyAll</summary>
@@ -23,6 +24,7 @@ namespace ApiSdk.Me.MailFolders.Item.Messages.Item.CreateReplyAll {
         /// </summary>
         public Command BuildPostCommand() {
             var command = new Command("post");
+            command.Description = "Invoke action createReplyAll";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--mailfolder-id", description: "key: id of mailFolder"));
             command.AddOption(new Option<string>("--message-id", description: "key: id of message"));
@@ -78,15 +80,16 @@ namespace ApiSdk.Me.MailFolders.Item.Messages.Item.CreateReplyAll {
         }
         /// <summary>
         /// Invoke action createReplyAll
+        /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="h">Request headers</param>
         /// <param name="model"></param>
         /// <param name="o">Request options</param>
         /// <param name="responseHandler">Response handler to use in place of the default response handling provided by the core service</param>
         /// </summary>
-        public async Task<CreateReplyAllResponse> PostAsync(CreateReplyAllRequestBody model, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default) {
+        public async Task<CreateReplyAllResponse> PostAsync(CreateReplyAllRequestBody model, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default, CancellationToken cancellationToken = default) {
             _ = model ?? throw new ArgumentNullException(nameof(model));
             var requestInfo = CreatePostRequestInformation(model, h, o);
-            return await RequestAdapter.SendAsync<CreateReplyAllResponse>(requestInfo, responseHandler);
+            return await RequestAdapter.SendAsync<CreateReplyAllResponse>(requestInfo, responseHandler, cancellationToken);
         }
         /// <summary>Union type wrapper for classes message</summary>
         public class CreateReplyAllResponse : IParsable {

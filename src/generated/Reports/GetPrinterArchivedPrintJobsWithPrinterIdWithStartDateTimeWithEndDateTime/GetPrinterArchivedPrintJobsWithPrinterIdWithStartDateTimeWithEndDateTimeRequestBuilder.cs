@@ -7,6 +7,7 @@ using System.CommandLine.Invocation;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 namespace ApiSdk.Reports.GetPrinterArchivedPrintJobsWithPrinterIdWithStartDateTimeWithEndDateTime {
     /// <summary>Builds and executes requests for operations under \reports\microsoft.graph.getPrinterArchivedPrintJobs(printerId='{printerId}',startDateTime={startDateTime},endDateTime={endDateTime})</summary>
@@ -22,6 +23,7 @@ namespace ApiSdk.Reports.GetPrinterArchivedPrintJobsWithPrinterIdWithStartDateTi
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
+            command.Description = "Invoke function getPrinterArchivedPrintJobs";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--printerid", description: "Usage: printerId={printerId}"));
             command.AddOption(new Option<DateTimeOffset?>("--startdatetime", description: "Usage: startDateTime={startDateTime}"));
@@ -78,13 +80,14 @@ namespace ApiSdk.Reports.GetPrinterArchivedPrintJobsWithPrinterIdWithStartDateTi
         }
         /// <summary>
         /// Invoke function getPrinterArchivedPrintJobs
+        /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="h">Request headers</param>
         /// <param name="o">Request options</param>
         /// <param name="responseHandler">Response handler to use in place of the default response handling provided by the core service</param>
         /// </summary>
-        public async Task<IEnumerable<ApiSdk.Reports.GetPrinterArchivedPrintJobsWithPrinterIdWithStartDateTimeWithEndDateTime.GetPrinterArchivedPrintJobsWithPrinterIdWithStartDateTimeWithEndDateTime>> GetAsync(Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default) {
+        public async Task<IEnumerable<ApiSdk.Reports.GetPrinterArchivedPrintJobsWithPrinterIdWithStartDateTimeWithEndDateTime.GetPrinterArchivedPrintJobsWithPrinterIdWithStartDateTimeWithEndDateTime>> GetAsync(Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default, CancellationToken cancellationToken = default) {
             var requestInfo = CreateGetRequestInformation(h, o);
-            return await RequestAdapter.SendCollectionAsync<ApiSdk.Reports.GetPrinterArchivedPrintJobsWithPrinterIdWithStartDateTimeWithEndDateTime.GetPrinterArchivedPrintJobsWithPrinterIdWithStartDateTimeWithEndDateTime>(requestInfo, responseHandler);
+            return await RequestAdapter.SendCollectionAsync<ApiSdk.Reports.GetPrinterArchivedPrintJobsWithPrinterIdWithStartDateTimeWithEndDateTime.GetPrinterArchivedPrintJobsWithPrinterIdWithStartDateTimeWithEndDateTime>(requestInfo, responseHandler, cancellationToken);
         }
     }
 }

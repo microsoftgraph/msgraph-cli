@@ -8,6 +8,7 @@ using System.CommandLine.Invocation;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 namespace ApiSdk.IdentityGovernance.AccessReviews.Definitions.Item.Instances.Item.Decisions.Item {
     /// <summary>Builds and executes requests for operations under \identityGovernance\accessReviews\definitions\{accessReviewScheduleDefinition-id}\instances\{accessReviewInstance-id}\decisions\{accessReviewInstanceDecisionItem-id}</summary>
@@ -23,6 +24,7 @@ namespace ApiSdk.IdentityGovernance.AccessReviews.Definitions.Item.Instances.Ite
         /// </summary>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
+            command.Description = "Each principal reviewed in an accessReviewInstance has a decision item representing if they were approved, denied, or not yet reviewed.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--accessreviewscheduledefinition-id", description: "key: id of accessReviewScheduleDefinition"));
             command.AddOption(new Option<string>("--accessreviewinstance-id", description: "key: id of accessReviewInstance"));
@@ -43,6 +45,7 @@ namespace ApiSdk.IdentityGovernance.AccessReviews.Definitions.Item.Instances.Ite
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
+            command.Description = "Each principal reviewed in an accessReviewInstance has a decision item representing if they were approved, denied, or not yet reviewed.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--accessreviewscheduledefinition-id", description: "key: id of accessReviewScheduleDefinition"));
             command.AddOption(new Option<string>("--accessreviewinstance-id", description: "key: id of accessReviewInstance"));
@@ -72,6 +75,7 @@ namespace ApiSdk.IdentityGovernance.AccessReviews.Definitions.Item.Instances.Ite
         /// </summary>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
+            command.Description = "Each principal reviewed in an accessReviewInstance has a decision item representing if they were approved, denied, or not yet reviewed.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--accessreviewscheduledefinition-id", description: "key: id of accessReviewScheduleDefinition"));
             command.AddOption(new Option<string>("--accessreviewinstance-id", description: "key: id of accessReviewInstance"));
@@ -160,36 +164,39 @@ namespace ApiSdk.IdentityGovernance.AccessReviews.Definitions.Item.Instances.Ite
         }
         /// <summary>
         /// Each principal reviewed in an accessReviewInstance has a decision item representing if they were approved, denied, or not yet reviewed.
+        /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="h">Request headers</param>
         /// <param name="o">Request options</param>
         /// <param name="responseHandler">Response handler to use in place of the default response handling provided by the core service</param>
         /// </summary>
-        public async Task DeleteAsync(Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default) {
+        public async Task DeleteAsync(Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default, CancellationToken cancellationToken = default) {
             var requestInfo = CreateDeleteRequestInformation(h, o);
-            await RequestAdapter.SendNoContentAsync(requestInfo, responseHandler);
+            await RequestAdapter.SendNoContentAsync(requestInfo, responseHandler, cancellationToken);
         }
         /// <summary>
         /// Each principal reviewed in an accessReviewInstance has a decision item representing if they were approved, denied, or not yet reviewed.
+        /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="h">Request headers</param>
         /// <param name="o">Request options</param>
         /// <param name="q">Request query parameters</param>
         /// <param name="responseHandler">Response handler to use in place of the default response handling provided by the core service</param>
         /// </summary>
-        public async Task<AccessReviewInstanceDecisionItem> GetAsync(Action<GetQueryParameters> q = default, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default) {
+        public async Task<AccessReviewInstanceDecisionItem> GetAsync(Action<GetQueryParameters> q = default, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default, CancellationToken cancellationToken = default) {
             var requestInfo = CreateGetRequestInformation(q, h, o);
-            return await RequestAdapter.SendAsync<AccessReviewInstanceDecisionItem>(requestInfo, responseHandler);
+            return await RequestAdapter.SendAsync<AccessReviewInstanceDecisionItem>(requestInfo, responseHandler, cancellationToken);
         }
         /// <summary>
         /// Each principal reviewed in an accessReviewInstance has a decision item representing if they were approved, denied, or not yet reviewed.
+        /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="h">Request headers</param>
         /// <param name="model"></param>
         /// <param name="o">Request options</param>
         /// <param name="responseHandler">Response handler to use in place of the default response handling provided by the core service</param>
         /// </summary>
-        public async Task PatchAsync(AccessReviewInstanceDecisionItem model, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default) {
+        public async Task PatchAsync(AccessReviewInstanceDecisionItem model, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default, CancellationToken cancellationToken = default) {
             _ = model ?? throw new ArgumentNullException(nameof(model));
             var requestInfo = CreatePatchRequestInformation(model, h, o);
-            await RequestAdapter.SendNoContentAsync(requestInfo, responseHandler);
+            await RequestAdapter.SendNoContentAsync(requestInfo, responseHandler, cancellationToken);
         }
         /// <summary>Each principal reviewed in an accessReviewInstance has a decision item representing if they were approved, denied, or not yet reviewed.</summary>
         public class GetQueryParameters : QueryParametersBase {

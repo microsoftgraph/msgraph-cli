@@ -10,6 +10,7 @@ using System.CommandLine.Invocation;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 namespace ApiSdk.IdentityGovernance.AccessReviews.Definitions.Item.Instances.Item.Decisions {
     /// <summary>Builds and executes requests for operations under \identityGovernance\accessReviews\definitions\{accessReviewScheduleDefinition-id}\instances\{accessReviewInstance-id}\decisions</summary>
@@ -20,20 +21,21 @@ namespace ApiSdk.IdentityGovernance.AccessReviews.Definitions.Item.Instances.Ite
         private IRequestAdapter RequestAdapter { get; set; }
         /// <summary>Url template to use to build the URL for the current request builder</summary>
         private string UrlTemplate { get; set; }
-        public Command[] BuildCommand() {
+        public List<Command> BuildCommand() {
             var builder = new AccessReviewInstanceDecisionItemRequestBuilder(PathParameters, RequestAdapter);
             var commands = new List<Command> { 
-                builder.BuildPatchCommand(),
-                builder.BuildGetCommand(),
                 builder.BuildDeleteCommand(),
+                builder.BuildGetCommand(),
+                builder.BuildPatchCommand(),
             };
-            return commands.ToArray();
+            return commands;
         }
         /// <summary>
         /// Each principal reviewed in an accessReviewInstance has a decision item representing if they were approved, denied, or not yet reviewed.
         /// </summary>
         public Command BuildCreateCommand() {
             var command = new Command("create");
+            command.Description = "Each principal reviewed in an accessReviewInstance has a decision item representing if they were approved, denied, or not yet reviewed.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--accessreviewscheduledefinition-id", description: "key: id of accessReviewScheduleDefinition"));
             command.AddOption(new Option<string>("--accessreviewinstance-id", description: "key: id of accessReviewInstance"));
@@ -61,6 +63,7 @@ namespace ApiSdk.IdentityGovernance.AccessReviews.Definitions.Item.Instances.Ite
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
+            command.Description = "Each principal reviewed in an accessReviewInstance has a decision item representing if they were approved, denied, or not yet reviewed.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--accessreviewscheduledefinition-id", description: "key: id of accessReviewScheduleDefinition"));
             command.AddOption(new Option<string>("--accessreviewinstance-id", description: "key: id of accessReviewInstance"));
@@ -157,26 +160,28 @@ namespace ApiSdk.IdentityGovernance.AccessReviews.Definitions.Item.Instances.Ite
         }
         /// <summary>
         /// Each principal reviewed in an accessReviewInstance has a decision item representing if they were approved, denied, or not yet reviewed.
+        /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="h">Request headers</param>
         /// <param name="o">Request options</param>
         /// <param name="q">Request query parameters</param>
         /// <param name="responseHandler">Response handler to use in place of the default response handling provided by the core service</param>
         /// </summary>
-        public async Task<DecisionsResponse> GetAsync(Action<GetQueryParameters> q = default, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default) {
+        public async Task<DecisionsResponse> GetAsync(Action<GetQueryParameters> q = default, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default, CancellationToken cancellationToken = default) {
             var requestInfo = CreateGetRequestInformation(q, h, o);
-            return await RequestAdapter.SendAsync<DecisionsResponse>(requestInfo, responseHandler);
+            return await RequestAdapter.SendAsync<DecisionsResponse>(requestInfo, responseHandler, cancellationToken);
         }
         /// <summary>
         /// Each principal reviewed in an accessReviewInstance has a decision item representing if they were approved, denied, or not yet reviewed.
+        /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="h">Request headers</param>
         /// <param name="model"></param>
         /// <param name="o">Request options</param>
         /// <param name="responseHandler">Response handler to use in place of the default response handling provided by the core service</param>
         /// </summary>
-        public async Task<AccessReviewInstanceDecisionItem> PostAsync(AccessReviewInstanceDecisionItem model, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default) {
+        public async Task<AccessReviewInstanceDecisionItem> PostAsync(AccessReviewInstanceDecisionItem model, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default, CancellationToken cancellationToken = default) {
             _ = model ?? throw new ArgumentNullException(nameof(model));
             var requestInfo = CreatePostRequestInformation(model, h, o);
-            return await RequestAdapter.SendAsync<AccessReviewInstanceDecisionItem>(requestInfo, responseHandler);
+            return await RequestAdapter.SendAsync<AccessReviewInstanceDecisionItem>(requestInfo, responseHandler, cancellationToken);
         }
         /// <summary>Each principal reviewed in an accessReviewInstance has a decision item representing if they were approved, denied, or not yet reviewed.</summary>
         public class GetQueryParameters : QueryParametersBase {

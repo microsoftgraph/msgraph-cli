@@ -15,6 +15,7 @@ using System.CommandLine.Invocation;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 namespace ApiSdk.Me.MailFolders.Item {
     /// <summary>Builds and executes requests for operations under \me\mailFolders\{mailFolder-id}</summary>
@@ -28,11 +29,11 @@ namespace ApiSdk.Me.MailFolders.Item {
         public Command BuildChildFoldersCommand() {
             var command = new Command("child-folders");
             var builder = new ApiSdk.Me.MailFolders.Item.ChildFolders.ChildFoldersRequestBuilder(PathParameters, RequestAdapter);
-            command.AddCommand(builder.BuildListCommand());
-            command.AddCommand(builder.BuildCreateCommand());
             foreach (var cmd in builder.BuildCommand()) {
                 command.AddCommand(cmd);
             }
+            command.AddCommand(builder.BuildCreateCommand());
+            command.AddCommand(builder.BuildListCommand());
             return command;
         }
         public Command BuildCopyCommand() {
@@ -46,6 +47,7 @@ namespace ApiSdk.Me.MailFolders.Item {
         /// </summary>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
+            command.Description = "The user's mail folders. Read-only. Nullable.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--mailfolder-id", description: "key: id of mailFolder"));
             command.Handler = CommandHandler.Create<string>(async (mailFolderId) => {
@@ -62,6 +64,7 @@ namespace ApiSdk.Me.MailFolders.Item {
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
+            command.Description = "The user's mail folders. Read-only. Nullable.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--mailfolder-id", description: "key: id of mailFolder"));
             command.AddOption(new Option<object>("--select", description: "Select properties to be returned"));
@@ -83,21 +86,21 @@ namespace ApiSdk.Me.MailFolders.Item {
         public Command BuildMessageRulesCommand() {
             var command = new Command("message-rules");
             var builder = new ApiSdk.Me.MailFolders.Item.MessageRules.MessageRulesRequestBuilder(PathParameters, RequestAdapter);
-            command.AddCommand(builder.BuildListCommand());
-            command.AddCommand(builder.BuildCreateCommand());
             foreach (var cmd in builder.BuildCommand()) {
                 command.AddCommand(cmd);
             }
+            command.AddCommand(builder.BuildCreateCommand());
+            command.AddCommand(builder.BuildListCommand());
             return command;
         }
         public Command BuildMessagesCommand() {
             var command = new Command("messages");
             var builder = new ApiSdk.Me.MailFolders.Item.Messages.MessagesRequestBuilder(PathParameters, RequestAdapter);
-            command.AddCommand(builder.BuildListCommand());
-            command.AddCommand(builder.BuildCreateCommand());
             foreach (var cmd in builder.BuildCommand()) {
                 command.AddCommand(cmd);
             }
+            command.AddCommand(builder.BuildCreateCommand());
+            command.AddCommand(builder.BuildListCommand());
             return command;
         }
         public Command BuildMoveCommand() {
@@ -109,11 +112,11 @@ namespace ApiSdk.Me.MailFolders.Item {
         public Command BuildMultiValueExtendedPropertiesCommand() {
             var command = new Command("multi-value-extended-properties");
             var builder = new ApiSdk.Me.MailFolders.Item.MultiValueExtendedProperties.MultiValueExtendedPropertiesRequestBuilder(PathParameters, RequestAdapter);
-            command.AddCommand(builder.BuildListCommand());
-            command.AddCommand(builder.BuildCreateCommand());
             foreach (var cmd in builder.BuildCommand()) {
                 command.AddCommand(cmd);
             }
+            command.AddCommand(builder.BuildCreateCommand());
+            command.AddCommand(builder.BuildListCommand());
             return command;
         }
         /// <summary>
@@ -121,6 +124,7 @@ namespace ApiSdk.Me.MailFolders.Item {
         /// </summary>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
+            command.Description = "The user's mail folders. Read-only. Nullable.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--mailfolder-id", description: "key: id of mailFolder"));
             command.AddOption(new Option<string>("--body"));
@@ -139,11 +143,11 @@ namespace ApiSdk.Me.MailFolders.Item {
         public Command BuildSingleValueExtendedPropertiesCommand() {
             var command = new Command("single-value-extended-properties");
             var builder = new ApiSdk.Me.MailFolders.Item.SingleValueExtendedProperties.SingleValueExtendedPropertiesRequestBuilder(PathParameters, RequestAdapter);
-            command.AddCommand(builder.BuildListCommand());
-            command.AddCommand(builder.BuildCreateCommand());
             foreach (var cmd in builder.BuildCommand()) {
                 command.AddCommand(cmd);
             }
+            command.AddCommand(builder.BuildCreateCommand());
+            command.AddCommand(builder.BuildListCommand());
             return command;
         }
         /// <summary>
@@ -215,36 +219,39 @@ namespace ApiSdk.Me.MailFolders.Item {
         }
         /// <summary>
         /// The user's mail folders. Read-only. Nullable.
+        /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="h">Request headers</param>
         /// <param name="o">Request options</param>
         /// <param name="responseHandler">Response handler to use in place of the default response handling provided by the core service</param>
         /// </summary>
-        public async Task DeleteAsync(Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default) {
+        public async Task DeleteAsync(Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default, CancellationToken cancellationToken = default) {
             var requestInfo = CreateDeleteRequestInformation(h, o);
-            await RequestAdapter.SendNoContentAsync(requestInfo, responseHandler);
+            await RequestAdapter.SendNoContentAsync(requestInfo, responseHandler, cancellationToken);
         }
         /// <summary>
         /// The user's mail folders. Read-only. Nullable.
+        /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="h">Request headers</param>
         /// <param name="o">Request options</param>
         /// <param name="q">Request query parameters</param>
         /// <param name="responseHandler">Response handler to use in place of the default response handling provided by the core service</param>
         /// </summary>
-        public async Task<MailFolder> GetAsync(Action<GetQueryParameters> q = default, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default) {
+        public async Task<MailFolder> GetAsync(Action<GetQueryParameters> q = default, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default, CancellationToken cancellationToken = default) {
             var requestInfo = CreateGetRequestInformation(q, h, o);
-            return await RequestAdapter.SendAsync<MailFolder>(requestInfo, responseHandler);
+            return await RequestAdapter.SendAsync<MailFolder>(requestInfo, responseHandler, cancellationToken);
         }
         /// <summary>
         /// The user's mail folders. Read-only. Nullable.
+        /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="h">Request headers</param>
         /// <param name="model"></param>
         /// <param name="o">Request options</param>
         /// <param name="responseHandler">Response handler to use in place of the default response handling provided by the core service</param>
         /// </summary>
-        public async Task PatchAsync(MailFolder model, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default) {
+        public async Task PatchAsync(MailFolder model, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default, CancellationToken cancellationToken = default) {
             _ = model ?? throw new ArgumentNullException(nameof(model));
             var requestInfo = CreatePatchRequestInformation(model, h, o);
-            await RequestAdapter.SendNoContentAsync(requestInfo, responseHandler);
+            await RequestAdapter.SendNoContentAsync(requestInfo, responseHandler, cancellationToken);
         }
         /// <summary>The user's mail folders. Read-only. Nullable.</summary>
         public class GetQueryParameters : QueryParametersBase {

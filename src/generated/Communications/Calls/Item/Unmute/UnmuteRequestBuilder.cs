@@ -8,6 +8,7 @@ using System.CommandLine.Invocation;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 namespace ApiSdk.Communications.Calls.Item.Unmute {
     /// <summary>Builds and executes requests for operations under \communications\calls\{call-id}\microsoft.graph.unmute</summary>
@@ -23,6 +24,7 @@ namespace ApiSdk.Communications.Calls.Item.Unmute {
         /// </summary>
         public Command BuildPostCommand() {
             var command = new Command("post");
+            command.Description = "Invoke action unmute";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--call-id", description: "key: id of call"));
             command.AddOption(new Option<string>("--body"));
@@ -76,15 +78,16 @@ namespace ApiSdk.Communications.Calls.Item.Unmute {
         }
         /// <summary>
         /// Invoke action unmute
+        /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="h">Request headers</param>
         /// <param name="model"></param>
         /// <param name="o">Request options</param>
         /// <param name="responseHandler">Response handler to use in place of the default response handling provided by the core service</param>
         /// </summary>
-        public async Task<UnmuteResponse> PostAsync(UnmuteRequestBody model, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default) {
+        public async Task<UnmuteResponse> PostAsync(UnmuteRequestBody model, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default, CancellationToken cancellationToken = default) {
             _ = model ?? throw new ArgumentNullException(nameof(model));
             var requestInfo = CreatePostRequestInformation(model, h, o);
-            return await RequestAdapter.SendAsync<UnmuteResponse>(requestInfo, responseHandler);
+            return await RequestAdapter.SendAsync<UnmuteResponse>(requestInfo, responseHandler, cancellationToken);
         }
         /// <summary>Union type wrapper for classes unmuteParticipantOperation</summary>
         public class UnmuteResponse : IParsable {

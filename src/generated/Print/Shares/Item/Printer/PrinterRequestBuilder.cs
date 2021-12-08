@@ -10,6 +10,7 @@ using System.CommandLine.Invocation;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 namespace ApiSdk.Print.Shares.Item.Printer {
     /// <summary>Builds and executes requests for operations under \print\shares\{printerShare-id}\printer</summary>
@@ -25,6 +26,7 @@ namespace ApiSdk.Print.Shares.Item.Printer {
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
+            command.Description = "The printer that this printer share is related to.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--printershare-id", description: "key: id of printerShare"));
             command.AddOption(new Option<object>("--select", description: "Select properties to be returned"));
@@ -48,9 +50,9 @@ namespace ApiSdk.Print.Shares.Item.Printer {
         public Command BuildRefCommand() {
             var command = new Command("ref");
             var builder = new ApiSdk.Print.Shares.Item.Printer.@Ref.RefRequestBuilder(PathParameters, RequestAdapter);
-            command.AddCommand(builder.BuildPutCommand());
-            command.AddCommand(builder.BuildGetCommand());
             command.AddCommand(builder.BuildDeleteCommand());
+            command.AddCommand(builder.BuildGetCommand());
+            command.AddCommand(builder.BuildPutCommand());
             return command;
         }
         public Command BuildRestoreFactoryDefaultsCommand() {
@@ -95,14 +97,15 @@ namespace ApiSdk.Print.Shares.Item.Printer {
         }
         /// <summary>
         /// The printer that this printer share is related to.
+        /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="h">Request headers</param>
         /// <param name="o">Request options</param>
         /// <param name="q">Request query parameters</param>
         /// <param name="responseHandler">Response handler to use in place of the default response handling provided by the core service</param>
         /// </summary>
-        public async Task<ApiSdk.Models.Microsoft.Graph.Printer> GetAsync(Action<GetQueryParameters> q = default, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default) {
+        public async Task<ApiSdk.Models.Microsoft.Graph.Printer> GetAsync(Action<GetQueryParameters> q = default, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default, CancellationToken cancellationToken = default) {
             var requestInfo = CreateGetRequestInformation(q, h, o);
-            return await RequestAdapter.SendAsync<ApiSdk.Models.Microsoft.Graph.Printer>(requestInfo, responseHandler);
+            return await RequestAdapter.SendAsync<ApiSdk.Models.Microsoft.Graph.Printer>(requestInfo, responseHandler, cancellationToken);
         }
         /// <summary>The printer that this printer share is related to.</summary>
         public class GetQueryParameters : QueryParametersBase {

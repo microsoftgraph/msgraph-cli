@@ -8,6 +8,7 @@ using System.CommandLine.Invocation;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 namespace ApiSdk.DeviceAppManagement.MobileAppConfigurations.Item.UserStatuses.Item {
     /// <summary>Builds and executes requests for operations under \deviceAppManagement\mobileAppConfigurations\{managedDeviceMobileAppConfiguration-id}\userStatuses\{managedDeviceMobileAppConfigurationUserStatus-id}</summary>
@@ -23,6 +24,7 @@ namespace ApiSdk.DeviceAppManagement.MobileAppConfigurations.Item.UserStatuses.I
         /// </summary>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
+            command.Description = "List of ManagedDeviceMobileAppConfigurationUserStatus.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--manageddevicemobileappconfiguration-id", description: "key: id of managedDeviceMobileAppConfiguration"));
             command.AddOption(new Option<string>("--manageddevicemobileappconfigurationuserstatus-id", description: "key: id of managedDeviceMobileAppConfigurationUserStatus"));
@@ -41,6 +43,7 @@ namespace ApiSdk.DeviceAppManagement.MobileAppConfigurations.Item.UserStatuses.I
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
+            command.Description = "List of ManagedDeviceMobileAppConfigurationUserStatus.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--manageddevicemobileappconfiguration-id", description: "key: id of managedDeviceMobileAppConfiguration"));
             command.AddOption(new Option<string>("--manageddevicemobileappconfigurationuserstatus-id", description: "key: id of managedDeviceMobileAppConfigurationUserStatus"));
@@ -68,6 +71,7 @@ namespace ApiSdk.DeviceAppManagement.MobileAppConfigurations.Item.UserStatuses.I
         /// </summary>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
+            command.Description = "List of ManagedDeviceMobileAppConfigurationUserStatus.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--manageddevicemobileappconfiguration-id", description: "key: id of managedDeviceMobileAppConfiguration"));
             command.AddOption(new Option<string>("--manageddevicemobileappconfigurationuserstatus-id", description: "key: id of managedDeviceMobileAppConfigurationUserStatus"));
@@ -154,36 +158,39 @@ namespace ApiSdk.DeviceAppManagement.MobileAppConfigurations.Item.UserStatuses.I
         }
         /// <summary>
         /// List of ManagedDeviceMobileAppConfigurationUserStatus.
+        /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="h">Request headers</param>
         /// <param name="o">Request options</param>
         /// <param name="responseHandler">Response handler to use in place of the default response handling provided by the core service</param>
         /// </summary>
-        public async Task DeleteAsync(Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default) {
+        public async Task DeleteAsync(Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default, CancellationToken cancellationToken = default) {
             var requestInfo = CreateDeleteRequestInformation(h, o);
-            await RequestAdapter.SendNoContentAsync(requestInfo, responseHandler);
+            await RequestAdapter.SendNoContentAsync(requestInfo, responseHandler, cancellationToken);
         }
         /// <summary>
         /// List of ManagedDeviceMobileAppConfigurationUserStatus.
+        /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="h">Request headers</param>
         /// <param name="o">Request options</param>
         /// <param name="q">Request query parameters</param>
         /// <param name="responseHandler">Response handler to use in place of the default response handling provided by the core service</param>
         /// </summary>
-        public async Task<ManagedDeviceMobileAppConfigurationUserStatus> GetAsync(Action<GetQueryParameters> q = default, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default) {
+        public async Task<ManagedDeviceMobileAppConfigurationUserStatus> GetAsync(Action<GetQueryParameters> q = default, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default, CancellationToken cancellationToken = default) {
             var requestInfo = CreateGetRequestInformation(q, h, o);
-            return await RequestAdapter.SendAsync<ManagedDeviceMobileAppConfigurationUserStatus>(requestInfo, responseHandler);
+            return await RequestAdapter.SendAsync<ManagedDeviceMobileAppConfigurationUserStatus>(requestInfo, responseHandler, cancellationToken);
         }
         /// <summary>
         /// List of ManagedDeviceMobileAppConfigurationUserStatus.
+        /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="h">Request headers</param>
         /// <param name="model"></param>
         /// <param name="o">Request options</param>
         /// <param name="responseHandler">Response handler to use in place of the default response handling provided by the core service</param>
         /// </summary>
-        public async Task PatchAsync(ManagedDeviceMobileAppConfigurationUserStatus model, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default) {
+        public async Task PatchAsync(ManagedDeviceMobileAppConfigurationUserStatus model, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default, CancellationToken cancellationToken = default) {
             _ = model ?? throw new ArgumentNullException(nameof(model));
             var requestInfo = CreatePatchRequestInformation(model, h, o);
-            await RequestAdapter.SendNoContentAsync(requestInfo, responseHandler);
+            await RequestAdapter.SendNoContentAsync(requestInfo, responseHandler, cancellationToken);
         }
         /// <summary>List of ManagedDeviceMobileAppConfigurationUserStatus.</summary>
         public class GetQueryParameters : QueryParametersBase {

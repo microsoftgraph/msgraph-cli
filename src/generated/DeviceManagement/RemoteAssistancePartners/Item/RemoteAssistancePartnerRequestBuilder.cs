@@ -10,6 +10,7 @@ using System.CommandLine.Invocation;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 namespace ApiSdk.DeviceManagement.RemoteAssistancePartners.Item {
     /// <summary>Builds and executes requests for operations under \deviceManagement\remoteAssistancePartners\{remoteAssistancePartner-id}</summary>
@@ -31,6 +32,7 @@ namespace ApiSdk.DeviceManagement.RemoteAssistancePartners.Item {
         /// </summary>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
+            command.Description = "The remote assist partners.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--remoteassistancepartner-id", description: "key: id of remoteAssistancePartner"));
             command.Handler = CommandHandler.Create<string>(async (remoteAssistancePartnerId) => {
@@ -53,6 +55,7 @@ namespace ApiSdk.DeviceManagement.RemoteAssistancePartners.Item {
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
+            command.Description = "The remote assist partners.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--remoteassistancepartner-id", description: "key: id of remoteAssistancePartner"));
             command.AddOption(new Option<object>("--select", description: "Select properties to be returned"));
@@ -78,6 +81,7 @@ namespace ApiSdk.DeviceManagement.RemoteAssistancePartners.Item {
         /// </summary>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
+            command.Description = "The remote assist partners.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--remoteassistancepartner-id", description: "key: id of remoteAssistancePartner"));
             command.AddOption(new Option<string>("--body"));
@@ -162,36 +166,39 @@ namespace ApiSdk.DeviceManagement.RemoteAssistancePartners.Item {
         }
         /// <summary>
         /// The remote assist partners.
+        /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="h">Request headers</param>
         /// <param name="o">Request options</param>
         /// <param name="responseHandler">Response handler to use in place of the default response handling provided by the core service</param>
         /// </summary>
-        public async Task DeleteAsync(Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default) {
+        public async Task DeleteAsync(Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default, CancellationToken cancellationToken = default) {
             var requestInfo = CreateDeleteRequestInformation(h, o);
-            await RequestAdapter.SendNoContentAsync(requestInfo, responseHandler);
+            await RequestAdapter.SendNoContentAsync(requestInfo, responseHandler, cancellationToken);
         }
         /// <summary>
         /// The remote assist partners.
+        /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="h">Request headers</param>
         /// <param name="o">Request options</param>
         /// <param name="q">Request query parameters</param>
         /// <param name="responseHandler">Response handler to use in place of the default response handling provided by the core service</param>
         /// </summary>
-        public async Task<RemoteAssistancePartner> GetAsync(Action<GetQueryParameters> q = default, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default) {
+        public async Task<RemoteAssistancePartner> GetAsync(Action<GetQueryParameters> q = default, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default, CancellationToken cancellationToken = default) {
             var requestInfo = CreateGetRequestInformation(q, h, o);
-            return await RequestAdapter.SendAsync<RemoteAssistancePartner>(requestInfo, responseHandler);
+            return await RequestAdapter.SendAsync<RemoteAssistancePartner>(requestInfo, responseHandler, cancellationToken);
         }
         /// <summary>
         /// The remote assist partners.
+        /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="h">Request headers</param>
         /// <param name="model"></param>
         /// <param name="o">Request options</param>
         /// <param name="responseHandler">Response handler to use in place of the default response handling provided by the core service</param>
         /// </summary>
-        public async Task PatchAsync(RemoteAssistancePartner model, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default) {
+        public async Task PatchAsync(RemoteAssistancePartner model, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default, CancellationToken cancellationToken = default) {
             _ = model ?? throw new ArgumentNullException(nameof(model));
             var requestInfo = CreatePatchRequestInformation(model, h, o);
-            await RequestAdapter.SendNoContentAsync(requestInfo, responseHandler);
+            await RequestAdapter.SendNoContentAsync(requestInfo, responseHandler, cancellationToken);
         }
         /// <summary>The remote assist partners.</summary>
         public class GetQueryParameters : QueryParametersBase {

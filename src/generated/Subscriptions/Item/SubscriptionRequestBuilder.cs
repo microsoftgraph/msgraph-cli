@@ -8,6 +8,7 @@ using System.CommandLine.Invocation;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 namespace ApiSdk.Subscriptions.Item {
     /// <summary>Builds and executes requests for operations under \subscriptions\{subscription-id}</summary>
@@ -23,6 +24,7 @@ namespace ApiSdk.Subscriptions.Item {
         /// </summary>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
+            command.Description = "Delete entity from subscriptions";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--subscription-id", description: "key: id of subscription"));
             command.Handler = CommandHandler.Create<string>(async (subscriptionId) => {
@@ -39,6 +41,7 @@ namespace ApiSdk.Subscriptions.Item {
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
+            command.Description = "Get entity from subscriptions by key";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--subscription-id", description: "key: id of subscription"));
             command.AddOption(new Option<object>("--select", description: "Select properties to be returned"));
@@ -62,6 +65,7 @@ namespace ApiSdk.Subscriptions.Item {
         /// </summary>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
+            command.Description = "Update entity in subscriptions";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--subscription-id", description: "key: id of subscription"));
             command.AddOption(new Option<string>("--body"));
@@ -146,36 +150,39 @@ namespace ApiSdk.Subscriptions.Item {
         }
         /// <summary>
         /// Delete entity from subscriptions
+        /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="h">Request headers</param>
         /// <param name="o">Request options</param>
         /// <param name="responseHandler">Response handler to use in place of the default response handling provided by the core service</param>
         /// </summary>
-        public async Task DeleteAsync(Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default) {
+        public async Task DeleteAsync(Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default, CancellationToken cancellationToken = default) {
             var requestInfo = CreateDeleteRequestInformation(h, o);
-            await RequestAdapter.SendNoContentAsync(requestInfo, responseHandler);
+            await RequestAdapter.SendNoContentAsync(requestInfo, responseHandler, cancellationToken);
         }
         /// <summary>
         /// Get entity from subscriptions by key
+        /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="h">Request headers</param>
         /// <param name="o">Request options</param>
         /// <param name="q">Request query parameters</param>
         /// <param name="responseHandler">Response handler to use in place of the default response handling provided by the core service</param>
         /// </summary>
-        public async Task<Subscription> GetAsync(Action<GetQueryParameters> q = default, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default) {
+        public async Task<Subscription> GetAsync(Action<GetQueryParameters> q = default, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default, CancellationToken cancellationToken = default) {
             var requestInfo = CreateGetRequestInformation(q, h, o);
-            return await RequestAdapter.SendAsync<Subscription>(requestInfo, responseHandler);
+            return await RequestAdapter.SendAsync<Subscription>(requestInfo, responseHandler, cancellationToken);
         }
         /// <summary>
         /// Update entity in subscriptions
+        /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="h">Request headers</param>
         /// <param name="model"></param>
         /// <param name="o">Request options</param>
         /// <param name="responseHandler">Response handler to use in place of the default response handling provided by the core service</param>
         /// </summary>
-        public async Task PatchAsync(Subscription model, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default) {
+        public async Task PatchAsync(Subscription model, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default, CancellationToken cancellationToken = default) {
             _ = model ?? throw new ArgumentNullException(nameof(model));
             var requestInfo = CreatePatchRequestInformation(model, h, o);
-            await RequestAdapter.SendNoContentAsync(requestInfo, responseHandler);
+            await RequestAdapter.SendNoContentAsync(requestInfo, responseHandler, cancellationToken);
         }
         /// <summary>Get entity from subscriptions by key</summary>
         public class GetQueryParameters : QueryParametersBase {

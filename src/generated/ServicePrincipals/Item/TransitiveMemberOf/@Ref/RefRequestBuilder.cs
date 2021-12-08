@@ -7,6 +7,7 @@ using System.CommandLine.Invocation;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 namespace ApiSdk.ServicePrincipals.Item.TransitiveMemberOf.@Ref {
     /// <summary>Builds and executes requests for operations under \servicePrincipals\{servicePrincipal-id}\transitiveMemberOf\$ref</summary>
@@ -22,6 +23,7 @@ namespace ApiSdk.ServicePrincipals.Item.TransitiveMemberOf.@Ref {
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
+            command.Description = "Get ref of transitiveMemberOf from servicePrincipals";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--serviceprincipal-id", description: "key: id of servicePrincipal"));
             command.AddOption(new Option<int?>("--top", description: "Show only the first n items"));
@@ -55,6 +57,7 @@ namespace ApiSdk.ServicePrincipals.Item.TransitiveMemberOf.@Ref {
         /// </summary>
         public Command BuildPostCommand() {
             var command = new Command("post");
+            command.Description = "Create new navigation property ref to transitiveMemberOf for servicePrincipals";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--serviceprincipal-id", description: "key: id of servicePrincipal"));
             command.AddOption(new Option<string>("--body"));
@@ -129,26 +132,28 @@ namespace ApiSdk.ServicePrincipals.Item.TransitiveMemberOf.@Ref {
         }
         /// <summary>
         /// Get ref of transitiveMemberOf from servicePrincipals
+        /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="h">Request headers</param>
         /// <param name="o">Request options</param>
         /// <param name="q">Request query parameters</param>
         /// <param name="responseHandler">Response handler to use in place of the default response handling provided by the core service</param>
         /// </summary>
-        public async Task<RefResponse> GetAsync(Action<GetQueryParameters> q = default, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default) {
+        public async Task<RefResponse> GetAsync(Action<GetQueryParameters> q = default, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default, CancellationToken cancellationToken = default) {
             var requestInfo = CreateGetRequestInformation(q, h, o);
-            return await RequestAdapter.SendAsync<RefResponse>(requestInfo, responseHandler);
+            return await RequestAdapter.SendAsync<RefResponse>(requestInfo, responseHandler, cancellationToken);
         }
         /// <summary>
         /// Create new navigation property ref to transitiveMemberOf for servicePrincipals
+        /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="h">Request headers</param>
         /// <param name="model"></param>
         /// <param name="o">Request options</param>
         /// <param name="responseHandler">Response handler to use in place of the default response handling provided by the core service</param>
         /// </summary>
-        public async Task<ApiSdk.ServicePrincipals.Item.TransitiveMemberOf.@Ref.@Ref> PostAsync(ApiSdk.ServicePrincipals.Item.TransitiveMemberOf.@Ref.@Ref model, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default) {
+        public async Task<ApiSdk.ServicePrincipals.Item.TransitiveMemberOf.@Ref.@Ref> PostAsync(ApiSdk.ServicePrincipals.Item.TransitiveMemberOf.@Ref.@Ref model, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default, CancellationToken cancellationToken = default) {
             _ = model ?? throw new ArgumentNullException(nameof(model));
             var requestInfo = CreatePostRequestInformation(model, h, o);
-            return await RequestAdapter.SendAsync<ApiSdk.ServicePrincipals.Item.TransitiveMemberOf.@Ref.@Ref>(requestInfo, responseHandler);
+            return await RequestAdapter.SendAsync<ApiSdk.ServicePrincipals.Item.TransitiveMemberOf.@Ref.@Ref>(requestInfo, responseHandler, cancellationToken);
         }
         /// <summary>Get ref of transitiveMemberOf from servicePrincipals</summary>
         public class GetQueryParameters : QueryParametersBase {

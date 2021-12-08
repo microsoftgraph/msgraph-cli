@@ -10,6 +10,7 @@ using System.CommandLine.Invocation;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 namespace ApiSdk.Workbooks.Item.Workbook.Names.Item.Worksheet.Charts.Item.Series.Item.Format.Fill {
     /// <summary>Builds and executes requests for operations under \workbooks\{driveItem-id}\workbook\names\{workbookNamedItem-id}\worksheet\charts\{workbookChart-id}\series\{workbookChartSeries-id}\format\fill</summary>
@@ -31,6 +32,7 @@ namespace ApiSdk.Workbooks.Item.Workbook.Names.Item.Worksheet.Charts.Item.Series
         /// </summary>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
+            command.Description = "Represents the fill format of a chart series, which includes background formating information. Read-only.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--driveitem-id", description: "key: id of driveItem"));
             command.AddOption(new Option<string>("--workbooknameditem-id", description: "key: id of workbookNamedItem"));
@@ -53,6 +55,7 @@ namespace ApiSdk.Workbooks.Item.Workbook.Names.Item.Worksheet.Charts.Item.Series
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
+            command.Description = "Represents the fill format of a chart series, which includes background formating information. Read-only.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--driveitem-id", description: "key: id of driveItem"));
             command.AddOption(new Option<string>("--workbooknameditem-id", description: "key: id of workbookNamedItem"));
@@ -84,6 +87,7 @@ namespace ApiSdk.Workbooks.Item.Workbook.Names.Item.Worksheet.Charts.Item.Series
         /// </summary>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
+            command.Description = "Represents the fill format of a chart series, which includes background formating information. Read-only.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--driveitem-id", description: "key: id of driveItem"));
             command.AddOption(new Option<string>("--workbooknameditem-id", description: "key: id of workbookNamedItem"));
@@ -180,36 +184,39 @@ namespace ApiSdk.Workbooks.Item.Workbook.Names.Item.Worksheet.Charts.Item.Series
         }
         /// <summary>
         /// Represents the fill format of a chart series, which includes background formating information. Read-only.
+        /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="h">Request headers</param>
         /// <param name="o">Request options</param>
         /// <param name="responseHandler">Response handler to use in place of the default response handling provided by the core service</param>
         /// </summary>
-        public async Task DeleteAsync(Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default) {
+        public async Task DeleteAsync(Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default, CancellationToken cancellationToken = default) {
             var requestInfo = CreateDeleteRequestInformation(h, o);
-            await RequestAdapter.SendNoContentAsync(requestInfo, responseHandler);
+            await RequestAdapter.SendNoContentAsync(requestInfo, responseHandler, cancellationToken);
         }
         /// <summary>
         /// Represents the fill format of a chart series, which includes background formating information. Read-only.
+        /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="h">Request headers</param>
         /// <param name="o">Request options</param>
         /// <param name="q">Request query parameters</param>
         /// <param name="responseHandler">Response handler to use in place of the default response handling provided by the core service</param>
         /// </summary>
-        public async Task<WorkbookChartFill> GetAsync(Action<GetQueryParameters> q = default, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default) {
+        public async Task<WorkbookChartFill> GetAsync(Action<GetQueryParameters> q = default, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default, CancellationToken cancellationToken = default) {
             var requestInfo = CreateGetRequestInformation(q, h, o);
-            return await RequestAdapter.SendAsync<WorkbookChartFill>(requestInfo, responseHandler);
+            return await RequestAdapter.SendAsync<WorkbookChartFill>(requestInfo, responseHandler, cancellationToken);
         }
         /// <summary>
         /// Represents the fill format of a chart series, which includes background formating information. Read-only.
+        /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="h">Request headers</param>
         /// <param name="model"></param>
         /// <param name="o">Request options</param>
         /// <param name="responseHandler">Response handler to use in place of the default response handling provided by the core service</param>
         /// </summary>
-        public async Task PatchAsync(WorkbookChartFill model, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default) {
+        public async Task PatchAsync(WorkbookChartFill model, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default, CancellationToken cancellationToken = default) {
             _ = model ?? throw new ArgumentNullException(nameof(model));
             var requestInfo = CreatePatchRequestInformation(model, h, o);
-            await RequestAdapter.SendNoContentAsync(requestInfo, responseHandler);
+            await RequestAdapter.SendNoContentAsync(requestInfo, responseHandler, cancellationToken);
         }
         /// <summary>Represents the fill format of a chart series, which includes background formating information. Read-only.</summary>
         public class GetQueryParameters : QueryParametersBase {

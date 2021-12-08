@@ -7,6 +7,7 @@ using System.CommandLine.Invocation;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 namespace ApiSdk.Print.Printers.Item.TaskTriggers.Item.Definition.@Ref {
     /// <summary>Builds and executes requests for operations under \print\printers\{printer-id}\taskTriggers\{printTaskTrigger-id}\definition\$ref</summary>
@@ -22,6 +23,7 @@ namespace ApiSdk.Print.Printers.Item.TaskTriggers.Item.Definition.@Ref {
         /// </summary>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
+            command.Description = "An abstract definition that will be used to create a printTask when triggered by a print event. Read-only.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--printer-id", description: "key: id of printer"));
             command.AddOption(new Option<string>("--printtasktrigger-id", description: "key: id of printTaskTrigger"));
@@ -40,6 +42,7 @@ namespace ApiSdk.Print.Printers.Item.TaskTriggers.Item.Definition.@Ref {
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
+            command.Description = "An abstract definition that will be used to create a printTask when triggered by a print event. Read-only.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--printer-id", description: "key: id of printer"));
             command.AddOption(new Option<string>("--printtasktrigger-id", description: "key: id of printTaskTrigger"));
@@ -63,6 +66,7 @@ namespace ApiSdk.Print.Printers.Item.TaskTriggers.Item.Definition.@Ref {
         /// </summary>
         public Command BuildPutCommand() {
             var command = new Command("put");
+            command.Description = "An abstract definition that will be used to create a printTask when triggered by a print event. Read-only.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--printer-id", description: "key: id of printer"));
             command.AddOption(new Option<string>("--printtasktrigger-id", description: "key: id of printTaskTrigger"));
@@ -143,35 +147,38 @@ namespace ApiSdk.Print.Printers.Item.TaskTriggers.Item.Definition.@Ref {
         }
         /// <summary>
         /// An abstract definition that will be used to create a printTask when triggered by a print event. Read-only.
+        /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="h">Request headers</param>
         /// <param name="o">Request options</param>
         /// <param name="responseHandler">Response handler to use in place of the default response handling provided by the core service</param>
         /// </summary>
-        public async Task DeleteAsync(Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default) {
+        public async Task DeleteAsync(Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default, CancellationToken cancellationToken = default) {
             var requestInfo = CreateDeleteRequestInformation(h, o);
-            await RequestAdapter.SendNoContentAsync(requestInfo, responseHandler);
+            await RequestAdapter.SendNoContentAsync(requestInfo, responseHandler, cancellationToken);
         }
         /// <summary>
         /// An abstract definition that will be used to create a printTask when triggered by a print event. Read-only.
+        /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="h">Request headers</param>
         /// <param name="o">Request options</param>
         /// <param name="responseHandler">Response handler to use in place of the default response handling provided by the core service</param>
         /// </summary>
-        public async Task<string> GetAsync(Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default) {
+        public async Task<string> GetAsync(Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default, CancellationToken cancellationToken = default) {
             var requestInfo = CreateGetRequestInformation(h, o);
-            return await RequestAdapter.SendPrimitiveAsync<string>(requestInfo, responseHandler);
+            return await RequestAdapter.SendPrimitiveAsync<string>(requestInfo, responseHandler, cancellationToken);
         }
         /// <summary>
         /// An abstract definition that will be used to create a printTask when triggered by a print event. Read-only.
+        /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="h">Request headers</param>
         /// <param name="model"></param>
         /// <param name="o">Request options</param>
         /// <param name="responseHandler">Response handler to use in place of the default response handling provided by the core service</param>
         /// </summary>
-        public async Task PutAsync(ApiSdk.Print.Printers.Item.TaskTriggers.Item.Definition.@Ref.@Ref model, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default) {
+        public async Task PutAsync(ApiSdk.Print.Printers.Item.TaskTriggers.Item.Definition.@Ref.@Ref model, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default, CancellationToken cancellationToken = default) {
             _ = model ?? throw new ArgumentNullException(nameof(model));
             var requestInfo = CreatePutRequestInformation(model, h, o);
-            await RequestAdapter.SendNoContentAsync(requestInfo, responseHandler);
+            await RequestAdapter.SendNoContentAsync(requestInfo, responseHandler, cancellationToken);
         }
     }
 }

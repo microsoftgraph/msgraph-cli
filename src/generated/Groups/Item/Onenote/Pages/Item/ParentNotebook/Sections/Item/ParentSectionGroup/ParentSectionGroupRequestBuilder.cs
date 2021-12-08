@@ -11,6 +11,7 @@ using System.CommandLine.Invocation;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 namespace ApiSdk.Groups.Item.Onenote.Pages.Item.ParentNotebook.Sections.Item.ParentSectionGroup {
     /// <summary>Builds and executes requests for operations under \groups\{group-id}\onenote\pages\{onenotePage-id}\parentNotebook\sections\{onenoteSection-id}\parentSectionGroup</summary>
@@ -26,6 +27,7 @@ namespace ApiSdk.Groups.Item.Onenote.Pages.Item.ParentNotebook.Sections.Item.Par
         /// </summary>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
+            command.Description = "The section group that contains the section.  Read-only.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--group-id", description: "key: id of group"));
             command.AddOption(new Option<string>("--onenotepage-id", description: "key: id of onenotePage"));
@@ -46,6 +48,7 @@ namespace ApiSdk.Groups.Item.Onenote.Pages.Item.ParentNotebook.Sections.Item.Par
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
+            command.Description = "The section group that contains the section.  Read-only.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--group-id", description: "key: id of group"));
             command.AddOption(new Option<string>("--onenotepage-id", description: "key: id of onenotePage"));
@@ -74,20 +77,20 @@ namespace ApiSdk.Groups.Item.Onenote.Pages.Item.ParentNotebook.Sections.Item.Par
             var command = new Command("parent-notebook");
             var builder = new ApiSdk.Groups.Item.Onenote.Pages.Item.ParentNotebook.Sections.Item.ParentSectionGroup.ParentNotebook.ParentNotebookRequestBuilder(PathParameters, RequestAdapter);
             command.AddCommand(builder.BuildCopyNotebookCommand());
-            command.AddCommand(builder.BuildPatchCommand());
-            command.AddCommand(builder.BuildGetCommand());
             command.AddCommand(builder.BuildDeleteCommand());
+            command.AddCommand(builder.BuildGetCommand());
+            command.AddCommand(builder.BuildPatchCommand());
             return command;
         }
         public Command BuildParentSectionGroupCommand() {
             var command = new Command("parent-section-group");
             var builder = new ApiSdk.Groups.Item.Onenote.Pages.Item.ParentNotebook.Sections.Item.ParentSectionGroup.ParentSectionGroupRequestBuilder(PathParameters, RequestAdapter);
-            command.AddCommand(builder.BuildSectionGroupsCommand());
+            command.AddCommand(builder.BuildDeleteCommand());
+            command.AddCommand(builder.BuildGetCommand());
             command.AddCommand(builder.BuildParentNotebookCommand());
             command.AddCommand(builder.BuildParentSectionGroupCommand());
             command.AddCommand(builder.BuildPatchCommand());
-            command.AddCommand(builder.BuildGetCommand());
-            command.AddCommand(builder.BuildDeleteCommand());
+            command.AddCommand(builder.BuildSectionGroupsCommand());
             command.AddCommand(builder.BuildSectionsCommand());
             return command;
         }
@@ -96,6 +99,7 @@ namespace ApiSdk.Groups.Item.Onenote.Pages.Item.ParentNotebook.Sections.Item.Par
         /// </summary>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
+            command.Description = "The section group that contains the section.  Read-only.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--group-id", description: "key: id of group"));
             command.AddOption(new Option<string>("--onenotepage-id", description: "key: id of onenotePage"));
@@ -118,21 +122,21 @@ namespace ApiSdk.Groups.Item.Onenote.Pages.Item.ParentNotebook.Sections.Item.Par
         public Command BuildSectionGroupsCommand() {
             var command = new Command("section-groups");
             var builder = new ApiSdk.Groups.Item.Onenote.Pages.Item.ParentNotebook.Sections.Item.ParentSectionGroup.SectionGroups.SectionGroupsRequestBuilder(PathParameters, RequestAdapter);
-            command.AddCommand(builder.BuildListCommand());
-            command.AddCommand(builder.BuildCreateCommand());
             foreach (var cmd in builder.BuildCommand()) {
                 command.AddCommand(cmd);
             }
+            command.AddCommand(builder.BuildCreateCommand());
+            command.AddCommand(builder.BuildListCommand());
             return command;
         }
         public Command BuildSectionsCommand() {
             var command = new Command("sections");
             var builder = new ApiSdk.Groups.Item.Onenote.Pages.Item.ParentNotebook.Sections.Item.ParentSectionGroup.Sections.SectionsRequestBuilder(PathParameters, RequestAdapter);
-            command.AddCommand(builder.BuildListCommand());
-            command.AddCommand(builder.BuildCreateCommand());
             foreach (var cmd in builder.BuildCommand()) {
                 command.AddCommand(cmd);
             }
+            command.AddCommand(builder.BuildCreateCommand());
+            command.AddCommand(builder.BuildListCommand());
             return command;
         }
         /// <summary>
@@ -204,36 +208,39 @@ namespace ApiSdk.Groups.Item.Onenote.Pages.Item.ParentNotebook.Sections.Item.Par
         }
         /// <summary>
         /// The section group that contains the section.  Read-only.
+        /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="h">Request headers</param>
         /// <param name="o">Request options</param>
         /// <param name="responseHandler">Response handler to use in place of the default response handling provided by the core service</param>
         /// </summary>
-        public async Task DeleteAsync(Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default) {
+        public async Task DeleteAsync(Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default, CancellationToken cancellationToken = default) {
             var requestInfo = CreateDeleteRequestInformation(h, o);
-            await RequestAdapter.SendNoContentAsync(requestInfo, responseHandler);
+            await RequestAdapter.SendNoContentAsync(requestInfo, responseHandler, cancellationToken);
         }
         /// <summary>
         /// The section group that contains the section.  Read-only.
+        /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="h">Request headers</param>
         /// <param name="o">Request options</param>
         /// <param name="q">Request query parameters</param>
         /// <param name="responseHandler">Response handler to use in place of the default response handling provided by the core service</param>
         /// </summary>
-        public async Task<SectionGroup> GetAsync(Action<GetQueryParameters> q = default, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default) {
+        public async Task<SectionGroup> GetAsync(Action<GetQueryParameters> q = default, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default, CancellationToken cancellationToken = default) {
             var requestInfo = CreateGetRequestInformation(q, h, o);
-            return await RequestAdapter.SendAsync<SectionGroup>(requestInfo, responseHandler);
+            return await RequestAdapter.SendAsync<SectionGroup>(requestInfo, responseHandler, cancellationToken);
         }
         /// <summary>
         /// The section group that contains the section.  Read-only.
+        /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="h">Request headers</param>
         /// <param name="model"></param>
         /// <param name="o">Request options</param>
         /// <param name="responseHandler">Response handler to use in place of the default response handling provided by the core service</param>
         /// </summary>
-        public async Task PatchAsync(SectionGroup model, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default) {
+        public async Task PatchAsync(SectionGroup model, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default, CancellationToken cancellationToken = default) {
             _ = model ?? throw new ArgumentNullException(nameof(model));
             var requestInfo = CreatePatchRequestInformation(model, h, o);
-            await RequestAdapter.SendNoContentAsync(requestInfo, responseHandler);
+            await RequestAdapter.SendNoContentAsync(requestInfo, responseHandler, cancellationToken);
         }
         /// <summary>The section group that contains the section.  Read-only.</summary>
         public class GetQueryParameters : QueryParametersBase {

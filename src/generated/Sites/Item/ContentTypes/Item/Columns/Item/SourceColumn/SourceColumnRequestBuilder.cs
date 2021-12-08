@@ -9,6 +9,7 @@ using System.CommandLine.Invocation;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 namespace ApiSdk.Sites.Item.ContentTypes.Item.Columns.Item.SourceColumn {
     /// <summary>Builds and executes requests for operations under \sites\{site-id}\contentTypes\{contentType-id}\columns\{columnDefinition-id}\sourceColumn</summary>
@@ -24,6 +25,7 @@ namespace ApiSdk.Sites.Item.ContentTypes.Item.Columns.Item.SourceColumn {
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
+            command.Description = "The source column for the content type column.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--site-id", description: "key: id of site"));
             command.AddOption(new Option<string>("--contenttype-id", description: "key: id of contentType"));
@@ -51,9 +53,9 @@ namespace ApiSdk.Sites.Item.ContentTypes.Item.Columns.Item.SourceColumn {
         public Command BuildRefCommand() {
             var command = new Command("ref");
             var builder = new ApiSdk.Sites.Item.ContentTypes.Item.Columns.Item.SourceColumn.@Ref.RefRequestBuilder(PathParameters, RequestAdapter);
-            command.AddCommand(builder.BuildPutCommand());
-            command.AddCommand(builder.BuildGetCommand());
             command.AddCommand(builder.BuildDeleteCommand());
+            command.AddCommand(builder.BuildGetCommand());
+            command.AddCommand(builder.BuildPutCommand());
             return command;
         }
         /// <summary>
@@ -92,14 +94,15 @@ namespace ApiSdk.Sites.Item.ContentTypes.Item.Columns.Item.SourceColumn {
         }
         /// <summary>
         /// The source column for the content type column.
+        /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="h">Request headers</param>
         /// <param name="o">Request options</param>
         /// <param name="q">Request query parameters</param>
         /// <param name="responseHandler">Response handler to use in place of the default response handling provided by the core service</param>
         /// </summary>
-        public async Task<ColumnDefinition> GetAsync(Action<GetQueryParameters> q = default, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default) {
+        public async Task<ColumnDefinition> GetAsync(Action<GetQueryParameters> q = default, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default, CancellationToken cancellationToken = default) {
             var requestInfo = CreateGetRequestInformation(q, h, o);
-            return await RequestAdapter.SendAsync<ColumnDefinition>(requestInfo, responseHandler);
+            return await RequestAdapter.SendAsync<ColumnDefinition>(requestInfo, responseHandler, cancellationToken);
         }
         /// <summary>The source column for the content type column.</summary>
         public class GetQueryParameters : QueryParametersBase {

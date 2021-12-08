@@ -8,6 +8,7 @@ using System.CommandLine.Invocation;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 namespace ApiSdk.Devices.Item.TransitiveMemberOf {
     /// <summary>Builds and executes requests for operations under \devices\{device-id}\transitiveMemberOf</summary>
@@ -23,6 +24,7 @@ namespace ApiSdk.Devices.Item.TransitiveMemberOf {
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
+            command.Description = "Groups that the device is a member of. This operation is transitive. Supports $expand.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--device-id", description: "key: id of device"));
             command.AddOption(new Option<int?>("--top", description: "Show only the first n items"));
@@ -98,14 +100,15 @@ namespace ApiSdk.Devices.Item.TransitiveMemberOf {
         }
         /// <summary>
         /// Groups that the device is a member of. This operation is transitive. Supports $expand.
+        /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="h">Request headers</param>
         /// <param name="o">Request options</param>
         /// <param name="q">Request query parameters</param>
         /// <param name="responseHandler">Response handler to use in place of the default response handling provided by the core service</param>
         /// </summary>
-        public async Task<TransitiveMemberOfResponse> GetAsync(Action<GetQueryParameters> q = default, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default) {
+        public async Task<TransitiveMemberOfResponse> GetAsync(Action<GetQueryParameters> q = default, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default, CancellationToken cancellationToken = default) {
             var requestInfo = CreateGetRequestInformation(q, h, o);
-            return await RequestAdapter.SendAsync<TransitiveMemberOfResponse>(requestInfo, responseHandler);
+            return await RequestAdapter.SendAsync<TransitiveMemberOfResponse>(requestInfo, responseHandler, cancellationToken);
         }
         /// <summary>Groups that the device is a member of. This operation is transitive. Supports $expand.</summary>
         public class GetQueryParameters : QueryParametersBase {

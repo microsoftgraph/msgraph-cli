@@ -9,6 +9,7 @@ using System.CommandLine.Invocation;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 namespace ApiSdk.Education.Me.TaughtClasses {
     /// <summary>Builds and executes requests for operations under \education\me\taughtClasses</summary>
@@ -24,6 +25,7 @@ namespace ApiSdk.Education.Me.TaughtClasses {
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
+            command.Description = "Classes for which the user is a teacher.";
             // Create options for all the parameters
             command.AddOption(new Option<int?>("--top", description: "Show only the first n items"));
             command.AddOption(new Option<int?>("--skip", description: "Skip the first n items"));
@@ -103,14 +105,15 @@ namespace ApiSdk.Education.Me.TaughtClasses {
         }
         /// <summary>
         /// Classes for which the user is a teacher.
+        /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="h">Request headers</param>
         /// <param name="o">Request options</param>
         /// <param name="q">Request query parameters</param>
         /// <param name="responseHandler">Response handler to use in place of the default response handling provided by the core service</param>
         /// </summary>
-        public async Task<TaughtClassesResponse> GetAsync(Action<GetQueryParameters> q = default, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default) {
+        public async Task<TaughtClassesResponse> GetAsync(Action<GetQueryParameters> q = default, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default, CancellationToken cancellationToken = default) {
             var requestInfo = CreateGetRequestInformation(q, h, o);
-            return await RequestAdapter.SendAsync<TaughtClassesResponse>(requestInfo, responseHandler);
+            return await RequestAdapter.SendAsync<TaughtClassesResponse>(requestInfo, responseHandler, cancellationToken);
         }
         /// <summary>Classes for which the user is a teacher.</summary>
         public class GetQueryParameters : QueryParametersBase {

@@ -9,6 +9,7 @@ using System.CommandLine.Invocation;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 namespace ApiSdk.Sites.Item.Lists.Item.Subscriptions {
     /// <summary>Builds and executes requests for operations under \sites\{site-id}\lists\{list-id}\subscriptions</summary>
@@ -19,20 +20,21 @@ namespace ApiSdk.Sites.Item.Lists.Item.Subscriptions {
         private IRequestAdapter RequestAdapter { get; set; }
         /// <summary>Url template to use to build the URL for the current request builder</summary>
         private string UrlTemplate { get; set; }
-        public Command[] BuildCommand() {
+        public List<Command> BuildCommand() {
             var builder = new SubscriptionRequestBuilder(PathParameters, RequestAdapter);
             var commands = new List<Command> { 
-                builder.BuildPatchCommand(),
-                builder.BuildGetCommand(),
                 builder.BuildDeleteCommand(),
+                builder.BuildGetCommand(),
+                builder.BuildPatchCommand(),
             };
-            return commands.ToArray();
+            return commands;
         }
         /// <summary>
         /// The set of subscriptions on the list.
         /// </summary>
         public Command BuildCreateCommand() {
             var command = new Command("create");
+            command.Description = "The set of subscriptions on the list.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--site-id", description: "key: id of site"));
             command.AddOption(new Option<string>("--list-id", description: "key: id of list"));
@@ -60,6 +62,7 @@ namespace ApiSdk.Sites.Item.Lists.Item.Subscriptions {
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
+            command.Description = "The set of subscriptions on the list.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--site-id", description: "key: id of site"));
             command.AddOption(new Option<string>("--list-id", description: "key: id of list"));
@@ -148,26 +151,28 @@ namespace ApiSdk.Sites.Item.Lists.Item.Subscriptions {
         }
         /// <summary>
         /// The set of subscriptions on the list.
+        /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="h">Request headers</param>
         /// <param name="o">Request options</param>
         /// <param name="q">Request query parameters</param>
         /// <param name="responseHandler">Response handler to use in place of the default response handling provided by the core service</param>
         /// </summary>
-        public async Task<SubscriptionsResponse> GetAsync(Action<GetQueryParameters> q = default, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default) {
+        public async Task<SubscriptionsResponse> GetAsync(Action<GetQueryParameters> q = default, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default, CancellationToken cancellationToken = default) {
             var requestInfo = CreateGetRequestInformation(q, h, o);
-            return await RequestAdapter.SendAsync<SubscriptionsResponse>(requestInfo, responseHandler);
+            return await RequestAdapter.SendAsync<SubscriptionsResponse>(requestInfo, responseHandler, cancellationToken);
         }
         /// <summary>
         /// The set of subscriptions on the list.
+        /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="h">Request headers</param>
         /// <param name="model"></param>
         /// <param name="o">Request options</param>
         /// <param name="responseHandler">Response handler to use in place of the default response handling provided by the core service</param>
         /// </summary>
-        public async Task<Subscription> PostAsync(Subscription model, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default) {
+        public async Task<Subscription> PostAsync(Subscription model, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default, CancellationToken cancellationToken = default) {
             _ = model ?? throw new ArgumentNullException(nameof(model));
             var requestInfo = CreatePostRequestInformation(model, h, o);
-            return await RequestAdapter.SendAsync<Subscription>(requestInfo, responseHandler);
+            return await RequestAdapter.SendAsync<Subscription>(requestInfo, responseHandler, cancellationToken);
         }
         /// <summary>The set of subscriptions on the list.</summary>
         public class GetQueryParameters : QueryParametersBase {

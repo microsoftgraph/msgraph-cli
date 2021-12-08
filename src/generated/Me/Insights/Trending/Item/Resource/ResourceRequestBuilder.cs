@@ -22,6 +22,7 @@ using System.CommandLine.Invocation;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 namespace ApiSdk.Me.Insights.Trending.Item.Resource {
     /// <summary>Builds and executes requests for operations under \me\insights\trending\{trending-id}\resource</summary>
@@ -43,6 +44,7 @@ namespace ApiSdk.Me.Insights.Trending.Item.Resource {
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
+            command.Description = "Used for navigating to the trending document.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--trending-id", description: "key: id of trending"));
             command.AddOption(new Option<object>("--select", description: "Select properties to be returned"));
@@ -85,18 +87,18 @@ namespace ApiSdk.Me.Insights.Trending.Item.Resource {
         public Command BuildPrintJobCommand() {
             var command = new Command("print-job");
             var builder = new ApiSdk.Me.Insights.Trending.Item.Resource.PrintJob.PrintJobRequestBuilder(PathParameters, RequestAdapter);
-            command.AddCommand(builder.BuildStartCommand());
             command.AddCommand(builder.BuildAbortCommand());
-            command.AddCommand(builder.BuildRedirectCommand());
             command.AddCommand(builder.BuildCancelCommand());
+            command.AddCommand(builder.BuildRedirectCommand());
+            command.AddCommand(builder.BuildStartCommand());
             return command;
         }
         public Command BuildRefCommand() {
             var command = new Command("ref");
             var builder = new ApiSdk.Me.Insights.Trending.Item.Resource.@Ref.RefRequestBuilder(PathParameters, RequestAdapter);
-            command.AddCommand(builder.BuildPutCommand());
-            command.AddCommand(builder.BuildGetCommand());
             command.AddCommand(builder.BuildDeleteCommand());
+            command.AddCommand(builder.BuildGetCommand());
+            command.AddCommand(builder.BuildPutCommand());
             return command;
         }
         public Command BuildScheduleChangeRequestCommand() {
@@ -109,8 +111,8 @@ namespace ApiSdk.Me.Insights.Trending.Item.Resource {
         public Command BuildTargetedManagedAppProtectionCommand() {
             var command = new Command("targeted-managed-app-protection");
             var builder = new ApiSdk.Me.Insights.Trending.Item.Resource.TargetedManagedAppProtection.TargetedManagedAppProtectionRequestBuilder(PathParameters, RequestAdapter);
-            command.AddCommand(builder.BuildTargetAppsCommand());
             command.AddCommand(builder.BuildAssignCommand());
+            command.AddCommand(builder.BuildTargetAppsCommand());
             return command;
         }
         public Command BuildWindowsInformationProtectionCommand() {
@@ -122,11 +124,11 @@ namespace ApiSdk.Me.Insights.Trending.Item.Resource {
         public Command BuildWorkbookRangeCommand() {
             var command = new Command("workbook-range");
             var builder = new ApiSdk.Me.Insights.Trending.Item.Resource.WorkbookRange.WorkbookRangeRequestBuilder(PathParameters, RequestAdapter);
-            command.AddCommand(builder.BuildUnmergeCommand());
-            command.AddCommand(builder.BuildInsertCommand());
-            command.AddCommand(builder.BuildMergeCommand());
             command.AddCommand(builder.BuildClearCommand());
             command.AddCommand(builder.BuildDeleteCommand());
+            command.AddCommand(builder.BuildInsertCommand());
+            command.AddCommand(builder.BuildMergeCommand());
+            command.AddCommand(builder.BuildUnmergeCommand());
             return command;
         }
         public Command BuildWorkbookRangeFillCommand() {
@@ -138,8 +140,8 @@ namespace ApiSdk.Me.Insights.Trending.Item.Resource {
         public Command BuildWorkbookRangeFormatCommand() {
             var command = new Command("workbook-range-format");
             var builder = new ApiSdk.Me.Insights.Trending.Item.Resource.WorkbookRangeFormat.WorkbookRangeFormatRequestBuilder(PathParameters, RequestAdapter);
-            command.AddCommand(builder.BuildAutofitRowsCommand());
             command.AddCommand(builder.BuildAutofitColumnsCommand());
+            command.AddCommand(builder.BuildAutofitRowsCommand());
             return command;
         }
         public Command BuildWorkbookRangeSortCommand() {
@@ -189,14 +191,15 @@ namespace ApiSdk.Me.Insights.Trending.Item.Resource {
         }
         /// <summary>
         /// Used for navigating to the trending document.
+        /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="h">Request headers</param>
         /// <param name="o">Request options</param>
         /// <param name="q">Request query parameters</param>
         /// <param name="responseHandler">Response handler to use in place of the default response handling provided by the core service</param>
         /// </summary>
-        public async Task<Entity> GetAsync(Action<GetQueryParameters> q = default, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default) {
+        public async Task<Entity> GetAsync(Action<GetQueryParameters> q = default, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default, CancellationToken cancellationToken = default) {
             var requestInfo = CreateGetRequestInformation(q, h, o);
-            return await RequestAdapter.SendAsync<Entity>(requestInfo, responseHandler);
+            return await RequestAdapter.SendAsync<Entity>(requestInfo, responseHandler, cancellationToken);
         }
         /// <summary>Used for navigating to the trending document.</summary>
         public class GetQueryParameters : QueryParametersBase {

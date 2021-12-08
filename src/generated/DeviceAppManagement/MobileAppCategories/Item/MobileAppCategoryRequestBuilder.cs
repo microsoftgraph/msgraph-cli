@@ -8,6 +8,7 @@ using System.CommandLine.Invocation;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 namespace ApiSdk.DeviceAppManagement.MobileAppCategories.Item {
     /// <summary>Builds and executes requests for operations under \deviceAppManagement\mobileAppCategories\{mobileAppCategory-id}</summary>
@@ -23,6 +24,7 @@ namespace ApiSdk.DeviceAppManagement.MobileAppCategories.Item {
         /// </summary>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
+            command.Description = "The mobile app categories.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--mobileappcategory-id", description: "key: id of mobileAppCategory"));
             command.Handler = CommandHandler.Create<string>(async (mobileAppCategoryId) => {
@@ -39,6 +41,7 @@ namespace ApiSdk.DeviceAppManagement.MobileAppCategories.Item {
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
+            command.Description = "The mobile app categories.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--mobileappcategory-id", description: "key: id of mobileAppCategory"));
             command.AddOption(new Option<object>("--select", description: "Select properties to be returned"));
@@ -64,6 +67,7 @@ namespace ApiSdk.DeviceAppManagement.MobileAppCategories.Item {
         /// </summary>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
+            command.Description = "The mobile app categories.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--mobileappcategory-id", description: "key: id of mobileAppCategory"));
             command.AddOption(new Option<string>("--body"));
@@ -148,36 +152,39 @@ namespace ApiSdk.DeviceAppManagement.MobileAppCategories.Item {
         }
         /// <summary>
         /// The mobile app categories.
+        /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="h">Request headers</param>
         /// <param name="o">Request options</param>
         /// <param name="responseHandler">Response handler to use in place of the default response handling provided by the core service</param>
         /// </summary>
-        public async Task DeleteAsync(Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default) {
+        public async Task DeleteAsync(Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default, CancellationToken cancellationToken = default) {
             var requestInfo = CreateDeleteRequestInformation(h, o);
-            await RequestAdapter.SendNoContentAsync(requestInfo, responseHandler);
+            await RequestAdapter.SendNoContentAsync(requestInfo, responseHandler, cancellationToken);
         }
         /// <summary>
         /// The mobile app categories.
+        /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="h">Request headers</param>
         /// <param name="o">Request options</param>
         /// <param name="q">Request query parameters</param>
         /// <param name="responseHandler">Response handler to use in place of the default response handling provided by the core service</param>
         /// </summary>
-        public async Task<MobileAppCategory> GetAsync(Action<GetQueryParameters> q = default, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default) {
+        public async Task<MobileAppCategory> GetAsync(Action<GetQueryParameters> q = default, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default, CancellationToken cancellationToken = default) {
             var requestInfo = CreateGetRequestInformation(q, h, o);
-            return await RequestAdapter.SendAsync<MobileAppCategory>(requestInfo, responseHandler);
+            return await RequestAdapter.SendAsync<MobileAppCategory>(requestInfo, responseHandler, cancellationToken);
         }
         /// <summary>
         /// The mobile app categories.
+        /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="h">Request headers</param>
         /// <param name="model"></param>
         /// <param name="o">Request options</param>
         /// <param name="responseHandler">Response handler to use in place of the default response handling provided by the core service</param>
         /// </summary>
-        public async Task PatchAsync(MobileAppCategory model, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default) {
+        public async Task PatchAsync(MobileAppCategory model, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default, CancellationToken cancellationToken = default) {
             _ = model ?? throw new ArgumentNullException(nameof(model));
             var requestInfo = CreatePatchRequestInformation(model, h, o);
-            await RequestAdapter.SendNoContentAsync(requestInfo, responseHandler);
+            await RequestAdapter.SendNoContentAsync(requestInfo, responseHandler, cancellationToken);
         }
         /// <summary>The mobile app categories.</summary>
         public class GetQueryParameters : QueryParametersBase {

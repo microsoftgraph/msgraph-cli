@@ -8,6 +8,7 @@ using System.CommandLine.Invocation;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 namespace ApiSdk.DeviceManagement.DeviceCompliancePolicies.Item.UserStatuses.Item {
     /// <summary>Builds and executes requests for operations under \deviceManagement\deviceCompliancePolicies\{deviceCompliancePolicy-id}\userStatuses\{deviceComplianceUserStatus-id}</summary>
@@ -23,6 +24,7 @@ namespace ApiSdk.DeviceManagement.DeviceCompliancePolicies.Item.UserStatuses.Ite
         /// </summary>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
+            command.Description = "List of DeviceComplianceUserStatus.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--devicecompliancepolicy-id", description: "key: id of deviceCompliancePolicy"));
             command.AddOption(new Option<string>("--devicecomplianceuserstatus-id", description: "key: id of deviceComplianceUserStatus"));
@@ -41,6 +43,7 @@ namespace ApiSdk.DeviceManagement.DeviceCompliancePolicies.Item.UserStatuses.Ite
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
+            command.Description = "List of DeviceComplianceUserStatus.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--devicecompliancepolicy-id", description: "key: id of deviceCompliancePolicy"));
             command.AddOption(new Option<string>("--devicecomplianceuserstatus-id", description: "key: id of deviceComplianceUserStatus"));
@@ -68,6 +71,7 @@ namespace ApiSdk.DeviceManagement.DeviceCompliancePolicies.Item.UserStatuses.Ite
         /// </summary>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
+            command.Description = "List of DeviceComplianceUserStatus.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--devicecompliancepolicy-id", description: "key: id of deviceCompliancePolicy"));
             command.AddOption(new Option<string>("--devicecomplianceuserstatus-id", description: "key: id of deviceComplianceUserStatus"));
@@ -154,36 +158,39 @@ namespace ApiSdk.DeviceManagement.DeviceCompliancePolicies.Item.UserStatuses.Ite
         }
         /// <summary>
         /// List of DeviceComplianceUserStatus.
+        /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="h">Request headers</param>
         /// <param name="o">Request options</param>
         /// <param name="responseHandler">Response handler to use in place of the default response handling provided by the core service</param>
         /// </summary>
-        public async Task DeleteAsync(Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default) {
+        public async Task DeleteAsync(Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default, CancellationToken cancellationToken = default) {
             var requestInfo = CreateDeleteRequestInformation(h, o);
-            await RequestAdapter.SendNoContentAsync(requestInfo, responseHandler);
+            await RequestAdapter.SendNoContentAsync(requestInfo, responseHandler, cancellationToken);
         }
         /// <summary>
         /// List of DeviceComplianceUserStatus.
+        /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="h">Request headers</param>
         /// <param name="o">Request options</param>
         /// <param name="q">Request query parameters</param>
         /// <param name="responseHandler">Response handler to use in place of the default response handling provided by the core service</param>
         /// </summary>
-        public async Task<DeviceComplianceUserStatus> GetAsync(Action<GetQueryParameters> q = default, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default) {
+        public async Task<DeviceComplianceUserStatus> GetAsync(Action<GetQueryParameters> q = default, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default, CancellationToken cancellationToken = default) {
             var requestInfo = CreateGetRequestInformation(q, h, o);
-            return await RequestAdapter.SendAsync<DeviceComplianceUserStatus>(requestInfo, responseHandler);
+            return await RequestAdapter.SendAsync<DeviceComplianceUserStatus>(requestInfo, responseHandler, cancellationToken);
         }
         /// <summary>
         /// List of DeviceComplianceUserStatus.
+        /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="h">Request headers</param>
         /// <param name="model"></param>
         /// <param name="o">Request options</param>
         /// <param name="responseHandler">Response handler to use in place of the default response handling provided by the core service</param>
         /// </summary>
-        public async Task PatchAsync(DeviceComplianceUserStatus model, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default) {
+        public async Task PatchAsync(DeviceComplianceUserStatus model, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default, CancellationToken cancellationToken = default) {
             _ = model ?? throw new ArgumentNullException(nameof(model));
             var requestInfo = CreatePatchRequestInformation(model, h, o);
-            await RequestAdapter.SendNoContentAsync(requestInfo, responseHandler);
+            await RequestAdapter.SendNoContentAsync(requestInfo, responseHandler, cancellationToken);
         }
         /// <summary>List of DeviceComplianceUserStatus.</summary>
         public class GetQueryParameters : QueryParametersBase {

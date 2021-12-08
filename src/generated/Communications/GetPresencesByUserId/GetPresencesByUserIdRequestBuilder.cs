@@ -7,6 +7,7 @@ using System.CommandLine.Invocation;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 namespace ApiSdk.Communications.GetPresencesByUserId {
     /// <summary>Builds and executes requests for operations under \communications\microsoft.graph.getPresencesByUserId</summary>
@@ -22,6 +23,7 @@ namespace ApiSdk.Communications.GetPresencesByUserId {
         /// </summary>
         public Command BuildPostCommand() {
             var command = new Command("post");
+            command.Description = "Invoke action getPresencesByUserId";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--body"));
             command.Handler = CommandHandler.Create<string>(async (body) => {
@@ -73,15 +75,16 @@ namespace ApiSdk.Communications.GetPresencesByUserId {
         }
         /// <summary>
         /// Invoke action getPresencesByUserId
+        /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="h">Request headers</param>
         /// <param name="model"></param>
         /// <param name="o">Request options</param>
         /// <param name="responseHandler">Response handler to use in place of the default response handling provided by the core service</param>
         /// </summary>
-        public async Task<IEnumerable<ApiSdk.Communications.GetPresencesByUserId.GetPresencesByUserId>> PostAsync(GetPresencesByUserIdRequestBody model, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default) {
+        public async Task<IEnumerable<ApiSdk.Communications.GetPresencesByUserId.GetPresencesByUserId>> PostAsync(GetPresencesByUserIdRequestBody model, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default, CancellationToken cancellationToken = default) {
             _ = model ?? throw new ArgumentNullException(nameof(model));
             var requestInfo = CreatePostRequestInformation(model, h, o);
-            return await RequestAdapter.SendCollectionAsync<ApiSdk.Communications.GetPresencesByUserId.GetPresencesByUserId>(requestInfo, responseHandler);
+            return await RequestAdapter.SendCollectionAsync<ApiSdk.Communications.GetPresencesByUserId.GetPresencesByUserId>(requestInfo, responseHandler, cancellationToken);
         }
     }
 }

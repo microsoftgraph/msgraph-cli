@@ -7,6 +7,7 @@ using System.CommandLine.Invocation;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 namespace ApiSdk.Me.ManagedAppRegistrations.@Ref {
     /// <summary>Builds and executes requests for operations under \me\managedAppRegistrations\$ref</summary>
@@ -22,6 +23,7 @@ namespace ApiSdk.Me.ManagedAppRegistrations.@Ref {
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
+            command.Description = "Zero or more managed app registrations that belong to the user.";
             // Create options for all the parameters
             command.AddOption(new Option<int?>("--top", description: "Show only the first n items"));
             command.AddOption(new Option<int?>("--skip", description: "Skip the first n items"));
@@ -53,6 +55,7 @@ namespace ApiSdk.Me.ManagedAppRegistrations.@Ref {
         /// </summary>
         public Command BuildPostCommand() {
             var command = new Command("post");
+            command.Description = "Zero or more managed app registrations that belong to the user.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--body"));
             command.Handler = CommandHandler.Create<string>(async (body) => {
@@ -125,26 +128,28 @@ namespace ApiSdk.Me.ManagedAppRegistrations.@Ref {
         }
         /// <summary>
         /// Zero or more managed app registrations that belong to the user.
+        /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="h">Request headers</param>
         /// <param name="o">Request options</param>
         /// <param name="q">Request query parameters</param>
         /// <param name="responseHandler">Response handler to use in place of the default response handling provided by the core service</param>
         /// </summary>
-        public async Task<RefResponse> GetAsync(Action<GetQueryParameters> q = default, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default) {
+        public async Task<RefResponse> GetAsync(Action<GetQueryParameters> q = default, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default, CancellationToken cancellationToken = default) {
             var requestInfo = CreateGetRequestInformation(q, h, o);
-            return await RequestAdapter.SendAsync<RefResponse>(requestInfo, responseHandler);
+            return await RequestAdapter.SendAsync<RefResponse>(requestInfo, responseHandler, cancellationToken);
         }
         /// <summary>
         /// Zero or more managed app registrations that belong to the user.
+        /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="h">Request headers</param>
         /// <param name="model"></param>
         /// <param name="o">Request options</param>
         /// <param name="responseHandler">Response handler to use in place of the default response handling provided by the core service</param>
         /// </summary>
-        public async Task<ApiSdk.Me.ManagedAppRegistrations.@Ref.@Ref> PostAsync(ApiSdk.Me.ManagedAppRegistrations.@Ref.@Ref model, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default) {
+        public async Task<ApiSdk.Me.ManagedAppRegistrations.@Ref.@Ref> PostAsync(ApiSdk.Me.ManagedAppRegistrations.@Ref.@Ref model, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default, CancellationToken cancellationToken = default) {
             _ = model ?? throw new ArgumentNullException(nameof(model));
             var requestInfo = CreatePostRequestInformation(model, h, o);
-            return await RequestAdapter.SendAsync<ApiSdk.Me.ManagedAppRegistrations.@Ref.@Ref>(requestInfo, responseHandler);
+            return await RequestAdapter.SendAsync<ApiSdk.Me.ManagedAppRegistrations.@Ref.@Ref>(requestInfo, responseHandler, cancellationToken);
         }
         /// <summary>Zero or more managed app registrations that belong to the user.</summary>
         public class GetQueryParameters : QueryParametersBase {

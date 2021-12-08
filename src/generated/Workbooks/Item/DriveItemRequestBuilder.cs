@@ -33,6 +33,7 @@ using System.CommandLine.Invocation;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 namespace ApiSdk.Workbooks.Item {
     /// <summary>Builds and executes requests for operations under \workbooks\{driveItem-id}</summary>
@@ -65,18 +66,18 @@ namespace ApiSdk.Workbooks.Item {
         public Command BuildChildrenCommand() {
             var command = new Command("children");
             var builder = new ApiSdk.Workbooks.Item.Children.ChildrenRequestBuilder(PathParameters, RequestAdapter);
-            command.AddCommand(builder.BuildListCommand());
-            command.AddCommand(builder.BuildCreateCommand());
             foreach (var cmd in builder.BuildCommand()) {
                 command.AddCommand(cmd);
             }
+            command.AddCommand(builder.BuildCreateCommand());
+            command.AddCommand(builder.BuildListCommand());
             return command;
         }
         public Command BuildContentCommand() {
             var command = new Command("content");
             var builder = new ApiSdk.Workbooks.Item.Content.ContentRequestBuilder(PathParameters, RequestAdapter);
-            command.AddCommand(builder.BuildPutCommand());
             command.AddCommand(builder.BuildGetCommand());
+            command.AddCommand(builder.BuildPutCommand());
             return command;
         }
         public Command BuildCopyCommand() {
@@ -102,6 +103,7 @@ namespace ApiSdk.Workbooks.Item {
         /// </summary>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
+            command.Description = "Delete entity from workbooks";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--driveitem-id", description: "key: id of driveItem"));
             command.Handler = CommandHandler.Create<string>(async (driveItemId) => {
@@ -124,6 +126,7 @@ namespace ApiSdk.Workbooks.Item {
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
+            command.Description = "Get entity from workbooks by key";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--driveitem-id", description: "key: id of driveItem"));
             command.AddOption(new Option<object>("--select", description: "Select properties to be returned"));
@@ -153,13 +156,13 @@ namespace ApiSdk.Workbooks.Item {
         public Command BuildListItemCommand() {
             var command = new Command("list-item");
             var builder = new ApiSdk.Workbooks.Item.ListItem.ListItemRequestBuilder(PathParameters, RequestAdapter);
-            command.AddCommand(builder.BuildVersionsCommand());
             command.AddCommand(builder.BuildAnalyticsCommand());
-            command.AddCommand(builder.BuildPatchCommand());
-            command.AddCommand(builder.BuildDriveItemCommand());
-            command.AddCommand(builder.BuildGetCommand());
-            command.AddCommand(builder.BuildFieldsCommand());
             command.AddCommand(builder.BuildDeleteCommand());
+            command.AddCommand(builder.BuildDriveItemCommand());
+            command.AddCommand(builder.BuildFieldsCommand());
+            command.AddCommand(builder.BuildGetCommand());
+            command.AddCommand(builder.BuildPatchCommand());
+            command.AddCommand(builder.BuildVersionsCommand());
             return command;
         }
         /// <summary>
@@ -167,6 +170,7 @@ namespace ApiSdk.Workbooks.Item {
         /// </summary>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
+            command.Description = "Update entity in workbooks";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--driveitem-id", description: "key: id of driveItem"));
             command.AddOption(new Option<string>("--body"));
@@ -185,11 +189,11 @@ namespace ApiSdk.Workbooks.Item {
         public Command BuildPermissionsCommand() {
             var command = new Command("permissions");
             var builder = new ApiSdk.Workbooks.Item.Permissions.PermissionsRequestBuilder(PathParameters, RequestAdapter);
-            command.AddCommand(builder.BuildListCommand());
-            command.AddCommand(builder.BuildCreateCommand());
             foreach (var cmd in builder.BuildCommand()) {
                 command.AddCommand(cmd);
             }
+            command.AddCommand(builder.BuildCreateCommand());
+            command.AddCommand(builder.BuildListCommand());
             return command;
         }
         public Command BuildPreviewCommand() {
@@ -207,21 +211,21 @@ namespace ApiSdk.Workbooks.Item {
         public Command BuildSubscriptionsCommand() {
             var command = new Command("subscriptions");
             var builder = new ApiSdk.Workbooks.Item.Subscriptions.SubscriptionsRequestBuilder(PathParameters, RequestAdapter);
-            command.AddCommand(builder.BuildListCommand());
-            command.AddCommand(builder.BuildCreateCommand());
             foreach (var cmd in builder.BuildCommand()) {
                 command.AddCommand(cmd);
             }
+            command.AddCommand(builder.BuildCreateCommand());
+            command.AddCommand(builder.BuildListCommand());
             return command;
         }
         public Command BuildThumbnailsCommand() {
             var command = new Command("thumbnails");
             var builder = new ApiSdk.Workbooks.Item.Thumbnails.ThumbnailsRequestBuilder(PathParameters, RequestAdapter);
-            command.AddCommand(builder.BuildListCommand());
-            command.AddCommand(builder.BuildCreateCommand());
             foreach (var cmd in builder.BuildCommand()) {
                 command.AddCommand(cmd);
             }
+            command.AddCommand(builder.BuildCreateCommand());
+            command.AddCommand(builder.BuildListCommand());
             return command;
         }
         public Command BuildUnfollowCommand() {
@@ -239,29 +243,29 @@ namespace ApiSdk.Workbooks.Item {
         public Command BuildVersionsCommand() {
             var command = new Command("versions");
             var builder = new ApiSdk.Workbooks.Item.Versions.VersionsRequestBuilder(PathParameters, RequestAdapter);
-            command.AddCommand(builder.BuildListCommand());
-            command.AddCommand(builder.BuildCreateCommand());
             foreach (var cmd in builder.BuildCommand()) {
                 command.AddCommand(cmd);
             }
+            command.AddCommand(builder.BuildCreateCommand());
+            command.AddCommand(builder.BuildListCommand());
             return command;
         }
         public Command BuildWorkbookCommand() {
             var command = new Command("workbook");
             var builder = new ApiSdk.Workbooks.Item.Workbook.WorkbookRequestBuilder(PathParameters, RequestAdapter);
+            command.AddCommand(builder.BuildApplicationCommand());
+            command.AddCommand(builder.BuildCloseSessionCommand());
+            command.AddCommand(builder.BuildCommentsCommand());
+            command.AddCommand(builder.BuildCreateSessionCommand());
+            command.AddCommand(builder.BuildDeleteCommand());
+            command.AddCommand(builder.BuildFunctionsCommand());
             command.AddCommand(builder.BuildGetCommand());
-            command.AddCommand(builder.BuildRefreshSessionCommand());
-            command.AddCommand(builder.BuildTablesCommand());
             command.AddCommand(builder.BuildNamesCommand());
             command.AddCommand(builder.BuildOperationsCommand());
-            command.AddCommand(builder.BuildDeleteCommand());
-            command.AddCommand(builder.BuildCreateSessionCommand());
-            command.AddCommand(builder.BuildCloseSessionCommand());
-            command.AddCommand(builder.BuildWorksheetsCommand());
-            command.AddCommand(builder.BuildApplicationCommand());
             command.AddCommand(builder.BuildPatchCommand());
-            command.AddCommand(builder.BuildCommentsCommand());
-            command.AddCommand(builder.BuildFunctionsCommand());
+            command.AddCommand(builder.BuildRefreshSessionCommand());
+            command.AddCommand(builder.BuildTablesCommand());
+            command.AddCommand(builder.BuildWorksheetsCommand());
             return command;
         }
         /// <summary>
@@ -333,13 +337,14 @@ namespace ApiSdk.Workbooks.Item {
         }
         /// <summary>
         /// Delete entity from workbooks
+        /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="h">Request headers</param>
         /// <param name="o">Request options</param>
         /// <param name="responseHandler">Response handler to use in place of the default response handling provided by the core service</param>
         /// </summary>
-        public async Task DeleteAsync(Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default) {
+        public async Task DeleteAsync(Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default, CancellationToken cancellationToken = default) {
             var requestInfo = CreateDeleteRequestInformation(h, o);
-            await RequestAdapter.SendNoContentAsync(requestInfo, responseHandler);
+            await RequestAdapter.SendNoContentAsync(requestInfo, responseHandler, cancellationToken);
         }
         /// <summary>
         /// Builds and executes requests for operations under \workbooks\{driveItem-id}\microsoft.graph.delta()
@@ -375,26 +380,28 @@ namespace ApiSdk.Workbooks.Item {
         }
         /// <summary>
         /// Get entity from workbooks by key
+        /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="h">Request headers</param>
         /// <param name="o">Request options</param>
         /// <param name="q">Request query parameters</param>
         /// <param name="responseHandler">Response handler to use in place of the default response handling provided by the core service</param>
         /// </summary>
-        public async Task<ApiSdk.Models.Microsoft.Graph.DriveItem> GetAsync(Action<GetQueryParameters> q = default, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default) {
+        public async Task<ApiSdk.Models.Microsoft.Graph.DriveItem> GetAsync(Action<GetQueryParameters> q = default, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default, CancellationToken cancellationToken = default) {
             var requestInfo = CreateGetRequestInformation(q, h, o);
-            return await RequestAdapter.SendAsync<ApiSdk.Models.Microsoft.Graph.DriveItem>(requestInfo, responseHandler);
+            return await RequestAdapter.SendAsync<ApiSdk.Models.Microsoft.Graph.DriveItem>(requestInfo, responseHandler, cancellationToken);
         }
         /// <summary>
         /// Update entity in workbooks
+        /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="h">Request headers</param>
         /// <param name="model"></param>
         /// <param name="o">Request options</param>
         /// <param name="responseHandler">Response handler to use in place of the default response handling provided by the core service</param>
         /// </summary>
-        public async Task PatchAsync(ApiSdk.Models.Microsoft.Graph.DriveItem model, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default) {
+        public async Task PatchAsync(ApiSdk.Models.Microsoft.Graph.DriveItem model, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default, CancellationToken cancellationToken = default) {
             _ = model ?? throw new ArgumentNullException(nameof(model));
             var requestInfo = CreatePatchRequestInformation(model, h, o);
-            await RequestAdapter.SendNoContentAsync(requestInfo, responseHandler);
+            await RequestAdapter.SendNoContentAsync(requestInfo, responseHandler, cancellationToken);
         }
         /// <summary>
         /// Builds and executes requests for operations under \workbooks\{driveItem-id}\microsoft.graph.search(q='{q}')

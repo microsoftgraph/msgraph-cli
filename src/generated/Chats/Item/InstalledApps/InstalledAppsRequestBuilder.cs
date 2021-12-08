@@ -9,6 +9,7 @@ using System.CommandLine.Invocation;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 namespace ApiSdk.Chats.Item.InstalledApps {
     /// <summary>Builds and executes requests for operations under \chats\{chat-id}\installedApps</summary>
@@ -19,23 +20,24 @@ namespace ApiSdk.Chats.Item.InstalledApps {
         private IRequestAdapter RequestAdapter { get; set; }
         /// <summary>Url template to use to build the URL for the current request builder</summary>
         private string UrlTemplate { get; set; }
-        public Command[] BuildCommand() {
+        public List<Command> BuildCommand() {
             var builder = new TeamsAppInstallationRequestBuilder(PathParameters, RequestAdapter);
             var commands = new List<Command> { 
-                builder.BuildTeamsAppDefinitionCommand(),
-                builder.BuildTeamsAppCommand(),
-                builder.BuildPatchCommand(),
-                builder.BuildUpgradeCommand(),
-                builder.BuildGetCommand(),
                 builder.BuildDeleteCommand(),
+                builder.BuildGetCommand(),
+                builder.BuildPatchCommand(),
+                builder.BuildTeamsAppCommand(),
+                builder.BuildTeamsAppDefinitionCommand(),
+                builder.BuildUpgradeCommand(),
             };
-            return commands.ToArray();
+            return commands;
         }
         /// <summary>
         /// A collection of all the apps in the chat. Nullable.
         /// </summary>
         public Command BuildCreateCommand() {
             var command = new Command("create");
+            command.Description = "A collection of all the apps in the chat. Nullable.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--chat-id", description: "key: id of chat"));
             command.AddOption(new Option<string>("--body"));
@@ -61,6 +63,7 @@ namespace ApiSdk.Chats.Item.InstalledApps {
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
+            command.Description = "A collection of all the apps in the chat. Nullable.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--chat-id", description: "key: id of chat"));
             command.AddOption(new Option<int?>("--top", description: "Show only the first n items"));
@@ -147,26 +150,28 @@ namespace ApiSdk.Chats.Item.InstalledApps {
         }
         /// <summary>
         /// A collection of all the apps in the chat. Nullable.
+        /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="h">Request headers</param>
         /// <param name="o">Request options</param>
         /// <param name="q">Request query parameters</param>
         /// <param name="responseHandler">Response handler to use in place of the default response handling provided by the core service</param>
         /// </summary>
-        public async Task<InstalledAppsResponse> GetAsync(Action<GetQueryParameters> q = default, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default) {
+        public async Task<InstalledAppsResponse> GetAsync(Action<GetQueryParameters> q = default, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default, CancellationToken cancellationToken = default) {
             var requestInfo = CreateGetRequestInformation(q, h, o);
-            return await RequestAdapter.SendAsync<InstalledAppsResponse>(requestInfo, responseHandler);
+            return await RequestAdapter.SendAsync<InstalledAppsResponse>(requestInfo, responseHandler, cancellationToken);
         }
         /// <summary>
         /// A collection of all the apps in the chat. Nullable.
+        /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="h">Request headers</param>
         /// <param name="model"></param>
         /// <param name="o">Request options</param>
         /// <param name="responseHandler">Response handler to use in place of the default response handling provided by the core service</param>
         /// </summary>
-        public async Task<TeamsAppInstallation> PostAsync(TeamsAppInstallation model, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default) {
+        public async Task<TeamsAppInstallation> PostAsync(TeamsAppInstallation model, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default, CancellationToken cancellationToken = default) {
             _ = model ?? throw new ArgumentNullException(nameof(model));
             var requestInfo = CreatePostRequestInformation(model, h, o);
-            return await RequestAdapter.SendAsync<TeamsAppInstallation>(requestInfo, responseHandler);
+            return await RequestAdapter.SendAsync<TeamsAppInstallation>(requestInfo, responseHandler, cancellationToken);
         }
         /// <summary>A collection of all the apps in the chat. Nullable.</summary>
         public class GetQueryParameters : QueryParametersBase {

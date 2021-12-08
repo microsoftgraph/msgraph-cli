@@ -7,6 +7,7 @@ using System.CommandLine.Invocation;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 namespace ApiSdk.Teams.Item.Members.@Add {
     /// <summary>Builds and executes requests for operations under \teams\{team-id}\members\microsoft.graph.add</summary>
@@ -22,6 +23,7 @@ namespace ApiSdk.Teams.Item.Members.@Add {
         /// </summary>
         public Command BuildPostCommand() {
             var command = new Command("post");
+            command.Description = "Invoke action add";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--team-id", description: "key: id of team"));
             command.AddOption(new Option<string>("--body"));
@@ -75,15 +77,16 @@ namespace ApiSdk.Teams.Item.Members.@Add {
         }
         /// <summary>
         /// Invoke action add
+        /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="h">Request headers</param>
         /// <param name="model"></param>
         /// <param name="o">Request options</param>
         /// <param name="responseHandler">Response handler to use in place of the default response handling provided by the core service</param>
         /// </summary>
-        public async Task<IEnumerable<ApiSdk.Teams.Item.Members.@Add.@Add>> PostAsync(AddRequestBody model, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default) {
+        public async Task<IEnumerable<ApiSdk.Teams.Item.Members.@Add.@Add>> PostAsync(AddRequestBody model, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default, CancellationToken cancellationToken = default) {
             _ = model ?? throw new ArgumentNullException(nameof(model));
             var requestInfo = CreatePostRequestInformation(model, h, o);
-            return await RequestAdapter.SendCollectionAsync<ApiSdk.Teams.Item.Members.@Add.@Add>(requestInfo, responseHandler);
+            return await RequestAdapter.SendCollectionAsync<ApiSdk.Teams.Item.Members.@Add.@Add>(requestInfo, responseHandler, cancellationToken);
         }
     }
 }

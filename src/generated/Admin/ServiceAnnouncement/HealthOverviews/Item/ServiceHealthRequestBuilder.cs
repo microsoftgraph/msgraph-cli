@@ -9,6 +9,7 @@ using System.CommandLine.Invocation;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 namespace ApiSdk.Admin.ServiceAnnouncement.HealthOverviews.Item {
     /// <summary>Builds and executes requests for operations under \admin\serviceAnnouncement\healthOverviews\{serviceHealth-id}</summary>
@@ -24,6 +25,7 @@ namespace ApiSdk.Admin.ServiceAnnouncement.HealthOverviews.Item {
         /// </summary>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
+            command.Description = "A collection of service health information for tenant. This property is a contained navigation property, it is nullable and readonly.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--servicehealth-id", description: "key: id of serviceHealth"));
             command.Handler = CommandHandler.Create<string>(async (serviceHealthId) => {
@@ -40,6 +42,7 @@ namespace ApiSdk.Admin.ServiceAnnouncement.HealthOverviews.Item {
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
+            command.Description = "A collection of service health information for tenant. This property is a contained navigation property, it is nullable and readonly.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--servicehealth-id", description: "key: id of serviceHealth"));
             command.AddOption(new Option<object>("--select", description: "Select properties to be returned"));
@@ -63,11 +66,11 @@ namespace ApiSdk.Admin.ServiceAnnouncement.HealthOverviews.Item {
         public Command BuildIssuesCommand() {
             var command = new Command("issues");
             var builder = new ApiSdk.Admin.ServiceAnnouncement.HealthOverviews.Item.Issues.IssuesRequestBuilder(PathParameters, RequestAdapter);
-            command.AddCommand(builder.BuildListCommand());
-            command.AddCommand(builder.BuildCreateCommand());
             foreach (var cmd in builder.BuildCommand()) {
                 command.AddCommand(cmd);
             }
+            command.AddCommand(builder.BuildCreateCommand());
+            command.AddCommand(builder.BuildListCommand());
             return command;
         }
         /// <summary>
@@ -75,6 +78,7 @@ namespace ApiSdk.Admin.ServiceAnnouncement.HealthOverviews.Item {
         /// </summary>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
+            command.Description = "A collection of service health information for tenant. This property is a contained navigation property, it is nullable and readonly.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--servicehealth-id", description: "key: id of serviceHealth"));
             command.AddOption(new Option<string>("--body"));
@@ -159,36 +163,39 @@ namespace ApiSdk.Admin.ServiceAnnouncement.HealthOverviews.Item {
         }
         /// <summary>
         /// A collection of service health information for tenant. This property is a contained navigation property, it is nullable and readonly.
+        /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="h">Request headers</param>
         /// <param name="o">Request options</param>
         /// <param name="responseHandler">Response handler to use in place of the default response handling provided by the core service</param>
         /// </summary>
-        public async Task DeleteAsync(Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default) {
+        public async Task DeleteAsync(Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default, CancellationToken cancellationToken = default) {
             var requestInfo = CreateDeleteRequestInformation(h, o);
-            await RequestAdapter.SendNoContentAsync(requestInfo, responseHandler);
+            await RequestAdapter.SendNoContentAsync(requestInfo, responseHandler, cancellationToken);
         }
         /// <summary>
         /// A collection of service health information for tenant. This property is a contained navigation property, it is nullable and readonly.
+        /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="h">Request headers</param>
         /// <param name="o">Request options</param>
         /// <param name="q">Request query parameters</param>
         /// <param name="responseHandler">Response handler to use in place of the default response handling provided by the core service</param>
         /// </summary>
-        public async Task<ServiceHealth> GetAsync(Action<GetQueryParameters> q = default, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default) {
+        public async Task<ServiceHealth> GetAsync(Action<GetQueryParameters> q = default, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default, CancellationToken cancellationToken = default) {
             var requestInfo = CreateGetRequestInformation(q, h, o);
-            return await RequestAdapter.SendAsync<ServiceHealth>(requestInfo, responseHandler);
+            return await RequestAdapter.SendAsync<ServiceHealth>(requestInfo, responseHandler, cancellationToken);
         }
         /// <summary>
         /// A collection of service health information for tenant. This property is a contained navigation property, it is nullable and readonly.
+        /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="h">Request headers</param>
         /// <param name="model"></param>
         /// <param name="o">Request options</param>
         /// <param name="responseHandler">Response handler to use in place of the default response handling provided by the core service</param>
         /// </summary>
-        public async Task PatchAsync(ServiceHealth model, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default) {
+        public async Task PatchAsync(ServiceHealth model, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default, CancellationToken cancellationToken = default) {
             _ = model ?? throw new ArgumentNullException(nameof(model));
             var requestInfo = CreatePatchRequestInformation(model, h, o);
-            await RequestAdapter.SendNoContentAsync(requestInfo, responseHandler);
+            await RequestAdapter.SendNoContentAsync(requestInfo, responseHandler, cancellationToken);
         }
         /// <summary>A collection of service health information for tenant. This property is a contained navigation property, it is nullable and readonly.</summary>
         public class GetQueryParameters : QueryParametersBase {

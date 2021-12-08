@@ -9,6 +9,7 @@ using System.CommandLine.Invocation;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 namespace ApiSdk.Print.TaskDefinitions.Item.Tasks.Item.Trigger {
     /// <summary>Builds and executes requests for operations under \print\taskDefinitions\{printTaskDefinition-id}\tasks\{printTask-id}\trigger</summary>
@@ -24,6 +25,7 @@ namespace ApiSdk.Print.TaskDefinitions.Item.Tasks.Item.Trigger {
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
+            command.Description = "The printTaskTrigger that triggered this task's execution. Read-only.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--printtaskdefinition-id", description: "key: id of printTaskDefinition"));
             command.AddOption(new Option<string>("--printtask-id", description: "key: id of printTask"));
@@ -49,9 +51,9 @@ namespace ApiSdk.Print.TaskDefinitions.Item.Tasks.Item.Trigger {
         public Command BuildRefCommand() {
             var command = new Command("ref");
             var builder = new ApiSdk.Print.TaskDefinitions.Item.Tasks.Item.Trigger.@Ref.RefRequestBuilder(PathParameters, RequestAdapter);
-            command.AddCommand(builder.BuildPutCommand());
-            command.AddCommand(builder.BuildGetCommand());
             command.AddCommand(builder.BuildDeleteCommand());
+            command.AddCommand(builder.BuildGetCommand());
+            command.AddCommand(builder.BuildPutCommand());
             return command;
         }
         /// <summary>
@@ -90,14 +92,15 @@ namespace ApiSdk.Print.TaskDefinitions.Item.Tasks.Item.Trigger {
         }
         /// <summary>
         /// The printTaskTrigger that triggered this task's execution. Read-only.
+        /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="h">Request headers</param>
         /// <param name="o">Request options</param>
         /// <param name="q">Request query parameters</param>
         /// <param name="responseHandler">Response handler to use in place of the default response handling provided by the core service</param>
         /// </summary>
-        public async Task<PrintTaskTrigger> GetAsync(Action<GetQueryParameters> q = default, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default) {
+        public async Task<PrintTaskTrigger> GetAsync(Action<GetQueryParameters> q = default, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default, CancellationToken cancellationToken = default) {
             var requestInfo = CreateGetRequestInformation(q, h, o);
-            return await RequestAdapter.SendAsync<PrintTaskTrigger>(requestInfo, responseHandler);
+            return await RequestAdapter.SendAsync<PrintTaskTrigger>(requestInfo, responseHandler, cancellationToken);
         }
         /// <summary>The printTaskTrigger that triggered this task's execution. Read-only.</summary>
         public class GetQueryParameters : QueryParametersBase {

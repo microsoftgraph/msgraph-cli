@@ -14,6 +14,7 @@ using System.CommandLine.Invocation;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 namespace ApiSdk.Users.Item.Onenote.Pages.Item {
     /// <summary>Builds and executes requests for operations under \users\{user-id}\onenote\pages\{onenotePage-id}</summary>
@@ -27,8 +28,8 @@ namespace ApiSdk.Users.Item.Onenote.Pages.Item {
         public Command BuildContentCommand() {
             var command = new Command("content");
             var builder = new ApiSdk.Users.Item.Onenote.Pages.Item.Content.ContentRequestBuilder(PathParameters, RequestAdapter);
-            command.AddCommand(builder.BuildPutCommand());
             command.AddCommand(builder.BuildGetCommand());
+            command.AddCommand(builder.BuildPutCommand());
             return command;
         }
         public Command BuildCopyToSectionCommand() {
@@ -42,6 +43,7 @@ namespace ApiSdk.Users.Item.Onenote.Pages.Item {
         /// </summary>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
+            command.Description = "The pages in all OneNote notebooks that are owned by the user or group.  Read-only. Nullable.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--user-id", description: "key: id of user"));
             command.AddOption(new Option<string>("--onenotepage-id", description: "key: id of onenotePage"));
@@ -60,6 +62,7 @@ namespace ApiSdk.Users.Item.Onenote.Pages.Item {
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
+            command.Description = "The pages in all OneNote notebooks that are owned by the user or group.  Read-only. Nullable.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--user-id", description: "key: id of user"));
             command.AddOption(new Option<string>("--onenotepage-id", description: "key: id of onenotePage"));
@@ -92,24 +95,24 @@ namespace ApiSdk.Users.Item.Onenote.Pages.Item {
             var command = new Command("parent-notebook");
             var builder = new ApiSdk.Users.Item.Onenote.Pages.Item.ParentNotebook.ParentNotebookRequestBuilder(PathParameters, RequestAdapter);
             command.AddCommand(builder.BuildCopyNotebookCommand());
-            command.AddCommand(builder.BuildSectionGroupsCommand());
-            command.AddCommand(builder.BuildPatchCommand());
-            command.AddCommand(builder.BuildGetCommand());
             command.AddCommand(builder.BuildDeleteCommand());
+            command.AddCommand(builder.BuildGetCommand());
+            command.AddCommand(builder.BuildPatchCommand());
+            command.AddCommand(builder.BuildSectionGroupsCommand());
             command.AddCommand(builder.BuildSectionsCommand());
             return command;
         }
         public Command BuildParentSectionCommand() {
             var command = new Command("parent-section");
             var builder = new ApiSdk.Users.Item.Onenote.Pages.Item.ParentSection.ParentSectionRequestBuilder(PathParameters, RequestAdapter);
+            command.AddCommand(builder.BuildCopyToNotebookCommand());
             command.AddCommand(builder.BuildCopyToSectionGroupCommand());
+            command.AddCommand(builder.BuildDeleteCommand());
+            command.AddCommand(builder.BuildGetCommand());
+            command.AddCommand(builder.BuildPagesCommand());
             command.AddCommand(builder.BuildParentNotebookCommand());
             command.AddCommand(builder.BuildParentSectionGroupCommand());
             command.AddCommand(builder.BuildPatchCommand());
-            command.AddCommand(builder.BuildPagesCommand());
-            command.AddCommand(builder.BuildGetCommand());
-            command.AddCommand(builder.BuildCopyToNotebookCommand());
-            command.AddCommand(builder.BuildDeleteCommand());
             return command;
         }
         /// <summary>
@@ -117,6 +120,7 @@ namespace ApiSdk.Users.Item.Onenote.Pages.Item {
         /// </summary>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
+            command.Description = "The pages in all OneNote notebooks that are owned by the user or group.  Read-only. Nullable.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--user-id", description: "key: id of user"));
             command.AddOption(new Option<string>("--onenotepage-id", description: "key: id of onenotePage"));
@@ -203,36 +207,39 @@ namespace ApiSdk.Users.Item.Onenote.Pages.Item {
         }
         /// <summary>
         /// The pages in all OneNote notebooks that are owned by the user or group.  Read-only. Nullable.
+        /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="h">Request headers</param>
         /// <param name="o">Request options</param>
         /// <param name="responseHandler">Response handler to use in place of the default response handling provided by the core service</param>
         /// </summary>
-        public async Task DeleteAsync(Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default) {
+        public async Task DeleteAsync(Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default, CancellationToken cancellationToken = default) {
             var requestInfo = CreateDeleteRequestInformation(h, o);
-            await RequestAdapter.SendNoContentAsync(requestInfo, responseHandler);
+            await RequestAdapter.SendNoContentAsync(requestInfo, responseHandler, cancellationToken);
         }
         /// <summary>
         /// The pages in all OneNote notebooks that are owned by the user or group.  Read-only. Nullable.
+        /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="h">Request headers</param>
         /// <param name="o">Request options</param>
         /// <param name="q">Request query parameters</param>
         /// <param name="responseHandler">Response handler to use in place of the default response handling provided by the core service</param>
         /// </summary>
-        public async Task<OnenotePage> GetAsync(Action<GetQueryParameters> q = default, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default) {
+        public async Task<OnenotePage> GetAsync(Action<GetQueryParameters> q = default, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default, CancellationToken cancellationToken = default) {
             var requestInfo = CreateGetRequestInformation(q, h, o);
-            return await RequestAdapter.SendAsync<OnenotePage>(requestInfo, responseHandler);
+            return await RequestAdapter.SendAsync<OnenotePage>(requestInfo, responseHandler, cancellationToken);
         }
         /// <summary>
         /// The pages in all OneNote notebooks that are owned by the user or group.  Read-only. Nullable.
+        /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="h">Request headers</param>
         /// <param name="model"></param>
         /// <param name="o">Request options</param>
         /// <param name="responseHandler">Response handler to use in place of the default response handling provided by the core service</param>
         /// </summary>
-        public async Task PatchAsync(OnenotePage model, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default) {
+        public async Task PatchAsync(OnenotePage model, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default, CancellationToken cancellationToken = default) {
             _ = model ?? throw new ArgumentNullException(nameof(model));
             var requestInfo = CreatePatchRequestInformation(model, h, o);
-            await RequestAdapter.SendNoContentAsync(requestInfo, responseHandler);
+            await RequestAdapter.SendNoContentAsync(requestInfo, responseHandler, cancellationToken);
         }
         /// <summary>
         /// Builds and executes requests for operations under \users\{user-id}\onenote\pages\{onenotePage-id}\microsoft.graph.preview()

@@ -10,6 +10,7 @@ using System.CommandLine.Invocation;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 namespace ApiSdk.Chats.Item.Messages.Item.Replies {
     /// <summary>Builds and executes requests for operations under \chats\{chat-id}\messages\{chatMessage-id}\replies</summary>
@@ -20,20 +21,21 @@ namespace ApiSdk.Chats.Item.Messages.Item.Replies {
         private IRequestAdapter RequestAdapter { get; set; }
         /// <summary>Url template to use to build the URL for the current request builder</summary>
         private string UrlTemplate { get; set; }
-        public Command[] BuildCommand() {
+        public List<Command> BuildCommand() {
             var builder = new ChatMessageRequestBuilder(PathParameters, RequestAdapter);
             var commands = new List<Command> { 
-                builder.BuildPatchCommand(),
-                builder.BuildGetCommand(),
                 builder.BuildDeleteCommand(),
+                builder.BuildGetCommand(),
+                builder.BuildPatchCommand(),
             };
-            return commands.ToArray();
+            return commands;
         }
         /// <summary>
         /// Replies for a specified message.
         /// </summary>
         public Command BuildCreateCommand() {
             var command = new Command("create");
+            command.Description = "Replies for a specified message.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--chat-id", description: "key: id of chat"));
             command.AddOption(new Option<string>("--chatmessage-id", description: "key: id of chatMessage"));
@@ -61,6 +63,7 @@ namespace ApiSdk.Chats.Item.Messages.Item.Replies {
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
+            command.Description = "Replies for a specified message.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--chat-id", description: "key: id of chat"));
             command.AddOption(new Option<string>("--chatmessage-id", description: "key: id of chatMessage"));
@@ -155,26 +158,28 @@ namespace ApiSdk.Chats.Item.Messages.Item.Replies {
         }
         /// <summary>
         /// Replies for a specified message.
+        /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="h">Request headers</param>
         /// <param name="o">Request options</param>
         /// <param name="q">Request query parameters</param>
         /// <param name="responseHandler">Response handler to use in place of the default response handling provided by the core service</param>
         /// </summary>
-        public async Task<RepliesResponse> GetAsync(Action<GetQueryParameters> q = default, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default) {
+        public async Task<RepliesResponse> GetAsync(Action<GetQueryParameters> q = default, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default, CancellationToken cancellationToken = default) {
             var requestInfo = CreateGetRequestInformation(q, h, o);
-            return await RequestAdapter.SendAsync<RepliesResponse>(requestInfo, responseHandler);
+            return await RequestAdapter.SendAsync<RepliesResponse>(requestInfo, responseHandler, cancellationToken);
         }
         /// <summary>
         /// Replies for a specified message.
+        /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="h">Request headers</param>
         /// <param name="model"></param>
         /// <param name="o">Request options</param>
         /// <param name="responseHandler">Response handler to use in place of the default response handling provided by the core service</param>
         /// </summary>
-        public async Task<ChatMessage> PostAsync(ChatMessage model, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default) {
+        public async Task<ChatMessage> PostAsync(ChatMessage model, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default, CancellationToken cancellationToken = default) {
             _ = model ?? throw new ArgumentNullException(nameof(model));
             var requestInfo = CreatePostRequestInformation(model, h, o);
-            return await RequestAdapter.SendAsync<ChatMessage>(requestInfo, responseHandler);
+            return await RequestAdapter.SendAsync<ChatMessage>(requestInfo, responseHandler, cancellationToken);
         }
         /// <summary>Replies for a specified message.</summary>
         public class GetQueryParameters : QueryParametersBase {

@@ -12,6 +12,7 @@ using System.CommandLine.Invocation;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 namespace ApiSdk.Workbooks.Item.Workbook.Tables {
     /// <summary>Builds and executes requests for operations under \workbooks\{driveItem-id}\workbook\tables</summary>
@@ -28,27 +29,28 @@ namespace ApiSdk.Workbooks.Item.Workbook.Tables {
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
-        public Command[] BuildCommand() {
+        public List<Command> BuildCommand() {
             var builder = new WorkbookTableRequestBuilder(PathParameters, RequestAdapter);
             var commands = new List<Command> { 
                 builder.BuildClearFiltersCommand(),
                 builder.BuildColumnsCommand(),
-                builder.BuildRowsCommand(),
-                builder.BuildSortCommand(),
+                builder.BuildConvertToRangeCommand(),
+                builder.BuildDeleteCommand(),
+                builder.BuildGetCommand(),
                 builder.BuildPatchCommand(),
                 builder.BuildReapplyFiltersCommand(),
-                builder.BuildConvertToRangeCommand(),
+                builder.BuildRowsCommand(),
+                builder.BuildSortCommand(),
                 builder.BuildWorksheetCommand(),
-                builder.BuildGetCommand(),
-                builder.BuildDeleteCommand(),
             };
-            return commands.ToArray();
+            return commands;
         }
         /// <summary>
         /// Represents a collection of tables associated with the workbook. Read-only.
         /// </summary>
         public Command BuildCreateCommand() {
             var command = new Command("create");
+            command.Description = "Represents a collection of tables associated with the workbook. Read-only.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--driveitem-id", description: "key: id of driveItem"));
             command.AddOption(new Option<string>("--body"));
@@ -74,6 +76,7 @@ namespace ApiSdk.Workbooks.Item.Workbook.Tables {
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
+            command.Description = "Represents a collection of tables associated with the workbook. Read-only.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--driveitem-id", description: "key: id of driveItem"));
             command.AddOption(new Option<int?>("--top", description: "Show only the first n items"));
@@ -166,14 +169,15 @@ namespace ApiSdk.Workbooks.Item.Workbook.Tables {
         }
         /// <summary>
         /// Represents a collection of tables associated with the workbook. Read-only.
+        /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="h">Request headers</param>
         /// <param name="o">Request options</param>
         /// <param name="q">Request query parameters</param>
         /// <param name="responseHandler">Response handler to use in place of the default response handling provided by the core service</param>
         /// </summary>
-        public async Task<TablesResponse> GetAsync(Action<GetQueryParameters> q = default, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default) {
+        public async Task<TablesResponse> GetAsync(Action<GetQueryParameters> q = default, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default, CancellationToken cancellationToken = default) {
             var requestInfo = CreateGetRequestInformation(q, h, o);
-            return await RequestAdapter.SendAsync<TablesResponse>(requestInfo, responseHandler);
+            return await RequestAdapter.SendAsync<TablesResponse>(requestInfo, responseHandler, cancellationToken);
         }
         /// <summary>
         /// Builds and executes requests for operations under \workbooks\{driveItem-id}\workbook\tables\microsoft.graph.itemAt(index={index})
@@ -185,15 +189,16 @@ namespace ApiSdk.Workbooks.Item.Workbook.Tables {
         }
         /// <summary>
         /// Represents a collection of tables associated with the workbook. Read-only.
+        /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="h">Request headers</param>
         /// <param name="model"></param>
         /// <param name="o">Request options</param>
         /// <param name="responseHandler">Response handler to use in place of the default response handling provided by the core service</param>
         /// </summary>
-        public async Task<WorkbookTable> PostAsync(WorkbookTable model, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default) {
+        public async Task<WorkbookTable> PostAsync(WorkbookTable model, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default, CancellationToken cancellationToken = default) {
             _ = model ?? throw new ArgumentNullException(nameof(model));
             var requestInfo = CreatePostRequestInformation(model, h, o);
-            return await RequestAdapter.SendAsync<WorkbookTable>(requestInfo, responseHandler);
+            return await RequestAdapter.SendAsync<WorkbookTable>(requestInfo, responseHandler, cancellationToken);
         }
         /// <summary>Represents a collection of tables associated with the workbook. Read-only.</summary>
         public class GetQueryParameters : QueryParametersBase {

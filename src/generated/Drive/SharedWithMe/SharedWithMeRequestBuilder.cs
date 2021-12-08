@@ -7,6 +7,7 @@ using System.CommandLine.Invocation;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 namespace ApiSdk.Drive.SharedWithMe {
     /// <summary>Builds and executes requests for operations under \drive\microsoft.graph.sharedWithMe()</summary>
@@ -22,6 +23,7 @@ namespace ApiSdk.Drive.SharedWithMe {
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
+            command.Description = "Invoke function sharedWithMe";
             // Create options for all the parameters
             command.Handler = CommandHandler.Create(async () => {
                 var requestInfo = CreateGetRequestInformation();
@@ -66,13 +68,14 @@ namespace ApiSdk.Drive.SharedWithMe {
         }
         /// <summary>
         /// Invoke function sharedWithMe
+        /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="h">Request headers</param>
         /// <param name="o">Request options</param>
         /// <param name="responseHandler">Response handler to use in place of the default response handling provided by the core service</param>
         /// </summary>
-        public async Task<IEnumerable<ApiSdk.Drive.SharedWithMe.SharedWithMe>> GetAsync(Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default) {
+        public async Task<IEnumerable<ApiSdk.Drive.SharedWithMe.SharedWithMe>> GetAsync(Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default, CancellationToken cancellationToken = default) {
             var requestInfo = CreateGetRequestInformation(h, o);
-            return await RequestAdapter.SendCollectionAsync<ApiSdk.Drive.SharedWithMe.SharedWithMe>(requestInfo, responseHandler);
+            return await RequestAdapter.SendCollectionAsync<ApiSdk.Drive.SharedWithMe.SharedWithMe>(requestInfo, responseHandler, cancellationToken);
         }
     }
 }

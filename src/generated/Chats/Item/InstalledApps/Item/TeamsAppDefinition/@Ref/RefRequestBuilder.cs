@@ -7,6 +7,7 @@ using System.CommandLine.Invocation;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 namespace ApiSdk.Chats.Item.InstalledApps.Item.TeamsAppDefinition.@Ref {
     /// <summary>Builds and executes requests for operations under \chats\{chat-id}\installedApps\{teamsAppInstallation-id}\teamsAppDefinition\$ref</summary>
@@ -22,6 +23,7 @@ namespace ApiSdk.Chats.Item.InstalledApps.Item.TeamsAppDefinition.@Ref {
         /// </summary>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
+            command.Description = "The details of this version of the app.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--chat-id", description: "key: id of chat"));
             command.AddOption(new Option<string>("--teamsappinstallation-id", description: "key: id of teamsAppInstallation"));
@@ -40,6 +42,7 @@ namespace ApiSdk.Chats.Item.InstalledApps.Item.TeamsAppDefinition.@Ref {
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
+            command.Description = "The details of this version of the app.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--chat-id", description: "key: id of chat"));
             command.AddOption(new Option<string>("--teamsappinstallation-id", description: "key: id of teamsAppInstallation"));
@@ -63,6 +66,7 @@ namespace ApiSdk.Chats.Item.InstalledApps.Item.TeamsAppDefinition.@Ref {
         /// </summary>
         public Command BuildPutCommand() {
             var command = new Command("put");
+            command.Description = "The details of this version of the app.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--chat-id", description: "key: id of chat"));
             command.AddOption(new Option<string>("--teamsappinstallation-id", description: "key: id of teamsAppInstallation"));
@@ -143,35 +147,38 @@ namespace ApiSdk.Chats.Item.InstalledApps.Item.TeamsAppDefinition.@Ref {
         }
         /// <summary>
         /// The details of this version of the app.
+        /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="h">Request headers</param>
         /// <param name="o">Request options</param>
         /// <param name="responseHandler">Response handler to use in place of the default response handling provided by the core service</param>
         /// </summary>
-        public async Task DeleteAsync(Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default) {
+        public async Task DeleteAsync(Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default, CancellationToken cancellationToken = default) {
             var requestInfo = CreateDeleteRequestInformation(h, o);
-            await RequestAdapter.SendNoContentAsync(requestInfo, responseHandler);
+            await RequestAdapter.SendNoContentAsync(requestInfo, responseHandler, cancellationToken);
         }
         /// <summary>
         /// The details of this version of the app.
+        /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="h">Request headers</param>
         /// <param name="o">Request options</param>
         /// <param name="responseHandler">Response handler to use in place of the default response handling provided by the core service</param>
         /// </summary>
-        public async Task<string> GetAsync(Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default) {
+        public async Task<string> GetAsync(Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default, CancellationToken cancellationToken = default) {
             var requestInfo = CreateGetRequestInformation(h, o);
-            return await RequestAdapter.SendPrimitiveAsync<string>(requestInfo, responseHandler);
+            return await RequestAdapter.SendPrimitiveAsync<string>(requestInfo, responseHandler, cancellationToken);
         }
         /// <summary>
         /// The details of this version of the app.
+        /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="h">Request headers</param>
         /// <param name="model"></param>
         /// <param name="o">Request options</param>
         /// <param name="responseHandler">Response handler to use in place of the default response handling provided by the core service</param>
         /// </summary>
-        public async Task PutAsync(ApiSdk.Chats.Item.InstalledApps.Item.TeamsAppDefinition.@Ref.@Ref model, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default) {
+        public async Task PutAsync(ApiSdk.Chats.Item.InstalledApps.Item.TeamsAppDefinition.@Ref.@Ref model, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default, CancellationToken cancellationToken = default) {
             _ = model ?? throw new ArgumentNullException(nameof(model));
             var requestInfo = CreatePutRequestInformation(model, h, o);
-            await RequestAdapter.SendNoContentAsync(requestInfo, responseHandler);
+            await RequestAdapter.SendNoContentAsync(requestInfo, responseHandler, cancellationToken);
         }
     }
 }

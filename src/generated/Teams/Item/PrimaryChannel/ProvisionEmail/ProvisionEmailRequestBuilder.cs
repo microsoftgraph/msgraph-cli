@@ -8,6 +8,7 @@ using System.CommandLine.Invocation;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 namespace ApiSdk.Teams.Item.PrimaryChannel.ProvisionEmail {
     /// <summary>Builds and executes requests for operations under \teams\{team-id}\primaryChannel\microsoft.graph.provisionEmail</summary>
@@ -23,6 +24,7 @@ namespace ApiSdk.Teams.Item.PrimaryChannel.ProvisionEmail {
         /// </summary>
         public Command BuildPostCommand() {
             var command = new Command("post");
+            command.Description = "Invoke action provisionEmail";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--team-id", description: "key: id of team"));
             command.Handler = CommandHandler.Create<string>(async (teamId) => {
@@ -69,13 +71,14 @@ namespace ApiSdk.Teams.Item.PrimaryChannel.ProvisionEmail {
         }
         /// <summary>
         /// Invoke action provisionEmail
+        /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="h">Request headers</param>
         /// <param name="o">Request options</param>
         /// <param name="responseHandler">Response handler to use in place of the default response handling provided by the core service</param>
         /// </summary>
-        public async Task<ProvisionEmailResponse> PostAsync(Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default) {
+        public async Task<ProvisionEmailResponse> PostAsync(Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default, CancellationToken cancellationToken = default) {
             var requestInfo = CreatePostRequestInformation(h, o);
-            return await RequestAdapter.SendAsync<ProvisionEmailResponse>(requestInfo, responseHandler);
+            return await RequestAdapter.SendAsync<ProvisionEmailResponse>(requestInfo, responseHandler, cancellationToken);
         }
         /// <summary>Union type wrapper for classes provisionChannelEmailResult</summary>
         public class ProvisionEmailResponse : IParsable {

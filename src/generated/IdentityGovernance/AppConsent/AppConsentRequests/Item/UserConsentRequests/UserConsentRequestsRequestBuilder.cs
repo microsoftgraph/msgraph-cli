@@ -10,6 +10,7 @@ using System.CommandLine.Invocation;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 namespace ApiSdk.IdentityGovernance.AppConsent.AppConsentRequests.Item.UserConsentRequests {
     /// <summary>Builds and executes requests for operations under \identityGovernance\appConsent\appConsentRequests\{appConsentRequest-id}\userConsentRequests</summary>
@@ -20,21 +21,22 @@ namespace ApiSdk.IdentityGovernance.AppConsent.AppConsentRequests.Item.UserConse
         private IRequestAdapter RequestAdapter { get; set; }
         /// <summary>Url template to use to build the URL for the current request builder</summary>
         private string UrlTemplate { get; set; }
-        public Command[] BuildCommand() {
+        public List<Command> BuildCommand() {
             var builder = new UserConsentRequestRequestBuilder(PathParameters, RequestAdapter);
             var commands = new List<Command> { 
                 builder.BuildApprovalCommand(),
-                builder.BuildPatchCommand(),
-                builder.BuildGetCommand(),
                 builder.BuildDeleteCommand(),
+                builder.BuildGetCommand(),
+                builder.BuildPatchCommand(),
             };
-            return commands.ToArray();
+            return commands;
         }
         /// <summary>
         /// A list of pending user consent requests.
         /// </summary>
         public Command BuildCreateCommand() {
             var command = new Command("create");
+            command.Description = "A list of pending user consent requests.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--appconsentrequest-id", description: "key: id of appConsentRequest"));
             command.AddOption(new Option<string>("--body"));
@@ -60,6 +62,7 @@ namespace ApiSdk.IdentityGovernance.AppConsent.AppConsentRequests.Item.UserConse
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
+            command.Description = "A list of pending user consent requests.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--appconsentrequest-id", description: "key: id of appConsentRequest"));
             command.AddOption(new Option<int?>("--top", description: "Show only the first n items"));
@@ -154,26 +157,28 @@ namespace ApiSdk.IdentityGovernance.AppConsent.AppConsentRequests.Item.UserConse
         }
         /// <summary>
         /// A list of pending user consent requests.
+        /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="h">Request headers</param>
         /// <param name="o">Request options</param>
         /// <param name="q">Request query parameters</param>
         /// <param name="responseHandler">Response handler to use in place of the default response handling provided by the core service</param>
         /// </summary>
-        public async Task<UserConsentRequestsResponse> GetAsync(Action<GetQueryParameters> q = default, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default) {
+        public async Task<UserConsentRequestsResponse> GetAsync(Action<GetQueryParameters> q = default, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default, CancellationToken cancellationToken = default) {
             var requestInfo = CreateGetRequestInformation(q, h, o);
-            return await RequestAdapter.SendAsync<UserConsentRequestsResponse>(requestInfo, responseHandler);
+            return await RequestAdapter.SendAsync<UserConsentRequestsResponse>(requestInfo, responseHandler, cancellationToken);
         }
         /// <summary>
         /// A list of pending user consent requests.
+        /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="h">Request headers</param>
         /// <param name="model"></param>
         /// <param name="o">Request options</param>
         /// <param name="responseHandler">Response handler to use in place of the default response handling provided by the core service</param>
         /// </summary>
-        public async Task<UserConsentRequest> PostAsync(UserConsentRequest model, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default) {
+        public async Task<UserConsentRequest> PostAsync(UserConsentRequest model, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default, CancellationToken cancellationToken = default) {
             _ = model ?? throw new ArgumentNullException(nameof(model));
             var requestInfo = CreatePostRequestInformation(model, h, o);
-            return await RequestAdapter.SendAsync<UserConsentRequest>(requestInfo, responseHandler);
+            return await RequestAdapter.SendAsync<UserConsentRequest>(requestInfo, responseHandler, cancellationToken);
         }
         /// <summary>A list of pending user consent requests.</summary>
         public class GetQueryParameters : QueryParametersBase {

@@ -7,6 +7,7 @@ using System.CommandLine.Invocation;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 namespace ApiSdk.Sites.Item.Lists.Item.Items.Item.Versions.Item.RestoreVersion {
     /// <summary>Builds and executes requests for operations under \sites\{site-id}\lists\{list-id}\items\{listItem-id}\versions\{listItemVersion-id}\microsoft.graph.restoreVersion</summary>
@@ -22,6 +23,7 @@ namespace ApiSdk.Sites.Item.Lists.Item.Items.Item.Versions.Item.RestoreVersion {
         /// </summary>
         public Command BuildPostCommand() {
             var command = new Command("post");
+            command.Description = "Invoke action restoreVersion";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--site-id", description: "key: id of site"));
             command.AddOption(new Option<string>("--list-id", description: "key: id of list"));
@@ -69,13 +71,14 @@ namespace ApiSdk.Sites.Item.Lists.Item.Items.Item.Versions.Item.RestoreVersion {
         }
         /// <summary>
         /// Invoke action restoreVersion
+        /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="h">Request headers</param>
         /// <param name="o">Request options</param>
         /// <param name="responseHandler">Response handler to use in place of the default response handling provided by the core service</param>
         /// </summary>
-        public async Task PostAsync(Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default) {
+        public async Task PostAsync(Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default, CancellationToken cancellationToken = default) {
             var requestInfo = CreatePostRequestInformation(h, o);
-            await RequestAdapter.SendNoContentAsync(requestInfo, responseHandler);
+            await RequestAdapter.SendNoContentAsync(requestInfo, responseHandler, cancellationToken);
         }
     }
 }

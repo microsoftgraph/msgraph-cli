@@ -21,6 +21,7 @@ using System.CommandLine.Invocation;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 namespace ApiSdk.Me.Events.Item {
     /// <summary>Builds and executes requests for operations under \me\events\{event-id}</summary>
@@ -40,26 +41,26 @@ namespace ApiSdk.Me.Events.Item {
         public Command BuildAttachmentsCommand() {
             var command = new Command("attachments");
             var builder = new ApiSdk.Me.Events.Item.Attachments.AttachmentsRequestBuilder(PathParameters, RequestAdapter);
-            command.AddCommand(builder.BuildListCommand());
-            command.AddCommand(builder.BuildCreateCommand());
-            command.AddCommand(builder.BuildCreateUploadSessionCommand());
             foreach (var cmd in builder.BuildCommand()) {
                 command.AddCommand(cmd);
             }
+            command.AddCommand(builder.BuildCreateCommand());
+            command.AddCommand(builder.BuildCreateUploadSessionCommand());
+            command.AddCommand(builder.BuildListCommand());
             return command;
         }
         public Command BuildCalendarCommand() {
             var command = new Command("calendar");
             var builder = new ApiSdk.Me.Events.Item.Calendar.CalendarRequestBuilder(PathParameters, RequestAdapter);
-            command.AddCommand(builder.BuildSingleValueExtendedPropertiesCommand());
-            command.AddCommand(builder.BuildGetScheduleCommand());
-            command.AddCommand(builder.BuildEventsCommand());
-            command.AddCommand(builder.BuildPatchCommand());
-            command.AddCommand(builder.BuildCalendarViewCommand());
-            command.AddCommand(builder.BuildGetCommand());
-            command.AddCommand(builder.BuildDeleteCommand());
             command.AddCommand(builder.BuildCalendarPermissionsCommand());
+            command.AddCommand(builder.BuildCalendarViewCommand());
+            command.AddCommand(builder.BuildDeleteCommand());
+            command.AddCommand(builder.BuildEventsCommand());
+            command.AddCommand(builder.BuildGetCommand());
+            command.AddCommand(builder.BuildGetScheduleCommand());
             command.AddCommand(builder.BuildMultiValueExtendedPropertiesCommand());
+            command.AddCommand(builder.BuildPatchCommand());
+            command.AddCommand(builder.BuildSingleValueExtendedPropertiesCommand());
             return command;
         }
         public Command BuildCancelCommand() {
@@ -79,6 +80,7 @@ namespace ApiSdk.Me.Events.Item {
         /// </summary>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
+            command.Description = "The user's events. Default is to show Events under the Default Calendar. Read-only. Nullable.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--event-id", description: "key: id of event"));
             command.Handler = CommandHandler.Create<string>(async (eventId) => {
@@ -99,11 +101,11 @@ namespace ApiSdk.Me.Events.Item {
         public Command BuildExtensionsCommand() {
             var command = new Command("extensions");
             var builder = new ApiSdk.Me.Events.Item.Extensions.ExtensionsRequestBuilder(PathParameters, RequestAdapter);
-            command.AddCommand(builder.BuildListCommand());
-            command.AddCommand(builder.BuildCreateCommand());
             foreach (var cmd in builder.BuildCommand()) {
                 command.AddCommand(cmd);
             }
+            command.AddCommand(builder.BuildCreateCommand());
+            command.AddCommand(builder.BuildListCommand());
             return command;
         }
         public Command BuildForwardCommand() {
@@ -117,6 +119,7 @@ namespace ApiSdk.Me.Events.Item {
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
+            command.Description = "The user's events. Default is to show Events under the Default Calendar. Read-only. Nullable.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--event-id", description: "key: id of event"));
             command.AddOption(new Option<object>("--select", description: "Select properties to be returned"));
@@ -138,21 +141,21 @@ namespace ApiSdk.Me.Events.Item {
         public Command BuildInstancesCommand() {
             var command = new Command("instances");
             var builder = new ApiSdk.Me.Events.Item.Instances.InstancesRequestBuilder(PathParameters, RequestAdapter);
-            command.AddCommand(builder.BuildListCommand());
-            command.AddCommand(builder.BuildCreateCommand());
             foreach (var cmd in builder.BuildCommand()) {
                 command.AddCommand(cmd);
             }
+            command.AddCommand(builder.BuildCreateCommand());
+            command.AddCommand(builder.BuildListCommand());
             return command;
         }
         public Command BuildMultiValueExtendedPropertiesCommand() {
             var command = new Command("multi-value-extended-properties");
             var builder = new ApiSdk.Me.Events.Item.MultiValueExtendedProperties.MultiValueExtendedPropertiesRequestBuilder(PathParameters, RequestAdapter);
-            command.AddCommand(builder.BuildListCommand());
-            command.AddCommand(builder.BuildCreateCommand());
             foreach (var cmd in builder.BuildCommand()) {
                 command.AddCommand(cmd);
             }
+            command.AddCommand(builder.BuildCreateCommand());
+            command.AddCommand(builder.BuildListCommand());
             return command;
         }
         /// <summary>
@@ -160,6 +163,7 @@ namespace ApiSdk.Me.Events.Item {
         /// </summary>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
+            command.Description = "The user's events. Default is to show Events under the Default Calendar. Read-only. Nullable.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--event-id", description: "key: id of event"));
             command.AddOption(new Option<string>("--body"));
@@ -178,11 +182,11 @@ namespace ApiSdk.Me.Events.Item {
         public Command BuildSingleValueExtendedPropertiesCommand() {
             var command = new Command("single-value-extended-properties");
             var builder = new ApiSdk.Me.Events.Item.SingleValueExtendedProperties.SingleValueExtendedPropertiesRequestBuilder(PathParameters, RequestAdapter);
-            command.AddCommand(builder.BuildListCommand());
-            command.AddCommand(builder.BuildCreateCommand());
             foreach (var cmd in builder.BuildCommand()) {
                 command.AddCommand(cmd);
             }
+            command.AddCommand(builder.BuildCreateCommand());
+            command.AddCommand(builder.BuildListCommand());
             return command;
         }
         public Command BuildSnoozeReminderCommand() {
@@ -266,36 +270,39 @@ namespace ApiSdk.Me.Events.Item {
         }
         /// <summary>
         /// The user's events. Default is to show Events under the Default Calendar. Read-only. Nullable.
+        /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="h">Request headers</param>
         /// <param name="o">Request options</param>
         /// <param name="responseHandler">Response handler to use in place of the default response handling provided by the core service</param>
         /// </summary>
-        public async Task DeleteAsync(Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default) {
+        public async Task DeleteAsync(Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default, CancellationToken cancellationToken = default) {
             var requestInfo = CreateDeleteRequestInformation(h, o);
-            await RequestAdapter.SendNoContentAsync(requestInfo, responseHandler);
+            await RequestAdapter.SendNoContentAsync(requestInfo, responseHandler, cancellationToken);
         }
         /// <summary>
         /// The user's events. Default is to show Events under the Default Calendar. Read-only. Nullable.
+        /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="h">Request headers</param>
         /// <param name="o">Request options</param>
         /// <param name="q">Request query parameters</param>
         /// <param name="responseHandler">Response handler to use in place of the default response handling provided by the core service</param>
         /// </summary>
-        public async Task<@Event> GetAsync(Action<GetQueryParameters> q = default, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default) {
+        public async Task<@Event> GetAsync(Action<GetQueryParameters> q = default, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default, CancellationToken cancellationToken = default) {
             var requestInfo = CreateGetRequestInformation(q, h, o);
-            return await RequestAdapter.SendAsync<@Event>(requestInfo, responseHandler);
+            return await RequestAdapter.SendAsync<@Event>(requestInfo, responseHandler, cancellationToken);
         }
         /// <summary>
         /// The user's events. Default is to show Events under the Default Calendar. Read-only. Nullable.
+        /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="h">Request headers</param>
         /// <param name="model"></param>
         /// <param name="o">Request options</param>
         /// <param name="responseHandler">Response handler to use in place of the default response handling provided by the core service</param>
         /// </summary>
-        public async Task PatchAsync(@Event model, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default) {
+        public async Task PatchAsync(@Event model, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default, CancellationToken cancellationToken = default) {
             _ = model ?? throw new ArgumentNullException(nameof(model));
             var requestInfo = CreatePatchRequestInformation(model, h, o);
-            await RequestAdapter.SendNoContentAsync(requestInfo, responseHandler);
+            await RequestAdapter.SendNoContentAsync(requestInfo, responseHandler, cancellationToken);
         }
         /// <summary>The user's events. Default is to show Events under the Default Calendar. Read-only. Nullable.</summary>
         public class GetQueryParameters : QueryParametersBase {

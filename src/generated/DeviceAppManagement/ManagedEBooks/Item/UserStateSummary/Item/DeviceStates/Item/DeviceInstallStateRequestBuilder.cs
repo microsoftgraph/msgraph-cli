@@ -8,6 +8,7 @@ using System.CommandLine.Invocation;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 namespace ApiSdk.DeviceAppManagement.ManagedEBooks.Item.UserStateSummary.Item.DeviceStates.Item {
     /// <summary>Builds and executes requests for operations under \deviceAppManagement\managedEBooks\{managedEBook-id}\userStateSummary\{userInstallStateSummary-id}\deviceStates\{deviceInstallState-id}</summary>
@@ -23,6 +24,7 @@ namespace ApiSdk.DeviceAppManagement.ManagedEBooks.Item.UserStateSummary.Item.De
         /// </summary>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
+            command.Description = "The install state of the eBook.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--managedebook-id", description: "key: id of managedEBook"));
             command.AddOption(new Option<string>("--userinstallstatesummary-id", description: "key: id of userInstallStateSummary"));
@@ -43,6 +45,7 @@ namespace ApiSdk.DeviceAppManagement.ManagedEBooks.Item.UserStateSummary.Item.De
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
+            command.Description = "The install state of the eBook.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--managedebook-id", description: "key: id of managedEBook"));
             command.AddOption(new Option<string>("--userinstallstatesummary-id", description: "key: id of userInstallStateSummary"));
@@ -72,6 +75,7 @@ namespace ApiSdk.DeviceAppManagement.ManagedEBooks.Item.UserStateSummary.Item.De
         /// </summary>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
+            command.Description = "The install state of the eBook.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--managedebook-id", description: "key: id of managedEBook"));
             command.AddOption(new Option<string>("--userinstallstatesummary-id", description: "key: id of userInstallStateSummary"));
@@ -160,36 +164,39 @@ namespace ApiSdk.DeviceAppManagement.ManagedEBooks.Item.UserStateSummary.Item.De
         }
         /// <summary>
         /// The install state of the eBook.
+        /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="h">Request headers</param>
         /// <param name="o">Request options</param>
         /// <param name="responseHandler">Response handler to use in place of the default response handling provided by the core service</param>
         /// </summary>
-        public async Task DeleteAsync(Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default) {
+        public async Task DeleteAsync(Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default, CancellationToken cancellationToken = default) {
             var requestInfo = CreateDeleteRequestInformation(h, o);
-            await RequestAdapter.SendNoContentAsync(requestInfo, responseHandler);
+            await RequestAdapter.SendNoContentAsync(requestInfo, responseHandler, cancellationToken);
         }
         /// <summary>
         /// The install state of the eBook.
+        /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="h">Request headers</param>
         /// <param name="o">Request options</param>
         /// <param name="q">Request query parameters</param>
         /// <param name="responseHandler">Response handler to use in place of the default response handling provided by the core service</param>
         /// </summary>
-        public async Task<DeviceInstallState> GetAsync(Action<GetQueryParameters> q = default, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default) {
+        public async Task<DeviceInstallState> GetAsync(Action<GetQueryParameters> q = default, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default, CancellationToken cancellationToken = default) {
             var requestInfo = CreateGetRequestInformation(q, h, o);
-            return await RequestAdapter.SendAsync<DeviceInstallState>(requestInfo, responseHandler);
+            return await RequestAdapter.SendAsync<DeviceInstallState>(requestInfo, responseHandler, cancellationToken);
         }
         /// <summary>
         /// The install state of the eBook.
+        /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="h">Request headers</param>
         /// <param name="model"></param>
         /// <param name="o">Request options</param>
         /// <param name="responseHandler">Response handler to use in place of the default response handling provided by the core service</param>
         /// </summary>
-        public async Task PatchAsync(DeviceInstallState model, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default) {
+        public async Task PatchAsync(DeviceInstallState model, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default, CancellationToken cancellationToken = default) {
             _ = model ?? throw new ArgumentNullException(nameof(model));
             var requestInfo = CreatePatchRequestInformation(model, h, o);
-            await RequestAdapter.SendNoContentAsync(requestInfo, responseHandler);
+            await RequestAdapter.SendNoContentAsync(requestInfo, responseHandler, cancellationToken);
         }
         /// <summary>The install state of the eBook.</summary>
         public class GetQueryParameters : QueryParametersBase {

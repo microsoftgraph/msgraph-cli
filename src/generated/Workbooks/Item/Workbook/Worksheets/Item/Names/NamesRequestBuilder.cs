@@ -11,6 +11,7 @@ using System.CommandLine.Invocation;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 namespace ApiSdk.Workbooks.Item.Workbook.Worksheets.Item.Names {
     /// <summary>Builds and executes requests for operations under \workbooks\{driveItem-id}\workbook\worksheets\{workbookWorksheet-id}\names</summary>
@@ -33,21 +34,22 @@ namespace ApiSdk.Workbooks.Item.Workbook.Worksheets.Item.Names {
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
-        public Command[] BuildCommand() {
+        public List<Command> BuildCommand() {
             var builder = new WorkbookNamedItemRequestBuilder(PathParameters, RequestAdapter);
             var commands = new List<Command> { 
+                builder.BuildDeleteCommand(),
+                builder.BuildGetCommand(),
                 builder.BuildPatchCommand(),
                 builder.BuildWorksheetCommand(),
-                builder.BuildGetCommand(),
-                builder.BuildDeleteCommand(),
             };
-            return commands.ToArray();
+            return commands;
         }
         /// <summary>
         /// Returns collection of names that are associated with the worksheet. Read-only.
         /// </summary>
         public Command BuildCreateCommand() {
             var command = new Command("create");
+            command.Description = "Returns collection of names that are associated with the worksheet. Read-only.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--driveitem-id", description: "key: id of driveItem"));
             command.AddOption(new Option<string>("--workbookworksheet-id", description: "key: id of workbookWorksheet"));
@@ -75,6 +77,7 @@ namespace ApiSdk.Workbooks.Item.Workbook.Worksheets.Item.Names {
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
+            command.Description = "Returns collection of names that are associated with the worksheet. Read-only.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--driveitem-id", description: "key: id of driveItem"));
             command.AddOption(new Option<string>("--workbookworksheet-id", description: "key: id of workbookWorksheet"));
@@ -163,26 +166,28 @@ namespace ApiSdk.Workbooks.Item.Workbook.Worksheets.Item.Names {
         }
         /// <summary>
         /// Returns collection of names that are associated with the worksheet. Read-only.
+        /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="h">Request headers</param>
         /// <param name="o">Request options</param>
         /// <param name="q">Request query parameters</param>
         /// <param name="responseHandler">Response handler to use in place of the default response handling provided by the core service</param>
         /// </summary>
-        public async Task<NamesResponse> GetAsync(Action<GetQueryParameters> q = default, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default) {
+        public async Task<NamesResponse> GetAsync(Action<GetQueryParameters> q = default, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default, CancellationToken cancellationToken = default) {
             var requestInfo = CreateGetRequestInformation(q, h, o);
-            return await RequestAdapter.SendAsync<NamesResponse>(requestInfo, responseHandler);
+            return await RequestAdapter.SendAsync<NamesResponse>(requestInfo, responseHandler, cancellationToken);
         }
         /// <summary>
         /// Returns collection of names that are associated with the worksheet. Read-only.
+        /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="h">Request headers</param>
         /// <param name="model"></param>
         /// <param name="o">Request options</param>
         /// <param name="responseHandler">Response handler to use in place of the default response handling provided by the core service</param>
         /// </summary>
-        public async Task<WorkbookNamedItem> PostAsync(WorkbookNamedItem model, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default) {
+        public async Task<WorkbookNamedItem> PostAsync(WorkbookNamedItem model, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default, CancellationToken cancellationToken = default) {
             _ = model ?? throw new ArgumentNullException(nameof(model));
             var requestInfo = CreatePostRequestInformation(model, h, o);
-            return await RequestAdapter.SendAsync<WorkbookNamedItem>(requestInfo, responseHandler);
+            return await RequestAdapter.SendAsync<WorkbookNamedItem>(requestInfo, responseHandler, cancellationToken);
         }
         /// <summary>Returns collection of names that are associated with the worksheet. Read-only.</summary>
         public class GetQueryParameters : QueryParametersBase {

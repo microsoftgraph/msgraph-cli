@@ -9,6 +9,7 @@ using System.CommandLine.Invocation;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 namespace ApiSdk.Planner.Plans.Item.Buckets.Item.Tasks {
     /// <summary>Builds and executes requests for operations under \planner\plans\{plannerPlan-id}\buckets\{plannerBucket-id}\tasks</summary>
@@ -19,24 +20,25 @@ namespace ApiSdk.Planner.Plans.Item.Buckets.Item.Tasks {
         private IRequestAdapter RequestAdapter { get; set; }
         /// <summary>Url template to use to build the URL for the current request builder</summary>
         private string UrlTemplate { get; set; }
-        public Command[] BuildCommand() {
+        public List<Command> BuildCommand() {
             var builder = new PlannerTaskRequestBuilder(PathParameters, RequestAdapter);
             var commands = new List<Command> { 
-                builder.BuildProgressTaskBoardFormatCommand(),
-                builder.BuildDetailsCommand(),
-                builder.BuildBucketTaskBoardFormatCommand(),
-                builder.BuildPatchCommand(),
-                builder.BuildGetCommand(),
-                builder.BuildDeleteCommand(),
                 builder.BuildAssignedToTaskBoardFormatCommand(),
+                builder.BuildBucketTaskBoardFormatCommand(),
+                builder.BuildDeleteCommand(),
+                builder.BuildDetailsCommand(),
+                builder.BuildGetCommand(),
+                builder.BuildPatchCommand(),
+                builder.BuildProgressTaskBoardFormatCommand(),
             };
-            return commands.ToArray();
+            return commands;
         }
         /// <summary>
         /// Read-only. Nullable. The collection of tasks in the bucket.
         /// </summary>
         public Command BuildCreateCommand() {
             var command = new Command("create");
+            command.Description = "Read-only. Nullable. The collection of tasks in the bucket.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--plannerplan-id", description: "key: id of plannerPlan"));
             command.AddOption(new Option<string>("--plannerbucket-id", description: "key: id of plannerBucket"));
@@ -64,6 +66,7 @@ namespace ApiSdk.Planner.Plans.Item.Buckets.Item.Tasks {
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
+            command.Description = "Read-only. Nullable. The collection of tasks in the bucket.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--plannerplan-id", description: "key: id of plannerPlan"));
             command.AddOption(new Option<string>("--plannerbucket-id", description: "key: id of plannerBucket"));
@@ -152,26 +155,28 @@ namespace ApiSdk.Planner.Plans.Item.Buckets.Item.Tasks {
         }
         /// <summary>
         /// Read-only. Nullable. The collection of tasks in the bucket.
+        /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="h">Request headers</param>
         /// <param name="o">Request options</param>
         /// <param name="q">Request query parameters</param>
         /// <param name="responseHandler">Response handler to use in place of the default response handling provided by the core service</param>
         /// </summary>
-        public async Task<TasksResponse> GetAsync(Action<GetQueryParameters> q = default, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default) {
+        public async Task<TasksResponse> GetAsync(Action<GetQueryParameters> q = default, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default, CancellationToken cancellationToken = default) {
             var requestInfo = CreateGetRequestInformation(q, h, o);
-            return await RequestAdapter.SendAsync<TasksResponse>(requestInfo, responseHandler);
+            return await RequestAdapter.SendAsync<TasksResponse>(requestInfo, responseHandler, cancellationToken);
         }
         /// <summary>
         /// Read-only. Nullable. The collection of tasks in the bucket.
+        /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="h">Request headers</param>
         /// <param name="model"></param>
         /// <param name="o">Request options</param>
         /// <param name="responseHandler">Response handler to use in place of the default response handling provided by the core service</param>
         /// </summary>
-        public async Task<PlannerTask> PostAsync(PlannerTask model, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default) {
+        public async Task<PlannerTask> PostAsync(PlannerTask model, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default, CancellationToken cancellationToken = default) {
             _ = model ?? throw new ArgumentNullException(nameof(model));
             var requestInfo = CreatePostRequestInformation(model, h, o);
-            return await RequestAdapter.SendAsync<PlannerTask>(requestInfo, responseHandler);
+            return await RequestAdapter.SendAsync<PlannerTask>(requestInfo, responseHandler, cancellationToken);
         }
         /// <summary>Read-only. Nullable. The collection of tasks in the bucket.</summary>
         public class GetQueryParameters : QueryParametersBase {

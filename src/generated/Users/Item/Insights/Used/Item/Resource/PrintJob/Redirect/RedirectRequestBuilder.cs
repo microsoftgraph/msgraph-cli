@@ -8,6 +8,7 @@ using System.CommandLine.Invocation;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 namespace ApiSdk.Users.Item.Insights.Used.Item.Resource.PrintJob.Redirect {
     /// <summary>Builds and executes requests for operations under \users\{user-id}\insights\used\{usedInsight-id}\resource\microsoft.graph.printJob\microsoft.graph.redirect</summary>
@@ -23,6 +24,7 @@ namespace ApiSdk.Users.Item.Insights.Used.Item.Resource.PrintJob.Redirect {
         /// </summary>
         public Command BuildPostCommand() {
             var command = new Command("post");
+            command.Description = "Invoke action redirect";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--user-id", description: "key: id of user"));
             command.AddOption(new Option<string>("--usedinsight-id", description: "key: id of usedInsight"));
@@ -78,15 +80,16 @@ namespace ApiSdk.Users.Item.Insights.Used.Item.Resource.PrintJob.Redirect {
         }
         /// <summary>
         /// Invoke action redirect
+        /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="h">Request headers</param>
         /// <param name="model"></param>
         /// <param name="o">Request options</param>
         /// <param name="responseHandler">Response handler to use in place of the default response handling provided by the core service</param>
         /// </summary>
-        public async Task<RedirectResponse> PostAsync(RedirectRequestBody model, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default) {
+        public async Task<RedirectResponse> PostAsync(RedirectRequestBody model, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default, CancellationToken cancellationToken = default) {
             _ = model ?? throw new ArgumentNullException(nameof(model));
             var requestInfo = CreatePostRequestInformation(model, h, o);
-            return await RequestAdapter.SendAsync<RedirectResponse>(requestInfo, responseHandler);
+            return await RequestAdapter.SendAsync<RedirectResponse>(requestInfo, responseHandler, cancellationToken);
         }
         /// <summary>Union type wrapper for classes printJob</summary>
         public class RedirectResponse : IParsable {

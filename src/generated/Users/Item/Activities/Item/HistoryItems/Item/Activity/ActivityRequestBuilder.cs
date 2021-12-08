@@ -9,6 +9,7 @@ using System.CommandLine.Invocation;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 namespace ApiSdk.Users.Item.Activities.Item.HistoryItems.Item.Activity {
     /// <summary>Builds and executes requests for operations under \users\{user-id}\activities\{userActivity-id}\historyItems\{activityHistoryItem-id}\activity</summary>
@@ -24,6 +25,7 @@ namespace ApiSdk.Users.Item.Activities.Item.HistoryItems.Item.Activity {
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
+            command.Description = "Optional. NavigationProperty/Containment; navigation property to the associated activity.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--user-id", description: "key: id of user"));
             command.AddOption(new Option<string>("--useractivity-id", description: "key: id of userActivity"));
@@ -51,9 +53,9 @@ namespace ApiSdk.Users.Item.Activities.Item.HistoryItems.Item.Activity {
         public Command BuildRefCommand() {
             var command = new Command("ref");
             var builder = new ApiSdk.Users.Item.Activities.Item.HistoryItems.Item.Activity.@Ref.RefRequestBuilder(PathParameters, RequestAdapter);
-            command.AddCommand(builder.BuildPutCommand());
-            command.AddCommand(builder.BuildGetCommand());
             command.AddCommand(builder.BuildDeleteCommand());
+            command.AddCommand(builder.BuildGetCommand());
+            command.AddCommand(builder.BuildPutCommand());
             return command;
         }
         /// <summary>
@@ -92,14 +94,15 @@ namespace ApiSdk.Users.Item.Activities.Item.HistoryItems.Item.Activity {
         }
         /// <summary>
         /// Optional. NavigationProperty/Containment; navigation property to the associated activity.
+        /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="h">Request headers</param>
         /// <param name="o">Request options</param>
         /// <param name="q">Request query parameters</param>
         /// <param name="responseHandler">Response handler to use in place of the default response handling provided by the core service</param>
         /// </summary>
-        public async Task<UserActivity> GetAsync(Action<GetQueryParameters> q = default, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default) {
+        public async Task<UserActivity> GetAsync(Action<GetQueryParameters> q = default, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default, CancellationToken cancellationToken = default) {
             var requestInfo = CreateGetRequestInformation(q, h, o);
-            return await RequestAdapter.SendAsync<UserActivity>(requestInfo, responseHandler);
+            return await RequestAdapter.SendAsync<UserActivity>(requestInfo, responseHandler, cancellationToken);
         }
         /// <summary>Optional. NavigationProperty/Containment; navigation property to the associated activity.</summary>
         public class GetQueryParameters : QueryParametersBase {

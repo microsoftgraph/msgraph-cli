@@ -7,6 +7,7 @@ using System.CommandLine.Invocation;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 namespace ApiSdk.Me.CalendarGroups.Item.Calendars.Item.Events.Item.Cancel {
     /// <summary>Builds and executes requests for operations under \me\calendarGroups\{calendarGroup-id}\calendars\{calendar-id}\events\{event-id}\microsoft.graph.cancel</summary>
@@ -22,6 +23,7 @@ namespace ApiSdk.Me.CalendarGroups.Item.Calendars.Item.Events.Item.Cancel {
         /// </summary>
         public Command BuildPostCommand() {
             var command = new Command("post");
+            command.Description = "Invoke action cancel";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--calendargroup-id", description: "key: id of calendarGroup"));
             command.AddOption(new Option<string>("--calendar-id", description: "key: id of calendar"));
@@ -74,15 +76,16 @@ namespace ApiSdk.Me.CalendarGroups.Item.Calendars.Item.Events.Item.Cancel {
         }
         /// <summary>
         /// Invoke action cancel
+        /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="h">Request headers</param>
         /// <param name="model"></param>
         /// <param name="o">Request options</param>
         /// <param name="responseHandler">Response handler to use in place of the default response handling provided by the core service</param>
         /// </summary>
-        public async Task PostAsync(CancelRequestBody model, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default) {
+        public async Task PostAsync(CancelRequestBody model, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default, CancellationToken cancellationToken = default) {
             _ = model ?? throw new ArgumentNullException(nameof(model));
             var requestInfo = CreatePostRequestInformation(model, h, o);
-            await RequestAdapter.SendNoContentAsync(requestInfo, responseHandler);
+            await RequestAdapter.SendNoContentAsync(requestInfo, responseHandler, cancellationToken);
         }
     }
 }

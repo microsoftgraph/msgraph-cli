@@ -8,6 +8,7 @@ using System.CommandLine.Invocation;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 namespace ApiSdk.Drive.List.ContentTypes.Item.BaseTypes.AddCopy {
     /// <summary>Builds and executes requests for operations under \drive\list\contentTypes\{contentType-id}\baseTypes\microsoft.graph.addCopy</summary>
@@ -23,6 +24,7 @@ namespace ApiSdk.Drive.List.ContentTypes.Item.BaseTypes.AddCopy {
         /// </summary>
         public Command BuildPostCommand() {
             var command = new Command("post");
+            command.Description = "Invoke action addCopy";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--contenttype-id", description: "key: id of contentType"));
             command.AddOption(new Option<string>("--body"));
@@ -76,15 +78,16 @@ namespace ApiSdk.Drive.List.ContentTypes.Item.BaseTypes.AddCopy {
         }
         /// <summary>
         /// Invoke action addCopy
+        /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="h">Request headers</param>
         /// <param name="model"></param>
         /// <param name="o">Request options</param>
         /// <param name="responseHandler">Response handler to use in place of the default response handling provided by the core service</param>
         /// </summary>
-        public async Task<AddCopyResponse> PostAsync(AddCopyRequestBody model, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default) {
+        public async Task<AddCopyResponse> PostAsync(AddCopyRequestBody model, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default, CancellationToken cancellationToken = default) {
             _ = model ?? throw new ArgumentNullException(nameof(model));
             var requestInfo = CreatePostRequestInformation(model, h, o);
-            return await RequestAdapter.SendAsync<AddCopyResponse>(requestInfo, responseHandler);
+            return await RequestAdapter.SendAsync<AddCopyResponse>(requestInfo, responseHandler, cancellationToken);
         }
         /// <summary>Union type wrapper for classes contentType</summary>
         public class AddCopyResponse : IParsable {

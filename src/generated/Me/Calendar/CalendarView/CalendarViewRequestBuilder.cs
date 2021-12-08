@@ -10,6 +10,7 @@ using System.CommandLine.Invocation;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 namespace ApiSdk.Me.Calendar.CalendarView {
     /// <summary>Builds and executes requests for operations under \me\calendar\calendarView</summary>
@@ -20,33 +21,34 @@ namespace ApiSdk.Me.Calendar.CalendarView {
         private IRequestAdapter RequestAdapter { get; set; }
         /// <summary>Url template to use to build the URL for the current request builder</summary>
         private string UrlTemplate { get; set; }
-        public Command[] BuildCommand() {
+        public List<Command> BuildCommand() {
             var builder = new EventRequestBuilder(PathParameters, RequestAdapter);
             var commands = new List<Command> { 
-                builder.BuildGetCommand(),
-                builder.BuildInstancesCommand(),
-                builder.BuildExtensionsCommand(),
-                builder.BuildMultiValueExtendedPropertiesCommand(),
-                builder.BuildForwardCommand(),
+                builder.BuildAcceptCommand(),
+                builder.BuildAttachmentsCommand(),
                 builder.BuildCalendarCommand(),
-                builder.BuildTentativelyAcceptCommand(),
                 builder.BuildCancelCommand(),
                 builder.BuildDeclineCommand(),
-                builder.BuildAcceptCommand(),
                 builder.BuildDeleteCommand(),
                 builder.BuildDismissReminderCommand(),
+                builder.BuildExtensionsCommand(),
+                builder.BuildForwardCommand(),
+                builder.BuildGetCommand(),
+                builder.BuildInstancesCommand(),
+                builder.BuildMultiValueExtendedPropertiesCommand(),
                 builder.BuildPatchCommand(),
-                builder.BuildSnoozeReminderCommand(),
                 builder.BuildSingleValueExtendedPropertiesCommand(),
-                builder.BuildAttachmentsCommand(),
+                builder.BuildSnoozeReminderCommand(),
+                builder.BuildTentativelyAcceptCommand(),
             };
-            return commands.ToArray();
+            return commands;
         }
         /// <summary>
         /// The calendar view for the calendar. Navigation property. Read-only.
         /// </summary>
         public Command BuildCreateCommand() {
             var command = new Command("create");
+            command.Description = "The calendar view for the calendar. Navigation property. Read-only.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--body"));
             command.Handler = CommandHandler.Create<string>(async (body) => {
@@ -70,6 +72,7 @@ namespace ApiSdk.Me.Calendar.CalendarView {
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
+            command.Description = "The calendar view for the calendar. Navigation property. Read-only.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--startdatetime", description: "The start date and time of the time range, represented in ISO 8601 format. For example, 2019-11-08T19:00:00-08:00"));
             command.AddOption(new Option<string>("--enddatetime", description: "The end date and time of the time range, represented in ISO 8601 format. For example, 2019-11-08T20:00:00-08:00"));
@@ -160,26 +163,28 @@ namespace ApiSdk.Me.Calendar.CalendarView {
         }
         /// <summary>
         /// The calendar view for the calendar. Navigation property. Read-only.
+        /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="h">Request headers</param>
         /// <param name="o">Request options</param>
         /// <param name="q">Request query parameters</param>
         /// <param name="responseHandler">Response handler to use in place of the default response handling provided by the core service</param>
         /// </summary>
-        public async Task<CalendarViewResponse> GetAsync(Action<GetQueryParameters> q = default, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default) {
+        public async Task<CalendarViewResponse> GetAsync(Action<GetQueryParameters> q = default, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default, CancellationToken cancellationToken = default) {
             var requestInfo = CreateGetRequestInformation(q, h, o);
-            return await RequestAdapter.SendAsync<CalendarViewResponse>(requestInfo, responseHandler);
+            return await RequestAdapter.SendAsync<CalendarViewResponse>(requestInfo, responseHandler, cancellationToken);
         }
         /// <summary>
         /// The calendar view for the calendar. Navigation property. Read-only.
+        /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="h">Request headers</param>
         /// <param name="model"></param>
         /// <param name="o">Request options</param>
         /// <param name="responseHandler">Response handler to use in place of the default response handling provided by the core service</param>
         /// </summary>
-        public async Task<@Event> PostAsync(@Event model, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default) {
+        public async Task<@Event> PostAsync(@Event model, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default, CancellationToken cancellationToken = default) {
             _ = model ?? throw new ArgumentNullException(nameof(model));
             var requestInfo = CreatePostRequestInformation(model, h, o);
-            return await RequestAdapter.SendAsync<@Event>(requestInfo, responseHandler);
+            return await RequestAdapter.SendAsync<@Event>(requestInfo, responseHandler, cancellationToken);
         }
         /// <summary>The calendar view for the calendar. Navigation property. Read-only.</summary>
         public class GetQueryParameters : QueryParametersBase {

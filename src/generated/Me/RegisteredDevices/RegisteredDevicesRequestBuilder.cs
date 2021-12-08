@@ -8,6 +8,7 @@ using System.CommandLine.Invocation;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 namespace ApiSdk.Me.RegisteredDevices {
     /// <summary>Builds and executes requests for operations under \me\registeredDevices</summary>
@@ -23,6 +24,7 @@ namespace ApiSdk.Me.RegisteredDevices {
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
+            command.Description = "Devices that are registered for the user. Read-only. Nullable. Supports $expand.";
             // Create options for all the parameters
             command.AddOption(new Option<int?>("--top", description: "Show only the first n items"));
             command.AddOption(new Option<int?>("--skip", description: "Skip the first n items"));
@@ -96,14 +98,15 @@ namespace ApiSdk.Me.RegisteredDevices {
         }
         /// <summary>
         /// Devices that are registered for the user. Read-only. Nullable. Supports $expand.
+        /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="h">Request headers</param>
         /// <param name="o">Request options</param>
         /// <param name="q">Request query parameters</param>
         /// <param name="responseHandler">Response handler to use in place of the default response handling provided by the core service</param>
         /// </summary>
-        public async Task<RegisteredDevicesResponse> GetAsync(Action<GetQueryParameters> q = default, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default) {
+        public async Task<RegisteredDevicesResponse> GetAsync(Action<GetQueryParameters> q = default, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default, CancellationToken cancellationToken = default) {
             var requestInfo = CreateGetRequestInformation(q, h, o);
-            return await RequestAdapter.SendAsync<RegisteredDevicesResponse>(requestInfo, responseHandler);
+            return await RequestAdapter.SendAsync<RegisteredDevicesResponse>(requestInfo, responseHandler, cancellationToken);
         }
         /// <summary>Devices that are registered for the user. Read-only. Nullable. Supports $expand.</summary>
         public class GetQueryParameters : QueryParametersBase {

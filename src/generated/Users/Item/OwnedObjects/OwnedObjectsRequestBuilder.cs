@@ -8,6 +8,7 @@ using System.CommandLine.Invocation;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 namespace ApiSdk.Users.Item.OwnedObjects {
     /// <summary>Builds and executes requests for operations under \users\{user-id}\ownedObjects</summary>
@@ -23,6 +24,7 @@ namespace ApiSdk.Users.Item.OwnedObjects {
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
+            command.Description = "Directory objects that are owned by the user. Read-only. Nullable. Supports $expand.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--user-id", description: "key: id of user"));
             command.AddOption(new Option<int?>("--top", description: "Show only the first n items"));
@@ -98,14 +100,15 @@ namespace ApiSdk.Users.Item.OwnedObjects {
         }
         /// <summary>
         /// Directory objects that are owned by the user. Read-only. Nullable. Supports $expand.
+        /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="h">Request headers</param>
         /// <param name="o">Request options</param>
         /// <param name="q">Request query parameters</param>
         /// <param name="responseHandler">Response handler to use in place of the default response handling provided by the core service</param>
         /// </summary>
-        public async Task<OwnedObjectsResponse> GetAsync(Action<GetQueryParameters> q = default, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default) {
+        public async Task<OwnedObjectsResponse> GetAsync(Action<GetQueryParameters> q = default, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default, CancellationToken cancellationToken = default) {
             var requestInfo = CreateGetRequestInformation(q, h, o);
-            return await RequestAdapter.SendAsync<OwnedObjectsResponse>(requestInfo, responseHandler);
+            return await RequestAdapter.SendAsync<OwnedObjectsResponse>(requestInfo, responseHandler, cancellationToken);
         }
         /// <summary>Directory objects that are owned by the user. Read-only. Nullable. Supports $expand.</summary>
         public class GetQueryParameters : QueryParametersBase {

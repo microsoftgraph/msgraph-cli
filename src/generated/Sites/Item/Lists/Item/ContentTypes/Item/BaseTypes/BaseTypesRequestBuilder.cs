@@ -9,6 +9,7 @@ using System.CommandLine.Invocation;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 namespace ApiSdk.Sites.Item.Lists.Item.ContentTypes.Item.BaseTypes {
     /// <summary>Builds and executes requests for operations under \sites\{site-id}\lists\{list-id}\contentTypes\{contentType-id}\baseTypes</summary>
@@ -30,6 +31,7 @@ namespace ApiSdk.Sites.Item.Lists.Item.ContentTypes.Item.BaseTypes {
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
+            command.Description = "The collection of content types that are ancestors of this content type.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--site-id", description: "key: id of site"));
             command.AddOption(new Option<string>("--list-id", description: "key: id of list"));
@@ -109,14 +111,15 @@ namespace ApiSdk.Sites.Item.Lists.Item.ContentTypes.Item.BaseTypes {
         }
         /// <summary>
         /// The collection of content types that are ancestors of this content type.
+        /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="h">Request headers</param>
         /// <param name="o">Request options</param>
         /// <param name="q">Request query parameters</param>
         /// <param name="responseHandler">Response handler to use in place of the default response handling provided by the core service</param>
         /// </summary>
-        public async Task<BaseTypesResponse> GetAsync(Action<GetQueryParameters> q = default, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default) {
+        public async Task<BaseTypesResponse> GetAsync(Action<GetQueryParameters> q = default, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default, CancellationToken cancellationToken = default) {
             var requestInfo = CreateGetRequestInformation(q, h, o);
-            return await RequestAdapter.SendAsync<BaseTypesResponse>(requestInfo, responseHandler);
+            return await RequestAdapter.SendAsync<BaseTypesResponse>(requestInfo, responseHandler, cancellationToken);
         }
         /// <summary>The collection of content types that are ancestors of this content type.</summary>
         public class GetQueryParameters : QueryParametersBase {

@@ -9,6 +9,7 @@ using System.CommandLine.Invocation;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 namespace ApiSdk.Privacy.SubjectRightsRequests.Item.Team {
     /// <summary>Builds and executes requests for operations under \privacy\subjectRightsRequests\{subjectRightsRequest-id}\team</summary>
@@ -24,6 +25,7 @@ namespace ApiSdk.Privacy.SubjectRightsRequests.Item.Team {
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
+            command.Description = "Information about the Microsoft Teams team that was created for the request.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--subjectrightsrequest-id", description: "key: id of subjectRightsRequest"));
             command.AddOption(new Option<object>("--select", description: "Select properties to be returned"));
@@ -47,9 +49,9 @@ namespace ApiSdk.Privacy.SubjectRightsRequests.Item.Team {
         public Command BuildRefCommand() {
             var command = new Command("ref");
             var builder = new ApiSdk.Privacy.SubjectRightsRequests.Item.Team.@Ref.RefRequestBuilder(PathParameters, RequestAdapter);
-            command.AddCommand(builder.BuildPutCommand());
-            command.AddCommand(builder.BuildGetCommand());
             command.AddCommand(builder.BuildDeleteCommand());
+            command.AddCommand(builder.BuildGetCommand());
+            command.AddCommand(builder.BuildPutCommand());
             return command;
         }
         /// <summary>
@@ -88,14 +90,15 @@ namespace ApiSdk.Privacy.SubjectRightsRequests.Item.Team {
         }
         /// <summary>
         /// Information about the Microsoft Teams team that was created for the request.
+        /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="h">Request headers</param>
         /// <param name="o">Request options</param>
         /// <param name="q">Request query parameters</param>
         /// <param name="responseHandler">Response handler to use in place of the default response handling provided by the core service</param>
         /// </summary>
-        public async Task<ApiSdk.Models.Microsoft.Graph.Team> GetAsync(Action<GetQueryParameters> q = default, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default) {
+        public async Task<ApiSdk.Models.Microsoft.Graph.Team> GetAsync(Action<GetQueryParameters> q = default, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default, CancellationToken cancellationToken = default) {
             var requestInfo = CreateGetRequestInformation(q, h, o);
-            return await RequestAdapter.SendAsync<ApiSdk.Models.Microsoft.Graph.Team>(requestInfo, responseHandler);
+            return await RequestAdapter.SendAsync<ApiSdk.Models.Microsoft.Graph.Team>(requestInfo, responseHandler, cancellationToken);
         }
         /// <summary>Information about the Microsoft Teams team that was created for the request.</summary>
         public class GetQueryParameters : QueryParametersBase {

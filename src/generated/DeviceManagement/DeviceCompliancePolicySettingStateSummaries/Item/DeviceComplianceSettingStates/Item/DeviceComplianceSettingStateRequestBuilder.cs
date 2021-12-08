@@ -8,6 +8,7 @@ using System.CommandLine.Invocation;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 namespace ApiSdk.DeviceManagement.DeviceCompliancePolicySettingStateSummaries.Item.DeviceComplianceSettingStates.Item {
     /// <summary>Builds and executes requests for operations under \deviceManagement\deviceCompliancePolicySettingStateSummaries\{deviceCompliancePolicySettingStateSummary-id}\deviceComplianceSettingStates\{deviceComplianceSettingState-id}</summary>
@@ -23,6 +24,7 @@ namespace ApiSdk.DeviceManagement.DeviceCompliancePolicySettingStateSummaries.It
         /// </summary>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
+            command.Description = "Not yet documented";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--devicecompliancepolicysettingstatesummary-id", description: "key: id of deviceCompliancePolicySettingStateSummary"));
             command.AddOption(new Option<string>("--devicecompliancesettingstate-id", description: "key: id of deviceComplianceSettingState"));
@@ -41,6 +43,7 @@ namespace ApiSdk.DeviceManagement.DeviceCompliancePolicySettingStateSummaries.It
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
+            command.Description = "Not yet documented";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--devicecompliancepolicysettingstatesummary-id", description: "key: id of deviceCompliancePolicySettingStateSummary"));
             command.AddOption(new Option<string>("--devicecompliancesettingstate-id", description: "key: id of deviceComplianceSettingState"));
@@ -68,6 +71,7 @@ namespace ApiSdk.DeviceManagement.DeviceCompliancePolicySettingStateSummaries.It
         /// </summary>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
+            command.Description = "Not yet documented";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--devicecompliancepolicysettingstatesummary-id", description: "key: id of deviceCompliancePolicySettingStateSummary"));
             command.AddOption(new Option<string>("--devicecompliancesettingstate-id", description: "key: id of deviceComplianceSettingState"));
@@ -154,36 +158,39 @@ namespace ApiSdk.DeviceManagement.DeviceCompliancePolicySettingStateSummaries.It
         }
         /// <summary>
         /// Not yet documented
+        /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="h">Request headers</param>
         /// <param name="o">Request options</param>
         /// <param name="responseHandler">Response handler to use in place of the default response handling provided by the core service</param>
         /// </summary>
-        public async Task DeleteAsync(Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default) {
+        public async Task DeleteAsync(Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default, CancellationToken cancellationToken = default) {
             var requestInfo = CreateDeleteRequestInformation(h, o);
-            await RequestAdapter.SendNoContentAsync(requestInfo, responseHandler);
+            await RequestAdapter.SendNoContentAsync(requestInfo, responseHandler, cancellationToken);
         }
         /// <summary>
         /// Not yet documented
+        /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="h">Request headers</param>
         /// <param name="o">Request options</param>
         /// <param name="q">Request query parameters</param>
         /// <param name="responseHandler">Response handler to use in place of the default response handling provided by the core service</param>
         /// </summary>
-        public async Task<DeviceComplianceSettingState> GetAsync(Action<GetQueryParameters> q = default, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default) {
+        public async Task<DeviceComplianceSettingState> GetAsync(Action<GetQueryParameters> q = default, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default, CancellationToken cancellationToken = default) {
             var requestInfo = CreateGetRequestInformation(q, h, o);
-            return await RequestAdapter.SendAsync<DeviceComplianceSettingState>(requestInfo, responseHandler);
+            return await RequestAdapter.SendAsync<DeviceComplianceSettingState>(requestInfo, responseHandler, cancellationToken);
         }
         /// <summary>
         /// Not yet documented
+        /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="h">Request headers</param>
         /// <param name="model"></param>
         /// <param name="o">Request options</param>
         /// <param name="responseHandler">Response handler to use in place of the default response handling provided by the core service</param>
         /// </summary>
-        public async Task PatchAsync(DeviceComplianceSettingState model, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default) {
+        public async Task PatchAsync(DeviceComplianceSettingState model, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default, CancellationToken cancellationToken = default) {
             _ = model ?? throw new ArgumentNullException(nameof(model));
             var requestInfo = CreatePatchRequestInformation(model, h, o);
-            await RequestAdapter.SendNoContentAsync(requestInfo, responseHandler);
+            await RequestAdapter.SendNoContentAsync(requestInfo, responseHandler, cancellationToken);
         }
         /// <summary>Not yet documented</summary>
         public class GetQueryParameters : QueryParametersBase {

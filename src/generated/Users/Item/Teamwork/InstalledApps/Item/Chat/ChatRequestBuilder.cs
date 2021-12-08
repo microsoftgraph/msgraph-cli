@@ -9,6 +9,7 @@ using System.CommandLine.Invocation;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 namespace ApiSdk.Users.Item.Teamwork.InstalledApps.Item.Chat {
     /// <summary>Builds and executes requests for operations under \users\{user-id}\teamwork\installedApps\{userScopeTeamsAppInstallation-id}\chat</summary>
@@ -24,6 +25,7 @@ namespace ApiSdk.Users.Item.Teamwork.InstalledApps.Item.Chat {
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
+            command.Description = "The chat between the user and Teams app.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--user-id", description: "key: id of user"));
             command.AddOption(new Option<string>("--userscopeteamsappinstallation-id", description: "key: id of userScopeTeamsAppInstallation"));
@@ -49,9 +51,9 @@ namespace ApiSdk.Users.Item.Teamwork.InstalledApps.Item.Chat {
         public Command BuildRefCommand() {
             var command = new Command("ref");
             var builder = new ApiSdk.Users.Item.Teamwork.InstalledApps.Item.Chat.@Ref.RefRequestBuilder(PathParameters, RequestAdapter);
-            command.AddCommand(builder.BuildPutCommand());
-            command.AddCommand(builder.BuildGetCommand());
             command.AddCommand(builder.BuildDeleteCommand());
+            command.AddCommand(builder.BuildGetCommand());
+            command.AddCommand(builder.BuildPutCommand());
             return command;
         }
         /// <summary>
@@ -90,14 +92,15 @@ namespace ApiSdk.Users.Item.Teamwork.InstalledApps.Item.Chat {
         }
         /// <summary>
         /// The chat between the user and Teams app.
+        /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="h">Request headers</param>
         /// <param name="o">Request options</param>
         /// <param name="q">Request query parameters</param>
         /// <param name="responseHandler">Response handler to use in place of the default response handling provided by the core service</param>
         /// </summary>
-        public async Task<ApiSdk.Models.Microsoft.Graph.Chat> GetAsync(Action<GetQueryParameters> q = default, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default) {
+        public async Task<ApiSdk.Models.Microsoft.Graph.Chat> GetAsync(Action<GetQueryParameters> q = default, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default, CancellationToken cancellationToken = default) {
             var requestInfo = CreateGetRequestInformation(q, h, o);
-            return await RequestAdapter.SendAsync<ApiSdk.Models.Microsoft.Graph.Chat>(requestInfo, responseHandler);
+            return await RequestAdapter.SendAsync<ApiSdk.Models.Microsoft.Graph.Chat>(requestInfo, responseHandler, cancellationToken);
         }
         /// <summary>The chat between the user and Teams app.</summary>
         public class GetQueryParameters : QueryParametersBase {

@@ -10,6 +10,7 @@ using System.CommandLine.Invocation;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 namespace ApiSdk.IdentityGovernance.EntitlementManagement.Assignments.Item {
     /// <summary>Builds and executes requests for operations under \identityGovernance\entitlementManagement\assignments\{accessPackageAssignment-id}</summary>
@@ -23,9 +24,9 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.Assignments.Item {
         public Command BuildAccessPackageCommand() {
             var command = new Command("access-package");
             var builder = new ApiSdk.IdentityGovernance.EntitlementManagement.Assignments.Item.AccessPackage.AccessPackageRequestBuilder(PathParameters, RequestAdapter);
+            command.AddCommand(builder.BuildGetApplicablePolicyRequirementsCommand());
             command.AddCommand(builder.BuildGetCommand());
             command.AddCommand(builder.BuildRefCommand());
-            command.AddCommand(builder.BuildGetApplicablePolicyRequirementsCommand());
             return command;
         }
         /// <summary>
@@ -33,6 +34,7 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.Assignments.Item {
         /// </summary>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
+            command.Description = "Delete navigation property assignments for identityGovernance";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--accesspackageassignment-id", description: "key: id of accessPackageAssignment"));
             command.Handler = CommandHandler.Create<string>(async (accessPackageAssignmentId) => {
@@ -49,6 +51,7 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.Assignments.Item {
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
+            command.Description = "Get assignments from identityGovernance";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--accesspackageassignment-id", description: "key: id of accessPackageAssignment"));
             command.AddOption(new Option<object>("--select", description: "Select properties to be returned"));
@@ -74,6 +77,7 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.Assignments.Item {
         /// </summary>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
+            command.Description = "Update the navigation property assignments in identityGovernance";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--accesspackageassignment-id", description: "key: id of accessPackageAssignment"));
             command.AddOption(new Option<string>("--body"));
@@ -165,36 +169,39 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.Assignments.Item {
         }
         /// <summary>
         /// Delete navigation property assignments for identityGovernance
+        /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="h">Request headers</param>
         /// <param name="o">Request options</param>
         /// <param name="responseHandler">Response handler to use in place of the default response handling provided by the core service</param>
         /// </summary>
-        public async Task DeleteAsync(Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default) {
+        public async Task DeleteAsync(Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default, CancellationToken cancellationToken = default) {
             var requestInfo = CreateDeleteRequestInformation(h, o);
-            await RequestAdapter.SendNoContentAsync(requestInfo, responseHandler);
+            await RequestAdapter.SendNoContentAsync(requestInfo, responseHandler, cancellationToken);
         }
         /// <summary>
         /// Get assignments from identityGovernance
+        /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="h">Request headers</param>
         /// <param name="o">Request options</param>
         /// <param name="q">Request query parameters</param>
         /// <param name="responseHandler">Response handler to use in place of the default response handling provided by the core service</param>
         /// </summary>
-        public async Task<AccessPackageAssignment> GetAsync(Action<GetQueryParameters> q = default, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default) {
+        public async Task<AccessPackageAssignment> GetAsync(Action<GetQueryParameters> q = default, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default, CancellationToken cancellationToken = default) {
             var requestInfo = CreateGetRequestInformation(q, h, o);
-            return await RequestAdapter.SendAsync<AccessPackageAssignment>(requestInfo, responseHandler);
+            return await RequestAdapter.SendAsync<AccessPackageAssignment>(requestInfo, responseHandler, cancellationToken);
         }
         /// <summary>
         /// Update the navigation property assignments in identityGovernance
+        /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="h">Request headers</param>
         /// <param name="model"></param>
         /// <param name="o">Request options</param>
         /// <param name="responseHandler">Response handler to use in place of the default response handling provided by the core service</param>
         /// </summary>
-        public async Task PatchAsync(AccessPackageAssignment model, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default) {
+        public async Task PatchAsync(AccessPackageAssignment model, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default, CancellationToken cancellationToken = default) {
             _ = model ?? throw new ArgumentNullException(nameof(model));
             var requestInfo = CreatePatchRequestInformation(model, h, o);
-            await RequestAdapter.SendNoContentAsync(requestInfo, responseHandler);
+            await RequestAdapter.SendNoContentAsync(requestInfo, responseHandler, cancellationToken);
         }
         /// <summary>Get assignments from identityGovernance</summary>
         public class GetQueryParameters : QueryParametersBase {

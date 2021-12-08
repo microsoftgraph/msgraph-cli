@@ -8,6 +8,7 @@ using System.CommandLine.Invocation;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 namespace ApiSdk.Identity.B2xUserFlows.Item.UserAttributeAssignments.GetOrder {
     /// <summary>Builds and executes requests for operations under \identity\b2xUserFlows\{b2xIdentityUserFlow-id}\userAttributeAssignments\microsoft.graph.getOrder()</summary>
@@ -23,6 +24,7 @@ namespace ApiSdk.Identity.B2xUserFlows.Item.UserAttributeAssignments.GetOrder {
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
+            command.Description = "Invoke function getOrder";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--b2xidentityuserflow-id", description: "key: id of b2xIdentityUserFlow"));
             command.Handler = CommandHandler.Create<string>(async (b2xIdentityUserFlowId) => {
@@ -69,13 +71,14 @@ namespace ApiSdk.Identity.B2xUserFlows.Item.UserAttributeAssignments.GetOrder {
         }
         /// <summary>
         /// Invoke function getOrder
+        /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="h">Request headers</param>
         /// <param name="o">Request options</param>
         /// <param name="responseHandler">Response handler to use in place of the default response handling provided by the core service</param>
         /// </summary>
-        public async Task<GetOrderResponse> GetAsync(Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default) {
+        public async Task<GetOrderResponse> GetAsync(Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default, CancellationToken cancellationToken = default) {
             var requestInfo = CreateGetRequestInformation(h, o);
-            return await RequestAdapter.SendAsync<GetOrderResponse>(requestInfo, responseHandler);
+            return await RequestAdapter.SendAsync<GetOrderResponse>(requestInfo, responseHandler, cancellationToken);
         }
         /// <summary>Union type wrapper for classes assignmentOrder</summary>
         public class GetOrderResponse : IParsable {

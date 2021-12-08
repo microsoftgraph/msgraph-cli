@@ -9,6 +9,7 @@ using System.CommandLine.Invocation;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 namespace ApiSdk.Directory.AdministrativeUnits.Item.ScopedRoleMembers {
     /// <summary>Builds and executes requests for operations under \directory\administrativeUnits\{administrativeUnit-id}\scopedRoleMembers</summary>
@@ -19,20 +20,21 @@ namespace ApiSdk.Directory.AdministrativeUnits.Item.ScopedRoleMembers {
         private IRequestAdapter RequestAdapter { get; set; }
         /// <summary>Url template to use to build the URL for the current request builder</summary>
         private string UrlTemplate { get; set; }
-        public Command[] BuildCommand() {
+        public List<Command> BuildCommand() {
             var builder = new ScopedRoleMembershipRequestBuilder(PathParameters, RequestAdapter);
             var commands = new List<Command> { 
-                builder.BuildPatchCommand(),
-                builder.BuildGetCommand(),
                 builder.BuildDeleteCommand(),
+                builder.BuildGetCommand(),
+                builder.BuildPatchCommand(),
             };
-            return commands.ToArray();
+            return commands;
         }
         /// <summary>
         /// Scoped-role members of this Administrative Unit.  HTTP Methods: GET (list scopedRoleMemberships), POST (add scopedRoleMembership), DELETE (remove scopedRoleMembership).
         /// </summary>
         public Command BuildCreateCommand() {
             var command = new Command("create");
+            command.Description = "Scoped-role members of this Administrative Unit.  HTTP Methods: GET (list scopedRoleMemberships), POST (add scopedRoleMembership), DELETE (remove scopedRoleMembership).";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--administrativeunit-id", description: "key: id of administrativeUnit"));
             command.AddOption(new Option<string>("--body"));
@@ -58,6 +60,7 @@ namespace ApiSdk.Directory.AdministrativeUnits.Item.ScopedRoleMembers {
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
+            command.Description = "Scoped-role members of this Administrative Unit.  HTTP Methods: GET (list scopedRoleMemberships), POST (add scopedRoleMembership), DELETE (remove scopedRoleMembership).";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--administrativeunit-id", description: "key: id of administrativeUnit"));
             command.AddOption(new Option<int?>("--top", description: "Show only the first n items"));
@@ -144,26 +147,28 @@ namespace ApiSdk.Directory.AdministrativeUnits.Item.ScopedRoleMembers {
         }
         /// <summary>
         /// Scoped-role members of this Administrative Unit.  HTTP Methods: GET (list scopedRoleMemberships), POST (add scopedRoleMembership), DELETE (remove scopedRoleMembership).
+        /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="h">Request headers</param>
         /// <param name="o">Request options</param>
         /// <param name="q">Request query parameters</param>
         /// <param name="responseHandler">Response handler to use in place of the default response handling provided by the core service</param>
         /// </summary>
-        public async Task<ScopedRoleMembersResponse> GetAsync(Action<GetQueryParameters> q = default, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default) {
+        public async Task<ScopedRoleMembersResponse> GetAsync(Action<GetQueryParameters> q = default, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default, CancellationToken cancellationToken = default) {
             var requestInfo = CreateGetRequestInformation(q, h, o);
-            return await RequestAdapter.SendAsync<ScopedRoleMembersResponse>(requestInfo, responseHandler);
+            return await RequestAdapter.SendAsync<ScopedRoleMembersResponse>(requestInfo, responseHandler, cancellationToken);
         }
         /// <summary>
         /// Scoped-role members of this Administrative Unit.  HTTP Methods: GET (list scopedRoleMemberships), POST (add scopedRoleMembership), DELETE (remove scopedRoleMembership).
+        /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="h">Request headers</param>
         /// <param name="model"></param>
         /// <param name="o">Request options</param>
         /// <param name="responseHandler">Response handler to use in place of the default response handling provided by the core service</param>
         /// </summary>
-        public async Task<ScopedRoleMembership> PostAsync(ScopedRoleMembership model, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default) {
+        public async Task<ScopedRoleMembership> PostAsync(ScopedRoleMembership model, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default, CancellationToken cancellationToken = default) {
             _ = model ?? throw new ArgumentNullException(nameof(model));
             var requestInfo = CreatePostRequestInformation(model, h, o);
-            return await RequestAdapter.SendAsync<ScopedRoleMembership>(requestInfo, responseHandler);
+            return await RequestAdapter.SendAsync<ScopedRoleMembership>(requestInfo, responseHandler, cancellationToken);
         }
         /// <summary>Scoped-role members of this Administrative Unit.  HTTP Methods: GET (list scopedRoleMemberships), POST (add scopedRoleMembership), DELETE (remove scopedRoleMembership).</summary>
         public class GetQueryParameters : QueryParametersBase {

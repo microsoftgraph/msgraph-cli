@@ -10,6 +10,7 @@ using System.CommandLine.Invocation;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 namespace ApiSdk.Users.Item.Insights.Shared.Item {
     /// <summary>Builds and executes requests for operations under \users\{user-id}\insights\shared\{sharedInsight-id}</summary>
@@ -25,6 +26,7 @@ namespace ApiSdk.Users.Item.Insights.Shared.Item {
         /// </summary>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
+            command.Description = "Calculated relationship identifying documents shared with or by the user. This includes URLs, file attachments, and reference attachments to OneDrive for Business and SharePoint files found in Outlook messages and meetings. This also includes URLs and reference attachments to Teams conversations. Ordered by recency of share.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--user-id", description: "key: id of user"));
             command.AddOption(new Option<string>("--sharedinsight-id", description: "key: id of sharedInsight"));
@@ -43,6 +45,7 @@ namespace ApiSdk.Users.Item.Insights.Shared.Item {
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
+            command.Description = "Calculated relationship identifying documents shared with or by the user. This includes URLs, file attachments, and reference attachments to OneDrive for Business and SharePoint files found in Outlook messages and meetings. This also includes URLs and reference attachments to Teams conversations. Ordered by recency of share.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--user-id", description: "key: id of user"));
             command.AddOption(new Option<string>("--sharedinsight-id", description: "key: id of sharedInsight"));
@@ -68,21 +71,21 @@ namespace ApiSdk.Users.Item.Insights.Shared.Item {
         public Command BuildLastSharedMethodCommand() {
             var command = new Command("last-shared-method");
             var builder = new ApiSdk.Users.Item.Insights.Shared.Item.LastSharedMethod.LastSharedMethodRequestBuilder(PathParameters, RequestAdapter);
-            command.AddCommand(builder.BuildWorkbookRangeViewCommand());
-            command.AddCommand(builder.BuildMobileAppContentFileCommand());
-            command.AddCommand(builder.BuildWindowsInformationProtectionCommand());
-            command.AddCommand(builder.BuildPrintDocumentCommand());
-            command.AddCommand(builder.BuildTargetedManagedAppProtectionCommand());
-            command.AddCommand(builder.BuildWorkbookRangeCommand());
-            command.AddCommand(builder.BuildWorkbookRangeFormatCommand());
-            command.AddCommand(builder.BuildWorkbookRangeFillCommand());
             command.AddCommand(builder.BuildCalendarSharingMessageCommand());
-            command.AddCommand(builder.BuildWorkbookRangeSortCommand());
             command.AddCommand(builder.BuildGetCommand());
+            command.AddCommand(builder.BuildManagedAppProtectionCommand());
+            command.AddCommand(builder.BuildMobileAppContentFileCommand());
+            command.AddCommand(builder.BuildPrintDocumentCommand());
+            command.AddCommand(builder.BuildPrintJobCommand());
             command.AddCommand(builder.BuildRefCommand());
             command.AddCommand(builder.BuildScheduleChangeRequestCommand());
-            command.AddCommand(builder.BuildManagedAppProtectionCommand());
-            command.AddCommand(builder.BuildPrintJobCommand());
+            command.AddCommand(builder.BuildTargetedManagedAppProtectionCommand());
+            command.AddCommand(builder.BuildWindowsInformationProtectionCommand());
+            command.AddCommand(builder.BuildWorkbookRangeCommand());
+            command.AddCommand(builder.BuildWorkbookRangeFillCommand());
+            command.AddCommand(builder.BuildWorkbookRangeFormatCommand());
+            command.AddCommand(builder.BuildWorkbookRangeSortCommand());
+            command.AddCommand(builder.BuildWorkbookRangeViewCommand());
             return command;
         }
         /// <summary>
@@ -90,6 +93,7 @@ namespace ApiSdk.Users.Item.Insights.Shared.Item {
         /// </summary>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
+            command.Description = "Calculated relationship identifying documents shared with or by the user. This includes URLs, file attachments, and reference attachments to OneDrive for Business and SharePoint files found in Outlook messages and meetings. This also includes URLs and reference attachments to Teams conversations. Ordered by recency of share.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--user-id", description: "key: id of user"));
             command.AddOption(new Option<string>("--sharedinsight-id", description: "key: id of sharedInsight"));
@@ -110,21 +114,21 @@ namespace ApiSdk.Users.Item.Insights.Shared.Item {
         public Command BuildResourceCommand() {
             var command = new Command("resource");
             var builder = new ApiSdk.Users.Item.Insights.Shared.Item.Resource.ResourceRequestBuilder(PathParameters, RequestAdapter);
-            command.AddCommand(builder.BuildWorkbookRangeViewCommand());
-            command.AddCommand(builder.BuildMobileAppContentFileCommand());
-            command.AddCommand(builder.BuildWindowsInformationProtectionCommand());
-            command.AddCommand(builder.BuildPrintDocumentCommand());
-            command.AddCommand(builder.BuildTargetedManagedAppProtectionCommand());
-            command.AddCommand(builder.BuildWorkbookRangeCommand());
-            command.AddCommand(builder.BuildWorkbookRangeFormatCommand());
-            command.AddCommand(builder.BuildWorkbookRangeFillCommand());
             command.AddCommand(builder.BuildCalendarSharingMessageCommand());
-            command.AddCommand(builder.BuildWorkbookRangeSortCommand());
             command.AddCommand(builder.BuildGetCommand());
+            command.AddCommand(builder.BuildManagedAppProtectionCommand());
+            command.AddCommand(builder.BuildMobileAppContentFileCommand());
+            command.AddCommand(builder.BuildPrintDocumentCommand());
+            command.AddCommand(builder.BuildPrintJobCommand());
             command.AddCommand(builder.BuildRefCommand());
             command.AddCommand(builder.BuildScheduleChangeRequestCommand());
-            command.AddCommand(builder.BuildManagedAppProtectionCommand());
-            command.AddCommand(builder.BuildPrintJobCommand());
+            command.AddCommand(builder.BuildTargetedManagedAppProtectionCommand());
+            command.AddCommand(builder.BuildWindowsInformationProtectionCommand());
+            command.AddCommand(builder.BuildWorkbookRangeCommand());
+            command.AddCommand(builder.BuildWorkbookRangeFillCommand());
+            command.AddCommand(builder.BuildWorkbookRangeFormatCommand());
+            command.AddCommand(builder.BuildWorkbookRangeSortCommand());
+            command.AddCommand(builder.BuildWorkbookRangeViewCommand());
             return command;
         }
         /// <summary>
@@ -196,36 +200,39 @@ namespace ApiSdk.Users.Item.Insights.Shared.Item {
         }
         /// <summary>
         /// Calculated relationship identifying documents shared with or by the user. This includes URLs, file attachments, and reference attachments to OneDrive for Business and SharePoint files found in Outlook messages and meetings. This also includes URLs and reference attachments to Teams conversations. Ordered by recency of share.
+        /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="h">Request headers</param>
         /// <param name="o">Request options</param>
         /// <param name="responseHandler">Response handler to use in place of the default response handling provided by the core service</param>
         /// </summary>
-        public async Task DeleteAsync(Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default) {
+        public async Task DeleteAsync(Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default, CancellationToken cancellationToken = default) {
             var requestInfo = CreateDeleteRequestInformation(h, o);
-            await RequestAdapter.SendNoContentAsync(requestInfo, responseHandler);
+            await RequestAdapter.SendNoContentAsync(requestInfo, responseHandler, cancellationToken);
         }
         /// <summary>
         /// Calculated relationship identifying documents shared with or by the user. This includes URLs, file attachments, and reference attachments to OneDrive for Business and SharePoint files found in Outlook messages and meetings. This also includes URLs and reference attachments to Teams conversations. Ordered by recency of share.
+        /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="h">Request headers</param>
         /// <param name="o">Request options</param>
         /// <param name="q">Request query parameters</param>
         /// <param name="responseHandler">Response handler to use in place of the default response handling provided by the core service</param>
         /// </summary>
-        public async Task<SharedInsight> GetAsync(Action<GetQueryParameters> q = default, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default) {
+        public async Task<SharedInsight> GetAsync(Action<GetQueryParameters> q = default, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default, CancellationToken cancellationToken = default) {
             var requestInfo = CreateGetRequestInformation(q, h, o);
-            return await RequestAdapter.SendAsync<SharedInsight>(requestInfo, responseHandler);
+            return await RequestAdapter.SendAsync<SharedInsight>(requestInfo, responseHandler, cancellationToken);
         }
         /// <summary>
         /// Calculated relationship identifying documents shared with or by the user. This includes URLs, file attachments, and reference attachments to OneDrive for Business and SharePoint files found in Outlook messages and meetings. This also includes URLs and reference attachments to Teams conversations. Ordered by recency of share.
+        /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="h">Request headers</param>
         /// <param name="model"></param>
         /// <param name="o">Request options</param>
         /// <param name="responseHandler">Response handler to use in place of the default response handling provided by the core service</param>
         /// </summary>
-        public async Task PatchAsync(SharedInsight model, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default) {
+        public async Task PatchAsync(SharedInsight model, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default, CancellationToken cancellationToken = default) {
             _ = model ?? throw new ArgumentNullException(nameof(model));
             var requestInfo = CreatePatchRequestInformation(model, h, o);
-            await RequestAdapter.SendNoContentAsync(requestInfo, responseHandler);
+            await RequestAdapter.SendNoContentAsync(requestInfo, responseHandler, cancellationToken);
         }
         /// <summary>Calculated relationship identifying documents shared with or by the user. This includes URLs, file attachments, and reference attachments to OneDrive for Business and SharePoint files found in Outlook messages and meetings. This also includes URLs and reference attachments to Teams conversations. Ordered by recency of share.</summary>
         public class GetQueryParameters : QueryParametersBase {

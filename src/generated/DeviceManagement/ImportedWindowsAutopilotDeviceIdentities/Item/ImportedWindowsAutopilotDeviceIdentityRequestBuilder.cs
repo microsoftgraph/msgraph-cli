@@ -8,6 +8,7 @@ using System.CommandLine.Invocation;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 namespace ApiSdk.DeviceManagement.ImportedWindowsAutopilotDeviceIdentities.Item {
     /// <summary>Builds and executes requests for operations under \deviceManagement\importedWindowsAutopilotDeviceIdentities\{importedWindowsAutopilotDeviceIdentity-id}</summary>
@@ -23,6 +24,7 @@ namespace ApiSdk.DeviceManagement.ImportedWindowsAutopilotDeviceIdentities.Item 
         /// </summary>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
+            command.Description = "Collection of imported Windows autopilot devices.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--importedwindowsautopilotdeviceidentity-id", description: "key: id of importedWindowsAutopilotDeviceIdentity"));
             command.Handler = CommandHandler.Create<string>(async (importedWindowsAutopilotDeviceIdentityId) => {
@@ -39,6 +41,7 @@ namespace ApiSdk.DeviceManagement.ImportedWindowsAutopilotDeviceIdentities.Item 
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
+            command.Description = "Collection of imported Windows autopilot devices.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--importedwindowsautopilotdeviceidentity-id", description: "key: id of importedWindowsAutopilotDeviceIdentity"));
             command.AddOption(new Option<object>("--select", description: "Select properties to be returned"));
@@ -64,6 +67,7 @@ namespace ApiSdk.DeviceManagement.ImportedWindowsAutopilotDeviceIdentities.Item 
         /// </summary>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
+            command.Description = "Collection of imported Windows autopilot devices.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--importedwindowsautopilotdeviceidentity-id", description: "key: id of importedWindowsAutopilotDeviceIdentity"));
             command.AddOption(new Option<string>("--body"));
@@ -148,36 +152,39 @@ namespace ApiSdk.DeviceManagement.ImportedWindowsAutopilotDeviceIdentities.Item 
         }
         /// <summary>
         /// Collection of imported Windows autopilot devices.
+        /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="h">Request headers</param>
         /// <param name="o">Request options</param>
         /// <param name="responseHandler">Response handler to use in place of the default response handling provided by the core service</param>
         /// </summary>
-        public async Task DeleteAsync(Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default) {
+        public async Task DeleteAsync(Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default, CancellationToken cancellationToken = default) {
             var requestInfo = CreateDeleteRequestInformation(h, o);
-            await RequestAdapter.SendNoContentAsync(requestInfo, responseHandler);
+            await RequestAdapter.SendNoContentAsync(requestInfo, responseHandler, cancellationToken);
         }
         /// <summary>
         /// Collection of imported Windows autopilot devices.
+        /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="h">Request headers</param>
         /// <param name="o">Request options</param>
         /// <param name="q">Request query parameters</param>
         /// <param name="responseHandler">Response handler to use in place of the default response handling provided by the core service</param>
         /// </summary>
-        public async Task<ImportedWindowsAutopilotDeviceIdentity> GetAsync(Action<GetQueryParameters> q = default, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default) {
+        public async Task<ImportedWindowsAutopilotDeviceIdentity> GetAsync(Action<GetQueryParameters> q = default, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default, CancellationToken cancellationToken = default) {
             var requestInfo = CreateGetRequestInformation(q, h, o);
-            return await RequestAdapter.SendAsync<ImportedWindowsAutopilotDeviceIdentity>(requestInfo, responseHandler);
+            return await RequestAdapter.SendAsync<ImportedWindowsAutopilotDeviceIdentity>(requestInfo, responseHandler, cancellationToken);
         }
         /// <summary>
         /// Collection of imported Windows autopilot devices.
+        /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="h">Request headers</param>
         /// <param name="model"></param>
         /// <param name="o">Request options</param>
         /// <param name="responseHandler">Response handler to use in place of the default response handling provided by the core service</param>
         /// </summary>
-        public async Task PatchAsync(ImportedWindowsAutopilotDeviceIdentity model, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default) {
+        public async Task PatchAsync(ImportedWindowsAutopilotDeviceIdentity model, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default, CancellationToken cancellationToken = default) {
             _ = model ?? throw new ArgumentNullException(nameof(model));
             var requestInfo = CreatePatchRequestInformation(model, h, o);
-            await RequestAdapter.SendNoContentAsync(requestInfo, responseHandler);
+            await RequestAdapter.SendNoContentAsync(requestInfo, responseHandler, cancellationToken);
         }
         /// <summary>Collection of imported Windows autopilot devices.</summary>
         public class GetQueryParameters : QueryParametersBase {

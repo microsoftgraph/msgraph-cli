@@ -9,6 +9,7 @@ using System.CommandLine.Invocation;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 namespace ApiSdk.DeviceManagement.ManagedDevices {
     /// <summary>Builds and executes requests for operations under \deviceManagement\managedDevices</summary>
@@ -19,41 +20,42 @@ namespace ApiSdk.DeviceManagement.ManagedDevices {
         private IRequestAdapter RequestAdapter { get; set; }
         /// <summary>Url template to use to build the URL for the current request builder</summary>
         private string UrlTemplate { get; set; }
-        public Command[] BuildCommand() {
+        public List<Command> BuildCommand() {
             var builder = new ManagedDeviceRequestBuilder(PathParameters, RequestAdapter);
             var commands = new List<Command> { 
-                builder.BuildDisableLostModeCommand(),
+                builder.BuildBypassActivationLockCommand(),
                 builder.BuildCleanWindowsDeviceCommand(),
+                builder.BuildDeleteCommand(),
+                builder.BuildDeleteUserFromSharedAppleDeviceCommand(),
+                builder.BuildDeviceCategoryCommand(),
+                builder.BuildDeviceCompliancePolicyStatesCommand(),
+                builder.BuildDeviceConfigurationStatesCommand(),
+                builder.BuildDisableLostModeCommand(),
                 builder.BuildGetCommand(),
-                builder.BuildUpdateWindowsDeviceAccountCommand(),
                 builder.BuildLocateDeviceCommand(),
+                builder.BuildLogoutSharedAppleDeviceActiveUserCommand(),
+                builder.BuildPatchCommand(),
+                builder.BuildRebootNowCommand(),
+                builder.BuildRecoverPasscodeCommand(),
+                builder.BuildRemoteLockCommand(),
+                builder.BuildRequestRemoteAssistanceCommand(),
+                builder.BuildResetPasscodeCommand(),
+                builder.BuildRetireCommand(),
+                builder.BuildShutDownCommand(),
+                builder.BuildSyncDeviceCommand(),
+                builder.BuildUpdateWindowsDeviceAccountCommand(),
                 builder.BuildWindowsDefenderScanCommand(),
                 builder.BuildWindowsDefenderUpdateSignaturesCommand(),
-                builder.BuildDeviceCompliancePolicyStatesCommand(),
-                builder.BuildShutDownCommand(),
                 builder.BuildWipeCommand(),
-                builder.BuildRemoteLockCommand(),
-                builder.BuildRebootNowCommand(),
-                builder.BuildDeviceCategoryCommand(),
-                builder.BuildRecoverPasscodeCommand(),
-                builder.BuildResetPasscodeCommand(),
-                builder.BuildRequestRemoteAssistanceCommand(),
-                builder.BuildDeleteCommand(),
-                builder.BuildDeviceConfigurationStatesCommand(),
-                builder.BuildLogoutSharedAppleDeviceActiveUserCommand(),
-                builder.BuildRetireCommand(),
-                builder.BuildPatchCommand(),
-                builder.BuildSyncDeviceCommand(),
-                builder.BuildBypassActivationLockCommand(),
-                builder.BuildDeleteUserFromSharedAppleDeviceCommand(),
             };
-            return commands.ToArray();
+            return commands;
         }
         /// <summary>
         /// The list of managed devices.
         /// </summary>
         public Command BuildCreateCommand() {
             var command = new Command("create");
+            command.Description = "The list of managed devices.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--body"));
             command.Handler = CommandHandler.Create<string>(async (body) => {
@@ -77,6 +79,7 @@ namespace ApiSdk.DeviceManagement.ManagedDevices {
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
+            command.Description = "The list of managed devices.";
             // Create options for all the parameters
             command.AddOption(new Option<int?>("--top", description: "Show only the first n items"));
             command.AddOption(new Option<int?>("--skip", description: "Skip the first n items"));
@@ -161,26 +164,28 @@ namespace ApiSdk.DeviceManagement.ManagedDevices {
         }
         /// <summary>
         /// The list of managed devices.
+        /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="h">Request headers</param>
         /// <param name="o">Request options</param>
         /// <param name="q">Request query parameters</param>
         /// <param name="responseHandler">Response handler to use in place of the default response handling provided by the core service</param>
         /// </summary>
-        public async Task<ManagedDevicesResponse> GetAsync(Action<GetQueryParameters> q = default, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default) {
+        public async Task<ManagedDevicesResponse> GetAsync(Action<GetQueryParameters> q = default, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default, CancellationToken cancellationToken = default) {
             var requestInfo = CreateGetRequestInformation(q, h, o);
-            return await RequestAdapter.SendAsync<ManagedDevicesResponse>(requestInfo, responseHandler);
+            return await RequestAdapter.SendAsync<ManagedDevicesResponse>(requestInfo, responseHandler, cancellationToken);
         }
         /// <summary>
         /// The list of managed devices.
+        /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="h">Request headers</param>
         /// <param name="model"></param>
         /// <param name="o">Request options</param>
         /// <param name="responseHandler">Response handler to use in place of the default response handling provided by the core service</param>
         /// </summary>
-        public async Task<ManagedDevice> PostAsync(ManagedDevice model, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default) {
+        public async Task<ManagedDevice> PostAsync(ManagedDevice model, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default, CancellationToken cancellationToken = default) {
             _ = model ?? throw new ArgumentNullException(nameof(model));
             var requestInfo = CreatePostRequestInformation(model, h, o);
-            return await RequestAdapter.SendAsync<ManagedDevice>(requestInfo, responseHandler);
+            return await RequestAdapter.SendAsync<ManagedDevice>(requestInfo, responseHandler, cancellationToken);
         }
         /// <summary>The list of managed devices.</summary>
         public class GetQueryParameters : QueryParametersBase {

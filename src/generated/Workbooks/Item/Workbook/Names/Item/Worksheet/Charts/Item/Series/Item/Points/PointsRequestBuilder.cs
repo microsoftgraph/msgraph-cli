@@ -11,6 +11,7 @@ using System.CommandLine.Invocation;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 namespace ApiSdk.Workbooks.Item.Workbook.Names.Item.Worksheet.Charts.Item.Series.Item.Points {
     /// <summary>Builds and executes requests for operations under \workbooks\{driveItem-id}\workbook\names\{workbookNamedItem-id}\worksheet\charts\{workbookChart-id}\series\{workbookChartSeries-id}\points</summary>
@@ -21,21 +22,22 @@ namespace ApiSdk.Workbooks.Item.Workbook.Names.Item.Worksheet.Charts.Item.Series
         private IRequestAdapter RequestAdapter { get; set; }
         /// <summary>Url template to use to build the URL for the current request builder</summary>
         private string UrlTemplate { get; set; }
-        public Command[] BuildCommand() {
+        public List<Command> BuildCommand() {
             var builder = new WorkbookChartPointRequestBuilder(PathParameters, RequestAdapter);
             var commands = new List<Command> { 
-                builder.BuildPatchCommand(),
+                builder.BuildDeleteCommand(),
                 builder.BuildFormatCommand(),
                 builder.BuildGetCommand(),
-                builder.BuildDeleteCommand(),
+                builder.BuildPatchCommand(),
             };
-            return commands.ToArray();
+            return commands;
         }
         /// <summary>
         /// Represents a collection of all points in the series. Read-only.
         /// </summary>
         public Command BuildCreateCommand() {
             var command = new Command("create");
+            command.Description = "Represents a collection of all points in the series. Read-only.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--driveitem-id", description: "key: id of driveItem"));
             command.AddOption(new Option<string>("--workbooknameditem-id", description: "key: id of workbookNamedItem"));
@@ -67,6 +69,7 @@ namespace ApiSdk.Workbooks.Item.Workbook.Names.Item.Worksheet.Charts.Item.Series
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
+            command.Description = "Represents a collection of all points in the series. Read-only.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--driveitem-id", description: "key: id of driveItem"));
             command.AddOption(new Option<string>("--workbooknameditem-id", description: "key: id of workbookNamedItem"));
@@ -165,14 +168,15 @@ namespace ApiSdk.Workbooks.Item.Workbook.Names.Item.Worksheet.Charts.Item.Series
         }
         /// <summary>
         /// Represents a collection of all points in the series. Read-only.
+        /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="h">Request headers</param>
         /// <param name="o">Request options</param>
         /// <param name="q">Request query parameters</param>
         /// <param name="responseHandler">Response handler to use in place of the default response handling provided by the core service</param>
         /// </summary>
-        public async Task<PointsResponse> GetAsync(Action<GetQueryParameters> q = default, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default) {
+        public async Task<PointsResponse> GetAsync(Action<GetQueryParameters> q = default, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default, CancellationToken cancellationToken = default) {
             var requestInfo = CreateGetRequestInformation(q, h, o);
-            return await RequestAdapter.SendAsync<PointsResponse>(requestInfo, responseHandler);
+            return await RequestAdapter.SendAsync<PointsResponse>(requestInfo, responseHandler, cancellationToken);
         }
         /// <summary>
         /// Builds and executes requests for operations under \workbooks\{driveItem-id}\workbook\names\{workbookNamedItem-id}\worksheet\charts\{workbookChart-id}\series\{workbookChartSeries-id}\points\microsoft.graph.itemAt(index={index})
@@ -184,15 +188,16 @@ namespace ApiSdk.Workbooks.Item.Workbook.Names.Item.Worksheet.Charts.Item.Series
         }
         /// <summary>
         /// Represents a collection of all points in the series. Read-only.
+        /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="h">Request headers</param>
         /// <param name="model"></param>
         /// <param name="o">Request options</param>
         /// <param name="responseHandler">Response handler to use in place of the default response handling provided by the core service</param>
         /// </summary>
-        public async Task<WorkbookChartPoint> PostAsync(WorkbookChartPoint model, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default) {
+        public async Task<WorkbookChartPoint> PostAsync(WorkbookChartPoint model, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default, CancellationToken cancellationToken = default) {
             _ = model ?? throw new ArgumentNullException(nameof(model));
             var requestInfo = CreatePostRequestInformation(model, h, o);
-            return await RequestAdapter.SendAsync<WorkbookChartPoint>(requestInfo, responseHandler);
+            return await RequestAdapter.SendAsync<WorkbookChartPoint>(requestInfo, responseHandler, cancellationToken);
         }
         /// <summary>Represents a collection of all points in the series. Read-only.</summary>
         public class GetQueryParameters : QueryParametersBase {

@@ -8,6 +8,7 @@ using System.CommandLine.Invocation;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 namespace ApiSdk.Sites.Item.Onenote.Pages.Item.ParentSection.ParentSectionGroup.ParentNotebook.Sections.Item.CopyToSectionGroup {
     /// <summary>Builds and executes requests for operations under \sites\{site-id}\onenote\pages\{onenotePage-id}\parentSection\parentSectionGroup\parentNotebook\sections\{onenoteSection-id}\microsoft.graph.copyToSectionGroup</summary>
@@ -23,6 +24,7 @@ namespace ApiSdk.Sites.Item.Onenote.Pages.Item.ParentSection.ParentSectionGroup.
         /// </summary>
         public Command BuildPostCommand() {
             var command = new Command("post");
+            command.Description = "Invoke action copyToSectionGroup";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--site-id", description: "key: id of site"));
             command.AddOption(new Option<string>("--onenotepage-id", description: "key: id of onenotePage"));
@@ -80,15 +82,16 @@ namespace ApiSdk.Sites.Item.Onenote.Pages.Item.ParentSection.ParentSectionGroup.
         }
         /// <summary>
         /// Invoke action copyToSectionGroup
+        /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="h">Request headers</param>
         /// <param name="model"></param>
         /// <param name="o">Request options</param>
         /// <param name="responseHandler">Response handler to use in place of the default response handling provided by the core service</param>
         /// </summary>
-        public async Task<CopyToSectionGroupResponse> PostAsync(CopyToSectionGroupRequestBody model, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default) {
+        public async Task<CopyToSectionGroupResponse> PostAsync(CopyToSectionGroupRequestBody model, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default, CancellationToken cancellationToken = default) {
             _ = model ?? throw new ArgumentNullException(nameof(model));
             var requestInfo = CreatePostRequestInformation(model, h, o);
-            return await RequestAdapter.SendAsync<CopyToSectionGroupResponse>(requestInfo, responseHandler);
+            return await RequestAdapter.SendAsync<CopyToSectionGroupResponse>(requestInfo, responseHandler, cancellationToken);
         }
         /// <summary>Union type wrapper for classes onenoteOperation</summary>
         public class CopyToSectionGroupResponse : IParsable {

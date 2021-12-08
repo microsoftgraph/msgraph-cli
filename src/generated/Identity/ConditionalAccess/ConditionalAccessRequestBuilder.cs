@@ -10,6 +10,7 @@ using System.CommandLine.Invocation;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 namespace ApiSdk.Identity.ConditionalAccess {
     /// <summary>Builds and executes requests for operations under \identity\conditionalAccess</summary>
@@ -25,6 +26,7 @@ namespace ApiSdk.Identity.ConditionalAccess {
         /// </summary>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
+            command.Description = "the entry point for the Conditional Access (CA) object model.";
             // Create options for all the parameters
             command.Handler = CommandHandler.Create(async () => {
                 var requestInfo = CreateDeleteRequestInformation();
@@ -39,6 +41,7 @@ namespace ApiSdk.Identity.ConditionalAccess {
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
+            command.Description = "the entry point for the Conditional Access (CA) object model.";
             // Create options for all the parameters
             command.AddOption(new Option<object>("--select", description: "Select properties to be returned"));
             command.AddOption(new Option<object>("--expand", description: "Expand related entities"));
@@ -60,11 +63,11 @@ namespace ApiSdk.Identity.ConditionalAccess {
         public Command BuildNamedLocationsCommand() {
             var command = new Command("named-locations");
             var builder = new ApiSdk.Identity.ConditionalAccess.NamedLocations.NamedLocationsRequestBuilder(PathParameters, RequestAdapter);
-            command.AddCommand(builder.BuildListCommand());
-            command.AddCommand(builder.BuildCreateCommand());
             foreach (var cmd in builder.BuildCommand()) {
                 command.AddCommand(cmd);
             }
+            command.AddCommand(builder.BuildCreateCommand());
+            command.AddCommand(builder.BuildListCommand());
             return command;
         }
         /// <summary>
@@ -72,6 +75,7 @@ namespace ApiSdk.Identity.ConditionalAccess {
         /// </summary>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
+            command.Description = "the entry point for the Conditional Access (CA) object model.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--body"));
             command.Handler = CommandHandler.Create<string>(async (body) => {
@@ -88,11 +92,11 @@ namespace ApiSdk.Identity.ConditionalAccess {
         public Command BuildPoliciesCommand() {
             var command = new Command("policies");
             var builder = new ApiSdk.Identity.ConditionalAccess.Policies.PoliciesRequestBuilder(PathParameters, RequestAdapter);
-            command.AddCommand(builder.BuildListCommand());
-            command.AddCommand(builder.BuildCreateCommand());
             foreach (var cmd in builder.BuildCommand()) {
                 command.AddCommand(cmd);
             }
+            command.AddCommand(builder.BuildCreateCommand());
+            command.AddCommand(builder.BuildListCommand());
             return command;
         }
         /// <summary>
@@ -164,36 +168,39 @@ namespace ApiSdk.Identity.ConditionalAccess {
         }
         /// <summary>
         /// the entry point for the Conditional Access (CA) object model.
+        /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="h">Request headers</param>
         /// <param name="o">Request options</param>
         /// <param name="responseHandler">Response handler to use in place of the default response handling provided by the core service</param>
         /// </summary>
-        public async Task DeleteAsync(Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default) {
+        public async Task DeleteAsync(Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default, CancellationToken cancellationToken = default) {
             var requestInfo = CreateDeleteRequestInformation(h, o);
-            await RequestAdapter.SendNoContentAsync(requestInfo, responseHandler);
+            await RequestAdapter.SendNoContentAsync(requestInfo, responseHandler, cancellationToken);
         }
         /// <summary>
         /// the entry point for the Conditional Access (CA) object model.
+        /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="h">Request headers</param>
         /// <param name="o">Request options</param>
         /// <param name="q">Request query parameters</param>
         /// <param name="responseHandler">Response handler to use in place of the default response handling provided by the core service</param>
         /// </summary>
-        public async Task<ConditionalAccessRoot> GetAsync(Action<GetQueryParameters> q = default, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default) {
+        public async Task<ConditionalAccessRoot> GetAsync(Action<GetQueryParameters> q = default, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default, CancellationToken cancellationToken = default) {
             var requestInfo = CreateGetRequestInformation(q, h, o);
-            return await RequestAdapter.SendAsync<ConditionalAccessRoot>(requestInfo, responseHandler);
+            return await RequestAdapter.SendAsync<ConditionalAccessRoot>(requestInfo, responseHandler, cancellationToken);
         }
         /// <summary>
         /// the entry point for the Conditional Access (CA) object model.
+        /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="h">Request headers</param>
         /// <param name="model"></param>
         /// <param name="o">Request options</param>
         /// <param name="responseHandler">Response handler to use in place of the default response handling provided by the core service</param>
         /// </summary>
-        public async Task PatchAsync(ConditionalAccessRoot model, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default) {
+        public async Task PatchAsync(ConditionalAccessRoot model, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default, CancellationToken cancellationToken = default) {
             _ = model ?? throw new ArgumentNullException(nameof(model));
             var requestInfo = CreatePatchRequestInformation(model, h, o);
-            await RequestAdapter.SendNoContentAsync(requestInfo, responseHandler);
+            await RequestAdapter.SendNoContentAsync(requestInfo, responseHandler, cancellationToken);
         }
         /// <summary>the entry point for the Conditional Access (CA) object model.</summary>
         public class GetQueryParameters : QueryParametersBase {

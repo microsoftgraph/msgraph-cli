@@ -7,6 +7,7 @@ using System.CommandLine.Invocation;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 namespace ApiSdk.Sites.Item.Lists.Item.ContentTypes.Item.@Base.IsPublished {
     /// <summary>Builds and executes requests for operations under \sites\{site-id}\lists\{list-id}\contentTypes\{contentType-id}\base\microsoft.graph.isPublished()</summary>
@@ -22,6 +23,7 @@ namespace ApiSdk.Sites.Item.Lists.Item.ContentTypes.Item.@Base.IsPublished {
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
+            command.Description = "Invoke function isPublished";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--site-id", description: "key: id of site"));
             command.AddOption(new Option<string>("--list-id", description: "key: id of list"));
@@ -72,13 +74,14 @@ namespace ApiSdk.Sites.Item.Lists.Item.ContentTypes.Item.@Base.IsPublished {
         }
         /// <summary>
         /// Invoke function isPublished
+        /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="h">Request headers</param>
         /// <param name="o">Request options</param>
         /// <param name="responseHandler">Response handler to use in place of the default response handling provided by the core service</param>
         /// </summary>
-        public async Task<bool?> GetAsync(Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default) {
+        public async Task<bool?> GetAsync(Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default, CancellationToken cancellationToken = default) {
             var requestInfo = CreateGetRequestInformation(h, o);
-            return await RequestAdapter.SendPrimitiveAsync<bool?>(requestInfo, responseHandler);
+            return await RequestAdapter.SendPrimitiveAsync<bool?>(requestInfo, responseHandler, cancellationToken);
         }
     }
 }

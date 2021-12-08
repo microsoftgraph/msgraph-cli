@@ -7,6 +7,7 @@ using System.CommandLine.Invocation;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 namespace ApiSdk.DeviceManagement.NotificationMessageTemplates.Item.SendTestMessage {
     /// <summary>Builds and executes requests for operations under \deviceManagement\notificationMessageTemplates\{notificationMessageTemplate-id}\microsoft.graph.sendTestMessage</summary>
@@ -22,6 +23,7 @@ namespace ApiSdk.DeviceManagement.NotificationMessageTemplates.Item.SendTestMess
         /// </summary>
         public Command BuildPostCommand() {
             var command = new Command("post");
+            command.Description = "Sends test message using the specified notificationMessageTemplate in the default locale";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--notificationmessagetemplate-id", description: "key: id of notificationMessageTemplate"));
             command.Handler = CommandHandler.Create<string>(async (notificationMessageTemplateId) => {
@@ -63,13 +65,14 @@ namespace ApiSdk.DeviceManagement.NotificationMessageTemplates.Item.SendTestMess
         }
         /// <summary>
         /// Sends test message using the specified notificationMessageTemplate in the default locale
+        /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="h">Request headers</param>
         /// <param name="o">Request options</param>
         /// <param name="responseHandler">Response handler to use in place of the default response handling provided by the core service</param>
         /// </summary>
-        public async Task PostAsync(Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default) {
+        public async Task PostAsync(Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default, CancellationToken cancellationToken = default) {
             var requestInfo = CreatePostRequestInformation(h, o);
-            await RequestAdapter.SendNoContentAsync(requestInfo, responseHandler);
+            await RequestAdapter.SendNoContentAsync(requestInfo, responseHandler, cancellationToken);
         }
     }
 }

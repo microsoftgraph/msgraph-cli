@@ -7,6 +7,7 @@ using System.CommandLine.Invocation;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 namespace ApiSdk.Sites.Item.GetActivitiesByInterval {
     /// <summary>Builds and executes requests for operations under \sites\{site-id}\microsoft.graph.getActivitiesByInterval()</summary>
@@ -22,6 +23,7 @@ namespace ApiSdk.Sites.Item.GetActivitiesByInterval {
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
+            command.Description = "Invoke function getActivitiesByInterval";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--site-id", description: "key: id of site"));
             command.Handler = CommandHandler.Create<string>(async (siteId) => {
@@ -68,13 +70,14 @@ namespace ApiSdk.Sites.Item.GetActivitiesByInterval {
         }
         /// <summary>
         /// Invoke function getActivitiesByInterval
+        /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="h">Request headers</param>
         /// <param name="o">Request options</param>
         /// <param name="responseHandler">Response handler to use in place of the default response handling provided by the core service</param>
         /// </summary>
-        public async Task<IEnumerable<ApiSdk.Sites.Item.GetActivitiesByInterval.GetActivitiesByInterval>> GetAsync(Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default) {
+        public async Task<IEnumerable<ApiSdk.Sites.Item.GetActivitiesByInterval.GetActivitiesByInterval>> GetAsync(Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default, CancellationToken cancellationToken = default) {
             var requestInfo = CreateGetRequestInformation(h, o);
-            return await RequestAdapter.SendCollectionAsync<ApiSdk.Sites.Item.GetActivitiesByInterval.GetActivitiesByInterval>(requestInfo, responseHandler);
+            return await RequestAdapter.SendCollectionAsync<ApiSdk.Sites.Item.GetActivitiesByInterval.GetActivitiesByInterval>(requestInfo, responseHandler, cancellationToken);
         }
     }
 }

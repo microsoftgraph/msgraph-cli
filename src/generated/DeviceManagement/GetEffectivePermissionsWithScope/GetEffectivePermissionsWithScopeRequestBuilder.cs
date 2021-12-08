@@ -7,6 +7,7 @@ using System.CommandLine.Invocation;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 namespace ApiSdk.DeviceManagement.GetEffectivePermissionsWithScope {
     /// <summary>Builds and executes requests for operations under \deviceManagement\microsoft.graph.getEffectivePermissions(scope='{scope}')</summary>
@@ -22,6 +23,7 @@ namespace ApiSdk.DeviceManagement.GetEffectivePermissionsWithScope {
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
+            command.Description = "Retrieves the effective permissions of the currently authenticated user";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--scope", description: "Usage: scope={scope}"));
             command.Handler = CommandHandler.Create<string>(async (scope) => {
@@ -70,13 +72,14 @@ namespace ApiSdk.DeviceManagement.GetEffectivePermissionsWithScope {
         }
         /// <summary>
         /// Retrieves the effective permissions of the currently authenticated user
+        /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="h">Request headers</param>
         /// <param name="o">Request options</param>
         /// <param name="responseHandler">Response handler to use in place of the default response handling provided by the core service</param>
         /// </summary>
-        public async Task<IEnumerable<ApiSdk.DeviceManagement.GetEffectivePermissionsWithScope.GetEffectivePermissionsWithScope>> GetAsync(Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default) {
+        public async Task<IEnumerable<ApiSdk.DeviceManagement.GetEffectivePermissionsWithScope.GetEffectivePermissionsWithScope>> GetAsync(Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default, CancellationToken cancellationToken = default) {
             var requestInfo = CreateGetRequestInformation(h, o);
-            return await RequestAdapter.SendCollectionAsync<ApiSdk.DeviceManagement.GetEffectivePermissionsWithScope.GetEffectivePermissionsWithScope>(requestInfo, responseHandler);
+            return await RequestAdapter.SendCollectionAsync<ApiSdk.DeviceManagement.GetEffectivePermissionsWithScope.GetEffectivePermissionsWithScope>(requestInfo, responseHandler, cancellationToken);
         }
     }
 }

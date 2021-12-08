@@ -9,6 +9,7 @@ using System.CommandLine.Invocation;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 namespace ApiSdk.Users.Item.Todo.Lists.Item.Tasks.Item.LinkedResources {
     /// <summary>Builds and executes requests for operations under \users\{user-id}\todo\lists\{todoTaskList-id}\tasks\{todoTask-id}\linkedResources</summary>
@@ -19,20 +20,21 @@ namespace ApiSdk.Users.Item.Todo.Lists.Item.Tasks.Item.LinkedResources {
         private IRequestAdapter RequestAdapter { get; set; }
         /// <summary>Url template to use to build the URL for the current request builder</summary>
         private string UrlTemplate { get; set; }
-        public Command[] BuildCommand() {
+        public List<Command> BuildCommand() {
             var builder = new LinkedResourceRequestBuilder(PathParameters, RequestAdapter);
             var commands = new List<Command> { 
-                builder.BuildPatchCommand(),
-                builder.BuildGetCommand(),
                 builder.BuildDeleteCommand(),
+                builder.BuildGetCommand(),
+                builder.BuildPatchCommand(),
             };
-            return commands.ToArray();
+            return commands;
         }
         /// <summary>
         /// A collection of resources linked to the task.
         /// </summary>
         public Command BuildCreateCommand() {
             var command = new Command("create");
+            command.Description = "A collection of resources linked to the task.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--user-id", description: "key: id of user"));
             command.AddOption(new Option<string>("--todotasklist-id", description: "key: id of todoTaskList"));
@@ -62,6 +64,7 @@ namespace ApiSdk.Users.Item.Todo.Lists.Item.Tasks.Item.LinkedResources {
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
+            command.Description = "A collection of resources linked to the task.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--user-id", description: "key: id of user"));
             command.AddOption(new Option<string>("--todotasklist-id", description: "key: id of todoTaskList"));
@@ -152,26 +155,28 @@ namespace ApiSdk.Users.Item.Todo.Lists.Item.Tasks.Item.LinkedResources {
         }
         /// <summary>
         /// A collection of resources linked to the task.
+        /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="h">Request headers</param>
         /// <param name="o">Request options</param>
         /// <param name="q">Request query parameters</param>
         /// <param name="responseHandler">Response handler to use in place of the default response handling provided by the core service</param>
         /// </summary>
-        public async Task<LinkedResourcesResponse> GetAsync(Action<GetQueryParameters> q = default, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default) {
+        public async Task<LinkedResourcesResponse> GetAsync(Action<GetQueryParameters> q = default, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default, CancellationToken cancellationToken = default) {
             var requestInfo = CreateGetRequestInformation(q, h, o);
-            return await RequestAdapter.SendAsync<LinkedResourcesResponse>(requestInfo, responseHandler);
+            return await RequestAdapter.SendAsync<LinkedResourcesResponse>(requestInfo, responseHandler, cancellationToken);
         }
         /// <summary>
         /// A collection of resources linked to the task.
+        /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="h">Request headers</param>
         /// <param name="model"></param>
         /// <param name="o">Request options</param>
         /// <param name="responseHandler">Response handler to use in place of the default response handling provided by the core service</param>
         /// </summary>
-        public async Task<LinkedResource> PostAsync(LinkedResource model, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default) {
+        public async Task<LinkedResource> PostAsync(LinkedResource model, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default, CancellationToken cancellationToken = default) {
             _ = model ?? throw new ArgumentNullException(nameof(model));
             var requestInfo = CreatePostRequestInformation(model, h, o);
-            return await RequestAdapter.SendAsync<LinkedResource>(requestInfo, responseHandler);
+            return await RequestAdapter.SendAsync<LinkedResource>(requestInfo, responseHandler, cancellationToken);
         }
         /// <summary>A collection of resources linked to the task.</summary>
         public class GetQueryParameters : QueryParametersBase {

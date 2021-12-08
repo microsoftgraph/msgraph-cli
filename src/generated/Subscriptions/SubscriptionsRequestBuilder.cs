@@ -9,6 +9,7 @@ using System.CommandLine.Invocation;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 namespace ApiSdk.Subscriptions {
     /// <summary>Builds and executes requests for operations under \subscriptions</summary>
@@ -19,20 +20,21 @@ namespace ApiSdk.Subscriptions {
         private IRequestAdapter RequestAdapter { get; set; }
         /// <summary>Url template to use to build the URL for the current request builder</summary>
         private string UrlTemplate { get; set; }
-        public Command[] BuildCommand() {
+        public List<Command> BuildCommand() {
             var builder = new SubscriptionRequestBuilder(PathParameters, RequestAdapter);
             var commands = new List<Command> { 
-                builder.BuildPatchCommand(),
-                builder.BuildGetCommand(),
                 builder.BuildDeleteCommand(),
+                builder.BuildGetCommand(),
+                builder.BuildPatchCommand(),
             };
-            return commands.ToArray();
+            return commands;
         }
         /// <summary>
         /// Add new entity to subscriptions
         /// </summary>
         public Command BuildCreateCommand() {
             var command = new Command("create");
+            command.Description = "Add new entity to subscriptions";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--body"));
             command.Handler = CommandHandler.Create<string>(async (body) => {
@@ -56,6 +58,7 @@ namespace ApiSdk.Subscriptions {
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
+            command.Description = "Get entities from subscriptions";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--search", description: "Search items by search phrases"));
             command.AddOption(new Option<object>("--select", description: "Select properties to be returned"));
@@ -128,26 +131,28 @@ namespace ApiSdk.Subscriptions {
         }
         /// <summary>
         /// Get entities from subscriptions
+        /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="h">Request headers</param>
         /// <param name="o">Request options</param>
         /// <param name="q">Request query parameters</param>
         /// <param name="responseHandler">Response handler to use in place of the default response handling provided by the core service</param>
         /// </summary>
-        public async Task<SubscriptionsResponse> GetAsync(Action<GetQueryParameters> q = default, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default) {
+        public async Task<SubscriptionsResponse> GetAsync(Action<GetQueryParameters> q = default, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default, CancellationToken cancellationToken = default) {
             var requestInfo = CreateGetRequestInformation(q, h, o);
-            return await RequestAdapter.SendAsync<SubscriptionsResponse>(requestInfo, responseHandler);
+            return await RequestAdapter.SendAsync<SubscriptionsResponse>(requestInfo, responseHandler, cancellationToken);
         }
         /// <summary>
         /// Add new entity to subscriptions
+        /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="h">Request headers</param>
         /// <param name="model"></param>
         /// <param name="o">Request options</param>
         /// <param name="responseHandler">Response handler to use in place of the default response handling provided by the core service</param>
         /// </summary>
-        public async Task<Subscription> PostAsync(Subscription model, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default) {
+        public async Task<Subscription> PostAsync(Subscription model, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default, CancellationToken cancellationToken = default) {
             _ = model ?? throw new ArgumentNullException(nameof(model));
             var requestInfo = CreatePostRequestInformation(model, h, o);
-            return await RequestAdapter.SendAsync<Subscription>(requestInfo, responseHandler);
+            return await RequestAdapter.SendAsync<Subscription>(requestInfo, responseHandler, cancellationToken);
         }
         /// <summary>Get entities from subscriptions</summary>
         public class GetQueryParameters : QueryParametersBase {

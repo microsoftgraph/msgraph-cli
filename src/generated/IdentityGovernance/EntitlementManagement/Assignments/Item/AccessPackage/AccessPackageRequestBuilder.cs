@@ -10,6 +10,7 @@ using System.CommandLine.Invocation;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 namespace ApiSdk.IdentityGovernance.EntitlementManagement.Assignments.Item.AccessPackage {
     /// <summary>Builds and executes requests for operations under \identityGovernance\entitlementManagement\assignments\{accessPackageAssignment-id}\accessPackage</summary>
@@ -31,6 +32,7 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.Assignments.Item.Acces
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
+            command.Description = "Read-only. Nullable.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--accesspackageassignment-id", description: "key: id of accessPackageAssignment"));
             command.AddOption(new Option<object>("--select", description: "Select properties to be returned"));
@@ -54,9 +56,9 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.Assignments.Item.Acces
         public Command BuildRefCommand() {
             var command = new Command("ref");
             var builder = new ApiSdk.IdentityGovernance.EntitlementManagement.Assignments.Item.AccessPackage.@Ref.RefRequestBuilder(PathParameters, RequestAdapter);
-            command.AddCommand(builder.BuildPutCommand());
-            command.AddCommand(builder.BuildGetCommand());
             command.AddCommand(builder.BuildDeleteCommand());
+            command.AddCommand(builder.BuildGetCommand());
+            command.AddCommand(builder.BuildPutCommand());
             return command;
         }
         /// <summary>
@@ -95,14 +97,15 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.Assignments.Item.Acces
         }
         /// <summary>
         /// Read-only. Nullable.
+        /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="h">Request headers</param>
         /// <param name="o">Request options</param>
         /// <param name="q">Request query parameters</param>
         /// <param name="responseHandler">Response handler to use in place of the default response handling provided by the core service</param>
         /// </summary>
-        public async Task<ApiSdk.Models.Microsoft.Graph.AccessPackage> GetAsync(Action<GetQueryParameters> q = default, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default) {
+        public async Task<ApiSdk.Models.Microsoft.Graph.AccessPackage> GetAsync(Action<GetQueryParameters> q = default, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default, CancellationToken cancellationToken = default) {
             var requestInfo = CreateGetRequestInformation(q, h, o);
-            return await RequestAdapter.SendAsync<ApiSdk.Models.Microsoft.Graph.AccessPackage>(requestInfo, responseHandler);
+            return await RequestAdapter.SendAsync<ApiSdk.Models.Microsoft.Graph.AccessPackage>(requestInfo, responseHandler, cancellationToken);
         }
         /// <summary>Read-only. Nullable.</summary>
         public class GetQueryParameters : QueryParametersBase {

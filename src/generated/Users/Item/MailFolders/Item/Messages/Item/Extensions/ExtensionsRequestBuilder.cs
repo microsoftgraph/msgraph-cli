@@ -9,6 +9,7 @@ using System.CommandLine.Invocation;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 namespace ApiSdk.Users.Item.MailFolders.Item.Messages.Item.Extensions {
     /// <summary>Builds and executes requests for operations under \users\{user-id}\mailFolders\{mailFolder-id}\messages\{message-id}\extensions</summary>
@@ -19,20 +20,21 @@ namespace ApiSdk.Users.Item.MailFolders.Item.Messages.Item.Extensions {
         private IRequestAdapter RequestAdapter { get; set; }
         /// <summary>Url template to use to build the URL for the current request builder</summary>
         private string UrlTemplate { get; set; }
-        public Command[] BuildCommand() {
+        public List<Command> BuildCommand() {
             var builder = new ExtensionRequestBuilder(PathParameters, RequestAdapter);
             var commands = new List<Command> { 
-                builder.BuildPatchCommand(),
-                builder.BuildGetCommand(),
                 builder.BuildDeleteCommand(),
+                builder.BuildGetCommand(),
+                builder.BuildPatchCommand(),
             };
-            return commands.ToArray();
+            return commands;
         }
         /// <summary>
         /// The collection of open extensions defined for the message. Nullable.
         /// </summary>
         public Command BuildCreateCommand() {
             var command = new Command("create");
+            command.Description = "The collection of open extensions defined for the message. Nullable.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--user-id", description: "key: id of user"));
             command.AddOption(new Option<string>("--mailfolder-id", description: "key: id of mailFolder"));
@@ -62,6 +64,7 @@ namespace ApiSdk.Users.Item.MailFolders.Item.Messages.Item.Extensions {
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
+            command.Description = "The collection of open extensions defined for the message. Nullable.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--user-id", description: "key: id of user"));
             command.AddOption(new Option<string>("--mailfolder-id", description: "key: id of mailFolder"));
@@ -150,26 +153,28 @@ namespace ApiSdk.Users.Item.MailFolders.Item.Messages.Item.Extensions {
         }
         /// <summary>
         /// The collection of open extensions defined for the message. Nullable.
+        /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="h">Request headers</param>
         /// <param name="o">Request options</param>
         /// <param name="q">Request query parameters</param>
         /// <param name="responseHandler">Response handler to use in place of the default response handling provided by the core service</param>
         /// </summary>
-        public async Task<ExtensionsResponse> GetAsync(Action<GetQueryParameters> q = default, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default) {
+        public async Task<ExtensionsResponse> GetAsync(Action<GetQueryParameters> q = default, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default, CancellationToken cancellationToken = default) {
             var requestInfo = CreateGetRequestInformation(q, h, o);
-            return await RequestAdapter.SendAsync<ExtensionsResponse>(requestInfo, responseHandler);
+            return await RequestAdapter.SendAsync<ExtensionsResponse>(requestInfo, responseHandler, cancellationToken);
         }
         /// <summary>
         /// The collection of open extensions defined for the message. Nullable.
+        /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="h">Request headers</param>
         /// <param name="model"></param>
         /// <param name="o">Request options</param>
         /// <param name="responseHandler">Response handler to use in place of the default response handling provided by the core service</param>
         /// </summary>
-        public async Task<Extension> PostAsync(Extension model, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default) {
+        public async Task<Extension> PostAsync(Extension model, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default, CancellationToken cancellationToken = default) {
             _ = model ?? throw new ArgumentNullException(nameof(model));
             var requestInfo = CreatePostRequestInformation(model, h, o);
-            return await RequestAdapter.SendAsync<Extension>(requestInfo, responseHandler);
+            return await RequestAdapter.SendAsync<Extension>(requestInfo, responseHandler, cancellationToken);
         }
         /// <summary>The collection of open extensions defined for the message. Nullable.</summary>
         public class GetQueryParameters : QueryParametersBase {

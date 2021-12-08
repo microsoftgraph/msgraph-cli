@@ -7,6 +7,7 @@ using System.CommandLine.Invocation;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 namespace ApiSdk.Sites.Item.ExternalColumns.@Ref {
     /// <summary>Builds and executes requests for operations under \sites\{site-id}\externalColumns\$ref</summary>
@@ -22,6 +23,7 @@ namespace ApiSdk.Sites.Item.ExternalColumns.@Ref {
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
+            command.Description = "The collection of column definitions available in the site that are referenced from the sites in the parent hierarchy of the current site.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--site-id", description: "key: id of site"));
             command.AddOption(new Option<int?>("--top", description: "Show only the first n items"));
@@ -55,6 +57,7 @@ namespace ApiSdk.Sites.Item.ExternalColumns.@Ref {
         /// </summary>
         public Command BuildPostCommand() {
             var command = new Command("post");
+            command.Description = "The collection of column definitions available in the site that are referenced from the sites in the parent hierarchy of the current site.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--site-id", description: "key: id of site"));
             command.AddOption(new Option<string>("--body"));
@@ -129,26 +132,28 @@ namespace ApiSdk.Sites.Item.ExternalColumns.@Ref {
         }
         /// <summary>
         /// The collection of column definitions available in the site that are referenced from the sites in the parent hierarchy of the current site.
+        /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="h">Request headers</param>
         /// <param name="o">Request options</param>
         /// <param name="q">Request query parameters</param>
         /// <param name="responseHandler">Response handler to use in place of the default response handling provided by the core service</param>
         /// </summary>
-        public async Task<RefResponse> GetAsync(Action<GetQueryParameters> q = default, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default) {
+        public async Task<RefResponse> GetAsync(Action<GetQueryParameters> q = default, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default, CancellationToken cancellationToken = default) {
             var requestInfo = CreateGetRequestInformation(q, h, o);
-            return await RequestAdapter.SendAsync<RefResponse>(requestInfo, responseHandler);
+            return await RequestAdapter.SendAsync<RefResponse>(requestInfo, responseHandler, cancellationToken);
         }
         /// <summary>
         /// The collection of column definitions available in the site that are referenced from the sites in the parent hierarchy of the current site.
+        /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="h">Request headers</param>
         /// <param name="model"></param>
         /// <param name="o">Request options</param>
         /// <param name="responseHandler">Response handler to use in place of the default response handling provided by the core service</param>
         /// </summary>
-        public async Task<ApiSdk.Sites.Item.ExternalColumns.@Ref.@Ref> PostAsync(ApiSdk.Sites.Item.ExternalColumns.@Ref.@Ref model, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default) {
+        public async Task<ApiSdk.Sites.Item.ExternalColumns.@Ref.@Ref> PostAsync(ApiSdk.Sites.Item.ExternalColumns.@Ref.@Ref model, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default, CancellationToken cancellationToken = default) {
             _ = model ?? throw new ArgumentNullException(nameof(model));
             var requestInfo = CreatePostRequestInformation(model, h, o);
-            return await RequestAdapter.SendAsync<ApiSdk.Sites.Item.ExternalColumns.@Ref.@Ref>(requestInfo, responseHandler);
+            return await RequestAdapter.SendAsync<ApiSdk.Sites.Item.ExternalColumns.@Ref.@Ref>(requestInfo, responseHandler, cancellationToken);
         }
         /// <summary>The collection of column definitions available in the site that are referenced from the sites in the parent hierarchy of the current site.</summary>
         public class GetQueryParameters : QueryParametersBase {

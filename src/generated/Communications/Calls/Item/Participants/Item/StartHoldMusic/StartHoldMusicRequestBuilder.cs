@@ -8,6 +8,7 @@ using System.CommandLine.Invocation;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 namespace ApiSdk.Communications.Calls.Item.Participants.Item.StartHoldMusic {
     /// <summary>Builds and executes requests for operations under \communications\calls\{call-id}\participants\{participant-id}\microsoft.graph.startHoldMusic</summary>
@@ -23,6 +24,7 @@ namespace ApiSdk.Communications.Calls.Item.Participants.Item.StartHoldMusic {
         /// </summary>
         public Command BuildPostCommand() {
             var command = new Command("post");
+            command.Description = "Invoke action startHoldMusic";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--call-id", description: "key: id of call"));
             command.AddOption(new Option<string>("--participant-id", description: "key: id of participant"));
@@ -78,15 +80,16 @@ namespace ApiSdk.Communications.Calls.Item.Participants.Item.StartHoldMusic {
         }
         /// <summary>
         /// Invoke action startHoldMusic
+        /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="h">Request headers</param>
         /// <param name="model"></param>
         /// <param name="o">Request options</param>
         /// <param name="responseHandler">Response handler to use in place of the default response handling provided by the core service</param>
         /// </summary>
-        public async Task<StartHoldMusicResponse> PostAsync(StartHoldMusicRequestBody model, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default) {
+        public async Task<StartHoldMusicResponse> PostAsync(StartHoldMusicRequestBody model, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default, CancellationToken cancellationToken = default) {
             _ = model ?? throw new ArgumentNullException(nameof(model));
             var requestInfo = CreatePostRequestInformation(model, h, o);
-            return await RequestAdapter.SendAsync<StartHoldMusicResponse>(requestInfo, responseHandler);
+            return await RequestAdapter.SendAsync<StartHoldMusicResponse>(requestInfo, responseHandler, cancellationToken);
         }
         /// <summary>Union type wrapper for classes startHoldMusicOperation</summary>
         public class StartHoldMusicResponse : IParsable {

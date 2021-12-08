@@ -9,6 +9,7 @@ using System.CommandLine.Invocation;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 namespace ApiSdk.Agreements.Item.File.Localizations.Item.Versions {
     /// <summary>Builds and executes requests for operations under \agreements\{agreement-id}\file\localizations\{agreementFileLocalization-id}\versions</summary>
@@ -19,20 +20,21 @@ namespace ApiSdk.Agreements.Item.File.Localizations.Item.Versions {
         private IRequestAdapter RequestAdapter { get; set; }
         /// <summary>Url template to use to build the URL for the current request builder</summary>
         private string UrlTemplate { get; set; }
-        public Command[] BuildCommand() {
+        public List<Command> BuildCommand() {
             var builder = new AgreementFileVersionRequestBuilder(PathParameters, RequestAdapter);
             var commands = new List<Command> { 
-                builder.BuildPatchCommand(),
-                builder.BuildGetCommand(),
                 builder.BuildDeleteCommand(),
+                builder.BuildGetCommand(),
+                builder.BuildPatchCommand(),
             };
-            return commands.ToArray();
+            return commands;
         }
         /// <summary>
         /// Create new navigation property to versions for agreements
         /// </summary>
         public Command BuildCreateCommand() {
             var command = new Command("create");
+            command.Description = "Create new navigation property to versions for agreements";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--agreement-id", description: "key: id of agreement"));
             command.AddOption(new Option<string>("--agreementfilelocalization-id", description: "key: id of agreementFileLocalization"));
@@ -60,6 +62,7 @@ namespace ApiSdk.Agreements.Item.File.Localizations.Item.Versions {
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
+            command.Description = "Get versions from agreements";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--agreement-id", description: "key: id of agreement"));
             command.AddOption(new Option<string>("--agreementfilelocalization-id", description: "key: id of agreementFileLocalization"));
@@ -148,26 +151,28 @@ namespace ApiSdk.Agreements.Item.File.Localizations.Item.Versions {
         }
         /// <summary>
         /// Get versions from agreements
+        /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="h">Request headers</param>
         /// <param name="o">Request options</param>
         /// <param name="q">Request query parameters</param>
         /// <param name="responseHandler">Response handler to use in place of the default response handling provided by the core service</param>
         /// </summary>
-        public async Task<VersionsResponse> GetAsync(Action<GetQueryParameters> q = default, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default) {
+        public async Task<VersionsResponse> GetAsync(Action<GetQueryParameters> q = default, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default, CancellationToken cancellationToken = default) {
             var requestInfo = CreateGetRequestInformation(q, h, o);
-            return await RequestAdapter.SendAsync<VersionsResponse>(requestInfo, responseHandler);
+            return await RequestAdapter.SendAsync<VersionsResponse>(requestInfo, responseHandler, cancellationToken);
         }
         /// <summary>
         /// Create new navigation property to versions for agreements
+        /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="h">Request headers</param>
         /// <param name="model"></param>
         /// <param name="o">Request options</param>
         /// <param name="responseHandler">Response handler to use in place of the default response handling provided by the core service</param>
         /// </summary>
-        public async Task<AgreementFileVersion> PostAsync(AgreementFileVersion model, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default) {
+        public async Task<AgreementFileVersion> PostAsync(AgreementFileVersion model, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default, CancellationToken cancellationToken = default) {
             _ = model ?? throw new ArgumentNullException(nameof(model));
             var requestInfo = CreatePostRequestInformation(model, h, o);
-            return await RequestAdapter.SendAsync<AgreementFileVersion>(requestInfo, responseHandler);
+            return await RequestAdapter.SendAsync<AgreementFileVersion>(requestInfo, responseHandler, cancellationToken);
         }
         /// <summary>Get versions from agreements</summary>
         public class GetQueryParameters : QueryParametersBase {

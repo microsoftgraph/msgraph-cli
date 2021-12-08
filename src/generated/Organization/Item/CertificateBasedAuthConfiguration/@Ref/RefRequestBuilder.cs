@@ -7,6 +7,7 @@ using System.CommandLine.Invocation;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 namespace ApiSdk.Organization.Item.CertificateBasedAuthConfiguration.@Ref {
     /// <summary>Builds and executes requests for operations under \organization\{organization-id}\certificateBasedAuthConfiguration\$ref</summary>
@@ -22,6 +23,7 @@ namespace ApiSdk.Organization.Item.CertificateBasedAuthConfiguration.@Ref {
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
+            command.Description = "Navigation property to manage certificate-based authentication configuration. Only a single instance of certificateBasedAuthConfiguration can be created in the collection.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--organization-id", description: "key: id of organization"));
             command.AddOption(new Option<int?>("--top", description: "Show only the first n items"));
@@ -55,6 +57,7 @@ namespace ApiSdk.Organization.Item.CertificateBasedAuthConfiguration.@Ref {
         /// </summary>
         public Command BuildPostCommand() {
             var command = new Command("post");
+            command.Description = "Navigation property to manage certificate-based authentication configuration. Only a single instance of certificateBasedAuthConfiguration can be created in the collection.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--organization-id", description: "key: id of organization"));
             command.AddOption(new Option<string>("--body"));
@@ -129,26 +132,28 @@ namespace ApiSdk.Organization.Item.CertificateBasedAuthConfiguration.@Ref {
         }
         /// <summary>
         /// Navigation property to manage certificate-based authentication configuration. Only a single instance of certificateBasedAuthConfiguration can be created in the collection.
+        /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="h">Request headers</param>
         /// <param name="o">Request options</param>
         /// <param name="q">Request query parameters</param>
         /// <param name="responseHandler">Response handler to use in place of the default response handling provided by the core service</param>
         /// </summary>
-        public async Task<RefResponse> GetAsync(Action<GetQueryParameters> q = default, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default) {
+        public async Task<RefResponse> GetAsync(Action<GetQueryParameters> q = default, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default, CancellationToken cancellationToken = default) {
             var requestInfo = CreateGetRequestInformation(q, h, o);
-            return await RequestAdapter.SendAsync<RefResponse>(requestInfo, responseHandler);
+            return await RequestAdapter.SendAsync<RefResponse>(requestInfo, responseHandler, cancellationToken);
         }
         /// <summary>
         /// Navigation property to manage certificate-based authentication configuration. Only a single instance of certificateBasedAuthConfiguration can be created in the collection.
+        /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="h">Request headers</param>
         /// <param name="model"></param>
         /// <param name="o">Request options</param>
         /// <param name="responseHandler">Response handler to use in place of the default response handling provided by the core service</param>
         /// </summary>
-        public async Task<ApiSdk.Organization.Item.CertificateBasedAuthConfiguration.@Ref.@Ref> PostAsync(ApiSdk.Organization.Item.CertificateBasedAuthConfiguration.@Ref.@Ref model, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default) {
+        public async Task<ApiSdk.Organization.Item.CertificateBasedAuthConfiguration.@Ref.@Ref> PostAsync(ApiSdk.Organization.Item.CertificateBasedAuthConfiguration.@Ref.@Ref model, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default, CancellationToken cancellationToken = default) {
             _ = model ?? throw new ArgumentNullException(nameof(model));
             var requestInfo = CreatePostRequestInformation(model, h, o);
-            return await RequestAdapter.SendAsync<ApiSdk.Organization.Item.CertificateBasedAuthConfiguration.@Ref.@Ref>(requestInfo, responseHandler);
+            return await RequestAdapter.SendAsync<ApiSdk.Organization.Item.CertificateBasedAuthConfiguration.@Ref.@Ref>(requestInfo, responseHandler, cancellationToken);
         }
         /// <summary>Navigation property to manage certificate-based authentication configuration. Only a single instance of certificateBasedAuthConfiguration can be created in the collection.</summary>
         public class GetQueryParameters : QueryParametersBase {

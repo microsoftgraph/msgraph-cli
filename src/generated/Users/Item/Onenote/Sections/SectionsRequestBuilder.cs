@@ -9,6 +9,7 @@ using System.CommandLine.Invocation;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 namespace ApiSdk.Users.Item.Onenote.Sections {
     /// <summary>Builds and executes requests for operations under \users\{user-id}\onenote\sections</summary>
@@ -19,25 +20,26 @@ namespace ApiSdk.Users.Item.Onenote.Sections {
         private IRequestAdapter RequestAdapter { get; set; }
         /// <summary>Url template to use to build the URL for the current request builder</summary>
         private string UrlTemplate { get; set; }
-        public Command[] BuildCommand() {
+        public List<Command> BuildCommand() {
             var builder = new OnenoteSectionRequestBuilder(PathParameters, RequestAdapter);
             var commands = new List<Command> { 
+                builder.BuildCopyToNotebookCommand(),
                 builder.BuildCopyToSectionGroupCommand(),
+                builder.BuildDeleteCommand(),
+                builder.BuildGetCommand(),
+                builder.BuildPagesCommand(),
                 builder.BuildParentNotebookCommand(),
                 builder.BuildParentSectionGroupCommand(),
                 builder.BuildPatchCommand(),
-                builder.BuildPagesCommand(),
-                builder.BuildGetCommand(),
-                builder.BuildCopyToNotebookCommand(),
-                builder.BuildDeleteCommand(),
             };
-            return commands.ToArray();
+            return commands;
         }
         /// <summary>
         /// The sections in all OneNote notebooks that are owned by the user or group.  Read-only. Nullable.
         /// </summary>
         public Command BuildCreateCommand() {
             var command = new Command("create");
+            command.Description = "The sections in all OneNote notebooks that are owned by the user or group.  Read-only. Nullable.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--user-id", description: "key: id of user"));
             command.AddOption(new Option<string>("--body"));
@@ -63,6 +65,7 @@ namespace ApiSdk.Users.Item.Onenote.Sections {
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
+            command.Description = "The sections in all OneNote notebooks that are owned by the user or group.  Read-only. Nullable.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--user-id", description: "key: id of user"));
             command.AddOption(new Option<int?>("--top", description: "Show only the first n items"));
@@ -149,26 +152,28 @@ namespace ApiSdk.Users.Item.Onenote.Sections {
         }
         /// <summary>
         /// The sections in all OneNote notebooks that are owned by the user or group.  Read-only. Nullable.
+        /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="h">Request headers</param>
         /// <param name="o">Request options</param>
         /// <param name="q">Request query parameters</param>
         /// <param name="responseHandler">Response handler to use in place of the default response handling provided by the core service</param>
         /// </summary>
-        public async Task<SectionsResponse> GetAsync(Action<GetQueryParameters> q = default, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default) {
+        public async Task<SectionsResponse> GetAsync(Action<GetQueryParameters> q = default, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default, CancellationToken cancellationToken = default) {
             var requestInfo = CreateGetRequestInformation(q, h, o);
-            return await RequestAdapter.SendAsync<SectionsResponse>(requestInfo, responseHandler);
+            return await RequestAdapter.SendAsync<SectionsResponse>(requestInfo, responseHandler, cancellationToken);
         }
         /// <summary>
         /// The sections in all OneNote notebooks that are owned by the user or group.  Read-only. Nullable.
+        /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="h">Request headers</param>
         /// <param name="model"></param>
         /// <param name="o">Request options</param>
         /// <param name="responseHandler">Response handler to use in place of the default response handling provided by the core service</param>
         /// </summary>
-        public async Task<OnenoteSection> PostAsync(OnenoteSection model, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default) {
+        public async Task<OnenoteSection> PostAsync(OnenoteSection model, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default, CancellationToken cancellationToken = default) {
             _ = model ?? throw new ArgumentNullException(nameof(model));
             var requestInfo = CreatePostRequestInformation(model, h, o);
-            return await RequestAdapter.SendAsync<OnenoteSection>(requestInfo, responseHandler);
+            return await RequestAdapter.SendAsync<OnenoteSection>(requestInfo, responseHandler, cancellationToken);
         }
         /// <summary>The sections in all OneNote notebooks that are owned by the user or group.  Read-only. Nullable.</summary>
         public class GetQueryParameters : QueryParametersBase {

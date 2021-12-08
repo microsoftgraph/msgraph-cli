@@ -8,6 +8,7 @@ using System.CommandLine.Invocation;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 namespace ApiSdk.Teams.Item.Schedule.OpenShifts.Item {
     /// <summary>Builds and executes requests for operations under \teams\{team-id}\schedule\openShifts\{openShift-id}</summary>
@@ -23,6 +24,7 @@ namespace ApiSdk.Teams.Item.Schedule.OpenShifts.Item {
         /// </summary>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
+            command.Description = "Delete navigation property openShifts for teams";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--team-id", description: "key: id of team"));
             command.AddOption(new Option<string>("--openshift-id", description: "key: id of openShift"));
@@ -41,6 +43,7 @@ namespace ApiSdk.Teams.Item.Schedule.OpenShifts.Item {
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
+            command.Description = "Get openShifts from teams";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--team-id", description: "key: id of team"));
             command.AddOption(new Option<string>("--openshift-id", description: "key: id of openShift"));
@@ -68,6 +71,7 @@ namespace ApiSdk.Teams.Item.Schedule.OpenShifts.Item {
         /// </summary>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
+            command.Description = "Update the navigation property openShifts in teams";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--team-id", description: "key: id of team"));
             command.AddOption(new Option<string>("--openshift-id", description: "key: id of openShift"));
@@ -154,36 +158,39 @@ namespace ApiSdk.Teams.Item.Schedule.OpenShifts.Item {
         }
         /// <summary>
         /// Delete navigation property openShifts for teams
+        /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="h">Request headers</param>
         /// <param name="o">Request options</param>
         /// <param name="responseHandler">Response handler to use in place of the default response handling provided by the core service</param>
         /// </summary>
-        public async Task DeleteAsync(Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default) {
+        public async Task DeleteAsync(Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default, CancellationToken cancellationToken = default) {
             var requestInfo = CreateDeleteRequestInformation(h, o);
-            await RequestAdapter.SendNoContentAsync(requestInfo, responseHandler);
+            await RequestAdapter.SendNoContentAsync(requestInfo, responseHandler, cancellationToken);
         }
         /// <summary>
         /// Get openShifts from teams
+        /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="h">Request headers</param>
         /// <param name="o">Request options</param>
         /// <param name="q">Request query parameters</param>
         /// <param name="responseHandler">Response handler to use in place of the default response handling provided by the core service</param>
         /// </summary>
-        public async Task<OpenShift> GetAsync(Action<GetQueryParameters> q = default, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default) {
+        public async Task<OpenShift> GetAsync(Action<GetQueryParameters> q = default, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default, CancellationToken cancellationToken = default) {
             var requestInfo = CreateGetRequestInformation(q, h, o);
-            return await RequestAdapter.SendAsync<OpenShift>(requestInfo, responseHandler);
+            return await RequestAdapter.SendAsync<OpenShift>(requestInfo, responseHandler, cancellationToken);
         }
         /// <summary>
         /// Update the navigation property openShifts in teams
+        /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="h">Request headers</param>
         /// <param name="model"></param>
         /// <param name="o">Request options</param>
         /// <param name="responseHandler">Response handler to use in place of the default response handling provided by the core service</param>
         /// </summary>
-        public async Task PatchAsync(OpenShift model, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default) {
+        public async Task PatchAsync(OpenShift model, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default, CancellationToken cancellationToken = default) {
             _ = model ?? throw new ArgumentNullException(nameof(model));
             var requestInfo = CreatePatchRequestInformation(model, h, o);
-            await RequestAdapter.SendNoContentAsync(requestInfo, responseHandler);
+            await RequestAdapter.SendNoContentAsync(requestInfo, responseHandler, cancellationToken);
         }
         /// <summary>Get openShifts from teams</summary>
         public class GetQueryParameters : QueryParametersBase {

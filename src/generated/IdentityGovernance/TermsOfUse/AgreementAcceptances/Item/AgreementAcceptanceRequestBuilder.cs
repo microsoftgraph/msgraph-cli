@@ -8,6 +8,7 @@ using System.CommandLine.Invocation;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 namespace ApiSdk.IdentityGovernance.TermsOfUse.AgreementAcceptances.Item {
     /// <summary>Builds and executes requests for operations under \identityGovernance\termsOfUse\agreementAcceptances\{agreementAcceptance-id}</summary>
@@ -23,6 +24,7 @@ namespace ApiSdk.IdentityGovernance.TermsOfUse.AgreementAcceptances.Item {
         /// </summary>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
+            command.Description = "Delete navigation property agreementAcceptances for identityGovernance";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--agreementacceptance-id", description: "key: id of agreementAcceptance"));
             command.Handler = CommandHandler.Create<string>(async (agreementAcceptanceId) => {
@@ -39,6 +41,7 @@ namespace ApiSdk.IdentityGovernance.TermsOfUse.AgreementAcceptances.Item {
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
+            command.Description = "Get agreementAcceptances from identityGovernance";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--agreementacceptance-id", description: "key: id of agreementAcceptance"));
             command.AddOption(new Option<object>("--select", description: "Select properties to be returned"));
@@ -64,6 +67,7 @@ namespace ApiSdk.IdentityGovernance.TermsOfUse.AgreementAcceptances.Item {
         /// </summary>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
+            command.Description = "Update the navigation property agreementAcceptances in identityGovernance";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--agreementacceptance-id", description: "key: id of agreementAcceptance"));
             command.AddOption(new Option<string>("--body"));
@@ -148,36 +152,39 @@ namespace ApiSdk.IdentityGovernance.TermsOfUse.AgreementAcceptances.Item {
         }
         /// <summary>
         /// Delete navigation property agreementAcceptances for identityGovernance
+        /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="h">Request headers</param>
         /// <param name="o">Request options</param>
         /// <param name="responseHandler">Response handler to use in place of the default response handling provided by the core service</param>
         /// </summary>
-        public async Task DeleteAsync(Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default) {
+        public async Task DeleteAsync(Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default, CancellationToken cancellationToken = default) {
             var requestInfo = CreateDeleteRequestInformation(h, o);
-            await RequestAdapter.SendNoContentAsync(requestInfo, responseHandler);
+            await RequestAdapter.SendNoContentAsync(requestInfo, responseHandler, cancellationToken);
         }
         /// <summary>
         /// Get agreementAcceptances from identityGovernance
+        /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="h">Request headers</param>
         /// <param name="o">Request options</param>
         /// <param name="q">Request query parameters</param>
         /// <param name="responseHandler">Response handler to use in place of the default response handling provided by the core service</param>
         /// </summary>
-        public async Task<AgreementAcceptance> GetAsync(Action<GetQueryParameters> q = default, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default) {
+        public async Task<AgreementAcceptance> GetAsync(Action<GetQueryParameters> q = default, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default, CancellationToken cancellationToken = default) {
             var requestInfo = CreateGetRequestInformation(q, h, o);
-            return await RequestAdapter.SendAsync<AgreementAcceptance>(requestInfo, responseHandler);
+            return await RequestAdapter.SendAsync<AgreementAcceptance>(requestInfo, responseHandler, cancellationToken);
         }
         /// <summary>
         /// Update the navigation property agreementAcceptances in identityGovernance
+        /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="h">Request headers</param>
         /// <param name="model"></param>
         /// <param name="o">Request options</param>
         /// <param name="responseHandler">Response handler to use in place of the default response handling provided by the core service</param>
         /// </summary>
-        public async Task PatchAsync(AgreementAcceptance model, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default) {
+        public async Task PatchAsync(AgreementAcceptance model, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default, CancellationToken cancellationToken = default) {
             _ = model ?? throw new ArgumentNullException(nameof(model));
             var requestInfo = CreatePatchRequestInformation(model, h, o);
-            await RequestAdapter.SendNoContentAsync(requestInfo, responseHandler);
+            await RequestAdapter.SendNoContentAsync(requestInfo, responseHandler, cancellationToken);
         }
         /// <summary>Get agreementAcceptances from identityGovernance</summary>
         public class GetQueryParameters : QueryParametersBase {

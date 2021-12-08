@@ -9,6 +9,7 @@ using System.CommandLine.Invocation;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 namespace ApiSdk.DeviceManagement.SoftwareUpdateStatusSummary {
     /// <summary>Builds and executes requests for operations under \deviceManagement\softwareUpdateStatusSummary</summary>
@@ -24,6 +25,7 @@ namespace ApiSdk.DeviceManagement.SoftwareUpdateStatusSummary {
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
+            command.Description = "The software update status summary.";
             // Create options for all the parameters
             command.AddOption(new Option<object>("--select", description: "Select properties to be returned"));
             command.AddOption(new Option<object>("--expand", description: "Expand related entities"));
@@ -45,9 +47,9 @@ namespace ApiSdk.DeviceManagement.SoftwareUpdateStatusSummary {
         public Command BuildRefCommand() {
             var command = new Command("ref");
             var builder = new ApiSdk.DeviceManagement.SoftwareUpdateStatusSummary.@Ref.RefRequestBuilder(PathParameters, RequestAdapter);
-            command.AddCommand(builder.BuildPutCommand());
-            command.AddCommand(builder.BuildGetCommand());
             command.AddCommand(builder.BuildDeleteCommand());
+            command.AddCommand(builder.BuildGetCommand());
+            command.AddCommand(builder.BuildPutCommand());
             return command;
         }
         /// <summary>
@@ -86,14 +88,15 @@ namespace ApiSdk.DeviceManagement.SoftwareUpdateStatusSummary {
         }
         /// <summary>
         /// The software update status summary.
+        /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="h">Request headers</param>
         /// <param name="o">Request options</param>
         /// <param name="q">Request query parameters</param>
         /// <param name="responseHandler">Response handler to use in place of the default response handling provided by the core service</param>
         /// </summary>
-        public async Task<ApiSdk.Models.Microsoft.Graph.SoftwareUpdateStatusSummary> GetAsync(Action<GetQueryParameters> q = default, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default) {
+        public async Task<ApiSdk.Models.Microsoft.Graph.SoftwareUpdateStatusSummary> GetAsync(Action<GetQueryParameters> q = default, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default, CancellationToken cancellationToken = default) {
             var requestInfo = CreateGetRequestInformation(q, h, o);
-            return await RequestAdapter.SendAsync<ApiSdk.Models.Microsoft.Graph.SoftwareUpdateStatusSummary>(requestInfo, responseHandler);
+            return await RequestAdapter.SendAsync<ApiSdk.Models.Microsoft.Graph.SoftwareUpdateStatusSummary>(requestInfo, responseHandler, cancellationToken);
         }
         /// <summary>The software update status summary.</summary>
         public class GetQueryParameters : QueryParametersBase {

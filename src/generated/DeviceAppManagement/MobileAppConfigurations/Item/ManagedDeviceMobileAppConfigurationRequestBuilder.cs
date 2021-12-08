@@ -14,6 +14,7 @@ using System.CommandLine.Invocation;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 namespace ApiSdk.DeviceAppManagement.MobileAppConfigurations.Item {
     /// <summary>Builds and executes requests for operations under \deviceAppManagement\mobileAppConfigurations\{managedDeviceMobileAppConfiguration-id}</summary>
@@ -33,11 +34,11 @@ namespace ApiSdk.DeviceAppManagement.MobileAppConfigurations.Item {
         public Command BuildAssignmentsCommand() {
             var command = new Command("assignments");
             var builder = new ApiSdk.DeviceAppManagement.MobileAppConfigurations.Item.Assignments.AssignmentsRequestBuilder(PathParameters, RequestAdapter);
-            command.AddCommand(builder.BuildListCommand());
-            command.AddCommand(builder.BuildCreateCommand());
             foreach (var cmd in builder.BuildCommand()) {
                 command.AddCommand(cmd);
             }
+            command.AddCommand(builder.BuildCreateCommand());
+            command.AddCommand(builder.BuildListCommand());
             return command;
         }
         /// <summary>
@@ -45,6 +46,7 @@ namespace ApiSdk.DeviceAppManagement.MobileAppConfigurations.Item {
         /// </summary>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
+            command.Description = "The Managed Device Mobile Application Configurations.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--manageddevicemobileappconfiguration-id", description: "key: id of managedDeviceMobileAppConfiguration"));
             command.Handler = CommandHandler.Create<string>(async (managedDeviceMobileAppConfigurationId) => {
@@ -59,19 +61,19 @@ namespace ApiSdk.DeviceAppManagement.MobileAppConfigurations.Item {
         public Command BuildDeviceStatusesCommand() {
             var command = new Command("device-statuses");
             var builder = new ApiSdk.DeviceAppManagement.MobileAppConfigurations.Item.DeviceStatuses.DeviceStatusesRequestBuilder(PathParameters, RequestAdapter);
-            command.AddCommand(builder.BuildListCommand());
-            command.AddCommand(builder.BuildCreateCommand());
             foreach (var cmd in builder.BuildCommand()) {
                 command.AddCommand(cmd);
             }
+            command.AddCommand(builder.BuildCreateCommand());
+            command.AddCommand(builder.BuildListCommand());
             return command;
         }
         public Command BuildDeviceStatusSummaryCommand() {
             var command = new Command("device-status-summary");
             var builder = new ApiSdk.DeviceAppManagement.MobileAppConfigurations.Item.DeviceStatusSummary.DeviceStatusSummaryRequestBuilder(PathParameters, RequestAdapter);
-            command.AddCommand(builder.BuildPatchCommand());
-            command.AddCommand(builder.BuildGetCommand());
             command.AddCommand(builder.BuildDeleteCommand());
+            command.AddCommand(builder.BuildGetCommand());
+            command.AddCommand(builder.BuildPatchCommand());
             return command;
         }
         /// <summary>
@@ -79,6 +81,7 @@ namespace ApiSdk.DeviceAppManagement.MobileAppConfigurations.Item {
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
+            command.Description = "The Managed Device Mobile Application Configurations.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--manageddevicemobileappconfiguration-id", description: "key: id of managedDeviceMobileAppConfiguration"));
             command.AddOption(new Option<object>("--select", description: "Select properties to be returned"));
@@ -104,6 +107,7 @@ namespace ApiSdk.DeviceAppManagement.MobileAppConfigurations.Item {
         /// </summary>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
+            command.Description = "The Managed Device Mobile Application Configurations.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--manageddevicemobileappconfiguration-id", description: "key: id of managedDeviceMobileAppConfiguration"));
             command.AddOption(new Option<string>("--body"));
@@ -122,19 +126,19 @@ namespace ApiSdk.DeviceAppManagement.MobileAppConfigurations.Item {
         public Command BuildUserStatusesCommand() {
             var command = new Command("user-statuses");
             var builder = new ApiSdk.DeviceAppManagement.MobileAppConfigurations.Item.UserStatuses.UserStatusesRequestBuilder(PathParameters, RequestAdapter);
-            command.AddCommand(builder.BuildListCommand());
-            command.AddCommand(builder.BuildCreateCommand());
             foreach (var cmd in builder.BuildCommand()) {
                 command.AddCommand(cmd);
             }
+            command.AddCommand(builder.BuildCreateCommand());
+            command.AddCommand(builder.BuildListCommand());
             return command;
         }
         public Command BuildUserStatusSummaryCommand() {
             var command = new Command("user-status-summary");
             var builder = new ApiSdk.DeviceAppManagement.MobileAppConfigurations.Item.UserStatusSummary.UserStatusSummaryRequestBuilder(PathParameters, RequestAdapter);
-            command.AddCommand(builder.BuildPatchCommand());
-            command.AddCommand(builder.BuildGetCommand());
             command.AddCommand(builder.BuildDeleteCommand());
+            command.AddCommand(builder.BuildGetCommand());
+            command.AddCommand(builder.BuildPatchCommand());
             return command;
         }
         /// <summary>
@@ -206,36 +210,39 @@ namespace ApiSdk.DeviceAppManagement.MobileAppConfigurations.Item {
         }
         /// <summary>
         /// The Managed Device Mobile Application Configurations.
+        /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="h">Request headers</param>
         /// <param name="o">Request options</param>
         /// <param name="responseHandler">Response handler to use in place of the default response handling provided by the core service</param>
         /// </summary>
-        public async Task DeleteAsync(Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default) {
+        public async Task DeleteAsync(Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default, CancellationToken cancellationToken = default) {
             var requestInfo = CreateDeleteRequestInformation(h, o);
-            await RequestAdapter.SendNoContentAsync(requestInfo, responseHandler);
+            await RequestAdapter.SendNoContentAsync(requestInfo, responseHandler, cancellationToken);
         }
         /// <summary>
         /// The Managed Device Mobile Application Configurations.
+        /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="h">Request headers</param>
         /// <param name="o">Request options</param>
         /// <param name="q">Request query parameters</param>
         /// <param name="responseHandler">Response handler to use in place of the default response handling provided by the core service</param>
         /// </summary>
-        public async Task<ManagedDeviceMobileAppConfiguration> GetAsync(Action<GetQueryParameters> q = default, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default) {
+        public async Task<ManagedDeviceMobileAppConfiguration> GetAsync(Action<GetQueryParameters> q = default, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default, CancellationToken cancellationToken = default) {
             var requestInfo = CreateGetRequestInformation(q, h, o);
-            return await RequestAdapter.SendAsync<ManagedDeviceMobileAppConfiguration>(requestInfo, responseHandler);
+            return await RequestAdapter.SendAsync<ManagedDeviceMobileAppConfiguration>(requestInfo, responseHandler, cancellationToken);
         }
         /// <summary>
         /// The Managed Device Mobile Application Configurations.
+        /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="h">Request headers</param>
         /// <param name="model"></param>
         /// <param name="o">Request options</param>
         /// <param name="responseHandler">Response handler to use in place of the default response handling provided by the core service</param>
         /// </summary>
-        public async Task PatchAsync(ManagedDeviceMobileAppConfiguration model, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default) {
+        public async Task PatchAsync(ManagedDeviceMobileAppConfiguration model, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default, CancellationToken cancellationToken = default) {
             _ = model ?? throw new ArgumentNullException(nameof(model));
             var requestInfo = CreatePatchRequestInformation(model, h, o);
-            await RequestAdapter.SendNoContentAsync(requestInfo, responseHandler);
+            await RequestAdapter.SendNoContentAsync(requestInfo, responseHandler, cancellationToken);
         }
         /// <summary>The Managed Device Mobile Application Configurations.</summary>
         public class GetQueryParameters : QueryParametersBase {

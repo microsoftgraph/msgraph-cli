@@ -8,6 +8,7 @@ using System.CommandLine.Invocation;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 namespace ApiSdk.Me.MailFolders.Item.Messages.Item.MultiValueExtendedProperties.Item {
     /// <summary>Builds and executes requests for operations under \me\mailFolders\{mailFolder-id}\messages\{message-id}\multiValueExtendedProperties\{multiValueLegacyExtendedProperty-id}</summary>
@@ -23,6 +24,7 @@ namespace ApiSdk.Me.MailFolders.Item.Messages.Item.MultiValueExtendedProperties.
         /// </summary>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
+            command.Description = "The collection of multi-value extended properties defined for the message. Nullable.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--mailfolder-id", description: "key: id of mailFolder"));
             command.AddOption(new Option<string>("--message-id", description: "key: id of message"));
@@ -43,6 +45,7 @@ namespace ApiSdk.Me.MailFolders.Item.Messages.Item.MultiValueExtendedProperties.
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
+            command.Description = "The collection of multi-value extended properties defined for the message. Nullable.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--mailfolder-id", description: "key: id of mailFolder"));
             command.AddOption(new Option<string>("--message-id", description: "key: id of message"));
@@ -72,6 +75,7 @@ namespace ApiSdk.Me.MailFolders.Item.Messages.Item.MultiValueExtendedProperties.
         /// </summary>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
+            command.Description = "The collection of multi-value extended properties defined for the message. Nullable.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--mailfolder-id", description: "key: id of mailFolder"));
             command.AddOption(new Option<string>("--message-id", description: "key: id of message"));
@@ -160,36 +164,39 @@ namespace ApiSdk.Me.MailFolders.Item.Messages.Item.MultiValueExtendedProperties.
         }
         /// <summary>
         /// The collection of multi-value extended properties defined for the message. Nullable.
+        /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="h">Request headers</param>
         /// <param name="o">Request options</param>
         /// <param name="responseHandler">Response handler to use in place of the default response handling provided by the core service</param>
         /// </summary>
-        public async Task DeleteAsync(Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default) {
+        public async Task DeleteAsync(Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default, CancellationToken cancellationToken = default) {
             var requestInfo = CreateDeleteRequestInformation(h, o);
-            await RequestAdapter.SendNoContentAsync(requestInfo, responseHandler);
+            await RequestAdapter.SendNoContentAsync(requestInfo, responseHandler, cancellationToken);
         }
         /// <summary>
         /// The collection of multi-value extended properties defined for the message. Nullable.
+        /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="h">Request headers</param>
         /// <param name="o">Request options</param>
         /// <param name="q">Request query parameters</param>
         /// <param name="responseHandler">Response handler to use in place of the default response handling provided by the core service</param>
         /// </summary>
-        public async Task<MultiValueLegacyExtendedProperty> GetAsync(Action<GetQueryParameters> q = default, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default) {
+        public async Task<MultiValueLegacyExtendedProperty> GetAsync(Action<GetQueryParameters> q = default, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default, CancellationToken cancellationToken = default) {
             var requestInfo = CreateGetRequestInformation(q, h, o);
-            return await RequestAdapter.SendAsync<MultiValueLegacyExtendedProperty>(requestInfo, responseHandler);
+            return await RequestAdapter.SendAsync<MultiValueLegacyExtendedProperty>(requestInfo, responseHandler, cancellationToken);
         }
         /// <summary>
         /// The collection of multi-value extended properties defined for the message. Nullable.
+        /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="h">Request headers</param>
         /// <param name="model"></param>
         /// <param name="o">Request options</param>
         /// <param name="responseHandler">Response handler to use in place of the default response handling provided by the core service</param>
         /// </summary>
-        public async Task PatchAsync(MultiValueLegacyExtendedProperty model, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default) {
+        public async Task PatchAsync(MultiValueLegacyExtendedProperty model, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default, CancellationToken cancellationToken = default) {
             _ = model ?? throw new ArgumentNullException(nameof(model));
             var requestInfo = CreatePatchRequestInformation(model, h, o);
-            await RequestAdapter.SendNoContentAsync(requestInfo, responseHandler);
+            await RequestAdapter.SendNoContentAsync(requestInfo, responseHandler, cancellationToken);
         }
         /// <summary>The collection of multi-value extended properties defined for the message. Nullable.</summary>
         public class GetQueryParameters : QueryParametersBase {

@@ -7,6 +7,7 @@ using System.CommandLine.Invocation;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 namespace ApiSdk.Directory.AdministrativeUnits.Item.Members.@Ref {
     /// <summary>Builds and executes requests for operations under \directory\administrativeUnits\{administrativeUnit-id}\members\$ref</summary>
@@ -22,6 +23,7 @@ namespace ApiSdk.Directory.AdministrativeUnits.Item.Members.@Ref {
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
+            command.Description = "Users and groups that are members of this Adminsitrative Unit. HTTP Methods: GET (list members), POST (add members), DELETE (remove members).";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--administrativeunit-id", description: "key: id of administrativeUnit"));
             command.AddOption(new Option<int?>("--top", description: "Show only the first n items"));
@@ -55,6 +57,7 @@ namespace ApiSdk.Directory.AdministrativeUnits.Item.Members.@Ref {
         /// </summary>
         public Command BuildPostCommand() {
             var command = new Command("post");
+            command.Description = "Users and groups that are members of this Adminsitrative Unit. HTTP Methods: GET (list members), POST (add members), DELETE (remove members).";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--administrativeunit-id", description: "key: id of administrativeUnit"));
             command.AddOption(new Option<string>("--body"));
@@ -129,26 +132,28 @@ namespace ApiSdk.Directory.AdministrativeUnits.Item.Members.@Ref {
         }
         /// <summary>
         /// Users and groups that are members of this Adminsitrative Unit. HTTP Methods: GET (list members), POST (add members), DELETE (remove members).
+        /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="h">Request headers</param>
         /// <param name="o">Request options</param>
         /// <param name="q">Request query parameters</param>
         /// <param name="responseHandler">Response handler to use in place of the default response handling provided by the core service</param>
         /// </summary>
-        public async Task<RefResponse> GetAsync(Action<GetQueryParameters> q = default, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default) {
+        public async Task<RefResponse> GetAsync(Action<GetQueryParameters> q = default, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default, CancellationToken cancellationToken = default) {
             var requestInfo = CreateGetRequestInformation(q, h, o);
-            return await RequestAdapter.SendAsync<RefResponse>(requestInfo, responseHandler);
+            return await RequestAdapter.SendAsync<RefResponse>(requestInfo, responseHandler, cancellationToken);
         }
         /// <summary>
         /// Users and groups that are members of this Adminsitrative Unit. HTTP Methods: GET (list members), POST (add members), DELETE (remove members).
+        /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="h">Request headers</param>
         /// <param name="model"></param>
         /// <param name="o">Request options</param>
         /// <param name="responseHandler">Response handler to use in place of the default response handling provided by the core service</param>
         /// </summary>
-        public async Task<ApiSdk.Directory.AdministrativeUnits.Item.Members.@Ref.@Ref> PostAsync(ApiSdk.Directory.AdministrativeUnits.Item.Members.@Ref.@Ref model, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default) {
+        public async Task<ApiSdk.Directory.AdministrativeUnits.Item.Members.@Ref.@Ref> PostAsync(ApiSdk.Directory.AdministrativeUnits.Item.Members.@Ref.@Ref model, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default, CancellationToken cancellationToken = default) {
             _ = model ?? throw new ArgumentNullException(nameof(model));
             var requestInfo = CreatePostRequestInformation(model, h, o);
-            return await RequestAdapter.SendAsync<ApiSdk.Directory.AdministrativeUnits.Item.Members.@Ref.@Ref>(requestInfo, responseHandler);
+            return await RequestAdapter.SendAsync<ApiSdk.Directory.AdministrativeUnits.Item.Members.@Ref.@Ref>(requestInfo, responseHandler, cancellationToken);
         }
         /// <summary>Users and groups that are members of this Adminsitrative Unit. HTTP Methods: GET (list members), POST (add members), DELETE (remove members).</summary>
         public class GetQueryParameters : QueryParametersBase {

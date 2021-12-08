@@ -9,6 +9,7 @@ using System.CommandLine.Invocation;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 namespace ApiSdk.Teams.Item.PrimaryChannel.Tabs.Item.TeamsApp {
     /// <summary>Builds and executes requests for operations under \teams\{team-id}\primaryChannel\tabs\{teamsTab-id}\teamsApp</summary>
@@ -24,6 +25,7 @@ namespace ApiSdk.Teams.Item.PrimaryChannel.Tabs.Item.TeamsApp {
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
+            command.Description = "The application that is linked to the tab. This cannot be changed after tab creation.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--team-id", description: "key: id of team"));
             command.AddOption(new Option<string>("--teamstab-id", description: "key: id of teamsTab"));
@@ -49,9 +51,9 @@ namespace ApiSdk.Teams.Item.PrimaryChannel.Tabs.Item.TeamsApp {
         public Command BuildRefCommand() {
             var command = new Command("ref");
             var builder = new ApiSdk.Teams.Item.PrimaryChannel.Tabs.Item.TeamsApp.@Ref.RefRequestBuilder(PathParameters, RequestAdapter);
-            command.AddCommand(builder.BuildPutCommand());
-            command.AddCommand(builder.BuildGetCommand());
             command.AddCommand(builder.BuildDeleteCommand());
+            command.AddCommand(builder.BuildGetCommand());
+            command.AddCommand(builder.BuildPutCommand());
             return command;
         }
         /// <summary>
@@ -90,14 +92,15 @@ namespace ApiSdk.Teams.Item.PrimaryChannel.Tabs.Item.TeamsApp {
         }
         /// <summary>
         /// The application that is linked to the tab. This cannot be changed after tab creation.
+        /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="h">Request headers</param>
         /// <param name="o">Request options</param>
         /// <param name="q">Request query parameters</param>
         /// <param name="responseHandler">Response handler to use in place of the default response handling provided by the core service</param>
         /// </summary>
-        public async Task<ApiSdk.Models.Microsoft.Graph.TeamsApp> GetAsync(Action<GetQueryParameters> q = default, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default) {
+        public async Task<ApiSdk.Models.Microsoft.Graph.TeamsApp> GetAsync(Action<GetQueryParameters> q = default, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default, CancellationToken cancellationToken = default) {
             var requestInfo = CreateGetRequestInformation(q, h, o);
-            return await RequestAdapter.SendAsync<ApiSdk.Models.Microsoft.Graph.TeamsApp>(requestInfo, responseHandler);
+            return await RequestAdapter.SendAsync<ApiSdk.Models.Microsoft.Graph.TeamsApp>(requestInfo, responseHandler, cancellationToken);
         }
         /// <summary>The application that is linked to the tab. This cannot be changed after tab creation.</summary>
         public class GetQueryParameters : QueryParametersBase {

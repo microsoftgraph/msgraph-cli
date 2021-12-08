@@ -9,6 +9,7 @@ using System.CommandLine.Invocation;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 namespace ApiSdk.IdentityGovernance.EntitlementManagement.ConnectedOrganizations.Item.ExternalSponsors {
     /// <summary>Builds and executes requests for operations under \identityGovernance\entitlementManagement\connectedOrganizations\{connectedOrganization-id}\externalSponsors</summary>
@@ -19,20 +20,21 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.ConnectedOrganizations
         private IRequestAdapter RequestAdapter { get; set; }
         /// <summary>Url template to use to build the URL for the current request builder</summary>
         private string UrlTemplate { get; set; }
-        public Command[] BuildCommand() {
+        public List<Command> BuildCommand() {
             var builder = new DirectoryObjectRequestBuilder(PathParameters, RequestAdapter);
             var commands = new List<Command> { 
-                builder.BuildPatchCommand(),
-                builder.BuildGetCommand(),
                 builder.BuildDeleteCommand(),
+                builder.BuildGetCommand(),
+                builder.BuildPatchCommand(),
             };
-            return commands.ToArray();
+            return commands;
         }
         /// <summary>
         /// Nullable.
         /// </summary>
         public Command BuildCreateCommand() {
             var command = new Command("create");
+            command.Description = "Nullable.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--connectedorganization-id", description: "key: id of connectedOrganization"));
             command.AddOption(new Option<string>("--body"));
@@ -58,6 +60,7 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.ConnectedOrganizations
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
+            command.Description = "Nullable.";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--connectedorganization-id", description: "key: id of connectedOrganization"));
             command.AddOption(new Option<int?>("--top", description: "Show only the first n items"));
@@ -144,26 +147,28 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.ConnectedOrganizations
         }
         /// <summary>
         /// Nullable.
+        /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="h">Request headers</param>
         /// <param name="o">Request options</param>
         /// <param name="q">Request query parameters</param>
         /// <param name="responseHandler">Response handler to use in place of the default response handling provided by the core service</param>
         /// </summary>
-        public async Task<ExternalSponsorsResponse> GetAsync(Action<GetQueryParameters> q = default, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default) {
+        public async Task<ExternalSponsorsResponse> GetAsync(Action<GetQueryParameters> q = default, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default, CancellationToken cancellationToken = default) {
             var requestInfo = CreateGetRequestInformation(q, h, o);
-            return await RequestAdapter.SendAsync<ExternalSponsorsResponse>(requestInfo, responseHandler);
+            return await RequestAdapter.SendAsync<ExternalSponsorsResponse>(requestInfo, responseHandler, cancellationToken);
         }
         /// <summary>
         /// Nullable.
+        /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="h">Request headers</param>
         /// <param name="model"></param>
         /// <param name="o">Request options</param>
         /// <param name="responseHandler">Response handler to use in place of the default response handling provided by the core service</param>
         /// </summary>
-        public async Task<DirectoryObject> PostAsync(DirectoryObject model, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default) {
+        public async Task<DirectoryObject> PostAsync(DirectoryObject model, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default, CancellationToken cancellationToken = default) {
             _ = model ?? throw new ArgumentNullException(nameof(model));
             var requestInfo = CreatePostRequestInformation(model, h, o);
-            return await RequestAdapter.SendAsync<DirectoryObject>(requestInfo, responseHandler);
+            return await RequestAdapter.SendAsync<DirectoryObject>(requestInfo, responseHandler, cancellationToken);
         }
         /// <summary>Nullable.</summary>
         public class GetQueryParameters : QueryParametersBase {

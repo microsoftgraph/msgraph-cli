@@ -13,6 +13,7 @@ using System.CommandLine.Invocation;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 namespace ApiSdk.ServicePrincipals {
     /// <summary>Builds and executes requests for operations under \servicePrincipals</summary>
@@ -23,43 +24,44 @@ namespace ApiSdk.ServicePrincipals {
         private IRequestAdapter RequestAdapter { get; set; }
         /// <summary>Url template to use to build the URL for the current request builder</summary>
         private string UrlTemplate { get; set; }
-        public Command[] BuildCommand() {
+        public List<Command> BuildCommand() {
             var builder = new ServicePrincipalRequestBuilder(PathParameters, RequestAdapter);
             var commands = new List<Command> { 
-                builder.BuildEndpointsCommand(),
-                builder.BuildGetMemberGroupsCommand(),
+                builder.BuildAddKeyCommand(),
+                builder.BuildAddPasswordCommand(),
+                builder.BuildAppRoleAssignedToCommand(),
+                builder.BuildAppRoleAssignmentsCommand(),
+                builder.BuildCheckMemberGroupsCommand(),
+                builder.BuildCheckMemberObjectsCommand(),
                 builder.BuildClaimsMappingPoliciesCommand(),
+                builder.BuildCreatedObjectsCommand(),
+                builder.BuildDelegatedPermissionClassificationsCommand(),
+                builder.BuildDeleteCommand(),
+                builder.BuildEndpointsCommand(),
+                builder.BuildGetCommand(),
+                builder.BuildGetMemberGroupsCommand(),
+                builder.BuildGetMemberObjectsCommand(),
+                builder.BuildHomeRealmDiscoveryPoliciesCommand(),
+                builder.BuildMemberOfCommand(),
+                builder.BuildOauth2PermissionGrantsCommand(),
+                builder.BuildOwnedObjectsCommand(),
+                builder.BuildOwnersCommand(),
+                builder.BuildPatchCommand(),
+                builder.BuildRemoveKeyCommand(),
+                builder.BuildRemovePasswordCommand(),
+                builder.BuildRestoreCommand(),
                 builder.BuildTokenIssuancePoliciesCommand(),
                 builder.BuildTokenLifetimePoliciesCommand(),
-                builder.BuildCheckMemberObjectsCommand(),
-                builder.BuildGetMemberObjectsCommand(),
-                builder.BuildCheckMemberGroupsCommand(),
-                builder.BuildAppRoleAssignedToCommand(),
-                builder.BuildDeleteCommand(),
-                builder.BuildDelegatedPermissionClassificationsCommand(),
-                builder.BuildOwnersCommand(),
-                builder.BuildOauth2PermissionGrantsCommand(),
-                builder.BuildRestoreCommand(),
-                builder.BuildRemovePasswordCommand(),
                 builder.BuildTransitiveMemberOfCommand(),
-                builder.BuildAppRoleAssignmentsCommand(),
-                builder.BuildMemberOfCommand(),
-                builder.BuildCreatedObjectsCommand(),
-                builder.BuildRemoveKeyCommand(),
-                builder.BuildHomeRealmDiscoveryPoliciesCommand(),
-                builder.BuildAddKeyCommand(),
-                builder.BuildGetCommand(),
-                builder.BuildOwnedObjectsCommand(),
-                builder.BuildPatchCommand(),
-                builder.BuildAddPasswordCommand(),
             };
-            return commands.ToArray();
+            return commands;
         }
         /// <summary>
         /// Add new entity to servicePrincipals
         /// </summary>
         public Command BuildCreateCommand() {
             var command = new Command("create");
+            command.Description = "Add new entity to servicePrincipals";
             // Create options for all the parameters
             command.AddOption(new Option<string>("--body"));
             command.Handler = CommandHandler.Create<string>(async (body) => {
@@ -95,6 +97,7 @@ namespace ApiSdk.ServicePrincipals {
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
+            command.Description = "Get entities from servicePrincipals";
             // Create options for all the parameters
             command.AddOption(new Option<int?>("--top", description: "Show only the first n items"));
             command.AddOption(new Option<int?>("--skip", description: "Skip the first n items"));
@@ -191,26 +194,28 @@ namespace ApiSdk.ServicePrincipals {
         }
         /// <summary>
         /// Get entities from servicePrincipals
+        /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="h">Request headers</param>
         /// <param name="o">Request options</param>
         /// <param name="q">Request query parameters</param>
         /// <param name="responseHandler">Response handler to use in place of the default response handling provided by the core service</param>
         /// </summary>
-        public async Task<ServicePrincipalsResponse> GetAsync(Action<GetQueryParameters> q = default, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default) {
+        public async Task<ServicePrincipalsResponse> GetAsync(Action<GetQueryParameters> q = default, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default, CancellationToken cancellationToken = default) {
             var requestInfo = CreateGetRequestInformation(q, h, o);
-            return await RequestAdapter.SendAsync<ServicePrincipalsResponse>(requestInfo, responseHandler);
+            return await RequestAdapter.SendAsync<ServicePrincipalsResponse>(requestInfo, responseHandler, cancellationToken);
         }
         /// <summary>
         /// Add new entity to servicePrincipals
+        /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="h">Request headers</param>
         /// <param name="model"></param>
         /// <param name="o">Request options</param>
         /// <param name="responseHandler">Response handler to use in place of the default response handling provided by the core service</param>
         /// </summary>
-        public async Task<ServicePrincipal> PostAsync(ServicePrincipal model, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default) {
+        public async Task<ServicePrincipal> PostAsync(ServicePrincipal model, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default, CancellationToken cancellationToken = default) {
             _ = model ?? throw new ArgumentNullException(nameof(model));
             var requestInfo = CreatePostRequestInformation(model, h, o);
-            return await RequestAdapter.SendAsync<ServicePrincipal>(requestInfo, responseHandler);
+            return await RequestAdapter.SendAsync<ServicePrincipal>(requestInfo, responseHandler, cancellationToken);
         }
         /// <summary>Get entities from servicePrincipals</summary>
         public class GetQueryParameters : QueryParametersBase {
