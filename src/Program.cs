@@ -1,4 +1,5 @@
 ﻿using System.CommandLine;
+using System.Threading.Tasks;
 
 namespace Microsoft.Graph.Cli
 {

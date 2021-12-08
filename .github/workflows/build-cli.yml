@@ -1,0 +1,31 @@
+name: "Build CLI"
+on: [push]
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    env:
+      NUGET_URL: https://nuget.pkg.github.com/microsoft/index.json
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Setup .NET Core SDK 6
+        uses: actions/setup-dotnet@v1
+        with:
+          dotnet-version: 6.x
+      - name: Add NuGet kiota source
+        # TODO: Add NUGET_USER and NUGET_PASSWORD secrets
+        # TODO: Add NUGET_URL to env
+        # NOTE: Password encryption is not supported for the linux platform (Encryption is only supported on Windows platforms.)
+        run: |
+          dotnet nuget add source ${{env.NUGET_URL}} -n github -u ${{secrets.NUGET_USER}} -p ${{secrets.NUGET_PASSWORD}} --store-password-in-clear-text
+      - uses: actions/cache@v2
+        with:
+          path: ~/.nuget/packages
+          # Look to see if there is a cache hit for the corresponding requirements file
+          key: ${{ runner.os }}-nuget-${{ hashFiles('**/packages.lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-nuget
+      - name: Install dependencies
+        run: dotnet restore
+      - name: Build
+        run: dotnet build --configuration Release --no-restore

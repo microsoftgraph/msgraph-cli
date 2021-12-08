@@ -1,0 +1,214 @@
+using ApiSdk.Agreements.Item.Files.Item.Versions;
+using ApiSdk.Models.Microsoft.Graph;
+using Microsoft.Kiota.Abstractions;
+using Microsoft.Kiota.Abstractions.Serialization;
+using System;
+using System.Collections.Generic;
+using System.CommandLine;
+using System.CommandLine.Invocation;
+using System.IO;
+using System.Linq;
+using System.Text;
+using System.Threading;
+using System.Threading.Tasks;
+namespace ApiSdk.Agreements.Item.Files.Item {
+    /// <summary>Builds and executes requests for operations under \agreements\{agreement-id}\files\{agreementFileLocalization-id}</summary>
+    public class AgreementFileLocalizationRequestBuilder {
+        /// <summary>Path parameters for the request</summary>
+        private Dictionary<string, object> PathParameters { get; set; }
+        /// <summary>The request adapter to use to execute the requests.</summary>
+        private IRequestAdapter RequestAdapter { get; set; }
+        /// <summary>Url template to use to build the URL for the current request builder</summary>
+        private string UrlTemplate { get; set; }
+        /// <summary>
+        /// PDFs linked to this agreement. This property is in the process of being deprecated. Use the  file property instead.
+        /// </summary>
+        public Command BuildDeleteCommand() {
+            var command = new Command("delete");
+            command.Description = "PDFs linked to this agreement. This property is in the process of being deprecated. Use the  file property instead.";
+            // Create options for all the parameters
+            command.AddOption(new Option<string>("--agreement-id", description: "key: id of agreement"));
+            command.AddOption(new Option<string>("--agreementfilelocalization-id", description: "key: id of agreementFileLocalization"));
+            command.Handler = CommandHandler.Create<string, string>(async (agreementId, agreementFileLocalizationId) => {
+                var requestInfo = CreateDeleteRequestInformation();
+                if (!String.IsNullOrEmpty(agreementId)) requestInfo.PathParameters.Add("agreement_id", agreementId);
+                if (!String.IsNullOrEmpty(agreementFileLocalizationId)) requestInfo.PathParameters.Add("agreementFileLocalization_id", agreementFileLocalizationId);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
+                // Print request output. What if the request has no return?
+                Console.WriteLine("Success");
+            });
+            return command;
+        }
+        /// <summary>
+        /// PDFs linked to this agreement. This property is in the process of being deprecated. Use the  file property instead.
+        /// </summary>
+        public Command BuildGetCommand() {
+            var command = new Command("get");
+            command.Description = "PDFs linked to this agreement. This property is in the process of being deprecated. Use the  file property instead.";
+            // Create options for all the parameters
+            command.AddOption(new Option<string>("--agreement-id", description: "key: id of agreement"));
+            command.AddOption(new Option<string>("--agreementfilelocalization-id", description: "key: id of agreementFileLocalization"));
+            command.AddOption(new Option<object>("--select", description: "Select properties to be returned"));
+            command.AddOption(new Option<object>("--expand", description: "Expand related entities"));
+            command.Handler = CommandHandler.Create<string, string, object, object>(async (agreementId, agreementFileLocalizationId, select, expand) => {
+                var requestInfo = CreateGetRequestInformation();
+                if (!String.IsNullOrEmpty(agreementId)) requestInfo.PathParameters.Add("agreement_id", agreementId);
+                if (!String.IsNullOrEmpty(agreementFileLocalizationId)) requestInfo.PathParameters.Add("agreementFileLocalization_id", agreementFileLocalizationId);
+                requestInfo.QueryParameters.Add("select", select);
+                requestInfo.QueryParameters.Add("expand", expand);
+                var result = await RequestAdapter.SendAsync<AgreementFileLocalization>(requestInfo);
+                // Print request output. What if the request has no return?
+                using var serializer = RequestAdapter.SerializationWriterFactory.GetSerializationWriter("application/json");
+                serializer.WriteObjectValue(null, result);
+                using var content = serializer.GetSerializedContent();
+                using var reader = new StreamReader(content);
+                var strContent = await reader.ReadToEndAsync();
+                Console.Write(strContent + "\n");
+            });
+            return command;
+        }
+        /// <summary>
+        /// PDFs linked to this agreement. This property is in the process of being deprecated. Use the  file property instead.
+        /// </summary>
+        public Command BuildPatchCommand() {
+            var command = new Command("patch");
+            command.Description = "PDFs linked to this agreement. This property is in the process of being deprecated. Use the  file property instead.";
+            // Create options for all the parameters
+            command.AddOption(new Option<string>("--agreement-id", description: "key: id of agreement"));
+            command.AddOption(new Option<string>("--agreementfilelocalization-id", description: "key: id of agreementFileLocalization"));
+            command.AddOption(new Option<string>("--body"));
+            command.Handler = CommandHandler.Create<string, string, string>(async (agreementId, agreementFileLocalizationId, body) => {
+                using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
+                var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
+                var model = parseNode.GetObjectValue<AgreementFileLocalization>();
+                var requestInfo = CreatePatchRequestInformation(model);
+                if (!String.IsNullOrEmpty(agreementId)) requestInfo.PathParameters.Add("agreement_id", agreementId);
+                if (!String.IsNullOrEmpty(agreementFileLocalizationId)) requestInfo.PathParameters.Add("agreementFileLocalization_id", agreementFileLocalizationId);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
+                // Print request output. What if the request has no return?
+                Console.WriteLine("Success");
+            });
+            return command;
+        }
+        public Command BuildVersionsCommand() {
+            var command = new Command("versions");
+            var builder = new ApiSdk.Agreements.Item.Files.Item.Versions.VersionsRequestBuilder(PathParameters, RequestAdapter);
+            foreach (var cmd in builder.BuildCommand()) {
+                command.AddCommand(cmd);
+            }
+            command.AddCommand(builder.BuildCreateCommand());
+            command.AddCommand(builder.BuildListCommand());
+            return command;
+        }
+        /// <summary>
+        /// Instantiates a new AgreementFileLocalizationRequestBuilder and sets the default values.
+        /// <param name="pathParameters">Path parameters for the request</param>
+        /// <param name="requestAdapter">The request adapter to use to execute the requests.</param>
+        /// </summary>
+        public AgreementFileLocalizationRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) {
+            _ = pathParameters ?? throw new ArgumentNullException(nameof(pathParameters));
+            _ = requestAdapter ?? throw new ArgumentNullException(nameof(requestAdapter));
+            UrlTemplate = "{+baseurl}/agreements/{agreement_id}/files/{agreementFileLocalization_id}{?select,expand}";
+            var urlTplParams = new Dictionary<string, object>(pathParameters);
+            PathParameters = urlTplParams;
+            RequestAdapter = requestAdapter;
+        }
+        /// <summary>
+        /// PDFs linked to this agreement. This property is in the process of being deprecated. Use the  file property instead.
+        /// <param name="h">Request headers</param>
+        /// <param name="o">Request options</param>
+        /// </summary>
+        public RequestInformation CreateDeleteRequestInformation(Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
+            var requestInfo = new RequestInformation {
+                HttpMethod = HttpMethod.DELETE,
+                UrlTemplate = UrlTemplate,
+                PathParameters = PathParameters,
+            };
+            h?.Invoke(requestInfo.Headers);
+            requestInfo.AddRequestOptions(o?.ToArray());
+            return requestInfo;
+        }
+        /// <summary>
+        /// PDFs linked to this agreement. This property is in the process of being deprecated. Use the  file property instead.
+        /// <param name="h">Request headers</param>
+        /// <param name="o">Request options</param>
+        /// <param name="q">Request query parameters</param>
+        /// </summary>
+        public RequestInformation CreateGetRequestInformation(Action<GetQueryParameters> q = default, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
+            var requestInfo = new RequestInformation {
+                HttpMethod = HttpMethod.GET,
+                UrlTemplate = UrlTemplate,
+                PathParameters = PathParameters,
+            };
+            if (q != null) {
+                var qParams = new GetQueryParameters();
+                q.Invoke(qParams);
+                qParams.AddQueryParameters(requestInfo.QueryParameters);
+            }
+            h?.Invoke(requestInfo.Headers);
+            requestInfo.AddRequestOptions(o?.ToArray());
+            return requestInfo;
+        }
+        /// <summary>
+        /// PDFs linked to this agreement. This property is in the process of being deprecated. Use the  file property instead.
+        /// <param name="body"></param>
+        /// <param name="h">Request headers</param>
+        /// <param name="o">Request options</param>
+        /// </summary>
+        public RequestInformation CreatePatchRequestInformation(AgreementFileLocalization body, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
+            _ = body ?? throw new ArgumentNullException(nameof(body));
+            var requestInfo = new RequestInformation {
+                HttpMethod = HttpMethod.PATCH,
+                UrlTemplate = UrlTemplate,
+                PathParameters = PathParameters,
+            };
+            requestInfo.SetContentFromParsable(RequestAdapter, "application/json", body);
+            h?.Invoke(requestInfo.Headers);
+            requestInfo.AddRequestOptions(o?.ToArray());
+            return requestInfo;
+        }
+        /// <summary>
+        /// PDFs linked to this agreement. This property is in the process of being deprecated. Use the  file property instead.
+        /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
+        /// <param name="h">Request headers</param>
+        /// <param name="o">Request options</param>
+        /// <param name="responseHandler">Response handler to use in place of the default response handling provided by the core service</param>
+        /// </summary>
+        public async Task DeleteAsync(Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default, CancellationToken cancellationToken = default) {
+            var requestInfo = CreateDeleteRequestInformation(h, o);
+            await RequestAdapter.SendNoContentAsync(requestInfo, responseHandler, cancellationToken);
+        }
+        /// <summary>
+        /// PDFs linked to this agreement. This property is in the process of being deprecated. Use the  file property instead.
+        /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
+        /// <param name="h">Request headers</param>
+        /// <param name="o">Request options</param>
+        /// <param name="q">Request query parameters</param>
+        /// <param name="responseHandler">Response handler to use in place of the default response handling provided by the core service</param>
+        /// </summary>
+        public async Task<AgreementFileLocalization> GetAsync(Action<GetQueryParameters> q = default, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default, CancellationToken cancellationToken = default) {
+            var requestInfo = CreateGetRequestInformation(q, h, o);
+            return await RequestAdapter.SendAsync<AgreementFileLocalization>(requestInfo, responseHandler, cancellationToken);
+        }
+        /// <summary>
+        /// PDFs linked to this agreement. This property is in the process of being deprecated. Use the  file property instead.
+        /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
+        /// <param name="h">Request headers</param>
+        /// <param name="model"></param>
+        /// <param name="o">Request options</param>
+        /// <param name="responseHandler">Response handler to use in place of the default response handling provided by the core service</param>
+        /// </summary>
+        public async Task PatchAsync(AgreementFileLocalization model, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default, CancellationToken cancellationToken = default) {
+            _ = model ?? throw new ArgumentNullException(nameof(model));
+            var requestInfo = CreatePatchRequestInformation(model, h, o);
+            await RequestAdapter.SendNoContentAsync(requestInfo, responseHandler, cancellationToken);
+        }
+        /// <summary>PDFs linked to this agreement. This property is in the process of being deprecated. Use the  file property instead.</summary>
+        public class GetQueryParameters : QueryParametersBase {
+            /// <summary>Expand related entities</summary>
+            public string[] Expand { get; set; }
+            /// <summary>Select properties to be returned</summary>
+            public string[] Select { get; set; }
+        }
+    }
+}
