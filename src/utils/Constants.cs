@@ -1,3 +1,5 @@
+using Microsoft.Graph.Cli.Authentication;
+
 namespace Microsoft.Graph.Cli.Utils
 {
     class Constants
@@ -5,6 +7,8 @@ namespace Microsoft.Graph.Cli.Utils
         public const string AuthRecordPath = "authRecord";
 
         public const string TokenCacheName = "MicrosoftGraph";
+
+        public const AuthenticationStrategy defaultAuthStrategy = AuthenticationStrategy.DeviceCode;
 
         public const string ClientId = "f645f5f8-2332-496d-9d85-e714b1192f0c";
 

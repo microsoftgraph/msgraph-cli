@@ -24,9 +24,8 @@ namespace Microsoft.Graph.Cli
             var rootCommand = client.BuildCommand();
             rootCommand.Description = "Microsoft Graph CLI";
 
-            var authenticationService = await authServiceFactory.GetAuthenticationServiceAsync(authStrategy, persistToken);
-            var loginCommand = new LoginCommand(authenticationService);
-            rootCommand.AddCommand(loginCommand.Build());
+            var loginCommand = new LoginCommand(authServiceFactory);
+            rootCommand.AddCommand(loginCommand.Build(persistToken));
             return await rootCommand.InvokeAsync(args);
         }
     }
