@@ -14,9 +14,8 @@ namespace Microsoft.Graph.Cli
         static async Task<int> Main(string[] args) {
             var authServiceFactory = new AuthenticationServiceFactory();
             var authStrategy = AuthenticationStrategy.DeviceCode;
-            var persistToken = true;
 
-            var credential = await authServiceFactory.GetTokenCredentialAsync(authStrategy, persistToken);
+            var credential = await authServiceFactory.GetTokenCredentialAsync(authStrategy);
             var authProvider = new AzureIdentityAuthenticationProvider(credential);
             var core = new HttpClientRequestAdapter(authProvider);
             var client = new GraphClient(core);
@@ -25,7 +24,7 @@ namespace Microsoft.Graph.Cli
             rootCommand.Description = "Microsoft Graph CLI";
 
             var loginCommand = new LoginCommand(authServiceFactory);
-            rootCommand.AddCommand(loginCommand.Build(persistToken));
+            rootCommand.AddCommand(loginCommand.Build());
             return await rootCommand.InvokeAsync(args);
         }
     }

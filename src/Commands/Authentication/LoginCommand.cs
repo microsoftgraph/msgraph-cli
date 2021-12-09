@@ -13,7 +13,7 @@ class LoginCommand
         this.authenticationServiceFactory = authenticationServiceFactory;
     }
 
-    public Command Build(bool persistToken = false) {
+    public Command Build() {
         var loginCommand = new Command("login", "Login and store the session for use in subsequent commands");
         var scopes = new Option<string>("--scopes", "The login scopes e.g. User.Read");
         scopes.IsRequired = true;
@@ -25,7 +25,7 @@ class LoginCommand
 
         loginCommand.Handler = CommandHandler.Create<string[], AuthenticationStrategy>(async (scopes, strategy) =>
         {
-            var authService = await this.authenticationServiceFactory.GetAuthenticationServiceAsync(strategy, persistToken);
+            var authService = await this.authenticationServiceFactory.GetAuthenticationServiceAsync(strategy);
             await authService.LoginAsync(scopes);
         });
 
