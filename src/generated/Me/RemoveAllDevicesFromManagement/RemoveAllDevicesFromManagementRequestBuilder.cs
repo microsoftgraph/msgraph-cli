@@ -26,7 +26,8 @@ namespace ApiSdk.Me.RemoveAllDevicesFromManagement {
             command.Description = "Retire all devices from management for this user";
             // Create options for all the parameters
             command.Handler = CommandHandler.Create(async () => {
-                var requestInfo = CreatePostRequestInformation();
+                var requestInfo = CreatePostRequestInformation(q => {
+                });
                 await RequestAdapter.SendNoContentAsync(requestInfo);
                 // Print request output. What if the request has no return?
                 Console.WriteLine("Success");

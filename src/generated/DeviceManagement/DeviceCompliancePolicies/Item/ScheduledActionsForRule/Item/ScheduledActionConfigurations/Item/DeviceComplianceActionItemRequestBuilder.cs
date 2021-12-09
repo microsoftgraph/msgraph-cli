@@ -26,14 +26,18 @@ namespace ApiSdk.DeviceManagement.DeviceCompliancePolicies.Item.ScheduledActions
             var command = new Command("delete");
             command.Description = "The list of scheduled action configurations for this compliance policy. Compliance policy must have one and only one block scheduled action.";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--devicecompliancepolicy-id", description: "key: id of deviceCompliancePolicy"));
-            command.AddOption(new Option<string>("--devicecompliancescheduledactionforrule-id", description: "key: id of deviceComplianceScheduledActionForRule"));
-            command.AddOption(new Option<string>("--devicecomplianceactionitem-id", description: "key: id of deviceComplianceActionItem"));
+            var deviceCompliancePolicyIdOption = new Option<string>("--devicecompliancepolicy-id", description: "key: id of deviceCompliancePolicy");
+            deviceCompliancePolicyIdOption.IsRequired = true;
+            command.AddOption(deviceCompliancePolicyIdOption);
+            var deviceComplianceScheduledActionForRuleIdOption = new Option<string>("--devicecompliancescheduledactionforrule-id", description: "key: id of deviceComplianceScheduledActionForRule");
+            deviceComplianceScheduledActionForRuleIdOption.IsRequired = true;
+            command.AddOption(deviceComplianceScheduledActionForRuleIdOption);
+            var deviceComplianceActionItemIdOption = new Option<string>("--devicecomplianceactionitem-id", description: "key: id of deviceComplianceActionItem");
+            deviceComplianceActionItemIdOption.IsRequired = true;
+            command.AddOption(deviceComplianceActionItemIdOption);
             command.Handler = CommandHandler.Create<string, string, string>(async (deviceCompliancePolicyId, deviceComplianceScheduledActionForRuleId, deviceComplianceActionItemId) => {
-                var requestInfo = CreateDeleteRequestInformation();
-                if (!String.IsNullOrEmpty(deviceCompliancePolicyId)) requestInfo.PathParameters.Add("deviceCompliancePolicy_id", deviceCompliancePolicyId);
-                if (!String.IsNullOrEmpty(deviceComplianceScheduledActionForRuleId)) requestInfo.PathParameters.Add("deviceComplianceScheduledActionForRule_id", deviceComplianceScheduledActionForRuleId);
-                if (!String.IsNullOrEmpty(deviceComplianceActionItemId)) requestInfo.PathParameters.Add("deviceComplianceActionItem_id", deviceComplianceActionItemId);
+                var requestInfo = CreateDeleteRequestInformation(q => {
+                });
                 await RequestAdapter.SendNoContentAsync(requestInfo);
                 // Print request output. What if the request has no return?
                 Console.WriteLine("Success");
@@ -47,18 +51,28 @@ namespace ApiSdk.DeviceManagement.DeviceCompliancePolicies.Item.ScheduledActions
             var command = new Command("get");
             command.Description = "The list of scheduled action configurations for this compliance policy. Compliance policy must have one and only one block scheduled action.";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--devicecompliancepolicy-id", description: "key: id of deviceCompliancePolicy"));
-            command.AddOption(new Option<string>("--devicecompliancescheduledactionforrule-id", description: "key: id of deviceComplianceScheduledActionForRule"));
-            command.AddOption(new Option<string>("--devicecomplianceactionitem-id", description: "key: id of deviceComplianceActionItem"));
-            command.AddOption(new Option<object>("--select", description: "Select properties to be returned"));
-            command.AddOption(new Option<object>("--expand", description: "Expand related entities"));
-            command.Handler = CommandHandler.Create<string, string, string, object, object>(async (deviceCompliancePolicyId, deviceComplianceScheduledActionForRuleId, deviceComplianceActionItemId, select, expand) => {
-                var requestInfo = CreateGetRequestInformation();
-                if (!String.IsNullOrEmpty(deviceCompliancePolicyId)) requestInfo.PathParameters.Add("deviceCompliancePolicy_id", deviceCompliancePolicyId);
-                if (!String.IsNullOrEmpty(deviceComplianceScheduledActionForRuleId)) requestInfo.PathParameters.Add("deviceComplianceScheduledActionForRule_id", deviceComplianceScheduledActionForRuleId);
-                if (!String.IsNullOrEmpty(deviceComplianceActionItemId)) requestInfo.PathParameters.Add("deviceComplianceActionItem_id", deviceComplianceActionItemId);
-                requestInfo.QueryParameters.Add("select", select);
-                requestInfo.QueryParameters.Add("expand", expand);
+            var deviceCompliancePolicyIdOption = new Option<string>("--devicecompliancepolicy-id", description: "key: id of deviceCompliancePolicy");
+            deviceCompliancePolicyIdOption.IsRequired = true;
+            command.AddOption(deviceCompliancePolicyIdOption);
+            var deviceComplianceScheduledActionForRuleIdOption = new Option<string>("--devicecompliancescheduledactionforrule-id", description: "key: id of deviceComplianceScheduledActionForRule");
+            deviceComplianceScheduledActionForRuleIdOption.IsRequired = true;
+            command.AddOption(deviceComplianceScheduledActionForRuleIdOption);
+            var deviceComplianceActionItemIdOption = new Option<string>("--devicecomplianceactionitem-id", description: "key: id of deviceComplianceActionItem");
+            deviceComplianceActionItemIdOption.IsRequired = true;
+            command.AddOption(deviceComplianceActionItemIdOption);
+            var selectOption = new Option<string[]>("--select", description: "Select properties to be returned");
+            selectOption.IsRequired = false;
+            selectOption.Arity = ArgumentArity.ZeroOrMore;
+            command.AddOption(selectOption);
+            var expandOption = new Option<string[]>("--expand", description: "Expand related entities");
+            expandOption.IsRequired = false;
+            expandOption.Arity = ArgumentArity.ZeroOrMore;
+            command.AddOption(expandOption);
+            command.Handler = CommandHandler.Create<string, string, string, string[], string[]>(async (deviceCompliancePolicyId, deviceComplianceScheduledActionForRuleId, deviceComplianceActionItemId, select, expand) => {
+                var requestInfo = CreateGetRequestInformation(q => {
+                    q.Select = select;
+                    q.Expand = expand;
+                });
                 var result = await RequestAdapter.SendAsync<DeviceComplianceActionItem>(requestInfo);
                 // Print request output. What if the request has no return?
                 using var serializer = RequestAdapter.SerializationWriterFactory.GetSerializationWriter("application/json");
@@ -77,18 +91,24 @@ namespace ApiSdk.DeviceManagement.DeviceCompliancePolicies.Item.ScheduledActions
             var command = new Command("patch");
             command.Description = "The list of scheduled action configurations for this compliance policy. Compliance policy must have one and only one block scheduled action.";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--devicecompliancepolicy-id", description: "key: id of deviceCompliancePolicy"));
-            command.AddOption(new Option<string>("--devicecompliancescheduledactionforrule-id", description: "key: id of deviceComplianceScheduledActionForRule"));
-            command.AddOption(new Option<string>("--devicecomplianceactionitem-id", description: "key: id of deviceComplianceActionItem"));
-            command.AddOption(new Option<string>("--body"));
+            var deviceCompliancePolicyIdOption = new Option<string>("--devicecompliancepolicy-id", description: "key: id of deviceCompliancePolicy");
+            deviceCompliancePolicyIdOption.IsRequired = true;
+            command.AddOption(deviceCompliancePolicyIdOption);
+            var deviceComplianceScheduledActionForRuleIdOption = new Option<string>("--devicecompliancescheduledactionforrule-id", description: "key: id of deviceComplianceScheduledActionForRule");
+            deviceComplianceScheduledActionForRuleIdOption.IsRequired = true;
+            command.AddOption(deviceComplianceScheduledActionForRuleIdOption);
+            var deviceComplianceActionItemIdOption = new Option<string>("--devicecomplianceactionitem-id", description: "key: id of deviceComplianceActionItem");
+            deviceComplianceActionItemIdOption.IsRequired = true;
+            command.AddOption(deviceComplianceActionItemIdOption);
+            var bodyOption = new Option<string>("--body");
+            bodyOption.IsRequired = true;
+            command.AddOption(bodyOption);
             command.Handler = CommandHandler.Create<string, string, string, string>(async (deviceCompliancePolicyId, deviceComplianceScheduledActionForRuleId, deviceComplianceActionItemId, body) => {
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<DeviceComplianceActionItem>();
-                var requestInfo = CreatePatchRequestInformation(model);
-                if (!String.IsNullOrEmpty(deviceCompliancePolicyId)) requestInfo.PathParameters.Add("deviceCompliancePolicy_id", deviceCompliancePolicyId);
-                if (!String.IsNullOrEmpty(deviceComplianceScheduledActionForRuleId)) requestInfo.PathParameters.Add("deviceComplianceScheduledActionForRule_id", deviceComplianceScheduledActionForRuleId);
-                if (!String.IsNullOrEmpty(deviceComplianceActionItemId)) requestInfo.PathParameters.Add("deviceComplianceActionItem_id", deviceComplianceActionItemId);
+                var requestInfo = CreatePatchRequestInformation(model, q => {
+                });
                 await RequestAdapter.SendNoContentAsync(requestInfo);
                 // Print request output. What if the request has no return?
                 Console.WriteLine("Success");

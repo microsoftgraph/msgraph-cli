@@ -34,12 +34,15 @@ namespace ApiSdk.Groups.Item.Photos.Item {
             var command = new Command("delete");
             command.Description = "The profile photos owned by the group. Read-only. Nullable.";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--group-id", description: "key: id of group"));
-            command.AddOption(new Option<string>("--profilephoto-id", description: "key: id of profilePhoto"));
+            var groupIdOption = new Option<string>("--group-id", description: "key: id of group");
+            groupIdOption.IsRequired = true;
+            command.AddOption(groupIdOption);
+            var profilePhotoIdOption = new Option<string>("--profilephoto-id", description: "key: id of profilePhoto");
+            profilePhotoIdOption.IsRequired = true;
+            command.AddOption(profilePhotoIdOption);
             command.Handler = CommandHandler.Create<string, string>(async (groupId, profilePhotoId) => {
-                var requestInfo = CreateDeleteRequestInformation();
-                if (!String.IsNullOrEmpty(groupId)) requestInfo.PathParameters.Add("group_id", groupId);
-                if (!String.IsNullOrEmpty(profilePhotoId)) requestInfo.PathParameters.Add("profilePhoto_id", profilePhotoId);
+                var requestInfo = CreateDeleteRequestInformation(q => {
+                });
                 await RequestAdapter.SendNoContentAsync(requestInfo);
                 // Print request output. What if the request has no return?
                 Console.WriteLine("Success");
@@ -53,14 +56,20 @@ namespace ApiSdk.Groups.Item.Photos.Item {
             var command = new Command("get");
             command.Description = "The profile photos owned by the group. Read-only. Nullable.";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--group-id", description: "key: id of group"));
-            command.AddOption(new Option<string>("--profilephoto-id", description: "key: id of profilePhoto"));
-            command.AddOption(new Option<object>("--select", description: "Select properties to be returned"));
-            command.Handler = CommandHandler.Create<string, string, object>(async (groupId, profilePhotoId, select) => {
-                var requestInfo = CreateGetRequestInformation();
-                if (!String.IsNullOrEmpty(groupId)) requestInfo.PathParameters.Add("group_id", groupId);
-                if (!String.IsNullOrEmpty(profilePhotoId)) requestInfo.PathParameters.Add("profilePhoto_id", profilePhotoId);
-                requestInfo.QueryParameters.Add("select", select);
+            var groupIdOption = new Option<string>("--group-id", description: "key: id of group");
+            groupIdOption.IsRequired = true;
+            command.AddOption(groupIdOption);
+            var profilePhotoIdOption = new Option<string>("--profilephoto-id", description: "key: id of profilePhoto");
+            profilePhotoIdOption.IsRequired = true;
+            command.AddOption(profilePhotoIdOption);
+            var selectOption = new Option<string[]>("--select", description: "Select properties to be returned");
+            selectOption.IsRequired = false;
+            selectOption.Arity = ArgumentArity.ZeroOrMore;
+            command.AddOption(selectOption);
+            command.Handler = CommandHandler.Create<string, string, string[]>(async (groupId, profilePhotoId, select) => {
+                var requestInfo = CreateGetRequestInformation(q => {
+                    q.Select = select;
+                });
                 var result = await RequestAdapter.SendAsync<ProfilePhoto>(requestInfo);
                 // Print request output. What if the request has no return?
                 using var serializer = RequestAdapter.SerializationWriterFactory.GetSerializationWriter("application/json");
@@ -79,16 +88,21 @@ namespace ApiSdk.Groups.Item.Photos.Item {
             var command = new Command("patch");
             command.Description = "The profile photos owned by the group. Read-only. Nullable.";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--group-id", description: "key: id of group"));
-            command.AddOption(new Option<string>("--profilephoto-id", description: "key: id of profilePhoto"));
-            command.AddOption(new Option<string>("--body"));
+            var groupIdOption = new Option<string>("--group-id", description: "key: id of group");
+            groupIdOption.IsRequired = true;
+            command.AddOption(groupIdOption);
+            var profilePhotoIdOption = new Option<string>("--profilephoto-id", description: "key: id of profilePhoto");
+            profilePhotoIdOption.IsRequired = true;
+            command.AddOption(profilePhotoIdOption);
+            var bodyOption = new Option<string>("--body");
+            bodyOption.IsRequired = true;
+            command.AddOption(bodyOption);
             command.Handler = CommandHandler.Create<string, string, string>(async (groupId, profilePhotoId, body) => {
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<ProfilePhoto>();
-                var requestInfo = CreatePatchRequestInformation(model);
-                if (!String.IsNullOrEmpty(groupId)) requestInfo.PathParameters.Add("group_id", groupId);
-                if (!String.IsNullOrEmpty(profilePhotoId)) requestInfo.PathParameters.Add("profilePhoto_id", profilePhotoId);
+                var requestInfo = CreatePatchRequestInformation(model, q => {
+                });
                 await RequestAdapter.SendNoContentAsync(requestInfo);
                 // Print request output. What if the request has no return?
                 Console.WriteLine("Success");

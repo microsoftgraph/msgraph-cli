@@ -26,10 +26,12 @@ namespace ApiSdk.Planner.Plans.Item.Details {
             var command = new Command("delete");
             command.Description = "Read-only. Nullable. Additional details about the plan.";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--plannerplan-id", description: "key: id of plannerPlan"));
+            var plannerPlanIdOption = new Option<string>("--plannerplan-id", description: "key: id of plannerPlan");
+            plannerPlanIdOption.IsRequired = true;
+            command.AddOption(plannerPlanIdOption);
             command.Handler = CommandHandler.Create<string>(async (plannerPlanId) => {
-                var requestInfo = CreateDeleteRequestInformation();
-                if (!String.IsNullOrEmpty(plannerPlanId)) requestInfo.PathParameters.Add("plannerPlan_id", plannerPlanId);
+                var requestInfo = CreateDeleteRequestInformation(q => {
+                });
                 await RequestAdapter.SendNoContentAsync(requestInfo);
                 // Print request output. What if the request has no return?
                 Console.WriteLine("Success");
@@ -43,14 +45,22 @@ namespace ApiSdk.Planner.Plans.Item.Details {
             var command = new Command("get");
             command.Description = "Read-only. Nullable. Additional details about the plan.";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--plannerplan-id", description: "key: id of plannerPlan"));
-            command.AddOption(new Option<object>("--select", description: "Select properties to be returned"));
-            command.AddOption(new Option<object>("--expand", description: "Expand related entities"));
-            command.Handler = CommandHandler.Create<string, object, object>(async (plannerPlanId, select, expand) => {
-                var requestInfo = CreateGetRequestInformation();
-                if (!String.IsNullOrEmpty(plannerPlanId)) requestInfo.PathParameters.Add("plannerPlan_id", plannerPlanId);
-                requestInfo.QueryParameters.Add("select", select);
-                requestInfo.QueryParameters.Add("expand", expand);
+            var plannerPlanIdOption = new Option<string>("--plannerplan-id", description: "key: id of plannerPlan");
+            plannerPlanIdOption.IsRequired = true;
+            command.AddOption(plannerPlanIdOption);
+            var selectOption = new Option<string[]>("--select", description: "Select properties to be returned");
+            selectOption.IsRequired = false;
+            selectOption.Arity = ArgumentArity.ZeroOrMore;
+            command.AddOption(selectOption);
+            var expandOption = new Option<string[]>("--expand", description: "Expand related entities");
+            expandOption.IsRequired = false;
+            expandOption.Arity = ArgumentArity.ZeroOrMore;
+            command.AddOption(expandOption);
+            command.Handler = CommandHandler.Create<string, string[], string[]>(async (plannerPlanId, select, expand) => {
+                var requestInfo = CreateGetRequestInformation(q => {
+                    q.Select = select;
+                    q.Expand = expand;
+                });
                 var result = await RequestAdapter.SendAsync<PlannerPlanDetails>(requestInfo);
                 // Print request output. What if the request has no return?
                 using var serializer = RequestAdapter.SerializationWriterFactory.GetSerializationWriter("application/json");
@@ -69,14 +79,18 @@ namespace ApiSdk.Planner.Plans.Item.Details {
             var command = new Command("patch");
             command.Description = "Read-only. Nullable. Additional details about the plan.";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--plannerplan-id", description: "key: id of plannerPlan"));
-            command.AddOption(new Option<string>("--body"));
+            var plannerPlanIdOption = new Option<string>("--plannerplan-id", description: "key: id of plannerPlan");
+            plannerPlanIdOption.IsRequired = true;
+            command.AddOption(plannerPlanIdOption);
+            var bodyOption = new Option<string>("--body");
+            bodyOption.IsRequired = true;
+            command.AddOption(bodyOption);
             command.Handler = CommandHandler.Create<string, string>(async (plannerPlanId, body) => {
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<PlannerPlanDetails>();
-                var requestInfo = CreatePatchRequestInformation(model);
-                if (!String.IsNullOrEmpty(plannerPlanId)) requestInfo.PathParameters.Add("plannerPlan_id", plannerPlanId);
+                var requestInfo = CreatePatchRequestInformation(model, q => {
+                });
                 await RequestAdapter.SendNoContentAsync(requestInfo);
                 // Print request output. What if the request has no return?
                 Console.WriteLine("Success");

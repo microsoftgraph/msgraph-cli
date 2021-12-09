@@ -25,10 +25,12 @@ namespace ApiSdk.Print.Shares.Item.Printer.RestoreFactoryDefaults {
             var command = new Command("post");
             command.Description = "Invoke action restoreFactoryDefaults";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--printershare-id", description: "key: id of printerShare"));
+            var printerShareIdOption = new Option<string>("--printershare-id", description: "key: id of printerShare");
+            printerShareIdOption.IsRequired = true;
+            command.AddOption(printerShareIdOption);
             command.Handler = CommandHandler.Create<string>(async (printerShareId) => {
-                var requestInfo = CreatePostRequestInformation();
-                if (!String.IsNullOrEmpty(printerShareId)) requestInfo.PathParameters.Add("printerShare_id", printerShareId);
+                var requestInfo = CreatePostRequestInformation(q => {
+                });
                 await RequestAdapter.SendNoContentAsync(requestInfo);
                 // Print request output. What if the request has no return?
                 Console.WriteLine("Success");

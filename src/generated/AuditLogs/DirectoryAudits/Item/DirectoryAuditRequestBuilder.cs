@@ -26,10 +26,12 @@ namespace ApiSdk.AuditLogs.DirectoryAudits.Item {
             var command = new Command("delete");
             command.Description = "Read-only. Nullable.";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--directoryaudit-id", description: "key: id of directoryAudit"));
+            var directoryAuditIdOption = new Option<string>("--directoryaudit-id", description: "key: id of directoryAudit");
+            directoryAuditIdOption.IsRequired = true;
+            command.AddOption(directoryAuditIdOption);
             command.Handler = CommandHandler.Create<string>(async (directoryAuditId) => {
-                var requestInfo = CreateDeleteRequestInformation();
-                if (!String.IsNullOrEmpty(directoryAuditId)) requestInfo.PathParameters.Add("directoryAudit_id", directoryAuditId);
+                var requestInfo = CreateDeleteRequestInformation(q => {
+                });
                 await RequestAdapter.SendNoContentAsync(requestInfo);
                 // Print request output. What if the request has no return?
                 Console.WriteLine("Success");
@@ -43,14 +45,22 @@ namespace ApiSdk.AuditLogs.DirectoryAudits.Item {
             var command = new Command("get");
             command.Description = "Read-only. Nullable.";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--directoryaudit-id", description: "key: id of directoryAudit"));
-            command.AddOption(new Option<object>("--select", description: "Select properties to be returned"));
-            command.AddOption(new Option<object>("--expand", description: "Expand related entities"));
-            command.Handler = CommandHandler.Create<string, object, object>(async (directoryAuditId, select, expand) => {
-                var requestInfo = CreateGetRequestInformation();
-                if (!String.IsNullOrEmpty(directoryAuditId)) requestInfo.PathParameters.Add("directoryAudit_id", directoryAuditId);
-                requestInfo.QueryParameters.Add("select", select);
-                requestInfo.QueryParameters.Add("expand", expand);
+            var directoryAuditIdOption = new Option<string>("--directoryaudit-id", description: "key: id of directoryAudit");
+            directoryAuditIdOption.IsRequired = true;
+            command.AddOption(directoryAuditIdOption);
+            var selectOption = new Option<string[]>("--select", description: "Select properties to be returned");
+            selectOption.IsRequired = false;
+            selectOption.Arity = ArgumentArity.ZeroOrMore;
+            command.AddOption(selectOption);
+            var expandOption = new Option<string[]>("--expand", description: "Expand related entities");
+            expandOption.IsRequired = false;
+            expandOption.Arity = ArgumentArity.ZeroOrMore;
+            command.AddOption(expandOption);
+            command.Handler = CommandHandler.Create<string, string[], string[]>(async (directoryAuditId, select, expand) => {
+                var requestInfo = CreateGetRequestInformation(q => {
+                    q.Select = select;
+                    q.Expand = expand;
+                });
                 var result = await RequestAdapter.SendAsync<DirectoryAudit>(requestInfo);
                 // Print request output. What if the request has no return?
                 using var serializer = RequestAdapter.SerializationWriterFactory.GetSerializationWriter("application/json");
@@ -69,14 +79,18 @@ namespace ApiSdk.AuditLogs.DirectoryAudits.Item {
             var command = new Command("patch");
             command.Description = "Read-only. Nullable.";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--directoryaudit-id", description: "key: id of directoryAudit"));
-            command.AddOption(new Option<string>("--body"));
+            var directoryAuditIdOption = new Option<string>("--directoryaudit-id", description: "key: id of directoryAudit");
+            directoryAuditIdOption.IsRequired = true;
+            command.AddOption(directoryAuditIdOption);
+            var bodyOption = new Option<string>("--body");
+            bodyOption.IsRequired = true;
+            command.AddOption(bodyOption);
             command.Handler = CommandHandler.Create<string, string>(async (directoryAuditId, body) => {
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<DirectoryAudit>();
-                var requestInfo = CreatePatchRequestInformation(model);
-                if (!String.IsNullOrEmpty(directoryAuditId)) requestInfo.PathParameters.Add("directoryAudit_id", directoryAuditId);
+                var requestInfo = CreatePatchRequestInformation(model, q => {
+                });
                 await RequestAdapter.SendNoContentAsync(requestInfo);
                 // Print request output. What if the request has no return?
                 Console.WriteLine("Success");

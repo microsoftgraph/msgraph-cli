@@ -25,11 +25,13 @@ namespace ApiSdk.Me.Photos.Item.Value {
             var command = new Command("get");
             command.Description = "Get media content for the navigation property photos from me";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--profilephoto-id", description: "key: id of profilePhoto"));
+            var profilePhotoIdOption = new Option<string>("--profilephoto-id", description: "key: id of profilePhoto");
+            profilePhotoIdOption.IsRequired = true;
+            command.AddOption(profilePhotoIdOption);
             command.AddOption(new Option<FileInfo>("--output"));
             command.Handler = CommandHandler.Create<string, FileInfo>(async (profilePhotoId, output) => {
-                var requestInfo = CreateGetRequestInformation();
-                if (!String.IsNullOrEmpty(profilePhotoId)) requestInfo.PathParameters.Add("profilePhoto_id", profilePhotoId);
+                var requestInfo = CreateGetRequestInformation(q => {
+                });
                 var result = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 // Print request output. What if the request has no return?
                 if (output == null) {
@@ -52,12 +54,16 @@ namespace ApiSdk.Me.Photos.Item.Value {
             var command = new Command("put");
             command.Description = "Update media content for the navigation property photos in me";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--profilephoto-id", description: "key: id of profilePhoto"));
-            command.AddOption(new Option<Stream>("--file", description: "Binary request body"));
+            var profilePhotoIdOption = new Option<string>("--profilephoto-id", description: "key: id of profilePhoto");
+            profilePhotoIdOption.IsRequired = true;
+            command.AddOption(profilePhotoIdOption);
+            var fileOption = new Option<Stream>("--file", description: "Binary request body");
+            fileOption.IsRequired = true;
+            command.AddOption(fileOption);
             command.Handler = CommandHandler.Create<string, FileInfo>(async (profilePhotoId, file) => {
                 using var stream = file.OpenRead();
-                var requestInfo = CreatePutRequestInformation(stream);
-                if (!String.IsNullOrEmpty(profilePhotoId)) requestInfo.PathParameters.Add("profilePhoto_id", profilePhotoId);
+                var requestInfo = CreatePutRequestInformation(stream, q => {
+                });
                 await RequestAdapter.SendNoContentAsync(requestInfo);
                 // Print request output. What if the request has no return?
                 Console.WriteLine("Success");

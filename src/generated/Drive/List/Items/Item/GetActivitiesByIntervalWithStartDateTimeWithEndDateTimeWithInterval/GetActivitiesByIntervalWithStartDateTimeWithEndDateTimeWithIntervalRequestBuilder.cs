@@ -25,16 +25,21 @@ namespace ApiSdk.Drive.List.Items.Item.GetActivitiesByIntervalWithStartDateTimeW
             var command = new Command("get");
             command.Description = "Invoke function getActivitiesByInterval";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--listitem-id", description: "key: id of listItem"));
-            command.AddOption(new Option<string>("--startdatetime", description: "Usage: startDateTime={startDateTime}"));
-            command.AddOption(new Option<string>("--enddatetime", description: "Usage: endDateTime={endDateTime}"));
-            command.AddOption(new Option<string>("--interval", description: "Usage: interval={interval}"));
+            var listItemIdOption = new Option<string>("--listitem-id", description: "key: id of listItem");
+            listItemIdOption.IsRequired = true;
+            command.AddOption(listItemIdOption);
+            var startDateTimeOption = new Option<string>("--startdatetime", description: "Usage: startDateTime={startDateTime}");
+            startDateTimeOption.IsRequired = true;
+            command.AddOption(startDateTimeOption);
+            var endDateTimeOption = new Option<string>("--enddatetime", description: "Usage: endDateTime={endDateTime}");
+            endDateTimeOption.IsRequired = true;
+            command.AddOption(endDateTimeOption);
+            var intervalOption = new Option<string>("--interval", description: "Usage: interval={interval}");
+            intervalOption.IsRequired = true;
+            command.AddOption(intervalOption);
             command.Handler = CommandHandler.Create<string, string, string, string>(async (listItemId, startDateTime, endDateTime, interval) => {
-                var requestInfo = CreateGetRequestInformation();
-                if (!String.IsNullOrEmpty(listItemId)) requestInfo.PathParameters.Add("listItem_id", listItemId);
-                if (!String.IsNullOrEmpty(startDateTime)) requestInfo.PathParameters.Add("startDateTime", startDateTime);
-                if (!String.IsNullOrEmpty(endDateTime)) requestInfo.PathParameters.Add("endDateTime", endDateTime);
-                if (!String.IsNullOrEmpty(interval)) requestInfo.PathParameters.Add("interval", interval);
+                var requestInfo = CreateGetRequestInformation(q => {
+                });
                 var result = await RequestAdapter.SendCollectionAsync<ApiSdk.Drive.List.Items.Item.GetActivitiesByIntervalWithStartDateTimeWithEndDateTimeWithInterval.GetActivitiesByIntervalWithStartDateTimeWithEndDateTimeWithInterval>(requestInfo);
                 // Print request output. What if the request has no return?
                 using var serializer = RequestAdapter.SerializationWriterFactory.GetSerializationWriter("application/json");

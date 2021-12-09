@@ -25,14 +25,18 @@ namespace ApiSdk.Reports.GetGroupArchivedPrintJobsWithGroupIdWithStartDateTimeWi
             var command = new Command("get");
             command.Description = "Invoke function getGroupArchivedPrintJobs";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--groupid", description: "Usage: groupId={groupId}"));
-            command.AddOption(new Option<DateTimeOffset?>("--startdatetime", description: "Usage: startDateTime={startDateTime}"));
-            command.AddOption(new Option<DateTimeOffset?>("--enddatetime", description: "Usage: endDateTime={endDateTime}"));
-            command.Handler = CommandHandler.Create<string, DateTimeOffset?, DateTimeOffset?>(async (groupId, startDateTime, endDateTime) => {
-                var requestInfo = CreateGetRequestInformation();
-                if (!String.IsNullOrEmpty(groupId)) requestInfo.PathParameters.Add("groupId", groupId);
-                requestInfo.PathParameters.Add("startDateTime", startDateTime);
-                requestInfo.PathParameters.Add("endDateTime", endDateTime);
+            var groupIdOption = new Option<string>("--groupid", description: "Usage: groupId={groupId}");
+            groupIdOption.IsRequired = true;
+            command.AddOption(groupIdOption);
+            var startDateTimeOption = new Option<string>("--startdatetime", description: "Usage: startDateTime={startDateTime}");
+            startDateTimeOption.IsRequired = true;
+            command.AddOption(startDateTimeOption);
+            var endDateTimeOption = new Option<string>("--enddatetime", description: "Usage: endDateTime={endDateTime}");
+            endDateTimeOption.IsRequired = true;
+            command.AddOption(endDateTimeOption);
+            command.Handler = CommandHandler.Create<string, string, string>(async (groupId, startDateTime, endDateTime) => {
+                var requestInfo = CreateGetRequestInformation(q => {
+                });
                 var result = await RequestAdapter.SendCollectionAsync<ApiSdk.Reports.GetGroupArchivedPrintJobsWithGroupIdWithStartDateTimeWithEndDateTime.GetGroupArchivedPrintJobsWithGroupIdWithStartDateTimeWithEndDateTime>(requestInfo);
                 // Print request output. What if the request has no return?
                 using var serializer = RequestAdapter.SerializationWriterFactory.GetSerializationWriter("application/json");

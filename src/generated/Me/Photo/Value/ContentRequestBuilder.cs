@@ -27,7 +27,8 @@ namespace ApiSdk.Me.Photo.Value {
             // Create options for all the parameters
             command.AddOption(new Option<FileInfo>("--output"));
             command.Handler = CommandHandler.Create<FileInfo>(async (output) => {
-                var requestInfo = CreateGetRequestInformation();
+                var requestInfo = CreateGetRequestInformation(q => {
+                });
                 var result = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 // Print request output. What if the request has no return?
                 if (output == null) {
@@ -50,10 +51,13 @@ namespace ApiSdk.Me.Photo.Value {
             var command = new Command("put");
             command.Description = "The user's profile photo. Read-only.";
             // Create options for all the parameters
-            command.AddOption(new Option<Stream>("--file", description: "Binary request body"));
+            var fileOption = new Option<Stream>("--file", description: "Binary request body");
+            fileOption.IsRequired = true;
+            command.AddOption(fileOption);
             command.Handler = CommandHandler.Create<FileInfo>(async (file) => {
                 using var stream = file.OpenRead();
-                var requestInfo = CreatePutRequestInformation(stream);
+                var requestInfo = CreatePutRequestInformation(stream, q => {
+                });
                 await RequestAdapter.SendNoContentAsync(requestInfo);
                 // Print request output. What if the request has no return?
                 Console.WriteLine("Success");

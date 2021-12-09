@@ -11,7 +11,18 @@
             "preLaunchTask": "build",
             "program": "${workspaceFolder}/src/bin/Debug/net6.0/msgraph-cli.dll",
             "args": ["-h"],
-            "cwd": "${workspaceFolder}",
+            "cwd": "${workspaceFolder}/src",
+            "console": "internalConsole",
+            "stopAtEntry": false
+        },
+        {
+            "name": "login",
+            "type": "coreclr",
+            "request": "launch",
+            "preLaunchTask": "build",
+            "program": "${workspaceFolder}/src/bin/Debug/net6.0/msgraph-cli.dll",
+            "args": ["login", "--scopes", "User.ReadWrite Mail.ReadWrite"],
+            "cwd": "${workspaceFolder}/src",
             "console": "internalConsole",
             "stopAtEntry": false
         },
@@ -21,8 +32,8 @@
             "request": "launch",
             "preLaunchTask": "build",
             "program": "${workspaceFolder}/src/bin/Debug/net6.0/msgraph-cli.dll",
-            "args": ["me", "get"],
-            "cwd": "${workspaceFolder}",
+            "args": ["me", "get", "--select", "id", "--select", "displayName"],
+            "cwd": "${workspaceFolder}/src",
             "console": "internalConsole",
             "stopAtEntry": false
         },

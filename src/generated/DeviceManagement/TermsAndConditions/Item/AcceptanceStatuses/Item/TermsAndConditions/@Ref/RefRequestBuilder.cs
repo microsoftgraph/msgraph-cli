@@ -25,12 +25,15 @@ namespace ApiSdk.DeviceManagement.TermsAndConditions.Item.AcceptanceStatuses.Ite
             var command = new Command("delete");
             command.Description = "Navigation link to the terms and conditions that are assigned.";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--termsandconditions-id", description: "key: id of termsAndConditions"));
-            command.AddOption(new Option<string>("--termsandconditionsacceptancestatus-id", description: "key: id of termsAndConditionsAcceptanceStatus"));
+            var termsAndConditionsIdOption = new Option<string>("--termsandconditions-id", description: "key: id of termsAndConditions");
+            termsAndConditionsIdOption.IsRequired = true;
+            command.AddOption(termsAndConditionsIdOption);
+            var termsAndConditionsAcceptanceStatusIdOption = new Option<string>("--termsandconditionsacceptancestatus-id", description: "key: id of termsAndConditionsAcceptanceStatus");
+            termsAndConditionsAcceptanceStatusIdOption.IsRequired = true;
+            command.AddOption(termsAndConditionsAcceptanceStatusIdOption);
             command.Handler = CommandHandler.Create<string, string>(async (termsAndConditionsId, termsAndConditionsAcceptanceStatusId) => {
-                var requestInfo = CreateDeleteRequestInformation();
-                if (!String.IsNullOrEmpty(termsAndConditionsId)) requestInfo.PathParameters.Add("termsAndConditions_id", termsAndConditionsId);
-                if (!String.IsNullOrEmpty(termsAndConditionsAcceptanceStatusId)) requestInfo.PathParameters.Add("termsAndConditionsAcceptanceStatus_id", termsAndConditionsAcceptanceStatusId);
+                var requestInfo = CreateDeleteRequestInformation(q => {
+                });
                 await RequestAdapter.SendNoContentAsync(requestInfo);
                 // Print request output. What if the request has no return?
                 Console.WriteLine("Success");
@@ -44,12 +47,15 @@ namespace ApiSdk.DeviceManagement.TermsAndConditions.Item.AcceptanceStatuses.Ite
             var command = new Command("get");
             command.Description = "Navigation link to the terms and conditions that are assigned.";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--termsandconditions-id", description: "key: id of termsAndConditions"));
-            command.AddOption(new Option<string>("--termsandconditionsacceptancestatus-id", description: "key: id of termsAndConditionsAcceptanceStatus"));
+            var termsAndConditionsIdOption = new Option<string>("--termsandconditions-id", description: "key: id of termsAndConditions");
+            termsAndConditionsIdOption.IsRequired = true;
+            command.AddOption(termsAndConditionsIdOption);
+            var termsAndConditionsAcceptanceStatusIdOption = new Option<string>("--termsandconditionsacceptancestatus-id", description: "key: id of termsAndConditionsAcceptanceStatus");
+            termsAndConditionsAcceptanceStatusIdOption.IsRequired = true;
+            command.AddOption(termsAndConditionsAcceptanceStatusIdOption);
             command.Handler = CommandHandler.Create<string, string>(async (termsAndConditionsId, termsAndConditionsAcceptanceStatusId) => {
-                var requestInfo = CreateGetRequestInformation();
-                if (!String.IsNullOrEmpty(termsAndConditionsId)) requestInfo.PathParameters.Add("termsAndConditions_id", termsAndConditionsId);
-                if (!String.IsNullOrEmpty(termsAndConditionsAcceptanceStatusId)) requestInfo.PathParameters.Add("termsAndConditionsAcceptanceStatus_id", termsAndConditionsAcceptanceStatusId);
+                var requestInfo = CreateGetRequestInformation(q => {
+                });
                 var result = await RequestAdapter.SendPrimitiveAsync<string>(requestInfo);
                 // Print request output. What if the request has no return?
                 using var serializer = RequestAdapter.SerializationWriterFactory.GetSerializationWriter("application/json");
@@ -68,16 +74,21 @@ namespace ApiSdk.DeviceManagement.TermsAndConditions.Item.AcceptanceStatuses.Ite
             var command = new Command("put");
             command.Description = "Navigation link to the terms and conditions that are assigned.";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--termsandconditions-id", description: "key: id of termsAndConditions"));
-            command.AddOption(new Option<string>("--termsandconditionsacceptancestatus-id", description: "key: id of termsAndConditionsAcceptanceStatus"));
-            command.AddOption(new Option<string>("--body"));
+            var termsAndConditionsIdOption = new Option<string>("--termsandconditions-id", description: "key: id of termsAndConditions");
+            termsAndConditionsIdOption.IsRequired = true;
+            command.AddOption(termsAndConditionsIdOption);
+            var termsAndConditionsAcceptanceStatusIdOption = new Option<string>("--termsandconditionsacceptancestatus-id", description: "key: id of termsAndConditionsAcceptanceStatus");
+            termsAndConditionsAcceptanceStatusIdOption.IsRequired = true;
+            command.AddOption(termsAndConditionsAcceptanceStatusIdOption);
+            var bodyOption = new Option<string>("--body");
+            bodyOption.IsRequired = true;
+            command.AddOption(bodyOption);
             command.Handler = CommandHandler.Create<string, string, string>(async (termsAndConditionsId, termsAndConditionsAcceptanceStatusId, body) => {
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<ApiSdk.DeviceManagement.TermsAndConditions.Item.AcceptanceStatuses.Item.TermsAndConditions.@Ref.@Ref>();
-                var requestInfo = CreatePutRequestInformation(model);
-                if (!String.IsNullOrEmpty(termsAndConditionsId)) requestInfo.PathParameters.Add("termsAndConditions_id", termsAndConditionsId);
-                if (!String.IsNullOrEmpty(termsAndConditionsAcceptanceStatusId)) requestInfo.PathParameters.Add("termsAndConditionsAcceptanceStatus_id", termsAndConditionsAcceptanceStatusId);
+                var requestInfo = CreatePutRequestInformation(model, q => {
+                });
                 await RequestAdapter.SendNoContentAsync(requestInfo);
                 // Print request output. What if the request has no return?
                 Console.WriteLine("Success");

@@ -25,14 +25,18 @@ namespace ApiSdk.DeviceAppManagement.ManagedEBooks.Item.Assign {
             var command = new Command("post");
             command.Description = "Invoke action assign";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--managedebook-id", description: "key: id of managedEBook"));
-            command.AddOption(new Option<string>("--body"));
+            var managedEBookIdOption = new Option<string>("--managedebook-id", description: "key: id of managedEBook");
+            managedEBookIdOption.IsRequired = true;
+            command.AddOption(managedEBookIdOption);
+            var bodyOption = new Option<string>("--body");
+            bodyOption.IsRequired = true;
+            command.AddOption(bodyOption);
             command.Handler = CommandHandler.Create<string, string>(async (managedEBookId, body) => {
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<AssignRequestBody>();
-                var requestInfo = CreatePostRequestInformation(model);
-                if (!String.IsNullOrEmpty(managedEBookId)) requestInfo.PathParameters.Add("managedEBook_id", managedEBookId);
+                var requestInfo = CreatePostRequestInformation(model, q => {
+                });
                 await RequestAdapter.SendNoContentAsync(requestInfo);
                 // Print request output. What if the request has no return?
                 Console.WriteLine("Success");

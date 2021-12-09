@@ -25,14 +25,18 @@ namespace ApiSdk.GroupLifecyclePolicies.Item.AddGroup {
             var command = new Command("post");
             command.Description = "Invoke action addGroup";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--grouplifecyclepolicy-id", description: "key: id of groupLifecyclePolicy"));
-            command.AddOption(new Option<string>("--body"));
+            var groupLifecyclePolicyIdOption = new Option<string>("--grouplifecyclepolicy-id", description: "key: id of groupLifecyclePolicy");
+            groupLifecyclePolicyIdOption.IsRequired = true;
+            command.AddOption(groupLifecyclePolicyIdOption);
+            var bodyOption = new Option<string>("--body");
+            bodyOption.IsRequired = true;
+            command.AddOption(bodyOption);
             command.Handler = CommandHandler.Create<string, string>(async (groupLifecyclePolicyId, body) => {
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<AddGroupRequestBody>();
-                var requestInfo = CreatePostRequestInformation(model);
-                if (!String.IsNullOrEmpty(groupLifecyclePolicyId)) requestInfo.PathParameters.Add("groupLifecyclePolicy_id", groupLifecyclePolicyId);
+                var requestInfo = CreatePostRequestInformation(model, q => {
+                });
                 var result = await RequestAdapter.SendPrimitiveAsync<bool?>(requestInfo);
                 // Print request output. What if the request has no return?
                 using var serializer = RequestAdapter.SerializationWriterFactory.GetSerializationWriter("application/json");

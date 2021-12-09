@@ -26,10 +26,12 @@ namespace ApiSdk.DirectoryObjects.Item.Restore {
             var command = new Command("post");
             command.Description = "Invoke action restore";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--directoryobject-id", description: "key: id of directoryObject"));
+            var directoryObjectIdOption = new Option<string>("--directoryobject-id", description: "key: id of directoryObject");
+            directoryObjectIdOption.IsRequired = true;
+            command.AddOption(directoryObjectIdOption);
             command.Handler = CommandHandler.Create<string>(async (directoryObjectId) => {
-                var requestInfo = CreatePostRequestInformation();
-                if (!String.IsNullOrEmpty(directoryObjectId)) requestInfo.PathParameters.Add("directoryObject_id", directoryObjectId);
+                var requestInfo = CreatePostRequestInformation(q => {
+                });
                 var result = await RequestAdapter.SendAsync<RestoreResponse>(requestInfo);
                 // Print request output. What if the request has no return?
                 using var serializer = RequestAdapter.SerializationWriterFactory.GetSerializationWriter("application/json");

@@ -26,14 +26,18 @@ namespace ApiSdk.Education.Classes.Item.Assignments.Item.Submissions.Item.Submit
             var command = new Command("post");
             command.Description = "Invoke action submit";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--educationclass-id", description: "key: id of educationClass"));
-            command.AddOption(new Option<string>("--educationassignment-id", description: "key: id of educationAssignment"));
-            command.AddOption(new Option<string>("--educationsubmission-id", description: "key: id of educationSubmission"));
+            var educationClassIdOption = new Option<string>("--educationclass-id", description: "key: id of educationClass");
+            educationClassIdOption.IsRequired = true;
+            command.AddOption(educationClassIdOption);
+            var educationAssignmentIdOption = new Option<string>("--educationassignment-id", description: "key: id of educationAssignment");
+            educationAssignmentIdOption.IsRequired = true;
+            command.AddOption(educationAssignmentIdOption);
+            var educationSubmissionIdOption = new Option<string>("--educationsubmission-id", description: "key: id of educationSubmission");
+            educationSubmissionIdOption.IsRequired = true;
+            command.AddOption(educationSubmissionIdOption);
             command.Handler = CommandHandler.Create<string, string, string>(async (educationClassId, educationAssignmentId, educationSubmissionId) => {
-                var requestInfo = CreatePostRequestInformation();
-                if (!String.IsNullOrEmpty(educationClassId)) requestInfo.PathParameters.Add("educationClass_id", educationClassId);
-                if (!String.IsNullOrEmpty(educationAssignmentId)) requestInfo.PathParameters.Add("educationAssignment_id", educationAssignmentId);
-                if (!String.IsNullOrEmpty(educationSubmissionId)) requestInfo.PathParameters.Add("educationSubmission_id", educationSubmissionId);
+                var requestInfo = CreatePostRequestInformation(q => {
+                });
                 var result = await RequestAdapter.SendAsync<SubmitResponse>(requestInfo);
                 // Print request output. What if the request has no return?
                 using var serializer = RequestAdapter.SerializationWriterFactory.GetSerializationWriter("application/json");

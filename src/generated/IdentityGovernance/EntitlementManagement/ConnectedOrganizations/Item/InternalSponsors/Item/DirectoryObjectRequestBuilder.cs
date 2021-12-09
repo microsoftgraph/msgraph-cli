@@ -26,12 +26,15 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.ConnectedOrganizations
             var command = new Command("delete");
             command.Description = "Nullable.";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--connectedorganization-id", description: "key: id of connectedOrganization"));
-            command.AddOption(new Option<string>("--directoryobject-id", description: "key: id of directoryObject"));
+            var connectedOrganizationIdOption = new Option<string>("--connectedorganization-id", description: "key: id of connectedOrganization");
+            connectedOrganizationIdOption.IsRequired = true;
+            command.AddOption(connectedOrganizationIdOption);
+            var directoryObjectIdOption = new Option<string>("--directoryobject-id", description: "key: id of directoryObject");
+            directoryObjectIdOption.IsRequired = true;
+            command.AddOption(directoryObjectIdOption);
             command.Handler = CommandHandler.Create<string, string>(async (connectedOrganizationId, directoryObjectId) => {
-                var requestInfo = CreateDeleteRequestInformation();
-                if (!String.IsNullOrEmpty(connectedOrganizationId)) requestInfo.PathParameters.Add("connectedOrganization_id", connectedOrganizationId);
-                if (!String.IsNullOrEmpty(directoryObjectId)) requestInfo.PathParameters.Add("directoryObject_id", directoryObjectId);
+                var requestInfo = CreateDeleteRequestInformation(q => {
+                });
                 await RequestAdapter.SendNoContentAsync(requestInfo);
                 // Print request output. What if the request has no return?
                 Console.WriteLine("Success");
@@ -45,16 +48,25 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.ConnectedOrganizations
             var command = new Command("get");
             command.Description = "Nullable.";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--connectedorganization-id", description: "key: id of connectedOrganization"));
-            command.AddOption(new Option<string>("--directoryobject-id", description: "key: id of directoryObject"));
-            command.AddOption(new Option<object>("--select", description: "Select properties to be returned"));
-            command.AddOption(new Option<object>("--expand", description: "Expand related entities"));
-            command.Handler = CommandHandler.Create<string, string, object, object>(async (connectedOrganizationId, directoryObjectId, select, expand) => {
-                var requestInfo = CreateGetRequestInformation();
-                if (!String.IsNullOrEmpty(connectedOrganizationId)) requestInfo.PathParameters.Add("connectedOrganization_id", connectedOrganizationId);
-                if (!String.IsNullOrEmpty(directoryObjectId)) requestInfo.PathParameters.Add("directoryObject_id", directoryObjectId);
-                requestInfo.QueryParameters.Add("select", select);
-                requestInfo.QueryParameters.Add("expand", expand);
+            var connectedOrganizationIdOption = new Option<string>("--connectedorganization-id", description: "key: id of connectedOrganization");
+            connectedOrganizationIdOption.IsRequired = true;
+            command.AddOption(connectedOrganizationIdOption);
+            var directoryObjectIdOption = new Option<string>("--directoryobject-id", description: "key: id of directoryObject");
+            directoryObjectIdOption.IsRequired = true;
+            command.AddOption(directoryObjectIdOption);
+            var selectOption = new Option<string[]>("--select", description: "Select properties to be returned");
+            selectOption.IsRequired = false;
+            selectOption.Arity = ArgumentArity.ZeroOrMore;
+            command.AddOption(selectOption);
+            var expandOption = new Option<string[]>("--expand", description: "Expand related entities");
+            expandOption.IsRequired = false;
+            expandOption.Arity = ArgumentArity.ZeroOrMore;
+            command.AddOption(expandOption);
+            command.Handler = CommandHandler.Create<string, string, string[], string[]>(async (connectedOrganizationId, directoryObjectId, select, expand) => {
+                var requestInfo = CreateGetRequestInformation(q => {
+                    q.Select = select;
+                    q.Expand = expand;
+                });
                 var result = await RequestAdapter.SendAsync<DirectoryObject>(requestInfo);
                 // Print request output. What if the request has no return?
                 using var serializer = RequestAdapter.SerializationWriterFactory.GetSerializationWriter("application/json");
@@ -73,16 +85,21 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.ConnectedOrganizations
             var command = new Command("patch");
             command.Description = "Nullable.";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--connectedorganization-id", description: "key: id of connectedOrganization"));
-            command.AddOption(new Option<string>("--directoryobject-id", description: "key: id of directoryObject"));
-            command.AddOption(new Option<string>("--body"));
+            var connectedOrganizationIdOption = new Option<string>("--connectedorganization-id", description: "key: id of connectedOrganization");
+            connectedOrganizationIdOption.IsRequired = true;
+            command.AddOption(connectedOrganizationIdOption);
+            var directoryObjectIdOption = new Option<string>("--directoryobject-id", description: "key: id of directoryObject");
+            directoryObjectIdOption.IsRequired = true;
+            command.AddOption(directoryObjectIdOption);
+            var bodyOption = new Option<string>("--body");
+            bodyOption.IsRequired = true;
+            command.AddOption(bodyOption);
             command.Handler = CommandHandler.Create<string, string, string>(async (connectedOrganizationId, directoryObjectId, body) => {
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<DirectoryObject>();
-                var requestInfo = CreatePatchRequestInformation(model);
-                if (!String.IsNullOrEmpty(connectedOrganizationId)) requestInfo.PathParameters.Add("connectedOrganization_id", connectedOrganizationId);
-                if (!String.IsNullOrEmpty(directoryObjectId)) requestInfo.PathParameters.Add("directoryObject_id", directoryObjectId);
+                var requestInfo = CreatePatchRequestInformation(model, q => {
+                });
                 await RequestAdapter.SendNoContentAsync(requestInfo);
                 // Print request output. What if the request has no return?
                 Console.WriteLine("Success");

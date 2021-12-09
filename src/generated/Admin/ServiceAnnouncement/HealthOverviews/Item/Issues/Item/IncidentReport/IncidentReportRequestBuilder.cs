@@ -25,13 +25,16 @@ namespace ApiSdk.Admin.ServiceAnnouncement.HealthOverviews.Item.Issues.Item.Inci
             var command = new Command("get");
             command.Description = "Invoke function incidentReport";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--servicehealth-id", description: "key: id of serviceHealth"));
-            command.AddOption(new Option<string>("--servicehealthissue-id", description: "key: id of serviceHealthIssue"));
+            var serviceHealthIdOption = new Option<string>("--servicehealth-id", description: "key: id of serviceHealth");
+            serviceHealthIdOption.IsRequired = true;
+            command.AddOption(serviceHealthIdOption);
+            var serviceHealthIssueIdOption = new Option<string>("--servicehealthissue-id", description: "key: id of serviceHealthIssue");
+            serviceHealthIssueIdOption.IsRequired = true;
+            command.AddOption(serviceHealthIssueIdOption);
             command.AddOption(new Option<FileInfo>("--output"));
             command.Handler = CommandHandler.Create<string, string, FileInfo>(async (serviceHealthId, serviceHealthIssueId, output) => {
-                var requestInfo = CreateGetRequestInformation();
-                if (!String.IsNullOrEmpty(serviceHealthId)) requestInfo.PathParameters.Add("serviceHealth_id", serviceHealthId);
-                if (!String.IsNullOrEmpty(serviceHealthIssueId)) requestInfo.PathParameters.Add("serviceHealthIssue_id", serviceHealthIssueId);
+                var requestInfo = CreateGetRequestInformation(q => {
+                });
                 var result = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 // Print request output. What if the request has no return?
                 if (output == null) {

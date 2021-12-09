@@ -27,16 +27,25 @@ namespace ApiSdk.Print.Printers.Item.TaskTriggers.Item.Definition {
             var command = new Command("get");
             command.Description = "An abstract definition that will be used to create a printTask when triggered by a print event. Read-only.";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--printer-id", description: "key: id of printer"));
-            command.AddOption(new Option<string>("--printtasktrigger-id", description: "key: id of printTaskTrigger"));
-            command.AddOption(new Option<object>("--select", description: "Select properties to be returned"));
-            command.AddOption(new Option<object>("--expand", description: "Expand related entities"));
-            command.Handler = CommandHandler.Create<string, string, object, object>(async (printerId, printTaskTriggerId, select, expand) => {
-                var requestInfo = CreateGetRequestInformation();
-                if (!String.IsNullOrEmpty(printerId)) requestInfo.PathParameters.Add("printer_id", printerId);
-                if (!String.IsNullOrEmpty(printTaskTriggerId)) requestInfo.PathParameters.Add("printTaskTrigger_id", printTaskTriggerId);
-                requestInfo.QueryParameters.Add("select", select);
-                requestInfo.QueryParameters.Add("expand", expand);
+            var printerIdOption = new Option<string>("--printer-id", description: "key: id of printer");
+            printerIdOption.IsRequired = true;
+            command.AddOption(printerIdOption);
+            var printTaskTriggerIdOption = new Option<string>("--printtasktrigger-id", description: "key: id of printTaskTrigger");
+            printTaskTriggerIdOption.IsRequired = true;
+            command.AddOption(printTaskTriggerIdOption);
+            var selectOption = new Option<string[]>("--select", description: "Select properties to be returned");
+            selectOption.IsRequired = false;
+            selectOption.Arity = ArgumentArity.ZeroOrMore;
+            command.AddOption(selectOption);
+            var expandOption = new Option<string[]>("--expand", description: "Expand related entities");
+            expandOption.IsRequired = false;
+            expandOption.Arity = ArgumentArity.ZeroOrMore;
+            command.AddOption(expandOption);
+            command.Handler = CommandHandler.Create<string, string, string[], string[]>(async (printerId, printTaskTriggerId, select, expand) => {
+                var requestInfo = CreateGetRequestInformation(q => {
+                    q.Select = select;
+                    q.Expand = expand;
+                });
                 var result = await RequestAdapter.SendAsync<PrintTaskDefinition>(requestInfo);
                 // Print request output. What if the request has no return?
                 using var serializer = RequestAdapter.SerializationWriterFactory.GetSerializationWriter("application/json");

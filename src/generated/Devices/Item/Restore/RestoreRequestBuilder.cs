@@ -26,10 +26,12 @@ namespace ApiSdk.Devices.Item.Restore {
             var command = new Command("post");
             command.Description = "Invoke action restore";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--device-id", description: "key: id of device"));
+            var deviceIdOption = new Option<string>("--device-id", description: "key: id of device");
+            deviceIdOption.IsRequired = true;
+            command.AddOption(deviceIdOption);
             command.Handler = CommandHandler.Create<string>(async (deviceId) => {
-                var requestInfo = CreatePostRequestInformation();
-                if (!String.IsNullOrEmpty(deviceId)) requestInfo.PathParameters.Add("device_id", deviceId);
+                var requestInfo = CreatePostRequestInformation(q => {
+                });
                 var result = await RequestAdapter.SendAsync<RestoreResponse>(requestInfo);
                 // Print request output. What if the request has no return?
                 using var serializer = RequestAdapter.SerializationWriterFactory.GetSerializationWriter("application/json");

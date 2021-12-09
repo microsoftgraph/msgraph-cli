@@ -26,10 +26,12 @@ namespace ApiSdk.AuthenticationMethodConfigurations.Item {
             var command = new Command("delete");
             command.Description = "Delete entity from authenticationMethodConfigurations";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--authenticationmethodconfiguration-id", description: "key: id of authenticationMethodConfiguration"));
+            var authenticationMethodConfigurationIdOption = new Option<string>("--authenticationmethodconfiguration-id", description: "key: id of authenticationMethodConfiguration");
+            authenticationMethodConfigurationIdOption.IsRequired = true;
+            command.AddOption(authenticationMethodConfigurationIdOption);
             command.Handler = CommandHandler.Create<string>(async (authenticationMethodConfigurationId) => {
-                var requestInfo = CreateDeleteRequestInformation();
-                if (!String.IsNullOrEmpty(authenticationMethodConfigurationId)) requestInfo.PathParameters.Add("authenticationMethodConfiguration_id", authenticationMethodConfigurationId);
+                var requestInfo = CreateDeleteRequestInformation(q => {
+                });
                 await RequestAdapter.SendNoContentAsync(requestInfo);
                 // Print request output. What if the request has no return?
                 Console.WriteLine("Success");
@@ -43,14 +45,22 @@ namespace ApiSdk.AuthenticationMethodConfigurations.Item {
             var command = new Command("get");
             command.Description = "Get entity from authenticationMethodConfigurations by key";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--authenticationmethodconfiguration-id", description: "key: id of authenticationMethodConfiguration"));
-            command.AddOption(new Option<object>("--select", description: "Select properties to be returned"));
-            command.AddOption(new Option<object>("--expand", description: "Expand related entities"));
-            command.Handler = CommandHandler.Create<string, object, object>(async (authenticationMethodConfigurationId, select, expand) => {
-                var requestInfo = CreateGetRequestInformation();
-                if (!String.IsNullOrEmpty(authenticationMethodConfigurationId)) requestInfo.PathParameters.Add("authenticationMethodConfiguration_id", authenticationMethodConfigurationId);
-                requestInfo.QueryParameters.Add("select", select);
-                requestInfo.QueryParameters.Add("expand", expand);
+            var authenticationMethodConfigurationIdOption = new Option<string>("--authenticationmethodconfiguration-id", description: "key: id of authenticationMethodConfiguration");
+            authenticationMethodConfigurationIdOption.IsRequired = true;
+            command.AddOption(authenticationMethodConfigurationIdOption);
+            var selectOption = new Option<string[]>("--select", description: "Select properties to be returned");
+            selectOption.IsRequired = false;
+            selectOption.Arity = ArgumentArity.ZeroOrMore;
+            command.AddOption(selectOption);
+            var expandOption = new Option<string[]>("--expand", description: "Expand related entities");
+            expandOption.IsRequired = false;
+            expandOption.Arity = ArgumentArity.ZeroOrMore;
+            command.AddOption(expandOption);
+            command.Handler = CommandHandler.Create<string, string[], string[]>(async (authenticationMethodConfigurationId, select, expand) => {
+                var requestInfo = CreateGetRequestInformation(q => {
+                    q.Select = select;
+                    q.Expand = expand;
+                });
                 var result = await RequestAdapter.SendAsync<AuthenticationMethodConfiguration>(requestInfo);
                 // Print request output. What if the request has no return?
                 using var serializer = RequestAdapter.SerializationWriterFactory.GetSerializationWriter("application/json");
@@ -69,14 +79,18 @@ namespace ApiSdk.AuthenticationMethodConfigurations.Item {
             var command = new Command("patch");
             command.Description = "Update entity in authenticationMethodConfigurations";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--authenticationmethodconfiguration-id", description: "key: id of authenticationMethodConfiguration"));
-            command.AddOption(new Option<string>("--body"));
+            var authenticationMethodConfigurationIdOption = new Option<string>("--authenticationmethodconfiguration-id", description: "key: id of authenticationMethodConfiguration");
+            authenticationMethodConfigurationIdOption.IsRequired = true;
+            command.AddOption(authenticationMethodConfigurationIdOption);
+            var bodyOption = new Option<string>("--body");
+            bodyOption.IsRequired = true;
+            command.AddOption(bodyOption);
             command.Handler = CommandHandler.Create<string, string>(async (authenticationMethodConfigurationId, body) => {
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<AuthenticationMethodConfiguration>();
-                var requestInfo = CreatePatchRequestInformation(model);
-                if (!String.IsNullOrEmpty(authenticationMethodConfigurationId)) requestInfo.PathParameters.Add("authenticationMethodConfiguration_id", authenticationMethodConfigurationId);
+                var requestInfo = CreatePatchRequestInformation(model, q => {
+                });
                 await RequestAdapter.SendNoContentAsync(requestInfo);
                 // Print request output. What if the request has no return?
                 Console.WriteLine("Success");

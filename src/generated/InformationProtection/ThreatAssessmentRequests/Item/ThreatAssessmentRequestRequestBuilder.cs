@@ -27,10 +27,12 @@ namespace ApiSdk.InformationProtection.ThreatAssessmentRequests.Item {
             var command = new Command("delete");
             command.Description = "Delete navigation property threatAssessmentRequests for informationProtection";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--threatassessmentrequest-id", description: "key: id of threatAssessmentRequest"));
+            var threatAssessmentRequestIdOption = new Option<string>("--threatassessmentrequest-id", description: "key: id of threatAssessmentRequest");
+            threatAssessmentRequestIdOption.IsRequired = true;
+            command.AddOption(threatAssessmentRequestIdOption);
             command.Handler = CommandHandler.Create<string>(async (threatAssessmentRequestId) => {
-                var requestInfo = CreateDeleteRequestInformation();
-                if (!String.IsNullOrEmpty(threatAssessmentRequestId)) requestInfo.PathParameters.Add("threatAssessmentRequest_id", threatAssessmentRequestId);
+                var requestInfo = CreateDeleteRequestInformation(q => {
+                });
                 await RequestAdapter.SendNoContentAsync(requestInfo);
                 // Print request output. What if the request has no return?
                 Console.WriteLine("Success");
@@ -44,14 +46,22 @@ namespace ApiSdk.InformationProtection.ThreatAssessmentRequests.Item {
             var command = new Command("get");
             command.Description = "Get threatAssessmentRequests from informationProtection";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--threatassessmentrequest-id", description: "key: id of threatAssessmentRequest"));
-            command.AddOption(new Option<object>("--select", description: "Select properties to be returned"));
-            command.AddOption(new Option<object>("--expand", description: "Expand related entities"));
-            command.Handler = CommandHandler.Create<string, object, object>(async (threatAssessmentRequestId, select, expand) => {
-                var requestInfo = CreateGetRequestInformation();
-                if (!String.IsNullOrEmpty(threatAssessmentRequestId)) requestInfo.PathParameters.Add("threatAssessmentRequest_id", threatAssessmentRequestId);
-                requestInfo.QueryParameters.Add("select", select);
-                requestInfo.QueryParameters.Add("expand", expand);
+            var threatAssessmentRequestIdOption = new Option<string>("--threatassessmentrequest-id", description: "key: id of threatAssessmentRequest");
+            threatAssessmentRequestIdOption.IsRequired = true;
+            command.AddOption(threatAssessmentRequestIdOption);
+            var selectOption = new Option<string[]>("--select", description: "Select properties to be returned");
+            selectOption.IsRequired = false;
+            selectOption.Arity = ArgumentArity.ZeroOrMore;
+            command.AddOption(selectOption);
+            var expandOption = new Option<string[]>("--expand", description: "Expand related entities");
+            expandOption.IsRequired = false;
+            expandOption.Arity = ArgumentArity.ZeroOrMore;
+            command.AddOption(expandOption);
+            command.Handler = CommandHandler.Create<string, string[], string[]>(async (threatAssessmentRequestId, select, expand) => {
+                var requestInfo = CreateGetRequestInformation(q => {
+                    q.Select = select;
+                    q.Expand = expand;
+                });
                 var result = await RequestAdapter.SendAsync<ThreatAssessmentRequest>(requestInfo);
                 // Print request output. What if the request has no return?
                 using var serializer = RequestAdapter.SerializationWriterFactory.GetSerializationWriter("application/json");
@@ -70,14 +80,18 @@ namespace ApiSdk.InformationProtection.ThreatAssessmentRequests.Item {
             var command = new Command("patch");
             command.Description = "Update the navigation property threatAssessmentRequests in informationProtection";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--threatassessmentrequest-id", description: "key: id of threatAssessmentRequest"));
-            command.AddOption(new Option<string>("--body"));
+            var threatAssessmentRequestIdOption = new Option<string>("--threatassessmentrequest-id", description: "key: id of threatAssessmentRequest");
+            threatAssessmentRequestIdOption.IsRequired = true;
+            command.AddOption(threatAssessmentRequestIdOption);
+            var bodyOption = new Option<string>("--body");
+            bodyOption.IsRequired = true;
+            command.AddOption(bodyOption);
             command.Handler = CommandHandler.Create<string, string>(async (threatAssessmentRequestId, body) => {
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<ThreatAssessmentRequest>();
-                var requestInfo = CreatePatchRequestInformation(model);
-                if (!String.IsNullOrEmpty(threatAssessmentRequestId)) requestInfo.PathParameters.Add("threatAssessmentRequest_id", threatAssessmentRequestId);
+                var requestInfo = CreatePatchRequestInformation(model, q => {
+                });
                 await RequestAdapter.SendNoContentAsync(requestInfo);
                 // Print request output. What if the request has no return?
                 Console.WriteLine("Success");

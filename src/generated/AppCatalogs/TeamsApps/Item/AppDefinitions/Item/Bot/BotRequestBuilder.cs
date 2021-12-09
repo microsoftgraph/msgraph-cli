@@ -26,12 +26,15 @@ namespace ApiSdk.AppCatalogs.TeamsApps.Item.AppDefinitions.Item.Bot {
             var command = new Command("delete");
             command.Description = "The details of the bot specified in the Teams app manifest.";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--teamsapp-id", description: "key: id of teamsApp"));
-            command.AddOption(new Option<string>("--teamsappdefinition-id", description: "key: id of teamsAppDefinition"));
+            var teamsAppIdOption = new Option<string>("--teamsapp-id", description: "key: id of teamsApp");
+            teamsAppIdOption.IsRequired = true;
+            command.AddOption(teamsAppIdOption);
+            var teamsAppDefinitionIdOption = new Option<string>("--teamsappdefinition-id", description: "key: id of teamsAppDefinition");
+            teamsAppDefinitionIdOption.IsRequired = true;
+            command.AddOption(teamsAppDefinitionIdOption);
             command.Handler = CommandHandler.Create<string, string>(async (teamsAppId, teamsAppDefinitionId) => {
-                var requestInfo = CreateDeleteRequestInformation();
-                if (!String.IsNullOrEmpty(teamsAppId)) requestInfo.PathParameters.Add("teamsApp_id", teamsAppId);
-                if (!String.IsNullOrEmpty(teamsAppDefinitionId)) requestInfo.PathParameters.Add("teamsAppDefinition_id", teamsAppDefinitionId);
+                var requestInfo = CreateDeleteRequestInformation(q => {
+                });
                 await RequestAdapter.SendNoContentAsync(requestInfo);
                 // Print request output. What if the request has no return?
                 Console.WriteLine("Success");
@@ -45,16 +48,25 @@ namespace ApiSdk.AppCatalogs.TeamsApps.Item.AppDefinitions.Item.Bot {
             var command = new Command("get");
             command.Description = "The details of the bot specified in the Teams app manifest.";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--teamsapp-id", description: "key: id of teamsApp"));
-            command.AddOption(new Option<string>("--teamsappdefinition-id", description: "key: id of teamsAppDefinition"));
-            command.AddOption(new Option<object>("--select", description: "Select properties to be returned"));
-            command.AddOption(new Option<object>("--expand", description: "Expand related entities"));
-            command.Handler = CommandHandler.Create<string, string, object, object>(async (teamsAppId, teamsAppDefinitionId, select, expand) => {
-                var requestInfo = CreateGetRequestInformation();
-                if (!String.IsNullOrEmpty(teamsAppId)) requestInfo.PathParameters.Add("teamsApp_id", teamsAppId);
-                if (!String.IsNullOrEmpty(teamsAppDefinitionId)) requestInfo.PathParameters.Add("teamsAppDefinition_id", teamsAppDefinitionId);
-                requestInfo.QueryParameters.Add("select", select);
-                requestInfo.QueryParameters.Add("expand", expand);
+            var teamsAppIdOption = new Option<string>("--teamsapp-id", description: "key: id of teamsApp");
+            teamsAppIdOption.IsRequired = true;
+            command.AddOption(teamsAppIdOption);
+            var teamsAppDefinitionIdOption = new Option<string>("--teamsappdefinition-id", description: "key: id of teamsAppDefinition");
+            teamsAppDefinitionIdOption.IsRequired = true;
+            command.AddOption(teamsAppDefinitionIdOption);
+            var selectOption = new Option<string[]>("--select", description: "Select properties to be returned");
+            selectOption.IsRequired = false;
+            selectOption.Arity = ArgumentArity.ZeroOrMore;
+            command.AddOption(selectOption);
+            var expandOption = new Option<string[]>("--expand", description: "Expand related entities");
+            expandOption.IsRequired = false;
+            expandOption.Arity = ArgumentArity.ZeroOrMore;
+            command.AddOption(expandOption);
+            command.Handler = CommandHandler.Create<string, string, string[], string[]>(async (teamsAppId, teamsAppDefinitionId, select, expand) => {
+                var requestInfo = CreateGetRequestInformation(q => {
+                    q.Select = select;
+                    q.Expand = expand;
+                });
                 var result = await RequestAdapter.SendAsync<TeamworkBot>(requestInfo);
                 // Print request output. What if the request has no return?
                 using var serializer = RequestAdapter.SerializationWriterFactory.GetSerializationWriter("application/json");
@@ -73,16 +85,21 @@ namespace ApiSdk.AppCatalogs.TeamsApps.Item.AppDefinitions.Item.Bot {
             var command = new Command("patch");
             command.Description = "The details of the bot specified in the Teams app manifest.";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--teamsapp-id", description: "key: id of teamsApp"));
-            command.AddOption(new Option<string>("--teamsappdefinition-id", description: "key: id of teamsAppDefinition"));
-            command.AddOption(new Option<string>("--body"));
+            var teamsAppIdOption = new Option<string>("--teamsapp-id", description: "key: id of teamsApp");
+            teamsAppIdOption.IsRequired = true;
+            command.AddOption(teamsAppIdOption);
+            var teamsAppDefinitionIdOption = new Option<string>("--teamsappdefinition-id", description: "key: id of teamsAppDefinition");
+            teamsAppDefinitionIdOption.IsRequired = true;
+            command.AddOption(teamsAppDefinitionIdOption);
+            var bodyOption = new Option<string>("--body");
+            bodyOption.IsRequired = true;
+            command.AddOption(bodyOption);
             command.Handler = CommandHandler.Create<string, string, string>(async (teamsAppId, teamsAppDefinitionId, body) => {
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<TeamworkBot>();
-                var requestInfo = CreatePatchRequestInformation(model);
-                if (!String.IsNullOrEmpty(teamsAppId)) requestInfo.PathParameters.Add("teamsApp_id", teamsAppId);
-                if (!String.IsNullOrEmpty(teamsAppDefinitionId)) requestInfo.PathParameters.Add("teamsAppDefinition_id", teamsAppDefinitionId);
+                var requestInfo = CreatePatchRequestInformation(model, q => {
+                });
                 await RequestAdapter.SendNoContentAsync(requestInfo);
                 // Print request output. What if the request has no return?
                 Console.WriteLine("Success");

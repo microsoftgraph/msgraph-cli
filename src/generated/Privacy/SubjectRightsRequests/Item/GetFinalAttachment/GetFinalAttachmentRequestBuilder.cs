@@ -25,11 +25,13 @@ namespace ApiSdk.Privacy.SubjectRightsRequests.Item.GetFinalAttachment {
             var command = new Command("get");
             command.Description = "Invoke function getFinalAttachment";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--subjectrightsrequest-id", description: "key: id of subjectRightsRequest"));
+            var subjectRightsRequestIdOption = new Option<string>("--subjectrightsrequest-id", description: "key: id of subjectRightsRequest");
+            subjectRightsRequestIdOption.IsRequired = true;
+            command.AddOption(subjectRightsRequestIdOption);
             command.AddOption(new Option<FileInfo>("--output"));
             command.Handler = CommandHandler.Create<string, FileInfo>(async (subjectRightsRequestId, output) => {
-                var requestInfo = CreateGetRequestInformation();
-                if (!String.IsNullOrEmpty(subjectRightsRequestId)) requestInfo.PathParameters.Add("subjectRightsRequest_id", subjectRightsRequestId);
+                var requestInfo = CreateGetRequestInformation(q => {
+                });
                 var result = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 // Print request output. What if the request has no return?
                 if (output == null) {

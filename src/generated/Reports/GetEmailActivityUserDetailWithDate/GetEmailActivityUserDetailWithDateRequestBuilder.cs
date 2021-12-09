@@ -25,11 +25,13 @@ namespace ApiSdk.Reports.GetEmailActivityUserDetailWithDate {
             var command = new Command("get");
             command.Description = "Invoke function getEmailActivityUserDetail";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--date", description: "Usage: date={date}"));
+            var dateOption = new Option<string>("--date", description: "Usage: date={date}");
+            dateOption.IsRequired = true;
+            command.AddOption(dateOption);
             command.AddOption(new Option<FileInfo>("--output"));
             command.Handler = CommandHandler.Create<string, FileInfo>(async (date, output) => {
-                var requestInfo = CreateGetRequestInformation();
-                if (!String.IsNullOrEmpty(date)) requestInfo.PathParameters.Add("date", date);
+                var requestInfo = CreateGetRequestInformation(q => {
+                });
                 var result = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 // Print request output. What if the request has no return?
                 if (output == null) {

@@ -26,12 +26,15 @@ namespace ApiSdk.Me.Insights.Used.Item.Resource.WorkbookRange.IntersectionWithAn
             var command = new Command("get");
             command.Description = "Invoke function intersection";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--usedinsight-id", description: "key: id of usedInsight"));
-            command.AddOption(new Option<string>("--anotherrange", description: "Usage: anotherRange={anotherRange}"));
+            var usedInsightIdOption = new Option<string>("--usedinsight-id", description: "key: id of usedInsight");
+            usedInsightIdOption.IsRequired = true;
+            command.AddOption(usedInsightIdOption);
+            var anotherRangeOption = new Option<string>("--anotherrange", description: "Usage: anotherRange={anotherRange}");
+            anotherRangeOption.IsRequired = true;
+            command.AddOption(anotherRangeOption);
             command.Handler = CommandHandler.Create<string, string>(async (usedInsightId, anotherRange) => {
-                var requestInfo = CreateGetRequestInformation();
-                if (!String.IsNullOrEmpty(usedInsightId)) requestInfo.PathParameters.Add("usedInsight_id", usedInsightId);
-                if (!String.IsNullOrEmpty(anotherRange)) requestInfo.PathParameters.Add("anotherRange", anotherRange);
+                var requestInfo = CreateGetRequestInformation(q => {
+                });
                 var result = await RequestAdapter.SendAsync<IntersectionWithAnotherRangeResponse>(requestInfo);
                 // Print request output. What if the request has no return?
                 using var serializer = RequestAdapter.SerializationWriterFactory.GetSerializationWriter("application/json");

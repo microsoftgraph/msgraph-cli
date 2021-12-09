@@ -26,10 +26,12 @@ namespace ApiSdk.Print.Operations.Item {
             var command = new Command("delete");
             command.Description = "The list of print long running operations.";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--printoperation-id", description: "key: id of printOperation"));
+            var printOperationIdOption = new Option<string>("--printoperation-id", description: "key: id of printOperation");
+            printOperationIdOption.IsRequired = true;
+            command.AddOption(printOperationIdOption);
             command.Handler = CommandHandler.Create<string>(async (printOperationId) => {
-                var requestInfo = CreateDeleteRequestInformation();
-                if (!String.IsNullOrEmpty(printOperationId)) requestInfo.PathParameters.Add("printOperation_id", printOperationId);
+                var requestInfo = CreateDeleteRequestInformation(q => {
+                });
                 await RequestAdapter.SendNoContentAsync(requestInfo);
                 // Print request output. What if the request has no return?
                 Console.WriteLine("Success");
@@ -43,14 +45,22 @@ namespace ApiSdk.Print.Operations.Item {
             var command = new Command("get");
             command.Description = "The list of print long running operations.";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--printoperation-id", description: "key: id of printOperation"));
-            command.AddOption(new Option<object>("--select", description: "Select properties to be returned"));
-            command.AddOption(new Option<object>("--expand", description: "Expand related entities"));
-            command.Handler = CommandHandler.Create<string, object, object>(async (printOperationId, select, expand) => {
-                var requestInfo = CreateGetRequestInformation();
-                if (!String.IsNullOrEmpty(printOperationId)) requestInfo.PathParameters.Add("printOperation_id", printOperationId);
-                requestInfo.QueryParameters.Add("select", select);
-                requestInfo.QueryParameters.Add("expand", expand);
+            var printOperationIdOption = new Option<string>("--printoperation-id", description: "key: id of printOperation");
+            printOperationIdOption.IsRequired = true;
+            command.AddOption(printOperationIdOption);
+            var selectOption = new Option<string[]>("--select", description: "Select properties to be returned");
+            selectOption.IsRequired = false;
+            selectOption.Arity = ArgumentArity.ZeroOrMore;
+            command.AddOption(selectOption);
+            var expandOption = new Option<string[]>("--expand", description: "Expand related entities");
+            expandOption.IsRequired = false;
+            expandOption.Arity = ArgumentArity.ZeroOrMore;
+            command.AddOption(expandOption);
+            command.Handler = CommandHandler.Create<string, string[], string[]>(async (printOperationId, select, expand) => {
+                var requestInfo = CreateGetRequestInformation(q => {
+                    q.Select = select;
+                    q.Expand = expand;
+                });
                 var result = await RequestAdapter.SendAsync<PrintOperation>(requestInfo);
                 // Print request output. What if the request has no return?
                 using var serializer = RequestAdapter.SerializationWriterFactory.GetSerializationWriter("application/json");
@@ -69,14 +79,18 @@ namespace ApiSdk.Print.Operations.Item {
             var command = new Command("patch");
             command.Description = "The list of print long running operations.";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--printoperation-id", description: "key: id of printOperation"));
-            command.AddOption(new Option<string>("--body"));
+            var printOperationIdOption = new Option<string>("--printoperation-id", description: "key: id of printOperation");
+            printOperationIdOption.IsRequired = true;
+            command.AddOption(printOperationIdOption);
+            var bodyOption = new Option<string>("--body");
+            bodyOption.IsRequired = true;
+            command.AddOption(bodyOption);
             command.Handler = CommandHandler.Create<string, string>(async (printOperationId, body) => {
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<PrintOperation>();
-                var requestInfo = CreatePatchRequestInformation(model);
-                if (!String.IsNullOrEmpty(printOperationId)) requestInfo.PathParameters.Add("printOperation_id", printOperationId);
+                var requestInfo = CreatePatchRequestInformation(model, q => {
+                });
                 await RequestAdapter.SendNoContentAsync(requestInfo);
                 // Print request output. What if the request has no return?
                 Console.WriteLine("Success");

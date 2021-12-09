@@ -26,12 +26,15 @@ namespace ApiSdk.DeviceManagement.DeviceEnrollmentConfigurations.Item.Assignment
             var command = new Command("delete");
             command.Description = "The list of group assignments for the device configuration profile";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--deviceenrollmentconfiguration-id", description: "key: id of deviceEnrollmentConfiguration"));
-            command.AddOption(new Option<string>("--enrollmentconfigurationassignment-id", description: "key: id of enrollmentConfigurationAssignment"));
+            var deviceEnrollmentConfigurationIdOption = new Option<string>("--deviceenrollmentconfiguration-id", description: "key: id of deviceEnrollmentConfiguration");
+            deviceEnrollmentConfigurationIdOption.IsRequired = true;
+            command.AddOption(deviceEnrollmentConfigurationIdOption);
+            var enrollmentConfigurationAssignmentIdOption = new Option<string>("--enrollmentconfigurationassignment-id", description: "key: id of enrollmentConfigurationAssignment");
+            enrollmentConfigurationAssignmentIdOption.IsRequired = true;
+            command.AddOption(enrollmentConfigurationAssignmentIdOption);
             command.Handler = CommandHandler.Create<string, string>(async (deviceEnrollmentConfigurationId, enrollmentConfigurationAssignmentId) => {
-                var requestInfo = CreateDeleteRequestInformation();
-                if (!String.IsNullOrEmpty(deviceEnrollmentConfigurationId)) requestInfo.PathParameters.Add("deviceEnrollmentConfiguration_id", deviceEnrollmentConfigurationId);
-                if (!String.IsNullOrEmpty(enrollmentConfigurationAssignmentId)) requestInfo.PathParameters.Add("enrollmentConfigurationAssignment_id", enrollmentConfigurationAssignmentId);
+                var requestInfo = CreateDeleteRequestInformation(q => {
+                });
                 await RequestAdapter.SendNoContentAsync(requestInfo);
                 // Print request output. What if the request has no return?
                 Console.WriteLine("Success");
@@ -45,16 +48,25 @@ namespace ApiSdk.DeviceManagement.DeviceEnrollmentConfigurations.Item.Assignment
             var command = new Command("get");
             command.Description = "The list of group assignments for the device configuration profile";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--deviceenrollmentconfiguration-id", description: "key: id of deviceEnrollmentConfiguration"));
-            command.AddOption(new Option<string>("--enrollmentconfigurationassignment-id", description: "key: id of enrollmentConfigurationAssignment"));
-            command.AddOption(new Option<object>("--select", description: "Select properties to be returned"));
-            command.AddOption(new Option<object>("--expand", description: "Expand related entities"));
-            command.Handler = CommandHandler.Create<string, string, object, object>(async (deviceEnrollmentConfigurationId, enrollmentConfigurationAssignmentId, select, expand) => {
-                var requestInfo = CreateGetRequestInformation();
-                if (!String.IsNullOrEmpty(deviceEnrollmentConfigurationId)) requestInfo.PathParameters.Add("deviceEnrollmentConfiguration_id", deviceEnrollmentConfigurationId);
-                if (!String.IsNullOrEmpty(enrollmentConfigurationAssignmentId)) requestInfo.PathParameters.Add("enrollmentConfigurationAssignment_id", enrollmentConfigurationAssignmentId);
-                requestInfo.QueryParameters.Add("select", select);
-                requestInfo.QueryParameters.Add("expand", expand);
+            var deviceEnrollmentConfigurationIdOption = new Option<string>("--deviceenrollmentconfiguration-id", description: "key: id of deviceEnrollmentConfiguration");
+            deviceEnrollmentConfigurationIdOption.IsRequired = true;
+            command.AddOption(deviceEnrollmentConfigurationIdOption);
+            var enrollmentConfigurationAssignmentIdOption = new Option<string>("--enrollmentconfigurationassignment-id", description: "key: id of enrollmentConfigurationAssignment");
+            enrollmentConfigurationAssignmentIdOption.IsRequired = true;
+            command.AddOption(enrollmentConfigurationAssignmentIdOption);
+            var selectOption = new Option<string[]>("--select", description: "Select properties to be returned");
+            selectOption.IsRequired = false;
+            selectOption.Arity = ArgumentArity.ZeroOrMore;
+            command.AddOption(selectOption);
+            var expandOption = new Option<string[]>("--expand", description: "Expand related entities");
+            expandOption.IsRequired = false;
+            expandOption.Arity = ArgumentArity.ZeroOrMore;
+            command.AddOption(expandOption);
+            command.Handler = CommandHandler.Create<string, string, string[], string[]>(async (deviceEnrollmentConfigurationId, enrollmentConfigurationAssignmentId, select, expand) => {
+                var requestInfo = CreateGetRequestInformation(q => {
+                    q.Select = select;
+                    q.Expand = expand;
+                });
                 var result = await RequestAdapter.SendAsync<EnrollmentConfigurationAssignment>(requestInfo);
                 // Print request output. What if the request has no return?
                 using var serializer = RequestAdapter.SerializationWriterFactory.GetSerializationWriter("application/json");
@@ -73,16 +85,21 @@ namespace ApiSdk.DeviceManagement.DeviceEnrollmentConfigurations.Item.Assignment
             var command = new Command("patch");
             command.Description = "The list of group assignments for the device configuration profile";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--deviceenrollmentconfiguration-id", description: "key: id of deviceEnrollmentConfiguration"));
-            command.AddOption(new Option<string>("--enrollmentconfigurationassignment-id", description: "key: id of enrollmentConfigurationAssignment"));
-            command.AddOption(new Option<string>("--body"));
+            var deviceEnrollmentConfigurationIdOption = new Option<string>("--deviceenrollmentconfiguration-id", description: "key: id of deviceEnrollmentConfiguration");
+            deviceEnrollmentConfigurationIdOption.IsRequired = true;
+            command.AddOption(deviceEnrollmentConfigurationIdOption);
+            var enrollmentConfigurationAssignmentIdOption = new Option<string>("--enrollmentconfigurationassignment-id", description: "key: id of enrollmentConfigurationAssignment");
+            enrollmentConfigurationAssignmentIdOption.IsRequired = true;
+            command.AddOption(enrollmentConfigurationAssignmentIdOption);
+            var bodyOption = new Option<string>("--body");
+            bodyOption.IsRequired = true;
+            command.AddOption(bodyOption);
             command.Handler = CommandHandler.Create<string, string, string>(async (deviceEnrollmentConfigurationId, enrollmentConfigurationAssignmentId, body) => {
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<EnrollmentConfigurationAssignment>();
-                var requestInfo = CreatePatchRequestInformation(model);
-                if (!String.IsNullOrEmpty(deviceEnrollmentConfigurationId)) requestInfo.PathParameters.Add("deviceEnrollmentConfiguration_id", deviceEnrollmentConfigurationId);
-                if (!String.IsNullOrEmpty(enrollmentConfigurationAssignmentId)) requestInfo.PathParameters.Add("enrollmentConfigurationAssignment_id", enrollmentConfigurationAssignmentId);
+                var requestInfo = CreatePatchRequestInformation(model, q => {
+                });
                 await RequestAdapter.SendNoContentAsync(requestInfo);
                 // Print request output. What if the request has no return?
                 Console.WriteLine("Success");

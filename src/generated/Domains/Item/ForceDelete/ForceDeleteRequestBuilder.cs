@@ -25,14 +25,18 @@ namespace ApiSdk.Domains.Item.ForceDelete {
             var command = new Command("post");
             command.Description = "Invoke action forceDelete";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--domain-id", description: "key: id of domain"));
-            command.AddOption(new Option<string>("--body"));
+            var domainIdOption = new Option<string>("--domain-id", description: "key: id of domain");
+            domainIdOption.IsRequired = true;
+            command.AddOption(domainIdOption);
+            var bodyOption = new Option<string>("--body");
+            bodyOption.IsRequired = true;
+            command.AddOption(bodyOption);
             command.Handler = CommandHandler.Create<string, string>(async (domainId, body) => {
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<ForceDeleteRequestBody>();
-                var requestInfo = CreatePostRequestInformation(model);
-                if (!String.IsNullOrEmpty(domainId)) requestInfo.PathParameters.Add("domain_id", domainId);
+                var requestInfo = CreatePostRequestInformation(model, q => {
+                });
                 await RequestAdapter.SendNoContentAsync(requestInfo);
                 // Print request output. What if the request has no return?
                 Console.WriteLine("Success");

@@ -26,12 +26,15 @@ namespace ApiSdk.DeviceAppManagement.MobileApps.Item.Assignments.Item {
             var command = new Command("delete");
             command.Description = "The list of group assignments for this mobile app.";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--mobileapp-id", description: "key: id of mobileApp"));
-            command.AddOption(new Option<string>("--mobileappassignment-id", description: "key: id of mobileAppAssignment"));
+            var mobileAppIdOption = new Option<string>("--mobileapp-id", description: "key: id of mobileApp");
+            mobileAppIdOption.IsRequired = true;
+            command.AddOption(mobileAppIdOption);
+            var mobileAppAssignmentIdOption = new Option<string>("--mobileappassignment-id", description: "key: id of mobileAppAssignment");
+            mobileAppAssignmentIdOption.IsRequired = true;
+            command.AddOption(mobileAppAssignmentIdOption);
             command.Handler = CommandHandler.Create<string, string>(async (mobileAppId, mobileAppAssignmentId) => {
-                var requestInfo = CreateDeleteRequestInformation();
-                if (!String.IsNullOrEmpty(mobileAppId)) requestInfo.PathParameters.Add("mobileApp_id", mobileAppId);
-                if (!String.IsNullOrEmpty(mobileAppAssignmentId)) requestInfo.PathParameters.Add("mobileAppAssignment_id", mobileAppAssignmentId);
+                var requestInfo = CreateDeleteRequestInformation(q => {
+                });
                 await RequestAdapter.SendNoContentAsync(requestInfo);
                 // Print request output. What if the request has no return?
                 Console.WriteLine("Success");
@@ -45,16 +48,25 @@ namespace ApiSdk.DeviceAppManagement.MobileApps.Item.Assignments.Item {
             var command = new Command("get");
             command.Description = "The list of group assignments for this mobile app.";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--mobileapp-id", description: "key: id of mobileApp"));
-            command.AddOption(new Option<string>("--mobileappassignment-id", description: "key: id of mobileAppAssignment"));
-            command.AddOption(new Option<object>("--select", description: "Select properties to be returned"));
-            command.AddOption(new Option<object>("--expand", description: "Expand related entities"));
-            command.Handler = CommandHandler.Create<string, string, object, object>(async (mobileAppId, mobileAppAssignmentId, select, expand) => {
-                var requestInfo = CreateGetRequestInformation();
-                if (!String.IsNullOrEmpty(mobileAppId)) requestInfo.PathParameters.Add("mobileApp_id", mobileAppId);
-                if (!String.IsNullOrEmpty(mobileAppAssignmentId)) requestInfo.PathParameters.Add("mobileAppAssignment_id", mobileAppAssignmentId);
-                requestInfo.QueryParameters.Add("select", select);
-                requestInfo.QueryParameters.Add("expand", expand);
+            var mobileAppIdOption = new Option<string>("--mobileapp-id", description: "key: id of mobileApp");
+            mobileAppIdOption.IsRequired = true;
+            command.AddOption(mobileAppIdOption);
+            var mobileAppAssignmentIdOption = new Option<string>("--mobileappassignment-id", description: "key: id of mobileAppAssignment");
+            mobileAppAssignmentIdOption.IsRequired = true;
+            command.AddOption(mobileAppAssignmentIdOption);
+            var selectOption = new Option<string[]>("--select", description: "Select properties to be returned");
+            selectOption.IsRequired = false;
+            selectOption.Arity = ArgumentArity.ZeroOrMore;
+            command.AddOption(selectOption);
+            var expandOption = new Option<string[]>("--expand", description: "Expand related entities");
+            expandOption.IsRequired = false;
+            expandOption.Arity = ArgumentArity.ZeroOrMore;
+            command.AddOption(expandOption);
+            command.Handler = CommandHandler.Create<string, string, string[], string[]>(async (mobileAppId, mobileAppAssignmentId, select, expand) => {
+                var requestInfo = CreateGetRequestInformation(q => {
+                    q.Select = select;
+                    q.Expand = expand;
+                });
                 var result = await RequestAdapter.SendAsync<MobileAppAssignment>(requestInfo);
                 // Print request output. What if the request has no return?
                 using var serializer = RequestAdapter.SerializationWriterFactory.GetSerializationWriter("application/json");
@@ -73,16 +85,21 @@ namespace ApiSdk.DeviceAppManagement.MobileApps.Item.Assignments.Item {
             var command = new Command("patch");
             command.Description = "The list of group assignments for this mobile app.";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--mobileapp-id", description: "key: id of mobileApp"));
-            command.AddOption(new Option<string>("--mobileappassignment-id", description: "key: id of mobileAppAssignment"));
-            command.AddOption(new Option<string>("--body"));
+            var mobileAppIdOption = new Option<string>("--mobileapp-id", description: "key: id of mobileApp");
+            mobileAppIdOption.IsRequired = true;
+            command.AddOption(mobileAppIdOption);
+            var mobileAppAssignmentIdOption = new Option<string>("--mobileappassignment-id", description: "key: id of mobileAppAssignment");
+            mobileAppAssignmentIdOption.IsRequired = true;
+            command.AddOption(mobileAppAssignmentIdOption);
+            var bodyOption = new Option<string>("--body");
+            bodyOption.IsRequired = true;
+            command.AddOption(bodyOption);
             command.Handler = CommandHandler.Create<string, string, string>(async (mobileAppId, mobileAppAssignmentId, body) => {
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<MobileAppAssignment>();
-                var requestInfo = CreatePatchRequestInformation(model);
-                if (!String.IsNullOrEmpty(mobileAppId)) requestInfo.PathParameters.Add("mobileApp_id", mobileAppId);
-                if (!String.IsNullOrEmpty(mobileAppAssignmentId)) requestInfo.PathParameters.Add("mobileAppAssignment_id", mobileAppAssignmentId);
+                var requestInfo = CreatePatchRequestInformation(model, q => {
+                });
                 await RequestAdapter.SendNoContentAsync(requestInfo);
                 // Print request output. What if the request has no return?
                 Console.WriteLine("Success");

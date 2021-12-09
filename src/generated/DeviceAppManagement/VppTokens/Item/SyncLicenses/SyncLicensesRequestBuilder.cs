@@ -26,10 +26,12 @@ namespace ApiSdk.DeviceAppManagement.VppTokens.Item.SyncLicenses {
             var command = new Command("post");
             command.Description = "Syncs licenses associated with a specific appleVolumePurchaseProgramToken";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--vpptoken-id", description: "key: id of vppToken"));
+            var vppTokenIdOption = new Option<string>("--vpptoken-id", description: "key: id of vppToken");
+            vppTokenIdOption.IsRequired = true;
+            command.AddOption(vppTokenIdOption);
             command.Handler = CommandHandler.Create<string>(async (vppTokenId) => {
-                var requestInfo = CreatePostRequestInformation();
-                if (!String.IsNullOrEmpty(vppTokenId)) requestInfo.PathParameters.Add("vppToken_id", vppTokenId);
+                var requestInfo = CreatePostRequestInformation(q => {
+                });
                 var result = await RequestAdapter.SendAsync<SyncLicensesResponse>(requestInfo);
                 // Print request output. What if the request has no return?
                 using var serializer = RequestAdapter.SerializationWriterFactory.GetSerializationWriter("application/json");

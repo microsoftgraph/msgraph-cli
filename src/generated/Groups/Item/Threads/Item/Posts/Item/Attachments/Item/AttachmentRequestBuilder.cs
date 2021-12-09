@@ -26,16 +26,21 @@ namespace ApiSdk.Groups.Item.Threads.Item.Posts.Item.Attachments.Item {
             var command = new Command("delete");
             command.Description = "Read-only. Nullable. Supports $expand.";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--group-id", description: "key: id of group"));
-            command.AddOption(new Option<string>("--conversationthread-id", description: "key: id of conversationThread"));
-            command.AddOption(new Option<string>("--post-id", description: "key: id of post"));
-            command.AddOption(new Option<string>("--attachment-id", description: "key: id of attachment"));
+            var groupIdOption = new Option<string>("--group-id", description: "key: id of group");
+            groupIdOption.IsRequired = true;
+            command.AddOption(groupIdOption);
+            var conversationThreadIdOption = new Option<string>("--conversationthread-id", description: "key: id of conversationThread");
+            conversationThreadIdOption.IsRequired = true;
+            command.AddOption(conversationThreadIdOption);
+            var postIdOption = new Option<string>("--post-id", description: "key: id of post");
+            postIdOption.IsRequired = true;
+            command.AddOption(postIdOption);
+            var attachmentIdOption = new Option<string>("--attachment-id", description: "key: id of attachment");
+            attachmentIdOption.IsRequired = true;
+            command.AddOption(attachmentIdOption);
             command.Handler = CommandHandler.Create<string, string, string, string>(async (groupId, conversationThreadId, postId, attachmentId) => {
-                var requestInfo = CreateDeleteRequestInformation();
-                if (!String.IsNullOrEmpty(groupId)) requestInfo.PathParameters.Add("group_id", groupId);
-                if (!String.IsNullOrEmpty(conversationThreadId)) requestInfo.PathParameters.Add("conversationThread_id", conversationThreadId);
-                if (!String.IsNullOrEmpty(postId)) requestInfo.PathParameters.Add("post_id", postId);
-                if (!String.IsNullOrEmpty(attachmentId)) requestInfo.PathParameters.Add("attachment_id", attachmentId);
+                var requestInfo = CreateDeleteRequestInformation(q => {
+                });
                 await RequestAdapter.SendNoContentAsync(requestInfo);
                 // Print request output. What if the request has no return?
                 Console.WriteLine("Success");
@@ -49,20 +54,31 @@ namespace ApiSdk.Groups.Item.Threads.Item.Posts.Item.Attachments.Item {
             var command = new Command("get");
             command.Description = "Read-only. Nullable. Supports $expand.";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--group-id", description: "key: id of group"));
-            command.AddOption(new Option<string>("--conversationthread-id", description: "key: id of conversationThread"));
-            command.AddOption(new Option<string>("--post-id", description: "key: id of post"));
-            command.AddOption(new Option<string>("--attachment-id", description: "key: id of attachment"));
-            command.AddOption(new Option<object>("--select", description: "Select properties to be returned"));
-            command.AddOption(new Option<object>("--expand", description: "Expand related entities"));
-            command.Handler = CommandHandler.Create<string, string, string, string, object, object>(async (groupId, conversationThreadId, postId, attachmentId, select, expand) => {
-                var requestInfo = CreateGetRequestInformation();
-                if (!String.IsNullOrEmpty(groupId)) requestInfo.PathParameters.Add("group_id", groupId);
-                if (!String.IsNullOrEmpty(conversationThreadId)) requestInfo.PathParameters.Add("conversationThread_id", conversationThreadId);
-                if (!String.IsNullOrEmpty(postId)) requestInfo.PathParameters.Add("post_id", postId);
-                if (!String.IsNullOrEmpty(attachmentId)) requestInfo.PathParameters.Add("attachment_id", attachmentId);
-                requestInfo.QueryParameters.Add("select", select);
-                requestInfo.QueryParameters.Add("expand", expand);
+            var groupIdOption = new Option<string>("--group-id", description: "key: id of group");
+            groupIdOption.IsRequired = true;
+            command.AddOption(groupIdOption);
+            var conversationThreadIdOption = new Option<string>("--conversationthread-id", description: "key: id of conversationThread");
+            conversationThreadIdOption.IsRequired = true;
+            command.AddOption(conversationThreadIdOption);
+            var postIdOption = new Option<string>("--post-id", description: "key: id of post");
+            postIdOption.IsRequired = true;
+            command.AddOption(postIdOption);
+            var attachmentIdOption = new Option<string>("--attachment-id", description: "key: id of attachment");
+            attachmentIdOption.IsRequired = true;
+            command.AddOption(attachmentIdOption);
+            var selectOption = new Option<string[]>("--select", description: "Select properties to be returned");
+            selectOption.IsRequired = false;
+            selectOption.Arity = ArgumentArity.ZeroOrMore;
+            command.AddOption(selectOption);
+            var expandOption = new Option<string[]>("--expand", description: "Expand related entities");
+            expandOption.IsRequired = false;
+            expandOption.Arity = ArgumentArity.ZeroOrMore;
+            command.AddOption(expandOption);
+            command.Handler = CommandHandler.Create<string, string, string, string, string[], string[]>(async (groupId, conversationThreadId, postId, attachmentId, select, expand) => {
+                var requestInfo = CreateGetRequestInformation(q => {
+                    q.Select = select;
+                    q.Expand = expand;
+                });
                 var result = await RequestAdapter.SendAsync<Attachment>(requestInfo);
                 // Print request output. What if the request has no return?
                 using var serializer = RequestAdapter.SerializationWriterFactory.GetSerializationWriter("application/json");
@@ -81,20 +97,27 @@ namespace ApiSdk.Groups.Item.Threads.Item.Posts.Item.Attachments.Item {
             var command = new Command("patch");
             command.Description = "Read-only. Nullable. Supports $expand.";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--group-id", description: "key: id of group"));
-            command.AddOption(new Option<string>("--conversationthread-id", description: "key: id of conversationThread"));
-            command.AddOption(new Option<string>("--post-id", description: "key: id of post"));
-            command.AddOption(new Option<string>("--attachment-id", description: "key: id of attachment"));
-            command.AddOption(new Option<string>("--body"));
+            var groupIdOption = new Option<string>("--group-id", description: "key: id of group");
+            groupIdOption.IsRequired = true;
+            command.AddOption(groupIdOption);
+            var conversationThreadIdOption = new Option<string>("--conversationthread-id", description: "key: id of conversationThread");
+            conversationThreadIdOption.IsRequired = true;
+            command.AddOption(conversationThreadIdOption);
+            var postIdOption = new Option<string>("--post-id", description: "key: id of post");
+            postIdOption.IsRequired = true;
+            command.AddOption(postIdOption);
+            var attachmentIdOption = new Option<string>("--attachment-id", description: "key: id of attachment");
+            attachmentIdOption.IsRequired = true;
+            command.AddOption(attachmentIdOption);
+            var bodyOption = new Option<string>("--body");
+            bodyOption.IsRequired = true;
+            command.AddOption(bodyOption);
             command.Handler = CommandHandler.Create<string, string, string, string, string>(async (groupId, conversationThreadId, postId, attachmentId, body) => {
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<Attachment>();
-                var requestInfo = CreatePatchRequestInformation(model);
-                if (!String.IsNullOrEmpty(groupId)) requestInfo.PathParameters.Add("group_id", groupId);
-                if (!String.IsNullOrEmpty(conversationThreadId)) requestInfo.PathParameters.Add("conversationThread_id", conversationThreadId);
-                if (!String.IsNullOrEmpty(postId)) requestInfo.PathParameters.Add("post_id", postId);
-                if (!String.IsNullOrEmpty(attachmentId)) requestInfo.PathParameters.Add("attachment_id", attachmentId);
+                var requestInfo = CreatePatchRequestInformation(model, q => {
+                });
                 await RequestAdapter.SendNoContentAsync(requestInfo);
                 // Print request output. What if the request has no return?
                 Console.WriteLine("Success");

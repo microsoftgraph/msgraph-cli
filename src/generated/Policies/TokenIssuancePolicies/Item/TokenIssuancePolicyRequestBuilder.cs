@@ -26,10 +26,12 @@ namespace ApiSdk.Policies.TokenIssuancePolicies.Item {
             var command = new Command("delete");
             command.Description = "The policy that specifies the characteristics of SAML tokens issued by Azure AD.";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--tokenissuancepolicy-id", description: "key: id of tokenIssuancePolicy"));
+            var tokenIssuancePolicyIdOption = new Option<string>("--tokenissuancepolicy-id", description: "key: id of tokenIssuancePolicy");
+            tokenIssuancePolicyIdOption.IsRequired = true;
+            command.AddOption(tokenIssuancePolicyIdOption);
             command.Handler = CommandHandler.Create<string>(async (tokenIssuancePolicyId) => {
-                var requestInfo = CreateDeleteRequestInformation();
-                if (!String.IsNullOrEmpty(tokenIssuancePolicyId)) requestInfo.PathParameters.Add("tokenIssuancePolicy_id", tokenIssuancePolicyId);
+                var requestInfo = CreateDeleteRequestInformation(q => {
+                });
                 await RequestAdapter.SendNoContentAsync(requestInfo);
                 // Print request output. What if the request has no return?
                 Console.WriteLine("Success");
@@ -43,14 +45,22 @@ namespace ApiSdk.Policies.TokenIssuancePolicies.Item {
             var command = new Command("get");
             command.Description = "The policy that specifies the characteristics of SAML tokens issued by Azure AD.";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--tokenissuancepolicy-id", description: "key: id of tokenIssuancePolicy"));
-            command.AddOption(new Option<object>("--select", description: "Select properties to be returned"));
-            command.AddOption(new Option<object>("--expand", description: "Expand related entities"));
-            command.Handler = CommandHandler.Create<string, object, object>(async (tokenIssuancePolicyId, select, expand) => {
-                var requestInfo = CreateGetRequestInformation();
-                if (!String.IsNullOrEmpty(tokenIssuancePolicyId)) requestInfo.PathParameters.Add("tokenIssuancePolicy_id", tokenIssuancePolicyId);
-                requestInfo.QueryParameters.Add("select", select);
-                requestInfo.QueryParameters.Add("expand", expand);
+            var tokenIssuancePolicyIdOption = new Option<string>("--tokenissuancepolicy-id", description: "key: id of tokenIssuancePolicy");
+            tokenIssuancePolicyIdOption.IsRequired = true;
+            command.AddOption(tokenIssuancePolicyIdOption);
+            var selectOption = new Option<string[]>("--select", description: "Select properties to be returned");
+            selectOption.IsRequired = false;
+            selectOption.Arity = ArgumentArity.ZeroOrMore;
+            command.AddOption(selectOption);
+            var expandOption = new Option<string[]>("--expand", description: "Expand related entities");
+            expandOption.IsRequired = false;
+            expandOption.Arity = ArgumentArity.ZeroOrMore;
+            command.AddOption(expandOption);
+            command.Handler = CommandHandler.Create<string, string[], string[]>(async (tokenIssuancePolicyId, select, expand) => {
+                var requestInfo = CreateGetRequestInformation(q => {
+                    q.Select = select;
+                    q.Expand = expand;
+                });
                 var result = await RequestAdapter.SendAsync<TokenIssuancePolicy>(requestInfo);
                 // Print request output. What if the request has no return?
                 using var serializer = RequestAdapter.SerializationWriterFactory.GetSerializationWriter("application/json");
@@ -69,14 +79,18 @@ namespace ApiSdk.Policies.TokenIssuancePolicies.Item {
             var command = new Command("patch");
             command.Description = "The policy that specifies the characteristics of SAML tokens issued by Azure AD.";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--tokenissuancepolicy-id", description: "key: id of tokenIssuancePolicy"));
-            command.AddOption(new Option<string>("--body"));
+            var tokenIssuancePolicyIdOption = new Option<string>("--tokenissuancepolicy-id", description: "key: id of tokenIssuancePolicy");
+            tokenIssuancePolicyIdOption.IsRequired = true;
+            command.AddOption(tokenIssuancePolicyIdOption);
+            var bodyOption = new Option<string>("--body");
+            bodyOption.IsRequired = true;
+            command.AddOption(bodyOption);
             command.Handler = CommandHandler.Create<string, string>(async (tokenIssuancePolicyId, body) => {
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<TokenIssuancePolicy>();
-                var requestInfo = CreatePatchRequestInformation(model);
-                if (!String.IsNullOrEmpty(tokenIssuancePolicyId)) requestInfo.PathParameters.Add("tokenIssuancePolicy_id", tokenIssuancePolicyId);
+                var requestInfo = CreatePatchRequestInformation(model, q => {
+                });
                 await RequestAdapter.SendNoContentAsync(requestInfo);
                 // Print request output. What if the request has no return?
                 Console.WriteLine("Success");

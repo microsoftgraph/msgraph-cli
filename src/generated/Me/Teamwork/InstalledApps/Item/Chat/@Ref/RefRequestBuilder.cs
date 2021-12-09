@@ -25,10 +25,12 @@ namespace ApiSdk.Me.Teamwork.InstalledApps.Item.Chat.@Ref {
             var command = new Command("delete");
             command.Description = "The chat between the user and Teams app.";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--userscopeteamsappinstallation-id", description: "key: id of userScopeTeamsAppInstallation"));
+            var userScopeTeamsAppInstallationIdOption = new Option<string>("--userscopeteamsappinstallation-id", description: "key: id of userScopeTeamsAppInstallation");
+            userScopeTeamsAppInstallationIdOption.IsRequired = true;
+            command.AddOption(userScopeTeamsAppInstallationIdOption);
             command.Handler = CommandHandler.Create<string>(async (userScopeTeamsAppInstallationId) => {
-                var requestInfo = CreateDeleteRequestInformation();
-                if (!String.IsNullOrEmpty(userScopeTeamsAppInstallationId)) requestInfo.PathParameters.Add("userScopeTeamsAppInstallation_id", userScopeTeamsAppInstallationId);
+                var requestInfo = CreateDeleteRequestInformation(q => {
+                });
                 await RequestAdapter.SendNoContentAsync(requestInfo);
                 // Print request output. What if the request has no return?
                 Console.WriteLine("Success");
@@ -42,10 +44,12 @@ namespace ApiSdk.Me.Teamwork.InstalledApps.Item.Chat.@Ref {
             var command = new Command("get");
             command.Description = "The chat between the user and Teams app.";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--userscopeteamsappinstallation-id", description: "key: id of userScopeTeamsAppInstallation"));
+            var userScopeTeamsAppInstallationIdOption = new Option<string>("--userscopeteamsappinstallation-id", description: "key: id of userScopeTeamsAppInstallation");
+            userScopeTeamsAppInstallationIdOption.IsRequired = true;
+            command.AddOption(userScopeTeamsAppInstallationIdOption);
             command.Handler = CommandHandler.Create<string>(async (userScopeTeamsAppInstallationId) => {
-                var requestInfo = CreateGetRequestInformation();
-                if (!String.IsNullOrEmpty(userScopeTeamsAppInstallationId)) requestInfo.PathParameters.Add("userScopeTeamsAppInstallation_id", userScopeTeamsAppInstallationId);
+                var requestInfo = CreateGetRequestInformation(q => {
+                });
                 var result = await RequestAdapter.SendPrimitiveAsync<string>(requestInfo);
                 // Print request output. What if the request has no return?
                 using var serializer = RequestAdapter.SerializationWriterFactory.GetSerializationWriter("application/json");
@@ -64,14 +68,18 @@ namespace ApiSdk.Me.Teamwork.InstalledApps.Item.Chat.@Ref {
             var command = new Command("put");
             command.Description = "The chat between the user and Teams app.";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--userscopeteamsappinstallation-id", description: "key: id of userScopeTeamsAppInstallation"));
-            command.AddOption(new Option<string>("--body"));
+            var userScopeTeamsAppInstallationIdOption = new Option<string>("--userscopeteamsappinstallation-id", description: "key: id of userScopeTeamsAppInstallation");
+            userScopeTeamsAppInstallationIdOption.IsRequired = true;
+            command.AddOption(userScopeTeamsAppInstallationIdOption);
+            var bodyOption = new Option<string>("--body");
+            bodyOption.IsRequired = true;
+            command.AddOption(bodyOption);
             command.Handler = CommandHandler.Create<string, string>(async (userScopeTeamsAppInstallationId, body) => {
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<ApiSdk.Me.Teamwork.InstalledApps.Item.Chat.@Ref.@Ref>();
-                var requestInfo = CreatePutRequestInformation(model);
-                if (!String.IsNullOrEmpty(userScopeTeamsAppInstallationId)) requestInfo.PathParameters.Add("userScopeTeamsAppInstallation_id", userScopeTeamsAppInstallationId);
+                var requestInfo = CreatePutRequestInformation(model, q => {
+                });
                 await RequestAdapter.SendNoContentAsync(requestInfo);
                 // Print request output. What if the request has no return?
                 Console.WriteLine("Success");

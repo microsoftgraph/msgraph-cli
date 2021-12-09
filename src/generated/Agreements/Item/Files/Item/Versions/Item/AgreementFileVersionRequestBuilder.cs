@@ -26,14 +26,18 @@ namespace ApiSdk.Agreements.Item.Files.Item.Versions.Item {
             var command = new Command("delete");
             command.Description = "Delete navigation property versions for agreements";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--agreement-id", description: "key: id of agreement"));
-            command.AddOption(new Option<string>("--agreementfilelocalization-id", description: "key: id of agreementFileLocalization"));
-            command.AddOption(new Option<string>("--agreementfileversion-id", description: "key: id of agreementFileVersion"));
+            var agreementIdOption = new Option<string>("--agreement-id", description: "key: id of agreement");
+            agreementIdOption.IsRequired = true;
+            command.AddOption(agreementIdOption);
+            var agreementFileLocalizationIdOption = new Option<string>("--agreementfilelocalization-id", description: "key: id of agreementFileLocalization");
+            agreementFileLocalizationIdOption.IsRequired = true;
+            command.AddOption(agreementFileLocalizationIdOption);
+            var agreementFileVersionIdOption = new Option<string>("--agreementfileversion-id", description: "key: id of agreementFileVersion");
+            agreementFileVersionIdOption.IsRequired = true;
+            command.AddOption(agreementFileVersionIdOption);
             command.Handler = CommandHandler.Create<string, string, string>(async (agreementId, agreementFileLocalizationId, agreementFileVersionId) => {
-                var requestInfo = CreateDeleteRequestInformation();
-                if (!String.IsNullOrEmpty(agreementId)) requestInfo.PathParameters.Add("agreement_id", agreementId);
-                if (!String.IsNullOrEmpty(agreementFileLocalizationId)) requestInfo.PathParameters.Add("agreementFileLocalization_id", agreementFileLocalizationId);
-                if (!String.IsNullOrEmpty(agreementFileVersionId)) requestInfo.PathParameters.Add("agreementFileVersion_id", agreementFileVersionId);
+                var requestInfo = CreateDeleteRequestInformation(q => {
+                });
                 await RequestAdapter.SendNoContentAsync(requestInfo);
                 // Print request output. What if the request has no return?
                 Console.WriteLine("Success");
@@ -47,18 +51,28 @@ namespace ApiSdk.Agreements.Item.Files.Item.Versions.Item {
             var command = new Command("get");
             command.Description = "Get versions from agreements";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--agreement-id", description: "key: id of agreement"));
-            command.AddOption(new Option<string>("--agreementfilelocalization-id", description: "key: id of agreementFileLocalization"));
-            command.AddOption(new Option<string>("--agreementfileversion-id", description: "key: id of agreementFileVersion"));
-            command.AddOption(new Option<object>("--select", description: "Select properties to be returned"));
-            command.AddOption(new Option<object>("--expand", description: "Expand related entities"));
-            command.Handler = CommandHandler.Create<string, string, string, object, object>(async (agreementId, agreementFileLocalizationId, agreementFileVersionId, select, expand) => {
-                var requestInfo = CreateGetRequestInformation();
-                if (!String.IsNullOrEmpty(agreementId)) requestInfo.PathParameters.Add("agreement_id", agreementId);
-                if (!String.IsNullOrEmpty(agreementFileLocalizationId)) requestInfo.PathParameters.Add("agreementFileLocalization_id", agreementFileLocalizationId);
-                if (!String.IsNullOrEmpty(agreementFileVersionId)) requestInfo.PathParameters.Add("agreementFileVersion_id", agreementFileVersionId);
-                requestInfo.QueryParameters.Add("select", select);
-                requestInfo.QueryParameters.Add("expand", expand);
+            var agreementIdOption = new Option<string>("--agreement-id", description: "key: id of agreement");
+            agreementIdOption.IsRequired = true;
+            command.AddOption(agreementIdOption);
+            var agreementFileLocalizationIdOption = new Option<string>("--agreementfilelocalization-id", description: "key: id of agreementFileLocalization");
+            agreementFileLocalizationIdOption.IsRequired = true;
+            command.AddOption(agreementFileLocalizationIdOption);
+            var agreementFileVersionIdOption = new Option<string>("--agreementfileversion-id", description: "key: id of agreementFileVersion");
+            agreementFileVersionIdOption.IsRequired = true;
+            command.AddOption(agreementFileVersionIdOption);
+            var selectOption = new Option<string[]>("--select", description: "Select properties to be returned");
+            selectOption.IsRequired = false;
+            selectOption.Arity = ArgumentArity.ZeroOrMore;
+            command.AddOption(selectOption);
+            var expandOption = new Option<string[]>("--expand", description: "Expand related entities");
+            expandOption.IsRequired = false;
+            expandOption.Arity = ArgumentArity.ZeroOrMore;
+            command.AddOption(expandOption);
+            command.Handler = CommandHandler.Create<string, string, string, string[], string[]>(async (agreementId, agreementFileLocalizationId, agreementFileVersionId, select, expand) => {
+                var requestInfo = CreateGetRequestInformation(q => {
+                    q.Select = select;
+                    q.Expand = expand;
+                });
                 var result = await RequestAdapter.SendAsync<AgreementFileVersion>(requestInfo);
                 // Print request output. What if the request has no return?
                 using var serializer = RequestAdapter.SerializationWriterFactory.GetSerializationWriter("application/json");
@@ -77,18 +91,24 @@ namespace ApiSdk.Agreements.Item.Files.Item.Versions.Item {
             var command = new Command("patch");
             command.Description = "Update the navigation property versions in agreements";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--agreement-id", description: "key: id of agreement"));
-            command.AddOption(new Option<string>("--agreementfilelocalization-id", description: "key: id of agreementFileLocalization"));
-            command.AddOption(new Option<string>("--agreementfileversion-id", description: "key: id of agreementFileVersion"));
-            command.AddOption(new Option<string>("--body"));
+            var agreementIdOption = new Option<string>("--agreement-id", description: "key: id of agreement");
+            agreementIdOption.IsRequired = true;
+            command.AddOption(agreementIdOption);
+            var agreementFileLocalizationIdOption = new Option<string>("--agreementfilelocalization-id", description: "key: id of agreementFileLocalization");
+            agreementFileLocalizationIdOption.IsRequired = true;
+            command.AddOption(agreementFileLocalizationIdOption);
+            var agreementFileVersionIdOption = new Option<string>("--agreementfileversion-id", description: "key: id of agreementFileVersion");
+            agreementFileVersionIdOption.IsRequired = true;
+            command.AddOption(agreementFileVersionIdOption);
+            var bodyOption = new Option<string>("--body");
+            bodyOption.IsRequired = true;
+            command.AddOption(bodyOption);
             command.Handler = CommandHandler.Create<string, string, string, string>(async (agreementId, agreementFileLocalizationId, agreementFileVersionId, body) => {
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<AgreementFileVersion>();
-                var requestInfo = CreatePatchRequestInformation(model);
-                if (!String.IsNullOrEmpty(agreementId)) requestInfo.PathParameters.Add("agreement_id", agreementId);
-                if (!String.IsNullOrEmpty(agreementFileLocalizationId)) requestInfo.PathParameters.Add("agreementFileLocalization_id", agreementFileLocalizationId);
-                if (!String.IsNullOrEmpty(agreementFileVersionId)) requestInfo.PathParameters.Add("agreementFileVersion_id", agreementFileVersionId);
+                var requestInfo = CreatePatchRequestInformation(model, q => {
+                });
                 await RequestAdapter.SendNoContentAsync(requestInfo);
                 // Print request output. What if the request has no return?
                 Console.WriteLine("Success");

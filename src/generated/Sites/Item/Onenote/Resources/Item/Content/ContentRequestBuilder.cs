@@ -25,13 +25,16 @@ namespace ApiSdk.Sites.Item.Onenote.Resources.Item.Content {
             var command = new Command("get");
             command.Description = "Get media content for the navigation property resources from sites";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--site-id", description: "key: id of site"));
-            command.AddOption(new Option<string>("--onenoteresource-id", description: "key: id of onenoteResource"));
+            var siteIdOption = new Option<string>("--site-id", description: "key: id of site");
+            siteIdOption.IsRequired = true;
+            command.AddOption(siteIdOption);
+            var onenoteResourceIdOption = new Option<string>("--onenoteresource-id", description: "key: id of onenoteResource");
+            onenoteResourceIdOption.IsRequired = true;
+            command.AddOption(onenoteResourceIdOption);
             command.AddOption(new Option<FileInfo>("--output"));
             command.Handler = CommandHandler.Create<string, string, FileInfo>(async (siteId, onenoteResourceId, output) => {
-                var requestInfo = CreateGetRequestInformation();
-                if (!String.IsNullOrEmpty(siteId)) requestInfo.PathParameters.Add("site_id", siteId);
-                if (!String.IsNullOrEmpty(onenoteResourceId)) requestInfo.PathParameters.Add("onenoteResource_id", onenoteResourceId);
+                var requestInfo = CreateGetRequestInformation(q => {
+                });
                 var result = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 // Print request output. What if the request has no return?
                 if (output == null) {
@@ -54,14 +57,19 @@ namespace ApiSdk.Sites.Item.Onenote.Resources.Item.Content {
             var command = new Command("put");
             command.Description = "Update media content for the navigation property resources in sites";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--site-id", description: "key: id of site"));
-            command.AddOption(new Option<string>("--onenoteresource-id", description: "key: id of onenoteResource"));
-            command.AddOption(new Option<Stream>("--file", description: "Binary request body"));
+            var siteIdOption = new Option<string>("--site-id", description: "key: id of site");
+            siteIdOption.IsRequired = true;
+            command.AddOption(siteIdOption);
+            var onenoteResourceIdOption = new Option<string>("--onenoteresource-id", description: "key: id of onenoteResource");
+            onenoteResourceIdOption.IsRequired = true;
+            command.AddOption(onenoteResourceIdOption);
+            var fileOption = new Option<Stream>("--file", description: "Binary request body");
+            fileOption.IsRequired = true;
+            command.AddOption(fileOption);
             command.Handler = CommandHandler.Create<string, string, FileInfo>(async (siteId, onenoteResourceId, file) => {
                 using var stream = file.OpenRead();
-                var requestInfo = CreatePutRequestInformation(stream);
-                if (!String.IsNullOrEmpty(siteId)) requestInfo.PathParameters.Add("site_id", siteId);
-                if (!String.IsNullOrEmpty(onenoteResourceId)) requestInfo.PathParameters.Add("onenoteResource_id", onenoteResourceId);
+                var requestInfo = CreatePutRequestInformation(stream, q => {
+                });
                 await RequestAdapter.SendNoContentAsync(requestInfo);
                 // Print request output. What if the request has no return?
                 Console.WriteLine("Success");

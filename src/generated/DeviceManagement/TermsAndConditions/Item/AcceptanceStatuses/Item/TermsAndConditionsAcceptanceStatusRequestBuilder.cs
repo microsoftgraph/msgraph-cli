@@ -27,12 +27,15 @@ namespace ApiSdk.DeviceManagement.TermsAndConditions.Item.AcceptanceStatuses.Ite
             var command = new Command("delete");
             command.Description = "The list of acceptance statuses for this T&C policy.";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--termsandconditions-id", description: "key: id of termsAndConditions"));
-            command.AddOption(new Option<string>("--termsandconditionsacceptancestatus-id", description: "key: id of termsAndConditionsAcceptanceStatus"));
+            var termsAndConditionsIdOption = new Option<string>("--termsandconditions-id", description: "key: id of termsAndConditions");
+            termsAndConditionsIdOption.IsRequired = true;
+            command.AddOption(termsAndConditionsIdOption);
+            var termsAndConditionsAcceptanceStatusIdOption = new Option<string>("--termsandconditionsacceptancestatus-id", description: "key: id of termsAndConditionsAcceptanceStatus");
+            termsAndConditionsAcceptanceStatusIdOption.IsRequired = true;
+            command.AddOption(termsAndConditionsAcceptanceStatusIdOption);
             command.Handler = CommandHandler.Create<string, string>(async (termsAndConditionsId, termsAndConditionsAcceptanceStatusId) => {
-                var requestInfo = CreateDeleteRequestInformation();
-                if (!String.IsNullOrEmpty(termsAndConditionsId)) requestInfo.PathParameters.Add("termsAndConditions_id", termsAndConditionsId);
-                if (!String.IsNullOrEmpty(termsAndConditionsAcceptanceStatusId)) requestInfo.PathParameters.Add("termsAndConditionsAcceptanceStatus_id", termsAndConditionsAcceptanceStatusId);
+                var requestInfo = CreateDeleteRequestInformation(q => {
+                });
                 await RequestAdapter.SendNoContentAsync(requestInfo);
                 // Print request output. What if the request has no return?
                 Console.WriteLine("Success");
@@ -46,16 +49,25 @@ namespace ApiSdk.DeviceManagement.TermsAndConditions.Item.AcceptanceStatuses.Ite
             var command = new Command("get");
             command.Description = "The list of acceptance statuses for this T&C policy.";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--termsandconditions-id", description: "key: id of termsAndConditions"));
-            command.AddOption(new Option<string>("--termsandconditionsacceptancestatus-id", description: "key: id of termsAndConditionsAcceptanceStatus"));
-            command.AddOption(new Option<object>("--select", description: "Select properties to be returned"));
-            command.AddOption(new Option<object>("--expand", description: "Expand related entities"));
-            command.Handler = CommandHandler.Create<string, string, object, object>(async (termsAndConditionsId, termsAndConditionsAcceptanceStatusId, select, expand) => {
-                var requestInfo = CreateGetRequestInformation();
-                if (!String.IsNullOrEmpty(termsAndConditionsId)) requestInfo.PathParameters.Add("termsAndConditions_id", termsAndConditionsId);
-                if (!String.IsNullOrEmpty(termsAndConditionsAcceptanceStatusId)) requestInfo.PathParameters.Add("termsAndConditionsAcceptanceStatus_id", termsAndConditionsAcceptanceStatusId);
-                requestInfo.QueryParameters.Add("select", select);
-                requestInfo.QueryParameters.Add("expand", expand);
+            var termsAndConditionsIdOption = new Option<string>("--termsandconditions-id", description: "key: id of termsAndConditions");
+            termsAndConditionsIdOption.IsRequired = true;
+            command.AddOption(termsAndConditionsIdOption);
+            var termsAndConditionsAcceptanceStatusIdOption = new Option<string>("--termsandconditionsacceptancestatus-id", description: "key: id of termsAndConditionsAcceptanceStatus");
+            termsAndConditionsAcceptanceStatusIdOption.IsRequired = true;
+            command.AddOption(termsAndConditionsAcceptanceStatusIdOption);
+            var selectOption = new Option<string[]>("--select", description: "Select properties to be returned");
+            selectOption.IsRequired = false;
+            selectOption.Arity = ArgumentArity.ZeroOrMore;
+            command.AddOption(selectOption);
+            var expandOption = new Option<string[]>("--expand", description: "Expand related entities");
+            expandOption.IsRequired = false;
+            expandOption.Arity = ArgumentArity.ZeroOrMore;
+            command.AddOption(expandOption);
+            command.Handler = CommandHandler.Create<string, string, string[], string[]>(async (termsAndConditionsId, termsAndConditionsAcceptanceStatusId, select, expand) => {
+                var requestInfo = CreateGetRequestInformation(q => {
+                    q.Select = select;
+                    q.Expand = expand;
+                });
                 var result = await RequestAdapter.SendAsync<TermsAndConditionsAcceptanceStatus>(requestInfo);
                 // Print request output. What if the request has no return?
                 using var serializer = RequestAdapter.SerializationWriterFactory.GetSerializationWriter("application/json");
@@ -74,16 +86,21 @@ namespace ApiSdk.DeviceManagement.TermsAndConditions.Item.AcceptanceStatuses.Ite
             var command = new Command("patch");
             command.Description = "The list of acceptance statuses for this T&C policy.";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--termsandconditions-id", description: "key: id of termsAndConditions"));
-            command.AddOption(new Option<string>("--termsandconditionsacceptancestatus-id", description: "key: id of termsAndConditionsAcceptanceStatus"));
-            command.AddOption(new Option<string>("--body"));
+            var termsAndConditionsIdOption = new Option<string>("--termsandconditions-id", description: "key: id of termsAndConditions");
+            termsAndConditionsIdOption.IsRequired = true;
+            command.AddOption(termsAndConditionsIdOption);
+            var termsAndConditionsAcceptanceStatusIdOption = new Option<string>("--termsandconditionsacceptancestatus-id", description: "key: id of termsAndConditionsAcceptanceStatus");
+            termsAndConditionsAcceptanceStatusIdOption.IsRequired = true;
+            command.AddOption(termsAndConditionsAcceptanceStatusIdOption);
+            var bodyOption = new Option<string>("--body");
+            bodyOption.IsRequired = true;
+            command.AddOption(bodyOption);
             command.Handler = CommandHandler.Create<string, string, string>(async (termsAndConditionsId, termsAndConditionsAcceptanceStatusId, body) => {
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<TermsAndConditionsAcceptanceStatus>();
-                var requestInfo = CreatePatchRequestInformation(model);
-                if (!String.IsNullOrEmpty(termsAndConditionsId)) requestInfo.PathParameters.Add("termsAndConditions_id", termsAndConditionsId);
-                if (!String.IsNullOrEmpty(termsAndConditionsAcceptanceStatusId)) requestInfo.PathParameters.Add("termsAndConditionsAcceptanceStatus_id", termsAndConditionsAcceptanceStatusId);
+                var requestInfo = CreatePatchRequestInformation(model, q => {
+                });
                 await RequestAdapter.SendNoContentAsync(requestInfo);
                 // Print request output. What if the request has no return?
                 Console.WriteLine("Success");

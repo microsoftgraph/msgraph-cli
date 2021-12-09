@@ -25,16 +25,21 @@ namespace ApiSdk.DeviceAppManagement.ManagedAppRegistrations.Item.AppliedPolicie
             var command = new Command("post");
             command.Description = "Invoke action assign";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--managedappregistration-id", description: "key: id of managedAppRegistration"));
-            command.AddOption(new Option<string>("--managedapppolicy-id", description: "key: id of managedAppPolicy"));
-            command.AddOption(new Option<string>("--body"));
+            var managedAppRegistrationIdOption = new Option<string>("--managedappregistration-id", description: "key: id of managedAppRegistration");
+            managedAppRegistrationIdOption.IsRequired = true;
+            command.AddOption(managedAppRegistrationIdOption);
+            var managedAppPolicyIdOption = new Option<string>("--managedapppolicy-id", description: "key: id of managedAppPolicy");
+            managedAppPolicyIdOption.IsRequired = true;
+            command.AddOption(managedAppPolicyIdOption);
+            var bodyOption = new Option<string>("--body");
+            bodyOption.IsRequired = true;
+            command.AddOption(bodyOption);
             command.Handler = CommandHandler.Create<string, string, string>(async (managedAppRegistrationId, managedAppPolicyId, body) => {
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<AssignRequestBody>();
-                var requestInfo = CreatePostRequestInformation(model);
-                if (!String.IsNullOrEmpty(managedAppRegistrationId)) requestInfo.PathParameters.Add("managedAppRegistration_id", managedAppRegistrationId);
-                if (!String.IsNullOrEmpty(managedAppPolicyId)) requestInfo.PathParameters.Add("managedAppPolicy_id", managedAppPolicyId);
+                var requestInfo = CreatePostRequestInformation(model, q => {
+                });
                 await RequestAdapter.SendNoContentAsync(requestInfo);
                 // Print request output. What if the request has no return?
                 Console.WriteLine("Success");

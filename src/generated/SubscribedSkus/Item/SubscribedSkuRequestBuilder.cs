@@ -26,10 +26,12 @@ namespace ApiSdk.SubscribedSkus.Item {
             var command = new Command("delete");
             command.Description = "Delete entity from subscribedSkus";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--subscribedsku-id", description: "key: id of subscribedSku"));
+            var subscribedSkuIdOption = new Option<string>("--subscribedsku-id", description: "key: id of subscribedSku");
+            subscribedSkuIdOption.IsRequired = true;
+            command.AddOption(subscribedSkuIdOption);
             command.Handler = CommandHandler.Create<string>(async (subscribedSkuId) => {
-                var requestInfo = CreateDeleteRequestInformation();
-                if (!String.IsNullOrEmpty(subscribedSkuId)) requestInfo.PathParameters.Add("subscribedSku_id", subscribedSkuId);
+                var requestInfo = CreateDeleteRequestInformation(q => {
+                });
                 await RequestAdapter.SendNoContentAsync(requestInfo);
                 // Print request output. What if the request has no return?
                 Console.WriteLine("Success");
@@ -43,12 +45,17 @@ namespace ApiSdk.SubscribedSkus.Item {
             var command = new Command("get");
             command.Description = "Get entity from subscribedSkus by key";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--subscribedsku-id", description: "key: id of subscribedSku"));
-            command.AddOption(new Option<object>("--select", description: "Select properties to be returned"));
-            command.Handler = CommandHandler.Create<string, object>(async (subscribedSkuId, select) => {
-                var requestInfo = CreateGetRequestInformation();
-                if (!String.IsNullOrEmpty(subscribedSkuId)) requestInfo.PathParameters.Add("subscribedSku_id", subscribedSkuId);
-                requestInfo.QueryParameters.Add("select", select);
+            var subscribedSkuIdOption = new Option<string>("--subscribedsku-id", description: "key: id of subscribedSku");
+            subscribedSkuIdOption.IsRequired = true;
+            command.AddOption(subscribedSkuIdOption);
+            var selectOption = new Option<string[]>("--select", description: "Select properties to be returned");
+            selectOption.IsRequired = false;
+            selectOption.Arity = ArgumentArity.ZeroOrMore;
+            command.AddOption(selectOption);
+            command.Handler = CommandHandler.Create<string, string[]>(async (subscribedSkuId, select) => {
+                var requestInfo = CreateGetRequestInformation(q => {
+                    q.Select = select;
+                });
                 var result = await RequestAdapter.SendAsync<SubscribedSku>(requestInfo);
                 // Print request output. What if the request has no return?
                 using var serializer = RequestAdapter.SerializationWriterFactory.GetSerializationWriter("application/json");
@@ -67,14 +74,18 @@ namespace ApiSdk.SubscribedSkus.Item {
             var command = new Command("patch");
             command.Description = "Update entity in subscribedSkus";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--subscribedsku-id", description: "key: id of subscribedSku"));
-            command.AddOption(new Option<string>("--body"));
+            var subscribedSkuIdOption = new Option<string>("--subscribedsku-id", description: "key: id of subscribedSku");
+            subscribedSkuIdOption.IsRequired = true;
+            command.AddOption(subscribedSkuIdOption);
+            var bodyOption = new Option<string>("--body");
+            bodyOption.IsRequired = true;
+            command.AddOption(bodyOption);
             command.Handler = CommandHandler.Create<string, string>(async (subscribedSkuId, body) => {
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<SubscribedSku>();
-                var requestInfo = CreatePatchRequestInformation(model);
-                if (!String.IsNullOrEmpty(subscribedSkuId)) requestInfo.PathParameters.Add("subscribedSku_id", subscribedSkuId);
+                var requestInfo = CreatePatchRequestInformation(model, q => {
+                });
                 await RequestAdapter.SendNoContentAsync(requestInfo);
                 // Print request output. What if the request has no return?
                 Console.WriteLine("Success");

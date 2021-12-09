@@ -34,10 +34,12 @@ namespace ApiSdk.GroupLifecyclePolicies.Item {
             var command = new Command("delete");
             command.Description = "Delete entity from groupLifecyclePolicies";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--grouplifecyclepolicy-id", description: "key: id of groupLifecyclePolicy"));
+            var groupLifecyclePolicyIdOption = new Option<string>("--grouplifecyclepolicy-id", description: "key: id of groupLifecyclePolicy");
+            groupLifecyclePolicyIdOption.IsRequired = true;
+            command.AddOption(groupLifecyclePolicyIdOption);
             command.Handler = CommandHandler.Create<string>(async (groupLifecyclePolicyId) => {
-                var requestInfo = CreateDeleteRequestInformation();
-                if (!String.IsNullOrEmpty(groupLifecyclePolicyId)) requestInfo.PathParameters.Add("groupLifecyclePolicy_id", groupLifecyclePolicyId);
+                var requestInfo = CreateDeleteRequestInformation(q => {
+                });
                 await RequestAdapter.SendNoContentAsync(requestInfo);
                 // Print request output. What if the request has no return?
                 Console.WriteLine("Success");
@@ -51,14 +53,22 @@ namespace ApiSdk.GroupLifecyclePolicies.Item {
             var command = new Command("get");
             command.Description = "Get entity from groupLifecyclePolicies by key";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--grouplifecyclepolicy-id", description: "key: id of groupLifecyclePolicy"));
-            command.AddOption(new Option<object>("--select", description: "Select properties to be returned"));
-            command.AddOption(new Option<object>("--expand", description: "Expand related entities"));
-            command.Handler = CommandHandler.Create<string, object, object>(async (groupLifecyclePolicyId, select, expand) => {
-                var requestInfo = CreateGetRequestInformation();
-                if (!String.IsNullOrEmpty(groupLifecyclePolicyId)) requestInfo.PathParameters.Add("groupLifecyclePolicy_id", groupLifecyclePolicyId);
-                requestInfo.QueryParameters.Add("select", select);
-                requestInfo.QueryParameters.Add("expand", expand);
+            var groupLifecyclePolicyIdOption = new Option<string>("--grouplifecyclepolicy-id", description: "key: id of groupLifecyclePolicy");
+            groupLifecyclePolicyIdOption.IsRequired = true;
+            command.AddOption(groupLifecyclePolicyIdOption);
+            var selectOption = new Option<string[]>("--select", description: "Select properties to be returned");
+            selectOption.IsRequired = false;
+            selectOption.Arity = ArgumentArity.ZeroOrMore;
+            command.AddOption(selectOption);
+            var expandOption = new Option<string[]>("--expand", description: "Expand related entities");
+            expandOption.IsRequired = false;
+            expandOption.Arity = ArgumentArity.ZeroOrMore;
+            command.AddOption(expandOption);
+            command.Handler = CommandHandler.Create<string, string[], string[]>(async (groupLifecyclePolicyId, select, expand) => {
+                var requestInfo = CreateGetRequestInformation(q => {
+                    q.Select = select;
+                    q.Expand = expand;
+                });
                 var result = await RequestAdapter.SendAsync<GroupLifecyclePolicy>(requestInfo);
                 // Print request output. What if the request has no return?
                 using var serializer = RequestAdapter.SerializationWriterFactory.GetSerializationWriter("application/json");
@@ -77,14 +87,18 @@ namespace ApiSdk.GroupLifecyclePolicies.Item {
             var command = new Command("patch");
             command.Description = "Update entity in groupLifecyclePolicies";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--grouplifecyclepolicy-id", description: "key: id of groupLifecyclePolicy"));
-            command.AddOption(new Option<string>("--body"));
+            var groupLifecyclePolicyIdOption = new Option<string>("--grouplifecyclepolicy-id", description: "key: id of groupLifecyclePolicy");
+            groupLifecyclePolicyIdOption.IsRequired = true;
+            command.AddOption(groupLifecyclePolicyIdOption);
+            var bodyOption = new Option<string>("--body");
+            bodyOption.IsRequired = true;
+            command.AddOption(bodyOption);
             command.Handler = CommandHandler.Create<string, string>(async (groupLifecyclePolicyId, body) => {
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<GroupLifecyclePolicy>();
-                var requestInfo = CreatePatchRequestInformation(model);
-                if (!String.IsNullOrEmpty(groupLifecyclePolicyId)) requestInfo.PathParameters.Add("groupLifecyclePolicy_id", groupLifecyclePolicyId);
+                var requestInfo = CreatePatchRequestInformation(model, q => {
+                });
                 await RequestAdapter.SendNoContentAsync(requestInfo);
                 // Print request output. What if the request has no return?
                 Console.WriteLine("Success");

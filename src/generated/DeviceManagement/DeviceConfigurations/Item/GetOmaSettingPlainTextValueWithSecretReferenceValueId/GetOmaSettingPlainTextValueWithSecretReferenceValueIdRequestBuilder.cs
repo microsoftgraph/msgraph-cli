@@ -25,12 +25,15 @@ namespace ApiSdk.DeviceManagement.DeviceConfigurations.Item.GetOmaSettingPlainTe
             var command = new Command("get");
             command.Description = "Invoke function getOmaSettingPlainTextValue";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--deviceconfiguration-id", description: "key: id of deviceConfiguration"));
-            command.AddOption(new Option<string>("--secretreferencevalueid", description: "Usage: secretReferenceValueId={secretReferenceValueId}"));
+            var deviceConfigurationIdOption = new Option<string>("--deviceconfiguration-id", description: "key: id of deviceConfiguration");
+            deviceConfigurationIdOption.IsRequired = true;
+            command.AddOption(deviceConfigurationIdOption);
+            var secretReferenceValueIdOption = new Option<string>("--secretreferencevalueid", description: "Usage: secretReferenceValueId={secretReferenceValueId}");
+            secretReferenceValueIdOption.IsRequired = true;
+            command.AddOption(secretReferenceValueIdOption);
             command.Handler = CommandHandler.Create<string, string>(async (deviceConfigurationId, secretReferenceValueId) => {
-                var requestInfo = CreateGetRequestInformation();
-                if (!String.IsNullOrEmpty(deviceConfigurationId)) requestInfo.PathParameters.Add("deviceConfiguration_id", deviceConfigurationId);
-                if (!String.IsNullOrEmpty(secretReferenceValueId)) requestInfo.PathParameters.Add("secretReferenceValueId", secretReferenceValueId);
+                var requestInfo = CreateGetRequestInformation(q => {
+                });
                 var result = await RequestAdapter.SendPrimitiveAsync<string>(requestInfo);
                 // Print request output. What if the request has no return?
                 using var serializer = RequestAdapter.SerializationWriterFactory.GetSerializationWriter("application/json");

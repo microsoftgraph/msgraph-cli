@@ -26,16 +26,21 @@ namespace ApiSdk.Users.Item.Insights.Trending.Item.Resource.WorkbookRange.Resize
             var command = new Command("get");
             command.Description = "Invoke function resizedRange";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--user-id", description: "key: id of user"));
-            command.AddOption(new Option<string>("--trending-id", description: "key: id of trending"));
-            command.AddOption(new Option<int?>("--deltarows", description: "Usage: deltaRows={deltaRows}"));
-            command.AddOption(new Option<int?>("--deltacolumns", description: "Usage: deltaColumns={deltaColumns}"));
+            var userIdOption = new Option<string>("--user-id", description: "key: id of user");
+            userIdOption.IsRequired = true;
+            command.AddOption(userIdOption);
+            var trendingIdOption = new Option<string>("--trending-id", description: "key: id of trending");
+            trendingIdOption.IsRequired = true;
+            command.AddOption(trendingIdOption);
+            var deltaRowsOption = new Option<int?>("--deltarows", description: "Usage: deltaRows={deltaRows}");
+            deltaRowsOption.IsRequired = true;
+            command.AddOption(deltaRowsOption);
+            var deltaColumnsOption = new Option<int?>("--deltacolumns", description: "Usage: deltaColumns={deltaColumns}");
+            deltaColumnsOption.IsRequired = true;
+            command.AddOption(deltaColumnsOption);
             command.Handler = CommandHandler.Create<string, string, int?, int?>(async (userId, trendingId, deltaRows, deltaColumns) => {
-                var requestInfo = CreateGetRequestInformation();
-                if (!String.IsNullOrEmpty(userId)) requestInfo.PathParameters.Add("user_id", userId);
-                if (!String.IsNullOrEmpty(trendingId)) requestInfo.PathParameters.Add("trending_id", trendingId);
-                requestInfo.PathParameters.Add("deltaRows", deltaRows);
-                requestInfo.PathParameters.Add("deltaColumns", deltaColumns);
+                var requestInfo = CreateGetRequestInformation(q => {
+                });
                 var result = await RequestAdapter.SendAsync<ResizedRangeWithDeltaRowsWithDeltaColumnsResponse>(requestInfo);
                 // Print request output. What if the request has no return?
                 using var serializer = RequestAdapter.SerializationWriterFactory.GetSerializationWriter("application/json");

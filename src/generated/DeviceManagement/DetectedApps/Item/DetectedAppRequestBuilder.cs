@@ -27,10 +27,12 @@ namespace ApiSdk.DeviceManagement.DetectedApps.Item {
             var command = new Command("delete");
             command.Description = "The list of detected apps associated with a device.";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--detectedapp-id", description: "key: id of detectedApp"));
+            var detectedAppIdOption = new Option<string>("--detectedapp-id", description: "key: id of detectedApp");
+            detectedAppIdOption.IsRequired = true;
+            command.AddOption(detectedAppIdOption);
             command.Handler = CommandHandler.Create<string>(async (detectedAppId) => {
-                var requestInfo = CreateDeleteRequestInformation();
-                if (!String.IsNullOrEmpty(detectedAppId)) requestInfo.PathParameters.Add("detectedApp_id", detectedAppId);
+                var requestInfo = CreateDeleteRequestInformation(q => {
+                });
                 await RequestAdapter.SendNoContentAsync(requestInfo);
                 // Print request output. What if the request has no return?
                 Console.WriteLine("Success");
@@ -44,14 +46,22 @@ namespace ApiSdk.DeviceManagement.DetectedApps.Item {
             var command = new Command("get");
             command.Description = "The list of detected apps associated with a device.";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--detectedapp-id", description: "key: id of detectedApp"));
-            command.AddOption(new Option<object>("--select", description: "Select properties to be returned"));
-            command.AddOption(new Option<object>("--expand", description: "Expand related entities"));
-            command.Handler = CommandHandler.Create<string, object, object>(async (detectedAppId, select, expand) => {
-                var requestInfo = CreateGetRequestInformation();
-                if (!String.IsNullOrEmpty(detectedAppId)) requestInfo.PathParameters.Add("detectedApp_id", detectedAppId);
-                requestInfo.QueryParameters.Add("select", select);
-                requestInfo.QueryParameters.Add("expand", expand);
+            var detectedAppIdOption = new Option<string>("--detectedapp-id", description: "key: id of detectedApp");
+            detectedAppIdOption.IsRequired = true;
+            command.AddOption(detectedAppIdOption);
+            var selectOption = new Option<string[]>("--select", description: "Select properties to be returned");
+            selectOption.IsRequired = false;
+            selectOption.Arity = ArgumentArity.ZeroOrMore;
+            command.AddOption(selectOption);
+            var expandOption = new Option<string[]>("--expand", description: "Expand related entities");
+            expandOption.IsRequired = false;
+            expandOption.Arity = ArgumentArity.ZeroOrMore;
+            command.AddOption(expandOption);
+            command.Handler = CommandHandler.Create<string, string[], string[]>(async (detectedAppId, select, expand) => {
+                var requestInfo = CreateGetRequestInformation(q => {
+                    q.Select = select;
+                    q.Expand = expand;
+                });
                 var result = await RequestAdapter.SendAsync<DetectedApp>(requestInfo);
                 // Print request output. What if the request has no return?
                 using var serializer = RequestAdapter.SerializationWriterFactory.GetSerializationWriter("application/json");
@@ -77,14 +87,18 @@ namespace ApiSdk.DeviceManagement.DetectedApps.Item {
             var command = new Command("patch");
             command.Description = "The list of detected apps associated with a device.";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--detectedapp-id", description: "key: id of detectedApp"));
-            command.AddOption(new Option<string>("--body"));
+            var detectedAppIdOption = new Option<string>("--detectedapp-id", description: "key: id of detectedApp");
+            detectedAppIdOption.IsRequired = true;
+            command.AddOption(detectedAppIdOption);
+            var bodyOption = new Option<string>("--body");
+            bodyOption.IsRequired = true;
+            command.AddOption(bodyOption);
             command.Handler = CommandHandler.Create<string, string>(async (detectedAppId, body) => {
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<DetectedApp>();
-                var requestInfo = CreatePatchRequestInformation(model);
-                if (!String.IsNullOrEmpty(detectedAppId)) requestInfo.PathParameters.Add("detectedApp_id", detectedAppId);
+                var requestInfo = CreatePatchRequestInformation(model, q => {
+                });
                 await RequestAdapter.SendNoContentAsync(requestInfo);
                 // Print request output. What if the request has no return?
                 Console.WriteLine("Success");

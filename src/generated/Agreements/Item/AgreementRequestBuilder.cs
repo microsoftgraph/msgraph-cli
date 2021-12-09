@@ -36,10 +36,12 @@ namespace ApiSdk.Agreements.Item {
             var command = new Command("delete");
             command.Description = "Delete entity from agreements";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--agreement-id", description: "key: id of agreement"));
+            var agreementIdOption = new Option<string>("--agreement-id", description: "key: id of agreement");
+            agreementIdOption.IsRequired = true;
+            command.AddOption(agreementIdOption);
             command.Handler = CommandHandler.Create<string>(async (agreementId) => {
-                var requestInfo = CreateDeleteRequestInformation();
-                if (!String.IsNullOrEmpty(agreementId)) requestInfo.PathParameters.Add("agreement_id", agreementId);
+                var requestInfo = CreateDeleteRequestInformation(q => {
+                });
                 await RequestAdapter.SendNoContentAsync(requestInfo);
                 // Print request output. What if the request has no return?
                 Console.WriteLine("Success");
@@ -69,12 +71,17 @@ namespace ApiSdk.Agreements.Item {
             var command = new Command("get");
             command.Description = "Get entity from agreements by key";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--agreement-id", description: "key: id of agreement"));
-            command.AddOption(new Option<object>("--select", description: "Select properties to be returned"));
-            command.Handler = CommandHandler.Create<string, object>(async (agreementId, select) => {
-                var requestInfo = CreateGetRequestInformation();
-                if (!String.IsNullOrEmpty(agreementId)) requestInfo.PathParameters.Add("agreement_id", agreementId);
-                requestInfo.QueryParameters.Add("select", select);
+            var agreementIdOption = new Option<string>("--agreement-id", description: "key: id of agreement");
+            agreementIdOption.IsRequired = true;
+            command.AddOption(agreementIdOption);
+            var selectOption = new Option<string[]>("--select", description: "Select properties to be returned");
+            selectOption.IsRequired = false;
+            selectOption.Arity = ArgumentArity.ZeroOrMore;
+            command.AddOption(selectOption);
+            command.Handler = CommandHandler.Create<string, string[]>(async (agreementId, select) => {
+                var requestInfo = CreateGetRequestInformation(q => {
+                    q.Select = select;
+                });
                 var result = await RequestAdapter.SendAsync<Agreement>(requestInfo);
                 // Print request output. What if the request has no return?
                 using var serializer = RequestAdapter.SerializationWriterFactory.GetSerializationWriter("application/json");
@@ -93,14 +100,18 @@ namespace ApiSdk.Agreements.Item {
             var command = new Command("patch");
             command.Description = "Update entity in agreements";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--agreement-id", description: "key: id of agreement"));
-            command.AddOption(new Option<string>("--body"));
+            var agreementIdOption = new Option<string>("--agreement-id", description: "key: id of agreement");
+            agreementIdOption.IsRequired = true;
+            command.AddOption(agreementIdOption);
+            var bodyOption = new Option<string>("--body");
+            bodyOption.IsRequired = true;
+            command.AddOption(bodyOption);
             command.Handler = CommandHandler.Create<string, string>(async (agreementId, body) => {
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<Agreement>();
-                var requestInfo = CreatePatchRequestInformation(model);
-                if (!String.IsNullOrEmpty(agreementId)) requestInfo.PathParameters.Add("agreement_id", agreementId);
+                var requestInfo = CreatePatchRequestInformation(model, q => {
+                });
                 await RequestAdapter.SendNoContentAsync(requestInfo);
                 // Print request output. What if the request has no return?
                 Console.WriteLine("Success");

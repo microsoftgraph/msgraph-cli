@@ -27,10 +27,12 @@ namespace ApiSdk.DeviceAppManagement.VppTokens.Item {
             var command = new Command("delete");
             command.Description = "List of Vpp tokens for this organization.";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--vpptoken-id", description: "key: id of vppToken"));
+            var vppTokenIdOption = new Option<string>("--vpptoken-id", description: "key: id of vppToken");
+            vppTokenIdOption.IsRequired = true;
+            command.AddOption(vppTokenIdOption);
             command.Handler = CommandHandler.Create<string>(async (vppTokenId) => {
-                var requestInfo = CreateDeleteRequestInformation();
-                if (!String.IsNullOrEmpty(vppTokenId)) requestInfo.PathParameters.Add("vppToken_id", vppTokenId);
+                var requestInfo = CreateDeleteRequestInformation(q => {
+                });
                 await RequestAdapter.SendNoContentAsync(requestInfo);
                 // Print request output. What if the request has no return?
                 Console.WriteLine("Success");
@@ -44,14 +46,22 @@ namespace ApiSdk.DeviceAppManagement.VppTokens.Item {
             var command = new Command("get");
             command.Description = "List of Vpp tokens for this organization.";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--vpptoken-id", description: "key: id of vppToken"));
-            command.AddOption(new Option<object>("--select", description: "Select properties to be returned"));
-            command.AddOption(new Option<object>("--expand", description: "Expand related entities"));
-            command.Handler = CommandHandler.Create<string, object, object>(async (vppTokenId, select, expand) => {
-                var requestInfo = CreateGetRequestInformation();
-                if (!String.IsNullOrEmpty(vppTokenId)) requestInfo.PathParameters.Add("vppToken_id", vppTokenId);
-                requestInfo.QueryParameters.Add("select", select);
-                requestInfo.QueryParameters.Add("expand", expand);
+            var vppTokenIdOption = new Option<string>("--vpptoken-id", description: "key: id of vppToken");
+            vppTokenIdOption.IsRequired = true;
+            command.AddOption(vppTokenIdOption);
+            var selectOption = new Option<string[]>("--select", description: "Select properties to be returned");
+            selectOption.IsRequired = false;
+            selectOption.Arity = ArgumentArity.ZeroOrMore;
+            command.AddOption(selectOption);
+            var expandOption = new Option<string[]>("--expand", description: "Expand related entities");
+            expandOption.IsRequired = false;
+            expandOption.Arity = ArgumentArity.ZeroOrMore;
+            command.AddOption(expandOption);
+            command.Handler = CommandHandler.Create<string, string[], string[]>(async (vppTokenId, select, expand) => {
+                var requestInfo = CreateGetRequestInformation(q => {
+                    q.Select = select;
+                    q.Expand = expand;
+                });
                 var result = await RequestAdapter.SendAsync<VppToken>(requestInfo);
                 // Print request output. What if the request has no return?
                 using var serializer = RequestAdapter.SerializationWriterFactory.GetSerializationWriter("application/json");
@@ -70,14 +80,18 @@ namespace ApiSdk.DeviceAppManagement.VppTokens.Item {
             var command = new Command("patch");
             command.Description = "List of Vpp tokens for this organization.";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--vpptoken-id", description: "key: id of vppToken"));
-            command.AddOption(new Option<string>("--body"));
+            var vppTokenIdOption = new Option<string>("--vpptoken-id", description: "key: id of vppToken");
+            vppTokenIdOption.IsRequired = true;
+            command.AddOption(vppTokenIdOption);
+            var bodyOption = new Option<string>("--body");
+            bodyOption.IsRequired = true;
+            command.AddOption(bodyOption);
             command.Handler = CommandHandler.Create<string, string>(async (vppTokenId, body) => {
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<VppToken>();
-                var requestInfo = CreatePatchRequestInformation(model);
-                if (!String.IsNullOrEmpty(vppTokenId)) requestInfo.PathParameters.Add("vppToken_id", vppTokenId);
+                var requestInfo = CreatePatchRequestInformation(model, q => {
+                });
                 await RequestAdapter.SendNoContentAsync(requestInfo);
                 // Print request output. What if the request has no return?
                 Console.WriteLine("Success");

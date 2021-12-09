@@ -26,10 +26,12 @@ namespace ApiSdk.Print.Connectors.Item {
             var command = new Command("delete");
             command.Description = "The list of available print connectors.";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--printconnector-id", description: "key: id of printConnector"));
+            var printConnectorIdOption = new Option<string>("--printconnector-id", description: "key: id of printConnector");
+            printConnectorIdOption.IsRequired = true;
+            command.AddOption(printConnectorIdOption);
             command.Handler = CommandHandler.Create<string>(async (printConnectorId) => {
-                var requestInfo = CreateDeleteRequestInformation();
-                if (!String.IsNullOrEmpty(printConnectorId)) requestInfo.PathParameters.Add("printConnector_id", printConnectorId);
+                var requestInfo = CreateDeleteRequestInformation(q => {
+                });
                 await RequestAdapter.SendNoContentAsync(requestInfo);
                 // Print request output. What if the request has no return?
                 Console.WriteLine("Success");
@@ -43,14 +45,22 @@ namespace ApiSdk.Print.Connectors.Item {
             var command = new Command("get");
             command.Description = "The list of available print connectors.";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--printconnector-id", description: "key: id of printConnector"));
-            command.AddOption(new Option<object>("--select", description: "Select properties to be returned"));
-            command.AddOption(new Option<object>("--expand", description: "Expand related entities"));
-            command.Handler = CommandHandler.Create<string, object, object>(async (printConnectorId, select, expand) => {
-                var requestInfo = CreateGetRequestInformation();
-                if (!String.IsNullOrEmpty(printConnectorId)) requestInfo.PathParameters.Add("printConnector_id", printConnectorId);
-                requestInfo.QueryParameters.Add("select", select);
-                requestInfo.QueryParameters.Add("expand", expand);
+            var printConnectorIdOption = new Option<string>("--printconnector-id", description: "key: id of printConnector");
+            printConnectorIdOption.IsRequired = true;
+            command.AddOption(printConnectorIdOption);
+            var selectOption = new Option<string[]>("--select", description: "Select properties to be returned");
+            selectOption.IsRequired = false;
+            selectOption.Arity = ArgumentArity.ZeroOrMore;
+            command.AddOption(selectOption);
+            var expandOption = new Option<string[]>("--expand", description: "Expand related entities");
+            expandOption.IsRequired = false;
+            expandOption.Arity = ArgumentArity.ZeroOrMore;
+            command.AddOption(expandOption);
+            command.Handler = CommandHandler.Create<string, string[], string[]>(async (printConnectorId, select, expand) => {
+                var requestInfo = CreateGetRequestInformation(q => {
+                    q.Select = select;
+                    q.Expand = expand;
+                });
                 var result = await RequestAdapter.SendAsync<PrintConnector>(requestInfo);
                 // Print request output. What if the request has no return?
                 using var serializer = RequestAdapter.SerializationWriterFactory.GetSerializationWriter("application/json");
@@ -69,14 +79,18 @@ namespace ApiSdk.Print.Connectors.Item {
             var command = new Command("patch");
             command.Description = "The list of available print connectors.";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--printconnector-id", description: "key: id of printConnector"));
-            command.AddOption(new Option<string>("--body"));
+            var printConnectorIdOption = new Option<string>("--printconnector-id", description: "key: id of printConnector");
+            printConnectorIdOption.IsRequired = true;
+            command.AddOption(printConnectorIdOption);
+            var bodyOption = new Option<string>("--body");
+            bodyOption.IsRequired = true;
+            command.AddOption(bodyOption);
             command.Handler = CommandHandler.Create<string, string>(async (printConnectorId, body) => {
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<PrintConnector>();
-                var requestInfo = CreatePatchRequestInformation(model);
-                if (!String.IsNullOrEmpty(printConnectorId)) requestInfo.PathParameters.Add("printConnector_id", printConnectorId);
+                var requestInfo = CreatePatchRequestInformation(model, q => {
+                });
                 await RequestAdapter.SendNoContentAsync(requestInfo);
                 // Print request output. What if the request has no return?
                 Console.WriteLine("Success");

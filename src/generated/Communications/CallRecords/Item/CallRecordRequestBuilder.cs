@@ -27,10 +27,12 @@ namespace ApiSdk.Communications.CallRecords.Item {
             var command = new Command("delete");
             command.Description = "Delete navigation property callRecords for communications";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--callrecord-id", description: "key: id of callRecord"));
+            var callRecordIdOption = new Option<string>("--callrecord-id", description: "key: id of callRecord");
+            callRecordIdOption.IsRequired = true;
+            command.AddOption(callRecordIdOption);
             command.Handler = CommandHandler.Create<string>(async (callRecordId) => {
-                var requestInfo = CreateDeleteRequestInformation();
-                if (!String.IsNullOrEmpty(callRecordId)) requestInfo.PathParameters.Add("callRecord_id", callRecordId);
+                var requestInfo = CreateDeleteRequestInformation(q => {
+                });
                 await RequestAdapter.SendNoContentAsync(requestInfo);
                 // Print request output. What if the request has no return?
                 Console.WriteLine("Success");
@@ -44,14 +46,22 @@ namespace ApiSdk.Communications.CallRecords.Item {
             var command = new Command("get");
             command.Description = "Get callRecords from communications";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--callrecord-id", description: "key: id of callRecord"));
-            command.AddOption(new Option<object>("--select", description: "Select properties to be returned"));
-            command.AddOption(new Option<object>("--expand", description: "Expand related entities"));
-            command.Handler = CommandHandler.Create<string, object, object>(async (callRecordId, select, expand) => {
-                var requestInfo = CreateGetRequestInformation();
-                if (!String.IsNullOrEmpty(callRecordId)) requestInfo.PathParameters.Add("callRecord_id", callRecordId);
-                requestInfo.QueryParameters.Add("select", select);
-                requestInfo.QueryParameters.Add("expand", expand);
+            var callRecordIdOption = new Option<string>("--callrecord-id", description: "key: id of callRecord");
+            callRecordIdOption.IsRequired = true;
+            command.AddOption(callRecordIdOption);
+            var selectOption = new Option<string[]>("--select", description: "Select properties to be returned");
+            selectOption.IsRequired = false;
+            selectOption.Arity = ArgumentArity.ZeroOrMore;
+            command.AddOption(selectOption);
+            var expandOption = new Option<string[]>("--expand", description: "Expand related entities");
+            expandOption.IsRequired = false;
+            expandOption.Arity = ArgumentArity.ZeroOrMore;
+            command.AddOption(expandOption);
+            command.Handler = CommandHandler.Create<string, string[], string[]>(async (callRecordId, select, expand) => {
+                var requestInfo = CreateGetRequestInformation(q => {
+                    q.Select = select;
+                    q.Expand = expand;
+                });
                 var result = await RequestAdapter.SendAsync<CallRecord>(requestInfo);
                 // Print request output. What if the request has no return?
                 using var serializer = RequestAdapter.SerializationWriterFactory.GetSerializationWriter("application/json");
@@ -70,14 +80,18 @@ namespace ApiSdk.Communications.CallRecords.Item {
             var command = new Command("patch");
             command.Description = "Update the navigation property callRecords in communications";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--callrecord-id", description: "key: id of callRecord"));
-            command.AddOption(new Option<string>("--body"));
+            var callRecordIdOption = new Option<string>("--callrecord-id", description: "key: id of callRecord");
+            callRecordIdOption.IsRequired = true;
+            command.AddOption(callRecordIdOption);
+            var bodyOption = new Option<string>("--body");
+            bodyOption.IsRequired = true;
+            command.AddOption(bodyOption);
             command.Handler = CommandHandler.Create<string, string>(async (callRecordId, body) => {
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<CallRecord>();
-                var requestInfo = CreatePatchRequestInformation(model);
-                if (!String.IsNullOrEmpty(callRecordId)) requestInfo.PathParameters.Add("callRecord_id", callRecordId);
+                var requestInfo = CreatePatchRequestInformation(model, q => {
+                });
                 await RequestAdapter.SendNoContentAsync(requestInfo);
                 // Print request output. What if the request has no return?
                 Console.WriteLine("Success");

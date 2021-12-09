@@ -25,14 +25,18 @@ namespace ApiSdk.Reports.GetPrinterArchivedPrintJobsWithPrinterIdWithStartDateTi
             var command = new Command("get");
             command.Description = "Invoke function getPrinterArchivedPrintJobs";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--printerid", description: "Usage: printerId={printerId}"));
-            command.AddOption(new Option<DateTimeOffset?>("--startdatetime", description: "Usage: startDateTime={startDateTime}"));
-            command.AddOption(new Option<DateTimeOffset?>("--enddatetime", description: "Usage: endDateTime={endDateTime}"));
-            command.Handler = CommandHandler.Create<string, DateTimeOffset?, DateTimeOffset?>(async (printerId, startDateTime, endDateTime) => {
-                var requestInfo = CreateGetRequestInformation();
-                if (!String.IsNullOrEmpty(printerId)) requestInfo.PathParameters.Add("printerId", printerId);
-                requestInfo.PathParameters.Add("startDateTime", startDateTime);
-                requestInfo.PathParameters.Add("endDateTime", endDateTime);
+            var printerIdOption = new Option<string>("--printerid", description: "Usage: printerId={printerId}");
+            printerIdOption.IsRequired = true;
+            command.AddOption(printerIdOption);
+            var startDateTimeOption = new Option<string>("--startdatetime", description: "Usage: startDateTime={startDateTime}");
+            startDateTimeOption.IsRequired = true;
+            command.AddOption(startDateTimeOption);
+            var endDateTimeOption = new Option<string>("--enddatetime", description: "Usage: endDateTime={endDateTime}");
+            endDateTimeOption.IsRequired = true;
+            command.AddOption(endDateTimeOption);
+            command.Handler = CommandHandler.Create<string, string, string>(async (printerId, startDateTime, endDateTime) => {
+                var requestInfo = CreateGetRequestInformation(q => {
+                });
                 var result = await RequestAdapter.SendCollectionAsync<ApiSdk.Reports.GetPrinterArchivedPrintJobsWithPrinterIdWithStartDateTimeWithEndDateTime.GetPrinterArchivedPrintJobsWithPrinterIdWithStartDateTimeWithEndDateTime>(requestInfo);
                 // Print request output. What if the request has no return?
                 using var serializer = RequestAdapter.SerializationWriterFactory.GetSerializationWriter("application/json");

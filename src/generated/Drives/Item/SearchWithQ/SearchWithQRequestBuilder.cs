@@ -25,12 +25,15 @@ namespace ApiSdk.Drives.Item.SearchWithQ {
             var command = new Command("get");
             command.Description = "Invoke function search";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--drive-id", description: "key: id of drive"));
-            command.AddOption(new Option<string>("-q", description: "Usage: q={q}"));
+            var driveIdOption = new Option<string>("--drive-id", description: "key: id of drive");
+            driveIdOption.IsRequired = true;
+            command.AddOption(driveIdOption);
+            var qOption = new Option<string>("-q", description: "Usage: q={q}");
+            qOption.IsRequired = true;
+            command.AddOption(qOption);
             command.Handler = CommandHandler.Create<string, string>(async (driveId, q) => {
-                var requestInfo = CreateGetRequestInformation();
-                if (!String.IsNullOrEmpty(driveId)) requestInfo.PathParameters.Add("drive_id", driveId);
-                if (!String.IsNullOrEmpty(q)) requestInfo.PathParameters.Add("q", q);
+                var requestInfo = CreateGetRequestInformation(q => {
+                });
                 var result = await RequestAdapter.SendCollectionAsync<ApiSdk.Drives.Item.SearchWithQ.SearchWithQ>(requestInfo);
                 // Print request output. What if the request has no return?
                 using var serializer = RequestAdapter.SerializationWriterFactory.GetSerializationWriter("application/json");

@@ -62,10 +62,12 @@ namespace ApiSdk.Organization.Item {
             var command = new Command("delete");
             command.Description = "Delete entity from organization";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--organization-id", description: "key: id of organization"));
+            var organizationIdOption = new Option<string>("--organization-id", description: "key: id of organization");
+            organizationIdOption.IsRequired = true;
+            command.AddOption(organizationIdOption);
             command.Handler = CommandHandler.Create<string>(async (organizationId) => {
-                var requestInfo = CreateDeleteRequestInformation();
-                if (!String.IsNullOrEmpty(organizationId)) requestInfo.PathParameters.Add("organization_id", organizationId);
+                var requestInfo = CreateDeleteRequestInformation(q => {
+                });
                 await RequestAdapter.SendNoContentAsync(requestInfo);
                 // Print request output. What if the request has no return?
                 Console.WriteLine("Success");
@@ -86,14 +88,22 @@ namespace ApiSdk.Organization.Item {
             var command = new Command("get");
             command.Description = "Get entity from organization by key";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--organization-id", description: "key: id of organization"));
-            command.AddOption(new Option<object>("--select", description: "Select properties to be returned"));
-            command.AddOption(new Option<object>("--expand", description: "Expand related entities"));
-            command.Handler = CommandHandler.Create<string, object, object>(async (organizationId, select, expand) => {
-                var requestInfo = CreateGetRequestInformation();
-                if (!String.IsNullOrEmpty(organizationId)) requestInfo.PathParameters.Add("organization_id", organizationId);
-                requestInfo.QueryParameters.Add("select", select);
-                requestInfo.QueryParameters.Add("expand", expand);
+            var organizationIdOption = new Option<string>("--organization-id", description: "key: id of organization");
+            organizationIdOption.IsRequired = true;
+            command.AddOption(organizationIdOption);
+            var selectOption = new Option<string[]>("--select", description: "Select properties to be returned");
+            selectOption.IsRequired = false;
+            selectOption.Arity = ArgumentArity.ZeroOrMore;
+            command.AddOption(selectOption);
+            var expandOption = new Option<string[]>("--expand", description: "Expand related entities");
+            expandOption.IsRequired = false;
+            expandOption.Arity = ArgumentArity.ZeroOrMore;
+            command.AddOption(expandOption);
+            command.Handler = CommandHandler.Create<string, string[], string[]>(async (organizationId, select, expand) => {
+                var requestInfo = CreateGetRequestInformation(q => {
+                    q.Select = select;
+                    q.Expand = expand;
+                });
                 var result = await RequestAdapter.SendAsync<ApiSdk.Models.Microsoft.Graph.Organization>(requestInfo);
                 // Print request output. What if the request has no return?
                 using var serializer = RequestAdapter.SerializationWriterFactory.GetSerializationWriter("application/json");
@@ -124,14 +134,18 @@ namespace ApiSdk.Organization.Item {
             var command = new Command("patch");
             command.Description = "Update entity in organization";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--organization-id", description: "key: id of organization"));
-            command.AddOption(new Option<string>("--body"));
+            var organizationIdOption = new Option<string>("--organization-id", description: "key: id of organization");
+            organizationIdOption.IsRequired = true;
+            command.AddOption(organizationIdOption);
+            var bodyOption = new Option<string>("--body");
+            bodyOption.IsRequired = true;
+            command.AddOption(bodyOption);
             command.Handler = CommandHandler.Create<string, string>(async (organizationId, body) => {
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<ApiSdk.Models.Microsoft.Graph.Organization>();
-                var requestInfo = CreatePatchRequestInformation(model);
-                if (!String.IsNullOrEmpty(organizationId)) requestInfo.PathParameters.Add("organization_id", organizationId);
+                var requestInfo = CreatePatchRequestInformation(model, q => {
+                });
                 await RequestAdapter.SendNoContentAsync(requestInfo);
                 // Print request output. What if the request has no return?
                 Console.WriteLine("Success");

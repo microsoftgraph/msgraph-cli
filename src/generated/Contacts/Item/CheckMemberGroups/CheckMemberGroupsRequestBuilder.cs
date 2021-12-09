@@ -25,14 +25,18 @@ namespace ApiSdk.Contacts.Item.CheckMemberGroups {
             var command = new Command("post");
             command.Description = "Invoke action checkMemberGroups";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--orgcontact-id", description: "key: id of orgContact"));
-            command.AddOption(new Option<string>("--body"));
+            var orgContactIdOption = new Option<string>("--orgcontact-id", description: "key: id of orgContact");
+            orgContactIdOption.IsRequired = true;
+            command.AddOption(orgContactIdOption);
+            var bodyOption = new Option<string>("--body");
+            bodyOption.IsRequired = true;
+            command.AddOption(bodyOption);
             command.Handler = CommandHandler.Create<string, string>(async (orgContactId, body) => {
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<CheckMemberGroupsRequestBody>();
-                var requestInfo = CreatePostRequestInformation(model);
-                if (!String.IsNullOrEmpty(orgContactId)) requestInfo.PathParameters.Add("orgContact_id", orgContactId);
+                var requestInfo = CreatePostRequestInformation(model, q => {
+                });
                 var result = await RequestAdapter.SendPrimitiveCollectionAsync<string>(requestInfo);
                 // Print request output. What if the request has no return?
                 using var serializer = RequestAdapter.SerializationWriterFactory.GetSerializationWriter("application/json");
