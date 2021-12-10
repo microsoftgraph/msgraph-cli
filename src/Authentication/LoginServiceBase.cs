@@ -11,12 +11,6 @@ abstract class LoginServiceBase : ILoginService {
         await this.SaveSessionAsync(record);
     }
 
-    public void Logout() {
-        if (File.Exists(Constants.AuthRecordPath)) {
-            File.Delete(Constants.AuthRecordPath);
-        }
-    }
-
     protected abstract Task<AuthenticationRecord> DoLoginAsync(string[] scopes);
 
     public async Task SaveSessionAsync(AuthenticationRecord record) {

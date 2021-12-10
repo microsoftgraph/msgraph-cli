@@ -4,6 +4,4 @@ namespace Microsoft.Graph.Cli.Authentication;
 
 interface ILoginService {
     Task LoginAsync(string[] scopes);
-
-    void Logout();
 }

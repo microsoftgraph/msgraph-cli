@@ -25,6 +25,9 @@ namespace Microsoft.Graph.Cli
 
             var loginCommand = new LoginCommand(authServiceFactory);
             rootCommand.AddCommand(loginCommand.Build());
+
+            var logoutCommand = new LogoutCommand(new LogoutService());
+            rootCommand.AddCommand(logoutCommand.Build());
             return await rootCommand.InvokeAsync(args);
         }
     }
