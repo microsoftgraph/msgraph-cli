@@ -4,6 +4,8 @@ namespace Microsoft.Graph.Cli.Utils
 {
     class Constants
     {
+        public const string ApplicationDataDirectory = ".mgc";
+
         public const string AuthRecordPath = "authRecord";
 
         public const string TokenCacheName = "MicrosoftGraph";

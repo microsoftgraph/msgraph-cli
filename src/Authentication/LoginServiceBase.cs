@@ -1,3 +1,4 @@
+using System;
 using System.IO;
 using System.Threading.Tasks;
 using Azure.Identity;
@@ -14,7 +15,9 @@ abstract class LoginServiceBase : ILoginService {
     protected abstract Task<AuthenticationRecord> DoLoginAsync(string[] scopes);
 
     public async Task SaveSessionAsync(AuthenticationRecord record) {
-        using var authRecordStream = new FileStream(Constants.AuthRecordPath, FileMode.OpenOrCreate, FileAccess.Write);
+        var homeDir = Environment.GetEnvironmentVariable("HOME") ?? Environment.ExpandEnvironmentVariables("%HOMEDRIVE%%HOMEPATH%");
+        var recordPath = Path.Combine(homeDir, Constants.ApplicationDataDirectory, Constants.AuthRecordPath);
+        using var authRecordStream = new FileStream(recordPath, FileMode.OpenOrCreate, FileAccess.Write);
         await record.SerializeAsync(authRecordStream);
     }
 }
