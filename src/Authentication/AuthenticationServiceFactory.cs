@@ -3,40 +3,43 @@ using System.IO;
 using System.Threading.Tasks;
 using Azure.Core;
 using Azure.Identity;
+using Microsoft.Extensions.Options;
+using Microsoft.Graph.Cli.Configuration;
+using Microsoft.Graph.Cli.IO;
 using Microsoft.Graph.Cli.Utils;
 
 namespace Microsoft.Graph.Cli.Authentication;
 
 class AuthenticationServiceFactory {
-    public async Task<ILoginService> GetAuthenticationServiceAsync(AuthenticationStrategy strategy) {
+    public async Task<ILoginService> GetAuthenticationServiceAsync(AuthenticationStrategy strategy, string tenantId, string clientId) {
         switch (strategy) {
             case AuthenticationStrategy.DeviceCode:
-                return await GetDeviceCodeLoginServiceAsync();
+                return await GetDeviceCodeLoginServiceAsync(tenantId, clientId);
             default:
                 throw new InvalidOperationException($"The authentication strategy {strategy} is not supported");
         }
 
     }
 
-    public async Task<TokenCredential> GetTokenCredentialAsync(AuthenticationStrategy strategy) {
+    public async Task<TokenCredential> GetTokenCredentialAsync(AuthenticationStrategy strategy, string tenantId, string clientId) {
         switch (strategy) {
             case AuthenticationStrategy.DeviceCode:
-                return await GetDeviceCodeCredentialAsync();
+                return await GetDeviceCodeCredentialAsync(tenantId, clientId);
             default:
                 throw new InvalidOperationException($"The authentication strategy {strategy} is not supported");
         }
     }
 
-    private async Task<DeviceCodeLoginService> GetDeviceCodeLoginServiceAsync() {
-        var credential = await GetDeviceCodeCredentialAsync();
-        return new(credential);
+    private async Task<DeviceCodeLoginService> GetDeviceCodeLoginServiceAsync(string tenantId, string clientId) {
+        var credential = await GetDeviceCodeCredentialAsync(tenantId, clientId);
+        return new(credential, new PathUtility());
     }
 
-    private async Task<DeviceCodeCredential> GetDeviceCodeCredentialAsync() {
+    private async Task<DeviceCodeCredential> GetDeviceCodeCredentialAsync(string tenantId, string clientId) {
         DeviceCodeCredentialOptions credOptions = new()
         {
-            ClientId = Constants.ClientId,
-            TenantId = Constants.TenantId
+            ClientId = clientId,
+            TenantId = tenantId,
         };
 
         TokenCachePersistenceOptions tokenCacheOptions = new() { Name = Constants.TokenCacheName };

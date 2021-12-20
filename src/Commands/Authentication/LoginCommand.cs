@@ -1,4 +1,8 @@
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
+using Microsoft.Extensions.Options;
 using Microsoft.Graph.Cli.Authentication;
+using Microsoft.Graph.Cli.Configuration;
 using Microsoft.Graph.Cli.Utils;
 using System.CommandLine;
 using System.CommandLine.Invocation;
@@ -23,9 +27,10 @@ class LoginCommand
         var strategy = new Option<AuthenticationStrategy>("--strategy", () => Constants.defaultAuthStrategy, "The authentication strategy to use.");
         loginCommand.AddOption(strategy);
 
-        loginCommand.Handler = CommandHandler.Create<string[], AuthenticationStrategy>(async (scopes, strategy) =>
+        loginCommand.Handler = CommandHandler.Create<string[], AuthenticationStrategy, IHost>(async (scopes, strategy, host) =>
         {
-            var authService = await this.authenticationServiceFactory.GetAuthenticationServiceAsync(strategy);
+            var options = host.Services.GetRequiredService<IOptionsMonitor<AuthenticationOptions>>().CurrentValue;
+            var authService = await this.authenticationServiceFactory.GetAuthenticationServiceAsync(strategy, options?.TenantId, options?.ClientId);
             await authService.LoginAsync(scopes);
         });
 

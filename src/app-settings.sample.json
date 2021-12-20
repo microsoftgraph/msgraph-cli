@@ -1,0 +1,6 @@
+{
+    "Authentication": {
+        "ClientId": "client id",
+        "TenantId": "tenant id"
+    }
+}

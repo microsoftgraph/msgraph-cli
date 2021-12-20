@@ -11,7 +11,8 @@
             "preLaunchTask": "build",
             "program": "${workspaceFolder}/src/bin/Debug/net6.0/mgc.dll",
             "args": ["-h"],
-            "cwd": "${workspaceFolder}",
+            "cwd": "${workspaceFolder}/src",
+            "envFile": "${workspaceFolder}/src/.env",
             "console": "internalConsole",
             "stopAtEntry": false
         },
@@ -22,7 +23,8 @@
             "preLaunchTask": "build",
             "program": "${workspaceFolder}/src/bin/Debug/net6.0/mgc.dll",
             "args": ["login", "--scopes", "User.ReadWrite Mail.ReadWrite"],
-            "cwd": "${workspaceFolder}",
+            "cwd": "${workspaceFolder}/src",
+            "envFile": "${workspaceFolder}/src/.env",
             "console": "internalConsole",
             "stopAtEntry": false
         },
@@ -33,7 +35,8 @@
             "preLaunchTask": "build",
             "program": "${workspaceFolder}/src/bin/Debug/net6.0/mgc.dll",
             "args": ["me", "get"],
-            "cwd": "${workspaceFolder}",
+            "cwd": "${workspaceFolder}/src",
+            "envFile": "${workspaceFolder}/src/.env",
             "console": "internalConsole",
             "stopAtEntry": false
         },
