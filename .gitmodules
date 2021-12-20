@@ -1,0 +1,3 @@
+[submodule "msgraph-cli-core"]
+	path = msgraph-cli-core
+	url = https://github.com/microsoftgraph/msgraph-cli-core.git
