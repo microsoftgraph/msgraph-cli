@@ -10,11 +10,14 @@ using Microsoft.Graph.Cli.IO;
 using Microsoft.Graph.Cli.Utils;
 using Microsoft.Kiota.Authentication.Azure;
 using Microsoft.Kiota.Http.HttpClientLibrary;
+using Microsoft.Kiota.Http.HttpClientLibrary.Middleware;
+using Microsoft.Kiota.Http.HttpClientLibrary.Middleware.Options;
 using System.CommandLine;
 using System.CommandLine.Builder;
 using System.CommandLine.Hosting;
 using System.CommandLine.Parsing;
 using System.IO;
+using System.Linq;
 using System.Net.Http;
 using System.Reflection;
 using System.Threading.Tasks;
@@ -23,7 +26,7 @@ namespace Microsoft.Graph.Cli
 {
     class Program
     {
-        const string SdkVersionHeaderValueFormatString = "{0}-cli-{1}.{2}.{3}";
+        const string SdkVersionHeaderValueFormatString = "{0}-cli/{1}.{2}.{3}";
 
         static async Task<int> Main(string[] args)
         {
@@ -39,7 +42,8 @@ namespace Microsoft.Graph.Cli
 
             var credential = await authServiceFactory.GetTokenCredentialAsync(authStrategy, authSettings.TenantId, authSettings.ClientId);
             var authProvider = new AzureIdentityAuthenticationProvider(credential);
-            var httpClient = new HttpClient();
+            var defaultHandlers = KiotaClientFactory.CreateDefaultHandlers();
+
             var assemblyVersion = Assembly.GetExecutingAssembly().GetName().Version;
             var sdkVersionHeaderValue = string.Format(
                 SdkVersionHeaderValueFormatString,
@@ -47,8 +51,19 @@ namespace Microsoft.Graph.Cli
                 assemblyVersion.Major,
                 assemblyVersion.Minor,
                 assemblyVersion.Build);
-            httpClient.DefaultRequestHeaders.Add("SdkVersion", sdkVersionHeaderValue);
-            var core = new HttpClientRequestAdapter(authProvider, null, null, httpClient);
+
+            var telemetryHandlerOption = new TelemetryHandlerOption {
+                TelemetryConfigurator = (request) => {
+                    request.Headers.Add("SdkVersion", sdkVersionHeaderValue);
+                    return request;
+                }
+            };
+            var telemetryHandler = new TelemetryHandler(telemetryHandlerOption);
+            defaultHandlers.Add(telemetryHandler);
+            var finalHandler = KiotaClientFactory.ChainHandlersCollectionAndGetFirstLink(KiotaClientFactory.GetDefaultHttpMessageHandler(), defaultHandlers.ToArray());
+
+            using var httpClient = KiotaClientFactory.Create(finalHandler);
+            var core = new HttpClientRequestAdapter(authProvider, httpClient: httpClient);
             var client = new GraphClient(core);
             var builder = BuildCommandLine(client);
 
