@@ -1,5 +1,5 @@
-using Microsoft.Graph.Cli.Authentication;
-using Microsoft.Graph.Cli.Utils;
+using Microsoft.Graph.Cli.Core.Authentication;
+using Microsoft.Graph.Cli.Core.Utils;
 using System.CommandLine;
 using System.CommandLine.Invocation;
 

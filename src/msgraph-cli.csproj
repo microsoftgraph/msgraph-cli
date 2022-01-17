@@ -33,4 +33,8 @@
     <PackageReference Include="System.CommandLine.Hosting" Version="0.3.0-alpha.21216.1" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\msgraph-cli-core\src\Microsoft.Graph.Cli.Core\Microsoft.Graph.Cli.Core.csproj" />
+  </ItemGroup>
+
 </Project>
