@@ -1,4 +1,9 @@
-using Microsoft.Graph.Cli.Authentication;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
+using Microsoft.Extensions.Options;
+using Microsoft.Graph.Cli.Core.Authentication;
+using Microsoft.Graph.Cli.Configuration;
+using Microsoft.Graph.Cli.Core.Utils;
 using System.CommandLine;
 using System.CommandLine.Invocation;
 
@@ -6,10 +11,10 @@ namespace Microsoft.Graph.Cli.Commands.Authentication;
 
 class LoginCommand
 {
-    private IAuthenticationService authenticationService;
+    private AuthenticationServiceFactory authenticationServiceFactory;
 
-    public LoginCommand(IAuthenticationService authenticationService) {
-        this.authenticationService = authenticationService;
+    public LoginCommand(AuthenticationServiceFactory authenticationServiceFactory) {
+        this.authenticationServiceFactory = authenticationServiceFactory;
     }
 
     public Command Build() {
@@ -18,9 +23,15 @@ class LoginCommand
         scopes.IsRequired = true;
         scopes.Arity = ArgumentArity.OneOrMore;
         loginCommand.AddOption(scopes);
-        loginCommand.Handler = CommandHandler.Create<string[]>(async (scopes) =>
+
+        var strategy = new Option<AuthenticationStrategy>("--strategy", () => Constants.defaultAuthStrategy, "The authentication strategy to use.");
+        loginCommand.AddOption(strategy);
+
+        loginCommand.Handler = CommandHandler.Create<string[], AuthenticationStrategy, IHost>(async (scopes, strategy, host) =>
         {
-            await this.authenticationService.LoginAsync(scopes);
+            var options = host.Services.GetRequiredService<IOptionsMonitor<AuthenticationOptions>>().CurrentValue;
+            var authService = await this.authenticationServiceFactory.GetAuthenticationServiceAsync(strategy, options?.TenantId, options?.ClientId);
+            await authService.LoginAsync(scopes);
         });
 
         return loginCommand;
