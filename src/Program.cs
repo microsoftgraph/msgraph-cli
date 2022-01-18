@@ -36,11 +36,11 @@ namespace Microsoft.Graph.Cli
             ConfigureAppConfiguration(configBuilder);
             var config = configBuilder.Build();
 
-            var authSettings = config.GetRequiredSection(Constants.AuthenticationSection).Get<AuthenticationOptions>();
-            var authServiceFactory = new AuthenticationServiceFactory();
+            var authSettings = config.GetSection(Constants.AuthenticationSection).Get<AuthenticationOptions>();
+            var authServiceFactory = new AuthenticationServiceFactory(new PathUtility());
             var authStrategy = AuthenticationStrategy.DeviceCode;
 
-            var credential = await authServiceFactory.GetTokenCredentialAsync(authStrategy, authSettings.TenantId, authSettings.ClientId);
+            var credential = await authServiceFactory.GetTokenCredentialAsync(authStrategy, authSettings?.TenantId, authSettings?.ClientId);
             var authProvider = new AzureIdentityAuthenticationProvider(credential);
             var defaultHandlers = KiotaClientFactory.CreateDefaultHandlers();
 
@@ -90,9 +90,7 @@ namespace Microsoft.Graph.Cli
             Host.CreateDefaultBuilder().ConfigureHostConfiguration((configHost) => {
                 configHost.SetBasePath(Directory.GetCurrentDirectory());
             }).ConfigureAppConfiguration((ctx, config) => {
-                var env = ctx.HostingEnvironment;
                 ConfigureAppConfiguration(config);
-                config.AddJsonFile($"app-settings.{env.EnvironmentName}.json", optional: true, true);
             }).ConfigureServices((ctx, services) => {
                 var authSection = ctx.Configuration.GetSection(Constants.AuthenticationSection);
                 services.Configure<AuthenticationOptions>(authSection);
@@ -101,10 +99,10 @@ namespace Microsoft.Graph.Cli
         
         static void ConfigureAppConfiguration(IConfigurationBuilder builder) {
             builder.Sources.Clear();
-            builder.AddJsonFile("app-settings.json", optional: true);
-            var home = new PathUtility().GetUserHomeDirectory();
-            var userConfigPath = Path.Combine(home, Constants.ApplicationDataDirectory, "settings.json");
-            builder.AddJsonFile(userConfigPath);
+            builder.AddJsonFile("app-settings.json", optional: false);
+            var dataDir = new PathUtility().GetApplicationDataDirectory();
+            var userConfigPath = Path.Combine(dataDir, "settings.json");
+            builder.AddJsonFile(userConfigPath, optional: true);
             builder.AddEnvironmentVariables(prefix: "MGC_");
         }
     }
