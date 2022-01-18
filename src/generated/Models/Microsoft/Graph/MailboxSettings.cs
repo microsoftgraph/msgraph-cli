@@ -7,13 +7,13 @@ namespace ApiSdk.Models.Microsoft.Graph {
     public class MailboxSettings : IParsable {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
-        /// <summary>Folder ID of an archive folder for the user.</summary>
+        /// <summary>Folder ID of an archive folder for the user. Read only.</summary>
         public string ArchiveFolder { get; set; }
         /// <summary>Configuration settings to automatically notify the sender of an incoming email with a message from the signed-in user.</summary>
         public AutomaticRepliesSetting AutomaticRepliesSetting { get; set; }
         /// <summary>The date format for the user's mailbox.</summary>
         public string DateFormat { get; set; }
-        /// <summary>If the user has a calendar delegate, this specifies whether the delegate, mailbox owner, or both receive meeting messages and meeting responses. Possible values are: sendToDelegateAndInformationToPrincipal, sendToDelegateAndPrincipal, sendToDelegateOnly.</summary>
+        /// <summary>If the user has a calendar delegate, this specifies whether the delegate, mailbox owner, or both receive meeting messages and meeting responses. Possible values are: sendToDelegateAndInformationToPrincipal, sendToDelegateAndPrincipal, sendToDelegateOnly. The default is sendToDelegateOnly.</summary>
         public DelegateMeetingMessageDeliveryOptions? DelegateMeetingMessageDeliveryOptions { get; set; }
         /// <summary>The locale information for the user, including the preferred language and country/region.</summary>
         public LocaleInfo Language { get; set; }

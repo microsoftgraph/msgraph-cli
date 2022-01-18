@@ -5,8 +5,9 @@ using System.IO;
 using System.Linq;
 namespace ApiSdk.Models.Microsoft.Graph {
     public class AccessPackageAssignmentRequest : Entity, IParsable {
-        /// <summary>The access package associated with the accessPackageAssignmentRequest. An access package defines the collections of resource roles and the policies for how one or more users can get access to those resources. Read-only. Nullable.  Supports $expand.</summary>
+        /// <summary>The access package associated with the accessPackageAssignmentRequest. An access package defines the collections of resource roles and the policies for how one or more users can get access to those resources. Read-only. Nullable. Supports $expand.</summary>
         public ApiSdk.Models.Microsoft.Graph.AccessPackage AccessPackage { get; set; }
+        /// <summary>For a requestType of UserAdd or AdminAdd, this is an access package assignment requested to be created.  For a requestType of UserRemove, AdminRemove or SystemRemove, this has the id property of an existing assignment to be removed.   Supports $expand.</summary>
         public AccessPackageAssignment Assignment { get; set; }
         public DateTimeOffset? CompletedDateTime { get; set; }
         /// <summary>The Timestamp type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z. Read-only.</summary>
@@ -17,7 +18,9 @@ namespace ApiSdk.Models.Microsoft.Graph {
         public AccessPackageRequestType? RequestType { get; set; }
         /// <summary>The range of dates that access is to be assigned to the requestor. Read-only.</summary>
         public EntitlementManagementSchedule Schedule { get; set; }
+        /// <summary>The state of the request. The possible values are: submitted, pendingApproval, delivering, delivered, deliveryFailed, denied, scheduled, canceled, partiallyDelivered, unknownFutureValue. Read-only.</summary>
         public AccessPackageRequestState? State { get; set; }
+        /// <summary>More information on the request processing status. Read-only.</summary>
         public string Status { get; set; }
         /// <summary>
         /// The deserialization information for the current model

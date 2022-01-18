@@ -20,11 +20,11 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.Settings {
         /// <summary>Url template to use to build the URL for the current request builder</summary>
         private string UrlTemplate { get; set; }
         /// <summary>
-        /// Delete navigation property settings for identityGovernance
+        /// Represents the settings that control the behavior of Azure AD entitlement management.
         /// </summary>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
-            command.Description = "Delete navigation property settings for identityGovernance";
+            command.Description = "Represents the settings that control the behavior of Azure AD entitlement management.";
             // Create options for all the parameters
             command.Handler = CommandHandler.Create(async () => {
                 var requestInfo = CreateDeleteRequestInformation(q => {
@@ -36,11 +36,11 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.Settings {
             return command;
         }
         /// <summary>
-        /// Get settings from identityGovernance
+        /// Represents the settings that control the behavior of Azure AD entitlement management.
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "Get settings from identityGovernance";
+            command.Description = "Represents the settings that control the behavior of Azure AD entitlement management.";
             // Create options for all the parameters
             var selectOption = new Option<string[]>("--select", description: "Select properties to be returned");
             selectOption.IsRequired = false;
@@ -67,11 +67,11 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.Settings {
             return command;
         }
         /// <summary>
-        /// Update the navigation property settings in identityGovernance
+        /// Represents the settings that control the behavior of Azure AD entitlement management.
         /// </summary>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
-            command.Description = "Update the navigation property settings in identityGovernance";
+            command.Description = "Represents the settings that control the behavior of Azure AD entitlement management.";
             // Create options for all the parameters
             var bodyOption = new Option<string>("--body");
             bodyOption.IsRequired = true;
@@ -102,7 +102,7 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.Settings {
             RequestAdapter = requestAdapter;
         }
         /// <summary>
-        /// Delete navigation property settings for identityGovernance
+        /// Represents the settings that control the behavior of Azure AD entitlement management.
         /// <param name="h">Request headers</param>
         /// <param name="o">Request options</param>
         /// </summary>
@@ -117,7 +117,7 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.Settings {
             return requestInfo;
         }
         /// <summary>
-        /// Get settings from identityGovernance
+        /// Represents the settings that control the behavior of Azure AD entitlement management.
         /// <param name="h">Request headers</param>
         /// <param name="o">Request options</param>
         /// <param name="q">Request query parameters</param>
@@ -138,7 +138,7 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.Settings {
             return requestInfo;
         }
         /// <summary>
-        /// Update the navigation property settings in identityGovernance
+        /// Represents the settings that control the behavior of Azure AD entitlement management.
         /// <param name="body"></param>
         /// <param name="h">Request headers</param>
         /// <param name="o">Request options</param>
@@ -156,7 +156,7 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.Settings {
             return requestInfo;
         }
         /// <summary>
-        /// Delete navigation property settings for identityGovernance
+        /// Represents the settings that control the behavior of Azure AD entitlement management.
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="h">Request headers</param>
         /// <param name="o">Request options</param>
@@ -167,7 +167,7 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.Settings {
             await RequestAdapter.SendNoContentAsync(requestInfo, responseHandler, cancellationToken);
         }
         /// <summary>
-        /// Get settings from identityGovernance
+        /// Represents the settings that control the behavior of Azure AD entitlement management.
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="h">Request headers</param>
         /// <param name="o">Request options</param>
@@ -179,7 +179,7 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.Settings {
             return await RequestAdapter.SendAsync<EntitlementManagementSettings>(requestInfo, responseHandler, cancellationToken);
         }
         /// <summary>
-        /// Update the navigation property settings in identityGovernance
+        /// Represents the settings that control the behavior of Azure AD entitlement management.
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="h">Request headers</param>
         /// <param name="model"></param>
@@ -191,7 +191,7 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.Settings {
             var requestInfo = CreatePatchRequestInformation(model, h, o);
             await RequestAdapter.SendNoContentAsync(requestInfo, responseHandler, cancellationToken);
         }
-        /// <summary>Get settings from identityGovernance</summary>
+        /// <summary>Represents the settings that control the behavior of Azure AD entitlement management.</summary>
         public class GetQueryParameters : QueryParametersBase {
             /// <summary>Expand related entities</summary>
             public string[] Expand { get; set; }

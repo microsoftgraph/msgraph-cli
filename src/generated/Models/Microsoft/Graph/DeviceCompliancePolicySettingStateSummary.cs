@@ -17,7 +17,7 @@ namespace ApiSdk.Models.Microsoft.Graph {
         public int? NonCompliantDeviceCount { get; set; }
         /// <summary>Number of not applicable devices</summary>
         public int? NotApplicableDeviceCount { get; set; }
-        /// <summary>Setting platform. Possible values are: android, iOS, macOS, windowsPhone81, windows81AndLater, windows10AndLater, androidWorkProfile, all.</summary>
+        /// <summary>Setting platform. Possible values are: android, androidForWork, iOS, macOS, windowsPhone81, windows81AndLater, windows10AndLater, androidWorkProfile, windows10XProfile, androidAOSP, all.</summary>
         public PolicyPlatformType? PlatformType { get; set; }
         /// <summary>Number of remediated devices</summary>
         public int? RemediatedDeviceCount { get; set; }

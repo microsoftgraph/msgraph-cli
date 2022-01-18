@@ -1,4 +1,5 @@
 using ApiSdk.Education.Classes.Item.Assignments.Item.Submissions.Item.Outcomes;
+using ApiSdk.Education.Classes.Item.Assignments.Item.Submissions.Item.Reassign;
 using ApiSdk.Education.Classes.Item.Assignments.Item.Submissions.Item.Resources;
 using ApiSdk.Education.Classes.Item.Assignments.Item.Submissions.Item.Return;
 using ApiSdk.Education.Classes.Item.Assignments.Item.Submissions.Item.SetUpResourcesFolder;
@@ -127,6 +128,12 @@ namespace ApiSdk.Education.Classes.Item.Assignments.Item.Submissions.Item {
                 // Print request output. What if the request has no return?
                 Console.WriteLine("Success");
             });
+            return command;
+        }
+        public Command BuildReassignCommand() {
+            var command = new Command("reassign");
+            var builder = new ApiSdk.Education.Classes.Item.Assignments.Item.Submissions.Item.Reassign.ReassignRequestBuilder(PathParameters, RequestAdapter);
+            command.AddCommand(builder.BuildPostCommand());
             return command;
         }
         public Command BuildResourcesCommand() {

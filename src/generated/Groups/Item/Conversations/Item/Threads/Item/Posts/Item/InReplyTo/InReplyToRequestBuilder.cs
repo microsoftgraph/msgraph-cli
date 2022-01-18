@@ -22,11 +22,11 @@ namespace ApiSdk.Groups.Item.Conversations.Item.Threads.Item.Posts.Item.InReplyT
         /// <summary>Url template to use to build the URL for the current request builder</summary>
         private string UrlTemplate { get; set; }
         /// <summary>
-        /// Read-only. Supports $expand.
+        /// The earlier post that this post is replying to in the conversationThread. Read-only. Supports $expand.
         /// </summary>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
-            command.Description = "Read-only. Supports $expand.";
+            command.Description = "The earlier post that this post is replying to in the conversationThread. Read-only. Supports $expand.";
             // Create options for all the parameters
             var groupIdOption = new Option<string>("--group-id", description: "key: id of group");
             groupIdOption.IsRequired = true;
@@ -56,11 +56,11 @@ namespace ApiSdk.Groups.Item.Conversations.Item.Threads.Item.Posts.Item.InReplyT
             return command;
         }
         /// <summary>
-        /// Read-only. Supports $expand.
+        /// The earlier post that this post is replying to in the conversationThread. Read-only. Supports $expand.
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "Read-only. Supports $expand.";
+            command.Description = "The earlier post that this post is replying to in the conversationThread. Read-only. Supports $expand.";
             // Create options for all the parameters
             var groupIdOption = new Option<string>("--group-id", description: "key: id of group");
             groupIdOption.IsRequired = true;
@@ -99,11 +99,11 @@ namespace ApiSdk.Groups.Item.Conversations.Item.Threads.Item.Posts.Item.InReplyT
             return command;
         }
         /// <summary>
-        /// Read-only. Supports $expand.
+        /// The earlier post that this post is replying to in the conversationThread. Read-only. Supports $expand.
         /// </summary>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
-            command.Description = "Read-only. Supports $expand.";
+            command.Description = "The earlier post that this post is replying to in the conversationThread. Read-only. Supports $expand.";
             // Create options for all the parameters
             var groupIdOption = new Option<string>("--group-id", description: "key: id of group");
             groupIdOption.IsRequired = true;
@@ -152,7 +152,7 @@ namespace ApiSdk.Groups.Item.Conversations.Item.Threads.Item.Posts.Item.InReplyT
             RequestAdapter = requestAdapter;
         }
         /// <summary>
-        /// Read-only. Supports $expand.
+        /// The earlier post that this post is replying to in the conversationThread. Read-only. Supports $expand.
         /// <param name="h">Request headers</param>
         /// <param name="o">Request options</param>
         /// </summary>
@@ -167,7 +167,7 @@ namespace ApiSdk.Groups.Item.Conversations.Item.Threads.Item.Posts.Item.InReplyT
             return requestInfo;
         }
         /// <summary>
-        /// Read-only. Supports $expand.
+        /// The earlier post that this post is replying to in the conversationThread. Read-only. Supports $expand.
         /// <param name="h">Request headers</param>
         /// <param name="o">Request options</param>
         /// <param name="q">Request query parameters</param>
@@ -188,7 +188,7 @@ namespace ApiSdk.Groups.Item.Conversations.Item.Threads.Item.Posts.Item.InReplyT
             return requestInfo;
         }
         /// <summary>
-        /// Read-only. Supports $expand.
+        /// The earlier post that this post is replying to in the conversationThread. Read-only. Supports $expand.
         /// <param name="body"></param>
         /// <param name="h">Request headers</param>
         /// <param name="o">Request options</param>
@@ -206,7 +206,7 @@ namespace ApiSdk.Groups.Item.Conversations.Item.Threads.Item.Posts.Item.InReplyT
             return requestInfo;
         }
         /// <summary>
-        /// Read-only. Supports $expand.
+        /// The earlier post that this post is replying to in the conversationThread. Read-only. Supports $expand.
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="h">Request headers</param>
         /// <param name="o">Request options</param>
@@ -217,7 +217,7 @@ namespace ApiSdk.Groups.Item.Conversations.Item.Threads.Item.Posts.Item.InReplyT
             await RequestAdapter.SendNoContentAsync(requestInfo, responseHandler, cancellationToken);
         }
         /// <summary>
-        /// Read-only. Supports $expand.
+        /// The earlier post that this post is replying to in the conversationThread. Read-only. Supports $expand.
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="h">Request headers</param>
         /// <param name="o">Request options</param>
@@ -229,7 +229,7 @@ namespace ApiSdk.Groups.Item.Conversations.Item.Threads.Item.Posts.Item.InReplyT
             return await RequestAdapter.SendAsync<Post>(requestInfo, responseHandler, cancellationToken);
         }
         /// <summary>
-        /// Read-only. Supports $expand.
+        /// The earlier post that this post is replying to in the conversationThread. Read-only. Supports $expand.
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="h">Request headers</param>
         /// <param name="model"></param>
@@ -241,7 +241,7 @@ namespace ApiSdk.Groups.Item.Conversations.Item.Threads.Item.Posts.Item.InReplyT
             var requestInfo = CreatePatchRequestInformation(model, h, o);
             await RequestAdapter.SendNoContentAsync(requestInfo, responseHandler, cancellationToken);
         }
-        /// <summary>Read-only. Supports $expand.</summary>
+        /// <summary>The earlier post that this post is replying to in the conversationThread. Read-only. Supports $expand.</summary>
         public class GetQueryParameters : QueryParametersBase {
             /// <summary>Expand related entities</summary>
             public string[] Expand { get; set; }

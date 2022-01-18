@@ -7,7 +7,7 @@ namespace ApiSdk.Models.Microsoft.Graph {
     public class AssignmentOrder : IParsable {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
-        /// <summary>A list of identityUserFlowAttribute object identifiers that determine the order in which attributes should be collected within a user flow.</summary>
+        /// <summary>A list of identityUserFlowAttribute IDs provided to determine the order in which attributes should be collected within a user flow.</summary>
         public List<string> Order { get; set; }
         /// <summary>
         /// Instantiates a new assignmentOrder and sets the default values.

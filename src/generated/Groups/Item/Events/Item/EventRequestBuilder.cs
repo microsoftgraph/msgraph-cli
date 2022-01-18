@@ -73,11 +73,11 @@ namespace ApiSdk.Groups.Item.Events.Item {
             return command;
         }
         /// <summary>
-        /// The group's calendar events.
+        /// The group's events.
         /// </summary>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
-            command.Description = "The group's calendar events.";
+            command.Description = "The group's events.";
             // Create options for all the parameters
             var groupIdOption = new Option<string>("--group-id", description: "key: id of group");
             groupIdOption.IsRequired = true;
@@ -114,11 +114,11 @@ namespace ApiSdk.Groups.Item.Events.Item {
             return command;
         }
         /// <summary>
-        /// The group's calendar events.
+        /// The group's events.
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "The group's calendar events.";
+            command.Description = "The group's events.";
             // Create options for all the parameters
             var groupIdOption = new Option<string>("--group-id", description: "key: id of group");
             groupIdOption.IsRequired = true;
@@ -160,11 +160,11 @@ namespace ApiSdk.Groups.Item.Events.Item {
             return command;
         }
         /// <summary>
-        /// The group's calendar events.
+        /// The group's events.
         /// </summary>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
-            command.Description = "The group's calendar events.";
+            command.Description = "The group's events.";
             // Create options for all the parameters
             var groupIdOption = new Option<string>("--group-id", description: "key: id of group");
             groupIdOption.IsRequired = true;
@@ -220,7 +220,7 @@ namespace ApiSdk.Groups.Item.Events.Item {
             RequestAdapter = requestAdapter;
         }
         /// <summary>
-        /// The group's calendar events.
+        /// The group's events.
         /// <param name="h">Request headers</param>
         /// <param name="o">Request options</param>
         /// </summary>
@@ -235,7 +235,7 @@ namespace ApiSdk.Groups.Item.Events.Item {
             return requestInfo;
         }
         /// <summary>
-        /// The group's calendar events.
+        /// The group's events.
         /// <param name="h">Request headers</param>
         /// <param name="o">Request options</param>
         /// <param name="q">Request query parameters</param>
@@ -256,7 +256,7 @@ namespace ApiSdk.Groups.Item.Events.Item {
             return requestInfo;
         }
         /// <summary>
-        /// The group's calendar events.
+        /// The group's events.
         /// <param name="body"></param>
         /// <param name="h">Request headers</param>
         /// <param name="o">Request options</param>
@@ -274,7 +274,7 @@ namespace ApiSdk.Groups.Item.Events.Item {
             return requestInfo;
         }
         /// <summary>
-        /// The group's calendar events.
+        /// The group's events.
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="h">Request headers</param>
         /// <param name="o">Request options</param>
@@ -285,7 +285,7 @@ namespace ApiSdk.Groups.Item.Events.Item {
             await RequestAdapter.SendNoContentAsync(requestInfo, responseHandler, cancellationToken);
         }
         /// <summary>
-        /// The group's calendar events.
+        /// The group's events.
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="h">Request headers</param>
         /// <param name="o">Request options</param>
@@ -297,7 +297,7 @@ namespace ApiSdk.Groups.Item.Events.Item {
             return await RequestAdapter.SendAsync<@Event>(requestInfo, responseHandler, cancellationToken);
         }
         /// <summary>
-        /// The group's calendar events.
+        /// The group's events.
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="h">Request headers</param>
         /// <param name="model"></param>
@@ -309,7 +309,7 @@ namespace ApiSdk.Groups.Item.Events.Item {
             var requestInfo = CreatePatchRequestInformation(model, h, o);
             await RequestAdapter.SendNoContentAsync(requestInfo, responseHandler, cancellationToken);
         }
-        /// <summary>The group's calendar events.</summary>
+        /// <summary>The group's events.</summary>
         public class GetQueryParameters : QueryParametersBase {
             /// <summary>Select properties to be returned</summary>
             public string[] Select { get; set; }

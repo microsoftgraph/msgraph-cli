@@ -19,11 +19,11 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.Catalogs.Item.AccessPa
         /// <summary>Url template to use to build the URL for the current request builder</summary>
         private string UrlTemplate { get; set; }
         /// <summary>
-        /// Delete ref of navigation property catalog for identityGovernance
+        /// Read-only. Nullable.
         /// </summary>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
-            command.Description = "Delete ref of navigation property catalog for identityGovernance";
+            command.Description = "Read-only. Nullable.";
             // Create options for all the parameters
             var accessPackageCatalogIdOption = new Option<string>("--accesspackagecatalog-id", description: "key: id of accessPackageCatalog");
             accessPackageCatalogIdOption.IsRequired = true;
@@ -41,11 +41,11 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.Catalogs.Item.AccessPa
             return command;
         }
         /// <summary>
-        /// Get ref of catalog from identityGovernance
+        /// Read-only. Nullable.
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "Get ref of catalog from identityGovernance";
+            command.Description = "Read-only. Nullable.";
             // Create options for all the parameters
             var accessPackageCatalogIdOption = new Option<string>("--accesspackagecatalog-id", description: "key: id of accessPackageCatalog");
             accessPackageCatalogIdOption.IsRequired = true;
@@ -68,11 +68,11 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.Catalogs.Item.AccessPa
             return command;
         }
         /// <summary>
-        /// Update the ref of navigation property catalog in identityGovernance
+        /// Read-only. Nullable.
         /// </summary>
         public Command BuildPutCommand() {
             var command = new Command("put");
-            command.Description = "Update the ref of navigation property catalog in identityGovernance";
+            command.Description = "Read-only. Nullable.";
             // Create options for all the parameters
             var accessPackageCatalogIdOption = new Option<string>("--accesspackagecatalog-id", description: "key: id of accessPackageCatalog");
             accessPackageCatalogIdOption.IsRequired = true;
@@ -109,7 +109,7 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.Catalogs.Item.AccessPa
             RequestAdapter = requestAdapter;
         }
         /// <summary>
-        /// Delete ref of navigation property catalog for identityGovernance
+        /// Read-only. Nullable.
         /// <param name="h">Request headers</param>
         /// <param name="o">Request options</param>
         /// </summary>
@@ -124,7 +124,7 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.Catalogs.Item.AccessPa
             return requestInfo;
         }
         /// <summary>
-        /// Get ref of catalog from identityGovernance
+        /// Read-only. Nullable.
         /// <param name="h">Request headers</param>
         /// <param name="o">Request options</param>
         /// </summary>
@@ -139,7 +139,7 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.Catalogs.Item.AccessPa
             return requestInfo;
         }
         /// <summary>
-        /// Update the ref of navigation property catalog in identityGovernance
+        /// Read-only. Nullable.
         /// <param name="body"></param>
         /// <param name="h">Request headers</param>
         /// <param name="o">Request options</param>
@@ -157,7 +157,7 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.Catalogs.Item.AccessPa
             return requestInfo;
         }
         /// <summary>
-        /// Delete ref of navigation property catalog for identityGovernance
+        /// Read-only. Nullable.
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="h">Request headers</param>
         /// <param name="o">Request options</param>
@@ -168,7 +168,7 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.Catalogs.Item.AccessPa
             await RequestAdapter.SendNoContentAsync(requestInfo, responseHandler, cancellationToken);
         }
         /// <summary>
-        /// Get ref of catalog from identityGovernance
+        /// Read-only. Nullable.
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="h">Request headers</param>
         /// <param name="o">Request options</param>
@@ -179,7 +179,7 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.Catalogs.Item.AccessPa
             return await RequestAdapter.SendPrimitiveAsync<string>(requestInfo, responseHandler, cancellationToken);
         }
         /// <summary>
-        /// Update the ref of navigation property catalog in identityGovernance
+        /// Read-only. Nullable.
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="h">Request headers</param>
         /// <param name="model"></param>

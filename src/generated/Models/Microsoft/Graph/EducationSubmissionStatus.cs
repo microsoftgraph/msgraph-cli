@@ -5,5 +5,6 @@ namespace ApiSdk.Models.Microsoft.Graph {
         Released,
         Returned,
         UnknownFutureValue,
+        Reassigned,
     }
 }

@@ -35,6 +35,8 @@ namespace ApiSdk.Admin.ServiceAnnouncement.Messages {
         public List<Command> BuildCommand() {
             var builder = new ServiceUpdateMessageRequestBuilder(PathParameters, RequestAdapter);
             var commands = new List<Command> { 
+                builder.BuildAttachmentsArchiveCommand(),
+                builder.BuildAttachmentsCommand(),
                 builder.BuildDeleteCommand(),
                 builder.BuildGetCommand(),
                 builder.BuildPatchCommand(),

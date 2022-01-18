@@ -30,11 +30,11 @@ namespace ApiSdk.Workbooks.Item.Workbook.Operations {
             return commands;
         }
         /// <summary>
-        /// The status of workbook operations. Getting an operation collection is not supported, but you can get the status of a long-running operation if the Location header is returned in the response. Read-only.
+        /// The status of Workbook operations. Getting an operation collection is not supported, but you can get the status of a long-running operation if the Location header is returned in the response. Read-only. Nullable.
         /// </summary>
         public Command BuildCreateCommand() {
             var command = new Command("create");
-            command.Description = "The status of workbook operations. Getting an operation collection is not supported, but you can get the status of a long-running operation if the Location header is returned in the response. Read-only.";
+            command.Description = "The status of Workbook operations. Getting an operation collection is not supported, but you can get the status of a long-running operation if the Location header is returned in the response. Read-only. Nullable.";
             // Create options for all the parameters
             var driveItemIdOption = new Option<string>("--driveitem-id", description: "key: id of driveItem");
             driveItemIdOption.IsRequired = true;
@@ -60,11 +60,11 @@ namespace ApiSdk.Workbooks.Item.Workbook.Operations {
             return command;
         }
         /// <summary>
-        /// The status of workbook operations. Getting an operation collection is not supported, but you can get the status of a long-running operation if the Location header is returned in the response. Read-only.
+        /// The status of Workbook operations. Getting an operation collection is not supported, but you can get the status of a long-running operation if the Location header is returned in the response. Read-only. Nullable.
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "The status of workbook operations. Getting an operation collection is not supported, but you can get the status of a long-running operation if the Location header is returned in the response. Read-only.";
+            command.Description = "The status of Workbook operations. Getting an operation collection is not supported, but you can get the status of a long-running operation if the Location header is returned in the response. Read-only. Nullable.";
             // Create options for all the parameters
             var driveItemIdOption = new Option<string>("--driveitem-id", description: "key: id of driveItem");
             driveItemIdOption.IsRequired = true;
@@ -116,7 +116,7 @@ namespace ApiSdk.Workbooks.Item.Workbook.Operations {
             RequestAdapter = requestAdapter;
         }
         /// <summary>
-        /// The status of workbook operations. Getting an operation collection is not supported, but you can get the status of a long-running operation if the Location header is returned in the response. Read-only.
+        /// The status of Workbook operations. Getting an operation collection is not supported, but you can get the status of a long-running operation if the Location header is returned in the response. Read-only. Nullable.
         /// <param name="h">Request headers</param>
         /// <param name="o">Request options</param>
         /// <param name="q">Request query parameters</param>
@@ -137,7 +137,7 @@ namespace ApiSdk.Workbooks.Item.Workbook.Operations {
             return requestInfo;
         }
         /// <summary>
-        /// The status of workbook operations. Getting an operation collection is not supported, but you can get the status of a long-running operation if the Location header is returned in the response. Read-only.
+        /// The status of Workbook operations. Getting an operation collection is not supported, but you can get the status of a long-running operation if the Location header is returned in the response. Read-only. Nullable.
         /// <param name="body"></param>
         /// <param name="h">Request headers</param>
         /// <param name="o">Request options</param>
@@ -155,7 +155,7 @@ namespace ApiSdk.Workbooks.Item.Workbook.Operations {
             return requestInfo;
         }
         /// <summary>
-        /// The status of workbook operations. Getting an operation collection is not supported, but you can get the status of a long-running operation if the Location header is returned in the response. Read-only.
+        /// The status of Workbook operations. Getting an operation collection is not supported, but you can get the status of a long-running operation if the Location header is returned in the response. Read-only. Nullable.
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="h">Request headers</param>
         /// <param name="o">Request options</param>
@@ -167,7 +167,7 @@ namespace ApiSdk.Workbooks.Item.Workbook.Operations {
             return await RequestAdapter.SendAsync<OperationsResponse>(requestInfo, responseHandler, cancellationToken);
         }
         /// <summary>
-        /// The status of workbook operations. Getting an operation collection is not supported, but you can get the status of a long-running operation if the Location header is returned in the response. Read-only.
+        /// The status of Workbook operations. Getting an operation collection is not supported, but you can get the status of a long-running operation if the Location header is returned in the response. Read-only. Nullable.
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="h">Request headers</param>
         /// <param name="model"></param>
@@ -179,7 +179,7 @@ namespace ApiSdk.Workbooks.Item.Workbook.Operations {
             var requestInfo = CreatePostRequestInformation(model, h, o);
             return await RequestAdapter.SendAsync<WorkbookOperation>(requestInfo, responseHandler, cancellationToken);
         }
-        /// <summary>The status of workbook operations. Getting an operation collection is not supported, but you can get the status of a long-running operation if the Location header is returned in the response. Read-only.</summary>
+        /// <summary>The status of Workbook operations. Getting an operation collection is not supported, but you can get the status of a long-running operation if the Location header is returned in the response. Read-only. Nullable.</summary>
         public class GetQueryParameters : QueryParametersBase {
             /// <summary>Expand related entities</summary>
             public string[] Expand { get; set; }

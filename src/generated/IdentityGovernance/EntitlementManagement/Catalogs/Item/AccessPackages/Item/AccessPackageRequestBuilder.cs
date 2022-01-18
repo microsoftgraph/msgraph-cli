@@ -29,11 +29,11 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.Catalogs.Item.AccessPa
             return command;
         }
         /// <summary>
-        /// The access packages in this catalog. Read-only. Nullable.
+        /// The access packages in this catalog. Read-only. Nullable. Supports $expand.
         /// </summary>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
-            command.Description = "The access packages in this catalog. Read-only. Nullable.";
+            command.Description = "The access packages in this catalog. Read-only. Nullable. Supports $expand.";
             // Create options for all the parameters
             var accessPackageCatalogIdOption = new Option<string>("--accesspackagecatalog-id", description: "key: id of accessPackageCatalog");
             accessPackageCatalogIdOption.IsRequired = true;
@@ -57,11 +57,11 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.Catalogs.Item.AccessPa
             return command;
         }
         /// <summary>
-        /// The access packages in this catalog. Read-only. Nullable.
+        /// The access packages in this catalog. Read-only. Nullable. Supports $expand.
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "The access packages in this catalog. Read-only. Nullable.";
+            command.Description = "The access packages in this catalog. Read-only. Nullable. Supports $expand.";
             // Create options for all the parameters
             var accessPackageCatalogIdOption = new Option<string>("--accesspackagecatalog-id", description: "key: id of accessPackageCatalog");
             accessPackageCatalogIdOption.IsRequired = true;
@@ -94,11 +94,11 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.Catalogs.Item.AccessPa
             return command;
         }
         /// <summary>
-        /// The access packages in this catalog. Read-only. Nullable.
+        /// The access packages in this catalog. Read-only. Nullable. Supports $expand.
         /// </summary>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
-            command.Description = "The access packages in this catalog. Read-only. Nullable.";
+            command.Description = "The access packages in this catalog. Read-only. Nullable. Supports $expand.";
             // Create options for all the parameters
             var accessPackageCatalogIdOption = new Option<string>("--accesspackagecatalog-id", description: "key: id of accessPackageCatalog");
             accessPackageCatalogIdOption.IsRequired = true;
@@ -135,7 +135,7 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.Catalogs.Item.AccessPa
             RequestAdapter = requestAdapter;
         }
         /// <summary>
-        /// The access packages in this catalog. Read-only. Nullable.
+        /// The access packages in this catalog. Read-only. Nullable. Supports $expand.
         /// <param name="h">Request headers</param>
         /// <param name="o">Request options</param>
         /// </summary>
@@ -150,7 +150,7 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.Catalogs.Item.AccessPa
             return requestInfo;
         }
         /// <summary>
-        /// The access packages in this catalog. Read-only. Nullable.
+        /// The access packages in this catalog. Read-only. Nullable. Supports $expand.
         /// <param name="h">Request headers</param>
         /// <param name="o">Request options</param>
         /// <param name="q">Request query parameters</param>
@@ -171,7 +171,7 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.Catalogs.Item.AccessPa
             return requestInfo;
         }
         /// <summary>
-        /// The access packages in this catalog. Read-only. Nullable.
+        /// The access packages in this catalog. Read-only. Nullable. Supports $expand.
         /// <param name="body"></param>
         /// <param name="h">Request headers</param>
         /// <param name="o">Request options</param>
@@ -189,7 +189,7 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.Catalogs.Item.AccessPa
             return requestInfo;
         }
         /// <summary>
-        /// The access packages in this catalog. Read-only. Nullable.
+        /// The access packages in this catalog. Read-only. Nullable. Supports $expand.
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="h">Request headers</param>
         /// <param name="o">Request options</param>
@@ -200,7 +200,7 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.Catalogs.Item.AccessPa
             await RequestAdapter.SendNoContentAsync(requestInfo, responseHandler, cancellationToken);
         }
         /// <summary>
-        /// The access packages in this catalog. Read-only. Nullable.
+        /// The access packages in this catalog. Read-only. Nullable. Supports $expand.
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="h">Request headers</param>
         /// <param name="o">Request options</param>
@@ -212,7 +212,7 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.Catalogs.Item.AccessPa
             return await RequestAdapter.SendAsync<ApiSdk.Models.Microsoft.Graph.AccessPackage>(requestInfo, responseHandler, cancellationToken);
         }
         /// <summary>
-        /// The access packages in this catalog. Read-only. Nullable.
+        /// The access packages in this catalog. Read-only. Nullable. Supports $expand.
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="h">Request headers</param>
         /// <param name="model"></param>
@@ -224,7 +224,7 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.Catalogs.Item.AccessPa
             var requestInfo = CreatePatchRequestInformation(model, h, o);
             await RequestAdapter.SendNoContentAsync(requestInfo, responseHandler, cancellationToken);
         }
-        /// <summary>The access packages in this catalog. Read-only. Nullable.</summary>
+        /// <summary>The access packages in this catalog. Read-only. Nullable. Supports $expand.</summary>
         public class GetQueryParameters : QueryParametersBase {
             /// <summary>Expand related entities</summary>
             public string[] Expand { get; set; }

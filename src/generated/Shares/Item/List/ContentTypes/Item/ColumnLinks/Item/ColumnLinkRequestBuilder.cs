@@ -20,11 +20,11 @@ namespace ApiSdk.Shares.Item.List.ContentTypes.Item.ColumnLinks.Item {
         /// <summary>Url template to use to build the URL for the current request builder</summary>
         private string UrlTemplate { get; set; }
         /// <summary>
-        /// The collection of columns that are required by this content type.
+        /// The collection of columns that are required by this content type
         /// </summary>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
-            command.Description = "The collection of columns that are required by this content type.";
+            command.Description = "The collection of columns that are required by this content type";
             // Create options for all the parameters
             var sharedDriveItemIdOption = new Option<string>("--shareddriveitem-id", description: "key: id of sharedDriveItem");
             sharedDriveItemIdOption.IsRequired = true;
@@ -45,11 +45,11 @@ namespace ApiSdk.Shares.Item.List.ContentTypes.Item.ColumnLinks.Item {
             return command;
         }
         /// <summary>
-        /// The collection of columns that are required by this content type.
+        /// The collection of columns that are required by this content type
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "The collection of columns that are required by this content type.";
+            command.Description = "The collection of columns that are required by this content type";
             // Create options for all the parameters
             var sharedDriveItemIdOption = new Option<string>("--shareddriveitem-id", description: "key: id of sharedDriveItem");
             sharedDriveItemIdOption.IsRequired = true;
@@ -85,11 +85,11 @@ namespace ApiSdk.Shares.Item.List.ContentTypes.Item.ColumnLinks.Item {
             return command;
         }
         /// <summary>
-        /// The collection of columns that are required by this content type.
+        /// The collection of columns that are required by this content type
         /// </summary>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
-            command.Description = "The collection of columns that are required by this content type.";
+            command.Description = "The collection of columns that are required by this content type";
             // Create options for all the parameters
             var sharedDriveItemIdOption = new Option<string>("--shareddriveitem-id", description: "key: id of sharedDriveItem");
             sharedDriveItemIdOption.IsRequired = true;
@@ -129,7 +129,7 @@ namespace ApiSdk.Shares.Item.List.ContentTypes.Item.ColumnLinks.Item {
             RequestAdapter = requestAdapter;
         }
         /// <summary>
-        /// The collection of columns that are required by this content type.
+        /// The collection of columns that are required by this content type
         /// <param name="h">Request headers</param>
         /// <param name="o">Request options</param>
         /// </summary>
@@ -144,7 +144,7 @@ namespace ApiSdk.Shares.Item.List.ContentTypes.Item.ColumnLinks.Item {
             return requestInfo;
         }
         /// <summary>
-        /// The collection of columns that are required by this content type.
+        /// The collection of columns that are required by this content type
         /// <param name="h">Request headers</param>
         /// <param name="o">Request options</param>
         /// <param name="q">Request query parameters</param>
@@ -165,7 +165,7 @@ namespace ApiSdk.Shares.Item.List.ContentTypes.Item.ColumnLinks.Item {
             return requestInfo;
         }
         /// <summary>
-        /// The collection of columns that are required by this content type.
+        /// The collection of columns that are required by this content type
         /// <param name="body"></param>
         /// <param name="h">Request headers</param>
         /// <param name="o">Request options</param>
@@ -183,7 +183,7 @@ namespace ApiSdk.Shares.Item.List.ContentTypes.Item.ColumnLinks.Item {
             return requestInfo;
         }
         /// <summary>
-        /// The collection of columns that are required by this content type.
+        /// The collection of columns that are required by this content type
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="h">Request headers</param>
         /// <param name="o">Request options</param>
@@ -194,7 +194,7 @@ namespace ApiSdk.Shares.Item.List.ContentTypes.Item.ColumnLinks.Item {
             await RequestAdapter.SendNoContentAsync(requestInfo, responseHandler, cancellationToken);
         }
         /// <summary>
-        /// The collection of columns that are required by this content type.
+        /// The collection of columns that are required by this content type
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="h">Request headers</param>
         /// <param name="o">Request options</param>
@@ -206,7 +206,7 @@ namespace ApiSdk.Shares.Item.List.ContentTypes.Item.ColumnLinks.Item {
             return await RequestAdapter.SendAsync<ColumnLink>(requestInfo, responseHandler, cancellationToken);
         }
         /// <summary>
-        /// The collection of columns that are required by this content type.
+        /// The collection of columns that are required by this content type
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="h">Request headers</param>
         /// <param name="model"></param>
@@ -218,7 +218,7 @@ namespace ApiSdk.Shares.Item.List.ContentTypes.Item.ColumnLinks.Item {
             var requestInfo = CreatePatchRequestInformation(model, h, o);
             await RequestAdapter.SendNoContentAsync(requestInfo, responseHandler, cancellationToken);
         }
-        /// <summary>The collection of columns that are required by this content type.</summary>
+        /// <summary>The collection of columns that are required by this content type</summary>
         public class GetQueryParameters : QueryParametersBase {
             /// <summary>Expand related entities</summary>
             public string[] Expand { get; set; }

@@ -30,11 +30,11 @@ namespace ApiSdk.Organization.Item.Extensions {
             return commands;
         }
         /// <summary>
-        /// The collection of open extensions defined for the organization. Read-only. Nullable.
+        /// The collection of open extensions defined for the organization resource. Nullable.
         /// </summary>
         public Command BuildCreateCommand() {
             var command = new Command("create");
-            command.Description = "The collection of open extensions defined for the organization. Read-only. Nullable.";
+            command.Description = "The collection of open extensions defined for the organization resource. Nullable.";
             // Create options for all the parameters
             var organizationIdOption = new Option<string>("--organization-id", description: "key: id of organization");
             organizationIdOption.IsRequired = true;
@@ -60,11 +60,11 @@ namespace ApiSdk.Organization.Item.Extensions {
             return command;
         }
         /// <summary>
-        /// The collection of open extensions defined for the organization. Read-only. Nullable.
+        /// The collection of open extensions defined for the organization resource. Nullable.
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "The collection of open extensions defined for the organization. Read-only. Nullable.";
+            command.Description = "The collection of open extensions defined for the organization resource. Nullable.";
             // Create options for all the parameters
             var organizationIdOption = new Option<string>("--organization-id", description: "key: id of organization");
             organizationIdOption.IsRequired = true;
@@ -132,7 +132,7 @@ namespace ApiSdk.Organization.Item.Extensions {
             RequestAdapter = requestAdapter;
         }
         /// <summary>
-        /// The collection of open extensions defined for the organization. Read-only. Nullable.
+        /// The collection of open extensions defined for the organization resource. Nullable.
         /// <param name="h">Request headers</param>
         /// <param name="o">Request options</param>
         /// <param name="q">Request query parameters</param>
@@ -153,7 +153,7 @@ namespace ApiSdk.Organization.Item.Extensions {
             return requestInfo;
         }
         /// <summary>
-        /// The collection of open extensions defined for the organization. Read-only. Nullable.
+        /// The collection of open extensions defined for the organization resource. Nullable.
         /// <param name="body"></param>
         /// <param name="h">Request headers</param>
         /// <param name="o">Request options</param>
@@ -171,7 +171,7 @@ namespace ApiSdk.Organization.Item.Extensions {
             return requestInfo;
         }
         /// <summary>
-        /// The collection of open extensions defined for the organization. Read-only. Nullable.
+        /// The collection of open extensions defined for the organization resource. Nullable.
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="h">Request headers</param>
         /// <param name="o">Request options</param>
@@ -183,7 +183,7 @@ namespace ApiSdk.Organization.Item.Extensions {
             return await RequestAdapter.SendAsync<ExtensionsResponse>(requestInfo, responseHandler, cancellationToken);
         }
         /// <summary>
-        /// The collection of open extensions defined for the organization. Read-only. Nullable.
+        /// The collection of open extensions defined for the organization resource. Nullable.
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="h">Request headers</param>
         /// <param name="model"></param>
@@ -195,7 +195,7 @@ namespace ApiSdk.Organization.Item.Extensions {
             var requestInfo = CreatePostRequestInformation(model, h, o);
             return await RequestAdapter.SendAsync<Extension>(requestInfo, responseHandler, cancellationToken);
         }
-        /// <summary>The collection of open extensions defined for the organization. Read-only. Nullable.</summary>
+        /// <summary>The collection of open extensions defined for the organization resource. Nullable.</summary>
         public class GetQueryParameters : QueryParametersBase {
             /// <summary>Include count of items</summary>
             public bool? Count { get; set; }

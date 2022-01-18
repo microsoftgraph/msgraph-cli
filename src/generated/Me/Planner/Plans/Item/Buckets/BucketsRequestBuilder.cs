@@ -31,11 +31,11 @@ namespace ApiSdk.Me.Planner.Plans.Item.Buckets {
             return commands;
         }
         /// <summary>
-        /// Read-only. Nullable. Collection of buckets in the plan.
+        /// Collection of buckets in the plan. Read-only. Nullable.
         /// </summary>
         public Command BuildCreateCommand() {
             var command = new Command("create");
-            command.Description = "Read-only. Nullable. Collection of buckets in the plan.";
+            command.Description = "Collection of buckets in the plan. Read-only. Nullable.";
             // Create options for all the parameters
             var plannerPlanIdOption = new Option<string>("--plannerplan-id", description: "key: id of plannerPlan");
             plannerPlanIdOption.IsRequired = true;
@@ -61,11 +61,11 @@ namespace ApiSdk.Me.Planner.Plans.Item.Buckets {
             return command;
         }
         /// <summary>
-        /// Read-only. Nullable. Collection of buckets in the plan.
+        /// Collection of buckets in the plan. Read-only. Nullable.
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "Read-only. Nullable. Collection of buckets in the plan.";
+            command.Description = "Collection of buckets in the plan. Read-only. Nullable.";
             // Create options for all the parameters
             var plannerPlanIdOption = new Option<string>("--plannerplan-id", description: "key: id of plannerPlan");
             plannerPlanIdOption.IsRequired = true;
@@ -133,7 +133,7 @@ namespace ApiSdk.Me.Planner.Plans.Item.Buckets {
             RequestAdapter = requestAdapter;
         }
         /// <summary>
-        /// Read-only. Nullable. Collection of buckets in the plan.
+        /// Collection of buckets in the plan. Read-only. Nullable.
         /// <param name="h">Request headers</param>
         /// <param name="o">Request options</param>
         /// <param name="q">Request query parameters</param>
@@ -154,7 +154,7 @@ namespace ApiSdk.Me.Planner.Plans.Item.Buckets {
             return requestInfo;
         }
         /// <summary>
-        /// Read-only. Nullable. Collection of buckets in the plan.
+        /// Collection of buckets in the plan. Read-only. Nullable.
         /// <param name="body"></param>
         /// <param name="h">Request headers</param>
         /// <param name="o">Request options</param>
@@ -172,7 +172,7 @@ namespace ApiSdk.Me.Planner.Plans.Item.Buckets {
             return requestInfo;
         }
         /// <summary>
-        /// Read-only. Nullable. Collection of buckets in the plan.
+        /// Collection of buckets in the plan. Read-only. Nullable.
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="h">Request headers</param>
         /// <param name="o">Request options</param>
@@ -184,7 +184,7 @@ namespace ApiSdk.Me.Planner.Plans.Item.Buckets {
             return await RequestAdapter.SendAsync<BucketsResponse>(requestInfo, responseHandler, cancellationToken);
         }
         /// <summary>
-        /// Read-only. Nullable. Collection of buckets in the plan.
+        /// Collection of buckets in the plan. Read-only. Nullable.
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="h">Request headers</param>
         /// <param name="model"></param>
@@ -196,7 +196,7 @@ namespace ApiSdk.Me.Planner.Plans.Item.Buckets {
             var requestInfo = CreatePostRequestInformation(model, h, o);
             return await RequestAdapter.SendAsync<PlannerBucket>(requestInfo, responseHandler, cancellationToken);
         }
-        /// <summary>Read-only. Nullable. Collection of buckets in the plan.</summary>
+        /// <summary>Collection of buckets in the plan. Read-only. Nullable.</summary>
         public class GetQueryParameters : QueryParametersBase {
             /// <summary>Include count of items</summary>
             public bool? Count { get; set; }

@@ -1,3 +1,5 @@
+using ApiSdk.Admin.ServiceAnnouncement.Messages.Item.Attachments;
+using ApiSdk.Admin.ServiceAnnouncement.Messages.Item.AttachmentsArchive;
 using ApiSdk.Models.Microsoft.Graph;
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
@@ -19,6 +21,20 @@ namespace ApiSdk.Admin.ServiceAnnouncement.Messages.Item {
         private IRequestAdapter RequestAdapter { get; set; }
         /// <summary>Url template to use to build the URL for the current request builder</summary>
         private string UrlTemplate { get; set; }
+        public Command BuildAttachmentsArchiveCommand() {
+            var command = new Command("attachments-archive");
+            var builder = new ApiSdk.Admin.ServiceAnnouncement.Messages.Item.AttachmentsArchive.AttachmentsArchiveRequestBuilder(PathParameters, RequestAdapter);
+            command.AddCommand(builder.BuildGetCommand());
+            command.AddCommand(builder.BuildPutCommand());
+            return command;
+        }
+        public Command BuildAttachmentsCommand() {
+            var command = new Command("attachments");
+            var builder = new ApiSdk.Admin.ServiceAnnouncement.Messages.Item.Attachments.AttachmentsRequestBuilder(PathParameters, RequestAdapter);
+            command.AddCommand(builder.BuildCreateCommand());
+            command.AddCommand(builder.BuildListCommand());
+            return command;
+        }
         /// <summary>
         /// A collection of service messages for tenant. This property is a contained navigation property, it is nullable and readonly.
         /// </summary>

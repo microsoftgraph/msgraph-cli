@@ -22,11 +22,11 @@ namespace ApiSdk.Users.Item.Planner {
         /// <summary>Url template to use to build the URL for the current request builder</summary>
         private string UrlTemplate { get; set; }
         /// <summary>
-        /// Entry-point to the Planner resource that might exist for a user. Read-only.
+        /// Selective Planner services available to the user. Read-only. Nullable.
         /// </summary>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
-            command.Description = "Entry-point to the Planner resource that might exist for a user. Read-only.";
+            command.Description = "Selective Planner services available to the user. Read-only. Nullable.";
             // Create options for all the parameters
             var userIdOption = new Option<string>("--user-id", description: "key: id of user");
             userIdOption.IsRequired = true;
@@ -41,11 +41,11 @@ namespace ApiSdk.Users.Item.Planner {
             return command;
         }
         /// <summary>
-        /// Entry-point to the Planner resource that might exist for a user. Read-only.
+        /// Selective Planner services available to the user. Read-only. Nullable.
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "Entry-point to the Planner resource that might exist for a user. Read-only.";
+            command.Description = "Selective Planner services available to the user. Read-only. Nullable.";
             // Create options for all the parameters
             var userIdOption = new Option<string>("--user-id", description: "key: id of user");
             userIdOption.IsRequired = true;
@@ -75,11 +75,11 @@ namespace ApiSdk.Users.Item.Planner {
             return command;
         }
         /// <summary>
-        /// Entry-point to the Planner resource that might exist for a user. Read-only.
+        /// Selective Planner services available to the user. Read-only. Nullable.
         /// </summary>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
-            command.Description = "Entry-point to the Planner resource that might exist for a user. Read-only.";
+            command.Description = "Selective Planner services available to the user. Read-only. Nullable.";
             // Create options for all the parameters
             var userIdOption = new Option<string>("--user-id", description: "key: id of user");
             userIdOption.IsRequired = true;
@@ -127,7 +127,7 @@ namespace ApiSdk.Users.Item.Planner {
             RequestAdapter = requestAdapter;
         }
         /// <summary>
-        /// Entry-point to the Planner resource that might exist for a user. Read-only.
+        /// Selective Planner services available to the user. Read-only. Nullable.
         /// <param name="h">Request headers</param>
         /// <param name="o">Request options</param>
         /// </summary>
@@ -142,7 +142,7 @@ namespace ApiSdk.Users.Item.Planner {
             return requestInfo;
         }
         /// <summary>
-        /// Entry-point to the Planner resource that might exist for a user. Read-only.
+        /// Selective Planner services available to the user. Read-only. Nullable.
         /// <param name="h">Request headers</param>
         /// <param name="o">Request options</param>
         /// <param name="q">Request query parameters</param>
@@ -163,7 +163,7 @@ namespace ApiSdk.Users.Item.Planner {
             return requestInfo;
         }
         /// <summary>
-        /// Entry-point to the Planner resource that might exist for a user. Read-only.
+        /// Selective Planner services available to the user. Read-only. Nullable.
         /// <param name="body"></param>
         /// <param name="h">Request headers</param>
         /// <param name="o">Request options</param>
@@ -181,7 +181,7 @@ namespace ApiSdk.Users.Item.Planner {
             return requestInfo;
         }
         /// <summary>
-        /// Entry-point to the Planner resource that might exist for a user. Read-only.
+        /// Selective Planner services available to the user. Read-only. Nullable.
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="h">Request headers</param>
         /// <param name="o">Request options</param>
@@ -192,7 +192,7 @@ namespace ApiSdk.Users.Item.Planner {
             await RequestAdapter.SendNoContentAsync(requestInfo, responseHandler, cancellationToken);
         }
         /// <summary>
-        /// Entry-point to the Planner resource that might exist for a user. Read-only.
+        /// Selective Planner services available to the user. Read-only. Nullable.
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="h">Request headers</param>
         /// <param name="o">Request options</param>
@@ -204,7 +204,7 @@ namespace ApiSdk.Users.Item.Planner {
             return await RequestAdapter.SendAsync<PlannerUser>(requestInfo, responseHandler, cancellationToken);
         }
         /// <summary>
-        /// Entry-point to the Planner resource that might exist for a user. Read-only.
+        /// Selective Planner services available to the user. Read-only. Nullable.
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="h">Request headers</param>
         /// <param name="model"></param>
@@ -216,7 +216,7 @@ namespace ApiSdk.Users.Item.Planner {
             var requestInfo = CreatePatchRequestInformation(model, h, o);
             await RequestAdapter.SendNoContentAsync(requestInfo, responseHandler, cancellationToken);
         }
-        /// <summary>Entry-point to the Planner resource that might exist for a user. Read-only.</summary>
+        /// <summary>Selective Planner services available to the user. Read-only. Nullable.</summary>
         public class GetQueryParameters : QueryParametersBase {
             /// <summary>Expand related entities</summary>
             public string[] Expand { get; set; }

@@ -34,11 +34,11 @@ namespace ApiSdk.Identity.B2xUserFlows {
             return commands;
         }
         /// <summary>
-        /// Represents entry point for B2X/self-service sign-up identity userflows.
+        /// Represents entry point for B2X and self-service sign-up identity userflows.
         /// </summary>
         public Command BuildCreateCommand() {
             var command = new Command("create");
-            command.Description = "Represents entry point for B2X/self-service sign-up identity userflows.";
+            command.Description = "Represents entry point for B2X and self-service sign-up identity userflows.";
             // Create options for all the parameters
             var bodyOption = new Option<string>("--body");
             bodyOption.IsRequired = true;
@@ -61,11 +61,11 @@ namespace ApiSdk.Identity.B2xUserFlows {
             return command;
         }
         /// <summary>
-        /// Represents entry point for B2X/self-service sign-up identity userflows.
+        /// Represents entry point for B2X and self-service sign-up identity userflows.
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "Represents entry point for B2X/self-service sign-up identity userflows.";
+            command.Description = "Represents entry point for B2X and self-service sign-up identity userflows.";
             // Create options for all the parameters
             var topOption = new Option<int?>("--top", description: "Show only the first n items");
             topOption.IsRequired = false;
@@ -130,7 +130,7 @@ namespace ApiSdk.Identity.B2xUserFlows {
             RequestAdapter = requestAdapter;
         }
         /// <summary>
-        /// Represents entry point for B2X/self-service sign-up identity userflows.
+        /// Represents entry point for B2X and self-service sign-up identity userflows.
         /// <param name="h">Request headers</param>
         /// <param name="o">Request options</param>
         /// <param name="q">Request query parameters</param>
@@ -151,7 +151,7 @@ namespace ApiSdk.Identity.B2xUserFlows {
             return requestInfo;
         }
         /// <summary>
-        /// Represents entry point for B2X/self-service sign-up identity userflows.
+        /// Represents entry point for B2X and self-service sign-up identity userflows.
         /// <param name="body"></param>
         /// <param name="h">Request headers</param>
         /// <param name="o">Request options</param>
@@ -169,7 +169,7 @@ namespace ApiSdk.Identity.B2xUserFlows {
             return requestInfo;
         }
         /// <summary>
-        /// Represents entry point for B2X/self-service sign-up identity userflows.
+        /// Represents entry point for B2X and self-service sign-up identity userflows.
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="h">Request headers</param>
         /// <param name="o">Request options</param>
@@ -181,7 +181,7 @@ namespace ApiSdk.Identity.B2xUserFlows {
             return await RequestAdapter.SendAsync<B2xUserFlowsResponse>(requestInfo, responseHandler, cancellationToken);
         }
         /// <summary>
-        /// Represents entry point for B2X/self-service sign-up identity userflows.
+        /// Represents entry point for B2X and self-service sign-up identity userflows.
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="h">Request headers</param>
         /// <param name="model"></param>
@@ -193,7 +193,7 @@ namespace ApiSdk.Identity.B2xUserFlows {
             var requestInfo = CreatePostRequestInformation(model, h, o);
             return await RequestAdapter.SendAsync<B2xIdentityUserFlow>(requestInfo, responseHandler, cancellationToken);
         }
-        /// <summary>Represents entry point for B2X/self-service sign-up identity userflows.</summary>
+        /// <summary>Represents entry point for B2X and self-service sign-up identity userflows.</summary>
         public class GetQueryParameters : QueryParametersBase {
             /// <summary>Include count of items</summary>
             public bool? Count { get; set; }

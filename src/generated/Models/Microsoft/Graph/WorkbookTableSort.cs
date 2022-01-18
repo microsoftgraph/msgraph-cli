@@ -9,7 +9,7 @@ namespace ApiSdk.Models.Microsoft.Graph {
         public List<WorkbookSortField> Fields { get; set; }
         /// <summary>Represents whether the casing impacted the last sort of the table. Read-only.</summary>
         public bool? MatchCase { get; set; }
-        /// <summary>Represents Chinese character ordering method last used to sort the table. The possible values are: PinYin, StrokeCount. Read-only.</summary>
+        /// <summary>Represents Chinese character ordering method last used to sort the table. Possible values are: PinYin, StrokeCount. Read-only.</summary>
         public string Method { get; set; }
         /// <summary>
         /// The deserialization information for the current model

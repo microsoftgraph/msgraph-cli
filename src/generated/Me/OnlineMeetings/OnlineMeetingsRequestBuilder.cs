@@ -24,6 +24,7 @@ namespace ApiSdk.Me.OnlineMeetings {
         public List<Command> BuildCommand() {
             var builder = new OnlineMeetingRequestBuilder(PathParameters, RequestAdapter);
             var commands = new List<Command> { 
+                builder.BuildAttendanceReportsCommand(),
                 builder.BuildAttendeeReportCommand(),
                 builder.BuildDeleteCommand(),
                 builder.BuildGetCommand(),

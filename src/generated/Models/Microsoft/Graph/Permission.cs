@@ -7,13 +7,13 @@ namespace ApiSdk.Models.Microsoft.Graph {
     public class Permission : Entity, IParsable {
         /// <summary>A format of yyyy-MM-ddTHH:mm:ssZ of DateTimeOffset indicates the expiration time of the permission. DateTime.MinValue indicates there is no expiration set for this permission. Optional.</summary>
         public DateTimeOffset? ExpirationDateTime { get; set; }
-        /// <summary>For user type permissions, the details of the users & applications for this permission. Read-only.</summary>
         public IdentitySet GrantedTo { get; set; }
-        /// <summary>For link type permissions, the details of the users to whom permission was granted. Read-only.</summary>
         public List<IdentitySet> GrantedToIdentities { get; set; }
+        /// <summary>For link type permissions, the details of the users to whom permission was granted. Read-only.</summary>
         public List<SharePointIdentitySet> GrantedToIdentitiesV2 { get; set; }
+        /// <summary>For user type permissions, the details of the users and applications for this permission. Read-only.</summary>
         public SharePointIdentitySet GrantedToV2 { get; set; }
-        /// <summary>This indicates whether password is set for this permission, it's only showing in response. Optional and Read-only and for OneDrive Personal only.</summary>
+        /// <summary>Indicates whether the password is set for this permission. This property only appears in the response. Optional. Read-only. For OneDrive Personal only.</summary>
         public bool? HasPassword { get; set; }
         /// <summary>Provides a reference to the ancestor of the current permission, if it is inherited from an ancestor. Read-only.</summary>
         public ItemReference InheritedFrom { get; set; }
@@ -21,9 +21,9 @@ namespace ApiSdk.Models.Microsoft.Graph {
         public SharingInvitation Invitation { get; set; }
         /// <summary>Provides the link details of the current permission, if it is a link type permissions. Read-only.</summary>
         public SharingLink Link { get; set; }
-        /// <summary>The type of permission, e.g. read. See below for the full list of roles. Read-only.</summary>
+        /// <summary>The type of permission, for example, read. See below for the full list of roles. Read-only.</summary>
         public List<string> Roles { get; set; }
-        /// <summary>A unique token that can be used to access this shared item via the **shares** API. Read-only.</summary>
+        /// <summary>A unique token that can be used to access this shared item via the [shares API][]. Read-only.</summary>
         public string ShareId { get; set; }
         /// <summary>
         /// The deserialization information for the current model

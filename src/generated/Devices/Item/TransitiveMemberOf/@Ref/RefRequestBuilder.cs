@@ -19,11 +19,11 @@ namespace ApiSdk.Devices.Item.TransitiveMemberOf.@Ref {
         /// <summary>Url template to use to build the URL for the current request builder</summary>
         private string UrlTemplate { get; set; }
         /// <summary>
-        /// Groups that the device is a member of. This operation is transitive. Supports $expand.
+        /// Groups that this device is a member of. This operation is transitive. Supports $expand.
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "Groups that the device is a member of. This operation is transitive. Supports $expand.";
+            command.Description = "Groups that this device is a member of. This operation is transitive. Supports $expand.";
             // Create options for all the parameters
             var deviceIdOption = new Option<string>("--device-id", description: "key: id of device");
             deviceIdOption.IsRequired = true;
@@ -68,11 +68,11 @@ namespace ApiSdk.Devices.Item.TransitiveMemberOf.@Ref {
             return command;
         }
         /// <summary>
-        /// Groups that the device is a member of. This operation is transitive. Supports $expand.
+        /// Groups that this device is a member of. This operation is transitive. Supports $expand.
         /// </summary>
         public Command BuildPostCommand() {
             var command = new Command("post");
-            command.Description = "Groups that the device is a member of. This operation is transitive. Supports $expand.";
+            command.Description = "Groups that this device is a member of. This operation is transitive. Supports $expand.";
             // Create options for all the parameters
             var deviceIdOption = new Option<string>("--device-id", description: "key: id of device");
             deviceIdOption.IsRequired = true;
@@ -111,7 +111,7 @@ namespace ApiSdk.Devices.Item.TransitiveMemberOf.@Ref {
             RequestAdapter = requestAdapter;
         }
         /// <summary>
-        /// Groups that the device is a member of. This operation is transitive. Supports $expand.
+        /// Groups that this device is a member of. This operation is transitive. Supports $expand.
         /// <param name="h">Request headers</param>
         /// <param name="o">Request options</param>
         /// <param name="q">Request query parameters</param>
@@ -132,7 +132,7 @@ namespace ApiSdk.Devices.Item.TransitiveMemberOf.@Ref {
             return requestInfo;
         }
         /// <summary>
-        /// Groups that the device is a member of. This operation is transitive. Supports $expand.
+        /// Groups that this device is a member of. This operation is transitive. Supports $expand.
         /// <param name="body"></param>
         /// <param name="h">Request headers</param>
         /// <param name="o">Request options</param>
@@ -150,7 +150,7 @@ namespace ApiSdk.Devices.Item.TransitiveMemberOf.@Ref {
             return requestInfo;
         }
         /// <summary>
-        /// Groups that the device is a member of. This operation is transitive. Supports $expand.
+        /// Groups that this device is a member of. This operation is transitive. Supports $expand.
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="h">Request headers</param>
         /// <param name="o">Request options</param>
@@ -162,7 +162,7 @@ namespace ApiSdk.Devices.Item.TransitiveMemberOf.@Ref {
             return await RequestAdapter.SendAsync<RefResponse>(requestInfo, responseHandler, cancellationToken);
         }
         /// <summary>
-        /// Groups that the device is a member of. This operation is transitive. Supports $expand.
+        /// Groups that this device is a member of. This operation is transitive. Supports $expand.
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="h">Request headers</param>
         /// <param name="model"></param>
@@ -174,7 +174,7 @@ namespace ApiSdk.Devices.Item.TransitiveMemberOf.@Ref {
             var requestInfo = CreatePostRequestInformation(model, h, o);
             return await RequestAdapter.SendAsync<ApiSdk.Devices.Item.TransitiveMemberOf.@Ref.@Ref>(requestInfo, responseHandler, cancellationToken);
         }
-        /// <summary>Groups that the device is a member of. This operation is transitive. Supports $expand.</summary>
+        /// <summary>Groups that this device is a member of. This operation is transitive. Supports $expand.</summary>
         public class GetQueryParameters : QueryParametersBase {
             /// <summary>Include count of items</summary>
             public bool? Count { get; set; }

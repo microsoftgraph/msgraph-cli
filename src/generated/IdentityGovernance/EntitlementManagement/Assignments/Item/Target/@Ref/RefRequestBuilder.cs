@@ -19,11 +19,11 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.Assignments.Item.Targe
         /// <summary>Url template to use to build the URL for the current request builder</summary>
         private string UrlTemplate { get; set; }
         /// <summary>
-        /// The subject of the access package assignment. Read-only. Nullable.
+        /// The subject of the access package assignment. Read-only. Nullable. Supports $expand. Supports $filter (eq) on objectId.
         /// </summary>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
-            command.Description = "The subject of the access package assignment. Read-only. Nullable.";
+            command.Description = "The subject of the access package assignment. Read-only. Nullable. Supports $expand. Supports $filter (eq) on objectId.";
             // Create options for all the parameters
             var accessPackageAssignmentIdOption = new Option<string>("--accesspackageassignment-id", description: "key: id of accessPackageAssignment");
             accessPackageAssignmentIdOption.IsRequired = true;
@@ -38,11 +38,11 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.Assignments.Item.Targe
             return command;
         }
         /// <summary>
-        /// The subject of the access package assignment. Read-only. Nullable.
+        /// The subject of the access package assignment. Read-only. Nullable. Supports $expand. Supports $filter (eq) on objectId.
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "The subject of the access package assignment. Read-only. Nullable.";
+            command.Description = "The subject of the access package assignment. Read-only. Nullable. Supports $expand. Supports $filter (eq) on objectId.";
             // Create options for all the parameters
             var accessPackageAssignmentIdOption = new Option<string>("--accesspackageassignment-id", description: "key: id of accessPackageAssignment");
             accessPackageAssignmentIdOption.IsRequired = true;
@@ -62,11 +62,11 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.Assignments.Item.Targe
             return command;
         }
         /// <summary>
-        /// The subject of the access package assignment. Read-only. Nullable.
+        /// The subject of the access package assignment. Read-only. Nullable. Supports $expand. Supports $filter (eq) on objectId.
         /// </summary>
         public Command BuildPutCommand() {
             var command = new Command("put");
-            command.Description = "The subject of the access package assignment. Read-only. Nullable.";
+            command.Description = "The subject of the access package assignment. Read-only. Nullable. Supports $expand. Supports $filter (eq) on objectId.";
             // Create options for all the parameters
             var accessPackageAssignmentIdOption = new Option<string>("--accesspackageassignment-id", description: "key: id of accessPackageAssignment");
             accessPackageAssignmentIdOption.IsRequired = true;
@@ -100,7 +100,7 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.Assignments.Item.Targe
             RequestAdapter = requestAdapter;
         }
         /// <summary>
-        /// The subject of the access package assignment. Read-only. Nullable.
+        /// The subject of the access package assignment. Read-only. Nullable. Supports $expand. Supports $filter (eq) on objectId.
         /// <param name="h">Request headers</param>
         /// <param name="o">Request options</param>
         /// </summary>
@@ -115,7 +115,7 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.Assignments.Item.Targe
             return requestInfo;
         }
         /// <summary>
-        /// The subject of the access package assignment. Read-only. Nullable.
+        /// The subject of the access package assignment. Read-only. Nullable. Supports $expand. Supports $filter (eq) on objectId.
         /// <param name="h">Request headers</param>
         /// <param name="o">Request options</param>
         /// </summary>
@@ -130,7 +130,7 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.Assignments.Item.Targe
             return requestInfo;
         }
         /// <summary>
-        /// The subject of the access package assignment. Read-only. Nullable.
+        /// The subject of the access package assignment. Read-only. Nullable. Supports $expand. Supports $filter (eq) on objectId.
         /// <param name="body"></param>
         /// <param name="h">Request headers</param>
         /// <param name="o">Request options</param>
@@ -148,7 +148,7 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.Assignments.Item.Targe
             return requestInfo;
         }
         /// <summary>
-        /// The subject of the access package assignment. Read-only. Nullable.
+        /// The subject of the access package assignment. Read-only. Nullable. Supports $expand. Supports $filter (eq) on objectId.
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="h">Request headers</param>
         /// <param name="o">Request options</param>
@@ -159,7 +159,7 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.Assignments.Item.Targe
             await RequestAdapter.SendNoContentAsync(requestInfo, responseHandler, cancellationToken);
         }
         /// <summary>
-        /// The subject of the access package assignment. Read-only. Nullable.
+        /// The subject of the access package assignment. Read-only. Nullable. Supports $expand. Supports $filter (eq) on objectId.
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="h">Request headers</param>
         /// <param name="o">Request options</param>
@@ -170,7 +170,7 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.Assignments.Item.Targe
             return await RequestAdapter.SendPrimitiveAsync<string>(requestInfo, responseHandler, cancellationToken);
         }
         /// <summary>
-        /// The subject of the access package assignment. Read-only. Nullable.
+        /// The subject of the access package assignment. Read-only. Nullable. Supports $expand. Supports $filter (eq) on objectId.
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="h">Request headers</param>
         /// <param name="model"></param>

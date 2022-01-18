@@ -13,7 +13,7 @@ namespace ApiSdk.Models.Microsoft.Graph {
         public string AzureTenantId { get; set; }
         /// <summary>The collection of compliance information associated with secure score control</summary>
         public List<ComplianceInformation> ComplianceInformation { get; set; }
-        /// <summary>Control action category (Identity, Data, Device, Apps, Infrastructure).</summary>
+        /// <summary>Control action category (Account, Data, Device, Apps, Infrastructure).</summary>
         public string ControlCategory { get; set; }
         /// <summary>Flag to indicate where the tenant has marked a control (ignore, thirdParty, reviewed) (supports update).</summary>
         public List<SecureScoreControlStateUpdate> ControlStateUpdates { get; set; }
@@ -23,7 +23,7 @@ namespace ApiSdk.Models.Microsoft.Graph {
         public string ImplementationCost { get; set; }
         /// <summary>Time at which the control profile entity was last modified. The Timestamp type represents date and time</summary>
         public DateTimeOffset? LastModifiedDateTime { get; set; }
-        /// <summary>max attainable score for the control.</summary>
+        /// <summary>Current obtained max score on specified date.</summary>
         public double? MaxScore { get; set; }
         /// <summary>Microsoft's stack ranking of control.</summary>
         public int? Rank { get; set; }
@@ -33,7 +33,7 @@ namespace ApiSdk.Models.Microsoft.Graph {
         public string RemediationImpact { get; set; }
         /// <summary>Service that owns the control (Exchange, Sharepoint, Azure AD).</summary>
         public string Service { get; set; }
-        /// <summary>List of threats the control mitigates (accountBreach,dataDeletion,dataExfiltration,dataSpillage,</summary>
+        /// <summary>List of threats the control mitigates (accountBreach,dataDeletion,dataExfiltration,dataSpillage,elevationOfPrivilege,maliciousInsider,passwordCracking,phishingOrWhaling,spoofing).</summary>
         public List<string> Threats { get; set; }
         /// <summary>Control tier (Core, Defense in Depth, Advanced.)</summary>
         public string Tier { get; set; }

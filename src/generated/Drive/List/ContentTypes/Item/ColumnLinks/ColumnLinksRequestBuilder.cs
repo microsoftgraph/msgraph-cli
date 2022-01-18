@@ -30,11 +30,11 @@ namespace ApiSdk.Drive.List.ContentTypes.Item.ColumnLinks {
             return commands;
         }
         /// <summary>
-        /// The collection of columns that are required by this content type.
+        /// The collection of columns that are required by this content type
         /// </summary>
         public Command BuildCreateCommand() {
             var command = new Command("create");
-            command.Description = "The collection of columns that are required by this content type.";
+            command.Description = "The collection of columns that are required by this content type";
             // Create options for all the parameters
             var contentTypeIdOption = new Option<string>("--contenttype-id", description: "key: id of contentType");
             contentTypeIdOption.IsRequired = true;
@@ -60,11 +60,11 @@ namespace ApiSdk.Drive.List.ContentTypes.Item.ColumnLinks {
             return command;
         }
         /// <summary>
-        /// The collection of columns that are required by this content type.
+        /// The collection of columns that are required by this content type
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "The collection of columns that are required by this content type.";
+            command.Description = "The collection of columns that are required by this content type";
             // Create options for all the parameters
             var contentTypeIdOption = new Option<string>("--contenttype-id", description: "key: id of contentType");
             contentTypeIdOption.IsRequired = true;
@@ -132,7 +132,7 @@ namespace ApiSdk.Drive.List.ContentTypes.Item.ColumnLinks {
             RequestAdapter = requestAdapter;
         }
         /// <summary>
-        /// The collection of columns that are required by this content type.
+        /// The collection of columns that are required by this content type
         /// <param name="h">Request headers</param>
         /// <param name="o">Request options</param>
         /// <param name="q">Request query parameters</param>
@@ -153,7 +153,7 @@ namespace ApiSdk.Drive.List.ContentTypes.Item.ColumnLinks {
             return requestInfo;
         }
         /// <summary>
-        /// The collection of columns that are required by this content type.
+        /// The collection of columns that are required by this content type
         /// <param name="body"></param>
         /// <param name="h">Request headers</param>
         /// <param name="o">Request options</param>
@@ -171,7 +171,7 @@ namespace ApiSdk.Drive.List.ContentTypes.Item.ColumnLinks {
             return requestInfo;
         }
         /// <summary>
-        /// The collection of columns that are required by this content type.
+        /// The collection of columns that are required by this content type
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="h">Request headers</param>
         /// <param name="o">Request options</param>
@@ -183,7 +183,7 @@ namespace ApiSdk.Drive.List.ContentTypes.Item.ColumnLinks {
             return await RequestAdapter.SendAsync<ColumnLinksResponse>(requestInfo, responseHandler, cancellationToken);
         }
         /// <summary>
-        /// The collection of columns that are required by this content type.
+        /// The collection of columns that are required by this content type
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="h">Request headers</param>
         /// <param name="model"></param>
@@ -195,7 +195,7 @@ namespace ApiSdk.Drive.List.ContentTypes.Item.ColumnLinks {
             var requestInfo = CreatePostRequestInformation(model, h, o);
             return await RequestAdapter.SendAsync<ColumnLink>(requestInfo, responseHandler, cancellationToken);
         }
-        /// <summary>The collection of columns that are required by this content type.</summary>
+        /// <summary>The collection of columns that are required by this content type</summary>
         public class GetQueryParameters : QueryParametersBase {
             /// <summary>Include count of items</summary>
             public bool? Count { get; set; }

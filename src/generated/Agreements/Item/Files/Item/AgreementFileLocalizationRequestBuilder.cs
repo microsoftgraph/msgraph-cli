@@ -21,11 +21,11 @@ namespace ApiSdk.Agreements.Item.Files.Item {
         /// <summary>Url template to use to build the URL for the current request builder</summary>
         private string UrlTemplate { get; set; }
         /// <summary>
-        /// PDFs linked to this agreement. This property is in the process of being deprecated. Use the  file property instead.
+        /// PDFs linked to this agreement. Note: This property is in the process of being deprecated. Use the  file property instead.
         /// </summary>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
-            command.Description = "PDFs linked to this agreement. This property is in the process of being deprecated. Use the  file property instead.";
+            command.Description = "PDFs linked to this agreement. Note: This property is in the process of being deprecated. Use the  file property instead.";
             // Create options for all the parameters
             var agreementIdOption = new Option<string>("--agreement-id", description: "key: id of agreement");
             agreementIdOption.IsRequired = true;
@@ -43,11 +43,11 @@ namespace ApiSdk.Agreements.Item.Files.Item {
             return command;
         }
         /// <summary>
-        /// PDFs linked to this agreement. This property is in the process of being deprecated. Use the  file property instead.
+        /// PDFs linked to this agreement. Note: This property is in the process of being deprecated. Use the  file property instead.
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "PDFs linked to this agreement. This property is in the process of being deprecated. Use the  file property instead.";
+            command.Description = "PDFs linked to this agreement. Note: This property is in the process of being deprecated. Use the  file property instead.";
             // Create options for all the parameters
             var agreementIdOption = new Option<string>("--agreement-id", description: "key: id of agreement");
             agreementIdOption.IsRequired = true;
@@ -80,11 +80,11 @@ namespace ApiSdk.Agreements.Item.Files.Item {
             return command;
         }
         /// <summary>
-        /// PDFs linked to this agreement. This property is in the process of being deprecated. Use the  file property instead.
+        /// PDFs linked to this agreement. Note: This property is in the process of being deprecated. Use the  file property instead.
         /// </summary>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
-            command.Description = "PDFs linked to this agreement. This property is in the process of being deprecated. Use the  file property instead.";
+            command.Description = "PDFs linked to this agreement. Note: This property is in the process of being deprecated. Use the  file property instead.";
             // Create options for all the parameters
             var agreementIdOption = new Option<string>("--agreement-id", description: "key: id of agreement");
             agreementIdOption.IsRequired = true;
@@ -128,7 +128,7 @@ namespace ApiSdk.Agreements.Item.Files.Item {
             RequestAdapter = requestAdapter;
         }
         /// <summary>
-        /// PDFs linked to this agreement. This property is in the process of being deprecated. Use the  file property instead.
+        /// PDFs linked to this agreement. Note: This property is in the process of being deprecated. Use the  file property instead.
         /// <param name="h">Request headers</param>
         /// <param name="o">Request options</param>
         /// </summary>
@@ -143,7 +143,7 @@ namespace ApiSdk.Agreements.Item.Files.Item {
             return requestInfo;
         }
         /// <summary>
-        /// PDFs linked to this agreement. This property is in the process of being deprecated. Use the  file property instead.
+        /// PDFs linked to this agreement. Note: This property is in the process of being deprecated. Use the  file property instead.
         /// <param name="h">Request headers</param>
         /// <param name="o">Request options</param>
         /// <param name="q">Request query parameters</param>
@@ -164,7 +164,7 @@ namespace ApiSdk.Agreements.Item.Files.Item {
             return requestInfo;
         }
         /// <summary>
-        /// PDFs linked to this agreement. This property is in the process of being deprecated. Use the  file property instead.
+        /// PDFs linked to this agreement. Note: This property is in the process of being deprecated. Use the  file property instead.
         /// <param name="body"></param>
         /// <param name="h">Request headers</param>
         /// <param name="o">Request options</param>
@@ -182,7 +182,7 @@ namespace ApiSdk.Agreements.Item.Files.Item {
             return requestInfo;
         }
         /// <summary>
-        /// PDFs linked to this agreement. This property is in the process of being deprecated. Use the  file property instead.
+        /// PDFs linked to this agreement. Note: This property is in the process of being deprecated. Use the  file property instead.
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="h">Request headers</param>
         /// <param name="o">Request options</param>
@@ -193,7 +193,7 @@ namespace ApiSdk.Agreements.Item.Files.Item {
             await RequestAdapter.SendNoContentAsync(requestInfo, responseHandler, cancellationToken);
         }
         /// <summary>
-        /// PDFs linked to this agreement. This property is in the process of being deprecated. Use the  file property instead.
+        /// PDFs linked to this agreement. Note: This property is in the process of being deprecated. Use the  file property instead.
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="h">Request headers</param>
         /// <param name="o">Request options</param>
@@ -205,7 +205,7 @@ namespace ApiSdk.Agreements.Item.Files.Item {
             return await RequestAdapter.SendAsync<AgreementFileLocalization>(requestInfo, responseHandler, cancellationToken);
         }
         /// <summary>
-        /// PDFs linked to this agreement. This property is in the process of being deprecated. Use the  file property instead.
+        /// PDFs linked to this agreement. Note: This property is in the process of being deprecated. Use the  file property instead.
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="h">Request headers</param>
         /// <param name="model"></param>
@@ -217,7 +217,7 @@ namespace ApiSdk.Agreements.Item.Files.Item {
             var requestInfo = CreatePatchRequestInformation(model, h, o);
             await RequestAdapter.SendNoContentAsync(requestInfo, responseHandler, cancellationToken);
         }
-        /// <summary>PDFs linked to this agreement. This property is in the process of being deprecated. Use the  file property instead.</summary>
+        /// <summary>PDFs linked to this agreement. Note: This property is in the process of being deprecated. Use the  file property instead.</summary>
         public class GetQueryParameters : QueryParametersBase {
             /// <summary>Expand related entities</summary>
             public string[] Expand { get; set; }

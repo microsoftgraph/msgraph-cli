@@ -32,11 +32,11 @@ namespace ApiSdk.IdentityGovernance.AppConsent.AppConsentRequests {
             return commands;
         }
         /// <summary>
-        /// Create new navigation property to appConsentRequests for identityGovernance
+        /// A collection of userConsentRequest objects for a specific application.
         /// </summary>
         public Command BuildCreateCommand() {
             var command = new Command("create");
-            command.Description = "Create new navigation property to appConsentRequests for identityGovernance";
+            command.Description = "A collection of userConsentRequest objects for a specific application.";
             // Create options for all the parameters
             var bodyOption = new Option<string>("--body");
             bodyOption.IsRequired = true;
@@ -59,11 +59,11 @@ namespace ApiSdk.IdentityGovernance.AppConsent.AppConsentRequests {
             return command;
         }
         /// <summary>
-        /// Get appConsentRequests from identityGovernance
+        /// A collection of userConsentRequest objects for a specific application.
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "Get appConsentRequests from identityGovernance";
+            command.Description = "A collection of userConsentRequest objects for a specific application.";
             // Create options for all the parameters
             var topOption = new Option<int?>("--top", description: "Show only the first n items");
             topOption.IsRequired = false;
@@ -128,7 +128,7 @@ namespace ApiSdk.IdentityGovernance.AppConsent.AppConsentRequests {
             RequestAdapter = requestAdapter;
         }
         /// <summary>
-        /// Get appConsentRequests from identityGovernance
+        /// A collection of userConsentRequest objects for a specific application.
         /// <param name="h">Request headers</param>
         /// <param name="o">Request options</param>
         /// <param name="q">Request query parameters</param>
@@ -149,7 +149,7 @@ namespace ApiSdk.IdentityGovernance.AppConsent.AppConsentRequests {
             return requestInfo;
         }
         /// <summary>
-        /// Create new navigation property to appConsentRequests for identityGovernance
+        /// A collection of userConsentRequest objects for a specific application.
         /// <param name="body"></param>
         /// <param name="h">Request headers</param>
         /// <param name="o">Request options</param>
@@ -175,7 +175,7 @@ namespace ApiSdk.IdentityGovernance.AppConsent.AppConsentRequests {
             return new FilterByCurrentUserWithOnRequestBuilder(PathParameters, RequestAdapter, on);
         }
         /// <summary>
-        /// Get appConsentRequests from identityGovernance
+        /// A collection of userConsentRequest objects for a specific application.
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="h">Request headers</param>
         /// <param name="o">Request options</param>
@@ -187,7 +187,7 @@ namespace ApiSdk.IdentityGovernance.AppConsent.AppConsentRequests {
             return await RequestAdapter.SendAsync<AppConsentRequestsResponse>(requestInfo, responseHandler, cancellationToken);
         }
         /// <summary>
-        /// Create new navigation property to appConsentRequests for identityGovernance
+        /// A collection of userConsentRequest objects for a specific application.
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="h">Request headers</param>
         /// <param name="model"></param>
@@ -199,7 +199,7 @@ namespace ApiSdk.IdentityGovernance.AppConsent.AppConsentRequests {
             var requestInfo = CreatePostRequestInformation(model, h, o);
             return await RequestAdapter.SendAsync<AppConsentRequest>(requestInfo, responseHandler, cancellationToken);
         }
-        /// <summary>Get appConsentRequests from identityGovernance</summary>
+        /// <summary>A collection of userConsentRequest objects for a specific application.</summary>
         public class GetQueryParameters : QueryParametersBase {
             /// <summary>Include count of items</summary>
             public bool? Count { get; set; }

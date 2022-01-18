@@ -73,11 +73,11 @@ namespace ApiSdk.Me.Events.Item {
             return command;
         }
         /// <summary>
-        /// The user's events. Default is to show Events under the Default Calendar. Read-only. Nullable.
+        /// The user's events. Default is to show events under the Default Calendar. Read-only. Nullable.
         /// </summary>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
-            command.Description = "The user's events. Default is to show Events under the Default Calendar. Read-only. Nullable.";
+            command.Description = "The user's events. Default is to show events under the Default Calendar. Read-only. Nullable.";
             // Create options for all the parameters
             var eventIdOption = new Option<string>("--event-id", description: "key: id of event");
             eventIdOption.IsRequired = true;
@@ -111,11 +111,11 @@ namespace ApiSdk.Me.Events.Item {
             return command;
         }
         /// <summary>
-        /// The user's events. Default is to show Events under the Default Calendar. Read-only. Nullable.
+        /// The user's events. Default is to show events under the Default Calendar. Read-only. Nullable.
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "The user's events. Default is to show Events under the Default Calendar. Read-only. Nullable.";
+            command.Description = "The user's events. Default is to show events under the Default Calendar. Read-only. Nullable.";
             // Create options for all the parameters
             var eventIdOption = new Option<string>("--event-id", description: "key: id of event");
             eventIdOption.IsRequired = true;
@@ -154,11 +154,11 @@ namespace ApiSdk.Me.Events.Item {
             return command;
         }
         /// <summary>
-        /// The user's events. Default is to show Events under the Default Calendar. Read-only. Nullable.
+        /// The user's events. Default is to show events under the Default Calendar. Read-only. Nullable.
         /// </summary>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
-            command.Description = "The user's events. Default is to show Events under the Default Calendar. Read-only. Nullable.";
+            command.Description = "The user's events. Default is to show events under the Default Calendar. Read-only. Nullable.";
             // Create options for all the parameters
             var eventIdOption = new Option<string>("--event-id", description: "key: id of event");
             eventIdOption.IsRequired = true;
@@ -211,7 +211,7 @@ namespace ApiSdk.Me.Events.Item {
             RequestAdapter = requestAdapter;
         }
         /// <summary>
-        /// The user's events. Default is to show Events under the Default Calendar. Read-only. Nullable.
+        /// The user's events. Default is to show events under the Default Calendar. Read-only. Nullable.
         /// <param name="h">Request headers</param>
         /// <param name="o">Request options</param>
         /// </summary>
@@ -226,7 +226,7 @@ namespace ApiSdk.Me.Events.Item {
             return requestInfo;
         }
         /// <summary>
-        /// The user's events. Default is to show Events under the Default Calendar. Read-only. Nullable.
+        /// The user's events. Default is to show events under the Default Calendar. Read-only. Nullable.
         /// <param name="h">Request headers</param>
         /// <param name="o">Request options</param>
         /// <param name="q">Request query parameters</param>
@@ -247,7 +247,7 @@ namespace ApiSdk.Me.Events.Item {
             return requestInfo;
         }
         /// <summary>
-        /// The user's events. Default is to show Events under the Default Calendar. Read-only. Nullable.
+        /// The user's events. Default is to show events under the Default Calendar. Read-only. Nullable.
         /// <param name="body"></param>
         /// <param name="h">Request headers</param>
         /// <param name="o">Request options</param>
@@ -265,7 +265,7 @@ namespace ApiSdk.Me.Events.Item {
             return requestInfo;
         }
         /// <summary>
-        /// The user's events. Default is to show Events under the Default Calendar. Read-only. Nullable.
+        /// The user's events. Default is to show events under the Default Calendar. Read-only. Nullable.
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="h">Request headers</param>
         /// <param name="o">Request options</param>
@@ -276,7 +276,7 @@ namespace ApiSdk.Me.Events.Item {
             await RequestAdapter.SendNoContentAsync(requestInfo, responseHandler, cancellationToken);
         }
         /// <summary>
-        /// The user's events. Default is to show Events under the Default Calendar. Read-only. Nullable.
+        /// The user's events. Default is to show events under the Default Calendar. Read-only. Nullable.
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="h">Request headers</param>
         /// <param name="o">Request options</param>
@@ -288,7 +288,7 @@ namespace ApiSdk.Me.Events.Item {
             return await RequestAdapter.SendAsync<@Event>(requestInfo, responseHandler, cancellationToken);
         }
         /// <summary>
-        /// The user's events. Default is to show Events under the Default Calendar. Read-only. Nullable.
+        /// The user's events. Default is to show events under the Default Calendar. Read-only. Nullable.
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="h">Request headers</param>
         /// <param name="model"></param>
@@ -300,7 +300,7 @@ namespace ApiSdk.Me.Events.Item {
             var requestInfo = CreatePatchRequestInformation(model, h, o);
             await RequestAdapter.SendNoContentAsync(requestInfo, responseHandler, cancellationToken);
         }
-        /// <summary>The user's events. Default is to show Events under the Default Calendar. Read-only. Nullable.</summary>
+        /// <summary>The user's events. Default is to show events under the Default Calendar. Read-only. Nullable.</summary>
         public class GetQueryParameters : QueryParametersBase {
             /// <summary>Select properties to be returned</summary>
             public string[] Select { get; set; }

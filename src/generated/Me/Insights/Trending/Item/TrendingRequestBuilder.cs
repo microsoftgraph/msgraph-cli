@@ -21,11 +21,11 @@ namespace ApiSdk.Me.Insights.Trending.Item {
         /// <summary>Url template to use to build the URL for the current request builder</summary>
         private string UrlTemplate { get; set; }
         /// <summary>
-        /// Calculated relationship identifying documents trending around a user. Trending documents are calculated based on activity of the user's closest network of people and include files stored in OneDrive for Business and SharePoint. Trending insights help the user to discover potentially useful content that the user has access to, but has never viewed before.
+        /// Access this property from the derived type itemInsights.
         /// </summary>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
-            command.Description = "Calculated relationship identifying documents trending around a user. Trending documents are calculated based on activity of the user's closest network of people and include files stored in OneDrive for Business and SharePoint. Trending insights help the user to discover potentially useful content that the user has access to, but has never viewed before.";
+            command.Description = "Access this property from the derived type itemInsights.";
             // Create options for all the parameters
             var trendingIdOption = new Option<string>("--trending-id", description: "key: id of trending");
             trendingIdOption.IsRequired = true;
@@ -40,11 +40,11 @@ namespace ApiSdk.Me.Insights.Trending.Item {
             return command;
         }
         /// <summary>
-        /// Calculated relationship identifying documents trending around a user. Trending documents are calculated based on activity of the user's closest network of people and include files stored in OneDrive for Business and SharePoint. Trending insights help the user to discover potentially useful content that the user has access to, but has never viewed before.
+        /// Access this property from the derived type itemInsights.
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "Calculated relationship identifying documents trending around a user. Trending documents are calculated based on activity of the user's closest network of people and include files stored in OneDrive for Business and SharePoint. Trending insights help the user to discover potentially useful content that the user has access to, but has never viewed before.";
+            command.Description = "Access this property from the derived type itemInsights.";
             // Create options for all the parameters
             var trendingIdOption = new Option<string>("--trending-id", description: "key: id of trending");
             trendingIdOption.IsRequired = true;
@@ -74,11 +74,11 @@ namespace ApiSdk.Me.Insights.Trending.Item {
             return command;
         }
         /// <summary>
-        /// Calculated relationship identifying documents trending around a user. Trending documents are calculated based on activity of the user's closest network of people and include files stored in OneDrive for Business and SharePoint. Trending insights help the user to discover potentially useful content that the user has access to, but has never viewed before.
+        /// Access this property from the derived type itemInsights.
         /// </summary>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
-            command.Description = "Calculated relationship identifying documents trending around a user. Trending documents are calculated based on activity of the user's closest network of people and include files stored in OneDrive for Business and SharePoint. Trending insights help the user to discover potentially useful content that the user has access to, but has never viewed before.";
+            command.Description = "Access this property from the derived type itemInsights.";
             // Create options for all the parameters
             var trendingIdOption = new Option<string>("--trending-id", description: "key: id of trending");
             trendingIdOption.IsRequired = true;
@@ -132,7 +132,7 @@ namespace ApiSdk.Me.Insights.Trending.Item {
             RequestAdapter = requestAdapter;
         }
         /// <summary>
-        /// Calculated relationship identifying documents trending around a user. Trending documents are calculated based on activity of the user's closest network of people and include files stored in OneDrive for Business and SharePoint. Trending insights help the user to discover potentially useful content that the user has access to, but has never viewed before.
+        /// Access this property from the derived type itemInsights.
         /// <param name="h">Request headers</param>
         /// <param name="o">Request options</param>
         /// </summary>
@@ -147,7 +147,7 @@ namespace ApiSdk.Me.Insights.Trending.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Calculated relationship identifying documents trending around a user. Trending documents are calculated based on activity of the user's closest network of people and include files stored in OneDrive for Business and SharePoint. Trending insights help the user to discover potentially useful content that the user has access to, but has never viewed before.
+        /// Access this property from the derived type itemInsights.
         /// <param name="h">Request headers</param>
         /// <param name="o">Request options</param>
         /// <param name="q">Request query parameters</param>
@@ -168,7 +168,7 @@ namespace ApiSdk.Me.Insights.Trending.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Calculated relationship identifying documents trending around a user. Trending documents are calculated based on activity of the user's closest network of people and include files stored in OneDrive for Business and SharePoint. Trending insights help the user to discover potentially useful content that the user has access to, but has never viewed before.
+        /// Access this property from the derived type itemInsights.
         /// <param name="body"></param>
         /// <param name="h">Request headers</param>
         /// <param name="o">Request options</param>
@@ -186,7 +186,7 @@ namespace ApiSdk.Me.Insights.Trending.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Calculated relationship identifying documents trending around a user. Trending documents are calculated based on activity of the user's closest network of people and include files stored in OneDrive for Business and SharePoint. Trending insights help the user to discover potentially useful content that the user has access to, but has never viewed before.
+        /// Access this property from the derived type itemInsights.
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="h">Request headers</param>
         /// <param name="o">Request options</param>
@@ -197,7 +197,7 @@ namespace ApiSdk.Me.Insights.Trending.Item {
             await RequestAdapter.SendNoContentAsync(requestInfo, responseHandler, cancellationToken);
         }
         /// <summary>
-        /// Calculated relationship identifying documents trending around a user. Trending documents are calculated based on activity of the user's closest network of people and include files stored in OneDrive for Business and SharePoint. Trending insights help the user to discover potentially useful content that the user has access to, but has never viewed before.
+        /// Access this property from the derived type itemInsights.
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="h">Request headers</param>
         /// <param name="o">Request options</param>
@@ -209,7 +209,7 @@ namespace ApiSdk.Me.Insights.Trending.Item {
             return await RequestAdapter.SendAsync<ApiSdk.Models.Microsoft.Graph.Trending>(requestInfo, responseHandler, cancellationToken);
         }
         /// <summary>
-        /// Calculated relationship identifying documents trending around a user. Trending documents are calculated based on activity of the user's closest network of people and include files stored in OneDrive for Business and SharePoint. Trending insights help the user to discover potentially useful content that the user has access to, but has never viewed before.
+        /// Access this property from the derived type itemInsights.
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="h">Request headers</param>
         /// <param name="model"></param>
@@ -221,7 +221,7 @@ namespace ApiSdk.Me.Insights.Trending.Item {
             var requestInfo = CreatePatchRequestInformation(model, h, o);
             await RequestAdapter.SendNoContentAsync(requestInfo, responseHandler, cancellationToken);
         }
-        /// <summary>Calculated relationship identifying documents trending around a user. Trending documents are calculated based on activity of the user's closest network of people and include files stored in OneDrive for Business and SharePoint. Trending insights help the user to discover potentially useful content that the user has access to, but has never viewed before.</summary>
+        /// <summary>Access this property from the derived type itemInsights.</summary>
         public class GetQueryParameters : QueryParametersBase {
             /// <summary>Expand related entities</summary>
             public string[] Expand { get; set; }

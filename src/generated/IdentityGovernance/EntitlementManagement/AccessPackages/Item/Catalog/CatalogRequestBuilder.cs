@@ -21,11 +21,11 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.AccessPackages.Item.Ca
         /// <summary>Url template to use to build the URL for the current request builder</summary>
         private string UrlTemplate { get; set; }
         /// <summary>
-        /// Get catalog from identityGovernance
+        /// Read-only. Nullable.
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "Get catalog from identityGovernance";
+            command.Description = "Read-only. Nullable.";
             // Create options for all the parameters
             var accessPackageIdOption = new Option<string>("--accesspackage-id", description: "key: id of accessPackage");
             accessPackageIdOption.IsRequired = true;
@@ -76,7 +76,7 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.AccessPackages.Item.Ca
             RequestAdapter = requestAdapter;
         }
         /// <summary>
-        /// Get catalog from identityGovernance
+        /// Read-only. Nullable.
         /// <param name="h">Request headers</param>
         /// <param name="o">Request options</param>
         /// <param name="q">Request query parameters</param>
@@ -97,7 +97,7 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.AccessPackages.Item.Ca
             return requestInfo;
         }
         /// <summary>
-        /// Get catalog from identityGovernance
+        /// Read-only. Nullable.
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="h">Request headers</param>
         /// <param name="o">Request options</param>
@@ -108,7 +108,7 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.AccessPackages.Item.Ca
             var requestInfo = CreateGetRequestInformation(q, h, o);
             return await RequestAdapter.SendAsync<AccessPackageCatalog>(requestInfo, responseHandler, cancellationToken);
         }
-        /// <summary>Get catalog from identityGovernance</summary>
+        /// <summary>Read-only. Nullable.</summary>
         public class GetQueryParameters : QueryParametersBase {
             /// <summary>Expand related entities</summary>
             public string[] Expand { get; set; }

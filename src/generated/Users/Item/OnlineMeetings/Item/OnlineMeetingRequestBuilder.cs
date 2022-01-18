@@ -1,4 +1,5 @@
 using ApiSdk.Models.Microsoft.Graph;
+using ApiSdk.Users.Item.OnlineMeetings.Item.AttendanceReports;
 using ApiSdk.Users.Item.OnlineMeetings.Item.AttendeeReport;
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
@@ -20,6 +21,13 @@ namespace ApiSdk.Users.Item.OnlineMeetings.Item {
         private IRequestAdapter RequestAdapter { get; set; }
         /// <summary>Url template to use to build the URL for the current request builder</summary>
         private string UrlTemplate { get; set; }
+        public Command BuildAttendanceReportsCommand() {
+            var command = new Command("attendance-reports");
+            var builder = new ApiSdk.Users.Item.OnlineMeetings.Item.AttendanceReports.AttendanceReportsRequestBuilder(PathParameters, RequestAdapter);
+            command.AddCommand(builder.BuildCreateCommand());
+            command.AddCommand(builder.BuildListCommand());
+            return command;
+        }
         public Command BuildAttendeeReportCommand() {
             var command = new Command("attendee-report");
             var builder = new ApiSdk.Users.Item.OnlineMeetings.Item.AttendeeReport.AttendeeReportRequestBuilder(PathParameters, RequestAdapter);

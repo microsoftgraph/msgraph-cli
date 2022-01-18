@@ -31,11 +31,11 @@ namespace ApiSdk.Groups.Item.Threads.Item.Posts.Item.Attachments {
             return commands;
         }
         /// <summary>
-        /// Read-only. Nullable. Supports $expand.
+        /// The collection of fileAttachment, itemAttachment, and referenceAttachment attachments for the post. Read-only. Nullable. Supports $expand.
         /// </summary>
         public Command BuildCreateCommand() {
             var command = new Command("create");
-            command.Description = "Read-only. Nullable. Supports $expand.";
+            command.Description = "The collection of fileAttachment, itemAttachment, and referenceAttachment attachments for the post. Read-only. Nullable. Supports $expand.";
             // Create options for all the parameters
             var groupIdOption = new Option<string>("--group-id", description: "key: id of group");
             groupIdOption.IsRequired = true;
@@ -73,11 +73,11 @@ namespace ApiSdk.Groups.Item.Threads.Item.Posts.Item.Attachments {
             return command;
         }
         /// <summary>
-        /// Read-only. Nullable. Supports $expand.
+        /// The collection of fileAttachment, itemAttachment, and referenceAttachment attachments for the post. Read-only. Nullable. Supports $expand.
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "Read-only. Nullable. Supports $expand.";
+            command.Description = "The collection of fileAttachment, itemAttachment, and referenceAttachment attachments for the post. Read-only. Nullable. Supports $expand.";
             // Create options for all the parameters
             var groupIdOption = new Option<string>("--group-id", description: "key: id of group");
             groupIdOption.IsRequired = true;
@@ -147,7 +147,7 @@ namespace ApiSdk.Groups.Item.Threads.Item.Posts.Item.Attachments {
             RequestAdapter = requestAdapter;
         }
         /// <summary>
-        /// Read-only. Nullable. Supports $expand.
+        /// The collection of fileAttachment, itemAttachment, and referenceAttachment attachments for the post. Read-only. Nullable. Supports $expand.
         /// <param name="h">Request headers</param>
         /// <param name="o">Request options</param>
         /// <param name="q">Request query parameters</param>
@@ -168,7 +168,7 @@ namespace ApiSdk.Groups.Item.Threads.Item.Posts.Item.Attachments {
             return requestInfo;
         }
         /// <summary>
-        /// Read-only. Nullable. Supports $expand.
+        /// The collection of fileAttachment, itemAttachment, and referenceAttachment attachments for the post. Read-only. Nullable. Supports $expand.
         /// <param name="body"></param>
         /// <param name="h">Request headers</param>
         /// <param name="o">Request options</param>
@@ -186,7 +186,7 @@ namespace ApiSdk.Groups.Item.Threads.Item.Posts.Item.Attachments {
             return requestInfo;
         }
         /// <summary>
-        /// Read-only. Nullable. Supports $expand.
+        /// The collection of fileAttachment, itemAttachment, and referenceAttachment attachments for the post. Read-only. Nullable. Supports $expand.
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="h">Request headers</param>
         /// <param name="o">Request options</param>
@@ -198,7 +198,7 @@ namespace ApiSdk.Groups.Item.Threads.Item.Posts.Item.Attachments {
             return await RequestAdapter.SendAsync<AttachmentsResponse>(requestInfo, responseHandler, cancellationToken);
         }
         /// <summary>
-        /// Read-only. Nullable. Supports $expand.
+        /// The collection of fileAttachment, itemAttachment, and referenceAttachment attachments for the post. Read-only. Nullable. Supports $expand.
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="h">Request headers</param>
         /// <param name="model"></param>
@@ -210,7 +210,7 @@ namespace ApiSdk.Groups.Item.Threads.Item.Posts.Item.Attachments {
             var requestInfo = CreatePostRequestInformation(model, h, o);
             return await RequestAdapter.SendAsync<Attachment>(requestInfo, responseHandler, cancellationToken);
         }
-        /// <summary>Read-only. Nullable. Supports $expand.</summary>
+        /// <summary>The collection of fileAttachment, itemAttachment, and referenceAttachment attachments for the post. Read-only. Nullable. Supports $expand.</summary>
         public class GetQueryParameters : QueryParametersBase {
             /// <summary>Include count of items</summary>
             public bool? Count { get; set; }

@@ -33,11 +33,11 @@ namespace ApiSdk.IdentityGovernance.AccessReviews.Definitions {
             return commands;
         }
         /// <summary>
-        /// Create new navigation property to definitions for identityGovernance
+        /// Represents the template and scheduling for an access review.
         /// </summary>
         public Command BuildCreateCommand() {
             var command = new Command("create");
-            command.Description = "Create new navigation property to definitions for identityGovernance";
+            command.Description = "Represents the template and scheduling for an access review.";
             // Create options for all the parameters
             var bodyOption = new Option<string>("--body");
             bodyOption.IsRequired = true;
@@ -60,11 +60,11 @@ namespace ApiSdk.IdentityGovernance.AccessReviews.Definitions {
             return command;
         }
         /// <summary>
-        /// Get definitions from identityGovernance
+        /// Represents the template and scheduling for an access review.
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "Get definitions from identityGovernance";
+            command.Description = "Represents the template and scheduling for an access review.";
             // Create options for all the parameters
             var topOption = new Option<int?>("--top", description: "Show only the first n items");
             topOption.IsRequired = false;
@@ -129,7 +129,7 @@ namespace ApiSdk.IdentityGovernance.AccessReviews.Definitions {
             RequestAdapter = requestAdapter;
         }
         /// <summary>
-        /// Get definitions from identityGovernance
+        /// Represents the template and scheduling for an access review.
         /// <param name="h">Request headers</param>
         /// <param name="o">Request options</param>
         /// <param name="q">Request query parameters</param>
@@ -150,7 +150,7 @@ namespace ApiSdk.IdentityGovernance.AccessReviews.Definitions {
             return requestInfo;
         }
         /// <summary>
-        /// Create new navigation property to definitions for identityGovernance
+        /// Represents the template and scheduling for an access review.
         /// <param name="body"></param>
         /// <param name="h">Request headers</param>
         /// <param name="o">Request options</param>
@@ -176,7 +176,7 @@ namespace ApiSdk.IdentityGovernance.AccessReviews.Definitions {
             return new FilterByCurrentUserWithOnRequestBuilder(PathParameters, RequestAdapter, on);
         }
         /// <summary>
-        /// Get definitions from identityGovernance
+        /// Represents the template and scheduling for an access review.
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="h">Request headers</param>
         /// <param name="o">Request options</param>
@@ -188,7 +188,7 @@ namespace ApiSdk.IdentityGovernance.AccessReviews.Definitions {
             return await RequestAdapter.SendAsync<DefinitionsResponse>(requestInfo, responseHandler, cancellationToken);
         }
         /// <summary>
-        /// Create new navigation property to definitions for identityGovernance
+        /// Represents the template and scheduling for an access review.
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="h">Request headers</param>
         /// <param name="model"></param>
@@ -200,7 +200,7 @@ namespace ApiSdk.IdentityGovernance.AccessReviews.Definitions {
             var requestInfo = CreatePostRequestInformation(model, h, o);
             return await RequestAdapter.SendAsync<AccessReviewScheduleDefinition>(requestInfo, responseHandler, cancellationToken);
         }
-        /// <summary>Get definitions from identityGovernance</summary>
+        /// <summary>Represents the template and scheduling for an access review.</summary>
         public class GetQueryParameters : QueryParametersBase {
             /// <summary>Include count of items</summary>
             public bool? Count { get; set; }

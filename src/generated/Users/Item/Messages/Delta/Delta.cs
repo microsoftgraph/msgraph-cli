@@ -12,7 +12,7 @@ namespace ApiSdk.Users.Item.Messages.Delta {
         public List<Recipient> BccRecipients { get; set; }
         /// <summary>The body of the message. It can be in HTML or text format. Find out about safe HTML in a message body.</summary>
         public ItemBody Body { get; set; }
-        /// <summary>The first 255 characters of the message body. It is in text format.</summary>
+        /// <summary>The first 255 characters of the message body. It is in text format. If the message contains instances of mention, this property would contain a concatenation of these mentions as well.</summary>
         public string BodyPreview { get; set; }
         /// <summary>The Cc: recipients for the message.</summary>
         public List<Recipient> CcRecipients { get; set; }

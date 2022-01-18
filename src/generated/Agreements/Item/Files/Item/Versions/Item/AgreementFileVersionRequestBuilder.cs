@@ -20,11 +20,11 @@ namespace ApiSdk.Agreements.Item.Files.Item.Versions.Item {
         /// <summary>Url template to use to build the URL for the current request builder</summary>
         private string UrlTemplate { get; set; }
         /// <summary>
-        /// Delete navigation property versions for agreements
+        /// Read-only. Customized versions of the terms of use agreement in the Azure AD tenant.
         /// </summary>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
-            command.Description = "Delete navigation property versions for agreements";
+            command.Description = "Read-only. Customized versions of the terms of use agreement in the Azure AD tenant.";
             // Create options for all the parameters
             var agreementIdOption = new Option<string>("--agreement-id", description: "key: id of agreement");
             agreementIdOption.IsRequired = true;
@@ -45,11 +45,11 @@ namespace ApiSdk.Agreements.Item.Files.Item.Versions.Item {
             return command;
         }
         /// <summary>
-        /// Get versions from agreements
+        /// Read-only. Customized versions of the terms of use agreement in the Azure AD tenant.
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "Get versions from agreements";
+            command.Description = "Read-only. Customized versions of the terms of use agreement in the Azure AD tenant.";
             // Create options for all the parameters
             var agreementIdOption = new Option<string>("--agreement-id", description: "key: id of agreement");
             agreementIdOption.IsRequired = true;
@@ -85,11 +85,11 @@ namespace ApiSdk.Agreements.Item.Files.Item.Versions.Item {
             return command;
         }
         /// <summary>
-        /// Update the navigation property versions in agreements
+        /// Read-only. Customized versions of the terms of use agreement in the Azure AD tenant.
         /// </summary>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
-            command.Description = "Update the navigation property versions in agreements";
+            command.Description = "Read-only. Customized versions of the terms of use agreement in the Azure AD tenant.";
             // Create options for all the parameters
             var agreementIdOption = new Option<string>("--agreement-id", description: "key: id of agreement");
             agreementIdOption.IsRequired = true;
@@ -129,7 +129,7 @@ namespace ApiSdk.Agreements.Item.Files.Item.Versions.Item {
             RequestAdapter = requestAdapter;
         }
         /// <summary>
-        /// Delete navigation property versions for agreements
+        /// Read-only. Customized versions of the terms of use agreement in the Azure AD tenant.
         /// <param name="h">Request headers</param>
         /// <param name="o">Request options</param>
         /// </summary>
@@ -144,7 +144,7 @@ namespace ApiSdk.Agreements.Item.Files.Item.Versions.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Get versions from agreements
+        /// Read-only. Customized versions of the terms of use agreement in the Azure AD tenant.
         /// <param name="h">Request headers</param>
         /// <param name="o">Request options</param>
         /// <param name="q">Request query parameters</param>
@@ -165,7 +165,7 @@ namespace ApiSdk.Agreements.Item.Files.Item.Versions.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Update the navigation property versions in agreements
+        /// Read-only. Customized versions of the terms of use agreement in the Azure AD tenant.
         /// <param name="body"></param>
         /// <param name="h">Request headers</param>
         /// <param name="o">Request options</param>
@@ -183,7 +183,7 @@ namespace ApiSdk.Agreements.Item.Files.Item.Versions.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Delete navigation property versions for agreements
+        /// Read-only. Customized versions of the terms of use agreement in the Azure AD tenant.
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="h">Request headers</param>
         /// <param name="o">Request options</param>
@@ -194,7 +194,7 @@ namespace ApiSdk.Agreements.Item.Files.Item.Versions.Item {
             await RequestAdapter.SendNoContentAsync(requestInfo, responseHandler, cancellationToken);
         }
         /// <summary>
-        /// Get versions from agreements
+        /// Read-only. Customized versions of the terms of use agreement in the Azure AD tenant.
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="h">Request headers</param>
         /// <param name="o">Request options</param>
@@ -206,7 +206,7 @@ namespace ApiSdk.Agreements.Item.Files.Item.Versions.Item {
             return await RequestAdapter.SendAsync<AgreementFileVersion>(requestInfo, responseHandler, cancellationToken);
         }
         /// <summary>
-        /// Update the navigation property versions in agreements
+        /// Read-only. Customized versions of the terms of use agreement in the Azure AD tenant.
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="h">Request headers</param>
         /// <param name="model"></param>
@@ -218,7 +218,7 @@ namespace ApiSdk.Agreements.Item.Files.Item.Versions.Item {
             var requestInfo = CreatePatchRequestInformation(model, h, o);
             await RequestAdapter.SendNoContentAsync(requestInfo, responseHandler, cancellationToken);
         }
-        /// <summary>Get versions from agreements</summary>
+        /// <summary>Read-only. Customized versions of the terms of use agreement in the Azure AD tenant.</summary>
         public class GetQueryParameters : QueryParametersBase {
             /// <summary>Expand related entities</summary>
             public string[] Expand { get; set; }

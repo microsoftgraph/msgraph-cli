@@ -5,5 +5,7 @@ namespace ApiSdk.Models.Microsoft.Graph {
         PasswordHashSync,
         EmailAsAlternateId,
         UnknownFutureValue,
+        CertificateBasedAuthentication,
+        MultiFactorAuthentication,
     }
 }

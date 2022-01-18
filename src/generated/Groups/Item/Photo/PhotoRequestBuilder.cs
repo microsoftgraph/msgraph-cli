@@ -28,11 +28,11 @@ namespace ApiSdk.Groups.Item.Photo {
             return command;
         }
         /// <summary>
-        /// The group's profile photo
+        /// The group's profile photo.
         /// </summary>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
-            command.Description = "The group's profile photo";
+            command.Description = "The group's profile photo.";
             // Create options for all the parameters
             var groupIdOption = new Option<string>("--group-id", description: "key: id of group");
             groupIdOption.IsRequired = true;
@@ -47,11 +47,11 @@ namespace ApiSdk.Groups.Item.Photo {
             return command;
         }
         /// <summary>
-        /// The group's profile photo
+        /// The group's profile photo.
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "The group's profile photo";
+            command.Description = "The group's profile photo.";
             // Create options for all the parameters
             var groupIdOption = new Option<string>("--group-id", description: "key: id of group");
             groupIdOption.IsRequired = true;
@@ -76,11 +76,11 @@ namespace ApiSdk.Groups.Item.Photo {
             return command;
         }
         /// <summary>
-        /// The group's profile photo
+        /// The group's profile photo.
         /// </summary>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
-            command.Description = "The group's profile photo";
+            command.Description = "The group's profile photo.";
             // Create options for all the parameters
             var groupIdOption = new Option<string>("--group-id", description: "key: id of group");
             groupIdOption.IsRequired = true;
@@ -114,7 +114,7 @@ namespace ApiSdk.Groups.Item.Photo {
             RequestAdapter = requestAdapter;
         }
         /// <summary>
-        /// The group's profile photo
+        /// The group's profile photo.
         /// <param name="h">Request headers</param>
         /// <param name="o">Request options</param>
         /// </summary>
@@ -129,7 +129,7 @@ namespace ApiSdk.Groups.Item.Photo {
             return requestInfo;
         }
         /// <summary>
-        /// The group's profile photo
+        /// The group's profile photo.
         /// <param name="h">Request headers</param>
         /// <param name="o">Request options</param>
         /// <param name="q">Request query parameters</param>
@@ -150,7 +150,7 @@ namespace ApiSdk.Groups.Item.Photo {
             return requestInfo;
         }
         /// <summary>
-        /// The group's profile photo
+        /// The group's profile photo.
         /// <param name="body"></param>
         /// <param name="h">Request headers</param>
         /// <param name="o">Request options</param>
@@ -168,7 +168,7 @@ namespace ApiSdk.Groups.Item.Photo {
             return requestInfo;
         }
         /// <summary>
-        /// The group's profile photo
+        /// The group's profile photo.
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="h">Request headers</param>
         /// <param name="o">Request options</param>
@@ -179,7 +179,7 @@ namespace ApiSdk.Groups.Item.Photo {
             await RequestAdapter.SendNoContentAsync(requestInfo, responseHandler, cancellationToken);
         }
         /// <summary>
-        /// The group's profile photo
+        /// The group's profile photo.
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="h">Request headers</param>
         /// <param name="o">Request options</param>
@@ -191,7 +191,7 @@ namespace ApiSdk.Groups.Item.Photo {
             return await RequestAdapter.SendAsync<ProfilePhoto>(requestInfo, responseHandler, cancellationToken);
         }
         /// <summary>
-        /// The group's profile photo
+        /// The group's profile photo.
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="h">Request headers</param>
         /// <param name="model"></param>
@@ -203,7 +203,7 @@ namespace ApiSdk.Groups.Item.Photo {
             var requestInfo = CreatePatchRequestInformation(model, h, o);
             await RequestAdapter.SendNoContentAsync(requestInfo, responseHandler, cancellationToken);
         }
-        /// <summary>The group's profile photo</summary>
+        /// <summary>The group's profile photo.</summary>
         public class GetQueryParameters : QueryParametersBase {
             /// <summary>Select properties to be returned</summary>
             public string[] Select { get; set; }

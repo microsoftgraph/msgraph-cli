@@ -22,11 +22,11 @@ namespace ApiSdk.Sites.Item.TermStore {
         /// <summary>Url template to use to build the URL for the current request builder</summary>
         private string UrlTemplate { get; set; }
         /// <summary>
-        /// The default termStore under this site.
+        /// The termStore under this site.
         /// </summary>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
-            command.Description = "The default termStore under this site.";
+            command.Description = "The termStore under this site.";
             // Create options for all the parameters
             var siteIdOption = new Option<string>("--site-id", description: "key: id of site");
             siteIdOption.IsRequired = true;
@@ -41,11 +41,11 @@ namespace ApiSdk.Sites.Item.TermStore {
             return command;
         }
         /// <summary>
-        /// The default termStore under this site.
+        /// The termStore under this site.
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "The default termStore under this site.";
+            command.Description = "The termStore under this site.";
             // Create options for all the parameters
             var siteIdOption = new Option<string>("--site-id", description: "key: id of site");
             siteIdOption.IsRequired = true;
@@ -82,11 +82,11 @@ namespace ApiSdk.Sites.Item.TermStore {
             return command;
         }
         /// <summary>
-        /// The default termStore under this site.
+        /// The termStore under this site.
         /// </summary>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
-            command.Description = "The default termStore under this site.";
+            command.Description = "The termStore under this site.";
             // Create options for all the parameters
             var siteIdOption = new Option<string>("--site-id", description: "key: id of site");
             siteIdOption.IsRequired = true;
@@ -127,7 +127,7 @@ namespace ApiSdk.Sites.Item.TermStore {
             RequestAdapter = requestAdapter;
         }
         /// <summary>
-        /// The default termStore under this site.
+        /// The termStore under this site.
         /// <param name="h">Request headers</param>
         /// <param name="o">Request options</param>
         /// </summary>
@@ -142,7 +142,7 @@ namespace ApiSdk.Sites.Item.TermStore {
             return requestInfo;
         }
         /// <summary>
-        /// The default termStore under this site.
+        /// The termStore under this site.
         /// <param name="h">Request headers</param>
         /// <param name="o">Request options</param>
         /// <param name="q">Request query parameters</param>
@@ -163,7 +163,7 @@ namespace ApiSdk.Sites.Item.TermStore {
             return requestInfo;
         }
         /// <summary>
-        /// The default termStore under this site.
+        /// The termStore under this site.
         /// <param name="body"></param>
         /// <param name="h">Request headers</param>
         /// <param name="o">Request options</param>
@@ -181,7 +181,7 @@ namespace ApiSdk.Sites.Item.TermStore {
             return requestInfo;
         }
         /// <summary>
-        /// The default termStore under this site.
+        /// The termStore under this site.
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="h">Request headers</param>
         /// <param name="o">Request options</param>
@@ -192,7 +192,7 @@ namespace ApiSdk.Sites.Item.TermStore {
             await RequestAdapter.SendNoContentAsync(requestInfo, responseHandler, cancellationToken);
         }
         /// <summary>
-        /// The default termStore under this site.
+        /// The termStore under this site.
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="h">Request headers</param>
         /// <param name="o">Request options</param>
@@ -204,7 +204,7 @@ namespace ApiSdk.Sites.Item.TermStore {
             return await RequestAdapter.SendAsync<Store>(requestInfo, responseHandler, cancellationToken);
         }
         /// <summary>
-        /// The default termStore under this site.
+        /// The termStore under this site.
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="h">Request headers</param>
         /// <param name="model"></param>
@@ -216,7 +216,7 @@ namespace ApiSdk.Sites.Item.TermStore {
             var requestInfo = CreatePatchRequestInformation(model, h, o);
             await RequestAdapter.SendNoContentAsync(requestInfo, responseHandler, cancellationToken);
         }
-        /// <summary>The default termStore under this site.</summary>
+        /// <summary>The termStore under this site.</summary>
         public class GetQueryParameters : QueryParametersBase {
             /// <summary>Expand related entities</summary>
             public string[] Expand { get; set; }

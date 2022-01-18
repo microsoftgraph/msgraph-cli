@@ -22,11 +22,11 @@ namespace ApiSdk.RoleManagement.EntitlementManagement {
         /// <summary>Url template to use to build the URL for the current request builder</summary>
         private string UrlTemplate { get; set; }
         /// <summary>
-        /// The RbacApplication for Entitlement Management
+        /// Container for all entitlement management resources in Azure AD identity governance.
         /// </summary>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
-            command.Description = "The RbacApplication for Entitlement Management";
+            command.Description = "Container for all entitlement management resources in Azure AD identity governance.";
             // Create options for all the parameters
             command.Handler = CommandHandler.Create(async () => {
                 var requestInfo = CreateDeleteRequestInformation(q => {
@@ -38,11 +38,11 @@ namespace ApiSdk.RoleManagement.EntitlementManagement {
             return command;
         }
         /// <summary>
-        /// The RbacApplication for Entitlement Management
+        /// Container for all entitlement management resources in Azure AD identity governance.
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "The RbacApplication for Entitlement Management";
+            command.Description = "Container for all entitlement management resources in Azure AD identity governance.";
             // Create options for all the parameters
             var selectOption = new Option<string[]>("--select", description: "Select properties to be returned");
             selectOption.IsRequired = false;
@@ -69,11 +69,11 @@ namespace ApiSdk.RoleManagement.EntitlementManagement {
             return command;
         }
         /// <summary>
-        /// The RbacApplication for Entitlement Management
+        /// Container for all entitlement management resources in Azure AD identity governance.
         /// </summary>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
-            command.Description = "The RbacApplication for Entitlement Management";
+            command.Description = "Container for all entitlement management resources in Azure AD identity governance.";
             // Create options for all the parameters
             var bodyOption = new Option<string>("--body");
             bodyOption.IsRequired = true;
@@ -118,7 +118,7 @@ namespace ApiSdk.RoleManagement.EntitlementManagement {
             RequestAdapter = requestAdapter;
         }
         /// <summary>
-        /// The RbacApplication for Entitlement Management
+        /// Container for all entitlement management resources in Azure AD identity governance.
         /// <param name="h">Request headers</param>
         /// <param name="o">Request options</param>
         /// </summary>
@@ -133,7 +133,7 @@ namespace ApiSdk.RoleManagement.EntitlementManagement {
             return requestInfo;
         }
         /// <summary>
-        /// The RbacApplication for Entitlement Management
+        /// Container for all entitlement management resources in Azure AD identity governance.
         /// <param name="h">Request headers</param>
         /// <param name="o">Request options</param>
         /// <param name="q">Request query parameters</param>
@@ -154,7 +154,7 @@ namespace ApiSdk.RoleManagement.EntitlementManagement {
             return requestInfo;
         }
         /// <summary>
-        /// The RbacApplication for Entitlement Management
+        /// Container for all entitlement management resources in Azure AD identity governance.
         /// <param name="body"></param>
         /// <param name="h">Request headers</param>
         /// <param name="o">Request options</param>
@@ -172,7 +172,7 @@ namespace ApiSdk.RoleManagement.EntitlementManagement {
             return requestInfo;
         }
         /// <summary>
-        /// The RbacApplication for Entitlement Management
+        /// Container for all entitlement management resources in Azure AD identity governance.
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="h">Request headers</param>
         /// <param name="o">Request options</param>
@@ -183,7 +183,7 @@ namespace ApiSdk.RoleManagement.EntitlementManagement {
             await RequestAdapter.SendNoContentAsync(requestInfo, responseHandler, cancellationToken);
         }
         /// <summary>
-        /// The RbacApplication for Entitlement Management
+        /// Container for all entitlement management resources in Azure AD identity governance.
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="h">Request headers</param>
         /// <param name="o">Request options</param>
@@ -195,7 +195,7 @@ namespace ApiSdk.RoleManagement.EntitlementManagement {
             return await RequestAdapter.SendAsync<RbacApplication>(requestInfo, responseHandler, cancellationToken);
         }
         /// <summary>
-        /// The RbacApplication for Entitlement Management
+        /// Container for all entitlement management resources in Azure AD identity governance.
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="h">Request headers</param>
         /// <param name="model"></param>
@@ -207,7 +207,7 @@ namespace ApiSdk.RoleManagement.EntitlementManagement {
             var requestInfo = CreatePatchRequestInformation(model, h, o);
             await RequestAdapter.SendNoContentAsync(requestInfo, responseHandler, cancellationToken);
         }
-        /// <summary>The RbacApplication for Entitlement Management</summary>
+        /// <summary>Container for all entitlement management resources in Azure AD identity governance.</summary>
         public class GetQueryParameters : QueryParametersBase {
             /// <summary>Expand related entities</summary>
             public string[] Expand { get; set; }

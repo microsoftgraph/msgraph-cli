@@ -19,11 +19,11 @@ namespace ApiSdk.RoleManagement.Directory.RoleAssignments.Item.RoleDefinition.@R
         /// <summary>Url template to use to build the URL for the current request builder</summary>
         private string UrlTemplate { get; set; }
         /// <summary>
-        /// The roleDefinition the assignment is for.  Supports $expand. roleDefinition.Id will be auto expanded.
+        /// The roleDefinition the assignment is for. Provided so that callers can get the role definition using $expand at the same time as getting the role assignment. roleDefinition.id will be auto expanded. Supports $expand.
         /// </summary>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
-            command.Description = "The roleDefinition the assignment is for.  Supports $expand. roleDefinition.Id will be auto expanded.";
+            command.Description = "The roleDefinition the assignment is for. Provided so that callers can get the role definition using $expand at the same time as getting the role assignment. roleDefinition.id will be auto expanded. Supports $expand.";
             // Create options for all the parameters
             var unifiedRoleAssignmentIdOption = new Option<string>("--unifiedroleassignment-id", description: "key: id of unifiedRoleAssignment");
             unifiedRoleAssignmentIdOption.IsRequired = true;
@@ -38,11 +38,11 @@ namespace ApiSdk.RoleManagement.Directory.RoleAssignments.Item.RoleDefinition.@R
             return command;
         }
         /// <summary>
-        /// The roleDefinition the assignment is for.  Supports $expand. roleDefinition.Id will be auto expanded.
+        /// The roleDefinition the assignment is for. Provided so that callers can get the role definition using $expand at the same time as getting the role assignment. roleDefinition.id will be auto expanded. Supports $expand.
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "The roleDefinition the assignment is for.  Supports $expand. roleDefinition.Id will be auto expanded.";
+            command.Description = "The roleDefinition the assignment is for. Provided so that callers can get the role definition using $expand at the same time as getting the role assignment. roleDefinition.id will be auto expanded. Supports $expand.";
             // Create options for all the parameters
             var unifiedRoleAssignmentIdOption = new Option<string>("--unifiedroleassignment-id", description: "key: id of unifiedRoleAssignment");
             unifiedRoleAssignmentIdOption.IsRequired = true;
@@ -62,11 +62,11 @@ namespace ApiSdk.RoleManagement.Directory.RoleAssignments.Item.RoleDefinition.@R
             return command;
         }
         /// <summary>
-        /// The roleDefinition the assignment is for.  Supports $expand. roleDefinition.Id will be auto expanded.
+        /// The roleDefinition the assignment is for. Provided so that callers can get the role definition using $expand at the same time as getting the role assignment. roleDefinition.id will be auto expanded. Supports $expand.
         /// </summary>
         public Command BuildPutCommand() {
             var command = new Command("put");
-            command.Description = "The roleDefinition the assignment is for.  Supports $expand. roleDefinition.Id will be auto expanded.";
+            command.Description = "The roleDefinition the assignment is for. Provided so that callers can get the role definition using $expand at the same time as getting the role assignment. roleDefinition.id will be auto expanded. Supports $expand.";
             // Create options for all the parameters
             var unifiedRoleAssignmentIdOption = new Option<string>("--unifiedroleassignment-id", description: "key: id of unifiedRoleAssignment");
             unifiedRoleAssignmentIdOption.IsRequired = true;
@@ -100,7 +100,7 @@ namespace ApiSdk.RoleManagement.Directory.RoleAssignments.Item.RoleDefinition.@R
             RequestAdapter = requestAdapter;
         }
         /// <summary>
-        /// The roleDefinition the assignment is for.  Supports $expand. roleDefinition.Id will be auto expanded.
+        /// The roleDefinition the assignment is for. Provided so that callers can get the role definition using $expand at the same time as getting the role assignment. roleDefinition.id will be auto expanded. Supports $expand.
         /// <param name="h">Request headers</param>
         /// <param name="o">Request options</param>
         /// </summary>
@@ -115,7 +115,7 @@ namespace ApiSdk.RoleManagement.Directory.RoleAssignments.Item.RoleDefinition.@R
             return requestInfo;
         }
         /// <summary>
-        /// The roleDefinition the assignment is for.  Supports $expand. roleDefinition.Id will be auto expanded.
+        /// The roleDefinition the assignment is for. Provided so that callers can get the role definition using $expand at the same time as getting the role assignment. roleDefinition.id will be auto expanded. Supports $expand.
         /// <param name="h">Request headers</param>
         /// <param name="o">Request options</param>
         /// </summary>
@@ -130,7 +130,7 @@ namespace ApiSdk.RoleManagement.Directory.RoleAssignments.Item.RoleDefinition.@R
             return requestInfo;
         }
         /// <summary>
-        /// The roleDefinition the assignment is for.  Supports $expand. roleDefinition.Id will be auto expanded.
+        /// The roleDefinition the assignment is for. Provided so that callers can get the role definition using $expand at the same time as getting the role assignment. roleDefinition.id will be auto expanded. Supports $expand.
         /// <param name="body"></param>
         /// <param name="h">Request headers</param>
         /// <param name="o">Request options</param>
@@ -148,7 +148,7 @@ namespace ApiSdk.RoleManagement.Directory.RoleAssignments.Item.RoleDefinition.@R
             return requestInfo;
         }
         /// <summary>
-        /// The roleDefinition the assignment is for.  Supports $expand. roleDefinition.Id will be auto expanded.
+        /// The roleDefinition the assignment is for. Provided so that callers can get the role definition using $expand at the same time as getting the role assignment. roleDefinition.id will be auto expanded. Supports $expand.
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="h">Request headers</param>
         /// <param name="o">Request options</param>
@@ -159,7 +159,7 @@ namespace ApiSdk.RoleManagement.Directory.RoleAssignments.Item.RoleDefinition.@R
             await RequestAdapter.SendNoContentAsync(requestInfo, responseHandler, cancellationToken);
         }
         /// <summary>
-        /// The roleDefinition the assignment is for.  Supports $expand. roleDefinition.Id will be auto expanded.
+        /// The roleDefinition the assignment is for. Provided so that callers can get the role definition using $expand at the same time as getting the role assignment. roleDefinition.id will be auto expanded. Supports $expand.
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="h">Request headers</param>
         /// <param name="o">Request options</param>
@@ -170,7 +170,7 @@ namespace ApiSdk.RoleManagement.Directory.RoleAssignments.Item.RoleDefinition.@R
             return await RequestAdapter.SendPrimitiveAsync<string>(requestInfo, responseHandler, cancellationToken);
         }
         /// <summary>
-        /// The roleDefinition the assignment is for.  Supports $expand. roleDefinition.Id will be auto expanded.
+        /// The roleDefinition the assignment is for. Provided so that callers can get the role definition using $expand at the same time as getting the role assignment. roleDefinition.id will be auto expanded. Supports $expand.
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="h">Request headers</param>
         /// <param name="model"></param>

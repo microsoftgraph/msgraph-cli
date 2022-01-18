@@ -23,7 +23,7 @@ namespace ApiSdk.Models.Microsoft.Graph {
         public int? Iso { get; set; }
         /// <summary>The orientation value from the camera. Writable on OneDrive Personal.</summary>
         public int? Orientation { get; set; }
-        /// <summary>Represents the date and time the photo was taken. Read-only.</summary>
+        /// <summary>The date and time the photo was taken in UTC time. Read-only.</summary>
         public DateTimeOffset? TakenDateTime { get; set; }
         /// <summary>
         /// Instantiates a new photo and sets the default values.

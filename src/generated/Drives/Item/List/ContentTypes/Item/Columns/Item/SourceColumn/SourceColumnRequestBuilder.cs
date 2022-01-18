@@ -21,11 +21,11 @@ namespace ApiSdk.Drives.Item.List.ContentTypes.Item.Columns.Item.SourceColumn {
         /// <summary>Url template to use to build the URL for the current request builder</summary>
         private string UrlTemplate { get; set; }
         /// <summary>
-        /// The source column for the content type column.
+        /// The source column for content type column.
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "The source column for the content type column.";
+            command.Description = "The source column for content type column.";
             // Create options for all the parameters
             var driveIdOption = new Option<string>("--drive-id", description: "key: id of drive");
             driveIdOption.IsRequired = true;
@@ -82,7 +82,7 @@ namespace ApiSdk.Drives.Item.List.ContentTypes.Item.Columns.Item.SourceColumn {
             RequestAdapter = requestAdapter;
         }
         /// <summary>
-        /// The source column for the content type column.
+        /// The source column for content type column.
         /// <param name="h">Request headers</param>
         /// <param name="o">Request options</param>
         /// <param name="q">Request query parameters</param>
@@ -103,7 +103,7 @@ namespace ApiSdk.Drives.Item.List.ContentTypes.Item.Columns.Item.SourceColumn {
             return requestInfo;
         }
         /// <summary>
-        /// The source column for the content type column.
+        /// The source column for content type column.
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="h">Request headers</param>
         /// <param name="o">Request options</param>
@@ -114,7 +114,7 @@ namespace ApiSdk.Drives.Item.List.ContentTypes.Item.Columns.Item.SourceColumn {
             var requestInfo = CreateGetRequestInformation(q, h, o);
             return await RequestAdapter.SendAsync<ColumnDefinition>(requestInfo, responseHandler, cancellationToken);
         }
-        /// <summary>The source column for the content type column.</summary>
+        /// <summary>The source column for content type column.</summary>
         public class GetQueryParameters : QueryParametersBase {
             /// <summary>Expand related entities</summary>
             public string[] Expand { get; set; }

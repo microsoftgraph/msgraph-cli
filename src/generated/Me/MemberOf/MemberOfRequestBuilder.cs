@@ -20,11 +20,11 @@ namespace ApiSdk.Me.MemberOf {
         /// <summary>Url template to use to build the URL for the current request builder</summary>
         private string UrlTemplate { get; set; }
         /// <summary>
-        /// The groups and directory roles that the user is a member of. Read-only. Nullable. Supports $expand.
+        /// The groups, directory roles and administrative units that the user is a member of. Read-only. Nullable. Supports $expand.
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "The groups and directory roles that the user is a member of. Read-only. Nullable. Supports $expand.";
+            command.Description = "The groups, directory roles and administrative units that the user is a member of. Read-only. Nullable. Supports $expand.";
             // Create options for all the parameters
             var topOption = new Option<int?>("--top", description: "Show only the first n items");
             topOption.IsRequired = false;
@@ -96,7 +96,7 @@ namespace ApiSdk.Me.MemberOf {
             RequestAdapter = requestAdapter;
         }
         /// <summary>
-        /// The groups and directory roles that the user is a member of. Read-only. Nullable. Supports $expand.
+        /// The groups, directory roles and administrative units that the user is a member of. Read-only. Nullable. Supports $expand.
         /// <param name="h">Request headers</param>
         /// <param name="o">Request options</param>
         /// <param name="q">Request query parameters</param>
@@ -117,7 +117,7 @@ namespace ApiSdk.Me.MemberOf {
             return requestInfo;
         }
         /// <summary>
-        /// The groups and directory roles that the user is a member of. Read-only. Nullable. Supports $expand.
+        /// The groups, directory roles and administrative units that the user is a member of. Read-only. Nullable. Supports $expand.
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="h">Request headers</param>
         /// <param name="o">Request options</param>
@@ -128,7 +128,7 @@ namespace ApiSdk.Me.MemberOf {
             var requestInfo = CreateGetRequestInformation(q, h, o);
             return await RequestAdapter.SendAsync<MemberOfResponse>(requestInfo, responseHandler, cancellationToken);
         }
-        /// <summary>The groups and directory roles that the user is a member of. Read-only. Nullable. Supports $expand.</summary>
+        /// <summary>The groups, directory roles and administrative units that the user is a member of. Read-only. Nullable. Supports $expand.</summary>
         public class GetQueryParameters : QueryParametersBase {
             /// <summary>Include count of items</summary>
             public bool? Count { get; set; }

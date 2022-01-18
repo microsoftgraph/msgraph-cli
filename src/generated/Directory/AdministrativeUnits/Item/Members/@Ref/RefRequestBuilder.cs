@@ -19,11 +19,11 @@ namespace ApiSdk.Directory.AdministrativeUnits.Item.Members.@Ref {
         /// <summary>Url template to use to build the URL for the current request builder</summary>
         private string UrlTemplate { get; set; }
         /// <summary>
-        /// Users and groups that are members of this Adminsitrative Unit. HTTP Methods: GET (list members), POST (add members), DELETE (remove members).
+        /// Users and groups that are members of this administrative unit. HTTP Methods: GET (list members), POST (add members), DELETE (remove members).
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "Users and groups that are members of this Adminsitrative Unit. HTTP Methods: GET (list members), POST (add members), DELETE (remove members).";
+            command.Description = "Users and groups that are members of this administrative unit. HTTP Methods: GET (list members), POST (add members), DELETE (remove members).";
             // Create options for all the parameters
             var administrativeUnitIdOption = new Option<string>("--administrativeunit-id", description: "key: id of administrativeUnit");
             administrativeUnitIdOption.IsRequired = true;
@@ -68,11 +68,11 @@ namespace ApiSdk.Directory.AdministrativeUnits.Item.Members.@Ref {
             return command;
         }
         /// <summary>
-        /// Users and groups that are members of this Adminsitrative Unit. HTTP Methods: GET (list members), POST (add members), DELETE (remove members).
+        /// Users and groups that are members of this administrative unit. HTTP Methods: GET (list members), POST (add members), DELETE (remove members).
         /// </summary>
         public Command BuildPostCommand() {
             var command = new Command("post");
-            command.Description = "Users and groups that are members of this Adminsitrative Unit. HTTP Methods: GET (list members), POST (add members), DELETE (remove members).";
+            command.Description = "Users and groups that are members of this administrative unit. HTTP Methods: GET (list members), POST (add members), DELETE (remove members).";
             // Create options for all the parameters
             var administrativeUnitIdOption = new Option<string>("--administrativeunit-id", description: "key: id of administrativeUnit");
             administrativeUnitIdOption.IsRequired = true;
@@ -111,7 +111,7 @@ namespace ApiSdk.Directory.AdministrativeUnits.Item.Members.@Ref {
             RequestAdapter = requestAdapter;
         }
         /// <summary>
-        /// Users and groups that are members of this Adminsitrative Unit. HTTP Methods: GET (list members), POST (add members), DELETE (remove members).
+        /// Users and groups that are members of this administrative unit. HTTP Methods: GET (list members), POST (add members), DELETE (remove members).
         /// <param name="h">Request headers</param>
         /// <param name="o">Request options</param>
         /// <param name="q">Request query parameters</param>
@@ -132,7 +132,7 @@ namespace ApiSdk.Directory.AdministrativeUnits.Item.Members.@Ref {
             return requestInfo;
         }
         /// <summary>
-        /// Users and groups that are members of this Adminsitrative Unit. HTTP Methods: GET (list members), POST (add members), DELETE (remove members).
+        /// Users and groups that are members of this administrative unit. HTTP Methods: GET (list members), POST (add members), DELETE (remove members).
         /// <param name="body"></param>
         /// <param name="h">Request headers</param>
         /// <param name="o">Request options</param>
@@ -150,7 +150,7 @@ namespace ApiSdk.Directory.AdministrativeUnits.Item.Members.@Ref {
             return requestInfo;
         }
         /// <summary>
-        /// Users and groups that are members of this Adminsitrative Unit. HTTP Methods: GET (list members), POST (add members), DELETE (remove members).
+        /// Users and groups that are members of this administrative unit. HTTP Methods: GET (list members), POST (add members), DELETE (remove members).
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="h">Request headers</param>
         /// <param name="o">Request options</param>
@@ -162,7 +162,7 @@ namespace ApiSdk.Directory.AdministrativeUnits.Item.Members.@Ref {
             return await RequestAdapter.SendAsync<RefResponse>(requestInfo, responseHandler, cancellationToken);
         }
         /// <summary>
-        /// Users and groups that are members of this Adminsitrative Unit. HTTP Methods: GET (list members), POST (add members), DELETE (remove members).
+        /// Users and groups that are members of this administrative unit. HTTP Methods: GET (list members), POST (add members), DELETE (remove members).
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="h">Request headers</param>
         /// <param name="model"></param>
@@ -174,7 +174,7 @@ namespace ApiSdk.Directory.AdministrativeUnits.Item.Members.@Ref {
             var requestInfo = CreatePostRequestInformation(model, h, o);
             return await RequestAdapter.SendAsync<ApiSdk.Directory.AdministrativeUnits.Item.Members.@Ref.@Ref>(requestInfo, responseHandler, cancellationToken);
         }
-        /// <summary>Users and groups that are members of this Adminsitrative Unit. HTTP Methods: GET (list members), POST (add members), DELETE (remove members).</summary>
+        /// <summary>Users and groups that are members of this administrative unit. HTTP Methods: GET (list members), POST (add members), DELETE (remove members).</summary>
         public class GetQueryParameters : QueryParametersBase {
             /// <summary>Include count of items</summary>
             public bool? Count { get; set; }

@@ -7,7 +7,7 @@ namespace ApiSdk.Models.Microsoft.Graph {
     public class TeamworkHostedContent : Entity, IParsable {
         /// <summary>Write only. Bytes for the hosted content (such as images).</summary>
         public byte[] ContentBytes { get; set; }
-        /// <summary>Write only. Content type. sicj as image/png, image/jpg.</summary>
+        /// <summary>Write only. Content type, such as image/png, image/jpg.</summary>
         public string ContentType { get; set; }
         /// <summary>
         /// The deserialization information for the current model

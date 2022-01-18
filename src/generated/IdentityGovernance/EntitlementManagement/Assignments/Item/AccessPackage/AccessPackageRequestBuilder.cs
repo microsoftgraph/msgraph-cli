@@ -28,11 +28,11 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.Assignments.Item.Acces
             return command;
         }
         /// <summary>
-        /// Read-only. Nullable.
+        /// Read-only. Nullable. Supports $filter (eq) on the id property and $expand query parameters.
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "Read-only. Nullable.";
+            command.Description = "Read-only. Nullable. Supports $filter (eq) on the id property and $expand query parameters.";
             // Create options for all the parameters
             var accessPackageAssignmentIdOption = new Option<string>("--accesspackageassignment-id", description: "key: id of accessPackageAssignment");
             accessPackageAssignmentIdOption.IsRequired = true;
@@ -83,7 +83,7 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.Assignments.Item.Acces
             RequestAdapter = requestAdapter;
         }
         /// <summary>
-        /// Read-only. Nullable.
+        /// Read-only. Nullable. Supports $filter (eq) on the id property and $expand query parameters.
         /// <param name="h">Request headers</param>
         /// <param name="o">Request options</param>
         /// <param name="q">Request query parameters</param>
@@ -104,7 +104,7 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.Assignments.Item.Acces
             return requestInfo;
         }
         /// <summary>
-        /// Read-only. Nullable.
+        /// Read-only. Nullable. Supports $filter (eq) on the id property and $expand query parameters.
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="h">Request headers</param>
         /// <param name="o">Request options</param>
@@ -115,7 +115,7 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.Assignments.Item.Acces
             var requestInfo = CreateGetRequestInformation(q, h, o);
             return await RequestAdapter.SendAsync<ApiSdk.Models.Microsoft.Graph.AccessPackage>(requestInfo, responseHandler, cancellationToken);
         }
-        /// <summary>Read-only. Nullable.</summary>
+        /// <summary>Read-only. Nullable. Supports $filter (eq) on the id property and $expand query parameters.</summary>
         public class GetQueryParameters : QueryParametersBase {
             /// <summary>Expand related entities</summary>
             public string[] Expand { get; set; }

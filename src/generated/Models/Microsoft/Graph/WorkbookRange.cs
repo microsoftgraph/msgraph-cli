@@ -41,7 +41,7 @@ namespace ApiSdk.Models.Microsoft.Graph {
         public Json Text { get; set; }
         /// <summary>Represents the raw values of the specified range. The data returned could be of type string, number, or a boolean. Cell that contain an error will return the error string.</summary>
         public Json Values { get; set; }
-        /// <summary>Represents the type of data of each cell. The possible values are: Unknown, Empty, String, Integer, Double, Boolean, Error. Read-only.</summary>
+        /// <summary>Represents the type of data of each cell. Possible values are: Unknown, Empty, String, Integer, Double, Boolean, Error. Read-only.</summary>
         public Json ValueTypes { get; set; }
         /// <summary>The worksheet containing the current range. Read-only.</summary>
         public WorkbookWorksheet Worksheet { get; set; }

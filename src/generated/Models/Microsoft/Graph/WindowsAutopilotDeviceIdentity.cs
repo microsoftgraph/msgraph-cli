@@ -11,7 +11,7 @@ namespace ApiSdk.Models.Microsoft.Graph {
         public string AzureActiveDirectoryDeviceId { get; set; }
         /// <summary>Display Name</summary>
         public string DisplayName { get; set; }
-        /// <summary>Intune enrollment state of the Windows autopilot device. Possible values are: unknown, enrolled, pendingReset, failed, notContacted.</summary>
+        /// <summary>Intune enrollment state of the Windows autopilot device. Possible values are: unknown, enrolled, pendingReset, failed, notContacted, blocked.</summary>
         public EnrollmentState? EnrollmentState { get; set; }
         /// <summary>Group Tag of the Windows autopilot device.</summary>
         public string GroupTag { get; set; }

@@ -13,7 +13,7 @@ namespace ApiSdk.Models.Microsoft.Graph {
         public bool? RemindersEnabled { get; set; }
         /// <summary>Specifies the duration the request is active before it automatically expires if no decision is applied.</summary>
         public int? RequestDurationInDays { get; set; }
-        /// <summary>The list of reviewers for the admin consent. Required.</summary>
+        /// <summary>Required.</summary>
         public List<AccessReviewReviewerScope> Reviewers { get; set; }
         /// <summary>Specifies the version of this policy. When the policy is updated, this version is updated. Read-only.</summary>
         public int? Version { get; set; }

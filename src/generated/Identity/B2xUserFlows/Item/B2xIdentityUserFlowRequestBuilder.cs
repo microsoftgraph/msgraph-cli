@@ -24,11 +24,11 @@ namespace ApiSdk.Identity.B2xUserFlows.Item {
         /// <summary>Url template to use to build the URL for the current request builder</summary>
         private string UrlTemplate { get; set; }
         /// <summary>
-        /// Represents entry point for B2X/self-service sign-up identity userflows.
+        /// Represents entry point for B2X and self-service sign-up identity userflows.
         /// </summary>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
-            command.Description = "Represents entry point for B2X/self-service sign-up identity userflows.";
+            command.Description = "Represents entry point for B2X and self-service sign-up identity userflows.";
             // Create options for all the parameters
             var b2xIdentityUserFlowIdOption = new Option<string>("--b2xidentityuserflow-id", description: "key: id of b2xIdentityUserFlow");
             b2xIdentityUserFlowIdOption.IsRequired = true;
@@ -43,11 +43,11 @@ namespace ApiSdk.Identity.B2xUserFlows.Item {
             return command;
         }
         /// <summary>
-        /// Represents entry point for B2X/self-service sign-up identity userflows.
+        /// Represents entry point for B2X and self-service sign-up identity userflows.
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "Represents entry point for B2X/self-service sign-up identity userflows.";
+            command.Description = "Represents entry point for B2X and self-service sign-up identity userflows.";
             // Create options for all the parameters
             var b2xIdentityUserFlowIdOption = new Option<string>("--b2xidentityuserflow-id", description: "key: id of b2xIdentityUserFlow");
             b2xIdentityUserFlowIdOption.IsRequired = true;
@@ -91,11 +91,11 @@ namespace ApiSdk.Identity.B2xUserFlows.Item {
             return command;
         }
         /// <summary>
-        /// Represents entry point for B2X/self-service sign-up identity userflows.
+        /// Represents entry point for B2X and self-service sign-up identity userflows.
         /// </summary>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
-            command.Description = "Represents entry point for B2X/self-service sign-up identity userflows.";
+            command.Description = "Represents entry point for B2X and self-service sign-up identity userflows.";
             // Create options for all the parameters
             var b2xIdentityUserFlowIdOption = new Option<string>("--b2xidentityuserflow-id", description: "key: id of b2xIdentityUserFlow");
             b2xIdentityUserFlowIdOption.IsRequired = true;
@@ -144,7 +144,7 @@ namespace ApiSdk.Identity.B2xUserFlows.Item {
             RequestAdapter = requestAdapter;
         }
         /// <summary>
-        /// Represents entry point for B2X/self-service sign-up identity userflows.
+        /// Represents entry point for B2X and self-service sign-up identity userflows.
         /// <param name="h">Request headers</param>
         /// <param name="o">Request options</param>
         /// </summary>
@@ -159,7 +159,7 @@ namespace ApiSdk.Identity.B2xUserFlows.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Represents entry point for B2X/self-service sign-up identity userflows.
+        /// Represents entry point for B2X and self-service sign-up identity userflows.
         /// <param name="h">Request headers</param>
         /// <param name="o">Request options</param>
         /// <param name="q">Request query parameters</param>
@@ -180,7 +180,7 @@ namespace ApiSdk.Identity.B2xUserFlows.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Represents entry point for B2X/self-service sign-up identity userflows.
+        /// Represents entry point for B2X and self-service sign-up identity userflows.
         /// <param name="body"></param>
         /// <param name="h">Request headers</param>
         /// <param name="o">Request options</param>
@@ -198,7 +198,7 @@ namespace ApiSdk.Identity.B2xUserFlows.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Represents entry point for B2X/self-service sign-up identity userflows.
+        /// Represents entry point for B2X and self-service sign-up identity userflows.
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="h">Request headers</param>
         /// <param name="o">Request options</param>
@@ -209,7 +209,7 @@ namespace ApiSdk.Identity.B2xUserFlows.Item {
             await RequestAdapter.SendNoContentAsync(requestInfo, responseHandler, cancellationToken);
         }
         /// <summary>
-        /// Represents entry point for B2X/self-service sign-up identity userflows.
+        /// Represents entry point for B2X and self-service sign-up identity userflows.
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="h">Request headers</param>
         /// <param name="o">Request options</param>
@@ -221,7 +221,7 @@ namespace ApiSdk.Identity.B2xUserFlows.Item {
             return await RequestAdapter.SendAsync<B2xIdentityUserFlow>(requestInfo, responseHandler, cancellationToken);
         }
         /// <summary>
-        /// Represents entry point for B2X/self-service sign-up identity userflows.
+        /// Represents entry point for B2X and self-service sign-up identity userflows.
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="h">Request headers</param>
         /// <param name="model"></param>
@@ -233,7 +233,7 @@ namespace ApiSdk.Identity.B2xUserFlows.Item {
             var requestInfo = CreatePatchRequestInformation(model, h, o);
             await RequestAdapter.SendNoContentAsync(requestInfo, responseHandler, cancellationToken);
         }
-        /// <summary>Represents entry point for B2X/self-service sign-up identity userflows.</summary>
+        /// <summary>Represents entry point for B2X and self-service sign-up identity userflows.</summary>
         public class GetQueryParameters : QueryParametersBase {
             /// <summary>Expand related entities</summary>
             public string[] Expand { get; set; }

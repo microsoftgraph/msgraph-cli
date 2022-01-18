@@ -9,7 +9,7 @@ namespace ApiSdk.Models.Microsoft.Graph.TermStore {
         public List<Term> Children { get; set; }
         /// <summary>Date and time of set creation. Read-only.</summary>
         public DateTimeOffset? CreatedDateTime { get; set; }
-        /// <summary>Description that gives details on the term usage.</summary>
+        /// <summary>Description giving details on the term usage.</summary>
         public string Description { get; set; }
         /// <summary>Name of the set for each languageTag.</summary>
         public List<LocalizedName> LocalizedNames { get; set; }

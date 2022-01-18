@@ -30,11 +30,11 @@ namespace ApiSdk.Users.Item.ContactFolders.Item.Contacts.Item.Extensions {
             return commands;
         }
         /// <summary>
-        /// The collection of open extensions defined for the contact. Read-only. Nullable.
+        /// The collection of open extensions defined for the contact. Nullable.
         /// </summary>
         public Command BuildCreateCommand() {
             var command = new Command("create");
-            command.Description = "The collection of open extensions defined for the contact. Read-only. Nullable.";
+            command.Description = "The collection of open extensions defined for the contact. Nullable.";
             // Create options for all the parameters
             var userIdOption = new Option<string>("--user-id", description: "key: id of user");
             userIdOption.IsRequired = true;
@@ -66,11 +66,11 @@ namespace ApiSdk.Users.Item.ContactFolders.Item.Contacts.Item.Extensions {
             return command;
         }
         /// <summary>
-        /// The collection of open extensions defined for the contact. Read-only. Nullable.
+        /// The collection of open extensions defined for the contact. Nullable.
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "The collection of open extensions defined for the contact. Read-only. Nullable.";
+            command.Description = "The collection of open extensions defined for the contact. Nullable.";
             // Create options for all the parameters
             var userIdOption = new Option<string>("--user-id", description: "key: id of user");
             userIdOption.IsRequired = true;
@@ -140,7 +140,7 @@ namespace ApiSdk.Users.Item.ContactFolders.Item.Contacts.Item.Extensions {
             RequestAdapter = requestAdapter;
         }
         /// <summary>
-        /// The collection of open extensions defined for the contact. Read-only. Nullable.
+        /// The collection of open extensions defined for the contact. Nullable.
         /// <param name="h">Request headers</param>
         /// <param name="o">Request options</param>
         /// <param name="q">Request query parameters</param>
@@ -161,7 +161,7 @@ namespace ApiSdk.Users.Item.ContactFolders.Item.Contacts.Item.Extensions {
             return requestInfo;
         }
         /// <summary>
-        /// The collection of open extensions defined for the contact. Read-only. Nullable.
+        /// The collection of open extensions defined for the contact. Nullable.
         /// <param name="body"></param>
         /// <param name="h">Request headers</param>
         /// <param name="o">Request options</param>
@@ -179,7 +179,7 @@ namespace ApiSdk.Users.Item.ContactFolders.Item.Contacts.Item.Extensions {
             return requestInfo;
         }
         /// <summary>
-        /// The collection of open extensions defined for the contact. Read-only. Nullable.
+        /// The collection of open extensions defined for the contact. Nullable.
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="h">Request headers</param>
         /// <param name="o">Request options</param>
@@ -191,7 +191,7 @@ namespace ApiSdk.Users.Item.ContactFolders.Item.Contacts.Item.Extensions {
             return await RequestAdapter.SendAsync<ExtensionsResponse>(requestInfo, responseHandler, cancellationToken);
         }
         /// <summary>
-        /// The collection of open extensions defined for the contact. Read-only. Nullable.
+        /// The collection of open extensions defined for the contact. Nullable.
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="h">Request headers</param>
         /// <param name="model"></param>
@@ -203,7 +203,7 @@ namespace ApiSdk.Users.Item.ContactFolders.Item.Contacts.Item.Extensions {
             var requestInfo = CreatePostRequestInformation(model, h, o);
             return await RequestAdapter.SendAsync<Extension>(requestInfo, responseHandler, cancellationToken);
         }
-        /// <summary>The collection of open extensions defined for the contact. Read-only. Nullable.</summary>
+        /// <summary>The collection of open extensions defined for the contact. Nullable.</summary>
         public class GetQueryParameters : QueryParametersBase {
             /// <summary>Include count of items</summary>
             public bool? Count { get; set; }

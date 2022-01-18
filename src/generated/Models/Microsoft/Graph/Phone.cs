@@ -11,7 +11,7 @@ namespace ApiSdk.Models.Microsoft.Graph {
         /// <summary>The phone number.</summary>
         public string Number { get; set; }
         public string Region { get; set; }
-        /// <summary>The type of phone number. The possible values are: home, business, mobile, other, assistant, homeFax, businessFax, otherFax, pager, radio.</summary>
+        /// <summary>The type of phone number. Possible values are: home, business, mobile, other, assistant, homeFax, businessFax, otherFax, pager, radio.</summary>
         public PhoneType? Type { get; set; }
         /// <summary>
         /// Instantiates a new phone and sets the default values.

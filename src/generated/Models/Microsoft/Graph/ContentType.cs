@@ -7,15 +7,15 @@ namespace ApiSdk.Models.Microsoft.Graph {
     public class ContentType : Entity, IParsable {
         /// <summary>Parent contentType from which this content type is derived.</summary>
         public ContentType @Base { get; set; }
-        /// <summary>If true, the content type can't be modified unless this value is first set to false.</summary>
+        /// <summary>If true, the content type cannot be modified unless this value is first set to false.</summary>
         public bool? @ReadOnly { get; set; }
-        /// <summary>If true, the content type can't be modified by users or through push-down operations. Only site collection administrators can seal or unseal content types.</summary>
+        /// <summary>If true, the content type cannot be modified by users or through push-down operations. Only site collection administrators can seal or unseal content types.</summary>
         public bool? @Sealed { get; set; }
-        /// <summary>List of canonical URLs for hub sites with which this content type is associated to. This will contain all hub sites where this content type is queued to be enforced or is already enforced. Enforcing a content type means that the content type will be applied to the lists in the enforced sites.</summary>
+        /// <summary>List of canonical URLs for hub sites with which this content type is associated to. This will contain all hubsites where this content type is queued to be enforced or is already enforced. Enforcing a content type means that the content type will be applied to the lists in the enforced sites.</summary>
         public List<string> AssociatedHubsUrls { get; set; }
         /// <summary>The collection of content types that are ancestors of this content type.</summary>
         public List<ContentType> BaseTypes { get; set; }
-        /// <summary>The collection of columns that are required by this content type.</summary>
+        /// <summary>The collection of columns that are required by this content type</summary>
         public List<ColumnLink> ColumnLinks { get; set; }
         /// <summary>Column order information in a content type.</summary>
         public List<ColumnDefinition> ColumnPositions { get; set; }

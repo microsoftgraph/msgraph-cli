@@ -27,6 +27,7 @@ namespace ApiSdk.Education.Classes.Item.Assignments.Item.Submissions {
                 builder.BuildGetCommand(),
                 builder.BuildOutcomesCommand(),
                 builder.BuildPatchCommand(),
+                builder.BuildReassignCommand(),
                 builder.BuildResourcesCommand(),
                 builder.BuildReturnCommand(),
                 builder.BuildSetUpResourcesFolderCommand(),

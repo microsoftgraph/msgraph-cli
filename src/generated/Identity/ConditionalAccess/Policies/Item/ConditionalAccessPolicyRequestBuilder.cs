@@ -20,11 +20,11 @@ namespace ApiSdk.Identity.ConditionalAccess.Policies.Item {
         /// <summary>Url template to use to build the URL for the current request builder</summary>
         private string UrlTemplate { get; set; }
         /// <summary>
-        /// Read-only. Nullable. Returns a collection of the specified Conditional Access (CA) policies.
+        /// Read-only. Nullable. Returns a collection of the specified Conditional Access policies.
         /// </summary>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
-            command.Description = "Read-only. Nullable. Returns a collection of the specified Conditional Access (CA) policies.";
+            command.Description = "Read-only. Nullable. Returns a collection of the specified Conditional Access policies.";
             // Create options for all the parameters
             var conditionalAccessPolicyIdOption = new Option<string>("--conditionalaccesspolicy-id", description: "key: id of conditionalAccessPolicy");
             conditionalAccessPolicyIdOption.IsRequired = true;
@@ -39,11 +39,11 @@ namespace ApiSdk.Identity.ConditionalAccess.Policies.Item {
             return command;
         }
         /// <summary>
-        /// Read-only. Nullable. Returns a collection of the specified Conditional Access (CA) policies.
+        /// Read-only. Nullable. Returns a collection of the specified Conditional Access policies.
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "Read-only. Nullable. Returns a collection of the specified Conditional Access (CA) policies.";
+            command.Description = "Read-only. Nullable. Returns a collection of the specified Conditional Access policies.";
             // Create options for all the parameters
             var conditionalAccessPolicyIdOption = new Option<string>("--conditionalaccesspolicy-id", description: "key: id of conditionalAccessPolicy");
             conditionalAccessPolicyIdOption.IsRequired = true;
@@ -73,11 +73,11 @@ namespace ApiSdk.Identity.ConditionalAccess.Policies.Item {
             return command;
         }
         /// <summary>
-        /// Read-only. Nullable. Returns a collection of the specified Conditional Access (CA) policies.
+        /// Read-only. Nullable. Returns a collection of the specified Conditional Access policies.
         /// </summary>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
-            command.Description = "Read-only. Nullable. Returns a collection of the specified Conditional Access (CA) policies.";
+            command.Description = "Read-only. Nullable. Returns a collection of the specified Conditional Access policies.";
             // Create options for all the parameters
             var conditionalAccessPolicyIdOption = new Option<string>("--conditionalaccesspolicy-id", description: "key: id of conditionalAccessPolicy");
             conditionalAccessPolicyIdOption.IsRequired = true;
@@ -111,7 +111,7 @@ namespace ApiSdk.Identity.ConditionalAccess.Policies.Item {
             RequestAdapter = requestAdapter;
         }
         /// <summary>
-        /// Read-only. Nullable. Returns a collection of the specified Conditional Access (CA) policies.
+        /// Read-only. Nullable. Returns a collection of the specified Conditional Access policies.
         /// <param name="h">Request headers</param>
         /// <param name="o">Request options</param>
         /// </summary>
@@ -126,7 +126,7 @@ namespace ApiSdk.Identity.ConditionalAccess.Policies.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Read-only. Nullable. Returns a collection of the specified Conditional Access (CA) policies.
+        /// Read-only. Nullable. Returns a collection of the specified Conditional Access policies.
         /// <param name="h">Request headers</param>
         /// <param name="o">Request options</param>
         /// <param name="q">Request query parameters</param>
@@ -147,7 +147,7 @@ namespace ApiSdk.Identity.ConditionalAccess.Policies.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Read-only. Nullable. Returns a collection of the specified Conditional Access (CA) policies.
+        /// Read-only. Nullable. Returns a collection of the specified Conditional Access policies.
         /// <param name="body"></param>
         /// <param name="h">Request headers</param>
         /// <param name="o">Request options</param>
@@ -165,7 +165,7 @@ namespace ApiSdk.Identity.ConditionalAccess.Policies.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Read-only. Nullable. Returns a collection of the specified Conditional Access (CA) policies.
+        /// Read-only. Nullable. Returns a collection of the specified Conditional Access policies.
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="h">Request headers</param>
         /// <param name="o">Request options</param>
@@ -176,7 +176,7 @@ namespace ApiSdk.Identity.ConditionalAccess.Policies.Item {
             await RequestAdapter.SendNoContentAsync(requestInfo, responseHandler, cancellationToken);
         }
         /// <summary>
-        /// Read-only. Nullable. Returns a collection of the specified Conditional Access (CA) policies.
+        /// Read-only. Nullable. Returns a collection of the specified Conditional Access policies.
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="h">Request headers</param>
         /// <param name="o">Request options</param>
@@ -188,7 +188,7 @@ namespace ApiSdk.Identity.ConditionalAccess.Policies.Item {
             return await RequestAdapter.SendAsync<ConditionalAccessPolicy>(requestInfo, responseHandler, cancellationToken);
         }
         /// <summary>
-        /// Read-only. Nullable. Returns a collection of the specified Conditional Access (CA) policies.
+        /// Read-only. Nullable. Returns a collection of the specified Conditional Access policies.
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="h">Request headers</param>
         /// <param name="model"></param>
@@ -200,7 +200,7 @@ namespace ApiSdk.Identity.ConditionalAccess.Policies.Item {
             var requestInfo = CreatePatchRequestInformation(model, h, o);
             await RequestAdapter.SendNoContentAsync(requestInfo, responseHandler, cancellationToken);
         }
-        /// <summary>Read-only. Nullable. Returns a collection of the specified Conditional Access (CA) policies.</summary>
+        /// <summary>Read-only. Nullable. Returns a collection of the specified Conditional Access policies.</summary>
         public class GetQueryParameters : QueryParametersBase {
             /// <summary>Expand related entities</summary>
             public string[] Expand { get; set; }

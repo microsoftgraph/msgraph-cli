@@ -20,11 +20,11 @@ namespace ApiSdk.Groups.Item.Settings.Item {
         /// <summary>Url template to use to build the URL for the current request builder</summary>
         private string UrlTemplate { get; set; }
         /// <summary>
-        /// Read-only. Nullable.
+        /// Settings that can govern this group's behavior, like whether members can invite guest users to the group. Nullable.
         /// </summary>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
-            command.Description = "Read-only. Nullable.";
+            command.Description = "Settings that can govern this group's behavior, like whether members can invite guest users to the group. Nullable.";
             // Create options for all the parameters
             var groupIdOption = new Option<string>("--group-id", description: "key: id of group");
             groupIdOption.IsRequired = true;
@@ -42,11 +42,11 @@ namespace ApiSdk.Groups.Item.Settings.Item {
             return command;
         }
         /// <summary>
-        /// Read-only. Nullable.
+        /// Settings that can govern this group's behavior, like whether members can invite guest users to the group. Nullable.
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "Read-only. Nullable.";
+            command.Description = "Settings that can govern this group's behavior, like whether members can invite guest users to the group. Nullable.";
             // Create options for all the parameters
             var groupIdOption = new Option<string>("--group-id", description: "key: id of group");
             groupIdOption.IsRequired = true;
@@ -79,11 +79,11 @@ namespace ApiSdk.Groups.Item.Settings.Item {
             return command;
         }
         /// <summary>
-        /// Read-only. Nullable.
+        /// Settings that can govern this group's behavior, like whether members can invite guest users to the group. Nullable.
         /// </summary>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
-            command.Description = "Read-only. Nullable.";
+            command.Description = "Settings that can govern this group's behavior, like whether members can invite guest users to the group. Nullable.";
             // Create options for all the parameters
             var groupIdOption = new Option<string>("--group-id", description: "key: id of group");
             groupIdOption.IsRequired = true;
@@ -120,7 +120,7 @@ namespace ApiSdk.Groups.Item.Settings.Item {
             RequestAdapter = requestAdapter;
         }
         /// <summary>
-        /// Read-only. Nullable.
+        /// Settings that can govern this group's behavior, like whether members can invite guest users to the group. Nullable.
         /// <param name="h">Request headers</param>
         /// <param name="o">Request options</param>
         /// </summary>
@@ -135,7 +135,7 @@ namespace ApiSdk.Groups.Item.Settings.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Read-only. Nullable.
+        /// Settings that can govern this group's behavior, like whether members can invite guest users to the group. Nullable.
         /// <param name="h">Request headers</param>
         /// <param name="o">Request options</param>
         /// <param name="q">Request query parameters</param>
@@ -156,7 +156,7 @@ namespace ApiSdk.Groups.Item.Settings.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Read-only. Nullable.
+        /// Settings that can govern this group's behavior, like whether members can invite guest users to the group. Nullable.
         /// <param name="body"></param>
         /// <param name="h">Request headers</param>
         /// <param name="o">Request options</param>
@@ -174,7 +174,7 @@ namespace ApiSdk.Groups.Item.Settings.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Read-only. Nullable.
+        /// Settings that can govern this group's behavior, like whether members can invite guest users to the group. Nullable.
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="h">Request headers</param>
         /// <param name="o">Request options</param>
@@ -185,7 +185,7 @@ namespace ApiSdk.Groups.Item.Settings.Item {
             await RequestAdapter.SendNoContentAsync(requestInfo, responseHandler, cancellationToken);
         }
         /// <summary>
-        /// Read-only. Nullable.
+        /// Settings that can govern this group's behavior, like whether members can invite guest users to the group. Nullable.
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="h">Request headers</param>
         /// <param name="o">Request options</param>
@@ -197,7 +197,7 @@ namespace ApiSdk.Groups.Item.Settings.Item {
             return await RequestAdapter.SendAsync<GroupSetting>(requestInfo, responseHandler, cancellationToken);
         }
         /// <summary>
-        /// Read-only. Nullable.
+        /// Settings that can govern this group's behavior, like whether members can invite guest users to the group. Nullable.
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="h">Request headers</param>
         /// <param name="model"></param>
@@ -209,7 +209,7 @@ namespace ApiSdk.Groups.Item.Settings.Item {
             var requestInfo = CreatePatchRequestInformation(model, h, o);
             await RequestAdapter.SendNoContentAsync(requestInfo, responseHandler, cancellationToken);
         }
-        /// <summary>Read-only. Nullable.</summary>
+        /// <summary>Settings that can govern this group's behavior, like whether members can invite guest users to the group. Nullable.</summary>
         public class GetQueryParameters : QueryParametersBase {
             /// <summary>Expand related entities</summary>
             public string[] Expand { get; set; }

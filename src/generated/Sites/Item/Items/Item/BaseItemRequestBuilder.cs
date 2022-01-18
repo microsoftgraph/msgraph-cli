@@ -20,11 +20,11 @@ namespace ApiSdk.Sites.Item.Items.Item {
         /// <summary>Url template to use to build the URL for the current request builder</summary>
         private string UrlTemplate { get; set; }
         /// <summary>
-        /// Used to address any item contained in this site. This collection can't be enumerated.
+        /// Used to address any item contained in this site. This collection cannot be enumerated.
         /// </summary>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
-            command.Description = "Used to address any item contained in this site. This collection can't be enumerated.";
+            command.Description = "Used to address any item contained in this site. This collection cannot be enumerated.";
             // Create options for all the parameters
             var siteIdOption = new Option<string>("--site-id", description: "key: id of site");
             siteIdOption.IsRequired = true;
@@ -42,11 +42,11 @@ namespace ApiSdk.Sites.Item.Items.Item {
             return command;
         }
         /// <summary>
-        /// Used to address any item contained in this site. This collection can't be enumerated.
+        /// Used to address any item contained in this site. This collection cannot be enumerated.
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "Used to address any item contained in this site. This collection can't be enumerated.";
+            command.Description = "Used to address any item contained in this site. This collection cannot be enumerated.";
             // Create options for all the parameters
             var siteIdOption = new Option<string>("--site-id", description: "key: id of site");
             siteIdOption.IsRequired = true;
@@ -79,11 +79,11 @@ namespace ApiSdk.Sites.Item.Items.Item {
             return command;
         }
         /// <summary>
-        /// Used to address any item contained in this site. This collection can't be enumerated.
+        /// Used to address any item contained in this site. This collection cannot be enumerated.
         /// </summary>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
-            command.Description = "Used to address any item contained in this site. This collection can't be enumerated.";
+            command.Description = "Used to address any item contained in this site. This collection cannot be enumerated.";
             // Create options for all the parameters
             var siteIdOption = new Option<string>("--site-id", description: "key: id of site");
             siteIdOption.IsRequired = true;
@@ -120,7 +120,7 @@ namespace ApiSdk.Sites.Item.Items.Item {
             RequestAdapter = requestAdapter;
         }
         /// <summary>
-        /// Used to address any item contained in this site. This collection can't be enumerated.
+        /// Used to address any item contained in this site. This collection cannot be enumerated.
         /// <param name="h">Request headers</param>
         /// <param name="o">Request options</param>
         /// </summary>
@@ -135,7 +135,7 @@ namespace ApiSdk.Sites.Item.Items.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Used to address any item contained in this site. This collection can't be enumerated.
+        /// Used to address any item contained in this site. This collection cannot be enumerated.
         /// <param name="h">Request headers</param>
         /// <param name="o">Request options</param>
         /// <param name="q">Request query parameters</param>
@@ -156,7 +156,7 @@ namespace ApiSdk.Sites.Item.Items.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Used to address any item contained in this site. This collection can't be enumerated.
+        /// Used to address any item contained in this site. This collection cannot be enumerated.
         /// <param name="body"></param>
         /// <param name="h">Request headers</param>
         /// <param name="o">Request options</param>
@@ -174,7 +174,7 @@ namespace ApiSdk.Sites.Item.Items.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Used to address any item contained in this site. This collection can't be enumerated.
+        /// Used to address any item contained in this site. This collection cannot be enumerated.
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="h">Request headers</param>
         /// <param name="o">Request options</param>
@@ -185,7 +185,7 @@ namespace ApiSdk.Sites.Item.Items.Item {
             await RequestAdapter.SendNoContentAsync(requestInfo, responseHandler, cancellationToken);
         }
         /// <summary>
-        /// Used to address any item contained in this site. This collection can't be enumerated.
+        /// Used to address any item contained in this site. This collection cannot be enumerated.
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="h">Request headers</param>
         /// <param name="o">Request options</param>
@@ -197,7 +197,7 @@ namespace ApiSdk.Sites.Item.Items.Item {
             return await RequestAdapter.SendAsync<BaseItem>(requestInfo, responseHandler, cancellationToken);
         }
         /// <summary>
-        /// Used to address any item contained in this site. This collection can't be enumerated.
+        /// Used to address any item contained in this site. This collection cannot be enumerated.
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="h">Request headers</param>
         /// <param name="model"></param>
@@ -209,7 +209,7 @@ namespace ApiSdk.Sites.Item.Items.Item {
             var requestInfo = CreatePatchRequestInformation(model, h, o);
             await RequestAdapter.SendNoContentAsync(requestInfo, responseHandler, cancellationToken);
         }
-        /// <summary>Used to address any item contained in this site. This collection can't be enumerated.</summary>
+        /// <summary>Used to address any item contained in this site. This collection cannot be enumerated.</summary>
         public class GetQueryParameters : QueryParametersBase {
             /// <summary>Expand related entities</summary>
             public string[] Expand { get; set; }

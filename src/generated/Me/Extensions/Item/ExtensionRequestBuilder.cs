@@ -20,11 +20,11 @@ namespace ApiSdk.Me.Extensions.Item {
         /// <summary>Url template to use to build the URL for the current request builder</summary>
         private string UrlTemplate { get; set; }
         /// <summary>
-        /// The collection of open extensions defined for the user. Read-only. Nullable.
+        /// The collection of open extensions defined for the user. Nullable.
         /// </summary>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
-            command.Description = "The collection of open extensions defined for the user. Read-only. Nullable.";
+            command.Description = "The collection of open extensions defined for the user. Nullable.";
             // Create options for all the parameters
             var extensionIdOption = new Option<string>("--extension-id", description: "key: id of extension");
             extensionIdOption.IsRequired = true;
@@ -39,11 +39,11 @@ namespace ApiSdk.Me.Extensions.Item {
             return command;
         }
         /// <summary>
-        /// The collection of open extensions defined for the user. Read-only. Nullable.
+        /// The collection of open extensions defined for the user. Nullable.
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "The collection of open extensions defined for the user. Read-only. Nullable.";
+            command.Description = "The collection of open extensions defined for the user. Nullable.";
             // Create options for all the parameters
             var extensionIdOption = new Option<string>("--extension-id", description: "key: id of extension");
             extensionIdOption.IsRequired = true;
@@ -73,11 +73,11 @@ namespace ApiSdk.Me.Extensions.Item {
             return command;
         }
         /// <summary>
-        /// The collection of open extensions defined for the user. Read-only. Nullable.
+        /// The collection of open extensions defined for the user. Nullable.
         /// </summary>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
-            command.Description = "The collection of open extensions defined for the user. Read-only. Nullable.";
+            command.Description = "The collection of open extensions defined for the user. Nullable.";
             // Create options for all the parameters
             var extensionIdOption = new Option<string>("--extension-id", description: "key: id of extension");
             extensionIdOption.IsRequired = true;
@@ -111,7 +111,7 @@ namespace ApiSdk.Me.Extensions.Item {
             RequestAdapter = requestAdapter;
         }
         /// <summary>
-        /// The collection of open extensions defined for the user. Read-only. Nullable.
+        /// The collection of open extensions defined for the user. Nullable.
         /// <param name="h">Request headers</param>
         /// <param name="o">Request options</param>
         /// </summary>
@@ -126,7 +126,7 @@ namespace ApiSdk.Me.Extensions.Item {
             return requestInfo;
         }
         /// <summary>
-        /// The collection of open extensions defined for the user. Read-only. Nullable.
+        /// The collection of open extensions defined for the user. Nullable.
         /// <param name="h">Request headers</param>
         /// <param name="o">Request options</param>
         /// <param name="q">Request query parameters</param>
@@ -147,7 +147,7 @@ namespace ApiSdk.Me.Extensions.Item {
             return requestInfo;
         }
         /// <summary>
-        /// The collection of open extensions defined for the user. Read-only. Nullable.
+        /// The collection of open extensions defined for the user. Nullable.
         /// <param name="body"></param>
         /// <param name="h">Request headers</param>
         /// <param name="o">Request options</param>
@@ -165,7 +165,7 @@ namespace ApiSdk.Me.Extensions.Item {
             return requestInfo;
         }
         /// <summary>
-        /// The collection of open extensions defined for the user. Read-only. Nullable.
+        /// The collection of open extensions defined for the user. Nullable.
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="h">Request headers</param>
         /// <param name="o">Request options</param>
@@ -176,7 +176,7 @@ namespace ApiSdk.Me.Extensions.Item {
             await RequestAdapter.SendNoContentAsync(requestInfo, responseHandler, cancellationToken);
         }
         /// <summary>
-        /// The collection of open extensions defined for the user. Read-only. Nullable.
+        /// The collection of open extensions defined for the user. Nullable.
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="h">Request headers</param>
         /// <param name="o">Request options</param>
@@ -188,7 +188,7 @@ namespace ApiSdk.Me.Extensions.Item {
             return await RequestAdapter.SendAsync<Extension>(requestInfo, responseHandler, cancellationToken);
         }
         /// <summary>
-        /// The collection of open extensions defined for the user. Read-only. Nullable.
+        /// The collection of open extensions defined for the user. Nullable.
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="h">Request headers</param>
         /// <param name="model"></param>
@@ -200,7 +200,7 @@ namespace ApiSdk.Me.Extensions.Item {
             var requestInfo = CreatePatchRequestInformation(model, h, o);
             await RequestAdapter.SendNoContentAsync(requestInfo, responseHandler, cancellationToken);
         }
-        /// <summary>The collection of open extensions defined for the user. Read-only. Nullable.</summary>
+        /// <summary>The collection of open extensions defined for the user. Nullable.</summary>
         public class GetQueryParameters : QueryParametersBase {
             /// <summary>Expand related entities</summary>
             public string[] Expand { get; set; }

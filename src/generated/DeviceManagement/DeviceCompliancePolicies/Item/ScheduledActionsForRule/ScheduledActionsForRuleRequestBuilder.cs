@@ -31,11 +31,11 @@ namespace ApiSdk.DeviceManagement.DeviceCompliancePolicies.Item.ScheduledActions
             return commands;
         }
         /// <summary>
-        /// The list of scheduled action per rule for this compliance policy. This is a required property when creating any individual per-platform compliance policies.
+        /// The list of scheduled action for this rule
         /// </summary>
         public Command BuildCreateCommand() {
             var command = new Command("create");
-            command.Description = "The list of scheduled action per rule for this compliance policy. This is a required property when creating any individual per-platform compliance policies.";
+            command.Description = "The list of scheduled action for this rule";
             // Create options for all the parameters
             var deviceCompliancePolicyIdOption = new Option<string>("--devicecompliancepolicy-id", description: "key: id of deviceCompliancePolicy");
             deviceCompliancePolicyIdOption.IsRequired = true;
@@ -61,11 +61,11 @@ namespace ApiSdk.DeviceManagement.DeviceCompliancePolicies.Item.ScheduledActions
             return command;
         }
         /// <summary>
-        /// The list of scheduled action per rule for this compliance policy. This is a required property when creating any individual per-platform compliance policies.
+        /// The list of scheduled action for this rule
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "The list of scheduled action per rule for this compliance policy. This is a required property when creating any individual per-platform compliance policies.";
+            command.Description = "The list of scheduled action for this rule";
             // Create options for all the parameters
             var deviceCompliancePolicyIdOption = new Option<string>("--devicecompliancepolicy-id", description: "key: id of deviceCompliancePolicy");
             deviceCompliancePolicyIdOption.IsRequired = true;
@@ -133,7 +133,7 @@ namespace ApiSdk.DeviceManagement.DeviceCompliancePolicies.Item.ScheduledActions
             RequestAdapter = requestAdapter;
         }
         /// <summary>
-        /// The list of scheduled action per rule for this compliance policy. This is a required property when creating any individual per-platform compliance policies.
+        /// The list of scheduled action for this rule
         /// <param name="h">Request headers</param>
         /// <param name="o">Request options</param>
         /// <param name="q">Request query parameters</param>
@@ -154,7 +154,7 @@ namespace ApiSdk.DeviceManagement.DeviceCompliancePolicies.Item.ScheduledActions
             return requestInfo;
         }
         /// <summary>
-        /// The list of scheduled action per rule for this compliance policy. This is a required property when creating any individual per-platform compliance policies.
+        /// The list of scheduled action for this rule
         /// <param name="body"></param>
         /// <param name="h">Request headers</param>
         /// <param name="o">Request options</param>
@@ -172,7 +172,7 @@ namespace ApiSdk.DeviceManagement.DeviceCompliancePolicies.Item.ScheduledActions
             return requestInfo;
         }
         /// <summary>
-        /// The list of scheduled action per rule for this compliance policy. This is a required property when creating any individual per-platform compliance policies.
+        /// The list of scheduled action for this rule
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="h">Request headers</param>
         /// <param name="o">Request options</param>
@@ -184,7 +184,7 @@ namespace ApiSdk.DeviceManagement.DeviceCompliancePolicies.Item.ScheduledActions
             return await RequestAdapter.SendAsync<ScheduledActionsForRuleResponse>(requestInfo, responseHandler, cancellationToken);
         }
         /// <summary>
-        /// The list of scheduled action per rule for this compliance policy. This is a required property when creating any individual per-platform compliance policies.
+        /// The list of scheduled action for this rule
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="h">Request headers</param>
         /// <param name="model"></param>
@@ -196,7 +196,7 @@ namespace ApiSdk.DeviceManagement.DeviceCompliancePolicies.Item.ScheduledActions
             var requestInfo = CreatePostRequestInformation(model, h, o);
             return await RequestAdapter.SendAsync<DeviceComplianceScheduledActionForRule>(requestInfo, responseHandler, cancellationToken);
         }
-        /// <summary>The list of scheduled action per rule for this compliance policy. This is a required property when creating any individual per-platform compliance policies.</summary>
+        /// <summary>The list of scheduled action for this rule</summary>
         public class GetQueryParameters : QueryParametersBase {
             /// <summary>Include count of items</summary>
             public bool? Count { get; set; }

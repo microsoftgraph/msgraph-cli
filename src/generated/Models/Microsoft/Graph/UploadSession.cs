@@ -9,7 +9,7 @@ namespace ApiSdk.Models.Microsoft.Graph {
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>The date and time in UTC that the upload session will expire. The complete file must be uploaded before this expiration time is reached.</summary>
         public DateTimeOffset? ExpirationDateTime { get; set; }
-        /// <summary>A collection of byte ranges that the server is missing for the file. These ranges are zero indexed and of the format 'start-end' (e.g. '0-26' to indicate the first 27 bytes of the file). When uploading files as Outlook attachments, instead of a collection of ranges, this property always indicates a single value '{start}', the location in the file where the next upload should begin.</summary>
+        /// <summary>When uploading files to document libraries, this is a collection of byte ranges that the server is missing for the file. These ranges are zero-indexed and of the format, '{start}-{end}' (e.g. '0-26' to indicate the first 27 bytes of the file). When uploading files as Outlook attachments, instead of a collection of ranges, this property always indicates a single value '{start}', the location in the file where the next upload should begin.</summary>
         public List<string> NextExpectedRanges { get; set; }
         /// <summary>The URL endpoint that accepts PUT requests for byte ranges of the file.</summary>
         public string UploadUrl { get; set; }

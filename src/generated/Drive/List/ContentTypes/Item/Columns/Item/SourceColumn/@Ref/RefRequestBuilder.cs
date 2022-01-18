@@ -19,11 +19,11 @@ namespace ApiSdk.Drive.List.ContentTypes.Item.Columns.Item.SourceColumn.@Ref {
         /// <summary>Url template to use to build the URL for the current request builder</summary>
         private string UrlTemplate { get; set; }
         /// <summary>
-        /// The source column for the content type column.
+        /// The source column for content type column.
         /// </summary>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
-            command.Description = "The source column for the content type column.";
+            command.Description = "The source column for content type column.";
             // Create options for all the parameters
             var contentTypeIdOption = new Option<string>("--contenttype-id", description: "key: id of contentType");
             contentTypeIdOption.IsRequired = true;
@@ -41,11 +41,11 @@ namespace ApiSdk.Drive.List.ContentTypes.Item.Columns.Item.SourceColumn.@Ref {
             return command;
         }
         /// <summary>
-        /// The source column for the content type column.
+        /// The source column for content type column.
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "The source column for the content type column.";
+            command.Description = "The source column for content type column.";
             // Create options for all the parameters
             var contentTypeIdOption = new Option<string>("--contenttype-id", description: "key: id of contentType");
             contentTypeIdOption.IsRequired = true;
@@ -68,11 +68,11 @@ namespace ApiSdk.Drive.List.ContentTypes.Item.Columns.Item.SourceColumn.@Ref {
             return command;
         }
         /// <summary>
-        /// The source column for the content type column.
+        /// The source column for content type column.
         /// </summary>
         public Command BuildPutCommand() {
             var command = new Command("put");
-            command.Description = "The source column for the content type column.";
+            command.Description = "The source column for content type column.";
             // Create options for all the parameters
             var contentTypeIdOption = new Option<string>("--contenttype-id", description: "key: id of contentType");
             contentTypeIdOption.IsRequired = true;
@@ -109,7 +109,7 @@ namespace ApiSdk.Drive.List.ContentTypes.Item.Columns.Item.SourceColumn.@Ref {
             RequestAdapter = requestAdapter;
         }
         /// <summary>
-        /// The source column for the content type column.
+        /// The source column for content type column.
         /// <param name="h">Request headers</param>
         /// <param name="o">Request options</param>
         /// </summary>
@@ -124,7 +124,7 @@ namespace ApiSdk.Drive.List.ContentTypes.Item.Columns.Item.SourceColumn.@Ref {
             return requestInfo;
         }
         /// <summary>
-        /// The source column for the content type column.
+        /// The source column for content type column.
         /// <param name="h">Request headers</param>
         /// <param name="o">Request options</param>
         /// </summary>
@@ -139,7 +139,7 @@ namespace ApiSdk.Drive.List.ContentTypes.Item.Columns.Item.SourceColumn.@Ref {
             return requestInfo;
         }
         /// <summary>
-        /// The source column for the content type column.
+        /// The source column for content type column.
         /// <param name="body"></param>
         /// <param name="h">Request headers</param>
         /// <param name="o">Request options</param>
@@ -157,7 +157,7 @@ namespace ApiSdk.Drive.List.ContentTypes.Item.Columns.Item.SourceColumn.@Ref {
             return requestInfo;
         }
         /// <summary>
-        /// The source column for the content type column.
+        /// The source column for content type column.
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="h">Request headers</param>
         /// <param name="o">Request options</param>
@@ -168,7 +168,7 @@ namespace ApiSdk.Drive.List.ContentTypes.Item.Columns.Item.SourceColumn.@Ref {
             await RequestAdapter.SendNoContentAsync(requestInfo, responseHandler, cancellationToken);
         }
         /// <summary>
-        /// The source column for the content type column.
+        /// The source column for content type column.
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="h">Request headers</param>
         /// <param name="o">Request options</param>
@@ -179,7 +179,7 @@ namespace ApiSdk.Drive.List.ContentTypes.Item.Columns.Item.SourceColumn.@Ref {
             return await RequestAdapter.SendPrimitiveAsync<string>(requestInfo, responseHandler, cancellationToken);
         }
         /// <summary>
-        /// The source column for the content type column.
+        /// The source column for content type column.
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="h">Request headers</param>
         /// <param name="model"></param>

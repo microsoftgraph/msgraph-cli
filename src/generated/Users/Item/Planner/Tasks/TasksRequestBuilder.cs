@@ -34,11 +34,11 @@ namespace ApiSdk.Users.Item.Planner.Tasks {
             return commands;
         }
         /// <summary>
-        /// Read-only. Nullable. Returns the plannerPlans shared with the user.
+        /// Read-only. Nullable. Returns the plannerTasks assigned to the user.
         /// </summary>
         public Command BuildCreateCommand() {
             var command = new Command("create");
-            command.Description = "Read-only. Nullable. Returns the plannerPlans shared with the user.";
+            command.Description = "Read-only. Nullable. Returns the plannerTasks assigned to the user.";
             // Create options for all the parameters
             var userIdOption = new Option<string>("--user-id", description: "key: id of user");
             userIdOption.IsRequired = true;
@@ -64,11 +64,11 @@ namespace ApiSdk.Users.Item.Planner.Tasks {
             return command;
         }
         /// <summary>
-        /// Read-only. Nullable. Returns the plannerPlans shared with the user.
+        /// Read-only. Nullable. Returns the plannerTasks assigned to the user.
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "Read-only. Nullable. Returns the plannerPlans shared with the user.";
+            command.Description = "Read-only. Nullable. Returns the plannerTasks assigned to the user.";
             // Create options for all the parameters
             var userIdOption = new Option<string>("--user-id", description: "key: id of user");
             userIdOption.IsRequired = true;
@@ -136,7 +136,7 @@ namespace ApiSdk.Users.Item.Planner.Tasks {
             RequestAdapter = requestAdapter;
         }
         /// <summary>
-        /// Read-only. Nullable. Returns the plannerPlans shared with the user.
+        /// Read-only. Nullable. Returns the plannerTasks assigned to the user.
         /// <param name="h">Request headers</param>
         /// <param name="o">Request options</param>
         /// <param name="q">Request query parameters</param>
@@ -157,7 +157,7 @@ namespace ApiSdk.Users.Item.Planner.Tasks {
             return requestInfo;
         }
         /// <summary>
-        /// Read-only. Nullable. Returns the plannerPlans shared with the user.
+        /// Read-only. Nullable. Returns the plannerTasks assigned to the user.
         /// <param name="body"></param>
         /// <param name="h">Request headers</param>
         /// <param name="o">Request options</param>
@@ -175,7 +175,7 @@ namespace ApiSdk.Users.Item.Planner.Tasks {
             return requestInfo;
         }
         /// <summary>
-        /// Read-only. Nullable. Returns the plannerPlans shared with the user.
+        /// Read-only. Nullable. Returns the plannerTasks assigned to the user.
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="h">Request headers</param>
         /// <param name="o">Request options</param>
@@ -187,7 +187,7 @@ namespace ApiSdk.Users.Item.Planner.Tasks {
             return await RequestAdapter.SendAsync<TasksResponse>(requestInfo, responseHandler, cancellationToken);
         }
         /// <summary>
-        /// Read-only. Nullable. Returns the plannerPlans shared with the user.
+        /// Read-only. Nullable. Returns the plannerTasks assigned to the user.
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="h">Request headers</param>
         /// <param name="model"></param>
@@ -199,7 +199,7 @@ namespace ApiSdk.Users.Item.Planner.Tasks {
             var requestInfo = CreatePostRequestInformation(model, h, o);
             return await RequestAdapter.SendAsync<PlannerTask>(requestInfo, responseHandler, cancellationToken);
         }
-        /// <summary>Read-only. Nullable. Returns the plannerPlans shared with the user.</summary>
+        /// <summary>Read-only. Nullable. Returns the plannerTasks assigned to the user.</summary>
         public class GetQueryParameters : QueryParametersBase {
             /// <summary>Include count of items</summary>
             public bool? Count { get; set; }

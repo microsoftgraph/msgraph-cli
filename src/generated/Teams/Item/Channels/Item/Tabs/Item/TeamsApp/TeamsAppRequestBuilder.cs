@@ -21,11 +21,11 @@ namespace ApiSdk.Teams.Item.Channels.Item.Tabs.Item.TeamsApp {
         /// <summary>Url template to use to build the URL for the current request builder</summary>
         private string UrlTemplate { get; set; }
         /// <summary>
-        /// The application that is linked to the tab. This cannot be changed after tab creation.
+        /// The application that is linked to the tab.
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "The application that is linked to the tab. This cannot be changed after tab creation.";
+            command.Description = "The application that is linked to the tab.";
             // Create options for all the parameters
             var teamIdOption = new Option<string>("--team-id", description: "key: id of team");
             teamIdOption.IsRequired = true;
@@ -82,7 +82,7 @@ namespace ApiSdk.Teams.Item.Channels.Item.Tabs.Item.TeamsApp {
             RequestAdapter = requestAdapter;
         }
         /// <summary>
-        /// The application that is linked to the tab. This cannot be changed after tab creation.
+        /// The application that is linked to the tab.
         /// <param name="h">Request headers</param>
         /// <param name="o">Request options</param>
         /// <param name="q">Request query parameters</param>
@@ -103,7 +103,7 @@ namespace ApiSdk.Teams.Item.Channels.Item.Tabs.Item.TeamsApp {
             return requestInfo;
         }
         /// <summary>
-        /// The application that is linked to the tab. This cannot be changed after tab creation.
+        /// The application that is linked to the tab.
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="h">Request headers</param>
         /// <param name="o">Request options</param>
@@ -114,7 +114,7 @@ namespace ApiSdk.Teams.Item.Channels.Item.Tabs.Item.TeamsApp {
             var requestInfo = CreateGetRequestInformation(q, h, o);
             return await RequestAdapter.SendAsync<ApiSdk.Models.Microsoft.Graph.TeamsApp>(requestInfo, responseHandler, cancellationToken);
         }
-        /// <summary>The application that is linked to the tab. This cannot be changed after tab creation.</summary>
+        /// <summary>The application that is linked to the tab.</summary>
         public class GetQueryParameters : QueryParametersBase {
             /// <summary>Expand related entities</summary>
             public string[] Expand { get; set; }

@@ -30,11 +30,11 @@ namespace ApiSdk.IdentityGovernance.TermsOfUse.Agreements {
             return commands;
         }
         /// <summary>
-        /// Create new navigation property to agreements for identityGovernance
+        /// Represents a tenant's customizable terms of use agreement that's created and managed with Azure Active Directory (Azure AD).
         /// </summary>
         public Command BuildCreateCommand() {
             var command = new Command("create");
-            command.Description = "Create new navigation property to agreements for identityGovernance";
+            command.Description = "Represents a tenant's customizable terms of use agreement that's created and managed with Azure Active Directory (Azure AD).";
             // Create options for all the parameters
             var bodyOption = new Option<string>("--body");
             bodyOption.IsRequired = true;
@@ -57,11 +57,11 @@ namespace ApiSdk.IdentityGovernance.TermsOfUse.Agreements {
             return command;
         }
         /// <summary>
-        /// Get agreements from identityGovernance
+        /// Represents a tenant's customizable terms of use agreement that's created and managed with Azure Active Directory (Azure AD).
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "Get agreements from identityGovernance";
+            command.Description = "Represents a tenant's customizable terms of use agreement that's created and managed with Azure Active Directory (Azure AD).";
             // Create options for all the parameters
             var topOption = new Option<int?>("--top", description: "Show only the first n items");
             topOption.IsRequired = false;
@@ -126,7 +126,7 @@ namespace ApiSdk.IdentityGovernance.TermsOfUse.Agreements {
             RequestAdapter = requestAdapter;
         }
         /// <summary>
-        /// Get agreements from identityGovernance
+        /// Represents a tenant's customizable terms of use agreement that's created and managed with Azure Active Directory (Azure AD).
         /// <param name="h">Request headers</param>
         /// <param name="o">Request options</param>
         /// <param name="q">Request query parameters</param>
@@ -147,7 +147,7 @@ namespace ApiSdk.IdentityGovernance.TermsOfUse.Agreements {
             return requestInfo;
         }
         /// <summary>
-        /// Create new navigation property to agreements for identityGovernance
+        /// Represents a tenant's customizable terms of use agreement that's created and managed with Azure Active Directory (Azure AD).
         /// <param name="body"></param>
         /// <param name="h">Request headers</param>
         /// <param name="o">Request options</param>
@@ -165,7 +165,7 @@ namespace ApiSdk.IdentityGovernance.TermsOfUse.Agreements {
             return requestInfo;
         }
         /// <summary>
-        /// Get agreements from identityGovernance
+        /// Represents a tenant's customizable terms of use agreement that's created and managed with Azure Active Directory (Azure AD).
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="h">Request headers</param>
         /// <param name="o">Request options</param>
@@ -177,7 +177,7 @@ namespace ApiSdk.IdentityGovernance.TermsOfUse.Agreements {
             return await RequestAdapter.SendAsync<AgreementsResponse>(requestInfo, responseHandler, cancellationToken);
         }
         /// <summary>
-        /// Create new navigation property to agreements for identityGovernance
+        /// Represents a tenant's customizable terms of use agreement that's created and managed with Azure Active Directory (Azure AD).
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="h">Request headers</param>
         /// <param name="model"></param>
@@ -189,7 +189,7 @@ namespace ApiSdk.IdentityGovernance.TermsOfUse.Agreements {
             var requestInfo = CreatePostRequestInformation(model, h, o);
             return await RequestAdapter.SendAsync<Agreement>(requestInfo, responseHandler, cancellationToken);
         }
-        /// <summary>Get agreements from identityGovernance</summary>
+        /// <summary>Represents a tenant's customizable terms of use agreement that's created and managed with Azure Active Directory (Azure AD).</summary>
         public class GetQueryParameters : QueryParametersBase {
             /// <summary>Include count of items</summary>
             public bool? Count { get; set; }

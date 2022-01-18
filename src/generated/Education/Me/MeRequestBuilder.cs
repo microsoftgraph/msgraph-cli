@@ -1,3 +1,4 @@
+using ApiSdk.Education.Me.Assignments;
 using ApiSdk.Education.Me.Classes;
 using ApiSdk.Education.Me.Rubrics;
 using ApiSdk.Education.Me.Schools;
@@ -24,6 +25,13 @@ namespace ApiSdk.Education.Me {
         private IRequestAdapter RequestAdapter { get; set; }
         /// <summary>Url template to use to build the URL for the current request builder</summary>
         private string UrlTemplate { get; set; }
+        public Command BuildAssignmentsCommand() {
+            var command = new Command("assignments");
+            var builder = new ApiSdk.Education.Me.Assignments.AssignmentsRequestBuilder(PathParameters, RequestAdapter);
+            command.AddCommand(builder.BuildCreateCommand());
+            command.AddCommand(builder.BuildListCommand());
+            return command;
+        }
         public Command BuildClassesCommand() {
             var command = new Command("classes");
             var builder = new ApiSdk.Education.Me.Classes.ClassesRequestBuilder(PathParameters, RequestAdapter);

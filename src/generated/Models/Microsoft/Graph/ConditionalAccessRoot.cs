@@ -7,7 +7,7 @@ namespace ApiSdk.Models.Microsoft.Graph {
     public class ConditionalAccessRoot : Entity, IParsable {
         /// <summary>Read-only. Nullable. Returns a collection of the specified named locations.</summary>
         public List<NamedLocation> NamedLocations { get; set; }
-        /// <summary>Read-only. Nullable. Returns a collection of the specified Conditional Access (CA) policies.</summary>
+        /// <summary>Read-only. Nullable. Returns a collection of the specified Conditional Access policies.</summary>
         public List<ConditionalAccessPolicy> Policies { get; set; }
         /// <summary>
         /// The deserialization information for the current model

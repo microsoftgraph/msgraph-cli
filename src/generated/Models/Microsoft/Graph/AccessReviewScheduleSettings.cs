@@ -11,7 +11,7 @@ namespace ApiSdk.Models.Microsoft.Graph {
         public List<AccessReviewApplyAction> ApplyActions { get; set; }
         /// <summary>Indicates whether decisions are automatically applied. When set to false, an admin must apply the decisions manually once the reviewer completes the access review. When set to true, decisions are applied automatically after the access review instance duration ends, whether or not the reviewers have responded. Default value is false.</summary>
         public bool? AutoApplyDecisionsEnabled { get; set; }
-        /// <summary>Decision chosen if defaultDecisionEnabled is true. Can be one of Approve, Deny, or Recommendation.</summary>
+        /// <summary>Decision chosen if defaultDecisionEnabled is enabled. Can be one of Approve, Deny, or Recommendation.</summary>
         public string DefaultDecision { get; set; }
         /// <summary>Indicates whether the default decision is enabled or disabled when reviewers do not respond. Default value is false.</summary>
         public bool? DefaultDecisionEnabled { get; set; }
@@ -23,7 +23,7 @@ namespace ApiSdk.Models.Microsoft.Graph {
         public bool? MailNotificationsEnabled { get; set; }
         /// <summary>Indicates whether decision recommendations are enabled or disabled.</summary>
         public bool? RecommendationsEnabled { get; set; }
-        /// <summary>Detailed settings for recurrence using the standard Outlook recurrence object. Only weekly and absoluteMonthly on recurrencePattern are supported. Use the property startDate on recurrenceRange to determine the day the review starts.</summary>
+        /// <summary>Detailed settings for recurrence using the standard Outlook recurrence object. Note: Only dayOfMonth, interval, and type (weekly, absoluteMonthly) properties are supported. Use the property startDate on recurrenceRange to determine the day the review starts.</summary>
         public PatternedRecurrence Recurrence { get; set; }
         /// <summary>Indicates whether reminders are enabled or disabled. Default value is false.</summary>
         public bool? ReminderNotificationsEnabled { get; set; }

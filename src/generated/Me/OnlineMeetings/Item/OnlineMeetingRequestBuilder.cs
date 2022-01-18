@@ -1,3 +1,4 @@
+using ApiSdk.Me.OnlineMeetings.Item.AttendanceReports;
 using ApiSdk.Me.OnlineMeetings.Item.AttendeeReport;
 using ApiSdk.Models.Microsoft.Graph;
 using Microsoft.Kiota.Abstractions;
@@ -20,6 +21,13 @@ namespace ApiSdk.Me.OnlineMeetings.Item {
         private IRequestAdapter RequestAdapter { get; set; }
         /// <summary>Url template to use to build the URL for the current request builder</summary>
         private string UrlTemplate { get; set; }
+        public Command BuildAttendanceReportsCommand() {
+            var command = new Command("attendance-reports");
+            var builder = new ApiSdk.Me.OnlineMeetings.Item.AttendanceReports.AttendanceReportsRequestBuilder(PathParameters, RequestAdapter);
+            command.AddCommand(builder.BuildCreateCommand());
+            command.AddCommand(builder.BuildListCommand());
+            return command;
+        }
         public Command BuildAttendeeReportCommand() {
             var command = new Command("attendee-report");
             var builder = new ApiSdk.Me.OnlineMeetings.Item.AttendeeReport.AttendeeReportRequestBuilder(PathParameters, RequestAdapter);

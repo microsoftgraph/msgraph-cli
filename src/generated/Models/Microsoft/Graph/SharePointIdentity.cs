@@ -5,6 +5,7 @@ using System.IO;
 using System.Linq;
 namespace ApiSdk.Models.Microsoft.Graph {
     public class SharePointIdentity : Identity, IParsable {
+        /// <summary>The sign in name of the SharePoint identity.</summary>
         public string LoginName { get; set; }
         /// <summary>
         /// The deserialization information for the current model

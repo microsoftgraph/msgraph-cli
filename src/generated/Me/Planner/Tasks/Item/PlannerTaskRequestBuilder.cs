@@ -40,11 +40,11 @@ namespace ApiSdk.Me.Planner.Tasks.Item {
             return command;
         }
         /// <summary>
-        /// Read-only. Nullable. Returns the plannerPlans shared with the user.
+        /// Read-only. Nullable. Returns the plannerTasks assigned to the user.
         /// </summary>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
-            command.Description = "Read-only. Nullable. Returns the plannerPlans shared with the user.";
+            command.Description = "Read-only. Nullable. Returns the plannerTasks assigned to the user.";
             // Create options for all the parameters
             var plannerTaskIdOption = new Option<string>("--plannertask-id", description: "key: id of plannerTask");
             plannerTaskIdOption.IsRequired = true;
@@ -67,11 +67,11 @@ namespace ApiSdk.Me.Planner.Tasks.Item {
             return command;
         }
         /// <summary>
-        /// Read-only. Nullable. Returns the plannerPlans shared with the user.
+        /// Read-only. Nullable. Returns the plannerTasks assigned to the user.
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "Read-only. Nullable. Returns the plannerPlans shared with the user.";
+            command.Description = "Read-only. Nullable. Returns the plannerTasks assigned to the user.";
             // Create options for all the parameters
             var plannerTaskIdOption = new Option<string>("--plannertask-id", description: "key: id of plannerTask");
             plannerTaskIdOption.IsRequired = true;
@@ -101,11 +101,11 @@ namespace ApiSdk.Me.Planner.Tasks.Item {
             return command;
         }
         /// <summary>
-        /// Read-only. Nullable. Returns the plannerPlans shared with the user.
+        /// Read-only. Nullable. Returns the plannerTasks assigned to the user.
         /// </summary>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
-            command.Description = "Read-only. Nullable. Returns the plannerPlans shared with the user.";
+            command.Description = "Read-only. Nullable. Returns the plannerTasks assigned to the user.";
             // Create options for all the parameters
             var plannerTaskIdOption = new Option<string>("--plannertask-id", description: "key: id of plannerTask");
             plannerTaskIdOption.IsRequired = true;
@@ -147,7 +147,7 @@ namespace ApiSdk.Me.Planner.Tasks.Item {
             RequestAdapter = requestAdapter;
         }
         /// <summary>
-        /// Read-only. Nullable. Returns the plannerPlans shared with the user.
+        /// Read-only. Nullable. Returns the plannerTasks assigned to the user.
         /// <param name="h">Request headers</param>
         /// <param name="o">Request options</param>
         /// </summary>
@@ -162,7 +162,7 @@ namespace ApiSdk.Me.Planner.Tasks.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Read-only. Nullable. Returns the plannerPlans shared with the user.
+        /// Read-only. Nullable. Returns the plannerTasks assigned to the user.
         /// <param name="h">Request headers</param>
         /// <param name="o">Request options</param>
         /// <param name="q">Request query parameters</param>
@@ -183,7 +183,7 @@ namespace ApiSdk.Me.Planner.Tasks.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Read-only. Nullable. Returns the plannerPlans shared with the user.
+        /// Read-only. Nullable. Returns the plannerTasks assigned to the user.
         /// <param name="body"></param>
         /// <param name="h">Request headers</param>
         /// <param name="o">Request options</param>
@@ -201,7 +201,7 @@ namespace ApiSdk.Me.Planner.Tasks.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Read-only. Nullable. Returns the plannerPlans shared with the user.
+        /// Read-only. Nullable. Returns the plannerTasks assigned to the user.
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="h">Request headers</param>
         /// <param name="o">Request options</param>
@@ -212,7 +212,7 @@ namespace ApiSdk.Me.Planner.Tasks.Item {
             await RequestAdapter.SendNoContentAsync(requestInfo, responseHandler, cancellationToken);
         }
         /// <summary>
-        /// Read-only. Nullable. Returns the plannerPlans shared with the user.
+        /// Read-only. Nullable. Returns the plannerTasks assigned to the user.
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="h">Request headers</param>
         /// <param name="o">Request options</param>
@@ -224,7 +224,7 @@ namespace ApiSdk.Me.Planner.Tasks.Item {
             return await RequestAdapter.SendAsync<PlannerTask>(requestInfo, responseHandler, cancellationToken);
         }
         /// <summary>
-        /// Read-only. Nullable. Returns the plannerPlans shared with the user.
+        /// Read-only. Nullable. Returns the plannerTasks assigned to the user.
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="h">Request headers</param>
         /// <param name="model"></param>
@@ -236,7 +236,7 @@ namespace ApiSdk.Me.Planner.Tasks.Item {
             var requestInfo = CreatePatchRequestInformation(model, h, o);
             await RequestAdapter.SendNoContentAsync(requestInfo, responseHandler, cancellationToken);
         }
-        /// <summary>Read-only. Nullable. Returns the plannerPlans shared with the user.</summary>
+        /// <summary>Read-only. Nullable. Returns the plannerTasks assigned to the user.</summary>
         public class GetQueryParameters : QueryParametersBase {
             /// <summary>Expand related entities</summary>
             public string[] Expand { get; set; }

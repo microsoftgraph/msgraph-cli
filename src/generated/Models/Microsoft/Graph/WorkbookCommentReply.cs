@@ -5,9 +5,9 @@ using System.IO;
 using System.Linq;
 namespace ApiSdk.Models.Microsoft.Graph {
     public class WorkbookCommentReply : Entity, IParsable {
-        /// <summary>The content of a comment reply.</summary>
+        /// <summary>The content of replied comment.</summary>
         public string Content { get; set; }
-        /// <summary>Indicates the type for the comment reply.</summary>
+        /// <summary>Indicates the type for the replied comment.</summary>
         public string ContentType { get; set; }
         /// <summary>
         /// The deserialization information for the current model

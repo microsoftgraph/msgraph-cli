@@ -7,7 +7,7 @@ namespace ApiSdk.Models.Microsoft.Graph {
     public class MeetingTimeSuggestionsResult : IParsable {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
-        /// <summary>A reason for not returning any meeting suggestions. The possible values are: attendeesUnavailable, attendeesUnavailableOrUnknown, locationsUnavailable, organizerUnavailable, or unknown. This property is an empty string if the meetingTimeSuggestions property does include any meeting suggestions.</summary>
+        /// <summary>A reason for not returning any meeting suggestions. Possible values are: attendeesUnavailable, attendeesUnavailableOrUnknown, locationsUnavailable, organizerUnavailable, or unknown. This property is an empty string if the meetingTimeSuggestions property does include any meeting suggestions.</summary>
         public string EmptySuggestionsReason { get; set; }
         /// <summary>An array of meeting suggestions.</summary>
         public List<MeetingTimeSuggestion> MeetingTimeSuggestions { get; set; }

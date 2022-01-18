@@ -64,6 +64,7 @@ namespace ApiSdk.Education {
         public Command BuildMeCommand() {
             var command = new Command("me");
             var builder = new ApiSdk.Education.Me.MeRequestBuilder(PathParameters, RequestAdapter);
+            command.AddCommand(builder.BuildAssignmentsCommand());
             command.AddCommand(builder.BuildClassesCommand());
             command.AddCommand(builder.BuildDeleteCommand());
             command.AddCommand(builder.BuildGetCommand());

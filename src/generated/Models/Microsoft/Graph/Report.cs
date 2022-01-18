@@ -7,7 +7,7 @@ namespace ApiSdk.Models.Microsoft.Graph {
     public class Report : IParsable {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
-        /// <summary>Not yet documented</summary>
+        /// <summary>Report content; details vary by report type.</summary>
         public byte[] Content { get; set; }
         /// <summary>
         /// Instantiates a new report and sets the default values.

@@ -30,11 +30,11 @@ namespace ApiSdk.Security.Alerts {
             return commands;
         }
         /// <summary>
-        /// Read-only. Nullable.
+        /// Notifications for suspicious or potential security issues in a customer’s tenant.
         /// </summary>
         public Command BuildCreateCommand() {
             var command = new Command("create");
-            command.Description = "Read-only. Nullable.";
+            command.Description = "Notifications for suspicious or potential security issues in a customer’s tenant.";
             // Create options for all the parameters
             var bodyOption = new Option<string>("--body");
             bodyOption.IsRequired = true;
@@ -57,11 +57,11 @@ namespace ApiSdk.Security.Alerts {
             return command;
         }
         /// <summary>
-        /// Read-only. Nullable.
+        /// Notifications for suspicious or potential security issues in a customer’s tenant.
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "Read-only. Nullable.";
+            command.Description = "Notifications for suspicious or potential security issues in a customer’s tenant.";
             // Create options for all the parameters
             var topOption = new Option<int?>("--top", description: "Show only the first n items");
             topOption.IsRequired = false;
@@ -126,7 +126,7 @@ namespace ApiSdk.Security.Alerts {
             RequestAdapter = requestAdapter;
         }
         /// <summary>
-        /// Read-only. Nullable.
+        /// Notifications for suspicious or potential security issues in a customer’s tenant.
         /// <param name="h">Request headers</param>
         /// <param name="o">Request options</param>
         /// <param name="q">Request query parameters</param>
@@ -147,7 +147,7 @@ namespace ApiSdk.Security.Alerts {
             return requestInfo;
         }
         /// <summary>
-        /// Read-only. Nullable.
+        /// Notifications for suspicious or potential security issues in a customer’s tenant.
         /// <param name="body"></param>
         /// <param name="h">Request headers</param>
         /// <param name="o">Request options</param>
@@ -165,7 +165,7 @@ namespace ApiSdk.Security.Alerts {
             return requestInfo;
         }
         /// <summary>
-        /// Read-only. Nullable.
+        /// Notifications for suspicious or potential security issues in a customer’s tenant.
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="h">Request headers</param>
         /// <param name="o">Request options</param>
@@ -177,7 +177,7 @@ namespace ApiSdk.Security.Alerts {
             return await RequestAdapter.SendAsync<AlertsResponse>(requestInfo, responseHandler, cancellationToken);
         }
         /// <summary>
-        /// Read-only. Nullable.
+        /// Notifications for suspicious or potential security issues in a customer’s tenant.
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="h">Request headers</param>
         /// <param name="model"></param>
@@ -189,7 +189,7 @@ namespace ApiSdk.Security.Alerts {
             var requestInfo = CreatePostRequestInformation(model, h, o);
             return await RequestAdapter.SendAsync<Alert>(requestInfo, responseHandler, cancellationToken);
         }
-        /// <summary>Read-only. Nullable.</summary>
+        /// <summary>Notifications for suspicious or potential security issues in a customer’s tenant.</summary>
         public class GetQueryParameters : QueryParametersBase {
             /// <summary>Include count of items</summary>
             public bool? Count { get; set; }

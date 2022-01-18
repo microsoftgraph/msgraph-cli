@@ -20,11 +20,11 @@ namespace ApiSdk.ServicePrincipals.Item.TokenIssuancePolicies {
         /// <summary>Url template to use to build the URL for the current request builder</summary>
         private string UrlTemplate { get; set; }
         /// <summary>
-        /// The tokenIssuancePolicies assigned to this service principal.
+        /// The tokenIssuancePolicies assigned to this service principal. Supports $expand.
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "The tokenIssuancePolicies assigned to this service principal.";
+            command.Description = "The tokenIssuancePolicies assigned to this service principal. Supports $expand.";
             // Create options for all the parameters
             var servicePrincipalIdOption = new Option<string>("--serviceprincipal-id", description: "key: id of servicePrincipal");
             servicePrincipalIdOption.IsRequired = true;
@@ -99,7 +99,7 @@ namespace ApiSdk.ServicePrincipals.Item.TokenIssuancePolicies {
             RequestAdapter = requestAdapter;
         }
         /// <summary>
-        /// The tokenIssuancePolicies assigned to this service principal.
+        /// The tokenIssuancePolicies assigned to this service principal. Supports $expand.
         /// <param name="h">Request headers</param>
         /// <param name="o">Request options</param>
         /// <param name="q">Request query parameters</param>
@@ -120,7 +120,7 @@ namespace ApiSdk.ServicePrincipals.Item.TokenIssuancePolicies {
             return requestInfo;
         }
         /// <summary>
-        /// The tokenIssuancePolicies assigned to this service principal.
+        /// The tokenIssuancePolicies assigned to this service principal. Supports $expand.
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="h">Request headers</param>
         /// <param name="o">Request options</param>
@@ -131,7 +131,7 @@ namespace ApiSdk.ServicePrincipals.Item.TokenIssuancePolicies {
             var requestInfo = CreateGetRequestInformation(q, h, o);
             return await RequestAdapter.SendAsync<TokenIssuancePoliciesResponse>(requestInfo, responseHandler, cancellationToken);
         }
-        /// <summary>The tokenIssuancePolicies assigned to this service principal.</summary>
+        /// <summary>The tokenIssuancePolicies assigned to this service principal. Supports $expand.</summary>
         public class GetQueryParameters : QueryParametersBase {
             /// <summary>Include count of items</summary>
             public bool? Count { get; set; }

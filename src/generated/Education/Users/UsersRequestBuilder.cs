@@ -24,6 +24,7 @@ namespace ApiSdk.Education.Users {
         public List<Command> BuildCommand() {
             var builder = new EducationUserRequestBuilder(PathParameters, RequestAdapter);
             var commands = new List<Command> { 
+                builder.BuildAssignmentsCommand(),
                 builder.BuildClassesCommand(),
                 builder.BuildDeleteCommand(),
                 builder.BuildGetCommand(),

@@ -11,7 +11,7 @@ namespace ApiSdk.Models.Microsoft.Graph {
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>List of values of built-in controls required by the policy. Possible values: block, mfa, compliantDevice, domainJoinedDevice, approvedApplication, compliantApplication, passwordChange, unknownFutureValue.</summary>
         public List<ConditionalAccessGrantControl?> BuiltInControls { get; set; }
-        /// <summary>List of custom controls IDs required by the policy. For more information, see Custom controls.</summary>
+        /// <summary>List of custom controls IDs required by the policy. To learn more about custom control, see Custom controls (preview).</summary>
         public List<string> CustomAuthenticationFactors { get; set; }
         /// <summary>List of terms of use IDs required by the policy.</summary>
         public List<string> TermsOfUse { get; set; }

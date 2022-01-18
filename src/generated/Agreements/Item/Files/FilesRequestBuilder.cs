@@ -31,11 +31,11 @@ namespace ApiSdk.Agreements.Item.Files {
             return commands;
         }
         /// <summary>
-        /// PDFs linked to this agreement. This property is in the process of being deprecated. Use the  file property instead.
+        /// PDFs linked to this agreement. Note: This property is in the process of being deprecated. Use the  file property instead.
         /// </summary>
         public Command BuildCreateCommand() {
             var command = new Command("create");
-            command.Description = "PDFs linked to this agreement. This property is in the process of being deprecated. Use the  file property instead.";
+            command.Description = "PDFs linked to this agreement. Note: This property is in the process of being deprecated. Use the  file property instead.";
             // Create options for all the parameters
             var agreementIdOption = new Option<string>("--agreement-id", description: "key: id of agreement");
             agreementIdOption.IsRequired = true;
@@ -61,11 +61,11 @@ namespace ApiSdk.Agreements.Item.Files {
             return command;
         }
         /// <summary>
-        /// PDFs linked to this agreement. This property is in the process of being deprecated. Use the  file property instead.
+        /// PDFs linked to this agreement. Note: This property is in the process of being deprecated. Use the  file property instead.
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "PDFs linked to this agreement. This property is in the process of being deprecated. Use the  file property instead.";
+            command.Description = "PDFs linked to this agreement. Note: This property is in the process of being deprecated. Use the  file property instead.";
             // Create options for all the parameters
             var agreementIdOption = new Option<string>("--agreement-id", description: "key: id of agreement");
             agreementIdOption.IsRequired = true;
@@ -133,7 +133,7 @@ namespace ApiSdk.Agreements.Item.Files {
             RequestAdapter = requestAdapter;
         }
         /// <summary>
-        /// PDFs linked to this agreement. This property is in the process of being deprecated. Use the  file property instead.
+        /// PDFs linked to this agreement. Note: This property is in the process of being deprecated. Use the  file property instead.
         /// <param name="h">Request headers</param>
         /// <param name="o">Request options</param>
         /// <param name="q">Request query parameters</param>
@@ -154,7 +154,7 @@ namespace ApiSdk.Agreements.Item.Files {
             return requestInfo;
         }
         /// <summary>
-        /// PDFs linked to this agreement. This property is in the process of being deprecated. Use the  file property instead.
+        /// PDFs linked to this agreement. Note: This property is in the process of being deprecated. Use the  file property instead.
         /// <param name="body"></param>
         /// <param name="h">Request headers</param>
         /// <param name="o">Request options</param>
@@ -172,7 +172,7 @@ namespace ApiSdk.Agreements.Item.Files {
             return requestInfo;
         }
         /// <summary>
-        /// PDFs linked to this agreement. This property is in the process of being deprecated. Use the  file property instead.
+        /// PDFs linked to this agreement. Note: This property is in the process of being deprecated. Use the  file property instead.
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="h">Request headers</param>
         /// <param name="o">Request options</param>
@@ -184,7 +184,7 @@ namespace ApiSdk.Agreements.Item.Files {
             return await RequestAdapter.SendAsync<FilesResponse>(requestInfo, responseHandler, cancellationToken);
         }
         /// <summary>
-        /// PDFs linked to this agreement. This property is in the process of being deprecated. Use the  file property instead.
+        /// PDFs linked to this agreement. Note: This property is in the process of being deprecated. Use the  file property instead.
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="h">Request headers</param>
         /// <param name="model"></param>
@@ -196,7 +196,7 @@ namespace ApiSdk.Agreements.Item.Files {
             var requestInfo = CreatePostRequestInformation(model, h, o);
             return await RequestAdapter.SendAsync<AgreementFileLocalization>(requestInfo, responseHandler, cancellationToken);
         }
-        /// <summary>PDFs linked to this agreement. This property is in the process of being deprecated. Use the  file property instead.</summary>
+        /// <summary>PDFs linked to this agreement. Note: This property is in the process of being deprecated. Use the  file property instead.</summary>
         public class GetQueryParameters : QueryParametersBase {
             /// <summary>Include count of items</summary>
             public bool? Count { get; set; }

@@ -15,7 +15,7 @@ namespace ApiSdk.Models.Microsoft.Graph {
         public DateTimeOffset? CreatedDateTime { get; set; }
         /// <summary>The expected assessment from submitter. Possible values are: block, unblock.</summary>
         public ThreatExpectedAssessment? ExpectedAssessment { get; set; }
-        /// <summary>The source of the threat assessment request. Possible values are: administrator.</summary>
+        /// <summary>The source of the threat assessment request. Possible values are: user, administrator.</summary>
         public ThreatAssessmentRequestSource? RequestSource { get; set; }
         /// <summary>A collection of threat assessment results. Read-only. By default, a GET /threatAssessmentRequests/{id} does not return this property unless you apply $expand on it.</summary>
         public List<ThreatAssessmentResult> Results { get; set; }

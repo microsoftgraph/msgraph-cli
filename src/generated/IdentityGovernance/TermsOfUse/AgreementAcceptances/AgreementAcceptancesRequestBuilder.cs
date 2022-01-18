@@ -30,11 +30,11 @@ namespace ApiSdk.IdentityGovernance.TermsOfUse.AgreementAcceptances {
             return commands;
         }
         /// <summary>
-        /// Create new navigation property to agreementAcceptances for identityGovernance
+        /// Represents the current status of a user's response to a company's customizable terms of use agreement.
         /// </summary>
         public Command BuildCreateCommand() {
             var command = new Command("create");
-            command.Description = "Create new navigation property to agreementAcceptances for identityGovernance";
+            command.Description = "Represents the current status of a user's response to a company's customizable terms of use agreement.";
             // Create options for all the parameters
             var bodyOption = new Option<string>("--body");
             bodyOption.IsRequired = true;
@@ -57,11 +57,11 @@ namespace ApiSdk.IdentityGovernance.TermsOfUse.AgreementAcceptances {
             return command;
         }
         /// <summary>
-        /// Get agreementAcceptances from identityGovernance
+        /// Represents the current status of a user's response to a company's customizable terms of use agreement.
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "Get agreementAcceptances from identityGovernance";
+            command.Description = "Represents the current status of a user's response to a company's customizable terms of use agreement.";
             // Create options for all the parameters
             var topOption = new Option<int?>("--top", description: "Show only the first n items");
             topOption.IsRequired = false;
@@ -126,7 +126,7 @@ namespace ApiSdk.IdentityGovernance.TermsOfUse.AgreementAcceptances {
             RequestAdapter = requestAdapter;
         }
         /// <summary>
-        /// Get agreementAcceptances from identityGovernance
+        /// Represents the current status of a user's response to a company's customizable terms of use agreement.
         /// <param name="h">Request headers</param>
         /// <param name="o">Request options</param>
         /// <param name="q">Request query parameters</param>
@@ -147,7 +147,7 @@ namespace ApiSdk.IdentityGovernance.TermsOfUse.AgreementAcceptances {
             return requestInfo;
         }
         /// <summary>
-        /// Create new navigation property to agreementAcceptances for identityGovernance
+        /// Represents the current status of a user's response to a company's customizable terms of use agreement.
         /// <param name="body"></param>
         /// <param name="h">Request headers</param>
         /// <param name="o">Request options</param>
@@ -165,7 +165,7 @@ namespace ApiSdk.IdentityGovernance.TermsOfUse.AgreementAcceptances {
             return requestInfo;
         }
         /// <summary>
-        /// Get agreementAcceptances from identityGovernance
+        /// Represents the current status of a user's response to a company's customizable terms of use agreement.
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="h">Request headers</param>
         /// <param name="o">Request options</param>
@@ -177,7 +177,7 @@ namespace ApiSdk.IdentityGovernance.TermsOfUse.AgreementAcceptances {
             return await RequestAdapter.SendAsync<AgreementAcceptancesResponse>(requestInfo, responseHandler, cancellationToken);
         }
         /// <summary>
-        /// Create new navigation property to agreementAcceptances for identityGovernance
+        /// Represents the current status of a user's response to a company's customizable terms of use agreement.
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="h">Request headers</param>
         /// <param name="model"></param>
@@ -189,7 +189,7 @@ namespace ApiSdk.IdentityGovernance.TermsOfUse.AgreementAcceptances {
             var requestInfo = CreatePostRequestInformation(model, h, o);
             return await RequestAdapter.SendAsync<AgreementAcceptance>(requestInfo, responseHandler, cancellationToken);
         }
-        /// <summary>Get agreementAcceptances from identityGovernance</summary>
+        /// <summary>Represents the current status of a user's response to a company's customizable terms of use agreement.</summary>
         public class GetQueryParameters : QueryParametersBase {
             /// <summary>Include count of items</summary>
             public bool? Count { get; set; }

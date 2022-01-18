@@ -7,7 +7,7 @@ namespace ApiSdk.Models.Microsoft.Graph {
     public class DriveItem : BaseItem, IParsable {
         /// <summary>Analytics about the view activities that took place on this item.</summary>
         public ItemAnalytics Analytics { get; set; }
-        /// <summary>Audio metadata, if the item is an audio file. Read-only.</summary>
+        /// <summary>Audio metadata, if the item is an audio file. Read-only. Only on OneDrive Personal.</summary>
         public Audio Audio { get; set; }
         public Bundle Bundle { get; set; }
         /// <summary>Collection containing Item objects for the immediate children of Item. Only items representing folders have children. Read-only. Nullable.</summary>
@@ -34,7 +34,7 @@ namespace ApiSdk.Models.Microsoft.Graph {
         public Malware Malware { get; set; }
         /// <summary>If present, indicates that this item is a package instead of a folder or file. Packages are treated like files in some contexts and folders in others. Read-only.</summary>
         public Package Package { get; set; }
-        /// <summary>If present, indicates that one or more operations that might affect the state of the driveItem are pending completion. Read-only.</summary>
+        /// <summary>If present, indicates that indicates that one or more operations that may affect the state of the driveItem are pending completion. Read-only.</summary>
         public PendingOperations PendingOperations { get; set; }
         /// <summary>The set of permissions for the item. Read-only. Nullable.</summary>
         public List<ApiSdk.Models.Microsoft.Graph.Permission> Permissions { get; set; }

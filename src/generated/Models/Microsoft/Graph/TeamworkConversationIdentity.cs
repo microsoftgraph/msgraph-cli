@@ -5,7 +5,7 @@ using System.IO;
 using System.Linq;
 namespace ApiSdk.Models.Microsoft.Graph {
     public class TeamworkConversationIdentity : Identity, IParsable {
-        /// <summary>Type of conversation. Possible values are: team, channel, chat, and unknownFutureValue.</summary>
+        /// <summary>Type of conversation. Possible values are: team, channel, and chat.</summary>
         public TeamworkConversationIdentityType? ConversationIdentityType { get; set; }
         /// <summary>
         /// The deserialization information for the current model

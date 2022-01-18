@@ -33,11 +33,11 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.Assignments {
             return commands;
         }
         /// <summary>
-        /// Create new navigation property to assignments for identityGovernance
+        /// Represents the grant of an access package to a subject (user or group).
         /// </summary>
         public Command BuildCreateCommand() {
             var command = new Command("create");
-            command.Description = "Create new navigation property to assignments for identityGovernance";
+            command.Description = "Represents the grant of an access package to a subject (user or group).";
             // Create options for all the parameters
             var bodyOption = new Option<string>("--body");
             bodyOption.IsRequired = true;
@@ -60,11 +60,11 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.Assignments {
             return command;
         }
         /// <summary>
-        /// Get assignments from identityGovernance
+        /// Represents the grant of an access package to a subject (user or group).
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "Get assignments from identityGovernance";
+            command.Description = "Represents the grant of an access package to a subject (user or group).";
             // Create options for all the parameters
             var topOption = new Option<int?>("--top", description: "Show only the first n items");
             topOption.IsRequired = false;
@@ -129,7 +129,7 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.Assignments {
             RequestAdapter = requestAdapter;
         }
         /// <summary>
-        /// Get assignments from identityGovernance
+        /// Represents the grant of an access package to a subject (user or group).
         /// <param name="h">Request headers</param>
         /// <param name="o">Request options</param>
         /// <param name="q">Request query parameters</param>
@@ -150,7 +150,7 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.Assignments {
             return requestInfo;
         }
         /// <summary>
-        /// Create new navigation property to assignments for identityGovernance
+        /// Represents the grant of an access package to a subject (user or group).
         /// <param name="body"></param>
         /// <param name="h">Request headers</param>
         /// <param name="o">Request options</param>
@@ -176,7 +176,7 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.Assignments {
             return new FilterByCurrentUserWithOnRequestBuilder(PathParameters, RequestAdapter, on);
         }
         /// <summary>
-        /// Get assignments from identityGovernance
+        /// Represents the grant of an access package to a subject (user or group).
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="h">Request headers</param>
         /// <param name="o">Request options</param>
@@ -188,7 +188,7 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.Assignments {
             return await RequestAdapter.SendAsync<AssignmentsResponse>(requestInfo, responseHandler, cancellationToken);
         }
         /// <summary>
-        /// Create new navigation property to assignments for identityGovernance
+        /// Represents the grant of an access package to a subject (user or group).
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="h">Request headers</param>
         /// <param name="model"></param>
@@ -200,7 +200,7 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.Assignments {
             var requestInfo = CreatePostRequestInformation(model, h, o);
             return await RequestAdapter.SendAsync<AccessPackageAssignment>(requestInfo, responseHandler, cancellationToken);
         }
-        /// <summary>Get assignments from identityGovernance</summary>
+        /// <summary>Represents the grant of an access package to a subject (user or group).</summary>
         public class GetQueryParameters : QueryParametersBase {
             /// <summary>Include count of items</summary>
             public bool? Count { get; set; }

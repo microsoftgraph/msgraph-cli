@@ -21,11 +21,11 @@ namespace ApiSdk.Groups.Item.Planner {
         /// <summary>Url template to use to build the URL for the current request builder</summary>
         private string UrlTemplate { get; set; }
         /// <summary>
-        /// Entry-point to Planner resource that might exist for a Unified Group.
+        /// Selective Planner services available to the group. Read-only. Nullable.
         /// </summary>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
-            command.Description = "Entry-point to Planner resource that might exist for a Unified Group.";
+            command.Description = "Selective Planner services available to the group. Read-only. Nullable.";
             // Create options for all the parameters
             var groupIdOption = new Option<string>("--group-id", description: "key: id of group");
             groupIdOption.IsRequired = true;
@@ -40,11 +40,11 @@ namespace ApiSdk.Groups.Item.Planner {
             return command;
         }
         /// <summary>
-        /// Entry-point to Planner resource that might exist for a Unified Group.
+        /// Selective Planner services available to the group. Read-only. Nullable.
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "Entry-point to Planner resource that might exist for a Unified Group.";
+            command.Description = "Selective Planner services available to the group. Read-only. Nullable.";
             // Create options for all the parameters
             var groupIdOption = new Option<string>("--group-id", description: "key: id of group");
             groupIdOption.IsRequired = true;
@@ -74,11 +74,11 @@ namespace ApiSdk.Groups.Item.Planner {
             return command;
         }
         /// <summary>
-        /// Entry-point to Planner resource that might exist for a Unified Group.
+        /// Selective Planner services available to the group. Read-only. Nullable.
         /// </summary>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
-            command.Description = "Entry-point to Planner resource that might exist for a Unified Group.";
+            command.Description = "Selective Planner services available to the group. Read-only. Nullable.";
             // Create options for all the parameters
             var groupIdOption = new Option<string>("--group-id", description: "key: id of group");
             groupIdOption.IsRequired = true;
@@ -119,7 +119,7 @@ namespace ApiSdk.Groups.Item.Planner {
             RequestAdapter = requestAdapter;
         }
         /// <summary>
-        /// Entry-point to Planner resource that might exist for a Unified Group.
+        /// Selective Planner services available to the group. Read-only. Nullable.
         /// <param name="h">Request headers</param>
         /// <param name="o">Request options</param>
         /// </summary>
@@ -134,7 +134,7 @@ namespace ApiSdk.Groups.Item.Planner {
             return requestInfo;
         }
         /// <summary>
-        /// Entry-point to Planner resource that might exist for a Unified Group.
+        /// Selective Planner services available to the group. Read-only. Nullable.
         /// <param name="h">Request headers</param>
         /// <param name="o">Request options</param>
         /// <param name="q">Request query parameters</param>
@@ -155,7 +155,7 @@ namespace ApiSdk.Groups.Item.Planner {
             return requestInfo;
         }
         /// <summary>
-        /// Entry-point to Planner resource that might exist for a Unified Group.
+        /// Selective Planner services available to the group. Read-only. Nullable.
         /// <param name="body"></param>
         /// <param name="h">Request headers</param>
         /// <param name="o">Request options</param>
@@ -173,7 +173,7 @@ namespace ApiSdk.Groups.Item.Planner {
             return requestInfo;
         }
         /// <summary>
-        /// Entry-point to Planner resource that might exist for a Unified Group.
+        /// Selective Planner services available to the group. Read-only. Nullable.
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="h">Request headers</param>
         /// <param name="o">Request options</param>
@@ -184,7 +184,7 @@ namespace ApiSdk.Groups.Item.Planner {
             await RequestAdapter.SendNoContentAsync(requestInfo, responseHandler, cancellationToken);
         }
         /// <summary>
-        /// Entry-point to Planner resource that might exist for a Unified Group.
+        /// Selective Planner services available to the group. Read-only. Nullable.
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="h">Request headers</param>
         /// <param name="o">Request options</param>
@@ -196,7 +196,7 @@ namespace ApiSdk.Groups.Item.Planner {
             return await RequestAdapter.SendAsync<PlannerGroup>(requestInfo, responseHandler, cancellationToken);
         }
         /// <summary>
-        /// Entry-point to Planner resource that might exist for a Unified Group.
+        /// Selective Planner services available to the group. Read-only. Nullable.
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="h">Request headers</param>
         /// <param name="model"></param>
@@ -208,7 +208,7 @@ namespace ApiSdk.Groups.Item.Planner {
             var requestInfo = CreatePatchRequestInformation(model, h, o);
             await RequestAdapter.SendNoContentAsync(requestInfo, responseHandler, cancellationToken);
         }
-        /// <summary>Entry-point to Planner resource that might exist for a Unified Group.</summary>
+        /// <summary>Selective Planner services available to the group. Read-only. Nullable.</summary>
         public class GetQueryParameters : QueryParametersBase {
             /// <summary>Expand related entities</summary>
             public string[] Expand { get; set; }

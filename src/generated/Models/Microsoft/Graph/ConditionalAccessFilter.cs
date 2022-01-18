@@ -9,7 +9,7 @@ namespace ApiSdk.Models.Microsoft.Graph {
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>Mode to use for the filter. Possible values are include or exclude.</summary>
         public FilterMode? Mode { get; set; }
-        /// <summary>Rule syntax is similar to that used for membership rules for groups in Azure Active Directory (Azure AD). For details, see rules with multiple expressions</summary>
+        /// <summary>Rule syntax is similar to that used for membership rules for groups in Azure Active Directory. For details, see rules with multiple expressions</summary>
         public string Rule { get; set; }
         /// <summary>
         /// Instantiates a new conditionalAccessFilter and sets the default values.

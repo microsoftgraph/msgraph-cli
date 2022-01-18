@@ -35,11 +35,11 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.AssignmentRequests {
             return commands;
         }
         /// <summary>
-        /// Create new navigation property to assignmentRequests for identityGovernance
+        /// Represents access package assignment requests created by or on behalf of a user.
         /// </summary>
         public Command BuildCreateCommand() {
             var command = new Command("create");
-            command.Description = "Create new navigation property to assignmentRequests for identityGovernance";
+            command.Description = "Represents access package assignment requests created by or on behalf of a user.";
             // Create options for all the parameters
             var bodyOption = new Option<string>("--body");
             bodyOption.IsRequired = true;
@@ -62,11 +62,11 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.AssignmentRequests {
             return command;
         }
         /// <summary>
-        /// Get assignmentRequests from identityGovernance
+        /// Represents access package assignment requests created by or on behalf of a user.
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "Get assignmentRequests from identityGovernance";
+            command.Description = "Represents access package assignment requests created by or on behalf of a user.";
             // Create options for all the parameters
             var topOption = new Option<int?>("--top", description: "Show only the first n items");
             topOption.IsRequired = false;
@@ -131,7 +131,7 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.AssignmentRequests {
             RequestAdapter = requestAdapter;
         }
         /// <summary>
-        /// Get assignmentRequests from identityGovernance
+        /// Represents access package assignment requests created by or on behalf of a user.
         /// <param name="h">Request headers</param>
         /// <param name="o">Request options</param>
         /// <param name="q">Request query parameters</param>
@@ -152,7 +152,7 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.AssignmentRequests {
             return requestInfo;
         }
         /// <summary>
-        /// Create new navigation property to assignmentRequests for identityGovernance
+        /// Represents access package assignment requests created by or on behalf of a user.
         /// <param name="body"></param>
         /// <param name="h">Request headers</param>
         /// <param name="o">Request options</param>
@@ -178,7 +178,7 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.AssignmentRequests {
             return new FilterByCurrentUserWithOnRequestBuilder(PathParameters, RequestAdapter, on);
         }
         /// <summary>
-        /// Get assignmentRequests from identityGovernance
+        /// Represents access package assignment requests created by or on behalf of a user.
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="h">Request headers</param>
         /// <param name="o">Request options</param>
@@ -190,7 +190,7 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.AssignmentRequests {
             return await RequestAdapter.SendAsync<AssignmentRequestsResponse>(requestInfo, responseHandler, cancellationToken);
         }
         /// <summary>
-        /// Create new navigation property to assignmentRequests for identityGovernance
+        /// Represents access package assignment requests created by or on behalf of a user.
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="h">Request headers</param>
         /// <param name="model"></param>
@@ -202,7 +202,7 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.AssignmentRequests {
             var requestInfo = CreatePostRequestInformation(model, h, o);
             return await RequestAdapter.SendAsync<AccessPackageAssignmentRequest>(requestInfo, responseHandler, cancellationToken);
         }
-        /// <summary>Get assignmentRequests from identityGovernance</summary>
+        /// <summary>Represents access package assignment requests created by or on behalf of a user.</summary>
         public class GetQueryParameters : QueryParametersBase {
             /// <summary>Include count of items</summary>
             public bool? Count { get; set; }

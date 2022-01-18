@@ -30,11 +30,11 @@ namespace ApiSdk.Connections.Item.Groups.Item.Members {
             return commands;
         }
         /// <summary>
-        /// A member added to an externalGroup. You can add Azure Active Directory users, Azure Active Directory groups, or an externalGroup as members.
+        /// A member added to an externalGroup. You can add Azure Active Directory users, Azure Active Directory groups, or other externalGroups as members.
         /// </summary>
         public Command BuildCreateCommand() {
             var command = new Command("create");
-            command.Description = "A member added to an externalGroup. You can add Azure Active Directory users, Azure Active Directory groups, or an externalGroup as members.";
+            command.Description = "A member added to an externalGroup. You can add Azure Active Directory users, Azure Active Directory groups, or other externalGroups as members.";
             // Create options for all the parameters
             var externalConnectionIdOption = new Option<string>("--externalconnection-id", description: "key: id of externalConnection");
             externalConnectionIdOption.IsRequired = true;
@@ -63,11 +63,11 @@ namespace ApiSdk.Connections.Item.Groups.Item.Members {
             return command;
         }
         /// <summary>
-        /// A member added to an externalGroup. You can add Azure Active Directory users, Azure Active Directory groups, or an externalGroup as members.
+        /// A member added to an externalGroup. You can add Azure Active Directory users, Azure Active Directory groups, or other externalGroups as members.
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "A member added to an externalGroup. You can add Azure Active Directory users, Azure Active Directory groups, or an externalGroup as members.";
+            command.Description = "A member added to an externalGroup. You can add Azure Active Directory users, Azure Active Directory groups, or other externalGroups as members.";
             // Create options for all the parameters
             var externalConnectionIdOption = new Option<string>("--externalconnection-id", description: "key: id of externalConnection");
             externalConnectionIdOption.IsRequired = true;
@@ -138,7 +138,7 @@ namespace ApiSdk.Connections.Item.Groups.Item.Members {
             RequestAdapter = requestAdapter;
         }
         /// <summary>
-        /// A member added to an externalGroup. You can add Azure Active Directory users, Azure Active Directory groups, or an externalGroup as members.
+        /// A member added to an externalGroup. You can add Azure Active Directory users, Azure Active Directory groups, or other externalGroups as members.
         /// <param name="h">Request headers</param>
         /// <param name="o">Request options</param>
         /// <param name="q">Request query parameters</param>
@@ -159,7 +159,7 @@ namespace ApiSdk.Connections.Item.Groups.Item.Members {
             return requestInfo;
         }
         /// <summary>
-        /// A member added to an externalGroup. You can add Azure Active Directory users, Azure Active Directory groups, or an externalGroup as members.
+        /// A member added to an externalGroup. You can add Azure Active Directory users, Azure Active Directory groups, or other externalGroups as members.
         /// <param name="body"></param>
         /// <param name="h">Request headers</param>
         /// <param name="o">Request options</param>
@@ -177,7 +177,7 @@ namespace ApiSdk.Connections.Item.Groups.Item.Members {
             return requestInfo;
         }
         /// <summary>
-        /// A member added to an externalGroup. You can add Azure Active Directory users, Azure Active Directory groups, or an externalGroup as members.
+        /// A member added to an externalGroup. You can add Azure Active Directory users, Azure Active Directory groups, or other externalGroups as members.
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="h">Request headers</param>
         /// <param name="o">Request options</param>
@@ -189,7 +189,7 @@ namespace ApiSdk.Connections.Item.Groups.Item.Members {
             return await RequestAdapter.SendAsync<MembersResponse>(requestInfo, responseHandler, cancellationToken);
         }
         /// <summary>
-        /// A member added to an externalGroup. You can add Azure Active Directory users, Azure Active Directory groups, or an externalGroup as members.
+        /// A member added to an externalGroup. You can add Azure Active Directory users, Azure Active Directory groups, or other externalGroups as members.
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="h">Request headers</param>
         /// <param name="model"></param>
@@ -201,7 +201,7 @@ namespace ApiSdk.Connections.Item.Groups.Item.Members {
             var requestInfo = CreatePostRequestInformation(model, h, o);
             return await RequestAdapter.SendAsync<ApiSdk.Models.Microsoft.Graph.Identity>(requestInfo, responseHandler, cancellationToken);
         }
-        /// <summary>A member added to an externalGroup. You can add Azure Active Directory users, Azure Active Directory groups, or an externalGroup as members.</summary>
+        /// <summary>A member added to an externalGroup. You can add Azure Active Directory users, Azure Active Directory groups, or other externalGroups as members.</summary>
         public class GetQueryParameters : QueryParametersBase {
             /// <summary>Include count of items</summary>
             public bool? Count { get; set; }

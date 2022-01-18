@@ -35,6 +35,7 @@ using ApiSdk.GroupSettings;
 using ApiSdk.GroupSettingTemplates;
 using ApiSdk.Identity;
 using ApiSdk.IdentityGovernance;
+using ApiSdk.IdentityProtection;
 using ApiSdk.IdentityProviders;
 using ApiSdk.InformationProtection;
 using ApiSdk.Invitations;
@@ -57,6 +58,7 @@ using ApiSdk.Security;
 using ApiSdk.ServicePrincipals;
 using ApiSdk.Shares;
 using ApiSdk.Sites;
+using ApiSdk.Solutions;
 using ApiSdk.SubscribedSkus;
 using ApiSdk.Subscriptions;
 using ApiSdk.Teams;
@@ -221,6 +223,7 @@ namespace ApiSdk {
             command.AddCommand(BuildGroupSettingTemplatesCommand());
             command.AddCommand(BuildIdentityCommand());
             command.AddCommand(BuildIdentityGovernanceCommand());
+            command.AddCommand(BuildIdentityProtectionCommand());
             command.AddCommand(BuildIdentityProvidersCommand());
             command.AddCommand(BuildInformationProtectionCommand());
             command.AddCommand(BuildInvitationsCommand());
@@ -243,6 +246,7 @@ namespace ApiSdk {
             command.AddCommand(BuildServicePrincipalsCommand());
             command.AddCommand(BuildSharesCommand());
             command.AddCommand(BuildSitesCommand());
+            command.AddCommand(BuildSolutionsCommand());
             command.AddCommand(BuildSubscribedSkusCommand());
             command.AddCommand(BuildSubscriptionsCommand());
             command.AddCommand(BuildTeamsCommand());
@@ -536,6 +540,15 @@ namespace ApiSdk {
             command.AddCommand(builder.BuildTermsOfUseCommand());
             return command;
         }
+        public Command BuildIdentityProtectionCommand() {
+            var command = new Command("identity-protection");
+            var builder = new ApiSdk.IdentityProtection.IdentityProtectionRequestBuilder(PathParameters, RequestAdapter);
+            command.AddCommand(builder.BuildGetCommand());
+            command.AddCommand(builder.BuildPatchCommand());
+            command.AddCommand(builder.BuildRiskDetectionsCommand());
+            command.AddCommand(builder.BuildRiskyUsersCommand());
+            return command;
+        }
         public Command BuildIdentityProvidersCommand() {
             var command = new Command("identity-providers");
             var builder = new ApiSdk.IdentityProviders.IdentityProvidersRequestBuilder(PathParameters, RequestAdapter);
@@ -796,6 +809,15 @@ namespace ApiSdk {
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             command.AddCommand(builder.BuildRemoveCommand());
+            return command;
+        }
+        public Command BuildSolutionsCommand() {
+            var command = new Command("solutions");
+            var builder = new ApiSdk.Solutions.SolutionsRequestBuilder(PathParameters, RequestAdapter);
+            command.AddCommand(builder.BuildBookingBusinessesCommand());
+            command.AddCommand(builder.BuildBookingCurrenciesCommand());
+            command.AddCommand(builder.BuildGetCommand());
+            command.AddCommand(builder.BuildPatchCommand());
             return command;
         }
         public Command BuildSubscribedSkusCommand() {

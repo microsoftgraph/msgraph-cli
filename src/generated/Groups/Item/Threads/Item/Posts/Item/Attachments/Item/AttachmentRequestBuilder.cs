@@ -20,11 +20,11 @@ namespace ApiSdk.Groups.Item.Threads.Item.Posts.Item.Attachments.Item {
         /// <summary>Url template to use to build the URL for the current request builder</summary>
         private string UrlTemplate { get; set; }
         /// <summary>
-        /// Read-only. Nullable. Supports $expand.
+        /// The collection of fileAttachment, itemAttachment, and referenceAttachment attachments for the post. Read-only. Nullable. Supports $expand.
         /// </summary>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
-            command.Description = "Read-only. Nullable. Supports $expand.";
+            command.Description = "The collection of fileAttachment, itemAttachment, and referenceAttachment attachments for the post. Read-only. Nullable. Supports $expand.";
             // Create options for all the parameters
             var groupIdOption = new Option<string>("--group-id", description: "key: id of group");
             groupIdOption.IsRequired = true;
@@ -48,11 +48,11 @@ namespace ApiSdk.Groups.Item.Threads.Item.Posts.Item.Attachments.Item {
             return command;
         }
         /// <summary>
-        /// Read-only. Nullable. Supports $expand.
+        /// The collection of fileAttachment, itemAttachment, and referenceAttachment attachments for the post. Read-only. Nullable. Supports $expand.
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "Read-only. Nullable. Supports $expand.";
+            command.Description = "The collection of fileAttachment, itemAttachment, and referenceAttachment attachments for the post. Read-only. Nullable. Supports $expand.";
             // Create options for all the parameters
             var groupIdOption = new Option<string>("--group-id", description: "key: id of group");
             groupIdOption.IsRequired = true;
@@ -91,11 +91,11 @@ namespace ApiSdk.Groups.Item.Threads.Item.Posts.Item.Attachments.Item {
             return command;
         }
         /// <summary>
-        /// Read-only. Nullable. Supports $expand.
+        /// The collection of fileAttachment, itemAttachment, and referenceAttachment attachments for the post. Read-only. Nullable. Supports $expand.
         /// </summary>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
-            command.Description = "Read-only. Nullable. Supports $expand.";
+            command.Description = "The collection of fileAttachment, itemAttachment, and referenceAttachment attachments for the post. Read-only. Nullable. Supports $expand.";
             // Create options for all the parameters
             var groupIdOption = new Option<string>("--group-id", description: "key: id of group");
             groupIdOption.IsRequired = true;
@@ -138,7 +138,7 @@ namespace ApiSdk.Groups.Item.Threads.Item.Posts.Item.Attachments.Item {
             RequestAdapter = requestAdapter;
         }
         /// <summary>
-        /// Read-only. Nullable. Supports $expand.
+        /// The collection of fileAttachment, itemAttachment, and referenceAttachment attachments for the post. Read-only. Nullable. Supports $expand.
         /// <param name="h">Request headers</param>
         /// <param name="o">Request options</param>
         /// </summary>
@@ -153,7 +153,7 @@ namespace ApiSdk.Groups.Item.Threads.Item.Posts.Item.Attachments.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Read-only. Nullable. Supports $expand.
+        /// The collection of fileAttachment, itemAttachment, and referenceAttachment attachments for the post. Read-only. Nullable. Supports $expand.
         /// <param name="h">Request headers</param>
         /// <param name="o">Request options</param>
         /// <param name="q">Request query parameters</param>
@@ -174,7 +174,7 @@ namespace ApiSdk.Groups.Item.Threads.Item.Posts.Item.Attachments.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Read-only. Nullable. Supports $expand.
+        /// The collection of fileAttachment, itemAttachment, and referenceAttachment attachments for the post. Read-only. Nullable. Supports $expand.
         /// <param name="body"></param>
         /// <param name="h">Request headers</param>
         /// <param name="o">Request options</param>
@@ -192,7 +192,7 @@ namespace ApiSdk.Groups.Item.Threads.Item.Posts.Item.Attachments.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Read-only. Nullable. Supports $expand.
+        /// The collection of fileAttachment, itemAttachment, and referenceAttachment attachments for the post. Read-only. Nullable. Supports $expand.
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="h">Request headers</param>
         /// <param name="o">Request options</param>
@@ -203,7 +203,7 @@ namespace ApiSdk.Groups.Item.Threads.Item.Posts.Item.Attachments.Item {
             await RequestAdapter.SendNoContentAsync(requestInfo, responseHandler, cancellationToken);
         }
         /// <summary>
-        /// Read-only. Nullable. Supports $expand.
+        /// The collection of fileAttachment, itemAttachment, and referenceAttachment attachments for the post. Read-only. Nullable. Supports $expand.
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="h">Request headers</param>
         /// <param name="o">Request options</param>
@@ -215,7 +215,7 @@ namespace ApiSdk.Groups.Item.Threads.Item.Posts.Item.Attachments.Item {
             return await RequestAdapter.SendAsync<Attachment>(requestInfo, responseHandler, cancellationToken);
         }
         /// <summary>
-        /// Read-only. Nullable. Supports $expand.
+        /// The collection of fileAttachment, itemAttachment, and referenceAttachment attachments for the post. Read-only. Nullable. Supports $expand.
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="h">Request headers</param>
         /// <param name="model"></param>
@@ -227,7 +227,7 @@ namespace ApiSdk.Groups.Item.Threads.Item.Posts.Item.Attachments.Item {
             var requestInfo = CreatePatchRequestInformation(model, h, o);
             await RequestAdapter.SendNoContentAsync(requestInfo, responseHandler, cancellationToken);
         }
-        /// <summary>Read-only. Nullable. Supports $expand.</summary>
+        /// <summary>The collection of fileAttachment, itemAttachment, and referenceAttachment attachments for the post. Read-only. Nullable. Supports $expand.</summary>
         public class GetQueryParameters : QueryParametersBase {
             /// <summary>Expand related entities</summary>
             public string[] Expand { get; set; }

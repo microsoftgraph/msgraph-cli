@@ -30,11 +30,11 @@ namespace ApiSdk.Groups.Item.PermissionGrants {
             return commands;
         }
         /// <summary>
-        /// The permission that has been granted for a group to a specific application. Supports $expand.
+        /// The permissions that have been granted for a group to a specific application. Supports $expand.
         /// </summary>
         public Command BuildCreateCommand() {
             var command = new Command("create");
-            command.Description = "The permission that has been granted for a group to a specific application. Supports $expand.";
+            command.Description = "The permissions that have been granted for a group to a specific application. Supports $expand.";
             // Create options for all the parameters
             var groupIdOption = new Option<string>("--group-id", description: "key: id of group");
             groupIdOption.IsRequired = true;
@@ -60,11 +60,11 @@ namespace ApiSdk.Groups.Item.PermissionGrants {
             return command;
         }
         /// <summary>
-        /// The permission that has been granted for a group to a specific application. Supports $expand.
+        /// The permissions that have been granted for a group to a specific application. Supports $expand.
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "The permission that has been granted for a group to a specific application. Supports $expand.";
+            command.Description = "The permissions that have been granted for a group to a specific application. Supports $expand.";
             // Create options for all the parameters
             var groupIdOption = new Option<string>("--group-id", description: "key: id of group");
             groupIdOption.IsRequired = true;
@@ -132,7 +132,7 @@ namespace ApiSdk.Groups.Item.PermissionGrants {
             RequestAdapter = requestAdapter;
         }
         /// <summary>
-        /// The permission that has been granted for a group to a specific application. Supports $expand.
+        /// The permissions that have been granted for a group to a specific application. Supports $expand.
         /// <param name="h">Request headers</param>
         /// <param name="o">Request options</param>
         /// <param name="q">Request query parameters</param>
@@ -153,7 +153,7 @@ namespace ApiSdk.Groups.Item.PermissionGrants {
             return requestInfo;
         }
         /// <summary>
-        /// The permission that has been granted for a group to a specific application. Supports $expand.
+        /// The permissions that have been granted for a group to a specific application. Supports $expand.
         /// <param name="body"></param>
         /// <param name="h">Request headers</param>
         /// <param name="o">Request options</param>
@@ -171,7 +171,7 @@ namespace ApiSdk.Groups.Item.PermissionGrants {
             return requestInfo;
         }
         /// <summary>
-        /// The permission that has been granted for a group to a specific application. Supports $expand.
+        /// The permissions that have been granted for a group to a specific application. Supports $expand.
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="h">Request headers</param>
         /// <param name="o">Request options</param>
@@ -183,7 +183,7 @@ namespace ApiSdk.Groups.Item.PermissionGrants {
             return await RequestAdapter.SendAsync<PermissionGrantsResponse>(requestInfo, responseHandler, cancellationToken);
         }
         /// <summary>
-        /// The permission that has been granted for a group to a specific application. Supports $expand.
+        /// The permissions that have been granted for a group to a specific application. Supports $expand.
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="h">Request headers</param>
         /// <param name="model"></param>
@@ -195,7 +195,7 @@ namespace ApiSdk.Groups.Item.PermissionGrants {
             var requestInfo = CreatePostRequestInformation(model, h, o);
             return await RequestAdapter.SendAsync<ResourceSpecificPermissionGrant>(requestInfo, responseHandler, cancellationToken);
         }
-        /// <summary>The permission that has been granted for a group to a specific application. Supports $expand.</summary>
+        /// <summary>The permissions that have been granted for a group to a specific application. Supports $expand.</summary>
         public class GetQueryParameters : QueryParametersBase {
             /// <summary>Include count of items</summary>
             public bool? Count { get; set; }

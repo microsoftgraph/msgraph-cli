@@ -9,6 +9,8 @@ namespace ApiSdk.Models.Microsoft.Graph {
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>The type of attachment. Possible values are: file, item, reference. Required.</summary>
         public AttachmentType? AttachmentType { get; set; }
+        /// <summary>The CID or Content-Id of the attachment for referencing in case of in-line attachments using <img src='cid:contentId'> tag in HTML messages. Optional.</summary>
+        public string ContentId { get; set; }
         /// <summary>The nature of the data in the attachment. Optional.</summary>
         public string ContentType { get; set; }
         /// <summary>true if the attachment is an inline attachment; otherwise, false. Optional.</summary>
@@ -29,6 +31,7 @@ namespace ApiSdk.Models.Microsoft.Graph {
         public IDictionary<string, Action<T, IParseNode>> GetFieldDeserializers<T>() {
             return new Dictionary<string, Action<T, IParseNode>> {
                 {"attachmentType", (o,n) => { (o as AttachmentItem).AttachmentType = n.GetEnumValue<AttachmentType>(); } },
+                {"contentId", (o,n) => { (o as AttachmentItem).ContentId = n.GetStringValue(); } },
                 {"contentType", (o,n) => { (o as AttachmentItem).ContentType = n.GetStringValue(); } },
                 {"isInline", (o,n) => { (o as AttachmentItem).IsInline = n.GetBoolValue(); } },
                 {"name", (o,n) => { (o as AttachmentItem).Name = n.GetStringValue(); } },
@@ -42,6 +45,7 @@ namespace ApiSdk.Models.Microsoft.Graph {
         public void Serialize(ISerializationWriter writer) {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             writer.WriteEnumValue<AttachmentType>("attachmentType", AttachmentType);
+            writer.WriteStringValue("contentId", ContentId);
             writer.WriteStringValue("contentType", ContentType);
             writer.WriteBoolValue("isInline", IsInline);
             writer.WriteStringValue("name", Name);

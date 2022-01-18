@@ -5,12 +5,13 @@ using System.IO;
 using System.Linq;
 namespace ApiSdk.Models.Microsoft.Graph {
     public class AccessPackage : Entity, IParsable {
+        /// <summary>Read-only. Nullable.</summary>
         public AccessPackageCatalog Catalog { get; set; }
         /// <summary>The Timestamp type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z. Read-only.</summary>
         public DateTimeOffset? CreatedDateTime { get; set; }
         /// <summary>The description of the access package.</summary>
         public string Description { get; set; }
-        /// <summary>The display name of the access package.</summary>
+        /// <summary>The display name of the access package. Supports $filter (eq, contains).</summary>
         public string DisplayName { get; set; }
         /// <summary>Whether the access package is hidden from the requestor.</summary>
         public bool? IsHidden { get; set; }

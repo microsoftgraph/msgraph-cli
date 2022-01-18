@@ -22,11 +22,11 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.ConnectedOrganizations
         /// <summary>Url template to use to build the URL for the current request builder</summary>
         private string UrlTemplate { get; set; }
         /// <summary>
-        /// Delete navigation property connectedOrganizations for identityGovernance
+        /// Represents references to a directory or domain of another organization whose users can request access.
         /// </summary>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
-            command.Description = "Delete navigation property connectedOrganizations for identityGovernance";
+            command.Description = "Represents references to a directory or domain of another organization whose users can request access.";
             // Create options for all the parameters
             var connectedOrganizationIdOption = new Option<string>("--connectedorganization-id", description: "key: id of connectedOrganization");
             connectedOrganizationIdOption.IsRequired = true;
@@ -48,11 +48,11 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.ConnectedOrganizations
             return command;
         }
         /// <summary>
-        /// Get connectedOrganizations from identityGovernance
+        /// Represents references to a directory or domain of another organization whose users can request access.
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "Get connectedOrganizations from identityGovernance";
+            command.Description = "Represents references to a directory or domain of another organization whose users can request access.";
             // Create options for all the parameters
             var connectedOrganizationIdOption = new Option<string>("--connectedorganization-id", description: "key: id of connectedOrganization");
             connectedOrganizationIdOption.IsRequired = true;
@@ -89,11 +89,11 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.ConnectedOrganizations
             return command;
         }
         /// <summary>
-        /// Update the navigation property connectedOrganizations in identityGovernance
+        /// Represents references to a directory or domain of another organization whose users can request access.
         /// </summary>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
-            command.Description = "Update the navigation property connectedOrganizations in identityGovernance";
+            command.Description = "Represents references to a directory or domain of another organization whose users can request access.";
             // Create options for all the parameters
             var connectedOrganizationIdOption = new Option<string>("--connectedorganization-id", description: "key: id of connectedOrganization");
             connectedOrganizationIdOption.IsRequired = true;
@@ -127,7 +127,7 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.ConnectedOrganizations
             RequestAdapter = requestAdapter;
         }
         /// <summary>
-        /// Delete navigation property connectedOrganizations for identityGovernance
+        /// Represents references to a directory or domain of another organization whose users can request access.
         /// <param name="h">Request headers</param>
         /// <param name="o">Request options</param>
         /// </summary>
@@ -142,7 +142,7 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.ConnectedOrganizations
             return requestInfo;
         }
         /// <summary>
-        /// Get connectedOrganizations from identityGovernance
+        /// Represents references to a directory or domain of another organization whose users can request access.
         /// <param name="h">Request headers</param>
         /// <param name="o">Request options</param>
         /// <param name="q">Request query parameters</param>
@@ -163,7 +163,7 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.ConnectedOrganizations
             return requestInfo;
         }
         /// <summary>
-        /// Update the navigation property connectedOrganizations in identityGovernance
+        /// Represents references to a directory or domain of another organization whose users can request access.
         /// <param name="body"></param>
         /// <param name="h">Request headers</param>
         /// <param name="o">Request options</param>
@@ -181,7 +181,7 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.ConnectedOrganizations
             return requestInfo;
         }
         /// <summary>
-        /// Delete navigation property connectedOrganizations for identityGovernance
+        /// Represents references to a directory or domain of another organization whose users can request access.
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="h">Request headers</param>
         /// <param name="o">Request options</param>
@@ -192,7 +192,7 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.ConnectedOrganizations
             await RequestAdapter.SendNoContentAsync(requestInfo, responseHandler, cancellationToken);
         }
         /// <summary>
-        /// Get connectedOrganizations from identityGovernance
+        /// Represents references to a directory or domain of another organization whose users can request access.
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="h">Request headers</param>
         /// <param name="o">Request options</param>
@@ -204,7 +204,7 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.ConnectedOrganizations
             return await RequestAdapter.SendAsync<ConnectedOrganization>(requestInfo, responseHandler, cancellationToken);
         }
         /// <summary>
-        /// Update the navigation property connectedOrganizations in identityGovernance
+        /// Represents references to a directory or domain of another organization whose users can request access.
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="h">Request headers</param>
         /// <param name="model"></param>
@@ -216,7 +216,7 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.ConnectedOrganizations
             var requestInfo = CreatePatchRequestInformation(model, h, o);
             await RequestAdapter.SendNoContentAsync(requestInfo, responseHandler, cancellationToken);
         }
-        /// <summary>Get connectedOrganizations from identityGovernance</summary>
+        /// <summary>Represents references to a directory or domain of another organization whose users can request access.</summary>
         public class GetQueryParameters : QueryParametersBase {
             /// <summary>Expand related entities</summary>
             public string[] Expand { get; set; }

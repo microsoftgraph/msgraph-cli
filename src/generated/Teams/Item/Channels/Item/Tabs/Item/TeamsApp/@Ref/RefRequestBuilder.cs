@@ -19,11 +19,11 @@ namespace ApiSdk.Teams.Item.Channels.Item.Tabs.Item.TeamsApp.@Ref {
         /// <summary>Url template to use to build the URL for the current request builder</summary>
         private string UrlTemplate { get; set; }
         /// <summary>
-        /// The application that is linked to the tab. This cannot be changed after tab creation.
+        /// The application that is linked to the tab.
         /// </summary>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
-            command.Description = "The application that is linked to the tab. This cannot be changed after tab creation.";
+            command.Description = "The application that is linked to the tab.";
             // Create options for all the parameters
             var teamIdOption = new Option<string>("--team-id", description: "key: id of team");
             teamIdOption.IsRequired = true;
@@ -44,11 +44,11 @@ namespace ApiSdk.Teams.Item.Channels.Item.Tabs.Item.TeamsApp.@Ref {
             return command;
         }
         /// <summary>
-        /// The application that is linked to the tab. This cannot be changed after tab creation.
+        /// The application that is linked to the tab.
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "The application that is linked to the tab. This cannot be changed after tab creation.";
+            command.Description = "The application that is linked to the tab.";
             // Create options for all the parameters
             var teamIdOption = new Option<string>("--team-id", description: "key: id of team");
             teamIdOption.IsRequired = true;
@@ -74,11 +74,11 @@ namespace ApiSdk.Teams.Item.Channels.Item.Tabs.Item.TeamsApp.@Ref {
             return command;
         }
         /// <summary>
-        /// The application that is linked to the tab. This cannot be changed after tab creation.
+        /// The application that is linked to the tab.
         /// </summary>
         public Command BuildPutCommand() {
             var command = new Command("put");
-            command.Description = "The application that is linked to the tab. This cannot be changed after tab creation.";
+            command.Description = "The application that is linked to the tab.";
             // Create options for all the parameters
             var teamIdOption = new Option<string>("--team-id", description: "key: id of team");
             teamIdOption.IsRequired = true;
@@ -118,7 +118,7 @@ namespace ApiSdk.Teams.Item.Channels.Item.Tabs.Item.TeamsApp.@Ref {
             RequestAdapter = requestAdapter;
         }
         /// <summary>
-        /// The application that is linked to the tab. This cannot be changed after tab creation.
+        /// The application that is linked to the tab.
         /// <param name="h">Request headers</param>
         /// <param name="o">Request options</param>
         /// </summary>
@@ -133,7 +133,7 @@ namespace ApiSdk.Teams.Item.Channels.Item.Tabs.Item.TeamsApp.@Ref {
             return requestInfo;
         }
         /// <summary>
-        /// The application that is linked to the tab. This cannot be changed after tab creation.
+        /// The application that is linked to the tab.
         /// <param name="h">Request headers</param>
         /// <param name="o">Request options</param>
         /// </summary>
@@ -148,7 +148,7 @@ namespace ApiSdk.Teams.Item.Channels.Item.Tabs.Item.TeamsApp.@Ref {
             return requestInfo;
         }
         /// <summary>
-        /// The application that is linked to the tab. This cannot be changed after tab creation.
+        /// The application that is linked to the tab.
         /// <param name="body"></param>
         /// <param name="h">Request headers</param>
         /// <param name="o">Request options</param>
@@ -166,7 +166,7 @@ namespace ApiSdk.Teams.Item.Channels.Item.Tabs.Item.TeamsApp.@Ref {
             return requestInfo;
         }
         /// <summary>
-        /// The application that is linked to the tab. This cannot be changed after tab creation.
+        /// The application that is linked to the tab.
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="h">Request headers</param>
         /// <param name="o">Request options</param>
@@ -177,7 +177,7 @@ namespace ApiSdk.Teams.Item.Channels.Item.Tabs.Item.TeamsApp.@Ref {
             await RequestAdapter.SendNoContentAsync(requestInfo, responseHandler, cancellationToken);
         }
         /// <summary>
-        /// The application that is linked to the tab. This cannot be changed after tab creation.
+        /// The application that is linked to the tab.
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="h">Request headers</param>
         /// <param name="o">Request options</param>
@@ -188,7 +188,7 @@ namespace ApiSdk.Teams.Item.Channels.Item.Tabs.Item.TeamsApp.@Ref {
             return await RequestAdapter.SendPrimitiveAsync<string>(requestInfo, responseHandler, cancellationToken);
         }
         /// <summary>
-        /// The application that is linked to the tab. This cannot be changed after tab creation.
+        /// The application that is linked to the tab.
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="h">Request headers</param>
         /// <param name="model"></param>

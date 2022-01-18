@@ -22,11 +22,11 @@ namespace ApiSdk.IdentityGovernance.AccessReviews.Definitions.Item {
         /// <summary>Url template to use to build the URL for the current request builder</summary>
         private string UrlTemplate { get; set; }
         /// <summary>
-        /// Delete navigation property definitions for identityGovernance
+        /// Represents the template and scheduling for an access review.
         /// </summary>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
-            command.Description = "Delete navigation property definitions for identityGovernance";
+            command.Description = "Represents the template and scheduling for an access review.";
             // Create options for all the parameters
             var accessReviewScheduleDefinitionIdOption = new Option<string>("--accessreviewscheduledefinition-id", description: "key: id of accessReviewScheduleDefinition");
             accessReviewScheduleDefinitionIdOption.IsRequired = true;
@@ -41,11 +41,11 @@ namespace ApiSdk.IdentityGovernance.AccessReviews.Definitions.Item {
             return command;
         }
         /// <summary>
-        /// Get definitions from identityGovernance
+        /// Represents the template and scheduling for an access review.
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "Get definitions from identityGovernance";
+            command.Description = "Represents the template and scheduling for an access review.";
             // Create options for all the parameters
             var accessReviewScheduleDefinitionIdOption = new Option<string>("--accessreviewscheduledefinition-id", description: "key: id of accessReviewScheduleDefinition");
             accessReviewScheduleDefinitionIdOption.IsRequired = true;
@@ -82,11 +82,11 @@ namespace ApiSdk.IdentityGovernance.AccessReviews.Definitions.Item {
             return command;
         }
         /// <summary>
-        /// Update the navigation property definitions in identityGovernance
+        /// Represents the template and scheduling for an access review.
         /// </summary>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
-            command.Description = "Update the navigation property definitions in identityGovernance";
+            command.Description = "Represents the template and scheduling for an access review.";
             // Create options for all the parameters
             var accessReviewScheduleDefinitionIdOption = new Option<string>("--accessreviewscheduledefinition-id", description: "key: id of accessReviewScheduleDefinition");
             accessReviewScheduleDefinitionIdOption.IsRequired = true;
@@ -126,7 +126,7 @@ namespace ApiSdk.IdentityGovernance.AccessReviews.Definitions.Item {
             RequestAdapter = requestAdapter;
         }
         /// <summary>
-        /// Delete navigation property definitions for identityGovernance
+        /// Represents the template and scheduling for an access review.
         /// <param name="h">Request headers</param>
         /// <param name="o">Request options</param>
         /// </summary>
@@ -141,7 +141,7 @@ namespace ApiSdk.IdentityGovernance.AccessReviews.Definitions.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Get definitions from identityGovernance
+        /// Represents the template and scheduling for an access review.
         /// <param name="h">Request headers</param>
         /// <param name="o">Request options</param>
         /// <param name="q">Request query parameters</param>
@@ -162,7 +162,7 @@ namespace ApiSdk.IdentityGovernance.AccessReviews.Definitions.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Update the navigation property definitions in identityGovernance
+        /// Represents the template and scheduling for an access review.
         /// <param name="body"></param>
         /// <param name="h">Request headers</param>
         /// <param name="o">Request options</param>
@@ -180,7 +180,7 @@ namespace ApiSdk.IdentityGovernance.AccessReviews.Definitions.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Delete navigation property definitions for identityGovernance
+        /// Represents the template and scheduling for an access review.
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="h">Request headers</param>
         /// <param name="o">Request options</param>
@@ -191,7 +191,7 @@ namespace ApiSdk.IdentityGovernance.AccessReviews.Definitions.Item {
             await RequestAdapter.SendNoContentAsync(requestInfo, responseHandler, cancellationToken);
         }
         /// <summary>
-        /// Get definitions from identityGovernance
+        /// Represents the template and scheduling for an access review.
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="h">Request headers</param>
         /// <param name="o">Request options</param>
@@ -203,7 +203,7 @@ namespace ApiSdk.IdentityGovernance.AccessReviews.Definitions.Item {
             return await RequestAdapter.SendAsync<AccessReviewScheduleDefinition>(requestInfo, responseHandler, cancellationToken);
         }
         /// <summary>
-        /// Update the navigation property definitions in identityGovernance
+        /// Represents the template and scheduling for an access review.
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="h">Request headers</param>
         /// <param name="model"></param>
@@ -215,7 +215,7 @@ namespace ApiSdk.IdentityGovernance.AccessReviews.Definitions.Item {
             var requestInfo = CreatePatchRequestInformation(model, h, o);
             await RequestAdapter.SendNoContentAsync(requestInfo, responseHandler, cancellationToken);
         }
-        /// <summary>Get definitions from identityGovernance</summary>
+        /// <summary>Represents the template and scheduling for an access review.</summary>
         public class GetQueryParameters : QueryParametersBase {
             /// <summary>Expand related entities</summary>
             public string[] Expand { get; set; }

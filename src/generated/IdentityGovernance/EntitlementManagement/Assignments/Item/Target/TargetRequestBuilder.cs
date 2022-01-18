@@ -21,11 +21,11 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.Assignments.Item.Targe
         /// <summary>Url template to use to build the URL for the current request builder</summary>
         private string UrlTemplate { get; set; }
         /// <summary>
-        /// The subject of the access package assignment. Read-only. Nullable.
+        /// The subject of the access package assignment. Read-only. Nullable. Supports $expand. Supports $filter (eq) on objectId.
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "The subject of the access package assignment. Read-only. Nullable.";
+            command.Description = "The subject of the access package assignment. Read-only. Nullable. Supports $expand. Supports $filter (eq) on objectId.";
             // Create options for all the parameters
             var accessPackageAssignmentIdOption = new Option<string>("--accesspackageassignment-id", description: "key: id of accessPackageAssignment");
             accessPackageAssignmentIdOption.IsRequired = true;
@@ -76,7 +76,7 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.Assignments.Item.Targe
             RequestAdapter = requestAdapter;
         }
         /// <summary>
-        /// The subject of the access package assignment. Read-only. Nullable.
+        /// The subject of the access package assignment. Read-only. Nullable. Supports $expand. Supports $filter (eq) on objectId.
         /// <param name="h">Request headers</param>
         /// <param name="o">Request options</param>
         /// <param name="q">Request query parameters</param>
@@ -97,7 +97,7 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.Assignments.Item.Targe
             return requestInfo;
         }
         /// <summary>
-        /// The subject of the access package assignment. Read-only. Nullable.
+        /// The subject of the access package assignment. Read-only. Nullable. Supports $expand. Supports $filter (eq) on objectId.
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="h">Request headers</param>
         /// <param name="o">Request options</param>
@@ -108,7 +108,7 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.Assignments.Item.Targe
             var requestInfo = CreateGetRequestInformation(q, h, o);
             return await RequestAdapter.SendAsync<AccessPackageSubject>(requestInfo, responseHandler, cancellationToken);
         }
-        /// <summary>The subject of the access package assignment. Read-only. Nullable.</summary>
+        /// <summary>The subject of the access package assignment. Read-only. Nullable. Supports $expand. Supports $filter (eq) on objectId.</summary>
         public class GetQueryParameters : QueryParametersBase {
             /// <summary>Expand related entities</summary>
             public string[] Expand { get; set; }

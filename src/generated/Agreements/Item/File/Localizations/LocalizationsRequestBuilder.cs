@@ -31,11 +31,11 @@ namespace ApiSdk.Agreements.Item.File.Localizations {
             return commands;
         }
         /// <summary>
-        /// Create new navigation property to localizations for agreements
+        /// The localized version of the terms of use agreement files attached to the agreement.
         /// </summary>
         public Command BuildCreateCommand() {
             var command = new Command("create");
-            command.Description = "Create new navigation property to localizations for agreements";
+            command.Description = "The localized version of the terms of use agreement files attached to the agreement.";
             // Create options for all the parameters
             var agreementIdOption = new Option<string>("--agreement-id", description: "key: id of agreement");
             agreementIdOption.IsRequired = true;
@@ -61,11 +61,11 @@ namespace ApiSdk.Agreements.Item.File.Localizations {
             return command;
         }
         /// <summary>
-        /// Get localizations from agreements
+        /// The localized version of the terms of use agreement files attached to the agreement.
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "Get localizations from agreements";
+            command.Description = "The localized version of the terms of use agreement files attached to the agreement.";
             // Create options for all the parameters
             var agreementIdOption = new Option<string>("--agreement-id", description: "key: id of agreement");
             agreementIdOption.IsRequired = true;
@@ -133,7 +133,7 @@ namespace ApiSdk.Agreements.Item.File.Localizations {
             RequestAdapter = requestAdapter;
         }
         /// <summary>
-        /// Get localizations from agreements
+        /// The localized version of the terms of use agreement files attached to the agreement.
         /// <param name="h">Request headers</param>
         /// <param name="o">Request options</param>
         /// <param name="q">Request query parameters</param>
@@ -154,7 +154,7 @@ namespace ApiSdk.Agreements.Item.File.Localizations {
             return requestInfo;
         }
         /// <summary>
-        /// Create new navigation property to localizations for agreements
+        /// The localized version of the terms of use agreement files attached to the agreement.
         /// <param name="body"></param>
         /// <param name="h">Request headers</param>
         /// <param name="o">Request options</param>
@@ -172,7 +172,7 @@ namespace ApiSdk.Agreements.Item.File.Localizations {
             return requestInfo;
         }
         /// <summary>
-        /// Get localizations from agreements
+        /// The localized version of the terms of use agreement files attached to the agreement.
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="h">Request headers</param>
         /// <param name="o">Request options</param>
@@ -184,7 +184,7 @@ namespace ApiSdk.Agreements.Item.File.Localizations {
             return await RequestAdapter.SendAsync<LocalizationsResponse>(requestInfo, responseHandler, cancellationToken);
         }
         /// <summary>
-        /// Create new navigation property to localizations for agreements
+        /// The localized version of the terms of use agreement files attached to the agreement.
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="h">Request headers</param>
         /// <param name="model"></param>
@@ -196,7 +196,7 @@ namespace ApiSdk.Agreements.Item.File.Localizations {
             var requestInfo = CreatePostRequestInformation(model, h, o);
             return await RequestAdapter.SendAsync<AgreementFileLocalization>(requestInfo, responseHandler, cancellationToken);
         }
-        /// <summary>Get localizations from agreements</summary>
+        /// <summary>The localized version of the terms of use agreement files attached to the agreement.</summary>
         public class GetQueryParameters : QueryParametersBase {
             /// <summary>Include count of items</summary>
             public bool? Count { get; set; }

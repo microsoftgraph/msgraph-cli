@@ -20,11 +20,11 @@ namespace ApiSdk.IdentityGovernance.TermsOfUse.AgreementAcceptances.Item {
         /// <summary>Url template to use to build the URL for the current request builder</summary>
         private string UrlTemplate { get; set; }
         /// <summary>
-        /// Delete navigation property agreementAcceptances for identityGovernance
+        /// Represents the current status of a user's response to a company's customizable terms of use agreement.
         /// </summary>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
-            command.Description = "Delete navigation property agreementAcceptances for identityGovernance";
+            command.Description = "Represents the current status of a user's response to a company's customizable terms of use agreement.";
             // Create options for all the parameters
             var agreementAcceptanceIdOption = new Option<string>("--agreementacceptance-id", description: "key: id of agreementAcceptance");
             agreementAcceptanceIdOption.IsRequired = true;
@@ -39,11 +39,11 @@ namespace ApiSdk.IdentityGovernance.TermsOfUse.AgreementAcceptances.Item {
             return command;
         }
         /// <summary>
-        /// Get agreementAcceptances from identityGovernance
+        /// Represents the current status of a user's response to a company's customizable terms of use agreement.
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "Get agreementAcceptances from identityGovernance";
+            command.Description = "Represents the current status of a user's response to a company's customizable terms of use agreement.";
             // Create options for all the parameters
             var agreementAcceptanceIdOption = new Option<string>("--agreementacceptance-id", description: "key: id of agreementAcceptance");
             agreementAcceptanceIdOption.IsRequired = true;
@@ -73,11 +73,11 @@ namespace ApiSdk.IdentityGovernance.TermsOfUse.AgreementAcceptances.Item {
             return command;
         }
         /// <summary>
-        /// Update the navigation property agreementAcceptances in identityGovernance
+        /// Represents the current status of a user's response to a company's customizable terms of use agreement.
         /// </summary>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
-            command.Description = "Update the navigation property agreementAcceptances in identityGovernance";
+            command.Description = "Represents the current status of a user's response to a company's customizable terms of use agreement.";
             // Create options for all the parameters
             var agreementAcceptanceIdOption = new Option<string>("--agreementacceptance-id", description: "key: id of agreementAcceptance");
             agreementAcceptanceIdOption.IsRequired = true;
@@ -111,7 +111,7 @@ namespace ApiSdk.IdentityGovernance.TermsOfUse.AgreementAcceptances.Item {
             RequestAdapter = requestAdapter;
         }
         /// <summary>
-        /// Delete navigation property agreementAcceptances for identityGovernance
+        /// Represents the current status of a user's response to a company's customizable terms of use agreement.
         /// <param name="h">Request headers</param>
         /// <param name="o">Request options</param>
         /// </summary>
@@ -126,7 +126,7 @@ namespace ApiSdk.IdentityGovernance.TermsOfUse.AgreementAcceptances.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Get agreementAcceptances from identityGovernance
+        /// Represents the current status of a user's response to a company's customizable terms of use agreement.
         /// <param name="h">Request headers</param>
         /// <param name="o">Request options</param>
         /// <param name="q">Request query parameters</param>
@@ -147,7 +147,7 @@ namespace ApiSdk.IdentityGovernance.TermsOfUse.AgreementAcceptances.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Update the navigation property agreementAcceptances in identityGovernance
+        /// Represents the current status of a user's response to a company's customizable terms of use agreement.
         /// <param name="body"></param>
         /// <param name="h">Request headers</param>
         /// <param name="o">Request options</param>
@@ -165,7 +165,7 @@ namespace ApiSdk.IdentityGovernance.TermsOfUse.AgreementAcceptances.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Delete navigation property agreementAcceptances for identityGovernance
+        /// Represents the current status of a user's response to a company's customizable terms of use agreement.
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="h">Request headers</param>
         /// <param name="o">Request options</param>
@@ -176,7 +176,7 @@ namespace ApiSdk.IdentityGovernance.TermsOfUse.AgreementAcceptances.Item {
             await RequestAdapter.SendNoContentAsync(requestInfo, responseHandler, cancellationToken);
         }
         /// <summary>
-        /// Get agreementAcceptances from identityGovernance
+        /// Represents the current status of a user's response to a company's customizable terms of use agreement.
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="h">Request headers</param>
         /// <param name="o">Request options</param>
@@ -188,7 +188,7 @@ namespace ApiSdk.IdentityGovernance.TermsOfUse.AgreementAcceptances.Item {
             return await RequestAdapter.SendAsync<AgreementAcceptance>(requestInfo, responseHandler, cancellationToken);
         }
         /// <summary>
-        /// Update the navigation property agreementAcceptances in identityGovernance
+        /// Represents the current status of a user's response to a company's customizable terms of use agreement.
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="h">Request headers</param>
         /// <param name="model"></param>
@@ -200,7 +200,7 @@ namespace ApiSdk.IdentityGovernance.TermsOfUse.AgreementAcceptances.Item {
             var requestInfo = CreatePatchRequestInformation(model, h, o);
             await RequestAdapter.SendNoContentAsync(requestInfo, responseHandler, cancellationToken);
         }
-        /// <summary>Get agreementAcceptances from identityGovernance</summary>
+        /// <summary>Represents the current status of a user's response to a company's customizable terms of use agreement.</summary>
         public class GetQueryParameters : QueryParametersBase {
             /// <summary>Expand related entities</summary>
             public string[] Expand { get; set; }

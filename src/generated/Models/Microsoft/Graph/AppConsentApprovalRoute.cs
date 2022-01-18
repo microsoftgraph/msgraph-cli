@@ -5,6 +5,7 @@ using System.IO;
 using System.Linq;
 namespace ApiSdk.Models.Microsoft.Graph {
     public class AppConsentApprovalRoute : Entity, IParsable {
+        /// <summary>A collection of userConsentRequest objects for a specific application.</summary>
         public List<AppConsentRequest> AppConsentRequests { get; set; }
         /// <summary>
         /// The deserialization information for the current model
