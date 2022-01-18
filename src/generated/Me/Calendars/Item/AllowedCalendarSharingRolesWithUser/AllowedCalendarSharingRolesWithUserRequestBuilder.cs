@@ -25,12 +25,15 @@ namespace ApiSdk.Me.Calendars.Item.AllowedCalendarSharingRolesWithUser {
             var command = new Command("get");
             command.Description = "Invoke function allowedCalendarSharingRoles";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--calendar-id", description: "key: id of calendar"));
-            command.AddOption(new Option<string>("--user", description: "Usage: User={User}"));
+            var calendarIdOption = new Option<string>("--calendar-id", description: "key: id of calendar");
+            calendarIdOption.IsRequired = true;
+            command.AddOption(calendarIdOption);
+            var UserOption = new Option<string>("--user", description: "Usage: User={User}");
+            UserOption.IsRequired = true;
+            command.AddOption(UserOption);
             command.Handler = CommandHandler.Create<string, string>(async (calendarId, User) => {
-                var requestInfo = CreateGetRequestInformation();
-                if (!String.IsNullOrEmpty(calendarId)) requestInfo.PathParameters.Add("calendar_id", calendarId);
-                if (!String.IsNullOrEmpty(User)) requestInfo.PathParameters.Add("User", User);
+                var requestInfo = CreateGetRequestInformation(q => {
+                });
                 var result = await RequestAdapter.SendPrimitiveCollectionAsync<string>(requestInfo);
                 // Print request output. What if the request has no return?
                 using var serializer = RequestAdapter.SerializationWriterFactory.GetSerializationWriter("application/json");

@@ -24,14 +24,15 @@ namespace ApiSdk.Me.Outlook {
         /// <summary>Url template to use to build the URL for the current request builder</summary>
         private string UrlTemplate { get; set; }
         /// <summary>
-        /// Read-only.
+        /// Selective Outlook services available to the user. Read-only. Nullable.
         /// </summary>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
-            command.Description = "Read-only.";
+            command.Description = "Selective Outlook services available to the user. Read-only. Nullable.";
             // Create options for all the parameters
             command.Handler = CommandHandler.Create(async () => {
-                var requestInfo = CreateDeleteRequestInformation();
+                var requestInfo = CreateDeleteRequestInformation(q => {
+                });
                 await RequestAdapter.SendNoContentAsync(requestInfo);
                 // Print request output. What if the request has no return?
                 Console.WriteLine("Success");
@@ -39,16 +40,20 @@ namespace ApiSdk.Me.Outlook {
             return command;
         }
         /// <summary>
-        /// Read-only.
+        /// Selective Outlook services available to the user. Read-only. Nullable.
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "Read-only.";
+            command.Description = "Selective Outlook services available to the user. Read-only. Nullable.";
             // Create options for all the parameters
-            command.AddOption(new Option<object>("--select", description: "Select properties to be returned"));
-            command.Handler = CommandHandler.Create<object>(async (select) => {
-                var requestInfo = CreateGetRequestInformation();
-                requestInfo.QueryParameters.Add("select", select);
+            var selectOption = new Option<string[]>("--select", description: "Select properties to be returned");
+            selectOption.IsRequired = false;
+            selectOption.Arity = ArgumentArity.ZeroOrMore;
+            command.AddOption(selectOption);
+            command.Handler = CommandHandler.Create<string[]>(async (select) => {
+                var requestInfo = CreateGetRequestInformation(q => {
+                    q.Select = select;
+                });
                 var result = await RequestAdapter.SendAsync<OutlookUser>(requestInfo);
                 // Print request output. What if the request has no return?
                 using var serializer = RequestAdapter.SerializationWriterFactory.GetSerializationWriter("application/json");
@@ -68,18 +73,21 @@ namespace ApiSdk.Me.Outlook {
             return command;
         }
         /// <summary>
-        /// Read-only.
+        /// Selective Outlook services available to the user. Read-only. Nullable.
         /// </summary>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
-            command.Description = "Read-only.";
+            command.Description = "Selective Outlook services available to the user. Read-only. Nullable.";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--body"));
+            var bodyOption = new Option<string>("--body");
+            bodyOption.IsRequired = true;
+            command.AddOption(bodyOption);
             command.Handler = CommandHandler.Create<string>(async (body) => {
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<OutlookUser>();
-                var requestInfo = CreatePatchRequestInformation(model);
+                var requestInfo = CreatePatchRequestInformation(model, q => {
+                });
                 await RequestAdapter.SendNoContentAsync(requestInfo);
                 // Print request output. What if the request has no return?
                 Console.WriteLine("Success");
@@ -100,7 +108,7 @@ namespace ApiSdk.Me.Outlook {
             RequestAdapter = requestAdapter;
         }
         /// <summary>
-        /// Read-only.
+        /// Selective Outlook services available to the user. Read-only. Nullable.
         /// <param name="h">Request headers</param>
         /// <param name="o">Request options</param>
         /// </summary>
@@ -115,7 +123,7 @@ namespace ApiSdk.Me.Outlook {
             return requestInfo;
         }
         /// <summary>
-        /// Read-only.
+        /// Selective Outlook services available to the user. Read-only. Nullable.
         /// <param name="h">Request headers</param>
         /// <param name="o">Request options</param>
         /// <param name="q">Request query parameters</param>
@@ -136,7 +144,7 @@ namespace ApiSdk.Me.Outlook {
             return requestInfo;
         }
         /// <summary>
-        /// Read-only.
+        /// Selective Outlook services available to the user. Read-only. Nullable.
         /// <param name="body"></param>
         /// <param name="h">Request headers</param>
         /// <param name="o">Request options</param>
@@ -154,7 +162,7 @@ namespace ApiSdk.Me.Outlook {
             return requestInfo;
         }
         /// <summary>
-        /// Read-only.
+        /// Selective Outlook services available to the user. Read-only. Nullable.
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="h">Request headers</param>
         /// <param name="o">Request options</param>
@@ -165,7 +173,7 @@ namespace ApiSdk.Me.Outlook {
             await RequestAdapter.SendNoContentAsync(requestInfo, responseHandler, cancellationToken);
         }
         /// <summary>
-        /// Read-only.
+        /// Selective Outlook services available to the user. Read-only. Nullable.
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="h">Request headers</param>
         /// <param name="o">Request options</param>
@@ -177,7 +185,7 @@ namespace ApiSdk.Me.Outlook {
             return await RequestAdapter.SendAsync<OutlookUser>(requestInfo, responseHandler, cancellationToken);
         }
         /// <summary>
-        /// Read-only.
+        /// Selective Outlook services available to the user. Read-only. Nullable.
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="h">Request headers</param>
         /// <param name="model"></param>
@@ -209,7 +217,7 @@ namespace ApiSdk.Me.Outlook {
             if(string.IsNullOrEmpty(timeZoneStandard)) throw new ArgumentNullException(nameof(timeZoneStandard));
             return new SupportedTimeZonesWithTimeZoneStandardRequestBuilder(PathParameters, RequestAdapter, timeZoneStandard);
         }
-        /// <summary>Read-only.</summary>
+        /// <summary>Selective Outlook services available to the user. Read-only. Nullable.</summary>
         public class GetQueryParameters : QueryParametersBase {
             /// <summary>Select properties to be returned</summary>
             public string[] Select { get; set; }

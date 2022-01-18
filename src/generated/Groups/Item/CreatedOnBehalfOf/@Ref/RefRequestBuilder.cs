@@ -19,16 +19,18 @@ namespace ApiSdk.Groups.Item.CreatedOnBehalfOf.@Ref {
         /// <summary>Url template to use to build the URL for the current request builder</summary>
         private string UrlTemplate { get; set; }
         /// <summary>
-        /// The user (or application) that created the group. NOTE: This is not set if the user is an administrator. Read-only.
+        /// The user (or application) that created the group. Note: This is not set if the user is an administrator. Read-only.
         /// </summary>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
-            command.Description = "The user (or application) that created the group. NOTE: This is not set if the user is an administrator. Read-only.";
+            command.Description = "The user (or application) that created the group. Note: This is not set if the user is an administrator. Read-only.";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--group-id", description: "key: id of group"));
+            var groupIdOption = new Option<string>("--group-id", description: "key: id of group");
+            groupIdOption.IsRequired = true;
+            command.AddOption(groupIdOption);
             command.Handler = CommandHandler.Create<string>(async (groupId) => {
-                var requestInfo = CreateDeleteRequestInformation();
-                if (!String.IsNullOrEmpty(groupId)) requestInfo.PathParameters.Add("group_id", groupId);
+                var requestInfo = CreateDeleteRequestInformation(q => {
+                });
                 await RequestAdapter.SendNoContentAsync(requestInfo);
                 // Print request output. What if the request has no return?
                 Console.WriteLine("Success");
@@ -36,16 +38,18 @@ namespace ApiSdk.Groups.Item.CreatedOnBehalfOf.@Ref {
             return command;
         }
         /// <summary>
-        /// The user (or application) that created the group. NOTE: This is not set if the user is an administrator. Read-only.
+        /// The user (or application) that created the group. Note: This is not set if the user is an administrator. Read-only.
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "The user (or application) that created the group. NOTE: This is not set if the user is an administrator. Read-only.";
+            command.Description = "The user (or application) that created the group. Note: This is not set if the user is an administrator. Read-only.";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--group-id", description: "key: id of group"));
+            var groupIdOption = new Option<string>("--group-id", description: "key: id of group");
+            groupIdOption.IsRequired = true;
+            command.AddOption(groupIdOption);
             command.Handler = CommandHandler.Create<string>(async (groupId) => {
-                var requestInfo = CreateGetRequestInformation();
-                if (!String.IsNullOrEmpty(groupId)) requestInfo.PathParameters.Add("group_id", groupId);
+                var requestInfo = CreateGetRequestInformation(q => {
+                });
                 var result = await RequestAdapter.SendPrimitiveAsync<string>(requestInfo);
                 // Print request output. What if the request has no return?
                 using var serializer = RequestAdapter.SerializationWriterFactory.GetSerializationWriter("application/json");
@@ -58,20 +62,24 @@ namespace ApiSdk.Groups.Item.CreatedOnBehalfOf.@Ref {
             return command;
         }
         /// <summary>
-        /// The user (or application) that created the group. NOTE: This is not set if the user is an administrator. Read-only.
+        /// The user (or application) that created the group. Note: This is not set if the user is an administrator. Read-only.
         /// </summary>
         public Command BuildPutCommand() {
             var command = new Command("put");
-            command.Description = "The user (or application) that created the group. NOTE: This is not set if the user is an administrator. Read-only.";
+            command.Description = "The user (or application) that created the group. Note: This is not set if the user is an administrator. Read-only.";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--group-id", description: "key: id of group"));
-            command.AddOption(new Option<string>("--body"));
+            var groupIdOption = new Option<string>("--group-id", description: "key: id of group");
+            groupIdOption.IsRequired = true;
+            command.AddOption(groupIdOption);
+            var bodyOption = new Option<string>("--body");
+            bodyOption.IsRequired = true;
+            command.AddOption(bodyOption);
             command.Handler = CommandHandler.Create<string, string>(async (groupId, body) => {
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<ApiSdk.Groups.Item.CreatedOnBehalfOf.@Ref.@Ref>();
-                var requestInfo = CreatePutRequestInformation(model);
-                if (!String.IsNullOrEmpty(groupId)) requestInfo.PathParameters.Add("group_id", groupId);
+                var requestInfo = CreatePutRequestInformation(model, q => {
+                });
                 await RequestAdapter.SendNoContentAsync(requestInfo);
                 // Print request output. What if the request has no return?
                 Console.WriteLine("Success");
@@ -92,7 +100,7 @@ namespace ApiSdk.Groups.Item.CreatedOnBehalfOf.@Ref {
             RequestAdapter = requestAdapter;
         }
         /// <summary>
-        /// The user (or application) that created the group. NOTE: This is not set if the user is an administrator. Read-only.
+        /// The user (or application) that created the group. Note: This is not set if the user is an administrator. Read-only.
         /// <param name="h">Request headers</param>
         /// <param name="o">Request options</param>
         /// </summary>
@@ -107,7 +115,7 @@ namespace ApiSdk.Groups.Item.CreatedOnBehalfOf.@Ref {
             return requestInfo;
         }
         /// <summary>
-        /// The user (or application) that created the group. NOTE: This is not set if the user is an administrator. Read-only.
+        /// The user (or application) that created the group. Note: This is not set if the user is an administrator. Read-only.
         /// <param name="h">Request headers</param>
         /// <param name="o">Request options</param>
         /// </summary>
@@ -122,7 +130,7 @@ namespace ApiSdk.Groups.Item.CreatedOnBehalfOf.@Ref {
             return requestInfo;
         }
         /// <summary>
-        /// The user (or application) that created the group. NOTE: This is not set if the user is an administrator. Read-only.
+        /// The user (or application) that created the group. Note: This is not set if the user is an administrator. Read-only.
         /// <param name="body"></param>
         /// <param name="h">Request headers</param>
         /// <param name="o">Request options</param>
@@ -140,7 +148,7 @@ namespace ApiSdk.Groups.Item.CreatedOnBehalfOf.@Ref {
             return requestInfo;
         }
         /// <summary>
-        /// The user (or application) that created the group. NOTE: This is not set if the user is an administrator. Read-only.
+        /// The user (or application) that created the group. Note: This is not set if the user is an administrator. Read-only.
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="h">Request headers</param>
         /// <param name="o">Request options</param>
@@ -151,7 +159,7 @@ namespace ApiSdk.Groups.Item.CreatedOnBehalfOf.@Ref {
             await RequestAdapter.SendNoContentAsync(requestInfo, responseHandler, cancellationToken);
         }
         /// <summary>
-        /// The user (or application) that created the group. NOTE: This is not set if the user is an administrator. Read-only.
+        /// The user (or application) that created the group. Note: This is not set if the user is an administrator. Read-only.
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="h">Request headers</param>
         /// <param name="o">Request options</param>
@@ -162,7 +170,7 @@ namespace ApiSdk.Groups.Item.CreatedOnBehalfOf.@Ref {
             return await RequestAdapter.SendPrimitiveAsync<string>(requestInfo, responseHandler, cancellationToken);
         }
         /// <summary>
-        /// The user (or application) that created the group. NOTE: This is not set if the user is an administrator. Read-only.
+        /// The user (or application) that created the group. Note: This is not set if the user is an administrator. Read-only.
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="h">Request headers</param>
         /// <param name="model"></param>

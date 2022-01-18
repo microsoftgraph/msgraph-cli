@@ -25,12 +25,15 @@ namespace ApiSdk.Me.CalendarGroups.Item.Calendars.Item.Events.Delta {
             var command = new Command("get");
             command.Description = "Invoke function delta";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--calendargroup-id", description: "key: id of calendarGroup"));
-            command.AddOption(new Option<string>("--calendar-id", description: "key: id of calendar"));
+            var calendarGroupIdOption = new Option<string>("--calendargroup-id", description: "key: id of calendarGroup");
+            calendarGroupIdOption.IsRequired = true;
+            command.AddOption(calendarGroupIdOption);
+            var calendarIdOption = new Option<string>("--calendar-id", description: "key: id of calendar");
+            calendarIdOption.IsRequired = true;
+            command.AddOption(calendarIdOption);
             command.Handler = CommandHandler.Create<string, string>(async (calendarGroupId, calendarId) => {
-                var requestInfo = CreateGetRequestInformation();
-                if (!String.IsNullOrEmpty(calendarGroupId)) requestInfo.PathParameters.Add("calendarGroup_id", calendarGroupId);
-                if (!String.IsNullOrEmpty(calendarId)) requestInfo.PathParameters.Add("calendar_id", calendarId);
+                var requestInfo = CreateGetRequestInformation(q => {
+                });
                 var result = await RequestAdapter.SendCollectionAsync<ApiSdk.Me.CalendarGroups.Item.Calendars.Item.Events.Delta.Delta>(requestInfo);
                 // Print request output. What if the request has no return?
                 using var serializer = RequestAdapter.SerializationWriterFactory.GetSerializationWriter("application/json");

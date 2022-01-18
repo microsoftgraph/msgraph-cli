@@ -26,7 +26,8 @@ namespace ApiSdk.Me.Outlook.SupportedLanguages {
             command.Description = "Invoke function supportedLanguages";
             // Create options for all the parameters
             command.Handler = CommandHandler.Create(async () => {
-                var requestInfo = CreateGetRequestInformation();
+                var requestInfo = CreateGetRequestInformation(q => {
+                });
                 var result = await RequestAdapter.SendCollectionAsync<ApiSdk.Me.Outlook.SupportedLanguages.SupportedLanguages>(requestInfo);
                 // Print request output. What if the request has no return?
                 using var serializer = RequestAdapter.SerializationWriterFactory.GetSerializationWriter("application/json");

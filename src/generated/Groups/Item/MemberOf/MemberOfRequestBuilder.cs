@@ -20,32 +20,53 @@ namespace ApiSdk.Groups.Item.MemberOf {
         /// <summary>Url template to use to build the URL for the current request builder</summary>
         private string UrlTemplate { get; set; }
         /// <summary>
-        /// Groups that this group is a member of. HTTP Methods: GET (supported for all groups). Read-only. Nullable. Supports $expand.
+        /// Groups and administrative units that this group is a member of. HTTP Methods: GET (supported for all groups). Read-only. Nullable. Supports $expand.
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "Groups that this group is a member of. HTTP Methods: GET (supported for all groups). Read-only. Nullable. Supports $expand.";
+            command.Description = "Groups and administrative units that this group is a member of. HTTP Methods: GET (supported for all groups). Read-only. Nullable. Supports $expand.";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--group-id", description: "key: id of group"));
-            command.AddOption(new Option<int?>("--top", description: "Show only the first n items"));
-            command.AddOption(new Option<int?>("--skip", description: "Skip the first n items"));
-            command.AddOption(new Option<string>("--search", description: "Search items by search phrases"));
-            command.AddOption(new Option<string>("--filter", description: "Filter items by property values"));
-            command.AddOption(new Option<bool?>("--count", description: "Include count of items"));
-            command.AddOption(new Option<object>("--orderby", description: "Order items by property values"));
-            command.AddOption(new Option<object>("--select", description: "Select properties to be returned"));
-            command.AddOption(new Option<object>("--expand", description: "Expand related entities"));
-            command.Handler = CommandHandler.Create<string, int?, int?, string, string, bool?, object, object, object>(async (groupId, top, skip, search, filter, count, orderby, select, expand) => {
-                var requestInfo = CreateGetRequestInformation();
-                if (!String.IsNullOrEmpty(groupId)) requestInfo.PathParameters.Add("group_id", groupId);
-                requestInfo.QueryParameters.Add("top", top);
-                requestInfo.QueryParameters.Add("skip", skip);
-                if (!String.IsNullOrEmpty(search)) requestInfo.QueryParameters.Add("search", search);
-                if (!String.IsNullOrEmpty(filter)) requestInfo.QueryParameters.Add("filter", filter);
-                requestInfo.QueryParameters.Add("count", count);
-                requestInfo.QueryParameters.Add("orderby", orderby);
-                requestInfo.QueryParameters.Add("select", select);
-                requestInfo.QueryParameters.Add("expand", expand);
+            var groupIdOption = new Option<string>("--group-id", description: "key: id of group");
+            groupIdOption.IsRequired = true;
+            command.AddOption(groupIdOption);
+            var topOption = new Option<int?>("--top", description: "Show only the first n items");
+            topOption.IsRequired = false;
+            command.AddOption(topOption);
+            var skipOption = new Option<int?>("--skip", description: "Skip the first n items");
+            skipOption.IsRequired = false;
+            command.AddOption(skipOption);
+            var searchOption = new Option<string>("--search", description: "Search items by search phrases");
+            searchOption.IsRequired = false;
+            command.AddOption(searchOption);
+            var filterOption = new Option<string>("--filter", description: "Filter items by property values");
+            filterOption.IsRequired = false;
+            command.AddOption(filterOption);
+            var countOption = new Option<bool?>("--count", description: "Include count of items");
+            countOption.IsRequired = false;
+            command.AddOption(countOption);
+            var orderbyOption = new Option<string[]>("--orderby", description: "Order items by property values");
+            orderbyOption.IsRequired = false;
+            orderbyOption.Arity = ArgumentArity.ZeroOrMore;
+            command.AddOption(orderbyOption);
+            var selectOption = new Option<string[]>("--select", description: "Select properties to be returned");
+            selectOption.IsRequired = false;
+            selectOption.Arity = ArgumentArity.ZeroOrMore;
+            command.AddOption(selectOption);
+            var expandOption = new Option<string[]>("--expand", description: "Expand related entities");
+            expandOption.IsRequired = false;
+            expandOption.Arity = ArgumentArity.ZeroOrMore;
+            command.AddOption(expandOption);
+            command.Handler = CommandHandler.Create<string, int?, int?, string, string, bool?, string[], string[], string[]>(async (groupId, top, skip, search, filter, count, orderby, select, expand) => {
+                var requestInfo = CreateGetRequestInformation(q => {
+                    q.Top = top;
+                    q.Skip = skip;
+                    if (!String.IsNullOrEmpty(search)) q.Search = search;
+                    if (!String.IsNullOrEmpty(filter)) q.Filter = filter;
+                    q.Count = count;
+                    q.Orderby = orderby;
+                    q.Select = select;
+                    q.Expand = expand;
+                });
                 var result = await RequestAdapter.SendAsync<MemberOfResponse>(requestInfo);
                 // Print request output. What if the request has no return?
                 using var serializer = RequestAdapter.SerializationWriterFactory.GetSerializationWriter("application/json");
@@ -78,7 +99,7 @@ namespace ApiSdk.Groups.Item.MemberOf {
             RequestAdapter = requestAdapter;
         }
         /// <summary>
-        /// Groups that this group is a member of. HTTP Methods: GET (supported for all groups). Read-only. Nullable. Supports $expand.
+        /// Groups and administrative units that this group is a member of. HTTP Methods: GET (supported for all groups). Read-only. Nullable. Supports $expand.
         /// <param name="h">Request headers</param>
         /// <param name="o">Request options</param>
         /// <param name="q">Request query parameters</param>
@@ -99,7 +120,7 @@ namespace ApiSdk.Groups.Item.MemberOf {
             return requestInfo;
         }
         /// <summary>
-        /// Groups that this group is a member of. HTTP Methods: GET (supported for all groups). Read-only. Nullable. Supports $expand.
+        /// Groups and administrative units that this group is a member of. HTTP Methods: GET (supported for all groups). Read-only. Nullable. Supports $expand.
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="h">Request headers</param>
         /// <param name="o">Request options</param>
@@ -110,7 +131,7 @@ namespace ApiSdk.Groups.Item.MemberOf {
             var requestInfo = CreateGetRequestInformation(q, h, o);
             return await RequestAdapter.SendAsync<MemberOfResponse>(requestInfo, responseHandler, cancellationToken);
         }
-        /// <summary>Groups that this group is a member of. HTTP Methods: GET (supported for all groups). Read-only. Nullable. Supports $expand.</summary>
+        /// <summary>Groups and administrative units that this group is a member of. HTTP Methods: GET (supported for all groups). Read-only. Nullable. Supports $expand.</summary>
         public class GetQueryParameters : QueryParametersBase {
             /// <summary>Include count of items</summary>
             public bool? Count { get; set; }

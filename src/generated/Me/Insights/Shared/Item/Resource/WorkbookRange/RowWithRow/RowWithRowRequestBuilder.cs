@@ -26,12 +26,15 @@ namespace ApiSdk.Me.Insights.Shared.Item.Resource.WorkbookRange.RowWithRow {
             var command = new Command("get");
             command.Description = "Invoke function row";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--sharedinsight-id", description: "key: id of sharedInsight"));
-            command.AddOption(new Option<int?>("--row", description: "Usage: row={row}"));
+            var sharedInsightIdOption = new Option<string>("--sharedinsight-id", description: "key: id of sharedInsight");
+            sharedInsightIdOption.IsRequired = true;
+            command.AddOption(sharedInsightIdOption);
+            var rowOption = new Option<int?>("--row", description: "Usage: row={row}");
+            rowOption.IsRequired = true;
+            command.AddOption(rowOption);
             command.Handler = CommandHandler.Create<string, int?>(async (sharedInsightId, row) => {
-                var requestInfo = CreateGetRequestInformation();
-                if (!String.IsNullOrEmpty(sharedInsightId)) requestInfo.PathParameters.Add("sharedInsight_id", sharedInsightId);
-                requestInfo.PathParameters.Add("row", row);
+                var requestInfo = CreateGetRequestInformation(q => {
+                });
                 var result = await RequestAdapter.SendAsync<RowWithRowResponse>(requestInfo);
                 // Print request output. What if the request has no return?
                 using var serializer = RequestAdapter.SerializationWriterFactory.GetSerializationWriter("application/json");

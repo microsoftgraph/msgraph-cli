@@ -25,10 +25,12 @@ namespace ApiSdk.Chats.Item.Messages.Delta {
             var command = new Command("get");
             command.Description = "Invoke function delta";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--chat-id", description: "key: id of chat"));
+            var chatIdOption = new Option<string>("--chat-id", description: "key: id of chat");
+            chatIdOption.IsRequired = true;
+            command.AddOption(chatIdOption);
             command.Handler = CommandHandler.Create<string>(async (chatId) => {
-                var requestInfo = CreateGetRequestInformation();
-                if (!String.IsNullOrEmpty(chatId)) requestInfo.PathParameters.Add("chat_id", chatId);
+                var requestInfo = CreateGetRequestInformation(q => {
+                });
                 var result = await RequestAdapter.SendCollectionAsync<ApiSdk.Chats.Item.Messages.Delta.Delta>(requestInfo);
                 // Print request output. What if the request has no return?
                 using var serializer = RequestAdapter.SerializationWriterFactory.GetSerializationWriter("application/json");

@@ -25,10 +25,12 @@ namespace ApiSdk.Sites.Item.Analytics.@Ref {
             var command = new Command("delete");
             command.Description = "Analytics about the view activities that took place in this site.";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--site-id", description: "key: id of site"));
+            var siteIdOption = new Option<string>("--site-id", description: "key: id of site");
+            siteIdOption.IsRequired = true;
+            command.AddOption(siteIdOption);
             command.Handler = CommandHandler.Create<string>(async (siteId) => {
-                var requestInfo = CreateDeleteRequestInformation();
-                if (!String.IsNullOrEmpty(siteId)) requestInfo.PathParameters.Add("site_id", siteId);
+                var requestInfo = CreateDeleteRequestInformation(q => {
+                });
                 await RequestAdapter.SendNoContentAsync(requestInfo);
                 // Print request output. What if the request has no return?
                 Console.WriteLine("Success");
@@ -42,10 +44,12 @@ namespace ApiSdk.Sites.Item.Analytics.@Ref {
             var command = new Command("get");
             command.Description = "Analytics about the view activities that took place in this site.";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--site-id", description: "key: id of site"));
+            var siteIdOption = new Option<string>("--site-id", description: "key: id of site");
+            siteIdOption.IsRequired = true;
+            command.AddOption(siteIdOption);
             command.Handler = CommandHandler.Create<string>(async (siteId) => {
-                var requestInfo = CreateGetRequestInformation();
-                if (!String.IsNullOrEmpty(siteId)) requestInfo.PathParameters.Add("site_id", siteId);
+                var requestInfo = CreateGetRequestInformation(q => {
+                });
                 var result = await RequestAdapter.SendPrimitiveAsync<string>(requestInfo);
                 // Print request output. What if the request has no return?
                 using var serializer = RequestAdapter.SerializationWriterFactory.GetSerializationWriter("application/json");
@@ -64,14 +68,18 @@ namespace ApiSdk.Sites.Item.Analytics.@Ref {
             var command = new Command("put");
             command.Description = "Analytics about the view activities that took place in this site.";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--site-id", description: "key: id of site"));
-            command.AddOption(new Option<string>("--body"));
+            var siteIdOption = new Option<string>("--site-id", description: "key: id of site");
+            siteIdOption.IsRequired = true;
+            command.AddOption(siteIdOption);
+            var bodyOption = new Option<string>("--body");
+            bodyOption.IsRequired = true;
+            command.AddOption(bodyOption);
             command.Handler = CommandHandler.Create<string, string>(async (siteId, body) => {
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<ApiSdk.Sites.Item.Analytics.@Ref.@Ref>();
-                var requestInfo = CreatePutRequestInformation(model);
-                if (!String.IsNullOrEmpty(siteId)) requestInfo.PathParameters.Add("site_id", siteId);
+                var requestInfo = CreatePutRequestInformation(model, q => {
+                });
                 await RequestAdapter.SendNoContentAsync(requestInfo);
                 // Print request output. What if the request has no return?
                 Console.WriteLine("Success");

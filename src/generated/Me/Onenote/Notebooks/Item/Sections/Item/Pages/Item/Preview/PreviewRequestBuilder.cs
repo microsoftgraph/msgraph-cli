@@ -26,14 +26,18 @@ namespace ApiSdk.Me.Onenote.Notebooks.Item.Sections.Item.Pages.Item.Preview {
             var command = new Command("get");
             command.Description = "Invoke function preview";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--notebook-id", description: "key: id of notebook"));
-            command.AddOption(new Option<string>("--onenotesection-id", description: "key: id of onenoteSection"));
-            command.AddOption(new Option<string>("--onenotepage-id", description: "key: id of onenotePage"));
+            var notebookIdOption = new Option<string>("--notebook-id", description: "key: id of notebook");
+            notebookIdOption.IsRequired = true;
+            command.AddOption(notebookIdOption);
+            var onenoteSectionIdOption = new Option<string>("--onenotesection-id", description: "key: id of onenoteSection");
+            onenoteSectionIdOption.IsRequired = true;
+            command.AddOption(onenoteSectionIdOption);
+            var onenotePageIdOption = new Option<string>("--onenotepage-id", description: "key: id of onenotePage");
+            onenotePageIdOption.IsRequired = true;
+            command.AddOption(onenotePageIdOption);
             command.Handler = CommandHandler.Create<string, string, string>(async (notebookId, onenoteSectionId, onenotePageId) => {
-                var requestInfo = CreateGetRequestInformation();
-                if (!String.IsNullOrEmpty(notebookId)) requestInfo.PathParameters.Add("notebook_id", notebookId);
-                if (!String.IsNullOrEmpty(onenoteSectionId)) requestInfo.PathParameters.Add("onenoteSection_id", onenoteSectionId);
-                if (!String.IsNullOrEmpty(onenotePageId)) requestInfo.PathParameters.Add("onenotePage_id", onenotePageId);
+                var requestInfo = CreateGetRequestInformation(q => {
+                });
                 var result = await RequestAdapter.SendAsync<PreviewResponse>(requestInfo);
                 // Print request output. What if the request has no return?
                 using var serializer = RequestAdapter.SerializationWriterFactory.GetSerializationWriter("application/json");

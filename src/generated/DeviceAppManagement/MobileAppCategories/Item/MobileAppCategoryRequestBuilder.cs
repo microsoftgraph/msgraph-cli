@@ -26,10 +26,12 @@ namespace ApiSdk.DeviceAppManagement.MobileAppCategories.Item {
             var command = new Command("delete");
             command.Description = "The mobile app categories.";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--mobileappcategory-id", description: "key: id of mobileAppCategory"));
+            var mobileAppCategoryIdOption = new Option<string>("--mobileappcategory-id", description: "key: id of mobileAppCategory");
+            mobileAppCategoryIdOption.IsRequired = true;
+            command.AddOption(mobileAppCategoryIdOption);
             command.Handler = CommandHandler.Create<string>(async (mobileAppCategoryId) => {
-                var requestInfo = CreateDeleteRequestInformation();
-                if (!String.IsNullOrEmpty(mobileAppCategoryId)) requestInfo.PathParameters.Add("mobileAppCategory_id", mobileAppCategoryId);
+                var requestInfo = CreateDeleteRequestInformation(q => {
+                });
                 await RequestAdapter.SendNoContentAsync(requestInfo);
                 // Print request output. What if the request has no return?
                 Console.WriteLine("Success");
@@ -43,14 +45,22 @@ namespace ApiSdk.DeviceAppManagement.MobileAppCategories.Item {
             var command = new Command("get");
             command.Description = "The mobile app categories.";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--mobileappcategory-id", description: "key: id of mobileAppCategory"));
-            command.AddOption(new Option<object>("--select", description: "Select properties to be returned"));
-            command.AddOption(new Option<object>("--expand", description: "Expand related entities"));
-            command.Handler = CommandHandler.Create<string, object, object>(async (mobileAppCategoryId, select, expand) => {
-                var requestInfo = CreateGetRequestInformation();
-                if (!String.IsNullOrEmpty(mobileAppCategoryId)) requestInfo.PathParameters.Add("mobileAppCategory_id", mobileAppCategoryId);
-                requestInfo.QueryParameters.Add("select", select);
-                requestInfo.QueryParameters.Add("expand", expand);
+            var mobileAppCategoryIdOption = new Option<string>("--mobileappcategory-id", description: "key: id of mobileAppCategory");
+            mobileAppCategoryIdOption.IsRequired = true;
+            command.AddOption(mobileAppCategoryIdOption);
+            var selectOption = new Option<string[]>("--select", description: "Select properties to be returned");
+            selectOption.IsRequired = false;
+            selectOption.Arity = ArgumentArity.ZeroOrMore;
+            command.AddOption(selectOption);
+            var expandOption = new Option<string[]>("--expand", description: "Expand related entities");
+            expandOption.IsRequired = false;
+            expandOption.Arity = ArgumentArity.ZeroOrMore;
+            command.AddOption(expandOption);
+            command.Handler = CommandHandler.Create<string, string[], string[]>(async (mobileAppCategoryId, select, expand) => {
+                var requestInfo = CreateGetRequestInformation(q => {
+                    q.Select = select;
+                    q.Expand = expand;
+                });
                 var result = await RequestAdapter.SendAsync<MobileAppCategory>(requestInfo);
                 // Print request output. What if the request has no return?
                 using var serializer = RequestAdapter.SerializationWriterFactory.GetSerializationWriter("application/json");
@@ -69,14 +79,18 @@ namespace ApiSdk.DeviceAppManagement.MobileAppCategories.Item {
             var command = new Command("patch");
             command.Description = "The mobile app categories.";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--mobileappcategory-id", description: "key: id of mobileAppCategory"));
-            command.AddOption(new Option<string>("--body"));
+            var mobileAppCategoryIdOption = new Option<string>("--mobileappcategory-id", description: "key: id of mobileAppCategory");
+            mobileAppCategoryIdOption.IsRequired = true;
+            command.AddOption(mobileAppCategoryIdOption);
+            var bodyOption = new Option<string>("--body");
+            bodyOption.IsRequired = true;
+            command.AddOption(bodyOption);
             command.Handler = CommandHandler.Create<string, string>(async (mobileAppCategoryId, body) => {
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<MobileAppCategory>();
-                var requestInfo = CreatePatchRequestInformation(model);
-                if (!String.IsNullOrEmpty(mobileAppCategoryId)) requestInfo.PathParameters.Add("mobileAppCategory_id", mobileAppCategoryId);
+                var requestInfo = CreatePatchRequestInformation(model, q => {
+                });
                 await RequestAdapter.SendNoContentAsync(requestInfo);
                 // Print request output. What if the request has no return?
                 Console.WriteLine("Success");

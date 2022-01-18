@@ -29,16 +29,21 @@ namespace ApiSdk.Sites.Item.TermStore.Sets.Item.Terms.Item.Relations.Item {
             var command = new Command("delete");
             command.Description = "To indicate which terms are related to the current term as either pinned or reused.";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--site-id", description: "key: id of site"));
-            command.AddOption(new Option<string>("--set-id", description: "key: id of set"));
-            command.AddOption(new Option<string>("--term-id", description: "key: id of term"));
-            command.AddOption(new Option<string>("--relation-id", description: "key: id of relation"));
+            var siteIdOption = new Option<string>("--site-id", description: "key: id of site");
+            siteIdOption.IsRequired = true;
+            command.AddOption(siteIdOption);
+            var setIdOption = new Option<string>("--set-id", description: "key: id of set");
+            setIdOption.IsRequired = true;
+            command.AddOption(setIdOption);
+            var termIdOption = new Option<string>("--term-id", description: "key: id of term");
+            termIdOption.IsRequired = true;
+            command.AddOption(termIdOption);
+            var relationIdOption = new Option<string>("--relation-id", description: "key: id of relation");
+            relationIdOption.IsRequired = true;
+            command.AddOption(relationIdOption);
             command.Handler = CommandHandler.Create<string, string, string, string>(async (siteId, setId, termId, relationId) => {
-                var requestInfo = CreateDeleteRequestInformation();
-                if (!String.IsNullOrEmpty(siteId)) requestInfo.PathParameters.Add("site_id", siteId);
-                if (!String.IsNullOrEmpty(setId)) requestInfo.PathParameters.Add("set_id", setId);
-                if (!String.IsNullOrEmpty(termId)) requestInfo.PathParameters.Add("term_id", termId);
-                if (!String.IsNullOrEmpty(relationId)) requestInfo.PathParameters.Add("relation_id", relationId);
+                var requestInfo = CreateDeleteRequestInformation(q => {
+                });
                 await RequestAdapter.SendNoContentAsync(requestInfo);
                 // Print request output. What if the request has no return?
                 Console.WriteLine("Success");
@@ -59,20 +64,31 @@ namespace ApiSdk.Sites.Item.TermStore.Sets.Item.Terms.Item.Relations.Item {
             var command = new Command("get");
             command.Description = "To indicate which terms are related to the current term as either pinned or reused.";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--site-id", description: "key: id of site"));
-            command.AddOption(new Option<string>("--set-id", description: "key: id of set"));
-            command.AddOption(new Option<string>("--term-id", description: "key: id of term"));
-            command.AddOption(new Option<string>("--relation-id", description: "key: id of relation"));
-            command.AddOption(new Option<object>("--select", description: "Select properties to be returned"));
-            command.AddOption(new Option<object>("--expand", description: "Expand related entities"));
-            command.Handler = CommandHandler.Create<string, string, string, string, object, object>(async (siteId, setId, termId, relationId, select, expand) => {
-                var requestInfo = CreateGetRequestInformation();
-                if (!String.IsNullOrEmpty(siteId)) requestInfo.PathParameters.Add("site_id", siteId);
-                if (!String.IsNullOrEmpty(setId)) requestInfo.PathParameters.Add("set_id", setId);
-                if (!String.IsNullOrEmpty(termId)) requestInfo.PathParameters.Add("term_id", termId);
-                if (!String.IsNullOrEmpty(relationId)) requestInfo.PathParameters.Add("relation_id", relationId);
-                requestInfo.QueryParameters.Add("select", select);
-                requestInfo.QueryParameters.Add("expand", expand);
+            var siteIdOption = new Option<string>("--site-id", description: "key: id of site");
+            siteIdOption.IsRequired = true;
+            command.AddOption(siteIdOption);
+            var setIdOption = new Option<string>("--set-id", description: "key: id of set");
+            setIdOption.IsRequired = true;
+            command.AddOption(setIdOption);
+            var termIdOption = new Option<string>("--term-id", description: "key: id of term");
+            termIdOption.IsRequired = true;
+            command.AddOption(termIdOption);
+            var relationIdOption = new Option<string>("--relation-id", description: "key: id of relation");
+            relationIdOption.IsRequired = true;
+            command.AddOption(relationIdOption);
+            var selectOption = new Option<string[]>("--select", description: "Select properties to be returned");
+            selectOption.IsRequired = false;
+            selectOption.Arity = ArgumentArity.ZeroOrMore;
+            command.AddOption(selectOption);
+            var expandOption = new Option<string[]>("--expand", description: "Expand related entities");
+            expandOption.IsRequired = false;
+            expandOption.Arity = ArgumentArity.ZeroOrMore;
+            command.AddOption(expandOption);
+            command.Handler = CommandHandler.Create<string, string, string, string, string[], string[]>(async (siteId, setId, termId, relationId, select, expand) => {
+                var requestInfo = CreateGetRequestInformation(q => {
+                    q.Select = select;
+                    q.Expand = expand;
+                });
                 var result = await RequestAdapter.SendAsync<Relation>(requestInfo);
                 // Print request output. What if the request has no return?
                 using var serializer = RequestAdapter.SerializationWriterFactory.GetSerializationWriter("application/json");
@@ -91,20 +107,27 @@ namespace ApiSdk.Sites.Item.TermStore.Sets.Item.Terms.Item.Relations.Item {
             var command = new Command("patch");
             command.Description = "To indicate which terms are related to the current term as either pinned or reused.";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--site-id", description: "key: id of site"));
-            command.AddOption(new Option<string>("--set-id", description: "key: id of set"));
-            command.AddOption(new Option<string>("--term-id", description: "key: id of term"));
-            command.AddOption(new Option<string>("--relation-id", description: "key: id of relation"));
-            command.AddOption(new Option<string>("--body"));
+            var siteIdOption = new Option<string>("--site-id", description: "key: id of site");
+            siteIdOption.IsRequired = true;
+            command.AddOption(siteIdOption);
+            var setIdOption = new Option<string>("--set-id", description: "key: id of set");
+            setIdOption.IsRequired = true;
+            command.AddOption(setIdOption);
+            var termIdOption = new Option<string>("--term-id", description: "key: id of term");
+            termIdOption.IsRequired = true;
+            command.AddOption(termIdOption);
+            var relationIdOption = new Option<string>("--relation-id", description: "key: id of relation");
+            relationIdOption.IsRequired = true;
+            command.AddOption(relationIdOption);
+            var bodyOption = new Option<string>("--body");
+            bodyOption.IsRequired = true;
+            command.AddOption(bodyOption);
             command.Handler = CommandHandler.Create<string, string, string, string, string>(async (siteId, setId, termId, relationId, body) => {
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<Relation>();
-                var requestInfo = CreatePatchRequestInformation(model);
-                if (!String.IsNullOrEmpty(siteId)) requestInfo.PathParameters.Add("site_id", siteId);
-                if (!String.IsNullOrEmpty(setId)) requestInfo.PathParameters.Add("set_id", setId);
-                if (!String.IsNullOrEmpty(termId)) requestInfo.PathParameters.Add("term_id", termId);
-                if (!String.IsNullOrEmpty(relationId)) requestInfo.PathParameters.Add("relation_id", relationId);
+                var requestInfo = CreatePatchRequestInformation(model, q => {
+                });
                 await RequestAdapter.SendNoContentAsync(requestInfo);
                 // Print request output. What if the request has no return?
                 Console.WriteLine("Success");

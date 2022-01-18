@@ -20,16 +20,18 @@ namespace ApiSdk.Me.People.Item {
         /// <summary>Url template to use to build the URL for the current request builder</summary>
         private string UrlTemplate { get; set; }
         /// <summary>
-        /// People that are relevant to the user. Read-only. Nullable.
+        /// Read-only. The most relevant people to the user. The collection is ordered by their relevance to the user, which is determined by the user's communication, collaboration and business relationships. A person is an aggregation of information from across mail, contacts and social networks.
         /// </summary>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
-            command.Description = "People that are relevant to the user. Read-only. Nullable.";
+            command.Description = "Read-only. The most relevant people to the user. The collection is ordered by their relevance to the user, which is determined by the user's communication, collaboration and business relationships. A person is an aggregation of information from across mail, contacts and social networks.";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--person-id", description: "key: id of person"));
+            var personIdOption = new Option<string>("--person-id", description: "key: id of person");
+            personIdOption.IsRequired = true;
+            command.AddOption(personIdOption);
             command.Handler = CommandHandler.Create<string>(async (personId) => {
-                var requestInfo = CreateDeleteRequestInformation();
-                if (!String.IsNullOrEmpty(personId)) requestInfo.PathParameters.Add("person_id", personId);
+                var requestInfo = CreateDeleteRequestInformation(q => {
+                });
                 await RequestAdapter.SendNoContentAsync(requestInfo);
                 // Print request output. What if the request has no return?
                 Console.WriteLine("Success");
@@ -37,18 +39,23 @@ namespace ApiSdk.Me.People.Item {
             return command;
         }
         /// <summary>
-        /// People that are relevant to the user. Read-only. Nullable.
+        /// Read-only. The most relevant people to the user. The collection is ordered by their relevance to the user, which is determined by the user's communication, collaboration and business relationships. A person is an aggregation of information from across mail, contacts and social networks.
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "People that are relevant to the user. Read-only. Nullable.";
+            command.Description = "Read-only. The most relevant people to the user. The collection is ordered by their relevance to the user, which is determined by the user's communication, collaboration and business relationships. A person is an aggregation of information from across mail, contacts and social networks.";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--person-id", description: "key: id of person"));
-            command.AddOption(new Option<object>("--select", description: "Select properties to be returned"));
-            command.Handler = CommandHandler.Create<string, object>(async (personId, select) => {
-                var requestInfo = CreateGetRequestInformation();
-                if (!String.IsNullOrEmpty(personId)) requestInfo.PathParameters.Add("person_id", personId);
-                requestInfo.QueryParameters.Add("select", select);
+            var personIdOption = new Option<string>("--person-id", description: "key: id of person");
+            personIdOption.IsRequired = true;
+            command.AddOption(personIdOption);
+            var selectOption = new Option<string[]>("--select", description: "Select properties to be returned");
+            selectOption.IsRequired = false;
+            selectOption.Arity = ArgumentArity.ZeroOrMore;
+            command.AddOption(selectOption);
+            command.Handler = CommandHandler.Create<string, string[]>(async (personId, select) => {
+                var requestInfo = CreateGetRequestInformation(q => {
+                    q.Select = select;
+                });
                 var result = await RequestAdapter.SendAsync<Person>(requestInfo);
                 // Print request output. What if the request has no return?
                 using var serializer = RequestAdapter.SerializationWriterFactory.GetSerializationWriter("application/json");
@@ -61,20 +68,24 @@ namespace ApiSdk.Me.People.Item {
             return command;
         }
         /// <summary>
-        /// People that are relevant to the user. Read-only. Nullable.
+        /// Read-only. The most relevant people to the user. The collection is ordered by their relevance to the user, which is determined by the user's communication, collaboration and business relationships. A person is an aggregation of information from across mail, contacts and social networks.
         /// </summary>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
-            command.Description = "People that are relevant to the user. Read-only. Nullable.";
+            command.Description = "Read-only. The most relevant people to the user. The collection is ordered by their relevance to the user, which is determined by the user's communication, collaboration and business relationships. A person is an aggregation of information from across mail, contacts and social networks.";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--person-id", description: "key: id of person"));
-            command.AddOption(new Option<string>("--body"));
+            var personIdOption = new Option<string>("--person-id", description: "key: id of person");
+            personIdOption.IsRequired = true;
+            command.AddOption(personIdOption);
+            var bodyOption = new Option<string>("--body");
+            bodyOption.IsRequired = true;
+            command.AddOption(bodyOption);
             command.Handler = CommandHandler.Create<string, string>(async (personId, body) => {
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<Person>();
-                var requestInfo = CreatePatchRequestInformation(model);
-                if (!String.IsNullOrEmpty(personId)) requestInfo.PathParameters.Add("person_id", personId);
+                var requestInfo = CreatePatchRequestInformation(model, q => {
+                });
                 await RequestAdapter.SendNoContentAsync(requestInfo);
                 // Print request output. What if the request has no return?
                 Console.WriteLine("Success");
@@ -95,7 +106,7 @@ namespace ApiSdk.Me.People.Item {
             RequestAdapter = requestAdapter;
         }
         /// <summary>
-        /// People that are relevant to the user. Read-only. Nullable.
+        /// Read-only. The most relevant people to the user. The collection is ordered by their relevance to the user, which is determined by the user's communication, collaboration and business relationships. A person is an aggregation of information from across mail, contacts and social networks.
         /// <param name="h">Request headers</param>
         /// <param name="o">Request options</param>
         /// </summary>
@@ -110,7 +121,7 @@ namespace ApiSdk.Me.People.Item {
             return requestInfo;
         }
         /// <summary>
-        /// People that are relevant to the user. Read-only. Nullable.
+        /// Read-only. The most relevant people to the user. The collection is ordered by their relevance to the user, which is determined by the user's communication, collaboration and business relationships. A person is an aggregation of information from across mail, contacts and social networks.
         /// <param name="h">Request headers</param>
         /// <param name="o">Request options</param>
         /// <param name="q">Request query parameters</param>
@@ -131,7 +142,7 @@ namespace ApiSdk.Me.People.Item {
             return requestInfo;
         }
         /// <summary>
-        /// People that are relevant to the user. Read-only. Nullable.
+        /// Read-only. The most relevant people to the user. The collection is ordered by their relevance to the user, which is determined by the user's communication, collaboration and business relationships. A person is an aggregation of information from across mail, contacts and social networks.
         /// <param name="body"></param>
         /// <param name="h">Request headers</param>
         /// <param name="o">Request options</param>
@@ -149,7 +160,7 @@ namespace ApiSdk.Me.People.Item {
             return requestInfo;
         }
         /// <summary>
-        /// People that are relevant to the user. Read-only. Nullable.
+        /// Read-only. The most relevant people to the user. The collection is ordered by their relevance to the user, which is determined by the user's communication, collaboration and business relationships. A person is an aggregation of information from across mail, contacts and social networks.
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="h">Request headers</param>
         /// <param name="o">Request options</param>
@@ -160,7 +171,7 @@ namespace ApiSdk.Me.People.Item {
             await RequestAdapter.SendNoContentAsync(requestInfo, responseHandler, cancellationToken);
         }
         /// <summary>
-        /// People that are relevant to the user. Read-only. Nullable.
+        /// Read-only. The most relevant people to the user. The collection is ordered by their relevance to the user, which is determined by the user's communication, collaboration and business relationships. A person is an aggregation of information from across mail, contacts and social networks.
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="h">Request headers</param>
         /// <param name="o">Request options</param>
@@ -172,7 +183,7 @@ namespace ApiSdk.Me.People.Item {
             return await RequestAdapter.SendAsync<Person>(requestInfo, responseHandler, cancellationToken);
         }
         /// <summary>
-        /// People that are relevant to the user. Read-only. Nullable.
+        /// Read-only. The most relevant people to the user. The collection is ordered by their relevance to the user, which is determined by the user's communication, collaboration and business relationships. A person is an aggregation of information from across mail, contacts and social networks.
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="h">Request headers</param>
         /// <param name="model"></param>
@@ -184,7 +195,7 @@ namespace ApiSdk.Me.People.Item {
             var requestInfo = CreatePatchRequestInformation(model, h, o);
             await RequestAdapter.SendNoContentAsync(requestInfo, responseHandler, cancellationToken);
         }
-        /// <summary>People that are relevant to the user. Read-only. Nullable.</summary>
+        /// <summary>Read-only. The most relevant people to the user. The collection is ordered by their relevance to the user, which is determined by the user's communication, collaboration and business relationships. A person is an aggregation of information from across mail, contacts and social networks.</summary>
         public class GetQueryParameters : QueryParametersBase {
             /// <summary>Select properties to be returned</summary>
             public string[] Select { get; set; }

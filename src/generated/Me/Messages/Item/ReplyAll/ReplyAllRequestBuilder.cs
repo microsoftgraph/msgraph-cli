@@ -25,14 +25,18 @@ namespace ApiSdk.Me.Messages.Item.ReplyAll {
             var command = new Command("post");
             command.Description = "Invoke action replyAll";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--message-id", description: "key: id of message"));
-            command.AddOption(new Option<string>("--body"));
+            var messageIdOption = new Option<string>("--message-id", description: "key: id of message");
+            messageIdOption.IsRequired = true;
+            command.AddOption(messageIdOption);
+            var bodyOption = new Option<string>("--body");
+            bodyOption.IsRequired = true;
+            command.AddOption(bodyOption);
             command.Handler = CommandHandler.Create<string, string>(async (messageId, body) => {
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<ReplyAllRequestBody>();
-                var requestInfo = CreatePostRequestInformation(model);
-                if (!String.IsNullOrEmpty(messageId)) requestInfo.PathParameters.Add("message_id", messageId);
+                var requestInfo = CreatePostRequestInformation(model, q => {
+                });
                 await RequestAdapter.SendNoContentAsync(requestInfo);
                 // Print request output. What if the request has no return?
                 Console.WriteLine("Success");

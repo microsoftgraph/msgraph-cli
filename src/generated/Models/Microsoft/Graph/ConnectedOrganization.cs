@@ -9,10 +9,11 @@ namespace ApiSdk.Models.Microsoft.Graph {
         public DateTimeOffset? CreatedDateTime { get; set; }
         /// <summary>The description of the connected organization.</summary>
         public string Description { get; set; }
-        /// <summary>The display name of the connected organization.</summary>
+        /// <summary>The display name of the connected organization. Supports $filter (eq).</summary>
         public string DisplayName { get; set; }
         /// <summary>Nullable.</summary>
         public List<DirectoryObject> ExternalSponsors { get; set; }
+        /// <summary>The identity sources in this connected organization, one of azureActiveDirectoryTenant, domainIdentitySource or externalDomainFederation. Nullable.</summary>
         public List<IdentitySource> IdentitySources { get; set; }
         /// <summary>Nullable.</summary>
         public List<DirectoryObject> InternalSponsors { get; set; }

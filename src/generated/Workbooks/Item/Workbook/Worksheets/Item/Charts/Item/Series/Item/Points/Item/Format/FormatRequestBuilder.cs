@@ -27,18 +27,24 @@ namespace ApiSdk.Workbooks.Item.Workbook.Worksheets.Item.Charts.Item.Series.Item
             var command = new Command("delete");
             command.Description = "Encapsulates the format properties chart point. Read-only.";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--driveitem-id", description: "key: id of driveItem"));
-            command.AddOption(new Option<string>("--workbookworksheet-id", description: "key: id of workbookWorksheet"));
-            command.AddOption(new Option<string>("--workbookchart-id", description: "key: id of workbookChart"));
-            command.AddOption(new Option<string>("--workbookchartseries-id", description: "key: id of workbookChartSeries"));
-            command.AddOption(new Option<string>("--workbookchartpoint-id", description: "key: id of workbookChartPoint"));
+            var driveItemIdOption = new Option<string>("--driveitem-id", description: "key: id of driveItem");
+            driveItemIdOption.IsRequired = true;
+            command.AddOption(driveItemIdOption);
+            var workbookWorksheetIdOption = new Option<string>("--workbookworksheet-id", description: "key: id of workbookWorksheet");
+            workbookWorksheetIdOption.IsRequired = true;
+            command.AddOption(workbookWorksheetIdOption);
+            var workbookChartIdOption = new Option<string>("--workbookchart-id", description: "key: id of workbookChart");
+            workbookChartIdOption.IsRequired = true;
+            command.AddOption(workbookChartIdOption);
+            var workbookChartSeriesIdOption = new Option<string>("--workbookchartseries-id", description: "key: id of workbookChartSeries");
+            workbookChartSeriesIdOption.IsRequired = true;
+            command.AddOption(workbookChartSeriesIdOption);
+            var workbookChartPointIdOption = new Option<string>("--workbookchartpoint-id", description: "key: id of workbookChartPoint");
+            workbookChartPointIdOption.IsRequired = true;
+            command.AddOption(workbookChartPointIdOption);
             command.Handler = CommandHandler.Create<string, string, string, string, string>(async (driveItemId, workbookWorksheetId, workbookChartId, workbookChartSeriesId, workbookChartPointId) => {
-                var requestInfo = CreateDeleteRequestInformation();
-                if (!String.IsNullOrEmpty(driveItemId)) requestInfo.PathParameters.Add("driveItem_id", driveItemId);
-                if (!String.IsNullOrEmpty(workbookWorksheetId)) requestInfo.PathParameters.Add("workbookWorksheet_id", workbookWorksheetId);
-                if (!String.IsNullOrEmpty(workbookChartId)) requestInfo.PathParameters.Add("workbookChart_id", workbookChartId);
-                if (!String.IsNullOrEmpty(workbookChartSeriesId)) requestInfo.PathParameters.Add("workbookChartSeries_id", workbookChartSeriesId);
-                if (!String.IsNullOrEmpty(workbookChartPointId)) requestInfo.PathParameters.Add("workbookChartPoint_id", workbookChartPointId);
+                var requestInfo = CreateDeleteRequestInformation(q => {
+                });
                 await RequestAdapter.SendNoContentAsync(requestInfo);
                 // Print request output. What if the request has no return?
                 Console.WriteLine("Success");
@@ -62,22 +68,34 @@ namespace ApiSdk.Workbooks.Item.Workbook.Worksheets.Item.Charts.Item.Series.Item
             var command = new Command("get");
             command.Description = "Encapsulates the format properties chart point. Read-only.";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--driveitem-id", description: "key: id of driveItem"));
-            command.AddOption(new Option<string>("--workbookworksheet-id", description: "key: id of workbookWorksheet"));
-            command.AddOption(new Option<string>("--workbookchart-id", description: "key: id of workbookChart"));
-            command.AddOption(new Option<string>("--workbookchartseries-id", description: "key: id of workbookChartSeries"));
-            command.AddOption(new Option<string>("--workbookchartpoint-id", description: "key: id of workbookChartPoint"));
-            command.AddOption(new Option<object>("--select", description: "Select properties to be returned"));
-            command.AddOption(new Option<object>("--expand", description: "Expand related entities"));
-            command.Handler = CommandHandler.Create<string, string, string, string, string, object, object>(async (driveItemId, workbookWorksheetId, workbookChartId, workbookChartSeriesId, workbookChartPointId, select, expand) => {
-                var requestInfo = CreateGetRequestInformation();
-                if (!String.IsNullOrEmpty(driveItemId)) requestInfo.PathParameters.Add("driveItem_id", driveItemId);
-                if (!String.IsNullOrEmpty(workbookWorksheetId)) requestInfo.PathParameters.Add("workbookWorksheet_id", workbookWorksheetId);
-                if (!String.IsNullOrEmpty(workbookChartId)) requestInfo.PathParameters.Add("workbookChart_id", workbookChartId);
-                if (!String.IsNullOrEmpty(workbookChartSeriesId)) requestInfo.PathParameters.Add("workbookChartSeries_id", workbookChartSeriesId);
-                if (!String.IsNullOrEmpty(workbookChartPointId)) requestInfo.PathParameters.Add("workbookChartPoint_id", workbookChartPointId);
-                requestInfo.QueryParameters.Add("select", select);
-                requestInfo.QueryParameters.Add("expand", expand);
+            var driveItemIdOption = new Option<string>("--driveitem-id", description: "key: id of driveItem");
+            driveItemIdOption.IsRequired = true;
+            command.AddOption(driveItemIdOption);
+            var workbookWorksheetIdOption = new Option<string>("--workbookworksheet-id", description: "key: id of workbookWorksheet");
+            workbookWorksheetIdOption.IsRequired = true;
+            command.AddOption(workbookWorksheetIdOption);
+            var workbookChartIdOption = new Option<string>("--workbookchart-id", description: "key: id of workbookChart");
+            workbookChartIdOption.IsRequired = true;
+            command.AddOption(workbookChartIdOption);
+            var workbookChartSeriesIdOption = new Option<string>("--workbookchartseries-id", description: "key: id of workbookChartSeries");
+            workbookChartSeriesIdOption.IsRequired = true;
+            command.AddOption(workbookChartSeriesIdOption);
+            var workbookChartPointIdOption = new Option<string>("--workbookchartpoint-id", description: "key: id of workbookChartPoint");
+            workbookChartPointIdOption.IsRequired = true;
+            command.AddOption(workbookChartPointIdOption);
+            var selectOption = new Option<string[]>("--select", description: "Select properties to be returned");
+            selectOption.IsRequired = false;
+            selectOption.Arity = ArgumentArity.ZeroOrMore;
+            command.AddOption(selectOption);
+            var expandOption = new Option<string[]>("--expand", description: "Expand related entities");
+            expandOption.IsRequired = false;
+            expandOption.Arity = ArgumentArity.ZeroOrMore;
+            command.AddOption(expandOption);
+            command.Handler = CommandHandler.Create<string, string, string, string, string, string[], string[]>(async (driveItemId, workbookWorksheetId, workbookChartId, workbookChartSeriesId, workbookChartPointId, select, expand) => {
+                var requestInfo = CreateGetRequestInformation(q => {
+                    q.Select = select;
+                    q.Expand = expand;
+                });
                 var result = await RequestAdapter.SendAsync<WorkbookChartPointFormat>(requestInfo);
                 // Print request output. What if the request has no return?
                 using var serializer = RequestAdapter.SerializationWriterFactory.GetSerializationWriter("application/json");
@@ -96,22 +114,30 @@ namespace ApiSdk.Workbooks.Item.Workbook.Worksheets.Item.Charts.Item.Series.Item
             var command = new Command("patch");
             command.Description = "Encapsulates the format properties chart point. Read-only.";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--driveitem-id", description: "key: id of driveItem"));
-            command.AddOption(new Option<string>("--workbookworksheet-id", description: "key: id of workbookWorksheet"));
-            command.AddOption(new Option<string>("--workbookchart-id", description: "key: id of workbookChart"));
-            command.AddOption(new Option<string>("--workbookchartseries-id", description: "key: id of workbookChartSeries"));
-            command.AddOption(new Option<string>("--workbookchartpoint-id", description: "key: id of workbookChartPoint"));
-            command.AddOption(new Option<string>("--body"));
+            var driveItemIdOption = new Option<string>("--driveitem-id", description: "key: id of driveItem");
+            driveItemIdOption.IsRequired = true;
+            command.AddOption(driveItemIdOption);
+            var workbookWorksheetIdOption = new Option<string>("--workbookworksheet-id", description: "key: id of workbookWorksheet");
+            workbookWorksheetIdOption.IsRequired = true;
+            command.AddOption(workbookWorksheetIdOption);
+            var workbookChartIdOption = new Option<string>("--workbookchart-id", description: "key: id of workbookChart");
+            workbookChartIdOption.IsRequired = true;
+            command.AddOption(workbookChartIdOption);
+            var workbookChartSeriesIdOption = new Option<string>("--workbookchartseries-id", description: "key: id of workbookChartSeries");
+            workbookChartSeriesIdOption.IsRequired = true;
+            command.AddOption(workbookChartSeriesIdOption);
+            var workbookChartPointIdOption = new Option<string>("--workbookchartpoint-id", description: "key: id of workbookChartPoint");
+            workbookChartPointIdOption.IsRequired = true;
+            command.AddOption(workbookChartPointIdOption);
+            var bodyOption = new Option<string>("--body");
+            bodyOption.IsRequired = true;
+            command.AddOption(bodyOption);
             command.Handler = CommandHandler.Create<string, string, string, string, string, string>(async (driveItemId, workbookWorksheetId, workbookChartId, workbookChartSeriesId, workbookChartPointId, body) => {
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<WorkbookChartPointFormat>();
-                var requestInfo = CreatePatchRequestInformation(model);
-                if (!String.IsNullOrEmpty(driveItemId)) requestInfo.PathParameters.Add("driveItem_id", driveItemId);
-                if (!String.IsNullOrEmpty(workbookWorksheetId)) requestInfo.PathParameters.Add("workbookWorksheet_id", workbookWorksheetId);
-                if (!String.IsNullOrEmpty(workbookChartId)) requestInfo.PathParameters.Add("workbookChart_id", workbookChartId);
-                if (!String.IsNullOrEmpty(workbookChartSeriesId)) requestInfo.PathParameters.Add("workbookChartSeries_id", workbookChartSeriesId);
-                if (!String.IsNullOrEmpty(workbookChartPointId)) requestInfo.PathParameters.Add("workbookChartPoint_id", workbookChartPointId);
+                var requestInfo = CreatePatchRequestInformation(model, q => {
+                });
                 await RequestAdapter.SendNoContentAsync(requestInfo);
                 // Print request output. What if the request has no return?
                 Console.WriteLine("Success");

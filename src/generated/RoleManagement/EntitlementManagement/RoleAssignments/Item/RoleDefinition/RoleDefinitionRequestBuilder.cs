@@ -21,20 +21,28 @@ namespace ApiSdk.RoleManagement.EntitlementManagement.RoleAssignments.Item.RoleD
         /// <summary>Url template to use to build the URL for the current request builder</summary>
         private string UrlTemplate { get; set; }
         /// <summary>
-        /// The roleDefinition the assignment is for.  Supports $expand. roleDefinition.Id will be auto expanded.
+        /// The roleDefinition the assignment is for. Provided so that callers can get the role definition using $expand at the same time as getting the role assignment. roleDefinition.id will be auto expanded. Supports $expand.
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "The roleDefinition the assignment is for.  Supports $expand. roleDefinition.Id will be auto expanded.";
+            command.Description = "The roleDefinition the assignment is for. Provided so that callers can get the role definition using $expand at the same time as getting the role assignment. roleDefinition.id will be auto expanded. Supports $expand.";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--unifiedroleassignment-id", description: "key: id of unifiedRoleAssignment"));
-            command.AddOption(new Option<object>("--select", description: "Select properties to be returned"));
-            command.AddOption(new Option<object>("--expand", description: "Expand related entities"));
-            command.Handler = CommandHandler.Create<string, object, object>(async (unifiedRoleAssignmentId, select, expand) => {
-                var requestInfo = CreateGetRequestInformation();
-                if (!String.IsNullOrEmpty(unifiedRoleAssignmentId)) requestInfo.PathParameters.Add("unifiedRoleAssignment_id", unifiedRoleAssignmentId);
-                requestInfo.QueryParameters.Add("select", select);
-                requestInfo.QueryParameters.Add("expand", expand);
+            var unifiedRoleAssignmentIdOption = new Option<string>("--unifiedroleassignment-id", description: "key: id of unifiedRoleAssignment");
+            unifiedRoleAssignmentIdOption.IsRequired = true;
+            command.AddOption(unifiedRoleAssignmentIdOption);
+            var selectOption = new Option<string[]>("--select", description: "Select properties to be returned");
+            selectOption.IsRequired = false;
+            selectOption.Arity = ArgumentArity.ZeroOrMore;
+            command.AddOption(selectOption);
+            var expandOption = new Option<string[]>("--expand", description: "Expand related entities");
+            expandOption.IsRequired = false;
+            expandOption.Arity = ArgumentArity.ZeroOrMore;
+            command.AddOption(expandOption);
+            command.Handler = CommandHandler.Create<string, string[], string[]>(async (unifiedRoleAssignmentId, select, expand) => {
+                var requestInfo = CreateGetRequestInformation(q => {
+                    q.Select = select;
+                    q.Expand = expand;
+                });
                 var result = await RequestAdapter.SendAsync<UnifiedRoleDefinition>(requestInfo);
                 // Print request output. What if the request has no return?
                 using var serializer = RequestAdapter.SerializationWriterFactory.GetSerializationWriter("application/json");
@@ -68,7 +76,7 @@ namespace ApiSdk.RoleManagement.EntitlementManagement.RoleAssignments.Item.RoleD
             RequestAdapter = requestAdapter;
         }
         /// <summary>
-        /// The roleDefinition the assignment is for.  Supports $expand. roleDefinition.Id will be auto expanded.
+        /// The roleDefinition the assignment is for. Provided so that callers can get the role definition using $expand at the same time as getting the role assignment. roleDefinition.id will be auto expanded. Supports $expand.
         /// <param name="h">Request headers</param>
         /// <param name="o">Request options</param>
         /// <param name="q">Request query parameters</param>
@@ -89,7 +97,7 @@ namespace ApiSdk.RoleManagement.EntitlementManagement.RoleAssignments.Item.RoleD
             return requestInfo;
         }
         /// <summary>
-        /// The roleDefinition the assignment is for.  Supports $expand. roleDefinition.Id will be auto expanded.
+        /// The roleDefinition the assignment is for. Provided so that callers can get the role definition using $expand at the same time as getting the role assignment. roleDefinition.id will be auto expanded. Supports $expand.
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="h">Request headers</param>
         /// <param name="o">Request options</param>
@@ -100,7 +108,7 @@ namespace ApiSdk.RoleManagement.EntitlementManagement.RoleAssignments.Item.RoleD
             var requestInfo = CreateGetRequestInformation(q, h, o);
             return await RequestAdapter.SendAsync<UnifiedRoleDefinition>(requestInfo, responseHandler, cancellationToken);
         }
-        /// <summary>The roleDefinition the assignment is for.  Supports $expand. roleDefinition.Id will be auto expanded.</summary>
+        /// <summary>The roleDefinition the assignment is for. Provided so that callers can get the role definition using $expand at the same time as getting the role assignment. roleDefinition.id will be auto expanded. Supports $expand.</summary>
         public class GetQueryParameters : QueryParametersBase {
             /// <summary>Expand related entities</summary>
             public string[] Expand { get; set; }

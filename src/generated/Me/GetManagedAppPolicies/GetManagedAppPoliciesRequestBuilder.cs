@@ -26,7 +26,8 @@ namespace ApiSdk.Me.GetManagedAppPolicies {
             command.Description = "Gets app restrictions for a given user.";
             // Create options for all the parameters
             command.Handler = CommandHandler.Create(async () => {
-                var requestInfo = CreateGetRequestInformation();
+                var requestInfo = CreateGetRequestInformation(q => {
+                });
                 var result = await RequestAdapter.SendCollectionAsync<ApiSdk.Me.GetManagedAppPolicies.GetManagedAppPolicies>(requestInfo);
                 // Print request output. What if the request has no return?
                 using var serializer = RequestAdapter.SerializationWriterFactory.GetSerializationWriter("application/json");

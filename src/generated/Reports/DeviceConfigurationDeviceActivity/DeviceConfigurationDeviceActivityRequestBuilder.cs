@@ -27,7 +27,8 @@ namespace ApiSdk.Reports.DeviceConfigurationDeviceActivity {
             command.Description = "Metadata for the device configuration device activity report";
             // Create options for all the parameters
             command.Handler = CommandHandler.Create(async () => {
-                var requestInfo = CreateGetRequestInformation();
+                var requestInfo = CreateGetRequestInformation(q => {
+                });
                 var result = await RequestAdapter.SendAsync<DeviceConfigurationDeviceActivityResponse>(requestInfo);
                 // Print request output. What if the request has no return?
                 using var serializer = RequestAdapter.SerializationWriterFactory.GetSerializationWriter("application/json");

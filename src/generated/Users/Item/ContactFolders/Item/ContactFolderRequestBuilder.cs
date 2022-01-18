@@ -44,12 +44,15 @@ namespace ApiSdk.Users.Item.ContactFolders.Item {
             var command = new Command("delete");
             command.Description = "The user's contacts folders. Read-only. Nullable.";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--user-id", description: "key: id of user"));
-            command.AddOption(new Option<string>("--contactfolder-id", description: "key: id of contactFolder"));
+            var userIdOption = new Option<string>("--user-id", description: "key: id of user");
+            userIdOption.IsRequired = true;
+            command.AddOption(userIdOption);
+            var contactFolderIdOption = new Option<string>("--contactfolder-id", description: "key: id of contactFolder");
+            contactFolderIdOption.IsRequired = true;
+            command.AddOption(contactFolderIdOption);
             command.Handler = CommandHandler.Create<string, string>(async (userId, contactFolderId) => {
-                var requestInfo = CreateDeleteRequestInformation();
-                if (!String.IsNullOrEmpty(userId)) requestInfo.PathParameters.Add("user_id", userId);
-                if (!String.IsNullOrEmpty(contactFolderId)) requestInfo.PathParameters.Add("contactFolder_id", contactFolderId);
+                var requestInfo = CreateDeleteRequestInformation(q => {
+                });
                 await RequestAdapter.SendNoContentAsync(requestInfo);
                 // Print request output. What if the request has no return?
                 Console.WriteLine("Success");
@@ -63,14 +66,20 @@ namespace ApiSdk.Users.Item.ContactFolders.Item {
             var command = new Command("get");
             command.Description = "The user's contacts folders. Read-only. Nullable.";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--user-id", description: "key: id of user"));
-            command.AddOption(new Option<string>("--contactfolder-id", description: "key: id of contactFolder"));
-            command.AddOption(new Option<object>("--select", description: "Select properties to be returned"));
-            command.Handler = CommandHandler.Create<string, string, object>(async (userId, contactFolderId, select) => {
-                var requestInfo = CreateGetRequestInformation();
-                if (!String.IsNullOrEmpty(userId)) requestInfo.PathParameters.Add("user_id", userId);
-                if (!String.IsNullOrEmpty(contactFolderId)) requestInfo.PathParameters.Add("contactFolder_id", contactFolderId);
-                requestInfo.QueryParameters.Add("select", select);
+            var userIdOption = new Option<string>("--user-id", description: "key: id of user");
+            userIdOption.IsRequired = true;
+            command.AddOption(userIdOption);
+            var contactFolderIdOption = new Option<string>("--contactfolder-id", description: "key: id of contactFolder");
+            contactFolderIdOption.IsRequired = true;
+            command.AddOption(contactFolderIdOption);
+            var selectOption = new Option<string[]>("--select", description: "Select properties to be returned");
+            selectOption.IsRequired = false;
+            selectOption.Arity = ArgumentArity.ZeroOrMore;
+            command.AddOption(selectOption);
+            command.Handler = CommandHandler.Create<string, string, string[]>(async (userId, contactFolderId, select) => {
+                var requestInfo = CreateGetRequestInformation(q => {
+                    q.Select = select;
+                });
                 var result = await RequestAdapter.SendAsync<ContactFolder>(requestInfo);
                 // Print request output. What if the request has no return?
                 using var serializer = RequestAdapter.SerializationWriterFactory.GetSerializationWriter("application/json");
@@ -96,16 +105,21 @@ namespace ApiSdk.Users.Item.ContactFolders.Item {
             var command = new Command("patch");
             command.Description = "The user's contacts folders. Read-only. Nullable.";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--user-id", description: "key: id of user"));
-            command.AddOption(new Option<string>("--contactfolder-id", description: "key: id of contactFolder"));
-            command.AddOption(new Option<string>("--body"));
+            var userIdOption = new Option<string>("--user-id", description: "key: id of user");
+            userIdOption.IsRequired = true;
+            command.AddOption(userIdOption);
+            var contactFolderIdOption = new Option<string>("--contactfolder-id", description: "key: id of contactFolder");
+            contactFolderIdOption.IsRequired = true;
+            command.AddOption(contactFolderIdOption);
+            var bodyOption = new Option<string>("--body");
+            bodyOption.IsRequired = true;
+            command.AddOption(bodyOption);
             command.Handler = CommandHandler.Create<string, string, string>(async (userId, contactFolderId, body) => {
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<ContactFolder>();
-                var requestInfo = CreatePatchRequestInformation(model);
-                if (!String.IsNullOrEmpty(userId)) requestInfo.PathParameters.Add("user_id", userId);
-                if (!String.IsNullOrEmpty(contactFolderId)) requestInfo.PathParameters.Add("contactFolder_id", contactFolderId);
+                var requestInfo = CreatePatchRequestInformation(model, q => {
+                });
                 await RequestAdapter.SendNoContentAsync(requestInfo);
                 // Print request output. What if the request has no return?
                 Console.WriteLine("Success");

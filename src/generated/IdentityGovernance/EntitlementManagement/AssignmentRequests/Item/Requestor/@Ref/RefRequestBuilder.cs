@@ -25,10 +25,12 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.AssignmentRequests.Ite
             var command = new Command("delete");
             command.Description = "The subject who requested or, if a direct assignment, was assigned. Read-only. Nullable. Supports $expand.";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--accesspackageassignmentrequest-id", description: "key: id of accessPackageAssignmentRequest"));
+            var accessPackageAssignmentRequestIdOption = new Option<string>("--accesspackageassignmentrequest-id", description: "key: id of accessPackageAssignmentRequest");
+            accessPackageAssignmentRequestIdOption.IsRequired = true;
+            command.AddOption(accessPackageAssignmentRequestIdOption);
             command.Handler = CommandHandler.Create<string>(async (accessPackageAssignmentRequestId) => {
-                var requestInfo = CreateDeleteRequestInformation();
-                if (!String.IsNullOrEmpty(accessPackageAssignmentRequestId)) requestInfo.PathParameters.Add("accessPackageAssignmentRequest_id", accessPackageAssignmentRequestId);
+                var requestInfo = CreateDeleteRequestInformation(q => {
+                });
                 await RequestAdapter.SendNoContentAsync(requestInfo);
                 // Print request output. What if the request has no return?
                 Console.WriteLine("Success");
@@ -42,10 +44,12 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.AssignmentRequests.Ite
             var command = new Command("get");
             command.Description = "The subject who requested or, if a direct assignment, was assigned. Read-only. Nullable. Supports $expand.";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--accesspackageassignmentrequest-id", description: "key: id of accessPackageAssignmentRequest"));
+            var accessPackageAssignmentRequestIdOption = new Option<string>("--accesspackageassignmentrequest-id", description: "key: id of accessPackageAssignmentRequest");
+            accessPackageAssignmentRequestIdOption.IsRequired = true;
+            command.AddOption(accessPackageAssignmentRequestIdOption);
             command.Handler = CommandHandler.Create<string>(async (accessPackageAssignmentRequestId) => {
-                var requestInfo = CreateGetRequestInformation();
-                if (!String.IsNullOrEmpty(accessPackageAssignmentRequestId)) requestInfo.PathParameters.Add("accessPackageAssignmentRequest_id", accessPackageAssignmentRequestId);
+                var requestInfo = CreateGetRequestInformation(q => {
+                });
                 var result = await RequestAdapter.SendPrimitiveAsync<string>(requestInfo);
                 // Print request output. What if the request has no return?
                 using var serializer = RequestAdapter.SerializationWriterFactory.GetSerializationWriter("application/json");
@@ -64,14 +68,18 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.AssignmentRequests.Ite
             var command = new Command("put");
             command.Description = "The subject who requested or, if a direct assignment, was assigned. Read-only. Nullable. Supports $expand.";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--accesspackageassignmentrequest-id", description: "key: id of accessPackageAssignmentRequest"));
-            command.AddOption(new Option<string>("--body"));
+            var accessPackageAssignmentRequestIdOption = new Option<string>("--accesspackageassignmentrequest-id", description: "key: id of accessPackageAssignmentRequest");
+            accessPackageAssignmentRequestIdOption.IsRequired = true;
+            command.AddOption(accessPackageAssignmentRequestIdOption);
+            var bodyOption = new Option<string>("--body");
+            bodyOption.IsRequired = true;
+            command.AddOption(bodyOption);
             command.Handler = CommandHandler.Create<string, string>(async (accessPackageAssignmentRequestId, body) => {
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<ApiSdk.IdentityGovernance.EntitlementManagement.AssignmentRequests.Item.Requestor.@Ref.@Ref>();
-                var requestInfo = CreatePutRequestInformation(model);
-                if (!String.IsNullOrEmpty(accessPackageAssignmentRequestId)) requestInfo.PathParameters.Add("accessPackageAssignmentRequest_id", accessPackageAssignmentRequestId);
+                var requestInfo = CreatePutRequestInformation(model, q => {
+                });
                 await RequestAdapter.SendNoContentAsync(requestInfo);
                 // Print request output. What if the request has no return?
                 Console.WriteLine("Success");

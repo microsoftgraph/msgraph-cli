@@ -20,16 +20,18 @@ namespace ApiSdk.RoleManagement.Directory.RoleAssignments.Item.AppScope {
         /// <summary>Url template to use to build the URL for the current request builder</summary>
         private string UrlTemplate { get; set; }
         /// <summary>
-        /// Read-only property with details of the app specific scope when the assignment scope is app specific. Containment entity. Supports $expand.
+        /// Details of the app specific scope when the assignment scope is app specific. Containment entity.
         /// </summary>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
-            command.Description = "Read-only property with details of the app specific scope when the assignment scope is app specific. Containment entity. Supports $expand.";
+            command.Description = "Details of the app specific scope when the assignment scope is app specific. Containment entity.";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--unifiedroleassignment-id", description: "key: id of unifiedRoleAssignment"));
+            var unifiedRoleAssignmentIdOption = new Option<string>("--unifiedroleassignment-id", description: "key: id of unifiedRoleAssignment");
+            unifiedRoleAssignmentIdOption.IsRequired = true;
+            command.AddOption(unifiedRoleAssignmentIdOption);
             command.Handler = CommandHandler.Create<string>(async (unifiedRoleAssignmentId) => {
-                var requestInfo = CreateDeleteRequestInformation();
-                if (!String.IsNullOrEmpty(unifiedRoleAssignmentId)) requestInfo.PathParameters.Add("unifiedRoleAssignment_id", unifiedRoleAssignmentId);
+                var requestInfo = CreateDeleteRequestInformation(q => {
+                });
                 await RequestAdapter.SendNoContentAsync(requestInfo);
                 // Print request output. What if the request has no return?
                 Console.WriteLine("Success");
@@ -37,20 +39,28 @@ namespace ApiSdk.RoleManagement.Directory.RoleAssignments.Item.AppScope {
             return command;
         }
         /// <summary>
-        /// Read-only property with details of the app specific scope when the assignment scope is app specific. Containment entity. Supports $expand.
+        /// Details of the app specific scope when the assignment scope is app specific. Containment entity.
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "Read-only property with details of the app specific scope when the assignment scope is app specific. Containment entity. Supports $expand.";
+            command.Description = "Details of the app specific scope when the assignment scope is app specific. Containment entity.";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--unifiedroleassignment-id", description: "key: id of unifiedRoleAssignment"));
-            command.AddOption(new Option<object>("--select", description: "Select properties to be returned"));
-            command.AddOption(new Option<object>("--expand", description: "Expand related entities"));
-            command.Handler = CommandHandler.Create<string, object, object>(async (unifiedRoleAssignmentId, select, expand) => {
-                var requestInfo = CreateGetRequestInformation();
-                if (!String.IsNullOrEmpty(unifiedRoleAssignmentId)) requestInfo.PathParameters.Add("unifiedRoleAssignment_id", unifiedRoleAssignmentId);
-                requestInfo.QueryParameters.Add("select", select);
-                requestInfo.QueryParameters.Add("expand", expand);
+            var unifiedRoleAssignmentIdOption = new Option<string>("--unifiedroleassignment-id", description: "key: id of unifiedRoleAssignment");
+            unifiedRoleAssignmentIdOption.IsRequired = true;
+            command.AddOption(unifiedRoleAssignmentIdOption);
+            var selectOption = new Option<string[]>("--select", description: "Select properties to be returned");
+            selectOption.IsRequired = false;
+            selectOption.Arity = ArgumentArity.ZeroOrMore;
+            command.AddOption(selectOption);
+            var expandOption = new Option<string[]>("--expand", description: "Expand related entities");
+            expandOption.IsRequired = false;
+            expandOption.Arity = ArgumentArity.ZeroOrMore;
+            command.AddOption(expandOption);
+            command.Handler = CommandHandler.Create<string, string[], string[]>(async (unifiedRoleAssignmentId, select, expand) => {
+                var requestInfo = CreateGetRequestInformation(q => {
+                    q.Select = select;
+                    q.Expand = expand;
+                });
                 var result = await RequestAdapter.SendAsync<ApiSdk.Models.Microsoft.Graph.AppScope>(requestInfo);
                 // Print request output. What if the request has no return?
                 using var serializer = RequestAdapter.SerializationWriterFactory.GetSerializationWriter("application/json");
@@ -63,20 +73,24 @@ namespace ApiSdk.RoleManagement.Directory.RoleAssignments.Item.AppScope {
             return command;
         }
         /// <summary>
-        /// Read-only property with details of the app specific scope when the assignment scope is app specific. Containment entity. Supports $expand.
+        /// Details of the app specific scope when the assignment scope is app specific. Containment entity.
         /// </summary>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
-            command.Description = "Read-only property with details of the app specific scope when the assignment scope is app specific. Containment entity. Supports $expand.";
+            command.Description = "Details of the app specific scope when the assignment scope is app specific. Containment entity.";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--unifiedroleassignment-id", description: "key: id of unifiedRoleAssignment"));
-            command.AddOption(new Option<string>("--body"));
+            var unifiedRoleAssignmentIdOption = new Option<string>("--unifiedroleassignment-id", description: "key: id of unifiedRoleAssignment");
+            unifiedRoleAssignmentIdOption.IsRequired = true;
+            command.AddOption(unifiedRoleAssignmentIdOption);
+            var bodyOption = new Option<string>("--body");
+            bodyOption.IsRequired = true;
+            command.AddOption(bodyOption);
             command.Handler = CommandHandler.Create<string, string>(async (unifiedRoleAssignmentId, body) => {
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<ApiSdk.Models.Microsoft.Graph.AppScope>();
-                var requestInfo = CreatePatchRequestInformation(model);
-                if (!String.IsNullOrEmpty(unifiedRoleAssignmentId)) requestInfo.PathParameters.Add("unifiedRoleAssignment_id", unifiedRoleAssignmentId);
+                var requestInfo = CreatePatchRequestInformation(model, q => {
+                });
                 await RequestAdapter.SendNoContentAsync(requestInfo);
                 // Print request output. What if the request has no return?
                 Console.WriteLine("Success");
@@ -97,7 +111,7 @@ namespace ApiSdk.RoleManagement.Directory.RoleAssignments.Item.AppScope {
             RequestAdapter = requestAdapter;
         }
         /// <summary>
-        /// Read-only property with details of the app specific scope when the assignment scope is app specific. Containment entity. Supports $expand.
+        /// Details of the app specific scope when the assignment scope is app specific. Containment entity.
         /// <param name="h">Request headers</param>
         /// <param name="o">Request options</param>
         /// </summary>
@@ -112,7 +126,7 @@ namespace ApiSdk.RoleManagement.Directory.RoleAssignments.Item.AppScope {
             return requestInfo;
         }
         /// <summary>
-        /// Read-only property with details of the app specific scope when the assignment scope is app specific. Containment entity. Supports $expand.
+        /// Details of the app specific scope when the assignment scope is app specific. Containment entity.
         /// <param name="h">Request headers</param>
         /// <param name="o">Request options</param>
         /// <param name="q">Request query parameters</param>
@@ -133,7 +147,7 @@ namespace ApiSdk.RoleManagement.Directory.RoleAssignments.Item.AppScope {
             return requestInfo;
         }
         /// <summary>
-        /// Read-only property with details of the app specific scope when the assignment scope is app specific. Containment entity. Supports $expand.
+        /// Details of the app specific scope when the assignment scope is app specific. Containment entity.
         /// <param name="body"></param>
         /// <param name="h">Request headers</param>
         /// <param name="o">Request options</param>
@@ -151,7 +165,7 @@ namespace ApiSdk.RoleManagement.Directory.RoleAssignments.Item.AppScope {
             return requestInfo;
         }
         /// <summary>
-        /// Read-only property with details of the app specific scope when the assignment scope is app specific. Containment entity. Supports $expand.
+        /// Details of the app specific scope when the assignment scope is app specific. Containment entity.
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="h">Request headers</param>
         /// <param name="o">Request options</param>
@@ -162,7 +176,7 @@ namespace ApiSdk.RoleManagement.Directory.RoleAssignments.Item.AppScope {
             await RequestAdapter.SendNoContentAsync(requestInfo, responseHandler, cancellationToken);
         }
         /// <summary>
-        /// Read-only property with details of the app specific scope when the assignment scope is app specific. Containment entity. Supports $expand.
+        /// Details of the app specific scope when the assignment scope is app specific. Containment entity.
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="h">Request headers</param>
         /// <param name="o">Request options</param>
@@ -174,7 +188,7 @@ namespace ApiSdk.RoleManagement.Directory.RoleAssignments.Item.AppScope {
             return await RequestAdapter.SendAsync<ApiSdk.Models.Microsoft.Graph.AppScope>(requestInfo, responseHandler, cancellationToken);
         }
         /// <summary>
-        /// Read-only property with details of the app specific scope when the assignment scope is app specific. Containment entity. Supports $expand.
+        /// Details of the app specific scope when the assignment scope is app specific. Containment entity.
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="h">Request headers</param>
         /// <param name="model"></param>
@@ -186,7 +200,7 @@ namespace ApiSdk.RoleManagement.Directory.RoleAssignments.Item.AppScope {
             var requestInfo = CreatePatchRequestInformation(model, h, o);
             await RequestAdapter.SendNoContentAsync(requestInfo, responseHandler, cancellationToken);
         }
-        /// <summary>Read-only property with details of the app specific scope when the assignment scope is app specific. Containment entity. Supports $expand.</summary>
+        /// <summary>Details of the app specific scope when the assignment scope is app specific. Containment entity.</summary>
         public class GetQueryParameters : QueryParametersBase {
             /// <summary>Expand related entities</summary>
             public string[] Expand { get; set; }

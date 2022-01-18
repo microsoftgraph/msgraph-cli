@@ -5,7 +5,7 @@ using System.IO;
 using System.Linq;
 namespace ApiSdk.Models.Microsoft.Graph {
     public class Security : Entity, IParsable {
-        /// <summary>Read-only. Nullable.</summary>
+        /// <summary>Notifications for suspicious or potential security issues in a customer’s tenant.</summary>
         public List<Alert> Alerts { get; set; }
         public List<SecureScoreControlProfile> SecureScoreControlProfiles { get; set; }
         public List<SecureScore> SecureScores { get; set; }

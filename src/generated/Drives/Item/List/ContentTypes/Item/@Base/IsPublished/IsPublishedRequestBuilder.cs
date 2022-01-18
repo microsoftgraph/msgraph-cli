@@ -25,12 +25,15 @@ namespace ApiSdk.Drives.Item.List.ContentTypes.Item.@Base.IsPublished {
             var command = new Command("get");
             command.Description = "Invoke function isPublished";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--drive-id", description: "key: id of drive"));
-            command.AddOption(new Option<string>("--contenttype-id", description: "key: id of contentType"));
+            var driveIdOption = new Option<string>("--drive-id", description: "key: id of drive");
+            driveIdOption.IsRequired = true;
+            command.AddOption(driveIdOption);
+            var contentTypeIdOption = new Option<string>("--contenttype-id", description: "key: id of contentType");
+            contentTypeIdOption.IsRequired = true;
+            command.AddOption(contentTypeIdOption);
             command.Handler = CommandHandler.Create<string, string>(async (driveId, contentTypeId) => {
-                var requestInfo = CreateGetRequestInformation();
-                if (!String.IsNullOrEmpty(driveId)) requestInfo.PathParameters.Add("drive_id", driveId);
-                if (!String.IsNullOrEmpty(contentTypeId)) requestInfo.PathParameters.Add("contentType_id", contentTypeId);
+                var requestInfo = CreateGetRequestInformation(q => {
+                });
                 var result = await RequestAdapter.SendPrimitiveAsync<bool?>(requestInfo);
                 // Print request output. What if the request has no return?
                 using var serializer = RequestAdapter.SerializationWriterFactory.GetSerializationWriter("application/json");

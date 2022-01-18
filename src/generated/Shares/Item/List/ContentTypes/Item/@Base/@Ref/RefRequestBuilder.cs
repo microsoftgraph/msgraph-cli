@@ -25,12 +25,15 @@ namespace ApiSdk.Shares.Item.List.ContentTypes.Item.@Base.@Ref {
             var command = new Command("delete");
             command.Description = "Parent contentType from which this content type is derived.";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--shareddriveitem-id", description: "key: id of sharedDriveItem"));
-            command.AddOption(new Option<string>("--contenttype-id", description: "key: id of contentType"));
+            var sharedDriveItemIdOption = new Option<string>("--shareddriveitem-id", description: "key: id of sharedDriveItem");
+            sharedDriveItemIdOption.IsRequired = true;
+            command.AddOption(sharedDriveItemIdOption);
+            var contentTypeIdOption = new Option<string>("--contenttype-id", description: "key: id of contentType");
+            contentTypeIdOption.IsRequired = true;
+            command.AddOption(contentTypeIdOption);
             command.Handler = CommandHandler.Create<string, string>(async (sharedDriveItemId, contentTypeId) => {
-                var requestInfo = CreateDeleteRequestInformation();
-                if (!String.IsNullOrEmpty(sharedDriveItemId)) requestInfo.PathParameters.Add("sharedDriveItem_id", sharedDriveItemId);
-                if (!String.IsNullOrEmpty(contentTypeId)) requestInfo.PathParameters.Add("contentType_id", contentTypeId);
+                var requestInfo = CreateDeleteRequestInformation(q => {
+                });
                 await RequestAdapter.SendNoContentAsync(requestInfo);
                 // Print request output. What if the request has no return?
                 Console.WriteLine("Success");
@@ -44,12 +47,15 @@ namespace ApiSdk.Shares.Item.List.ContentTypes.Item.@Base.@Ref {
             var command = new Command("get");
             command.Description = "Parent contentType from which this content type is derived.";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--shareddriveitem-id", description: "key: id of sharedDriveItem"));
-            command.AddOption(new Option<string>("--contenttype-id", description: "key: id of contentType"));
+            var sharedDriveItemIdOption = new Option<string>("--shareddriveitem-id", description: "key: id of sharedDriveItem");
+            sharedDriveItemIdOption.IsRequired = true;
+            command.AddOption(sharedDriveItemIdOption);
+            var contentTypeIdOption = new Option<string>("--contenttype-id", description: "key: id of contentType");
+            contentTypeIdOption.IsRequired = true;
+            command.AddOption(contentTypeIdOption);
             command.Handler = CommandHandler.Create<string, string>(async (sharedDriveItemId, contentTypeId) => {
-                var requestInfo = CreateGetRequestInformation();
-                if (!String.IsNullOrEmpty(sharedDriveItemId)) requestInfo.PathParameters.Add("sharedDriveItem_id", sharedDriveItemId);
-                if (!String.IsNullOrEmpty(contentTypeId)) requestInfo.PathParameters.Add("contentType_id", contentTypeId);
+                var requestInfo = CreateGetRequestInformation(q => {
+                });
                 var result = await RequestAdapter.SendPrimitiveAsync<string>(requestInfo);
                 // Print request output. What if the request has no return?
                 using var serializer = RequestAdapter.SerializationWriterFactory.GetSerializationWriter("application/json");
@@ -68,16 +74,21 @@ namespace ApiSdk.Shares.Item.List.ContentTypes.Item.@Base.@Ref {
             var command = new Command("put");
             command.Description = "Parent contentType from which this content type is derived.";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--shareddriveitem-id", description: "key: id of sharedDriveItem"));
-            command.AddOption(new Option<string>("--contenttype-id", description: "key: id of contentType"));
-            command.AddOption(new Option<string>("--body"));
+            var sharedDriveItemIdOption = new Option<string>("--shareddriveitem-id", description: "key: id of sharedDriveItem");
+            sharedDriveItemIdOption.IsRequired = true;
+            command.AddOption(sharedDriveItemIdOption);
+            var contentTypeIdOption = new Option<string>("--contenttype-id", description: "key: id of contentType");
+            contentTypeIdOption.IsRequired = true;
+            command.AddOption(contentTypeIdOption);
+            var bodyOption = new Option<string>("--body");
+            bodyOption.IsRequired = true;
+            command.AddOption(bodyOption);
             command.Handler = CommandHandler.Create<string, string, string>(async (sharedDriveItemId, contentTypeId, body) => {
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<ApiSdk.Shares.Item.List.ContentTypes.Item.@Base.@Ref.@Ref>();
-                var requestInfo = CreatePutRequestInformation(model);
-                if (!String.IsNullOrEmpty(sharedDriveItemId)) requestInfo.PathParameters.Add("sharedDriveItem_id", sharedDriveItemId);
-                if (!String.IsNullOrEmpty(contentTypeId)) requestInfo.PathParameters.Add("contentType_id", contentTypeId);
+                var requestInfo = CreatePutRequestInformation(model, q => {
+                });
                 await RequestAdapter.SendNoContentAsync(requestInfo);
                 // Print request output. What if the request has no return?
                 Console.WriteLine("Success");

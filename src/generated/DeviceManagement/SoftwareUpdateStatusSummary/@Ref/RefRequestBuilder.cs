@@ -26,7 +26,8 @@ namespace ApiSdk.DeviceManagement.SoftwareUpdateStatusSummary.@Ref {
             command.Description = "The software update status summary.";
             // Create options for all the parameters
             command.Handler = CommandHandler.Create(async () => {
-                var requestInfo = CreateDeleteRequestInformation();
+                var requestInfo = CreateDeleteRequestInformation(q => {
+                });
                 await RequestAdapter.SendNoContentAsync(requestInfo);
                 // Print request output. What if the request has no return?
                 Console.WriteLine("Success");
@@ -41,7 +42,8 @@ namespace ApiSdk.DeviceManagement.SoftwareUpdateStatusSummary.@Ref {
             command.Description = "The software update status summary.";
             // Create options for all the parameters
             command.Handler = CommandHandler.Create(async () => {
-                var requestInfo = CreateGetRequestInformation();
+                var requestInfo = CreateGetRequestInformation(q => {
+                });
                 var result = await RequestAdapter.SendPrimitiveAsync<string>(requestInfo);
                 // Print request output. What if the request has no return?
                 using var serializer = RequestAdapter.SerializationWriterFactory.GetSerializationWriter("application/json");
@@ -60,12 +62,15 @@ namespace ApiSdk.DeviceManagement.SoftwareUpdateStatusSummary.@Ref {
             var command = new Command("put");
             command.Description = "The software update status summary.";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--body"));
+            var bodyOption = new Option<string>("--body");
+            bodyOption.IsRequired = true;
+            command.AddOption(bodyOption);
             command.Handler = CommandHandler.Create<string>(async (body) => {
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<ApiSdk.DeviceManagement.SoftwareUpdateStatusSummary.@Ref.@Ref>();
-                var requestInfo = CreatePutRequestInformation(model);
+                var requestInfo = CreatePutRequestInformation(model, q => {
+                });
                 await RequestAdapter.SendNoContentAsync(requestInfo);
                 // Print request output. What if the request has no return?
                 Console.WriteLine("Success");

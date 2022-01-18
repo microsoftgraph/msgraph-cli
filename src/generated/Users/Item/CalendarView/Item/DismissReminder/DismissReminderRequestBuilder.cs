@@ -25,12 +25,15 @@ namespace ApiSdk.Users.Item.CalendarView.Item.DismissReminder {
             var command = new Command("post");
             command.Description = "Invoke action dismissReminder";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--user-id", description: "key: id of user"));
-            command.AddOption(new Option<string>("--event-id", description: "key: id of event"));
+            var userIdOption = new Option<string>("--user-id", description: "key: id of user");
+            userIdOption.IsRequired = true;
+            command.AddOption(userIdOption);
+            var eventIdOption = new Option<string>("--event-id", description: "key: id of event");
+            eventIdOption.IsRequired = true;
+            command.AddOption(eventIdOption);
             command.Handler = CommandHandler.Create<string, string>(async (userId, eventId) => {
-                var requestInfo = CreatePostRequestInformation();
-                if (!String.IsNullOrEmpty(userId)) requestInfo.PathParameters.Add("user_id", userId);
-                if (!String.IsNullOrEmpty(eventId)) requestInfo.PathParameters.Add("event_id", eventId);
+                var requestInfo = CreatePostRequestInformation(q => {
+                });
                 await RequestAdapter.SendNoContentAsync(requestInfo);
                 // Print request output. What if the request has no return?
                 Console.WriteLine("Success");

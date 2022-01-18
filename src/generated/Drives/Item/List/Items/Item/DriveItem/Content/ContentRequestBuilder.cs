@@ -25,13 +25,16 @@ namespace ApiSdk.Drives.Item.List.Items.Item.DriveItem.Content {
             var command = new Command("get");
             command.Description = "Get media content for the navigation property driveItem from drives";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--drive-id", description: "key: id of drive"));
-            command.AddOption(new Option<string>("--listitem-id", description: "key: id of listItem"));
+            var driveIdOption = new Option<string>("--drive-id", description: "key: id of drive");
+            driveIdOption.IsRequired = true;
+            command.AddOption(driveIdOption);
+            var listItemIdOption = new Option<string>("--listitem-id", description: "key: id of listItem");
+            listItemIdOption.IsRequired = true;
+            command.AddOption(listItemIdOption);
             command.AddOption(new Option<FileInfo>("--output"));
             command.Handler = CommandHandler.Create<string, string, FileInfo>(async (driveId, listItemId, output) => {
-                var requestInfo = CreateGetRequestInformation();
-                if (!String.IsNullOrEmpty(driveId)) requestInfo.PathParameters.Add("drive_id", driveId);
-                if (!String.IsNullOrEmpty(listItemId)) requestInfo.PathParameters.Add("listItem_id", listItemId);
+                var requestInfo = CreateGetRequestInformation(q => {
+                });
                 var result = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 // Print request output. What if the request has no return?
                 if (output == null) {
@@ -54,14 +57,19 @@ namespace ApiSdk.Drives.Item.List.Items.Item.DriveItem.Content {
             var command = new Command("put");
             command.Description = "Update media content for the navigation property driveItem in drives";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--drive-id", description: "key: id of drive"));
-            command.AddOption(new Option<string>("--listitem-id", description: "key: id of listItem"));
-            command.AddOption(new Option<Stream>("--file", description: "Binary request body"));
+            var driveIdOption = new Option<string>("--drive-id", description: "key: id of drive");
+            driveIdOption.IsRequired = true;
+            command.AddOption(driveIdOption);
+            var listItemIdOption = new Option<string>("--listitem-id", description: "key: id of listItem");
+            listItemIdOption.IsRequired = true;
+            command.AddOption(listItemIdOption);
+            var fileOption = new Option<Stream>("--file", description: "Binary request body");
+            fileOption.IsRequired = true;
+            command.AddOption(fileOption);
             command.Handler = CommandHandler.Create<string, string, FileInfo>(async (driveId, listItemId, file) => {
                 using var stream = file.OpenRead();
-                var requestInfo = CreatePutRequestInformation(stream);
-                if (!String.IsNullOrEmpty(driveId)) requestInfo.PathParameters.Add("drive_id", driveId);
-                if (!String.IsNullOrEmpty(listItemId)) requestInfo.PathParameters.Add("listItem_id", listItemId);
+                var requestInfo = CreatePutRequestInformation(stream, q => {
+                });
                 await RequestAdapter.SendNoContentAsync(requestInfo);
                 // Print request output. What if the request has no return?
                 Console.WriteLine("Success");

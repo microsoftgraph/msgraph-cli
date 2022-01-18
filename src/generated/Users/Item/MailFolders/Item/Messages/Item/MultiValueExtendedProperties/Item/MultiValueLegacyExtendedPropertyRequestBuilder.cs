@@ -26,16 +26,21 @@ namespace ApiSdk.Users.Item.MailFolders.Item.Messages.Item.MultiValueExtendedPro
             var command = new Command("delete");
             command.Description = "The collection of multi-value extended properties defined for the message. Nullable.";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--user-id", description: "key: id of user"));
-            command.AddOption(new Option<string>("--mailfolder-id", description: "key: id of mailFolder"));
-            command.AddOption(new Option<string>("--message-id", description: "key: id of message"));
-            command.AddOption(new Option<string>("--multivaluelegacyextendedproperty-id", description: "key: id of multiValueLegacyExtendedProperty"));
+            var userIdOption = new Option<string>("--user-id", description: "key: id of user");
+            userIdOption.IsRequired = true;
+            command.AddOption(userIdOption);
+            var mailFolderIdOption = new Option<string>("--mailfolder-id", description: "key: id of mailFolder");
+            mailFolderIdOption.IsRequired = true;
+            command.AddOption(mailFolderIdOption);
+            var messageIdOption = new Option<string>("--message-id", description: "key: id of message");
+            messageIdOption.IsRequired = true;
+            command.AddOption(messageIdOption);
+            var multiValueLegacyExtendedPropertyIdOption = new Option<string>("--multivaluelegacyextendedproperty-id", description: "key: id of multiValueLegacyExtendedProperty");
+            multiValueLegacyExtendedPropertyIdOption.IsRequired = true;
+            command.AddOption(multiValueLegacyExtendedPropertyIdOption);
             command.Handler = CommandHandler.Create<string, string, string, string>(async (userId, mailFolderId, messageId, multiValueLegacyExtendedPropertyId) => {
-                var requestInfo = CreateDeleteRequestInformation();
-                if (!String.IsNullOrEmpty(userId)) requestInfo.PathParameters.Add("user_id", userId);
-                if (!String.IsNullOrEmpty(mailFolderId)) requestInfo.PathParameters.Add("mailFolder_id", mailFolderId);
-                if (!String.IsNullOrEmpty(messageId)) requestInfo.PathParameters.Add("message_id", messageId);
-                if (!String.IsNullOrEmpty(multiValueLegacyExtendedPropertyId)) requestInfo.PathParameters.Add("multiValueLegacyExtendedProperty_id", multiValueLegacyExtendedPropertyId);
+                var requestInfo = CreateDeleteRequestInformation(q => {
+                });
                 await RequestAdapter.SendNoContentAsync(requestInfo);
                 // Print request output. What if the request has no return?
                 Console.WriteLine("Success");
@@ -49,20 +54,31 @@ namespace ApiSdk.Users.Item.MailFolders.Item.Messages.Item.MultiValueExtendedPro
             var command = new Command("get");
             command.Description = "The collection of multi-value extended properties defined for the message. Nullable.";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--user-id", description: "key: id of user"));
-            command.AddOption(new Option<string>("--mailfolder-id", description: "key: id of mailFolder"));
-            command.AddOption(new Option<string>("--message-id", description: "key: id of message"));
-            command.AddOption(new Option<string>("--multivaluelegacyextendedproperty-id", description: "key: id of multiValueLegacyExtendedProperty"));
-            command.AddOption(new Option<object>("--select", description: "Select properties to be returned"));
-            command.AddOption(new Option<object>("--expand", description: "Expand related entities"));
-            command.Handler = CommandHandler.Create<string, string, string, string, object, object>(async (userId, mailFolderId, messageId, multiValueLegacyExtendedPropertyId, select, expand) => {
-                var requestInfo = CreateGetRequestInformation();
-                if (!String.IsNullOrEmpty(userId)) requestInfo.PathParameters.Add("user_id", userId);
-                if (!String.IsNullOrEmpty(mailFolderId)) requestInfo.PathParameters.Add("mailFolder_id", mailFolderId);
-                if (!String.IsNullOrEmpty(messageId)) requestInfo.PathParameters.Add("message_id", messageId);
-                if (!String.IsNullOrEmpty(multiValueLegacyExtendedPropertyId)) requestInfo.PathParameters.Add("multiValueLegacyExtendedProperty_id", multiValueLegacyExtendedPropertyId);
-                requestInfo.QueryParameters.Add("select", select);
-                requestInfo.QueryParameters.Add("expand", expand);
+            var userIdOption = new Option<string>("--user-id", description: "key: id of user");
+            userIdOption.IsRequired = true;
+            command.AddOption(userIdOption);
+            var mailFolderIdOption = new Option<string>("--mailfolder-id", description: "key: id of mailFolder");
+            mailFolderIdOption.IsRequired = true;
+            command.AddOption(mailFolderIdOption);
+            var messageIdOption = new Option<string>("--message-id", description: "key: id of message");
+            messageIdOption.IsRequired = true;
+            command.AddOption(messageIdOption);
+            var multiValueLegacyExtendedPropertyIdOption = new Option<string>("--multivaluelegacyextendedproperty-id", description: "key: id of multiValueLegacyExtendedProperty");
+            multiValueLegacyExtendedPropertyIdOption.IsRequired = true;
+            command.AddOption(multiValueLegacyExtendedPropertyIdOption);
+            var selectOption = new Option<string[]>("--select", description: "Select properties to be returned");
+            selectOption.IsRequired = false;
+            selectOption.Arity = ArgumentArity.ZeroOrMore;
+            command.AddOption(selectOption);
+            var expandOption = new Option<string[]>("--expand", description: "Expand related entities");
+            expandOption.IsRequired = false;
+            expandOption.Arity = ArgumentArity.ZeroOrMore;
+            command.AddOption(expandOption);
+            command.Handler = CommandHandler.Create<string, string, string, string, string[], string[]>(async (userId, mailFolderId, messageId, multiValueLegacyExtendedPropertyId, select, expand) => {
+                var requestInfo = CreateGetRequestInformation(q => {
+                    q.Select = select;
+                    q.Expand = expand;
+                });
                 var result = await RequestAdapter.SendAsync<MultiValueLegacyExtendedProperty>(requestInfo);
                 // Print request output. What if the request has no return?
                 using var serializer = RequestAdapter.SerializationWriterFactory.GetSerializationWriter("application/json");
@@ -81,20 +97,27 @@ namespace ApiSdk.Users.Item.MailFolders.Item.Messages.Item.MultiValueExtendedPro
             var command = new Command("patch");
             command.Description = "The collection of multi-value extended properties defined for the message. Nullable.";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--user-id", description: "key: id of user"));
-            command.AddOption(new Option<string>("--mailfolder-id", description: "key: id of mailFolder"));
-            command.AddOption(new Option<string>("--message-id", description: "key: id of message"));
-            command.AddOption(new Option<string>("--multivaluelegacyextendedproperty-id", description: "key: id of multiValueLegacyExtendedProperty"));
-            command.AddOption(new Option<string>("--body"));
+            var userIdOption = new Option<string>("--user-id", description: "key: id of user");
+            userIdOption.IsRequired = true;
+            command.AddOption(userIdOption);
+            var mailFolderIdOption = new Option<string>("--mailfolder-id", description: "key: id of mailFolder");
+            mailFolderIdOption.IsRequired = true;
+            command.AddOption(mailFolderIdOption);
+            var messageIdOption = new Option<string>("--message-id", description: "key: id of message");
+            messageIdOption.IsRequired = true;
+            command.AddOption(messageIdOption);
+            var multiValueLegacyExtendedPropertyIdOption = new Option<string>("--multivaluelegacyextendedproperty-id", description: "key: id of multiValueLegacyExtendedProperty");
+            multiValueLegacyExtendedPropertyIdOption.IsRequired = true;
+            command.AddOption(multiValueLegacyExtendedPropertyIdOption);
+            var bodyOption = new Option<string>("--body");
+            bodyOption.IsRequired = true;
+            command.AddOption(bodyOption);
             command.Handler = CommandHandler.Create<string, string, string, string, string>(async (userId, mailFolderId, messageId, multiValueLegacyExtendedPropertyId, body) => {
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<MultiValueLegacyExtendedProperty>();
-                var requestInfo = CreatePatchRequestInformation(model);
-                if (!String.IsNullOrEmpty(userId)) requestInfo.PathParameters.Add("user_id", userId);
-                if (!String.IsNullOrEmpty(mailFolderId)) requestInfo.PathParameters.Add("mailFolder_id", mailFolderId);
-                if (!String.IsNullOrEmpty(messageId)) requestInfo.PathParameters.Add("message_id", messageId);
-                if (!String.IsNullOrEmpty(multiValueLegacyExtendedPropertyId)) requestInfo.PathParameters.Add("multiValueLegacyExtendedProperty_id", multiValueLegacyExtendedPropertyId);
+                var requestInfo = CreatePatchRequestInformation(model, q => {
+                });
                 await RequestAdapter.SendNoContentAsync(requestInfo);
                 // Print request output. What if the request has no return?
                 Console.WriteLine("Success");

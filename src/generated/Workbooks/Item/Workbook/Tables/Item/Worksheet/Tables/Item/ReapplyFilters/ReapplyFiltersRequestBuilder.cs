@@ -25,14 +25,18 @@ namespace ApiSdk.Workbooks.Item.Workbook.Tables.Item.Worksheet.Tables.Item.Reapp
             var command = new Command("post");
             command.Description = "Invoke action reapplyFilters";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--driveitem-id", description: "key: id of driveItem"));
-            command.AddOption(new Option<string>("--workbooktable-id", description: "key: id of workbookTable"));
-            command.AddOption(new Option<string>("--workbooktable-id1", description: "key: id of workbookTable"));
+            var driveItemIdOption = new Option<string>("--driveitem-id", description: "key: id of driveItem");
+            driveItemIdOption.IsRequired = true;
+            command.AddOption(driveItemIdOption);
+            var workbookTableIdOption = new Option<string>("--workbooktable-id", description: "key: id of workbookTable");
+            workbookTableIdOption.IsRequired = true;
+            command.AddOption(workbookTableIdOption);
+            var workbookTableId1Option = new Option<string>("--workbooktable-id1", description: "key: id of workbookTable");
+            workbookTableId1Option.IsRequired = true;
+            command.AddOption(workbookTableId1Option);
             command.Handler = CommandHandler.Create<string, string, string>(async (driveItemId, workbookTableId, workbookTableId1) => {
-                var requestInfo = CreatePostRequestInformation();
-                if (!String.IsNullOrEmpty(driveItemId)) requestInfo.PathParameters.Add("driveItem_id", driveItemId);
-                if (!String.IsNullOrEmpty(workbookTableId)) requestInfo.PathParameters.Add("workbookTable_id", workbookTableId);
-                if (!String.IsNullOrEmpty(workbookTableId1)) requestInfo.PathParameters.Add("workbookTable_id1", workbookTableId1);
+                var requestInfo = CreatePostRequestInformation(q => {
+                });
                 await RequestAdapter.SendNoContentAsync(requestInfo);
                 // Print request output. What if the request has no return?
                 Console.WriteLine("Success");

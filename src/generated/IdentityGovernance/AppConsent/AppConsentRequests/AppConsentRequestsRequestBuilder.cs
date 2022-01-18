@@ -32,18 +32,21 @@ namespace ApiSdk.IdentityGovernance.AppConsent.AppConsentRequests {
             return commands;
         }
         /// <summary>
-        /// Create new navigation property to appConsentRequests for identityGovernance
+        /// A collection of userConsentRequest objects for a specific application.
         /// </summary>
         public Command BuildCreateCommand() {
             var command = new Command("create");
-            command.Description = "Create new navigation property to appConsentRequests for identityGovernance";
+            command.Description = "A collection of userConsentRequest objects for a specific application.";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--body"));
+            var bodyOption = new Option<string>("--body");
+            bodyOption.IsRequired = true;
+            command.AddOption(bodyOption);
             command.Handler = CommandHandler.Create<string>(async (body) => {
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<AppConsentRequest>();
-                var requestInfo = CreatePostRequestInformation(model);
+                var requestInfo = CreatePostRequestInformation(model, q => {
+                });
                 var result = await RequestAdapter.SendAsync<AppConsentRequest>(requestInfo);
                 // Print request output. What if the request has no return?
                 using var serializer = RequestAdapter.SerializationWriterFactory.GetSerializationWriter("application/json");
@@ -56,30 +59,50 @@ namespace ApiSdk.IdentityGovernance.AppConsent.AppConsentRequests {
             return command;
         }
         /// <summary>
-        /// Get appConsentRequests from identityGovernance
+        /// A collection of userConsentRequest objects for a specific application.
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "Get appConsentRequests from identityGovernance";
+            command.Description = "A collection of userConsentRequest objects for a specific application.";
             // Create options for all the parameters
-            command.AddOption(new Option<int?>("--top", description: "Show only the first n items"));
-            command.AddOption(new Option<int?>("--skip", description: "Skip the first n items"));
-            command.AddOption(new Option<string>("--search", description: "Search items by search phrases"));
-            command.AddOption(new Option<string>("--filter", description: "Filter items by property values"));
-            command.AddOption(new Option<bool?>("--count", description: "Include count of items"));
-            command.AddOption(new Option<object>("--orderby", description: "Order items by property values"));
-            command.AddOption(new Option<object>("--select", description: "Select properties to be returned"));
-            command.AddOption(new Option<object>("--expand", description: "Expand related entities"));
-            command.Handler = CommandHandler.Create<int?, int?, string, string, bool?, object, object, object>(async (top, skip, search, filter, count, orderby, select, expand) => {
-                var requestInfo = CreateGetRequestInformation();
-                requestInfo.QueryParameters.Add("top", top);
-                requestInfo.QueryParameters.Add("skip", skip);
-                if (!String.IsNullOrEmpty(search)) requestInfo.QueryParameters.Add("search", search);
-                if (!String.IsNullOrEmpty(filter)) requestInfo.QueryParameters.Add("filter", filter);
-                requestInfo.QueryParameters.Add("count", count);
-                requestInfo.QueryParameters.Add("orderby", orderby);
-                requestInfo.QueryParameters.Add("select", select);
-                requestInfo.QueryParameters.Add("expand", expand);
+            var topOption = new Option<int?>("--top", description: "Show only the first n items");
+            topOption.IsRequired = false;
+            command.AddOption(topOption);
+            var skipOption = new Option<int?>("--skip", description: "Skip the first n items");
+            skipOption.IsRequired = false;
+            command.AddOption(skipOption);
+            var searchOption = new Option<string>("--search", description: "Search items by search phrases");
+            searchOption.IsRequired = false;
+            command.AddOption(searchOption);
+            var filterOption = new Option<string>("--filter", description: "Filter items by property values");
+            filterOption.IsRequired = false;
+            command.AddOption(filterOption);
+            var countOption = new Option<bool?>("--count", description: "Include count of items");
+            countOption.IsRequired = false;
+            command.AddOption(countOption);
+            var orderbyOption = new Option<string[]>("--orderby", description: "Order items by property values");
+            orderbyOption.IsRequired = false;
+            orderbyOption.Arity = ArgumentArity.ZeroOrMore;
+            command.AddOption(orderbyOption);
+            var selectOption = new Option<string[]>("--select", description: "Select properties to be returned");
+            selectOption.IsRequired = false;
+            selectOption.Arity = ArgumentArity.ZeroOrMore;
+            command.AddOption(selectOption);
+            var expandOption = new Option<string[]>("--expand", description: "Expand related entities");
+            expandOption.IsRequired = false;
+            expandOption.Arity = ArgumentArity.ZeroOrMore;
+            command.AddOption(expandOption);
+            command.Handler = CommandHandler.Create<int?, int?, string, string, bool?, string[], string[], string[]>(async (top, skip, search, filter, count, orderby, select, expand) => {
+                var requestInfo = CreateGetRequestInformation(q => {
+                    q.Top = top;
+                    q.Skip = skip;
+                    if (!String.IsNullOrEmpty(search)) q.Search = search;
+                    if (!String.IsNullOrEmpty(filter)) q.Filter = filter;
+                    q.Count = count;
+                    q.Orderby = orderby;
+                    q.Select = select;
+                    q.Expand = expand;
+                });
                 var result = await RequestAdapter.SendAsync<AppConsentRequestsResponse>(requestInfo);
                 // Print request output. What if the request has no return?
                 using var serializer = RequestAdapter.SerializationWriterFactory.GetSerializationWriter("application/json");
@@ -105,7 +128,7 @@ namespace ApiSdk.IdentityGovernance.AppConsent.AppConsentRequests {
             RequestAdapter = requestAdapter;
         }
         /// <summary>
-        /// Get appConsentRequests from identityGovernance
+        /// A collection of userConsentRequest objects for a specific application.
         /// <param name="h">Request headers</param>
         /// <param name="o">Request options</param>
         /// <param name="q">Request query parameters</param>
@@ -126,7 +149,7 @@ namespace ApiSdk.IdentityGovernance.AppConsent.AppConsentRequests {
             return requestInfo;
         }
         /// <summary>
-        /// Create new navigation property to appConsentRequests for identityGovernance
+        /// A collection of userConsentRequest objects for a specific application.
         /// <param name="body"></param>
         /// <param name="h">Request headers</param>
         /// <param name="o">Request options</param>
@@ -152,7 +175,7 @@ namespace ApiSdk.IdentityGovernance.AppConsent.AppConsentRequests {
             return new FilterByCurrentUserWithOnRequestBuilder(PathParameters, RequestAdapter, on);
         }
         /// <summary>
-        /// Get appConsentRequests from identityGovernance
+        /// A collection of userConsentRequest objects for a specific application.
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="h">Request headers</param>
         /// <param name="o">Request options</param>
@@ -164,7 +187,7 @@ namespace ApiSdk.IdentityGovernance.AppConsent.AppConsentRequests {
             return await RequestAdapter.SendAsync<AppConsentRequestsResponse>(requestInfo, responseHandler, cancellationToken);
         }
         /// <summary>
-        /// Create new navigation property to appConsentRequests for identityGovernance
+        /// A collection of userConsentRequest objects for a specific application.
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="h">Request headers</param>
         /// <param name="model"></param>
@@ -176,7 +199,7 @@ namespace ApiSdk.IdentityGovernance.AppConsent.AppConsentRequests {
             var requestInfo = CreatePostRequestInformation(model, h, o);
             return await RequestAdapter.SendAsync<AppConsentRequest>(requestInfo, responseHandler, cancellationToken);
         }
-        /// <summary>Get appConsentRequests from identityGovernance</summary>
+        /// <summary>A collection of userConsentRequest objects for a specific application.</summary>
         public class GetQueryParameters : QueryParametersBase {
             /// <summary>Include count of items</summary>
             public bool? Count { get; set; }

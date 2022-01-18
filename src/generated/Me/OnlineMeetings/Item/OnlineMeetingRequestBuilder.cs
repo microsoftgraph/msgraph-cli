@@ -1,3 +1,4 @@
+using ApiSdk.Me.OnlineMeetings.Item.AttendanceReports;
 using ApiSdk.Me.OnlineMeetings.Item.AttendeeReport;
 using ApiSdk.Models.Microsoft.Graph;
 using Microsoft.Kiota.Abstractions;
@@ -20,6 +21,13 @@ namespace ApiSdk.Me.OnlineMeetings.Item {
         private IRequestAdapter RequestAdapter { get; set; }
         /// <summary>Url template to use to build the URL for the current request builder</summary>
         private string UrlTemplate { get; set; }
+        public Command BuildAttendanceReportsCommand() {
+            var command = new Command("attendance-reports");
+            var builder = new ApiSdk.Me.OnlineMeetings.Item.AttendanceReports.AttendanceReportsRequestBuilder(PathParameters, RequestAdapter);
+            command.AddCommand(builder.BuildCreateCommand());
+            command.AddCommand(builder.BuildListCommand());
+            return command;
+        }
         public Command BuildAttendeeReportCommand() {
             var command = new Command("attendee-report");
             var builder = new ApiSdk.Me.OnlineMeetings.Item.AttendeeReport.AttendeeReportRequestBuilder(PathParameters, RequestAdapter);
@@ -34,10 +42,12 @@ namespace ApiSdk.Me.OnlineMeetings.Item {
             var command = new Command("delete");
             command.Description = "Delete navigation property onlineMeetings for me";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--onlinemeeting-id", description: "key: id of onlineMeeting"));
+            var onlineMeetingIdOption = new Option<string>("--onlinemeeting-id", description: "key: id of onlineMeeting");
+            onlineMeetingIdOption.IsRequired = true;
+            command.AddOption(onlineMeetingIdOption);
             command.Handler = CommandHandler.Create<string>(async (onlineMeetingId) => {
-                var requestInfo = CreateDeleteRequestInformation();
-                if (!String.IsNullOrEmpty(onlineMeetingId)) requestInfo.PathParameters.Add("onlineMeeting_id", onlineMeetingId);
+                var requestInfo = CreateDeleteRequestInformation(q => {
+                });
                 await RequestAdapter.SendNoContentAsync(requestInfo);
                 // Print request output. What if the request has no return?
                 Console.WriteLine("Success");
@@ -51,14 +61,22 @@ namespace ApiSdk.Me.OnlineMeetings.Item {
             var command = new Command("get");
             command.Description = "Get onlineMeetings from me";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--onlinemeeting-id", description: "key: id of onlineMeeting"));
-            command.AddOption(new Option<object>("--select", description: "Select properties to be returned"));
-            command.AddOption(new Option<object>("--expand", description: "Expand related entities"));
-            command.Handler = CommandHandler.Create<string, object, object>(async (onlineMeetingId, select, expand) => {
-                var requestInfo = CreateGetRequestInformation();
-                if (!String.IsNullOrEmpty(onlineMeetingId)) requestInfo.PathParameters.Add("onlineMeeting_id", onlineMeetingId);
-                requestInfo.QueryParameters.Add("select", select);
-                requestInfo.QueryParameters.Add("expand", expand);
+            var onlineMeetingIdOption = new Option<string>("--onlinemeeting-id", description: "key: id of onlineMeeting");
+            onlineMeetingIdOption.IsRequired = true;
+            command.AddOption(onlineMeetingIdOption);
+            var selectOption = new Option<string[]>("--select", description: "Select properties to be returned");
+            selectOption.IsRequired = false;
+            selectOption.Arity = ArgumentArity.ZeroOrMore;
+            command.AddOption(selectOption);
+            var expandOption = new Option<string[]>("--expand", description: "Expand related entities");
+            expandOption.IsRequired = false;
+            expandOption.Arity = ArgumentArity.ZeroOrMore;
+            command.AddOption(expandOption);
+            command.Handler = CommandHandler.Create<string, string[], string[]>(async (onlineMeetingId, select, expand) => {
+                var requestInfo = CreateGetRequestInformation(q => {
+                    q.Select = select;
+                    q.Expand = expand;
+                });
                 var result = await RequestAdapter.SendAsync<OnlineMeeting>(requestInfo);
                 // Print request output. What if the request has no return?
                 using var serializer = RequestAdapter.SerializationWriterFactory.GetSerializationWriter("application/json");
@@ -77,14 +95,18 @@ namespace ApiSdk.Me.OnlineMeetings.Item {
             var command = new Command("patch");
             command.Description = "Update the navigation property onlineMeetings in me";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--onlinemeeting-id", description: "key: id of onlineMeeting"));
-            command.AddOption(new Option<string>("--body"));
+            var onlineMeetingIdOption = new Option<string>("--onlinemeeting-id", description: "key: id of onlineMeeting");
+            onlineMeetingIdOption.IsRequired = true;
+            command.AddOption(onlineMeetingIdOption);
+            var bodyOption = new Option<string>("--body");
+            bodyOption.IsRequired = true;
+            command.AddOption(bodyOption);
             command.Handler = CommandHandler.Create<string, string>(async (onlineMeetingId, body) => {
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<OnlineMeeting>();
-                var requestInfo = CreatePatchRequestInformation(model);
-                if (!String.IsNullOrEmpty(onlineMeetingId)) requestInfo.PathParameters.Add("onlineMeeting_id", onlineMeetingId);
+                var requestInfo = CreatePatchRequestInformation(model, q => {
+                });
                 await RequestAdapter.SendNoContentAsync(requestInfo);
                 // Print request output. What if the request has no return?
                 Console.WriteLine("Success");

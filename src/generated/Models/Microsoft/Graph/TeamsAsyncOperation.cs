@@ -13,7 +13,7 @@ namespace ApiSdk.Models.Microsoft.Graph {
         public OperationError Error { get; set; }
         /// <summary>Time when the async operation was last updated.</summary>
         public DateTimeOffset? LastActionDateTime { get; set; }
-        /// <summary>Denotes which type of operation is being described.</summary>
+        /// <summary>Denotes the type of operation being described.</summary>
         public TeamsAsyncOperationType? OperationType { get; set; }
         /// <summary>Operation status.</summary>
         public TeamsAsyncOperationStatus? Status { get; set; }

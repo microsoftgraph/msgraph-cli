@@ -33,12 +33,15 @@ namespace ApiSdk.Me.Onenote.Pages.Item.ParentSection.ParentNotebook.SectionGroup
             var command = new Command("delete");
             command.Description = "The notebook that contains the section group. Read-only.";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--onenotepage-id", description: "key: id of onenotePage"));
-            command.AddOption(new Option<string>("--sectiongroup-id", description: "key: id of sectionGroup"));
+            var onenotePageIdOption = new Option<string>("--onenotepage-id", description: "key: id of onenotePage");
+            onenotePageIdOption.IsRequired = true;
+            command.AddOption(onenotePageIdOption);
+            var sectionGroupIdOption = new Option<string>("--sectiongroup-id", description: "key: id of sectionGroup");
+            sectionGroupIdOption.IsRequired = true;
+            command.AddOption(sectionGroupIdOption);
             command.Handler = CommandHandler.Create<string, string>(async (onenotePageId, sectionGroupId) => {
-                var requestInfo = CreateDeleteRequestInformation();
-                if (!String.IsNullOrEmpty(onenotePageId)) requestInfo.PathParameters.Add("onenotePage_id", onenotePageId);
-                if (!String.IsNullOrEmpty(sectionGroupId)) requestInfo.PathParameters.Add("sectionGroup_id", sectionGroupId);
+                var requestInfo = CreateDeleteRequestInformation(q => {
+                });
                 await RequestAdapter.SendNoContentAsync(requestInfo);
                 // Print request output. What if the request has no return?
                 Console.WriteLine("Success");
@@ -52,16 +55,25 @@ namespace ApiSdk.Me.Onenote.Pages.Item.ParentSection.ParentNotebook.SectionGroup
             var command = new Command("get");
             command.Description = "The notebook that contains the section group. Read-only.";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--onenotepage-id", description: "key: id of onenotePage"));
-            command.AddOption(new Option<string>("--sectiongroup-id", description: "key: id of sectionGroup"));
-            command.AddOption(new Option<object>("--select", description: "Select properties to be returned"));
-            command.AddOption(new Option<object>("--expand", description: "Expand related entities"));
-            command.Handler = CommandHandler.Create<string, string, object, object>(async (onenotePageId, sectionGroupId, select, expand) => {
-                var requestInfo = CreateGetRequestInformation();
-                if (!String.IsNullOrEmpty(onenotePageId)) requestInfo.PathParameters.Add("onenotePage_id", onenotePageId);
-                if (!String.IsNullOrEmpty(sectionGroupId)) requestInfo.PathParameters.Add("sectionGroup_id", sectionGroupId);
-                requestInfo.QueryParameters.Add("select", select);
-                requestInfo.QueryParameters.Add("expand", expand);
+            var onenotePageIdOption = new Option<string>("--onenotepage-id", description: "key: id of onenotePage");
+            onenotePageIdOption.IsRequired = true;
+            command.AddOption(onenotePageIdOption);
+            var sectionGroupIdOption = new Option<string>("--sectiongroup-id", description: "key: id of sectionGroup");
+            sectionGroupIdOption.IsRequired = true;
+            command.AddOption(sectionGroupIdOption);
+            var selectOption = new Option<string[]>("--select", description: "Select properties to be returned");
+            selectOption.IsRequired = false;
+            selectOption.Arity = ArgumentArity.ZeroOrMore;
+            command.AddOption(selectOption);
+            var expandOption = new Option<string[]>("--expand", description: "Expand related entities");
+            expandOption.IsRequired = false;
+            expandOption.Arity = ArgumentArity.ZeroOrMore;
+            command.AddOption(expandOption);
+            command.Handler = CommandHandler.Create<string, string, string[], string[]>(async (onenotePageId, sectionGroupId, select, expand) => {
+                var requestInfo = CreateGetRequestInformation(q => {
+                    q.Select = select;
+                    q.Expand = expand;
+                });
                 var result = await RequestAdapter.SendAsync<Notebook>(requestInfo);
                 // Print request output. What if the request has no return?
                 using var serializer = RequestAdapter.SerializationWriterFactory.GetSerializationWriter("application/json");
@@ -80,16 +92,21 @@ namespace ApiSdk.Me.Onenote.Pages.Item.ParentSection.ParentNotebook.SectionGroup
             var command = new Command("patch");
             command.Description = "The notebook that contains the section group. Read-only.";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--onenotepage-id", description: "key: id of onenotePage"));
-            command.AddOption(new Option<string>("--sectiongroup-id", description: "key: id of sectionGroup"));
-            command.AddOption(new Option<string>("--body"));
+            var onenotePageIdOption = new Option<string>("--onenotepage-id", description: "key: id of onenotePage");
+            onenotePageIdOption.IsRequired = true;
+            command.AddOption(onenotePageIdOption);
+            var sectionGroupIdOption = new Option<string>("--sectiongroup-id", description: "key: id of sectionGroup");
+            sectionGroupIdOption.IsRequired = true;
+            command.AddOption(sectionGroupIdOption);
+            var bodyOption = new Option<string>("--body");
+            bodyOption.IsRequired = true;
+            command.AddOption(bodyOption);
             command.Handler = CommandHandler.Create<string, string, string>(async (onenotePageId, sectionGroupId, body) => {
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<Notebook>();
-                var requestInfo = CreatePatchRequestInformation(model);
-                if (!String.IsNullOrEmpty(onenotePageId)) requestInfo.PathParameters.Add("onenotePage_id", onenotePageId);
-                if (!String.IsNullOrEmpty(sectionGroupId)) requestInfo.PathParameters.Add("sectionGroup_id", sectionGroupId);
+                var requestInfo = CreatePatchRequestInformation(model, q => {
+                });
                 await RequestAdapter.SendNoContentAsync(requestInfo);
                 // Print request output. What if the request has no return?
                 Console.WriteLine("Success");

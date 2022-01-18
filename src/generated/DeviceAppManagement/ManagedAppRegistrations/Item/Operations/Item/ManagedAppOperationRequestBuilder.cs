@@ -26,12 +26,15 @@ namespace ApiSdk.DeviceAppManagement.ManagedAppRegistrations.Item.Operations.Ite
             var command = new Command("delete");
             command.Description = "Zero or more long running operations triggered on the app registration.";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--managedappregistration-id", description: "key: id of managedAppRegistration"));
-            command.AddOption(new Option<string>("--managedappoperation-id", description: "key: id of managedAppOperation"));
+            var managedAppRegistrationIdOption = new Option<string>("--managedappregistration-id", description: "key: id of managedAppRegistration");
+            managedAppRegistrationIdOption.IsRequired = true;
+            command.AddOption(managedAppRegistrationIdOption);
+            var managedAppOperationIdOption = new Option<string>("--managedappoperation-id", description: "key: id of managedAppOperation");
+            managedAppOperationIdOption.IsRequired = true;
+            command.AddOption(managedAppOperationIdOption);
             command.Handler = CommandHandler.Create<string, string>(async (managedAppRegistrationId, managedAppOperationId) => {
-                var requestInfo = CreateDeleteRequestInformation();
-                if (!String.IsNullOrEmpty(managedAppRegistrationId)) requestInfo.PathParameters.Add("managedAppRegistration_id", managedAppRegistrationId);
-                if (!String.IsNullOrEmpty(managedAppOperationId)) requestInfo.PathParameters.Add("managedAppOperation_id", managedAppOperationId);
+                var requestInfo = CreateDeleteRequestInformation(q => {
+                });
                 await RequestAdapter.SendNoContentAsync(requestInfo);
                 // Print request output. What if the request has no return?
                 Console.WriteLine("Success");
@@ -45,16 +48,25 @@ namespace ApiSdk.DeviceAppManagement.ManagedAppRegistrations.Item.Operations.Ite
             var command = new Command("get");
             command.Description = "Zero or more long running operations triggered on the app registration.";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--managedappregistration-id", description: "key: id of managedAppRegistration"));
-            command.AddOption(new Option<string>("--managedappoperation-id", description: "key: id of managedAppOperation"));
-            command.AddOption(new Option<object>("--select", description: "Select properties to be returned"));
-            command.AddOption(new Option<object>("--expand", description: "Expand related entities"));
-            command.Handler = CommandHandler.Create<string, string, object, object>(async (managedAppRegistrationId, managedAppOperationId, select, expand) => {
-                var requestInfo = CreateGetRequestInformation();
-                if (!String.IsNullOrEmpty(managedAppRegistrationId)) requestInfo.PathParameters.Add("managedAppRegistration_id", managedAppRegistrationId);
-                if (!String.IsNullOrEmpty(managedAppOperationId)) requestInfo.PathParameters.Add("managedAppOperation_id", managedAppOperationId);
-                requestInfo.QueryParameters.Add("select", select);
-                requestInfo.QueryParameters.Add("expand", expand);
+            var managedAppRegistrationIdOption = new Option<string>("--managedappregistration-id", description: "key: id of managedAppRegistration");
+            managedAppRegistrationIdOption.IsRequired = true;
+            command.AddOption(managedAppRegistrationIdOption);
+            var managedAppOperationIdOption = new Option<string>("--managedappoperation-id", description: "key: id of managedAppOperation");
+            managedAppOperationIdOption.IsRequired = true;
+            command.AddOption(managedAppOperationIdOption);
+            var selectOption = new Option<string[]>("--select", description: "Select properties to be returned");
+            selectOption.IsRequired = false;
+            selectOption.Arity = ArgumentArity.ZeroOrMore;
+            command.AddOption(selectOption);
+            var expandOption = new Option<string[]>("--expand", description: "Expand related entities");
+            expandOption.IsRequired = false;
+            expandOption.Arity = ArgumentArity.ZeroOrMore;
+            command.AddOption(expandOption);
+            command.Handler = CommandHandler.Create<string, string, string[], string[]>(async (managedAppRegistrationId, managedAppOperationId, select, expand) => {
+                var requestInfo = CreateGetRequestInformation(q => {
+                    q.Select = select;
+                    q.Expand = expand;
+                });
                 var result = await RequestAdapter.SendAsync<ManagedAppOperation>(requestInfo);
                 // Print request output. What if the request has no return?
                 using var serializer = RequestAdapter.SerializationWriterFactory.GetSerializationWriter("application/json");
@@ -73,16 +85,21 @@ namespace ApiSdk.DeviceAppManagement.ManagedAppRegistrations.Item.Operations.Ite
             var command = new Command("patch");
             command.Description = "Zero or more long running operations triggered on the app registration.";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--managedappregistration-id", description: "key: id of managedAppRegistration"));
-            command.AddOption(new Option<string>("--managedappoperation-id", description: "key: id of managedAppOperation"));
-            command.AddOption(new Option<string>("--body"));
+            var managedAppRegistrationIdOption = new Option<string>("--managedappregistration-id", description: "key: id of managedAppRegistration");
+            managedAppRegistrationIdOption.IsRequired = true;
+            command.AddOption(managedAppRegistrationIdOption);
+            var managedAppOperationIdOption = new Option<string>("--managedappoperation-id", description: "key: id of managedAppOperation");
+            managedAppOperationIdOption.IsRequired = true;
+            command.AddOption(managedAppOperationIdOption);
+            var bodyOption = new Option<string>("--body");
+            bodyOption.IsRequired = true;
+            command.AddOption(bodyOption);
             command.Handler = CommandHandler.Create<string, string, string>(async (managedAppRegistrationId, managedAppOperationId, body) => {
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<ManagedAppOperation>();
-                var requestInfo = CreatePatchRequestInformation(model);
-                if (!String.IsNullOrEmpty(managedAppRegistrationId)) requestInfo.PathParameters.Add("managedAppRegistration_id", managedAppRegistrationId);
-                if (!String.IsNullOrEmpty(managedAppOperationId)) requestInfo.PathParameters.Add("managedAppOperation_id", managedAppOperationId);
+                var requestInfo = CreatePatchRequestInformation(model, q => {
+                });
                 await RequestAdapter.SendNoContentAsync(requestInfo);
                 // Print request output. What if the request has no return?
                 Console.WriteLine("Success");

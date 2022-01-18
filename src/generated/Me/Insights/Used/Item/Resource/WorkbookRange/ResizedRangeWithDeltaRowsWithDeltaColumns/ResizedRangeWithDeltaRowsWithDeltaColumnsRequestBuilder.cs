@@ -26,14 +26,18 @@ namespace ApiSdk.Me.Insights.Used.Item.Resource.WorkbookRange.ResizedRangeWithDe
             var command = new Command("get");
             command.Description = "Invoke function resizedRange";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--usedinsight-id", description: "key: id of usedInsight"));
-            command.AddOption(new Option<int?>("--deltarows", description: "Usage: deltaRows={deltaRows}"));
-            command.AddOption(new Option<int?>("--deltacolumns", description: "Usage: deltaColumns={deltaColumns}"));
+            var usedInsightIdOption = new Option<string>("--usedinsight-id", description: "key: id of usedInsight");
+            usedInsightIdOption.IsRequired = true;
+            command.AddOption(usedInsightIdOption);
+            var deltaRowsOption = new Option<int?>("--deltarows", description: "Usage: deltaRows={deltaRows}");
+            deltaRowsOption.IsRequired = true;
+            command.AddOption(deltaRowsOption);
+            var deltaColumnsOption = new Option<int?>("--deltacolumns", description: "Usage: deltaColumns={deltaColumns}");
+            deltaColumnsOption.IsRequired = true;
+            command.AddOption(deltaColumnsOption);
             command.Handler = CommandHandler.Create<string, int?, int?>(async (usedInsightId, deltaRows, deltaColumns) => {
-                var requestInfo = CreateGetRequestInformation();
-                if (!String.IsNullOrEmpty(usedInsightId)) requestInfo.PathParameters.Add("usedInsight_id", usedInsightId);
-                requestInfo.PathParameters.Add("deltaRows", deltaRows);
-                requestInfo.PathParameters.Add("deltaColumns", deltaColumns);
+                var requestInfo = CreateGetRequestInformation(q => {
+                });
                 var result = await RequestAdapter.SendAsync<ResizedRangeWithDeltaRowsWithDeltaColumnsResponse>(requestInfo);
                 // Print request output. What if the request has no return?
                 using var serializer = RequestAdapter.SerializationWriterFactory.GetSerializationWriter("application/json");

@@ -73,18 +73,21 @@ namespace ApiSdk.Groups.Item.Events.Item {
             return command;
         }
         /// <summary>
-        /// The group's calendar events.
+        /// The group's events.
         /// </summary>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
-            command.Description = "The group's calendar events.";
+            command.Description = "The group's events.";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--group-id", description: "key: id of group"));
-            command.AddOption(new Option<string>("--event-id", description: "key: id of event"));
+            var groupIdOption = new Option<string>("--group-id", description: "key: id of group");
+            groupIdOption.IsRequired = true;
+            command.AddOption(groupIdOption);
+            var eventIdOption = new Option<string>("--event-id", description: "key: id of event");
+            eventIdOption.IsRequired = true;
+            command.AddOption(eventIdOption);
             command.Handler = CommandHandler.Create<string, string>(async (groupId, eventId) => {
-                var requestInfo = CreateDeleteRequestInformation();
-                if (!String.IsNullOrEmpty(groupId)) requestInfo.PathParameters.Add("group_id", groupId);
-                if (!String.IsNullOrEmpty(eventId)) requestInfo.PathParameters.Add("event_id", eventId);
+                var requestInfo = CreateDeleteRequestInformation(q => {
+                });
                 await RequestAdapter.SendNoContentAsync(requestInfo);
                 // Print request output. What if the request has no return?
                 Console.WriteLine("Success");
@@ -111,20 +114,26 @@ namespace ApiSdk.Groups.Item.Events.Item {
             return command;
         }
         /// <summary>
-        /// The group's calendar events.
+        /// The group's events.
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "The group's calendar events.";
+            command.Description = "The group's events.";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--group-id", description: "key: id of group"));
-            command.AddOption(new Option<string>("--event-id", description: "key: id of event"));
-            command.AddOption(new Option<object>("--select", description: "Select properties to be returned"));
-            command.Handler = CommandHandler.Create<string, string, object>(async (groupId, eventId, select) => {
-                var requestInfo = CreateGetRequestInformation();
-                if (!String.IsNullOrEmpty(groupId)) requestInfo.PathParameters.Add("group_id", groupId);
-                if (!String.IsNullOrEmpty(eventId)) requestInfo.PathParameters.Add("event_id", eventId);
-                requestInfo.QueryParameters.Add("select", select);
+            var groupIdOption = new Option<string>("--group-id", description: "key: id of group");
+            groupIdOption.IsRequired = true;
+            command.AddOption(groupIdOption);
+            var eventIdOption = new Option<string>("--event-id", description: "key: id of event");
+            eventIdOption.IsRequired = true;
+            command.AddOption(eventIdOption);
+            var selectOption = new Option<string[]>("--select", description: "Select properties to be returned");
+            selectOption.IsRequired = false;
+            selectOption.Arity = ArgumentArity.ZeroOrMore;
+            command.AddOption(selectOption);
+            command.Handler = CommandHandler.Create<string, string, string[]>(async (groupId, eventId, select) => {
+                var requestInfo = CreateGetRequestInformation(q => {
+                    q.Select = select;
+                });
                 var result = await RequestAdapter.SendAsync<@Event>(requestInfo);
                 // Print request output. What if the request has no return?
                 using var serializer = RequestAdapter.SerializationWriterFactory.GetSerializationWriter("application/json");
@@ -151,22 +160,27 @@ namespace ApiSdk.Groups.Item.Events.Item {
             return command;
         }
         /// <summary>
-        /// The group's calendar events.
+        /// The group's events.
         /// </summary>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
-            command.Description = "The group's calendar events.";
+            command.Description = "The group's events.";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--group-id", description: "key: id of group"));
-            command.AddOption(new Option<string>("--event-id", description: "key: id of event"));
-            command.AddOption(new Option<string>("--body"));
+            var groupIdOption = new Option<string>("--group-id", description: "key: id of group");
+            groupIdOption.IsRequired = true;
+            command.AddOption(groupIdOption);
+            var eventIdOption = new Option<string>("--event-id", description: "key: id of event");
+            eventIdOption.IsRequired = true;
+            command.AddOption(eventIdOption);
+            var bodyOption = new Option<string>("--body");
+            bodyOption.IsRequired = true;
+            command.AddOption(bodyOption);
             command.Handler = CommandHandler.Create<string, string, string>(async (groupId, eventId, body) => {
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<@Event>();
-                var requestInfo = CreatePatchRequestInformation(model);
-                if (!String.IsNullOrEmpty(groupId)) requestInfo.PathParameters.Add("group_id", groupId);
-                if (!String.IsNullOrEmpty(eventId)) requestInfo.PathParameters.Add("event_id", eventId);
+                var requestInfo = CreatePatchRequestInformation(model, q => {
+                });
                 await RequestAdapter.SendNoContentAsync(requestInfo);
                 // Print request output. What if the request has no return?
                 Console.WriteLine("Success");
@@ -206,7 +220,7 @@ namespace ApiSdk.Groups.Item.Events.Item {
             RequestAdapter = requestAdapter;
         }
         /// <summary>
-        /// The group's calendar events.
+        /// The group's events.
         /// <param name="h">Request headers</param>
         /// <param name="o">Request options</param>
         /// </summary>
@@ -221,7 +235,7 @@ namespace ApiSdk.Groups.Item.Events.Item {
             return requestInfo;
         }
         /// <summary>
-        /// The group's calendar events.
+        /// The group's events.
         /// <param name="h">Request headers</param>
         /// <param name="o">Request options</param>
         /// <param name="q">Request query parameters</param>
@@ -242,7 +256,7 @@ namespace ApiSdk.Groups.Item.Events.Item {
             return requestInfo;
         }
         /// <summary>
-        /// The group's calendar events.
+        /// The group's events.
         /// <param name="body"></param>
         /// <param name="h">Request headers</param>
         /// <param name="o">Request options</param>
@@ -260,7 +274,7 @@ namespace ApiSdk.Groups.Item.Events.Item {
             return requestInfo;
         }
         /// <summary>
-        /// The group's calendar events.
+        /// The group's events.
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="h">Request headers</param>
         /// <param name="o">Request options</param>
@@ -271,7 +285,7 @@ namespace ApiSdk.Groups.Item.Events.Item {
             await RequestAdapter.SendNoContentAsync(requestInfo, responseHandler, cancellationToken);
         }
         /// <summary>
-        /// The group's calendar events.
+        /// The group's events.
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="h">Request headers</param>
         /// <param name="o">Request options</param>
@@ -283,7 +297,7 @@ namespace ApiSdk.Groups.Item.Events.Item {
             return await RequestAdapter.SendAsync<@Event>(requestInfo, responseHandler, cancellationToken);
         }
         /// <summary>
-        /// The group's calendar events.
+        /// The group's events.
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="h">Request headers</param>
         /// <param name="model"></param>
@@ -295,7 +309,7 @@ namespace ApiSdk.Groups.Item.Events.Item {
             var requestInfo = CreatePatchRequestInformation(model, h, o);
             await RequestAdapter.SendNoContentAsync(requestInfo, responseHandler, cancellationToken);
         }
-        /// <summary>The group's calendar events.</summary>
+        /// <summary>The group's events.</summary>
         public class GetQueryParameters : QueryParametersBase {
             /// <summary>Select properties to be returned</summary>
             public string[] Select { get; set; }

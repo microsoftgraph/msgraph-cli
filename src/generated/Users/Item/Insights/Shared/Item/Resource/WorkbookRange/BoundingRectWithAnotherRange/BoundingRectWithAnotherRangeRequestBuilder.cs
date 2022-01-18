@@ -26,14 +26,18 @@ namespace ApiSdk.Users.Item.Insights.Shared.Item.Resource.WorkbookRange.Bounding
             var command = new Command("get");
             command.Description = "Invoke function boundingRect";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--user-id", description: "key: id of user"));
-            command.AddOption(new Option<string>("--sharedinsight-id", description: "key: id of sharedInsight"));
-            command.AddOption(new Option<string>("--anotherrange", description: "Usage: anotherRange={anotherRange}"));
+            var userIdOption = new Option<string>("--user-id", description: "key: id of user");
+            userIdOption.IsRequired = true;
+            command.AddOption(userIdOption);
+            var sharedInsightIdOption = new Option<string>("--sharedinsight-id", description: "key: id of sharedInsight");
+            sharedInsightIdOption.IsRequired = true;
+            command.AddOption(sharedInsightIdOption);
+            var anotherRangeOption = new Option<string>("--anotherrange", description: "Usage: anotherRange={anotherRange}");
+            anotherRangeOption.IsRequired = true;
+            command.AddOption(anotherRangeOption);
             command.Handler = CommandHandler.Create<string, string, string>(async (userId, sharedInsightId, anotherRange) => {
-                var requestInfo = CreateGetRequestInformation();
-                if (!String.IsNullOrEmpty(userId)) requestInfo.PathParameters.Add("user_id", userId);
-                if (!String.IsNullOrEmpty(sharedInsightId)) requestInfo.PathParameters.Add("sharedInsight_id", sharedInsightId);
-                if (!String.IsNullOrEmpty(anotherRange)) requestInfo.PathParameters.Add("anotherRange", anotherRange);
+                var requestInfo = CreateGetRequestInformation(q => {
+                });
                 var result = await RequestAdapter.SendAsync<BoundingRectWithAnotherRangeResponse>(requestInfo);
                 // Print request output. What if the request has no return?
                 using var serializer = RequestAdapter.SerializationWriterFactory.GetSerializationWriter("application/json");

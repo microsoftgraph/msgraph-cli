@@ -74,14 +74,18 @@ namespace ApiSdk.Me.CalendarGroups.Item.Calendars.Item.CalendarView.Item {
             var command = new Command("delete");
             command.Description = "The calendar view for the calendar. Navigation property. Read-only.";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--calendargroup-id", description: "key: id of calendarGroup"));
-            command.AddOption(new Option<string>("--calendar-id", description: "key: id of calendar"));
-            command.AddOption(new Option<string>("--event-id", description: "key: id of event"));
+            var calendarGroupIdOption = new Option<string>("--calendargroup-id", description: "key: id of calendarGroup");
+            calendarGroupIdOption.IsRequired = true;
+            command.AddOption(calendarGroupIdOption);
+            var calendarIdOption = new Option<string>("--calendar-id", description: "key: id of calendar");
+            calendarIdOption.IsRequired = true;
+            command.AddOption(calendarIdOption);
+            var eventIdOption = new Option<string>("--event-id", description: "key: id of event");
+            eventIdOption.IsRequired = true;
+            command.AddOption(eventIdOption);
             command.Handler = CommandHandler.Create<string, string, string>(async (calendarGroupId, calendarId, eventId) => {
-                var requestInfo = CreateDeleteRequestInformation();
-                if (!String.IsNullOrEmpty(calendarGroupId)) requestInfo.PathParameters.Add("calendarGroup_id", calendarGroupId);
-                if (!String.IsNullOrEmpty(calendarId)) requestInfo.PathParameters.Add("calendar_id", calendarId);
-                if (!String.IsNullOrEmpty(eventId)) requestInfo.PathParameters.Add("event_id", eventId);
+                var requestInfo = CreateDeleteRequestInformation(q => {
+                });
                 await RequestAdapter.SendNoContentAsync(requestInfo);
                 // Print request output. What if the request has no return?
                 Console.WriteLine("Success");
@@ -114,16 +118,23 @@ namespace ApiSdk.Me.CalendarGroups.Item.Calendars.Item.CalendarView.Item {
             var command = new Command("get");
             command.Description = "The calendar view for the calendar. Navigation property. Read-only.";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--calendargroup-id", description: "key: id of calendarGroup"));
-            command.AddOption(new Option<string>("--calendar-id", description: "key: id of calendar"));
-            command.AddOption(new Option<string>("--event-id", description: "key: id of event"));
-            command.AddOption(new Option<object>("--select", description: "Select properties to be returned"));
-            command.Handler = CommandHandler.Create<string, string, string, object>(async (calendarGroupId, calendarId, eventId, select) => {
-                var requestInfo = CreateGetRequestInformation();
-                if (!String.IsNullOrEmpty(calendarGroupId)) requestInfo.PathParameters.Add("calendarGroup_id", calendarGroupId);
-                if (!String.IsNullOrEmpty(calendarId)) requestInfo.PathParameters.Add("calendar_id", calendarId);
-                if (!String.IsNullOrEmpty(eventId)) requestInfo.PathParameters.Add("event_id", eventId);
-                requestInfo.QueryParameters.Add("select", select);
+            var calendarGroupIdOption = new Option<string>("--calendargroup-id", description: "key: id of calendarGroup");
+            calendarGroupIdOption.IsRequired = true;
+            command.AddOption(calendarGroupIdOption);
+            var calendarIdOption = new Option<string>("--calendar-id", description: "key: id of calendar");
+            calendarIdOption.IsRequired = true;
+            command.AddOption(calendarIdOption);
+            var eventIdOption = new Option<string>("--event-id", description: "key: id of event");
+            eventIdOption.IsRequired = true;
+            command.AddOption(eventIdOption);
+            var selectOption = new Option<string[]>("--select", description: "Select properties to be returned");
+            selectOption.IsRequired = false;
+            selectOption.Arity = ArgumentArity.ZeroOrMore;
+            command.AddOption(selectOption);
+            command.Handler = CommandHandler.Create<string, string, string, string[]>(async (calendarGroupId, calendarId, eventId, select) => {
+                var requestInfo = CreateGetRequestInformation(q => {
+                    q.Select = select;
+                });
                 var result = await RequestAdapter.SendAsync<@Event>(requestInfo);
                 // Print request output. What if the request has no return?
                 using var serializer = RequestAdapter.SerializationWriterFactory.GetSerializationWriter("application/json");
@@ -156,18 +167,24 @@ namespace ApiSdk.Me.CalendarGroups.Item.Calendars.Item.CalendarView.Item {
             var command = new Command("patch");
             command.Description = "The calendar view for the calendar. Navigation property. Read-only.";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--calendargroup-id", description: "key: id of calendarGroup"));
-            command.AddOption(new Option<string>("--calendar-id", description: "key: id of calendar"));
-            command.AddOption(new Option<string>("--event-id", description: "key: id of event"));
-            command.AddOption(new Option<string>("--body"));
+            var calendarGroupIdOption = new Option<string>("--calendargroup-id", description: "key: id of calendarGroup");
+            calendarGroupIdOption.IsRequired = true;
+            command.AddOption(calendarGroupIdOption);
+            var calendarIdOption = new Option<string>("--calendar-id", description: "key: id of calendar");
+            calendarIdOption.IsRequired = true;
+            command.AddOption(calendarIdOption);
+            var eventIdOption = new Option<string>("--event-id", description: "key: id of event");
+            eventIdOption.IsRequired = true;
+            command.AddOption(eventIdOption);
+            var bodyOption = new Option<string>("--body");
+            bodyOption.IsRequired = true;
+            command.AddOption(bodyOption);
             command.Handler = CommandHandler.Create<string, string, string, string>(async (calendarGroupId, calendarId, eventId, body) => {
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<@Event>();
-                var requestInfo = CreatePatchRequestInformation(model);
-                if (!String.IsNullOrEmpty(calendarGroupId)) requestInfo.PathParameters.Add("calendarGroup_id", calendarGroupId);
-                if (!String.IsNullOrEmpty(calendarId)) requestInfo.PathParameters.Add("calendar_id", calendarId);
-                if (!String.IsNullOrEmpty(eventId)) requestInfo.PathParameters.Add("event_id", eventId);
+                var requestInfo = CreatePatchRequestInformation(model, q => {
+                });
                 await RequestAdapter.SendNoContentAsync(requestInfo);
                 // Print request output. What if the request has no return?
                 Console.WriteLine("Success");

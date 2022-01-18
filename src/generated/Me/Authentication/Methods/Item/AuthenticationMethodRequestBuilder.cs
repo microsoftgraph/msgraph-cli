@@ -26,10 +26,12 @@ namespace ApiSdk.Me.Authentication.Methods.Item {
             var command = new Command("delete");
             command.Description = "Delete navigation property methods for me";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--authenticationmethod-id", description: "key: id of authenticationMethod"));
+            var authenticationMethodIdOption = new Option<string>("--authenticationmethod-id", description: "key: id of authenticationMethod");
+            authenticationMethodIdOption.IsRequired = true;
+            command.AddOption(authenticationMethodIdOption);
             command.Handler = CommandHandler.Create<string>(async (authenticationMethodId) => {
-                var requestInfo = CreateDeleteRequestInformation();
-                if (!String.IsNullOrEmpty(authenticationMethodId)) requestInfo.PathParameters.Add("authenticationMethod_id", authenticationMethodId);
+                var requestInfo = CreateDeleteRequestInformation(q => {
+                });
                 await RequestAdapter.SendNoContentAsync(requestInfo);
                 // Print request output. What if the request has no return?
                 Console.WriteLine("Success");
@@ -43,14 +45,22 @@ namespace ApiSdk.Me.Authentication.Methods.Item {
             var command = new Command("get");
             command.Description = "Get methods from me";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--authenticationmethod-id", description: "key: id of authenticationMethod"));
-            command.AddOption(new Option<object>("--select", description: "Select properties to be returned"));
-            command.AddOption(new Option<object>("--expand", description: "Expand related entities"));
-            command.Handler = CommandHandler.Create<string, object, object>(async (authenticationMethodId, select, expand) => {
-                var requestInfo = CreateGetRequestInformation();
-                if (!String.IsNullOrEmpty(authenticationMethodId)) requestInfo.PathParameters.Add("authenticationMethod_id", authenticationMethodId);
-                requestInfo.QueryParameters.Add("select", select);
-                requestInfo.QueryParameters.Add("expand", expand);
+            var authenticationMethodIdOption = new Option<string>("--authenticationmethod-id", description: "key: id of authenticationMethod");
+            authenticationMethodIdOption.IsRequired = true;
+            command.AddOption(authenticationMethodIdOption);
+            var selectOption = new Option<string[]>("--select", description: "Select properties to be returned");
+            selectOption.IsRequired = false;
+            selectOption.Arity = ArgumentArity.ZeroOrMore;
+            command.AddOption(selectOption);
+            var expandOption = new Option<string[]>("--expand", description: "Expand related entities");
+            expandOption.IsRequired = false;
+            expandOption.Arity = ArgumentArity.ZeroOrMore;
+            command.AddOption(expandOption);
+            command.Handler = CommandHandler.Create<string, string[], string[]>(async (authenticationMethodId, select, expand) => {
+                var requestInfo = CreateGetRequestInformation(q => {
+                    q.Select = select;
+                    q.Expand = expand;
+                });
                 var result = await RequestAdapter.SendAsync<AuthenticationMethod>(requestInfo);
                 // Print request output. What if the request has no return?
                 using var serializer = RequestAdapter.SerializationWriterFactory.GetSerializationWriter("application/json");
@@ -69,14 +79,18 @@ namespace ApiSdk.Me.Authentication.Methods.Item {
             var command = new Command("patch");
             command.Description = "Update the navigation property methods in me";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--authenticationmethod-id", description: "key: id of authenticationMethod"));
-            command.AddOption(new Option<string>("--body"));
+            var authenticationMethodIdOption = new Option<string>("--authenticationmethod-id", description: "key: id of authenticationMethod");
+            authenticationMethodIdOption.IsRequired = true;
+            command.AddOption(authenticationMethodIdOption);
+            var bodyOption = new Option<string>("--body");
+            bodyOption.IsRequired = true;
+            command.AddOption(bodyOption);
             command.Handler = CommandHandler.Create<string, string>(async (authenticationMethodId, body) => {
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<AuthenticationMethod>();
-                var requestInfo = CreatePatchRequestInformation(model);
-                if (!String.IsNullOrEmpty(authenticationMethodId)) requestInfo.PathParameters.Add("authenticationMethod_id", authenticationMethodId);
+                var requestInfo = CreatePatchRequestInformation(model, q => {
+                });
                 await RequestAdapter.SendNoContentAsync(requestInfo);
                 // Print request output. What if the request has no return?
                 Console.WriteLine("Success");

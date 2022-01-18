@@ -25,15 +25,19 @@ namespace ApiSdk.Identity.B2xUserFlows.Item.Languages.Item.OverridesPages.Item.V
             var command = new Command("get");
             command.Description = "Get media content for the navigation property overridesPages from identity";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--b2xidentityuserflow-id", description: "key: id of b2xIdentityUserFlow"));
-            command.AddOption(new Option<string>("--userflowlanguageconfiguration-id", description: "key: id of userFlowLanguageConfiguration"));
-            command.AddOption(new Option<string>("--userflowlanguagepage-id", description: "key: id of userFlowLanguagePage"));
+            var b2xIdentityUserFlowIdOption = new Option<string>("--b2xidentityuserflow-id", description: "key: id of b2xIdentityUserFlow");
+            b2xIdentityUserFlowIdOption.IsRequired = true;
+            command.AddOption(b2xIdentityUserFlowIdOption);
+            var userFlowLanguageConfigurationIdOption = new Option<string>("--userflowlanguageconfiguration-id", description: "key: id of userFlowLanguageConfiguration");
+            userFlowLanguageConfigurationIdOption.IsRequired = true;
+            command.AddOption(userFlowLanguageConfigurationIdOption);
+            var userFlowLanguagePageIdOption = new Option<string>("--userflowlanguagepage-id", description: "key: id of userFlowLanguagePage");
+            userFlowLanguagePageIdOption.IsRequired = true;
+            command.AddOption(userFlowLanguagePageIdOption);
             command.AddOption(new Option<FileInfo>("--output"));
             command.Handler = CommandHandler.Create<string, string, string, FileInfo>(async (b2xIdentityUserFlowId, userFlowLanguageConfigurationId, userFlowLanguagePageId, output) => {
-                var requestInfo = CreateGetRequestInformation();
-                if (!String.IsNullOrEmpty(b2xIdentityUserFlowId)) requestInfo.PathParameters.Add("b2xIdentityUserFlow_id", b2xIdentityUserFlowId);
-                if (!String.IsNullOrEmpty(userFlowLanguageConfigurationId)) requestInfo.PathParameters.Add("userFlowLanguageConfiguration_id", userFlowLanguageConfigurationId);
-                if (!String.IsNullOrEmpty(userFlowLanguagePageId)) requestInfo.PathParameters.Add("userFlowLanguagePage_id", userFlowLanguagePageId);
+                var requestInfo = CreateGetRequestInformation(q => {
+                });
                 var result = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 // Print request output. What if the request has no return?
                 if (output == null) {
@@ -56,16 +60,22 @@ namespace ApiSdk.Identity.B2xUserFlows.Item.Languages.Item.OverridesPages.Item.V
             var command = new Command("put");
             command.Description = "Update media content for the navigation property overridesPages in identity";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--b2xidentityuserflow-id", description: "key: id of b2xIdentityUserFlow"));
-            command.AddOption(new Option<string>("--userflowlanguageconfiguration-id", description: "key: id of userFlowLanguageConfiguration"));
-            command.AddOption(new Option<string>("--userflowlanguagepage-id", description: "key: id of userFlowLanguagePage"));
-            command.AddOption(new Option<Stream>("--file", description: "Binary request body"));
+            var b2xIdentityUserFlowIdOption = new Option<string>("--b2xidentityuserflow-id", description: "key: id of b2xIdentityUserFlow");
+            b2xIdentityUserFlowIdOption.IsRequired = true;
+            command.AddOption(b2xIdentityUserFlowIdOption);
+            var userFlowLanguageConfigurationIdOption = new Option<string>("--userflowlanguageconfiguration-id", description: "key: id of userFlowLanguageConfiguration");
+            userFlowLanguageConfigurationIdOption.IsRequired = true;
+            command.AddOption(userFlowLanguageConfigurationIdOption);
+            var userFlowLanguagePageIdOption = new Option<string>("--userflowlanguagepage-id", description: "key: id of userFlowLanguagePage");
+            userFlowLanguagePageIdOption.IsRequired = true;
+            command.AddOption(userFlowLanguagePageIdOption);
+            var fileOption = new Option<Stream>("--file", description: "Binary request body");
+            fileOption.IsRequired = true;
+            command.AddOption(fileOption);
             command.Handler = CommandHandler.Create<string, string, string, FileInfo>(async (b2xIdentityUserFlowId, userFlowLanguageConfigurationId, userFlowLanguagePageId, file) => {
                 using var stream = file.OpenRead();
-                var requestInfo = CreatePutRequestInformation(stream);
-                if (!String.IsNullOrEmpty(b2xIdentityUserFlowId)) requestInfo.PathParameters.Add("b2xIdentityUserFlow_id", b2xIdentityUserFlowId);
-                if (!String.IsNullOrEmpty(userFlowLanguageConfigurationId)) requestInfo.PathParameters.Add("userFlowLanguageConfiguration_id", userFlowLanguageConfigurationId);
-                if (!String.IsNullOrEmpty(userFlowLanguagePageId)) requestInfo.PathParameters.Add("userFlowLanguagePage_id", userFlowLanguagePageId);
+                var requestInfo = CreatePutRequestInformation(stream, q => {
+                });
                 await RequestAdapter.SendNoContentAsync(requestInfo);
                 // Print request output. What if the request has no return?
                 Console.WriteLine("Success");

@@ -26,12 +26,15 @@ namespace ApiSdk.DeviceManagement.DeviceConfigurations.Item.Assignments.Item {
             var command = new Command("delete");
             command.Description = "The list of assignments for the device configuration profile.";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--deviceconfiguration-id", description: "key: id of deviceConfiguration"));
-            command.AddOption(new Option<string>("--deviceconfigurationassignment-id", description: "key: id of deviceConfigurationAssignment"));
+            var deviceConfigurationIdOption = new Option<string>("--deviceconfiguration-id", description: "key: id of deviceConfiguration");
+            deviceConfigurationIdOption.IsRequired = true;
+            command.AddOption(deviceConfigurationIdOption);
+            var deviceConfigurationAssignmentIdOption = new Option<string>("--deviceconfigurationassignment-id", description: "key: id of deviceConfigurationAssignment");
+            deviceConfigurationAssignmentIdOption.IsRequired = true;
+            command.AddOption(deviceConfigurationAssignmentIdOption);
             command.Handler = CommandHandler.Create<string, string>(async (deviceConfigurationId, deviceConfigurationAssignmentId) => {
-                var requestInfo = CreateDeleteRequestInformation();
-                if (!String.IsNullOrEmpty(deviceConfigurationId)) requestInfo.PathParameters.Add("deviceConfiguration_id", deviceConfigurationId);
-                if (!String.IsNullOrEmpty(deviceConfigurationAssignmentId)) requestInfo.PathParameters.Add("deviceConfigurationAssignment_id", deviceConfigurationAssignmentId);
+                var requestInfo = CreateDeleteRequestInformation(q => {
+                });
                 await RequestAdapter.SendNoContentAsync(requestInfo);
                 // Print request output. What if the request has no return?
                 Console.WriteLine("Success");
@@ -45,16 +48,25 @@ namespace ApiSdk.DeviceManagement.DeviceConfigurations.Item.Assignments.Item {
             var command = new Command("get");
             command.Description = "The list of assignments for the device configuration profile.";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--deviceconfiguration-id", description: "key: id of deviceConfiguration"));
-            command.AddOption(new Option<string>("--deviceconfigurationassignment-id", description: "key: id of deviceConfigurationAssignment"));
-            command.AddOption(new Option<object>("--select", description: "Select properties to be returned"));
-            command.AddOption(new Option<object>("--expand", description: "Expand related entities"));
-            command.Handler = CommandHandler.Create<string, string, object, object>(async (deviceConfigurationId, deviceConfigurationAssignmentId, select, expand) => {
-                var requestInfo = CreateGetRequestInformation();
-                if (!String.IsNullOrEmpty(deviceConfigurationId)) requestInfo.PathParameters.Add("deviceConfiguration_id", deviceConfigurationId);
-                if (!String.IsNullOrEmpty(deviceConfigurationAssignmentId)) requestInfo.PathParameters.Add("deviceConfigurationAssignment_id", deviceConfigurationAssignmentId);
-                requestInfo.QueryParameters.Add("select", select);
-                requestInfo.QueryParameters.Add("expand", expand);
+            var deviceConfigurationIdOption = new Option<string>("--deviceconfiguration-id", description: "key: id of deviceConfiguration");
+            deviceConfigurationIdOption.IsRequired = true;
+            command.AddOption(deviceConfigurationIdOption);
+            var deviceConfigurationAssignmentIdOption = new Option<string>("--deviceconfigurationassignment-id", description: "key: id of deviceConfigurationAssignment");
+            deviceConfigurationAssignmentIdOption.IsRequired = true;
+            command.AddOption(deviceConfigurationAssignmentIdOption);
+            var selectOption = new Option<string[]>("--select", description: "Select properties to be returned");
+            selectOption.IsRequired = false;
+            selectOption.Arity = ArgumentArity.ZeroOrMore;
+            command.AddOption(selectOption);
+            var expandOption = new Option<string[]>("--expand", description: "Expand related entities");
+            expandOption.IsRequired = false;
+            expandOption.Arity = ArgumentArity.ZeroOrMore;
+            command.AddOption(expandOption);
+            command.Handler = CommandHandler.Create<string, string, string[], string[]>(async (deviceConfigurationId, deviceConfigurationAssignmentId, select, expand) => {
+                var requestInfo = CreateGetRequestInformation(q => {
+                    q.Select = select;
+                    q.Expand = expand;
+                });
                 var result = await RequestAdapter.SendAsync<DeviceConfigurationAssignment>(requestInfo);
                 // Print request output. What if the request has no return?
                 using var serializer = RequestAdapter.SerializationWriterFactory.GetSerializationWriter("application/json");
@@ -73,16 +85,21 @@ namespace ApiSdk.DeviceManagement.DeviceConfigurations.Item.Assignments.Item {
             var command = new Command("patch");
             command.Description = "The list of assignments for the device configuration profile.";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--deviceconfiguration-id", description: "key: id of deviceConfiguration"));
-            command.AddOption(new Option<string>("--deviceconfigurationassignment-id", description: "key: id of deviceConfigurationAssignment"));
-            command.AddOption(new Option<string>("--body"));
+            var deviceConfigurationIdOption = new Option<string>("--deviceconfiguration-id", description: "key: id of deviceConfiguration");
+            deviceConfigurationIdOption.IsRequired = true;
+            command.AddOption(deviceConfigurationIdOption);
+            var deviceConfigurationAssignmentIdOption = new Option<string>("--deviceconfigurationassignment-id", description: "key: id of deviceConfigurationAssignment");
+            deviceConfigurationAssignmentIdOption.IsRequired = true;
+            command.AddOption(deviceConfigurationAssignmentIdOption);
+            var bodyOption = new Option<string>("--body");
+            bodyOption.IsRequired = true;
+            command.AddOption(bodyOption);
             command.Handler = CommandHandler.Create<string, string, string>(async (deviceConfigurationId, deviceConfigurationAssignmentId, body) => {
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<DeviceConfigurationAssignment>();
-                var requestInfo = CreatePatchRequestInformation(model);
-                if (!String.IsNullOrEmpty(deviceConfigurationId)) requestInfo.PathParameters.Add("deviceConfiguration_id", deviceConfigurationId);
-                if (!String.IsNullOrEmpty(deviceConfigurationAssignmentId)) requestInfo.PathParameters.Add("deviceConfigurationAssignment_id", deviceConfigurationAssignmentId);
+                var requestInfo = CreatePatchRequestInformation(model, q => {
+                });
                 await RequestAdapter.SendNoContentAsync(requestInfo);
                 // Print request output. What if the request has no return?
                 Console.WriteLine("Success");

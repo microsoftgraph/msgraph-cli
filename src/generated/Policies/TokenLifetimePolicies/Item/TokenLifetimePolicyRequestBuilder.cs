@@ -26,10 +26,12 @@ namespace ApiSdk.Policies.TokenLifetimePolicies.Item {
             var command = new Command("delete");
             command.Description = "The policy that controls the lifetime of a JWT access token, an ID token, or a SAML 1.1/2.0 token issued by Azure AD.";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--tokenlifetimepolicy-id", description: "key: id of tokenLifetimePolicy"));
+            var tokenLifetimePolicyIdOption = new Option<string>("--tokenlifetimepolicy-id", description: "key: id of tokenLifetimePolicy");
+            tokenLifetimePolicyIdOption.IsRequired = true;
+            command.AddOption(tokenLifetimePolicyIdOption);
             command.Handler = CommandHandler.Create<string>(async (tokenLifetimePolicyId) => {
-                var requestInfo = CreateDeleteRequestInformation();
-                if (!String.IsNullOrEmpty(tokenLifetimePolicyId)) requestInfo.PathParameters.Add("tokenLifetimePolicy_id", tokenLifetimePolicyId);
+                var requestInfo = CreateDeleteRequestInformation(q => {
+                });
                 await RequestAdapter.SendNoContentAsync(requestInfo);
                 // Print request output. What if the request has no return?
                 Console.WriteLine("Success");
@@ -43,14 +45,22 @@ namespace ApiSdk.Policies.TokenLifetimePolicies.Item {
             var command = new Command("get");
             command.Description = "The policy that controls the lifetime of a JWT access token, an ID token, or a SAML 1.1/2.0 token issued by Azure AD.";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--tokenlifetimepolicy-id", description: "key: id of tokenLifetimePolicy"));
-            command.AddOption(new Option<object>("--select", description: "Select properties to be returned"));
-            command.AddOption(new Option<object>("--expand", description: "Expand related entities"));
-            command.Handler = CommandHandler.Create<string, object, object>(async (tokenLifetimePolicyId, select, expand) => {
-                var requestInfo = CreateGetRequestInformation();
-                if (!String.IsNullOrEmpty(tokenLifetimePolicyId)) requestInfo.PathParameters.Add("tokenLifetimePolicy_id", tokenLifetimePolicyId);
-                requestInfo.QueryParameters.Add("select", select);
-                requestInfo.QueryParameters.Add("expand", expand);
+            var tokenLifetimePolicyIdOption = new Option<string>("--tokenlifetimepolicy-id", description: "key: id of tokenLifetimePolicy");
+            tokenLifetimePolicyIdOption.IsRequired = true;
+            command.AddOption(tokenLifetimePolicyIdOption);
+            var selectOption = new Option<string[]>("--select", description: "Select properties to be returned");
+            selectOption.IsRequired = false;
+            selectOption.Arity = ArgumentArity.ZeroOrMore;
+            command.AddOption(selectOption);
+            var expandOption = new Option<string[]>("--expand", description: "Expand related entities");
+            expandOption.IsRequired = false;
+            expandOption.Arity = ArgumentArity.ZeroOrMore;
+            command.AddOption(expandOption);
+            command.Handler = CommandHandler.Create<string, string[], string[]>(async (tokenLifetimePolicyId, select, expand) => {
+                var requestInfo = CreateGetRequestInformation(q => {
+                    q.Select = select;
+                    q.Expand = expand;
+                });
                 var result = await RequestAdapter.SendAsync<TokenLifetimePolicy>(requestInfo);
                 // Print request output. What if the request has no return?
                 using var serializer = RequestAdapter.SerializationWriterFactory.GetSerializationWriter("application/json");
@@ -69,14 +79,18 @@ namespace ApiSdk.Policies.TokenLifetimePolicies.Item {
             var command = new Command("patch");
             command.Description = "The policy that controls the lifetime of a JWT access token, an ID token, or a SAML 1.1/2.0 token issued by Azure AD.";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--tokenlifetimepolicy-id", description: "key: id of tokenLifetimePolicy"));
-            command.AddOption(new Option<string>("--body"));
+            var tokenLifetimePolicyIdOption = new Option<string>("--tokenlifetimepolicy-id", description: "key: id of tokenLifetimePolicy");
+            tokenLifetimePolicyIdOption.IsRequired = true;
+            command.AddOption(tokenLifetimePolicyIdOption);
+            var bodyOption = new Option<string>("--body");
+            bodyOption.IsRequired = true;
+            command.AddOption(bodyOption);
             command.Handler = CommandHandler.Create<string, string>(async (tokenLifetimePolicyId, body) => {
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<TokenLifetimePolicy>();
-                var requestInfo = CreatePatchRequestInformation(model);
-                if (!String.IsNullOrEmpty(tokenLifetimePolicyId)) requestInfo.PathParameters.Add("tokenLifetimePolicy_id", tokenLifetimePolicyId);
+                var requestInfo = CreatePatchRequestInformation(model, q => {
+                });
                 await RequestAdapter.SendNoContentAsync(requestInfo);
                 // Print request output. What if the request has no return?
                 Console.WriteLine("Success");

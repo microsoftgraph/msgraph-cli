@@ -7,7 +7,7 @@ namespace ApiSdk.Models.Microsoft.Graph {
     public class NetworkConnection : IParsable {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
-        /// <summary>Name of the application managing the network connection (for example, Facebook or SMTP).</summary>
+        /// <summary>Name of the application managing the network connection (for example, Facebook, SMTP, etc.).</summary>
         public string ApplicationName { get; set; }
         /// <summary>Destination IP address (of the network connection).</summary>
         public string DestinationAddress { get; set; }

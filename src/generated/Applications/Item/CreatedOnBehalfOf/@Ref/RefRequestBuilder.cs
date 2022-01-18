@@ -25,10 +25,12 @@ namespace ApiSdk.Applications.Item.CreatedOnBehalfOf.@Ref {
             var command = new Command("delete");
             command.Description = "Read-only.";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--application-id", description: "key: id of application"));
+            var applicationIdOption = new Option<string>("--application-id", description: "key: id of application");
+            applicationIdOption.IsRequired = true;
+            command.AddOption(applicationIdOption);
             command.Handler = CommandHandler.Create<string>(async (applicationId) => {
-                var requestInfo = CreateDeleteRequestInformation();
-                if (!String.IsNullOrEmpty(applicationId)) requestInfo.PathParameters.Add("application_id", applicationId);
+                var requestInfo = CreateDeleteRequestInformation(q => {
+                });
                 await RequestAdapter.SendNoContentAsync(requestInfo);
                 // Print request output. What if the request has no return?
                 Console.WriteLine("Success");
@@ -42,10 +44,12 @@ namespace ApiSdk.Applications.Item.CreatedOnBehalfOf.@Ref {
             var command = new Command("get");
             command.Description = "Read-only.";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--application-id", description: "key: id of application"));
+            var applicationIdOption = new Option<string>("--application-id", description: "key: id of application");
+            applicationIdOption.IsRequired = true;
+            command.AddOption(applicationIdOption);
             command.Handler = CommandHandler.Create<string>(async (applicationId) => {
-                var requestInfo = CreateGetRequestInformation();
-                if (!String.IsNullOrEmpty(applicationId)) requestInfo.PathParameters.Add("application_id", applicationId);
+                var requestInfo = CreateGetRequestInformation(q => {
+                });
                 var result = await RequestAdapter.SendPrimitiveAsync<string>(requestInfo);
                 // Print request output. What if the request has no return?
                 using var serializer = RequestAdapter.SerializationWriterFactory.GetSerializationWriter("application/json");
@@ -64,14 +68,18 @@ namespace ApiSdk.Applications.Item.CreatedOnBehalfOf.@Ref {
             var command = new Command("put");
             command.Description = "Read-only.";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--application-id", description: "key: id of application"));
-            command.AddOption(new Option<string>("--body"));
+            var applicationIdOption = new Option<string>("--application-id", description: "key: id of application");
+            applicationIdOption.IsRequired = true;
+            command.AddOption(applicationIdOption);
+            var bodyOption = new Option<string>("--body");
+            bodyOption.IsRequired = true;
+            command.AddOption(bodyOption);
             command.Handler = CommandHandler.Create<string, string>(async (applicationId, body) => {
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<ApiSdk.Applications.Item.CreatedOnBehalfOf.@Ref.@Ref>();
-                var requestInfo = CreatePutRequestInformation(model);
-                if (!String.IsNullOrEmpty(applicationId)) requestInfo.PathParameters.Add("application_id", applicationId);
+                var requestInfo = CreatePutRequestInformation(model, q => {
+                });
                 await RequestAdapter.SendNoContentAsync(requestInfo);
                 // Print request output. What if the request has no return?
                 Console.WriteLine("Success");

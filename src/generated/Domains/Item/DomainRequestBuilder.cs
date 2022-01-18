@@ -31,10 +31,12 @@ namespace ApiSdk.Domains.Item {
             var command = new Command("delete");
             command.Description = "Delete entity from domains";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--domain-id", description: "key: id of domain"));
+            var domainIdOption = new Option<string>("--domain-id", description: "key: id of domain");
+            domainIdOption.IsRequired = true;
+            command.AddOption(domainIdOption);
             command.Handler = CommandHandler.Create<string>(async (domainId) => {
-                var requestInfo = CreateDeleteRequestInformation();
-                if (!String.IsNullOrEmpty(domainId)) requestInfo.PathParameters.Add("domain_id", domainId);
+                var requestInfo = CreateDeleteRequestInformation(q => {
+                });
                 await RequestAdapter.SendNoContentAsync(requestInfo);
                 // Print request output. What if the request has no return?
                 Console.WriteLine("Success");
@@ -61,14 +63,22 @@ namespace ApiSdk.Domains.Item {
             var command = new Command("get");
             command.Description = "Get entity from domains by key";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--domain-id", description: "key: id of domain"));
-            command.AddOption(new Option<object>("--select", description: "Select properties to be returned"));
-            command.AddOption(new Option<object>("--expand", description: "Expand related entities"));
-            command.Handler = CommandHandler.Create<string, object, object>(async (domainId, select, expand) => {
-                var requestInfo = CreateGetRequestInformation();
-                if (!String.IsNullOrEmpty(domainId)) requestInfo.PathParameters.Add("domain_id", domainId);
-                requestInfo.QueryParameters.Add("select", select);
-                requestInfo.QueryParameters.Add("expand", expand);
+            var domainIdOption = new Option<string>("--domain-id", description: "key: id of domain");
+            domainIdOption.IsRequired = true;
+            command.AddOption(domainIdOption);
+            var selectOption = new Option<string[]>("--select", description: "Select properties to be returned");
+            selectOption.IsRequired = false;
+            selectOption.Arity = ArgumentArity.ZeroOrMore;
+            command.AddOption(selectOption);
+            var expandOption = new Option<string[]>("--expand", description: "Expand related entities");
+            expandOption.IsRequired = false;
+            expandOption.Arity = ArgumentArity.ZeroOrMore;
+            command.AddOption(expandOption);
+            command.Handler = CommandHandler.Create<string, string[], string[]>(async (domainId, select, expand) => {
+                var requestInfo = CreateGetRequestInformation(q => {
+                    q.Select = select;
+                    q.Expand = expand;
+                });
                 var result = await RequestAdapter.SendAsync<Domain>(requestInfo);
                 // Print request output. What if the request has no return?
                 using var serializer = RequestAdapter.SerializationWriterFactory.GetSerializationWriter("application/json");
@@ -87,14 +97,18 @@ namespace ApiSdk.Domains.Item {
             var command = new Command("patch");
             command.Description = "Update entity in domains";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--domain-id", description: "key: id of domain"));
-            command.AddOption(new Option<string>("--body"));
+            var domainIdOption = new Option<string>("--domain-id", description: "key: id of domain");
+            domainIdOption.IsRequired = true;
+            command.AddOption(domainIdOption);
+            var bodyOption = new Option<string>("--body");
+            bodyOption.IsRequired = true;
+            command.AddOption(bodyOption);
             command.Handler = CommandHandler.Create<string, string>(async (domainId, body) => {
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<Domain>();
-                var requestInfo = CreatePatchRequestInformation(model);
-                if (!String.IsNullOrEmpty(domainId)) requestInfo.PathParameters.Add("domain_id", domainId);
+                var requestInfo = CreatePatchRequestInformation(model, q => {
+                });
                 await RequestAdapter.SendNoContentAsync(requestInfo);
                 // Print request output. What if the request has no return?
                 Console.WriteLine("Success");

@@ -25,10 +25,12 @@ namespace ApiSdk.IdentityGovernance.AccessReviews.Definitions.Item.Stop {
             var command = new Command("post");
             command.Description = "Invoke action stop";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--accessreviewscheduledefinition-id", description: "key: id of accessReviewScheduleDefinition"));
+            var accessReviewScheduleDefinitionIdOption = new Option<string>("--accessreviewscheduledefinition-id", description: "key: id of accessReviewScheduleDefinition");
+            accessReviewScheduleDefinitionIdOption.IsRequired = true;
+            command.AddOption(accessReviewScheduleDefinitionIdOption);
             command.Handler = CommandHandler.Create<string>(async (accessReviewScheduleDefinitionId) => {
-                var requestInfo = CreatePostRequestInformation();
-                if (!String.IsNullOrEmpty(accessReviewScheduleDefinitionId)) requestInfo.PathParameters.Add("accessReviewScheduleDefinition_id", accessReviewScheduleDefinitionId);
+                var requestInfo = CreatePostRequestInformation(q => {
+                });
                 await RequestAdapter.SendNoContentAsync(requestInfo);
                 // Print request output. What if the request has no return?
                 Console.WriteLine("Success");

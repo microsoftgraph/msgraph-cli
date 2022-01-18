@@ -7,7 +7,7 @@ namespace ApiSdk.Models.Microsoft.Graph {
     public class ChatInfo : IParsable {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
-        /// <summary>The unique identifier of a message in a Microsoft Teams channel.</summary>
+        /// <summary>The unique identifier for a message in a Microsoft Teams channel.</summary>
         public string MessageId { get; set; }
         /// <summary>The ID of the reply message.</summary>
         public string ReplyChainMessageId { get; set; }

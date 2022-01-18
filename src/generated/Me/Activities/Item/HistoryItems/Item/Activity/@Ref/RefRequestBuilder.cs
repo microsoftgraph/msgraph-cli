@@ -25,12 +25,15 @@ namespace ApiSdk.Me.Activities.Item.HistoryItems.Item.Activity.@Ref {
             var command = new Command("delete");
             command.Description = "Optional. NavigationProperty/Containment; navigation property to the associated activity.";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--useractivity-id", description: "key: id of userActivity"));
-            command.AddOption(new Option<string>("--activityhistoryitem-id", description: "key: id of activityHistoryItem"));
+            var userActivityIdOption = new Option<string>("--useractivity-id", description: "key: id of userActivity");
+            userActivityIdOption.IsRequired = true;
+            command.AddOption(userActivityIdOption);
+            var activityHistoryItemIdOption = new Option<string>("--activityhistoryitem-id", description: "key: id of activityHistoryItem");
+            activityHistoryItemIdOption.IsRequired = true;
+            command.AddOption(activityHistoryItemIdOption);
             command.Handler = CommandHandler.Create<string, string>(async (userActivityId, activityHistoryItemId) => {
-                var requestInfo = CreateDeleteRequestInformation();
-                if (!String.IsNullOrEmpty(userActivityId)) requestInfo.PathParameters.Add("userActivity_id", userActivityId);
-                if (!String.IsNullOrEmpty(activityHistoryItemId)) requestInfo.PathParameters.Add("activityHistoryItem_id", activityHistoryItemId);
+                var requestInfo = CreateDeleteRequestInformation(q => {
+                });
                 await RequestAdapter.SendNoContentAsync(requestInfo);
                 // Print request output. What if the request has no return?
                 Console.WriteLine("Success");
@@ -44,12 +47,15 @@ namespace ApiSdk.Me.Activities.Item.HistoryItems.Item.Activity.@Ref {
             var command = new Command("get");
             command.Description = "Optional. NavigationProperty/Containment; navigation property to the associated activity.";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--useractivity-id", description: "key: id of userActivity"));
-            command.AddOption(new Option<string>("--activityhistoryitem-id", description: "key: id of activityHistoryItem"));
+            var userActivityIdOption = new Option<string>("--useractivity-id", description: "key: id of userActivity");
+            userActivityIdOption.IsRequired = true;
+            command.AddOption(userActivityIdOption);
+            var activityHistoryItemIdOption = new Option<string>("--activityhistoryitem-id", description: "key: id of activityHistoryItem");
+            activityHistoryItemIdOption.IsRequired = true;
+            command.AddOption(activityHistoryItemIdOption);
             command.Handler = CommandHandler.Create<string, string>(async (userActivityId, activityHistoryItemId) => {
-                var requestInfo = CreateGetRequestInformation();
-                if (!String.IsNullOrEmpty(userActivityId)) requestInfo.PathParameters.Add("userActivity_id", userActivityId);
-                if (!String.IsNullOrEmpty(activityHistoryItemId)) requestInfo.PathParameters.Add("activityHistoryItem_id", activityHistoryItemId);
+                var requestInfo = CreateGetRequestInformation(q => {
+                });
                 var result = await RequestAdapter.SendPrimitiveAsync<string>(requestInfo);
                 // Print request output. What if the request has no return?
                 using var serializer = RequestAdapter.SerializationWriterFactory.GetSerializationWriter("application/json");
@@ -68,16 +74,21 @@ namespace ApiSdk.Me.Activities.Item.HistoryItems.Item.Activity.@Ref {
             var command = new Command("put");
             command.Description = "Optional. NavigationProperty/Containment; navigation property to the associated activity.";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--useractivity-id", description: "key: id of userActivity"));
-            command.AddOption(new Option<string>("--activityhistoryitem-id", description: "key: id of activityHistoryItem"));
-            command.AddOption(new Option<string>("--body"));
+            var userActivityIdOption = new Option<string>("--useractivity-id", description: "key: id of userActivity");
+            userActivityIdOption.IsRequired = true;
+            command.AddOption(userActivityIdOption);
+            var activityHistoryItemIdOption = new Option<string>("--activityhistoryitem-id", description: "key: id of activityHistoryItem");
+            activityHistoryItemIdOption.IsRequired = true;
+            command.AddOption(activityHistoryItemIdOption);
+            var bodyOption = new Option<string>("--body");
+            bodyOption.IsRequired = true;
+            command.AddOption(bodyOption);
             command.Handler = CommandHandler.Create<string, string, string>(async (userActivityId, activityHistoryItemId, body) => {
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<ApiSdk.Me.Activities.Item.HistoryItems.Item.Activity.@Ref.@Ref>();
-                var requestInfo = CreatePutRequestInformation(model);
-                if (!String.IsNullOrEmpty(userActivityId)) requestInfo.PathParameters.Add("userActivity_id", userActivityId);
-                if (!String.IsNullOrEmpty(activityHistoryItemId)) requestInfo.PathParameters.Add("activityHistoryItem_id", activityHistoryItemId);
+                var requestInfo = CreatePutRequestInformation(model, q => {
+                });
                 await RequestAdapter.SendNoContentAsync(requestInfo);
                 // Print request output. What if the request has no return?
                 Console.WriteLine("Success");

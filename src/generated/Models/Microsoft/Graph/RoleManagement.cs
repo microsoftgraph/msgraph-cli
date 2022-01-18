@@ -9,7 +9,7 @@ namespace ApiSdk.Models.Microsoft.Graph {
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>Read-only. Nullable.</summary>
         public RbacApplication Directory { get; set; }
-        /// <summary>The RbacApplication for Entitlement Management</summary>
+        /// <summary>Container for all entitlement management resources in Azure AD identity governance.</summary>
         public RbacApplication EntitlementManagement { get; set; }
         /// <summary>
         /// Instantiates a new RoleManagement and sets the default values.

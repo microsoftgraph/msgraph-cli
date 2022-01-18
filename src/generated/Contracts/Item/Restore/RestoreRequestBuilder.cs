@@ -26,10 +26,12 @@ namespace ApiSdk.Contracts.Item.Restore {
             var command = new Command("post");
             command.Description = "Invoke action restore";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--contract-id", description: "key: id of contract"));
+            var contractIdOption = new Option<string>("--contract-id", description: "key: id of contract");
+            contractIdOption.IsRequired = true;
+            command.AddOption(contractIdOption);
             command.Handler = CommandHandler.Create<string>(async (contractId) => {
-                var requestInfo = CreatePostRequestInformation();
-                if (!String.IsNullOrEmpty(contractId)) requestInfo.PathParameters.Add("contract_id", contractId);
+                var requestInfo = CreatePostRequestInformation(q => {
+                });
                 var result = await RequestAdapter.SendAsync<RestoreResponse>(requestInfo);
                 // Print request output. What if the request has no return?
                 using var serializer = RequestAdapter.SerializationWriterFactory.GetSerializationWriter("application/json");

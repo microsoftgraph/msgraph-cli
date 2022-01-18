@@ -27,7 +27,7 @@ namespace ApiSdk.Models.Microsoft.Graph {
         public Json Text { get; set; }
         /// <summary>Represents the raw values of the specified range view. The data returned could be of type string, number, or a boolean. Cell that contain an error will return the error string.</summary>
         public Json Values { get; set; }
-        /// <summary>Represents the type of data of each cell. Read-only. The possible values are: Unknown, Empty, String, Integer, Double, Boolean, Error.</summary>
+        /// <summary>Represents the type of data of each cell. Read-only. Possible values are: Unknown, Empty, String, Integer, Double, Boolean, Error.</summary>
         public Json ValueTypes { get; set; }
         /// <summary>
         /// The deserialization information for the current model

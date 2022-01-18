@@ -20,20 +20,24 @@ namespace ApiSdk.IdentityGovernance.AppConsent.AppConsentRequests.Item.UserConse
         /// <summary>Url template to use to build the URL for the current request builder</summary>
         private string UrlTemplate { get; set; }
         /// <summary>
-        /// A collection of stages in the approval decision.
+        /// Used for the approvalStages property of approval settings in the requestApprovalSettings property of an access package assignment policy. Specifies the primary, fallback, and escalation approvers of each stage.
         /// </summary>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
-            command.Description = "A collection of stages in the approval decision.";
+            command.Description = "Used for the approvalStages property of approval settings in the requestApprovalSettings property of an access package assignment policy. Specifies the primary, fallback, and escalation approvers of each stage.";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--appconsentrequest-id", description: "key: id of appConsentRequest"));
-            command.AddOption(new Option<string>("--userconsentrequest-id", description: "key: id of userConsentRequest"));
-            command.AddOption(new Option<string>("--approvalstage-id", description: "key: id of approvalStage"));
+            var appConsentRequestIdOption = new Option<string>("--appconsentrequest-id", description: "key: id of appConsentRequest");
+            appConsentRequestIdOption.IsRequired = true;
+            command.AddOption(appConsentRequestIdOption);
+            var userConsentRequestIdOption = new Option<string>("--userconsentrequest-id", description: "key: id of userConsentRequest");
+            userConsentRequestIdOption.IsRequired = true;
+            command.AddOption(userConsentRequestIdOption);
+            var approvalStageIdOption = new Option<string>("--approvalstage-id", description: "key: id of approvalStage");
+            approvalStageIdOption.IsRequired = true;
+            command.AddOption(approvalStageIdOption);
             command.Handler = CommandHandler.Create<string, string, string>(async (appConsentRequestId, userConsentRequestId, approvalStageId) => {
-                var requestInfo = CreateDeleteRequestInformation();
-                if (!String.IsNullOrEmpty(appConsentRequestId)) requestInfo.PathParameters.Add("appConsentRequest_id", appConsentRequestId);
-                if (!String.IsNullOrEmpty(userConsentRequestId)) requestInfo.PathParameters.Add("userConsentRequest_id", userConsentRequestId);
-                if (!String.IsNullOrEmpty(approvalStageId)) requestInfo.PathParameters.Add("approvalStage_id", approvalStageId);
+                var requestInfo = CreateDeleteRequestInformation(q => {
+                });
                 await RequestAdapter.SendNoContentAsync(requestInfo);
                 // Print request output. What if the request has no return?
                 Console.WriteLine("Success");
@@ -41,24 +45,34 @@ namespace ApiSdk.IdentityGovernance.AppConsent.AppConsentRequests.Item.UserConse
             return command;
         }
         /// <summary>
-        /// A collection of stages in the approval decision.
+        /// Used for the approvalStages property of approval settings in the requestApprovalSettings property of an access package assignment policy. Specifies the primary, fallback, and escalation approvers of each stage.
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "A collection of stages in the approval decision.";
+            command.Description = "Used for the approvalStages property of approval settings in the requestApprovalSettings property of an access package assignment policy. Specifies the primary, fallback, and escalation approvers of each stage.";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--appconsentrequest-id", description: "key: id of appConsentRequest"));
-            command.AddOption(new Option<string>("--userconsentrequest-id", description: "key: id of userConsentRequest"));
-            command.AddOption(new Option<string>("--approvalstage-id", description: "key: id of approvalStage"));
-            command.AddOption(new Option<object>("--select", description: "Select properties to be returned"));
-            command.AddOption(new Option<object>("--expand", description: "Expand related entities"));
-            command.Handler = CommandHandler.Create<string, string, string, object, object>(async (appConsentRequestId, userConsentRequestId, approvalStageId, select, expand) => {
-                var requestInfo = CreateGetRequestInformation();
-                if (!String.IsNullOrEmpty(appConsentRequestId)) requestInfo.PathParameters.Add("appConsentRequest_id", appConsentRequestId);
-                if (!String.IsNullOrEmpty(userConsentRequestId)) requestInfo.PathParameters.Add("userConsentRequest_id", userConsentRequestId);
-                if (!String.IsNullOrEmpty(approvalStageId)) requestInfo.PathParameters.Add("approvalStage_id", approvalStageId);
-                requestInfo.QueryParameters.Add("select", select);
-                requestInfo.QueryParameters.Add("expand", expand);
+            var appConsentRequestIdOption = new Option<string>("--appconsentrequest-id", description: "key: id of appConsentRequest");
+            appConsentRequestIdOption.IsRequired = true;
+            command.AddOption(appConsentRequestIdOption);
+            var userConsentRequestIdOption = new Option<string>("--userconsentrequest-id", description: "key: id of userConsentRequest");
+            userConsentRequestIdOption.IsRequired = true;
+            command.AddOption(userConsentRequestIdOption);
+            var approvalStageIdOption = new Option<string>("--approvalstage-id", description: "key: id of approvalStage");
+            approvalStageIdOption.IsRequired = true;
+            command.AddOption(approvalStageIdOption);
+            var selectOption = new Option<string[]>("--select", description: "Select properties to be returned");
+            selectOption.IsRequired = false;
+            selectOption.Arity = ArgumentArity.ZeroOrMore;
+            command.AddOption(selectOption);
+            var expandOption = new Option<string[]>("--expand", description: "Expand related entities");
+            expandOption.IsRequired = false;
+            expandOption.Arity = ArgumentArity.ZeroOrMore;
+            command.AddOption(expandOption);
+            command.Handler = CommandHandler.Create<string, string, string, string[], string[]>(async (appConsentRequestId, userConsentRequestId, approvalStageId, select, expand) => {
+                var requestInfo = CreateGetRequestInformation(q => {
+                    q.Select = select;
+                    q.Expand = expand;
+                });
                 var result = await RequestAdapter.SendAsync<ApprovalStage>(requestInfo);
                 // Print request output. What if the request has no return?
                 using var serializer = RequestAdapter.SerializationWriterFactory.GetSerializationWriter("application/json");
@@ -71,24 +85,30 @@ namespace ApiSdk.IdentityGovernance.AppConsent.AppConsentRequests.Item.UserConse
             return command;
         }
         /// <summary>
-        /// A collection of stages in the approval decision.
+        /// Used for the approvalStages property of approval settings in the requestApprovalSettings property of an access package assignment policy. Specifies the primary, fallback, and escalation approvers of each stage.
         /// </summary>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
-            command.Description = "A collection of stages in the approval decision.";
+            command.Description = "Used for the approvalStages property of approval settings in the requestApprovalSettings property of an access package assignment policy. Specifies the primary, fallback, and escalation approvers of each stage.";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--appconsentrequest-id", description: "key: id of appConsentRequest"));
-            command.AddOption(new Option<string>("--userconsentrequest-id", description: "key: id of userConsentRequest"));
-            command.AddOption(new Option<string>("--approvalstage-id", description: "key: id of approvalStage"));
-            command.AddOption(new Option<string>("--body"));
+            var appConsentRequestIdOption = new Option<string>("--appconsentrequest-id", description: "key: id of appConsentRequest");
+            appConsentRequestIdOption.IsRequired = true;
+            command.AddOption(appConsentRequestIdOption);
+            var userConsentRequestIdOption = new Option<string>("--userconsentrequest-id", description: "key: id of userConsentRequest");
+            userConsentRequestIdOption.IsRequired = true;
+            command.AddOption(userConsentRequestIdOption);
+            var approvalStageIdOption = new Option<string>("--approvalstage-id", description: "key: id of approvalStage");
+            approvalStageIdOption.IsRequired = true;
+            command.AddOption(approvalStageIdOption);
+            var bodyOption = new Option<string>("--body");
+            bodyOption.IsRequired = true;
+            command.AddOption(bodyOption);
             command.Handler = CommandHandler.Create<string, string, string, string>(async (appConsentRequestId, userConsentRequestId, approvalStageId, body) => {
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<ApprovalStage>();
-                var requestInfo = CreatePatchRequestInformation(model);
-                if (!String.IsNullOrEmpty(appConsentRequestId)) requestInfo.PathParameters.Add("appConsentRequest_id", appConsentRequestId);
-                if (!String.IsNullOrEmpty(userConsentRequestId)) requestInfo.PathParameters.Add("userConsentRequest_id", userConsentRequestId);
-                if (!String.IsNullOrEmpty(approvalStageId)) requestInfo.PathParameters.Add("approvalStage_id", approvalStageId);
+                var requestInfo = CreatePatchRequestInformation(model, q => {
+                });
                 await RequestAdapter.SendNoContentAsync(requestInfo);
                 // Print request output. What if the request has no return?
                 Console.WriteLine("Success");
@@ -109,7 +129,7 @@ namespace ApiSdk.IdentityGovernance.AppConsent.AppConsentRequests.Item.UserConse
             RequestAdapter = requestAdapter;
         }
         /// <summary>
-        /// A collection of stages in the approval decision.
+        /// Used for the approvalStages property of approval settings in the requestApprovalSettings property of an access package assignment policy. Specifies the primary, fallback, and escalation approvers of each stage.
         /// <param name="h">Request headers</param>
         /// <param name="o">Request options</param>
         /// </summary>
@@ -124,7 +144,7 @@ namespace ApiSdk.IdentityGovernance.AppConsent.AppConsentRequests.Item.UserConse
             return requestInfo;
         }
         /// <summary>
-        /// A collection of stages in the approval decision.
+        /// Used for the approvalStages property of approval settings in the requestApprovalSettings property of an access package assignment policy. Specifies the primary, fallback, and escalation approvers of each stage.
         /// <param name="h">Request headers</param>
         /// <param name="o">Request options</param>
         /// <param name="q">Request query parameters</param>
@@ -145,7 +165,7 @@ namespace ApiSdk.IdentityGovernance.AppConsent.AppConsentRequests.Item.UserConse
             return requestInfo;
         }
         /// <summary>
-        /// A collection of stages in the approval decision.
+        /// Used for the approvalStages property of approval settings in the requestApprovalSettings property of an access package assignment policy. Specifies the primary, fallback, and escalation approvers of each stage.
         /// <param name="body"></param>
         /// <param name="h">Request headers</param>
         /// <param name="o">Request options</param>
@@ -163,7 +183,7 @@ namespace ApiSdk.IdentityGovernance.AppConsent.AppConsentRequests.Item.UserConse
             return requestInfo;
         }
         /// <summary>
-        /// A collection of stages in the approval decision.
+        /// Used for the approvalStages property of approval settings in the requestApprovalSettings property of an access package assignment policy. Specifies the primary, fallback, and escalation approvers of each stage.
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="h">Request headers</param>
         /// <param name="o">Request options</param>
@@ -174,7 +194,7 @@ namespace ApiSdk.IdentityGovernance.AppConsent.AppConsentRequests.Item.UserConse
             await RequestAdapter.SendNoContentAsync(requestInfo, responseHandler, cancellationToken);
         }
         /// <summary>
-        /// A collection of stages in the approval decision.
+        /// Used for the approvalStages property of approval settings in the requestApprovalSettings property of an access package assignment policy. Specifies the primary, fallback, and escalation approvers of each stage.
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="h">Request headers</param>
         /// <param name="o">Request options</param>
@@ -186,7 +206,7 @@ namespace ApiSdk.IdentityGovernance.AppConsent.AppConsentRequests.Item.UserConse
             return await RequestAdapter.SendAsync<ApprovalStage>(requestInfo, responseHandler, cancellationToken);
         }
         /// <summary>
-        /// A collection of stages in the approval decision.
+        /// Used for the approvalStages property of approval settings in the requestApprovalSettings property of an access package assignment policy. Specifies the primary, fallback, and escalation approvers of each stage.
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="h">Request headers</param>
         /// <param name="model"></param>
@@ -198,7 +218,7 @@ namespace ApiSdk.IdentityGovernance.AppConsent.AppConsentRequests.Item.UserConse
             var requestInfo = CreatePatchRequestInformation(model, h, o);
             await RequestAdapter.SendNoContentAsync(requestInfo, responseHandler, cancellationToken);
         }
-        /// <summary>A collection of stages in the approval decision.</summary>
+        /// <summary>Used for the approvalStages property of approval settings in the requestApprovalSettings property of an access package assignment policy. Specifies the primary, fallback, and escalation approvers of each stage.</summary>
         public class GetQueryParameters : QueryParametersBase {
             /// <summary>Expand related entities</summary>
             public string[] Expand { get; set; }

@@ -26,10 +26,12 @@ namespace ApiSdk.DeviceAppManagement.TargetedManagedAppConfigurations.Item.Deplo
             var command = new Command("delete");
             command.Description = "Navigation property to deployment summary of the configuration.";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--targetedmanagedappconfiguration-id", description: "key: id of targetedManagedAppConfiguration"));
+            var targetedManagedAppConfigurationIdOption = new Option<string>("--targetedmanagedappconfiguration-id", description: "key: id of targetedManagedAppConfiguration");
+            targetedManagedAppConfigurationIdOption.IsRequired = true;
+            command.AddOption(targetedManagedAppConfigurationIdOption);
             command.Handler = CommandHandler.Create<string>(async (targetedManagedAppConfigurationId) => {
-                var requestInfo = CreateDeleteRequestInformation();
-                if (!String.IsNullOrEmpty(targetedManagedAppConfigurationId)) requestInfo.PathParameters.Add("targetedManagedAppConfiguration_id", targetedManagedAppConfigurationId);
+                var requestInfo = CreateDeleteRequestInformation(q => {
+                });
                 await RequestAdapter.SendNoContentAsync(requestInfo);
                 // Print request output. What if the request has no return?
                 Console.WriteLine("Success");
@@ -43,14 +45,22 @@ namespace ApiSdk.DeviceAppManagement.TargetedManagedAppConfigurations.Item.Deplo
             var command = new Command("get");
             command.Description = "Navigation property to deployment summary of the configuration.";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--targetedmanagedappconfiguration-id", description: "key: id of targetedManagedAppConfiguration"));
-            command.AddOption(new Option<object>("--select", description: "Select properties to be returned"));
-            command.AddOption(new Option<object>("--expand", description: "Expand related entities"));
-            command.Handler = CommandHandler.Create<string, object, object>(async (targetedManagedAppConfigurationId, select, expand) => {
-                var requestInfo = CreateGetRequestInformation();
-                if (!String.IsNullOrEmpty(targetedManagedAppConfigurationId)) requestInfo.PathParameters.Add("targetedManagedAppConfiguration_id", targetedManagedAppConfigurationId);
-                requestInfo.QueryParameters.Add("select", select);
-                requestInfo.QueryParameters.Add("expand", expand);
+            var targetedManagedAppConfigurationIdOption = new Option<string>("--targetedmanagedappconfiguration-id", description: "key: id of targetedManagedAppConfiguration");
+            targetedManagedAppConfigurationIdOption.IsRequired = true;
+            command.AddOption(targetedManagedAppConfigurationIdOption);
+            var selectOption = new Option<string[]>("--select", description: "Select properties to be returned");
+            selectOption.IsRequired = false;
+            selectOption.Arity = ArgumentArity.ZeroOrMore;
+            command.AddOption(selectOption);
+            var expandOption = new Option<string[]>("--expand", description: "Expand related entities");
+            expandOption.IsRequired = false;
+            expandOption.Arity = ArgumentArity.ZeroOrMore;
+            command.AddOption(expandOption);
+            command.Handler = CommandHandler.Create<string, string[], string[]>(async (targetedManagedAppConfigurationId, select, expand) => {
+                var requestInfo = CreateGetRequestInformation(q => {
+                    q.Select = select;
+                    q.Expand = expand;
+                });
                 var result = await RequestAdapter.SendAsync<ManagedAppPolicyDeploymentSummary>(requestInfo);
                 // Print request output. What if the request has no return?
                 using var serializer = RequestAdapter.SerializationWriterFactory.GetSerializationWriter("application/json");
@@ -69,14 +79,18 @@ namespace ApiSdk.DeviceAppManagement.TargetedManagedAppConfigurations.Item.Deplo
             var command = new Command("patch");
             command.Description = "Navigation property to deployment summary of the configuration.";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--targetedmanagedappconfiguration-id", description: "key: id of targetedManagedAppConfiguration"));
-            command.AddOption(new Option<string>("--body"));
+            var targetedManagedAppConfigurationIdOption = new Option<string>("--targetedmanagedappconfiguration-id", description: "key: id of targetedManagedAppConfiguration");
+            targetedManagedAppConfigurationIdOption.IsRequired = true;
+            command.AddOption(targetedManagedAppConfigurationIdOption);
+            var bodyOption = new Option<string>("--body");
+            bodyOption.IsRequired = true;
+            command.AddOption(bodyOption);
             command.Handler = CommandHandler.Create<string, string>(async (targetedManagedAppConfigurationId, body) => {
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<ManagedAppPolicyDeploymentSummary>();
-                var requestInfo = CreatePatchRequestInformation(model);
-                if (!String.IsNullOrEmpty(targetedManagedAppConfigurationId)) requestInfo.PathParameters.Add("targetedManagedAppConfiguration_id", targetedManagedAppConfigurationId);
+                var requestInfo = CreatePatchRequestInformation(model, q => {
+                });
                 await RequestAdapter.SendNoContentAsync(requestInfo);
                 // Print request output. What if the request has no return?
                 Console.WriteLine("Success");

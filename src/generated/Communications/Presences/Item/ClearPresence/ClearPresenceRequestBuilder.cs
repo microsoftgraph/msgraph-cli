@@ -25,14 +25,18 @@ namespace ApiSdk.Communications.Presences.Item.ClearPresence {
             var command = new Command("post");
             command.Description = "Invoke action clearPresence";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--presence-id", description: "key: id of presence"));
-            command.AddOption(new Option<string>("--body"));
+            var presenceIdOption = new Option<string>("--presence-id", description: "key: id of presence");
+            presenceIdOption.IsRequired = true;
+            command.AddOption(presenceIdOption);
+            var bodyOption = new Option<string>("--body");
+            bodyOption.IsRequired = true;
+            command.AddOption(bodyOption);
             command.Handler = CommandHandler.Create<string, string>(async (presenceId, body) => {
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<ClearPresenceRequestBody>();
-                var requestInfo = CreatePostRequestInformation(model);
-                if (!String.IsNullOrEmpty(presenceId)) requestInfo.PathParameters.Add("presence_id", presenceId);
+                var requestInfo = CreatePostRequestInformation(model, q => {
+                });
                 await RequestAdapter.SendNoContentAsync(requestInfo);
                 // Print request output. What if the request has no return?
                 Console.WriteLine("Success");

@@ -19,16 +19,18 @@ namespace ApiSdk.Drive.List.Columns.Item.SourceColumn.@Ref {
         /// <summary>Url template to use to build the URL for the current request builder</summary>
         private string UrlTemplate { get; set; }
         /// <summary>
-        /// The source column for the content type column.
+        /// The source column for content type column.
         /// </summary>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
-            command.Description = "The source column for the content type column.";
+            command.Description = "The source column for content type column.";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--columndefinition-id", description: "key: id of columnDefinition"));
+            var columnDefinitionIdOption = new Option<string>("--columndefinition-id", description: "key: id of columnDefinition");
+            columnDefinitionIdOption.IsRequired = true;
+            command.AddOption(columnDefinitionIdOption);
             command.Handler = CommandHandler.Create<string>(async (columnDefinitionId) => {
-                var requestInfo = CreateDeleteRequestInformation();
-                if (!String.IsNullOrEmpty(columnDefinitionId)) requestInfo.PathParameters.Add("columnDefinition_id", columnDefinitionId);
+                var requestInfo = CreateDeleteRequestInformation(q => {
+                });
                 await RequestAdapter.SendNoContentAsync(requestInfo);
                 // Print request output. What if the request has no return?
                 Console.WriteLine("Success");
@@ -36,16 +38,18 @@ namespace ApiSdk.Drive.List.Columns.Item.SourceColumn.@Ref {
             return command;
         }
         /// <summary>
-        /// The source column for the content type column.
+        /// The source column for content type column.
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "The source column for the content type column.";
+            command.Description = "The source column for content type column.";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--columndefinition-id", description: "key: id of columnDefinition"));
+            var columnDefinitionIdOption = new Option<string>("--columndefinition-id", description: "key: id of columnDefinition");
+            columnDefinitionIdOption.IsRequired = true;
+            command.AddOption(columnDefinitionIdOption);
             command.Handler = CommandHandler.Create<string>(async (columnDefinitionId) => {
-                var requestInfo = CreateGetRequestInformation();
-                if (!String.IsNullOrEmpty(columnDefinitionId)) requestInfo.PathParameters.Add("columnDefinition_id", columnDefinitionId);
+                var requestInfo = CreateGetRequestInformation(q => {
+                });
                 var result = await RequestAdapter.SendPrimitiveAsync<string>(requestInfo);
                 // Print request output. What if the request has no return?
                 using var serializer = RequestAdapter.SerializationWriterFactory.GetSerializationWriter("application/json");
@@ -58,20 +62,24 @@ namespace ApiSdk.Drive.List.Columns.Item.SourceColumn.@Ref {
             return command;
         }
         /// <summary>
-        /// The source column for the content type column.
+        /// The source column for content type column.
         /// </summary>
         public Command BuildPutCommand() {
             var command = new Command("put");
-            command.Description = "The source column for the content type column.";
+            command.Description = "The source column for content type column.";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--columndefinition-id", description: "key: id of columnDefinition"));
-            command.AddOption(new Option<string>("--body"));
+            var columnDefinitionIdOption = new Option<string>("--columndefinition-id", description: "key: id of columnDefinition");
+            columnDefinitionIdOption.IsRequired = true;
+            command.AddOption(columnDefinitionIdOption);
+            var bodyOption = new Option<string>("--body");
+            bodyOption.IsRequired = true;
+            command.AddOption(bodyOption);
             command.Handler = CommandHandler.Create<string, string>(async (columnDefinitionId, body) => {
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<ApiSdk.Drive.List.Columns.Item.SourceColumn.@Ref.@Ref>();
-                var requestInfo = CreatePutRequestInformation(model);
-                if (!String.IsNullOrEmpty(columnDefinitionId)) requestInfo.PathParameters.Add("columnDefinition_id", columnDefinitionId);
+                var requestInfo = CreatePutRequestInformation(model, q => {
+                });
                 await RequestAdapter.SendNoContentAsync(requestInfo);
                 // Print request output. What if the request has no return?
                 Console.WriteLine("Success");
@@ -92,7 +100,7 @@ namespace ApiSdk.Drive.List.Columns.Item.SourceColumn.@Ref {
             RequestAdapter = requestAdapter;
         }
         /// <summary>
-        /// The source column for the content type column.
+        /// The source column for content type column.
         /// <param name="h">Request headers</param>
         /// <param name="o">Request options</param>
         /// </summary>
@@ -107,7 +115,7 @@ namespace ApiSdk.Drive.List.Columns.Item.SourceColumn.@Ref {
             return requestInfo;
         }
         /// <summary>
-        /// The source column for the content type column.
+        /// The source column for content type column.
         /// <param name="h">Request headers</param>
         /// <param name="o">Request options</param>
         /// </summary>
@@ -122,7 +130,7 @@ namespace ApiSdk.Drive.List.Columns.Item.SourceColumn.@Ref {
             return requestInfo;
         }
         /// <summary>
-        /// The source column for the content type column.
+        /// The source column for content type column.
         /// <param name="body"></param>
         /// <param name="h">Request headers</param>
         /// <param name="o">Request options</param>
@@ -140,7 +148,7 @@ namespace ApiSdk.Drive.List.Columns.Item.SourceColumn.@Ref {
             return requestInfo;
         }
         /// <summary>
-        /// The source column for the content type column.
+        /// The source column for content type column.
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="h">Request headers</param>
         /// <param name="o">Request options</param>
@@ -151,7 +159,7 @@ namespace ApiSdk.Drive.List.Columns.Item.SourceColumn.@Ref {
             await RequestAdapter.SendNoContentAsync(requestInfo, responseHandler, cancellationToken);
         }
         /// <summary>
-        /// The source column for the content type column.
+        /// The source column for content type column.
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="h">Request headers</param>
         /// <param name="o">Request options</param>
@@ -162,7 +170,7 @@ namespace ApiSdk.Drive.List.Columns.Item.SourceColumn.@Ref {
             return await RequestAdapter.SendPrimitiveAsync<string>(requestInfo, responseHandler, cancellationToken);
         }
         /// <summary>
-        /// The source column for the content type column.
+        /// The source column for content type column.
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="h">Request headers</param>
         /// <param name="model"></param>

@@ -26,18 +26,24 @@ namespace ApiSdk.Workbooks.Item.Workbook.Worksheets.Item.PivotTables.Item.Worksh
             var command = new Command("get");
             command.Description = "Invoke function cell";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--driveitem-id", description: "key: id of driveItem"));
-            command.AddOption(new Option<string>("--workbookworksheet-id", description: "key: id of workbookWorksheet"));
-            command.AddOption(new Option<string>("--workbookpivottable-id", description: "key: id of workbookPivotTable"));
-            command.AddOption(new Option<int?>("--row", description: "Usage: row={row}"));
-            command.AddOption(new Option<int?>("--column", description: "Usage: column={column}"));
+            var driveItemIdOption = new Option<string>("--driveitem-id", description: "key: id of driveItem");
+            driveItemIdOption.IsRequired = true;
+            command.AddOption(driveItemIdOption);
+            var workbookWorksheetIdOption = new Option<string>("--workbookworksheet-id", description: "key: id of workbookWorksheet");
+            workbookWorksheetIdOption.IsRequired = true;
+            command.AddOption(workbookWorksheetIdOption);
+            var workbookPivotTableIdOption = new Option<string>("--workbookpivottable-id", description: "key: id of workbookPivotTable");
+            workbookPivotTableIdOption.IsRequired = true;
+            command.AddOption(workbookPivotTableIdOption);
+            var rowOption = new Option<int?>("--row", description: "Usage: row={row}");
+            rowOption.IsRequired = true;
+            command.AddOption(rowOption);
+            var columnOption = new Option<int?>("--column", description: "Usage: column={column}");
+            columnOption.IsRequired = true;
+            command.AddOption(columnOption);
             command.Handler = CommandHandler.Create<string, string, string, int?, int?>(async (driveItemId, workbookWorksheetId, workbookPivotTableId, row, column) => {
-                var requestInfo = CreateGetRequestInformation();
-                if (!String.IsNullOrEmpty(driveItemId)) requestInfo.PathParameters.Add("driveItem_id", driveItemId);
-                if (!String.IsNullOrEmpty(workbookWorksheetId)) requestInfo.PathParameters.Add("workbookWorksheet_id", workbookWorksheetId);
-                if (!String.IsNullOrEmpty(workbookPivotTableId)) requestInfo.PathParameters.Add("workbookPivotTable_id", workbookPivotTableId);
-                requestInfo.PathParameters.Add("row", row);
-                requestInfo.PathParameters.Add("column", column);
+                var requestInfo = CreateGetRequestInformation(q => {
+                });
                 var result = await RequestAdapter.SendAsync<CellWithRowWithColumnResponse>(requestInfo);
                 // Print request output. What if the request has no return?
                 using var serializer = RequestAdapter.SerializationWriterFactory.GetSerializationWriter("application/json");

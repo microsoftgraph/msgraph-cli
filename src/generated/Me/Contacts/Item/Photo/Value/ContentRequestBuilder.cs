@@ -25,11 +25,13 @@ namespace ApiSdk.Me.Contacts.Item.Photo.Value {
             var command = new Command("get");
             command.Description = "The user's profile photo. Read-only.";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--contact-id", description: "key: id of contact"));
+            var contactIdOption = new Option<string>("--contact-id", description: "key: id of contact");
+            contactIdOption.IsRequired = true;
+            command.AddOption(contactIdOption);
             command.AddOption(new Option<FileInfo>("--output"));
             command.Handler = CommandHandler.Create<string, FileInfo>(async (contactId, output) => {
-                var requestInfo = CreateGetRequestInformation();
-                if (!String.IsNullOrEmpty(contactId)) requestInfo.PathParameters.Add("contact_id", contactId);
+                var requestInfo = CreateGetRequestInformation(q => {
+                });
                 var result = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 // Print request output. What if the request has no return?
                 if (output == null) {
@@ -52,12 +54,16 @@ namespace ApiSdk.Me.Contacts.Item.Photo.Value {
             var command = new Command("put");
             command.Description = "The user's profile photo. Read-only.";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--contact-id", description: "key: id of contact"));
-            command.AddOption(new Option<Stream>("--file", description: "Binary request body"));
+            var contactIdOption = new Option<string>("--contact-id", description: "key: id of contact");
+            contactIdOption.IsRequired = true;
+            command.AddOption(contactIdOption);
+            var fileOption = new Option<Stream>("--file", description: "Binary request body");
+            fileOption.IsRequired = true;
+            command.AddOption(fileOption);
             command.Handler = CommandHandler.Create<string, FileInfo>(async (contactId, file) => {
                 using var stream = file.OpenRead();
-                var requestInfo = CreatePutRequestInformation(stream);
-                if (!String.IsNullOrEmpty(contactId)) requestInfo.PathParameters.Add("contact_id", contactId);
+                var requestInfo = CreatePutRequestInformation(stream, q => {
+                });
                 await RequestAdapter.SendNoContentAsync(requestInfo);
                 // Print request output. What if the request has no return?
                 Console.WriteLine("Success");

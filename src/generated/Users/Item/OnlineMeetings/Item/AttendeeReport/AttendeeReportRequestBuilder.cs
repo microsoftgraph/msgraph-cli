@@ -25,13 +25,16 @@ namespace ApiSdk.Users.Item.OnlineMeetings.Item.AttendeeReport {
             var command = new Command("get");
             command.Description = "Get media content for the navigation property onlineMeetings from users";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--user-id", description: "key: id of user"));
-            command.AddOption(new Option<string>("--onlinemeeting-id", description: "key: id of onlineMeeting"));
+            var userIdOption = new Option<string>("--user-id", description: "key: id of user");
+            userIdOption.IsRequired = true;
+            command.AddOption(userIdOption);
+            var onlineMeetingIdOption = new Option<string>("--onlinemeeting-id", description: "key: id of onlineMeeting");
+            onlineMeetingIdOption.IsRequired = true;
+            command.AddOption(onlineMeetingIdOption);
             command.AddOption(new Option<FileInfo>("--output"));
             command.Handler = CommandHandler.Create<string, string, FileInfo>(async (userId, onlineMeetingId, output) => {
-                var requestInfo = CreateGetRequestInformation();
-                if (!String.IsNullOrEmpty(userId)) requestInfo.PathParameters.Add("user_id", userId);
-                if (!String.IsNullOrEmpty(onlineMeetingId)) requestInfo.PathParameters.Add("onlineMeeting_id", onlineMeetingId);
+                var requestInfo = CreateGetRequestInformation(q => {
+                });
                 var result = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 // Print request output. What if the request has no return?
                 if (output == null) {
@@ -54,14 +57,19 @@ namespace ApiSdk.Users.Item.OnlineMeetings.Item.AttendeeReport {
             var command = new Command("put");
             command.Description = "Update media content for the navigation property onlineMeetings in users";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--user-id", description: "key: id of user"));
-            command.AddOption(new Option<string>("--onlinemeeting-id", description: "key: id of onlineMeeting"));
-            command.AddOption(new Option<Stream>("--file", description: "Binary request body"));
+            var userIdOption = new Option<string>("--user-id", description: "key: id of user");
+            userIdOption.IsRequired = true;
+            command.AddOption(userIdOption);
+            var onlineMeetingIdOption = new Option<string>("--onlinemeeting-id", description: "key: id of onlineMeeting");
+            onlineMeetingIdOption.IsRequired = true;
+            command.AddOption(onlineMeetingIdOption);
+            var fileOption = new Option<Stream>("--file", description: "Binary request body");
+            fileOption.IsRequired = true;
+            command.AddOption(fileOption);
             command.Handler = CommandHandler.Create<string, string, FileInfo>(async (userId, onlineMeetingId, file) => {
                 using var stream = file.OpenRead();
-                var requestInfo = CreatePutRequestInformation(stream);
-                if (!String.IsNullOrEmpty(userId)) requestInfo.PathParameters.Add("user_id", userId);
-                if (!String.IsNullOrEmpty(onlineMeetingId)) requestInfo.PathParameters.Add("onlineMeeting_id", onlineMeetingId);
+                var requestInfo = CreatePutRequestInformation(stream, q => {
+                });
                 await RequestAdapter.SendNoContentAsync(requestInfo);
                 // Print request output. What if the request has no return?
                 Console.WriteLine("Success");

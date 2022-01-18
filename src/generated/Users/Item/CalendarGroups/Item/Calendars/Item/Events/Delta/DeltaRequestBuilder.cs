@@ -25,14 +25,18 @@ namespace ApiSdk.Users.Item.CalendarGroups.Item.Calendars.Item.Events.Delta {
             var command = new Command("get");
             command.Description = "Invoke function delta";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--user-id", description: "key: id of user"));
-            command.AddOption(new Option<string>("--calendargroup-id", description: "key: id of calendarGroup"));
-            command.AddOption(new Option<string>("--calendar-id", description: "key: id of calendar"));
+            var userIdOption = new Option<string>("--user-id", description: "key: id of user");
+            userIdOption.IsRequired = true;
+            command.AddOption(userIdOption);
+            var calendarGroupIdOption = new Option<string>("--calendargroup-id", description: "key: id of calendarGroup");
+            calendarGroupIdOption.IsRequired = true;
+            command.AddOption(calendarGroupIdOption);
+            var calendarIdOption = new Option<string>("--calendar-id", description: "key: id of calendar");
+            calendarIdOption.IsRequired = true;
+            command.AddOption(calendarIdOption);
             command.Handler = CommandHandler.Create<string, string, string>(async (userId, calendarGroupId, calendarId) => {
-                var requestInfo = CreateGetRequestInformation();
-                if (!String.IsNullOrEmpty(userId)) requestInfo.PathParameters.Add("user_id", userId);
-                if (!String.IsNullOrEmpty(calendarGroupId)) requestInfo.PathParameters.Add("calendarGroup_id", calendarGroupId);
-                if (!String.IsNullOrEmpty(calendarId)) requestInfo.PathParameters.Add("calendar_id", calendarId);
+                var requestInfo = CreateGetRequestInformation(q => {
+                });
                 var result = await RequestAdapter.SendCollectionAsync<ApiSdk.Users.Item.CalendarGroups.Item.Calendars.Item.Events.Delta.Delta>(requestInfo);
                 // Print request output. What if the request has no return?
                 using var serializer = RequestAdapter.SerializationWriterFactory.GetSerializationWriter("application/json");

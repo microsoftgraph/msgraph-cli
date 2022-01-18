@@ -25,12 +25,15 @@ namespace ApiSdk.Users.Item.Outlook.SupportedTimeZonesWithTimeZoneStandard {
             var command = new Command("get");
             command.Description = "Invoke function supportedTimeZones";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--user-id", description: "key: id of user"));
-            command.AddOption(new Option<string>("--timezonestandard", description: "Usage: TimeZoneStandard={TimeZoneStandard}"));
-            command.Handler = CommandHandler.Create<string, string>(async (userId, TimeZoneStandard) => {
-                var requestInfo = CreateGetRequestInformation();
-                if (!String.IsNullOrEmpty(userId)) requestInfo.PathParameters.Add("user_id", userId);
-                if (!String.IsNullOrEmpty(TimeZoneStandard)) requestInfo.PathParameters.Add("TimeZoneStandard", TimeZoneStandard);
+            var userIdOption = new Option<string>("--user-id", description: "key: id of user");
+            userIdOption.IsRequired = true;
+            command.AddOption(userIdOption);
+            var TimeZoneStandardOption = new Option<object>("--timezonestandard", description: "Usage: TimeZoneStandard={TimeZoneStandard}");
+            TimeZoneStandardOption.IsRequired = true;
+            command.AddOption(TimeZoneStandardOption);
+            command.Handler = CommandHandler.Create<string, object>(async (userId, TimeZoneStandard) => {
+                var requestInfo = CreateGetRequestInformation(q => {
+                });
                 var result = await RequestAdapter.SendCollectionAsync<ApiSdk.Users.Item.Outlook.SupportedTimeZonesWithTimeZoneStandard.SupportedTimeZonesWithTimeZoneStandard>(requestInfo);
                 // Print request output. What if the request has no return?
                 using var serializer = RequestAdapter.SerializationWriterFactory.GetSerializationWriter("application/json");

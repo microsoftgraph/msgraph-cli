@@ -45,10 +45,12 @@ namespace ApiSdk.DeviceAppManagement.MobileAppConfigurations.Item {
             var command = new Command("delete");
             command.Description = "The Managed Device Mobile Application Configurations.";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--manageddevicemobileappconfiguration-id", description: "key: id of managedDeviceMobileAppConfiguration"));
+            var managedDeviceMobileAppConfigurationIdOption = new Option<string>("--manageddevicemobileappconfiguration-id", description: "key: id of managedDeviceMobileAppConfiguration");
+            managedDeviceMobileAppConfigurationIdOption.IsRequired = true;
+            command.AddOption(managedDeviceMobileAppConfigurationIdOption);
             command.Handler = CommandHandler.Create<string>(async (managedDeviceMobileAppConfigurationId) => {
-                var requestInfo = CreateDeleteRequestInformation();
-                if (!String.IsNullOrEmpty(managedDeviceMobileAppConfigurationId)) requestInfo.PathParameters.Add("managedDeviceMobileAppConfiguration_id", managedDeviceMobileAppConfigurationId);
+                var requestInfo = CreateDeleteRequestInformation(q => {
+                });
                 await RequestAdapter.SendNoContentAsync(requestInfo);
                 // Print request output. What if the request has no return?
                 Console.WriteLine("Success");
@@ -77,14 +79,22 @@ namespace ApiSdk.DeviceAppManagement.MobileAppConfigurations.Item {
             var command = new Command("get");
             command.Description = "The Managed Device Mobile Application Configurations.";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--manageddevicemobileappconfiguration-id", description: "key: id of managedDeviceMobileAppConfiguration"));
-            command.AddOption(new Option<object>("--select", description: "Select properties to be returned"));
-            command.AddOption(new Option<object>("--expand", description: "Expand related entities"));
-            command.Handler = CommandHandler.Create<string, object, object>(async (managedDeviceMobileAppConfigurationId, select, expand) => {
-                var requestInfo = CreateGetRequestInformation();
-                if (!String.IsNullOrEmpty(managedDeviceMobileAppConfigurationId)) requestInfo.PathParameters.Add("managedDeviceMobileAppConfiguration_id", managedDeviceMobileAppConfigurationId);
-                requestInfo.QueryParameters.Add("select", select);
-                requestInfo.QueryParameters.Add("expand", expand);
+            var managedDeviceMobileAppConfigurationIdOption = new Option<string>("--manageddevicemobileappconfiguration-id", description: "key: id of managedDeviceMobileAppConfiguration");
+            managedDeviceMobileAppConfigurationIdOption.IsRequired = true;
+            command.AddOption(managedDeviceMobileAppConfigurationIdOption);
+            var selectOption = new Option<string[]>("--select", description: "Select properties to be returned");
+            selectOption.IsRequired = false;
+            selectOption.Arity = ArgumentArity.ZeroOrMore;
+            command.AddOption(selectOption);
+            var expandOption = new Option<string[]>("--expand", description: "Expand related entities");
+            expandOption.IsRequired = false;
+            expandOption.Arity = ArgumentArity.ZeroOrMore;
+            command.AddOption(expandOption);
+            command.Handler = CommandHandler.Create<string, string[], string[]>(async (managedDeviceMobileAppConfigurationId, select, expand) => {
+                var requestInfo = CreateGetRequestInformation(q => {
+                    q.Select = select;
+                    q.Expand = expand;
+                });
                 var result = await RequestAdapter.SendAsync<ManagedDeviceMobileAppConfiguration>(requestInfo);
                 // Print request output. What if the request has no return?
                 using var serializer = RequestAdapter.SerializationWriterFactory.GetSerializationWriter("application/json");
@@ -103,14 +113,18 @@ namespace ApiSdk.DeviceAppManagement.MobileAppConfigurations.Item {
             var command = new Command("patch");
             command.Description = "The Managed Device Mobile Application Configurations.";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--manageddevicemobileappconfiguration-id", description: "key: id of managedDeviceMobileAppConfiguration"));
-            command.AddOption(new Option<string>("--body"));
+            var managedDeviceMobileAppConfigurationIdOption = new Option<string>("--manageddevicemobileappconfiguration-id", description: "key: id of managedDeviceMobileAppConfiguration");
+            managedDeviceMobileAppConfigurationIdOption.IsRequired = true;
+            command.AddOption(managedDeviceMobileAppConfigurationIdOption);
+            var bodyOption = new Option<string>("--body");
+            bodyOption.IsRequired = true;
+            command.AddOption(bodyOption);
             command.Handler = CommandHandler.Create<string, string>(async (managedDeviceMobileAppConfigurationId, body) => {
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<ManagedDeviceMobileAppConfiguration>();
-                var requestInfo = CreatePatchRequestInformation(model);
-                if (!String.IsNullOrEmpty(managedDeviceMobileAppConfigurationId)) requestInfo.PathParameters.Add("managedDeviceMobileAppConfiguration_id", managedDeviceMobileAppConfigurationId);
+                var requestInfo = CreatePatchRequestInformation(model, q => {
+                });
                 await RequestAdapter.SendNoContentAsync(requestInfo);
                 // Print request output. What if the request has no return?
                 Console.WriteLine("Success");

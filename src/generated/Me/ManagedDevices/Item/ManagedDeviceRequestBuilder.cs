@@ -59,10 +59,12 @@ namespace ApiSdk.Me.ManagedDevices.Item {
             var command = new Command("delete");
             command.Description = "The managed devices associated with the user.";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--manageddevice-id", description: "key: id of managedDevice"));
+            var managedDeviceIdOption = new Option<string>("--manageddevice-id", description: "key: id of managedDevice");
+            managedDeviceIdOption.IsRequired = true;
+            command.AddOption(managedDeviceIdOption);
             command.Handler = CommandHandler.Create<string>(async (managedDeviceId) => {
-                var requestInfo = CreateDeleteRequestInformation();
-                if (!String.IsNullOrEmpty(managedDeviceId)) requestInfo.PathParameters.Add("managedDevice_id", managedDeviceId);
+                var requestInfo = CreateDeleteRequestInformation(q => {
+                });
                 await RequestAdapter.SendNoContentAsync(requestInfo);
                 // Print request output. What if the request has no return?
                 Console.WriteLine("Success");
@@ -110,14 +112,22 @@ namespace ApiSdk.Me.ManagedDevices.Item {
             var command = new Command("get");
             command.Description = "The managed devices associated with the user.";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--manageddevice-id", description: "key: id of managedDevice"));
-            command.AddOption(new Option<object>("--select", description: "Select properties to be returned"));
-            command.AddOption(new Option<object>("--expand", description: "Expand related entities"));
-            command.Handler = CommandHandler.Create<string, object, object>(async (managedDeviceId, select, expand) => {
-                var requestInfo = CreateGetRequestInformation();
-                if (!String.IsNullOrEmpty(managedDeviceId)) requestInfo.PathParameters.Add("managedDevice_id", managedDeviceId);
-                requestInfo.QueryParameters.Add("select", select);
-                requestInfo.QueryParameters.Add("expand", expand);
+            var managedDeviceIdOption = new Option<string>("--manageddevice-id", description: "key: id of managedDevice");
+            managedDeviceIdOption.IsRequired = true;
+            command.AddOption(managedDeviceIdOption);
+            var selectOption = new Option<string[]>("--select", description: "Select properties to be returned");
+            selectOption.IsRequired = false;
+            selectOption.Arity = ArgumentArity.ZeroOrMore;
+            command.AddOption(selectOption);
+            var expandOption = new Option<string[]>("--expand", description: "Expand related entities");
+            expandOption.IsRequired = false;
+            expandOption.Arity = ArgumentArity.ZeroOrMore;
+            command.AddOption(expandOption);
+            command.Handler = CommandHandler.Create<string, string[], string[]>(async (managedDeviceId, select, expand) => {
+                var requestInfo = CreateGetRequestInformation(q => {
+                    q.Select = select;
+                    q.Expand = expand;
+                });
                 var result = await RequestAdapter.SendAsync<ManagedDevice>(requestInfo);
                 // Print request output. What if the request has no return?
                 using var serializer = RequestAdapter.SerializationWriterFactory.GetSerializationWriter("application/json");
@@ -148,14 +158,18 @@ namespace ApiSdk.Me.ManagedDevices.Item {
             var command = new Command("patch");
             command.Description = "The managed devices associated with the user.";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--manageddevice-id", description: "key: id of managedDevice"));
-            command.AddOption(new Option<string>("--body"));
+            var managedDeviceIdOption = new Option<string>("--manageddevice-id", description: "key: id of managedDevice");
+            managedDeviceIdOption.IsRequired = true;
+            command.AddOption(managedDeviceIdOption);
+            var bodyOption = new Option<string>("--body");
+            bodyOption.IsRequired = true;
+            command.AddOption(bodyOption);
             command.Handler = CommandHandler.Create<string, string>(async (managedDeviceId, body) => {
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<ManagedDevice>();
-                var requestInfo = CreatePatchRequestInformation(model);
-                if (!String.IsNullOrEmpty(managedDeviceId)) requestInfo.PathParameters.Add("managedDevice_id", managedDeviceId);
+                var requestInfo = CreatePatchRequestInformation(model, q => {
+                });
                 await RequestAdapter.SendNoContentAsync(requestInfo);
                 // Print request output. What if the request has no return?
                 Console.WriteLine("Success");

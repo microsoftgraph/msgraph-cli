@@ -18,7 +18,7 @@ namespace ApiSdk.Models.Microsoft.Graph {
         public DateTimeOffset? DeletedDateTime { get; set; }
         /// <summary>Read-only. Version number of the chat message.</summary>
         public string Etag { get; set; }
-        /// <summary>Read-only.  If present, represents details of an event that happened in a chat, a channel, or a team, for example, members were added, and so on. For event messages, the messageType property will be set to systemEventMessage.</summary>
+        /// <summary>Read-only.  If present, represents details of an event that happened in a chat, a channel, or a team, for example, adding new members. For event messages, the messageType property will be set to systemEventMessage.</summary>
         public EventMessageDetail EventDetail { get; set; }
         /// <summary>Details of the sender of the chat message. Can only be set during migration.</summary>
         public ChatMessageFromIdentitySet From { get; set; }
@@ -32,7 +32,7 @@ namespace ApiSdk.Models.Microsoft.Graph {
         public DateTimeOffset? LastModifiedDateTime { get; set; }
         /// <summary>Locale of the chat message set by the client. Always set to en-us.</summary>
         public string Locale { get; set; }
-        /// <summary>List of entities mentioned in the chat message. Supported entities are: user, bot, team, and channel.</summary>
+        /// <summary>List of entities mentioned in the chat message. Supported entities are: user, bot, team, channel, and tag.</summary>
         public List<ChatMessageMention> Mentions { get; set; }
         /// <summary>The type of chat message. The possible values are: message, chatEvent, typing, unknownFutureValue, systemEventMessage. Note that you must use the Prefer: include-unknown-enum-members request header to get the following value in this evolvable enum: systemEventMessage.</summary>
         public ChatMessageType? MessageType { get; set; }

@@ -19,28 +19,43 @@ namespace ApiSdk.ServicePrincipals.Item.TokenIssuancePolicies.@Ref {
         /// <summary>Url template to use to build the URL for the current request builder</summary>
         private string UrlTemplate { get; set; }
         /// <summary>
-        /// The tokenIssuancePolicies assigned to this service principal.
+        /// The tokenIssuancePolicies assigned to this service principal. Supports $expand.
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "The tokenIssuancePolicies assigned to this service principal.";
+            command.Description = "The tokenIssuancePolicies assigned to this service principal. Supports $expand.";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--serviceprincipal-id", description: "key: id of servicePrincipal"));
-            command.AddOption(new Option<int?>("--top", description: "Show only the first n items"));
-            command.AddOption(new Option<int?>("--skip", description: "Skip the first n items"));
-            command.AddOption(new Option<string>("--search", description: "Search items by search phrases"));
-            command.AddOption(new Option<string>("--filter", description: "Filter items by property values"));
-            command.AddOption(new Option<bool?>("--count", description: "Include count of items"));
-            command.AddOption(new Option<object>("--orderby", description: "Order items by property values"));
-            command.Handler = CommandHandler.Create<string, int?, int?, string, string, bool?, object>(async (servicePrincipalId, top, skip, search, filter, count, orderby) => {
-                var requestInfo = CreateGetRequestInformation();
-                if (!String.IsNullOrEmpty(servicePrincipalId)) requestInfo.PathParameters.Add("servicePrincipal_id", servicePrincipalId);
-                requestInfo.QueryParameters.Add("top", top);
-                requestInfo.QueryParameters.Add("skip", skip);
-                if (!String.IsNullOrEmpty(search)) requestInfo.QueryParameters.Add("search", search);
-                if (!String.IsNullOrEmpty(filter)) requestInfo.QueryParameters.Add("filter", filter);
-                requestInfo.QueryParameters.Add("count", count);
-                requestInfo.QueryParameters.Add("orderby", orderby);
+            var servicePrincipalIdOption = new Option<string>("--serviceprincipal-id", description: "key: id of servicePrincipal");
+            servicePrincipalIdOption.IsRequired = true;
+            command.AddOption(servicePrincipalIdOption);
+            var topOption = new Option<int?>("--top", description: "Show only the first n items");
+            topOption.IsRequired = false;
+            command.AddOption(topOption);
+            var skipOption = new Option<int?>("--skip", description: "Skip the first n items");
+            skipOption.IsRequired = false;
+            command.AddOption(skipOption);
+            var searchOption = new Option<string>("--search", description: "Search items by search phrases");
+            searchOption.IsRequired = false;
+            command.AddOption(searchOption);
+            var filterOption = new Option<string>("--filter", description: "Filter items by property values");
+            filterOption.IsRequired = false;
+            command.AddOption(filterOption);
+            var countOption = new Option<bool?>("--count", description: "Include count of items");
+            countOption.IsRequired = false;
+            command.AddOption(countOption);
+            var orderbyOption = new Option<string[]>("--orderby", description: "Order items by property values");
+            orderbyOption.IsRequired = false;
+            orderbyOption.Arity = ArgumentArity.ZeroOrMore;
+            command.AddOption(orderbyOption);
+            command.Handler = CommandHandler.Create<string, int?, int?, string, string, bool?, string[]>(async (servicePrincipalId, top, skip, search, filter, count, orderby) => {
+                var requestInfo = CreateGetRequestInformation(q => {
+                    q.Top = top;
+                    q.Skip = skip;
+                    if (!String.IsNullOrEmpty(search)) q.Search = search;
+                    if (!String.IsNullOrEmpty(filter)) q.Filter = filter;
+                    q.Count = count;
+                    q.Orderby = orderby;
+                });
                 var result = await RequestAdapter.SendAsync<RefResponse>(requestInfo);
                 // Print request output. What if the request has no return?
                 using var serializer = RequestAdapter.SerializationWriterFactory.GetSerializationWriter("application/json");
@@ -53,20 +68,24 @@ namespace ApiSdk.ServicePrincipals.Item.TokenIssuancePolicies.@Ref {
             return command;
         }
         /// <summary>
-        /// The tokenIssuancePolicies assigned to this service principal.
+        /// The tokenIssuancePolicies assigned to this service principal. Supports $expand.
         /// </summary>
         public Command BuildPostCommand() {
             var command = new Command("post");
-            command.Description = "The tokenIssuancePolicies assigned to this service principal.";
+            command.Description = "The tokenIssuancePolicies assigned to this service principal. Supports $expand.";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--serviceprincipal-id", description: "key: id of servicePrincipal"));
-            command.AddOption(new Option<string>("--body"));
+            var servicePrincipalIdOption = new Option<string>("--serviceprincipal-id", description: "key: id of servicePrincipal");
+            servicePrincipalIdOption.IsRequired = true;
+            command.AddOption(servicePrincipalIdOption);
+            var bodyOption = new Option<string>("--body");
+            bodyOption.IsRequired = true;
+            command.AddOption(bodyOption);
             command.Handler = CommandHandler.Create<string, string>(async (servicePrincipalId, body) => {
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<ApiSdk.ServicePrincipals.Item.TokenIssuancePolicies.@Ref.@Ref>();
-                var requestInfo = CreatePostRequestInformation(model);
-                if (!String.IsNullOrEmpty(servicePrincipalId)) requestInfo.PathParameters.Add("servicePrincipal_id", servicePrincipalId);
+                var requestInfo = CreatePostRequestInformation(model, q => {
+                });
                 var result = await RequestAdapter.SendAsync<ApiSdk.ServicePrincipals.Item.TokenIssuancePolicies.@Ref.@Ref>(requestInfo);
                 // Print request output. What if the request has no return?
                 using var serializer = RequestAdapter.SerializationWriterFactory.GetSerializationWriter("application/json");
@@ -92,7 +111,7 @@ namespace ApiSdk.ServicePrincipals.Item.TokenIssuancePolicies.@Ref {
             RequestAdapter = requestAdapter;
         }
         /// <summary>
-        /// The tokenIssuancePolicies assigned to this service principal.
+        /// The tokenIssuancePolicies assigned to this service principal. Supports $expand.
         /// <param name="h">Request headers</param>
         /// <param name="o">Request options</param>
         /// <param name="q">Request query parameters</param>
@@ -113,7 +132,7 @@ namespace ApiSdk.ServicePrincipals.Item.TokenIssuancePolicies.@Ref {
             return requestInfo;
         }
         /// <summary>
-        /// The tokenIssuancePolicies assigned to this service principal.
+        /// The tokenIssuancePolicies assigned to this service principal. Supports $expand.
         /// <param name="body"></param>
         /// <param name="h">Request headers</param>
         /// <param name="o">Request options</param>
@@ -131,7 +150,7 @@ namespace ApiSdk.ServicePrincipals.Item.TokenIssuancePolicies.@Ref {
             return requestInfo;
         }
         /// <summary>
-        /// The tokenIssuancePolicies assigned to this service principal.
+        /// The tokenIssuancePolicies assigned to this service principal. Supports $expand.
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="h">Request headers</param>
         /// <param name="o">Request options</param>
@@ -143,7 +162,7 @@ namespace ApiSdk.ServicePrincipals.Item.TokenIssuancePolicies.@Ref {
             return await RequestAdapter.SendAsync<RefResponse>(requestInfo, responseHandler, cancellationToken);
         }
         /// <summary>
-        /// The tokenIssuancePolicies assigned to this service principal.
+        /// The tokenIssuancePolicies assigned to this service principal. Supports $expand.
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="h">Request headers</param>
         /// <param name="model"></param>
@@ -155,7 +174,7 @@ namespace ApiSdk.ServicePrincipals.Item.TokenIssuancePolicies.@Ref {
             var requestInfo = CreatePostRequestInformation(model, h, o);
             return await RequestAdapter.SendAsync<ApiSdk.ServicePrincipals.Item.TokenIssuancePolicies.@Ref.@Ref>(requestInfo, responseHandler, cancellationToken);
         }
-        /// <summary>The tokenIssuancePolicies assigned to this service principal.</summary>
+        /// <summary>The tokenIssuancePolicies assigned to this service principal. Supports $expand.</summary>
         public class GetQueryParameters : QueryParametersBase {
             /// <summary>Include count of items</summary>
             public bool? Count { get; set; }

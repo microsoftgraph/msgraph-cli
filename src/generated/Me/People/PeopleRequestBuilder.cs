@@ -30,18 +30,21 @@ namespace ApiSdk.Me.People {
             return commands;
         }
         /// <summary>
-        /// People that are relevant to the user. Read-only. Nullable.
+        /// Read-only. The most relevant people to the user. The collection is ordered by their relevance to the user, which is determined by the user's communication, collaboration and business relationships. A person is an aggregation of information from across mail, contacts and social networks.
         /// </summary>
         public Command BuildCreateCommand() {
             var command = new Command("create");
-            command.Description = "People that are relevant to the user. Read-only. Nullable.";
+            command.Description = "Read-only. The most relevant people to the user. The collection is ordered by their relevance to the user, which is determined by the user's communication, collaboration and business relationships. A person is an aggregation of information from across mail, contacts and social networks.";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--body"));
+            var bodyOption = new Option<string>("--body");
+            bodyOption.IsRequired = true;
+            command.AddOption(bodyOption);
             command.Handler = CommandHandler.Create<string>(async (body) => {
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<Person>();
-                var requestInfo = CreatePostRequestInformation(model);
+                var requestInfo = CreatePostRequestInformation(model, q => {
+                });
                 var result = await RequestAdapter.SendAsync<Person>(requestInfo);
                 // Print request output. What if the request has no return?
                 using var serializer = RequestAdapter.SerializationWriterFactory.GetSerializationWriter("application/json");
@@ -54,28 +57,45 @@ namespace ApiSdk.Me.People {
             return command;
         }
         /// <summary>
-        /// People that are relevant to the user. Read-only. Nullable.
+        /// Read-only. The most relevant people to the user. The collection is ordered by their relevance to the user, which is determined by the user's communication, collaboration and business relationships. A person is an aggregation of information from across mail, contacts and social networks.
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "People that are relevant to the user. Read-only. Nullable.";
+            command.Description = "Read-only. The most relevant people to the user. The collection is ordered by their relevance to the user, which is determined by the user's communication, collaboration and business relationships. A person is an aggregation of information from across mail, contacts and social networks.";
             // Create options for all the parameters
-            command.AddOption(new Option<int?>("--top", description: "Show only the first n items"));
-            command.AddOption(new Option<int?>("--skip", description: "Skip the first n items"));
-            command.AddOption(new Option<string>("--search", description: "Search items by search phrases"));
-            command.AddOption(new Option<string>("--filter", description: "Filter items by property values"));
-            command.AddOption(new Option<bool?>("--count", description: "Include count of items"));
-            command.AddOption(new Option<object>("--orderby", description: "Order items by property values"));
-            command.AddOption(new Option<object>("--select", description: "Select properties to be returned"));
-            command.Handler = CommandHandler.Create<int?, int?, string, string, bool?, object, object>(async (top, skip, search, filter, count, orderby, select) => {
-                var requestInfo = CreateGetRequestInformation();
-                requestInfo.QueryParameters.Add("top", top);
-                requestInfo.QueryParameters.Add("skip", skip);
-                if (!String.IsNullOrEmpty(search)) requestInfo.QueryParameters.Add("search", search);
-                if (!String.IsNullOrEmpty(filter)) requestInfo.QueryParameters.Add("filter", filter);
-                requestInfo.QueryParameters.Add("count", count);
-                requestInfo.QueryParameters.Add("orderby", orderby);
-                requestInfo.QueryParameters.Add("select", select);
+            var topOption = new Option<int?>("--top", description: "Show only the first n items");
+            topOption.IsRequired = false;
+            command.AddOption(topOption);
+            var skipOption = new Option<int?>("--skip", description: "Skip the first n items");
+            skipOption.IsRequired = false;
+            command.AddOption(skipOption);
+            var searchOption = new Option<string>("--search", description: "Search items by search phrases");
+            searchOption.IsRequired = false;
+            command.AddOption(searchOption);
+            var filterOption = new Option<string>("--filter", description: "Filter items by property values");
+            filterOption.IsRequired = false;
+            command.AddOption(filterOption);
+            var countOption = new Option<bool?>("--count", description: "Include count of items");
+            countOption.IsRequired = false;
+            command.AddOption(countOption);
+            var orderbyOption = new Option<string[]>("--orderby", description: "Order items by property values");
+            orderbyOption.IsRequired = false;
+            orderbyOption.Arity = ArgumentArity.ZeroOrMore;
+            command.AddOption(orderbyOption);
+            var selectOption = new Option<string[]>("--select", description: "Select properties to be returned");
+            selectOption.IsRequired = false;
+            selectOption.Arity = ArgumentArity.ZeroOrMore;
+            command.AddOption(selectOption);
+            command.Handler = CommandHandler.Create<int?, int?, string, string, bool?, string[], string[]>(async (top, skip, search, filter, count, orderby, select) => {
+                var requestInfo = CreateGetRequestInformation(q => {
+                    q.Top = top;
+                    q.Skip = skip;
+                    if (!String.IsNullOrEmpty(search)) q.Search = search;
+                    if (!String.IsNullOrEmpty(filter)) q.Filter = filter;
+                    q.Count = count;
+                    q.Orderby = orderby;
+                    q.Select = select;
+                });
                 var result = await RequestAdapter.SendAsync<PeopleResponse>(requestInfo);
                 // Print request output. What if the request has no return?
                 using var serializer = RequestAdapter.SerializationWriterFactory.GetSerializationWriter("application/json");
@@ -101,7 +121,7 @@ namespace ApiSdk.Me.People {
             RequestAdapter = requestAdapter;
         }
         /// <summary>
-        /// People that are relevant to the user. Read-only. Nullable.
+        /// Read-only. The most relevant people to the user. The collection is ordered by their relevance to the user, which is determined by the user's communication, collaboration and business relationships. A person is an aggregation of information from across mail, contacts and social networks.
         /// <param name="h">Request headers</param>
         /// <param name="o">Request options</param>
         /// <param name="q">Request query parameters</param>
@@ -122,7 +142,7 @@ namespace ApiSdk.Me.People {
             return requestInfo;
         }
         /// <summary>
-        /// People that are relevant to the user. Read-only. Nullable.
+        /// Read-only. The most relevant people to the user. The collection is ordered by their relevance to the user, which is determined by the user's communication, collaboration and business relationships. A person is an aggregation of information from across mail, contacts and social networks.
         /// <param name="body"></param>
         /// <param name="h">Request headers</param>
         /// <param name="o">Request options</param>
@@ -140,7 +160,7 @@ namespace ApiSdk.Me.People {
             return requestInfo;
         }
         /// <summary>
-        /// People that are relevant to the user. Read-only. Nullable.
+        /// Read-only. The most relevant people to the user. The collection is ordered by their relevance to the user, which is determined by the user's communication, collaboration and business relationships. A person is an aggregation of information from across mail, contacts and social networks.
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="h">Request headers</param>
         /// <param name="o">Request options</param>
@@ -152,7 +172,7 @@ namespace ApiSdk.Me.People {
             return await RequestAdapter.SendAsync<PeopleResponse>(requestInfo, responseHandler, cancellationToken);
         }
         /// <summary>
-        /// People that are relevant to the user. Read-only. Nullable.
+        /// Read-only. The most relevant people to the user. The collection is ordered by their relevance to the user, which is determined by the user's communication, collaboration and business relationships. A person is an aggregation of information from across mail, contacts and social networks.
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="h">Request headers</param>
         /// <param name="model"></param>
@@ -164,7 +184,7 @@ namespace ApiSdk.Me.People {
             var requestInfo = CreatePostRequestInformation(model, h, o);
             return await RequestAdapter.SendAsync<Person>(requestInfo, responseHandler, cancellationToken);
         }
-        /// <summary>People that are relevant to the user. Read-only. Nullable.</summary>
+        /// <summary>Read-only. The most relevant people to the user. The collection is ordered by their relevance to the user, which is determined by the user's communication, collaboration and business relationships. A person is an aggregation of information from across mail, contacts and social networks.</summary>
         public class GetQueryParameters : QueryParametersBase {
             /// <summary>Include count of items</summary>
             public bool? Count { get; set; }

@@ -25,10 +25,12 @@ namespace ApiSdk.Shares.Item.ListItem.GetActivitiesByInterval {
             var command = new Command("get");
             command.Description = "Invoke function getActivitiesByInterval";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--shareddriveitem-id", description: "key: id of sharedDriveItem"));
+            var sharedDriveItemIdOption = new Option<string>("--shareddriveitem-id", description: "key: id of sharedDriveItem");
+            sharedDriveItemIdOption.IsRequired = true;
+            command.AddOption(sharedDriveItemIdOption);
             command.Handler = CommandHandler.Create<string>(async (sharedDriveItemId) => {
-                var requestInfo = CreateGetRequestInformation();
-                if (!String.IsNullOrEmpty(sharedDriveItemId)) requestInfo.PathParameters.Add("sharedDriveItem_id", sharedDriveItemId);
+                var requestInfo = CreateGetRequestInformation(q => {
+                });
                 var result = await RequestAdapter.SendCollectionAsync<ApiSdk.Shares.Item.ListItem.GetActivitiesByInterval.GetActivitiesByInterval>(requestInfo);
                 // Print request output. What if the request has no return?
                 using var serializer = RequestAdapter.SerializationWriterFactory.GetSerializationWriter("application/json");

@@ -26,10 +26,12 @@ namespace ApiSdk.DeviceAppManagement.ManagedEBooks.Item.InstallSummary {
             var command = new Command("delete");
             command.Description = "Mobile App Install Summary.";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--managedebook-id", description: "key: id of managedEBook"));
+            var managedEBookIdOption = new Option<string>("--managedebook-id", description: "key: id of managedEBook");
+            managedEBookIdOption.IsRequired = true;
+            command.AddOption(managedEBookIdOption);
             command.Handler = CommandHandler.Create<string>(async (managedEBookId) => {
-                var requestInfo = CreateDeleteRequestInformation();
-                if (!String.IsNullOrEmpty(managedEBookId)) requestInfo.PathParameters.Add("managedEBook_id", managedEBookId);
+                var requestInfo = CreateDeleteRequestInformation(q => {
+                });
                 await RequestAdapter.SendNoContentAsync(requestInfo);
                 // Print request output. What if the request has no return?
                 Console.WriteLine("Success");
@@ -43,14 +45,22 @@ namespace ApiSdk.DeviceAppManagement.ManagedEBooks.Item.InstallSummary {
             var command = new Command("get");
             command.Description = "Mobile App Install Summary.";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--managedebook-id", description: "key: id of managedEBook"));
-            command.AddOption(new Option<object>("--select", description: "Select properties to be returned"));
-            command.AddOption(new Option<object>("--expand", description: "Expand related entities"));
-            command.Handler = CommandHandler.Create<string, object, object>(async (managedEBookId, select, expand) => {
-                var requestInfo = CreateGetRequestInformation();
-                if (!String.IsNullOrEmpty(managedEBookId)) requestInfo.PathParameters.Add("managedEBook_id", managedEBookId);
-                requestInfo.QueryParameters.Add("select", select);
-                requestInfo.QueryParameters.Add("expand", expand);
+            var managedEBookIdOption = new Option<string>("--managedebook-id", description: "key: id of managedEBook");
+            managedEBookIdOption.IsRequired = true;
+            command.AddOption(managedEBookIdOption);
+            var selectOption = new Option<string[]>("--select", description: "Select properties to be returned");
+            selectOption.IsRequired = false;
+            selectOption.Arity = ArgumentArity.ZeroOrMore;
+            command.AddOption(selectOption);
+            var expandOption = new Option<string[]>("--expand", description: "Expand related entities");
+            expandOption.IsRequired = false;
+            expandOption.Arity = ArgumentArity.ZeroOrMore;
+            command.AddOption(expandOption);
+            command.Handler = CommandHandler.Create<string, string[], string[]>(async (managedEBookId, select, expand) => {
+                var requestInfo = CreateGetRequestInformation(q => {
+                    q.Select = select;
+                    q.Expand = expand;
+                });
                 var result = await RequestAdapter.SendAsync<EBookInstallSummary>(requestInfo);
                 // Print request output. What if the request has no return?
                 using var serializer = RequestAdapter.SerializationWriterFactory.GetSerializationWriter("application/json");
@@ -69,14 +79,18 @@ namespace ApiSdk.DeviceAppManagement.ManagedEBooks.Item.InstallSummary {
             var command = new Command("patch");
             command.Description = "Mobile App Install Summary.";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--managedebook-id", description: "key: id of managedEBook"));
-            command.AddOption(new Option<string>("--body"));
+            var managedEBookIdOption = new Option<string>("--managedebook-id", description: "key: id of managedEBook");
+            managedEBookIdOption.IsRequired = true;
+            command.AddOption(managedEBookIdOption);
+            var bodyOption = new Option<string>("--body");
+            bodyOption.IsRequired = true;
+            command.AddOption(bodyOption);
             command.Handler = CommandHandler.Create<string, string>(async (managedEBookId, body) => {
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<EBookInstallSummary>();
-                var requestInfo = CreatePatchRequestInformation(model);
-                if (!String.IsNullOrEmpty(managedEBookId)) requestInfo.PathParameters.Add("managedEBook_id", managedEBookId);
+                var requestInfo = CreatePatchRequestInformation(model, q => {
+                });
                 await RequestAdapter.SendNoContentAsync(requestInfo);
                 // Print request output. What if the request has no return?
                 Console.WriteLine("Success");

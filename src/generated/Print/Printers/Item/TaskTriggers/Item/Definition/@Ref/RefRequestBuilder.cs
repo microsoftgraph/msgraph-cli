@@ -25,12 +25,15 @@ namespace ApiSdk.Print.Printers.Item.TaskTriggers.Item.Definition.@Ref {
             var command = new Command("delete");
             command.Description = "An abstract definition that will be used to create a printTask when triggered by a print event. Read-only.";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--printer-id", description: "key: id of printer"));
-            command.AddOption(new Option<string>("--printtasktrigger-id", description: "key: id of printTaskTrigger"));
+            var printerIdOption = new Option<string>("--printer-id", description: "key: id of printer");
+            printerIdOption.IsRequired = true;
+            command.AddOption(printerIdOption);
+            var printTaskTriggerIdOption = new Option<string>("--printtasktrigger-id", description: "key: id of printTaskTrigger");
+            printTaskTriggerIdOption.IsRequired = true;
+            command.AddOption(printTaskTriggerIdOption);
             command.Handler = CommandHandler.Create<string, string>(async (printerId, printTaskTriggerId) => {
-                var requestInfo = CreateDeleteRequestInformation();
-                if (!String.IsNullOrEmpty(printerId)) requestInfo.PathParameters.Add("printer_id", printerId);
-                if (!String.IsNullOrEmpty(printTaskTriggerId)) requestInfo.PathParameters.Add("printTaskTrigger_id", printTaskTriggerId);
+                var requestInfo = CreateDeleteRequestInformation(q => {
+                });
                 await RequestAdapter.SendNoContentAsync(requestInfo);
                 // Print request output. What if the request has no return?
                 Console.WriteLine("Success");
@@ -44,12 +47,15 @@ namespace ApiSdk.Print.Printers.Item.TaskTriggers.Item.Definition.@Ref {
             var command = new Command("get");
             command.Description = "An abstract definition that will be used to create a printTask when triggered by a print event. Read-only.";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--printer-id", description: "key: id of printer"));
-            command.AddOption(new Option<string>("--printtasktrigger-id", description: "key: id of printTaskTrigger"));
+            var printerIdOption = new Option<string>("--printer-id", description: "key: id of printer");
+            printerIdOption.IsRequired = true;
+            command.AddOption(printerIdOption);
+            var printTaskTriggerIdOption = new Option<string>("--printtasktrigger-id", description: "key: id of printTaskTrigger");
+            printTaskTriggerIdOption.IsRequired = true;
+            command.AddOption(printTaskTriggerIdOption);
             command.Handler = CommandHandler.Create<string, string>(async (printerId, printTaskTriggerId) => {
-                var requestInfo = CreateGetRequestInformation();
-                if (!String.IsNullOrEmpty(printerId)) requestInfo.PathParameters.Add("printer_id", printerId);
-                if (!String.IsNullOrEmpty(printTaskTriggerId)) requestInfo.PathParameters.Add("printTaskTrigger_id", printTaskTriggerId);
+                var requestInfo = CreateGetRequestInformation(q => {
+                });
                 var result = await RequestAdapter.SendPrimitiveAsync<string>(requestInfo);
                 // Print request output. What if the request has no return?
                 using var serializer = RequestAdapter.SerializationWriterFactory.GetSerializationWriter("application/json");
@@ -68,16 +74,21 @@ namespace ApiSdk.Print.Printers.Item.TaskTriggers.Item.Definition.@Ref {
             var command = new Command("put");
             command.Description = "An abstract definition that will be used to create a printTask when triggered by a print event. Read-only.";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--printer-id", description: "key: id of printer"));
-            command.AddOption(new Option<string>("--printtasktrigger-id", description: "key: id of printTaskTrigger"));
-            command.AddOption(new Option<string>("--body"));
+            var printerIdOption = new Option<string>("--printer-id", description: "key: id of printer");
+            printerIdOption.IsRequired = true;
+            command.AddOption(printerIdOption);
+            var printTaskTriggerIdOption = new Option<string>("--printtasktrigger-id", description: "key: id of printTaskTrigger");
+            printTaskTriggerIdOption.IsRequired = true;
+            command.AddOption(printTaskTriggerIdOption);
+            var bodyOption = new Option<string>("--body");
+            bodyOption.IsRequired = true;
+            command.AddOption(bodyOption);
             command.Handler = CommandHandler.Create<string, string, string>(async (printerId, printTaskTriggerId, body) => {
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<ApiSdk.Print.Printers.Item.TaskTriggers.Item.Definition.@Ref.@Ref>();
-                var requestInfo = CreatePutRequestInformation(model);
-                if (!String.IsNullOrEmpty(printerId)) requestInfo.PathParameters.Add("printer_id", printerId);
-                if (!String.IsNullOrEmpty(printTaskTriggerId)) requestInfo.PathParameters.Add("printTaskTrigger_id", printTaskTriggerId);
+                var requestInfo = CreatePutRequestInformation(model, q => {
+                });
                 await RequestAdapter.SendNoContentAsync(requestInfo);
                 // Print request output. What if the request has no return?
                 Console.WriteLine("Success");

@@ -26,10 +26,12 @@ namespace ApiSdk.Identity.ConditionalAccess.NamedLocations.Item {
             var command = new Command("delete");
             command.Description = "Read-only. Nullable. Returns a collection of the specified named locations.";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--namedlocation-id", description: "key: id of namedLocation"));
+            var namedLocationIdOption = new Option<string>("--namedlocation-id", description: "key: id of namedLocation");
+            namedLocationIdOption.IsRequired = true;
+            command.AddOption(namedLocationIdOption);
             command.Handler = CommandHandler.Create<string>(async (namedLocationId) => {
-                var requestInfo = CreateDeleteRequestInformation();
-                if (!String.IsNullOrEmpty(namedLocationId)) requestInfo.PathParameters.Add("namedLocation_id", namedLocationId);
+                var requestInfo = CreateDeleteRequestInformation(q => {
+                });
                 await RequestAdapter.SendNoContentAsync(requestInfo);
                 // Print request output. What if the request has no return?
                 Console.WriteLine("Success");
@@ -43,14 +45,22 @@ namespace ApiSdk.Identity.ConditionalAccess.NamedLocations.Item {
             var command = new Command("get");
             command.Description = "Read-only. Nullable. Returns a collection of the specified named locations.";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--namedlocation-id", description: "key: id of namedLocation"));
-            command.AddOption(new Option<object>("--select", description: "Select properties to be returned"));
-            command.AddOption(new Option<object>("--expand", description: "Expand related entities"));
-            command.Handler = CommandHandler.Create<string, object, object>(async (namedLocationId, select, expand) => {
-                var requestInfo = CreateGetRequestInformation();
-                if (!String.IsNullOrEmpty(namedLocationId)) requestInfo.PathParameters.Add("namedLocation_id", namedLocationId);
-                requestInfo.QueryParameters.Add("select", select);
-                requestInfo.QueryParameters.Add("expand", expand);
+            var namedLocationIdOption = new Option<string>("--namedlocation-id", description: "key: id of namedLocation");
+            namedLocationIdOption.IsRequired = true;
+            command.AddOption(namedLocationIdOption);
+            var selectOption = new Option<string[]>("--select", description: "Select properties to be returned");
+            selectOption.IsRequired = false;
+            selectOption.Arity = ArgumentArity.ZeroOrMore;
+            command.AddOption(selectOption);
+            var expandOption = new Option<string[]>("--expand", description: "Expand related entities");
+            expandOption.IsRequired = false;
+            expandOption.Arity = ArgumentArity.ZeroOrMore;
+            command.AddOption(expandOption);
+            command.Handler = CommandHandler.Create<string, string[], string[]>(async (namedLocationId, select, expand) => {
+                var requestInfo = CreateGetRequestInformation(q => {
+                    q.Select = select;
+                    q.Expand = expand;
+                });
                 var result = await RequestAdapter.SendAsync<NamedLocation>(requestInfo);
                 // Print request output. What if the request has no return?
                 using var serializer = RequestAdapter.SerializationWriterFactory.GetSerializationWriter("application/json");
@@ -69,14 +79,18 @@ namespace ApiSdk.Identity.ConditionalAccess.NamedLocations.Item {
             var command = new Command("patch");
             command.Description = "Read-only. Nullable. Returns a collection of the specified named locations.";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--namedlocation-id", description: "key: id of namedLocation"));
-            command.AddOption(new Option<string>("--body"));
+            var namedLocationIdOption = new Option<string>("--namedlocation-id", description: "key: id of namedLocation");
+            namedLocationIdOption.IsRequired = true;
+            command.AddOption(namedLocationIdOption);
+            var bodyOption = new Option<string>("--body");
+            bodyOption.IsRequired = true;
+            command.AddOption(bodyOption);
             command.Handler = CommandHandler.Create<string, string>(async (namedLocationId, body) => {
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<NamedLocation>();
-                var requestInfo = CreatePatchRequestInformation(model);
-                if (!String.IsNullOrEmpty(namedLocationId)) requestInfo.PathParameters.Add("namedLocation_id", namedLocationId);
+                var requestInfo = CreatePatchRequestInformation(model, q => {
+                });
                 await RequestAdapter.SendNoContentAsync(requestInfo);
                 // Print request output. What if the request has no return?
                 Console.WriteLine("Success");

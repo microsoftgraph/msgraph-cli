@@ -13,7 +13,7 @@ namespace ApiSdk.Models.Microsoft.Graph {
         public string Label { get; set; }
         /// <summary>The media type. The possible value are unknown, audio, video, videoBasedScreenSharing, data.</summary>
         public Modality? MediaType { get; set; }
-        /// <summary>If the media is muted by the server.</summary>
+        /// <summary>Indicates whether the media is muted by the server.</summary>
         public bool? ServerMuted { get; set; }
         /// <summary>The source ID.</summary>
         public string SourceId { get; set; }

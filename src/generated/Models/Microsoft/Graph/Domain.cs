@@ -31,7 +31,7 @@ namespace ApiSdk.Models.Microsoft.Graph {
         public List<DomainDnsRecord> ServiceConfigurationRecords { get; set; }
         /// <summary>Status of asynchronous operations scheduled for the domain.</summary>
         public DomainState State { get; set; }
-        /// <summary>The capabilities assigned to the domain. Can include 0, 1 or more of following values: Email, Sharepoint, EmailInternalRelayOnly, OfficeCommunicationsOnline, SharePointDefaultDomain, FullRedelegation, SharePointPublic, OrgIdAuthentication, Yammer, Intune. The values which you can add/remove using Graph API include: Email, OfficeCommunicationsOnline, Yammer. Not nullable</summary>
+        /// <summary>The capabilities assigned to the domain. Can include 0, 1 or more of following values: Email, Sharepoint, EmailInternalRelayOnly, OfficeCommunicationsOnline,SharePointDefaultDomain, FullRedelegation, SharePointPublic, OrgIdAuthentication, Yammer, Intune. The values which you can add/remove using Graph API include: Email, OfficeCommunicationsOnline, Yammer. Not nullable</summary>
         public List<string> SupportedServices { get; set; }
         /// <summary>DNS records that the customer adds to the DNS zone file of the domain before the customer can complete domain ownership verification with Azure AD. Read-only, Nullable</summary>
         public List<DomainDnsRecord> VerificationDnsRecords { get; set; }

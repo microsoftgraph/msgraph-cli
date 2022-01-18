@@ -14,7 +14,7 @@ namespace ApiSdk.Models.Microsoft.Graph {
         /// <summary>Specifies whether to push welcome page changes to inherited content types.</summary>
         public bool? PropagateWelcomePageChanges { get; set; }
         public List<ColumnDefinition> SharedColumns { get; set; }
-        /// <summary>Add the name of the document set to each file name.</summary>
+        /// <summary>Add the name of the Document Set to each file name.</summary>
         public bool? ShouldPrefixNameToFile { get; set; }
         public List<ColumnDefinition> WelcomePageColumns { get; set; }
         /// <summary>Welcome page absolute URL.</summary>

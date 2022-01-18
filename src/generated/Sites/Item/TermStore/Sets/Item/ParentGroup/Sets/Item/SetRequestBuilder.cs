@@ -26,14 +26,18 @@ namespace ApiSdk.Sites.Item.TermStore.Sets.Item.ParentGroup.Sets.Item {
             var command = new Command("delete");
             command.Description = "All sets under the group in a term [store].";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--site-id", description: "key: id of site"));
-            command.AddOption(new Option<string>("--set-id", description: "key: id of set"));
-            command.AddOption(new Option<string>("--set-id1", description: "key: id of set"));
+            var siteIdOption = new Option<string>("--site-id", description: "key: id of site");
+            siteIdOption.IsRequired = true;
+            command.AddOption(siteIdOption);
+            var setIdOption = new Option<string>("--set-id", description: "key: id of set");
+            setIdOption.IsRequired = true;
+            command.AddOption(setIdOption);
+            var setId1Option = new Option<string>("--set-id1", description: "key: id of set");
+            setId1Option.IsRequired = true;
+            command.AddOption(setId1Option);
             command.Handler = CommandHandler.Create<string, string, string>(async (siteId, setId, setId1) => {
-                var requestInfo = CreateDeleteRequestInformation();
-                if (!String.IsNullOrEmpty(siteId)) requestInfo.PathParameters.Add("site_id", siteId);
-                if (!String.IsNullOrEmpty(setId)) requestInfo.PathParameters.Add("set_id", setId);
-                if (!String.IsNullOrEmpty(setId1)) requestInfo.PathParameters.Add("set_id1", setId1);
+                var requestInfo = CreateDeleteRequestInformation(q => {
+                });
                 await RequestAdapter.SendNoContentAsync(requestInfo);
                 // Print request output. What if the request has no return?
                 Console.WriteLine("Success");
@@ -47,18 +51,28 @@ namespace ApiSdk.Sites.Item.TermStore.Sets.Item.ParentGroup.Sets.Item {
             var command = new Command("get");
             command.Description = "All sets under the group in a term [store].";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--site-id", description: "key: id of site"));
-            command.AddOption(new Option<string>("--set-id", description: "key: id of set"));
-            command.AddOption(new Option<string>("--set-id1", description: "key: id of set"));
-            command.AddOption(new Option<object>("--select", description: "Select properties to be returned"));
-            command.AddOption(new Option<object>("--expand", description: "Expand related entities"));
-            command.Handler = CommandHandler.Create<string, string, string, object, object>(async (siteId, setId, setId1, select, expand) => {
-                var requestInfo = CreateGetRequestInformation();
-                if (!String.IsNullOrEmpty(siteId)) requestInfo.PathParameters.Add("site_id", siteId);
-                if (!String.IsNullOrEmpty(setId)) requestInfo.PathParameters.Add("set_id", setId);
-                if (!String.IsNullOrEmpty(setId1)) requestInfo.PathParameters.Add("set_id1", setId1);
-                requestInfo.QueryParameters.Add("select", select);
-                requestInfo.QueryParameters.Add("expand", expand);
+            var siteIdOption = new Option<string>("--site-id", description: "key: id of site");
+            siteIdOption.IsRequired = true;
+            command.AddOption(siteIdOption);
+            var setIdOption = new Option<string>("--set-id", description: "key: id of set");
+            setIdOption.IsRequired = true;
+            command.AddOption(setIdOption);
+            var setId1Option = new Option<string>("--set-id1", description: "key: id of set");
+            setId1Option.IsRequired = true;
+            command.AddOption(setId1Option);
+            var selectOption = new Option<string[]>("--select", description: "Select properties to be returned");
+            selectOption.IsRequired = false;
+            selectOption.Arity = ArgumentArity.ZeroOrMore;
+            command.AddOption(selectOption);
+            var expandOption = new Option<string[]>("--expand", description: "Expand related entities");
+            expandOption.IsRequired = false;
+            expandOption.Arity = ArgumentArity.ZeroOrMore;
+            command.AddOption(expandOption);
+            command.Handler = CommandHandler.Create<string, string, string, string[], string[]>(async (siteId, setId, setId1, select, expand) => {
+                var requestInfo = CreateGetRequestInformation(q => {
+                    q.Select = select;
+                    q.Expand = expand;
+                });
                 var result = await RequestAdapter.SendAsync<ApiSdk.Models.Microsoft.Graph.TermStore.Set>(requestInfo);
                 // Print request output. What if the request has no return?
                 using var serializer = RequestAdapter.SerializationWriterFactory.GetSerializationWriter("application/json");
@@ -77,18 +91,24 @@ namespace ApiSdk.Sites.Item.TermStore.Sets.Item.ParentGroup.Sets.Item {
             var command = new Command("patch");
             command.Description = "All sets under the group in a term [store].";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--site-id", description: "key: id of site"));
-            command.AddOption(new Option<string>("--set-id", description: "key: id of set"));
-            command.AddOption(new Option<string>("--set-id1", description: "key: id of set"));
-            command.AddOption(new Option<string>("--body"));
+            var siteIdOption = new Option<string>("--site-id", description: "key: id of site");
+            siteIdOption.IsRequired = true;
+            command.AddOption(siteIdOption);
+            var setIdOption = new Option<string>("--set-id", description: "key: id of set");
+            setIdOption.IsRequired = true;
+            command.AddOption(setIdOption);
+            var setId1Option = new Option<string>("--set-id1", description: "key: id of set");
+            setId1Option.IsRequired = true;
+            command.AddOption(setId1Option);
+            var bodyOption = new Option<string>("--body");
+            bodyOption.IsRequired = true;
+            command.AddOption(bodyOption);
             command.Handler = CommandHandler.Create<string, string, string, string>(async (siteId, setId, setId1, body) => {
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<ApiSdk.Models.Microsoft.Graph.TermStore.Set>();
-                var requestInfo = CreatePatchRequestInformation(model);
-                if (!String.IsNullOrEmpty(siteId)) requestInfo.PathParameters.Add("site_id", siteId);
-                if (!String.IsNullOrEmpty(setId)) requestInfo.PathParameters.Add("set_id", setId);
-                if (!String.IsNullOrEmpty(setId1)) requestInfo.PathParameters.Add("set_id1", setId1);
+                var requestInfo = CreatePatchRequestInformation(model, q => {
+                });
                 await RequestAdapter.SendNoContentAsync(requestInfo);
                 // Print request output. What if the request has no return?
                 Console.WriteLine("Success");

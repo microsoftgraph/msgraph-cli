@@ -26,12 +26,15 @@ namespace ApiSdk.Me.Insights.Used.Item.Resource.WorkbookRange.UsedRangeWithValue
             var command = new Command("get");
             command.Description = "Invoke function usedRange";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--usedinsight-id", description: "key: id of usedInsight"));
-            command.AddOption(new Option<bool?>("--valuesonly", description: "Usage: valuesOnly={valuesOnly}"));
+            var usedInsightIdOption = new Option<string>("--usedinsight-id", description: "key: id of usedInsight");
+            usedInsightIdOption.IsRequired = true;
+            command.AddOption(usedInsightIdOption);
+            var valuesOnlyOption = new Option<bool?>("--valuesonly", description: "Usage: valuesOnly={valuesOnly}");
+            valuesOnlyOption.IsRequired = true;
+            command.AddOption(valuesOnlyOption);
             command.Handler = CommandHandler.Create<string, bool?>(async (usedInsightId, valuesOnly) => {
-                var requestInfo = CreateGetRequestInformation();
-                if (!String.IsNullOrEmpty(usedInsightId)) requestInfo.PathParameters.Add("usedInsight_id", usedInsightId);
-                requestInfo.PathParameters.Add("valuesOnly", valuesOnly);
+                var requestInfo = CreateGetRequestInformation(q => {
+                });
                 var result = await RequestAdapter.SendAsync<UsedRangeWithValuesOnlyResponse>(requestInfo);
                 // Print request output. What if the request has no return?
                 using var serializer = RequestAdapter.SerializationWriterFactory.GetSerializationWriter("application/json");

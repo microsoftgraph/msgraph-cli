@@ -26,10 +26,12 @@ namespace ApiSdk.Me.InferenceClassification.Overrides.Item {
             var command = new Command("delete");
             command.Description = "A set of overrides for a user to always classify messages from specific senders in certain ways: focused, or other. Read-only. Nullable.";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--inferenceclassificationoverride-id", description: "key: id of inferenceClassificationOverride"));
+            var inferenceClassificationOverrideIdOption = new Option<string>("--inferenceclassificationoverride-id", description: "key: id of inferenceClassificationOverride");
+            inferenceClassificationOverrideIdOption.IsRequired = true;
+            command.AddOption(inferenceClassificationOverrideIdOption);
             command.Handler = CommandHandler.Create<string>(async (inferenceClassificationOverrideId) => {
-                var requestInfo = CreateDeleteRequestInformation();
-                if (!String.IsNullOrEmpty(inferenceClassificationOverrideId)) requestInfo.PathParameters.Add("inferenceClassificationOverride_id", inferenceClassificationOverrideId);
+                var requestInfo = CreateDeleteRequestInformation(q => {
+                });
                 await RequestAdapter.SendNoContentAsync(requestInfo);
                 // Print request output. What if the request has no return?
                 Console.WriteLine("Success");
@@ -43,12 +45,17 @@ namespace ApiSdk.Me.InferenceClassification.Overrides.Item {
             var command = new Command("get");
             command.Description = "A set of overrides for a user to always classify messages from specific senders in certain ways: focused, or other. Read-only. Nullable.";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--inferenceclassificationoverride-id", description: "key: id of inferenceClassificationOverride"));
-            command.AddOption(new Option<object>("--select", description: "Select properties to be returned"));
-            command.Handler = CommandHandler.Create<string, object>(async (inferenceClassificationOverrideId, select) => {
-                var requestInfo = CreateGetRequestInformation();
-                if (!String.IsNullOrEmpty(inferenceClassificationOverrideId)) requestInfo.PathParameters.Add("inferenceClassificationOverride_id", inferenceClassificationOverrideId);
-                requestInfo.QueryParameters.Add("select", select);
+            var inferenceClassificationOverrideIdOption = new Option<string>("--inferenceclassificationoverride-id", description: "key: id of inferenceClassificationOverride");
+            inferenceClassificationOverrideIdOption.IsRequired = true;
+            command.AddOption(inferenceClassificationOverrideIdOption);
+            var selectOption = new Option<string[]>("--select", description: "Select properties to be returned");
+            selectOption.IsRequired = false;
+            selectOption.Arity = ArgumentArity.ZeroOrMore;
+            command.AddOption(selectOption);
+            command.Handler = CommandHandler.Create<string, string[]>(async (inferenceClassificationOverrideId, select) => {
+                var requestInfo = CreateGetRequestInformation(q => {
+                    q.Select = select;
+                });
                 var result = await RequestAdapter.SendAsync<InferenceClassificationOverride>(requestInfo);
                 // Print request output. What if the request has no return?
                 using var serializer = RequestAdapter.SerializationWriterFactory.GetSerializationWriter("application/json");
@@ -67,14 +74,18 @@ namespace ApiSdk.Me.InferenceClassification.Overrides.Item {
             var command = new Command("patch");
             command.Description = "A set of overrides for a user to always classify messages from specific senders in certain ways: focused, or other. Read-only. Nullable.";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--inferenceclassificationoverride-id", description: "key: id of inferenceClassificationOverride"));
-            command.AddOption(new Option<string>("--body"));
+            var inferenceClassificationOverrideIdOption = new Option<string>("--inferenceclassificationoverride-id", description: "key: id of inferenceClassificationOverride");
+            inferenceClassificationOverrideIdOption.IsRequired = true;
+            command.AddOption(inferenceClassificationOverrideIdOption);
+            var bodyOption = new Option<string>("--body");
+            bodyOption.IsRequired = true;
+            command.AddOption(bodyOption);
             command.Handler = CommandHandler.Create<string, string>(async (inferenceClassificationOverrideId, body) => {
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<InferenceClassificationOverride>();
-                var requestInfo = CreatePatchRequestInformation(model);
-                if (!String.IsNullOrEmpty(inferenceClassificationOverrideId)) requestInfo.PathParameters.Add("inferenceClassificationOverride_id", inferenceClassificationOverrideId);
+                var requestInfo = CreatePatchRequestInformation(model, q => {
+                });
                 await RequestAdapter.SendNoContentAsync(requestInfo);
                 // Print request output. What if the request has no return?
                 Console.WriteLine("Success");

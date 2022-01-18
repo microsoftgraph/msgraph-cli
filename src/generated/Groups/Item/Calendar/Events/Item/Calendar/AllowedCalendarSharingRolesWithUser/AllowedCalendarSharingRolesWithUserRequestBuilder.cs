@@ -25,14 +25,18 @@ namespace ApiSdk.Groups.Item.Calendar.Events.Item.Calendar.AllowedCalendarSharin
             var command = new Command("get");
             command.Description = "Invoke function allowedCalendarSharingRoles";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--group-id", description: "key: id of group"));
-            command.AddOption(new Option<string>("--event-id", description: "key: id of event"));
-            command.AddOption(new Option<string>("--user", description: "Usage: User={User}"));
+            var groupIdOption = new Option<string>("--group-id", description: "key: id of group");
+            groupIdOption.IsRequired = true;
+            command.AddOption(groupIdOption);
+            var eventIdOption = new Option<string>("--event-id", description: "key: id of event");
+            eventIdOption.IsRequired = true;
+            command.AddOption(eventIdOption);
+            var UserOption = new Option<string>("--user", description: "Usage: User={User}");
+            UserOption.IsRequired = true;
+            command.AddOption(UserOption);
             command.Handler = CommandHandler.Create<string, string, string>(async (groupId, eventId, User) => {
-                var requestInfo = CreateGetRequestInformation();
-                if (!String.IsNullOrEmpty(groupId)) requestInfo.PathParameters.Add("group_id", groupId);
-                if (!String.IsNullOrEmpty(eventId)) requestInfo.PathParameters.Add("event_id", eventId);
-                if (!String.IsNullOrEmpty(User)) requestInfo.PathParameters.Add("User", User);
+                var requestInfo = CreateGetRequestInformation(q => {
+                });
                 var result = await RequestAdapter.SendPrimitiveCollectionAsync<string>(requestInfo);
                 // Print request output. What if the request has no return?
                 using var serializer = RequestAdapter.SerializationWriterFactory.GetSerializationWriter("application/json");

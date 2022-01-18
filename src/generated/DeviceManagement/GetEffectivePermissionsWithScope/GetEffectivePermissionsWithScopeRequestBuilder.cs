@@ -25,10 +25,12 @@ namespace ApiSdk.DeviceManagement.GetEffectivePermissionsWithScope {
             var command = new Command("get");
             command.Description = "Retrieves the effective permissions of the currently authenticated user";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--scope", description: "Usage: scope={scope}"));
+            var scopeOption = new Option<string>("--scope", description: "Usage: scope={scope}");
+            scopeOption.IsRequired = true;
+            command.AddOption(scopeOption);
             command.Handler = CommandHandler.Create<string>(async (scope) => {
-                var requestInfo = CreateGetRequestInformation();
-                if (!String.IsNullOrEmpty(scope)) requestInfo.PathParameters.Add("scope", scope);
+                var requestInfo = CreateGetRequestInformation(q => {
+                });
                 var result = await RequestAdapter.SendCollectionAsync<ApiSdk.DeviceManagement.GetEffectivePermissionsWithScope.GetEffectivePermissionsWithScope>(requestInfo);
                 // Print request output. What if the request has no return?
                 using var serializer = RequestAdapter.SerializationWriterFactory.GetSerializationWriter("application/json");

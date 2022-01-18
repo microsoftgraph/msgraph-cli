@@ -9,7 +9,7 @@ namespace ApiSdk.Models.Microsoft.Graph {
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>Determines the recipient of the notification email.</summary>
         public AccessReviewNotificationRecipientScope NotificationRecipientScope { get; set; }
-        /// <summary>Indicates the type of access review email to be sent. Supported template type is CompletedAdditionalRecipients, which sends review completion notifications to the recipients.</summary>
+        /// <summary>Indicates the type of access review email to be sent. Supported template type is CompletedAdditionalRecipients which sends review completion notifications to the recipients.</summary>
         public string NotificationTemplateType { get; set; }
         /// <summary>
         /// Instantiates a new accessReviewNotificationRecipientItem and sets the default values.

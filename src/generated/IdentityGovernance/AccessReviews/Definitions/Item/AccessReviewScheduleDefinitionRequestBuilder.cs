@@ -22,16 +22,18 @@ namespace ApiSdk.IdentityGovernance.AccessReviews.Definitions.Item {
         /// <summary>Url template to use to build the URL for the current request builder</summary>
         private string UrlTemplate { get; set; }
         /// <summary>
-        /// Delete navigation property definitions for identityGovernance
+        /// Represents the template and scheduling for an access review.
         /// </summary>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
-            command.Description = "Delete navigation property definitions for identityGovernance";
+            command.Description = "Represents the template and scheduling for an access review.";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--accessreviewscheduledefinition-id", description: "key: id of accessReviewScheduleDefinition"));
+            var accessReviewScheduleDefinitionIdOption = new Option<string>("--accessreviewscheduledefinition-id", description: "key: id of accessReviewScheduleDefinition");
+            accessReviewScheduleDefinitionIdOption.IsRequired = true;
+            command.AddOption(accessReviewScheduleDefinitionIdOption);
             command.Handler = CommandHandler.Create<string>(async (accessReviewScheduleDefinitionId) => {
-                var requestInfo = CreateDeleteRequestInformation();
-                if (!String.IsNullOrEmpty(accessReviewScheduleDefinitionId)) requestInfo.PathParameters.Add("accessReviewScheduleDefinition_id", accessReviewScheduleDefinitionId);
+                var requestInfo = CreateDeleteRequestInformation(q => {
+                });
                 await RequestAdapter.SendNoContentAsync(requestInfo);
                 // Print request output. What if the request has no return?
                 Console.WriteLine("Success");
@@ -39,20 +41,28 @@ namespace ApiSdk.IdentityGovernance.AccessReviews.Definitions.Item {
             return command;
         }
         /// <summary>
-        /// Get definitions from identityGovernance
+        /// Represents the template and scheduling for an access review.
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "Get definitions from identityGovernance";
+            command.Description = "Represents the template and scheduling for an access review.";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--accessreviewscheduledefinition-id", description: "key: id of accessReviewScheduleDefinition"));
-            command.AddOption(new Option<object>("--select", description: "Select properties to be returned"));
-            command.AddOption(new Option<object>("--expand", description: "Expand related entities"));
-            command.Handler = CommandHandler.Create<string, object, object>(async (accessReviewScheduleDefinitionId, select, expand) => {
-                var requestInfo = CreateGetRequestInformation();
-                if (!String.IsNullOrEmpty(accessReviewScheduleDefinitionId)) requestInfo.PathParameters.Add("accessReviewScheduleDefinition_id", accessReviewScheduleDefinitionId);
-                requestInfo.QueryParameters.Add("select", select);
-                requestInfo.QueryParameters.Add("expand", expand);
+            var accessReviewScheduleDefinitionIdOption = new Option<string>("--accessreviewscheduledefinition-id", description: "key: id of accessReviewScheduleDefinition");
+            accessReviewScheduleDefinitionIdOption.IsRequired = true;
+            command.AddOption(accessReviewScheduleDefinitionIdOption);
+            var selectOption = new Option<string[]>("--select", description: "Select properties to be returned");
+            selectOption.IsRequired = false;
+            selectOption.Arity = ArgumentArity.ZeroOrMore;
+            command.AddOption(selectOption);
+            var expandOption = new Option<string[]>("--expand", description: "Expand related entities");
+            expandOption.IsRequired = false;
+            expandOption.Arity = ArgumentArity.ZeroOrMore;
+            command.AddOption(expandOption);
+            command.Handler = CommandHandler.Create<string, string[], string[]>(async (accessReviewScheduleDefinitionId, select, expand) => {
+                var requestInfo = CreateGetRequestInformation(q => {
+                    q.Select = select;
+                    q.Expand = expand;
+                });
                 var result = await RequestAdapter.SendAsync<AccessReviewScheduleDefinition>(requestInfo);
                 // Print request output. What if the request has no return?
                 using var serializer = RequestAdapter.SerializationWriterFactory.GetSerializationWriter("application/json");
@@ -72,20 +82,24 @@ namespace ApiSdk.IdentityGovernance.AccessReviews.Definitions.Item {
             return command;
         }
         /// <summary>
-        /// Update the navigation property definitions in identityGovernance
+        /// Represents the template and scheduling for an access review.
         /// </summary>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
-            command.Description = "Update the navigation property definitions in identityGovernance";
+            command.Description = "Represents the template and scheduling for an access review.";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--accessreviewscheduledefinition-id", description: "key: id of accessReviewScheduleDefinition"));
-            command.AddOption(new Option<string>("--body"));
+            var accessReviewScheduleDefinitionIdOption = new Option<string>("--accessreviewscheduledefinition-id", description: "key: id of accessReviewScheduleDefinition");
+            accessReviewScheduleDefinitionIdOption.IsRequired = true;
+            command.AddOption(accessReviewScheduleDefinitionIdOption);
+            var bodyOption = new Option<string>("--body");
+            bodyOption.IsRequired = true;
+            command.AddOption(bodyOption);
             command.Handler = CommandHandler.Create<string, string>(async (accessReviewScheduleDefinitionId, body) => {
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<AccessReviewScheduleDefinition>();
-                var requestInfo = CreatePatchRequestInformation(model);
-                if (!String.IsNullOrEmpty(accessReviewScheduleDefinitionId)) requestInfo.PathParameters.Add("accessReviewScheduleDefinition_id", accessReviewScheduleDefinitionId);
+                var requestInfo = CreatePatchRequestInformation(model, q => {
+                });
                 await RequestAdapter.SendNoContentAsync(requestInfo);
                 // Print request output. What if the request has no return?
                 Console.WriteLine("Success");
@@ -112,7 +126,7 @@ namespace ApiSdk.IdentityGovernance.AccessReviews.Definitions.Item {
             RequestAdapter = requestAdapter;
         }
         /// <summary>
-        /// Delete navigation property definitions for identityGovernance
+        /// Represents the template and scheduling for an access review.
         /// <param name="h">Request headers</param>
         /// <param name="o">Request options</param>
         /// </summary>
@@ -127,7 +141,7 @@ namespace ApiSdk.IdentityGovernance.AccessReviews.Definitions.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Get definitions from identityGovernance
+        /// Represents the template and scheduling for an access review.
         /// <param name="h">Request headers</param>
         /// <param name="o">Request options</param>
         /// <param name="q">Request query parameters</param>
@@ -148,7 +162,7 @@ namespace ApiSdk.IdentityGovernance.AccessReviews.Definitions.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Update the navigation property definitions in identityGovernance
+        /// Represents the template and scheduling for an access review.
         /// <param name="body"></param>
         /// <param name="h">Request headers</param>
         /// <param name="o">Request options</param>
@@ -166,7 +180,7 @@ namespace ApiSdk.IdentityGovernance.AccessReviews.Definitions.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Delete navigation property definitions for identityGovernance
+        /// Represents the template and scheduling for an access review.
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="h">Request headers</param>
         /// <param name="o">Request options</param>
@@ -177,7 +191,7 @@ namespace ApiSdk.IdentityGovernance.AccessReviews.Definitions.Item {
             await RequestAdapter.SendNoContentAsync(requestInfo, responseHandler, cancellationToken);
         }
         /// <summary>
-        /// Get definitions from identityGovernance
+        /// Represents the template and scheduling for an access review.
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="h">Request headers</param>
         /// <param name="o">Request options</param>
@@ -189,7 +203,7 @@ namespace ApiSdk.IdentityGovernance.AccessReviews.Definitions.Item {
             return await RequestAdapter.SendAsync<AccessReviewScheduleDefinition>(requestInfo, responseHandler, cancellationToken);
         }
         /// <summary>
-        /// Update the navigation property definitions in identityGovernance
+        /// Represents the template and scheduling for an access review.
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="h">Request headers</param>
         /// <param name="model"></param>
@@ -201,7 +215,7 @@ namespace ApiSdk.IdentityGovernance.AccessReviews.Definitions.Item {
             var requestInfo = CreatePatchRequestInformation(model, h, o);
             await RequestAdapter.SendNoContentAsync(requestInfo, responseHandler, cancellationToken);
         }
-        /// <summary>Get definitions from identityGovernance</summary>
+        /// <summary>Represents the template and scheduling for an access review.</summary>
         public class GetQueryParameters : QueryParametersBase {
             /// <summary>Expand related entities</summary>
             public string[] Expand { get; set; }

@@ -25,12 +25,15 @@ namespace ApiSdk.Workbooks.Item.Versions.Item.RestoreVersion {
             var command = new Command("post");
             command.Description = "Invoke action restoreVersion";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--driveitem-id", description: "key: id of driveItem"));
-            command.AddOption(new Option<string>("--driveitemversion-id", description: "key: id of driveItemVersion"));
+            var driveItemIdOption = new Option<string>("--driveitem-id", description: "key: id of driveItem");
+            driveItemIdOption.IsRequired = true;
+            command.AddOption(driveItemIdOption);
+            var driveItemVersionIdOption = new Option<string>("--driveitemversion-id", description: "key: id of driveItemVersion");
+            driveItemVersionIdOption.IsRequired = true;
+            command.AddOption(driveItemVersionIdOption);
             command.Handler = CommandHandler.Create<string, string>(async (driveItemId, driveItemVersionId) => {
-                var requestInfo = CreatePostRequestInformation();
-                if (!String.IsNullOrEmpty(driveItemId)) requestInfo.PathParameters.Add("driveItem_id", driveItemId);
-                if (!String.IsNullOrEmpty(driveItemVersionId)) requestInfo.PathParameters.Add("driveItemVersion_id", driveItemVersionId);
+                var requestInfo = CreatePostRequestInformation(q => {
+                });
                 await RequestAdapter.SendNoContentAsync(requestInfo);
                 // Print request output. What if the request has no return?
                 Console.WriteLine("Success");

@@ -5,6 +5,7 @@ using System.IO;
 using System.Linq;
 namespace ApiSdk.Models.Microsoft.Graph {
     public class AgreementFileLocalization : AgreementFileProperties, IParsable {
+        /// <summary>Read-only. Customized versions of the terms of use agreement in the Azure AD tenant.</summary>
         public List<AgreementFileVersion> Versions { get; set; }
         /// <summary>
         /// The deserialization information for the current model

@@ -26,14 +26,18 @@ namespace ApiSdk.Workbooks.Item.Workbook.Comments.Item.Replies.Item {
             var command = new Command("delete");
             command.Description = "Read-only. Nullable.";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--driveitem-id", description: "key: id of driveItem"));
-            command.AddOption(new Option<string>("--workbookcomment-id", description: "key: id of workbookComment"));
-            command.AddOption(new Option<string>("--workbookcommentreply-id", description: "key: id of workbookCommentReply"));
+            var driveItemIdOption = new Option<string>("--driveitem-id", description: "key: id of driveItem");
+            driveItemIdOption.IsRequired = true;
+            command.AddOption(driveItemIdOption);
+            var workbookCommentIdOption = new Option<string>("--workbookcomment-id", description: "key: id of workbookComment");
+            workbookCommentIdOption.IsRequired = true;
+            command.AddOption(workbookCommentIdOption);
+            var workbookCommentReplyIdOption = new Option<string>("--workbookcommentreply-id", description: "key: id of workbookCommentReply");
+            workbookCommentReplyIdOption.IsRequired = true;
+            command.AddOption(workbookCommentReplyIdOption);
             command.Handler = CommandHandler.Create<string, string, string>(async (driveItemId, workbookCommentId, workbookCommentReplyId) => {
-                var requestInfo = CreateDeleteRequestInformation();
-                if (!String.IsNullOrEmpty(driveItemId)) requestInfo.PathParameters.Add("driveItem_id", driveItemId);
-                if (!String.IsNullOrEmpty(workbookCommentId)) requestInfo.PathParameters.Add("workbookComment_id", workbookCommentId);
-                if (!String.IsNullOrEmpty(workbookCommentReplyId)) requestInfo.PathParameters.Add("workbookCommentReply_id", workbookCommentReplyId);
+                var requestInfo = CreateDeleteRequestInformation(q => {
+                });
                 await RequestAdapter.SendNoContentAsync(requestInfo);
                 // Print request output. What if the request has no return?
                 Console.WriteLine("Success");
@@ -47,18 +51,28 @@ namespace ApiSdk.Workbooks.Item.Workbook.Comments.Item.Replies.Item {
             var command = new Command("get");
             command.Description = "Read-only. Nullable.";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--driveitem-id", description: "key: id of driveItem"));
-            command.AddOption(new Option<string>("--workbookcomment-id", description: "key: id of workbookComment"));
-            command.AddOption(new Option<string>("--workbookcommentreply-id", description: "key: id of workbookCommentReply"));
-            command.AddOption(new Option<object>("--select", description: "Select properties to be returned"));
-            command.AddOption(new Option<object>("--expand", description: "Expand related entities"));
-            command.Handler = CommandHandler.Create<string, string, string, object, object>(async (driveItemId, workbookCommentId, workbookCommentReplyId, select, expand) => {
-                var requestInfo = CreateGetRequestInformation();
-                if (!String.IsNullOrEmpty(driveItemId)) requestInfo.PathParameters.Add("driveItem_id", driveItemId);
-                if (!String.IsNullOrEmpty(workbookCommentId)) requestInfo.PathParameters.Add("workbookComment_id", workbookCommentId);
-                if (!String.IsNullOrEmpty(workbookCommentReplyId)) requestInfo.PathParameters.Add("workbookCommentReply_id", workbookCommentReplyId);
-                requestInfo.QueryParameters.Add("select", select);
-                requestInfo.QueryParameters.Add("expand", expand);
+            var driveItemIdOption = new Option<string>("--driveitem-id", description: "key: id of driveItem");
+            driveItemIdOption.IsRequired = true;
+            command.AddOption(driveItemIdOption);
+            var workbookCommentIdOption = new Option<string>("--workbookcomment-id", description: "key: id of workbookComment");
+            workbookCommentIdOption.IsRequired = true;
+            command.AddOption(workbookCommentIdOption);
+            var workbookCommentReplyIdOption = new Option<string>("--workbookcommentreply-id", description: "key: id of workbookCommentReply");
+            workbookCommentReplyIdOption.IsRequired = true;
+            command.AddOption(workbookCommentReplyIdOption);
+            var selectOption = new Option<string[]>("--select", description: "Select properties to be returned");
+            selectOption.IsRequired = false;
+            selectOption.Arity = ArgumentArity.ZeroOrMore;
+            command.AddOption(selectOption);
+            var expandOption = new Option<string[]>("--expand", description: "Expand related entities");
+            expandOption.IsRequired = false;
+            expandOption.Arity = ArgumentArity.ZeroOrMore;
+            command.AddOption(expandOption);
+            command.Handler = CommandHandler.Create<string, string, string, string[], string[]>(async (driveItemId, workbookCommentId, workbookCommentReplyId, select, expand) => {
+                var requestInfo = CreateGetRequestInformation(q => {
+                    q.Select = select;
+                    q.Expand = expand;
+                });
                 var result = await RequestAdapter.SendAsync<WorkbookCommentReply>(requestInfo);
                 // Print request output. What if the request has no return?
                 using var serializer = RequestAdapter.SerializationWriterFactory.GetSerializationWriter("application/json");
@@ -77,18 +91,24 @@ namespace ApiSdk.Workbooks.Item.Workbook.Comments.Item.Replies.Item {
             var command = new Command("patch");
             command.Description = "Read-only. Nullable.";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--driveitem-id", description: "key: id of driveItem"));
-            command.AddOption(new Option<string>("--workbookcomment-id", description: "key: id of workbookComment"));
-            command.AddOption(new Option<string>("--workbookcommentreply-id", description: "key: id of workbookCommentReply"));
-            command.AddOption(new Option<string>("--body"));
+            var driveItemIdOption = new Option<string>("--driveitem-id", description: "key: id of driveItem");
+            driveItemIdOption.IsRequired = true;
+            command.AddOption(driveItemIdOption);
+            var workbookCommentIdOption = new Option<string>("--workbookcomment-id", description: "key: id of workbookComment");
+            workbookCommentIdOption.IsRequired = true;
+            command.AddOption(workbookCommentIdOption);
+            var workbookCommentReplyIdOption = new Option<string>("--workbookcommentreply-id", description: "key: id of workbookCommentReply");
+            workbookCommentReplyIdOption.IsRequired = true;
+            command.AddOption(workbookCommentReplyIdOption);
+            var bodyOption = new Option<string>("--body");
+            bodyOption.IsRequired = true;
+            command.AddOption(bodyOption);
             command.Handler = CommandHandler.Create<string, string, string, string>(async (driveItemId, workbookCommentId, workbookCommentReplyId, body) => {
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<WorkbookCommentReply>();
-                var requestInfo = CreatePatchRequestInformation(model);
-                if (!String.IsNullOrEmpty(driveItemId)) requestInfo.PathParameters.Add("driveItem_id", driveItemId);
-                if (!String.IsNullOrEmpty(workbookCommentId)) requestInfo.PathParameters.Add("workbookComment_id", workbookCommentId);
-                if (!String.IsNullOrEmpty(workbookCommentReplyId)) requestInfo.PathParameters.Add("workbookCommentReply_id", workbookCommentReplyId);
+                var requestInfo = CreatePatchRequestInformation(model, q => {
+                });
                 await RequestAdapter.SendNoContentAsync(requestInfo);
                 // Print request output. What if the request has no return?
                 Console.WriteLine("Success");

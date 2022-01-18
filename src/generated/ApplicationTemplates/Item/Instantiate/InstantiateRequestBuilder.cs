@@ -26,14 +26,18 @@ namespace ApiSdk.ApplicationTemplates.Item.Instantiate {
             var command = new Command("post");
             command.Description = "Invoke action instantiate";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--applicationtemplate-id", description: "key: id of applicationTemplate"));
-            command.AddOption(new Option<string>("--body"));
+            var applicationTemplateIdOption = new Option<string>("--applicationtemplate-id", description: "key: id of applicationTemplate");
+            applicationTemplateIdOption.IsRequired = true;
+            command.AddOption(applicationTemplateIdOption);
+            var bodyOption = new Option<string>("--body");
+            bodyOption.IsRequired = true;
+            command.AddOption(bodyOption);
             command.Handler = CommandHandler.Create<string, string>(async (applicationTemplateId, body) => {
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<InstantiateRequestBody>();
-                var requestInfo = CreatePostRequestInformation(model);
-                if (!String.IsNullOrEmpty(applicationTemplateId)) requestInfo.PathParameters.Add("applicationTemplate_id", applicationTemplateId);
+                var requestInfo = CreatePostRequestInformation(model, q => {
+                });
                 var result = await RequestAdapter.SendAsync<InstantiateResponse>(requestInfo);
                 // Print request output. What if the request has no return?
                 using var serializer = RequestAdapter.SerializationWriterFactory.GetSerializationWriter("application/json");

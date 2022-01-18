@@ -22,14 +22,15 @@ namespace ApiSdk.Me.Planner {
         /// <summary>Url template to use to build the URL for the current request builder</summary>
         private string UrlTemplate { get; set; }
         /// <summary>
-        /// Entry-point to the Planner resource that might exist for a user. Read-only.
+        /// Selective Planner services available to the user. Read-only. Nullable.
         /// </summary>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
-            command.Description = "Entry-point to the Planner resource that might exist for a user. Read-only.";
+            command.Description = "Selective Planner services available to the user. Read-only. Nullable.";
             // Create options for all the parameters
             command.Handler = CommandHandler.Create(async () => {
-                var requestInfo = CreateDeleteRequestInformation();
+                var requestInfo = CreateDeleteRequestInformation(q => {
+                });
                 await RequestAdapter.SendNoContentAsync(requestInfo);
                 // Print request output. What if the request has no return?
                 Console.WriteLine("Success");
@@ -37,18 +38,25 @@ namespace ApiSdk.Me.Planner {
             return command;
         }
         /// <summary>
-        /// Entry-point to the Planner resource that might exist for a user. Read-only.
+        /// Selective Planner services available to the user. Read-only. Nullable.
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "Entry-point to the Planner resource that might exist for a user. Read-only.";
+            command.Description = "Selective Planner services available to the user. Read-only. Nullable.";
             // Create options for all the parameters
-            command.AddOption(new Option<object>("--select", description: "Select properties to be returned"));
-            command.AddOption(new Option<object>("--expand", description: "Expand related entities"));
-            command.Handler = CommandHandler.Create<object, object>(async (select, expand) => {
-                var requestInfo = CreateGetRequestInformation();
-                requestInfo.QueryParameters.Add("select", select);
-                requestInfo.QueryParameters.Add("expand", expand);
+            var selectOption = new Option<string[]>("--select", description: "Select properties to be returned");
+            selectOption.IsRequired = false;
+            selectOption.Arity = ArgumentArity.ZeroOrMore;
+            command.AddOption(selectOption);
+            var expandOption = new Option<string[]>("--expand", description: "Expand related entities");
+            expandOption.IsRequired = false;
+            expandOption.Arity = ArgumentArity.ZeroOrMore;
+            command.AddOption(expandOption);
+            command.Handler = CommandHandler.Create<string[], string[]>(async (select, expand) => {
+                var requestInfo = CreateGetRequestInformation(q => {
+                    q.Select = select;
+                    q.Expand = expand;
+                });
                 var result = await RequestAdapter.SendAsync<PlannerUser>(requestInfo);
                 // Print request output. What if the request has no return?
                 using var serializer = RequestAdapter.SerializationWriterFactory.GetSerializationWriter("application/json");
@@ -61,18 +69,21 @@ namespace ApiSdk.Me.Planner {
             return command;
         }
         /// <summary>
-        /// Entry-point to the Planner resource that might exist for a user. Read-only.
+        /// Selective Planner services available to the user. Read-only. Nullable.
         /// </summary>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
-            command.Description = "Entry-point to the Planner resource that might exist for a user. Read-only.";
+            command.Description = "Selective Planner services available to the user. Read-only. Nullable.";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--body"));
+            var bodyOption = new Option<string>("--body");
+            bodyOption.IsRequired = true;
+            command.AddOption(bodyOption);
             command.Handler = CommandHandler.Create<string>(async (body) => {
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<PlannerUser>();
-                var requestInfo = CreatePatchRequestInformation(model);
+                var requestInfo = CreatePatchRequestInformation(model, q => {
+                });
                 await RequestAdapter.SendNoContentAsync(requestInfo);
                 // Print request output. What if the request has no return?
                 Console.WriteLine("Success");
@@ -107,7 +118,7 @@ namespace ApiSdk.Me.Planner {
             RequestAdapter = requestAdapter;
         }
         /// <summary>
-        /// Entry-point to the Planner resource that might exist for a user. Read-only.
+        /// Selective Planner services available to the user. Read-only. Nullable.
         /// <param name="h">Request headers</param>
         /// <param name="o">Request options</param>
         /// </summary>
@@ -122,7 +133,7 @@ namespace ApiSdk.Me.Planner {
             return requestInfo;
         }
         /// <summary>
-        /// Entry-point to the Planner resource that might exist for a user. Read-only.
+        /// Selective Planner services available to the user. Read-only. Nullable.
         /// <param name="h">Request headers</param>
         /// <param name="o">Request options</param>
         /// <param name="q">Request query parameters</param>
@@ -143,7 +154,7 @@ namespace ApiSdk.Me.Planner {
             return requestInfo;
         }
         /// <summary>
-        /// Entry-point to the Planner resource that might exist for a user. Read-only.
+        /// Selective Planner services available to the user. Read-only. Nullable.
         /// <param name="body"></param>
         /// <param name="h">Request headers</param>
         /// <param name="o">Request options</param>
@@ -161,7 +172,7 @@ namespace ApiSdk.Me.Planner {
             return requestInfo;
         }
         /// <summary>
-        /// Entry-point to the Planner resource that might exist for a user. Read-only.
+        /// Selective Planner services available to the user. Read-only. Nullable.
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="h">Request headers</param>
         /// <param name="o">Request options</param>
@@ -172,7 +183,7 @@ namespace ApiSdk.Me.Planner {
             await RequestAdapter.SendNoContentAsync(requestInfo, responseHandler, cancellationToken);
         }
         /// <summary>
-        /// Entry-point to the Planner resource that might exist for a user. Read-only.
+        /// Selective Planner services available to the user. Read-only. Nullable.
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="h">Request headers</param>
         /// <param name="o">Request options</param>
@@ -184,7 +195,7 @@ namespace ApiSdk.Me.Planner {
             return await RequestAdapter.SendAsync<PlannerUser>(requestInfo, responseHandler, cancellationToken);
         }
         /// <summary>
-        /// Entry-point to the Planner resource that might exist for a user. Read-only.
+        /// Selective Planner services available to the user. Read-only. Nullable.
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="h">Request headers</param>
         /// <param name="model"></param>
@@ -196,7 +207,7 @@ namespace ApiSdk.Me.Planner {
             var requestInfo = CreatePatchRequestInformation(model, h, o);
             await RequestAdapter.SendNoContentAsync(requestInfo, responseHandler, cancellationToken);
         }
-        /// <summary>Entry-point to the Planner resource that might exist for a user. Read-only.</summary>
+        /// <summary>Selective Planner services available to the user. Read-only. Nullable.</summary>
         public class GetQueryParameters : QueryParametersBase {
             /// <summary>Expand related entities</summary>
             public string[] Expand { get; set; }

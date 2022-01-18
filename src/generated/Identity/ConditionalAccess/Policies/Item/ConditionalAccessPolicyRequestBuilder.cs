@@ -20,16 +20,18 @@ namespace ApiSdk.Identity.ConditionalAccess.Policies.Item {
         /// <summary>Url template to use to build the URL for the current request builder</summary>
         private string UrlTemplate { get; set; }
         /// <summary>
-        /// Read-only. Nullable. Returns a collection of the specified Conditional Access (CA) policies.
+        /// Read-only. Nullable. Returns a collection of the specified Conditional Access policies.
         /// </summary>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
-            command.Description = "Read-only. Nullable. Returns a collection of the specified Conditional Access (CA) policies.";
+            command.Description = "Read-only. Nullable. Returns a collection of the specified Conditional Access policies.";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--conditionalaccesspolicy-id", description: "key: id of conditionalAccessPolicy"));
+            var conditionalAccessPolicyIdOption = new Option<string>("--conditionalaccesspolicy-id", description: "key: id of conditionalAccessPolicy");
+            conditionalAccessPolicyIdOption.IsRequired = true;
+            command.AddOption(conditionalAccessPolicyIdOption);
             command.Handler = CommandHandler.Create<string>(async (conditionalAccessPolicyId) => {
-                var requestInfo = CreateDeleteRequestInformation();
-                if (!String.IsNullOrEmpty(conditionalAccessPolicyId)) requestInfo.PathParameters.Add("conditionalAccessPolicy_id", conditionalAccessPolicyId);
+                var requestInfo = CreateDeleteRequestInformation(q => {
+                });
                 await RequestAdapter.SendNoContentAsync(requestInfo);
                 // Print request output. What if the request has no return?
                 Console.WriteLine("Success");
@@ -37,20 +39,28 @@ namespace ApiSdk.Identity.ConditionalAccess.Policies.Item {
             return command;
         }
         /// <summary>
-        /// Read-only. Nullable. Returns a collection of the specified Conditional Access (CA) policies.
+        /// Read-only. Nullable. Returns a collection of the specified Conditional Access policies.
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "Read-only. Nullable. Returns a collection of the specified Conditional Access (CA) policies.";
+            command.Description = "Read-only. Nullable. Returns a collection of the specified Conditional Access policies.";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--conditionalaccesspolicy-id", description: "key: id of conditionalAccessPolicy"));
-            command.AddOption(new Option<object>("--select", description: "Select properties to be returned"));
-            command.AddOption(new Option<object>("--expand", description: "Expand related entities"));
-            command.Handler = CommandHandler.Create<string, object, object>(async (conditionalAccessPolicyId, select, expand) => {
-                var requestInfo = CreateGetRequestInformation();
-                if (!String.IsNullOrEmpty(conditionalAccessPolicyId)) requestInfo.PathParameters.Add("conditionalAccessPolicy_id", conditionalAccessPolicyId);
-                requestInfo.QueryParameters.Add("select", select);
-                requestInfo.QueryParameters.Add("expand", expand);
+            var conditionalAccessPolicyIdOption = new Option<string>("--conditionalaccesspolicy-id", description: "key: id of conditionalAccessPolicy");
+            conditionalAccessPolicyIdOption.IsRequired = true;
+            command.AddOption(conditionalAccessPolicyIdOption);
+            var selectOption = new Option<string[]>("--select", description: "Select properties to be returned");
+            selectOption.IsRequired = false;
+            selectOption.Arity = ArgumentArity.ZeroOrMore;
+            command.AddOption(selectOption);
+            var expandOption = new Option<string[]>("--expand", description: "Expand related entities");
+            expandOption.IsRequired = false;
+            expandOption.Arity = ArgumentArity.ZeroOrMore;
+            command.AddOption(expandOption);
+            command.Handler = CommandHandler.Create<string, string[], string[]>(async (conditionalAccessPolicyId, select, expand) => {
+                var requestInfo = CreateGetRequestInformation(q => {
+                    q.Select = select;
+                    q.Expand = expand;
+                });
                 var result = await RequestAdapter.SendAsync<ConditionalAccessPolicy>(requestInfo);
                 // Print request output. What if the request has no return?
                 using var serializer = RequestAdapter.SerializationWriterFactory.GetSerializationWriter("application/json");
@@ -63,20 +73,24 @@ namespace ApiSdk.Identity.ConditionalAccess.Policies.Item {
             return command;
         }
         /// <summary>
-        /// Read-only. Nullable. Returns a collection of the specified Conditional Access (CA) policies.
+        /// Read-only. Nullable. Returns a collection of the specified Conditional Access policies.
         /// </summary>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
-            command.Description = "Read-only. Nullable. Returns a collection of the specified Conditional Access (CA) policies.";
+            command.Description = "Read-only. Nullable. Returns a collection of the specified Conditional Access policies.";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--conditionalaccesspolicy-id", description: "key: id of conditionalAccessPolicy"));
-            command.AddOption(new Option<string>("--body"));
+            var conditionalAccessPolicyIdOption = new Option<string>("--conditionalaccesspolicy-id", description: "key: id of conditionalAccessPolicy");
+            conditionalAccessPolicyIdOption.IsRequired = true;
+            command.AddOption(conditionalAccessPolicyIdOption);
+            var bodyOption = new Option<string>("--body");
+            bodyOption.IsRequired = true;
+            command.AddOption(bodyOption);
             command.Handler = CommandHandler.Create<string, string>(async (conditionalAccessPolicyId, body) => {
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<ConditionalAccessPolicy>();
-                var requestInfo = CreatePatchRequestInformation(model);
-                if (!String.IsNullOrEmpty(conditionalAccessPolicyId)) requestInfo.PathParameters.Add("conditionalAccessPolicy_id", conditionalAccessPolicyId);
+                var requestInfo = CreatePatchRequestInformation(model, q => {
+                });
                 await RequestAdapter.SendNoContentAsync(requestInfo);
                 // Print request output. What if the request has no return?
                 Console.WriteLine("Success");
@@ -97,7 +111,7 @@ namespace ApiSdk.Identity.ConditionalAccess.Policies.Item {
             RequestAdapter = requestAdapter;
         }
         /// <summary>
-        /// Read-only. Nullable. Returns a collection of the specified Conditional Access (CA) policies.
+        /// Read-only. Nullable. Returns a collection of the specified Conditional Access policies.
         /// <param name="h">Request headers</param>
         /// <param name="o">Request options</param>
         /// </summary>
@@ -112,7 +126,7 @@ namespace ApiSdk.Identity.ConditionalAccess.Policies.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Read-only. Nullable. Returns a collection of the specified Conditional Access (CA) policies.
+        /// Read-only. Nullable. Returns a collection of the specified Conditional Access policies.
         /// <param name="h">Request headers</param>
         /// <param name="o">Request options</param>
         /// <param name="q">Request query parameters</param>
@@ -133,7 +147,7 @@ namespace ApiSdk.Identity.ConditionalAccess.Policies.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Read-only. Nullable. Returns a collection of the specified Conditional Access (CA) policies.
+        /// Read-only. Nullable. Returns a collection of the specified Conditional Access policies.
         /// <param name="body"></param>
         /// <param name="h">Request headers</param>
         /// <param name="o">Request options</param>
@@ -151,7 +165,7 @@ namespace ApiSdk.Identity.ConditionalAccess.Policies.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Read-only. Nullable. Returns a collection of the specified Conditional Access (CA) policies.
+        /// Read-only. Nullable. Returns a collection of the specified Conditional Access policies.
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="h">Request headers</param>
         /// <param name="o">Request options</param>
@@ -162,7 +176,7 @@ namespace ApiSdk.Identity.ConditionalAccess.Policies.Item {
             await RequestAdapter.SendNoContentAsync(requestInfo, responseHandler, cancellationToken);
         }
         /// <summary>
-        /// Read-only. Nullable. Returns a collection of the specified Conditional Access (CA) policies.
+        /// Read-only. Nullable. Returns a collection of the specified Conditional Access policies.
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="h">Request headers</param>
         /// <param name="o">Request options</param>
@@ -174,7 +188,7 @@ namespace ApiSdk.Identity.ConditionalAccess.Policies.Item {
             return await RequestAdapter.SendAsync<ConditionalAccessPolicy>(requestInfo, responseHandler, cancellationToken);
         }
         /// <summary>
-        /// Read-only. Nullable. Returns a collection of the specified Conditional Access (CA) policies.
+        /// Read-only. Nullable. Returns a collection of the specified Conditional Access policies.
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="h">Request headers</param>
         /// <param name="model"></param>
@@ -186,7 +200,7 @@ namespace ApiSdk.Identity.ConditionalAccess.Policies.Item {
             var requestInfo = CreatePatchRequestInformation(model, h, o);
             await RequestAdapter.SendNoContentAsync(requestInfo, responseHandler, cancellationToken);
         }
-        /// <summary>Read-only. Nullable. Returns a collection of the specified Conditional Access (CA) policies.</summary>
+        /// <summary>Read-only. Nullable. Returns a collection of the specified Conditional Access policies.</summary>
         public class GetQueryParameters : QueryParametersBase {
             /// <summary>Expand related entities</summary>
             public string[] Expand { get; set; }

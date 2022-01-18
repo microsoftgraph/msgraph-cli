@@ -36,18 +36,24 @@ namespace ApiSdk.Me.CalendarGroups.Item.Calendars.Item.CalendarView.Item.SingleV
             var command = new Command("create");
             command.Description = "The collection of single-value extended properties defined for the event. Read-only. Nullable.";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--calendargroup-id", description: "key: id of calendarGroup"));
-            command.AddOption(new Option<string>("--calendar-id", description: "key: id of calendar"));
-            command.AddOption(new Option<string>("--event-id", description: "key: id of event"));
-            command.AddOption(new Option<string>("--body"));
+            var calendarGroupIdOption = new Option<string>("--calendargroup-id", description: "key: id of calendarGroup");
+            calendarGroupIdOption.IsRequired = true;
+            command.AddOption(calendarGroupIdOption);
+            var calendarIdOption = new Option<string>("--calendar-id", description: "key: id of calendar");
+            calendarIdOption.IsRequired = true;
+            command.AddOption(calendarIdOption);
+            var eventIdOption = new Option<string>("--event-id", description: "key: id of event");
+            eventIdOption.IsRequired = true;
+            command.AddOption(eventIdOption);
+            var bodyOption = new Option<string>("--body");
+            bodyOption.IsRequired = true;
+            command.AddOption(bodyOption);
             command.Handler = CommandHandler.Create<string, string, string, string>(async (calendarGroupId, calendarId, eventId, body) => {
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<SingleValueLegacyExtendedProperty>();
-                var requestInfo = CreatePostRequestInformation(model);
-                if (!String.IsNullOrEmpty(calendarGroupId)) requestInfo.PathParameters.Add("calendarGroup_id", calendarGroupId);
-                if (!String.IsNullOrEmpty(calendarId)) requestInfo.PathParameters.Add("calendar_id", calendarId);
-                if (!String.IsNullOrEmpty(eventId)) requestInfo.PathParameters.Add("event_id", eventId);
+                var requestInfo = CreatePostRequestInformation(model, q => {
+                });
                 var result = await RequestAdapter.SendAsync<SingleValueLegacyExtendedProperty>(requestInfo);
                 // Print request output. What if the request has no return?
                 using var serializer = RequestAdapter.SerializationWriterFactory.GetSerializationWriter("application/json");
@@ -66,30 +72,53 @@ namespace ApiSdk.Me.CalendarGroups.Item.Calendars.Item.CalendarView.Item.SingleV
             var command = new Command("list");
             command.Description = "The collection of single-value extended properties defined for the event. Read-only. Nullable.";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--calendargroup-id", description: "key: id of calendarGroup"));
-            command.AddOption(new Option<string>("--calendar-id", description: "key: id of calendar"));
-            command.AddOption(new Option<string>("--event-id", description: "key: id of event"));
-            command.AddOption(new Option<int?>("--top", description: "Show only the first n items"));
-            command.AddOption(new Option<int?>("--skip", description: "Skip the first n items"));
-            command.AddOption(new Option<string>("--search", description: "Search items by search phrases"));
-            command.AddOption(new Option<string>("--filter", description: "Filter items by property values"));
-            command.AddOption(new Option<bool?>("--count", description: "Include count of items"));
-            command.AddOption(new Option<object>("--orderby", description: "Order items by property values"));
-            command.AddOption(new Option<object>("--select", description: "Select properties to be returned"));
-            command.AddOption(new Option<object>("--expand", description: "Expand related entities"));
-            command.Handler = CommandHandler.Create<string, string, string, int?, int?, string, string, bool?, object, object, object>(async (calendarGroupId, calendarId, eventId, top, skip, search, filter, count, orderby, select, expand) => {
-                var requestInfo = CreateGetRequestInformation();
-                if (!String.IsNullOrEmpty(calendarGroupId)) requestInfo.PathParameters.Add("calendarGroup_id", calendarGroupId);
-                if (!String.IsNullOrEmpty(calendarId)) requestInfo.PathParameters.Add("calendar_id", calendarId);
-                if (!String.IsNullOrEmpty(eventId)) requestInfo.PathParameters.Add("event_id", eventId);
-                requestInfo.QueryParameters.Add("top", top);
-                requestInfo.QueryParameters.Add("skip", skip);
-                if (!String.IsNullOrEmpty(search)) requestInfo.QueryParameters.Add("search", search);
-                if (!String.IsNullOrEmpty(filter)) requestInfo.QueryParameters.Add("filter", filter);
-                requestInfo.QueryParameters.Add("count", count);
-                requestInfo.QueryParameters.Add("orderby", orderby);
-                requestInfo.QueryParameters.Add("select", select);
-                requestInfo.QueryParameters.Add("expand", expand);
+            var calendarGroupIdOption = new Option<string>("--calendargroup-id", description: "key: id of calendarGroup");
+            calendarGroupIdOption.IsRequired = true;
+            command.AddOption(calendarGroupIdOption);
+            var calendarIdOption = new Option<string>("--calendar-id", description: "key: id of calendar");
+            calendarIdOption.IsRequired = true;
+            command.AddOption(calendarIdOption);
+            var eventIdOption = new Option<string>("--event-id", description: "key: id of event");
+            eventIdOption.IsRequired = true;
+            command.AddOption(eventIdOption);
+            var topOption = new Option<int?>("--top", description: "Show only the first n items");
+            topOption.IsRequired = false;
+            command.AddOption(topOption);
+            var skipOption = new Option<int?>("--skip", description: "Skip the first n items");
+            skipOption.IsRequired = false;
+            command.AddOption(skipOption);
+            var searchOption = new Option<string>("--search", description: "Search items by search phrases");
+            searchOption.IsRequired = false;
+            command.AddOption(searchOption);
+            var filterOption = new Option<string>("--filter", description: "Filter items by property values");
+            filterOption.IsRequired = false;
+            command.AddOption(filterOption);
+            var countOption = new Option<bool?>("--count", description: "Include count of items");
+            countOption.IsRequired = false;
+            command.AddOption(countOption);
+            var orderbyOption = new Option<string[]>("--orderby", description: "Order items by property values");
+            orderbyOption.IsRequired = false;
+            orderbyOption.Arity = ArgumentArity.ZeroOrMore;
+            command.AddOption(orderbyOption);
+            var selectOption = new Option<string[]>("--select", description: "Select properties to be returned");
+            selectOption.IsRequired = false;
+            selectOption.Arity = ArgumentArity.ZeroOrMore;
+            command.AddOption(selectOption);
+            var expandOption = new Option<string[]>("--expand", description: "Expand related entities");
+            expandOption.IsRequired = false;
+            expandOption.Arity = ArgumentArity.ZeroOrMore;
+            command.AddOption(expandOption);
+            command.Handler = CommandHandler.Create<string, string, string, int?, int?, string, string, bool?, string[], string[], string[]>(async (calendarGroupId, calendarId, eventId, top, skip, search, filter, count, orderby, select, expand) => {
+                var requestInfo = CreateGetRequestInformation(q => {
+                    q.Top = top;
+                    q.Skip = skip;
+                    if (!String.IsNullOrEmpty(search)) q.Search = search;
+                    if (!String.IsNullOrEmpty(filter)) q.Filter = filter;
+                    q.Count = count;
+                    q.Orderby = orderby;
+                    q.Select = select;
+                    q.Expand = expand;
+                });
                 var result = await RequestAdapter.SendAsync<SingleValueExtendedPropertiesResponse>(requestInfo);
                 // Print request output. What if the request has no return?
                 using var serializer = RequestAdapter.SerializationWriterFactory.GetSerializationWriter("application/json");

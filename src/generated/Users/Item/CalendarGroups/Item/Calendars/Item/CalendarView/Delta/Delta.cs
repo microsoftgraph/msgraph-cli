@@ -6,7 +6,7 @@ using System.IO;
 using System.Linq;
 namespace ApiSdk.Users.Item.CalendarGroups.Item.Calendars.Item.CalendarView.Delta {
     public class Delta : OutlookItem, IParsable {
-        /// <summary>true if the meeting organizer allows invitees to propose a new time when responding; otherwise, false. Optional. Default is true.</summary>
+        /// <summary>true if the meeting organizer allows invitees to propose a new time when responding; otherwise false. Optional. Default is true.</summary>
         public bool? AllowNewTimeProposals { get; set; }
         /// <summary>The collection of FileAttachment, ItemAttachment, and referenceAttachment attachments for the event. Navigation property. Read-only. Nullable.</summary>
         public List<Attachment> Attachments { get; set; }

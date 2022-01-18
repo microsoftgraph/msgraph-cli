@@ -73,16 +73,18 @@ namespace ApiSdk.Me.Events.Item {
             return command;
         }
         /// <summary>
-        /// The user's events. Default is to show Events under the Default Calendar. Read-only. Nullable.
+        /// The user's events. Default is to show events under the Default Calendar. Read-only. Nullable.
         /// </summary>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
-            command.Description = "The user's events. Default is to show Events under the Default Calendar. Read-only. Nullable.";
+            command.Description = "The user's events. Default is to show events under the Default Calendar. Read-only. Nullable.";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--event-id", description: "key: id of event"));
+            var eventIdOption = new Option<string>("--event-id", description: "key: id of event");
+            eventIdOption.IsRequired = true;
+            command.AddOption(eventIdOption);
             command.Handler = CommandHandler.Create<string>(async (eventId) => {
-                var requestInfo = CreateDeleteRequestInformation();
-                if (!String.IsNullOrEmpty(eventId)) requestInfo.PathParameters.Add("event_id", eventId);
+                var requestInfo = CreateDeleteRequestInformation(q => {
+                });
                 await RequestAdapter.SendNoContentAsync(requestInfo);
                 // Print request output. What if the request has no return?
                 Console.WriteLine("Success");
@@ -109,18 +111,23 @@ namespace ApiSdk.Me.Events.Item {
             return command;
         }
         /// <summary>
-        /// The user's events. Default is to show Events under the Default Calendar. Read-only. Nullable.
+        /// The user's events. Default is to show events under the Default Calendar. Read-only. Nullable.
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "The user's events. Default is to show Events under the Default Calendar. Read-only. Nullable.";
+            command.Description = "The user's events. Default is to show events under the Default Calendar. Read-only. Nullable.";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--event-id", description: "key: id of event"));
-            command.AddOption(new Option<object>("--select", description: "Select properties to be returned"));
-            command.Handler = CommandHandler.Create<string, object>(async (eventId, select) => {
-                var requestInfo = CreateGetRequestInformation();
-                if (!String.IsNullOrEmpty(eventId)) requestInfo.PathParameters.Add("event_id", eventId);
-                requestInfo.QueryParameters.Add("select", select);
+            var eventIdOption = new Option<string>("--event-id", description: "key: id of event");
+            eventIdOption.IsRequired = true;
+            command.AddOption(eventIdOption);
+            var selectOption = new Option<string[]>("--select", description: "Select properties to be returned");
+            selectOption.IsRequired = false;
+            selectOption.Arity = ArgumentArity.ZeroOrMore;
+            command.AddOption(selectOption);
+            command.Handler = CommandHandler.Create<string, string[]>(async (eventId, select) => {
+                var requestInfo = CreateGetRequestInformation(q => {
+                    q.Select = select;
+                });
                 var result = await RequestAdapter.SendAsync<@Event>(requestInfo);
                 // Print request output. What if the request has no return?
                 using var serializer = RequestAdapter.SerializationWriterFactory.GetSerializationWriter("application/json");
@@ -147,20 +154,24 @@ namespace ApiSdk.Me.Events.Item {
             return command;
         }
         /// <summary>
-        /// The user's events. Default is to show Events under the Default Calendar. Read-only. Nullable.
+        /// The user's events. Default is to show events under the Default Calendar. Read-only. Nullable.
         /// </summary>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
-            command.Description = "The user's events. Default is to show Events under the Default Calendar. Read-only. Nullable.";
+            command.Description = "The user's events. Default is to show events under the Default Calendar. Read-only. Nullable.";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--event-id", description: "key: id of event"));
-            command.AddOption(new Option<string>("--body"));
+            var eventIdOption = new Option<string>("--event-id", description: "key: id of event");
+            eventIdOption.IsRequired = true;
+            command.AddOption(eventIdOption);
+            var bodyOption = new Option<string>("--body");
+            bodyOption.IsRequired = true;
+            command.AddOption(bodyOption);
             command.Handler = CommandHandler.Create<string, string>(async (eventId, body) => {
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<@Event>();
-                var requestInfo = CreatePatchRequestInformation(model);
-                if (!String.IsNullOrEmpty(eventId)) requestInfo.PathParameters.Add("event_id", eventId);
+                var requestInfo = CreatePatchRequestInformation(model, q => {
+                });
                 await RequestAdapter.SendNoContentAsync(requestInfo);
                 // Print request output. What if the request has no return?
                 Console.WriteLine("Success");
@@ -200,7 +211,7 @@ namespace ApiSdk.Me.Events.Item {
             RequestAdapter = requestAdapter;
         }
         /// <summary>
-        /// The user's events. Default is to show Events under the Default Calendar. Read-only. Nullable.
+        /// The user's events. Default is to show events under the Default Calendar. Read-only. Nullable.
         /// <param name="h">Request headers</param>
         /// <param name="o">Request options</param>
         /// </summary>
@@ -215,7 +226,7 @@ namespace ApiSdk.Me.Events.Item {
             return requestInfo;
         }
         /// <summary>
-        /// The user's events. Default is to show Events under the Default Calendar. Read-only. Nullable.
+        /// The user's events. Default is to show events under the Default Calendar. Read-only. Nullable.
         /// <param name="h">Request headers</param>
         /// <param name="o">Request options</param>
         /// <param name="q">Request query parameters</param>
@@ -236,7 +247,7 @@ namespace ApiSdk.Me.Events.Item {
             return requestInfo;
         }
         /// <summary>
-        /// The user's events. Default is to show Events under the Default Calendar. Read-only. Nullable.
+        /// The user's events. Default is to show events under the Default Calendar. Read-only. Nullable.
         /// <param name="body"></param>
         /// <param name="h">Request headers</param>
         /// <param name="o">Request options</param>
@@ -254,7 +265,7 @@ namespace ApiSdk.Me.Events.Item {
             return requestInfo;
         }
         /// <summary>
-        /// The user's events. Default is to show Events under the Default Calendar. Read-only. Nullable.
+        /// The user's events. Default is to show events under the Default Calendar. Read-only. Nullable.
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="h">Request headers</param>
         /// <param name="o">Request options</param>
@@ -265,7 +276,7 @@ namespace ApiSdk.Me.Events.Item {
             await RequestAdapter.SendNoContentAsync(requestInfo, responseHandler, cancellationToken);
         }
         /// <summary>
-        /// The user's events. Default is to show Events under the Default Calendar. Read-only. Nullable.
+        /// The user's events. Default is to show events under the Default Calendar. Read-only. Nullable.
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="h">Request headers</param>
         /// <param name="o">Request options</param>
@@ -277,7 +288,7 @@ namespace ApiSdk.Me.Events.Item {
             return await RequestAdapter.SendAsync<@Event>(requestInfo, responseHandler, cancellationToken);
         }
         /// <summary>
-        /// The user's events. Default is to show Events under the Default Calendar. Read-only. Nullable.
+        /// The user's events. Default is to show events under the Default Calendar. Read-only. Nullable.
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="h">Request headers</param>
         /// <param name="model"></param>
@@ -289,7 +300,7 @@ namespace ApiSdk.Me.Events.Item {
             var requestInfo = CreatePatchRequestInformation(model, h, o);
             await RequestAdapter.SendNoContentAsync(requestInfo, responseHandler, cancellationToken);
         }
-        /// <summary>The user's events. Default is to show Events under the Default Calendar. Read-only. Nullable.</summary>
+        /// <summary>The user's events. Default is to show events under the Default Calendar. Read-only. Nullable.</summary>
         public class GetQueryParameters : QueryParametersBase {
             /// <summary>Select properties to be returned</summary>
             public string[] Select { get; set; }

@@ -26,16 +26,21 @@ namespace ApiSdk.Users.Item.Insights.Shared.Item.LastSharedMethod.WorkbookRange.
             var command = new Command("get");
             command.Description = "Invoke function cell";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--user-id", description: "key: id of user"));
-            command.AddOption(new Option<string>("--sharedinsight-id", description: "key: id of sharedInsight"));
-            command.AddOption(new Option<int?>("--row", description: "Usage: row={row}"));
-            command.AddOption(new Option<int?>("--column", description: "Usage: column={column}"));
+            var userIdOption = new Option<string>("--user-id", description: "key: id of user");
+            userIdOption.IsRequired = true;
+            command.AddOption(userIdOption);
+            var sharedInsightIdOption = new Option<string>("--sharedinsight-id", description: "key: id of sharedInsight");
+            sharedInsightIdOption.IsRequired = true;
+            command.AddOption(sharedInsightIdOption);
+            var rowOption = new Option<int?>("--row", description: "Usage: row={row}");
+            rowOption.IsRequired = true;
+            command.AddOption(rowOption);
+            var columnOption = new Option<int?>("--column", description: "Usage: column={column}");
+            columnOption.IsRequired = true;
+            command.AddOption(columnOption);
             command.Handler = CommandHandler.Create<string, string, int?, int?>(async (userId, sharedInsightId, row, column) => {
-                var requestInfo = CreateGetRequestInformation();
-                if (!String.IsNullOrEmpty(userId)) requestInfo.PathParameters.Add("user_id", userId);
-                if (!String.IsNullOrEmpty(sharedInsightId)) requestInfo.PathParameters.Add("sharedInsight_id", sharedInsightId);
-                requestInfo.PathParameters.Add("row", row);
-                requestInfo.PathParameters.Add("column", column);
+                var requestInfo = CreateGetRequestInformation(q => {
+                });
                 var result = await RequestAdapter.SendAsync<CellWithRowWithColumnResponse>(requestInfo);
                 // Print request output. What if the request has no return?
                 using var serializer = RequestAdapter.SerializationWriterFactory.GetSerializationWriter("application/json");

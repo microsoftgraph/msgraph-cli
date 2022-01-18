@@ -26,10 +26,12 @@ namespace ApiSdk.Identity.IdentityProviders.Item {
             var command = new Command("delete");
             command.Description = "Represents entry point for identity provider base.";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--identityproviderbase-id", description: "key: id of identityProviderBase"));
+            var identityProviderBaseIdOption = new Option<string>("--identityproviderbase-id", description: "key: id of identityProviderBase");
+            identityProviderBaseIdOption.IsRequired = true;
+            command.AddOption(identityProviderBaseIdOption);
             command.Handler = CommandHandler.Create<string>(async (identityProviderBaseId) => {
-                var requestInfo = CreateDeleteRequestInformation();
-                if (!String.IsNullOrEmpty(identityProviderBaseId)) requestInfo.PathParameters.Add("identityProviderBase_id", identityProviderBaseId);
+                var requestInfo = CreateDeleteRequestInformation(q => {
+                });
                 await RequestAdapter.SendNoContentAsync(requestInfo);
                 // Print request output. What if the request has no return?
                 Console.WriteLine("Success");
@@ -43,14 +45,22 @@ namespace ApiSdk.Identity.IdentityProviders.Item {
             var command = new Command("get");
             command.Description = "Represents entry point for identity provider base.";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--identityproviderbase-id", description: "key: id of identityProviderBase"));
-            command.AddOption(new Option<object>("--select", description: "Select properties to be returned"));
-            command.AddOption(new Option<object>("--expand", description: "Expand related entities"));
-            command.Handler = CommandHandler.Create<string, object, object>(async (identityProviderBaseId, select, expand) => {
-                var requestInfo = CreateGetRequestInformation();
-                if (!String.IsNullOrEmpty(identityProviderBaseId)) requestInfo.PathParameters.Add("identityProviderBase_id", identityProviderBaseId);
-                requestInfo.QueryParameters.Add("select", select);
-                requestInfo.QueryParameters.Add("expand", expand);
+            var identityProviderBaseIdOption = new Option<string>("--identityproviderbase-id", description: "key: id of identityProviderBase");
+            identityProviderBaseIdOption.IsRequired = true;
+            command.AddOption(identityProviderBaseIdOption);
+            var selectOption = new Option<string[]>("--select", description: "Select properties to be returned");
+            selectOption.IsRequired = false;
+            selectOption.Arity = ArgumentArity.ZeroOrMore;
+            command.AddOption(selectOption);
+            var expandOption = new Option<string[]>("--expand", description: "Expand related entities");
+            expandOption.IsRequired = false;
+            expandOption.Arity = ArgumentArity.ZeroOrMore;
+            command.AddOption(expandOption);
+            command.Handler = CommandHandler.Create<string, string[], string[]>(async (identityProviderBaseId, select, expand) => {
+                var requestInfo = CreateGetRequestInformation(q => {
+                    q.Select = select;
+                    q.Expand = expand;
+                });
                 var result = await RequestAdapter.SendAsync<IdentityProviderBase>(requestInfo);
                 // Print request output. What if the request has no return?
                 using var serializer = RequestAdapter.SerializationWriterFactory.GetSerializationWriter("application/json");
@@ -69,14 +79,18 @@ namespace ApiSdk.Identity.IdentityProviders.Item {
             var command = new Command("patch");
             command.Description = "Represents entry point for identity provider base.";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--identityproviderbase-id", description: "key: id of identityProviderBase"));
-            command.AddOption(new Option<string>("--body"));
+            var identityProviderBaseIdOption = new Option<string>("--identityproviderbase-id", description: "key: id of identityProviderBase");
+            identityProviderBaseIdOption.IsRequired = true;
+            command.AddOption(identityProviderBaseIdOption);
+            var bodyOption = new Option<string>("--body");
+            bodyOption.IsRequired = true;
+            command.AddOption(bodyOption);
             command.Handler = CommandHandler.Create<string, string>(async (identityProviderBaseId, body) => {
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<IdentityProviderBase>();
-                var requestInfo = CreatePatchRequestInformation(model);
-                if (!String.IsNullOrEmpty(identityProviderBaseId)) requestInfo.PathParameters.Add("identityProviderBase_id", identityProviderBaseId);
+                var requestInfo = CreatePatchRequestInformation(model, q => {
+                });
                 await RequestAdapter.SendNoContentAsync(requestInfo);
                 // Print request output. What if the request has no return?
                 Console.WriteLine("Success");

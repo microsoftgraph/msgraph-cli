@@ -19,16 +19,18 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.AccessPackages.Item.Ca
         /// <summary>Url template to use to build the URL for the current request builder</summary>
         private string UrlTemplate { get; set; }
         /// <summary>
-        /// Delete ref of navigation property catalog for identityGovernance
+        /// Read-only. Nullable.
         /// </summary>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
-            command.Description = "Delete ref of navigation property catalog for identityGovernance";
+            command.Description = "Read-only. Nullable.";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--accesspackage-id", description: "key: id of accessPackage"));
+            var accessPackageIdOption = new Option<string>("--accesspackage-id", description: "key: id of accessPackage");
+            accessPackageIdOption.IsRequired = true;
+            command.AddOption(accessPackageIdOption);
             command.Handler = CommandHandler.Create<string>(async (accessPackageId) => {
-                var requestInfo = CreateDeleteRequestInformation();
-                if (!String.IsNullOrEmpty(accessPackageId)) requestInfo.PathParameters.Add("accessPackage_id", accessPackageId);
+                var requestInfo = CreateDeleteRequestInformation(q => {
+                });
                 await RequestAdapter.SendNoContentAsync(requestInfo);
                 // Print request output. What if the request has no return?
                 Console.WriteLine("Success");
@@ -36,16 +38,18 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.AccessPackages.Item.Ca
             return command;
         }
         /// <summary>
-        /// Get ref of catalog from identityGovernance
+        /// Read-only. Nullable.
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "Get ref of catalog from identityGovernance";
+            command.Description = "Read-only. Nullable.";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--accesspackage-id", description: "key: id of accessPackage"));
+            var accessPackageIdOption = new Option<string>("--accesspackage-id", description: "key: id of accessPackage");
+            accessPackageIdOption.IsRequired = true;
+            command.AddOption(accessPackageIdOption);
             command.Handler = CommandHandler.Create<string>(async (accessPackageId) => {
-                var requestInfo = CreateGetRequestInformation();
-                if (!String.IsNullOrEmpty(accessPackageId)) requestInfo.PathParameters.Add("accessPackage_id", accessPackageId);
+                var requestInfo = CreateGetRequestInformation(q => {
+                });
                 var result = await RequestAdapter.SendPrimitiveAsync<string>(requestInfo);
                 // Print request output. What if the request has no return?
                 using var serializer = RequestAdapter.SerializationWriterFactory.GetSerializationWriter("application/json");
@@ -58,20 +62,24 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.AccessPackages.Item.Ca
             return command;
         }
         /// <summary>
-        /// Update the ref of navigation property catalog in identityGovernance
+        /// Read-only. Nullable.
         /// </summary>
         public Command BuildPutCommand() {
             var command = new Command("put");
-            command.Description = "Update the ref of navigation property catalog in identityGovernance";
+            command.Description = "Read-only. Nullable.";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--accesspackage-id", description: "key: id of accessPackage"));
-            command.AddOption(new Option<string>("--body"));
+            var accessPackageIdOption = new Option<string>("--accesspackage-id", description: "key: id of accessPackage");
+            accessPackageIdOption.IsRequired = true;
+            command.AddOption(accessPackageIdOption);
+            var bodyOption = new Option<string>("--body");
+            bodyOption.IsRequired = true;
+            command.AddOption(bodyOption);
             command.Handler = CommandHandler.Create<string, string>(async (accessPackageId, body) => {
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<ApiSdk.IdentityGovernance.EntitlementManagement.AccessPackages.Item.Catalog.@Ref.@Ref>();
-                var requestInfo = CreatePutRequestInformation(model);
-                if (!String.IsNullOrEmpty(accessPackageId)) requestInfo.PathParameters.Add("accessPackage_id", accessPackageId);
+                var requestInfo = CreatePutRequestInformation(model, q => {
+                });
                 await RequestAdapter.SendNoContentAsync(requestInfo);
                 // Print request output. What if the request has no return?
                 Console.WriteLine("Success");
@@ -92,7 +100,7 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.AccessPackages.Item.Ca
             RequestAdapter = requestAdapter;
         }
         /// <summary>
-        /// Delete ref of navigation property catalog for identityGovernance
+        /// Read-only. Nullable.
         /// <param name="h">Request headers</param>
         /// <param name="o">Request options</param>
         /// </summary>
@@ -107,7 +115,7 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.AccessPackages.Item.Ca
             return requestInfo;
         }
         /// <summary>
-        /// Get ref of catalog from identityGovernance
+        /// Read-only. Nullable.
         /// <param name="h">Request headers</param>
         /// <param name="o">Request options</param>
         /// </summary>
@@ -122,7 +130,7 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.AccessPackages.Item.Ca
             return requestInfo;
         }
         /// <summary>
-        /// Update the ref of navigation property catalog in identityGovernance
+        /// Read-only. Nullable.
         /// <param name="body"></param>
         /// <param name="h">Request headers</param>
         /// <param name="o">Request options</param>
@@ -140,7 +148,7 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.AccessPackages.Item.Ca
             return requestInfo;
         }
         /// <summary>
-        /// Delete ref of navigation property catalog for identityGovernance
+        /// Read-only. Nullable.
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="h">Request headers</param>
         /// <param name="o">Request options</param>
@@ -151,7 +159,7 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.AccessPackages.Item.Ca
             await RequestAdapter.SendNoContentAsync(requestInfo, responseHandler, cancellationToken);
         }
         /// <summary>
-        /// Get ref of catalog from identityGovernance
+        /// Read-only. Nullable.
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="h">Request headers</param>
         /// <param name="o">Request options</param>
@@ -162,7 +170,7 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.AccessPackages.Item.Ca
             return await RequestAdapter.SendPrimitiveAsync<string>(requestInfo, responseHandler, cancellationToken);
         }
         /// <summary>
-        /// Update the ref of navigation property catalog in identityGovernance
+        /// Read-only. Nullable.
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="h">Request headers</param>
         /// <param name="model"></param>

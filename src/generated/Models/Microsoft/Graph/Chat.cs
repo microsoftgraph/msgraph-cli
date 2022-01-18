@@ -20,6 +20,8 @@ namespace ApiSdk.Models.Microsoft.Graph {
         public List<TeamsTab> Tabs { get; set; }
         /// <summary>(Optional) Subject or topic for the chat. Only available for group chats.</summary>
         public string Topic { get; set; }
+        /// <summary>The URL for the chat in Microsoft Teams. The URL should be treated as an opaque blob, and not parsed. Read-only.</summary>
+        public string WebUrl { get; set; }
         /// <summary>
         /// The deserialization information for the current model
         /// </summary>
@@ -33,6 +35,7 @@ namespace ApiSdk.Models.Microsoft.Graph {
                 {"messages", (o,n) => { (o as Chat).Messages = n.GetCollectionOfObjectValues<ChatMessage>().ToList(); } },
                 {"tabs", (o,n) => { (o as Chat).Tabs = n.GetCollectionOfObjectValues<TeamsTab>().ToList(); } },
                 {"topic", (o,n) => { (o as Chat).Topic = n.GetStringValue(); } },
+                {"webUrl", (o,n) => { (o as Chat).WebUrl = n.GetStringValue(); } },
             };
         }
         /// <summary>
@@ -50,6 +53,7 @@ namespace ApiSdk.Models.Microsoft.Graph {
             writer.WriteCollectionOfObjectValues<ChatMessage>("messages", Messages);
             writer.WriteCollectionOfObjectValues<TeamsTab>("tabs", Tabs);
             writer.WriteStringValue("topic", Topic);
+            writer.WriteStringValue("webUrl", WebUrl);
         }
     }
 }

@@ -26,14 +26,18 @@ namespace ApiSdk.Drives.Item.List.Items.Item.Versions.Item.Fields {
             var command = new Command("delete");
             command.Description = "A collection of the fields and values for this version of the list item.";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--drive-id", description: "key: id of drive"));
-            command.AddOption(new Option<string>("--listitem-id", description: "key: id of listItem"));
-            command.AddOption(new Option<string>("--listitemversion-id", description: "key: id of listItemVersion"));
+            var driveIdOption = new Option<string>("--drive-id", description: "key: id of drive");
+            driveIdOption.IsRequired = true;
+            command.AddOption(driveIdOption);
+            var listItemIdOption = new Option<string>("--listitem-id", description: "key: id of listItem");
+            listItemIdOption.IsRequired = true;
+            command.AddOption(listItemIdOption);
+            var listItemVersionIdOption = new Option<string>("--listitemversion-id", description: "key: id of listItemVersion");
+            listItemVersionIdOption.IsRequired = true;
+            command.AddOption(listItemVersionIdOption);
             command.Handler = CommandHandler.Create<string, string, string>(async (driveId, listItemId, listItemVersionId) => {
-                var requestInfo = CreateDeleteRequestInformation();
-                if (!String.IsNullOrEmpty(driveId)) requestInfo.PathParameters.Add("drive_id", driveId);
-                if (!String.IsNullOrEmpty(listItemId)) requestInfo.PathParameters.Add("listItem_id", listItemId);
-                if (!String.IsNullOrEmpty(listItemVersionId)) requestInfo.PathParameters.Add("listItemVersion_id", listItemVersionId);
+                var requestInfo = CreateDeleteRequestInformation(q => {
+                });
                 await RequestAdapter.SendNoContentAsync(requestInfo);
                 // Print request output. What if the request has no return?
                 Console.WriteLine("Success");
@@ -47,18 +51,28 @@ namespace ApiSdk.Drives.Item.List.Items.Item.Versions.Item.Fields {
             var command = new Command("get");
             command.Description = "A collection of the fields and values for this version of the list item.";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--drive-id", description: "key: id of drive"));
-            command.AddOption(new Option<string>("--listitem-id", description: "key: id of listItem"));
-            command.AddOption(new Option<string>("--listitemversion-id", description: "key: id of listItemVersion"));
-            command.AddOption(new Option<object>("--select", description: "Select properties to be returned"));
-            command.AddOption(new Option<object>("--expand", description: "Expand related entities"));
-            command.Handler = CommandHandler.Create<string, string, string, object, object>(async (driveId, listItemId, listItemVersionId, select, expand) => {
-                var requestInfo = CreateGetRequestInformation();
-                if (!String.IsNullOrEmpty(driveId)) requestInfo.PathParameters.Add("drive_id", driveId);
-                if (!String.IsNullOrEmpty(listItemId)) requestInfo.PathParameters.Add("listItem_id", listItemId);
-                if (!String.IsNullOrEmpty(listItemVersionId)) requestInfo.PathParameters.Add("listItemVersion_id", listItemVersionId);
-                requestInfo.QueryParameters.Add("select", select);
-                requestInfo.QueryParameters.Add("expand", expand);
+            var driveIdOption = new Option<string>("--drive-id", description: "key: id of drive");
+            driveIdOption.IsRequired = true;
+            command.AddOption(driveIdOption);
+            var listItemIdOption = new Option<string>("--listitem-id", description: "key: id of listItem");
+            listItemIdOption.IsRequired = true;
+            command.AddOption(listItemIdOption);
+            var listItemVersionIdOption = new Option<string>("--listitemversion-id", description: "key: id of listItemVersion");
+            listItemVersionIdOption.IsRequired = true;
+            command.AddOption(listItemVersionIdOption);
+            var selectOption = new Option<string[]>("--select", description: "Select properties to be returned");
+            selectOption.IsRequired = false;
+            selectOption.Arity = ArgumentArity.ZeroOrMore;
+            command.AddOption(selectOption);
+            var expandOption = new Option<string[]>("--expand", description: "Expand related entities");
+            expandOption.IsRequired = false;
+            expandOption.Arity = ArgumentArity.ZeroOrMore;
+            command.AddOption(expandOption);
+            command.Handler = CommandHandler.Create<string, string, string, string[], string[]>(async (driveId, listItemId, listItemVersionId, select, expand) => {
+                var requestInfo = CreateGetRequestInformation(q => {
+                    q.Select = select;
+                    q.Expand = expand;
+                });
                 var result = await RequestAdapter.SendAsync<FieldValueSet>(requestInfo);
                 // Print request output. What if the request has no return?
                 using var serializer = RequestAdapter.SerializationWriterFactory.GetSerializationWriter("application/json");
@@ -77,18 +91,24 @@ namespace ApiSdk.Drives.Item.List.Items.Item.Versions.Item.Fields {
             var command = new Command("patch");
             command.Description = "A collection of the fields and values for this version of the list item.";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--drive-id", description: "key: id of drive"));
-            command.AddOption(new Option<string>("--listitem-id", description: "key: id of listItem"));
-            command.AddOption(new Option<string>("--listitemversion-id", description: "key: id of listItemVersion"));
-            command.AddOption(new Option<string>("--body"));
+            var driveIdOption = new Option<string>("--drive-id", description: "key: id of drive");
+            driveIdOption.IsRequired = true;
+            command.AddOption(driveIdOption);
+            var listItemIdOption = new Option<string>("--listitem-id", description: "key: id of listItem");
+            listItemIdOption.IsRequired = true;
+            command.AddOption(listItemIdOption);
+            var listItemVersionIdOption = new Option<string>("--listitemversion-id", description: "key: id of listItemVersion");
+            listItemVersionIdOption.IsRequired = true;
+            command.AddOption(listItemVersionIdOption);
+            var bodyOption = new Option<string>("--body");
+            bodyOption.IsRequired = true;
+            command.AddOption(bodyOption);
             command.Handler = CommandHandler.Create<string, string, string, string>(async (driveId, listItemId, listItemVersionId, body) => {
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<FieldValueSet>();
-                var requestInfo = CreatePatchRequestInformation(model);
-                if (!String.IsNullOrEmpty(driveId)) requestInfo.PathParameters.Add("drive_id", driveId);
-                if (!String.IsNullOrEmpty(listItemId)) requestInfo.PathParameters.Add("listItem_id", listItemId);
-                if (!String.IsNullOrEmpty(listItemVersionId)) requestInfo.PathParameters.Add("listItemVersion_id", listItemVersionId);
+                var requestInfo = CreatePatchRequestInformation(model, q => {
+                });
                 await RequestAdapter.SendNoContentAsync(requestInfo);
                 // Print request output. What if the request has no return?
                 Console.WriteLine("Success");

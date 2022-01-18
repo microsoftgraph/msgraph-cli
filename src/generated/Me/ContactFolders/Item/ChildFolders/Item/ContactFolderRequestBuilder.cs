@@ -26,12 +26,15 @@ namespace ApiSdk.Me.ContactFolders.Item.ChildFolders.Item {
             var command = new Command("delete");
             command.Description = "The collection of child folders in the folder. Navigation property. Read-only. Nullable.";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--contactfolder-id", description: "key: id of contactFolder"));
-            command.AddOption(new Option<string>("--contactfolder-id1", description: "key: id of contactFolder"));
+            var contactFolderIdOption = new Option<string>("--contactfolder-id", description: "key: id of contactFolder");
+            contactFolderIdOption.IsRequired = true;
+            command.AddOption(contactFolderIdOption);
+            var contactFolderId1Option = new Option<string>("--contactfolder-id1", description: "key: id of contactFolder");
+            contactFolderId1Option.IsRequired = true;
+            command.AddOption(contactFolderId1Option);
             command.Handler = CommandHandler.Create<string, string>(async (contactFolderId, contactFolderId1) => {
-                var requestInfo = CreateDeleteRequestInformation();
-                if (!String.IsNullOrEmpty(contactFolderId)) requestInfo.PathParameters.Add("contactFolder_id", contactFolderId);
-                if (!String.IsNullOrEmpty(contactFolderId1)) requestInfo.PathParameters.Add("contactFolder_id1", contactFolderId1);
+                var requestInfo = CreateDeleteRequestInformation(q => {
+                });
                 await RequestAdapter.SendNoContentAsync(requestInfo);
                 // Print request output. What if the request has no return?
                 Console.WriteLine("Success");
@@ -45,16 +48,25 @@ namespace ApiSdk.Me.ContactFolders.Item.ChildFolders.Item {
             var command = new Command("get");
             command.Description = "The collection of child folders in the folder. Navigation property. Read-only. Nullable.";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--contactfolder-id", description: "key: id of contactFolder"));
-            command.AddOption(new Option<string>("--contactfolder-id1", description: "key: id of contactFolder"));
-            command.AddOption(new Option<object>("--select", description: "Select properties to be returned"));
-            command.AddOption(new Option<object>("--expand", description: "Expand related entities"));
-            command.Handler = CommandHandler.Create<string, string, object, object>(async (contactFolderId, contactFolderId1, select, expand) => {
-                var requestInfo = CreateGetRequestInformation();
-                if (!String.IsNullOrEmpty(contactFolderId)) requestInfo.PathParameters.Add("contactFolder_id", contactFolderId);
-                if (!String.IsNullOrEmpty(contactFolderId1)) requestInfo.PathParameters.Add("contactFolder_id1", contactFolderId1);
-                requestInfo.QueryParameters.Add("select", select);
-                requestInfo.QueryParameters.Add("expand", expand);
+            var contactFolderIdOption = new Option<string>("--contactfolder-id", description: "key: id of contactFolder");
+            contactFolderIdOption.IsRequired = true;
+            command.AddOption(contactFolderIdOption);
+            var contactFolderId1Option = new Option<string>("--contactfolder-id1", description: "key: id of contactFolder");
+            contactFolderId1Option.IsRequired = true;
+            command.AddOption(contactFolderId1Option);
+            var selectOption = new Option<string[]>("--select", description: "Select properties to be returned");
+            selectOption.IsRequired = false;
+            selectOption.Arity = ArgumentArity.ZeroOrMore;
+            command.AddOption(selectOption);
+            var expandOption = new Option<string[]>("--expand", description: "Expand related entities");
+            expandOption.IsRequired = false;
+            expandOption.Arity = ArgumentArity.ZeroOrMore;
+            command.AddOption(expandOption);
+            command.Handler = CommandHandler.Create<string, string, string[], string[]>(async (contactFolderId, contactFolderId1, select, expand) => {
+                var requestInfo = CreateGetRequestInformation(q => {
+                    q.Select = select;
+                    q.Expand = expand;
+                });
                 var result = await RequestAdapter.SendAsync<ContactFolder>(requestInfo);
                 // Print request output. What if the request has no return?
                 using var serializer = RequestAdapter.SerializationWriterFactory.GetSerializationWriter("application/json");
@@ -73,16 +85,21 @@ namespace ApiSdk.Me.ContactFolders.Item.ChildFolders.Item {
             var command = new Command("patch");
             command.Description = "The collection of child folders in the folder. Navigation property. Read-only. Nullable.";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--contactfolder-id", description: "key: id of contactFolder"));
-            command.AddOption(new Option<string>("--contactfolder-id1", description: "key: id of contactFolder"));
-            command.AddOption(new Option<string>("--body"));
+            var contactFolderIdOption = new Option<string>("--contactfolder-id", description: "key: id of contactFolder");
+            contactFolderIdOption.IsRequired = true;
+            command.AddOption(contactFolderIdOption);
+            var contactFolderId1Option = new Option<string>("--contactfolder-id1", description: "key: id of contactFolder");
+            contactFolderId1Option.IsRequired = true;
+            command.AddOption(contactFolderId1Option);
+            var bodyOption = new Option<string>("--body");
+            bodyOption.IsRequired = true;
+            command.AddOption(bodyOption);
             command.Handler = CommandHandler.Create<string, string, string>(async (contactFolderId, contactFolderId1, body) => {
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<ContactFolder>();
-                var requestInfo = CreatePatchRequestInformation(model);
-                if (!String.IsNullOrEmpty(contactFolderId)) requestInfo.PathParameters.Add("contactFolder_id", contactFolderId);
-                if (!String.IsNullOrEmpty(contactFolderId1)) requestInfo.PathParameters.Add("contactFolder_id1", contactFolderId1);
+                var requestInfo = CreatePatchRequestInformation(model, q => {
+                });
                 await RequestAdapter.SendNoContentAsync(requestInfo);
                 // Print request output. What if the request has no return?
                 Console.WriteLine("Success");

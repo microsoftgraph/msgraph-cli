@@ -25,14 +25,18 @@ namespace ApiSdk.ServicePrincipals.Item.RemovePassword {
             var command = new Command("post");
             command.Description = "Invoke action removePassword";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--serviceprincipal-id", description: "key: id of servicePrincipal"));
-            command.AddOption(new Option<string>("--body"));
+            var servicePrincipalIdOption = new Option<string>("--serviceprincipal-id", description: "key: id of servicePrincipal");
+            servicePrincipalIdOption.IsRequired = true;
+            command.AddOption(servicePrincipalIdOption);
+            var bodyOption = new Option<string>("--body");
+            bodyOption.IsRequired = true;
+            command.AddOption(bodyOption);
             command.Handler = CommandHandler.Create<string, string>(async (servicePrincipalId, body) => {
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<RemovePasswordRequestBody>();
-                var requestInfo = CreatePostRequestInformation(model);
-                if (!String.IsNullOrEmpty(servicePrincipalId)) requestInfo.PathParameters.Add("servicePrincipal_id", servicePrincipalId);
+                var requestInfo = CreatePostRequestInformation(model, q => {
+                });
                 await RequestAdapter.SendNoContentAsync(requestInfo);
                 // Print request output. What if the request has no return?
                 Console.WriteLine("Success");

@@ -20,18 +20,21 @@ namespace ApiSdk.Groups.Item.PermissionGrants.Item {
         /// <summary>Url template to use to build the URL for the current request builder</summary>
         private string UrlTemplate { get; set; }
         /// <summary>
-        /// The permission that has been granted for a group to a specific application. Supports $expand.
+        /// The permissions that have been granted for a group to a specific application. Supports $expand.
         /// </summary>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
-            command.Description = "The permission that has been granted for a group to a specific application. Supports $expand.";
+            command.Description = "The permissions that have been granted for a group to a specific application. Supports $expand.";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--group-id", description: "key: id of group"));
-            command.AddOption(new Option<string>("--resourcespecificpermissiongrant-id", description: "key: id of resourceSpecificPermissionGrant"));
+            var groupIdOption = new Option<string>("--group-id", description: "key: id of group");
+            groupIdOption.IsRequired = true;
+            command.AddOption(groupIdOption);
+            var resourceSpecificPermissionGrantIdOption = new Option<string>("--resourcespecificpermissiongrant-id", description: "key: id of resourceSpecificPermissionGrant");
+            resourceSpecificPermissionGrantIdOption.IsRequired = true;
+            command.AddOption(resourceSpecificPermissionGrantIdOption);
             command.Handler = CommandHandler.Create<string, string>(async (groupId, resourceSpecificPermissionGrantId) => {
-                var requestInfo = CreateDeleteRequestInformation();
-                if (!String.IsNullOrEmpty(groupId)) requestInfo.PathParameters.Add("group_id", groupId);
-                if (!String.IsNullOrEmpty(resourceSpecificPermissionGrantId)) requestInfo.PathParameters.Add("resourceSpecificPermissionGrant_id", resourceSpecificPermissionGrantId);
+                var requestInfo = CreateDeleteRequestInformation(q => {
+                });
                 await RequestAdapter.SendNoContentAsync(requestInfo);
                 // Print request output. What if the request has no return?
                 Console.WriteLine("Success");
@@ -39,22 +42,31 @@ namespace ApiSdk.Groups.Item.PermissionGrants.Item {
             return command;
         }
         /// <summary>
-        /// The permission that has been granted for a group to a specific application. Supports $expand.
+        /// The permissions that have been granted for a group to a specific application. Supports $expand.
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "The permission that has been granted for a group to a specific application. Supports $expand.";
+            command.Description = "The permissions that have been granted for a group to a specific application. Supports $expand.";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--group-id", description: "key: id of group"));
-            command.AddOption(new Option<string>("--resourcespecificpermissiongrant-id", description: "key: id of resourceSpecificPermissionGrant"));
-            command.AddOption(new Option<object>("--select", description: "Select properties to be returned"));
-            command.AddOption(new Option<object>("--expand", description: "Expand related entities"));
-            command.Handler = CommandHandler.Create<string, string, object, object>(async (groupId, resourceSpecificPermissionGrantId, select, expand) => {
-                var requestInfo = CreateGetRequestInformation();
-                if (!String.IsNullOrEmpty(groupId)) requestInfo.PathParameters.Add("group_id", groupId);
-                if (!String.IsNullOrEmpty(resourceSpecificPermissionGrantId)) requestInfo.PathParameters.Add("resourceSpecificPermissionGrant_id", resourceSpecificPermissionGrantId);
-                requestInfo.QueryParameters.Add("select", select);
-                requestInfo.QueryParameters.Add("expand", expand);
+            var groupIdOption = new Option<string>("--group-id", description: "key: id of group");
+            groupIdOption.IsRequired = true;
+            command.AddOption(groupIdOption);
+            var resourceSpecificPermissionGrantIdOption = new Option<string>("--resourcespecificpermissiongrant-id", description: "key: id of resourceSpecificPermissionGrant");
+            resourceSpecificPermissionGrantIdOption.IsRequired = true;
+            command.AddOption(resourceSpecificPermissionGrantIdOption);
+            var selectOption = new Option<string[]>("--select", description: "Select properties to be returned");
+            selectOption.IsRequired = false;
+            selectOption.Arity = ArgumentArity.ZeroOrMore;
+            command.AddOption(selectOption);
+            var expandOption = new Option<string[]>("--expand", description: "Expand related entities");
+            expandOption.IsRequired = false;
+            expandOption.Arity = ArgumentArity.ZeroOrMore;
+            command.AddOption(expandOption);
+            command.Handler = CommandHandler.Create<string, string, string[], string[]>(async (groupId, resourceSpecificPermissionGrantId, select, expand) => {
+                var requestInfo = CreateGetRequestInformation(q => {
+                    q.Select = select;
+                    q.Expand = expand;
+                });
                 var result = await RequestAdapter.SendAsync<ResourceSpecificPermissionGrant>(requestInfo);
                 // Print request output. What if the request has no return?
                 using var serializer = RequestAdapter.SerializationWriterFactory.GetSerializationWriter("application/json");
@@ -67,22 +79,27 @@ namespace ApiSdk.Groups.Item.PermissionGrants.Item {
             return command;
         }
         /// <summary>
-        /// The permission that has been granted for a group to a specific application. Supports $expand.
+        /// The permissions that have been granted for a group to a specific application. Supports $expand.
         /// </summary>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
-            command.Description = "The permission that has been granted for a group to a specific application. Supports $expand.";
+            command.Description = "The permissions that have been granted for a group to a specific application. Supports $expand.";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--group-id", description: "key: id of group"));
-            command.AddOption(new Option<string>("--resourcespecificpermissiongrant-id", description: "key: id of resourceSpecificPermissionGrant"));
-            command.AddOption(new Option<string>("--body"));
+            var groupIdOption = new Option<string>("--group-id", description: "key: id of group");
+            groupIdOption.IsRequired = true;
+            command.AddOption(groupIdOption);
+            var resourceSpecificPermissionGrantIdOption = new Option<string>("--resourcespecificpermissiongrant-id", description: "key: id of resourceSpecificPermissionGrant");
+            resourceSpecificPermissionGrantIdOption.IsRequired = true;
+            command.AddOption(resourceSpecificPermissionGrantIdOption);
+            var bodyOption = new Option<string>("--body");
+            bodyOption.IsRequired = true;
+            command.AddOption(bodyOption);
             command.Handler = CommandHandler.Create<string, string, string>(async (groupId, resourceSpecificPermissionGrantId, body) => {
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<ResourceSpecificPermissionGrant>();
-                var requestInfo = CreatePatchRequestInformation(model);
-                if (!String.IsNullOrEmpty(groupId)) requestInfo.PathParameters.Add("group_id", groupId);
-                if (!String.IsNullOrEmpty(resourceSpecificPermissionGrantId)) requestInfo.PathParameters.Add("resourceSpecificPermissionGrant_id", resourceSpecificPermissionGrantId);
+                var requestInfo = CreatePatchRequestInformation(model, q => {
+                });
                 await RequestAdapter.SendNoContentAsync(requestInfo);
                 // Print request output. What if the request has no return?
                 Console.WriteLine("Success");
@@ -103,7 +120,7 @@ namespace ApiSdk.Groups.Item.PermissionGrants.Item {
             RequestAdapter = requestAdapter;
         }
         /// <summary>
-        /// The permission that has been granted for a group to a specific application. Supports $expand.
+        /// The permissions that have been granted for a group to a specific application. Supports $expand.
         /// <param name="h">Request headers</param>
         /// <param name="o">Request options</param>
         /// </summary>
@@ -118,7 +135,7 @@ namespace ApiSdk.Groups.Item.PermissionGrants.Item {
             return requestInfo;
         }
         /// <summary>
-        /// The permission that has been granted for a group to a specific application. Supports $expand.
+        /// The permissions that have been granted for a group to a specific application. Supports $expand.
         /// <param name="h">Request headers</param>
         /// <param name="o">Request options</param>
         /// <param name="q">Request query parameters</param>
@@ -139,7 +156,7 @@ namespace ApiSdk.Groups.Item.PermissionGrants.Item {
             return requestInfo;
         }
         /// <summary>
-        /// The permission that has been granted for a group to a specific application. Supports $expand.
+        /// The permissions that have been granted for a group to a specific application. Supports $expand.
         /// <param name="body"></param>
         /// <param name="h">Request headers</param>
         /// <param name="o">Request options</param>
@@ -157,7 +174,7 @@ namespace ApiSdk.Groups.Item.PermissionGrants.Item {
             return requestInfo;
         }
         /// <summary>
-        /// The permission that has been granted for a group to a specific application. Supports $expand.
+        /// The permissions that have been granted for a group to a specific application. Supports $expand.
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="h">Request headers</param>
         /// <param name="o">Request options</param>
@@ -168,7 +185,7 @@ namespace ApiSdk.Groups.Item.PermissionGrants.Item {
             await RequestAdapter.SendNoContentAsync(requestInfo, responseHandler, cancellationToken);
         }
         /// <summary>
-        /// The permission that has been granted for a group to a specific application. Supports $expand.
+        /// The permissions that have been granted for a group to a specific application. Supports $expand.
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="h">Request headers</param>
         /// <param name="o">Request options</param>
@@ -180,7 +197,7 @@ namespace ApiSdk.Groups.Item.PermissionGrants.Item {
             return await RequestAdapter.SendAsync<ResourceSpecificPermissionGrant>(requestInfo, responseHandler, cancellationToken);
         }
         /// <summary>
-        /// The permission that has been granted for a group to a specific application. Supports $expand.
+        /// The permissions that have been granted for a group to a specific application. Supports $expand.
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="h">Request headers</param>
         /// <param name="model"></param>
@@ -192,7 +209,7 @@ namespace ApiSdk.Groups.Item.PermissionGrants.Item {
             var requestInfo = CreatePatchRequestInformation(model, h, o);
             await RequestAdapter.SendNoContentAsync(requestInfo, responseHandler, cancellationToken);
         }
-        /// <summary>The permission that has been granted for a group to a specific application. Supports $expand.</summary>
+        /// <summary>The permissions that have been granted for a group to a specific application. Supports $expand.</summary>
         public class GetQueryParameters : QueryParametersBase {
             /// <summary>Expand related entities</summary>
             public string[] Expand { get; set; }

@@ -26,12 +26,15 @@ namespace ApiSdk.Teams.Item.Schedule.TimeOffReasons.Item {
             var command = new Command("delete");
             command.Description = "The set of reasons for a time off in the schedule.";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--team-id", description: "key: id of team"));
-            command.AddOption(new Option<string>("--timeoffreason-id", description: "key: id of timeOffReason"));
+            var teamIdOption = new Option<string>("--team-id", description: "key: id of team");
+            teamIdOption.IsRequired = true;
+            command.AddOption(teamIdOption);
+            var timeOffReasonIdOption = new Option<string>("--timeoffreason-id", description: "key: id of timeOffReason");
+            timeOffReasonIdOption.IsRequired = true;
+            command.AddOption(timeOffReasonIdOption);
             command.Handler = CommandHandler.Create<string, string>(async (teamId, timeOffReasonId) => {
-                var requestInfo = CreateDeleteRequestInformation();
-                if (!String.IsNullOrEmpty(teamId)) requestInfo.PathParameters.Add("team_id", teamId);
-                if (!String.IsNullOrEmpty(timeOffReasonId)) requestInfo.PathParameters.Add("timeOffReason_id", timeOffReasonId);
+                var requestInfo = CreateDeleteRequestInformation(q => {
+                });
                 await RequestAdapter.SendNoContentAsync(requestInfo);
                 // Print request output. What if the request has no return?
                 Console.WriteLine("Success");
@@ -45,14 +48,20 @@ namespace ApiSdk.Teams.Item.Schedule.TimeOffReasons.Item {
             var command = new Command("get");
             command.Description = "The set of reasons for a time off in the schedule.";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--team-id", description: "key: id of team"));
-            command.AddOption(new Option<string>("--timeoffreason-id", description: "key: id of timeOffReason"));
-            command.AddOption(new Option<object>("--select", description: "Select properties to be returned"));
-            command.Handler = CommandHandler.Create<string, string, object>(async (teamId, timeOffReasonId, select) => {
-                var requestInfo = CreateGetRequestInformation();
-                if (!String.IsNullOrEmpty(teamId)) requestInfo.PathParameters.Add("team_id", teamId);
-                if (!String.IsNullOrEmpty(timeOffReasonId)) requestInfo.PathParameters.Add("timeOffReason_id", timeOffReasonId);
-                requestInfo.QueryParameters.Add("select", select);
+            var teamIdOption = new Option<string>("--team-id", description: "key: id of team");
+            teamIdOption.IsRequired = true;
+            command.AddOption(teamIdOption);
+            var timeOffReasonIdOption = new Option<string>("--timeoffreason-id", description: "key: id of timeOffReason");
+            timeOffReasonIdOption.IsRequired = true;
+            command.AddOption(timeOffReasonIdOption);
+            var selectOption = new Option<string[]>("--select", description: "Select properties to be returned");
+            selectOption.IsRequired = false;
+            selectOption.Arity = ArgumentArity.ZeroOrMore;
+            command.AddOption(selectOption);
+            command.Handler = CommandHandler.Create<string, string, string[]>(async (teamId, timeOffReasonId, select) => {
+                var requestInfo = CreateGetRequestInformation(q => {
+                    q.Select = select;
+                });
                 var result = await RequestAdapter.SendAsync<TimeOffReason>(requestInfo);
                 // Print request output. What if the request has no return?
                 using var serializer = RequestAdapter.SerializationWriterFactory.GetSerializationWriter("application/json");
@@ -71,16 +80,21 @@ namespace ApiSdk.Teams.Item.Schedule.TimeOffReasons.Item {
             var command = new Command("patch");
             command.Description = "The set of reasons for a time off in the schedule.";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--team-id", description: "key: id of team"));
-            command.AddOption(new Option<string>("--timeoffreason-id", description: "key: id of timeOffReason"));
-            command.AddOption(new Option<string>("--body"));
+            var teamIdOption = new Option<string>("--team-id", description: "key: id of team");
+            teamIdOption.IsRequired = true;
+            command.AddOption(teamIdOption);
+            var timeOffReasonIdOption = new Option<string>("--timeoffreason-id", description: "key: id of timeOffReason");
+            timeOffReasonIdOption.IsRequired = true;
+            command.AddOption(timeOffReasonIdOption);
+            var bodyOption = new Option<string>("--body");
+            bodyOption.IsRequired = true;
+            command.AddOption(bodyOption);
             command.Handler = CommandHandler.Create<string, string, string>(async (teamId, timeOffReasonId, body) => {
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<TimeOffReason>();
-                var requestInfo = CreatePatchRequestInformation(model);
-                if (!String.IsNullOrEmpty(teamId)) requestInfo.PathParameters.Add("team_id", teamId);
-                if (!String.IsNullOrEmpty(timeOffReasonId)) requestInfo.PathParameters.Add("timeOffReason_id", timeOffReasonId);
+                var requestInfo = CreatePatchRequestInformation(model, q => {
+                });
                 await RequestAdapter.SendNoContentAsync(requestInfo);
                 // Print request output. What if the request has no return?
                 Console.WriteLine("Success");

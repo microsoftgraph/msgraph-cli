@@ -27,16 +27,25 @@ namespace ApiSdk.DeviceManagement.RoleDefinitions.Item.RoleAssignments.Item.Role
             var command = new Command("get");
             command.Description = "Role definition this assignment is part of.";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--roledefinition-id", description: "key: id of roleDefinition"));
-            command.AddOption(new Option<string>("--roleassignment-id", description: "key: id of roleAssignment"));
-            command.AddOption(new Option<object>("--select", description: "Select properties to be returned"));
-            command.AddOption(new Option<object>("--expand", description: "Expand related entities"));
-            command.Handler = CommandHandler.Create<string, string, object, object>(async (roleDefinitionId, roleAssignmentId, select, expand) => {
-                var requestInfo = CreateGetRequestInformation();
-                if (!String.IsNullOrEmpty(roleDefinitionId)) requestInfo.PathParameters.Add("roleDefinition_id", roleDefinitionId);
-                if (!String.IsNullOrEmpty(roleAssignmentId)) requestInfo.PathParameters.Add("roleAssignment_id", roleAssignmentId);
-                requestInfo.QueryParameters.Add("select", select);
-                requestInfo.QueryParameters.Add("expand", expand);
+            var roleDefinitionIdOption = new Option<string>("--roledefinition-id", description: "key: id of roleDefinition");
+            roleDefinitionIdOption.IsRequired = true;
+            command.AddOption(roleDefinitionIdOption);
+            var roleAssignmentIdOption = new Option<string>("--roleassignment-id", description: "key: id of roleAssignment");
+            roleAssignmentIdOption.IsRequired = true;
+            command.AddOption(roleAssignmentIdOption);
+            var selectOption = new Option<string[]>("--select", description: "Select properties to be returned");
+            selectOption.IsRequired = false;
+            selectOption.Arity = ArgumentArity.ZeroOrMore;
+            command.AddOption(selectOption);
+            var expandOption = new Option<string[]>("--expand", description: "Expand related entities");
+            expandOption.IsRequired = false;
+            expandOption.Arity = ArgumentArity.ZeroOrMore;
+            command.AddOption(expandOption);
+            command.Handler = CommandHandler.Create<string, string, string[], string[]>(async (roleDefinitionId, roleAssignmentId, select, expand) => {
+                var requestInfo = CreateGetRequestInformation(q => {
+                    q.Select = select;
+                    q.Expand = expand;
+                });
                 var result = await RequestAdapter.SendAsync<ApiSdk.Models.Microsoft.Graph.RoleDefinition>(requestInfo);
                 // Print request output. What if the request has no return?
                 using var serializer = RequestAdapter.SerializationWriterFactory.GetSerializationWriter("application/json");

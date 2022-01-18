@@ -25,16 +25,21 @@ namespace ApiSdk.Sites.Item.GetActivitiesByIntervalWithStartDateTimeWithEndDateT
             var command = new Command("get");
             command.Description = "Invoke function getActivitiesByInterval";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--site-id", description: "key: id of site"));
-            command.AddOption(new Option<string>("--startdatetime", description: "Usage: startDateTime={startDateTime}"));
-            command.AddOption(new Option<string>("--enddatetime", description: "Usage: endDateTime={endDateTime}"));
-            command.AddOption(new Option<string>("--interval", description: "Usage: interval={interval}"));
+            var siteIdOption = new Option<string>("--site-id", description: "key: id of site");
+            siteIdOption.IsRequired = true;
+            command.AddOption(siteIdOption);
+            var startDateTimeOption = new Option<string>("--startdatetime", description: "Usage: startDateTime={startDateTime}");
+            startDateTimeOption.IsRequired = true;
+            command.AddOption(startDateTimeOption);
+            var endDateTimeOption = new Option<string>("--enddatetime", description: "Usage: endDateTime={endDateTime}");
+            endDateTimeOption.IsRequired = true;
+            command.AddOption(endDateTimeOption);
+            var intervalOption = new Option<string>("--interval", description: "Usage: interval={interval}");
+            intervalOption.IsRequired = true;
+            command.AddOption(intervalOption);
             command.Handler = CommandHandler.Create<string, string, string, string>(async (siteId, startDateTime, endDateTime, interval) => {
-                var requestInfo = CreateGetRequestInformation();
-                if (!String.IsNullOrEmpty(siteId)) requestInfo.PathParameters.Add("site_id", siteId);
-                if (!String.IsNullOrEmpty(startDateTime)) requestInfo.PathParameters.Add("startDateTime", startDateTime);
-                if (!String.IsNullOrEmpty(endDateTime)) requestInfo.PathParameters.Add("endDateTime", endDateTime);
-                if (!String.IsNullOrEmpty(interval)) requestInfo.PathParameters.Add("interval", interval);
+                var requestInfo = CreateGetRequestInformation(q => {
+                });
                 var result = await RequestAdapter.SendCollectionAsync<ApiSdk.Sites.Item.GetActivitiesByIntervalWithStartDateTimeWithEndDateTimeWithInterval.GetActivitiesByIntervalWithStartDateTimeWithEndDateTimeWithInterval>(requestInfo);
                 // Print request output. What if the request has no return?
                 using var serializer = RequestAdapter.SerializationWriterFactory.GetSerializationWriter("application/json");

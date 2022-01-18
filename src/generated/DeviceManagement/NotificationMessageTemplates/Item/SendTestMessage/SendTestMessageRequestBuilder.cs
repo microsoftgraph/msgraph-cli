@@ -25,10 +25,12 @@ namespace ApiSdk.DeviceManagement.NotificationMessageTemplates.Item.SendTestMess
             var command = new Command("post");
             command.Description = "Sends test message using the specified notificationMessageTemplate in the default locale";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--notificationmessagetemplate-id", description: "key: id of notificationMessageTemplate"));
+            var notificationMessageTemplateIdOption = new Option<string>("--notificationmessagetemplate-id", description: "key: id of notificationMessageTemplate");
+            notificationMessageTemplateIdOption.IsRequired = true;
+            command.AddOption(notificationMessageTemplateIdOption);
             command.Handler = CommandHandler.Create<string>(async (notificationMessageTemplateId) => {
-                var requestInfo = CreatePostRequestInformation();
-                if (!String.IsNullOrEmpty(notificationMessageTemplateId)) requestInfo.PathParameters.Add("notificationMessageTemplate_id", notificationMessageTemplateId);
+                var requestInfo = CreatePostRequestInformation(q => {
+                });
                 await RequestAdapter.SendNoContentAsync(requestInfo);
                 // Print request output. What if the request has no return?
                 Console.WriteLine("Success");

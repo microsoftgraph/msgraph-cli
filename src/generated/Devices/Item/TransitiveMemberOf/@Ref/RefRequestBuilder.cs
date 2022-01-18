@@ -19,28 +19,43 @@ namespace ApiSdk.Devices.Item.TransitiveMemberOf.@Ref {
         /// <summary>Url template to use to build the URL for the current request builder</summary>
         private string UrlTemplate { get; set; }
         /// <summary>
-        /// Groups that the device is a member of. This operation is transitive. Supports $expand.
+        /// Groups that this device is a member of. This operation is transitive. Supports $expand.
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "Groups that the device is a member of. This operation is transitive. Supports $expand.";
+            command.Description = "Groups that this device is a member of. This operation is transitive. Supports $expand.";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--device-id", description: "key: id of device"));
-            command.AddOption(new Option<int?>("--top", description: "Show only the first n items"));
-            command.AddOption(new Option<int?>("--skip", description: "Skip the first n items"));
-            command.AddOption(new Option<string>("--search", description: "Search items by search phrases"));
-            command.AddOption(new Option<string>("--filter", description: "Filter items by property values"));
-            command.AddOption(new Option<bool?>("--count", description: "Include count of items"));
-            command.AddOption(new Option<object>("--orderby", description: "Order items by property values"));
-            command.Handler = CommandHandler.Create<string, int?, int?, string, string, bool?, object>(async (deviceId, top, skip, search, filter, count, orderby) => {
-                var requestInfo = CreateGetRequestInformation();
-                if (!String.IsNullOrEmpty(deviceId)) requestInfo.PathParameters.Add("device_id", deviceId);
-                requestInfo.QueryParameters.Add("top", top);
-                requestInfo.QueryParameters.Add("skip", skip);
-                if (!String.IsNullOrEmpty(search)) requestInfo.QueryParameters.Add("search", search);
-                if (!String.IsNullOrEmpty(filter)) requestInfo.QueryParameters.Add("filter", filter);
-                requestInfo.QueryParameters.Add("count", count);
-                requestInfo.QueryParameters.Add("orderby", orderby);
+            var deviceIdOption = new Option<string>("--device-id", description: "key: id of device");
+            deviceIdOption.IsRequired = true;
+            command.AddOption(deviceIdOption);
+            var topOption = new Option<int?>("--top", description: "Show only the first n items");
+            topOption.IsRequired = false;
+            command.AddOption(topOption);
+            var skipOption = new Option<int?>("--skip", description: "Skip the first n items");
+            skipOption.IsRequired = false;
+            command.AddOption(skipOption);
+            var searchOption = new Option<string>("--search", description: "Search items by search phrases");
+            searchOption.IsRequired = false;
+            command.AddOption(searchOption);
+            var filterOption = new Option<string>("--filter", description: "Filter items by property values");
+            filterOption.IsRequired = false;
+            command.AddOption(filterOption);
+            var countOption = new Option<bool?>("--count", description: "Include count of items");
+            countOption.IsRequired = false;
+            command.AddOption(countOption);
+            var orderbyOption = new Option<string[]>("--orderby", description: "Order items by property values");
+            orderbyOption.IsRequired = false;
+            orderbyOption.Arity = ArgumentArity.ZeroOrMore;
+            command.AddOption(orderbyOption);
+            command.Handler = CommandHandler.Create<string, int?, int?, string, string, bool?, string[]>(async (deviceId, top, skip, search, filter, count, orderby) => {
+                var requestInfo = CreateGetRequestInformation(q => {
+                    q.Top = top;
+                    q.Skip = skip;
+                    if (!String.IsNullOrEmpty(search)) q.Search = search;
+                    if (!String.IsNullOrEmpty(filter)) q.Filter = filter;
+                    q.Count = count;
+                    q.Orderby = orderby;
+                });
                 var result = await RequestAdapter.SendAsync<RefResponse>(requestInfo);
                 // Print request output. What if the request has no return?
                 using var serializer = RequestAdapter.SerializationWriterFactory.GetSerializationWriter("application/json");
@@ -53,20 +68,24 @@ namespace ApiSdk.Devices.Item.TransitiveMemberOf.@Ref {
             return command;
         }
         /// <summary>
-        /// Groups that the device is a member of. This operation is transitive. Supports $expand.
+        /// Groups that this device is a member of. This operation is transitive. Supports $expand.
         /// </summary>
         public Command BuildPostCommand() {
             var command = new Command("post");
-            command.Description = "Groups that the device is a member of. This operation is transitive. Supports $expand.";
+            command.Description = "Groups that this device is a member of. This operation is transitive. Supports $expand.";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--device-id", description: "key: id of device"));
-            command.AddOption(new Option<string>("--body"));
+            var deviceIdOption = new Option<string>("--device-id", description: "key: id of device");
+            deviceIdOption.IsRequired = true;
+            command.AddOption(deviceIdOption);
+            var bodyOption = new Option<string>("--body");
+            bodyOption.IsRequired = true;
+            command.AddOption(bodyOption);
             command.Handler = CommandHandler.Create<string, string>(async (deviceId, body) => {
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<ApiSdk.Devices.Item.TransitiveMemberOf.@Ref.@Ref>();
-                var requestInfo = CreatePostRequestInformation(model);
-                if (!String.IsNullOrEmpty(deviceId)) requestInfo.PathParameters.Add("device_id", deviceId);
+                var requestInfo = CreatePostRequestInformation(model, q => {
+                });
                 var result = await RequestAdapter.SendAsync<ApiSdk.Devices.Item.TransitiveMemberOf.@Ref.@Ref>(requestInfo);
                 // Print request output. What if the request has no return?
                 using var serializer = RequestAdapter.SerializationWriterFactory.GetSerializationWriter("application/json");
@@ -92,7 +111,7 @@ namespace ApiSdk.Devices.Item.TransitiveMemberOf.@Ref {
             RequestAdapter = requestAdapter;
         }
         /// <summary>
-        /// Groups that the device is a member of. This operation is transitive. Supports $expand.
+        /// Groups that this device is a member of. This operation is transitive. Supports $expand.
         /// <param name="h">Request headers</param>
         /// <param name="o">Request options</param>
         /// <param name="q">Request query parameters</param>
@@ -113,7 +132,7 @@ namespace ApiSdk.Devices.Item.TransitiveMemberOf.@Ref {
             return requestInfo;
         }
         /// <summary>
-        /// Groups that the device is a member of. This operation is transitive. Supports $expand.
+        /// Groups that this device is a member of. This operation is transitive. Supports $expand.
         /// <param name="body"></param>
         /// <param name="h">Request headers</param>
         /// <param name="o">Request options</param>
@@ -131,7 +150,7 @@ namespace ApiSdk.Devices.Item.TransitiveMemberOf.@Ref {
             return requestInfo;
         }
         /// <summary>
-        /// Groups that the device is a member of. This operation is transitive. Supports $expand.
+        /// Groups that this device is a member of. This operation is transitive. Supports $expand.
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="h">Request headers</param>
         /// <param name="o">Request options</param>
@@ -143,7 +162,7 @@ namespace ApiSdk.Devices.Item.TransitiveMemberOf.@Ref {
             return await RequestAdapter.SendAsync<RefResponse>(requestInfo, responseHandler, cancellationToken);
         }
         /// <summary>
-        /// Groups that the device is a member of. This operation is transitive. Supports $expand.
+        /// Groups that this device is a member of. This operation is transitive. Supports $expand.
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="h">Request headers</param>
         /// <param name="model"></param>
@@ -155,7 +174,7 @@ namespace ApiSdk.Devices.Item.TransitiveMemberOf.@Ref {
             var requestInfo = CreatePostRequestInformation(model, h, o);
             return await RequestAdapter.SendAsync<ApiSdk.Devices.Item.TransitiveMemberOf.@Ref.@Ref>(requestInfo, responseHandler, cancellationToken);
         }
-        /// <summary>Groups that the device is a member of. This operation is transitive. Supports $expand.</summary>
+        /// <summary>Groups that this device is a member of. This operation is transitive. Supports $expand.</summary>
         public class GetQueryParameters : QueryParametersBase {
             /// <summary>Include count of items</summary>
             public bool? Count { get; set; }

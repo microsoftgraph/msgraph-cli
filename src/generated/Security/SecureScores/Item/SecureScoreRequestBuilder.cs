@@ -26,10 +26,12 @@ namespace ApiSdk.Security.SecureScores.Item {
             var command = new Command("delete");
             command.Description = "Delete navigation property secureScores for security";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--securescore-id", description: "key: id of secureScore"));
+            var secureScoreIdOption = new Option<string>("--securescore-id", description: "key: id of secureScore");
+            secureScoreIdOption.IsRequired = true;
+            command.AddOption(secureScoreIdOption);
             command.Handler = CommandHandler.Create<string>(async (secureScoreId) => {
-                var requestInfo = CreateDeleteRequestInformation();
-                if (!String.IsNullOrEmpty(secureScoreId)) requestInfo.PathParameters.Add("secureScore_id", secureScoreId);
+                var requestInfo = CreateDeleteRequestInformation(q => {
+                });
                 await RequestAdapter.SendNoContentAsync(requestInfo);
                 // Print request output. What if the request has no return?
                 Console.WriteLine("Success");
@@ -43,14 +45,22 @@ namespace ApiSdk.Security.SecureScores.Item {
             var command = new Command("get");
             command.Description = "Get secureScores from security";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--securescore-id", description: "key: id of secureScore"));
-            command.AddOption(new Option<object>("--select", description: "Select properties to be returned"));
-            command.AddOption(new Option<object>("--expand", description: "Expand related entities"));
-            command.Handler = CommandHandler.Create<string, object, object>(async (secureScoreId, select, expand) => {
-                var requestInfo = CreateGetRequestInformation();
-                if (!String.IsNullOrEmpty(secureScoreId)) requestInfo.PathParameters.Add("secureScore_id", secureScoreId);
-                requestInfo.QueryParameters.Add("select", select);
-                requestInfo.QueryParameters.Add("expand", expand);
+            var secureScoreIdOption = new Option<string>("--securescore-id", description: "key: id of secureScore");
+            secureScoreIdOption.IsRequired = true;
+            command.AddOption(secureScoreIdOption);
+            var selectOption = new Option<string[]>("--select", description: "Select properties to be returned");
+            selectOption.IsRequired = false;
+            selectOption.Arity = ArgumentArity.ZeroOrMore;
+            command.AddOption(selectOption);
+            var expandOption = new Option<string[]>("--expand", description: "Expand related entities");
+            expandOption.IsRequired = false;
+            expandOption.Arity = ArgumentArity.ZeroOrMore;
+            command.AddOption(expandOption);
+            command.Handler = CommandHandler.Create<string, string[], string[]>(async (secureScoreId, select, expand) => {
+                var requestInfo = CreateGetRequestInformation(q => {
+                    q.Select = select;
+                    q.Expand = expand;
+                });
                 var result = await RequestAdapter.SendAsync<SecureScore>(requestInfo);
                 // Print request output. What if the request has no return?
                 using var serializer = RequestAdapter.SerializationWriterFactory.GetSerializationWriter("application/json");
@@ -69,14 +79,18 @@ namespace ApiSdk.Security.SecureScores.Item {
             var command = new Command("patch");
             command.Description = "Update the navigation property secureScores in security";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--securescore-id", description: "key: id of secureScore"));
-            command.AddOption(new Option<string>("--body"));
+            var secureScoreIdOption = new Option<string>("--securescore-id", description: "key: id of secureScore");
+            secureScoreIdOption.IsRequired = true;
+            command.AddOption(secureScoreIdOption);
+            var bodyOption = new Option<string>("--body");
+            bodyOption.IsRequired = true;
+            command.AddOption(bodyOption);
             command.Handler = CommandHandler.Create<string, string>(async (secureScoreId, body) => {
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<SecureScore>();
-                var requestInfo = CreatePatchRequestInformation(model);
-                if (!String.IsNullOrEmpty(secureScoreId)) requestInfo.PathParameters.Add("secureScore_id", secureScoreId);
+                var requestInfo = CreatePatchRequestInformation(model, q => {
+                });
                 await RequestAdapter.SendNoContentAsync(requestInfo);
                 // Print request output. What if the request has no return?
                 Console.WriteLine("Success");

@@ -26,7 +26,7 @@ namespace ApiSdk.Users.Item.Contacts.Delta {
         public string DisplayName { get; set; }
         /// <summary>The contact's email addresses.</summary>
         public List<EmailAddress> EmailAddresses { get; set; }
-        /// <summary>The collection of open extensions defined for the contact. Read-only. Nullable.</summary>
+        /// <summary>The collection of open extensions defined for the contact. Nullable.</summary>
         public List<Extension> Extensions { get; set; }
         /// <summary>The name the contact is filed under.</summary>
         public string FileAs { get; set; }

@@ -13,6 +13,8 @@ namespace ApiSdk.Models.Microsoft.Graph {
         public List<string> DisabledPlans { get; set; }
         /// <summary>License assignment failure error. If the license is assigned successfully, this field will be Null. Read-Only. Possible values: CountViolation, MutuallyExclusiveViolation, DependencyViolation, ProhibitedInUsageLocationViolation, UniquenessViolation, and Others. For more information on how to identify and resolve license assignment errors see here.</summary>
         public string Error { get; set; }
+        /// <summary>The timestamp when the state of the license assignment was last updated.</summary>
+        public DateTimeOffset? LastUpdatedDateTime { get; set; }
         /// <summary>The unique identifier for the SKU. Read-Only.</summary>
         public string SkuId { get; set; }
         /// <summary>Indicate the current state of this assignment. Read-Only. Possible values: Active, ActiveWithError, Disabled and Error.</summary>
@@ -31,6 +33,7 @@ namespace ApiSdk.Models.Microsoft.Graph {
                 {"assignedByGroup", (o,n) => { (o as LicenseAssignmentState).AssignedByGroup = n.GetStringValue(); } },
                 {"disabledPlans", (o,n) => { (o as LicenseAssignmentState).DisabledPlans = n.GetCollectionOfPrimitiveValues<string>().ToList(); } },
                 {"error", (o,n) => { (o as LicenseAssignmentState).Error = n.GetStringValue(); } },
+                {"lastUpdatedDateTime", (o,n) => { (o as LicenseAssignmentState).LastUpdatedDateTime = n.GetDateTimeOffsetValue(); } },
                 {"skuId", (o,n) => { (o as LicenseAssignmentState).SkuId = n.GetStringValue(); } },
                 {"state", (o,n) => { (o as LicenseAssignmentState).State = n.GetStringValue(); } },
             };
@@ -44,6 +47,7 @@ namespace ApiSdk.Models.Microsoft.Graph {
             writer.WriteStringValue("assignedByGroup", AssignedByGroup);
             writer.WriteCollectionOfPrimitiveValues<string>("disabledPlans", DisabledPlans);
             writer.WriteStringValue("error", Error);
+            writer.WriteDateTimeOffsetValue("lastUpdatedDateTime", LastUpdatedDateTime);
             writer.WriteStringValue("skuId", SkuId);
             writer.WriteStringValue("state", State);
             writer.WriteAdditionalData(AdditionalData);

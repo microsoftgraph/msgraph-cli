@@ -26,10 +26,12 @@ namespace ApiSdk.Me.Messages.Item.CalendarSharingMessage.Accept {
             var command = new Command("post");
             command.Description = "Invoke action accept";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--message-id", description: "key: id of message"));
+            var messageIdOption = new Option<string>("--message-id", description: "key: id of message");
+            messageIdOption.IsRequired = true;
+            command.AddOption(messageIdOption);
             command.Handler = CommandHandler.Create<string>(async (messageId) => {
-                var requestInfo = CreatePostRequestInformation();
-                if (!String.IsNullOrEmpty(messageId)) requestInfo.PathParameters.Add("message_id", messageId);
+                var requestInfo = CreatePostRequestInformation(q => {
+                });
                 var result = await RequestAdapter.SendAsync<ApiSdk.Models.Microsoft.Graph.Calendar>(requestInfo);
                 // Print request output. What if the request has no return?
                 using var serializer = RequestAdapter.SerializationWriterFactory.GetSerializationWriter("application/json");

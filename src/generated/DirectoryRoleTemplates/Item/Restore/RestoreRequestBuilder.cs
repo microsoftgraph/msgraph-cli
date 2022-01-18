@@ -26,10 +26,12 @@ namespace ApiSdk.DirectoryRoleTemplates.Item.Restore {
             var command = new Command("post");
             command.Description = "Invoke action restore";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--directoryroletemplate-id", description: "key: id of directoryRoleTemplate"));
+            var directoryRoleTemplateIdOption = new Option<string>("--directoryroletemplate-id", description: "key: id of directoryRoleTemplate");
+            directoryRoleTemplateIdOption.IsRequired = true;
+            command.AddOption(directoryRoleTemplateIdOption);
             command.Handler = CommandHandler.Create<string>(async (directoryRoleTemplateId) => {
-                var requestInfo = CreatePostRequestInformation();
-                if (!String.IsNullOrEmpty(directoryRoleTemplateId)) requestInfo.PathParameters.Add("directoryRoleTemplate_id", directoryRoleTemplateId);
+                var requestInfo = CreatePostRequestInformation(q => {
+                });
                 var result = await RequestAdapter.SendAsync<RestoreResponse>(requestInfo);
                 // Print request output. What if the request has no return?
                 using var serializer = RequestAdapter.SerializationWriterFactory.GetSerializationWriter("application/json");

@@ -7,7 +7,7 @@ namespace ApiSdk.Models.Microsoft.Graph {
     public class ConditionalAccessDevices : IParsable {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
-        /// <summary>Filter that defines the dynamic-device-syntax rule to include/exclude devices. A filter can use device properties (such as extension attributes) to include/exclude them.</summary>
+        /// <summary>Filter that defines the dynamic-device-syntax rule to include/exclude devices. A filter can use device properties (such as extension attributes) to include/exclude them. Cannot be set if includeDevices or excludeDevices is set.</summary>
         public ConditionalAccessFilter DeviceFilter { get; set; }
         /// <summary>
         /// Instantiates a new conditionalAccessDevices and sets the default values.

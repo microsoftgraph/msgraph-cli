@@ -19,16 +19,18 @@ namespace ApiSdk.RoleManagement.EntitlementManagement.RoleAssignments.Item.RoleD
         /// <summary>Url template to use to build the URL for the current request builder</summary>
         private string UrlTemplate { get; set; }
         /// <summary>
-        /// The roleDefinition the assignment is for.  Supports $expand. roleDefinition.Id will be auto expanded.
+        /// The roleDefinition the assignment is for. Provided so that callers can get the role definition using $expand at the same time as getting the role assignment. roleDefinition.id will be auto expanded. Supports $expand.
         /// </summary>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
-            command.Description = "The roleDefinition the assignment is for.  Supports $expand. roleDefinition.Id will be auto expanded.";
+            command.Description = "The roleDefinition the assignment is for. Provided so that callers can get the role definition using $expand at the same time as getting the role assignment. roleDefinition.id will be auto expanded. Supports $expand.";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--unifiedroleassignment-id", description: "key: id of unifiedRoleAssignment"));
+            var unifiedRoleAssignmentIdOption = new Option<string>("--unifiedroleassignment-id", description: "key: id of unifiedRoleAssignment");
+            unifiedRoleAssignmentIdOption.IsRequired = true;
+            command.AddOption(unifiedRoleAssignmentIdOption);
             command.Handler = CommandHandler.Create<string>(async (unifiedRoleAssignmentId) => {
-                var requestInfo = CreateDeleteRequestInformation();
-                if (!String.IsNullOrEmpty(unifiedRoleAssignmentId)) requestInfo.PathParameters.Add("unifiedRoleAssignment_id", unifiedRoleAssignmentId);
+                var requestInfo = CreateDeleteRequestInformation(q => {
+                });
                 await RequestAdapter.SendNoContentAsync(requestInfo);
                 // Print request output. What if the request has no return?
                 Console.WriteLine("Success");
@@ -36,16 +38,18 @@ namespace ApiSdk.RoleManagement.EntitlementManagement.RoleAssignments.Item.RoleD
             return command;
         }
         /// <summary>
-        /// The roleDefinition the assignment is for.  Supports $expand. roleDefinition.Id will be auto expanded.
+        /// The roleDefinition the assignment is for. Provided so that callers can get the role definition using $expand at the same time as getting the role assignment. roleDefinition.id will be auto expanded. Supports $expand.
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "The roleDefinition the assignment is for.  Supports $expand. roleDefinition.Id will be auto expanded.";
+            command.Description = "The roleDefinition the assignment is for. Provided so that callers can get the role definition using $expand at the same time as getting the role assignment. roleDefinition.id will be auto expanded. Supports $expand.";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--unifiedroleassignment-id", description: "key: id of unifiedRoleAssignment"));
+            var unifiedRoleAssignmentIdOption = new Option<string>("--unifiedroleassignment-id", description: "key: id of unifiedRoleAssignment");
+            unifiedRoleAssignmentIdOption.IsRequired = true;
+            command.AddOption(unifiedRoleAssignmentIdOption);
             command.Handler = CommandHandler.Create<string>(async (unifiedRoleAssignmentId) => {
-                var requestInfo = CreateGetRequestInformation();
-                if (!String.IsNullOrEmpty(unifiedRoleAssignmentId)) requestInfo.PathParameters.Add("unifiedRoleAssignment_id", unifiedRoleAssignmentId);
+                var requestInfo = CreateGetRequestInformation(q => {
+                });
                 var result = await RequestAdapter.SendPrimitiveAsync<string>(requestInfo);
                 // Print request output. What if the request has no return?
                 using var serializer = RequestAdapter.SerializationWriterFactory.GetSerializationWriter("application/json");
@@ -58,20 +62,24 @@ namespace ApiSdk.RoleManagement.EntitlementManagement.RoleAssignments.Item.RoleD
             return command;
         }
         /// <summary>
-        /// The roleDefinition the assignment is for.  Supports $expand. roleDefinition.Id will be auto expanded.
+        /// The roleDefinition the assignment is for. Provided so that callers can get the role definition using $expand at the same time as getting the role assignment. roleDefinition.id will be auto expanded. Supports $expand.
         /// </summary>
         public Command BuildPutCommand() {
             var command = new Command("put");
-            command.Description = "The roleDefinition the assignment is for.  Supports $expand. roleDefinition.Id will be auto expanded.";
+            command.Description = "The roleDefinition the assignment is for. Provided so that callers can get the role definition using $expand at the same time as getting the role assignment. roleDefinition.id will be auto expanded. Supports $expand.";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--unifiedroleassignment-id", description: "key: id of unifiedRoleAssignment"));
-            command.AddOption(new Option<string>("--body"));
+            var unifiedRoleAssignmentIdOption = new Option<string>("--unifiedroleassignment-id", description: "key: id of unifiedRoleAssignment");
+            unifiedRoleAssignmentIdOption.IsRequired = true;
+            command.AddOption(unifiedRoleAssignmentIdOption);
+            var bodyOption = new Option<string>("--body");
+            bodyOption.IsRequired = true;
+            command.AddOption(bodyOption);
             command.Handler = CommandHandler.Create<string, string>(async (unifiedRoleAssignmentId, body) => {
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<ApiSdk.RoleManagement.EntitlementManagement.RoleAssignments.Item.RoleDefinition.@Ref.@Ref>();
-                var requestInfo = CreatePutRequestInformation(model);
-                if (!String.IsNullOrEmpty(unifiedRoleAssignmentId)) requestInfo.PathParameters.Add("unifiedRoleAssignment_id", unifiedRoleAssignmentId);
+                var requestInfo = CreatePutRequestInformation(model, q => {
+                });
                 await RequestAdapter.SendNoContentAsync(requestInfo);
                 // Print request output. What if the request has no return?
                 Console.WriteLine("Success");
@@ -92,7 +100,7 @@ namespace ApiSdk.RoleManagement.EntitlementManagement.RoleAssignments.Item.RoleD
             RequestAdapter = requestAdapter;
         }
         /// <summary>
-        /// The roleDefinition the assignment is for.  Supports $expand. roleDefinition.Id will be auto expanded.
+        /// The roleDefinition the assignment is for. Provided so that callers can get the role definition using $expand at the same time as getting the role assignment. roleDefinition.id will be auto expanded. Supports $expand.
         /// <param name="h">Request headers</param>
         /// <param name="o">Request options</param>
         /// </summary>
@@ -107,7 +115,7 @@ namespace ApiSdk.RoleManagement.EntitlementManagement.RoleAssignments.Item.RoleD
             return requestInfo;
         }
         /// <summary>
-        /// The roleDefinition the assignment is for.  Supports $expand. roleDefinition.Id will be auto expanded.
+        /// The roleDefinition the assignment is for. Provided so that callers can get the role definition using $expand at the same time as getting the role assignment. roleDefinition.id will be auto expanded. Supports $expand.
         /// <param name="h">Request headers</param>
         /// <param name="o">Request options</param>
         /// </summary>
@@ -122,7 +130,7 @@ namespace ApiSdk.RoleManagement.EntitlementManagement.RoleAssignments.Item.RoleD
             return requestInfo;
         }
         /// <summary>
-        /// The roleDefinition the assignment is for.  Supports $expand. roleDefinition.Id will be auto expanded.
+        /// The roleDefinition the assignment is for. Provided so that callers can get the role definition using $expand at the same time as getting the role assignment. roleDefinition.id will be auto expanded. Supports $expand.
         /// <param name="body"></param>
         /// <param name="h">Request headers</param>
         /// <param name="o">Request options</param>
@@ -140,7 +148,7 @@ namespace ApiSdk.RoleManagement.EntitlementManagement.RoleAssignments.Item.RoleD
             return requestInfo;
         }
         /// <summary>
-        /// The roleDefinition the assignment is for.  Supports $expand. roleDefinition.Id will be auto expanded.
+        /// The roleDefinition the assignment is for. Provided so that callers can get the role definition using $expand at the same time as getting the role assignment. roleDefinition.id will be auto expanded. Supports $expand.
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="h">Request headers</param>
         /// <param name="o">Request options</param>
@@ -151,7 +159,7 @@ namespace ApiSdk.RoleManagement.EntitlementManagement.RoleAssignments.Item.RoleD
             await RequestAdapter.SendNoContentAsync(requestInfo, responseHandler, cancellationToken);
         }
         /// <summary>
-        /// The roleDefinition the assignment is for.  Supports $expand. roleDefinition.Id will be auto expanded.
+        /// The roleDefinition the assignment is for. Provided so that callers can get the role definition using $expand at the same time as getting the role assignment. roleDefinition.id will be auto expanded. Supports $expand.
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="h">Request headers</param>
         /// <param name="o">Request options</param>
@@ -162,7 +170,7 @@ namespace ApiSdk.RoleManagement.EntitlementManagement.RoleAssignments.Item.RoleD
             return await RequestAdapter.SendPrimitiveAsync<string>(requestInfo, responseHandler, cancellationToken);
         }
         /// <summary>
-        /// The roleDefinition the assignment is for.  Supports $expand. roleDefinition.Id will be auto expanded.
+        /// The roleDefinition the assignment is for. Provided so that callers can get the role definition using $expand at the same time as getting the role assignment. roleDefinition.id will be auto expanded. Supports $expand.
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="h">Request headers</param>
         /// <param name="model"></param>

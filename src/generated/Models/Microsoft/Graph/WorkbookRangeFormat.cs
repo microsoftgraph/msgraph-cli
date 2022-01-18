@@ -13,13 +13,13 @@ namespace ApiSdk.Models.Microsoft.Graph {
         public ApiSdk.Models.Microsoft.Graph.WorkbookRangeFill Fill { get; set; }
         /// <summary>Returns the font object defined on the overall range selected Read-only.</summary>
         public WorkbookRangeFont Font { get; set; }
-        /// <summary>Represents the horizontal alignment for the specified object. The possible values are: General, Left, Center, Right, Fill, Justify, CenterAcrossSelection, Distributed.</summary>
+        /// <summary>Represents the horizontal alignment for the specified object. Possible values are: General, Left, Center, Right, Fill, Justify, CenterAcrossSelection, Distributed.</summary>
         public string HorizontalAlignment { get; set; }
         /// <summary>Returns the format protection object for a range. Read-only.</summary>
         public WorkbookFormatProtection Protection { get; set; }
         /// <summary>Gets or sets the height of all rows in the range. If the row heights are not uniform null will be returned.</summary>
         public double? RowHeight { get; set; }
-        /// <summary>Represents the vertical alignment for the specified object. The possible values are: Top, Center, Bottom, Justify, Distributed.</summary>
+        /// <summary>Represents the vertical alignment for the specified object. Possible values are: Top, Center, Bottom, Justify, Distributed.</summary>
         public string VerticalAlignment { get; set; }
         /// <summary>Indicates if Excel wraps the text in the object. A null value indicates that the entire range doesn't have uniform wrap setting</summary>
         public bool? WrapText { get; set; }

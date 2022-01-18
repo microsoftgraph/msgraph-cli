@@ -7,6 +7,10 @@ namespace ApiSdk.Models.Microsoft.Graph {
     public class EducationSubmission : Entity, IParsable {
         /// <summary>Read-Write. Nullable.</summary>
         public List<EducationOutcome> Outcomes { get; set; }
+        /// <summary>User who moved the status of this submission to reassigned.</summary>
+        public IdentitySet ReassignedBy { get; set; }
+        /// <summary>Moment in time when the submission was reassigned. The Timestamp type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z</summary>
+        public DateTimeOffset? ReassignedDateTime { get; set; }
         /// <summary>Who this submission is assigned to.</summary>
         public EducationSubmissionRecipient Recipient { get; set; }
         /// <summary>Nullable.</summary>
@@ -17,7 +21,7 @@ namespace ApiSdk.Models.Microsoft.Graph {
         public IdentitySet ReturnedBy { get; set; }
         /// <summary>Moment in time when the submission was returned. The Timestamp type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z</summary>
         public DateTimeOffset? ReturnedDateTime { get; set; }
-        /// <summary>Read-Only. Possible values are: working, submitted, released, returned.</summary>
+        /// <summary>Read-only. Possible values are: working, submitted, released, returned, unknownFutureValue and reassigned. Note that you must use the Prefer: include-unknown-enum-members request header to get the following value(s) in this evolvable enum: reassigned.</summary>
         public EducationSubmissionStatus? Status { get; set; }
         /// <summary>User who moved the resource into the submitted state.</summary>
         public IdentitySet SubmittedBy { get; set; }
@@ -35,6 +39,8 @@ namespace ApiSdk.Models.Microsoft.Graph {
         public new IDictionary<string, Action<T, IParseNode>> GetFieldDeserializers<T>() {
             return new Dictionary<string, Action<T, IParseNode>>(base.GetFieldDeserializers<T>()) {
                 {"outcomes", (o,n) => { (o as EducationSubmission).Outcomes = n.GetCollectionOfObjectValues<EducationOutcome>().ToList(); } },
+                {"reassignedBy", (o,n) => { (o as EducationSubmission).ReassignedBy = n.GetObjectValue<IdentitySet>(); } },
+                {"reassignedDateTime", (o,n) => { (o as EducationSubmission).ReassignedDateTime = n.GetDateTimeOffsetValue(); } },
                 {"recipient", (o,n) => { (o as EducationSubmission).Recipient = n.GetObjectValue<EducationSubmissionRecipient>(); } },
                 {"resources", (o,n) => { (o as EducationSubmission).Resources = n.GetCollectionOfObjectValues<EducationSubmissionResource>().ToList(); } },
                 {"resourcesFolderUrl", (o,n) => { (o as EducationSubmission).ResourcesFolderUrl = n.GetStringValue(); } },
@@ -56,6 +62,8 @@ namespace ApiSdk.Models.Microsoft.Graph {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             base.Serialize(writer);
             writer.WriteCollectionOfObjectValues<EducationOutcome>("outcomes", Outcomes);
+            writer.WriteObjectValue<IdentitySet>("reassignedBy", ReassignedBy);
+            writer.WriteDateTimeOffsetValue("reassignedDateTime", ReassignedDateTime);
             writer.WriteObjectValue<EducationSubmissionRecipient>("recipient", Recipient);
             writer.WriteCollectionOfObjectValues<EducationSubmissionResource>("resources", Resources);
             writer.WriteStringValue("resourcesFolderUrl", ResourcesFolderUrl);

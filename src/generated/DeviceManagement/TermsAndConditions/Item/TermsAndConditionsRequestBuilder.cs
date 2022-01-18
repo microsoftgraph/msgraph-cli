@@ -42,10 +42,12 @@ namespace ApiSdk.DeviceManagement.TermsAndConditions.Item {
             var command = new Command("delete");
             command.Description = "The terms and conditions associated with device management of the company.";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--termsandconditions-id", description: "key: id of termsAndConditions"));
+            var termsAndConditionsIdOption = new Option<string>("--termsandconditions-id", description: "key: id of termsAndConditions");
+            termsAndConditionsIdOption.IsRequired = true;
+            command.AddOption(termsAndConditionsIdOption);
             command.Handler = CommandHandler.Create<string>(async (termsAndConditionsId) => {
-                var requestInfo = CreateDeleteRequestInformation();
-                if (!String.IsNullOrEmpty(termsAndConditionsId)) requestInfo.PathParameters.Add("termsAndConditions_id", termsAndConditionsId);
+                var requestInfo = CreateDeleteRequestInformation(q => {
+                });
                 await RequestAdapter.SendNoContentAsync(requestInfo);
                 // Print request output. What if the request has no return?
                 Console.WriteLine("Success");
@@ -59,14 +61,22 @@ namespace ApiSdk.DeviceManagement.TermsAndConditions.Item {
             var command = new Command("get");
             command.Description = "The terms and conditions associated with device management of the company.";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--termsandconditions-id", description: "key: id of termsAndConditions"));
-            command.AddOption(new Option<object>("--select", description: "Select properties to be returned"));
-            command.AddOption(new Option<object>("--expand", description: "Expand related entities"));
-            command.Handler = CommandHandler.Create<string, object, object>(async (termsAndConditionsId, select, expand) => {
-                var requestInfo = CreateGetRequestInformation();
-                if (!String.IsNullOrEmpty(termsAndConditionsId)) requestInfo.PathParameters.Add("termsAndConditions_id", termsAndConditionsId);
-                requestInfo.QueryParameters.Add("select", select);
-                requestInfo.QueryParameters.Add("expand", expand);
+            var termsAndConditionsIdOption = new Option<string>("--termsandconditions-id", description: "key: id of termsAndConditions");
+            termsAndConditionsIdOption.IsRequired = true;
+            command.AddOption(termsAndConditionsIdOption);
+            var selectOption = new Option<string[]>("--select", description: "Select properties to be returned");
+            selectOption.IsRequired = false;
+            selectOption.Arity = ArgumentArity.ZeroOrMore;
+            command.AddOption(selectOption);
+            var expandOption = new Option<string[]>("--expand", description: "Expand related entities");
+            expandOption.IsRequired = false;
+            expandOption.Arity = ArgumentArity.ZeroOrMore;
+            command.AddOption(expandOption);
+            command.Handler = CommandHandler.Create<string, string[], string[]>(async (termsAndConditionsId, select, expand) => {
+                var requestInfo = CreateGetRequestInformation(q => {
+                    q.Select = select;
+                    q.Expand = expand;
+                });
                 var result = await RequestAdapter.SendAsync<ApiSdk.Models.Microsoft.Graph.TermsAndConditions>(requestInfo);
                 // Print request output. What if the request has no return?
                 using var serializer = RequestAdapter.SerializationWriterFactory.GetSerializationWriter("application/json");
@@ -85,14 +95,18 @@ namespace ApiSdk.DeviceManagement.TermsAndConditions.Item {
             var command = new Command("patch");
             command.Description = "The terms and conditions associated with device management of the company.";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--termsandconditions-id", description: "key: id of termsAndConditions"));
-            command.AddOption(new Option<string>("--body"));
+            var termsAndConditionsIdOption = new Option<string>("--termsandconditions-id", description: "key: id of termsAndConditions");
+            termsAndConditionsIdOption.IsRequired = true;
+            command.AddOption(termsAndConditionsIdOption);
+            var bodyOption = new Option<string>("--body");
+            bodyOption.IsRequired = true;
+            command.AddOption(bodyOption);
             command.Handler = CommandHandler.Create<string, string>(async (termsAndConditionsId, body) => {
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<ApiSdk.Models.Microsoft.Graph.TermsAndConditions>();
-                var requestInfo = CreatePatchRequestInformation(model);
-                if (!String.IsNullOrEmpty(termsAndConditionsId)) requestInfo.PathParameters.Add("termsAndConditions_id", termsAndConditionsId);
+                var requestInfo = CreatePatchRequestInformation(model, q => {
+                });
                 await RequestAdapter.SendNoContentAsync(requestInfo);
                 // Print request output. What if the request has no return?
                 Console.WriteLine("Success");

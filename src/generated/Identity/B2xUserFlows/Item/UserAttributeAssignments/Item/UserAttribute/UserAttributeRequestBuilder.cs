@@ -27,16 +27,25 @@ namespace ApiSdk.Identity.B2xUserFlows.Item.UserAttributeAssignments.Item.UserAt
             var command = new Command("get");
             command.Description = "The user attribute that you want to add to your user flow.";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--b2xidentityuserflow-id", description: "key: id of b2xIdentityUserFlow"));
-            command.AddOption(new Option<string>("--identityuserflowattributeassignment-id", description: "key: id of identityUserFlowAttributeAssignment"));
-            command.AddOption(new Option<object>("--select", description: "Select properties to be returned"));
-            command.AddOption(new Option<object>("--expand", description: "Expand related entities"));
-            command.Handler = CommandHandler.Create<string, string, object, object>(async (b2xIdentityUserFlowId, identityUserFlowAttributeAssignmentId, select, expand) => {
-                var requestInfo = CreateGetRequestInformation();
-                if (!String.IsNullOrEmpty(b2xIdentityUserFlowId)) requestInfo.PathParameters.Add("b2xIdentityUserFlow_id", b2xIdentityUserFlowId);
-                if (!String.IsNullOrEmpty(identityUserFlowAttributeAssignmentId)) requestInfo.PathParameters.Add("identityUserFlowAttributeAssignment_id", identityUserFlowAttributeAssignmentId);
-                requestInfo.QueryParameters.Add("select", select);
-                requestInfo.QueryParameters.Add("expand", expand);
+            var b2xIdentityUserFlowIdOption = new Option<string>("--b2xidentityuserflow-id", description: "key: id of b2xIdentityUserFlow");
+            b2xIdentityUserFlowIdOption.IsRequired = true;
+            command.AddOption(b2xIdentityUserFlowIdOption);
+            var identityUserFlowAttributeAssignmentIdOption = new Option<string>("--identityuserflowattributeassignment-id", description: "key: id of identityUserFlowAttributeAssignment");
+            identityUserFlowAttributeAssignmentIdOption.IsRequired = true;
+            command.AddOption(identityUserFlowAttributeAssignmentIdOption);
+            var selectOption = new Option<string[]>("--select", description: "Select properties to be returned");
+            selectOption.IsRequired = false;
+            selectOption.Arity = ArgumentArity.ZeroOrMore;
+            command.AddOption(selectOption);
+            var expandOption = new Option<string[]>("--expand", description: "Expand related entities");
+            expandOption.IsRequired = false;
+            expandOption.Arity = ArgumentArity.ZeroOrMore;
+            command.AddOption(expandOption);
+            command.Handler = CommandHandler.Create<string, string, string[], string[]>(async (b2xIdentityUserFlowId, identityUserFlowAttributeAssignmentId, select, expand) => {
+                var requestInfo = CreateGetRequestInformation(q => {
+                    q.Select = select;
+                    q.Expand = expand;
+                });
                 var result = await RequestAdapter.SendAsync<IdentityUserFlowAttribute>(requestInfo);
                 // Print request output. What if the request has no return?
                 using var serializer = RequestAdapter.SerializationWriterFactory.GetSerializationWriter("application/json");

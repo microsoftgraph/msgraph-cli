@@ -574,3 +574,4 @@ FodyWeavers.xsd
 
 app-settings.*.json
 !app-settings.sample.json
+!generated/**/publish

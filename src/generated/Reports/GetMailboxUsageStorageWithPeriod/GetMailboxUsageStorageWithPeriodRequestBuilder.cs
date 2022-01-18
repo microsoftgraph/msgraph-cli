@@ -25,11 +25,13 @@ namespace ApiSdk.Reports.GetMailboxUsageStorageWithPeriod {
             var command = new Command("get");
             command.Description = "Invoke function getMailboxUsageStorage";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--period", description: "Usage: period={period}"));
+            var periodOption = new Option<string>("--period", description: "Usage: period={period}");
+            periodOption.IsRequired = true;
+            command.AddOption(periodOption);
             command.AddOption(new Option<FileInfo>("--output"));
             command.Handler = CommandHandler.Create<string, FileInfo>(async (period, output) => {
-                var requestInfo = CreateGetRequestInformation();
-                if (!String.IsNullOrEmpty(period)) requestInfo.PathParameters.Add("period", period);
+                var requestInfo = CreateGetRequestInformation(q => {
+                });
                 var result = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 // Print request output. What if the request has no return?
                 if (output == null) {

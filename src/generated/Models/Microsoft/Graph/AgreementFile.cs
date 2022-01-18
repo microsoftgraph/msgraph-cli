@@ -5,6 +5,7 @@ using System.IO;
 using System.Linq;
 namespace ApiSdk.Models.Microsoft.Graph {
     public class AgreementFile : AgreementFileProperties, IParsable {
+        /// <summary>The localized version of the terms of use agreement files attached to the agreement.</summary>
         public List<AgreementFileLocalization> Localizations { get; set; }
         /// <summary>
         /// The deserialization information for the current model

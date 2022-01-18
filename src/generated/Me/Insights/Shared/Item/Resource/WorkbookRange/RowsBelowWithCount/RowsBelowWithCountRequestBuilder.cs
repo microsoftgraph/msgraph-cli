@@ -26,12 +26,15 @@ namespace ApiSdk.Me.Insights.Shared.Item.Resource.WorkbookRange.RowsBelowWithCou
             var command = new Command("get");
             command.Description = "Invoke function rowsBelow";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--sharedinsight-id", description: "key: id of sharedInsight"));
-            command.AddOption(new Option<int?>("--count", description: "Usage: count={count}"));
+            var sharedInsightIdOption = new Option<string>("--sharedinsight-id", description: "key: id of sharedInsight");
+            sharedInsightIdOption.IsRequired = true;
+            command.AddOption(sharedInsightIdOption);
+            var countOption = new Option<int?>("--count", description: "Usage: count={count}");
+            countOption.IsRequired = true;
+            command.AddOption(countOption);
             command.Handler = CommandHandler.Create<string, int?>(async (sharedInsightId, count) => {
-                var requestInfo = CreateGetRequestInformation();
-                if (!String.IsNullOrEmpty(sharedInsightId)) requestInfo.PathParameters.Add("sharedInsight_id", sharedInsightId);
-                requestInfo.PathParameters.Add("count", count);
+                var requestInfo = CreateGetRequestInformation(q => {
+                });
                 var result = await RequestAdapter.SendAsync<RowsBelowWithCountResponse>(requestInfo);
                 // Print request output. What if the request has no return?
                 using var serializer = RequestAdapter.SerializationWriterFactory.GetSerializationWriter("application/json");

@@ -7,9 +7,9 @@ namespace ApiSdk.Models.Microsoft.Graph {
     public class EmailAddress : IParsable {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
-        /// <summary>The email address of the person or entity.</summary>
+        /// <summary>The email address of an entity instance.</summary>
         public string Address { get; set; }
-        /// <summary>The display name of the person or entity.</summary>
+        /// <summary>The display name of an entity instance.</summary>
         public string Name { get; set; }
         /// <summary>
         /// Instantiates a new emailAddress and sets the default values.

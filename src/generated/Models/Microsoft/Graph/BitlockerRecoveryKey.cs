@@ -5,13 +5,13 @@ using System.IO;
 using System.Linq;
 namespace ApiSdk.Models.Microsoft.Graph {
     public class BitlockerRecoveryKey : Entity, IParsable {
-        /// <summary>The date and time when the key was originally backed up to Azure Active Directory. Not nullable.</summary>
+        /// <summary>The date and time when the key was originally backed up to Azure Active Directory.</summary>
         public DateTimeOffset? CreatedDateTime { get; set; }
-        /// <summary>Identifier of the device the BitLocker key is originally backed up from. Supports $filter (eq).</summary>
+        /// <summary>ID of the device the BitLocker key is originally backed up from.</summary>
         public string DeviceId { get; set; }
-        /// <summary>The BitLocker recovery key. Returned only on $select. Not nullable.</summary>
+        /// <summary>The BitLocker recovery key.</summary>
         public string Key { get; set; }
-        /// <summary>Indicates the type of volume the BitLocker key is associated with. The possible values are: 1 (for operatingSystemVolume), 2 (for fixedDataVolume), 3 (for removableDataVolume), and 4 (for unknownFutureValue).</summary>
+        /// <summary>Indicates the type of volume the BitLocker key is associated with. Possible values are: operatingSystemVolume, fixedDataVolume, removableDataVolume, unknownFutureValue.</summary>
         public VolumeType? VolumeType { get; set; }
         /// <summary>
         /// The deserialization information for the current model

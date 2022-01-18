@@ -7,7 +7,7 @@ namespace ApiSdk.Models.Microsoft.Graph {
     public class RecordingInfo : IParsable {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
-        /// <summary>The identities of the recording initiator.</summary>
+        /// <summary>The identities of recording initiator.</summary>
         public IdentitySet Initiator { get; set; }
         /// <summary>Possible values are: unknown, notRecording, recording, or failed.</summary>
         public RecordingStatus? RecordingStatus { get; set; }

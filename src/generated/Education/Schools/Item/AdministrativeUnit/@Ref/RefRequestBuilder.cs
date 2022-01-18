@@ -25,10 +25,12 @@ namespace ApiSdk.Education.Schools.Item.AdministrativeUnit.@Ref {
             var command = new Command("delete");
             command.Description = "The underlying administrativeUnit for this school.";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--educationschool-id", description: "key: id of educationSchool"));
+            var educationSchoolIdOption = new Option<string>("--educationschool-id", description: "key: id of educationSchool");
+            educationSchoolIdOption.IsRequired = true;
+            command.AddOption(educationSchoolIdOption);
             command.Handler = CommandHandler.Create<string>(async (educationSchoolId) => {
-                var requestInfo = CreateDeleteRequestInformation();
-                if (!String.IsNullOrEmpty(educationSchoolId)) requestInfo.PathParameters.Add("educationSchool_id", educationSchoolId);
+                var requestInfo = CreateDeleteRequestInformation(q => {
+                });
                 await RequestAdapter.SendNoContentAsync(requestInfo);
                 // Print request output. What if the request has no return?
                 Console.WriteLine("Success");
@@ -42,10 +44,12 @@ namespace ApiSdk.Education.Schools.Item.AdministrativeUnit.@Ref {
             var command = new Command("get");
             command.Description = "The underlying administrativeUnit for this school.";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--educationschool-id", description: "key: id of educationSchool"));
+            var educationSchoolIdOption = new Option<string>("--educationschool-id", description: "key: id of educationSchool");
+            educationSchoolIdOption.IsRequired = true;
+            command.AddOption(educationSchoolIdOption);
             command.Handler = CommandHandler.Create<string>(async (educationSchoolId) => {
-                var requestInfo = CreateGetRequestInformation();
-                if (!String.IsNullOrEmpty(educationSchoolId)) requestInfo.PathParameters.Add("educationSchool_id", educationSchoolId);
+                var requestInfo = CreateGetRequestInformation(q => {
+                });
                 var result = await RequestAdapter.SendPrimitiveAsync<string>(requestInfo);
                 // Print request output. What if the request has no return?
                 using var serializer = RequestAdapter.SerializationWriterFactory.GetSerializationWriter("application/json");
@@ -64,14 +68,18 @@ namespace ApiSdk.Education.Schools.Item.AdministrativeUnit.@Ref {
             var command = new Command("put");
             command.Description = "The underlying administrativeUnit for this school.";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--educationschool-id", description: "key: id of educationSchool"));
-            command.AddOption(new Option<string>("--body"));
+            var educationSchoolIdOption = new Option<string>("--educationschool-id", description: "key: id of educationSchool");
+            educationSchoolIdOption.IsRequired = true;
+            command.AddOption(educationSchoolIdOption);
+            var bodyOption = new Option<string>("--body");
+            bodyOption.IsRequired = true;
+            command.AddOption(bodyOption);
             command.Handler = CommandHandler.Create<string, string>(async (educationSchoolId, body) => {
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<ApiSdk.Education.Schools.Item.AdministrativeUnit.@Ref.@Ref>();
-                var requestInfo = CreatePutRequestInformation(model);
-                if (!String.IsNullOrEmpty(educationSchoolId)) requestInfo.PathParameters.Add("educationSchool_id", educationSchoolId);
+                var requestInfo = CreatePutRequestInformation(model, q => {
+                });
                 await RequestAdapter.SendNoContentAsync(requestInfo);
                 // Print request output. What if the request has no return?
                 Console.WriteLine("Success");

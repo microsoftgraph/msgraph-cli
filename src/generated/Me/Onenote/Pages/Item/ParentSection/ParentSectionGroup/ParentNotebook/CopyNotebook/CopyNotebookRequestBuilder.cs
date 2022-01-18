@@ -26,14 +26,18 @@ namespace ApiSdk.Me.Onenote.Pages.Item.ParentSection.ParentSectionGroup.ParentNo
             var command = new Command("post");
             command.Description = "Invoke action copyNotebook";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--onenotepage-id", description: "key: id of onenotePage"));
-            command.AddOption(new Option<string>("--body"));
+            var onenotePageIdOption = new Option<string>("--onenotepage-id", description: "key: id of onenotePage");
+            onenotePageIdOption.IsRequired = true;
+            command.AddOption(onenotePageIdOption);
+            var bodyOption = new Option<string>("--body");
+            bodyOption.IsRequired = true;
+            command.AddOption(bodyOption);
             command.Handler = CommandHandler.Create<string, string>(async (onenotePageId, body) => {
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<CopyNotebookRequestBody>();
-                var requestInfo = CreatePostRequestInformation(model);
-                if (!String.IsNullOrEmpty(onenotePageId)) requestInfo.PathParameters.Add("onenotePage_id", onenotePageId);
+                var requestInfo = CreatePostRequestInformation(model, q => {
+                });
                 var result = await RequestAdapter.SendAsync<CopyNotebookResponse>(requestInfo);
                 // Print request output. What if the request has no return?
                 using var serializer = RequestAdapter.SerializationWriterFactory.GetSerializationWriter("application/json");

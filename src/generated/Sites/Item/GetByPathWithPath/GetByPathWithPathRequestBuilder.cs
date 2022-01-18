@@ -26,12 +26,15 @@ namespace ApiSdk.Sites.Item.GetByPathWithPath {
             var command = new Command("get");
             command.Description = "Invoke function getByPath";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--site-id", description: "key: id of site"));
-            command.AddOption(new Option<string>("--path", description: "Usage: path={path}"));
+            var siteIdOption = new Option<string>("--site-id", description: "key: id of site");
+            siteIdOption.IsRequired = true;
+            command.AddOption(siteIdOption);
+            var pathOption = new Option<string>("--path", description: "Usage: path={path}");
+            pathOption.IsRequired = true;
+            command.AddOption(pathOption);
             command.Handler = CommandHandler.Create<string, string>(async (siteId, path) => {
-                var requestInfo = CreateGetRequestInformation();
-                if (!String.IsNullOrEmpty(siteId)) requestInfo.PathParameters.Add("site_id", siteId);
-                if (!String.IsNullOrEmpty(path)) requestInfo.PathParameters.Add("path", path);
+                var requestInfo = CreateGetRequestInformation(q => {
+                });
                 var result = await RequestAdapter.SendAsync<GetByPathWithPathResponse>(requestInfo);
                 // Print request output. What if the request has no return?
                 using var serializer = RequestAdapter.SerializationWriterFactory.GetSerializationWriter("application/json");

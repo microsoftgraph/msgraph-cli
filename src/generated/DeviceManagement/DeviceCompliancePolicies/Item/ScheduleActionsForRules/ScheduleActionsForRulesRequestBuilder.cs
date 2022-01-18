@@ -25,14 +25,18 @@ namespace ApiSdk.DeviceManagement.DeviceCompliancePolicies.Item.ScheduleActionsF
             var command = new Command("post");
             command.Description = "Invoke action scheduleActionsForRules";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--devicecompliancepolicy-id", description: "key: id of deviceCompliancePolicy"));
-            command.AddOption(new Option<string>("--body"));
+            var deviceCompliancePolicyIdOption = new Option<string>("--devicecompliancepolicy-id", description: "key: id of deviceCompliancePolicy");
+            deviceCompliancePolicyIdOption.IsRequired = true;
+            command.AddOption(deviceCompliancePolicyIdOption);
+            var bodyOption = new Option<string>("--body");
+            bodyOption.IsRequired = true;
+            command.AddOption(bodyOption);
             command.Handler = CommandHandler.Create<string, string>(async (deviceCompliancePolicyId, body) => {
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<ScheduleActionsForRulesRequestBody>();
-                var requestInfo = CreatePostRequestInformation(model);
-                if (!String.IsNullOrEmpty(deviceCompliancePolicyId)) requestInfo.PathParameters.Add("deviceCompliancePolicy_id", deviceCompliancePolicyId);
+                var requestInfo = CreatePostRequestInformation(model, q => {
+                });
                 await RequestAdapter.SendNoContentAsync(requestInfo);
                 // Print request output. What if the request has no return?
                 Console.WriteLine("Success");

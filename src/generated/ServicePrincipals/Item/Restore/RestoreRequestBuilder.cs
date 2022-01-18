@@ -26,10 +26,12 @@ namespace ApiSdk.ServicePrincipals.Item.Restore {
             var command = new Command("post");
             command.Description = "Invoke action restore";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--serviceprincipal-id", description: "key: id of servicePrincipal"));
+            var servicePrincipalIdOption = new Option<string>("--serviceprincipal-id", description: "key: id of servicePrincipal");
+            servicePrincipalIdOption.IsRequired = true;
+            command.AddOption(servicePrincipalIdOption);
             command.Handler = CommandHandler.Create<string>(async (servicePrincipalId) => {
-                var requestInfo = CreatePostRequestInformation();
-                if (!String.IsNullOrEmpty(servicePrincipalId)) requestInfo.PathParameters.Add("servicePrincipal_id", servicePrincipalId);
+                var requestInfo = CreatePostRequestInformation(q => {
+                });
                 var result = await RequestAdapter.SendAsync<RestoreResponse>(requestInfo);
                 // Print request output. What if the request has no return?
                 using var serializer = RequestAdapter.SerializationWriterFactory.GetSerializationWriter("application/json");

@@ -11,11 +11,11 @@ namespace ApiSdk.Models.Microsoft.Graph {
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>Name of the contact. Required.</summary>
         public string DisplayName { get; set; }
-        /// <summary>Primary email address of the contact.</summary>
+        /// <summary>Email address of the contact.</summary>
         public string EmailAddress { get; set; }
         /// <summary>Mobile phone number of the contact.</summary>
         public string MobilePhone { get; set; }
-        /// <summary>Relationship to the user. Possible values are parent, relative, aide, doctor, guardian, child, other, unknownFutureValue.</summary>
+        /// <summary>Relationship to the user. Possible values are: parent, relative, aide, doctor, guardian, child, other, unknownFutureValue.</summary>
         public ContactRelationship? Relationship { get; set; }
         /// <summary>
         /// Instantiates a new relatedContact and sets the default values.

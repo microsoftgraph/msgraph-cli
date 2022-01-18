@@ -25,18 +25,24 @@ namespace ApiSdk.Sites.Item.TermStores.Item.Sets.Item.Terms.Item.Relations.Item.
             var command = new Command("delete");
             command.Description = "The from [term] of the relation. The term from which the relationship is defined. A null value would indicate the relation is directly with the [set].";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--site-id", description: "key: id of site"));
-            command.AddOption(new Option<string>("--store-id", description: "key: id of store"));
-            command.AddOption(new Option<string>("--set-id", description: "key: id of set"));
-            command.AddOption(new Option<string>("--term-id", description: "key: id of term"));
-            command.AddOption(new Option<string>("--relation-id", description: "key: id of relation"));
+            var siteIdOption = new Option<string>("--site-id", description: "key: id of site");
+            siteIdOption.IsRequired = true;
+            command.AddOption(siteIdOption);
+            var storeIdOption = new Option<string>("--store-id", description: "key: id of store");
+            storeIdOption.IsRequired = true;
+            command.AddOption(storeIdOption);
+            var setIdOption = new Option<string>("--set-id", description: "key: id of set");
+            setIdOption.IsRequired = true;
+            command.AddOption(setIdOption);
+            var termIdOption = new Option<string>("--term-id", description: "key: id of term");
+            termIdOption.IsRequired = true;
+            command.AddOption(termIdOption);
+            var relationIdOption = new Option<string>("--relation-id", description: "key: id of relation");
+            relationIdOption.IsRequired = true;
+            command.AddOption(relationIdOption);
             command.Handler = CommandHandler.Create<string, string, string, string, string>(async (siteId, storeId, setId, termId, relationId) => {
-                var requestInfo = CreateDeleteRequestInformation();
-                if (!String.IsNullOrEmpty(siteId)) requestInfo.PathParameters.Add("site_id", siteId);
-                if (!String.IsNullOrEmpty(storeId)) requestInfo.PathParameters.Add("store_id", storeId);
-                if (!String.IsNullOrEmpty(setId)) requestInfo.PathParameters.Add("set_id", setId);
-                if (!String.IsNullOrEmpty(termId)) requestInfo.PathParameters.Add("term_id", termId);
-                if (!String.IsNullOrEmpty(relationId)) requestInfo.PathParameters.Add("relation_id", relationId);
+                var requestInfo = CreateDeleteRequestInformation(q => {
+                });
                 await RequestAdapter.SendNoContentAsync(requestInfo);
                 // Print request output. What if the request has no return?
                 Console.WriteLine("Success");
@@ -50,18 +56,24 @@ namespace ApiSdk.Sites.Item.TermStores.Item.Sets.Item.Terms.Item.Relations.Item.
             var command = new Command("get");
             command.Description = "The from [term] of the relation. The term from which the relationship is defined. A null value would indicate the relation is directly with the [set].";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--site-id", description: "key: id of site"));
-            command.AddOption(new Option<string>("--store-id", description: "key: id of store"));
-            command.AddOption(new Option<string>("--set-id", description: "key: id of set"));
-            command.AddOption(new Option<string>("--term-id", description: "key: id of term"));
-            command.AddOption(new Option<string>("--relation-id", description: "key: id of relation"));
+            var siteIdOption = new Option<string>("--site-id", description: "key: id of site");
+            siteIdOption.IsRequired = true;
+            command.AddOption(siteIdOption);
+            var storeIdOption = new Option<string>("--store-id", description: "key: id of store");
+            storeIdOption.IsRequired = true;
+            command.AddOption(storeIdOption);
+            var setIdOption = new Option<string>("--set-id", description: "key: id of set");
+            setIdOption.IsRequired = true;
+            command.AddOption(setIdOption);
+            var termIdOption = new Option<string>("--term-id", description: "key: id of term");
+            termIdOption.IsRequired = true;
+            command.AddOption(termIdOption);
+            var relationIdOption = new Option<string>("--relation-id", description: "key: id of relation");
+            relationIdOption.IsRequired = true;
+            command.AddOption(relationIdOption);
             command.Handler = CommandHandler.Create<string, string, string, string, string>(async (siteId, storeId, setId, termId, relationId) => {
-                var requestInfo = CreateGetRequestInformation();
-                if (!String.IsNullOrEmpty(siteId)) requestInfo.PathParameters.Add("site_id", siteId);
-                if (!String.IsNullOrEmpty(storeId)) requestInfo.PathParameters.Add("store_id", storeId);
-                if (!String.IsNullOrEmpty(setId)) requestInfo.PathParameters.Add("set_id", setId);
-                if (!String.IsNullOrEmpty(termId)) requestInfo.PathParameters.Add("term_id", termId);
-                if (!String.IsNullOrEmpty(relationId)) requestInfo.PathParameters.Add("relation_id", relationId);
+                var requestInfo = CreateGetRequestInformation(q => {
+                });
                 var result = await RequestAdapter.SendPrimitiveAsync<string>(requestInfo);
                 // Print request output. What if the request has no return?
                 using var serializer = RequestAdapter.SerializationWriterFactory.GetSerializationWriter("application/json");
@@ -80,22 +92,30 @@ namespace ApiSdk.Sites.Item.TermStores.Item.Sets.Item.Terms.Item.Relations.Item.
             var command = new Command("put");
             command.Description = "The from [term] of the relation. The term from which the relationship is defined. A null value would indicate the relation is directly with the [set].";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--site-id", description: "key: id of site"));
-            command.AddOption(new Option<string>("--store-id", description: "key: id of store"));
-            command.AddOption(new Option<string>("--set-id", description: "key: id of set"));
-            command.AddOption(new Option<string>("--term-id", description: "key: id of term"));
-            command.AddOption(new Option<string>("--relation-id", description: "key: id of relation"));
-            command.AddOption(new Option<string>("--body"));
+            var siteIdOption = new Option<string>("--site-id", description: "key: id of site");
+            siteIdOption.IsRequired = true;
+            command.AddOption(siteIdOption);
+            var storeIdOption = new Option<string>("--store-id", description: "key: id of store");
+            storeIdOption.IsRequired = true;
+            command.AddOption(storeIdOption);
+            var setIdOption = new Option<string>("--set-id", description: "key: id of set");
+            setIdOption.IsRequired = true;
+            command.AddOption(setIdOption);
+            var termIdOption = new Option<string>("--term-id", description: "key: id of term");
+            termIdOption.IsRequired = true;
+            command.AddOption(termIdOption);
+            var relationIdOption = new Option<string>("--relation-id", description: "key: id of relation");
+            relationIdOption.IsRequired = true;
+            command.AddOption(relationIdOption);
+            var bodyOption = new Option<string>("--body");
+            bodyOption.IsRequired = true;
+            command.AddOption(bodyOption);
             command.Handler = CommandHandler.Create<string, string, string, string, string, string>(async (siteId, storeId, setId, termId, relationId, body) => {
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<ApiSdk.Sites.Item.TermStores.Item.Sets.Item.Terms.Item.Relations.Item.FromTerm.@Ref.@Ref>();
-                var requestInfo = CreatePutRequestInformation(model);
-                if (!String.IsNullOrEmpty(siteId)) requestInfo.PathParameters.Add("site_id", siteId);
-                if (!String.IsNullOrEmpty(storeId)) requestInfo.PathParameters.Add("store_id", storeId);
-                if (!String.IsNullOrEmpty(setId)) requestInfo.PathParameters.Add("set_id", setId);
-                if (!String.IsNullOrEmpty(termId)) requestInfo.PathParameters.Add("term_id", termId);
-                if (!String.IsNullOrEmpty(relationId)) requestInfo.PathParameters.Add("relation_id", relationId);
+                var requestInfo = CreatePutRequestInformation(model, q => {
+                });
                 await RequestAdapter.SendNoContentAsync(requestInfo);
                 // Print request output. What if the request has no return?
                 Console.WriteLine("Success");

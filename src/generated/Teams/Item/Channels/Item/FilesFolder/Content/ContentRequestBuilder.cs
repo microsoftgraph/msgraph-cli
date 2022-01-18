@@ -25,13 +25,16 @@ namespace ApiSdk.Teams.Item.Channels.Item.FilesFolder.Content {
             var command = new Command("get");
             command.Description = "Get media content for the navigation property filesFolder from teams";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--team-id", description: "key: id of team"));
-            command.AddOption(new Option<string>("--channel-id", description: "key: id of channel"));
+            var teamIdOption = new Option<string>("--team-id", description: "key: id of team");
+            teamIdOption.IsRequired = true;
+            command.AddOption(teamIdOption);
+            var channelIdOption = new Option<string>("--channel-id", description: "key: id of channel");
+            channelIdOption.IsRequired = true;
+            command.AddOption(channelIdOption);
             command.AddOption(new Option<FileInfo>("--output"));
             command.Handler = CommandHandler.Create<string, string, FileInfo>(async (teamId, channelId, output) => {
-                var requestInfo = CreateGetRequestInformation();
-                if (!String.IsNullOrEmpty(teamId)) requestInfo.PathParameters.Add("team_id", teamId);
-                if (!String.IsNullOrEmpty(channelId)) requestInfo.PathParameters.Add("channel_id", channelId);
+                var requestInfo = CreateGetRequestInformation(q => {
+                });
                 var result = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 // Print request output. What if the request has no return?
                 if (output == null) {
@@ -54,14 +57,19 @@ namespace ApiSdk.Teams.Item.Channels.Item.FilesFolder.Content {
             var command = new Command("put");
             command.Description = "Update media content for the navigation property filesFolder in teams";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--team-id", description: "key: id of team"));
-            command.AddOption(new Option<string>("--channel-id", description: "key: id of channel"));
-            command.AddOption(new Option<Stream>("--file", description: "Binary request body"));
+            var teamIdOption = new Option<string>("--team-id", description: "key: id of team");
+            teamIdOption.IsRequired = true;
+            command.AddOption(teamIdOption);
+            var channelIdOption = new Option<string>("--channel-id", description: "key: id of channel");
+            channelIdOption.IsRequired = true;
+            command.AddOption(channelIdOption);
+            var fileOption = new Option<Stream>("--file", description: "Binary request body");
+            fileOption.IsRequired = true;
+            command.AddOption(fileOption);
             command.Handler = CommandHandler.Create<string, string, FileInfo>(async (teamId, channelId, file) => {
                 using var stream = file.OpenRead();
-                var requestInfo = CreatePutRequestInformation(stream);
-                if (!String.IsNullOrEmpty(teamId)) requestInfo.PathParameters.Add("team_id", teamId);
-                if (!String.IsNullOrEmpty(channelId)) requestInfo.PathParameters.Add("channel_id", channelId);
+                var requestInfo = CreatePutRequestInformation(stream, q => {
+                });
                 await RequestAdapter.SendNoContentAsync(requestInfo);
                 // Print request output. What if the request has no return?
                 Console.WriteLine("Success");

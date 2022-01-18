@@ -7,9 +7,9 @@ namespace ApiSdk.Models.Microsoft.Graph {
     public class UserAttributeValuesItem : IParsable {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
-        /// <summary>Determines whether the value is set as the default.</summary>
+        /// <summary>Used to set the value as the default.</summary>
         public bool? IsDefault { get; set; }
-        /// <summary>The display name of the property displayed to the user in the user flow.</summary>
+        /// <summary>The display name of the property displayed to the end user in the user flow.</summary>
         public string Name { get; set; }
         /// <summary>The value that is set when this item is selected.</summary>
         public string Value { get; set; }

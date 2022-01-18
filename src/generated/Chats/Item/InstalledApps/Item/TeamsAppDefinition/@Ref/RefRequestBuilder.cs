@@ -25,12 +25,15 @@ namespace ApiSdk.Chats.Item.InstalledApps.Item.TeamsAppDefinition.@Ref {
             var command = new Command("delete");
             command.Description = "The details of this version of the app.";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--chat-id", description: "key: id of chat"));
-            command.AddOption(new Option<string>("--teamsappinstallation-id", description: "key: id of teamsAppInstallation"));
+            var chatIdOption = new Option<string>("--chat-id", description: "key: id of chat");
+            chatIdOption.IsRequired = true;
+            command.AddOption(chatIdOption);
+            var teamsAppInstallationIdOption = new Option<string>("--teamsappinstallation-id", description: "key: id of teamsAppInstallation");
+            teamsAppInstallationIdOption.IsRequired = true;
+            command.AddOption(teamsAppInstallationIdOption);
             command.Handler = CommandHandler.Create<string, string>(async (chatId, teamsAppInstallationId) => {
-                var requestInfo = CreateDeleteRequestInformation();
-                if (!String.IsNullOrEmpty(chatId)) requestInfo.PathParameters.Add("chat_id", chatId);
-                if (!String.IsNullOrEmpty(teamsAppInstallationId)) requestInfo.PathParameters.Add("teamsAppInstallation_id", teamsAppInstallationId);
+                var requestInfo = CreateDeleteRequestInformation(q => {
+                });
                 await RequestAdapter.SendNoContentAsync(requestInfo);
                 // Print request output. What if the request has no return?
                 Console.WriteLine("Success");
@@ -44,12 +47,15 @@ namespace ApiSdk.Chats.Item.InstalledApps.Item.TeamsAppDefinition.@Ref {
             var command = new Command("get");
             command.Description = "The details of this version of the app.";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--chat-id", description: "key: id of chat"));
-            command.AddOption(new Option<string>("--teamsappinstallation-id", description: "key: id of teamsAppInstallation"));
+            var chatIdOption = new Option<string>("--chat-id", description: "key: id of chat");
+            chatIdOption.IsRequired = true;
+            command.AddOption(chatIdOption);
+            var teamsAppInstallationIdOption = new Option<string>("--teamsappinstallation-id", description: "key: id of teamsAppInstallation");
+            teamsAppInstallationIdOption.IsRequired = true;
+            command.AddOption(teamsAppInstallationIdOption);
             command.Handler = CommandHandler.Create<string, string>(async (chatId, teamsAppInstallationId) => {
-                var requestInfo = CreateGetRequestInformation();
-                if (!String.IsNullOrEmpty(chatId)) requestInfo.PathParameters.Add("chat_id", chatId);
-                if (!String.IsNullOrEmpty(teamsAppInstallationId)) requestInfo.PathParameters.Add("teamsAppInstallation_id", teamsAppInstallationId);
+                var requestInfo = CreateGetRequestInformation(q => {
+                });
                 var result = await RequestAdapter.SendPrimitiveAsync<string>(requestInfo);
                 // Print request output. What if the request has no return?
                 using var serializer = RequestAdapter.SerializationWriterFactory.GetSerializationWriter("application/json");
@@ -68,16 +74,21 @@ namespace ApiSdk.Chats.Item.InstalledApps.Item.TeamsAppDefinition.@Ref {
             var command = new Command("put");
             command.Description = "The details of this version of the app.";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--chat-id", description: "key: id of chat"));
-            command.AddOption(new Option<string>("--teamsappinstallation-id", description: "key: id of teamsAppInstallation"));
-            command.AddOption(new Option<string>("--body"));
+            var chatIdOption = new Option<string>("--chat-id", description: "key: id of chat");
+            chatIdOption.IsRequired = true;
+            command.AddOption(chatIdOption);
+            var teamsAppInstallationIdOption = new Option<string>("--teamsappinstallation-id", description: "key: id of teamsAppInstallation");
+            teamsAppInstallationIdOption.IsRequired = true;
+            command.AddOption(teamsAppInstallationIdOption);
+            var bodyOption = new Option<string>("--body");
+            bodyOption.IsRequired = true;
+            command.AddOption(bodyOption);
             command.Handler = CommandHandler.Create<string, string, string>(async (chatId, teamsAppInstallationId, body) => {
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<ApiSdk.Chats.Item.InstalledApps.Item.TeamsAppDefinition.@Ref.@Ref>();
-                var requestInfo = CreatePutRequestInformation(model);
-                if (!String.IsNullOrEmpty(chatId)) requestInfo.PathParameters.Add("chat_id", chatId);
-                if (!String.IsNullOrEmpty(teamsAppInstallationId)) requestInfo.PathParameters.Add("teamsAppInstallation_id", teamsAppInstallationId);
+                var requestInfo = CreatePutRequestInformation(model, q => {
+                });
                 await RequestAdapter.SendNoContentAsync(requestInfo);
                 // Print request output. What if the request has no return?
                 Console.WriteLine("Success");

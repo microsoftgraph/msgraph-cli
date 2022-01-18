@@ -26,18 +26,24 @@ namespace ApiSdk.Workbooks.Item.Workbook.Worksheets.Item.Charts.Item.Series.Item
             var command = new Command("get");
             command.Description = "Invoke function itemAt";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--driveitem-id", description: "key: id of driveItem"));
-            command.AddOption(new Option<string>("--workbookworksheet-id", description: "key: id of workbookWorksheet"));
-            command.AddOption(new Option<string>("--workbookchart-id", description: "key: id of workbookChart"));
-            command.AddOption(new Option<string>("--workbookchartseries-id", description: "key: id of workbookChartSeries"));
-            command.AddOption(new Option<int?>("--index", description: "Usage: index={index}"));
+            var driveItemIdOption = new Option<string>("--driveitem-id", description: "key: id of driveItem");
+            driveItemIdOption.IsRequired = true;
+            command.AddOption(driveItemIdOption);
+            var workbookWorksheetIdOption = new Option<string>("--workbookworksheet-id", description: "key: id of workbookWorksheet");
+            workbookWorksheetIdOption.IsRequired = true;
+            command.AddOption(workbookWorksheetIdOption);
+            var workbookChartIdOption = new Option<string>("--workbookchart-id", description: "key: id of workbookChart");
+            workbookChartIdOption.IsRequired = true;
+            command.AddOption(workbookChartIdOption);
+            var workbookChartSeriesIdOption = new Option<string>("--workbookchartseries-id", description: "key: id of workbookChartSeries");
+            workbookChartSeriesIdOption.IsRequired = true;
+            command.AddOption(workbookChartSeriesIdOption);
+            var indexOption = new Option<int?>("--index", description: "Usage: index={index}");
+            indexOption.IsRequired = true;
+            command.AddOption(indexOption);
             command.Handler = CommandHandler.Create<string, string, string, string, int?>(async (driveItemId, workbookWorksheetId, workbookChartId, workbookChartSeriesId, index) => {
-                var requestInfo = CreateGetRequestInformation();
-                if (!String.IsNullOrEmpty(driveItemId)) requestInfo.PathParameters.Add("driveItem_id", driveItemId);
-                if (!String.IsNullOrEmpty(workbookWorksheetId)) requestInfo.PathParameters.Add("workbookWorksheet_id", workbookWorksheetId);
-                if (!String.IsNullOrEmpty(workbookChartId)) requestInfo.PathParameters.Add("workbookChart_id", workbookChartId);
-                if (!String.IsNullOrEmpty(workbookChartSeriesId)) requestInfo.PathParameters.Add("workbookChartSeries_id", workbookChartSeriesId);
-                requestInfo.PathParameters.Add("index", index);
+                var requestInfo = CreateGetRequestInformation(q => {
+                });
                 var result = await RequestAdapter.SendAsync<ItemAtWithIndexResponse>(requestInfo);
                 // Print request output. What if the request has no return?
                 using var serializer = RequestAdapter.SerializationWriterFactory.GetSerializationWriter("application/json");

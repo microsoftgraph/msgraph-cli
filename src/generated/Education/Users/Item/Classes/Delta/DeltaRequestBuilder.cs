@@ -25,10 +25,12 @@ namespace ApiSdk.Education.Users.Item.Classes.Delta {
             var command = new Command("get");
             command.Description = "Invoke function delta";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--educationuser-id", description: "key: id of educationUser"));
+            var educationUserIdOption = new Option<string>("--educationuser-id", description: "key: id of educationUser");
+            educationUserIdOption.IsRequired = true;
+            command.AddOption(educationUserIdOption);
             command.Handler = CommandHandler.Create<string>(async (educationUserId) => {
-                var requestInfo = CreateGetRequestInformation();
-                if (!String.IsNullOrEmpty(educationUserId)) requestInfo.PathParameters.Add("educationUser_id", educationUserId);
+                var requestInfo = CreateGetRequestInformation(q => {
+                });
                 var result = await RequestAdapter.SendCollectionAsync<ApiSdk.Education.Users.Item.Classes.Delta.Delta>(requestInfo);
                 // Print request output. What if the request has no return?
                 using var serializer = RequestAdapter.SerializationWriterFactory.GetSerializationWriter("application/json");

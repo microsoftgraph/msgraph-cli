@@ -21,16 +21,18 @@ namespace ApiSdk.IdentityGovernance.AppConsent.AppConsentRequests.Item {
         /// <summary>Url template to use to build the URL for the current request builder</summary>
         private string UrlTemplate { get; set; }
         /// <summary>
-        /// Delete navigation property appConsentRequests for identityGovernance
+        /// A collection of userConsentRequest objects for a specific application.
         /// </summary>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
-            command.Description = "Delete navigation property appConsentRequests for identityGovernance";
+            command.Description = "A collection of userConsentRequest objects for a specific application.";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--appconsentrequest-id", description: "key: id of appConsentRequest"));
+            var appConsentRequestIdOption = new Option<string>("--appconsentrequest-id", description: "key: id of appConsentRequest");
+            appConsentRequestIdOption.IsRequired = true;
+            command.AddOption(appConsentRequestIdOption);
             command.Handler = CommandHandler.Create<string>(async (appConsentRequestId) => {
-                var requestInfo = CreateDeleteRequestInformation();
-                if (!String.IsNullOrEmpty(appConsentRequestId)) requestInfo.PathParameters.Add("appConsentRequest_id", appConsentRequestId);
+                var requestInfo = CreateDeleteRequestInformation(q => {
+                });
                 await RequestAdapter.SendNoContentAsync(requestInfo);
                 // Print request output. What if the request has no return?
                 Console.WriteLine("Success");
@@ -38,20 +40,28 @@ namespace ApiSdk.IdentityGovernance.AppConsent.AppConsentRequests.Item {
             return command;
         }
         /// <summary>
-        /// Get appConsentRequests from identityGovernance
+        /// A collection of userConsentRequest objects for a specific application.
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "Get appConsentRequests from identityGovernance";
+            command.Description = "A collection of userConsentRequest objects for a specific application.";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--appconsentrequest-id", description: "key: id of appConsentRequest"));
-            command.AddOption(new Option<object>("--select", description: "Select properties to be returned"));
-            command.AddOption(new Option<object>("--expand", description: "Expand related entities"));
-            command.Handler = CommandHandler.Create<string, object, object>(async (appConsentRequestId, select, expand) => {
-                var requestInfo = CreateGetRequestInformation();
-                if (!String.IsNullOrEmpty(appConsentRequestId)) requestInfo.PathParameters.Add("appConsentRequest_id", appConsentRequestId);
-                requestInfo.QueryParameters.Add("select", select);
-                requestInfo.QueryParameters.Add("expand", expand);
+            var appConsentRequestIdOption = new Option<string>("--appconsentrequest-id", description: "key: id of appConsentRequest");
+            appConsentRequestIdOption.IsRequired = true;
+            command.AddOption(appConsentRequestIdOption);
+            var selectOption = new Option<string[]>("--select", description: "Select properties to be returned");
+            selectOption.IsRequired = false;
+            selectOption.Arity = ArgumentArity.ZeroOrMore;
+            command.AddOption(selectOption);
+            var expandOption = new Option<string[]>("--expand", description: "Expand related entities");
+            expandOption.IsRequired = false;
+            expandOption.Arity = ArgumentArity.ZeroOrMore;
+            command.AddOption(expandOption);
+            command.Handler = CommandHandler.Create<string, string[], string[]>(async (appConsentRequestId, select, expand) => {
+                var requestInfo = CreateGetRequestInformation(q => {
+                    q.Select = select;
+                    q.Expand = expand;
+                });
                 var result = await RequestAdapter.SendAsync<AppConsentRequest>(requestInfo);
                 // Print request output. What if the request has no return?
                 using var serializer = RequestAdapter.SerializationWriterFactory.GetSerializationWriter("application/json");
@@ -64,20 +74,24 @@ namespace ApiSdk.IdentityGovernance.AppConsent.AppConsentRequests.Item {
             return command;
         }
         /// <summary>
-        /// Update the navigation property appConsentRequests in identityGovernance
+        /// A collection of userConsentRequest objects for a specific application.
         /// </summary>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
-            command.Description = "Update the navigation property appConsentRequests in identityGovernance";
+            command.Description = "A collection of userConsentRequest objects for a specific application.";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--appconsentrequest-id", description: "key: id of appConsentRequest"));
-            command.AddOption(new Option<string>("--body"));
+            var appConsentRequestIdOption = new Option<string>("--appconsentrequest-id", description: "key: id of appConsentRequest");
+            appConsentRequestIdOption.IsRequired = true;
+            command.AddOption(appConsentRequestIdOption);
+            var bodyOption = new Option<string>("--body");
+            bodyOption.IsRequired = true;
+            command.AddOption(bodyOption);
             command.Handler = CommandHandler.Create<string, string>(async (appConsentRequestId, body) => {
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<AppConsentRequest>();
-                var requestInfo = CreatePatchRequestInformation(model);
-                if (!String.IsNullOrEmpty(appConsentRequestId)) requestInfo.PathParameters.Add("appConsentRequest_id", appConsentRequestId);
+                var requestInfo = CreatePatchRequestInformation(model, q => {
+                });
                 await RequestAdapter.SendNoContentAsync(requestInfo);
                 // Print request output. What if the request has no return?
                 Console.WriteLine("Success");
@@ -105,7 +119,7 @@ namespace ApiSdk.IdentityGovernance.AppConsent.AppConsentRequests.Item {
             RequestAdapter = requestAdapter;
         }
         /// <summary>
-        /// Delete navigation property appConsentRequests for identityGovernance
+        /// A collection of userConsentRequest objects for a specific application.
         /// <param name="h">Request headers</param>
         /// <param name="o">Request options</param>
         /// </summary>
@@ -120,7 +134,7 @@ namespace ApiSdk.IdentityGovernance.AppConsent.AppConsentRequests.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Get appConsentRequests from identityGovernance
+        /// A collection of userConsentRequest objects for a specific application.
         /// <param name="h">Request headers</param>
         /// <param name="o">Request options</param>
         /// <param name="q">Request query parameters</param>
@@ -141,7 +155,7 @@ namespace ApiSdk.IdentityGovernance.AppConsent.AppConsentRequests.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Update the navigation property appConsentRequests in identityGovernance
+        /// A collection of userConsentRequest objects for a specific application.
         /// <param name="body"></param>
         /// <param name="h">Request headers</param>
         /// <param name="o">Request options</param>
@@ -159,7 +173,7 @@ namespace ApiSdk.IdentityGovernance.AppConsent.AppConsentRequests.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Delete navigation property appConsentRequests for identityGovernance
+        /// A collection of userConsentRequest objects for a specific application.
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="h">Request headers</param>
         /// <param name="o">Request options</param>
@@ -170,7 +184,7 @@ namespace ApiSdk.IdentityGovernance.AppConsent.AppConsentRequests.Item {
             await RequestAdapter.SendNoContentAsync(requestInfo, responseHandler, cancellationToken);
         }
         /// <summary>
-        /// Get appConsentRequests from identityGovernance
+        /// A collection of userConsentRequest objects for a specific application.
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="h">Request headers</param>
         /// <param name="o">Request options</param>
@@ -182,7 +196,7 @@ namespace ApiSdk.IdentityGovernance.AppConsent.AppConsentRequests.Item {
             return await RequestAdapter.SendAsync<AppConsentRequest>(requestInfo, responseHandler, cancellationToken);
         }
         /// <summary>
-        /// Update the navigation property appConsentRequests in identityGovernance
+        /// A collection of userConsentRequest objects for a specific application.
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="h">Request headers</param>
         /// <param name="model"></param>
@@ -194,7 +208,7 @@ namespace ApiSdk.IdentityGovernance.AppConsent.AppConsentRequests.Item {
             var requestInfo = CreatePatchRequestInformation(model, h, o);
             await RequestAdapter.SendNoContentAsync(requestInfo, responseHandler, cancellationToken);
         }
-        /// <summary>Get appConsentRequests from identityGovernance</summary>
+        /// <summary>A collection of userConsentRequest objects for a specific application.</summary>
         public class GetQueryParameters : QueryParametersBase {
             /// <summary>Expand related entities</summary>
             public string[] Expand { get; set; }

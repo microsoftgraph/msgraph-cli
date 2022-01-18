@@ -25,11 +25,13 @@ namespace ApiSdk.Applications.Item.Logo {
             var command = new Command("get");
             command.Description = "The main logo for the application. Not nullable.";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--application-id", description: "key: id of application"));
+            var applicationIdOption = new Option<string>("--application-id", description: "key: id of application");
+            applicationIdOption.IsRequired = true;
+            command.AddOption(applicationIdOption);
             command.AddOption(new Option<FileInfo>("--output"));
             command.Handler = CommandHandler.Create<string, FileInfo>(async (applicationId, output) => {
-                var requestInfo = CreateGetRequestInformation();
-                if (!String.IsNullOrEmpty(applicationId)) requestInfo.PathParameters.Add("application_id", applicationId);
+                var requestInfo = CreateGetRequestInformation(q => {
+                });
                 var result = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 // Print request output. What if the request has no return?
                 if (output == null) {
@@ -52,12 +54,16 @@ namespace ApiSdk.Applications.Item.Logo {
             var command = new Command("put");
             command.Description = "The main logo for the application. Not nullable.";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--application-id", description: "key: id of application"));
-            command.AddOption(new Option<Stream>("--file", description: "Binary request body"));
+            var applicationIdOption = new Option<string>("--application-id", description: "key: id of application");
+            applicationIdOption.IsRequired = true;
+            command.AddOption(applicationIdOption);
+            var fileOption = new Option<Stream>("--file", description: "Binary request body");
+            fileOption.IsRequired = true;
+            command.AddOption(fileOption);
             command.Handler = CommandHandler.Create<string, FileInfo>(async (applicationId, file) => {
                 using var stream = file.OpenRead();
-                var requestInfo = CreatePutRequestInformation(stream);
-                if (!String.IsNullOrEmpty(applicationId)) requestInfo.PathParameters.Add("application_id", applicationId);
+                var requestInfo = CreatePutRequestInformation(stream, q => {
+                });
                 await RequestAdapter.SendNoContentAsync(requestInfo);
                 // Print request output. What if the request has no return?
                 Console.WriteLine("Success");

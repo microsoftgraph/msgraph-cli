@@ -35,10 +35,12 @@ namespace ApiSdk.DeviceAppManagement.DefaultManagedAppProtections.Item {
             var command = new Command("delete");
             command.Description = "Default managed app policies.";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--defaultmanagedappprotection-id", description: "key: id of defaultManagedAppProtection"));
+            var defaultManagedAppProtectionIdOption = new Option<string>("--defaultmanagedappprotection-id", description: "key: id of defaultManagedAppProtection");
+            defaultManagedAppProtectionIdOption.IsRequired = true;
+            command.AddOption(defaultManagedAppProtectionIdOption);
             command.Handler = CommandHandler.Create<string>(async (defaultManagedAppProtectionId) => {
-                var requestInfo = CreateDeleteRequestInformation();
-                if (!String.IsNullOrEmpty(defaultManagedAppProtectionId)) requestInfo.PathParameters.Add("defaultManagedAppProtection_id", defaultManagedAppProtectionId);
+                var requestInfo = CreateDeleteRequestInformation(q => {
+                });
                 await RequestAdapter.SendNoContentAsync(requestInfo);
                 // Print request output. What if the request has no return?
                 Console.WriteLine("Success");
@@ -60,14 +62,22 @@ namespace ApiSdk.DeviceAppManagement.DefaultManagedAppProtections.Item {
             var command = new Command("get");
             command.Description = "Default managed app policies.";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--defaultmanagedappprotection-id", description: "key: id of defaultManagedAppProtection"));
-            command.AddOption(new Option<object>("--select", description: "Select properties to be returned"));
-            command.AddOption(new Option<object>("--expand", description: "Expand related entities"));
-            command.Handler = CommandHandler.Create<string, object, object>(async (defaultManagedAppProtectionId, select, expand) => {
-                var requestInfo = CreateGetRequestInformation();
-                if (!String.IsNullOrEmpty(defaultManagedAppProtectionId)) requestInfo.PathParameters.Add("defaultManagedAppProtection_id", defaultManagedAppProtectionId);
-                requestInfo.QueryParameters.Add("select", select);
-                requestInfo.QueryParameters.Add("expand", expand);
+            var defaultManagedAppProtectionIdOption = new Option<string>("--defaultmanagedappprotection-id", description: "key: id of defaultManagedAppProtection");
+            defaultManagedAppProtectionIdOption.IsRequired = true;
+            command.AddOption(defaultManagedAppProtectionIdOption);
+            var selectOption = new Option<string[]>("--select", description: "Select properties to be returned");
+            selectOption.IsRequired = false;
+            selectOption.Arity = ArgumentArity.ZeroOrMore;
+            command.AddOption(selectOption);
+            var expandOption = new Option<string[]>("--expand", description: "Expand related entities");
+            expandOption.IsRequired = false;
+            expandOption.Arity = ArgumentArity.ZeroOrMore;
+            command.AddOption(expandOption);
+            command.Handler = CommandHandler.Create<string, string[], string[]>(async (defaultManagedAppProtectionId, select, expand) => {
+                var requestInfo = CreateGetRequestInformation(q => {
+                    q.Select = select;
+                    q.Expand = expand;
+                });
                 var result = await RequestAdapter.SendAsync<DefaultManagedAppProtection>(requestInfo);
                 // Print request output. What if the request has no return?
                 using var serializer = RequestAdapter.SerializationWriterFactory.GetSerializationWriter("application/json");
@@ -86,14 +96,18 @@ namespace ApiSdk.DeviceAppManagement.DefaultManagedAppProtections.Item {
             var command = new Command("patch");
             command.Description = "Default managed app policies.";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--defaultmanagedappprotection-id", description: "key: id of defaultManagedAppProtection"));
-            command.AddOption(new Option<string>("--body"));
+            var defaultManagedAppProtectionIdOption = new Option<string>("--defaultmanagedappprotection-id", description: "key: id of defaultManagedAppProtection");
+            defaultManagedAppProtectionIdOption.IsRequired = true;
+            command.AddOption(defaultManagedAppProtectionIdOption);
+            var bodyOption = new Option<string>("--body");
+            bodyOption.IsRequired = true;
+            command.AddOption(bodyOption);
             command.Handler = CommandHandler.Create<string, string>(async (defaultManagedAppProtectionId, body) => {
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<DefaultManagedAppProtection>();
-                var requestInfo = CreatePatchRequestInformation(model);
-                if (!String.IsNullOrEmpty(defaultManagedAppProtectionId)) requestInfo.PathParameters.Add("defaultManagedAppProtection_id", defaultManagedAppProtectionId);
+                var requestInfo = CreatePatchRequestInformation(model, q => {
+                });
                 await RequestAdapter.SendNoContentAsync(requestInfo);
                 // Print request output. What if the request has no return?
                 Console.WriteLine("Success");

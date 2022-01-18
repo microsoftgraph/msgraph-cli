@@ -25,16 +25,21 @@ namespace ApiSdk.Sites.Item.TermStores.Item.Sets.Item.Children.Item.Set.@Ref {
             var command = new Command("delete");
             command.Description = "The [set] in which the term is created.";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--site-id", description: "key: id of site"));
-            command.AddOption(new Option<string>("--store-id", description: "key: id of store"));
-            command.AddOption(new Option<string>("--set-id", description: "key: id of set"));
-            command.AddOption(new Option<string>("--term-id", description: "key: id of term"));
+            var siteIdOption = new Option<string>("--site-id", description: "key: id of site");
+            siteIdOption.IsRequired = true;
+            command.AddOption(siteIdOption);
+            var storeIdOption = new Option<string>("--store-id", description: "key: id of store");
+            storeIdOption.IsRequired = true;
+            command.AddOption(storeIdOption);
+            var setIdOption = new Option<string>("--set-id", description: "key: id of set");
+            setIdOption.IsRequired = true;
+            command.AddOption(setIdOption);
+            var termIdOption = new Option<string>("--term-id", description: "key: id of term");
+            termIdOption.IsRequired = true;
+            command.AddOption(termIdOption);
             command.Handler = CommandHandler.Create<string, string, string, string>(async (siteId, storeId, setId, termId) => {
-                var requestInfo = CreateDeleteRequestInformation();
-                if (!String.IsNullOrEmpty(siteId)) requestInfo.PathParameters.Add("site_id", siteId);
-                if (!String.IsNullOrEmpty(storeId)) requestInfo.PathParameters.Add("store_id", storeId);
-                if (!String.IsNullOrEmpty(setId)) requestInfo.PathParameters.Add("set_id", setId);
-                if (!String.IsNullOrEmpty(termId)) requestInfo.PathParameters.Add("term_id", termId);
+                var requestInfo = CreateDeleteRequestInformation(q => {
+                });
                 await RequestAdapter.SendNoContentAsync(requestInfo);
                 // Print request output. What if the request has no return?
                 Console.WriteLine("Success");
@@ -48,16 +53,21 @@ namespace ApiSdk.Sites.Item.TermStores.Item.Sets.Item.Children.Item.Set.@Ref {
             var command = new Command("get");
             command.Description = "The [set] in which the term is created.";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--site-id", description: "key: id of site"));
-            command.AddOption(new Option<string>("--store-id", description: "key: id of store"));
-            command.AddOption(new Option<string>("--set-id", description: "key: id of set"));
-            command.AddOption(new Option<string>("--term-id", description: "key: id of term"));
+            var siteIdOption = new Option<string>("--site-id", description: "key: id of site");
+            siteIdOption.IsRequired = true;
+            command.AddOption(siteIdOption);
+            var storeIdOption = new Option<string>("--store-id", description: "key: id of store");
+            storeIdOption.IsRequired = true;
+            command.AddOption(storeIdOption);
+            var setIdOption = new Option<string>("--set-id", description: "key: id of set");
+            setIdOption.IsRequired = true;
+            command.AddOption(setIdOption);
+            var termIdOption = new Option<string>("--term-id", description: "key: id of term");
+            termIdOption.IsRequired = true;
+            command.AddOption(termIdOption);
             command.Handler = CommandHandler.Create<string, string, string, string>(async (siteId, storeId, setId, termId) => {
-                var requestInfo = CreateGetRequestInformation();
-                if (!String.IsNullOrEmpty(siteId)) requestInfo.PathParameters.Add("site_id", siteId);
-                if (!String.IsNullOrEmpty(storeId)) requestInfo.PathParameters.Add("store_id", storeId);
-                if (!String.IsNullOrEmpty(setId)) requestInfo.PathParameters.Add("set_id", setId);
-                if (!String.IsNullOrEmpty(termId)) requestInfo.PathParameters.Add("term_id", termId);
+                var requestInfo = CreateGetRequestInformation(q => {
+                });
                 var result = await RequestAdapter.SendPrimitiveAsync<string>(requestInfo);
                 // Print request output. What if the request has no return?
                 using var serializer = RequestAdapter.SerializationWriterFactory.GetSerializationWriter("application/json");
@@ -76,20 +86,27 @@ namespace ApiSdk.Sites.Item.TermStores.Item.Sets.Item.Children.Item.Set.@Ref {
             var command = new Command("put");
             command.Description = "The [set] in which the term is created.";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--site-id", description: "key: id of site"));
-            command.AddOption(new Option<string>("--store-id", description: "key: id of store"));
-            command.AddOption(new Option<string>("--set-id", description: "key: id of set"));
-            command.AddOption(new Option<string>("--term-id", description: "key: id of term"));
-            command.AddOption(new Option<string>("--body"));
+            var siteIdOption = new Option<string>("--site-id", description: "key: id of site");
+            siteIdOption.IsRequired = true;
+            command.AddOption(siteIdOption);
+            var storeIdOption = new Option<string>("--store-id", description: "key: id of store");
+            storeIdOption.IsRequired = true;
+            command.AddOption(storeIdOption);
+            var setIdOption = new Option<string>("--set-id", description: "key: id of set");
+            setIdOption.IsRequired = true;
+            command.AddOption(setIdOption);
+            var termIdOption = new Option<string>("--term-id", description: "key: id of term");
+            termIdOption.IsRequired = true;
+            command.AddOption(termIdOption);
+            var bodyOption = new Option<string>("--body");
+            bodyOption.IsRequired = true;
+            command.AddOption(bodyOption);
             command.Handler = CommandHandler.Create<string, string, string, string, string>(async (siteId, storeId, setId, termId, body) => {
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<ApiSdk.Sites.Item.TermStores.Item.Sets.Item.Children.Item.Set.@Ref.@Ref>();
-                var requestInfo = CreatePutRequestInformation(model);
-                if (!String.IsNullOrEmpty(siteId)) requestInfo.PathParameters.Add("site_id", siteId);
-                if (!String.IsNullOrEmpty(storeId)) requestInfo.PathParameters.Add("store_id", storeId);
-                if (!String.IsNullOrEmpty(setId)) requestInfo.PathParameters.Add("set_id", setId);
-                if (!String.IsNullOrEmpty(termId)) requestInfo.PathParameters.Add("term_id", termId);
+                var requestInfo = CreatePutRequestInformation(model, q => {
+                });
                 await RequestAdapter.SendNoContentAsync(requestInfo);
                 // Print request output. What if the request has no return?
                 Console.WriteLine("Success");

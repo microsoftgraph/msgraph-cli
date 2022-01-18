@@ -29,18 +29,24 @@ namespace ApiSdk.Sites.Item.TermStores.Item.Groups.Item.Sets.Item.Relations.Item
             var command = new Command("delete");
             command.Description = "Indicates which terms have been pinned or reused directly under the set.";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--site-id", description: "key: id of site"));
-            command.AddOption(new Option<string>("--store-id", description: "key: id of store"));
-            command.AddOption(new Option<string>("--group-id", description: "key: id of group"));
-            command.AddOption(new Option<string>("--set-id", description: "key: id of set"));
-            command.AddOption(new Option<string>("--relation-id", description: "key: id of relation"));
+            var siteIdOption = new Option<string>("--site-id", description: "key: id of site");
+            siteIdOption.IsRequired = true;
+            command.AddOption(siteIdOption);
+            var storeIdOption = new Option<string>("--store-id", description: "key: id of store");
+            storeIdOption.IsRequired = true;
+            command.AddOption(storeIdOption);
+            var groupIdOption = new Option<string>("--group-id", description: "key: id of group");
+            groupIdOption.IsRequired = true;
+            command.AddOption(groupIdOption);
+            var setIdOption = new Option<string>("--set-id", description: "key: id of set");
+            setIdOption.IsRequired = true;
+            command.AddOption(setIdOption);
+            var relationIdOption = new Option<string>("--relation-id", description: "key: id of relation");
+            relationIdOption.IsRequired = true;
+            command.AddOption(relationIdOption);
             command.Handler = CommandHandler.Create<string, string, string, string, string>(async (siteId, storeId, groupId, setId, relationId) => {
-                var requestInfo = CreateDeleteRequestInformation();
-                if (!String.IsNullOrEmpty(siteId)) requestInfo.PathParameters.Add("site_id", siteId);
-                if (!String.IsNullOrEmpty(storeId)) requestInfo.PathParameters.Add("store_id", storeId);
-                if (!String.IsNullOrEmpty(groupId)) requestInfo.PathParameters.Add("group_id", groupId);
-                if (!String.IsNullOrEmpty(setId)) requestInfo.PathParameters.Add("set_id", setId);
-                if (!String.IsNullOrEmpty(relationId)) requestInfo.PathParameters.Add("relation_id", relationId);
+                var requestInfo = CreateDeleteRequestInformation(q => {
+                });
                 await RequestAdapter.SendNoContentAsync(requestInfo);
                 // Print request output. What if the request has no return?
                 Console.WriteLine("Success");
@@ -61,22 +67,34 @@ namespace ApiSdk.Sites.Item.TermStores.Item.Groups.Item.Sets.Item.Relations.Item
             var command = new Command("get");
             command.Description = "Indicates which terms have been pinned or reused directly under the set.";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--site-id", description: "key: id of site"));
-            command.AddOption(new Option<string>("--store-id", description: "key: id of store"));
-            command.AddOption(new Option<string>("--group-id", description: "key: id of group"));
-            command.AddOption(new Option<string>("--set-id", description: "key: id of set"));
-            command.AddOption(new Option<string>("--relation-id", description: "key: id of relation"));
-            command.AddOption(new Option<object>("--select", description: "Select properties to be returned"));
-            command.AddOption(new Option<object>("--expand", description: "Expand related entities"));
-            command.Handler = CommandHandler.Create<string, string, string, string, string, object, object>(async (siteId, storeId, groupId, setId, relationId, select, expand) => {
-                var requestInfo = CreateGetRequestInformation();
-                if (!String.IsNullOrEmpty(siteId)) requestInfo.PathParameters.Add("site_id", siteId);
-                if (!String.IsNullOrEmpty(storeId)) requestInfo.PathParameters.Add("store_id", storeId);
-                if (!String.IsNullOrEmpty(groupId)) requestInfo.PathParameters.Add("group_id", groupId);
-                if (!String.IsNullOrEmpty(setId)) requestInfo.PathParameters.Add("set_id", setId);
-                if (!String.IsNullOrEmpty(relationId)) requestInfo.PathParameters.Add("relation_id", relationId);
-                requestInfo.QueryParameters.Add("select", select);
-                requestInfo.QueryParameters.Add("expand", expand);
+            var siteIdOption = new Option<string>("--site-id", description: "key: id of site");
+            siteIdOption.IsRequired = true;
+            command.AddOption(siteIdOption);
+            var storeIdOption = new Option<string>("--store-id", description: "key: id of store");
+            storeIdOption.IsRequired = true;
+            command.AddOption(storeIdOption);
+            var groupIdOption = new Option<string>("--group-id", description: "key: id of group");
+            groupIdOption.IsRequired = true;
+            command.AddOption(groupIdOption);
+            var setIdOption = new Option<string>("--set-id", description: "key: id of set");
+            setIdOption.IsRequired = true;
+            command.AddOption(setIdOption);
+            var relationIdOption = new Option<string>("--relation-id", description: "key: id of relation");
+            relationIdOption.IsRequired = true;
+            command.AddOption(relationIdOption);
+            var selectOption = new Option<string[]>("--select", description: "Select properties to be returned");
+            selectOption.IsRequired = false;
+            selectOption.Arity = ArgumentArity.ZeroOrMore;
+            command.AddOption(selectOption);
+            var expandOption = new Option<string[]>("--expand", description: "Expand related entities");
+            expandOption.IsRequired = false;
+            expandOption.Arity = ArgumentArity.ZeroOrMore;
+            command.AddOption(expandOption);
+            command.Handler = CommandHandler.Create<string, string, string, string, string, string[], string[]>(async (siteId, storeId, groupId, setId, relationId, select, expand) => {
+                var requestInfo = CreateGetRequestInformation(q => {
+                    q.Select = select;
+                    q.Expand = expand;
+                });
                 var result = await RequestAdapter.SendAsync<Relation>(requestInfo);
                 // Print request output. What if the request has no return?
                 using var serializer = RequestAdapter.SerializationWriterFactory.GetSerializationWriter("application/json");
@@ -95,22 +113,30 @@ namespace ApiSdk.Sites.Item.TermStores.Item.Groups.Item.Sets.Item.Relations.Item
             var command = new Command("patch");
             command.Description = "Indicates which terms have been pinned or reused directly under the set.";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--site-id", description: "key: id of site"));
-            command.AddOption(new Option<string>("--store-id", description: "key: id of store"));
-            command.AddOption(new Option<string>("--group-id", description: "key: id of group"));
-            command.AddOption(new Option<string>("--set-id", description: "key: id of set"));
-            command.AddOption(new Option<string>("--relation-id", description: "key: id of relation"));
-            command.AddOption(new Option<string>("--body"));
+            var siteIdOption = new Option<string>("--site-id", description: "key: id of site");
+            siteIdOption.IsRequired = true;
+            command.AddOption(siteIdOption);
+            var storeIdOption = new Option<string>("--store-id", description: "key: id of store");
+            storeIdOption.IsRequired = true;
+            command.AddOption(storeIdOption);
+            var groupIdOption = new Option<string>("--group-id", description: "key: id of group");
+            groupIdOption.IsRequired = true;
+            command.AddOption(groupIdOption);
+            var setIdOption = new Option<string>("--set-id", description: "key: id of set");
+            setIdOption.IsRequired = true;
+            command.AddOption(setIdOption);
+            var relationIdOption = new Option<string>("--relation-id", description: "key: id of relation");
+            relationIdOption.IsRequired = true;
+            command.AddOption(relationIdOption);
+            var bodyOption = new Option<string>("--body");
+            bodyOption.IsRequired = true;
+            command.AddOption(bodyOption);
             command.Handler = CommandHandler.Create<string, string, string, string, string, string>(async (siteId, storeId, groupId, setId, relationId, body) => {
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<Relation>();
-                var requestInfo = CreatePatchRequestInformation(model);
-                if (!String.IsNullOrEmpty(siteId)) requestInfo.PathParameters.Add("site_id", siteId);
-                if (!String.IsNullOrEmpty(storeId)) requestInfo.PathParameters.Add("store_id", storeId);
-                if (!String.IsNullOrEmpty(groupId)) requestInfo.PathParameters.Add("group_id", groupId);
-                if (!String.IsNullOrEmpty(setId)) requestInfo.PathParameters.Add("set_id", setId);
-                if (!String.IsNullOrEmpty(relationId)) requestInfo.PathParameters.Add("relation_id", relationId);
+                var requestInfo = CreatePatchRequestInformation(model, q => {
+                });
                 await RequestAdapter.SendNoContentAsync(requestInfo);
                 // Print request output. What if the request has no return?
                 Console.WriteLine("Success");

@@ -13,9 +13,11 @@ namespace ApiSdk.Models.Microsoft.Graph {
         public string Email { get; set; }
         /// <summary>The object identifier of the subject. null if the subject is not yet a user in the tenant.</summary>
         public string ObjectId { get; set; }
+        /// <summary>A string representation of the principal's security identifier, if known, or null if the subject does not have a security identifier.</summary>
         public string OnPremisesSecurityIdentifier { get; set; }
         /// <summary>The principal name, if known, of the subject.</summary>
         public string PrincipalName { get; set; }
+        /// <summary>The resource type of the subject. The possible values are: notSpecified, user, servicePrincipal, unknownFutureValue.</summary>
         public AccessPackageSubjectType? SubjectType { get; set; }
         /// <summary>
         /// The deserialization information for the current model

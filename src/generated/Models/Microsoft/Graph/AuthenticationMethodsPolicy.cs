@@ -7,13 +7,13 @@ namespace ApiSdk.Models.Microsoft.Graph {
     public class AuthenticationMethodsPolicy : Entity, IParsable {
         /// <summary>Represents the settings for each authentication method.</summary>
         public List<AuthenticationMethodConfiguration> AuthenticationMethodConfigurations { get; set; }
-        /// <summary>A description of the policy. Read-only.</summary>
+        /// <summary>A description of the policy.</summary>
         public string Description { get; set; }
-        /// <summary>The name of the policy. Read-only.</summary>
+        /// <summary>The name of the policy.</summary>
         public string DisplayName { get; set; }
-        /// <summary>The date and time of the last update to the policy. Read-only.</summary>
+        /// <summary>The date and time of the last update to the policy.</summary>
         public DateTimeOffset? LastModifiedDateTime { get; set; }
-        /// <summary>The version of the policy in use. Read-only.</summary>
+        /// <summary>The version of the policy in use.</summary>
         public string PolicyVersion { get; set; }
         public int? ReconfirmationInDays { get; set; }
         /// <summary>Enforce registration at sign-in time. This property can be used to remind users to set up targeted authentication methods.</summary>

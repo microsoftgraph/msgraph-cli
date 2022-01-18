@@ -25,10 +25,12 @@ namespace ApiSdk.Me.Onenote.Notebooks.GetRecentNotebooksWithIncludePersonalNoteb
             var command = new Command("get");
             command.Description = "Invoke function getRecentNotebooks";
             // Create options for all the parameters
-            command.AddOption(new Option<bool?>("--includepersonalnotebooks", description: "Usage: includePersonalNotebooks={includePersonalNotebooks}"));
+            var includePersonalNotebooksOption = new Option<bool?>("--includepersonalnotebooks", description: "Usage: includePersonalNotebooks={includePersonalNotebooks}");
+            includePersonalNotebooksOption.IsRequired = true;
+            command.AddOption(includePersonalNotebooksOption);
             command.Handler = CommandHandler.Create<bool?>(async (includePersonalNotebooks) => {
-                var requestInfo = CreateGetRequestInformation();
-                requestInfo.PathParameters.Add("includePersonalNotebooks", includePersonalNotebooks);
+                var requestInfo = CreateGetRequestInformation(q => {
+                });
                 var result = await RequestAdapter.SendCollectionAsync<ApiSdk.Me.Onenote.Notebooks.GetRecentNotebooksWithIncludePersonalNotebooks.GetRecentNotebooksWithIncludePersonalNotebooks>(requestInfo);
                 // Print request output. What if the request has no return?
                 using var serializer = RequestAdapter.SerializationWriterFactory.GetSerializationWriter("application/json");

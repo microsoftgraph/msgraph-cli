@@ -26,12 +26,15 @@ namespace ApiSdk.DeviceAppManagement.TargetedManagedAppConfigurations.Item.Assig
             var command = new Command("delete");
             command.Description = "Navigation property to list of inclusion and exclusion groups to which the policy is deployed.";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--targetedmanagedappconfiguration-id", description: "key: id of targetedManagedAppConfiguration"));
-            command.AddOption(new Option<string>("--targetedmanagedapppolicyassignment-id", description: "key: id of targetedManagedAppPolicyAssignment"));
+            var targetedManagedAppConfigurationIdOption = new Option<string>("--targetedmanagedappconfiguration-id", description: "key: id of targetedManagedAppConfiguration");
+            targetedManagedAppConfigurationIdOption.IsRequired = true;
+            command.AddOption(targetedManagedAppConfigurationIdOption);
+            var targetedManagedAppPolicyAssignmentIdOption = new Option<string>("--targetedmanagedapppolicyassignment-id", description: "key: id of targetedManagedAppPolicyAssignment");
+            targetedManagedAppPolicyAssignmentIdOption.IsRequired = true;
+            command.AddOption(targetedManagedAppPolicyAssignmentIdOption);
             command.Handler = CommandHandler.Create<string, string>(async (targetedManagedAppConfigurationId, targetedManagedAppPolicyAssignmentId) => {
-                var requestInfo = CreateDeleteRequestInformation();
-                if (!String.IsNullOrEmpty(targetedManagedAppConfigurationId)) requestInfo.PathParameters.Add("targetedManagedAppConfiguration_id", targetedManagedAppConfigurationId);
-                if (!String.IsNullOrEmpty(targetedManagedAppPolicyAssignmentId)) requestInfo.PathParameters.Add("targetedManagedAppPolicyAssignment_id", targetedManagedAppPolicyAssignmentId);
+                var requestInfo = CreateDeleteRequestInformation(q => {
+                });
                 await RequestAdapter.SendNoContentAsync(requestInfo);
                 // Print request output. What if the request has no return?
                 Console.WriteLine("Success");
@@ -45,16 +48,25 @@ namespace ApiSdk.DeviceAppManagement.TargetedManagedAppConfigurations.Item.Assig
             var command = new Command("get");
             command.Description = "Navigation property to list of inclusion and exclusion groups to which the policy is deployed.";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--targetedmanagedappconfiguration-id", description: "key: id of targetedManagedAppConfiguration"));
-            command.AddOption(new Option<string>("--targetedmanagedapppolicyassignment-id", description: "key: id of targetedManagedAppPolicyAssignment"));
-            command.AddOption(new Option<object>("--select", description: "Select properties to be returned"));
-            command.AddOption(new Option<object>("--expand", description: "Expand related entities"));
-            command.Handler = CommandHandler.Create<string, string, object, object>(async (targetedManagedAppConfigurationId, targetedManagedAppPolicyAssignmentId, select, expand) => {
-                var requestInfo = CreateGetRequestInformation();
-                if (!String.IsNullOrEmpty(targetedManagedAppConfigurationId)) requestInfo.PathParameters.Add("targetedManagedAppConfiguration_id", targetedManagedAppConfigurationId);
-                if (!String.IsNullOrEmpty(targetedManagedAppPolicyAssignmentId)) requestInfo.PathParameters.Add("targetedManagedAppPolicyAssignment_id", targetedManagedAppPolicyAssignmentId);
-                requestInfo.QueryParameters.Add("select", select);
-                requestInfo.QueryParameters.Add("expand", expand);
+            var targetedManagedAppConfigurationIdOption = new Option<string>("--targetedmanagedappconfiguration-id", description: "key: id of targetedManagedAppConfiguration");
+            targetedManagedAppConfigurationIdOption.IsRequired = true;
+            command.AddOption(targetedManagedAppConfigurationIdOption);
+            var targetedManagedAppPolicyAssignmentIdOption = new Option<string>("--targetedmanagedapppolicyassignment-id", description: "key: id of targetedManagedAppPolicyAssignment");
+            targetedManagedAppPolicyAssignmentIdOption.IsRequired = true;
+            command.AddOption(targetedManagedAppPolicyAssignmentIdOption);
+            var selectOption = new Option<string[]>("--select", description: "Select properties to be returned");
+            selectOption.IsRequired = false;
+            selectOption.Arity = ArgumentArity.ZeroOrMore;
+            command.AddOption(selectOption);
+            var expandOption = new Option<string[]>("--expand", description: "Expand related entities");
+            expandOption.IsRequired = false;
+            expandOption.Arity = ArgumentArity.ZeroOrMore;
+            command.AddOption(expandOption);
+            command.Handler = CommandHandler.Create<string, string, string[], string[]>(async (targetedManagedAppConfigurationId, targetedManagedAppPolicyAssignmentId, select, expand) => {
+                var requestInfo = CreateGetRequestInformation(q => {
+                    q.Select = select;
+                    q.Expand = expand;
+                });
                 var result = await RequestAdapter.SendAsync<TargetedManagedAppPolicyAssignment>(requestInfo);
                 // Print request output. What if the request has no return?
                 using var serializer = RequestAdapter.SerializationWriterFactory.GetSerializationWriter("application/json");
@@ -73,16 +85,21 @@ namespace ApiSdk.DeviceAppManagement.TargetedManagedAppConfigurations.Item.Assig
             var command = new Command("patch");
             command.Description = "Navigation property to list of inclusion and exclusion groups to which the policy is deployed.";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--targetedmanagedappconfiguration-id", description: "key: id of targetedManagedAppConfiguration"));
-            command.AddOption(new Option<string>("--targetedmanagedapppolicyassignment-id", description: "key: id of targetedManagedAppPolicyAssignment"));
-            command.AddOption(new Option<string>("--body"));
+            var targetedManagedAppConfigurationIdOption = new Option<string>("--targetedmanagedappconfiguration-id", description: "key: id of targetedManagedAppConfiguration");
+            targetedManagedAppConfigurationIdOption.IsRequired = true;
+            command.AddOption(targetedManagedAppConfigurationIdOption);
+            var targetedManagedAppPolicyAssignmentIdOption = new Option<string>("--targetedmanagedapppolicyassignment-id", description: "key: id of targetedManagedAppPolicyAssignment");
+            targetedManagedAppPolicyAssignmentIdOption.IsRequired = true;
+            command.AddOption(targetedManagedAppPolicyAssignmentIdOption);
+            var bodyOption = new Option<string>("--body");
+            bodyOption.IsRequired = true;
+            command.AddOption(bodyOption);
             command.Handler = CommandHandler.Create<string, string, string>(async (targetedManagedAppConfigurationId, targetedManagedAppPolicyAssignmentId, body) => {
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<TargetedManagedAppPolicyAssignment>();
-                var requestInfo = CreatePatchRequestInformation(model);
-                if (!String.IsNullOrEmpty(targetedManagedAppConfigurationId)) requestInfo.PathParameters.Add("targetedManagedAppConfiguration_id", targetedManagedAppConfigurationId);
-                if (!String.IsNullOrEmpty(targetedManagedAppPolicyAssignmentId)) requestInfo.PathParameters.Add("targetedManagedAppPolicyAssignment_id", targetedManagedAppPolicyAssignmentId);
+                var requestInfo = CreatePatchRequestInformation(model, q => {
+                });
                 await RequestAdapter.SendNoContentAsync(requestInfo);
                 // Print request output. What if the request has no return?
                 Console.WriteLine("Success");

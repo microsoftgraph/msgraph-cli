@@ -7,11 +7,11 @@ namespace ApiSdk.Models.Microsoft.Graph {
     public class WorkbookRangeBorder : Entity, IParsable {
         /// <summary>HTML color code representing the color of the border line, of the form #RRGGBB (e.g. 'FFA500') or as a named HTML color (e.g. 'orange').</summary>
         public string Color { get; set; }
-        /// <summary>Constant value that indicates the specific side of the border. The possible values are: EdgeTop, EdgeBottom, EdgeLeft, EdgeRight, InsideVertical, InsideHorizontal, DiagonalDown, DiagonalUp. Read-only.</summary>
+        /// <summary>Constant value that indicates the specific side of the border. Possible values are: EdgeTop, EdgeBottom, EdgeLeft, EdgeRight, InsideVertical, InsideHorizontal, DiagonalDown, DiagonalUp. Read-only.</summary>
         public string SideIndex { get; set; }
-        /// <summary>One of the constants of line style specifying the line style for the border. The possible values are: None, Continuous, Dash, DashDot, DashDotDot, Dot, Double, SlantDashDot.</summary>
+        /// <summary>One of the constants of line style specifying the line style for the border. Possible values are: None, Continuous, Dash, DashDot, DashDotDot, Dot, Double, SlantDashDot.</summary>
         public string Style { get; set; }
-        /// <summary>Specifies the weight of the border around a range. The possible values are: Hairline, Thin, Medium, Thick.</summary>
+        /// <summary>Specifies the weight of the border around a range. Possible values are: Hairline, Thin, Medium, Thick.</summary>
         public string Weight { get; set; }
         /// <summary>
         /// The deserialization information for the current model

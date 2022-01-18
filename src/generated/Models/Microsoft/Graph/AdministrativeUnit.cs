@@ -5,15 +5,15 @@ using System.IO;
 using System.Linq;
 namespace ApiSdk.Models.Microsoft.Graph {
     public class AdministrativeUnit : DirectoryObject, IParsable {
-        /// <summary>An optional description for the administrative unit.</summary>
+        /// <summary>An optional description for the administrative unit. Supports $filter (eq, ne, in, startsWith).</summary>
         public string Description { get; set; }
-        /// <summary>Display name for the administrative unit.</summary>
+        /// <summary>Display name for the administrative unit. Supports $filter (eq, ne, not, ge, le, in, startsWith, and eq on null values), $search, and $orderBy.</summary>
         public string DisplayName { get; set; }
-        /// <summary>The collection of open extensions defined for this Administrative Unit. Nullable.</summary>
+        /// <summary>The collection of open extensions defined for this administrative unit. Nullable.</summary>
         public List<Extension> Extensions { get; set; }
-        /// <summary>Users and groups that are members of this Adminsitrative Unit. HTTP Methods: GET (list members), POST (add members), DELETE (remove members).</summary>
+        /// <summary>Users and groups that are members of this administrative unit. HTTP Methods: GET (list members), POST (add members), DELETE (remove members).</summary>
         public List<DirectoryObject> Members { get; set; }
-        /// <summary>Scoped-role members of this Administrative Unit.  HTTP Methods: GET (list scopedRoleMemberships), POST (add scopedRoleMembership), DELETE (remove scopedRoleMembership).</summary>
+        /// <summary>Scoped-role members of this administrative unit.  HTTP Methods: GET (list scopedRoleMemberships), POST (add scopedRoleMembership), DELETE (remove scopedRoleMembership).</summary>
         public List<ScopedRoleMembership> ScopedRoleMembers { get; set; }
         /// <summary>Controls whether the administrative unit and its members are hidden or public. Can be set to HiddenMembership or Public. If not set, default behavior is Public. When set to HiddenMembership, only members of the administrative unit can list other members of the administrative unit.</summary>
         public string Visibility { get; set; }

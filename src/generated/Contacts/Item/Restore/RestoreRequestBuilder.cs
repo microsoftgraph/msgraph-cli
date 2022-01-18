@@ -26,10 +26,12 @@ namespace ApiSdk.Contacts.Item.Restore {
             var command = new Command("post");
             command.Description = "Invoke action restore";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--orgcontact-id", description: "key: id of orgContact"));
+            var orgContactIdOption = new Option<string>("--orgcontact-id", description: "key: id of orgContact");
+            orgContactIdOption.IsRequired = true;
+            command.AddOption(orgContactIdOption);
             command.Handler = CommandHandler.Create<string>(async (orgContactId) => {
-                var requestInfo = CreatePostRequestInformation();
-                if (!String.IsNullOrEmpty(orgContactId)) requestInfo.PathParameters.Add("orgContact_id", orgContactId);
+                var requestInfo = CreatePostRequestInformation(q => {
+                });
                 var result = await RequestAdapter.SendAsync<RestoreResponse>(requestInfo);
                 // Print request output. What if the request has no return?
                 using var serializer = RequestAdapter.SerializationWriterFactory.GetSerializationWriter("application/json");

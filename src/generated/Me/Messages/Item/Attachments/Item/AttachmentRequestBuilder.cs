@@ -26,12 +26,15 @@ namespace ApiSdk.Me.Messages.Item.Attachments.Item {
             var command = new Command("delete");
             command.Description = "The fileAttachment and itemAttachment attachments for the message.";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--message-id", description: "key: id of message"));
-            command.AddOption(new Option<string>("--attachment-id", description: "key: id of attachment"));
+            var messageIdOption = new Option<string>("--message-id", description: "key: id of message");
+            messageIdOption.IsRequired = true;
+            command.AddOption(messageIdOption);
+            var attachmentIdOption = new Option<string>("--attachment-id", description: "key: id of attachment");
+            attachmentIdOption.IsRequired = true;
+            command.AddOption(attachmentIdOption);
             command.Handler = CommandHandler.Create<string, string>(async (messageId, attachmentId) => {
-                var requestInfo = CreateDeleteRequestInformation();
-                if (!String.IsNullOrEmpty(messageId)) requestInfo.PathParameters.Add("message_id", messageId);
-                if (!String.IsNullOrEmpty(attachmentId)) requestInfo.PathParameters.Add("attachment_id", attachmentId);
+                var requestInfo = CreateDeleteRequestInformation(q => {
+                });
                 await RequestAdapter.SendNoContentAsync(requestInfo);
                 // Print request output. What if the request has no return?
                 Console.WriteLine("Success");
@@ -45,16 +48,25 @@ namespace ApiSdk.Me.Messages.Item.Attachments.Item {
             var command = new Command("get");
             command.Description = "The fileAttachment and itemAttachment attachments for the message.";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--message-id", description: "key: id of message"));
-            command.AddOption(new Option<string>("--attachment-id", description: "key: id of attachment"));
-            command.AddOption(new Option<object>("--select", description: "Select properties to be returned"));
-            command.AddOption(new Option<object>("--expand", description: "Expand related entities"));
-            command.Handler = CommandHandler.Create<string, string, object, object>(async (messageId, attachmentId, select, expand) => {
-                var requestInfo = CreateGetRequestInformation();
-                if (!String.IsNullOrEmpty(messageId)) requestInfo.PathParameters.Add("message_id", messageId);
-                if (!String.IsNullOrEmpty(attachmentId)) requestInfo.PathParameters.Add("attachment_id", attachmentId);
-                requestInfo.QueryParameters.Add("select", select);
-                requestInfo.QueryParameters.Add("expand", expand);
+            var messageIdOption = new Option<string>("--message-id", description: "key: id of message");
+            messageIdOption.IsRequired = true;
+            command.AddOption(messageIdOption);
+            var attachmentIdOption = new Option<string>("--attachment-id", description: "key: id of attachment");
+            attachmentIdOption.IsRequired = true;
+            command.AddOption(attachmentIdOption);
+            var selectOption = new Option<string[]>("--select", description: "Select properties to be returned");
+            selectOption.IsRequired = false;
+            selectOption.Arity = ArgumentArity.ZeroOrMore;
+            command.AddOption(selectOption);
+            var expandOption = new Option<string[]>("--expand", description: "Expand related entities");
+            expandOption.IsRequired = false;
+            expandOption.Arity = ArgumentArity.ZeroOrMore;
+            command.AddOption(expandOption);
+            command.Handler = CommandHandler.Create<string, string, string[], string[]>(async (messageId, attachmentId, select, expand) => {
+                var requestInfo = CreateGetRequestInformation(q => {
+                    q.Select = select;
+                    q.Expand = expand;
+                });
                 var result = await RequestAdapter.SendAsync<Attachment>(requestInfo);
                 // Print request output. What if the request has no return?
                 using var serializer = RequestAdapter.SerializationWriterFactory.GetSerializationWriter("application/json");
@@ -73,16 +85,21 @@ namespace ApiSdk.Me.Messages.Item.Attachments.Item {
             var command = new Command("patch");
             command.Description = "The fileAttachment and itemAttachment attachments for the message.";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--message-id", description: "key: id of message"));
-            command.AddOption(new Option<string>("--attachment-id", description: "key: id of attachment"));
-            command.AddOption(new Option<string>("--body"));
+            var messageIdOption = new Option<string>("--message-id", description: "key: id of message");
+            messageIdOption.IsRequired = true;
+            command.AddOption(messageIdOption);
+            var attachmentIdOption = new Option<string>("--attachment-id", description: "key: id of attachment");
+            attachmentIdOption.IsRequired = true;
+            command.AddOption(attachmentIdOption);
+            var bodyOption = new Option<string>("--body");
+            bodyOption.IsRequired = true;
+            command.AddOption(bodyOption);
             command.Handler = CommandHandler.Create<string, string, string>(async (messageId, attachmentId, body) => {
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<Attachment>();
-                var requestInfo = CreatePatchRequestInformation(model);
-                if (!String.IsNullOrEmpty(messageId)) requestInfo.PathParameters.Add("message_id", messageId);
-                if (!String.IsNullOrEmpty(attachmentId)) requestInfo.PathParameters.Add("attachment_id", attachmentId);
+                var requestInfo = CreatePatchRequestInformation(model, q => {
+                });
                 await RequestAdapter.SendNoContentAsync(requestInfo);
                 // Print request output. What if the request has no return?
                 Console.WriteLine("Success");

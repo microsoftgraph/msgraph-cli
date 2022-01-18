@@ -26,16 +26,21 @@ namespace ApiSdk.Users.Item.Planner.Plans.Item.Buckets.Item.Tasks.Item.Details {
             var command = new Command("delete");
             command.Description = "Read-only. Nullable. Additional details about the task.";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--user-id", description: "key: id of user"));
-            command.AddOption(new Option<string>("--plannerplan-id", description: "key: id of plannerPlan"));
-            command.AddOption(new Option<string>("--plannerbucket-id", description: "key: id of plannerBucket"));
-            command.AddOption(new Option<string>("--plannertask-id", description: "key: id of plannerTask"));
+            var userIdOption = new Option<string>("--user-id", description: "key: id of user");
+            userIdOption.IsRequired = true;
+            command.AddOption(userIdOption);
+            var plannerPlanIdOption = new Option<string>("--plannerplan-id", description: "key: id of plannerPlan");
+            plannerPlanIdOption.IsRequired = true;
+            command.AddOption(plannerPlanIdOption);
+            var plannerBucketIdOption = new Option<string>("--plannerbucket-id", description: "key: id of plannerBucket");
+            plannerBucketIdOption.IsRequired = true;
+            command.AddOption(plannerBucketIdOption);
+            var plannerTaskIdOption = new Option<string>("--plannertask-id", description: "key: id of plannerTask");
+            plannerTaskIdOption.IsRequired = true;
+            command.AddOption(plannerTaskIdOption);
             command.Handler = CommandHandler.Create<string, string, string, string>(async (userId, plannerPlanId, plannerBucketId, plannerTaskId) => {
-                var requestInfo = CreateDeleteRequestInformation();
-                if (!String.IsNullOrEmpty(userId)) requestInfo.PathParameters.Add("user_id", userId);
-                if (!String.IsNullOrEmpty(plannerPlanId)) requestInfo.PathParameters.Add("plannerPlan_id", plannerPlanId);
-                if (!String.IsNullOrEmpty(plannerBucketId)) requestInfo.PathParameters.Add("plannerBucket_id", plannerBucketId);
-                if (!String.IsNullOrEmpty(plannerTaskId)) requestInfo.PathParameters.Add("plannerTask_id", plannerTaskId);
+                var requestInfo = CreateDeleteRequestInformation(q => {
+                });
                 await RequestAdapter.SendNoContentAsync(requestInfo);
                 // Print request output. What if the request has no return?
                 Console.WriteLine("Success");
@@ -49,20 +54,31 @@ namespace ApiSdk.Users.Item.Planner.Plans.Item.Buckets.Item.Tasks.Item.Details {
             var command = new Command("get");
             command.Description = "Read-only. Nullable. Additional details about the task.";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--user-id", description: "key: id of user"));
-            command.AddOption(new Option<string>("--plannerplan-id", description: "key: id of plannerPlan"));
-            command.AddOption(new Option<string>("--plannerbucket-id", description: "key: id of plannerBucket"));
-            command.AddOption(new Option<string>("--plannertask-id", description: "key: id of plannerTask"));
-            command.AddOption(new Option<object>("--select", description: "Select properties to be returned"));
-            command.AddOption(new Option<object>("--expand", description: "Expand related entities"));
-            command.Handler = CommandHandler.Create<string, string, string, string, object, object>(async (userId, plannerPlanId, plannerBucketId, plannerTaskId, select, expand) => {
-                var requestInfo = CreateGetRequestInformation();
-                if (!String.IsNullOrEmpty(userId)) requestInfo.PathParameters.Add("user_id", userId);
-                if (!String.IsNullOrEmpty(plannerPlanId)) requestInfo.PathParameters.Add("plannerPlan_id", plannerPlanId);
-                if (!String.IsNullOrEmpty(plannerBucketId)) requestInfo.PathParameters.Add("plannerBucket_id", plannerBucketId);
-                if (!String.IsNullOrEmpty(plannerTaskId)) requestInfo.PathParameters.Add("plannerTask_id", plannerTaskId);
-                requestInfo.QueryParameters.Add("select", select);
-                requestInfo.QueryParameters.Add("expand", expand);
+            var userIdOption = new Option<string>("--user-id", description: "key: id of user");
+            userIdOption.IsRequired = true;
+            command.AddOption(userIdOption);
+            var plannerPlanIdOption = new Option<string>("--plannerplan-id", description: "key: id of plannerPlan");
+            plannerPlanIdOption.IsRequired = true;
+            command.AddOption(plannerPlanIdOption);
+            var plannerBucketIdOption = new Option<string>("--plannerbucket-id", description: "key: id of plannerBucket");
+            plannerBucketIdOption.IsRequired = true;
+            command.AddOption(plannerBucketIdOption);
+            var plannerTaskIdOption = new Option<string>("--plannertask-id", description: "key: id of plannerTask");
+            plannerTaskIdOption.IsRequired = true;
+            command.AddOption(plannerTaskIdOption);
+            var selectOption = new Option<string[]>("--select", description: "Select properties to be returned");
+            selectOption.IsRequired = false;
+            selectOption.Arity = ArgumentArity.ZeroOrMore;
+            command.AddOption(selectOption);
+            var expandOption = new Option<string[]>("--expand", description: "Expand related entities");
+            expandOption.IsRequired = false;
+            expandOption.Arity = ArgumentArity.ZeroOrMore;
+            command.AddOption(expandOption);
+            command.Handler = CommandHandler.Create<string, string, string, string, string[], string[]>(async (userId, plannerPlanId, plannerBucketId, plannerTaskId, select, expand) => {
+                var requestInfo = CreateGetRequestInformation(q => {
+                    q.Select = select;
+                    q.Expand = expand;
+                });
                 var result = await RequestAdapter.SendAsync<PlannerTaskDetails>(requestInfo);
                 // Print request output. What if the request has no return?
                 using var serializer = RequestAdapter.SerializationWriterFactory.GetSerializationWriter("application/json");
@@ -81,20 +97,27 @@ namespace ApiSdk.Users.Item.Planner.Plans.Item.Buckets.Item.Tasks.Item.Details {
             var command = new Command("patch");
             command.Description = "Read-only. Nullable. Additional details about the task.";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--user-id", description: "key: id of user"));
-            command.AddOption(new Option<string>("--plannerplan-id", description: "key: id of plannerPlan"));
-            command.AddOption(new Option<string>("--plannerbucket-id", description: "key: id of plannerBucket"));
-            command.AddOption(new Option<string>("--plannertask-id", description: "key: id of plannerTask"));
-            command.AddOption(new Option<string>("--body"));
+            var userIdOption = new Option<string>("--user-id", description: "key: id of user");
+            userIdOption.IsRequired = true;
+            command.AddOption(userIdOption);
+            var plannerPlanIdOption = new Option<string>("--plannerplan-id", description: "key: id of plannerPlan");
+            plannerPlanIdOption.IsRequired = true;
+            command.AddOption(plannerPlanIdOption);
+            var plannerBucketIdOption = new Option<string>("--plannerbucket-id", description: "key: id of plannerBucket");
+            plannerBucketIdOption.IsRequired = true;
+            command.AddOption(plannerBucketIdOption);
+            var plannerTaskIdOption = new Option<string>("--plannertask-id", description: "key: id of plannerTask");
+            plannerTaskIdOption.IsRequired = true;
+            command.AddOption(plannerTaskIdOption);
+            var bodyOption = new Option<string>("--body");
+            bodyOption.IsRequired = true;
+            command.AddOption(bodyOption);
             command.Handler = CommandHandler.Create<string, string, string, string, string>(async (userId, plannerPlanId, plannerBucketId, plannerTaskId, body) => {
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<PlannerTaskDetails>();
-                var requestInfo = CreatePatchRequestInformation(model);
-                if (!String.IsNullOrEmpty(userId)) requestInfo.PathParameters.Add("user_id", userId);
-                if (!String.IsNullOrEmpty(plannerPlanId)) requestInfo.PathParameters.Add("plannerPlan_id", plannerPlanId);
-                if (!String.IsNullOrEmpty(plannerBucketId)) requestInfo.PathParameters.Add("plannerBucket_id", plannerBucketId);
-                if (!String.IsNullOrEmpty(plannerTaskId)) requestInfo.PathParameters.Add("plannerTask_id", plannerTaskId);
+                var requestInfo = CreatePatchRequestInformation(model, q => {
+                });
                 await RequestAdapter.SendNoContentAsync(requestInfo);
                 // Print request output. What if the request has no return?
                 Console.WriteLine("Success");

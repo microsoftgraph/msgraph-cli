@@ -7,9 +7,12 @@ namespace ApiSdk.Models.Microsoft.Graph {
     public class ServiceUpdateMessage : ServiceAnnouncementBase, IParsable {
         /// <summary>The expected deadline of the action for the message.</summary>
         public DateTimeOffset? ActionRequiredByDateTime { get; set; }
+        public List<ServiceAnnouncementAttachment> Attachments { get; set; }
+        public byte[] AttachmentsArchive { get; set; }
         public ItemBody Body { get; set; }
         /// <summary>The service message category. Possible values are: preventOrFixIssue, planForChange, stayInformed, unknownFutureValue.</summary>
         public ServiceUpdateCategory? Category { get; set; }
+        public bool? HasAttachments { get; set; }
         /// <summary>Indicates whether the message describes a major update for the service.</summary>
         public bool? IsMajorChange { get; set; }
         /// <summary>The affected services by the service message.</summary>
@@ -26,8 +29,11 @@ namespace ApiSdk.Models.Microsoft.Graph {
         public new IDictionary<string, Action<T, IParseNode>> GetFieldDeserializers<T>() {
             return new Dictionary<string, Action<T, IParseNode>>(base.GetFieldDeserializers<T>()) {
                 {"actionRequiredByDateTime", (o,n) => { (o as ServiceUpdateMessage).ActionRequiredByDateTime = n.GetDateTimeOffsetValue(); } },
+                {"attachments", (o,n) => { (o as ServiceUpdateMessage).Attachments = n.GetCollectionOfObjectValues<ServiceAnnouncementAttachment>().ToList(); } },
+                {"attachmentsArchive", (o,n) => { (o as ServiceUpdateMessage).AttachmentsArchive = n.GetByteArrayValue(); } },
                 {"body", (o,n) => { (o as ServiceUpdateMessage).Body = n.GetObjectValue<ItemBody>(); } },
                 {"category", (o,n) => { (o as ServiceUpdateMessage).Category = n.GetEnumValue<ServiceUpdateCategory>(); } },
+                {"hasAttachments", (o,n) => { (o as ServiceUpdateMessage).HasAttachments = n.GetBoolValue(); } },
                 {"isMajorChange", (o,n) => { (o as ServiceUpdateMessage).IsMajorChange = n.GetBoolValue(); } },
                 {"services", (o,n) => { (o as ServiceUpdateMessage).Services = n.GetCollectionOfPrimitiveValues<string>().ToList(); } },
                 {"severity", (o,n) => { (o as ServiceUpdateMessage).Severity = n.GetEnumValue<ServiceUpdateSeverity>(); } },
@@ -43,8 +49,11 @@ namespace ApiSdk.Models.Microsoft.Graph {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             base.Serialize(writer);
             writer.WriteDateTimeOffsetValue("actionRequiredByDateTime", ActionRequiredByDateTime);
+            writer.WriteCollectionOfObjectValues<ServiceAnnouncementAttachment>("attachments", Attachments);
+            writer.WriteByteArrayValue("attachmentsArchive", AttachmentsArchive);
             writer.WriteObjectValue<ItemBody>("body", Body);
             writer.WriteEnumValue<ServiceUpdateCategory>("category", Category);
+            writer.WriteBoolValue("hasAttachments", HasAttachments);
             writer.WriteBoolValue("isMajorChange", IsMajorChange);
             writer.WriteCollectionOfPrimitiveValues<string>("services", Services);
             writer.WriteEnumValue<ServiceUpdateSeverity>("severity", Severity);

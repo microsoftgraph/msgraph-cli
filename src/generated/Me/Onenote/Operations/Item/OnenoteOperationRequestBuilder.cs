@@ -26,10 +26,12 @@ namespace ApiSdk.Me.Onenote.Operations.Item {
             var command = new Command("delete");
             command.Description = "The status of OneNote operations. Getting an operations collection is not supported, but you can get the status of long-running operations if the Operation-Location header is returned in the response. Read-only. Nullable.";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--onenoteoperation-id", description: "key: id of onenoteOperation"));
+            var onenoteOperationIdOption = new Option<string>("--onenoteoperation-id", description: "key: id of onenoteOperation");
+            onenoteOperationIdOption.IsRequired = true;
+            command.AddOption(onenoteOperationIdOption);
             command.Handler = CommandHandler.Create<string>(async (onenoteOperationId) => {
-                var requestInfo = CreateDeleteRequestInformation();
-                if (!String.IsNullOrEmpty(onenoteOperationId)) requestInfo.PathParameters.Add("onenoteOperation_id", onenoteOperationId);
+                var requestInfo = CreateDeleteRequestInformation(q => {
+                });
                 await RequestAdapter.SendNoContentAsync(requestInfo);
                 // Print request output. What if the request has no return?
                 Console.WriteLine("Success");
@@ -43,14 +45,22 @@ namespace ApiSdk.Me.Onenote.Operations.Item {
             var command = new Command("get");
             command.Description = "The status of OneNote operations. Getting an operations collection is not supported, but you can get the status of long-running operations if the Operation-Location header is returned in the response. Read-only. Nullable.";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--onenoteoperation-id", description: "key: id of onenoteOperation"));
-            command.AddOption(new Option<object>("--select", description: "Select properties to be returned"));
-            command.AddOption(new Option<object>("--expand", description: "Expand related entities"));
-            command.Handler = CommandHandler.Create<string, object, object>(async (onenoteOperationId, select, expand) => {
-                var requestInfo = CreateGetRequestInformation();
-                if (!String.IsNullOrEmpty(onenoteOperationId)) requestInfo.PathParameters.Add("onenoteOperation_id", onenoteOperationId);
-                requestInfo.QueryParameters.Add("select", select);
-                requestInfo.QueryParameters.Add("expand", expand);
+            var onenoteOperationIdOption = new Option<string>("--onenoteoperation-id", description: "key: id of onenoteOperation");
+            onenoteOperationIdOption.IsRequired = true;
+            command.AddOption(onenoteOperationIdOption);
+            var selectOption = new Option<string[]>("--select", description: "Select properties to be returned");
+            selectOption.IsRequired = false;
+            selectOption.Arity = ArgumentArity.ZeroOrMore;
+            command.AddOption(selectOption);
+            var expandOption = new Option<string[]>("--expand", description: "Expand related entities");
+            expandOption.IsRequired = false;
+            expandOption.Arity = ArgumentArity.ZeroOrMore;
+            command.AddOption(expandOption);
+            command.Handler = CommandHandler.Create<string, string[], string[]>(async (onenoteOperationId, select, expand) => {
+                var requestInfo = CreateGetRequestInformation(q => {
+                    q.Select = select;
+                    q.Expand = expand;
+                });
                 var result = await RequestAdapter.SendAsync<OnenoteOperation>(requestInfo);
                 // Print request output. What if the request has no return?
                 using var serializer = RequestAdapter.SerializationWriterFactory.GetSerializationWriter("application/json");
@@ -69,14 +79,18 @@ namespace ApiSdk.Me.Onenote.Operations.Item {
             var command = new Command("patch");
             command.Description = "The status of OneNote operations. Getting an operations collection is not supported, but you can get the status of long-running operations if the Operation-Location header is returned in the response. Read-only. Nullable.";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--onenoteoperation-id", description: "key: id of onenoteOperation"));
-            command.AddOption(new Option<string>("--body"));
+            var onenoteOperationIdOption = new Option<string>("--onenoteoperation-id", description: "key: id of onenoteOperation");
+            onenoteOperationIdOption.IsRequired = true;
+            command.AddOption(onenoteOperationIdOption);
+            var bodyOption = new Option<string>("--body");
+            bodyOption.IsRequired = true;
+            command.AddOption(bodyOption);
             command.Handler = CommandHandler.Create<string, string>(async (onenoteOperationId, body) => {
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<OnenoteOperation>();
-                var requestInfo = CreatePatchRequestInformation(model);
-                if (!String.IsNullOrEmpty(onenoteOperationId)) requestInfo.PathParameters.Add("onenoteOperation_id", onenoteOperationId);
+                var requestInfo = CreatePatchRequestInformation(model, q => {
+                });
                 await RequestAdapter.SendNoContentAsync(requestInfo);
                 // Print request output. What if the request has no return?
                 Console.WriteLine("Success");
