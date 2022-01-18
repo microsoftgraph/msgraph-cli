@@ -25,11 +25,13 @@ namespace ApiSdk.Groups.Item.Photo.Value {
             var command = new Command("get");
             command.Description = "The group's profile photo";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--group-id", description: "key: id of group"));
+            var groupIdOption = new Option<string>("--group-id", description: "key: id of group");
+            groupIdOption.IsRequired = true;
+            command.AddOption(groupIdOption);
             command.AddOption(new Option<FileInfo>("--output"));
             command.Handler = CommandHandler.Create<string, FileInfo>(async (groupId, output) => {
-                var requestInfo = CreateGetRequestInformation();
-                if (!String.IsNullOrEmpty(groupId)) requestInfo.PathParameters.Add("group_id", groupId);
+                var requestInfo = CreateGetRequestInformation(q => {
+                });
                 var result = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 // Print request output. What if the request has no return?
                 if (output == null) {
@@ -52,12 +54,16 @@ namespace ApiSdk.Groups.Item.Photo.Value {
             var command = new Command("put");
             command.Description = "The group's profile photo";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--group-id", description: "key: id of group"));
-            command.AddOption(new Option<Stream>("--file", description: "Binary request body"));
+            var groupIdOption = new Option<string>("--group-id", description: "key: id of group");
+            groupIdOption.IsRequired = true;
+            command.AddOption(groupIdOption);
+            var fileOption = new Option<Stream>("--file", description: "Binary request body");
+            fileOption.IsRequired = true;
+            command.AddOption(fileOption);
             command.Handler = CommandHandler.Create<string, FileInfo>(async (groupId, file) => {
                 using var stream = file.OpenRead();
-                var requestInfo = CreatePutRequestInformation(stream);
-                if (!String.IsNullOrEmpty(groupId)) requestInfo.PathParameters.Add("group_id", groupId);
+                var requestInfo = CreatePutRequestInformation(stream, q => {
+                });
                 await RequestAdapter.SendNoContentAsync(requestInfo);
                 // Print request output. What if the request has no return?
                 Console.WriteLine("Success");

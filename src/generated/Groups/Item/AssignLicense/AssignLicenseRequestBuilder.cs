@@ -26,14 +26,18 @@ namespace ApiSdk.Groups.Item.AssignLicense {
             var command = new Command("post");
             command.Description = "Invoke action assignLicense";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--group-id", description: "key: id of group"));
-            command.AddOption(new Option<string>("--body"));
+            var groupIdOption = new Option<string>("--group-id", description: "key: id of group");
+            groupIdOption.IsRequired = true;
+            command.AddOption(groupIdOption);
+            var bodyOption = new Option<string>("--body");
+            bodyOption.IsRequired = true;
+            command.AddOption(bodyOption);
             command.Handler = CommandHandler.Create<string, string>(async (groupId, body) => {
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<AssignLicenseRequestBody>();
-                var requestInfo = CreatePostRequestInformation(model);
-                if (!String.IsNullOrEmpty(groupId)) requestInfo.PathParameters.Add("group_id", groupId);
+                var requestInfo = CreatePostRequestInformation(model, q => {
+                });
                 var result = await RequestAdapter.SendAsync<AssignLicenseResponse>(requestInfo);
                 // Print request output. What if the request has no return?
                 using var serializer = RequestAdapter.SerializationWriterFactory.GetSerializationWriter("application/json");

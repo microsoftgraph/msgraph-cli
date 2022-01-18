@@ -58,12 +58,15 @@ namespace ApiSdk.IdentityGovernance.AccessReviews.Definitions.Item.Instances.Ite
             var command = new Command("delete");
             command.Description = "If the accessReviewScheduleDefinition is a recurring access review, instances represent each recurrence. A review that does not recur will have exactly one instance. Instances also represent each unique resource under review in the accessReviewScheduleDefinition. If a review has multiple resources and multiple instances, each resource will have a unique instance for each recurrence.";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--accessreviewscheduledefinition-id", description: "key: id of accessReviewScheduleDefinition"));
-            command.AddOption(new Option<string>("--accessreviewinstance-id", description: "key: id of accessReviewInstance"));
+            var accessReviewScheduleDefinitionIdOption = new Option<string>("--accessreviewscheduledefinition-id", description: "key: id of accessReviewScheduleDefinition");
+            accessReviewScheduleDefinitionIdOption.IsRequired = true;
+            command.AddOption(accessReviewScheduleDefinitionIdOption);
+            var accessReviewInstanceIdOption = new Option<string>("--accessreviewinstance-id", description: "key: id of accessReviewInstance");
+            accessReviewInstanceIdOption.IsRequired = true;
+            command.AddOption(accessReviewInstanceIdOption);
             command.Handler = CommandHandler.Create<string, string>(async (accessReviewScheduleDefinitionId, accessReviewInstanceId) => {
-                var requestInfo = CreateDeleteRequestInformation();
-                if (!String.IsNullOrEmpty(accessReviewScheduleDefinitionId)) requestInfo.PathParameters.Add("accessReviewScheduleDefinition_id", accessReviewScheduleDefinitionId);
-                if (!String.IsNullOrEmpty(accessReviewInstanceId)) requestInfo.PathParameters.Add("accessReviewInstance_id", accessReviewInstanceId);
+                var requestInfo = CreateDeleteRequestInformation(q => {
+                });
                 await RequestAdapter.SendNoContentAsync(requestInfo);
                 // Print request output. What if the request has no return?
                 Console.WriteLine("Success");
@@ -77,16 +80,25 @@ namespace ApiSdk.IdentityGovernance.AccessReviews.Definitions.Item.Instances.Ite
             var command = new Command("get");
             command.Description = "If the accessReviewScheduleDefinition is a recurring access review, instances represent each recurrence. A review that does not recur will have exactly one instance. Instances also represent each unique resource under review in the accessReviewScheduleDefinition. If a review has multiple resources and multiple instances, each resource will have a unique instance for each recurrence.";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--accessreviewscheduledefinition-id", description: "key: id of accessReviewScheduleDefinition"));
-            command.AddOption(new Option<string>("--accessreviewinstance-id", description: "key: id of accessReviewInstance"));
-            command.AddOption(new Option<object>("--select", description: "Select properties to be returned"));
-            command.AddOption(new Option<object>("--expand", description: "Expand related entities"));
-            command.Handler = CommandHandler.Create<string, string, object, object>(async (accessReviewScheduleDefinitionId, accessReviewInstanceId, select, expand) => {
-                var requestInfo = CreateGetRequestInformation();
-                if (!String.IsNullOrEmpty(accessReviewScheduleDefinitionId)) requestInfo.PathParameters.Add("accessReviewScheduleDefinition_id", accessReviewScheduleDefinitionId);
-                if (!String.IsNullOrEmpty(accessReviewInstanceId)) requestInfo.PathParameters.Add("accessReviewInstance_id", accessReviewInstanceId);
-                requestInfo.QueryParameters.Add("select", select);
-                requestInfo.QueryParameters.Add("expand", expand);
+            var accessReviewScheduleDefinitionIdOption = new Option<string>("--accessreviewscheduledefinition-id", description: "key: id of accessReviewScheduleDefinition");
+            accessReviewScheduleDefinitionIdOption.IsRequired = true;
+            command.AddOption(accessReviewScheduleDefinitionIdOption);
+            var accessReviewInstanceIdOption = new Option<string>("--accessreviewinstance-id", description: "key: id of accessReviewInstance");
+            accessReviewInstanceIdOption.IsRequired = true;
+            command.AddOption(accessReviewInstanceIdOption);
+            var selectOption = new Option<string[]>("--select", description: "Select properties to be returned");
+            selectOption.IsRequired = false;
+            selectOption.Arity = ArgumentArity.ZeroOrMore;
+            command.AddOption(selectOption);
+            var expandOption = new Option<string[]>("--expand", description: "Expand related entities");
+            expandOption.IsRequired = false;
+            expandOption.Arity = ArgumentArity.ZeroOrMore;
+            command.AddOption(expandOption);
+            command.Handler = CommandHandler.Create<string, string, string[], string[]>(async (accessReviewScheduleDefinitionId, accessReviewInstanceId, select, expand) => {
+                var requestInfo = CreateGetRequestInformation(q => {
+                    q.Select = select;
+                    q.Expand = expand;
+                });
                 var result = await RequestAdapter.SendAsync<AccessReviewInstance>(requestInfo);
                 // Print request output. What if the request has no return?
                 using var serializer = RequestAdapter.SerializationWriterFactory.GetSerializationWriter("application/json");
@@ -105,16 +117,21 @@ namespace ApiSdk.IdentityGovernance.AccessReviews.Definitions.Item.Instances.Ite
             var command = new Command("patch");
             command.Description = "If the accessReviewScheduleDefinition is a recurring access review, instances represent each recurrence. A review that does not recur will have exactly one instance. Instances also represent each unique resource under review in the accessReviewScheduleDefinition. If a review has multiple resources and multiple instances, each resource will have a unique instance for each recurrence.";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--accessreviewscheduledefinition-id", description: "key: id of accessReviewScheduleDefinition"));
-            command.AddOption(new Option<string>("--accessreviewinstance-id", description: "key: id of accessReviewInstance"));
-            command.AddOption(new Option<string>("--body"));
+            var accessReviewScheduleDefinitionIdOption = new Option<string>("--accessreviewscheduledefinition-id", description: "key: id of accessReviewScheduleDefinition");
+            accessReviewScheduleDefinitionIdOption.IsRequired = true;
+            command.AddOption(accessReviewScheduleDefinitionIdOption);
+            var accessReviewInstanceIdOption = new Option<string>("--accessreviewinstance-id", description: "key: id of accessReviewInstance");
+            accessReviewInstanceIdOption.IsRequired = true;
+            command.AddOption(accessReviewInstanceIdOption);
+            var bodyOption = new Option<string>("--body");
+            bodyOption.IsRequired = true;
+            command.AddOption(bodyOption);
             command.Handler = CommandHandler.Create<string, string, string>(async (accessReviewScheduleDefinitionId, accessReviewInstanceId, body) => {
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<AccessReviewInstance>();
-                var requestInfo = CreatePatchRequestInformation(model);
-                if (!String.IsNullOrEmpty(accessReviewScheduleDefinitionId)) requestInfo.PathParameters.Add("accessReviewScheduleDefinition_id", accessReviewScheduleDefinitionId);
-                if (!String.IsNullOrEmpty(accessReviewInstanceId)) requestInfo.PathParameters.Add("accessReviewInstance_id", accessReviewInstanceId);
+                var requestInfo = CreatePatchRequestInformation(model, q => {
+                });
                 await RequestAdapter.SendNoContentAsync(requestInfo);
                 // Print request output. What if the request has no return?
                 Console.WriteLine("Success");

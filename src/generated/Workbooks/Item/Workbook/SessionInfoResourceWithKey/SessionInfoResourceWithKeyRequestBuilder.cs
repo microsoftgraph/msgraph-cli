@@ -26,12 +26,15 @@ namespace ApiSdk.Workbooks.Item.Workbook.SessionInfoResourceWithKey {
             var command = new Command("get");
             command.Description = "Invoke function sessionInfoResource";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--driveitem-id", description: "key: id of driveItem"));
-            command.AddOption(new Option<string>("--key", description: "Usage: key={key}"));
+            var driveItemIdOption = new Option<string>("--driveitem-id", description: "key: id of driveItem");
+            driveItemIdOption.IsRequired = true;
+            command.AddOption(driveItemIdOption);
+            var keyOption = new Option<string>("--key", description: "Usage: key={key}");
+            keyOption.IsRequired = true;
+            command.AddOption(keyOption);
             command.Handler = CommandHandler.Create<string, string>(async (driveItemId, key) => {
-                var requestInfo = CreateGetRequestInformation();
-                if (!String.IsNullOrEmpty(driveItemId)) requestInfo.PathParameters.Add("driveItem_id", driveItemId);
-                if (!String.IsNullOrEmpty(key)) requestInfo.PathParameters.Add("key", key);
+                var requestInfo = CreateGetRequestInformation(q => {
+                });
                 var result = await RequestAdapter.SendAsync<SessionInfoResourceWithKeyResponse>(requestInfo);
                 // Print request output. What if the request has no return?
                 using var serializer = RequestAdapter.SerializationWriterFactory.GetSerializationWriter("application/json");

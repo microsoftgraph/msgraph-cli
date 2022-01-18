@@ -25,12 +25,15 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.Catalogs.Item.AccessPa
             var command = new Command("get");
             command.Description = "Invoke function filterByCurrentUser";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--accesspackagecatalog-id", description: "key: id of accessPackageCatalog"));
-            command.AddOption(new Option<string>("--on", description: "Usage: on={on}"));
-            command.Handler = CommandHandler.Create<string, string>(async (accessPackageCatalogId, on) => {
-                var requestInfo = CreateGetRequestInformation();
-                if (!String.IsNullOrEmpty(accessPackageCatalogId)) requestInfo.PathParameters.Add("accessPackageCatalog_id", accessPackageCatalogId);
-                if (!String.IsNullOrEmpty(on)) requestInfo.PathParameters.Add("on", on);
+            var accessPackageCatalogIdOption = new Option<string>("--accesspackagecatalog-id", description: "key: id of accessPackageCatalog");
+            accessPackageCatalogIdOption.IsRequired = true;
+            command.AddOption(accessPackageCatalogIdOption);
+            var onOption = new Option<object>("--on", description: "Usage: on={on}");
+            onOption.IsRequired = true;
+            command.AddOption(onOption);
+            command.Handler = CommandHandler.Create<string, object>(async (accessPackageCatalogId, on) => {
+                var requestInfo = CreateGetRequestInformation(q => {
+                });
                 var result = await RequestAdapter.SendCollectionAsync<ApiSdk.IdentityGovernance.EntitlementManagement.Catalogs.Item.AccessPackages.FilterByCurrentUserWithOn.FilterByCurrentUserWithOn>(requestInfo);
                 // Print request output. What if the request has no return?
                 using var serializer = RequestAdapter.SerializationWriterFactory.GetSerializationWriter("application/json");

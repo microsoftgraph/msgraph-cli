@@ -25,10 +25,12 @@ namespace ApiSdk.Drive.List.ContentTypes.Item.@Base.Publish {
             var command = new Command("post");
             command.Description = "Invoke action publish";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--contenttype-id", description: "key: id of contentType"));
+            var contentTypeIdOption = new Option<string>("--contenttype-id", description: "key: id of contentType");
+            contentTypeIdOption.IsRequired = true;
+            command.AddOption(contentTypeIdOption);
             command.Handler = CommandHandler.Create<string>(async (contentTypeId) => {
-                var requestInfo = CreatePostRequestInformation();
-                if (!String.IsNullOrEmpty(contentTypeId)) requestInfo.PathParameters.Add("contentType_id", contentTypeId);
+                var requestInfo = CreatePostRequestInformation(q => {
+                });
                 await RequestAdapter.SendNoContentAsync(requestInfo);
                 // Print request output. What if the request has no return?
                 Console.WriteLine("Success");

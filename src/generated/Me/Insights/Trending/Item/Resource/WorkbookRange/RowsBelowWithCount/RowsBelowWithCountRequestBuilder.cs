@@ -26,12 +26,15 @@ namespace ApiSdk.Me.Insights.Trending.Item.Resource.WorkbookRange.RowsBelowWithC
             var command = new Command("get");
             command.Description = "Invoke function rowsBelow";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--trending-id", description: "key: id of trending"));
-            command.AddOption(new Option<int?>("--count", description: "Usage: count={count}"));
+            var trendingIdOption = new Option<string>("--trending-id", description: "key: id of trending");
+            trendingIdOption.IsRequired = true;
+            command.AddOption(trendingIdOption);
+            var countOption = new Option<int?>("--count", description: "Usage: count={count}");
+            countOption.IsRequired = true;
+            command.AddOption(countOption);
             command.Handler = CommandHandler.Create<string, int?>(async (trendingId, count) => {
-                var requestInfo = CreateGetRequestInformation();
-                if (!String.IsNullOrEmpty(trendingId)) requestInfo.PathParameters.Add("trending_id", trendingId);
-                requestInfo.PathParameters.Add("count", count);
+                var requestInfo = CreateGetRequestInformation(q => {
+                });
                 var result = await RequestAdapter.SendAsync<RowsBelowWithCountResponse>(requestInfo);
                 // Print request output. What if the request has no return?
                 using var serializer = RequestAdapter.SerializationWriterFactory.GetSerializationWriter("application/json");

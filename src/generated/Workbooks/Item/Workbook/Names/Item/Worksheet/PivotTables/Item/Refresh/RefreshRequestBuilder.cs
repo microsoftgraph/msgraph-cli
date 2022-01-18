@@ -25,14 +25,18 @@ namespace ApiSdk.Workbooks.Item.Workbook.Names.Item.Worksheet.PivotTables.Item.R
             var command = new Command("post");
             command.Description = "Invoke action refresh";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--driveitem-id", description: "key: id of driveItem"));
-            command.AddOption(new Option<string>("--workbooknameditem-id", description: "key: id of workbookNamedItem"));
-            command.AddOption(new Option<string>("--workbookpivottable-id", description: "key: id of workbookPivotTable"));
+            var driveItemIdOption = new Option<string>("--driveitem-id", description: "key: id of driveItem");
+            driveItemIdOption.IsRequired = true;
+            command.AddOption(driveItemIdOption);
+            var workbookNamedItemIdOption = new Option<string>("--workbooknameditem-id", description: "key: id of workbookNamedItem");
+            workbookNamedItemIdOption.IsRequired = true;
+            command.AddOption(workbookNamedItemIdOption);
+            var workbookPivotTableIdOption = new Option<string>("--workbookpivottable-id", description: "key: id of workbookPivotTable");
+            workbookPivotTableIdOption.IsRequired = true;
+            command.AddOption(workbookPivotTableIdOption);
             command.Handler = CommandHandler.Create<string, string, string>(async (driveItemId, workbookNamedItemId, workbookPivotTableId) => {
-                var requestInfo = CreatePostRequestInformation();
-                if (!String.IsNullOrEmpty(driveItemId)) requestInfo.PathParameters.Add("driveItem_id", driveItemId);
-                if (!String.IsNullOrEmpty(workbookNamedItemId)) requestInfo.PathParameters.Add("workbookNamedItem_id", workbookNamedItemId);
-                if (!String.IsNullOrEmpty(workbookPivotTableId)) requestInfo.PathParameters.Add("workbookPivotTable_id", workbookPivotTableId);
+                var requestInfo = CreatePostRequestInformation(q => {
+                });
                 await RequestAdapter.SendNoContentAsync(requestInfo);
                 // Print request output. What if the request has no return?
                 Console.WriteLine("Success");

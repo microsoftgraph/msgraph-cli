@@ -27,10 +27,12 @@ namespace ApiSdk.Me.Insights.Used.Item {
             var command = new Command("delete");
             command.Description = "Calculated relationship identifying the latest documents viewed or modified by a user, including OneDrive for Business and SharePoint documents, ranked by recency of use.";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--usedinsight-id", description: "key: id of usedInsight"));
+            var usedInsightIdOption = new Option<string>("--usedinsight-id", description: "key: id of usedInsight");
+            usedInsightIdOption.IsRequired = true;
+            command.AddOption(usedInsightIdOption);
             command.Handler = CommandHandler.Create<string>(async (usedInsightId) => {
-                var requestInfo = CreateDeleteRequestInformation();
-                if (!String.IsNullOrEmpty(usedInsightId)) requestInfo.PathParameters.Add("usedInsight_id", usedInsightId);
+                var requestInfo = CreateDeleteRequestInformation(q => {
+                });
                 await RequestAdapter.SendNoContentAsync(requestInfo);
                 // Print request output. What if the request has no return?
                 Console.WriteLine("Success");
@@ -44,14 +46,22 @@ namespace ApiSdk.Me.Insights.Used.Item {
             var command = new Command("get");
             command.Description = "Calculated relationship identifying the latest documents viewed or modified by a user, including OneDrive for Business and SharePoint documents, ranked by recency of use.";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--usedinsight-id", description: "key: id of usedInsight"));
-            command.AddOption(new Option<object>("--select", description: "Select properties to be returned"));
-            command.AddOption(new Option<object>("--expand", description: "Expand related entities"));
-            command.Handler = CommandHandler.Create<string, object, object>(async (usedInsightId, select, expand) => {
-                var requestInfo = CreateGetRequestInformation();
-                if (!String.IsNullOrEmpty(usedInsightId)) requestInfo.PathParameters.Add("usedInsight_id", usedInsightId);
-                requestInfo.QueryParameters.Add("select", select);
-                requestInfo.QueryParameters.Add("expand", expand);
+            var usedInsightIdOption = new Option<string>("--usedinsight-id", description: "key: id of usedInsight");
+            usedInsightIdOption.IsRequired = true;
+            command.AddOption(usedInsightIdOption);
+            var selectOption = new Option<string[]>("--select", description: "Select properties to be returned");
+            selectOption.IsRequired = false;
+            selectOption.Arity = ArgumentArity.ZeroOrMore;
+            command.AddOption(selectOption);
+            var expandOption = new Option<string[]>("--expand", description: "Expand related entities");
+            expandOption.IsRequired = false;
+            expandOption.Arity = ArgumentArity.ZeroOrMore;
+            command.AddOption(expandOption);
+            command.Handler = CommandHandler.Create<string, string[], string[]>(async (usedInsightId, select, expand) => {
+                var requestInfo = CreateGetRequestInformation(q => {
+                    q.Select = select;
+                    q.Expand = expand;
+                });
                 var result = await RequestAdapter.SendAsync<UsedInsight>(requestInfo);
                 // Print request output. What if the request has no return?
                 using var serializer = RequestAdapter.SerializationWriterFactory.GetSerializationWriter("application/json");
@@ -70,14 +80,18 @@ namespace ApiSdk.Me.Insights.Used.Item {
             var command = new Command("patch");
             command.Description = "Calculated relationship identifying the latest documents viewed or modified by a user, including OneDrive for Business and SharePoint documents, ranked by recency of use.";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--usedinsight-id", description: "key: id of usedInsight"));
-            command.AddOption(new Option<string>("--body"));
+            var usedInsightIdOption = new Option<string>("--usedinsight-id", description: "key: id of usedInsight");
+            usedInsightIdOption.IsRequired = true;
+            command.AddOption(usedInsightIdOption);
+            var bodyOption = new Option<string>("--body");
+            bodyOption.IsRequired = true;
+            command.AddOption(bodyOption);
             command.Handler = CommandHandler.Create<string, string>(async (usedInsightId, body) => {
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<UsedInsight>();
-                var requestInfo = CreatePatchRequestInformation(model);
-                if (!String.IsNullOrEmpty(usedInsightId)) requestInfo.PathParameters.Add("usedInsight_id", usedInsightId);
+                var requestInfo = CreatePatchRequestInformation(model, q => {
+                });
                 await RequestAdapter.SendNoContentAsync(requestInfo);
                 // Print request output. What if the request has no return?
                 Console.WriteLine("Success");

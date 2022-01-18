@@ -26,14 +26,18 @@ namespace ApiSdk.Drives.Item.List.ContentTypes.AddCopy {
             var command = new Command("post");
             command.Description = "Invoke action addCopy";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--drive-id", description: "key: id of drive"));
-            command.AddOption(new Option<string>("--body"));
+            var driveIdOption = new Option<string>("--drive-id", description: "key: id of drive");
+            driveIdOption.IsRequired = true;
+            command.AddOption(driveIdOption);
+            var bodyOption = new Option<string>("--body");
+            bodyOption.IsRequired = true;
+            command.AddOption(bodyOption);
             command.Handler = CommandHandler.Create<string, string>(async (driveId, body) => {
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<AddCopyRequestBody>();
-                var requestInfo = CreatePostRequestInformation(model);
-                if (!String.IsNullOrEmpty(driveId)) requestInfo.PathParameters.Add("drive_id", driveId);
+                var requestInfo = CreatePostRequestInformation(model, q => {
+                });
                 var result = await RequestAdapter.SendAsync<AddCopyResponse>(requestInfo);
                 // Print request output. What if the request has no return?
                 using var serializer = RequestAdapter.SerializationWriterFactory.GetSerializationWriter("application/json");

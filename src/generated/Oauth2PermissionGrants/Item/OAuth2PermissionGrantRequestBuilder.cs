@@ -26,10 +26,12 @@ namespace ApiSdk.Oauth2PermissionGrants.Item {
             var command = new Command("delete");
             command.Description = "Delete entity from oauth2PermissionGrants";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--oauth2permissiongrant-id", description: "key: id of oAuth2PermissionGrant"));
+            var oAuth2PermissionGrantIdOption = new Option<string>("--oauth2permissiongrant-id", description: "key: id of oAuth2PermissionGrant");
+            oAuth2PermissionGrantIdOption.IsRequired = true;
+            command.AddOption(oAuth2PermissionGrantIdOption);
             command.Handler = CommandHandler.Create<string>(async (oAuth2PermissionGrantId) => {
-                var requestInfo = CreateDeleteRequestInformation();
-                if (!String.IsNullOrEmpty(oAuth2PermissionGrantId)) requestInfo.PathParameters.Add("oAuth2PermissionGrant_id", oAuth2PermissionGrantId);
+                var requestInfo = CreateDeleteRequestInformation(q => {
+                });
                 await RequestAdapter.SendNoContentAsync(requestInfo);
                 // Print request output. What if the request has no return?
                 Console.WriteLine("Success");
@@ -43,14 +45,22 @@ namespace ApiSdk.Oauth2PermissionGrants.Item {
             var command = new Command("get");
             command.Description = "Get entity from oauth2PermissionGrants by key";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--oauth2permissiongrant-id", description: "key: id of oAuth2PermissionGrant"));
-            command.AddOption(new Option<object>("--select", description: "Select properties to be returned"));
-            command.AddOption(new Option<object>("--expand", description: "Expand related entities"));
-            command.Handler = CommandHandler.Create<string, object, object>(async (oAuth2PermissionGrantId, select, expand) => {
-                var requestInfo = CreateGetRequestInformation();
-                if (!String.IsNullOrEmpty(oAuth2PermissionGrantId)) requestInfo.PathParameters.Add("oAuth2PermissionGrant_id", oAuth2PermissionGrantId);
-                requestInfo.QueryParameters.Add("select", select);
-                requestInfo.QueryParameters.Add("expand", expand);
+            var oAuth2PermissionGrantIdOption = new Option<string>("--oauth2permissiongrant-id", description: "key: id of oAuth2PermissionGrant");
+            oAuth2PermissionGrantIdOption.IsRequired = true;
+            command.AddOption(oAuth2PermissionGrantIdOption);
+            var selectOption = new Option<string[]>("--select", description: "Select properties to be returned");
+            selectOption.IsRequired = false;
+            selectOption.Arity = ArgumentArity.ZeroOrMore;
+            command.AddOption(selectOption);
+            var expandOption = new Option<string[]>("--expand", description: "Expand related entities");
+            expandOption.IsRequired = false;
+            expandOption.Arity = ArgumentArity.ZeroOrMore;
+            command.AddOption(expandOption);
+            command.Handler = CommandHandler.Create<string, string[], string[]>(async (oAuth2PermissionGrantId, select, expand) => {
+                var requestInfo = CreateGetRequestInformation(q => {
+                    q.Select = select;
+                    q.Expand = expand;
+                });
                 var result = await RequestAdapter.SendAsync<OAuth2PermissionGrant>(requestInfo);
                 // Print request output. What if the request has no return?
                 using var serializer = RequestAdapter.SerializationWriterFactory.GetSerializationWriter("application/json");
@@ -69,14 +79,18 @@ namespace ApiSdk.Oauth2PermissionGrants.Item {
             var command = new Command("patch");
             command.Description = "Update entity in oauth2PermissionGrants";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--oauth2permissiongrant-id", description: "key: id of oAuth2PermissionGrant"));
-            command.AddOption(new Option<string>("--body"));
+            var oAuth2PermissionGrantIdOption = new Option<string>("--oauth2permissiongrant-id", description: "key: id of oAuth2PermissionGrant");
+            oAuth2PermissionGrantIdOption.IsRequired = true;
+            command.AddOption(oAuth2PermissionGrantIdOption);
+            var bodyOption = new Option<string>("--body");
+            bodyOption.IsRequired = true;
+            command.AddOption(bodyOption);
             command.Handler = CommandHandler.Create<string, string>(async (oAuth2PermissionGrantId, body) => {
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<OAuth2PermissionGrant>();
-                var requestInfo = CreatePatchRequestInformation(model);
-                if (!String.IsNullOrEmpty(oAuth2PermissionGrantId)) requestInfo.PathParameters.Add("oAuth2PermissionGrant_id", oAuth2PermissionGrantId);
+                var requestInfo = CreatePatchRequestInformation(model, q => {
+                });
                 await RequestAdapter.SendNoContentAsync(requestInfo);
                 // Print request output. What if the request has no return?
                 Console.WriteLine("Success");

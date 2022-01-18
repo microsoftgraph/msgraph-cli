@@ -25,14 +25,18 @@ namespace ApiSdk.Teams.Item.SendActivityNotification {
             var command = new Command("post");
             command.Description = "Invoke action sendActivityNotification";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--team-id", description: "key: id of team"));
-            command.AddOption(new Option<string>("--body"));
+            var teamIdOption = new Option<string>("--team-id", description: "key: id of team");
+            teamIdOption.IsRequired = true;
+            command.AddOption(teamIdOption);
+            var bodyOption = new Option<string>("--body");
+            bodyOption.IsRequired = true;
+            command.AddOption(bodyOption);
             command.Handler = CommandHandler.Create<string, string>(async (teamId, body) => {
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<SendActivityNotificationRequestBody>();
-                var requestInfo = CreatePostRequestInformation(model);
-                if (!String.IsNullOrEmpty(teamId)) requestInfo.PathParameters.Add("team_id", teamId);
+                var requestInfo = CreatePostRequestInformation(model, q => {
+                });
                 await RequestAdapter.SendNoContentAsync(requestInfo);
                 // Print request output. What if the request has no return?
                 Console.WriteLine("Success");

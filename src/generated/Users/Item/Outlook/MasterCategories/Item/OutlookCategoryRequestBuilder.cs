@@ -26,12 +26,15 @@ namespace ApiSdk.Users.Item.Outlook.MasterCategories.Item {
             var command = new Command("delete");
             command.Description = "A list of categories defined for the user.";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--user-id", description: "key: id of user"));
-            command.AddOption(new Option<string>("--outlookcategory-id", description: "key: id of outlookCategory"));
+            var userIdOption = new Option<string>("--user-id", description: "key: id of user");
+            userIdOption.IsRequired = true;
+            command.AddOption(userIdOption);
+            var outlookCategoryIdOption = new Option<string>("--outlookcategory-id", description: "key: id of outlookCategory");
+            outlookCategoryIdOption.IsRequired = true;
+            command.AddOption(outlookCategoryIdOption);
             command.Handler = CommandHandler.Create<string, string>(async (userId, outlookCategoryId) => {
-                var requestInfo = CreateDeleteRequestInformation();
-                if (!String.IsNullOrEmpty(userId)) requestInfo.PathParameters.Add("user_id", userId);
-                if (!String.IsNullOrEmpty(outlookCategoryId)) requestInfo.PathParameters.Add("outlookCategory_id", outlookCategoryId);
+                var requestInfo = CreateDeleteRequestInformation(q => {
+                });
                 await RequestAdapter.SendNoContentAsync(requestInfo);
                 // Print request output. What if the request has no return?
                 Console.WriteLine("Success");
@@ -45,14 +48,20 @@ namespace ApiSdk.Users.Item.Outlook.MasterCategories.Item {
             var command = new Command("get");
             command.Description = "A list of categories defined for the user.";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--user-id", description: "key: id of user"));
-            command.AddOption(new Option<string>("--outlookcategory-id", description: "key: id of outlookCategory"));
-            command.AddOption(new Option<object>("--select", description: "Select properties to be returned"));
-            command.Handler = CommandHandler.Create<string, string, object>(async (userId, outlookCategoryId, select) => {
-                var requestInfo = CreateGetRequestInformation();
-                if (!String.IsNullOrEmpty(userId)) requestInfo.PathParameters.Add("user_id", userId);
-                if (!String.IsNullOrEmpty(outlookCategoryId)) requestInfo.PathParameters.Add("outlookCategory_id", outlookCategoryId);
-                requestInfo.QueryParameters.Add("select", select);
+            var userIdOption = new Option<string>("--user-id", description: "key: id of user");
+            userIdOption.IsRequired = true;
+            command.AddOption(userIdOption);
+            var outlookCategoryIdOption = new Option<string>("--outlookcategory-id", description: "key: id of outlookCategory");
+            outlookCategoryIdOption.IsRequired = true;
+            command.AddOption(outlookCategoryIdOption);
+            var selectOption = new Option<string[]>("--select", description: "Select properties to be returned");
+            selectOption.IsRequired = false;
+            selectOption.Arity = ArgumentArity.ZeroOrMore;
+            command.AddOption(selectOption);
+            command.Handler = CommandHandler.Create<string, string, string[]>(async (userId, outlookCategoryId, select) => {
+                var requestInfo = CreateGetRequestInformation(q => {
+                    q.Select = select;
+                });
                 var result = await RequestAdapter.SendAsync<OutlookCategory>(requestInfo);
                 // Print request output. What if the request has no return?
                 using var serializer = RequestAdapter.SerializationWriterFactory.GetSerializationWriter("application/json");
@@ -71,16 +80,21 @@ namespace ApiSdk.Users.Item.Outlook.MasterCategories.Item {
             var command = new Command("patch");
             command.Description = "A list of categories defined for the user.";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--user-id", description: "key: id of user"));
-            command.AddOption(new Option<string>("--outlookcategory-id", description: "key: id of outlookCategory"));
-            command.AddOption(new Option<string>("--body"));
+            var userIdOption = new Option<string>("--user-id", description: "key: id of user");
+            userIdOption.IsRequired = true;
+            command.AddOption(userIdOption);
+            var outlookCategoryIdOption = new Option<string>("--outlookcategory-id", description: "key: id of outlookCategory");
+            outlookCategoryIdOption.IsRequired = true;
+            command.AddOption(outlookCategoryIdOption);
+            var bodyOption = new Option<string>("--body");
+            bodyOption.IsRequired = true;
+            command.AddOption(bodyOption);
             command.Handler = CommandHandler.Create<string, string, string>(async (userId, outlookCategoryId, body) => {
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<OutlookCategory>();
-                var requestInfo = CreatePatchRequestInformation(model);
-                if (!String.IsNullOrEmpty(userId)) requestInfo.PathParameters.Add("user_id", userId);
-                if (!String.IsNullOrEmpty(outlookCategoryId)) requestInfo.PathParameters.Add("outlookCategory_id", outlookCategoryId);
+                var requestInfo = CreatePatchRequestInformation(model, q => {
+                });
                 await RequestAdapter.SendNoContentAsync(requestInfo);
                 // Print request output. What if the request has no return?
                 Console.WriteLine("Success");

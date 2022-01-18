@@ -26,7 +26,8 @@ namespace ApiSdk.DeviceAppManagement.ManagedAppRegistrations.GetUserIdsWithFlagg
             command.Description = "Invoke function getUserIdsWithFlaggedAppRegistration";
             // Create options for all the parameters
             command.Handler = CommandHandler.Create(async () => {
-                var requestInfo = CreateGetRequestInformation();
+                var requestInfo = CreateGetRequestInformation(q => {
+                });
                 var result = await RequestAdapter.SendPrimitiveCollectionAsync<string>(requestInfo);
                 // Print request output. What if the request has no return?
                 using var serializer = RequestAdapter.SerializationWriterFactory.GetSerializationWriter("application/json");

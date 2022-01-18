@@ -25,10 +25,12 @@ namespace ApiSdk.Me.Todo.Lists.Item.Tasks.Delta {
             var command = new Command("get");
             command.Description = "Invoke function delta";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--todotasklist-id", description: "key: id of todoTaskList"));
+            var todoTaskListIdOption = new Option<string>("--todotasklist-id", description: "key: id of todoTaskList");
+            todoTaskListIdOption.IsRequired = true;
+            command.AddOption(todoTaskListIdOption);
             command.Handler = CommandHandler.Create<string>(async (todoTaskListId) => {
-                var requestInfo = CreateGetRequestInformation();
-                if (!String.IsNullOrEmpty(todoTaskListId)) requestInfo.PathParameters.Add("todoTaskList_id", todoTaskListId);
+                var requestInfo = CreateGetRequestInformation(q => {
+                });
                 var result = await RequestAdapter.SendCollectionAsync<ApiSdk.Me.Todo.Lists.Item.Tasks.Delta.Delta>(requestInfo);
                 // Print request output. What if the request has no return?
                 using var serializer = RequestAdapter.SerializationWriterFactory.GetSerializationWriter("application/json");

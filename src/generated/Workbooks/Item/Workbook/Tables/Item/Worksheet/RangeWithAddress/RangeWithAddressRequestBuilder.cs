@@ -26,14 +26,18 @@ namespace ApiSdk.Workbooks.Item.Workbook.Tables.Item.Worksheet.RangeWithAddress 
             var command = new Command("get");
             command.Description = "Invoke function range";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--driveitem-id", description: "key: id of driveItem"));
-            command.AddOption(new Option<string>("--workbooktable-id", description: "key: id of workbookTable"));
-            command.AddOption(new Option<string>("--address", description: "Usage: address={address}"));
+            var driveItemIdOption = new Option<string>("--driveitem-id", description: "key: id of driveItem");
+            driveItemIdOption.IsRequired = true;
+            command.AddOption(driveItemIdOption);
+            var workbookTableIdOption = new Option<string>("--workbooktable-id", description: "key: id of workbookTable");
+            workbookTableIdOption.IsRequired = true;
+            command.AddOption(workbookTableIdOption);
+            var addressOption = new Option<string>("--address", description: "Usage: address={address}");
+            addressOption.IsRequired = true;
+            command.AddOption(addressOption);
             command.Handler = CommandHandler.Create<string, string, string>(async (driveItemId, workbookTableId, address) => {
-                var requestInfo = CreateGetRequestInformation();
-                if (!String.IsNullOrEmpty(driveItemId)) requestInfo.PathParameters.Add("driveItem_id", driveItemId);
-                if (!String.IsNullOrEmpty(workbookTableId)) requestInfo.PathParameters.Add("workbookTable_id", workbookTableId);
-                if (!String.IsNullOrEmpty(address)) requestInfo.PathParameters.Add("address", address);
+                var requestInfo = CreateGetRequestInformation(q => {
+                });
                 var result = await RequestAdapter.SendAsync<RangeWithAddressResponse>(requestInfo);
                 // Print request output. What if the request has no return?
                 using var serializer = RequestAdapter.SerializationWriterFactory.GetSerializationWriter("application/json");

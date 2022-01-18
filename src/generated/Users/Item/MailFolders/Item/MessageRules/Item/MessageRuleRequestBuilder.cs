@@ -26,14 +26,18 @@ namespace ApiSdk.Users.Item.MailFolders.Item.MessageRules.Item {
             var command = new Command("delete");
             command.Description = "The collection of rules that apply to the user's Inbox folder.";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--user-id", description: "key: id of user"));
-            command.AddOption(new Option<string>("--mailfolder-id", description: "key: id of mailFolder"));
-            command.AddOption(new Option<string>("--messagerule-id", description: "key: id of messageRule"));
+            var userIdOption = new Option<string>("--user-id", description: "key: id of user");
+            userIdOption.IsRequired = true;
+            command.AddOption(userIdOption);
+            var mailFolderIdOption = new Option<string>("--mailfolder-id", description: "key: id of mailFolder");
+            mailFolderIdOption.IsRequired = true;
+            command.AddOption(mailFolderIdOption);
+            var messageRuleIdOption = new Option<string>("--messagerule-id", description: "key: id of messageRule");
+            messageRuleIdOption.IsRequired = true;
+            command.AddOption(messageRuleIdOption);
             command.Handler = CommandHandler.Create<string, string, string>(async (userId, mailFolderId, messageRuleId) => {
-                var requestInfo = CreateDeleteRequestInformation();
-                if (!String.IsNullOrEmpty(userId)) requestInfo.PathParameters.Add("user_id", userId);
-                if (!String.IsNullOrEmpty(mailFolderId)) requestInfo.PathParameters.Add("mailFolder_id", mailFolderId);
-                if (!String.IsNullOrEmpty(messageRuleId)) requestInfo.PathParameters.Add("messageRule_id", messageRuleId);
+                var requestInfo = CreateDeleteRequestInformation(q => {
+                });
                 await RequestAdapter.SendNoContentAsync(requestInfo);
                 // Print request output. What if the request has no return?
                 Console.WriteLine("Success");
@@ -47,16 +51,23 @@ namespace ApiSdk.Users.Item.MailFolders.Item.MessageRules.Item {
             var command = new Command("get");
             command.Description = "The collection of rules that apply to the user's Inbox folder.";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--user-id", description: "key: id of user"));
-            command.AddOption(new Option<string>("--mailfolder-id", description: "key: id of mailFolder"));
-            command.AddOption(new Option<string>("--messagerule-id", description: "key: id of messageRule"));
-            command.AddOption(new Option<object>("--select", description: "Select properties to be returned"));
-            command.Handler = CommandHandler.Create<string, string, string, object>(async (userId, mailFolderId, messageRuleId, select) => {
-                var requestInfo = CreateGetRequestInformation();
-                if (!String.IsNullOrEmpty(userId)) requestInfo.PathParameters.Add("user_id", userId);
-                if (!String.IsNullOrEmpty(mailFolderId)) requestInfo.PathParameters.Add("mailFolder_id", mailFolderId);
-                if (!String.IsNullOrEmpty(messageRuleId)) requestInfo.PathParameters.Add("messageRule_id", messageRuleId);
-                requestInfo.QueryParameters.Add("select", select);
+            var userIdOption = new Option<string>("--user-id", description: "key: id of user");
+            userIdOption.IsRequired = true;
+            command.AddOption(userIdOption);
+            var mailFolderIdOption = new Option<string>("--mailfolder-id", description: "key: id of mailFolder");
+            mailFolderIdOption.IsRequired = true;
+            command.AddOption(mailFolderIdOption);
+            var messageRuleIdOption = new Option<string>("--messagerule-id", description: "key: id of messageRule");
+            messageRuleIdOption.IsRequired = true;
+            command.AddOption(messageRuleIdOption);
+            var selectOption = new Option<string[]>("--select", description: "Select properties to be returned");
+            selectOption.IsRequired = false;
+            selectOption.Arity = ArgumentArity.ZeroOrMore;
+            command.AddOption(selectOption);
+            command.Handler = CommandHandler.Create<string, string, string, string[]>(async (userId, mailFolderId, messageRuleId, select) => {
+                var requestInfo = CreateGetRequestInformation(q => {
+                    q.Select = select;
+                });
                 var result = await RequestAdapter.SendAsync<MessageRule>(requestInfo);
                 // Print request output. What if the request has no return?
                 using var serializer = RequestAdapter.SerializationWriterFactory.GetSerializationWriter("application/json");
@@ -75,18 +86,24 @@ namespace ApiSdk.Users.Item.MailFolders.Item.MessageRules.Item {
             var command = new Command("patch");
             command.Description = "The collection of rules that apply to the user's Inbox folder.";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--user-id", description: "key: id of user"));
-            command.AddOption(new Option<string>("--mailfolder-id", description: "key: id of mailFolder"));
-            command.AddOption(new Option<string>("--messagerule-id", description: "key: id of messageRule"));
-            command.AddOption(new Option<string>("--body"));
+            var userIdOption = new Option<string>("--user-id", description: "key: id of user");
+            userIdOption.IsRequired = true;
+            command.AddOption(userIdOption);
+            var mailFolderIdOption = new Option<string>("--mailfolder-id", description: "key: id of mailFolder");
+            mailFolderIdOption.IsRequired = true;
+            command.AddOption(mailFolderIdOption);
+            var messageRuleIdOption = new Option<string>("--messagerule-id", description: "key: id of messageRule");
+            messageRuleIdOption.IsRequired = true;
+            command.AddOption(messageRuleIdOption);
+            var bodyOption = new Option<string>("--body");
+            bodyOption.IsRequired = true;
+            command.AddOption(bodyOption);
             command.Handler = CommandHandler.Create<string, string, string, string>(async (userId, mailFolderId, messageRuleId, body) => {
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<MessageRule>();
-                var requestInfo = CreatePatchRequestInformation(model);
-                if (!String.IsNullOrEmpty(userId)) requestInfo.PathParameters.Add("user_id", userId);
-                if (!String.IsNullOrEmpty(mailFolderId)) requestInfo.PathParameters.Add("mailFolder_id", mailFolderId);
-                if (!String.IsNullOrEmpty(messageRuleId)) requestInfo.PathParameters.Add("messageRule_id", messageRuleId);
+                var requestInfo = CreatePatchRequestInformation(model, q => {
+                });
                 await RequestAdapter.SendNoContentAsync(requestInfo);
                 // Print request output. What if the request has no return?
                 Console.WriteLine("Success");

@@ -25,12 +25,15 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.Catalogs.Item.AccessPa
             var command = new Command("post");
             command.Description = "Invoke action getApplicablePolicyRequirements";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--accesspackagecatalog-id", description: "key: id of accessPackageCatalog"));
-            command.AddOption(new Option<string>("--accesspackage-id", description: "key: id of accessPackage"));
+            var accessPackageCatalogIdOption = new Option<string>("--accesspackagecatalog-id", description: "key: id of accessPackageCatalog");
+            accessPackageCatalogIdOption.IsRequired = true;
+            command.AddOption(accessPackageCatalogIdOption);
+            var accessPackageIdOption = new Option<string>("--accesspackage-id", description: "key: id of accessPackage");
+            accessPackageIdOption.IsRequired = true;
+            command.AddOption(accessPackageIdOption);
             command.Handler = CommandHandler.Create<string, string>(async (accessPackageCatalogId, accessPackageId) => {
-                var requestInfo = CreatePostRequestInformation();
-                if (!String.IsNullOrEmpty(accessPackageCatalogId)) requestInfo.PathParameters.Add("accessPackageCatalog_id", accessPackageCatalogId);
-                if (!String.IsNullOrEmpty(accessPackageId)) requestInfo.PathParameters.Add("accessPackage_id", accessPackageId);
+                var requestInfo = CreatePostRequestInformation(q => {
+                });
                 var result = await RequestAdapter.SendCollectionAsync<ApiSdk.IdentityGovernance.EntitlementManagement.Catalogs.Item.AccessPackages.Item.GetApplicablePolicyRequirements.GetApplicablePolicyRequirements>(requestInfo);
                 // Print request output. What if the request has no return?
                 using var serializer = RequestAdapter.SerializationWriterFactory.GetSerializationWriter("application/json");

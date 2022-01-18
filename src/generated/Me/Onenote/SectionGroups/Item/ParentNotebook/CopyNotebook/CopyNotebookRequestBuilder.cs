@@ -26,14 +26,18 @@ namespace ApiSdk.Me.Onenote.SectionGroups.Item.ParentNotebook.CopyNotebook {
             var command = new Command("post");
             command.Description = "Invoke action copyNotebook";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--sectiongroup-id", description: "key: id of sectionGroup"));
-            command.AddOption(new Option<string>("--body"));
+            var sectionGroupIdOption = new Option<string>("--sectiongroup-id", description: "key: id of sectionGroup");
+            sectionGroupIdOption.IsRequired = true;
+            command.AddOption(sectionGroupIdOption);
+            var bodyOption = new Option<string>("--body");
+            bodyOption.IsRequired = true;
+            command.AddOption(bodyOption);
             command.Handler = CommandHandler.Create<string, string>(async (sectionGroupId, body) => {
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<CopyNotebookRequestBody>();
-                var requestInfo = CreatePostRequestInformation(model);
-                if (!String.IsNullOrEmpty(sectionGroupId)) requestInfo.PathParameters.Add("sectionGroup_id", sectionGroupId);
+                var requestInfo = CreatePostRequestInformation(model, q => {
+                });
                 var result = await RequestAdapter.SendAsync<CopyNotebookResponse>(requestInfo);
                 // Print request output. What if the request has no return?
                 using var serializer = RequestAdapter.SerializationWriterFactory.GetSerializationWriter("application/json");

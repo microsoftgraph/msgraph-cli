@@ -25,14 +25,18 @@ namespace ApiSdk.GroupSettingTemplates.Item.GetMemberObjects {
             var command = new Command("post");
             command.Description = "Invoke action getMemberObjects";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--groupsettingtemplate-id", description: "key: id of groupSettingTemplate"));
-            command.AddOption(new Option<string>("--body"));
+            var groupSettingTemplateIdOption = new Option<string>("--groupsettingtemplate-id", description: "key: id of groupSettingTemplate");
+            groupSettingTemplateIdOption.IsRequired = true;
+            command.AddOption(groupSettingTemplateIdOption);
+            var bodyOption = new Option<string>("--body");
+            bodyOption.IsRequired = true;
+            command.AddOption(bodyOption);
             command.Handler = CommandHandler.Create<string, string>(async (groupSettingTemplateId, body) => {
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<GetMemberObjectsRequestBody>();
-                var requestInfo = CreatePostRequestInformation(model);
-                if (!String.IsNullOrEmpty(groupSettingTemplateId)) requestInfo.PathParameters.Add("groupSettingTemplate_id", groupSettingTemplateId);
+                var requestInfo = CreatePostRequestInformation(model, q => {
+                });
                 var result = await RequestAdapter.SendPrimitiveCollectionAsync<string>(requestInfo);
                 // Print request output. What if the request has no return?
                 using var serializer = RequestAdapter.SerializationWriterFactory.GetSerializationWriter("application/json");

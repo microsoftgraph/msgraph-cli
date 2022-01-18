@@ -25,10 +25,12 @@ namespace ApiSdk.Drive.List.Items.Item.GetActivitiesByInterval {
             var command = new Command("get");
             command.Description = "Invoke function getActivitiesByInterval";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--listitem-id", description: "key: id of listItem"));
+            var listItemIdOption = new Option<string>("--listitem-id", description: "key: id of listItem");
+            listItemIdOption.IsRequired = true;
+            command.AddOption(listItemIdOption);
             command.Handler = CommandHandler.Create<string>(async (listItemId) => {
-                var requestInfo = CreateGetRequestInformation();
-                if (!String.IsNullOrEmpty(listItemId)) requestInfo.PathParameters.Add("listItem_id", listItemId);
+                var requestInfo = CreateGetRequestInformation(q => {
+                });
                 var result = await RequestAdapter.SendCollectionAsync<ApiSdk.Drive.List.Items.Item.GetActivitiesByInterval.GetActivitiesByInterval>(requestInfo);
                 // Print request output. What if the request has no return?
                 using var serializer = RequestAdapter.SerializationWriterFactory.GetSerializationWriter("application/json");

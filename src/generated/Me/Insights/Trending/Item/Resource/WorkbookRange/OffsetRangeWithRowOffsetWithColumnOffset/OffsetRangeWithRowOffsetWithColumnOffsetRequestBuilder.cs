@@ -26,14 +26,18 @@ namespace ApiSdk.Me.Insights.Trending.Item.Resource.WorkbookRange.OffsetRangeWit
             var command = new Command("get");
             command.Description = "Invoke function offsetRange";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--trending-id", description: "key: id of trending"));
-            command.AddOption(new Option<int?>("--rowoffset", description: "Usage: rowOffset={rowOffset}"));
-            command.AddOption(new Option<int?>("--columnoffset", description: "Usage: columnOffset={columnOffset}"));
+            var trendingIdOption = new Option<string>("--trending-id", description: "key: id of trending");
+            trendingIdOption.IsRequired = true;
+            command.AddOption(trendingIdOption);
+            var rowOffsetOption = new Option<int?>("--rowoffset", description: "Usage: rowOffset={rowOffset}");
+            rowOffsetOption.IsRequired = true;
+            command.AddOption(rowOffsetOption);
+            var columnOffsetOption = new Option<int?>("--columnoffset", description: "Usage: columnOffset={columnOffset}");
+            columnOffsetOption.IsRequired = true;
+            command.AddOption(columnOffsetOption);
             command.Handler = CommandHandler.Create<string, int?, int?>(async (trendingId, rowOffset, columnOffset) => {
-                var requestInfo = CreateGetRequestInformation();
-                if (!String.IsNullOrEmpty(trendingId)) requestInfo.PathParameters.Add("trending_id", trendingId);
-                requestInfo.PathParameters.Add("rowOffset", rowOffset);
-                requestInfo.PathParameters.Add("columnOffset", columnOffset);
+                var requestInfo = CreateGetRequestInformation(q => {
+                });
                 var result = await RequestAdapter.SendAsync<OffsetRangeWithRowOffsetWithColumnOffsetResponse>(requestInfo);
                 // Print request output. What if the request has no return?
                 using var serializer = RequestAdapter.SerializationWriterFactory.GetSerializationWriter("application/json");

@@ -25,12 +25,15 @@ namespace ApiSdk.Chats.Item.Tabs.Item.TeamsApp.@Ref {
             var command = new Command("delete");
             command.Description = "The application that is linked to the tab. This cannot be changed after tab creation.";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--chat-id", description: "key: id of chat"));
-            command.AddOption(new Option<string>("--teamstab-id", description: "key: id of teamsTab"));
+            var chatIdOption = new Option<string>("--chat-id", description: "key: id of chat");
+            chatIdOption.IsRequired = true;
+            command.AddOption(chatIdOption);
+            var teamsTabIdOption = new Option<string>("--teamstab-id", description: "key: id of teamsTab");
+            teamsTabIdOption.IsRequired = true;
+            command.AddOption(teamsTabIdOption);
             command.Handler = CommandHandler.Create<string, string>(async (chatId, teamsTabId) => {
-                var requestInfo = CreateDeleteRequestInformation();
-                if (!String.IsNullOrEmpty(chatId)) requestInfo.PathParameters.Add("chat_id", chatId);
-                if (!String.IsNullOrEmpty(teamsTabId)) requestInfo.PathParameters.Add("teamsTab_id", teamsTabId);
+                var requestInfo = CreateDeleteRequestInformation(q => {
+                });
                 await RequestAdapter.SendNoContentAsync(requestInfo);
                 // Print request output. What if the request has no return?
                 Console.WriteLine("Success");
@@ -44,12 +47,15 @@ namespace ApiSdk.Chats.Item.Tabs.Item.TeamsApp.@Ref {
             var command = new Command("get");
             command.Description = "The application that is linked to the tab. This cannot be changed after tab creation.";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--chat-id", description: "key: id of chat"));
-            command.AddOption(new Option<string>("--teamstab-id", description: "key: id of teamsTab"));
+            var chatIdOption = new Option<string>("--chat-id", description: "key: id of chat");
+            chatIdOption.IsRequired = true;
+            command.AddOption(chatIdOption);
+            var teamsTabIdOption = new Option<string>("--teamstab-id", description: "key: id of teamsTab");
+            teamsTabIdOption.IsRequired = true;
+            command.AddOption(teamsTabIdOption);
             command.Handler = CommandHandler.Create<string, string>(async (chatId, teamsTabId) => {
-                var requestInfo = CreateGetRequestInformation();
-                if (!String.IsNullOrEmpty(chatId)) requestInfo.PathParameters.Add("chat_id", chatId);
-                if (!String.IsNullOrEmpty(teamsTabId)) requestInfo.PathParameters.Add("teamsTab_id", teamsTabId);
+                var requestInfo = CreateGetRequestInformation(q => {
+                });
                 var result = await RequestAdapter.SendPrimitiveAsync<string>(requestInfo);
                 // Print request output. What if the request has no return?
                 using var serializer = RequestAdapter.SerializationWriterFactory.GetSerializationWriter("application/json");
@@ -68,16 +74,21 @@ namespace ApiSdk.Chats.Item.Tabs.Item.TeamsApp.@Ref {
             var command = new Command("put");
             command.Description = "The application that is linked to the tab. This cannot be changed after tab creation.";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--chat-id", description: "key: id of chat"));
-            command.AddOption(new Option<string>("--teamstab-id", description: "key: id of teamsTab"));
-            command.AddOption(new Option<string>("--body"));
+            var chatIdOption = new Option<string>("--chat-id", description: "key: id of chat");
+            chatIdOption.IsRequired = true;
+            command.AddOption(chatIdOption);
+            var teamsTabIdOption = new Option<string>("--teamstab-id", description: "key: id of teamsTab");
+            teamsTabIdOption.IsRequired = true;
+            command.AddOption(teamsTabIdOption);
+            var bodyOption = new Option<string>("--body");
+            bodyOption.IsRequired = true;
+            command.AddOption(bodyOption);
             command.Handler = CommandHandler.Create<string, string, string>(async (chatId, teamsTabId, body) => {
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<ApiSdk.Chats.Item.Tabs.Item.TeamsApp.@Ref.@Ref>();
-                var requestInfo = CreatePutRequestInformation(model);
-                if (!String.IsNullOrEmpty(chatId)) requestInfo.PathParameters.Add("chat_id", chatId);
-                if (!String.IsNullOrEmpty(teamsTabId)) requestInfo.PathParameters.Add("teamsTab_id", teamsTabId);
+                var requestInfo = CreatePutRequestInformation(model, q => {
+                });
                 await RequestAdapter.SendNoContentAsync(requestInfo);
                 // Print request output. What if the request has no return?
                 Console.WriteLine("Success");

@@ -25,13 +25,16 @@ namespace ApiSdk.Groups.Item.Onenote.Resources.Item.Content {
             var command = new Command("get");
             command.Description = "Get media content for the navigation property resources from groups";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--group-id", description: "key: id of group"));
-            command.AddOption(new Option<string>("--onenoteresource-id", description: "key: id of onenoteResource"));
+            var groupIdOption = new Option<string>("--group-id", description: "key: id of group");
+            groupIdOption.IsRequired = true;
+            command.AddOption(groupIdOption);
+            var onenoteResourceIdOption = new Option<string>("--onenoteresource-id", description: "key: id of onenoteResource");
+            onenoteResourceIdOption.IsRequired = true;
+            command.AddOption(onenoteResourceIdOption);
             command.AddOption(new Option<FileInfo>("--output"));
             command.Handler = CommandHandler.Create<string, string, FileInfo>(async (groupId, onenoteResourceId, output) => {
-                var requestInfo = CreateGetRequestInformation();
-                if (!String.IsNullOrEmpty(groupId)) requestInfo.PathParameters.Add("group_id", groupId);
-                if (!String.IsNullOrEmpty(onenoteResourceId)) requestInfo.PathParameters.Add("onenoteResource_id", onenoteResourceId);
+                var requestInfo = CreateGetRequestInformation(q => {
+                });
                 var result = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 // Print request output. What if the request has no return?
                 if (output == null) {
@@ -54,14 +57,19 @@ namespace ApiSdk.Groups.Item.Onenote.Resources.Item.Content {
             var command = new Command("put");
             command.Description = "Update media content for the navigation property resources in groups";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--group-id", description: "key: id of group"));
-            command.AddOption(new Option<string>("--onenoteresource-id", description: "key: id of onenoteResource"));
-            command.AddOption(new Option<Stream>("--file", description: "Binary request body"));
+            var groupIdOption = new Option<string>("--group-id", description: "key: id of group");
+            groupIdOption.IsRequired = true;
+            command.AddOption(groupIdOption);
+            var onenoteResourceIdOption = new Option<string>("--onenoteresource-id", description: "key: id of onenoteResource");
+            onenoteResourceIdOption.IsRequired = true;
+            command.AddOption(onenoteResourceIdOption);
+            var fileOption = new Option<Stream>("--file", description: "Binary request body");
+            fileOption.IsRequired = true;
+            command.AddOption(fileOption);
             command.Handler = CommandHandler.Create<string, string, FileInfo>(async (groupId, onenoteResourceId, file) => {
                 using var stream = file.OpenRead();
-                var requestInfo = CreatePutRequestInformation(stream);
-                if (!String.IsNullOrEmpty(groupId)) requestInfo.PathParameters.Add("group_id", groupId);
-                if (!String.IsNullOrEmpty(onenoteResourceId)) requestInfo.PathParameters.Add("onenoteResource_id", onenoteResourceId);
+                var requestInfo = CreatePutRequestInformation(stream, q => {
+                });
                 await RequestAdapter.SendNoContentAsync(requestInfo);
                 // Print request output. What if the request has no return?
                 Console.WriteLine("Success");

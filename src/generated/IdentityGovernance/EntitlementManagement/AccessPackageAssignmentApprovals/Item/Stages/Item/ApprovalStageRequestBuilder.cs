@@ -26,12 +26,15 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.AccessPackageAssignmen
             var command = new Command("delete");
             command.Description = "A collection of stages in the approval decision.";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--approval-id", description: "key: id of approval"));
-            command.AddOption(new Option<string>("--approvalstage-id", description: "key: id of approvalStage"));
+            var approvalIdOption = new Option<string>("--approval-id", description: "key: id of approval");
+            approvalIdOption.IsRequired = true;
+            command.AddOption(approvalIdOption);
+            var approvalStageIdOption = new Option<string>("--approvalstage-id", description: "key: id of approvalStage");
+            approvalStageIdOption.IsRequired = true;
+            command.AddOption(approvalStageIdOption);
             command.Handler = CommandHandler.Create<string, string>(async (approvalId, approvalStageId) => {
-                var requestInfo = CreateDeleteRequestInformation();
-                if (!String.IsNullOrEmpty(approvalId)) requestInfo.PathParameters.Add("approval_id", approvalId);
-                if (!String.IsNullOrEmpty(approvalStageId)) requestInfo.PathParameters.Add("approvalStage_id", approvalStageId);
+                var requestInfo = CreateDeleteRequestInformation(q => {
+                });
                 await RequestAdapter.SendNoContentAsync(requestInfo);
                 // Print request output. What if the request has no return?
                 Console.WriteLine("Success");
@@ -45,16 +48,25 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.AccessPackageAssignmen
             var command = new Command("get");
             command.Description = "A collection of stages in the approval decision.";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--approval-id", description: "key: id of approval"));
-            command.AddOption(new Option<string>("--approvalstage-id", description: "key: id of approvalStage"));
-            command.AddOption(new Option<object>("--select", description: "Select properties to be returned"));
-            command.AddOption(new Option<object>("--expand", description: "Expand related entities"));
-            command.Handler = CommandHandler.Create<string, string, object, object>(async (approvalId, approvalStageId, select, expand) => {
-                var requestInfo = CreateGetRequestInformation();
-                if (!String.IsNullOrEmpty(approvalId)) requestInfo.PathParameters.Add("approval_id", approvalId);
-                if (!String.IsNullOrEmpty(approvalStageId)) requestInfo.PathParameters.Add("approvalStage_id", approvalStageId);
-                requestInfo.QueryParameters.Add("select", select);
-                requestInfo.QueryParameters.Add("expand", expand);
+            var approvalIdOption = new Option<string>("--approval-id", description: "key: id of approval");
+            approvalIdOption.IsRequired = true;
+            command.AddOption(approvalIdOption);
+            var approvalStageIdOption = new Option<string>("--approvalstage-id", description: "key: id of approvalStage");
+            approvalStageIdOption.IsRequired = true;
+            command.AddOption(approvalStageIdOption);
+            var selectOption = new Option<string[]>("--select", description: "Select properties to be returned");
+            selectOption.IsRequired = false;
+            selectOption.Arity = ArgumentArity.ZeroOrMore;
+            command.AddOption(selectOption);
+            var expandOption = new Option<string[]>("--expand", description: "Expand related entities");
+            expandOption.IsRequired = false;
+            expandOption.Arity = ArgumentArity.ZeroOrMore;
+            command.AddOption(expandOption);
+            command.Handler = CommandHandler.Create<string, string, string[], string[]>(async (approvalId, approvalStageId, select, expand) => {
+                var requestInfo = CreateGetRequestInformation(q => {
+                    q.Select = select;
+                    q.Expand = expand;
+                });
                 var result = await RequestAdapter.SendAsync<ApprovalStage>(requestInfo);
                 // Print request output. What if the request has no return?
                 using var serializer = RequestAdapter.SerializationWriterFactory.GetSerializationWriter("application/json");
@@ -73,16 +85,21 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.AccessPackageAssignmen
             var command = new Command("patch");
             command.Description = "A collection of stages in the approval decision.";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--approval-id", description: "key: id of approval"));
-            command.AddOption(new Option<string>("--approvalstage-id", description: "key: id of approvalStage"));
-            command.AddOption(new Option<string>("--body"));
+            var approvalIdOption = new Option<string>("--approval-id", description: "key: id of approval");
+            approvalIdOption.IsRequired = true;
+            command.AddOption(approvalIdOption);
+            var approvalStageIdOption = new Option<string>("--approvalstage-id", description: "key: id of approvalStage");
+            approvalStageIdOption.IsRequired = true;
+            command.AddOption(approvalStageIdOption);
+            var bodyOption = new Option<string>("--body");
+            bodyOption.IsRequired = true;
+            command.AddOption(bodyOption);
             command.Handler = CommandHandler.Create<string, string, string>(async (approvalId, approvalStageId, body) => {
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<ApprovalStage>();
-                var requestInfo = CreatePatchRequestInformation(model);
-                if (!String.IsNullOrEmpty(approvalId)) requestInfo.PathParameters.Add("approval_id", approvalId);
-                if (!String.IsNullOrEmpty(approvalStageId)) requestInfo.PathParameters.Add("approvalStage_id", approvalStageId);
+                var requestInfo = CreatePatchRequestInformation(model, q => {
+                });
                 await RequestAdapter.SendNoContentAsync(requestInfo);
                 // Print request output. What if the request has no return?
                 Console.WriteLine("Success");

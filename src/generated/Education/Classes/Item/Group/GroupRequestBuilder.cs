@@ -27,14 +27,22 @@ namespace ApiSdk.Education.Classes.Item.Group {
             var command = new Command("get");
             command.Description = "The underlying Microsoft 365 group object.";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--educationclass-id", description: "key: id of educationClass"));
-            command.AddOption(new Option<object>("--select", description: "Select properties to be returned"));
-            command.AddOption(new Option<object>("--expand", description: "Expand related entities"));
-            command.Handler = CommandHandler.Create<string, object, object>(async (educationClassId, select, expand) => {
-                var requestInfo = CreateGetRequestInformation();
-                if (!String.IsNullOrEmpty(educationClassId)) requestInfo.PathParameters.Add("educationClass_id", educationClassId);
-                requestInfo.QueryParameters.Add("select", select);
-                requestInfo.QueryParameters.Add("expand", expand);
+            var educationClassIdOption = new Option<string>("--educationclass-id", description: "key: id of educationClass");
+            educationClassIdOption.IsRequired = true;
+            command.AddOption(educationClassIdOption);
+            var selectOption = new Option<string[]>("--select", description: "Select properties to be returned");
+            selectOption.IsRequired = false;
+            selectOption.Arity = ArgumentArity.ZeroOrMore;
+            command.AddOption(selectOption);
+            var expandOption = new Option<string[]>("--expand", description: "Expand related entities");
+            expandOption.IsRequired = false;
+            expandOption.Arity = ArgumentArity.ZeroOrMore;
+            command.AddOption(expandOption);
+            command.Handler = CommandHandler.Create<string, string[], string[]>(async (educationClassId, select, expand) => {
+                var requestInfo = CreateGetRequestInformation(q => {
+                    q.Select = select;
+                    q.Expand = expand;
+                });
                 var result = await RequestAdapter.SendAsync<ApiSdk.Models.Microsoft.Graph.Group>(requestInfo);
                 // Print request output. What if the request has no return?
                 using var serializer = RequestAdapter.SerializationWriterFactory.GetSerializationWriter("application/json");

@@ -25,12 +25,15 @@ namespace ApiSdk.Users.Item.Onenote.Notebooks.GetRecentNotebooksWithIncludePerso
             var command = new Command("get");
             command.Description = "Invoke function getRecentNotebooks";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--user-id", description: "key: id of user"));
-            command.AddOption(new Option<bool?>("--includepersonalnotebooks", description: "Usage: includePersonalNotebooks={includePersonalNotebooks}"));
+            var userIdOption = new Option<string>("--user-id", description: "key: id of user");
+            userIdOption.IsRequired = true;
+            command.AddOption(userIdOption);
+            var includePersonalNotebooksOption = new Option<bool?>("--includepersonalnotebooks", description: "Usage: includePersonalNotebooks={includePersonalNotebooks}");
+            includePersonalNotebooksOption.IsRequired = true;
+            command.AddOption(includePersonalNotebooksOption);
             command.Handler = CommandHandler.Create<string, bool?>(async (userId, includePersonalNotebooks) => {
-                var requestInfo = CreateGetRequestInformation();
-                if (!String.IsNullOrEmpty(userId)) requestInfo.PathParameters.Add("user_id", userId);
-                requestInfo.PathParameters.Add("includePersonalNotebooks", includePersonalNotebooks);
+                var requestInfo = CreateGetRequestInformation(q => {
+                });
                 var result = await RequestAdapter.SendCollectionAsync<ApiSdk.Users.Item.Onenote.Notebooks.GetRecentNotebooksWithIncludePersonalNotebooks.GetRecentNotebooksWithIncludePersonalNotebooks>(requestInfo);
                 // Print request output. What if the request has no return?
                 using var serializer = RequestAdapter.SerializationWriterFactory.GetSerializationWriter("application/json");

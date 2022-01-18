@@ -26,12 +26,15 @@ namespace ApiSdk.Education.Classes.Item.AssignmentCategories.Item {
             var command = new Command("delete");
             command.Description = "Delete navigation property assignmentCategories for education";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--educationclass-id", description: "key: id of educationClass"));
-            command.AddOption(new Option<string>("--educationcategory-id", description: "key: id of educationCategory"));
+            var educationClassIdOption = new Option<string>("--educationclass-id", description: "key: id of educationClass");
+            educationClassIdOption.IsRequired = true;
+            command.AddOption(educationClassIdOption);
+            var educationCategoryIdOption = new Option<string>("--educationcategory-id", description: "key: id of educationCategory");
+            educationCategoryIdOption.IsRequired = true;
+            command.AddOption(educationCategoryIdOption);
             command.Handler = CommandHandler.Create<string, string>(async (educationClassId, educationCategoryId) => {
-                var requestInfo = CreateDeleteRequestInformation();
-                if (!String.IsNullOrEmpty(educationClassId)) requestInfo.PathParameters.Add("educationClass_id", educationClassId);
-                if (!String.IsNullOrEmpty(educationCategoryId)) requestInfo.PathParameters.Add("educationCategory_id", educationCategoryId);
+                var requestInfo = CreateDeleteRequestInformation(q => {
+                });
                 await RequestAdapter.SendNoContentAsync(requestInfo);
                 // Print request output. What if the request has no return?
                 Console.WriteLine("Success");
@@ -45,16 +48,25 @@ namespace ApiSdk.Education.Classes.Item.AssignmentCategories.Item {
             var command = new Command("get");
             command.Description = "Get assignmentCategories from education";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--educationclass-id", description: "key: id of educationClass"));
-            command.AddOption(new Option<string>("--educationcategory-id", description: "key: id of educationCategory"));
-            command.AddOption(new Option<object>("--select", description: "Select properties to be returned"));
-            command.AddOption(new Option<object>("--expand", description: "Expand related entities"));
-            command.Handler = CommandHandler.Create<string, string, object, object>(async (educationClassId, educationCategoryId, select, expand) => {
-                var requestInfo = CreateGetRequestInformation();
-                if (!String.IsNullOrEmpty(educationClassId)) requestInfo.PathParameters.Add("educationClass_id", educationClassId);
-                if (!String.IsNullOrEmpty(educationCategoryId)) requestInfo.PathParameters.Add("educationCategory_id", educationCategoryId);
-                requestInfo.QueryParameters.Add("select", select);
-                requestInfo.QueryParameters.Add("expand", expand);
+            var educationClassIdOption = new Option<string>("--educationclass-id", description: "key: id of educationClass");
+            educationClassIdOption.IsRequired = true;
+            command.AddOption(educationClassIdOption);
+            var educationCategoryIdOption = new Option<string>("--educationcategory-id", description: "key: id of educationCategory");
+            educationCategoryIdOption.IsRequired = true;
+            command.AddOption(educationCategoryIdOption);
+            var selectOption = new Option<string[]>("--select", description: "Select properties to be returned");
+            selectOption.IsRequired = false;
+            selectOption.Arity = ArgumentArity.ZeroOrMore;
+            command.AddOption(selectOption);
+            var expandOption = new Option<string[]>("--expand", description: "Expand related entities");
+            expandOption.IsRequired = false;
+            expandOption.Arity = ArgumentArity.ZeroOrMore;
+            command.AddOption(expandOption);
+            command.Handler = CommandHandler.Create<string, string, string[], string[]>(async (educationClassId, educationCategoryId, select, expand) => {
+                var requestInfo = CreateGetRequestInformation(q => {
+                    q.Select = select;
+                    q.Expand = expand;
+                });
                 var result = await RequestAdapter.SendAsync<EducationCategory>(requestInfo);
                 // Print request output. What if the request has no return?
                 using var serializer = RequestAdapter.SerializationWriterFactory.GetSerializationWriter("application/json");
@@ -73,16 +85,21 @@ namespace ApiSdk.Education.Classes.Item.AssignmentCategories.Item {
             var command = new Command("patch");
             command.Description = "Update the navigation property assignmentCategories in education";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--educationclass-id", description: "key: id of educationClass"));
-            command.AddOption(new Option<string>("--educationcategory-id", description: "key: id of educationCategory"));
-            command.AddOption(new Option<string>("--body"));
+            var educationClassIdOption = new Option<string>("--educationclass-id", description: "key: id of educationClass");
+            educationClassIdOption.IsRequired = true;
+            command.AddOption(educationClassIdOption);
+            var educationCategoryIdOption = new Option<string>("--educationcategory-id", description: "key: id of educationCategory");
+            educationCategoryIdOption.IsRequired = true;
+            command.AddOption(educationCategoryIdOption);
+            var bodyOption = new Option<string>("--body");
+            bodyOption.IsRequired = true;
+            command.AddOption(bodyOption);
             command.Handler = CommandHandler.Create<string, string, string>(async (educationClassId, educationCategoryId, body) => {
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<EducationCategory>();
-                var requestInfo = CreatePatchRequestInformation(model);
-                if (!String.IsNullOrEmpty(educationClassId)) requestInfo.PathParameters.Add("educationClass_id", educationClassId);
-                if (!String.IsNullOrEmpty(educationCategoryId)) requestInfo.PathParameters.Add("educationCategory_id", educationCategoryId);
+                var requestInfo = CreatePatchRequestInformation(model, q => {
+                });
                 await RequestAdapter.SendNoContentAsync(requestInfo);
                 // Print request output. What if the request has no return?
                 Console.WriteLine("Success");

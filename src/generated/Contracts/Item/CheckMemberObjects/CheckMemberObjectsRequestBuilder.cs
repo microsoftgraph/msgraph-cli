@@ -25,14 +25,18 @@ namespace ApiSdk.Contracts.Item.CheckMemberObjects {
             var command = new Command("post");
             command.Description = "Invoke action checkMemberObjects";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--contract-id", description: "key: id of contract"));
-            command.AddOption(new Option<string>("--body"));
+            var contractIdOption = new Option<string>("--contract-id", description: "key: id of contract");
+            contractIdOption.IsRequired = true;
+            command.AddOption(contractIdOption);
+            var bodyOption = new Option<string>("--body");
+            bodyOption.IsRequired = true;
+            command.AddOption(bodyOption);
             command.Handler = CommandHandler.Create<string, string>(async (contractId, body) => {
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<CheckMemberObjectsRequestBody>();
-                var requestInfo = CreatePostRequestInformation(model);
-                if (!String.IsNullOrEmpty(contractId)) requestInfo.PathParameters.Add("contract_id", contractId);
+                var requestInfo = CreatePostRequestInformation(model, q => {
+                });
                 var result = await RequestAdapter.SendPrimitiveCollectionAsync<string>(requestInfo);
                 // Print request output. What if the request has no return?
                 using var serializer = RequestAdapter.SerializationWriterFactory.GetSerializationWriter("application/json");

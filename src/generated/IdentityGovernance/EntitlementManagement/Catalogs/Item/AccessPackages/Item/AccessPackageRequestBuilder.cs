@@ -35,12 +35,15 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.Catalogs.Item.AccessPa
             var command = new Command("delete");
             command.Description = "The access packages in this catalog. Read-only. Nullable.";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--accesspackagecatalog-id", description: "key: id of accessPackageCatalog"));
-            command.AddOption(new Option<string>("--accesspackage-id", description: "key: id of accessPackage"));
+            var accessPackageCatalogIdOption = new Option<string>("--accesspackagecatalog-id", description: "key: id of accessPackageCatalog");
+            accessPackageCatalogIdOption.IsRequired = true;
+            command.AddOption(accessPackageCatalogIdOption);
+            var accessPackageIdOption = new Option<string>("--accesspackage-id", description: "key: id of accessPackage");
+            accessPackageIdOption.IsRequired = true;
+            command.AddOption(accessPackageIdOption);
             command.Handler = CommandHandler.Create<string, string>(async (accessPackageCatalogId, accessPackageId) => {
-                var requestInfo = CreateDeleteRequestInformation();
-                if (!String.IsNullOrEmpty(accessPackageCatalogId)) requestInfo.PathParameters.Add("accessPackageCatalog_id", accessPackageCatalogId);
-                if (!String.IsNullOrEmpty(accessPackageId)) requestInfo.PathParameters.Add("accessPackage_id", accessPackageId);
+                var requestInfo = CreateDeleteRequestInformation(q => {
+                });
                 await RequestAdapter.SendNoContentAsync(requestInfo);
                 // Print request output. What if the request has no return?
                 Console.WriteLine("Success");
@@ -60,16 +63,25 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.Catalogs.Item.AccessPa
             var command = new Command("get");
             command.Description = "The access packages in this catalog. Read-only. Nullable.";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--accesspackagecatalog-id", description: "key: id of accessPackageCatalog"));
-            command.AddOption(new Option<string>("--accesspackage-id", description: "key: id of accessPackage"));
-            command.AddOption(new Option<object>("--select", description: "Select properties to be returned"));
-            command.AddOption(new Option<object>("--expand", description: "Expand related entities"));
-            command.Handler = CommandHandler.Create<string, string, object, object>(async (accessPackageCatalogId, accessPackageId, select, expand) => {
-                var requestInfo = CreateGetRequestInformation();
-                if (!String.IsNullOrEmpty(accessPackageCatalogId)) requestInfo.PathParameters.Add("accessPackageCatalog_id", accessPackageCatalogId);
-                if (!String.IsNullOrEmpty(accessPackageId)) requestInfo.PathParameters.Add("accessPackage_id", accessPackageId);
-                requestInfo.QueryParameters.Add("select", select);
-                requestInfo.QueryParameters.Add("expand", expand);
+            var accessPackageCatalogIdOption = new Option<string>("--accesspackagecatalog-id", description: "key: id of accessPackageCatalog");
+            accessPackageCatalogIdOption.IsRequired = true;
+            command.AddOption(accessPackageCatalogIdOption);
+            var accessPackageIdOption = new Option<string>("--accesspackage-id", description: "key: id of accessPackage");
+            accessPackageIdOption.IsRequired = true;
+            command.AddOption(accessPackageIdOption);
+            var selectOption = new Option<string[]>("--select", description: "Select properties to be returned");
+            selectOption.IsRequired = false;
+            selectOption.Arity = ArgumentArity.ZeroOrMore;
+            command.AddOption(selectOption);
+            var expandOption = new Option<string[]>("--expand", description: "Expand related entities");
+            expandOption.IsRequired = false;
+            expandOption.Arity = ArgumentArity.ZeroOrMore;
+            command.AddOption(expandOption);
+            command.Handler = CommandHandler.Create<string, string, string[], string[]>(async (accessPackageCatalogId, accessPackageId, select, expand) => {
+                var requestInfo = CreateGetRequestInformation(q => {
+                    q.Select = select;
+                    q.Expand = expand;
+                });
                 var result = await RequestAdapter.SendAsync<ApiSdk.Models.Microsoft.Graph.AccessPackage>(requestInfo);
                 // Print request output. What if the request has no return?
                 using var serializer = RequestAdapter.SerializationWriterFactory.GetSerializationWriter("application/json");
@@ -88,16 +100,21 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.Catalogs.Item.AccessPa
             var command = new Command("patch");
             command.Description = "The access packages in this catalog. Read-only. Nullable.";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--accesspackagecatalog-id", description: "key: id of accessPackageCatalog"));
-            command.AddOption(new Option<string>("--accesspackage-id", description: "key: id of accessPackage"));
-            command.AddOption(new Option<string>("--body"));
+            var accessPackageCatalogIdOption = new Option<string>("--accesspackagecatalog-id", description: "key: id of accessPackageCatalog");
+            accessPackageCatalogIdOption.IsRequired = true;
+            command.AddOption(accessPackageCatalogIdOption);
+            var accessPackageIdOption = new Option<string>("--accesspackage-id", description: "key: id of accessPackage");
+            accessPackageIdOption.IsRequired = true;
+            command.AddOption(accessPackageIdOption);
+            var bodyOption = new Option<string>("--body");
+            bodyOption.IsRequired = true;
+            command.AddOption(bodyOption);
             command.Handler = CommandHandler.Create<string, string, string>(async (accessPackageCatalogId, accessPackageId, body) => {
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<ApiSdk.Models.Microsoft.Graph.AccessPackage>();
-                var requestInfo = CreatePatchRequestInformation(model);
-                if (!String.IsNullOrEmpty(accessPackageCatalogId)) requestInfo.PathParameters.Add("accessPackageCatalog_id", accessPackageCatalogId);
-                if (!String.IsNullOrEmpty(accessPackageId)) requestInfo.PathParameters.Add("accessPackage_id", accessPackageId);
+                var requestInfo = CreatePatchRequestInformation(model, q => {
+                });
                 await RequestAdapter.SendNoContentAsync(requestInfo);
                 // Print request output. What if the request has no return?
                 Console.WriteLine("Success");

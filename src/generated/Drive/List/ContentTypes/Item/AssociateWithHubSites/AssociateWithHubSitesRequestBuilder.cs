@@ -25,14 +25,18 @@ namespace ApiSdk.Drive.List.ContentTypes.Item.AssociateWithHubSites {
             var command = new Command("post");
             command.Description = "Invoke action associateWithHubSites";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--contenttype-id", description: "key: id of contentType"));
-            command.AddOption(new Option<string>("--body"));
+            var contentTypeIdOption = new Option<string>("--contenttype-id", description: "key: id of contentType");
+            contentTypeIdOption.IsRequired = true;
+            command.AddOption(contentTypeIdOption);
+            var bodyOption = new Option<string>("--body");
+            bodyOption.IsRequired = true;
+            command.AddOption(bodyOption);
             command.Handler = CommandHandler.Create<string, string>(async (contentTypeId, body) => {
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<AssociateWithHubSitesRequestBody>();
-                var requestInfo = CreatePostRequestInformation(model);
-                if (!String.IsNullOrEmpty(contentTypeId)) requestInfo.PathParameters.Add("contentType_id", contentTypeId);
+                var requestInfo = CreatePostRequestInformation(model, q => {
+                });
                 await RequestAdapter.SendNoContentAsync(requestInfo);
                 // Print request output. What if the request has no return?
                 Console.WriteLine("Success");

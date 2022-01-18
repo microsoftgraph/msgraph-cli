@@ -27,10 +27,12 @@ namespace ApiSdk.ApplicationTemplates.Item {
             var command = new Command("delete");
             command.Description = "Delete entity from applicationTemplates";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--applicationtemplate-id", description: "key: id of applicationTemplate"));
+            var applicationTemplateIdOption = new Option<string>("--applicationtemplate-id", description: "key: id of applicationTemplate");
+            applicationTemplateIdOption.IsRequired = true;
+            command.AddOption(applicationTemplateIdOption);
             command.Handler = CommandHandler.Create<string>(async (applicationTemplateId) => {
-                var requestInfo = CreateDeleteRequestInformation();
-                if (!String.IsNullOrEmpty(applicationTemplateId)) requestInfo.PathParameters.Add("applicationTemplate_id", applicationTemplateId);
+                var requestInfo = CreateDeleteRequestInformation(q => {
+                });
                 await RequestAdapter.SendNoContentAsync(requestInfo);
                 // Print request output. What if the request has no return?
                 Console.WriteLine("Success");
@@ -44,14 +46,22 @@ namespace ApiSdk.ApplicationTemplates.Item {
             var command = new Command("get");
             command.Description = "Get entity from applicationTemplates by key";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--applicationtemplate-id", description: "key: id of applicationTemplate"));
-            command.AddOption(new Option<object>("--select", description: "Select properties to be returned"));
-            command.AddOption(new Option<object>("--expand", description: "Expand related entities"));
-            command.Handler = CommandHandler.Create<string, object, object>(async (applicationTemplateId, select, expand) => {
-                var requestInfo = CreateGetRequestInformation();
-                if (!String.IsNullOrEmpty(applicationTemplateId)) requestInfo.PathParameters.Add("applicationTemplate_id", applicationTemplateId);
-                requestInfo.QueryParameters.Add("select", select);
-                requestInfo.QueryParameters.Add("expand", expand);
+            var applicationTemplateIdOption = new Option<string>("--applicationtemplate-id", description: "key: id of applicationTemplate");
+            applicationTemplateIdOption.IsRequired = true;
+            command.AddOption(applicationTemplateIdOption);
+            var selectOption = new Option<string[]>("--select", description: "Select properties to be returned");
+            selectOption.IsRequired = false;
+            selectOption.Arity = ArgumentArity.ZeroOrMore;
+            command.AddOption(selectOption);
+            var expandOption = new Option<string[]>("--expand", description: "Expand related entities");
+            expandOption.IsRequired = false;
+            expandOption.Arity = ArgumentArity.ZeroOrMore;
+            command.AddOption(expandOption);
+            command.Handler = CommandHandler.Create<string, string[], string[]>(async (applicationTemplateId, select, expand) => {
+                var requestInfo = CreateGetRequestInformation(q => {
+                    q.Select = select;
+                    q.Expand = expand;
+                });
                 var result = await RequestAdapter.SendAsync<ApplicationTemplate>(requestInfo);
                 // Print request output. What if the request has no return?
                 using var serializer = RequestAdapter.SerializationWriterFactory.GetSerializationWriter("application/json");
@@ -76,14 +86,18 @@ namespace ApiSdk.ApplicationTemplates.Item {
             var command = new Command("patch");
             command.Description = "Update entity in applicationTemplates";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--applicationtemplate-id", description: "key: id of applicationTemplate"));
-            command.AddOption(new Option<string>("--body"));
+            var applicationTemplateIdOption = new Option<string>("--applicationtemplate-id", description: "key: id of applicationTemplate");
+            applicationTemplateIdOption.IsRequired = true;
+            command.AddOption(applicationTemplateIdOption);
+            var bodyOption = new Option<string>("--body");
+            bodyOption.IsRequired = true;
+            command.AddOption(bodyOption);
             command.Handler = CommandHandler.Create<string, string>(async (applicationTemplateId, body) => {
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<ApplicationTemplate>();
-                var requestInfo = CreatePatchRequestInformation(model);
-                if (!String.IsNullOrEmpty(applicationTemplateId)) requestInfo.PathParameters.Add("applicationTemplate_id", applicationTemplateId);
+                var requestInfo = CreatePatchRequestInformation(model, q => {
+                });
                 await RequestAdapter.SendNoContentAsync(requestInfo);
                 // Print request output. What if the request has no return?
                 Console.WriteLine("Success");

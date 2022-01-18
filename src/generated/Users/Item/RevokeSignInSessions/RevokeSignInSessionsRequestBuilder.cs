@@ -25,10 +25,12 @@ namespace ApiSdk.Users.Item.RevokeSignInSessions {
             var command = new Command("post");
             command.Description = "Invoke action revokeSignInSessions";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--user-id", description: "key: id of user"));
+            var userIdOption = new Option<string>("--user-id", description: "key: id of user");
+            userIdOption.IsRequired = true;
+            command.AddOption(userIdOption);
             command.Handler = CommandHandler.Create<string>(async (userId) => {
-                var requestInfo = CreatePostRequestInformation();
-                if (!String.IsNullOrEmpty(userId)) requestInfo.PathParameters.Add("user_id", userId);
+                var requestInfo = CreatePostRequestInformation(q => {
+                });
                 var result = await RequestAdapter.SendPrimitiveAsync<bool?>(requestInfo);
                 // Print request output. What if the request has no return?
                 using var serializer = RequestAdapter.SerializationWriterFactory.GetSerializationWriter("application/json");

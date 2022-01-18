@@ -26,16 +26,21 @@ namespace ApiSdk.Users.Item.Insights.Used.Item.Resource.WorkbookRange.OffsetRang
             var command = new Command("get");
             command.Description = "Invoke function offsetRange";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--user-id", description: "key: id of user"));
-            command.AddOption(new Option<string>("--usedinsight-id", description: "key: id of usedInsight"));
-            command.AddOption(new Option<int?>("--rowoffset", description: "Usage: rowOffset={rowOffset}"));
-            command.AddOption(new Option<int?>("--columnoffset", description: "Usage: columnOffset={columnOffset}"));
+            var userIdOption = new Option<string>("--user-id", description: "key: id of user");
+            userIdOption.IsRequired = true;
+            command.AddOption(userIdOption);
+            var usedInsightIdOption = new Option<string>("--usedinsight-id", description: "key: id of usedInsight");
+            usedInsightIdOption.IsRequired = true;
+            command.AddOption(usedInsightIdOption);
+            var rowOffsetOption = new Option<int?>("--rowoffset", description: "Usage: rowOffset={rowOffset}");
+            rowOffsetOption.IsRequired = true;
+            command.AddOption(rowOffsetOption);
+            var columnOffsetOption = new Option<int?>("--columnoffset", description: "Usage: columnOffset={columnOffset}");
+            columnOffsetOption.IsRequired = true;
+            command.AddOption(columnOffsetOption);
             command.Handler = CommandHandler.Create<string, string, int?, int?>(async (userId, usedInsightId, rowOffset, columnOffset) => {
-                var requestInfo = CreateGetRequestInformation();
-                if (!String.IsNullOrEmpty(userId)) requestInfo.PathParameters.Add("user_id", userId);
-                if (!String.IsNullOrEmpty(usedInsightId)) requestInfo.PathParameters.Add("usedInsight_id", usedInsightId);
-                requestInfo.PathParameters.Add("rowOffset", rowOffset);
-                requestInfo.PathParameters.Add("columnOffset", columnOffset);
+                var requestInfo = CreateGetRequestInformation(q => {
+                });
                 var result = await RequestAdapter.SendAsync<OffsetRangeWithRowOffsetWithColumnOffsetResponse>(requestInfo);
                 // Print request output. What if the request has no return?
                 using var serializer = RequestAdapter.SerializationWriterFactory.GetSerializationWriter("application/json");

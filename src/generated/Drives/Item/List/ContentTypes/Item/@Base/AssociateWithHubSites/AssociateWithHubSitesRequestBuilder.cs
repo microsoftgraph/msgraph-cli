@@ -25,16 +25,21 @@ namespace ApiSdk.Drives.Item.List.ContentTypes.Item.@Base.AssociateWithHubSites 
             var command = new Command("post");
             command.Description = "Invoke action associateWithHubSites";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--drive-id", description: "key: id of drive"));
-            command.AddOption(new Option<string>("--contenttype-id", description: "key: id of contentType"));
-            command.AddOption(new Option<string>("--body"));
+            var driveIdOption = new Option<string>("--drive-id", description: "key: id of drive");
+            driveIdOption.IsRequired = true;
+            command.AddOption(driveIdOption);
+            var contentTypeIdOption = new Option<string>("--contenttype-id", description: "key: id of contentType");
+            contentTypeIdOption.IsRequired = true;
+            command.AddOption(contentTypeIdOption);
+            var bodyOption = new Option<string>("--body");
+            bodyOption.IsRequired = true;
+            command.AddOption(bodyOption);
             command.Handler = CommandHandler.Create<string, string, string>(async (driveId, contentTypeId, body) => {
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<AssociateWithHubSitesRequestBody>();
-                var requestInfo = CreatePostRequestInformation(model);
-                if (!String.IsNullOrEmpty(driveId)) requestInfo.PathParameters.Add("drive_id", driveId);
-                if (!String.IsNullOrEmpty(contentTypeId)) requestInfo.PathParameters.Add("contentType_id", contentTypeId);
+                var requestInfo = CreatePostRequestInformation(model, q => {
+                });
                 await RequestAdapter.SendNoContentAsync(requestInfo);
                 // Print request output. What if the request has no return?
                 Console.WriteLine("Success");

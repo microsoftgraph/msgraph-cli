@@ -25,10 +25,12 @@ namespace ApiSdk.DeviceManagement.VerifyWindowsEnrollmentAutoDiscoveryWithDomain
             var command = new Command("get");
             command.Description = "Invoke function verifyWindowsEnrollmentAutoDiscovery";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--domainname", description: "Usage: domainName={domainName}"));
+            var domainNameOption = new Option<string>("--domainname", description: "Usage: domainName={domainName}");
+            domainNameOption.IsRequired = true;
+            command.AddOption(domainNameOption);
             command.Handler = CommandHandler.Create<string>(async (domainName) => {
-                var requestInfo = CreateGetRequestInformation();
-                if (!String.IsNullOrEmpty(domainName)) requestInfo.PathParameters.Add("domainName", domainName);
+                var requestInfo = CreateGetRequestInformation(q => {
+                });
                 var result = await RequestAdapter.SendPrimitiveAsync<bool?>(requestInfo);
                 // Print request output. What if the request has no return?
                 using var serializer = RequestAdapter.SerializationWriterFactory.GetSerializationWriter("application/json");

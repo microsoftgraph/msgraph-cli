@@ -27,12 +27,15 @@ namespace ApiSdk.Workbooks.Item.Permissions.Item {
             var command = new Command("delete");
             command.Description = "The set of permissions for the item. Read-only. Nullable.";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--driveitem-id", description: "key: id of driveItem"));
-            command.AddOption(new Option<string>("--permission-id", description: "key: id of permission"));
+            var driveItemIdOption = new Option<string>("--driveitem-id", description: "key: id of driveItem");
+            driveItemIdOption.IsRequired = true;
+            command.AddOption(driveItemIdOption);
+            var permissionIdOption = new Option<string>("--permission-id", description: "key: id of permission");
+            permissionIdOption.IsRequired = true;
+            command.AddOption(permissionIdOption);
             command.Handler = CommandHandler.Create<string, string>(async (driveItemId, permissionId) => {
-                var requestInfo = CreateDeleteRequestInformation();
-                if (!String.IsNullOrEmpty(driveItemId)) requestInfo.PathParameters.Add("driveItem_id", driveItemId);
-                if (!String.IsNullOrEmpty(permissionId)) requestInfo.PathParameters.Add("permission_id", permissionId);
+                var requestInfo = CreateDeleteRequestInformation(q => {
+                });
                 await RequestAdapter.SendNoContentAsync(requestInfo);
                 // Print request output. What if the request has no return?
                 Console.WriteLine("Success");
@@ -46,16 +49,25 @@ namespace ApiSdk.Workbooks.Item.Permissions.Item {
             var command = new Command("get");
             command.Description = "The set of permissions for the item. Read-only. Nullable.";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--driveitem-id", description: "key: id of driveItem"));
-            command.AddOption(new Option<string>("--permission-id", description: "key: id of permission"));
-            command.AddOption(new Option<object>("--select", description: "Select properties to be returned"));
-            command.AddOption(new Option<object>("--expand", description: "Expand related entities"));
-            command.Handler = CommandHandler.Create<string, string, object, object>(async (driveItemId, permissionId, select, expand) => {
-                var requestInfo = CreateGetRequestInformation();
-                if (!String.IsNullOrEmpty(driveItemId)) requestInfo.PathParameters.Add("driveItem_id", driveItemId);
-                if (!String.IsNullOrEmpty(permissionId)) requestInfo.PathParameters.Add("permission_id", permissionId);
-                requestInfo.QueryParameters.Add("select", select);
-                requestInfo.QueryParameters.Add("expand", expand);
+            var driveItemIdOption = new Option<string>("--driveitem-id", description: "key: id of driveItem");
+            driveItemIdOption.IsRequired = true;
+            command.AddOption(driveItemIdOption);
+            var permissionIdOption = new Option<string>("--permission-id", description: "key: id of permission");
+            permissionIdOption.IsRequired = true;
+            command.AddOption(permissionIdOption);
+            var selectOption = new Option<string[]>("--select", description: "Select properties to be returned");
+            selectOption.IsRequired = false;
+            selectOption.Arity = ArgumentArity.ZeroOrMore;
+            command.AddOption(selectOption);
+            var expandOption = new Option<string[]>("--expand", description: "Expand related entities");
+            expandOption.IsRequired = false;
+            expandOption.Arity = ArgumentArity.ZeroOrMore;
+            command.AddOption(expandOption);
+            command.Handler = CommandHandler.Create<string, string, string[], string[]>(async (driveItemId, permissionId, select, expand) => {
+                var requestInfo = CreateGetRequestInformation(q => {
+                    q.Select = select;
+                    q.Expand = expand;
+                });
                 var result = await RequestAdapter.SendAsync<ApiSdk.Models.Microsoft.Graph.Permission>(requestInfo);
                 // Print request output. What if the request has no return?
                 using var serializer = RequestAdapter.SerializationWriterFactory.GetSerializationWriter("application/json");
@@ -80,16 +92,21 @@ namespace ApiSdk.Workbooks.Item.Permissions.Item {
             var command = new Command("patch");
             command.Description = "The set of permissions for the item. Read-only. Nullable.";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--driveitem-id", description: "key: id of driveItem"));
-            command.AddOption(new Option<string>("--permission-id", description: "key: id of permission"));
-            command.AddOption(new Option<string>("--body"));
+            var driveItemIdOption = new Option<string>("--driveitem-id", description: "key: id of driveItem");
+            driveItemIdOption.IsRequired = true;
+            command.AddOption(driveItemIdOption);
+            var permissionIdOption = new Option<string>("--permission-id", description: "key: id of permission");
+            permissionIdOption.IsRequired = true;
+            command.AddOption(permissionIdOption);
+            var bodyOption = new Option<string>("--body");
+            bodyOption.IsRequired = true;
+            command.AddOption(bodyOption);
             command.Handler = CommandHandler.Create<string, string, string>(async (driveItemId, permissionId, body) => {
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<ApiSdk.Models.Microsoft.Graph.Permission>();
-                var requestInfo = CreatePatchRequestInformation(model);
-                if (!String.IsNullOrEmpty(driveItemId)) requestInfo.PathParameters.Add("driveItem_id", driveItemId);
-                if (!String.IsNullOrEmpty(permissionId)) requestInfo.PathParameters.Add("permission_id", permissionId);
+                var requestInfo = CreatePatchRequestInformation(model, q => {
+                });
                 await RequestAdapter.SendNoContentAsync(requestInfo);
                 // Print request output. What if the request has no return?
                 Console.WriteLine("Success");

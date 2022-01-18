@@ -25,12 +25,15 @@ namespace ApiSdk.IdentityGovernance.AccessReviews.Definitions.Item.Instances.Ite
             var command = new Command("post");
             command.Description = "Invoke action resetDecisions";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--accessreviewscheduledefinition-id", description: "key: id of accessReviewScheduleDefinition"));
-            command.AddOption(new Option<string>("--accessreviewinstance-id", description: "key: id of accessReviewInstance"));
+            var accessReviewScheduleDefinitionIdOption = new Option<string>("--accessreviewscheduledefinition-id", description: "key: id of accessReviewScheduleDefinition");
+            accessReviewScheduleDefinitionIdOption.IsRequired = true;
+            command.AddOption(accessReviewScheduleDefinitionIdOption);
+            var accessReviewInstanceIdOption = new Option<string>("--accessreviewinstance-id", description: "key: id of accessReviewInstance");
+            accessReviewInstanceIdOption.IsRequired = true;
+            command.AddOption(accessReviewInstanceIdOption);
             command.Handler = CommandHandler.Create<string, string>(async (accessReviewScheduleDefinitionId, accessReviewInstanceId) => {
-                var requestInfo = CreatePostRequestInformation();
-                if (!String.IsNullOrEmpty(accessReviewScheduleDefinitionId)) requestInfo.PathParameters.Add("accessReviewScheduleDefinition_id", accessReviewScheduleDefinitionId);
-                if (!String.IsNullOrEmpty(accessReviewInstanceId)) requestInfo.PathParameters.Add("accessReviewInstance_id", accessReviewInstanceId);
+                var requestInfo = CreatePostRequestInformation(q => {
+                });
                 await RequestAdapter.SendNoContentAsync(requestInfo);
                 // Print request output. What if the request has no return?
                 Console.WriteLine("Success");

@@ -26,12 +26,15 @@ namespace ApiSdk.Me.Insights.Shared.Item.Resource.WorkbookRange.ColumnWithColumn
             var command = new Command("get");
             command.Description = "Invoke function column";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--sharedinsight-id", description: "key: id of sharedInsight"));
-            command.AddOption(new Option<int?>("--column", description: "Usage: column={column}"));
+            var sharedInsightIdOption = new Option<string>("--sharedinsight-id", description: "key: id of sharedInsight");
+            sharedInsightIdOption.IsRequired = true;
+            command.AddOption(sharedInsightIdOption);
+            var columnOption = new Option<int?>("--column", description: "Usage: column={column}");
+            columnOption.IsRequired = true;
+            command.AddOption(columnOption);
             command.Handler = CommandHandler.Create<string, int?>(async (sharedInsightId, column) => {
-                var requestInfo = CreateGetRequestInformation();
-                if (!String.IsNullOrEmpty(sharedInsightId)) requestInfo.PathParameters.Add("sharedInsight_id", sharedInsightId);
-                requestInfo.PathParameters.Add("column", column);
+                var requestInfo = CreateGetRequestInformation(q => {
+                });
                 var result = await RequestAdapter.SendAsync<ColumnWithColumnResponse>(requestInfo);
                 // Print request output. What if the request has no return?
                 using var serializer = RequestAdapter.SerializationWriterFactory.GetSerializationWriter("application/json");

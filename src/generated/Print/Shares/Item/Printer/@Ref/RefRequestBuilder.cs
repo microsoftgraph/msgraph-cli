@@ -25,10 +25,12 @@ namespace ApiSdk.Print.Shares.Item.Printer.@Ref {
             var command = new Command("delete");
             command.Description = "The printer that this printer share is related to.";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--printershare-id", description: "key: id of printerShare"));
+            var printerShareIdOption = new Option<string>("--printershare-id", description: "key: id of printerShare");
+            printerShareIdOption.IsRequired = true;
+            command.AddOption(printerShareIdOption);
             command.Handler = CommandHandler.Create<string>(async (printerShareId) => {
-                var requestInfo = CreateDeleteRequestInformation();
-                if (!String.IsNullOrEmpty(printerShareId)) requestInfo.PathParameters.Add("printerShare_id", printerShareId);
+                var requestInfo = CreateDeleteRequestInformation(q => {
+                });
                 await RequestAdapter.SendNoContentAsync(requestInfo);
                 // Print request output. What if the request has no return?
                 Console.WriteLine("Success");
@@ -42,10 +44,12 @@ namespace ApiSdk.Print.Shares.Item.Printer.@Ref {
             var command = new Command("get");
             command.Description = "The printer that this printer share is related to.";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--printershare-id", description: "key: id of printerShare"));
+            var printerShareIdOption = new Option<string>("--printershare-id", description: "key: id of printerShare");
+            printerShareIdOption.IsRequired = true;
+            command.AddOption(printerShareIdOption);
             command.Handler = CommandHandler.Create<string>(async (printerShareId) => {
-                var requestInfo = CreateGetRequestInformation();
-                if (!String.IsNullOrEmpty(printerShareId)) requestInfo.PathParameters.Add("printerShare_id", printerShareId);
+                var requestInfo = CreateGetRequestInformation(q => {
+                });
                 var result = await RequestAdapter.SendPrimitiveAsync<string>(requestInfo);
                 // Print request output. What if the request has no return?
                 using var serializer = RequestAdapter.SerializationWriterFactory.GetSerializationWriter("application/json");
@@ -64,14 +68,18 @@ namespace ApiSdk.Print.Shares.Item.Printer.@Ref {
             var command = new Command("put");
             command.Description = "The printer that this printer share is related to.";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--printershare-id", description: "key: id of printerShare"));
-            command.AddOption(new Option<string>("--body"));
+            var printerShareIdOption = new Option<string>("--printershare-id", description: "key: id of printerShare");
+            printerShareIdOption.IsRequired = true;
+            command.AddOption(printerShareIdOption);
+            var bodyOption = new Option<string>("--body");
+            bodyOption.IsRequired = true;
+            command.AddOption(bodyOption);
             command.Handler = CommandHandler.Create<string, string>(async (printerShareId, body) => {
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<ApiSdk.Print.Shares.Item.Printer.@Ref.@Ref>();
-                var requestInfo = CreatePutRequestInformation(model);
-                if (!String.IsNullOrEmpty(printerShareId)) requestInfo.PathParameters.Add("printerShare_id", printerShareId);
+                var requestInfo = CreatePutRequestInformation(model, q => {
+                });
                 await RequestAdapter.SendNoContentAsync(requestInfo);
                 // Print request output. What if the request has no return?
                 Console.WriteLine("Success");

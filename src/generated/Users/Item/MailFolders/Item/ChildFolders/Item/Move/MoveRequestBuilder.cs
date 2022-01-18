@@ -26,18 +26,24 @@ namespace ApiSdk.Users.Item.MailFolders.Item.ChildFolders.Item.Move {
             var command = new Command("post");
             command.Description = "Invoke action move";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--user-id", description: "key: id of user"));
-            command.AddOption(new Option<string>("--mailfolder-id", description: "key: id of mailFolder"));
-            command.AddOption(new Option<string>("--mailfolder-id1", description: "key: id of mailFolder"));
-            command.AddOption(new Option<string>("--body"));
+            var userIdOption = new Option<string>("--user-id", description: "key: id of user");
+            userIdOption.IsRequired = true;
+            command.AddOption(userIdOption);
+            var mailFolderIdOption = new Option<string>("--mailfolder-id", description: "key: id of mailFolder");
+            mailFolderIdOption.IsRequired = true;
+            command.AddOption(mailFolderIdOption);
+            var mailFolderId1Option = new Option<string>("--mailfolder-id1", description: "key: id of mailFolder");
+            mailFolderId1Option.IsRequired = true;
+            command.AddOption(mailFolderId1Option);
+            var bodyOption = new Option<string>("--body");
+            bodyOption.IsRequired = true;
+            command.AddOption(bodyOption);
             command.Handler = CommandHandler.Create<string, string, string, string>(async (userId, mailFolderId, mailFolderId1, body) => {
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<MoveRequestBody>();
-                var requestInfo = CreatePostRequestInformation(model);
-                if (!String.IsNullOrEmpty(userId)) requestInfo.PathParameters.Add("user_id", userId);
-                if (!String.IsNullOrEmpty(mailFolderId)) requestInfo.PathParameters.Add("mailFolder_id", mailFolderId);
-                if (!String.IsNullOrEmpty(mailFolderId1)) requestInfo.PathParameters.Add("mailFolder_id1", mailFolderId1);
+                var requestInfo = CreatePostRequestInformation(model, q => {
+                });
                 var result = await RequestAdapter.SendAsync<MoveResponse>(requestInfo);
                 // Print request output. What if the request has no return?
                 using var serializer = RequestAdapter.SerializationWriterFactory.GetSerializationWriter("application/json");

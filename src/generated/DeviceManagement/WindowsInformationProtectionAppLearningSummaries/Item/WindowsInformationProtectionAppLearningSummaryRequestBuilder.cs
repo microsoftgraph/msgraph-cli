@@ -26,10 +26,12 @@ namespace ApiSdk.DeviceManagement.WindowsInformationProtectionAppLearningSummari
             var command = new Command("delete");
             command.Description = "The windows information protection app learning summaries.";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--windowsinformationprotectionapplearningsummary-id", description: "key: id of windowsInformationProtectionAppLearningSummary"));
+            var windowsInformationProtectionAppLearningSummaryIdOption = new Option<string>("--windowsinformationprotectionapplearningsummary-id", description: "key: id of windowsInformationProtectionAppLearningSummary");
+            windowsInformationProtectionAppLearningSummaryIdOption.IsRequired = true;
+            command.AddOption(windowsInformationProtectionAppLearningSummaryIdOption);
             command.Handler = CommandHandler.Create<string>(async (windowsInformationProtectionAppLearningSummaryId) => {
-                var requestInfo = CreateDeleteRequestInformation();
-                if (!String.IsNullOrEmpty(windowsInformationProtectionAppLearningSummaryId)) requestInfo.PathParameters.Add("windowsInformationProtectionAppLearningSummary_id", windowsInformationProtectionAppLearningSummaryId);
+                var requestInfo = CreateDeleteRequestInformation(q => {
+                });
                 await RequestAdapter.SendNoContentAsync(requestInfo);
                 // Print request output. What if the request has no return?
                 Console.WriteLine("Success");
@@ -43,14 +45,22 @@ namespace ApiSdk.DeviceManagement.WindowsInformationProtectionAppLearningSummari
             var command = new Command("get");
             command.Description = "The windows information protection app learning summaries.";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--windowsinformationprotectionapplearningsummary-id", description: "key: id of windowsInformationProtectionAppLearningSummary"));
-            command.AddOption(new Option<object>("--select", description: "Select properties to be returned"));
-            command.AddOption(new Option<object>("--expand", description: "Expand related entities"));
-            command.Handler = CommandHandler.Create<string, object, object>(async (windowsInformationProtectionAppLearningSummaryId, select, expand) => {
-                var requestInfo = CreateGetRequestInformation();
-                if (!String.IsNullOrEmpty(windowsInformationProtectionAppLearningSummaryId)) requestInfo.PathParameters.Add("windowsInformationProtectionAppLearningSummary_id", windowsInformationProtectionAppLearningSummaryId);
-                requestInfo.QueryParameters.Add("select", select);
-                requestInfo.QueryParameters.Add("expand", expand);
+            var windowsInformationProtectionAppLearningSummaryIdOption = new Option<string>("--windowsinformationprotectionapplearningsummary-id", description: "key: id of windowsInformationProtectionAppLearningSummary");
+            windowsInformationProtectionAppLearningSummaryIdOption.IsRequired = true;
+            command.AddOption(windowsInformationProtectionAppLearningSummaryIdOption);
+            var selectOption = new Option<string[]>("--select", description: "Select properties to be returned");
+            selectOption.IsRequired = false;
+            selectOption.Arity = ArgumentArity.ZeroOrMore;
+            command.AddOption(selectOption);
+            var expandOption = new Option<string[]>("--expand", description: "Expand related entities");
+            expandOption.IsRequired = false;
+            expandOption.Arity = ArgumentArity.ZeroOrMore;
+            command.AddOption(expandOption);
+            command.Handler = CommandHandler.Create<string, string[], string[]>(async (windowsInformationProtectionAppLearningSummaryId, select, expand) => {
+                var requestInfo = CreateGetRequestInformation(q => {
+                    q.Select = select;
+                    q.Expand = expand;
+                });
                 var result = await RequestAdapter.SendAsync<WindowsInformationProtectionAppLearningSummary>(requestInfo);
                 // Print request output. What if the request has no return?
                 using var serializer = RequestAdapter.SerializationWriterFactory.GetSerializationWriter("application/json");
@@ -69,14 +79,18 @@ namespace ApiSdk.DeviceManagement.WindowsInformationProtectionAppLearningSummari
             var command = new Command("patch");
             command.Description = "The windows information protection app learning summaries.";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--windowsinformationprotectionapplearningsummary-id", description: "key: id of windowsInformationProtectionAppLearningSummary"));
-            command.AddOption(new Option<string>("--body"));
+            var windowsInformationProtectionAppLearningSummaryIdOption = new Option<string>("--windowsinformationprotectionapplearningsummary-id", description: "key: id of windowsInformationProtectionAppLearningSummary");
+            windowsInformationProtectionAppLearningSummaryIdOption.IsRequired = true;
+            command.AddOption(windowsInformationProtectionAppLearningSummaryIdOption);
+            var bodyOption = new Option<string>("--body");
+            bodyOption.IsRequired = true;
+            command.AddOption(bodyOption);
             command.Handler = CommandHandler.Create<string, string>(async (windowsInformationProtectionAppLearningSummaryId, body) => {
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<WindowsInformationProtectionAppLearningSummary>();
-                var requestInfo = CreatePatchRequestInformation(model);
-                if (!String.IsNullOrEmpty(windowsInformationProtectionAppLearningSummaryId)) requestInfo.PathParameters.Add("windowsInformationProtectionAppLearningSummary_id", windowsInformationProtectionAppLearningSummaryId);
+                var requestInfo = CreatePatchRequestInformation(model, q => {
+                });
                 await RequestAdapter.SendNoContentAsync(requestInfo);
                 // Print request output. What if the request has no return?
                 Console.WriteLine("Success");

@@ -25,16 +25,21 @@ namespace ApiSdk.Me.CalendarGroups.Item.Calendars.Item.Events.Item.Calendar.Allo
             var command = new Command("get");
             command.Description = "Invoke function allowedCalendarSharingRoles";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--calendargroup-id", description: "key: id of calendarGroup"));
-            command.AddOption(new Option<string>("--calendar-id", description: "key: id of calendar"));
-            command.AddOption(new Option<string>("--event-id", description: "key: id of event"));
-            command.AddOption(new Option<string>("--user", description: "Usage: User={User}"));
+            var calendarGroupIdOption = new Option<string>("--calendargroup-id", description: "key: id of calendarGroup");
+            calendarGroupIdOption.IsRequired = true;
+            command.AddOption(calendarGroupIdOption);
+            var calendarIdOption = new Option<string>("--calendar-id", description: "key: id of calendar");
+            calendarIdOption.IsRequired = true;
+            command.AddOption(calendarIdOption);
+            var eventIdOption = new Option<string>("--event-id", description: "key: id of event");
+            eventIdOption.IsRequired = true;
+            command.AddOption(eventIdOption);
+            var UserOption = new Option<string>("--user", description: "Usage: User={User}");
+            UserOption.IsRequired = true;
+            command.AddOption(UserOption);
             command.Handler = CommandHandler.Create<string, string, string, string>(async (calendarGroupId, calendarId, eventId, User) => {
-                var requestInfo = CreateGetRequestInformation();
-                if (!String.IsNullOrEmpty(calendarGroupId)) requestInfo.PathParameters.Add("calendarGroup_id", calendarGroupId);
-                if (!String.IsNullOrEmpty(calendarId)) requestInfo.PathParameters.Add("calendar_id", calendarId);
-                if (!String.IsNullOrEmpty(eventId)) requestInfo.PathParameters.Add("event_id", eventId);
-                if (!String.IsNullOrEmpty(User)) requestInfo.PathParameters.Add("User", User);
+                var requestInfo = CreateGetRequestInformation(q => {
+                });
                 var result = await RequestAdapter.SendPrimitiveCollectionAsync<string>(requestInfo);
                 // Print request output. What if the request has no return?
                 using var serializer = RequestAdapter.SerializationWriterFactory.GetSerializationWriter("application/json");

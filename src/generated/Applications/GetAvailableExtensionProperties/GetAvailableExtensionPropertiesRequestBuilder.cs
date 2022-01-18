@@ -25,12 +25,15 @@ namespace ApiSdk.Applications.GetAvailableExtensionProperties {
             var command = new Command("post");
             command.Description = "Invoke action getAvailableExtensionProperties";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--body"));
+            var bodyOption = new Option<string>("--body");
+            bodyOption.IsRequired = true;
+            command.AddOption(bodyOption);
             command.Handler = CommandHandler.Create<string>(async (body) => {
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<GetAvailableExtensionPropertiesRequestBody>();
-                var requestInfo = CreatePostRequestInformation(model);
+                var requestInfo = CreatePostRequestInformation(model, q => {
+                });
                 var result = await RequestAdapter.SendCollectionAsync<ApiSdk.Applications.GetAvailableExtensionProperties.GetAvailableExtensionProperties>(requestInfo);
                 // Print request output. What if the request has no return?
                 using var serializer = RequestAdapter.SerializationWriterFactory.GetSerializationWriter("application/json");

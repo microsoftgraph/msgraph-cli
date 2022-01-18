@@ -34,12 +34,15 @@ namespace ApiSdk.Groups.Item.Onenote.Resources.Item {
             var command = new Command("delete");
             command.Description = "The image and other file resources in OneNote pages. Getting a resources collection is not supported, but you can get the binary content of a specific resource. Read-only. Nullable.";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--group-id", description: "key: id of group"));
-            command.AddOption(new Option<string>("--onenoteresource-id", description: "key: id of onenoteResource"));
+            var groupIdOption = new Option<string>("--group-id", description: "key: id of group");
+            groupIdOption.IsRequired = true;
+            command.AddOption(groupIdOption);
+            var onenoteResourceIdOption = new Option<string>("--onenoteresource-id", description: "key: id of onenoteResource");
+            onenoteResourceIdOption.IsRequired = true;
+            command.AddOption(onenoteResourceIdOption);
             command.Handler = CommandHandler.Create<string, string>(async (groupId, onenoteResourceId) => {
-                var requestInfo = CreateDeleteRequestInformation();
-                if (!String.IsNullOrEmpty(groupId)) requestInfo.PathParameters.Add("group_id", groupId);
-                if (!String.IsNullOrEmpty(onenoteResourceId)) requestInfo.PathParameters.Add("onenoteResource_id", onenoteResourceId);
+                var requestInfo = CreateDeleteRequestInformation(q => {
+                });
                 await RequestAdapter.SendNoContentAsync(requestInfo);
                 // Print request output. What if the request has no return?
                 Console.WriteLine("Success");
@@ -53,16 +56,25 @@ namespace ApiSdk.Groups.Item.Onenote.Resources.Item {
             var command = new Command("get");
             command.Description = "The image and other file resources in OneNote pages. Getting a resources collection is not supported, but you can get the binary content of a specific resource. Read-only. Nullable.";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--group-id", description: "key: id of group"));
-            command.AddOption(new Option<string>("--onenoteresource-id", description: "key: id of onenoteResource"));
-            command.AddOption(new Option<object>("--select", description: "Select properties to be returned"));
-            command.AddOption(new Option<object>("--expand", description: "Expand related entities"));
-            command.Handler = CommandHandler.Create<string, string, object, object>(async (groupId, onenoteResourceId, select, expand) => {
-                var requestInfo = CreateGetRequestInformation();
-                if (!String.IsNullOrEmpty(groupId)) requestInfo.PathParameters.Add("group_id", groupId);
-                if (!String.IsNullOrEmpty(onenoteResourceId)) requestInfo.PathParameters.Add("onenoteResource_id", onenoteResourceId);
-                requestInfo.QueryParameters.Add("select", select);
-                requestInfo.QueryParameters.Add("expand", expand);
+            var groupIdOption = new Option<string>("--group-id", description: "key: id of group");
+            groupIdOption.IsRequired = true;
+            command.AddOption(groupIdOption);
+            var onenoteResourceIdOption = new Option<string>("--onenoteresource-id", description: "key: id of onenoteResource");
+            onenoteResourceIdOption.IsRequired = true;
+            command.AddOption(onenoteResourceIdOption);
+            var selectOption = new Option<string[]>("--select", description: "Select properties to be returned");
+            selectOption.IsRequired = false;
+            selectOption.Arity = ArgumentArity.ZeroOrMore;
+            command.AddOption(selectOption);
+            var expandOption = new Option<string[]>("--expand", description: "Expand related entities");
+            expandOption.IsRequired = false;
+            expandOption.Arity = ArgumentArity.ZeroOrMore;
+            command.AddOption(expandOption);
+            command.Handler = CommandHandler.Create<string, string, string[], string[]>(async (groupId, onenoteResourceId, select, expand) => {
+                var requestInfo = CreateGetRequestInformation(q => {
+                    q.Select = select;
+                    q.Expand = expand;
+                });
                 var result = await RequestAdapter.SendAsync<OnenoteResource>(requestInfo);
                 // Print request output. What if the request has no return?
                 using var serializer = RequestAdapter.SerializationWriterFactory.GetSerializationWriter("application/json");
@@ -81,16 +93,21 @@ namespace ApiSdk.Groups.Item.Onenote.Resources.Item {
             var command = new Command("patch");
             command.Description = "The image and other file resources in OneNote pages. Getting a resources collection is not supported, but you can get the binary content of a specific resource. Read-only. Nullable.";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--group-id", description: "key: id of group"));
-            command.AddOption(new Option<string>("--onenoteresource-id", description: "key: id of onenoteResource"));
-            command.AddOption(new Option<string>("--body"));
+            var groupIdOption = new Option<string>("--group-id", description: "key: id of group");
+            groupIdOption.IsRequired = true;
+            command.AddOption(groupIdOption);
+            var onenoteResourceIdOption = new Option<string>("--onenoteresource-id", description: "key: id of onenoteResource");
+            onenoteResourceIdOption.IsRequired = true;
+            command.AddOption(onenoteResourceIdOption);
+            var bodyOption = new Option<string>("--body");
+            bodyOption.IsRequired = true;
+            command.AddOption(bodyOption);
             command.Handler = CommandHandler.Create<string, string, string>(async (groupId, onenoteResourceId, body) => {
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<OnenoteResource>();
-                var requestInfo = CreatePatchRequestInformation(model);
-                if (!String.IsNullOrEmpty(groupId)) requestInfo.PathParameters.Add("group_id", groupId);
-                if (!String.IsNullOrEmpty(onenoteResourceId)) requestInfo.PathParameters.Add("onenoteResource_id", onenoteResourceId);
+                var requestInfo = CreatePatchRequestInformation(model, q => {
+                });
                 await RequestAdapter.SendNoContentAsync(requestInfo);
                 // Print request output. What if the request has no return?
                 Console.WriteLine("Success");

@@ -26,10 +26,12 @@ namespace ApiSdk.DeviceManagement.TroubleshootingEvents.Item {
             var command = new Command("delete");
             command.Description = "The list of troubleshooting events for the tenant.";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--devicemanagementtroubleshootingevent-id", description: "key: id of deviceManagementTroubleshootingEvent"));
+            var deviceManagementTroubleshootingEventIdOption = new Option<string>("--devicemanagementtroubleshootingevent-id", description: "key: id of deviceManagementTroubleshootingEvent");
+            deviceManagementTroubleshootingEventIdOption.IsRequired = true;
+            command.AddOption(deviceManagementTroubleshootingEventIdOption);
             command.Handler = CommandHandler.Create<string>(async (deviceManagementTroubleshootingEventId) => {
-                var requestInfo = CreateDeleteRequestInformation();
-                if (!String.IsNullOrEmpty(deviceManagementTroubleshootingEventId)) requestInfo.PathParameters.Add("deviceManagementTroubleshootingEvent_id", deviceManagementTroubleshootingEventId);
+                var requestInfo = CreateDeleteRequestInformation(q => {
+                });
                 await RequestAdapter.SendNoContentAsync(requestInfo);
                 // Print request output. What if the request has no return?
                 Console.WriteLine("Success");
@@ -43,14 +45,22 @@ namespace ApiSdk.DeviceManagement.TroubleshootingEvents.Item {
             var command = new Command("get");
             command.Description = "The list of troubleshooting events for the tenant.";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--devicemanagementtroubleshootingevent-id", description: "key: id of deviceManagementTroubleshootingEvent"));
-            command.AddOption(new Option<object>("--select", description: "Select properties to be returned"));
-            command.AddOption(new Option<object>("--expand", description: "Expand related entities"));
-            command.Handler = CommandHandler.Create<string, object, object>(async (deviceManagementTroubleshootingEventId, select, expand) => {
-                var requestInfo = CreateGetRequestInformation();
-                if (!String.IsNullOrEmpty(deviceManagementTroubleshootingEventId)) requestInfo.PathParameters.Add("deviceManagementTroubleshootingEvent_id", deviceManagementTroubleshootingEventId);
-                requestInfo.QueryParameters.Add("select", select);
-                requestInfo.QueryParameters.Add("expand", expand);
+            var deviceManagementTroubleshootingEventIdOption = new Option<string>("--devicemanagementtroubleshootingevent-id", description: "key: id of deviceManagementTroubleshootingEvent");
+            deviceManagementTroubleshootingEventIdOption.IsRequired = true;
+            command.AddOption(deviceManagementTroubleshootingEventIdOption);
+            var selectOption = new Option<string[]>("--select", description: "Select properties to be returned");
+            selectOption.IsRequired = false;
+            selectOption.Arity = ArgumentArity.ZeroOrMore;
+            command.AddOption(selectOption);
+            var expandOption = new Option<string[]>("--expand", description: "Expand related entities");
+            expandOption.IsRequired = false;
+            expandOption.Arity = ArgumentArity.ZeroOrMore;
+            command.AddOption(expandOption);
+            command.Handler = CommandHandler.Create<string, string[], string[]>(async (deviceManagementTroubleshootingEventId, select, expand) => {
+                var requestInfo = CreateGetRequestInformation(q => {
+                    q.Select = select;
+                    q.Expand = expand;
+                });
                 var result = await RequestAdapter.SendAsync<DeviceManagementTroubleshootingEvent>(requestInfo);
                 // Print request output. What if the request has no return?
                 using var serializer = RequestAdapter.SerializationWriterFactory.GetSerializationWriter("application/json");
@@ -69,14 +79,18 @@ namespace ApiSdk.DeviceManagement.TroubleshootingEvents.Item {
             var command = new Command("patch");
             command.Description = "The list of troubleshooting events for the tenant.";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--devicemanagementtroubleshootingevent-id", description: "key: id of deviceManagementTroubleshootingEvent"));
-            command.AddOption(new Option<string>("--body"));
+            var deviceManagementTroubleshootingEventIdOption = new Option<string>("--devicemanagementtroubleshootingevent-id", description: "key: id of deviceManagementTroubleshootingEvent");
+            deviceManagementTroubleshootingEventIdOption.IsRequired = true;
+            command.AddOption(deviceManagementTroubleshootingEventIdOption);
+            var bodyOption = new Option<string>("--body");
+            bodyOption.IsRequired = true;
+            command.AddOption(bodyOption);
             command.Handler = CommandHandler.Create<string, string>(async (deviceManagementTroubleshootingEventId, body) => {
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<DeviceManagementTroubleshootingEvent>();
-                var requestInfo = CreatePatchRequestInformation(model);
-                if (!String.IsNullOrEmpty(deviceManagementTroubleshootingEventId)) requestInfo.PathParameters.Add("deviceManagementTroubleshootingEvent_id", deviceManagementTroubleshootingEventId);
+                var requestInfo = CreatePatchRequestInformation(model, q => {
+                });
                 await RequestAdapter.SendNoContentAsync(requestInfo);
                 // Print request output. What if the request has no return?
                 Console.WriteLine("Success");

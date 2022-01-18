@@ -26,12 +26,15 @@ namespace ApiSdk.DeviceManagement.ManagedDevices.Item.DeviceCompliancePolicyStat
             var command = new Command("delete");
             command.Description = "Device compliance policy states for this device.";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--manageddevice-id", description: "key: id of managedDevice"));
-            command.AddOption(new Option<string>("--devicecompliancepolicystate-id", description: "key: id of deviceCompliancePolicyState"));
+            var managedDeviceIdOption = new Option<string>("--manageddevice-id", description: "key: id of managedDevice");
+            managedDeviceIdOption.IsRequired = true;
+            command.AddOption(managedDeviceIdOption);
+            var deviceCompliancePolicyStateIdOption = new Option<string>("--devicecompliancepolicystate-id", description: "key: id of deviceCompliancePolicyState");
+            deviceCompliancePolicyStateIdOption.IsRequired = true;
+            command.AddOption(deviceCompliancePolicyStateIdOption);
             command.Handler = CommandHandler.Create<string, string>(async (managedDeviceId, deviceCompliancePolicyStateId) => {
-                var requestInfo = CreateDeleteRequestInformation();
-                if (!String.IsNullOrEmpty(managedDeviceId)) requestInfo.PathParameters.Add("managedDevice_id", managedDeviceId);
-                if (!String.IsNullOrEmpty(deviceCompliancePolicyStateId)) requestInfo.PathParameters.Add("deviceCompliancePolicyState_id", deviceCompliancePolicyStateId);
+                var requestInfo = CreateDeleteRequestInformation(q => {
+                });
                 await RequestAdapter.SendNoContentAsync(requestInfo);
                 // Print request output. What if the request has no return?
                 Console.WriteLine("Success");
@@ -45,16 +48,25 @@ namespace ApiSdk.DeviceManagement.ManagedDevices.Item.DeviceCompliancePolicyStat
             var command = new Command("get");
             command.Description = "Device compliance policy states for this device.";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--manageddevice-id", description: "key: id of managedDevice"));
-            command.AddOption(new Option<string>("--devicecompliancepolicystate-id", description: "key: id of deviceCompliancePolicyState"));
-            command.AddOption(new Option<object>("--select", description: "Select properties to be returned"));
-            command.AddOption(new Option<object>("--expand", description: "Expand related entities"));
-            command.Handler = CommandHandler.Create<string, string, object, object>(async (managedDeviceId, deviceCompliancePolicyStateId, select, expand) => {
-                var requestInfo = CreateGetRequestInformation();
-                if (!String.IsNullOrEmpty(managedDeviceId)) requestInfo.PathParameters.Add("managedDevice_id", managedDeviceId);
-                if (!String.IsNullOrEmpty(deviceCompliancePolicyStateId)) requestInfo.PathParameters.Add("deviceCompliancePolicyState_id", deviceCompliancePolicyStateId);
-                requestInfo.QueryParameters.Add("select", select);
-                requestInfo.QueryParameters.Add("expand", expand);
+            var managedDeviceIdOption = new Option<string>("--manageddevice-id", description: "key: id of managedDevice");
+            managedDeviceIdOption.IsRequired = true;
+            command.AddOption(managedDeviceIdOption);
+            var deviceCompliancePolicyStateIdOption = new Option<string>("--devicecompliancepolicystate-id", description: "key: id of deviceCompliancePolicyState");
+            deviceCompliancePolicyStateIdOption.IsRequired = true;
+            command.AddOption(deviceCompliancePolicyStateIdOption);
+            var selectOption = new Option<string[]>("--select", description: "Select properties to be returned");
+            selectOption.IsRequired = false;
+            selectOption.Arity = ArgumentArity.ZeroOrMore;
+            command.AddOption(selectOption);
+            var expandOption = new Option<string[]>("--expand", description: "Expand related entities");
+            expandOption.IsRequired = false;
+            expandOption.Arity = ArgumentArity.ZeroOrMore;
+            command.AddOption(expandOption);
+            command.Handler = CommandHandler.Create<string, string, string[], string[]>(async (managedDeviceId, deviceCompliancePolicyStateId, select, expand) => {
+                var requestInfo = CreateGetRequestInformation(q => {
+                    q.Select = select;
+                    q.Expand = expand;
+                });
                 var result = await RequestAdapter.SendAsync<DeviceCompliancePolicyState>(requestInfo);
                 // Print request output. What if the request has no return?
                 using var serializer = RequestAdapter.SerializationWriterFactory.GetSerializationWriter("application/json");
@@ -73,16 +85,21 @@ namespace ApiSdk.DeviceManagement.ManagedDevices.Item.DeviceCompliancePolicyStat
             var command = new Command("patch");
             command.Description = "Device compliance policy states for this device.";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--manageddevice-id", description: "key: id of managedDevice"));
-            command.AddOption(new Option<string>("--devicecompliancepolicystate-id", description: "key: id of deviceCompliancePolicyState"));
-            command.AddOption(new Option<string>("--body"));
+            var managedDeviceIdOption = new Option<string>("--manageddevice-id", description: "key: id of managedDevice");
+            managedDeviceIdOption.IsRequired = true;
+            command.AddOption(managedDeviceIdOption);
+            var deviceCompliancePolicyStateIdOption = new Option<string>("--devicecompliancepolicystate-id", description: "key: id of deviceCompliancePolicyState");
+            deviceCompliancePolicyStateIdOption.IsRequired = true;
+            command.AddOption(deviceCompliancePolicyStateIdOption);
+            var bodyOption = new Option<string>("--body");
+            bodyOption.IsRequired = true;
+            command.AddOption(bodyOption);
             command.Handler = CommandHandler.Create<string, string, string>(async (managedDeviceId, deviceCompliancePolicyStateId, body) => {
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<DeviceCompliancePolicyState>();
-                var requestInfo = CreatePatchRequestInformation(model);
-                if (!String.IsNullOrEmpty(managedDeviceId)) requestInfo.PathParameters.Add("managedDevice_id", managedDeviceId);
-                if (!String.IsNullOrEmpty(deviceCompliancePolicyStateId)) requestInfo.PathParameters.Add("deviceCompliancePolicyState_id", deviceCompliancePolicyStateId);
+                var requestInfo = CreatePatchRequestInformation(model, q => {
+                });
                 await RequestAdapter.SendNoContentAsync(requestInfo);
                 // Print request output. What if the request has no return?
                 Console.WriteLine("Success");

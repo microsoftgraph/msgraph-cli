@@ -25,12 +25,15 @@ namespace ApiSdk.Users.Item.ContactFolders.Item.Contacts.Delta {
             var command = new Command("get");
             command.Description = "Invoke function delta";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--user-id", description: "key: id of user"));
-            command.AddOption(new Option<string>("--contactfolder-id", description: "key: id of contactFolder"));
+            var userIdOption = new Option<string>("--user-id", description: "key: id of user");
+            userIdOption.IsRequired = true;
+            command.AddOption(userIdOption);
+            var contactFolderIdOption = new Option<string>("--contactfolder-id", description: "key: id of contactFolder");
+            contactFolderIdOption.IsRequired = true;
+            command.AddOption(contactFolderIdOption);
             command.Handler = CommandHandler.Create<string, string>(async (userId, contactFolderId) => {
-                var requestInfo = CreateGetRequestInformation();
-                if (!String.IsNullOrEmpty(userId)) requestInfo.PathParameters.Add("user_id", userId);
-                if (!String.IsNullOrEmpty(contactFolderId)) requestInfo.PathParameters.Add("contactFolder_id", contactFolderId);
+                var requestInfo = CreateGetRequestInformation(q => {
+                });
                 var result = await RequestAdapter.SendCollectionAsync<ApiSdk.Users.Item.ContactFolders.Item.Contacts.Delta.Delta>(requestInfo);
                 // Print request output. What if the request has no return?
                 using var serializer = RequestAdapter.SerializationWriterFactory.GetSerializationWriter("application/json");

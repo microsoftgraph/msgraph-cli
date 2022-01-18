@@ -34,12 +34,15 @@ namespace ApiSdk.Users.Item.Contacts.Item.Photo {
             var command = new Command("delete");
             command.Description = "Optional contact picture. You can get or set a photo for a contact.";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--user-id", description: "key: id of user"));
-            command.AddOption(new Option<string>("--contact-id", description: "key: id of contact"));
+            var userIdOption = new Option<string>("--user-id", description: "key: id of user");
+            userIdOption.IsRequired = true;
+            command.AddOption(userIdOption);
+            var contactIdOption = new Option<string>("--contact-id", description: "key: id of contact");
+            contactIdOption.IsRequired = true;
+            command.AddOption(contactIdOption);
             command.Handler = CommandHandler.Create<string, string>(async (userId, contactId) => {
-                var requestInfo = CreateDeleteRequestInformation();
-                if (!String.IsNullOrEmpty(userId)) requestInfo.PathParameters.Add("user_id", userId);
-                if (!String.IsNullOrEmpty(contactId)) requestInfo.PathParameters.Add("contact_id", contactId);
+                var requestInfo = CreateDeleteRequestInformation(q => {
+                });
                 await RequestAdapter.SendNoContentAsync(requestInfo);
                 // Print request output. What if the request has no return?
                 Console.WriteLine("Success");
@@ -53,14 +56,20 @@ namespace ApiSdk.Users.Item.Contacts.Item.Photo {
             var command = new Command("get");
             command.Description = "Optional contact picture. You can get or set a photo for a contact.";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--user-id", description: "key: id of user"));
-            command.AddOption(new Option<string>("--contact-id", description: "key: id of contact"));
-            command.AddOption(new Option<object>("--select", description: "Select properties to be returned"));
-            command.Handler = CommandHandler.Create<string, string, object>(async (userId, contactId, select) => {
-                var requestInfo = CreateGetRequestInformation();
-                if (!String.IsNullOrEmpty(userId)) requestInfo.PathParameters.Add("user_id", userId);
-                if (!String.IsNullOrEmpty(contactId)) requestInfo.PathParameters.Add("contact_id", contactId);
-                requestInfo.QueryParameters.Add("select", select);
+            var userIdOption = new Option<string>("--user-id", description: "key: id of user");
+            userIdOption.IsRequired = true;
+            command.AddOption(userIdOption);
+            var contactIdOption = new Option<string>("--contact-id", description: "key: id of contact");
+            contactIdOption.IsRequired = true;
+            command.AddOption(contactIdOption);
+            var selectOption = new Option<string[]>("--select", description: "Select properties to be returned");
+            selectOption.IsRequired = false;
+            selectOption.Arity = ArgumentArity.ZeroOrMore;
+            command.AddOption(selectOption);
+            command.Handler = CommandHandler.Create<string, string, string[]>(async (userId, contactId, select) => {
+                var requestInfo = CreateGetRequestInformation(q => {
+                    q.Select = select;
+                });
                 var result = await RequestAdapter.SendAsync<ProfilePhoto>(requestInfo);
                 // Print request output. What if the request has no return?
                 using var serializer = RequestAdapter.SerializationWriterFactory.GetSerializationWriter("application/json");
@@ -79,16 +88,21 @@ namespace ApiSdk.Users.Item.Contacts.Item.Photo {
             var command = new Command("patch");
             command.Description = "Optional contact picture. You can get or set a photo for a contact.";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--user-id", description: "key: id of user"));
-            command.AddOption(new Option<string>("--contact-id", description: "key: id of contact"));
-            command.AddOption(new Option<string>("--body"));
+            var userIdOption = new Option<string>("--user-id", description: "key: id of user");
+            userIdOption.IsRequired = true;
+            command.AddOption(userIdOption);
+            var contactIdOption = new Option<string>("--contact-id", description: "key: id of contact");
+            contactIdOption.IsRequired = true;
+            command.AddOption(contactIdOption);
+            var bodyOption = new Option<string>("--body");
+            bodyOption.IsRequired = true;
+            command.AddOption(bodyOption);
             command.Handler = CommandHandler.Create<string, string, string>(async (userId, contactId, body) => {
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<ProfilePhoto>();
-                var requestInfo = CreatePatchRequestInformation(model);
-                if (!String.IsNullOrEmpty(userId)) requestInfo.PathParameters.Add("user_id", userId);
-                if (!String.IsNullOrEmpty(contactId)) requestInfo.PathParameters.Add("contact_id", contactId);
+                var requestInfo = CreatePatchRequestInformation(model, q => {
+                });
                 await RequestAdapter.SendNoContentAsync(requestInfo);
                 // Print request output. What if the request has no return?
                 Console.WriteLine("Success");

@@ -26,12 +26,15 @@ namespace ApiSdk.Directory.AdministrativeUnits.Item.ScopedRoleMembers.Item {
             var command = new Command("delete");
             command.Description = "Scoped-role members of this Administrative Unit.  HTTP Methods: GET (list scopedRoleMemberships), POST (add scopedRoleMembership), DELETE (remove scopedRoleMembership).";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--administrativeunit-id", description: "key: id of administrativeUnit"));
-            command.AddOption(new Option<string>("--scopedrolemembership-id", description: "key: id of scopedRoleMembership"));
+            var administrativeUnitIdOption = new Option<string>("--administrativeunit-id", description: "key: id of administrativeUnit");
+            administrativeUnitIdOption.IsRequired = true;
+            command.AddOption(administrativeUnitIdOption);
+            var scopedRoleMembershipIdOption = new Option<string>("--scopedrolemembership-id", description: "key: id of scopedRoleMembership");
+            scopedRoleMembershipIdOption.IsRequired = true;
+            command.AddOption(scopedRoleMembershipIdOption);
             command.Handler = CommandHandler.Create<string, string>(async (administrativeUnitId, scopedRoleMembershipId) => {
-                var requestInfo = CreateDeleteRequestInformation();
-                if (!String.IsNullOrEmpty(administrativeUnitId)) requestInfo.PathParameters.Add("administrativeUnit_id", administrativeUnitId);
-                if (!String.IsNullOrEmpty(scopedRoleMembershipId)) requestInfo.PathParameters.Add("scopedRoleMembership_id", scopedRoleMembershipId);
+                var requestInfo = CreateDeleteRequestInformation(q => {
+                });
                 await RequestAdapter.SendNoContentAsync(requestInfo);
                 // Print request output. What if the request has no return?
                 Console.WriteLine("Success");
@@ -45,16 +48,25 @@ namespace ApiSdk.Directory.AdministrativeUnits.Item.ScopedRoleMembers.Item {
             var command = new Command("get");
             command.Description = "Scoped-role members of this Administrative Unit.  HTTP Methods: GET (list scopedRoleMemberships), POST (add scopedRoleMembership), DELETE (remove scopedRoleMembership).";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--administrativeunit-id", description: "key: id of administrativeUnit"));
-            command.AddOption(new Option<string>("--scopedrolemembership-id", description: "key: id of scopedRoleMembership"));
-            command.AddOption(new Option<object>("--select", description: "Select properties to be returned"));
-            command.AddOption(new Option<object>("--expand", description: "Expand related entities"));
-            command.Handler = CommandHandler.Create<string, string, object, object>(async (administrativeUnitId, scopedRoleMembershipId, select, expand) => {
-                var requestInfo = CreateGetRequestInformation();
-                if (!String.IsNullOrEmpty(administrativeUnitId)) requestInfo.PathParameters.Add("administrativeUnit_id", administrativeUnitId);
-                if (!String.IsNullOrEmpty(scopedRoleMembershipId)) requestInfo.PathParameters.Add("scopedRoleMembership_id", scopedRoleMembershipId);
-                requestInfo.QueryParameters.Add("select", select);
-                requestInfo.QueryParameters.Add("expand", expand);
+            var administrativeUnitIdOption = new Option<string>("--administrativeunit-id", description: "key: id of administrativeUnit");
+            administrativeUnitIdOption.IsRequired = true;
+            command.AddOption(administrativeUnitIdOption);
+            var scopedRoleMembershipIdOption = new Option<string>("--scopedrolemembership-id", description: "key: id of scopedRoleMembership");
+            scopedRoleMembershipIdOption.IsRequired = true;
+            command.AddOption(scopedRoleMembershipIdOption);
+            var selectOption = new Option<string[]>("--select", description: "Select properties to be returned");
+            selectOption.IsRequired = false;
+            selectOption.Arity = ArgumentArity.ZeroOrMore;
+            command.AddOption(selectOption);
+            var expandOption = new Option<string[]>("--expand", description: "Expand related entities");
+            expandOption.IsRequired = false;
+            expandOption.Arity = ArgumentArity.ZeroOrMore;
+            command.AddOption(expandOption);
+            command.Handler = CommandHandler.Create<string, string, string[], string[]>(async (administrativeUnitId, scopedRoleMembershipId, select, expand) => {
+                var requestInfo = CreateGetRequestInformation(q => {
+                    q.Select = select;
+                    q.Expand = expand;
+                });
                 var result = await RequestAdapter.SendAsync<ScopedRoleMembership>(requestInfo);
                 // Print request output. What if the request has no return?
                 using var serializer = RequestAdapter.SerializationWriterFactory.GetSerializationWriter("application/json");
@@ -73,16 +85,21 @@ namespace ApiSdk.Directory.AdministrativeUnits.Item.ScopedRoleMembers.Item {
             var command = new Command("patch");
             command.Description = "Scoped-role members of this Administrative Unit.  HTTP Methods: GET (list scopedRoleMemberships), POST (add scopedRoleMembership), DELETE (remove scopedRoleMembership).";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--administrativeunit-id", description: "key: id of administrativeUnit"));
-            command.AddOption(new Option<string>("--scopedrolemembership-id", description: "key: id of scopedRoleMembership"));
-            command.AddOption(new Option<string>("--body"));
+            var administrativeUnitIdOption = new Option<string>("--administrativeunit-id", description: "key: id of administrativeUnit");
+            administrativeUnitIdOption.IsRequired = true;
+            command.AddOption(administrativeUnitIdOption);
+            var scopedRoleMembershipIdOption = new Option<string>("--scopedrolemembership-id", description: "key: id of scopedRoleMembership");
+            scopedRoleMembershipIdOption.IsRequired = true;
+            command.AddOption(scopedRoleMembershipIdOption);
+            var bodyOption = new Option<string>("--body");
+            bodyOption.IsRequired = true;
+            command.AddOption(bodyOption);
             command.Handler = CommandHandler.Create<string, string, string>(async (administrativeUnitId, scopedRoleMembershipId, body) => {
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<ScopedRoleMembership>();
-                var requestInfo = CreatePatchRequestInformation(model);
-                if (!String.IsNullOrEmpty(administrativeUnitId)) requestInfo.PathParameters.Add("administrativeUnit_id", administrativeUnitId);
-                if (!String.IsNullOrEmpty(scopedRoleMembershipId)) requestInfo.PathParameters.Add("scopedRoleMembership_id", scopedRoleMembershipId);
+                var requestInfo = CreatePatchRequestInformation(model, q => {
+                });
                 await RequestAdapter.SendNoContentAsync(requestInfo);
                 // Print request output. What if the request has no return?
                 Console.WriteLine("Success");

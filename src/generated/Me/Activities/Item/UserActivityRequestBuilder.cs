@@ -27,10 +27,12 @@ namespace ApiSdk.Me.Activities.Item {
             var command = new Command("delete");
             command.Description = "The user's activities across devices. Read-only. Nullable.";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--useractivity-id", description: "key: id of userActivity"));
+            var userActivityIdOption = new Option<string>("--useractivity-id", description: "key: id of userActivity");
+            userActivityIdOption.IsRequired = true;
+            command.AddOption(userActivityIdOption);
             command.Handler = CommandHandler.Create<string>(async (userActivityId) => {
-                var requestInfo = CreateDeleteRequestInformation();
-                if (!String.IsNullOrEmpty(userActivityId)) requestInfo.PathParameters.Add("userActivity_id", userActivityId);
+                var requestInfo = CreateDeleteRequestInformation(q => {
+                });
                 await RequestAdapter.SendNoContentAsync(requestInfo);
                 // Print request output. What if the request has no return?
                 Console.WriteLine("Success");
@@ -44,14 +46,22 @@ namespace ApiSdk.Me.Activities.Item {
             var command = new Command("get");
             command.Description = "The user's activities across devices. Read-only. Nullable.";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--useractivity-id", description: "key: id of userActivity"));
-            command.AddOption(new Option<object>("--select", description: "Select properties to be returned"));
-            command.AddOption(new Option<object>("--expand", description: "Expand related entities"));
-            command.Handler = CommandHandler.Create<string, object, object>(async (userActivityId, select, expand) => {
-                var requestInfo = CreateGetRequestInformation();
-                if (!String.IsNullOrEmpty(userActivityId)) requestInfo.PathParameters.Add("userActivity_id", userActivityId);
-                requestInfo.QueryParameters.Add("select", select);
-                requestInfo.QueryParameters.Add("expand", expand);
+            var userActivityIdOption = new Option<string>("--useractivity-id", description: "key: id of userActivity");
+            userActivityIdOption.IsRequired = true;
+            command.AddOption(userActivityIdOption);
+            var selectOption = new Option<string[]>("--select", description: "Select properties to be returned");
+            selectOption.IsRequired = false;
+            selectOption.Arity = ArgumentArity.ZeroOrMore;
+            command.AddOption(selectOption);
+            var expandOption = new Option<string[]>("--expand", description: "Expand related entities");
+            expandOption.IsRequired = false;
+            expandOption.Arity = ArgumentArity.ZeroOrMore;
+            command.AddOption(expandOption);
+            command.Handler = CommandHandler.Create<string, string[], string[]>(async (userActivityId, select, expand) => {
+                var requestInfo = CreateGetRequestInformation(q => {
+                    q.Select = select;
+                    q.Expand = expand;
+                });
                 var result = await RequestAdapter.SendAsync<UserActivity>(requestInfo);
                 // Print request output. What if the request has no return?
                 using var serializer = RequestAdapter.SerializationWriterFactory.GetSerializationWriter("application/json");
@@ -77,14 +87,18 @@ namespace ApiSdk.Me.Activities.Item {
             var command = new Command("patch");
             command.Description = "The user's activities across devices. Read-only. Nullable.";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--useractivity-id", description: "key: id of userActivity"));
-            command.AddOption(new Option<string>("--body"));
+            var userActivityIdOption = new Option<string>("--useractivity-id", description: "key: id of userActivity");
+            userActivityIdOption.IsRequired = true;
+            command.AddOption(userActivityIdOption);
+            var bodyOption = new Option<string>("--body");
+            bodyOption.IsRequired = true;
+            command.AddOption(bodyOption);
             command.Handler = CommandHandler.Create<string, string>(async (userActivityId, body) => {
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<UserActivity>();
-                var requestInfo = CreatePatchRequestInformation(model);
-                if (!String.IsNullOrEmpty(userActivityId)) requestInfo.PathParameters.Add("userActivity_id", userActivityId);
+                var requestInfo = CreatePatchRequestInformation(model, q => {
+                });
                 await RequestAdapter.SendNoContentAsync(requestInfo);
                 // Print request output. What if the request has no return?
                 Console.WriteLine("Success");

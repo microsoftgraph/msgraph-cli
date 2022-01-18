@@ -26,16 +26,21 @@ namespace ApiSdk.Workbooks.Item.Workbook.Names.Item.Worksheet.Charts.Item.Worksh
             var command = new Command("get");
             command.Description = "Invoke function range";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--driveitem-id", description: "key: id of driveItem"));
-            command.AddOption(new Option<string>("--workbooknameditem-id", description: "key: id of workbookNamedItem"));
-            command.AddOption(new Option<string>("--workbookchart-id", description: "key: id of workbookChart"));
-            command.AddOption(new Option<string>("--address", description: "Usage: address={address}"));
+            var driveItemIdOption = new Option<string>("--driveitem-id", description: "key: id of driveItem");
+            driveItemIdOption.IsRequired = true;
+            command.AddOption(driveItemIdOption);
+            var workbookNamedItemIdOption = new Option<string>("--workbooknameditem-id", description: "key: id of workbookNamedItem");
+            workbookNamedItemIdOption.IsRequired = true;
+            command.AddOption(workbookNamedItemIdOption);
+            var workbookChartIdOption = new Option<string>("--workbookchart-id", description: "key: id of workbookChart");
+            workbookChartIdOption.IsRequired = true;
+            command.AddOption(workbookChartIdOption);
+            var addressOption = new Option<string>("--address", description: "Usage: address={address}");
+            addressOption.IsRequired = true;
+            command.AddOption(addressOption);
             command.Handler = CommandHandler.Create<string, string, string, string>(async (driveItemId, workbookNamedItemId, workbookChartId, address) => {
-                var requestInfo = CreateGetRequestInformation();
-                if (!String.IsNullOrEmpty(driveItemId)) requestInfo.PathParameters.Add("driveItem_id", driveItemId);
-                if (!String.IsNullOrEmpty(workbookNamedItemId)) requestInfo.PathParameters.Add("workbookNamedItem_id", workbookNamedItemId);
-                if (!String.IsNullOrEmpty(workbookChartId)) requestInfo.PathParameters.Add("workbookChart_id", workbookChartId);
-                if (!String.IsNullOrEmpty(address)) requestInfo.PathParameters.Add("address", address);
+                var requestInfo = CreateGetRequestInformation(q => {
+                });
                 var result = await RequestAdapter.SendAsync<RangeWithAddressResponse>(requestInfo);
                 // Print request output. What if the request has no return?
                 using var serializer = RequestAdapter.SerializationWriterFactory.GetSerializationWriter("application/json");

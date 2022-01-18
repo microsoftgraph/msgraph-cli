@@ -25,10 +25,12 @@ namespace ApiSdk.Drives.Item.Recent {
             var command = new Command("get");
             command.Description = "Invoke function recent";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--drive-id", description: "key: id of drive"));
+            var driveIdOption = new Option<string>("--drive-id", description: "key: id of drive");
+            driveIdOption.IsRequired = true;
+            command.AddOption(driveIdOption);
             command.Handler = CommandHandler.Create<string>(async (driveId) => {
-                var requestInfo = CreateGetRequestInformation();
-                if (!String.IsNullOrEmpty(driveId)) requestInfo.PathParameters.Add("drive_id", driveId);
+                var requestInfo = CreateGetRequestInformation(q => {
+                });
                 var result = await RequestAdapter.SendCollectionAsync<ApiSdk.Drives.Item.Recent.Recent>(requestInfo);
                 // Print request output. What if the request has no return?
                 using var serializer = RequestAdapter.SerializationWriterFactory.GetSerializationWriter("application/json");

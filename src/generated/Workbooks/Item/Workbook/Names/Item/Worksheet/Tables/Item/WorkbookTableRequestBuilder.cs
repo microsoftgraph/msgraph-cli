@@ -57,14 +57,18 @@ namespace ApiSdk.Workbooks.Item.Workbook.Names.Item.Worksheet.Tables.Item {
             var command = new Command("delete");
             command.Description = "Collection of tables that are part of the worksheet. Read-only.";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--driveitem-id", description: "key: id of driveItem"));
-            command.AddOption(new Option<string>("--workbooknameditem-id", description: "key: id of workbookNamedItem"));
-            command.AddOption(new Option<string>("--workbooktable-id", description: "key: id of workbookTable"));
+            var driveItemIdOption = new Option<string>("--driveitem-id", description: "key: id of driveItem");
+            driveItemIdOption.IsRequired = true;
+            command.AddOption(driveItemIdOption);
+            var workbookNamedItemIdOption = new Option<string>("--workbooknameditem-id", description: "key: id of workbookNamedItem");
+            workbookNamedItemIdOption.IsRequired = true;
+            command.AddOption(workbookNamedItemIdOption);
+            var workbookTableIdOption = new Option<string>("--workbooktable-id", description: "key: id of workbookTable");
+            workbookTableIdOption.IsRequired = true;
+            command.AddOption(workbookTableIdOption);
             command.Handler = CommandHandler.Create<string, string, string>(async (driveItemId, workbookNamedItemId, workbookTableId) => {
-                var requestInfo = CreateDeleteRequestInformation();
-                if (!String.IsNullOrEmpty(driveItemId)) requestInfo.PathParameters.Add("driveItem_id", driveItemId);
-                if (!String.IsNullOrEmpty(workbookNamedItemId)) requestInfo.PathParameters.Add("workbookNamedItem_id", workbookNamedItemId);
-                if (!String.IsNullOrEmpty(workbookTableId)) requestInfo.PathParameters.Add("workbookTable_id", workbookTableId);
+                var requestInfo = CreateDeleteRequestInformation(q => {
+                });
                 await RequestAdapter.SendNoContentAsync(requestInfo);
                 // Print request output. What if the request has no return?
                 Console.WriteLine("Success");
@@ -78,18 +82,28 @@ namespace ApiSdk.Workbooks.Item.Workbook.Names.Item.Worksheet.Tables.Item {
             var command = new Command("get");
             command.Description = "Collection of tables that are part of the worksheet. Read-only.";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--driveitem-id", description: "key: id of driveItem"));
-            command.AddOption(new Option<string>("--workbooknameditem-id", description: "key: id of workbookNamedItem"));
-            command.AddOption(new Option<string>("--workbooktable-id", description: "key: id of workbookTable"));
-            command.AddOption(new Option<object>("--select", description: "Select properties to be returned"));
-            command.AddOption(new Option<object>("--expand", description: "Expand related entities"));
-            command.Handler = CommandHandler.Create<string, string, string, object, object>(async (driveItemId, workbookNamedItemId, workbookTableId, select, expand) => {
-                var requestInfo = CreateGetRequestInformation();
-                if (!String.IsNullOrEmpty(driveItemId)) requestInfo.PathParameters.Add("driveItem_id", driveItemId);
-                if (!String.IsNullOrEmpty(workbookNamedItemId)) requestInfo.PathParameters.Add("workbookNamedItem_id", workbookNamedItemId);
-                if (!String.IsNullOrEmpty(workbookTableId)) requestInfo.PathParameters.Add("workbookTable_id", workbookTableId);
-                requestInfo.QueryParameters.Add("select", select);
-                requestInfo.QueryParameters.Add("expand", expand);
+            var driveItemIdOption = new Option<string>("--driveitem-id", description: "key: id of driveItem");
+            driveItemIdOption.IsRequired = true;
+            command.AddOption(driveItemIdOption);
+            var workbookNamedItemIdOption = new Option<string>("--workbooknameditem-id", description: "key: id of workbookNamedItem");
+            workbookNamedItemIdOption.IsRequired = true;
+            command.AddOption(workbookNamedItemIdOption);
+            var workbookTableIdOption = new Option<string>("--workbooktable-id", description: "key: id of workbookTable");
+            workbookTableIdOption.IsRequired = true;
+            command.AddOption(workbookTableIdOption);
+            var selectOption = new Option<string[]>("--select", description: "Select properties to be returned");
+            selectOption.IsRequired = false;
+            selectOption.Arity = ArgumentArity.ZeroOrMore;
+            command.AddOption(selectOption);
+            var expandOption = new Option<string[]>("--expand", description: "Expand related entities");
+            expandOption.IsRequired = false;
+            expandOption.Arity = ArgumentArity.ZeroOrMore;
+            command.AddOption(expandOption);
+            command.Handler = CommandHandler.Create<string, string, string, string[], string[]>(async (driveItemId, workbookNamedItemId, workbookTableId, select, expand) => {
+                var requestInfo = CreateGetRequestInformation(q => {
+                    q.Select = select;
+                    q.Expand = expand;
+                });
                 var result = await RequestAdapter.SendAsync<WorkbookTable>(requestInfo);
                 // Print request output. What if the request has no return?
                 using var serializer = RequestAdapter.SerializationWriterFactory.GetSerializationWriter("application/json");
@@ -108,18 +122,24 @@ namespace ApiSdk.Workbooks.Item.Workbook.Names.Item.Worksheet.Tables.Item {
             var command = new Command("patch");
             command.Description = "Collection of tables that are part of the worksheet. Read-only.";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--driveitem-id", description: "key: id of driveItem"));
-            command.AddOption(new Option<string>("--workbooknameditem-id", description: "key: id of workbookNamedItem"));
-            command.AddOption(new Option<string>("--workbooktable-id", description: "key: id of workbookTable"));
-            command.AddOption(new Option<string>("--body"));
+            var driveItemIdOption = new Option<string>("--driveitem-id", description: "key: id of driveItem");
+            driveItemIdOption.IsRequired = true;
+            command.AddOption(driveItemIdOption);
+            var workbookNamedItemIdOption = new Option<string>("--workbooknameditem-id", description: "key: id of workbookNamedItem");
+            workbookNamedItemIdOption.IsRequired = true;
+            command.AddOption(workbookNamedItemIdOption);
+            var workbookTableIdOption = new Option<string>("--workbooktable-id", description: "key: id of workbookTable");
+            workbookTableIdOption.IsRequired = true;
+            command.AddOption(workbookTableIdOption);
+            var bodyOption = new Option<string>("--body");
+            bodyOption.IsRequired = true;
+            command.AddOption(bodyOption);
             command.Handler = CommandHandler.Create<string, string, string, string>(async (driveItemId, workbookNamedItemId, workbookTableId, body) => {
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<WorkbookTable>();
-                var requestInfo = CreatePatchRequestInformation(model);
-                if (!String.IsNullOrEmpty(driveItemId)) requestInfo.PathParameters.Add("driveItem_id", driveItemId);
-                if (!String.IsNullOrEmpty(workbookNamedItemId)) requestInfo.PathParameters.Add("workbookNamedItem_id", workbookNamedItemId);
-                if (!String.IsNullOrEmpty(workbookTableId)) requestInfo.PathParameters.Add("workbookTable_id", workbookTableId);
+                var requestInfo = CreatePatchRequestInformation(model, q => {
+                });
                 await RequestAdapter.SendNoContentAsync(requestInfo);
                 // Print request output. What if the request has no return?
                 Console.WriteLine("Success");

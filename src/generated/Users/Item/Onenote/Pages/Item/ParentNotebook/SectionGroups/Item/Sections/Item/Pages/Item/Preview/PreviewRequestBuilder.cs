@@ -26,18 +26,24 @@ namespace ApiSdk.Users.Item.Onenote.Pages.Item.ParentNotebook.SectionGroups.Item
             var command = new Command("get");
             command.Description = "Invoke function preview";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--user-id", description: "key: id of user"));
-            command.AddOption(new Option<string>("--onenotepage-id", description: "key: id of onenotePage"));
-            command.AddOption(new Option<string>("--sectiongroup-id", description: "key: id of sectionGroup"));
-            command.AddOption(new Option<string>("--onenotesection-id", description: "key: id of onenoteSection"));
-            command.AddOption(new Option<string>("--onenotepage-id1", description: "key: id of onenotePage"));
+            var userIdOption = new Option<string>("--user-id", description: "key: id of user");
+            userIdOption.IsRequired = true;
+            command.AddOption(userIdOption);
+            var onenotePageIdOption = new Option<string>("--onenotepage-id", description: "key: id of onenotePage");
+            onenotePageIdOption.IsRequired = true;
+            command.AddOption(onenotePageIdOption);
+            var sectionGroupIdOption = new Option<string>("--sectiongroup-id", description: "key: id of sectionGroup");
+            sectionGroupIdOption.IsRequired = true;
+            command.AddOption(sectionGroupIdOption);
+            var onenoteSectionIdOption = new Option<string>("--onenotesection-id", description: "key: id of onenoteSection");
+            onenoteSectionIdOption.IsRequired = true;
+            command.AddOption(onenoteSectionIdOption);
+            var onenotePageId1Option = new Option<string>("--onenotepage-id1", description: "key: id of onenotePage");
+            onenotePageId1Option.IsRequired = true;
+            command.AddOption(onenotePageId1Option);
             command.Handler = CommandHandler.Create<string, string, string, string, string>(async (userId, onenotePageId, sectionGroupId, onenoteSectionId, onenotePageId1) => {
-                var requestInfo = CreateGetRequestInformation();
-                if (!String.IsNullOrEmpty(userId)) requestInfo.PathParameters.Add("user_id", userId);
-                if (!String.IsNullOrEmpty(onenotePageId)) requestInfo.PathParameters.Add("onenotePage_id", onenotePageId);
-                if (!String.IsNullOrEmpty(sectionGroupId)) requestInfo.PathParameters.Add("sectionGroup_id", sectionGroupId);
-                if (!String.IsNullOrEmpty(onenoteSectionId)) requestInfo.PathParameters.Add("onenoteSection_id", onenoteSectionId);
-                if (!String.IsNullOrEmpty(onenotePageId1)) requestInfo.PathParameters.Add("onenotePage_id1", onenotePageId1);
+                var requestInfo = CreateGetRequestInformation(q => {
+                });
                 var result = await RequestAdapter.SendAsync<PreviewResponse>(requestInfo);
                 // Print request output. What if the request has no return?
                 using var serializer = RequestAdapter.SerializationWriterFactory.GetSerializationWriter("application/json");

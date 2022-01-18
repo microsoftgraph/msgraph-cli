@@ -26,12 +26,15 @@ namespace ApiSdk.Me.Calendar.CalendarView.Item.Extensions.Item {
             var command = new Command("delete");
             command.Description = "The collection of open extensions defined for the event. Nullable.";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--event-id", description: "key: id of event"));
-            command.AddOption(new Option<string>("--extension-id", description: "key: id of extension"));
+            var eventIdOption = new Option<string>("--event-id", description: "key: id of event");
+            eventIdOption.IsRequired = true;
+            command.AddOption(eventIdOption);
+            var extensionIdOption = new Option<string>("--extension-id", description: "key: id of extension");
+            extensionIdOption.IsRequired = true;
+            command.AddOption(extensionIdOption);
             command.Handler = CommandHandler.Create<string, string>(async (eventId, extensionId) => {
-                var requestInfo = CreateDeleteRequestInformation();
-                if (!String.IsNullOrEmpty(eventId)) requestInfo.PathParameters.Add("event_id", eventId);
-                if (!String.IsNullOrEmpty(extensionId)) requestInfo.PathParameters.Add("extension_id", extensionId);
+                var requestInfo = CreateDeleteRequestInformation(q => {
+                });
                 await RequestAdapter.SendNoContentAsync(requestInfo);
                 // Print request output. What if the request has no return?
                 Console.WriteLine("Success");
@@ -45,16 +48,25 @@ namespace ApiSdk.Me.Calendar.CalendarView.Item.Extensions.Item {
             var command = new Command("get");
             command.Description = "The collection of open extensions defined for the event. Nullable.";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--event-id", description: "key: id of event"));
-            command.AddOption(new Option<string>("--extension-id", description: "key: id of extension"));
-            command.AddOption(new Option<object>("--select", description: "Select properties to be returned"));
-            command.AddOption(new Option<object>("--expand", description: "Expand related entities"));
-            command.Handler = CommandHandler.Create<string, string, object, object>(async (eventId, extensionId, select, expand) => {
-                var requestInfo = CreateGetRequestInformation();
-                if (!String.IsNullOrEmpty(eventId)) requestInfo.PathParameters.Add("event_id", eventId);
-                if (!String.IsNullOrEmpty(extensionId)) requestInfo.PathParameters.Add("extension_id", extensionId);
-                requestInfo.QueryParameters.Add("select", select);
-                requestInfo.QueryParameters.Add("expand", expand);
+            var eventIdOption = new Option<string>("--event-id", description: "key: id of event");
+            eventIdOption.IsRequired = true;
+            command.AddOption(eventIdOption);
+            var extensionIdOption = new Option<string>("--extension-id", description: "key: id of extension");
+            extensionIdOption.IsRequired = true;
+            command.AddOption(extensionIdOption);
+            var selectOption = new Option<string[]>("--select", description: "Select properties to be returned");
+            selectOption.IsRequired = false;
+            selectOption.Arity = ArgumentArity.ZeroOrMore;
+            command.AddOption(selectOption);
+            var expandOption = new Option<string[]>("--expand", description: "Expand related entities");
+            expandOption.IsRequired = false;
+            expandOption.Arity = ArgumentArity.ZeroOrMore;
+            command.AddOption(expandOption);
+            command.Handler = CommandHandler.Create<string, string, string[], string[]>(async (eventId, extensionId, select, expand) => {
+                var requestInfo = CreateGetRequestInformation(q => {
+                    q.Select = select;
+                    q.Expand = expand;
+                });
                 var result = await RequestAdapter.SendAsync<Extension>(requestInfo);
                 // Print request output. What if the request has no return?
                 using var serializer = RequestAdapter.SerializationWriterFactory.GetSerializationWriter("application/json");
@@ -73,16 +85,21 @@ namespace ApiSdk.Me.Calendar.CalendarView.Item.Extensions.Item {
             var command = new Command("patch");
             command.Description = "The collection of open extensions defined for the event. Nullable.";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--event-id", description: "key: id of event"));
-            command.AddOption(new Option<string>("--extension-id", description: "key: id of extension"));
-            command.AddOption(new Option<string>("--body"));
+            var eventIdOption = new Option<string>("--event-id", description: "key: id of event");
+            eventIdOption.IsRequired = true;
+            command.AddOption(eventIdOption);
+            var extensionIdOption = new Option<string>("--extension-id", description: "key: id of extension");
+            extensionIdOption.IsRequired = true;
+            command.AddOption(extensionIdOption);
+            var bodyOption = new Option<string>("--body");
+            bodyOption.IsRequired = true;
+            command.AddOption(bodyOption);
             command.Handler = CommandHandler.Create<string, string, string>(async (eventId, extensionId, body) => {
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<Extension>();
-                var requestInfo = CreatePatchRequestInformation(model);
-                if (!String.IsNullOrEmpty(eventId)) requestInfo.PathParameters.Add("event_id", eventId);
-                if (!String.IsNullOrEmpty(extensionId)) requestInfo.PathParameters.Add("extension_id", extensionId);
+                var requestInfo = CreatePatchRequestInformation(model, q => {
+                });
                 await RequestAdapter.SendNoContentAsync(requestInfo);
                 // Print request output. What if the request has no return?
                 Console.WriteLine("Success");

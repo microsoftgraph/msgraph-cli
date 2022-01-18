@@ -25,14 +25,18 @@ namespace ApiSdk.Users.Item.ReminderViewWithStartDateTimeWithEndDateTime {
             var command = new Command("get");
             command.Description = "Invoke function reminderView";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--user-id", description: "key: id of user"));
-            command.AddOption(new Option<string>("--startdatetime", description: "Usage: StartDateTime={StartDateTime}"));
-            command.AddOption(new Option<string>("--enddatetime", description: "Usage: EndDateTime={EndDateTime}"));
+            var userIdOption = new Option<string>("--user-id", description: "key: id of user");
+            userIdOption.IsRequired = true;
+            command.AddOption(userIdOption);
+            var StartDateTimeOption = new Option<string>("--startdatetime", description: "Usage: StartDateTime={StartDateTime}");
+            StartDateTimeOption.IsRequired = true;
+            command.AddOption(StartDateTimeOption);
+            var EndDateTimeOption = new Option<string>("--enddatetime", description: "Usage: EndDateTime={EndDateTime}");
+            EndDateTimeOption.IsRequired = true;
+            command.AddOption(EndDateTimeOption);
             command.Handler = CommandHandler.Create<string, string, string>(async (userId, StartDateTime, EndDateTime) => {
-                var requestInfo = CreateGetRequestInformation();
-                if (!String.IsNullOrEmpty(userId)) requestInfo.PathParameters.Add("user_id", userId);
-                if (!String.IsNullOrEmpty(StartDateTime)) requestInfo.PathParameters.Add("StartDateTime", StartDateTime);
-                if (!String.IsNullOrEmpty(EndDateTime)) requestInfo.PathParameters.Add("EndDateTime", EndDateTime);
+                var requestInfo = CreateGetRequestInformation(q => {
+                });
                 var result = await RequestAdapter.SendCollectionAsync<ApiSdk.Users.Item.ReminderViewWithStartDateTimeWithEndDateTime.ReminderViewWithStartDateTimeWithEndDateTime>(requestInfo);
                 // Print request output. What if the request has no return?
                 using var serializer = RequestAdapter.SerializationWriterFactory.GetSerializationWriter("application/json");

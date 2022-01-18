@@ -34,12 +34,15 @@ namespace ApiSdk.Me.MailFolders.Item.ChildFolders.Item {
             var command = new Command("delete");
             command.Description = "The collection of child folders in the mailFolder.";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--mailfolder-id", description: "key: id of mailFolder"));
-            command.AddOption(new Option<string>("--mailfolder-id1", description: "key: id of mailFolder"));
+            var mailFolderIdOption = new Option<string>("--mailfolder-id", description: "key: id of mailFolder");
+            mailFolderIdOption.IsRequired = true;
+            command.AddOption(mailFolderIdOption);
+            var mailFolderId1Option = new Option<string>("--mailfolder-id1", description: "key: id of mailFolder");
+            mailFolderId1Option.IsRequired = true;
+            command.AddOption(mailFolderId1Option);
             command.Handler = CommandHandler.Create<string, string>(async (mailFolderId, mailFolderId1) => {
-                var requestInfo = CreateDeleteRequestInformation();
-                if (!String.IsNullOrEmpty(mailFolderId)) requestInfo.PathParameters.Add("mailFolder_id", mailFolderId);
-                if (!String.IsNullOrEmpty(mailFolderId1)) requestInfo.PathParameters.Add("mailFolder_id1", mailFolderId1);
+                var requestInfo = CreateDeleteRequestInformation(q => {
+                });
                 await RequestAdapter.SendNoContentAsync(requestInfo);
                 // Print request output. What if the request has no return?
                 Console.WriteLine("Success");
@@ -53,16 +56,25 @@ namespace ApiSdk.Me.MailFolders.Item.ChildFolders.Item {
             var command = new Command("get");
             command.Description = "The collection of child folders in the mailFolder.";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--mailfolder-id", description: "key: id of mailFolder"));
-            command.AddOption(new Option<string>("--mailfolder-id1", description: "key: id of mailFolder"));
-            command.AddOption(new Option<object>("--select", description: "Select properties to be returned"));
-            command.AddOption(new Option<object>("--expand", description: "Expand related entities"));
-            command.Handler = CommandHandler.Create<string, string, object, object>(async (mailFolderId, mailFolderId1, select, expand) => {
-                var requestInfo = CreateGetRequestInformation();
-                if (!String.IsNullOrEmpty(mailFolderId)) requestInfo.PathParameters.Add("mailFolder_id", mailFolderId);
-                if (!String.IsNullOrEmpty(mailFolderId1)) requestInfo.PathParameters.Add("mailFolder_id1", mailFolderId1);
-                requestInfo.QueryParameters.Add("select", select);
-                requestInfo.QueryParameters.Add("expand", expand);
+            var mailFolderIdOption = new Option<string>("--mailfolder-id", description: "key: id of mailFolder");
+            mailFolderIdOption.IsRequired = true;
+            command.AddOption(mailFolderIdOption);
+            var mailFolderId1Option = new Option<string>("--mailfolder-id1", description: "key: id of mailFolder");
+            mailFolderId1Option.IsRequired = true;
+            command.AddOption(mailFolderId1Option);
+            var selectOption = new Option<string[]>("--select", description: "Select properties to be returned");
+            selectOption.IsRequired = false;
+            selectOption.Arity = ArgumentArity.ZeroOrMore;
+            command.AddOption(selectOption);
+            var expandOption = new Option<string[]>("--expand", description: "Expand related entities");
+            expandOption.IsRequired = false;
+            expandOption.Arity = ArgumentArity.ZeroOrMore;
+            command.AddOption(expandOption);
+            command.Handler = CommandHandler.Create<string, string, string[], string[]>(async (mailFolderId, mailFolderId1, select, expand) => {
+                var requestInfo = CreateGetRequestInformation(q => {
+                    q.Select = select;
+                    q.Expand = expand;
+                });
                 var result = await RequestAdapter.SendAsync<MailFolder>(requestInfo);
                 // Print request output. What if the request has no return?
                 using var serializer = RequestAdapter.SerializationWriterFactory.GetSerializationWriter("application/json");
@@ -87,16 +99,21 @@ namespace ApiSdk.Me.MailFolders.Item.ChildFolders.Item {
             var command = new Command("patch");
             command.Description = "The collection of child folders in the mailFolder.";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--mailfolder-id", description: "key: id of mailFolder"));
-            command.AddOption(new Option<string>("--mailfolder-id1", description: "key: id of mailFolder"));
-            command.AddOption(new Option<string>("--body"));
+            var mailFolderIdOption = new Option<string>("--mailfolder-id", description: "key: id of mailFolder");
+            mailFolderIdOption.IsRequired = true;
+            command.AddOption(mailFolderIdOption);
+            var mailFolderId1Option = new Option<string>("--mailfolder-id1", description: "key: id of mailFolder");
+            mailFolderId1Option.IsRequired = true;
+            command.AddOption(mailFolderId1Option);
+            var bodyOption = new Option<string>("--body");
+            bodyOption.IsRequired = true;
+            command.AddOption(bodyOption);
             command.Handler = CommandHandler.Create<string, string, string>(async (mailFolderId, mailFolderId1, body) => {
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<MailFolder>();
-                var requestInfo = CreatePatchRequestInformation(model);
-                if (!String.IsNullOrEmpty(mailFolderId)) requestInfo.PathParameters.Add("mailFolder_id", mailFolderId);
-                if (!String.IsNullOrEmpty(mailFolderId1)) requestInfo.PathParameters.Add("mailFolder_id1", mailFolderId1);
+                var requestInfo = CreatePatchRequestInformation(model, q => {
+                });
                 await RequestAdapter.SendNoContentAsync(requestInfo);
                 // Print request output. What if the request has no return?
                 Console.WriteLine("Success");

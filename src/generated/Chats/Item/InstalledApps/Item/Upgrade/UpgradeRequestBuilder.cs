@@ -25,12 +25,15 @@ namespace ApiSdk.Chats.Item.InstalledApps.Item.Upgrade {
             var command = new Command("post");
             command.Description = "Invoke action upgrade";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--chat-id", description: "key: id of chat"));
-            command.AddOption(new Option<string>("--teamsappinstallation-id", description: "key: id of teamsAppInstallation"));
+            var chatIdOption = new Option<string>("--chat-id", description: "key: id of chat");
+            chatIdOption.IsRequired = true;
+            command.AddOption(chatIdOption);
+            var teamsAppInstallationIdOption = new Option<string>("--teamsappinstallation-id", description: "key: id of teamsAppInstallation");
+            teamsAppInstallationIdOption.IsRequired = true;
+            command.AddOption(teamsAppInstallationIdOption);
             command.Handler = CommandHandler.Create<string, string>(async (chatId, teamsAppInstallationId) => {
-                var requestInfo = CreatePostRequestInformation();
-                if (!String.IsNullOrEmpty(chatId)) requestInfo.PathParameters.Add("chat_id", chatId);
-                if (!String.IsNullOrEmpty(teamsAppInstallationId)) requestInfo.PathParameters.Add("teamsAppInstallation_id", teamsAppInstallationId);
+                var requestInfo = CreatePostRequestInformation(q => {
+                });
                 await RequestAdapter.SendNoContentAsync(requestInfo);
                 // Print request output. What if the request has no return?
                 Console.WriteLine("Success");

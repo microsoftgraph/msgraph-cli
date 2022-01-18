@@ -28,12 +28,15 @@ namespace ApiSdk.Chats.Item.Messages.Item {
             var command = new Command("delete");
             command.Description = "A collection of all the messages in the chat. Nullable.";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--chat-id", description: "key: id of chat"));
-            command.AddOption(new Option<string>("--chatmessage-id", description: "key: id of chatMessage"));
+            var chatIdOption = new Option<string>("--chat-id", description: "key: id of chat");
+            chatIdOption.IsRequired = true;
+            command.AddOption(chatIdOption);
+            var chatMessageIdOption = new Option<string>("--chatmessage-id", description: "key: id of chatMessage");
+            chatMessageIdOption.IsRequired = true;
+            command.AddOption(chatMessageIdOption);
             command.Handler = CommandHandler.Create<string, string>(async (chatId, chatMessageId) => {
-                var requestInfo = CreateDeleteRequestInformation();
-                if (!String.IsNullOrEmpty(chatId)) requestInfo.PathParameters.Add("chat_id", chatId);
-                if (!String.IsNullOrEmpty(chatMessageId)) requestInfo.PathParameters.Add("chatMessage_id", chatMessageId);
+                var requestInfo = CreateDeleteRequestInformation(q => {
+                });
                 await RequestAdapter.SendNoContentAsync(requestInfo);
                 // Print request output. What if the request has no return?
                 Console.WriteLine("Success");
@@ -47,16 +50,25 @@ namespace ApiSdk.Chats.Item.Messages.Item {
             var command = new Command("get");
             command.Description = "A collection of all the messages in the chat. Nullable.";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--chat-id", description: "key: id of chat"));
-            command.AddOption(new Option<string>("--chatmessage-id", description: "key: id of chatMessage"));
-            command.AddOption(new Option<object>("--select", description: "Select properties to be returned"));
-            command.AddOption(new Option<object>("--expand", description: "Expand related entities"));
-            command.Handler = CommandHandler.Create<string, string, object, object>(async (chatId, chatMessageId, select, expand) => {
-                var requestInfo = CreateGetRequestInformation();
-                if (!String.IsNullOrEmpty(chatId)) requestInfo.PathParameters.Add("chat_id", chatId);
-                if (!String.IsNullOrEmpty(chatMessageId)) requestInfo.PathParameters.Add("chatMessage_id", chatMessageId);
-                requestInfo.QueryParameters.Add("select", select);
-                requestInfo.QueryParameters.Add("expand", expand);
+            var chatIdOption = new Option<string>("--chat-id", description: "key: id of chat");
+            chatIdOption.IsRequired = true;
+            command.AddOption(chatIdOption);
+            var chatMessageIdOption = new Option<string>("--chatmessage-id", description: "key: id of chatMessage");
+            chatMessageIdOption.IsRequired = true;
+            command.AddOption(chatMessageIdOption);
+            var selectOption = new Option<string[]>("--select", description: "Select properties to be returned");
+            selectOption.IsRequired = false;
+            selectOption.Arity = ArgumentArity.ZeroOrMore;
+            command.AddOption(selectOption);
+            var expandOption = new Option<string[]>("--expand", description: "Expand related entities");
+            expandOption.IsRequired = false;
+            expandOption.Arity = ArgumentArity.ZeroOrMore;
+            command.AddOption(expandOption);
+            command.Handler = CommandHandler.Create<string, string, string[], string[]>(async (chatId, chatMessageId, select, expand) => {
+                var requestInfo = CreateGetRequestInformation(q => {
+                    q.Select = select;
+                    q.Expand = expand;
+                });
                 var result = await RequestAdapter.SendAsync<ChatMessage>(requestInfo);
                 // Print request output. What if the request has no return?
                 using var serializer = RequestAdapter.SerializationWriterFactory.GetSerializationWriter("application/json");
@@ -82,16 +94,21 @@ namespace ApiSdk.Chats.Item.Messages.Item {
             var command = new Command("patch");
             command.Description = "A collection of all the messages in the chat. Nullable.";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--chat-id", description: "key: id of chat"));
-            command.AddOption(new Option<string>("--chatmessage-id", description: "key: id of chatMessage"));
-            command.AddOption(new Option<string>("--body"));
+            var chatIdOption = new Option<string>("--chat-id", description: "key: id of chat");
+            chatIdOption.IsRequired = true;
+            command.AddOption(chatIdOption);
+            var chatMessageIdOption = new Option<string>("--chatmessage-id", description: "key: id of chatMessage");
+            chatMessageIdOption.IsRequired = true;
+            command.AddOption(chatMessageIdOption);
+            var bodyOption = new Option<string>("--body");
+            bodyOption.IsRequired = true;
+            command.AddOption(bodyOption);
             command.Handler = CommandHandler.Create<string, string, string>(async (chatId, chatMessageId, body) => {
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<ChatMessage>();
-                var requestInfo = CreatePatchRequestInformation(model);
-                if (!String.IsNullOrEmpty(chatId)) requestInfo.PathParameters.Add("chat_id", chatId);
-                if (!String.IsNullOrEmpty(chatMessageId)) requestInfo.PathParameters.Add("chatMessage_id", chatMessageId);
+                var requestInfo = CreatePatchRequestInformation(model, q => {
+                });
                 await RequestAdapter.SendNoContentAsync(requestInfo);
                 // Print request output. What if the request has no return?
                 Console.WriteLine("Success");

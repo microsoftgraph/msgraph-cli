@@ -26,12 +26,15 @@ namespace ApiSdk.DeviceManagement.TermsAndConditions.Item.Assignments.Item {
             var command = new Command("delete");
             command.Description = "The list of assignments for this T&C policy.";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--termsandconditions-id", description: "key: id of termsAndConditions"));
-            command.AddOption(new Option<string>("--termsandconditionsassignment-id", description: "key: id of termsAndConditionsAssignment"));
+            var termsAndConditionsIdOption = new Option<string>("--termsandconditions-id", description: "key: id of termsAndConditions");
+            termsAndConditionsIdOption.IsRequired = true;
+            command.AddOption(termsAndConditionsIdOption);
+            var termsAndConditionsAssignmentIdOption = new Option<string>("--termsandconditionsassignment-id", description: "key: id of termsAndConditionsAssignment");
+            termsAndConditionsAssignmentIdOption.IsRequired = true;
+            command.AddOption(termsAndConditionsAssignmentIdOption);
             command.Handler = CommandHandler.Create<string, string>(async (termsAndConditionsId, termsAndConditionsAssignmentId) => {
-                var requestInfo = CreateDeleteRequestInformation();
-                if (!String.IsNullOrEmpty(termsAndConditionsId)) requestInfo.PathParameters.Add("termsAndConditions_id", termsAndConditionsId);
-                if (!String.IsNullOrEmpty(termsAndConditionsAssignmentId)) requestInfo.PathParameters.Add("termsAndConditionsAssignment_id", termsAndConditionsAssignmentId);
+                var requestInfo = CreateDeleteRequestInformation(q => {
+                });
                 await RequestAdapter.SendNoContentAsync(requestInfo);
                 // Print request output. What if the request has no return?
                 Console.WriteLine("Success");
@@ -45,16 +48,25 @@ namespace ApiSdk.DeviceManagement.TermsAndConditions.Item.Assignments.Item {
             var command = new Command("get");
             command.Description = "The list of assignments for this T&C policy.";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--termsandconditions-id", description: "key: id of termsAndConditions"));
-            command.AddOption(new Option<string>("--termsandconditionsassignment-id", description: "key: id of termsAndConditionsAssignment"));
-            command.AddOption(new Option<object>("--select", description: "Select properties to be returned"));
-            command.AddOption(new Option<object>("--expand", description: "Expand related entities"));
-            command.Handler = CommandHandler.Create<string, string, object, object>(async (termsAndConditionsId, termsAndConditionsAssignmentId, select, expand) => {
-                var requestInfo = CreateGetRequestInformation();
-                if (!String.IsNullOrEmpty(termsAndConditionsId)) requestInfo.PathParameters.Add("termsAndConditions_id", termsAndConditionsId);
-                if (!String.IsNullOrEmpty(termsAndConditionsAssignmentId)) requestInfo.PathParameters.Add("termsAndConditionsAssignment_id", termsAndConditionsAssignmentId);
-                requestInfo.QueryParameters.Add("select", select);
-                requestInfo.QueryParameters.Add("expand", expand);
+            var termsAndConditionsIdOption = new Option<string>("--termsandconditions-id", description: "key: id of termsAndConditions");
+            termsAndConditionsIdOption.IsRequired = true;
+            command.AddOption(termsAndConditionsIdOption);
+            var termsAndConditionsAssignmentIdOption = new Option<string>("--termsandconditionsassignment-id", description: "key: id of termsAndConditionsAssignment");
+            termsAndConditionsAssignmentIdOption.IsRequired = true;
+            command.AddOption(termsAndConditionsAssignmentIdOption);
+            var selectOption = new Option<string[]>("--select", description: "Select properties to be returned");
+            selectOption.IsRequired = false;
+            selectOption.Arity = ArgumentArity.ZeroOrMore;
+            command.AddOption(selectOption);
+            var expandOption = new Option<string[]>("--expand", description: "Expand related entities");
+            expandOption.IsRequired = false;
+            expandOption.Arity = ArgumentArity.ZeroOrMore;
+            command.AddOption(expandOption);
+            command.Handler = CommandHandler.Create<string, string, string[], string[]>(async (termsAndConditionsId, termsAndConditionsAssignmentId, select, expand) => {
+                var requestInfo = CreateGetRequestInformation(q => {
+                    q.Select = select;
+                    q.Expand = expand;
+                });
                 var result = await RequestAdapter.SendAsync<TermsAndConditionsAssignment>(requestInfo);
                 // Print request output. What if the request has no return?
                 using var serializer = RequestAdapter.SerializationWriterFactory.GetSerializationWriter("application/json");
@@ -73,16 +85,21 @@ namespace ApiSdk.DeviceManagement.TermsAndConditions.Item.Assignments.Item {
             var command = new Command("patch");
             command.Description = "The list of assignments for this T&C policy.";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--termsandconditions-id", description: "key: id of termsAndConditions"));
-            command.AddOption(new Option<string>("--termsandconditionsassignment-id", description: "key: id of termsAndConditionsAssignment"));
-            command.AddOption(new Option<string>("--body"));
+            var termsAndConditionsIdOption = new Option<string>("--termsandconditions-id", description: "key: id of termsAndConditions");
+            termsAndConditionsIdOption.IsRequired = true;
+            command.AddOption(termsAndConditionsIdOption);
+            var termsAndConditionsAssignmentIdOption = new Option<string>("--termsandconditionsassignment-id", description: "key: id of termsAndConditionsAssignment");
+            termsAndConditionsAssignmentIdOption.IsRequired = true;
+            command.AddOption(termsAndConditionsAssignmentIdOption);
+            var bodyOption = new Option<string>("--body");
+            bodyOption.IsRequired = true;
+            command.AddOption(bodyOption);
             command.Handler = CommandHandler.Create<string, string, string>(async (termsAndConditionsId, termsAndConditionsAssignmentId, body) => {
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<TermsAndConditionsAssignment>();
-                var requestInfo = CreatePatchRequestInformation(model);
-                if (!String.IsNullOrEmpty(termsAndConditionsId)) requestInfo.PathParameters.Add("termsAndConditions_id", termsAndConditionsId);
-                if (!String.IsNullOrEmpty(termsAndConditionsAssignmentId)) requestInfo.PathParameters.Add("termsAndConditionsAssignment_id", termsAndConditionsAssignmentId);
+                var requestInfo = CreatePatchRequestInformation(model, q => {
+                });
                 await RequestAdapter.SendNoContentAsync(requestInfo);
                 // Print request output. What if the request has no return?
                 Console.WriteLine("Success");

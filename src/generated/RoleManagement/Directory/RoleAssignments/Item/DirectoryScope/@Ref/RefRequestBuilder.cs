@@ -25,10 +25,12 @@ namespace ApiSdk.RoleManagement.Directory.RoleAssignments.Item.DirectoryScope.@R
             var command = new Command("delete");
             command.Description = "The directory object that is the scope of the assignment. Read-only. Supports $expand.";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--unifiedroleassignment-id", description: "key: id of unifiedRoleAssignment"));
+            var unifiedRoleAssignmentIdOption = new Option<string>("--unifiedroleassignment-id", description: "key: id of unifiedRoleAssignment");
+            unifiedRoleAssignmentIdOption.IsRequired = true;
+            command.AddOption(unifiedRoleAssignmentIdOption);
             command.Handler = CommandHandler.Create<string>(async (unifiedRoleAssignmentId) => {
-                var requestInfo = CreateDeleteRequestInformation();
-                if (!String.IsNullOrEmpty(unifiedRoleAssignmentId)) requestInfo.PathParameters.Add("unifiedRoleAssignment_id", unifiedRoleAssignmentId);
+                var requestInfo = CreateDeleteRequestInformation(q => {
+                });
                 await RequestAdapter.SendNoContentAsync(requestInfo);
                 // Print request output. What if the request has no return?
                 Console.WriteLine("Success");
@@ -42,10 +44,12 @@ namespace ApiSdk.RoleManagement.Directory.RoleAssignments.Item.DirectoryScope.@R
             var command = new Command("get");
             command.Description = "The directory object that is the scope of the assignment. Read-only. Supports $expand.";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--unifiedroleassignment-id", description: "key: id of unifiedRoleAssignment"));
+            var unifiedRoleAssignmentIdOption = new Option<string>("--unifiedroleassignment-id", description: "key: id of unifiedRoleAssignment");
+            unifiedRoleAssignmentIdOption.IsRequired = true;
+            command.AddOption(unifiedRoleAssignmentIdOption);
             command.Handler = CommandHandler.Create<string>(async (unifiedRoleAssignmentId) => {
-                var requestInfo = CreateGetRequestInformation();
-                if (!String.IsNullOrEmpty(unifiedRoleAssignmentId)) requestInfo.PathParameters.Add("unifiedRoleAssignment_id", unifiedRoleAssignmentId);
+                var requestInfo = CreateGetRequestInformation(q => {
+                });
                 var result = await RequestAdapter.SendPrimitiveAsync<string>(requestInfo);
                 // Print request output. What if the request has no return?
                 using var serializer = RequestAdapter.SerializationWriterFactory.GetSerializationWriter("application/json");
@@ -64,14 +68,18 @@ namespace ApiSdk.RoleManagement.Directory.RoleAssignments.Item.DirectoryScope.@R
             var command = new Command("put");
             command.Description = "The directory object that is the scope of the assignment. Read-only. Supports $expand.";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--unifiedroleassignment-id", description: "key: id of unifiedRoleAssignment"));
-            command.AddOption(new Option<string>("--body"));
+            var unifiedRoleAssignmentIdOption = new Option<string>("--unifiedroleassignment-id", description: "key: id of unifiedRoleAssignment");
+            unifiedRoleAssignmentIdOption.IsRequired = true;
+            command.AddOption(unifiedRoleAssignmentIdOption);
+            var bodyOption = new Option<string>("--body");
+            bodyOption.IsRequired = true;
+            command.AddOption(bodyOption);
             command.Handler = CommandHandler.Create<string, string>(async (unifiedRoleAssignmentId, body) => {
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<ApiSdk.RoleManagement.Directory.RoleAssignments.Item.DirectoryScope.@Ref.@Ref>();
-                var requestInfo = CreatePutRequestInformation(model);
-                if (!String.IsNullOrEmpty(unifiedRoleAssignmentId)) requestInfo.PathParameters.Add("unifiedRoleAssignment_id", unifiedRoleAssignmentId);
+                var requestInfo = CreatePutRequestInformation(model, q => {
+                });
                 await RequestAdapter.SendNoContentAsync(requestInfo);
                 // Print request output. What if the request has no return?
                 Console.WriteLine("Success");

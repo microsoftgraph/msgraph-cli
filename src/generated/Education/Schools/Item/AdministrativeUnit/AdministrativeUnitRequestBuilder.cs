@@ -27,14 +27,22 @@ namespace ApiSdk.Education.Schools.Item.AdministrativeUnit {
             var command = new Command("get");
             command.Description = "The underlying administrativeUnit for this school.";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--educationschool-id", description: "key: id of educationSchool"));
-            command.AddOption(new Option<object>("--select", description: "Select properties to be returned"));
-            command.AddOption(new Option<object>("--expand", description: "Expand related entities"));
-            command.Handler = CommandHandler.Create<string, object, object>(async (educationSchoolId, select, expand) => {
-                var requestInfo = CreateGetRequestInformation();
-                if (!String.IsNullOrEmpty(educationSchoolId)) requestInfo.PathParameters.Add("educationSchool_id", educationSchoolId);
-                requestInfo.QueryParameters.Add("select", select);
-                requestInfo.QueryParameters.Add("expand", expand);
+            var educationSchoolIdOption = new Option<string>("--educationschool-id", description: "key: id of educationSchool");
+            educationSchoolIdOption.IsRequired = true;
+            command.AddOption(educationSchoolIdOption);
+            var selectOption = new Option<string[]>("--select", description: "Select properties to be returned");
+            selectOption.IsRequired = false;
+            selectOption.Arity = ArgumentArity.ZeroOrMore;
+            command.AddOption(selectOption);
+            var expandOption = new Option<string[]>("--expand", description: "Expand related entities");
+            expandOption.IsRequired = false;
+            expandOption.Arity = ArgumentArity.ZeroOrMore;
+            command.AddOption(expandOption);
+            command.Handler = CommandHandler.Create<string, string[], string[]>(async (educationSchoolId, select, expand) => {
+                var requestInfo = CreateGetRequestInformation(q => {
+                    q.Select = select;
+                    q.Expand = expand;
+                });
                 var result = await RequestAdapter.SendAsync<ApiSdk.Models.Microsoft.Graph.AdministrativeUnit>(requestInfo);
                 // Print request output. What if the request has no return?
                 using var serializer = RequestAdapter.SerializationWriterFactory.GetSerializationWriter("application/json");

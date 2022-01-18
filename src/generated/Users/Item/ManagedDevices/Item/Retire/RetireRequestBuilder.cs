@@ -25,12 +25,15 @@ namespace ApiSdk.Users.Item.ManagedDevices.Item.Retire {
             var command = new Command("post");
             command.Description = "Retire a device";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--user-id", description: "key: id of user"));
-            command.AddOption(new Option<string>("--manageddevice-id", description: "key: id of managedDevice"));
+            var userIdOption = new Option<string>("--user-id", description: "key: id of user");
+            userIdOption.IsRequired = true;
+            command.AddOption(userIdOption);
+            var managedDeviceIdOption = new Option<string>("--manageddevice-id", description: "key: id of managedDevice");
+            managedDeviceIdOption.IsRequired = true;
+            command.AddOption(managedDeviceIdOption);
             command.Handler = CommandHandler.Create<string, string>(async (userId, managedDeviceId) => {
-                var requestInfo = CreatePostRequestInformation();
-                if (!String.IsNullOrEmpty(userId)) requestInfo.PathParameters.Add("user_id", userId);
-                if (!String.IsNullOrEmpty(managedDeviceId)) requestInfo.PathParameters.Add("managedDevice_id", managedDeviceId);
+                var requestInfo = CreatePostRequestInformation(q => {
+                });
                 await RequestAdapter.SendNoContentAsync(requestInfo);
                 // Print request output. What if the request has no return?
                 Console.WriteLine("Success");

@@ -25,10 +25,12 @@ namespace ApiSdk.DeviceManagement.WindowsAutopilotDeviceIdentities.Item.Unassign
             var command = new Command("post");
             command.Description = "Unassigns the user from an Autopilot device.";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--windowsautopilotdeviceidentity-id", description: "key: id of windowsAutopilotDeviceIdentity"));
+            var windowsAutopilotDeviceIdentityIdOption = new Option<string>("--windowsautopilotdeviceidentity-id", description: "key: id of windowsAutopilotDeviceIdentity");
+            windowsAutopilotDeviceIdentityIdOption.IsRequired = true;
+            command.AddOption(windowsAutopilotDeviceIdentityIdOption);
             command.Handler = CommandHandler.Create<string>(async (windowsAutopilotDeviceIdentityId) => {
-                var requestInfo = CreatePostRequestInformation();
-                if (!String.IsNullOrEmpty(windowsAutopilotDeviceIdentityId)) requestInfo.PathParameters.Add("windowsAutopilotDeviceIdentity_id", windowsAutopilotDeviceIdentityId);
+                var requestInfo = CreatePostRequestInformation(q => {
+                });
                 await RequestAdapter.SendNoContentAsync(requestInfo);
                 // Print request output. What if the request has no return?
                 Console.WriteLine("Success");

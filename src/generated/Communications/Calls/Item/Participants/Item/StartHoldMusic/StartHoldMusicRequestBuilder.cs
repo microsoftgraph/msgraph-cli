@@ -26,16 +26,21 @@ namespace ApiSdk.Communications.Calls.Item.Participants.Item.StartHoldMusic {
             var command = new Command("post");
             command.Description = "Invoke action startHoldMusic";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--call-id", description: "key: id of call"));
-            command.AddOption(new Option<string>("--participant-id", description: "key: id of participant"));
-            command.AddOption(new Option<string>("--body"));
+            var callIdOption = new Option<string>("--call-id", description: "key: id of call");
+            callIdOption.IsRequired = true;
+            command.AddOption(callIdOption);
+            var participantIdOption = new Option<string>("--participant-id", description: "key: id of participant");
+            participantIdOption.IsRequired = true;
+            command.AddOption(participantIdOption);
+            var bodyOption = new Option<string>("--body");
+            bodyOption.IsRequired = true;
+            command.AddOption(bodyOption);
             command.Handler = CommandHandler.Create<string, string, string>(async (callId, participantId, body) => {
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<StartHoldMusicRequestBody>();
-                var requestInfo = CreatePostRequestInformation(model);
-                if (!String.IsNullOrEmpty(callId)) requestInfo.PathParameters.Add("call_id", callId);
-                if (!String.IsNullOrEmpty(participantId)) requestInfo.PathParameters.Add("participant_id", participantId);
+                var requestInfo = CreatePostRequestInformation(model, q => {
+                });
                 var result = await RequestAdapter.SendAsync<StartHoldMusicResponse>(requestInfo);
                 // Print request output. What if the request has no return?
                 using var serializer = RequestAdapter.SerializationWriterFactory.GetSerializationWriter("application/json");

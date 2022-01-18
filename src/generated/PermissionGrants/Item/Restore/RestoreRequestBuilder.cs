@@ -26,10 +26,12 @@ namespace ApiSdk.PermissionGrants.Item.Restore {
             var command = new Command("post");
             command.Description = "Invoke action restore";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--resourcespecificpermissiongrant-id", description: "key: id of resourceSpecificPermissionGrant"));
+            var resourceSpecificPermissionGrantIdOption = new Option<string>("--resourcespecificpermissiongrant-id", description: "key: id of resourceSpecificPermissionGrant");
+            resourceSpecificPermissionGrantIdOption.IsRequired = true;
+            command.AddOption(resourceSpecificPermissionGrantIdOption);
             command.Handler = CommandHandler.Create<string>(async (resourceSpecificPermissionGrantId) => {
-                var requestInfo = CreatePostRequestInformation();
-                if (!String.IsNullOrEmpty(resourceSpecificPermissionGrantId)) requestInfo.PathParameters.Add("resourceSpecificPermissionGrant_id", resourceSpecificPermissionGrantId);
+                var requestInfo = CreatePostRequestInformation(q => {
+                });
                 var result = await RequestAdapter.SendAsync<RestoreResponse>(requestInfo);
                 // Print request output. What if the request has no return?
                 using var serializer = RequestAdapter.SerializationWriterFactory.GetSerializationWriter("application/json");

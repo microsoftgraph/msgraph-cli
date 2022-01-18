@@ -25,10 +25,12 @@ namespace ApiSdk.DeviceManagement.RemoteAssistancePartners.Item.BeginOnboarding 
             var command = new Command("post");
             command.Description = "A request to start onboarding.  Must be coupled with the appropriate TeamViewer account information";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--remoteassistancepartner-id", description: "key: id of remoteAssistancePartner"));
+            var remoteAssistancePartnerIdOption = new Option<string>("--remoteassistancepartner-id", description: "key: id of remoteAssistancePartner");
+            remoteAssistancePartnerIdOption.IsRequired = true;
+            command.AddOption(remoteAssistancePartnerIdOption);
             command.Handler = CommandHandler.Create<string>(async (remoteAssistancePartnerId) => {
-                var requestInfo = CreatePostRequestInformation();
-                if (!String.IsNullOrEmpty(remoteAssistancePartnerId)) requestInfo.PathParameters.Add("remoteAssistancePartner_id", remoteAssistancePartnerId);
+                var requestInfo = CreatePostRequestInformation(q => {
+                });
                 await RequestAdapter.SendNoContentAsync(requestInfo);
                 // Print request output. What if the request has no return?
                 Console.WriteLine("Success");

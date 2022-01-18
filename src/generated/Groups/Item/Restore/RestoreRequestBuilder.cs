@@ -26,10 +26,12 @@ namespace ApiSdk.Groups.Item.Restore {
             var command = new Command("post");
             command.Description = "Invoke action restore";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--group-id", description: "key: id of group"));
+            var groupIdOption = new Option<string>("--group-id", description: "key: id of group");
+            groupIdOption.IsRequired = true;
+            command.AddOption(groupIdOption);
             command.Handler = CommandHandler.Create<string>(async (groupId) => {
-                var requestInfo = CreatePostRequestInformation();
-                if (!String.IsNullOrEmpty(groupId)) requestInfo.PathParameters.Add("group_id", groupId);
+                var requestInfo = CreatePostRequestInformation(q => {
+                });
                 var result = await RequestAdapter.SendAsync<RestoreResponse>(requestInfo);
                 // Print request output. What if the request has no return?
                 using var serializer = RequestAdapter.SerializationWriterFactory.GetSerializationWriter("application/json");

@@ -25,14 +25,18 @@ namespace ApiSdk.Teams.Item.Channels.Item.Tabs.Item.TeamsApp.@Ref {
             var command = new Command("delete");
             command.Description = "The application that is linked to the tab. This cannot be changed after tab creation.";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--team-id", description: "key: id of team"));
-            command.AddOption(new Option<string>("--channel-id", description: "key: id of channel"));
-            command.AddOption(new Option<string>("--teamstab-id", description: "key: id of teamsTab"));
+            var teamIdOption = new Option<string>("--team-id", description: "key: id of team");
+            teamIdOption.IsRequired = true;
+            command.AddOption(teamIdOption);
+            var channelIdOption = new Option<string>("--channel-id", description: "key: id of channel");
+            channelIdOption.IsRequired = true;
+            command.AddOption(channelIdOption);
+            var teamsTabIdOption = new Option<string>("--teamstab-id", description: "key: id of teamsTab");
+            teamsTabIdOption.IsRequired = true;
+            command.AddOption(teamsTabIdOption);
             command.Handler = CommandHandler.Create<string, string, string>(async (teamId, channelId, teamsTabId) => {
-                var requestInfo = CreateDeleteRequestInformation();
-                if (!String.IsNullOrEmpty(teamId)) requestInfo.PathParameters.Add("team_id", teamId);
-                if (!String.IsNullOrEmpty(channelId)) requestInfo.PathParameters.Add("channel_id", channelId);
-                if (!String.IsNullOrEmpty(teamsTabId)) requestInfo.PathParameters.Add("teamsTab_id", teamsTabId);
+                var requestInfo = CreateDeleteRequestInformation(q => {
+                });
                 await RequestAdapter.SendNoContentAsync(requestInfo);
                 // Print request output. What if the request has no return?
                 Console.WriteLine("Success");
@@ -46,14 +50,18 @@ namespace ApiSdk.Teams.Item.Channels.Item.Tabs.Item.TeamsApp.@Ref {
             var command = new Command("get");
             command.Description = "The application that is linked to the tab. This cannot be changed after tab creation.";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--team-id", description: "key: id of team"));
-            command.AddOption(new Option<string>("--channel-id", description: "key: id of channel"));
-            command.AddOption(new Option<string>("--teamstab-id", description: "key: id of teamsTab"));
+            var teamIdOption = new Option<string>("--team-id", description: "key: id of team");
+            teamIdOption.IsRequired = true;
+            command.AddOption(teamIdOption);
+            var channelIdOption = new Option<string>("--channel-id", description: "key: id of channel");
+            channelIdOption.IsRequired = true;
+            command.AddOption(channelIdOption);
+            var teamsTabIdOption = new Option<string>("--teamstab-id", description: "key: id of teamsTab");
+            teamsTabIdOption.IsRequired = true;
+            command.AddOption(teamsTabIdOption);
             command.Handler = CommandHandler.Create<string, string, string>(async (teamId, channelId, teamsTabId) => {
-                var requestInfo = CreateGetRequestInformation();
-                if (!String.IsNullOrEmpty(teamId)) requestInfo.PathParameters.Add("team_id", teamId);
-                if (!String.IsNullOrEmpty(channelId)) requestInfo.PathParameters.Add("channel_id", channelId);
-                if (!String.IsNullOrEmpty(teamsTabId)) requestInfo.PathParameters.Add("teamsTab_id", teamsTabId);
+                var requestInfo = CreateGetRequestInformation(q => {
+                });
                 var result = await RequestAdapter.SendPrimitiveAsync<string>(requestInfo);
                 // Print request output. What if the request has no return?
                 using var serializer = RequestAdapter.SerializationWriterFactory.GetSerializationWriter("application/json");
@@ -72,18 +80,24 @@ namespace ApiSdk.Teams.Item.Channels.Item.Tabs.Item.TeamsApp.@Ref {
             var command = new Command("put");
             command.Description = "The application that is linked to the tab. This cannot be changed after tab creation.";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--team-id", description: "key: id of team"));
-            command.AddOption(new Option<string>("--channel-id", description: "key: id of channel"));
-            command.AddOption(new Option<string>("--teamstab-id", description: "key: id of teamsTab"));
-            command.AddOption(new Option<string>("--body"));
+            var teamIdOption = new Option<string>("--team-id", description: "key: id of team");
+            teamIdOption.IsRequired = true;
+            command.AddOption(teamIdOption);
+            var channelIdOption = new Option<string>("--channel-id", description: "key: id of channel");
+            channelIdOption.IsRequired = true;
+            command.AddOption(channelIdOption);
+            var teamsTabIdOption = new Option<string>("--teamstab-id", description: "key: id of teamsTab");
+            teamsTabIdOption.IsRequired = true;
+            command.AddOption(teamsTabIdOption);
+            var bodyOption = new Option<string>("--body");
+            bodyOption.IsRequired = true;
+            command.AddOption(bodyOption);
             command.Handler = CommandHandler.Create<string, string, string, string>(async (teamId, channelId, teamsTabId, body) => {
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<ApiSdk.Teams.Item.Channels.Item.Tabs.Item.TeamsApp.@Ref.@Ref>();
-                var requestInfo = CreatePutRequestInformation(model);
-                if (!String.IsNullOrEmpty(teamId)) requestInfo.PathParameters.Add("team_id", teamId);
-                if (!String.IsNullOrEmpty(channelId)) requestInfo.PathParameters.Add("channel_id", channelId);
-                if (!String.IsNullOrEmpty(teamsTabId)) requestInfo.PathParameters.Add("teamsTab_id", teamsTabId);
+                var requestInfo = CreatePutRequestInformation(model, q => {
+                });
                 await RequestAdapter.SendNoContentAsync(requestInfo);
                 // Print request output. What if the request has no return?
                 Console.WriteLine("Success");

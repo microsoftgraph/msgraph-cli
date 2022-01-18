@@ -25,10 +25,12 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.AccessPackages.Item.Ge
             var command = new Command("post");
             command.Description = "Invoke action getApplicablePolicyRequirements";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--accesspackage-id", description: "key: id of accessPackage"));
+            var accessPackageIdOption = new Option<string>("--accesspackage-id", description: "key: id of accessPackage");
+            accessPackageIdOption.IsRequired = true;
+            command.AddOption(accessPackageIdOption);
             command.Handler = CommandHandler.Create<string>(async (accessPackageId) => {
-                var requestInfo = CreatePostRequestInformation();
-                if (!String.IsNullOrEmpty(accessPackageId)) requestInfo.PathParameters.Add("accessPackage_id", accessPackageId);
+                var requestInfo = CreatePostRequestInformation(q => {
+                });
                 var result = await RequestAdapter.SendCollectionAsync<ApiSdk.IdentityGovernance.EntitlementManagement.AccessPackages.Item.GetApplicablePolicyRequirements.GetApplicablePolicyRequirements>(requestInfo);
                 // Print request output. What if the request has no return?
                 using var serializer = RequestAdapter.SerializationWriterFactory.GetSerializationWriter("application/json");

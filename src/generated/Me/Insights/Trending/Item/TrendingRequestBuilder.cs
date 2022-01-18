@@ -27,10 +27,12 @@ namespace ApiSdk.Me.Insights.Trending.Item {
             var command = new Command("delete");
             command.Description = "Calculated relationship identifying documents trending around a user. Trending documents are calculated based on activity of the user's closest network of people and include files stored in OneDrive for Business and SharePoint. Trending insights help the user to discover potentially useful content that the user has access to, but has never viewed before.";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--trending-id", description: "key: id of trending"));
+            var trendingIdOption = new Option<string>("--trending-id", description: "key: id of trending");
+            trendingIdOption.IsRequired = true;
+            command.AddOption(trendingIdOption);
             command.Handler = CommandHandler.Create<string>(async (trendingId) => {
-                var requestInfo = CreateDeleteRequestInformation();
-                if (!String.IsNullOrEmpty(trendingId)) requestInfo.PathParameters.Add("trending_id", trendingId);
+                var requestInfo = CreateDeleteRequestInformation(q => {
+                });
                 await RequestAdapter.SendNoContentAsync(requestInfo);
                 // Print request output. What if the request has no return?
                 Console.WriteLine("Success");
@@ -44,14 +46,22 @@ namespace ApiSdk.Me.Insights.Trending.Item {
             var command = new Command("get");
             command.Description = "Calculated relationship identifying documents trending around a user. Trending documents are calculated based on activity of the user's closest network of people and include files stored in OneDrive for Business and SharePoint. Trending insights help the user to discover potentially useful content that the user has access to, but has never viewed before.";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--trending-id", description: "key: id of trending"));
-            command.AddOption(new Option<object>("--select", description: "Select properties to be returned"));
-            command.AddOption(new Option<object>("--expand", description: "Expand related entities"));
-            command.Handler = CommandHandler.Create<string, object, object>(async (trendingId, select, expand) => {
-                var requestInfo = CreateGetRequestInformation();
-                if (!String.IsNullOrEmpty(trendingId)) requestInfo.PathParameters.Add("trending_id", trendingId);
-                requestInfo.QueryParameters.Add("select", select);
-                requestInfo.QueryParameters.Add("expand", expand);
+            var trendingIdOption = new Option<string>("--trending-id", description: "key: id of trending");
+            trendingIdOption.IsRequired = true;
+            command.AddOption(trendingIdOption);
+            var selectOption = new Option<string[]>("--select", description: "Select properties to be returned");
+            selectOption.IsRequired = false;
+            selectOption.Arity = ArgumentArity.ZeroOrMore;
+            command.AddOption(selectOption);
+            var expandOption = new Option<string[]>("--expand", description: "Expand related entities");
+            expandOption.IsRequired = false;
+            expandOption.Arity = ArgumentArity.ZeroOrMore;
+            command.AddOption(expandOption);
+            command.Handler = CommandHandler.Create<string, string[], string[]>(async (trendingId, select, expand) => {
+                var requestInfo = CreateGetRequestInformation(q => {
+                    q.Select = select;
+                    q.Expand = expand;
+                });
                 var result = await RequestAdapter.SendAsync<ApiSdk.Models.Microsoft.Graph.Trending>(requestInfo);
                 // Print request output. What if the request has no return?
                 using var serializer = RequestAdapter.SerializationWriterFactory.GetSerializationWriter("application/json");
@@ -70,14 +80,18 @@ namespace ApiSdk.Me.Insights.Trending.Item {
             var command = new Command("patch");
             command.Description = "Calculated relationship identifying documents trending around a user. Trending documents are calculated based on activity of the user's closest network of people and include files stored in OneDrive for Business and SharePoint. Trending insights help the user to discover potentially useful content that the user has access to, but has never viewed before.";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--trending-id", description: "key: id of trending"));
-            command.AddOption(new Option<string>("--body"));
+            var trendingIdOption = new Option<string>("--trending-id", description: "key: id of trending");
+            trendingIdOption.IsRequired = true;
+            command.AddOption(trendingIdOption);
+            var bodyOption = new Option<string>("--body");
+            bodyOption.IsRequired = true;
+            command.AddOption(bodyOption);
             command.Handler = CommandHandler.Create<string, string>(async (trendingId, body) => {
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<ApiSdk.Models.Microsoft.Graph.Trending>();
-                var requestInfo = CreatePatchRequestInformation(model);
-                if (!String.IsNullOrEmpty(trendingId)) requestInfo.PathParameters.Add("trending_id", trendingId);
+                var requestInfo = CreatePatchRequestInformation(model, q => {
+                });
                 await RequestAdapter.SendNoContentAsync(requestInfo);
                 // Print request output. What if the request has no return?
                 Console.WriteLine("Success");

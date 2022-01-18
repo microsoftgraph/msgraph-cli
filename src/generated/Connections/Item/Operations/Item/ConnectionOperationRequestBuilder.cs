@@ -26,12 +26,15 @@ namespace ApiSdk.Connections.Item.Operations.Item {
             var command = new Command("delete");
             command.Description = "Read-only. Nullable.";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--externalconnection-id", description: "key: id of externalConnection"));
-            command.AddOption(new Option<string>("--connectionoperation-id", description: "key: id of connectionOperation"));
+            var externalConnectionIdOption = new Option<string>("--externalconnection-id", description: "key: id of externalConnection");
+            externalConnectionIdOption.IsRequired = true;
+            command.AddOption(externalConnectionIdOption);
+            var connectionOperationIdOption = new Option<string>("--connectionoperation-id", description: "key: id of connectionOperation");
+            connectionOperationIdOption.IsRequired = true;
+            command.AddOption(connectionOperationIdOption);
             command.Handler = CommandHandler.Create<string, string>(async (externalConnectionId, connectionOperationId) => {
-                var requestInfo = CreateDeleteRequestInformation();
-                if (!String.IsNullOrEmpty(externalConnectionId)) requestInfo.PathParameters.Add("externalConnection_id", externalConnectionId);
-                if (!String.IsNullOrEmpty(connectionOperationId)) requestInfo.PathParameters.Add("connectionOperation_id", connectionOperationId);
+                var requestInfo = CreateDeleteRequestInformation(q => {
+                });
                 await RequestAdapter.SendNoContentAsync(requestInfo);
                 // Print request output. What if the request has no return?
                 Console.WriteLine("Success");
@@ -45,16 +48,25 @@ namespace ApiSdk.Connections.Item.Operations.Item {
             var command = new Command("get");
             command.Description = "Read-only. Nullable.";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--externalconnection-id", description: "key: id of externalConnection"));
-            command.AddOption(new Option<string>("--connectionoperation-id", description: "key: id of connectionOperation"));
-            command.AddOption(new Option<object>("--select", description: "Select properties to be returned"));
-            command.AddOption(new Option<object>("--expand", description: "Expand related entities"));
-            command.Handler = CommandHandler.Create<string, string, object, object>(async (externalConnectionId, connectionOperationId, select, expand) => {
-                var requestInfo = CreateGetRequestInformation();
-                if (!String.IsNullOrEmpty(externalConnectionId)) requestInfo.PathParameters.Add("externalConnection_id", externalConnectionId);
-                if (!String.IsNullOrEmpty(connectionOperationId)) requestInfo.PathParameters.Add("connectionOperation_id", connectionOperationId);
-                requestInfo.QueryParameters.Add("select", select);
-                requestInfo.QueryParameters.Add("expand", expand);
+            var externalConnectionIdOption = new Option<string>("--externalconnection-id", description: "key: id of externalConnection");
+            externalConnectionIdOption.IsRequired = true;
+            command.AddOption(externalConnectionIdOption);
+            var connectionOperationIdOption = new Option<string>("--connectionoperation-id", description: "key: id of connectionOperation");
+            connectionOperationIdOption.IsRequired = true;
+            command.AddOption(connectionOperationIdOption);
+            var selectOption = new Option<string[]>("--select", description: "Select properties to be returned");
+            selectOption.IsRequired = false;
+            selectOption.Arity = ArgumentArity.ZeroOrMore;
+            command.AddOption(selectOption);
+            var expandOption = new Option<string[]>("--expand", description: "Expand related entities");
+            expandOption.IsRequired = false;
+            expandOption.Arity = ArgumentArity.ZeroOrMore;
+            command.AddOption(expandOption);
+            command.Handler = CommandHandler.Create<string, string, string[], string[]>(async (externalConnectionId, connectionOperationId, select, expand) => {
+                var requestInfo = CreateGetRequestInformation(q => {
+                    q.Select = select;
+                    q.Expand = expand;
+                });
                 var result = await RequestAdapter.SendAsync<ConnectionOperation>(requestInfo);
                 // Print request output. What if the request has no return?
                 using var serializer = RequestAdapter.SerializationWriterFactory.GetSerializationWriter("application/json");
@@ -73,16 +85,21 @@ namespace ApiSdk.Connections.Item.Operations.Item {
             var command = new Command("patch");
             command.Description = "Read-only. Nullable.";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--externalconnection-id", description: "key: id of externalConnection"));
-            command.AddOption(new Option<string>("--connectionoperation-id", description: "key: id of connectionOperation"));
-            command.AddOption(new Option<string>("--body"));
+            var externalConnectionIdOption = new Option<string>("--externalconnection-id", description: "key: id of externalConnection");
+            externalConnectionIdOption.IsRequired = true;
+            command.AddOption(externalConnectionIdOption);
+            var connectionOperationIdOption = new Option<string>("--connectionoperation-id", description: "key: id of connectionOperation");
+            connectionOperationIdOption.IsRequired = true;
+            command.AddOption(connectionOperationIdOption);
+            var bodyOption = new Option<string>("--body");
+            bodyOption.IsRequired = true;
+            command.AddOption(bodyOption);
             command.Handler = CommandHandler.Create<string, string, string>(async (externalConnectionId, connectionOperationId, body) => {
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<ConnectionOperation>();
-                var requestInfo = CreatePatchRequestInformation(model);
-                if (!String.IsNullOrEmpty(externalConnectionId)) requestInfo.PathParameters.Add("externalConnection_id", externalConnectionId);
-                if (!String.IsNullOrEmpty(connectionOperationId)) requestInfo.PathParameters.Add("connectionOperation_id", connectionOperationId);
+                var requestInfo = CreatePatchRequestInformation(model, q => {
+                });
                 await RequestAdapter.SendNoContentAsync(requestInfo);
                 // Print request output. What if the request has no return?
                 Console.WriteLine("Success");

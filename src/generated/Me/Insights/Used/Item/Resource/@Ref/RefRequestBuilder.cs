@@ -25,10 +25,12 @@ namespace ApiSdk.Me.Insights.Used.Item.Resource.@Ref {
             var command = new Command("delete");
             command.Description = "Used for navigating to the item that was used. For file attachments, the type is fileAttachment. For linked attachments, the type is driveItem.";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--usedinsight-id", description: "key: id of usedInsight"));
+            var usedInsightIdOption = new Option<string>("--usedinsight-id", description: "key: id of usedInsight");
+            usedInsightIdOption.IsRequired = true;
+            command.AddOption(usedInsightIdOption);
             command.Handler = CommandHandler.Create<string>(async (usedInsightId) => {
-                var requestInfo = CreateDeleteRequestInformation();
-                if (!String.IsNullOrEmpty(usedInsightId)) requestInfo.PathParameters.Add("usedInsight_id", usedInsightId);
+                var requestInfo = CreateDeleteRequestInformation(q => {
+                });
                 await RequestAdapter.SendNoContentAsync(requestInfo);
                 // Print request output. What if the request has no return?
                 Console.WriteLine("Success");
@@ -42,10 +44,12 @@ namespace ApiSdk.Me.Insights.Used.Item.Resource.@Ref {
             var command = new Command("get");
             command.Description = "Used for navigating to the item that was used. For file attachments, the type is fileAttachment. For linked attachments, the type is driveItem.";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--usedinsight-id", description: "key: id of usedInsight"));
+            var usedInsightIdOption = new Option<string>("--usedinsight-id", description: "key: id of usedInsight");
+            usedInsightIdOption.IsRequired = true;
+            command.AddOption(usedInsightIdOption);
             command.Handler = CommandHandler.Create<string>(async (usedInsightId) => {
-                var requestInfo = CreateGetRequestInformation();
-                if (!String.IsNullOrEmpty(usedInsightId)) requestInfo.PathParameters.Add("usedInsight_id", usedInsightId);
+                var requestInfo = CreateGetRequestInformation(q => {
+                });
                 var result = await RequestAdapter.SendPrimitiveAsync<string>(requestInfo);
                 // Print request output. What if the request has no return?
                 using var serializer = RequestAdapter.SerializationWriterFactory.GetSerializationWriter("application/json");
@@ -64,14 +68,18 @@ namespace ApiSdk.Me.Insights.Used.Item.Resource.@Ref {
             var command = new Command("put");
             command.Description = "Used for navigating to the item that was used. For file attachments, the type is fileAttachment. For linked attachments, the type is driveItem.";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--usedinsight-id", description: "key: id of usedInsight"));
-            command.AddOption(new Option<string>("--body"));
+            var usedInsightIdOption = new Option<string>("--usedinsight-id", description: "key: id of usedInsight");
+            usedInsightIdOption.IsRequired = true;
+            command.AddOption(usedInsightIdOption);
+            var bodyOption = new Option<string>("--body");
+            bodyOption.IsRequired = true;
+            command.AddOption(bodyOption);
             command.Handler = CommandHandler.Create<string, string>(async (usedInsightId, body) => {
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<ApiSdk.Me.Insights.Used.Item.Resource.@Ref.@Ref>();
-                var requestInfo = CreatePutRequestInformation(model);
-                if (!String.IsNullOrEmpty(usedInsightId)) requestInfo.PathParameters.Add("usedInsight_id", usedInsightId);
+                var requestInfo = CreatePutRequestInformation(model, q => {
+                });
                 await RequestAdapter.SendNoContentAsync(requestInfo);
                 // Print request output. What if the request has no return?
                 Console.WriteLine("Success");

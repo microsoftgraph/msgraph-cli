@@ -35,12 +35,15 @@ namespace ApiSdk.Print.TaskDefinitions.Item.Tasks.Item {
             var command = new Command("delete");
             command.Description = "A list of tasks that have been created based on this definition. The list includes currently running tasks and recently completed tasks. Read-only.";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--printtaskdefinition-id", description: "key: id of printTaskDefinition"));
-            command.AddOption(new Option<string>("--printtask-id", description: "key: id of printTask"));
+            var printTaskDefinitionIdOption = new Option<string>("--printtaskdefinition-id", description: "key: id of printTaskDefinition");
+            printTaskDefinitionIdOption.IsRequired = true;
+            command.AddOption(printTaskDefinitionIdOption);
+            var printTaskIdOption = new Option<string>("--printtask-id", description: "key: id of printTask");
+            printTaskIdOption.IsRequired = true;
+            command.AddOption(printTaskIdOption);
             command.Handler = CommandHandler.Create<string, string>(async (printTaskDefinitionId, printTaskId) => {
-                var requestInfo = CreateDeleteRequestInformation();
-                if (!String.IsNullOrEmpty(printTaskDefinitionId)) requestInfo.PathParameters.Add("printTaskDefinition_id", printTaskDefinitionId);
-                if (!String.IsNullOrEmpty(printTaskId)) requestInfo.PathParameters.Add("printTask_id", printTaskId);
+                var requestInfo = CreateDeleteRequestInformation(q => {
+                });
                 await RequestAdapter.SendNoContentAsync(requestInfo);
                 // Print request output. What if the request has no return?
                 Console.WriteLine("Success");
@@ -54,16 +57,25 @@ namespace ApiSdk.Print.TaskDefinitions.Item.Tasks.Item {
             var command = new Command("get");
             command.Description = "A list of tasks that have been created based on this definition. The list includes currently running tasks and recently completed tasks. Read-only.";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--printtaskdefinition-id", description: "key: id of printTaskDefinition"));
-            command.AddOption(new Option<string>("--printtask-id", description: "key: id of printTask"));
-            command.AddOption(new Option<object>("--select", description: "Select properties to be returned"));
-            command.AddOption(new Option<object>("--expand", description: "Expand related entities"));
-            command.Handler = CommandHandler.Create<string, string, object, object>(async (printTaskDefinitionId, printTaskId, select, expand) => {
-                var requestInfo = CreateGetRequestInformation();
-                if (!String.IsNullOrEmpty(printTaskDefinitionId)) requestInfo.PathParameters.Add("printTaskDefinition_id", printTaskDefinitionId);
-                if (!String.IsNullOrEmpty(printTaskId)) requestInfo.PathParameters.Add("printTask_id", printTaskId);
-                requestInfo.QueryParameters.Add("select", select);
-                requestInfo.QueryParameters.Add("expand", expand);
+            var printTaskDefinitionIdOption = new Option<string>("--printtaskdefinition-id", description: "key: id of printTaskDefinition");
+            printTaskDefinitionIdOption.IsRequired = true;
+            command.AddOption(printTaskDefinitionIdOption);
+            var printTaskIdOption = new Option<string>("--printtask-id", description: "key: id of printTask");
+            printTaskIdOption.IsRequired = true;
+            command.AddOption(printTaskIdOption);
+            var selectOption = new Option<string[]>("--select", description: "Select properties to be returned");
+            selectOption.IsRequired = false;
+            selectOption.Arity = ArgumentArity.ZeroOrMore;
+            command.AddOption(selectOption);
+            var expandOption = new Option<string[]>("--expand", description: "Expand related entities");
+            expandOption.IsRequired = false;
+            expandOption.Arity = ArgumentArity.ZeroOrMore;
+            command.AddOption(expandOption);
+            command.Handler = CommandHandler.Create<string, string, string[], string[]>(async (printTaskDefinitionId, printTaskId, select, expand) => {
+                var requestInfo = CreateGetRequestInformation(q => {
+                    q.Select = select;
+                    q.Expand = expand;
+                });
                 var result = await RequestAdapter.SendAsync<PrintTask>(requestInfo);
                 // Print request output. What if the request has no return?
                 using var serializer = RequestAdapter.SerializationWriterFactory.GetSerializationWriter("application/json");
@@ -82,16 +94,21 @@ namespace ApiSdk.Print.TaskDefinitions.Item.Tasks.Item {
             var command = new Command("patch");
             command.Description = "A list of tasks that have been created based on this definition. The list includes currently running tasks and recently completed tasks. Read-only.";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--printtaskdefinition-id", description: "key: id of printTaskDefinition"));
-            command.AddOption(new Option<string>("--printtask-id", description: "key: id of printTask"));
-            command.AddOption(new Option<string>("--body"));
+            var printTaskDefinitionIdOption = new Option<string>("--printtaskdefinition-id", description: "key: id of printTaskDefinition");
+            printTaskDefinitionIdOption.IsRequired = true;
+            command.AddOption(printTaskDefinitionIdOption);
+            var printTaskIdOption = new Option<string>("--printtask-id", description: "key: id of printTask");
+            printTaskIdOption.IsRequired = true;
+            command.AddOption(printTaskIdOption);
+            var bodyOption = new Option<string>("--body");
+            bodyOption.IsRequired = true;
+            command.AddOption(bodyOption);
             command.Handler = CommandHandler.Create<string, string, string>(async (printTaskDefinitionId, printTaskId, body) => {
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<PrintTask>();
-                var requestInfo = CreatePatchRequestInformation(model);
-                if (!String.IsNullOrEmpty(printTaskDefinitionId)) requestInfo.PathParameters.Add("printTaskDefinition_id", printTaskDefinitionId);
-                if (!String.IsNullOrEmpty(printTaskId)) requestInfo.PathParameters.Add("printTask_id", printTaskId);
+                var requestInfo = CreatePatchRequestInformation(model, q => {
+                });
                 await RequestAdapter.SendNoContentAsync(requestInfo);
                 // Print request output. What if the request has no return?
                 Console.WriteLine("Success");

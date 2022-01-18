@@ -27,10 +27,12 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.AccessPackageAssignmen
             var command = new Command("delete");
             command.Description = "Delete navigation property accessPackageAssignmentApprovals for identityGovernance";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--approval-id", description: "key: id of approval"));
+            var approvalIdOption = new Option<string>("--approval-id", description: "key: id of approval");
+            approvalIdOption.IsRequired = true;
+            command.AddOption(approvalIdOption);
             command.Handler = CommandHandler.Create<string>(async (approvalId) => {
-                var requestInfo = CreateDeleteRequestInformation();
-                if (!String.IsNullOrEmpty(approvalId)) requestInfo.PathParameters.Add("approval_id", approvalId);
+                var requestInfo = CreateDeleteRequestInformation(q => {
+                });
                 await RequestAdapter.SendNoContentAsync(requestInfo);
                 // Print request output. What if the request has no return?
                 Console.WriteLine("Success");
@@ -44,14 +46,22 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.AccessPackageAssignmen
             var command = new Command("get");
             command.Description = "Get accessPackageAssignmentApprovals from identityGovernance";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--approval-id", description: "key: id of approval"));
-            command.AddOption(new Option<object>("--select", description: "Select properties to be returned"));
-            command.AddOption(new Option<object>("--expand", description: "Expand related entities"));
-            command.Handler = CommandHandler.Create<string, object, object>(async (approvalId, select, expand) => {
-                var requestInfo = CreateGetRequestInformation();
-                if (!String.IsNullOrEmpty(approvalId)) requestInfo.PathParameters.Add("approval_id", approvalId);
-                requestInfo.QueryParameters.Add("select", select);
-                requestInfo.QueryParameters.Add("expand", expand);
+            var approvalIdOption = new Option<string>("--approval-id", description: "key: id of approval");
+            approvalIdOption.IsRequired = true;
+            command.AddOption(approvalIdOption);
+            var selectOption = new Option<string[]>("--select", description: "Select properties to be returned");
+            selectOption.IsRequired = false;
+            selectOption.Arity = ArgumentArity.ZeroOrMore;
+            command.AddOption(selectOption);
+            var expandOption = new Option<string[]>("--expand", description: "Expand related entities");
+            expandOption.IsRequired = false;
+            expandOption.Arity = ArgumentArity.ZeroOrMore;
+            command.AddOption(expandOption);
+            command.Handler = CommandHandler.Create<string, string[], string[]>(async (approvalId, select, expand) => {
+                var requestInfo = CreateGetRequestInformation(q => {
+                    q.Select = select;
+                    q.Expand = expand;
+                });
                 var result = await RequestAdapter.SendAsync<ApiSdk.Models.Microsoft.Graph.Approval>(requestInfo);
                 // Print request output. What if the request has no return?
                 using var serializer = RequestAdapter.SerializationWriterFactory.GetSerializationWriter("application/json");
@@ -70,14 +80,18 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.AccessPackageAssignmen
             var command = new Command("patch");
             command.Description = "Update the navigation property accessPackageAssignmentApprovals in identityGovernance";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--approval-id", description: "key: id of approval"));
-            command.AddOption(new Option<string>("--body"));
+            var approvalIdOption = new Option<string>("--approval-id", description: "key: id of approval");
+            approvalIdOption.IsRequired = true;
+            command.AddOption(approvalIdOption);
+            var bodyOption = new Option<string>("--body");
+            bodyOption.IsRequired = true;
+            command.AddOption(bodyOption);
             command.Handler = CommandHandler.Create<string, string>(async (approvalId, body) => {
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<ApiSdk.Models.Microsoft.Graph.Approval>();
-                var requestInfo = CreatePatchRequestInformation(model);
-                if (!String.IsNullOrEmpty(approvalId)) requestInfo.PathParameters.Add("approval_id", approvalId);
+                var requestInfo = CreatePatchRequestInformation(model, q => {
+                });
                 await RequestAdapter.SendNoContentAsync(requestInfo);
                 // Print request output. What if the request has no return?
                 Console.WriteLine("Success");

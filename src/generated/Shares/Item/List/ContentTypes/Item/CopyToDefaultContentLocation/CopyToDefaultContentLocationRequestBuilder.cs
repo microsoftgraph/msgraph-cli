@@ -25,16 +25,21 @@ namespace ApiSdk.Shares.Item.List.ContentTypes.Item.CopyToDefaultContentLocation
             var command = new Command("post");
             command.Description = "Invoke action copyToDefaultContentLocation";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--shareddriveitem-id", description: "key: id of sharedDriveItem"));
-            command.AddOption(new Option<string>("--contenttype-id", description: "key: id of contentType"));
-            command.AddOption(new Option<string>("--body"));
+            var sharedDriveItemIdOption = new Option<string>("--shareddriveitem-id", description: "key: id of sharedDriveItem");
+            sharedDriveItemIdOption.IsRequired = true;
+            command.AddOption(sharedDriveItemIdOption);
+            var contentTypeIdOption = new Option<string>("--contenttype-id", description: "key: id of contentType");
+            contentTypeIdOption.IsRequired = true;
+            command.AddOption(contentTypeIdOption);
+            var bodyOption = new Option<string>("--body");
+            bodyOption.IsRequired = true;
+            command.AddOption(bodyOption);
             command.Handler = CommandHandler.Create<string, string, string>(async (sharedDriveItemId, contentTypeId, body) => {
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<CopyToDefaultContentLocationRequestBody>();
-                var requestInfo = CreatePostRequestInformation(model);
-                if (!String.IsNullOrEmpty(sharedDriveItemId)) requestInfo.PathParameters.Add("sharedDriveItem_id", sharedDriveItemId);
-                if (!String.IsNullOrEmpty(contentTypeId)) requestInfo.PathParameters.Add("contentType_id", contentTypeId);
+                var requestInfo = CreatePostRequestInformation(model, q => {
+                });
                 await RequestAdapter.SendNoContentAsync(requestInfo);
                 // Print request output. What if the request has no return?
                 Console.WriteLine("Success");

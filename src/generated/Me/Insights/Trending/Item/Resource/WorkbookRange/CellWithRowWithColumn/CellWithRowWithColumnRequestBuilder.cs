@@ -26,14 +26,18 @@ namespace ApiSdk.Me.Insights.Trending.Item.Resource.WorkbookRange.CellWithRowWit
             var command = new Command("get");
             command.Description = "Invoke function cell";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--trending-id", description: "key: id of trending"));
-            command.AddOption(new Option<int?>("--row", description: "Usage: row={row}"));
-            command.AddOption(new Option<int?>("--column", description: "Usage: column={column}"));
+            var trendingIdOption = new Option<string>("--trending-id", description: "key: id of trending");
+            trendingIdOption.IsRequired = true;
+            command.AddOption(trendingIdOption);
+            var rowOption = new Option<int?>("--row", description: "Usage: row={row}");
+            rowOption.IsRequired = true;
+            command.AddOption(rowOption);
+            var columnOption = new Option<int?>("--column", description: "Usage: column={column}");
+            columnOption.IsRequired = true;
+            command.AddOption(columnOption);
             command.Handler = CommandHandler.Create<string, int?, int?>(async (trendingId, row, column) => {
-                var requestInfo = CreateGetRequestInformation();
-                if (!String.IsNullOrEmpty(trendingId)) requestInfo.PathParameters.Add("trending_id", trendingId);
-                requestInfo.PathParameters.Add("row", row);
-                requestInfo.PathParameters.Add("column", column);
+                var requestInfo = CreateGetRequestInformation(q => {
+                });
                 var result = await RequestAdapter.SendAsync<CellWithRowWithColumnResponse>(requestInfo);
                 // Print request output. What if the request has no return?
                 using var serializer = RequestAdapter.SerializationWriterFactory.GetSerializationWriter("application/json");

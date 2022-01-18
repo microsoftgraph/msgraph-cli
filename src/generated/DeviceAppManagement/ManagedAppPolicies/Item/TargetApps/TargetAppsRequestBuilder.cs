@@ -25,14 +25,18 @@ namespace ApiSdk.DeviceAppManagement.ManagedAppPolicies.Item.TargetApps {
             var command = new Command("post");
             command.Description = "Invoke action targetApps";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--managedapppolicy-id", description: "key: id of managedAppPolicy"));
-            command.AddOption(new Option<string>("--body"));
+            var managedAppPolicyIdOption = new Option<string>("--managedapppolicy-id", description: "key: id of managedAppPolicy");
+            managedAppPolicyIdOption.IsRequired = true;
+            command.AddOption(managedAppPolicyIdOption);
+            var bodyOption = new Option<string>("--body");
+            bodyOption.IsRequired = true;
+            command.AddOption(bodyOption);
             command.Handler = CommandHandler.Create<string, string>(async (managedAppPolicyId, body) => {
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<TargetAppsRequestBody>();
-                var requestInfo = CreatePostRequestInformation(model);
-                if (!String.IsNullOrEmpty(managedAppPolicyId)) requestInfo.PathParameters.Add("managedAppPolicy_id", managedAppPolicyId);
+                var requestInfo = CreatePostRequestInformation(model, q => {
+                });
                 await RequestAdapter.SendNoContentAsync(requestInfo);
                 // Print request output. What if the request has no return?
                 Console.WriteLine("Success");

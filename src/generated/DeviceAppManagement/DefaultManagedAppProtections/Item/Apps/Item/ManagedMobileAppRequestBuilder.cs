@@ -26,12 +26,15 @@ namespace ApiSdk.DeviceAppManagement.DefaultManagedAppProtections.Item.Apps.Item
             var command = new Command("delete");
             command.Description = "List of apps to which the policy is deployed.";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--defaultmanagedappprotection-id", description: "key: id of defaultManagedAppProtection"));
-            command.AddOption(new Option<string>("--managedmobileapp-id", description: "key: id of managedMobileApp"));
+            var defaultManagedAppProtectionIdOption = new Option<string>("--defaultmanagedappprotection-id", description: "key: id of defaultManagedAppProtection");
+            defaultManagedAppProtectionIdOption.IsRequired = true;
+            command.AddOption(defaultManagedAppProtectionIdOption);
+            var managedMobileAppIdOption = new Option<string>("--managedmobileapp-id", description: "key: id of managedMobileApp");
+            managedMobileAppIdOption.IsRequired = true;
+            command.AddOption(managedMobileAppIdOption);
             command.Handler = CommandHandler.Create<string, string>(async (defaultManagedAppProtectionId, managedMobileAppId) => {
-                var requestInfo = CreateDeleteRequestInformation();
-                if (!String.IsNullOrEmpty(defaultManagedAppProtectionId)) requestInfo.PathParameters.Add("defaultManagedAppProtection_id", defaultManagedAppProtectionId);
-                if (!String.IsNullOrEmpty(managedMobileAppId)) requestInfo.PathParameters.Add("managedMobileApp_id", managedMobileAppId);
+                var requestInfo = CreateDeleteRequestInformation(q => {
+                });
                 await RequestAdapter.SendNoContentAsync(requestInfo);
                 // Print request output. What if the request has no return?
                 Console.WriteLine("Success");
@@ -45,16 +48,25 @@ namespace ApiSdk.DeviceAppManagement.DefaultManagedAppProtections.Item.Apps.Item
             var command = new Command("get");
             command.Description = "List of apps to which the policy is deployed.";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--defaultmanagedappprotection-id", description: "key: id of defaultManagedAppProtection"));
-            command.AddOption(new Option<string>("--managedmobileapp-id", description: "key: id of managedMobileApp"));
-            command.AddOption(new Option<object>("--select", description: "Select properties to be returned"));
-            command.AddOption(new Option<object>("--expand", description: "Expand related entities"));
-            command.Handler = CommandHandler.Create<string, string, object, object>(async (defaultManagedAppProtectionId, managedMobileAppId, select, expand) => {
-                var requestInfo = CreateGetRequestInformation();
-                if (!String.IsNullOrEmpty(defaultManagedAppProtectionId)) requestInfo.PathParameters.Add("defaultManagedAppProtection_id", defaultManagedAppProtectionId);
-                if (!String.IsNullOrEmpty(managedMobileAppId)) requestInfo.PathParameters.Add("managedMobileApp_id", managedMobileAppId);
-                requestInfo.QueryParameters.Add("select", select);
-                requestInfo.QueryParameters.Add("expand", expand);
+            var defaultManagedAppProtectionIdOption = new Option<string>("--defaultmanagedappprotection-id", description: "key: id of defaultManagedAppProtection");
+            defaultManagedAppProtectionIdOption.IsRequired = true;
+            command.AddOption(defaultManagedAppProtectionIdOption);
+            var managedMobileAppIdOption = new Option<string>("--managedmobileapp-id", description: "key: id of managedMobileApp");
+            managedMobileAppIdOption.IsRequired = true;
+            command.AddOption(managedMobileAppIdOption);
+            var selectOption = new Option<string[]>("--select", description: "Select properties to be returned");
+            selectOption.IsRequired = false;
+            selectOption.Arity = ArgumentArity.ZeroOrMore;
+            command.AddOption(selectOption);
+            var expandOption = new Option<string[]>("--expand", description: "Expand related entities");
+            expandOption.IsRequired = false;
+            expandOption.Arity = ArgumentArity.ZeroOrMore;
+            command.AddOption(expandOption);
+            command.Handler = CommandHandler.Create<string, string, string[], string[]>(async (defaultManagedAppProtectionId, managedMobileAppId, select, expand) => {
+                var requestInfo = CreateGetRequestInformation(q => {
+                    q.Select = select;
+                    q.Expand = expand;
+                });
                 var result = await RequestAdapter.SendAsync<ManagedMobileApp>(requestInfo);
                 // Print request output. What if the request has no return?
                 using var serializer = RequestAdapter.SerializationWriterFactory.GetSerializationWriter("application/json");
@@ -73,16 +85,21 @@ namespace ApiSdk.DeviceAppManagement.DefaultManagedAppProtections.Item.Apps.Item
             var command = new Command("patch");
             command.Description = "List of apps to which the policy is deployed.";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--defaultmanagedappprotection-id", description: "key: id of defaultManagedAppProtection"));
-            command.AddOption(new Option<string>("--managedmobileapp-id", description: "key: id of managedMobileApp"));
-            command.AddOption(new Option<string>("--body"));
+            var defaultManagedAppProtectionIdOption = new Option<string>("--defaultmanagedappprotection-id", description: "key: id of defaultManagedAppProtection");
+            defaultManagedAppProtectionIdOption.IsRequired = true;
+            command.AddOption(defaultManagedAppProtectionIdOption);
+            var managedMobileAppIdOption = new Option<string>("--managedmobileapp-id", description: "key: id of managedMobileApp");
+            managedMobileAppIdOption.IsRequired = true;
+            command.AddOption(managedMobileAppIdOption);
+            var bodyOption = new Option<string>("--body");
+            bodyOption.IsRequired = true;
+            command.AddOption(bodyOption);
             command.Handler = CommandHandler.Create<string, string, string>(async (defaultManagedAppProtectionId, managedMobileAppId, body) => {
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<ManagedMobileApp>();
-                var requestInfo = CreatePatchRequestInformation(model);
-                if (!String.IsNullOrEmpty(defaultManagedAppProtectionId)) requestInfo.PathParameters.Add("defaultManagedAppProtection_id", defaultManagedAppProtectionId);
-                if (!String.IsNullOrEmpty(managedMobileAppId)) requestInfo.PathParameters.Add("managedMobileApp_id", managedMobileAppId);
+                var requestInfo = CreatePatchRequestInformation(model, q => {
+                });
                 await RequestAdapter.SendNoContentAsync(requestInfo);
                 // Print request output. What if the request has no return?
                 Console.WriteLine("Success");

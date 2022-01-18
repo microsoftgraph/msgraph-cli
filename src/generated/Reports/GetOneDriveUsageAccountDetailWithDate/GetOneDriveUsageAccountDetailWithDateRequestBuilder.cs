@@ -26,10 +26,12 @@ namespace ApiSdk.Reports.GetOneDriveUsageAccountDetailWithDate {
             var command = new Command("get");
             command.Description = "Invoke function getOneDriveUsageAccountDetail";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--date", description: "Usage: date={date}"));
+            var dateOption = new Option<string>("--date", description: "Usage: date={date}");
+            dateOption.IsRequired = true;
+            command.AddOption(dateOption);
             command.Handler = CommandHandler.Create<string>(async (date) => {
-                var requestInfo = CreateGetRequestInformation();
-                if (!String.IsNullOrEmpty(date)) requestInfo.PathParameters.Add("date", date);
+                var requestInfo = CreateGetRequestInformation(q => {
+                });
                 var result = await RequestAdapter.SendAsync<Report>(requestInfo);
                 // Print request output. What if the request has no return?
                 using var serializer = RequestAdapter.SerializationWriterFactory.GetSerializationWriter("application/json");

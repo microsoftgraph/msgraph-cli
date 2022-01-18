@@ -27,12 +27,15 @@ namespace ApiSdk.Communications.CallRecords.Item.Sessions.Item {
             var command = new Command("delete");
             command.Description = "List of sessions involved in the call. Peer-to-peer calls typically only have one session, whereas group calls typically have at least one session per participant. Read-only. Nullable.";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--callrecord-id", description: "key: id of callRecord"));
-            command.AddOption(new Option<string>("--session-id", description: "key: id of session"));
+            var callRecordIdOption = new Option<string>("--callrecord-id", description: "key: id of callRecord");
+            callRecordIdOption.IsRequired = true;
+            command.AddOption(callRecordIdOption);
+            var sessionIdOption = new Option<string>("--session-id", description: "key: id of session");
+            sessionIdOption.IsRequired = true;
+            command.AddOption(sessionIdOption);
             command.Handler = CommandHandler.Create<string, string>(async (callRecordId, sessionId) => {
-                var requestInfo = CreateDeleteRequestInformation();
-                if (!String.IsNullOrEmpty(callRecordId)) requestInfo.PathParameters.Add("callRecord_id", callRecordId);
-                if (!String.IsNullOrEmpty(sessionId)) requestInfo.PathParameters.Add("session_id", sessionId);
+                var requestInfo = CreateDeleteRequestInformation(q => {
+                });
                 await RequestAdapter.SendNoContentAsync(requestInfo);
                 // Print request output. What if the request has no return?
                 Console.WriteLine("Success");
@@ -46,16 +49,25 @@ namespace ApiSdk.Communications.CallRecords.Item.Sessions.Item {
             var command = new Command("get");
             command.Description = "List of sessions involved in the call. Peer-to-peer calls typically only have one session, whereas group calls typically have at least one session per participant. Read-only. Nullable.";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--callrecord-id", description: "key: id of callRecord"));
-            command.AddOption(new Option<string>("--session-id", description: "key: id of session"));
-            command.AddOption(new Option<object>("--select", description: "Select properties to be returned"));
-            command.AddOption(new Option<object>("--expand", description: "Expand related entities"));
-            command.Handler = CommandHandler.Create<string, string, object, object>(async (callRecordId, sessionId, select, expand) => {
-                var requestInfo = CreateGetRequestInformation();
-                if (!String.IsNullOrEmpty(callRecordId)) requestInfo.PathParameters.Add("callRecord_id", callRecordId);
-                if (!String.IsNullOrEmpty(sessionId)) requestInfo.PathParameters.Add("session_id", sessionId);
-                requestInfo.QueryParameters.Add("select", select);
-                requestInfo.QueryParameters.Add("expand", expand);
+            var callRecordIdOption = new Option<string>("--callrecord-id", description: "key: id of callRecord");
+            callRecordIdOption.IsRequired = true;
+            command.AddOption(callRecordIdOption);
+            var sessionIdOption = new Option<string>("--session-id", description: "key: id of session");
+            sessionIdOption.IsRequired = true;
+            command.AddOption(sessionIdOption);
+            var selectOption = new Option<string[]>("--select", description: "Select properties to be returned");
+            selectOption.IsRequired = false;
+            selectOption.Arity = ArgumentArity.ZeroOrMore;
+            command.AddOption(selectOption);
+            var expandOption = new Option<string[]>("--expand", description: "Expand related entities");
+            expandOption.IsRequired = false;
+            expandOption.Arity = ArgumentArity.ZeroOrMore;
+            command.AddOption(expandOption);
+            command.Handler = CommandHandler.Create<string, string, string[], string[]>(async (callRecordId, sessionId, select, expand) => {
+                var requestInfo = CreateGetRequestInformation(q => {
+                    q.Select = select;
+                    q.Expand = expand;
+                });
                 var result = await RequestAdapter.SendAsync<Session>(requestInfo);
                 // Print request output. What if the request has no return?
                 using var serializer = RequestAdapter.SerializationWriterFactory.GetSerializationWriter("application/json");
@@ -74,16 +86,21 @@ namespace ApiSdk.Communications.CallRecords.Item.Sessions.Item {
             var command = new Command("patch");
             command.Description = "List of sessions involved in the call. Peer-to-peer calls typically only have one session, whereas group calls typically have at least one session per participant. Read-only. Nullable.";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--callrecord-id", description: "key: id of callRecord"));
-            command.AddOption(new Option<string>("--session-id", description: "key: id of session"));
-            command.AddOption(new Option<string>("--body"));
+            var callRecordIdOption = new Option<string>("--callrecord-id", description: "key: id of callRecord");
+            callRecordIdOption.IsRequired = true;
+            command.AddOption(callRecordIdOption);
+            var sessionIdOption = new Option<string>("--session-id", description: "key: id of session");
+            sessionIdOption.IsRequired = true;
+            command.AddOption(sessionIdOption);
+            var bodyOption = new Option<string>("--body");
+            bodyOption.IsRequired = true;
+            command.AddOption(bodyOption);
             command.Handler = CommandHandler.Create<string, string, string>(async (callRecordId, sessionId, body) => {
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<Session>();
-                var requestInfo = CreatePatchRequestInformation(model);
-                if (!String.IsNullOrEmpty(callRecordId)) requestInfo.PathParameters.Add("callRecord_id", callRecordId);
-                if (!String.IsNullOrEmpty(sessionId)) requestInfo.PathParameters.Add("session_id", sessionId);
+                var requestInfo = CreatePatchRequestInformation(model, q => {
+                });
                 await RequestAdapter.SendNoContentAsync(requestInfo);
                 // Print request output. What if the request has no return?
                 Console.WriteLine("Success");

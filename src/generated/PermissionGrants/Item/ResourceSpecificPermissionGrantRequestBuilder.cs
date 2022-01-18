@@ -43,10 +43,12 @@ namespace ApiSdk.PermissionGrants.Item {
             var command = new Command("delete");
             command.Description = "Delete entity from permissionGrants";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--resourcespecificpermissiongrant-id", description: "key: id of resourceSpecificPermissionGrant"));
+            var resourceSpecificPermissionGrantIdOption = new Option<string>("--resourcespecificpermissiongrant-id", description: "key: id of resourceSpecificPermissionGrant");
+            resourceSpecificPermissionGrantIdOption.IsRequired = true;
+            command.AddOption(resourceSpecificPermissionGrantIdOption);
             command.Handler = CommandHandler.Create<string>(async (resourceSpecificPermissionGrantId) => {
-                var requestInfo = CreateDeleteRequestInformation();
-                if (!String.IsNullOrEmpty(resourceSpecificPermissionGrantId)) requestInfo.PathParameters.Add("resourceSpecificPermissionGrant_id", resourceSpecificPermissionGrantId);
+                var requestInfo = CreateDeleteRequestInformation(q => {
+                });
                 await RequestAdapter.SendNoContentAsync(requestInfo);
                 // Print request output. What if the request has no return?
                 Console.WriteLine("Success");
@@ -60,14 +62,22 @@ namespace ApiSdk.PermissionGrants.Item {
             var command = new Command("get");
             command.Description = "Get entity from permissionGrants by key";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--resourcespecificpermissiongrant-id", description: "key: id of resourceSpecificPermissionGrant"));
-            command.AddOption(new Option<object>("--select", description: "Select properties to be returned"));
-            command.AddOption(new Option<object>("--expand", description: "Expand related entities"));
-            command.Handler = CommandHandler.Create<string, object, object>(async (resourceSpecificPermissionGrantId, select, expand) => {
-                var requestInfo = CreateGetRequestInformation();
-                if (!String.IsNullOrEmpty(resourceSpecificPermissionGrantId)) requestInfo.PathParameters.Add("resourceSpecificPermissionGrant_id", resourceSpecificPermissionGrantId);
-                requestInfo.QueryParameters.Add("select", select);
-                requestInfo.QueryParameters.Add("expand", expand);
+            var resourceSpecificPermissionGrantIdOption = new Option<string>("--resourcespecificpermissiongrant-id", description: "key: id of resourceSpecificPermissionGrant");
+            resourceSpecificPermissionGrantIdOption.IsRequired = true;
+            command.AddOption(resourceSpecificPermissionGrantIdOption);
+            var selectOption = new Option<string[]>("--select", description: "Select properties to be returned");
+            selectOption.IsRequired = false;
+            selectOption.Arity = ArgumentArity.ZeroOrMore;
+            command.AddOption(selectOption);
+            var expandOption = new Option<string[]>("--expand", description: "Expand related entities");
+            expandOption.IsRequired = false;
+            expandOption.Arity = ArgumentArity.ZeroOrMore;
+            command.AddOption(expandOption);
+            command.Handler = CommandHandler.Create<string, string[], string[]>(async (resourceSpecificPermissionGrantId, select, expand) => {
+                var requestInfo = CreateGetRequestInformation(q => {
+                    q.Select = select;
+                    q.Expand = expand;
+                });
                 var result = await RequestAdapter.SendAsync<ResourceSpecificPermissionGrant>(requestInfo);
                 // Print request output. What if the request has no return?
                 using var serializer = RequestAdapter.SerializationWriterFactory.GetSerializationWriter("application/json");
@@ -98,14 +108,18 @@ namespace ApiSdk.PermissionGrants.Item {
             var command = new Command("patch");
             command.Description = "Update entity in permissionGrants";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--resourcespecificpermissiongrant-id", description: "key: id of resourceSpecificPermissionGrant"));
-            command.AddOption(new Option<string>("--body"));
+            var resourceSpecificPermissionGrantIdOption = new Option<string>("--resourcespecificpermissiongrant-id", description: "key: id of resourceSpecificPermissionGrant");
+            resourceSpecificPermissionGrantIdOption.IsRequired = true;
+            command.AddOption(resourceSpecificPermissionGrantIdOption);
+            var bodyOption = new Option<string>("--body");
+            bodyOption.IsRequired = true;
+            command.AddOption(bodyOption);
             command.Handler = CommandHandler.Create<string, string>(async (resourceSpecificPermissionGrantId, body) => {
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<ResourceSpecificPermissionGrant>();
-                var requestInfo = CreatePatchRequestInformation(model);
-                if (!String.IsNullOrEmpty(resourceSpecificPermissionGrantId)) requestInfo.PathParameters.Add("resourceSpecificPermissionGrant_id", resourceSpecificPermissionGrantId);
+                var requestInfo = CreatePatchRequestInformation(model, q => {
+                });
                 await RequestAdapter.SendNoContentAsync(requestInfo);
                 // Print request output. What if the request has no return?
                 Console.WriteLine("Success");

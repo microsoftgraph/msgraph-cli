@@ -26,16 +26,21 @@ namespace ApiSdk.Workbooks.Item.Workbook.Names.Item.Worksheet.Charts.Item.Worksh
             var command = new Command("get");
             command.Description = "Invoke function usedRange";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--driveitem-id", description: "key: id of driveItem"));
-            command.AddOption(new Option<string>("--workbooknameditem-id", description: "key: id of workbookNamedItem"));
-            command.AddOption(new Option<string>("--workbookchart-id", description: "key: id of workbookChart"));
-            command.AddOption(new Option<bool?>("--valuesonly", description: "Usage: valuesOnly={valuesOnly}"));
+            var driveItemIdOption = new Option<string>("--driveitem-id", description: "key: id of driveItem");
+            driveItemIdOption.IsRequired = true;
+            command.AddOption(driveItemIdOption);
+            var workbookNamedItemIdOption = new Option<string>("--workbooknameditem-id", description: "key: id of workbookNamedItem");
+            workbookNamedItemIdOption.IsRequired = true;
+            command.AddOption(workbookNamedItemIdOption);
+            var workbookChartIdOption = new Option<string>("--workbookchart-id", description: "key: id of workbookChart");
+            workbookChartIdOption.IsRequired = true;
+            command.AddOption(workbookChartIdOption);
+            var valuesOnlyOption = new Option<bool?>("--valuesonly", description: "Usage: valuesOnly={valuesOnly}");
+            valuesOnlyOption.IsRequired = true;
+            command.AddOption(valuesOnlyOption);
             command.Handler = CommandHandler.Create<string, string, string, bool?>(async (driveItemId, workbookNamedItemId, workbookChartId, valuesOnly) => {
-                var requestInfo = CreateGetRequestInformation();
-                if (!String.IsNullOrEmpty(driveItemId)) requestInfo.PathParameters.Add("driveItem_id", driveItemId);
-                if (!String.IsNullOrEmpty(workbookNamedItemId)) requestInfo.PathParameters.Add("workbookNamedItem_id", workbookNamedItemId);
-                if (!String.IsNullOrEmpty(workbookChartId)) requestInfo.PathParameters.Add("workbookChart_id", workbookChartId);
-                requestInfo.PathParameters.Add("valuesOnly", valuesOnly);
+                var requestInfo = CreateGetRequestInformation(q => {
+                });
                 var result = await RequestAdapter.SendAsync<UsedRangeWithValuesOnlyResponse>(requestInfo);
                 // Print request output. What if the request has no return?
                 using var serializer = RequestAdapter.SerializationWriterFactory.GetSerializationWriter("application/json");

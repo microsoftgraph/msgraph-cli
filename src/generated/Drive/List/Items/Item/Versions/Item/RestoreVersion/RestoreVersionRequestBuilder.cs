@@ -25,12 +25,15 @@ namespace ApiSdk.Drive.List.Items.Item.Versions.Item.RestoreVersion {
             var command = new Command("post");
             command.Description = "Invoke action restoreVersion";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--listitem-id", description: "key: id of listItem"));
-            command.AddOption(new Option<string>("--listitemversion-id", description: "key: id of listItemVersion"));
+            var listItemIdOption = new Option<string>("--listitem-id", description: "key: id of listItem");
+            listItemIdOption.IsRequired = true;
+            command.AddOption(listItemIdOption);
+            var listItemVersionIdOption = new Option<string>("--listitemversion-id", description: "key: id of listItemVersion");
+            listItemVersionIdOption.IsRequired = true;
+            command.AddOption(listItemVersionIdOption);
             command.Handler = CommandHandler.Create<string, string>(async (listItemId, listItemVersionId) => {
-                var requestInfo = CreatePostRequestInformation();
-                if (!String.IsNullOrEmpty(listItemId)) requestInfo.PathParameters.Add("listItem_id", listItemId);
-                if (!String.IsNullOrEmpty(listItemVersionId)) requestInfo.PathParameters.Add("listItemVersion_id", listItemVersionId);
+                var requestInfo = CreatePostRequestInformation(q => {
+                });
                 await RequestAdapter.SendNoContentAsync(requestInfo);
                 // Print request output. What if the request has no return?
                 Console.WriteLine("Success");

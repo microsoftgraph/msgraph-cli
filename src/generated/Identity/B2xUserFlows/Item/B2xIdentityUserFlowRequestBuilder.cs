@@ -30,10 +30,12 @@ namespace ApiSdk.Identity.B2xUserFlows.Item {
             var command = new Command("delete");
             command.Description = "Represents entry point for B2X/self-service sign-up identity userflows.";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--b2xidentityuserflow-id", description: "key: id of b2xIdentityUserFlow"));
+            var b2xIdentityUserFlowIdOption = new Option<string>("--b2xidentityuserflow-id", description: "key: id of b2xIdentityUserFlow");
+            b2xIdentityUserFlowIdOption.IsRequired = true;
+            command.AddOption(b2xIdentityUserFlowIdOption);
             command.Handler = CommandHandler.Create<string>(async (b2xIdentityUserFlowId) => {
-                var requestInfo = CreateDeleteRequestInformation();
-                if (!String.IsNullOrEmpty(b2xIdentityUserFlowId)) requestInfo.PathParameters.Add("b2xIdentityUserFlow_id", b2xIdentityUserFlowId);
+                var requestInfo = CreateDeleteRequestInformation(q => {
+                });
                 await RequestAdapter.SendNoContentAsync(requestInfo);
                 // Print request output. What if the request has no return?
                 Console.WriteLine("Success");
@@ -47,14 +49,22 @@ namespace ApiSdk.Identity.B2xUserFlows.Item {
             var command = new Command("get");
             command.Description = "Represents entry point for B2X/self-service sign-up identity userflows.";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--b2xidentityuserflow-id", description: "key: id of b2xIdentityUserFlow"));
-            command.AddOption(new Option<object>("--select", description: "Select properties to be returned"));
-            command.AddOption(new Option<object>("--expand", description: "Expand related entities"));
-            command.Handler = CommandHandler.Create<string, object, object>(async (b2xIdentityUserFlowId, select, expand) => {
-                var requestInfo = CreateGetRequestInformation();
-                if (!String.IsNullOrEmpty(b2xIdentityUserFlowId)) requestInfo.PathParameters.Add("b2xIdentityUserFlow_id", b2xIdentityUserFlowId);
-                requestInfo.QueryParameters.Add("select", select);
-                requestInfo.QueryParameters.Add("expand", expand);
+            var b2xIdentityUserFlowIdOption = new Option<string>("--b2xidentityuserflow-id", description: "key: id of b2xIdentityUserFlow");
+            b2xIdentityUserFlowIdOption.IsRequired = true;
+            command.AddOption(b2xIdentityUserFlowIdOption);
+            var selectOption = new Option<string[]>("--select", description: "Select properties to be returned");
+            selectOption.IsRequired = false;
+            selectOption.Arity = ArgumentArity.ZeroOrMore;
+            command.AddOption(selectOption);
+            var expandOption = new Option<string[]>("--expand", description: "Expand related entities");
+            expandOption.IsRequired = false;
+            expandOption.Arity = ArgumentArity.ZeroOrMore;
+            command.AddOption(expandOption);
+            command.Handler = CommandHandler.Create<string, string[], string[]>(async (b2xIdentityUserFlowId, select, expand) => {
+                var requestInfo = CreateGetRequestInformation(q => {
+                    q.Select = select;
+                    q.Expand = expand;
+                });
                 var result = await RequestAdapter.SendAsync<B2xIdentityUserFlow>(requestInfo);
                 // Print request output. What if the request has no return?
                 using var serializer = RequestAdapter.SerializationWriterFactory.GetSerializationWriter("application/json");
@@ -87,14 +97,18 @@ namespace ApiSdk.Identity.B2xUserFlows.Item {
             var command = new Command("patch");
             command.Description = "Represents entry point for B2X/self-service sign-up identity userflows.";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--b2xidentityuserflow-id", description: "key: id of b2xIdentityUserFlow"));
-            command.AddOption(new Option<string>("--body"));
+            var b2xIdentityUserFlowIdOption = new Option<string>("--b2xidentityuserflow-id", description: "key: id of b2xIdentityUserFlow");
+            b2xIdentityUserFlowIdOption.IsRequired = true;
+            command.AddOption(b2xIdentityUserFlowIdOption);
+            var bodyOption = new Option<string>("--body");
+            bodyOption.IsRequired = true;
+            command.AddOption(bodyOption);
             command.Handler = CommandHandler.Create<string, string>(async (b2xIdentityUserFlowId, body) => {
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<B2xIdentityUserFlow>();
-                var requestInfo = CreatePatchRequestInformation(model);
-                if (!String.IsNullOrEmpty(b2xIdentityUserFlowId)) requestInfo.PathParameters.Add("b2xIdentityUserFlow_id", b2xIdentityUserFlowId);
+                var requestInfo = CreatePatchRequestInformation(model, q => {
+                });
                 await RequestAdapter.SendNoContentAsync(requestInfo);
                 // Print request output. What if the request has no return?
                 Console.WriteLine("Success");

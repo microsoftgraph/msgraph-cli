@@ -25,12 +25,15 @@ namespace ApiSdk.Me.ReminderViewWithStartDateTimeWithEndDateTime {
             var command = new Command("get");
             command.Description = "Invoke function reminderView";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--startdatetime", description: "Usage: StartDateTime={StartDateTime}"));
-            command.AddOption(new Option<string>("--enddatetime", description: "Usage: EndDateTime={EndDateTime}"));
+            var StartDateTimeOption = new Option<string>("--startdatetime", description: "Usage: StartDateTime={StartDateTime}");
+            StartDateTimeOption.IsRequired = true;
+            command.AddOption(StartDateTimeOption);
+            var EndDateTimeOption = new Option<string>("--enddatetime", description: "Usage: EndDateTime={EndDateTime}");
+            EndDateTimeOption.IsRequired = true;
+            command.AddOption(EndDateTimeOption);
             command.Handler = CommandHandler.Create<string, string>(async (StartDateTime, EndDateTime) => {
-                var requestInfo = CreateGetRequestInformation();
-                if (!String.IsNullOrEmpty(StartDateTime)) requestInfo.PathParameters.Add("StartDateTime", StartDateTime);
-                if (!String.IsNullOrEmpty(EndDateTime)) requestInfo.PathParameters.Add("EndDateTime", EndDateTime);
+                var requestInfo = CreateGetRequestInformation(q => {
+                });
                 var result = await RequestAdapter.SendCollectionAsync<ApiSdk.Me.ReminderViewWithStartDateTimeWithEndDateTime.ReminderViewWithStartDateTimeWithEndDateTime>(requestInfo);
                 // Print request output. What if the request has no return?
                 using var serializer = RequestAdapter.SerializationWriterFactory.GetSerializationWriter("application/json");

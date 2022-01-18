@@ -25,12 +25,15 @@ namespace ApiSdk.Shares.Item.List.Columns.Item.SourceColumn.@Ref {
             var command = new Command("delete");
             command.Description = "The source column for the content type column.";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--shareddriveitem-id", description: "key: id of sharedDriveItem"));
-            command.AddOption(new Option<string>("--columndefinition-id", description: "key: id of columnDefinition"));
+            var sharedDriveItemIdOption = new Option<string>("--shareddriveitem-id", description: "key: id of sharedDriveItem");
+            sharedDriveItemIdOption.IsRequired = true;
+            command.AddOption(sharedDriveItemIdOption);
+            var columnDefinitionIdOption = new Option<string>("--columndefinition-id", description: "key: id of columnDefinition");
+            columnDefinitionIdOption.IsRequired = true;
+            command.AddOption(columnDefinitionIdOption);
             command.Handler = CommandHandler.Create<string, string>(async (sharedDriveItemId, columnDefinitionId) => {
-                var requestInfo = CreateDeleteRequestInformation();
-                if (!String.IsNullOrEmpty(sharedDriveItemId)) requestInfo.PathParameters.Add("sharedDriveItem_id", sharedDriveItemId);
-                if (!String.IsNullOrEmpty(columnDefinitionId)) requestInfo.PathParameters.Add("columnDefinition_id", columnDefinitionId);
+                var requestInfo = CreateDeleteRequestInformation(q => {
+                });
                 await RequestAdapter.SendNoContentAsync(requestInfo);
                 // Print request output. What if the request has no return?
                 Console.WriteLine("Success");
@@ -44,12 +47,15 @@ namespace ApiSdk.Shares.Item.List.Columns.Item.SourceColumn.@Ref {
             var command = new Command("get");
             command.Description = "The source column for the content type column.";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--shareddriveitem-id", description: "key: id of sharedDriveItem"));
-            command.AddOption(new Option<string>("--columndefinition-id", description: "key: id of columnDefinition"));
+            var sharedDriveItemIdOption = new Option<string>("--shareddriveitem-id", description: "key: id of sharedDriveItem");
+            sharedDriveItemIdOption.IsRequired = true;
+            command.AddOption(sharedDriveItemIdOption);
+            var columnDefinitionIdOption = new Option<string>("--columndefinition-id", description: "key: id of columnDefinition");
+            columnDefinitionIdOption.IsRequired = true;
+            command.AddOption(columnDefinitionIdOption);
             command.Handler = CommandHandler.Create<string, string>(async (sharedDriveItemId, columnDefinitionId) => {
-                var requestInfo = CreateGetRequestInformation();
-                if (!String.IsNullOrEmpty(sharedDriveItemId)) requestInfo.PathParameters.Add("sharedDriveItem_id", sharedDriveItemId);
-                if (!String.IsNullOrEmpty(columnDefinitionId)) requestInfo.PathParameters.Add("columnDefinition_id", columnDefinitionId);
+                var requestInfo = CreateGetRequestInformation(q => {
+                });
                 var result = await RequestAdapter.SendPrimitiveAsync<string>(requestInfo);
                 // Print request output. What if the request has no return?
                 using var serializer = RequestAdapter.SerializationWriterFactory.GetSerializationWriter("application/json");
@@ -68,16 +74,21 @@ namespace ApiSdk.Shares.Item.List.Columns.Item.SourceColumn.@Ref {
             var command = new Command("put");
             command.Description = "The source column for the content type column.";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--shareddriveitem-id", description: "key: id of sharedDriveItem"));
-            command.AddOption(new Option<string>("--columndefinition-id", description: "key: id of columnDefinition"));
-            command.AddOption(new Option<string>("--body"));
+            var sharedDriveItemIdOption = new Option<string>("--shareddriveitem-id", description: "key: id of sharedDriveItem");
+            sharedDriveItemIdOption.IsRequired = true;
+            command.AddOption(sharedDriveItemIdOption);
+            var columnDefinitionIdOption = new Option<string>("--columndefinition-id", description: "key: id of columnDefinition");
+            columnDefinitionIdOption.IsRequired = true;
+            command.AddOption(columnDefinitionIdOption);
+            var bodyOption = new Option<string>("--body");
+            bodyOption.IsRequired = true;
+            command.AddOption(bodyOption);
             command.Handler = CommandHandler.Create<string, string, string>(async (sharedDriveItemId, columnDefinitionId, body) => {
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<ApiSdk.Shares.Item.List.Columns.Item.SourceColumn.@Ref.@Ref>();
-                var requestInfo = CreatePutRequestInformation(model);
-                if (!String.IsNullOrEmpty(sharedDriveItemId)) requestInfo.PathParameters.Add("sharedDriveItem_id", sharedDriveItemId);
-                if (!String.IsNullOrEmpty(columnDefinitionId)) requestInfo.PathParameters.Add("columnDefinition_id", columnDefinitionId);
+                var requestInfo = CreatePutRequestInformation(model, q => {
+                });
                 await RequestAdapter.SendNoContentAsync(requestInfo);
                 // Print request output. What if the request has no return?
                 Console.WriteLine("Success");

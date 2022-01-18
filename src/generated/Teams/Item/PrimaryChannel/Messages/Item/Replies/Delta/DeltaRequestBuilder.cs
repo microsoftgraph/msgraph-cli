@@ -25,12 +25,15 @@ namespace ApiSdk.Teams.Item.PrimaryChannel.Messages.Item.Replies.Delta {
             var command = new Command("get");
             command.Description = "Invoke function delta";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--team-id", description: "key: id of team"));
-            command.AddOption(new Option<string>("--chatmessage-id", description: "key: id of chatMessage"));
+            var teamIdOption = new Option<string>("--team-id", description: "key: id of team");
+            teamIdOption.IsRequired = true;
+            command.AddOption(teamIdOption);
+            var chatMessageIdOption = new Option<string>("--chatmessage-id", description: "key: id of chatMessage");
+            chatMessageIdOption.IsRequired = true;
+            command.AddOption(chatMessageIdOption);
             command.Handler = CommandHandler.Create<string, string>(async (teamId, chatMessageId) => {
-                var requestInfo = CreateGetRequestInformation();
-                if (!String.IsNullOrEmpty(teamId)) requestInfo.PathParameters.Add("team_id", teamId);
-                if (!String.IsNullOrEmpty(chatMessageId)) requestInfo.PathParameters.Add("chatMessage_id", chatMessageId);
+                var requestInfo = CreateGetRequestInformation(q => {
+                });
                 var result = await RequestAdapter.SendCollectionAsync<ApiSdk.Teams.Item.PrimaryChannel.Messages.Item.Replies.Delta.Delta>(requestInfo);
                 // Print request output. What if the request has no return?
                 using var serializer = RequestAdapter.SerializationWriterFactory.GetSerializationWriter("application/json");

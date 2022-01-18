@@ -26,10 +26,12 @@ namespace ApiSdk.Teamwork.WorkforceIntegrations.Item {
             var command = new Command("delete");
             command.Description = "Delete navigation property workforceIntegrations for teamwork";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--workforceintegration-id", description: "key: id of workforceIntegration"));
+            var workforceIntegrationIdOption = new Option<string>("--workforceintegration-id", description: "key: id of workforceIntegration");
+            workforceIntegrationIdOption.IsRequired = true;
+            command.AddOption(workforceIntegrationIdOption);
             command.Handler = CommandHandler.Create<string>(async (workforceIntegrationId) => {
-                var requestInfo = CreateDeleteRequestInformation();
-                if (!String.IsNullOrEmpty(workforceIntegrationId)) requestInfo.PathParameters.Add("workforceIntegration_id", workforceIntegrationId);
+                var requestInfo = CreateDeleteRequestInformation(q => {
+                });
                 await RequestAdapter.SendNoContentAsync(requestInfo);
                 // Print request output. What if the request has no return?
                 Console.WriteLine("Success");
@@ -43,14 +45,22 @@ namespace ApiSdk.Teamwork.WorkforceIntegrations.Item {
             var command = new Command("get");
             command.Description = "Get workforceIntegrations from teamwork";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--workforceintegration-id", description: "key: id of workforceIntegration"));
-            command.AddOption(new Option<object>("--select", description: "Select properties to be returned"));
-            command.AddOption(new Option<object>("--expand", description: "Expand related entities"));
-            command.Handler = CommandHandler.Create<string, object, object>(async (workforceIntegrationId, select, expand) => {
-                var requestInfo = CreateGetRequestInformation();
-                if (!String.IsNullOrEmpty(workforceIntegrationId)) requestInfo.PathParameters.Add("workforceIntegration_id", workforceIntegrationId);
-                requestInfo.QueryParameters.Add("select", select);
-                requestInfo.QueryParameters.Add("expand", expand);
+            var workforceIntegrationIdOption = new Option<string>("--workforceintegration-id", description: "key: id of workforceIntegration");
+            workforceIntegrationIdOption.IsRequired = true;
+            command.AddOption(workforceIntegrationIdOption);
+            var selectOption = new Option<string[]>("--select", description: "Select properties to be returned");
+            selectOption.IsRequired = false;
+            selectOption.Arity = ArgumentArity.ZeroOrMore;
+            command.AddOption(selectOption);
+            var expandOption = new Option<string[]>("--expand", description: "Expand related entities");
+            expandOption.IsRequired = false;
+            expandOption.Arity = ArgumentArity.ZeroOrMore;
+            command.AddOption(expandOption);
+            command.Handler = CommandHandler.Create<string, string[], string[]>(async (workforceIntegrationId, select, expand) => {
+                var requestInfo = CreateGetRequestInformation(q => {
+                    q.Select = select;
+                    q.Expand = expand;
+                });
                 var result = await RequestAdapter.SendAsync<WorkforceIntegration>(requestInfo);
                 // Print request output. What if the request has no return?
                 using var serializer = RequestAdapter.SerializationWriterFactory.GetSerializationWriter("application/json");
@@ -69,14 +79,18 @@ namespace ApiSdk.Teamwork.WorkforceIntegrations.Item {
             var command = new Command("patch");
             command.Description = "Update the navigation property workforceIntegrations in teamwork";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--workforceintegration-id", description: "key: id of workforceIntegration"));
-            command.AddOption(new Option<string>("--body"));
+            var workforceIntegrationIdOption = new Option<string>("--workforceintegration-id", description: "key: id of workforceIntegration");
+            workforceIntegrationIdOption.IsRequired = true;
+            command.AddOption(workforceIntegrationIdOption);
+            var bodyOption = new Option<string>("--body");
+            bodyOption.IsRequired = true;
+            command.AddOption(bodyOption);
             command.Handler = CommandHandler.Create<string, string>(async (workforceIntegrationId, body) => {
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<WorkforceIntegration>();
-                var requestInfo = CreatePatchRequestInformation(model);
-                if (!String.IsNullOrEmpty(workforceIntegrationId)) requestInfo.PathParameters.Add("workforceIntegration_id", workforceIntegrationId);
+                var requestInfo = CreatePatchRequestInformation(model, q => {
+                });
                 await RequestAdapter.SendNoContentAsync(requestInfo);
                 // Print request output. What if the request has no return?
                 Console.WriteLine("Success");

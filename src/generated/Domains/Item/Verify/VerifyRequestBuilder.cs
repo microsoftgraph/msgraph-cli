@@ -26,10 +26,12 @@ namespace ApiSdk.Domains.Item.Verify {
             var command = new Command("post");
             command.Description = "Invoke action verify";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--domain-id", description: "key: id of domain"));
+            var domainIdOption = new Option<string>("--domain-id", description: "key: id of domain");
+            domainIdOption.IsRequired = true;
+            command.AddOption(domainIdOption);
             command.Handler = CommandHandler.Create<string>(async (domainId) => {
-                var requestInfo = CreatePostRequestInformation();
-                if (!String.IsNullOrEmpty(domainId)) requestInfo.PathParameters.Add("domain_id", domainId);
+                var requestInfo = CreatePostRequestInformation(q => {
+                });
                 var result = await RequestAdapter.SendAsync<VerifyResponse>(requestInfo);
                 // Print request output. What if the request has no return?
                 using var serializer = RequestAdapter.SerializationWriterFactory.GetSerializationWriter("application/json");

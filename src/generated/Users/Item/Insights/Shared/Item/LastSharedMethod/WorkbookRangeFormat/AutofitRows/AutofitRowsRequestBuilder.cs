@@ -25,12 +25,15 @@ namespace ApiSdk.Users.Item.Insights.Shared.Item.LastSharedMethod.WorkbookRangeF
             var command = new Command("post");
             command.Description = "Invoke action autofitRows";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--user-id", description: "key: id of user"));
-            command.AddOption(new Option<string>("--sharedinsight-id", description: "key: id of sharedInsight"));
+            var userIdOption = new Option<string>("--user-id", description: "key: id of user");
+            userIdOption.IsRequired = true;
+            command.AddOption(userIdOption);
+            var sharedInsightIdOption = new Option<string>("--sharedinsight-id", description: "key: id of sharedInsight");
+            sharedInsightIdOption.IsRequired = true;
+            command.AddOption(sharedInsightIdOption);
             command.Handler = CommandHandler.Create<string, string>(async (userId, sharedInsightId) => {
-                var requestInfo = CreatePostRequestInformation();
-                if (!String.IsNullOrEmpty(userId)) requestInfo.PathParameters.Add("user_id", userId);
-                if (!String.IsNullOrEmpty(sharedInsightId)) requestInfo.PathParameters.Add("sharedInsight_id", sharedInsightId);
+                var requestInfo = CreatePostRequestInformation(q => {
+                });
                 await RequestAdapter.SendNoContentAsync(requestInfo);
                 // Print request output. What if the request has no return?
                 Console.WriteLine("Success");

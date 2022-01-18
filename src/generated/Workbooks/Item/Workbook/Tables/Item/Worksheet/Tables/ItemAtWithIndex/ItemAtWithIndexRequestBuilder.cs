@@ -26,14 +26,18 @@ namespace ApiSdk.Workbooks.Item.Workbook.Tables.Item.Worksheet.Tables.ItemAtWith
             var command = new Command("get");
             command.Description = "Invoke function itemAt";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--driveitem-id", description: "key: id of driveItem"));
-            command.AddOption(new Option<string>("--workbooktable-id", description: "key: id of workbookTable"));
-            command.AddOption(new Option<int?>("--index", description: "Usage: index={index}"));
+            var driveItemIdOption = new Option<string>("--driveitem-id", description: "key: id of driveItem");
+            driveItemIdOption.IsRequired = true;
+            command.AddOption(driveItemIdOption);
+            var workbookTableIdOption = new Option<string>("--workbooktable-id", description: "key: id of workbookTable");
+            workbookTableIdOption.IsRequired = true;
+            command.AddOption(workbookTableIdOption);
+            var indexOption = new Option<int?>("--index", description: "Usage: index={index}");
+            indexOption.IsRequired = true;
+            command.AddOption(indexOption);
             command.Handler = CommandHandler.Create<string, string, int?>(async (driveItemId, workbookTableId, index) => {
-                var requestInfo = CreateGetRequestInformation();
-                if (!String.IsNullOrEmpty(driveItemId)) requestInfo.PathParameters.Add("driveItem_id", driveItemId);
-                if (!String.IsNullOrEmpty(workbookTableId)) requestInfo.PathParameters.Add("workbookTable_id", workbookTableId);
-                requestInfo.PathParameters.Add("index", index);
+                var requestInfo = CreateGetRequestInformation(q => {
+                });
                 var result = await RequestAdapter.SendAsync<ItemAtWithIndexResponse>(requestInfo);
                 // Print request output. What if the request has no return?
                 using var serializer = RequestAdapter.SerializationWriterFactory.GetSerializationWriter("application/json");

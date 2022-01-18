@@ -26,10 +26,12 @@ namespace ApiSdk.Admin.ServiceAnnouncement.Messages.Item {
             var command = new Command("delete");
             command.Description = "A collection of service messages for tenant. This property is a contained navigation property, it is nullable and readonly.";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--serviceupdatemessage-id", description: "key: id of serviceUpdateMessage"));
+            var serviceUpdateMessageIdOption = new Option<string>("--serviceupdatemessage-id", description: "key: id of serviceUpdateMessage");
+            serviceUpdateMessageIdOption.IsRequired = true;
+            command.AddOption(serviceUpdateMessageIdOption);
             command.Handler = CommandHandler.Create<string>(async (serviceUpdateMessageId) => {
-                var requestInfo = CreateDeleteRequestInformation();
-                if (!String.IsNullOrEmpty(serviceUpdateMessageId)) requestInfo.PathParameters.Add("serviceUpdateMessage_id", serviceUpdateMessageId);
+                var requestInfo = CreateDeleteRequestInformation(q => {
+                });
                 await RequestAdapter.SendNoContentAsync(requestInfo);
                 // Print request output. What if the request has no return?
                 Console.WriteLine("Success");
@@ -43,14 +45,22 @@ namespace ApiSdk.Admin.ServiceAnnouncement.Messages.Item {
             var command = new Command("get");
             command.Description = "A collection of service messages for tenant. This property is a contained navigation property, it is nullable and readonly.";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--serviceupdatemessage-id", description: "key: id of serviceUpdateMessage"));
-            command.AddOption(new Option<object>("--select", description: "Select properties to be returned"));
-            command.AddOption(new Option<object>("--expand", description: "Expand related entities"));
-            command.Handler = CommandHandler.Create<string, object, object>(async (serviceUpdateMessageId, select, expand) => {
-                var requestInfo = CreateGetRequestInformation();
-                if (!String.IsNullOrEmpty(serviceUpdateMessageId)) requestInfo.PathParameters.Add("serviceUpdateMessage_id", serviceUpdateMessageId);
-                requestInfo.QueryParameters.Add("select", select);
-                requestInfo.QueryParameters.Add("expand", expand);
+            var serviceUpdateMessageIdOption = new Option<string>("--serviceupdatemessage-id", description: "key: id of serviceUpdateMessage");
+            serviceUpdateMessageIdOption.IsRequired = true;
+            command.AddOption(serviceUpdateMessageIdOption);
+            var selectOption = new Option<string[]>("--select", description: "Select properties to be returned");
+            selectOption.IsRequired = false;
+            selectOption.Arity = ArgumentArity.ZeroOrMore;
+            command.AddOption(selectOption);
+            var expandOption = new Option<string[]>("--expand", description: "Expand related entities");
+            expandOption.IsRequired = false;
+            expandOption.Arity = ArgumentArity.ZeroOrMore;
+            command.AddOption(expandOption);
+            command.Handler = CommandHandler.Create<string, string[], string[]>(async (serviceUpdateMessageId, select, expand) => {
+                var requestInfo = CreateGetRequestInformation(q => {
+                    q.Select = select;
+                    q.Expand = expand;
+                });
                 var result = await RequestAdapter.SendAsync<ServiceUpdateMessage>(requestInfo);
                 // Print request output. What if the request has no return?
                 using var serializer = RequestAdapter.SerializationWriterFactory.GetSerializationWriter("application/json");
@@ -69,14 +79,18 @@ namespace ApiSdk.Admin.ServiceAnnouncement.Messages.Item {
             var command = new Command("patch");
             command.Description = "A collection of service messages for tenant. This property is a contained navigation property, it is nullable and readonly.";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--serviceupdatemessage-id", description: "key: id of serviceUpdateMessage"));
-            command.AddOption(new Option<string>("--body"));
+            var serviceUpdateMessageIdOption = new Option<string>("--serviceupdatemessage-id", description: "key: id of serviceUpdateMessage");
+            serviceUpdateMessageIdOption.IsRequired = true;
+            command.AddOption(serviceUpdateMessageIdOption);
+            var bodyOption = new Option<string>("--body");
+            bodyOption.IsRequired = true;
+            command.AddOption(bodyOption);
             command.Handler = CommandHandler.Create<string, string>(async (serviceUpdateMessageId, body) => {
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<ServiceUpdateMessage>();
-                var requestInfo = CreatePatchRequestInformation(model);
-                if (!String.IsNullOrEmpty(serviceUpdateMessageId)) requestInfo.PathParameters.Add("serviceUpdateMessage_id", serviceUpdateMessageId);
+                var requestInfo = CreatePatchRequestInformation(model, q => {
+                });
                 await RequestAdapter.SendNoContentAsync(requestInfo);
                 // Print request output. What if the request has no return?
                 Console.WriteLine("Success");

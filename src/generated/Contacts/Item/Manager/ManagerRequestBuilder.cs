@@ -27,14 +27,22 @@ namespace ApiSdk.Contacts.Item.Manager {
             var command = new Command("get");
             command.Description = "The user or contact that is this contact's manager. Read-only. Supports $expand.";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--orgcontact-id", description: "key: id of orgContact"));
-            command.AddOption(new Option<object>("--select", description: "Select properties to be returned"));
-            command.AddOption(new Option<object>("--expand", description: "Expand related entities"));
-            command.Handler = CommandHandler.Create<string, object, object>(async (orgContactId, select, expand) => {
-                var requestInfo = CreateGetRequestInformation();
-                if (!String.IsNullOrEmpty(orgContactId)) requestInfo.PathParameters.Add("orgContact_id", orgContactId);
-                requestInfo.QueryParameters.Add("select", select);
-                requestInfo.QueryParameters.Add("expand", expand);
+            var orgContactIdOption = new Option<string>("--orgcontact-id", description: "key: id of orgContact");
+            orgContactIdOption.IsRequired = true;
+            command.AddOption(orgContactIdOption);
+            var selectOption = new Option<string[]>("--select", description: "Select properties to be returned");
+            selectOption.IsRequired = false;
+            selectOption.Arity = ArgumentArity.ZeroOrMore;
+            command.AddOption(selectOption);
+            var expandOption = new Option<string[]>("--expand", description: "Expand related entities");
+            expandOption.IsRequired = false;
+            expandOption.Arity = ArgumentArity.ZeroOrMore;
+            command.AddOption(expandOption);
+            command.Handler = CommandHandler.Create<string, string[], string[]>(async (orgContactId, select, expand) => {
+                var requestInfo = CreateGetRequestInformation(q => {
+                    q.Select = select;
+                    q.Expand = expand;
+                });
                 var result = await RequestAdapter.SendAsync<DirectoryObject>(requestInfo);
                 // Print request output. What if the request has no return?
                 using var serializer = RequestAdapter.SerializationWriterFactory.GetSerializationWriter("application/json");

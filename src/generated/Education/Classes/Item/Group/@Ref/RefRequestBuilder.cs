@@ -25,10 +25,12 @@ namespace ApiSdk.Education.Classes.Item.Group.@Ref {
             var command = new Command("delete");
             command.Description = "The underlying Microsoft 365 group object.";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--educationclass-id", description: "key: id of educationClass"));
+            var educationClassIdOption = new Option<string>("--educationclass-id", description: "key: id of educationClass");
+            educationClassIdOption.IsRequired = true;
+            command.AddOption(educationClassIdOption);
             command.Handler = CommandHandler.Create<string>(async (educationClassId) => {
-                var requestInfo = CreateDeleteRequestInformation();
-                if (!String.IsNullOrEmpty(educationClassId)) requestInfo.PathParameters.Add("educationClass_id", educationClassId);
+                var requestInfo = CreateDeleteRequestInformation(q => {
+                });
                 await RequestAdapter.SendNoContentAsync(requestInfo);
                 // Print request output. What if the request has no return?
                 Console.WriteLine("Success");
@@ -42,10 +44,12 @@ namespace ApiSdk.Education.Classes.Item.Group.@Ref {
             var command = new Command("get");
             command.Description = "The underlying Microsoft 365 group object.";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--educationclass-id", description: "key: id of educationClass"));
+            var educationClassIdOption = new Option<string>("--educationclass-id", description: "key: id of educationClass");
+            educationClassIdOption.IsRequired = true;
+            command.AddOption(educationClassIdOption);
             command.Handler = CommandHandler.Create<string>(async (educationClassId) => {
-                var requestInfo = CreateGetRequestInformation();
-                if (!String.IsNullOrEmpty(educationClassId)) requestInfo.PathParameters.Add("educationClass_id", educationClassId);
+                var requestInfo = CreateGetRequestInformation(q => {
+                });
                 var result = await RequestAdapter.SendPrimitiveAsync<string>(requestInfo);
                 // Print request output. What if the request has no return?
                 using var serializer = RequestAdapter.SerializationWriterFactory.GetSerializationWriter("application/json");
@@ -64,14 +68,18 @@ namespace ApiSdk.Education.Classes.Item.Group.@Ref {
             var command = new Command("put");
             command.Description = "The underlying Microsoft 365 group object.";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--educationclass-id", description: "key: id of educationClass"));
-            command.AddOption(new Option<string>("--body"));
+            var educationClassIdOption = new Option<string>("--educationclass-id", description: "key: id of educationClass");
+            educationClassIdOption.IsRequired = true;
+            command.AddOption(educationClassIdOption);
+            var bodyOption = new Option<string>("--body");
+            bodyOption.IsRequired = true;
+            command.AddOption(bodyOption);
             command.Handler = CommandHandler.Create<string, string>(async (educationClassId, body) => {
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<ApiSdk.Education.Classes.Item.Group.@Ref.@Ref>();
-                var requestInfo = CreatePutRequestInformation(model);
-                if (!String.IsNullOrEmpty(educationClassId)) requestInfo.PathParameters.Add("educationClass_id", educationClassId);
+                var requestInfo = CreatePutRequestInformation(model, q => {
+                });
                 await RequestAdapter.SendNoContentAsync(requestInfo);
                 // Print request output. What if the request has no return?
                 Console.WriteLine("Success");

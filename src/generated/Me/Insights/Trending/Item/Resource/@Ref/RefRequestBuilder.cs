@@ -25,10 +25,12 @@ namespace ApiSdk.Me.Insights.Trending.Item.Resource.@Ref {
             var command = new Command("delete");
             command.Description = "Used for navigating to the trending document.";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--trending-id", description: "key: id of trending"));
+            var trendingIdOption = new Option<string>("--trending-id", description: "key: id of trending");
+            trendingIdOption.IsRequired = true;
+            command.AddOption(trendingIdOption);
             command.Handler = CommandHandler.Create<string>(async (trendingId) => {
-                var requestInfo = CreateDeleteRequestInformation();
-                if (!String.IsNullOrEmpty(trendingId)) requestInfo.PathParameters.Add("trending_id", trendingId);
+                var requestInfo = CreateDeleteRequestInformation(q => {
+                });
                 await RequestAdapter.SendNoContentAsync(requestInfo);
                 // Print request output. What if the request has no return?
                 Console.WriteLine("Success");
@@ -42,10 +44,12 @@ namespace ApiSdk.Me.Insights.Trending.Item.Resource.@Ref {
             var command = new Command("get");
             command.Description = "Used for navigating to the trending document.";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--trending-id", description: "key: id of trending"));
+            var trendingIdOption = new Option<string>("--trending-id", description: "key: id of trending");
+            trendingIdOption.IsRequired = true;
+            command.AddOption(trendingIdOption);
             command.Handler = CommandHandler.Create<string>(async (trendingId) => {
-                var requestInfo = CreateGetRequestInformation();
-                if (!String.IsNullOrEmpty(trendingId)) requestInfo.PathParameters.Add("trending_id", trendingId);
+                var requestInfo = CreateGetRequestInformation(q => {
+                });
                 var result = await RequestAdapter.SendPrimitiveAsync<string>(requestInfo);
                 // Print request output. What if the request has no return?
                 using var serializer = RequestAdapter.SerializationWriterFactory.GetSerializationWriter("application/json");
@@ -64,14 +68,18 @@ namespace ApiSdk.Me.Insights.Trending.Item.Resource.@Ref {
             var command = new Command("put");
             command.Description = "Used for navigating to the trending document.";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--trending-id", description: "key: id of trending"));
-            command.AddOption(new Option<string>("--body"));
+            var trendingIdOption = new Option<string>("--trending-id", description: "key: id of trending");
+            trendingIdOption.IsRequired = true;
+            command.AddOption(trendingIdOption);
+            var bodyOption = new Option<string>("--body");
+            bodyOption.IsRequired = true;
+            command.AddOption(bodyOption);
             command.Handler = CommandHandler.Create<string, string>(async (trendingId, body) => {
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<ApiSdk.Me.Insights.Trending.Item.Resource.@Ref.@Ref>();
-                var requestInfo = CreatePutRequestInformation(model);
-                if (!String.IsNullOrEmpty(trendingId)) requestInfo.PathParameters.Add("trending_id", trendingId);
+                var requestInfo = CreatePutRequestInformation(model, q => {
+                });
                 await RequestAdapter.SendNoContentAsync(requestInfo);
                 // Print request output. What if the request has no return?
                 Console.WriteLine("Success");

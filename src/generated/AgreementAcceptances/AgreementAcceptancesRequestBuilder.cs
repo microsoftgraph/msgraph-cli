@@ -36,12 +36,15 @@ namespace ApiSdk.AgreementAcceptances {
             var command = new Command("create");
             command.Description = "Add new entity to agreementAcceptances";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--body"));
+            var bodyOption = new Option<string>("--body");
+            bodyOption.IsRequired = true;
+            command.AddOption(bodyOption);
             command.Handler = CommandHandler.Create<string>(async (body) => {
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<AgreementAcceptance>();
-                var requestInfo = CreatePostRequestInformation(model);
+                var requestInfo = CreatePostRequestInformation(model, q => {
+                });
                 var result = await RequestAdapter.SendAsync<AgreementAcceptance>(requestInfo);
                 // Print request output. What if the request has no return?
                 using var serializer = RequestAdapter.SerializationWriterFactory.GetSerializationWriter("application/json");
@@ -60,12 +63,18 @@ namespace ApiSdk.AgreementAcceptances {
             var command = new Command("list");
             command.Description = "Get entities from agreementAcceptances";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--search", description: "Search items by search phrases"));
-            command.AddOption(new Option<object>("--select", description: "Select properties to be returned"));
-            command.Handler = CommandHandler.Create<string, object>(async (search, select) => {
-                var requestInfo = CreateGetRequestInformation();
-                if (!String.IsNullOrEmpty(search)) requestInfo.QueryParameters.Add("search", search);
-                requestInfo.QueryParameters.Add("select", select);
+            var searchOption = new Option<string>("--search", description: "Search items by search phrases");
+            searchOption.IsRequired = false;
+            command.AddOption(searchOption);
+            var selectOption = new Option<string[]>("--select", description: "Select properties to be returned");
+            selectOption.IsRequired = false;
+            selectOption.Arity = ArgumentArity.ZeroOrMore;
+            command.AddOption(selectOption);
+            command.Handler = CommandHandler.Create<string, string[]>(async (search, select) => {
+                var requestInfo = CreateGetRequestInformation(q => {
+                    if (!String.IsNullOrEmpty(search)) q.Search = search;
+                    q.Select = select;
+                });
                 var result = await RequestAdapter.SendAsync<AgreementAcceptancesResponse>(requestInfo);
                 // Print request output. What if the request has no return?
                 using var serializer = RequestAdapter.SerializationWriterFactory.GetSerializationWriter("application/json");

@@ -26,10 +26,12 @@ namespace ApiSdk.Me.Insights.Used.Item.Resource.PrintJob.Start {
             var command = new Command("post");
             command.Description = "Invoke action start";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--usedinsight-id", description: "key: id of usedInsight"));
+            var usedInsightIdOption = new Option<string>("--usedinsight-id", description: "key: id of usedInsight");
+            usedInsightIdOption.IsRequired = true;
+            command.AddOption(usedInsightIdOption);
             command.Handler = CommandHandler.Create<string>(async (usedInsightId) => {
-                var requestInfo = CreatePostRequestInformation();
-                if (!String.IsNullOrEmpty(usedInsightId)) requestInfo.PathParameters.Add("usedInsight_id", usedInsightId);
+                var requestInfo = CreatePostRequestInformation(q => {
+                });
                 var result = await RequestAdapter.SendAsync<StartResponse>(requestInfo);
                 // Print request output. What if the request has no return?
                 using var serializer = RequestAdapter.SerializationWriterFactory.GetSerializationWriter("application/json");

@@ -26,14 +26,18 @@ namespace ApiSdk.Workbooks.Item.Workbook.Names.Item.Worksheet.UsedRangeWithValue
             var command = new Command("get");
             command.Description = "Invoke function usedRange";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--driveitem-id", description: "key: id of driveItem"));
-            command.AddOption(new Option<string>("--workbooknameditem-id", description: "key: id of workbookNamedItem"));
-            command.AddOption(new Option<bool?>("--valuesonly", description: "Usage: valuesOnly={valuesOnly}"));
+            var driveItemIdOption = new Option<string>("--driveitem-id", description: "key: id of driveItem");
+            driveItemIdOption.IsRequired = true;
+            command.AddOption(driveItemIdOption);
+            var workbookNamedItemIdOption = new Option<string>("--workbooknameditem-id", description: "key: id of workbookNamedItem");
+            workbookNamedItemIdOption.IsRequired = true;
+            command.AddOption(workbookNamedItemIdOption);
+            var valuesOnlyOption = new Option<bool?>("--valuesonly", description: "Usage: valuesOnly={valuesOnly}");
+            valuesOnlyOption.IsRequired = true;
+            command.AddOption(valuesOnlyOption);
             command.Handler = CommandHandler.Create<string, string, bool?>(async (driveItemId, workbookNamedItemId, valuesOnly) => {
-                var requestInfo = CreateGetRequestInformation();
-                if (!String.IsNullOrEmpty(driveItemId)) requestInfo.PathParameters.Add("driveItem_id", driveItemId);
-                if (!String.IsNullOrEmpty(workbookNamedItemId)) requestInfo.PathParameters.Add("workbookNamedItem_id", workbookNamedItemId);
-                requestInfo.PathParameters.Add("valuesOnly", valuesOnly);
+                var requestInfo = CreateGetRequestInformation(q => {
+                });
                 var result = await RequestAdapter.SendAsync<UsedRangeWithValuesOnlyResponse>(requestInfo);
                 // Print request output. What if the request has no return?
                 using var serializer = RequestAdapter.SerializationWriterFactory.GetSerializationWriter("application/json");

@@ -25,12 +25,15 @@ namespace ApiSdk.Sites.Item.Columns.Item.SourceColumn.@Ref {
             var command = new Command("delete");
             command.Description = "The source column for the content type column.";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--site-id", description: "key: id of site"));
-            command.AddOption(new Option<string>("--columndefinition-id", description: "key: id of columnDefinition"));
+            var siteIdOption = new Option<string>("--site-id", description: "key: id of site");
+            siteIdOption.IsRequired = true;
+            command.AddOption(siteIdOption);
+            var columnDefinitionIdOption = new Option<string>("--columndefinition-id", description: "key: id of columnDefinition");
+            columnDefinitionIdOption.IsRequired = true;
+            command.AddOption(columnDefinitionIdOption);
             command.Handler = CommandHandler.Create<string, string>(async (siteId, columnDefinitionId) => {
-                var requestInfo = CreateDeleteRequestInformation();
-                if (!String.IsNullOrEmpty(siteId)) requestInfo.PathParameters.Add("site_id", siteId);
-                if (!String.IsNullOrEmpty(columnDefinitionId)) requestInfo.PathParameters.Add("columnDefinition_id", columnDefinitionId);
+                var requestInfo = CreateDeleteRequestInformation(q => {
+                });
                 await RequestAdapter.SendNoContentAsync(requestInfo);
                 // Print request output. What if the request has no return?
                 Console.WriteLine("Success");
@@ -44,12 +47,15 @@ namespace ApiSdk.Sites.Item.Columns.Item.SourceColumn.@Ref {
             var command = new Command("get");
             command.Description = "The source column for the content type column.";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--site-id", description: "key: id of site"));
-            command.AddOption(new Option<string>("--columndefinition-id", description: "key: id of columnDefinition"));
+            var siteIdOption = new Option<string>("--site-id", description: "key: id of site");
+            siteIdOption.IsRequired = true;
+            command.AddOption(siteIdOption);
+            var columnDefinitionIdOption = new Option<string>("--columndefinition-id", description: "key: id of columnDefinition");
+            columnDefinitionIdOption.IsRequired = true;
+            command.AddOption(columnDefinitionIdOption);
             command.Handler = CommandHandler.Create<string, string>(async (siteId, columnDefinitionId) => {
-                var requestInfo = CreateGetRequestInformation();
-                if (!String.IsNullOrEmpty(siteId)) requestInfo.PathParameters.Add("site_id", siteId);
-                if (!String.IsNullOrEmpty(columnDefinitionId)) requestInfo.PathParameters.Add("columnDefinition_id", columnDefinitionId);
+                var requestInfo = CreateGetRequestInformation(q => {
+                });
                 var result = await RequestAdapter.SendPrimitiveAsync<string>(requestInfo);
                 // Print request output. What if the request has no return?
                 using var serializer = RequestAdapter.SerializationWriterFactory.GetSerializationWriter("application/json");
@@ -68,16 +74,21 @@ namespace ApiSdk.Sites.Item.Columns.Item.SourceColumn.@Ref {
             var command = new Command("put");
             command.Description = "The source column for the content type column.";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--site-id", description: "key: id of site"));
-            command.AddOption(new Option<string>("--columndefinition-id", description: "key: id of columnDefinition"));
-            command.AddOption(new Option<string>("--body"));
+            var siteIdOption = new Option<string>("--site-id", description: "key: id of site");
+            siteIdOption.IsRequired = true;
+            command.AddOption(siteIdOption);
+            var columnDefinitionIdOption = new Option<string>("--columndefinition-id", description: "key: id of columnDefinition");
+            columnDefinitionIdOption.IsRequired = true;
+            command.AddOption(columnDefinitionIdOption);
+            var bodyOption = new Option<string>("--body");
+            bodyOption.IsRequired = true;
+            command.AddOption(bodyOption);
             command.Handler = CommandHandler.Create<string, string, string>(async (siteId, columnDefinitionId, body) => {
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<ApiSdk.Sites.Item.Columns.Item.SourceColumn.@Ref.@Ref>();
-                var requestInfo = CreatePutRequestInformation(model);
-                if (!String.IsNullOrEmpty(siteId)) requestInfo.PathParameters.Add("site_id", siteId);
-                if (!String.IsNullOrEmpty(columnDefinitionId)) requestInfo.PathParameters.Add("columnDefinition_id", columnDefinitionId);
+                var requestInfo = CreatePutRequestInformation(model, q => {
+                });
                 await RequestAdapter.SendNoContentAsync(requestInfo);
                 // Print request output. What if the request has no return?
                 Console.WriteLine("Success");

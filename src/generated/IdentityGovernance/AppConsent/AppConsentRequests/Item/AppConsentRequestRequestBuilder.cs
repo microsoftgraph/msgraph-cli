@@ -27,10 +27,12 @@ namespace ApiSdk.IdentityGovernance.AppConsent.AppConsentRequests.Item {
             var command = new Command("delete");
             command.Description = "Delete navigation property appConsentRequests for identityGovernance";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--appconsentrequest-id", description: "key: id of appConsentRequest"));
+            var appConsentRequestIdOption = new Option<string>("--appconsentrequest-id", description: "key: id of appConsentRequest");
+            appConsentRequestIdOption.IsRequired = true;
+            command.AddOption(appConsentRequestIdOption);
             command.Handler = CommandHandler.Create<string>(async (appConsentRequestId) => {
-                var requestInfo = CreateDeleteRequestInformation();
-                if (!String.IsNullOrEmpty(appConsentRequestId)) requestInfo.PathParameters.Add("appConsentRequest_id", appConsentRequestId);
+                var requestInfo = CreateDeleteRequestInformation(q => {
+                });
                 await RequestAdapter.SendNoContentAsync(requestInfo);
                 // Print request output. What if the request has no return?
                 Console.WriteLine("Success");
@@ -44,14 +46,22 @@ namespace ApiSdk.IdentityGovernance.AppConsent.AppConsentRequests.Item {
             var command = new Command("get");
             command.Description = "Get appConsentRequests from identityGovernance";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--appconsentrequest-id", description: "key: id of appConsentRequest"));
-            command.AddOption(new Option<object>("--select", description: "Select properties to be returned"));
-            command.AddOption(new Option<object>("--expand", description: "Expand related entities"));
-            command.Handler = CommandHandler.Create<string, object, object>(async (appConsentRequestId, select, expand) => {
-                var requestInfo = CreateGetRequestInformation();
-                if (!String.IsNullOrEmpty(appConsentRequestId)) requestInfo.PathParameters.Add("appConsentRequest_id", appConsentRequestId);
-                requestInfo.QueryParameters.Add("select", select);
-                requestInfo.QueryParameters.Add("expand", expand);
+            var appConsentRequestIdOption = new Option<string>("--appconsentrequest-id", description: "key: id of appConsentRequest");
+            appConsentRequestIdOption.IsRequired = true;
+            command.AddOption(appConsentRequestIdOption);
+            var selectOption = new Option<string[]>("--select", description: "Select properties to be returned");
+            selectOption.IsRequired = false;
+            selectOption.Arity = ArgumentArity.ZeroOrMore;
+            command.AddOption(selectOption);
+            var expandOption = new Option<string[]>("--expand", description: "Expand related entities");
+            expandOption.IsRequired = false;
+            expandOption.Arity = ArgumentArity.ZeroOrMore;
+            command.AddOption(expandOption);
+            command.Handler = CommandHandler.Create<string, string[], string[]>(async (appConsentRequestId, select, expand) => {
+                var requestInfo = CreateGetRequestInformation(q => {
+                    q.Select = select;
+                    q.Expand = expand;
+                });
                 var result = await RequestAdapter.SendAsync<AppConsentRequest>(requestInfo);
                 // Print request output. What if the request has no return?
                 using var serializer = RequestAdapter.SerializationWriterFactory.GetSerializationWriter("application/json");
@@ -70,14 +80,18 @@ namespace ApiSdk.IdentityGovernance.AppConsent.AppConsentRequests.Item {
             var command = new Command("patch");
             command.Description = "Update the navigation property appConsentRequests in identityGovernance";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--appconsentrequest-id", description: "key: id of appConsentRequest"));
-            command.AddOption(new Option<string>("--body"));
+            var appConsentRequestIdOption = new Option<string>("--appconsentrequest-id", description: "key: id of appConsentRequest");
+            appConsentRequestIdOption.IsRequired = true;
+            command.AddOption(appConsentRequestIdOption);
+            var bodyOption = new Option<string>("--body");
+            bodyOption.IsRequired = true;
+            command.AddOption(bodyOption);
             command.Handler = CommandHandler.Create<string, string>(async (appConsentRequestId, body) => {
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<AppConsentRequest>();
-                var requestInfo = CreatePatchRequestInformation(model);
-                if (!String.IsNullOrEmpty(appConsentRequestId)) requestInfo.PathParameters.Add("appConsentRequest_id", appConsentRequestId);
+                var requestInfo = CreatePatchRequestInformation(model, q => {
+                });
                 await RequestAdapter.SendNoContentAsync(requestInfo);
                 // Print request output. What if the request has no return?
                 Console.WriteLine("Success");

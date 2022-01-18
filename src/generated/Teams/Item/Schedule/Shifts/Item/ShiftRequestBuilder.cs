@@ -26,12 +26,15 @@ namespace ApiSdk.Teams.Item.Schedule.Shifts.Item {
             var command = new Command("delete");
             command.Description = "The shifts in the schedule.";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--team-id", description: "key: id of team"));
-            command.AddOption(new Option<string>("--shift-id", description: "key: id of shift"));
+            var teamIdOption = new Option<string>("--team-id", description: "key: id of team");
+            teamIdOption.IsRequired = true;
+            command.AddOption(teamIdOption);
+            var shiftIdOption = new Option<string>("--shift-id", description: "key: id of shift");
+            shiftIdOption.IsRequired = true;
+            command.AddOption(shiftIdOption);
             command.Handler = CommandHandler.Create<string, string>(async (teamId, shiftId) => {
-                var requestInfo = CreateDeleteRequestInformation();
-                if (!String.IsNullOrEmpty(teamId)) requestInfo.PathParameters.Add("team_id", teamId);
-                if (!String.IsNullOrEmpty(shiftId)) requestInfo.PathParameters.Add("shift_id", shiftId);
+                var requestInfo = CreateDeleteRequestInformation(q => {
+                });
                 await RequestAdapter.SendNoContentAsync(requestInfo);
                 // Print request output. What if the request has no return?
                 Console.WriteLine("Success");
@@ -45,14 +48,20 @@ namespace ApiSdk.Teams.Item.Schedule.Shifts.Item {
             var command = new Command("get");
             command.Description = "The shifts in the schedule.";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--team-id", description: "key: id of team"));
-            command.AddOption(new Option<string>("--shift-id", description: "key: id of shift"));
-            command.AddOption(new Option<object>("--select", description: "Select properties to be returned"));
-            command.Handler = CommandHandler.Create<string, string, object>(async (teamId, shiftId, select) => {
-                var requestInfo = CreateGetRequestInformation();
-                if (!String.IsNullOrEmpty(teamId)) requestInfo.PathParameters.Add("team_id", teamId);
-                if (!String.IsNullOrEmpty(shiftId)) requestInfo.PathParameters.Add("shift_id", shiftId);
-                requestInfo.QueryParameters.Add("select", select);
+            var teamIdOption = new Option<string>("--team-id", description: "key: id of team");
+            teamIdOption.IsRequired = true;
+            command.AddOption(teamIdOption);
+            var shiftIdOption = new Option<string>("--shift-id", description: "key: id of shift");
+            shiftIdOption.IsRequired = true;
+            command.AddOption(shiftIdOption);
+            var selectOption = new Option<string[]>("--select", description: "Select properties to be returned");
+            selectOption.IsRequired = false;
+            selectOption.Arity = ArgumentArity.ZeroOrMore;
+            command.AddOption(selectOption);
+            command.Handler = CommandHandler.Create<string, string, string[]>(async (teamId, shiftId, select) => {
+                var requestInfo = CreateGetRequestInformation(q => {
+                    q.Select = select;
+                });
                 var result = await RequestAdapter.SendAsync<Shift>(requestInfo);
                 // Print request output. What if the request has no return?
                 using var serializer = RequestAdapter.SerializationWriterFactory.GetSerializationWriter("application/json");
@@ -71,16 +80,21 @@ namespace ApiSdk.Teams.Item.Schedule.Shifts.Item {
             var command = new Command("patch");
             command.Description = "The shifts in the schedule.";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--team-id", description: "key: id of team"));
-            command.AddOption(new Option<string>("--shift-id", description: "key: id of shift"));
-            command.AddOption(new Option<string>("--body"));
+            var teamIdOption = new Option<string>("--team-id", description: "key: id of team");
+            teamIdOption.IsRequired = true;
+            command.AddOption(teamIdOption);
+            var shiftIdOption = new Option<string>("--shift-id", description: "key: id of shift");
+            shiftIdOption.IsRequired = true;
+            command.AddOption(shiftIdOption);
+            var bodyOption = new Option<string>("--body");
+            bodyOption.IsRequired = true;
+            command.AddOption(bodyOption);
             command.Handler = CommandHandler.Create<string, string, string>(async (teamId, shiftId, body) => {
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<Shift>();
-                var requestInfo = CreatePatchRequestInformation(model);
-                if (!String.IsNullOrEmpty(teamId)) requestInfo.PathParameters.Add("team_id", teamId);
-                if (!String.IsNullOrEmpty(shiftId)) requestInfo.PathParameters.Add("shift_id", shiftId);
+                var requestInfo = CreatePatchRequestInformation(model, q => {
+                });
                 await RequestAdapter.SendNoContentAsync(requestInfo);
                 // Print request output. What if the request has no return?
                 Console.WriteLine("Success");

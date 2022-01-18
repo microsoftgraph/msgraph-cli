@@ -27,14 +27,18 @@ namespace ApiSdk.Drives.Item.List.ContentTypes.Item.Columns.Item {
             var command = new Command("delete");
             command.Description = "The collection of column definitions for this contentType.";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--drive-id", description: "key: id of drive"));
-            command.AddOption(new Option<string>("--contenttype-id", description: "key: id of contentType"));
-            command.AddOption(new Option<string>("--columndefinition-id", description: "key: id of columnDefinition"));
+            var driveIdOption = new Option<string>("--drive-id", description: "key: id of drive");
+            driveIdOption.IsRequired = true;
+            command.AddOption(driveIdOption);
+            var contentTypeIdOption = new Option<string>("--contenttype-id", description: "key: id of contentType");
+            contentTypeIdOption.IsRequired = true;
+            command.AddOption(contentTypeIdOption);
+            var columnDefinitionIdOption = new Option<string>("--columndefinition-id", description: "key: id of columnDefinition");
+            columnDefinitionIdOption.IsRequired = true;
+            command.AddOption(columnDefinitionIdOption);
             command.Handler = CommandHandler.Create<string, string, string>(async (driveId, contentTypeId, columnDefinitionId) => {
-                var requestInfo = CreateDeleteRequestInformation();
-                if (!String.IsNullOrEmpty(driveId)) requestInfo.PathParameters.Add("drive_id", driveId);
-                if (!String.IsNullOrEmpty(contentTypeId)) requestInfo.PathParameters.Add("contentType_id", contentTypeId);
-                if (!String.IsNullOrEmpty(columnDefinitionId)) requestInfo.PathParameters.Add("columnDefinition_id", columnDefinitionId);
+                var requestInfo = CreateDeleteRequestInformation(q => {
+                });
                 await RequestAdapter.SendNoContentAsync(requestInfo);
                 // Print request output. What if the request has no return?
                 Console.WriteLine("Success");
@@ -48,18 +52,28 @@ namespace ApiSdk.Drives.Item.List.ContentTypes.Item.Columns.Item {
             var command = new Command("get");
             command.Description = "The collection of column definitions for this contentType.";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--drive-id", description: "key: id of drive"));
-            command.AddOption(new Option<string>("--contenttype-id", description: "key: id of contentType"));
-            command.AddOption(new Option<string>("--columndefinition-id", description: "key: id of columnDefinition"));
-            command.AddOption(new Option<object>("--select", description: "Select properties to be returned"));
-            command.AddOption(new Option<object>("--expand", description: "Expand related entities"));
-            command.Handler = CommandHandler.Create<string, string, string, object, object>(async (driveId, contentTypeId, columnDefinitionId, select, expand) => {
-                var requestInfo = CreateGetRequestInformation();
-                if (!String.IsNullOrEmpty(driveId)) requestInfo.PathParameters.Add("drive_id", driveId);
-                if (!String.IsNullOrEmpty(contentTypeId)) requestInfo.PathParameters.Add("contentType_id", contentTypeId);
-                if (!String.IsNullOrEmpty(columnDefinitionId)) requestInfo.PathParameters.Add("columnDefinition_id", columnDefinitionId);
-                requestInfo.QueryParameters.Add("select", select);
-                requestInfo.QueryParameters.Add("expand", expand);
+            var driveIdOption = new Option<string>("--drive-id", description: "key: id of drive");
+            driveIdOption.IsRequired = true;
+            command.AddOption(driveIdOption);
+            var contentTypeIdOption = new Option<string>("--contenttype-id", description: "key: id of contentType");
+            contentTypeIdOption.IsRequired = true;
+            command.AddOption(contentTypeIdOption);
+            var columnDefinitionIdOption = new Option<string>("--columndefinition-id", description: "key: id of columnDefinition");
+            columnDefinitionIdOption.IsRequired = true;
+            command.AddOption(columnDefinitionIdOption);
+            var selectOption = new Option<string[]>("--select", description: "Select properties to be returned");
+            selectOption.IsRequired = false;
+            selectOption.Arity = ArgumentArity.ZeroOrMore;
+            command.AddOption(selectOption);
+            var expandOption = new Option<string[]>("--expand", description: "Expand related entities");
+            expandOption.IsRequired = false;
+            expandOption.Arity = ArgumentArity.ZeroOrMore;
+            command.AddOption(expandOption);
+            command.Handler = CommandHandler.Create<string, string, string, string[], string[]>(async (driveId, contentTypeId, columnDefinitionId, select, expand) => {
+                var requestInfo = CreateGetRequestInformation(q => {
+                    q.Select = select;
+                    q.Expand = expand;
+                });
                 var result = await RequestAdapter.SendAsync<ColumnDefinition>(requestInfo);
                 // Print request output. What if the request has no return?
                 using var serializer = RequestAdapter.SerializationWriterFactory.GetSerializationWriter("application/json");
@@ -78,18 +92,24 @@ namespace ApiSdk.Drives.Item.List.ContentTypes.Item.Columns.Item {
             var command = new Command("patch");
             command.Description = "The collection of column definitions for this contentType.";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--drive-id", description: "key: id of drive"));
-            command.AddOption(new Option<string>("--contenttype-id", description: "key: id of contentType"));
-            command.AddOption(new Option<string>("--columndefinition-id", description: "key: id of columnDefinition"));
-            command.AddOption(new Option<string>("--body"));
+            var driveIdOption = new Option<string>("--drive-id", description: "key: id of drive");
+            driveIdOption.IsRequired = true;
+            command.AddOption(driveIdOption);
+            var contentTypeIdOption = new Option<string>("--contenttype-id", description: "key: id of contentType");
+            contentTypeIdOption.IsRequired = true;
+            command.AddOption(contentTypeIdOption);
+            var columnDefinitionIdOption = new Option<string>("--columndefinition-id", description: "key: id of columnDefinition");
+            columnDefinitionIdOption.IsRequired = true;
+            command.AddOption(columnDefinitionIdOption);
+            var bodyOption = new Option<string>("--body");
+            bodyOption.IsRequired = true;
+            command.AddOption(bodyOption);
             command.Handler = CommandHandler.Create<string, string, string, string>(async (driveId, contentTypeId, columnDefinitionId, body) => {
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<ColumnDefinition>();
-                var requestInfo = CreatePatchRequestInformation(model);
-                if (!String.IsNullOrEmpty(driveId)) requestInfo.PathParameters.Add("drive_id", driveId);
-                if (!String.IsNullOrEmpty(contentTypeId)) requestInfo.PathParameters.Add("contentType_id", contentTypeId);
-                if (!String.IsNullOrEmpty(columnDefinitionId)) requestInfo.PathParameters.Add("columnDefinition_id", columnDefinitionId);
+                var requestInfo = CreatePatchRequestInformation(model, q => {
+                });
                 await RequestAdapter.SendNoContentAsync(requestInfo);
                 // Print request output. What if the request has no return?
                 Console.WriteLine("Success");

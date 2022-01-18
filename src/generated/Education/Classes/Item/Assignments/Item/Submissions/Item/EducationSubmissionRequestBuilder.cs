@@ -33,14 +33,18 @@ namespace ApiSdk.Education.Classes.Item.Assignments.Item.Submissions.Item {
             var command = new Command("delete");
             command.Description = "Once published, there is a submission object for each student representing their work and grade.  Read-only. Nullable.";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--educationclass-id", description: "key: id of educationClass"));
-            command.AddOption(new Option<string>("--educationassignment-id", description: "key: id of educationAssignment"));
-            command.AddOption(new Option<string>("--educationsubmission-id", description: "key: id of educationSubmission"));
+            var educationClassIdOption = new Option<string>("--educationclass-id", description: "key: id of educationClass");
+            educationClassIdOption.IsRequired = true;
+            command.AddOption(educationClassIdOption);
+            var educationAssignmentIdOption = new Option<string>("--educationassignment-id", description: "key: id of educationAssignment");
+            educationAssignmentIdOption.IsRequired = true;
+            command.AddOption(educationAssignmentIdOption);
+            var educationSubmissionIdOption = new Option<string>("--educationsubmission-id", description: "key: id of educationSubmission");
+            educationSubmissionIdOption.IsRequired = true;
+            command.AddOption(educationSubmissionIdOption);
             command.Handler = CommandHandler.Create<string, string, string>(async (educationClassId, educationAssignmentId, educationSubmissionId) => {
-                var requestInfo = CreateDeleteRequestInformation();
-                if (!String.IsNullOrEmpty(educationClassId)) requestInfo.PathParameters.Add("educationClass_id", educationClassId);
-                if (!String.IsNullOrEmpty(educationAssignmentId)) requestInfo.PathParameters.Add("educationAssignment_id", educationAssignmentId);
-                if (!String.IsNullOrEmpty(educationSubmissionId)) requestInfo.PathParameters.Add("educationSubmission_id", educationSubmissionId);
+                var requestInfo = CreateDeleteRequestInformation(q => {
+                });
                 await RequestAdapter.SendNoContentAsync(requestInfo);
                 // Print request output. What if the request has no return?
                 Console.WriteLine("Success");
@@ -54,18 +58,28 @@ namespace ApiSdk.Education.Classes.Item.Assignments.Item.Submissions.Item {
             var command = new Command("get");
             command.Description = "Once published, there is a submission object for each student representing their work and grade.  Read-only. Nullable.";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--educationclass-id", description: "key: id of educationClass"));
-            command.AddOption(new Option<string>("--educationassignment-id", description: "key: id of educationAssignment"));
-            command.AddOption(new Option<string>("--educationsubmission-id", description: "key: id of educationSubmission"));
-            command.AddOption(new Option<object>("--select", description: "Select properties to be returned"));
-            command.AddOption(new Option<object>("--expand", description: "Expand related entities"));
-            command.Handler = CommandHandler.Create<string, string, string, object, object>(async (educationClassId, educationAssignmentId, educationSubmissionId, select, expand) => {
-                var requestInfo = CreateGetRequestInformation();
-                if (!String.IsNullOrEmpty(educationClassId)) requestInfo.PathParameters.Add("educationClass_id", educationClassId);
-                if (!String.IsNullOrEmpty(educationAssignmentId)) requestInfo.PathParameters.Add("educationAssignment_id", educationAssignmentId);
-                if (!String.IsNullOrEmpty(educationSubmissionId)) requestInfo.PathParameters.Add("educationSubmission_id", educationSubmissionId);
-                requestInfo.QueryParameters.Add("select", select);
-                requestInfo.QueryParameters.Add("expand", expand);
+            var educationClassIdOption = new Option<string>("--educationclass-id", description: "key: id of educationClass");
+            educationClassIdOption.IsRequired = true;
+            command.AddOption(educationClassIdOption);
+            var educationAssignmentIdOption = new Option<string>("--educationassignment-id", description: "key: id of educationAssignment");
+            educationAssignmentIdOption.IsRequired = true;
+            command.AddOption(educationAssignmentIdOption);
+            var educationSubmissionIdOption = new Option<string>("--educationsubmission-id", description: "key: id of educationSubmission");
+            educationSubmissionIdOption.IsRequired = true;
+            command.AddOption(educationSubmissionIdOption);
+            var selectOption = new Option<string[]>("--select", description: "Select properties to be returned");
+            selectOption.IsRequired = false;
+            selectOption.Arity = ArgumentArity.ZeroOrMore;
+            command.AddOption(selectOption);
+            var expandOption = new Option<string[]>("--expand", description: "Expand related entities");
+            expandOption.IsRequired = false;
+            expandOption.Arity = ArgumentArity.ZeroOrMore;
+            command.AddOption(expandOption);
+            command.Handler = CommandHandler.Create<string, string, string, string[], string[]>(async (educationClassId, educationAssignmentId, educationSubmissionId, select, expand) => {
+                var requestInfo = CreateGetRequestInformation(q => {
+                    q.Select = select;
+                    q.Expand = expand;
+                });
                 var result = await RequestAdapter.SendAsync<EducationSubmission>(requestInfo);
                 // Print request output. What if the request has no return?
                 using var serializer = RequestAdapter.SerializationWriterFactory.GetSerializationWriter("application/json");
@@ -91,18 +105,24 @@ namespace ApiSdk.Education.Classes.Item.Assignments.Item.Submissions.Item {
             var command = new Command("patch");
             command.Description = "Once published, there is a submission object for each student representing their work and grade.  Read-only. Nullable.";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--educationclass-id", description: "key: id of educationClass"));
-            command.AddOption(new Option<string>("--educationassignment-id", description: "key: id of educationAssignment"));
-            command.AddOption(new Option<string>("--educationsubmission-id", description: "key: id of educationSubmission"));
-            command.AddOption(new Option<string>("--body"));
+            var educationClassIdOption = new Option<string>("--educationclass-id", description: "key: id of educationClass");
+            educationClassIdOption.IsRequired = true;
+            command.AddOption(educationClassIdOption);
+            var educationAssignmentIdOption = new Option<string>("--educationassignment-id", description: "key: id of educationAssignment");
+            educationAssignmentIdOption.IsRequired = true;
+            command.AddOption(educationAssignmentIdOption);
+            var educationSubmissionIdOption = new Option<string>("--educationsubmission-id", description: "key: id of educationSubmission");
+            educationSubmissionIdOption.IsRequired = true;
+            command.AddOption(educationSubmissionIdOption);
+            var bodyOption = new Option<string>("--body");
+            bodyOption.IsRequired = true;
+            command.AddOption(bodyOption);
             command.Handler = CommandHandler.Create<string, string, string, string>(async (educationClassId, educationAssignmentId, educationSubmissionId, body) => {
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<EducationSubmission>();
-                var requestInfo = CreatePatchRequestInformation(model);
-                if (!String.IsNullOrEmpty(educationClassId)) requestInfo.PathParameters.Add("educationClass_id", educationClassId);
-                if (!String.IsNullOrEmpty(educationAssignmentId)) requestInfo.PathParameters.Add("educationAssignment_id", educationAssignmentId);
-                if (!String.IsNullOrEmpty(educationSubmissionId)) requestInfo.PathParameters.Add("educationSubmission_id", educationSubmissionId);
+                var requestInfo = CreatePatchRequestInformation(model, q => {
+                });
                 await RequestAdapter.SendNoContentAsync(requestInfo);
                 // Print request output. What if the request has no return?
                 Console.WriteLine("Success");

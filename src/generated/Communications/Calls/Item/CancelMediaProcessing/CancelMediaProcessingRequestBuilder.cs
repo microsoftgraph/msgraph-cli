@@ -26,14 +26,18 @@ namespace ApiSdk.Communications.Calls.Item.CancelMediaProcessing {
             var command = new Command("post");
             command.Description = "Invoke action cancelMediaProcessing";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--call-id", description: "key: id of call"));
-            command.AddOption(new Option<string>("--body"));
+            var callIdOption = new Option<string>("--call-id", description: "key: id of call");
+            callIdOption.IsRequired = true;
+            command.AddOption(callIdOption);
+            var bodyOption = new Option<string>("--body");
+            bodyOption.IsRequired = true;
+            command.AddOption(bodyOption);
             command.Handler = CommandHandler.Create<string, string>(async (callId, body) => {
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<CancelMediaProcessingRequestBody>();
-                var requestInfo = CreatePostRequestInformation(model);
-                if (!String.IsNullOrEmpty(callId)) requestInfo.PathParameters.Add("call_id", callId);
+                var requestInfo = CreatePostRequestInformation(model, q => {
+                });
                 var result = await RequestAdapter.SendAsync<CancelMediaProcessingResponse>(requestInfo);
                 // Print request output. What if the request has no return?
                 using var serializer = RequestAdapter.SerializationWriterFactory.GetSerializationWriter("application/json");

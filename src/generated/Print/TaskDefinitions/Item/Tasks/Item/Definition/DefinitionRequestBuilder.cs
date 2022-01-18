@@ -27,16 +27,25 @@ namespace ApiSdk.Print.TaskDefinitions.Item.Tasks.Item.Definition {
             var command = new Command("get");
             command.Description = "The printTaskDefinition that was used to create this task. Read-only.";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--printtaskdefinition-id", description: "key: id of printTaskDefinition"));
-            command.AddOption(new Option<string>("--printtask-id", description: "key: id of printTask"));
-            command.AddOption(new Option<object>("--select", description: "Select properties to be returned"));
-            command.AddOption(new Option<object>("--expand", description: "Expand related entities"));
-            command.Handler = CommandHandler.Create<string, string, object, object>(async (printTaskDefinitionId, printTaskId, select, expand) => {
-                var requestInfo = CreateGetRequestInformation();
-                if (!String.IsNullOrEmpty(printTaskDefinitionId)) requestInfo.PathParameters.Add("printTaskDefinition_id", printTaskDefinitionId);
-                if (!String.IsNullOrEmpty(printTaskId)) requestInfo.PathParameters.Add("printTask_id", printTaskId);
-                requestInfo.QueryParameters.Add("select", select);
-                requestInfo.QueryParameters.Add("expand", expand);
+            var printTaskDefinitionIdOption = new Option<string>("--printtaskdefinition-id", description: "key: id of printTaskDefinition");
+            printTaskDefinitionIdOption.IsRequired = true;
+            command.AddOption(printTaskDefinitionIdOption);
+            var printTaskIdOption = new Option<string>("--printtask-id", description: "key: id of printTask");
+            printTaskIdOption.IsRequired = true;
+            command.AddOption(printTaskIdOption);
+            var selectOption = new Option<string[]>("--select", description: "Select properties to be returned");
+            selectOption.IsRequired = false;
+            selectOption.Arity = ArgumentArity.ZeroOrMore;
+            command.AddOption(selectOption);
+            var expandOption = new Option<string[]>("--expand", description: "Expand related entities");
+            expandOption.IsRequired = false;
+            expandOption.Arity = ArgumentArity.ZeroOrMore;
+            command.AddOption(expandOption);
+            command.Handler = CommandHandler.Create<string, string, string[], string[]>(async (printTaskDefinitionId, printTaskId, select, expand) => {
+                var requestInfo = CreateGetRequestInformation(q => {
+                    q.Select = select;
+                    q.Expand = expand;
+                });
                 var result = await RequestAdapter.SendAsync<PrintTaskDefinition>(requestInfo);
                 // Print request output. What if the request has no return?
                 using var serializer = RequestAdapter.SerializationWriterFactory.GetSerializationWriter("application/json");

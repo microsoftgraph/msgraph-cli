@@ -25,13 +25,16 @@ namespace ApiSdk.DeviceManagement.Reports.GetPolicyNonComplianceReport {
             var command = new Command("post");
             command.Description = "Invoke action getPolicyNonComplianceReport";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--body"));
+            var bodyOption = new Option<string>("--body");
+            bodyOption.IsRequired = true;
+            command.AddOption(bodyOption);
             command.AddOption(new Option<FileInfo>("--output"));
             command.Handler = CommandHandler.Create<string, FileInfo>(async (body, output) => {
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<GetPolicyNonComplianceReportRequestBody>();
-                var requestInfo = CreatePostRequestInformation(model);
+                var requestInfo = CreatePostRequestInformation(model, q => {
+                });
                 var result = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 // Print request output. What if the request has no return?
                 if (output == null) {

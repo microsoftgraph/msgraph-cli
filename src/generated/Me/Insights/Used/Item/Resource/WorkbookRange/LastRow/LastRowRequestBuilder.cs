@@ -26,10 +26,12 @@ namespace ApiSdk.Me.Insights.Used.Item.Resource.WorkbookRange.LastRow {
             var command = new Command("get");
             command.Description = "Invoke function lastRow";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--usedinsight-id", description: "key: id of usedInsight"));
+            var usedInsightIdOption = new Option<string>("--usedinsight-id", description: "key: id of usedInsight");
+            usedInsightIdOption.IsRequired = true;
+            command.AddOption(usedInsightIdOption);
             command.Handler = CommandHandler.Create<string>(async (usedInsightId) => {
-                var requestInfo = CreateGetRequestInformation();
-                if (!String.IsNullOrEmpty(usedInsightId)) requestInfo.PathParameters.Add("usedInsight_id", usedInsightId);
+                var requestInfo = CreateGetRequestInformation(q => {
+                });
                 var result = await RequestAdapter.SendAsync<LastRowResponse>(requestInfo);
                 // Print request output. What if the request has no return?
                 using var serializer = RequestAdapter.SerializationWriterFactory.GetSerializationWriter("application/json");
