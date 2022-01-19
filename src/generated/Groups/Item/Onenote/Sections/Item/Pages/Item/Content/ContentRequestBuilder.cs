@@ -25,17 +25,21 @@ namespace ApiSdk.Groups.Item.Onenote.Sections.Item.Pages.Item.Content {
             var command = new Command("get");
             command.Description = "Get media content for the navigation property pages from groups";
             // Create options for all the parameters
-            var groupIdOption = new Option<string>("--group-id", description: "key: id of group");
+            var groupIdOption = new Option<string>("--group-id", description: "key: id of group") {
+            };
             groupIdOption.IsRequired = true;
             command.AddOption(groupIdOption);
-            var onenoteSectionIdOption = new Option<string>("--onenotesection-id", description: "key: id of onenoteSection");
+            var onenoteSectionIdOption = new Option<string>("--onenotesection-id", description: "key: id of onenoteSection") {
+            };
             onenoteSectionIdOption.IsRequired = true;
             command.AddOption(onenoteSectionIdOption);
-            var onenotePageIdOption = new Option<string>("--onenotepage-id", description: "key: id of onenotePage");
+            var onenotePageIdOption = new Option<string>("--onenotepage-id", description: "key: id of onenotePage") {
+            };
             onenotePageIdOption.IsRequired = true;
             command.AddOption(onenotePageIdOption);
-            command.AddOption(new Option<FileInfo>("--output"));
-            command.Handler = CommandHandler.Create<string, string, string, FileInfo>(async (groupId, onenoteSectionId, onenotePageId, output) => {
+            var outputOption = new Option<FileInfo>("--output");
+            command.AddOption(outputOption);
+            command.SetHandler(async (string groupId, string onenoteSectionId, string onenotePageId, FileInfo output) => {
                 var requestInfo = CreateGetRequestInformation(q => {
                 });
                 var result = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
@@ -50,7 +54,7 @@ namespace ApiSdk.Groups.Item.Onenote.Sections.Item.Pages.Item.Content {
                     await result.CopyToAsync(writeStream);
                     Console.WriteLine($"Content written to {output.FullName}.");
                 }
-            });
+            }, groupIdOption, onenoteSectionIdOption, onenotePageIdOption, outputOption);
             return command;
         }
         /// <summary>
@@ -60,26 +64,30 @@ namespace ApiSdk.Groups.Item.Onenote.Sections.Item.Pages.Item.Content {
             var command = new Command("put");
             command.Description = "Update media content for the navigation property pages in groups";
             // Create options for all the parameters
-            var groupIdOption = new Option<string>("--group-id", description: "key: id of group");
+            var groupIdOption = new Option<string>("--group-id", description: "key: id of group") {
+            };
             groupIdOption.IsRequired = true;
             command.AddOption(groupIdOption);
-            var onenoteSectionIdOption = new Option<string>("--onenotesection-id", description: "key: id of onenoteSection");
+            var onenoteSectionIdOption = new Option<string>("--onenotesection-id", description: "key: id of onenoteSection") {
+            };
             onenoteSectionIdOption.IsRequired = true;
             command.AddOption(onenoteSectionIdOption);
-            var onenotePageIdOption = new Option<string>("--onenotepage-id", description: "key: id of onenotePage");
+            var onenotePageIdOption = new Option<string>("--onenotepage-id", description: "key: id of onenotePage") {
+            };
             onenotePageIdOption.IsRequired = true;
             command.AddOption(onenotePageIdOption);
-            var fileOption = new Option<Stream>("--file", description: "Binary request body");
-            fileOption.IsRequired = true;
-            command.AddOption(fileOption);
-            command.Handler = CommandHandler.Create<string, string, string, FileInfo>(async (groupId, onenoteSectionId, onenotePageId, file) => {
+            var bodyOption = new Option<Stream>("--file", description: "Binary request body") {
+            };
+            bodyOption.IsRequired = true;
+            command.AddOption(bodyOption);
+            command.SetHandler(async (string groupId, string onenoteSectionId, string onenotePageId, FileInfo file) => {
                 using var stream = file.OpenRead();
                 var requestInfo = CreatePutRequestInformation(stream, q => {
                 });
                 await RequestAdapter.SendNoContentAsync(requestInfo);
                 // Print request output. What if the request has no return?
                 Console.WriteLine("Success");
-            });
+            }, groupIdOption, onenoteSectionIdOption, onenotePageIdOption, bodyOption);
             return command;
         }
         /// <summary>
@@ -102,7 +110,7 @@ namespace ApiSdk.Groups.Item.Onenote.Sections.Item.Pages.Item.Content {
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
             var requestInfo = new RequestInformation {
-                HttpMethod = HttpMethod.GET,
+                HttpMethod = Method.GET,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };
@@ -119,7 +127,7 @@ namespace ApiSdk.Groups.Item.Onenote.Sections.Item.Pages.Item.Content {
         public RequestInformation CreatePutRequestInformation(Stream body, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
             _ = body ?? throw new ArgumentNullException(nameof(body));
             var requestInfo = new RequestInformation {
-                HttpMethod = HttpMethod.PUT,
+                HttpMethod = Method.PUT,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };

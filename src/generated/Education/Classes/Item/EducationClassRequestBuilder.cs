@@ -64,16 +64,17 @@ namespace ApiSdk.Education.Classes.Item {
             var command = new Command("delete");
             command.Description = "Delete navigation property classes for education";
             // Create options for all the parameters
-            var educationClassIdOption = new Option<string>("--educationclass-id", description: "key: id of educationClass");
+            var educationClassIdOption = new Option<string>("--educationclass-id", description: "key: id of educationClass") {
+            };
             educationClassIdOption.IsRequired = true;
             command.AddOption(educationClassIdOption);
-            command.Handler = CommandHandler.Create<string>(async (educationClassId) => {
+            command.SetHandler(async (string educationClassId) => {
                 var requestInfo = CreateDeleteRequestInformation(q => {
                 });
                 await RequestAdapter.SendNoContentAsync(requestInfo);
                 // Print request output. What if the request has no return?
                 Console.WriteLine("Success");
-            });
+            }, educationClassIdOption);
             return command;
         }
         /// <summary>
@@ -83,18 +84,21 @@ namespace ApiSdk.Education.Classes.Item {
             var command = new Command("get");
             command.Description = "Get classes from education";
             // Create options for all the parameters
-            var educationClassIdOption = new Option<string>("--educationclass-id", description: "key: id of educationClass");
+            var educationClassIdOption = new Option<string>("--educationclass-id", description: "key: id of educationClass") {
+            };
             educationClassIdOption.IsRequired = true;
             command.AddOption(educationClassIdOption);
-            var selectOption = new Option<string[]>("--select", description: "Select properties to be returned");
+            var selectOption = new Option<string[]>("--select", description: "Select properties to be returned") {
+                Arity = ArgumentArity.ZeroOrMore
+            };
             selectOption.IsRequired = false;
-            selectOption.Arity = ArgumentArity.ZeroOrMore;
             command.AddOption(selectOption);
-            var expandOption = new Option<string[]>("--expand", description: "Expand related entities");
+            var expandOption = new Option<string[]>("--expand", description: "Expand related entities") {
+                Arity = ArgumentArity.ZeroOrMore
+            };
             expandOption.IsRequired = false;
-            expandOption.Arity = ArgumentArity.ZeroOrMore;
             command.AddOption(expandOption);
-            command.Handler = CommandHandler.Create<string, string[], string[]>(async (educationClassId, select, expand) => {
+            command.SetHandler(async (string educationClassId, string[] select, string[] expand) => {
                 var requestInfo = CreateGetRequestInformation(q => {
                     q.Select = select;
                     q.Expand = expand;
@@ -107,7 +111,7 @@ namespace ApiSdk.Education.Classes.Item {
                 using var reader = new StreamReader(content);
                 var strContent = await reader.ReadToEndAsync();
                 Console.Write(strContent + "\n");
-            });
+            }, educationClassIdOption, selectOption, expandOption);
             return command;
         }
         public Command BuildGroupCommand() {
@@ -131,13 +135,15 @@ namespace ApiSdk.Education.Classes.Item {
             var command = new Command("patch");
             command.Description = "Update the navigation property classes in education";
             // Create options for all the parameters
-            var educationClassIdOption = new Option<string>("--educationclass-id", description: "key: id of educationClass");
+            var educationClassIdOption = new Option<string>("--educationclass-id", description: "key: id of educationClass") {
+            };
             educationClassIdOption.IsRequired = true;
             command.AddOption(educationClassIdOption);
-            var bodyOption = new Option<string>("--body");
+            var bodyOption = new Option<string>("--body") {
+            };
             bodyOption.IsRequired = true;
             command.AddOption(bodyOption);
-            command.Handler = CommandHandler.Create<string, string>(async (educationClassId, body) => {
+            command.SetHandler(async (string educationClassId, string body) => {
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<EducationClass>();
@@ -146,7 +152,7 @@ namespace ApiSdk.Education.Classes.Item {
                 await RequestAdapter.SendNoContentAsync(requestInfo);
                 // Print request output. What if the request has no return?
                 Console.WriteLine("Success");
-            });
+            }, educationClassIdOption, bodyOption);
             return command;
         }
         public Command BuildSchoolsCommand() {
@@ -183,7 +189,7 @@ namespace ApiSdk.Education.Classes.Item {
         /// </summary>
         public RequestInformation CreateDeleteRequestInformation(Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
             var requestInfo = new RequestInformation {
-                HttpMethod = HttpMethod.DELETE,
+                HttpMethod = Method.DELETE,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };
@@ -199,7 +205,7 @@ namespace ApiSdk.Education.Classes.Item {
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<GetQueryParameters> q = default, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
             var requestInfo = new RequestInformation {
-                HttpMethod = HttpMethod.GET,
+                HttpMethod = Method.GET,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };
@@ -221,7 +227,7 @@ namespace ApiSdk.Education.Classes.Item {
         public RequestInformation CreatePatchRequestInformation(EducationClass body, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
             _ = body ?? throw new ArgumentNullException(nameof(body));
             var requestInfo = new RequestInformation {
-                HttpMethod = HttpMethod.PATCH,
+                HttpMethod = Method.PATCH,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };

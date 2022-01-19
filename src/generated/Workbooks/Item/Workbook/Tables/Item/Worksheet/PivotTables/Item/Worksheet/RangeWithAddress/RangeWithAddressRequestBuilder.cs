@@ -26,19 +26,23 @@ namespace ApiSdk.Workbooks.Item.Workbook.Tables.Item.Worksheet.PivotTables.Item.
             var command = new Command("get");
             command.Description = "Invoke function range";
             // Create options for all the parameters
-            var driveItemIdOption = new Option<string>("--driveitem-id", description: "key: id of driveItem");
+            var driveItemIdOption = new Option<string>("--driveitem-id", description: "key: id of driveItem") {
+            };
             driveItemIdOption.IsRequired = true;
             command.AddOption(driveItemIdOption);
-            var workbookTableIdOption = new Option<string>("--workbooktable-id", description: "key: id of workbookTable");
+            var workbookTableIdOption = new Option<string>("--workbooktable-id", description: "key: id of workbookTable") {
+            };
             workbookTableIdOption.IsRequired = true;
             command.AddOption(workbookTableIdOption);
-            var workbookPivotTableIdOption = new Option<string>("--workbookpivottable-id", description: "key: id of workbookPivotTable");
+            var workbookPivotTableIdOption = new Option<string>("--workbookpivottable-id", description: "key: id of workbookPivotTable") {
+            };
             workbookPivotTableIdOption.IsRequired = true;
             command.AddOption(workbookPivotTableIdOption);
-            var addressOption = new Option<string>("--address", description: "Usage: address={address}");
+            var addressOption = new Option<string>("--address", description: "Usage: address={address}") {
+            };
             addressOption.IsRequired = true;
             command.AddOption(addressOption);
-            command.Handler = CommandHandler.Create<string, string, string, string>(async (driveItemId, workbookTableId, workbookPivotTableId, address) => {
+            command.SetHandler(async (string driveItemId, string workbookTableId, string workbookPivotTableId, string address) => {
                 var requestInfo = CreateGetRequestInformation(q => {
                 });
                 var result = await RequestAdapter.SendAsync<RangeWithAddressResponse>(requestInfo);
@@ -49,7 +53,7 @@ namespace ApiSdk.Workbooks.Item.Workbook.Tables.Item.Worksheet.PivotTables.Item.
                 using var reader = new StreamReader(content);
                 var strContent = await reader.ReadToEndAsync();
                 Console.Write(strContent + "\n");
-            });
+            }, driveItemIdOption, workbookTableIdOption, workbookPivotTableIdOption, addressOption);
             return command;
         }
         /// <summary>
@@ -74,7 +78,7 @@ namespace ApiSdk.Workbooks.Item.Workbook.Tables.Item.Worksheet.PivotTables.Item.
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
             var requestInfo = new RequestInformation {
-                HttpMethod = HttpMethod.GET,
+                HttpMethod = Method.GET,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };

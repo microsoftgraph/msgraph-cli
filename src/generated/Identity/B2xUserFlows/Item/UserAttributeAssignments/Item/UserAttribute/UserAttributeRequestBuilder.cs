@@ -27,21 +27,25 @@ namespace ApiSdk.Identity.B2xUserFlows.Item.UserAttributeAssignments.Item.UserAt
             var command = new Command("get");
             command.Description = "The user attribute that you want to add to your user flow.";
             // Create options for all the parameters
-            var b2xIdentityUserFlowIdOption = new Option<string>("--b2xidentityuserflow-id", description: "key: id of b2xIdentityUserFlow");
+            var b2xIdentityUserFlowIdOption = new Option<string>("--b2xidentityuserflow-id", description: "key: id of b2xIdentityUserFlow") {
+            };
             b2xIdentityUserFlowIdOption.IsRequired = true;
             command.AddOption(b2xIdentityUserFlowIdOption);
-            var identityUserFlowAttributeAssignmentIdOption = new Option<string>("--identityuserflowattributeassignment-id", description: "key: id of identityUserFlowAttributeAssignment");
+            var identityUserFlowAttributeAssignmentIdOption = new Option<string>("--identityuserflowattributeassignment-id", description: "key: id of identityUserFlowAttributeAssignment") {
+            };
             identityUserFlowAttributeAssignmentIdOption.IsRequired = true;
             command.AddOption(identityUserFlowAttributeAssignmentIdOption);
-            var selectOption = new Option<string[]>("--select", description: "Select properties to be returned");
+            var selectOption = new Option<string[]>("--select", description: "Select properties to be returned") {
+                Arity = ArgumentArity.ZeroOrMore
+            };
             selectOption.IsRequired = false;
-            selectOption.Arity = ArgumentArity.ZeroOrMore;
             command.AddOption(selectOption);
-            var expandOption = new Option<string[]>("--expand", description: "Expand related entities");
+            var expandOption = new Option<string[]>("--expand", description: "Expand related entities") {
+                Arity = ArgumentArity.ZeroOrMore
+            };
             expandOption.IsRequired = false;
-            expandOption.Arity = ArgumentArity.ZeroOrMore;
             command.AddOption(expandOption);
-            command.Handler = CommandHandler.Create<string, string, string[], string[]>(async (b2xIdentityUserFlowId, identityUserFlowAttributeAssignmentId, select, expand) => {
+            command.SetHandler(async (string b2xIdentityUserFlowId, string identityUserFlowAttributeAssignmentId, string[] select, string[] expand) => {
                 var requestInfo = CreateGetRequestInformation(q => {
                     q.Select = select;
                     q.Expand = expand;
@@ -54,7 +58,7 @@ namespace ApiSdk.Identity.B2xUserFlows.Item.UserAttributeAssignments.Item.UserAt
                 using var reader = new StreamReader(content);
                 var strContent = await reader.ReadToEndAsync();
                 Console.Write(strContent + "\n");
-            });
+            }, b2xIdentityUserFlowIdOption, identityUserFlowAttributeAssignmentIdOption, selectOption, expandOption);
             return command;
         }
         public Command BuildRefCommand() {
@@ -86,7 +90,7 @@ namespace ApiSdk.Identity.B2xUserFlows.Item.UserAttributeAssignments.Item.UserAt
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<GetQueryParameters> q = default, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
             var requestInfo = new RequestInformation {
-                HttpMethod = HttpMethod.GET,
+                HttpMethod = Method.GET,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };

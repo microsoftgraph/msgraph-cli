@@ -25,14 +25,17 @@ namespace ApiSdk.Drives.Item.List.Items.Item.DriveItem.Content {
             var command = new Command("get");
             command.Description = "Get media content for the navigation property driveItem from drives";
             // Create options for all the parameters
-            var driveIdOption = new Option<string>("--drive-id", description: "key: id of drive");
+            var driveIdOption = new Option<string>("--drive-id", description: "key: id of drive") {
+            };
             driveIdOption.IsRequired = true;
             command.AddOption(driveIdOption);
-            var listItemIdOption = new Option<string>("--listitem-id", description: "key: id of listItem");
+            var listItemIdOption = new Option<string>("--listitem-id", description: "key: id of listItem") {
+            };
             listItemIdOption.IsRequired = true;
             command.AddOption(listItemIdOption);
-            command.AddOption(new Option<FileInfo>("--output"));
-            command.Handler = CommandHandler.Create<string, string, FileInfo>(async (driveId, listItemId, output) => {
+            var outputOption = new Option<FileInfo>("--output");
+            command.AddOption(outputOption);
+            command.SetHandler(async (string driveId, string listItemId, FileInfo output) => {
                 var requestInfo = CreateGetRequestInformation(q => {
                 });
                 var result = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
@@ -47,7 +50,7 @@ namespace ApiSdk.Drives.Item.List.Items.Item.DriveItem.Content {
                     await result.CopyToAsync(writeStream);
                     Console.WriteLine($"Content written to {output.FullName}.");
                 }
-            });
+            }, driveIdOption, listItemIdOption, outputOption);
             return command;
         }
         /// <summary>
@@ -57,23 +60,26 @@ namespace ApiSdk.Drives.Item.List.Items.Item.DriveItem.Content {
             var command = new Command("put");
             command.Description = "Update media content for the navigation property driveItem in drives";
             // Create options for all the parameters
-            var driveIdOption = new Option<string>("--drive-id", description: "key: id of drive");
+            var driveIdOption = new Option<string>("--drive-id", description: "key: id of drive") {
+            };
             driveIdOption.IsRequired = true;
             command.AddOption(driveIdOption);
-            var listItemIdOption = new Option<string>("--listitem-id", description: "key: id of listItem");
+            var listItemIdOption = new Option<string>("--listitem-id", description: "key: id of listItem") {
+            };
             listItemIdOption.IsRequired = true;
             command.AddOption(listItemIdOption);
-            var fileOption = new Option<Stream>("--file", description: "Binary request body");
-            fileOption.IsRequired = true;
-            command.AddOption(fileOption);
-            command.Handler = CommandHandler.Create<string, string, FileInfo>(async (driveId, listItemId, file) => {
+            var bodyOption = new Option<Stream>("--file", description: "Binary request body") {
+            };
+            bodyOption.IsRequired = true;
+            command.AddOption(bodyOption);
+            command.SetHandler(async (string driveId, string listItemId, FileInfo file) => {
                 using var stream = file.OpenRead();
                 var requestInfo = CreatePutRequestInformation(stream, q => {
                 });
                 await RequestAdapter.SendNoContentAsync(requestInfo);
                 // Print request output. What if the request has no return?
                 Console.WriteLine("Success");
-            });
+            }, driveIdOption, listItemIdOption, bodyOption);
             return command;
         }
         /// <summary>
@@ -96,7 +102,7 @@ namespace ApiSdk.Drives.Item.List.Items.Item.DriveItem.Content {
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
             var requestInfo = new RequestInformation {
-                HttpMethod = HttpMethod.GET,
+                HttpMethod = Method.GET,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };
@@ -113,7 +119,7 @@ namespace ApiSdk.Drives.Item.List.Items.Item.DriveItem.Content {
         public RequestInformation CreatePutRequestInformation(Stream body, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
             _ = body ?? throw new ArgumentNullException(nameof(body));
             var requestInfo = new RequestInformation {
-                HttpMethod = HttpMethod.PUT,
+                HttpMethod = Method.PUT,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };

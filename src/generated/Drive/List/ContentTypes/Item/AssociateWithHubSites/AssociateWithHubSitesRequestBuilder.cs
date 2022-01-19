@@ -25,13 +25,15 @@ namespace ApiSdk.Drive.List.ContentTypes.Item.AssociateWithHubSites {
             var command = new Command("post");
             command.Description = "Invoke action associateWithHubSites";
             // Create options for all the parameters
-            var contentTypeIdOption = new Option<string>("--contenttype-id", description: "key: id of contentType");
+            var contentTypeIdOption = new Option<string>("--contenttype-id", description: "key: id of contentType") {
+            };
             contentTypeIdOption.IsRequired = true;
             command.AddOption(contentTypeIdOption);
-            var bodyOption = new Option<string>("--body");
+            var bodyOption = new Option<string>("--body") {
+            };
             bodyOption.IsRequired = true;
             command.AddOption(bodyOption);
-            command.Handler = CommandHandler.Create<string, string>(async (contentTypeId, body) => {
+            command.SetHandler(async (string contentTypeId, string body) => {
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<AssociateWithHubSitesRequestBody>();
@@ -40,7 +42,7 @@ namespace ApiSdk.Drive.List.ContentTypes.Item.AssociateWithHubSites {
                 await RequestAdapter.SendNoContentAsync(requestInfo);
                 // Print request output. What if the request has no return?
                 Console.WriteLine("Success");
-            });
+            }, contentTypeIdOption, bodyOption);
             return command;
         }
         /// <summary>
@@ -65,7 +67,7 @@ namespace ApiSdk.Drive.List.ContentTypes.Item.AssociateWithHubSites {
         public RequestInformation CreatePostRequestInformation(AssociateWithHubSitesRequestBody body, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
             _ = body ?? throw new ArgumentNullException(nameof(body));
             var requestInfo = new RequestInformation {
-                HttpMethod = HttpMethod.POST,
+                HttpMethod = Method.POST,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };

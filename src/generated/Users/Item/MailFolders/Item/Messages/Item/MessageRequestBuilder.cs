@@ -86,22 +86,25 @@ namespace ApiSdk.Users.Item.MailFolders.Item.Messages.Item {
             var command = new Command("delete");
             command.Description = "The collection of messages in the mailFolder.";
             // Create options for all the parameters
-            var userIdOption = new Option<string>("--user-id", description: "key: id of user");
+            var userIdOption = new Option<string>("--user-id", description: "key: id of user") {
+            };
             userIdOption.IsRequired = true;
             command.AddOption(userIdOption);
-            var mailFolderIdOption = new Option<string>("--mailfolder-id", description: "key: id of mailFolder");
+            var mailFolderIdOption = new Option<string>("--mailfolder-id", description: "key: id of mailFolder") {
+            };
             mailFolderIdOption.IsRequired = true;
             command.AddOption(mailFolderIdOption);
-            var messageIdOption = new Option<string>("--message-id", description: "key: id of message");
+            var messageIdOption = new Option<string>("--message-id", description: "key: id of message") {
+            };
             messageIdOption.IsRequired = true;
             command.AddOption(messageIdOption);
-            command.Handler = CommandHandler.Create<string, string, string>(async (userId, mailFolderId, messageId) => {
+            command.SetHandler(async (string userId, string mailFolderId, string messageId) => {
                 var requestInfo = CreateDeleteRequestInformation(q => {
                 });
                 await RequestAdapter.SendNoContentAsync(requestInfo);
                 // Print request output. What if the request has no return?
                 Console.WriteLine("Success");
-            });
+            }, userIdOption, mailFolderIdOption, messageIdOption);
             return command;
         }
         public Command BuildExtensionsCommand() {
@@ -124,24 +127,29 @@ namespace ApiSdk.Users.Item.MailFolders.Item.Messages.Item {
             var command = new Command("get");
             command.Description = "The collection of messages in the mailFolder.";
             // Create options for all the parameters
-            var userIdOption = new Option<string>("--user-id", description: "key: id of user");
+            var userIdOption = new Option<string>("--user-id", description: "key: id of user") {
+            };
             userIdOption.IsRequired = true;
             command.AddOption(userIdOption);
-            var mailFolderIdOption = new Option<string>("--mailfolder-id", description: "key: id of mailFolder");
+            var mailFolderIdOption = new Option<string>("--mailfolder-id", description: "key: id of mailFolder") {
+            };
             mailFolderIdOption.IsRequired = true;
             command.AddOption(mailFolderIdOption);
-            var messageIdOption = new Option<string>("--message-id", description: "key: id of message");
+            var messageIdOption = new Option<string>("--message-id", description: "key: id of message") {
+            };
             messageIdOption.IsRequired = true;
             command.AddOption(messageIdOption);
-            var selectOption = new Option<string[]>("--select", description: "Select properties to be returned");
+            var selectOption = new Option<string[]>("--select", description: "Select properties to be returned") {
+                Arity = ArgumentArity.ZeroOrMore
+            };
             selectOption.IsRequired = false;
-            selectOption.Arity = ArgumentArity.ZeroOrMore;
             command.AddOption(selectOption);
-            var expandOption = new Option<string[]>("--expand", description: "Expand related entities");
+            var expandOption = new Option<string[]>("--expand", description: "Expand related entities") {
+                Arity = ArgumentArity.ZeroOrMore
+            };
             expandOption.IsRequired = false;
-            expandOption.Arity = ArgumentArity.ZeroOrMore;
             command.AddOption(expandOption);
-            command.Handler = CommandHandler.Create<string, string, string, string[], string[]>(async (userId, mailFolderId, messageId, select, expand) => {
+            command.SetHandler(async (string userId, string mailFolderId, string messageId, string[] select, string[] expand) => {
                 var requestInfo = CreateGetRequestInformation(q => {
                     q.Select = select;
                     q.Expand = expand;
@@ -154,7 +162,7 @@ namespace ApiSdk.Users.Item.MailFolders.Item.Messages.Item {
                 using var reader = new StreamReader(content);
                 var strContent = await reader.ReadToEndAsync();
                 Console.Write(strContent + "\n");
-            });
+            }, userIdOption, mailFolderIdOption, messageIdOption, selectOption, expandOption);
             return command;
         }
         public Command BuildMoveCommand() {
@@ -177,19 +185,23 @@ namespace ApiSdk.Users.Item.MailFolders.Item.Messages.Item {
             var command = new Command("patch");
             command.Description = "The collection of messages in the mailFolder.";
             // Create options for all the parameters
-            var userIdOption = new Option<string>("--user-id", description: "key: id of user");
+            var userIdOption = new Option<string>("--user-id", description: "key: id of user") {
+            };
             userIdOption.IsRequired = true;
             command.AddOption(userIdOption);
-            var mailFolderIdOption = new Option<string>("--mailfolder-id", description: "key: id of mailFolder");
+            var mailFolderIdOption = new Option<string>("--mailfolder-id", description: "key: id of mailFolder") {
+            };
             mailFolderIdOption.IsRequired = true;
             command.AddOption(mailFolderIdOption);
-            var messageIdOption = new Option<string>("--message-id", description: "key: id of message");
+            var messageIdOption = new Option<string>("--message-id", description: "key: id of message") {
+            };
             messageIdOption.IsRequired = true;
             command.AddOption(messageIdOption);
-            var bodyOption = new Option<string>("--body");
+            var bodyOption = new Option<string>("--body") {
+            };
             bodyOption.IsRequired = true;
             command.AddOption(bodyOption);
-            command.Handler = CommandHandler.Create<string, string, string, string>(async (userId, mailFolderId, messageId, body) => {
+            command.SetHandler(async (string userId, string mailFolderId, string messageId, string body) => {
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<Message>();
@@ -198,7 +210,7 @@ namespace ApiSdk.Users.Item.MailFolders.Item.Messages.Item {
                 await RequestAdapter.SendNoContentAsync(requestInfo);
                 // Print request output. What if the request has no return?
                 Console.WriteLine("Success");
-            });
+            }, userIdOption, mailFolderIdOption, messageIdOption, bodyOption);
             return command;
         }
         public Command BuildReplyAllCommand() {
@@ -246,7 +258,7 @@ namespace ApiSdk.Users.Item.MailFolders.Item.Messages.Item {
         /// </summary>
         public RequestInformation CreateDeleteRequestInformation(Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
             var requestInfo = new RequestInformation {
-                HttpMethod = HttpMethod.DELETE,
+                HttpMethod = Method.DELETE,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };
@@ -262,7 +274,7 @@ namespace ApiSdk.Users.Item.MailFolders.Item.Messages.Item {
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<GetQueryParameters> q = default, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
             var requestInfo = new RequestInformation {
-                HttpMethod = HttpMethod.GET,
+                HttpMethod = Method.GET,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };
@@ -284,7 +296,7 @@ namespace ApiSdk.Users.Item.MailFolders.Item.Messages.Item {
         public RequestInformation CreatePatchRequestInformation(Message body, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
             _ = body ?? throw new ArgumentNullException(nameof(body));
             var requestInfo = new RequestInformation {
-                HttpMethod = HttpMethod.PATCH,
+                HttpMethod = Method.PATCH,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };

@@ -26,13 +26,15 @@ namespace ApiSdk.Me.Insights.Shared.Item.Resource.WorkbookRange.ColumnWithColumn
             var command = new Command("get");
             command.Description = "Invoke function column";
             // Create options for all the parameters
-            var sharedInsightIdOption = new Option<string>("--sharedinsight-id", description: "key: id of sharedInsight");
+            var sharedInsightIdOption = new Option<string>("--sharedinsight-id", description: "key: id of sharedInsight") {
+            };
             sharedInsightIdOption.IsRequired = true;
             command.AddOption(sharedInsightIdOption);
-            var columnOption = new Option<int?>("--column", description: "Usage: column={column}");
+            var columnOption = new Option<int?>("--column", description: "Usage: column={column}") {
+            };
             columnOption.IsRequired = true;
             command.AddOption(columnOption);
-            command.Handler = CommandHandler.Create<string, int?>(async (sharedInsightId, column) => {
+            command.SetHandler(async (string sharedInsightId, int? column) => {
                 var requestInfo = CreateGetRequestInformation(q => {
                 });
                 var result = await RequestAdapter.SendAsync<ColumnWithColumnResponse>(requestInfo);
@@ -43,7 +45,7 @@ namespace ApiSdk.Me.Insights.Shared.Item.Resource.WorkbookRange.ColumnWithColumn
                 using var reader = new StreamReader(content);
                 var strContent = await reader.ReadToEndAsync();
                 Console.Write(strContent + "\n");
-            });
+            }, sharedInsightIdOption, columnOption);
             return command;
         }
         /// <summary>
@@ -68,7 +70,7 @@ namespace ApiSdk.Me.Insights.Shared.Item.Resource.WorkbookRange.ColumnWithColumn
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
             var requestInfo = new RequestInformation {
-                HttpMethod = HttpMethod.GET,
+                HttpMethod = Method.GET,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };

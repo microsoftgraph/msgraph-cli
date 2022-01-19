@@ -25,19 +25,23 @@ namespace ApiSdk.Sites.Item.Lists.Item.ContentTypes.Item.@Base.CopyToDefaultCont
             var command = new Command("post");
             command.Description = "Invoke action copyToDefaultContentLocation";
             // Create options for all the parameters
-            var siteIdOption = new Option<string>("--site-id", description: "key: id of site");
+            var siteIdOption = new Option<string>("--site-id", description: "key: id of site") {
+            };
             siteIdOption.IsRequired = true;
             command.AddOption(siteIdOption);
-            var listIdOption = new Option<string>("--list-id", description: "key: id of list");
+            var listIdOption = new Option<string>("--list-id", description: "key: id of list") {
+            };
             listIdOption.IsRequired = true;
             command.AddOption(listIdOption);
-            var contentTypeIdOption = new Option<string>("--contenttype-id", description: "key: id of contentType");
+            var contentTypeIdOption = new Option<string>("--contenttype-id", description: "key: id of contentType") {
+            };
             contentTypeIdOption.IsRequired = true;
             command.AddOption(contentTypeIdOption);
-            var bodyOption = new Option<string>("--body");
+            var bodyOption = new Option<string>("--body") {
+            };
             bodyOption.IsRequired = true;
             command.AddOption(bodyOption);
-            command.Handler = CommandHandler.Create<string, string, string, string>(async (siteId, listId, contentTypeId, body) => {
+            command.SetHandler(async (string siteId, string listId, string contentTypeId, string body) => {
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<CopyToDefaultContentLocationRequestBody>();
@@ -46,7 +50,7 @@ namespace ApiSdk.Sites.Item.Lists.Item.ContentTypes.Item.@Base.CopyToDefaultCont
                 await RequestAdapter.SendNoContentAsync(requestInfo);
                 // Print request output. What if the request has no return?
                 Console.WriteLine("Success");
-            });
+            }, siteIdOption, listIdOption, contentTypeIdOption, bodyOption);
             return command;
         }
         /// <summary>
@@ -71,7 +75,7 @@ namespace ApiSdk.Sites.Item.Lists.Item.ContentTypes.Item.@Base.CopyToDefaultCont
         public RequestInformation CreatePostRequestInformation(CopyToDefaultContentLocationRequestBody body, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
             _ = body ?? throw new ArgumentNullException(nameof(body));
             var requestInfo = new RequestInformation {
-                HttpMethod = HttpMethod.POST,
+                HttpMethod = Method.POST,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };

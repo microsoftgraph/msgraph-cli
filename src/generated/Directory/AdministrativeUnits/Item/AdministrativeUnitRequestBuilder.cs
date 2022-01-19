@@ -29,16 +29,17 @@ namespace ApiSdk.Directory.AdministrativeUnits.Item {
             var command = new Command("delete");
             command.Description = "Conceptual container for user and group directory objects.";
             // Create options for all the parameters
-            var administrativeUnitIdOption = new Option<string>("--administrativeunit-id", description: "key: id of administrativeUnit");
+            var administrativeUnitIdOption = new Option<string>("--administrativeunit-id", description: "key: id of administrativeUnit") {
+            };
             administrativeUnitIdOption.IsRequired = true;
             command.AddOption(administrativeUnitIdOption);
-            command.Handler = CommandHandler.Create<string>(async (administrativeUnitId) => {
+            command.SetHandler(async (string administrativeUnitId) => {
                 var requestInfo = CreateDeleteRequestInformation(q => {
                 });
                 await RequestAdapter.SendNoContentAsync(requestInfo);
                 // Print request output. What if the request has no return?
                 Console.WriteLine("Success");
-            });
+            }, administrativeUnitIdOption);
             return command;
         }
         public Command BuildExtensionsCommand() {
@@ -55,18 +56,21 @@ namespace ApiSdk.Directory.AdministrativeUnits.Item {
             var command = new Command("get");
             command.Description = "Conceptual container for user and group directory objects.";
             // Create options for all the parameters
-            var administrativeUnitIdOption = new Option<string>("--administrativeunit-id", description: "key: id of administrativeUnit");
+            var administrativeUnitIdOption = new Option<string>("--administrativeunit-id", description: "key: id of administrativeUnit") {
+            };
             administrativeUnitIdOption.IsRequired = true;
             command.AddOption(administrativeUnitIdOption);
-            var selectOption = new Option<string[]>("--select", description: "Select properties to be returned");
+            var selectOption = new Option<string[]>("--select", description: "Select properties to be returned") {
+                Arity = ArgumentArity.ZeroOrMore
+            };
             selectOption.IsRequired = false;
-            selectOption.Arity = ArgumentArity.ZeroOrMore;
             command.AddOption(selectOption);
-            var expandOption = new Option<string[]>("--expand", description: "Expand related entities");
+            var expandOption = new Option<string[]>("--expand", description: "Expand related entities") {
+                Arity = ArgumentArity.ZeroOrMore
+            };
             expandOption.IsRequired = false;
-            expandOption.Arity = ArgumentArity.ZeroOrMore;
             command.AddOption(expandOption);
-            command.Handler = CommandHandler.Create<string, string[], string[]>(async (administrativeUnitId, select, expand) => {
+            command.SetHandler(async (string administrativeUnitId, string[] select, string[] expand) => {
                 var requestInfo = CreateGetRequestInformation(q => {
                     q.Select = select;
                     q.Expand = expand;
@@ -79,7 +83,7 @@ namespace ApiSdk.Directory.AdministrativeUnits.Item {
                 using var reader = new StreamReader(content);
                 var strContent = await reader.ReadToEndAsync();
                 Console.Write(strContent + "\n");
-            });
+            }, administrativeUnitIdOption, selectOption, expandOption);
             return command;
         }
         public Command BuildMembersCommand() {
@@ -96,13 +100,15 @@ namespace ApiSdk.Directory.AdministrativeUnits.Item {
             var command = new Command("patch");
             command.Description = "Conceptual container for user and group directory objects.";
             // Create options for all the parameters
-            var administrativeUnitIdOption = new Option<string>("--administrativeunit-id", description: "key: id of administrativeUnit");
+            var administrativeUnitIdOption = new Option<string>("--administrativeunit-id", description: "key: id of administrativeUnit") {
+            };
             administrativeUnitIdOption.IsRequired = true;
             command.AddOption(administrativeUnitIdOption);
-            var bodyOption = new Option<string>("--body");
+            var bodyOption = new Option<string>("--body") {
+            };
             bodyOption.IsRequired = true;
             command.AddOption(bodyOption);
-            command.Handler = CommandHandler.Create<string, string>(async (administrativeUnitId, body) => {
+            command.SetHandler(async (string administrativeUnitId, string body) => {
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<ApiSdk.Models.Microsoft.Graph.AdministrativeUnit>();
@@ -111,7 +117,7 @@ namespace ApiSdk.Directory.AdministrativeUnits.Item {
                 await RequestAdapter.SendNoContentAsync(requestInfo);
                 // Print request output. What if the request has no return?
                 Console.WriteLine("Success");
-            });
+            }, administrativeUnitIdOption, bodyOption);
             return command;
         }
         public Command BuildScopedRoleMembersCommand() {
@@ -141,7 +147,7 @@ namespace ApiSdk.Directory.AdministrativeUnits.Item {
         /// </summary>
         public RequestInformation CreateDeleteRequestInformation(Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
             var requestInfo = new RequestInformation {
-                HttpMethod = HttpMethod.DELETE,
+                HttpMethod = Method.DELETE,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };
@@ -157,7 +163,7 @@ namespace ApiSdk.Directory.AdministrativeUnits.Item {
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<GetQueryParameters> q = default, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
             var requestInfo = new RequestInformation {
-                HttpMethod = HttpMethod.GET,
+                HttpMethod = Method.GET,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };
@@ -179,7 +185,7 @@ namespace ApiSdk.Directory.AdministrativeUnits.Item {
         public RequestInformation CreatePatchRequestInformation(ApiSdk.Models.Microsoft.Graph.AdministrativeUnit body, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
             _ = body ?? throw new ArgumentNullException(nameof(body));
             var requestInfo = new RequestInformation {
-                HttpMethod = HttpMethod.PATCH,
+                HttpMethod = Method.PATCH,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };

@@ -26,19 +26,21 @@ namespace ApiSdk.Drives.Item.List.Items.Item.Fields {
             var command = new Command("delete");
             command.Description = "The values of the columns set on this list item.";
             // Create options for all the parameters
-            var driveIdOption = new Option<string>("--drive-id", description: "key: id of drive");
+            var driveIdOption = new Option<string>("--drive-id", description: "key: id of drive") {
+            };
             driveIdOption.IsRequired = true;
             command.AddOption(driveIdOption);
-            var listItemIdOption = new Option<string>("--listitem-id", description: "key: id of listItem");
+            var listItemIdOption = new Option<string>("--listitem-id", description: "key: id of listItem") {
+            };
             listItemIdOption.IsRequired = true;
             command.AddOption(listItemIdOption);
-            command.Handler = CommandHandler.Create<string, string>(async (driveId, listItemId) => {
+            command.SetHandler(async (string driveId, string listItemId) => {
                 var requestInfo = CreateDeleteRequestInformation(q => {
                 });
                 await RequestAdapter.SendNoContentAsync(requestInfo);
                 // Print request output. What if the request has no return?
                 Console.WriteLine("Success");
-            });
+            }, driveIdOption, listItemIdOption);
             return command;
         }
         /// <summary>
@@ -48,21 +50,25 @@ namespace ApiSdk.Drives.Item.List.Items.Item.Fields {
             var command = new Command("get");
             command.Description = "The values of the columns set on this list item.";
             // Create options for all the parameters
-            var driveIdOption = new Option<string>("--drive-id", description: "key: id of drive");
+            var driveIdOption = new Option<string>("--drive-id", description: "key: id of drive") {
+            };
             driveIdOption.IsRequired = true;
             command.AddOption(driveIdOption);
-            var listItemIdOption = new Option<string>("--listitem-id", description: "key: id of listItem");
+            var listItemIdOption = new Option<string>("--listitem-id", description: "key: id of listItem") {
+            };
             listItemIdOption.IsRequired = true;
             command.AddOption(listItemIdOption);
-            var selectOption = new Option<string[]>("--select", description: "Select properties to be returned");
+            var selectOption = new Option<string[]>("--select", description: "Select properties to be returned") {
+                Arity = ArgumentArity.ZeroOrMore
+            };
             selectOption.IsRequired = false;
-            selectOption.Arity = ArgumentArity.ZeroOrMore;
             command.AddOption(selectOption);
-            var expandOption = new Option<string[]>("--expand", description: "Expand related entities");
+            var expandOption = new Option<string[]>("--expand", description: "Expand related entities") {
+                Arity = ArgumentArity.ZeroOrMore
+            };
             expandOption.IsRequired = false;
-            expandOption.Arity = ArgumentArity.ZeroOrMore;
             command.AddOption(expandOption);
-            command.Handler = CommandHandler.Create<string, string, string[], string[]>(async (driveId, listItemId, select, expand) => {
+            command.SetHandler(async (string driveId, string listItemId, string[] select, string[] expand) => {
                 var requestInfo = CreateGetRequestInformation(q => {
                     q.Select = select;
                     q.Expand = expand;
@@ -75,7 +81,7 @@ namespace ApiSdk.Drives.Item.List.Items.Item.Fields {
                 using var reader = new StreamReader(content);
                 var strContent = await reader.ReadToEndAsync();
                 Console.Write(strContent + "\n");
-            });
+            }, driveIdOption, listItemIdOption, selectOption, expandOption);
             return command;
         }
         /// <summary>
@@ -85,16 +91,19 @@ namespace ApiSdk.Drives.Item.List.Items.Item.Fields {
             var command = new Command("patch");
             command.Description = "The values of the columns set on this list item.";
             // Create options for all the parameters
-            var driveIdOption = new Option<string>("--drive-id", description: "key: id of drive");
+            var driveIdOption = new Option<string>("--drive-id", description: "key: id of drive") {
+            };
             driveIdOption.IsRequired = true;
             command.AddOption(driveIdOption);
-            var listItemIdOption = new Option<string>("--listitem-id", description: "key: id of listItem");
+            var listItemIdOption = new Option<string>("--listitem-id", description: "key: id of listItem") {
+            };
             listItemIdOption.IsRequired = true;
             command.AddOption(listItemIdOption);
-            var bodyOption = new Option<string>("--body");
+            var bodyOption = new Option<string>("--body") {
+            };
             bodyOption.IsRequired = true;
             command.AddOption(bodyOption);
-            command.Handler = CommandHandler.Create<string, string, string>(async (driveId, listItemId, body) => {
+            command.SetHandler(async (string driveId, string listItemId, string body) => {
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<FieldValueSet>();
@@ -103,7 +112,7 @@ namespace ApiSdk.Drives.Item.List.Items.Item.Fields {
                 await RequestAdapter.SendNoContentAsync(requestInfo);
                 // Print request output. What if the request has no return?
                 Console.WriteLine("Success");
-            });
+            }, driveIdOption, listItemIdOption, bodyOption);
             return command;
         }
         /// <summary>
@@ -126,7 +135,7 @@ namespace ApiSdk.Drives.Item.List.Items.Item.Fields {
         /// </summary>
         public RequestInformation CreateDeleteRequestInformation(Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
             var requestInfo = new RequestInformation {
-                HttpMethod = HttpMethod.DELETE,
+                HttpMethod = Method.DELETE,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };
@@ -142,7 +151,7 @@ namespace ApiSdk.Drives.Item.List.Items.Item.Fields {
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<GetQueryParameters> q = default, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
             var requestInfo = new RequestInformation {
-                HttpMethod = HttpMethod.GET,
+                HttpMethod = Method.GET,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };
@@ -164,7 +173,7 @@ namespace ApiSdk.Drives.Item.List.Items.Item.Fields {
         public RequestInformation CreatePatchRequestInformation(FieldValueSet body, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
             _ = body ?? throw new ArgumentNullException(nameof(body));
             var requestInfo = new RequestInformation {
-                HttpMethod = HttpMethod.PATCH,
+                HttpMethod = Method.PATCH,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };

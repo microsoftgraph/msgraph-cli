@@ -25,10 +25,11 @@ namespace ApiSdk.Drive.SearchWithQ {
             var command = new Command("get");
             command.Description = "Invoke function search";
             // Create options for all the parameters
-            var qOption = new Option<string>("-q", description: "Usage: q={q}");
+            var qOption = new Option<string>("-q", description: "Usage: q={q}") {
+            };
             qOption.IsRequired = true;
             command.AddOption(qOption);
-            command.Handler = CommandHandler.Create<string>(async (q) => {
+            command.SetHandler(async (string q) => {
                 var requestInfo = CreateGetRequestInformation(q => {
                 });
                 var result = await RequestAdapter.SendCollectionAsync<ApiSdk.Drive.SearchWithQ.SearchWithQ>(requestInfo);
@@ -39,7 +40,7 @@ namespace ApiSdk.Drive.SearchWithQ {
                 using var reader = new StreamReader(content);
                 var strContent = await reader.ReadToEndAsync();
                 Console.Write(strContent + "\n");
-            });
+            }, qOption);
             return command;
         }
         /// <summary>
@@ -64,7 +65,7 @@ namespace ApiSdk.Drive.SearchWithQ {
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
             var requestInfo = new RequestInformation {
-                HttpMethod = HttpMethod.GET,
+                HttpMethod = Method.GET,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };

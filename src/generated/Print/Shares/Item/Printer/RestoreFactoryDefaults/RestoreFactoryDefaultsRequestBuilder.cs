@@ -25,16 +25,17 @@ namespace ApiSdk.Print.Shares.Item.Printer.RestoreFactoryDefaults {
             var command = new Command("post");
             command.Description = "Invoke action restoreFactoryDefaults";
             // Create options for all the parameters
-            var printerShareIdOption = new Option<string>("--printershare-id", description: "key: id of printerShare");
+            var printerShareIdOption = new Option<string>("--printershare-id", description: "key: id of printerShare") {
+            };
             printerShareIdOption.IsRequired = true;
             command.AddOption(printerShareIdOption);
-            command.Handler = CommandHandler.Create<string>(async (printerShareId) => {
+            command.SetHandler(async (string printerShareId) => {
                 var requestInfo = CreatePostRequestInformation(q => {
                 });
                 await RequestAdapter.SendNoContentAsync(requestInfo);
                 // Print request output. What if the request has no return?
                 Console.WriteLine("Success");
-            });
+            }, printerShareIdOption);
             return command;
         }
         /// <summary>
@@ -57,7 +58,7 @@ namespace ApiSdk.Print.Shares.Item.Printer.RestoreFactoryDefaults {
         /// </summary>
         public RequestInformation CreatePostRequestInformation(Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
             var requestInfo = new RequestInformation {
-                HttpMethod = HttpMethod.POST,
+                HttpMethod = Method.POST,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };

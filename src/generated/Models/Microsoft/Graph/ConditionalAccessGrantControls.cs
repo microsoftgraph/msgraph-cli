@@ -26,7 +26,7 @@ namespace ApiSdk.Models.Microsoft.Graph {
         /// </summary>
         public IDictionary<string, Action<T, IParseNode>> GetFieldDeserializers<T>() {
             return new Dictionary<string, Action<T, IParseNode>> {
-                {"@Operator", (o,n) => { (o as ConditionalAccessGrantControls).@Operator = n.GetStringValue(); } },
+                {"operator", (o,n) => { (o as ConditionalAccessGrantControls).@Operator = n.GetStringValue(); } },
                 {"builtInControls", (o,n) => { (o as ConditionalAccessGrantControls).BuiltInControls = n.GetCollectionOfEnumValues<ConditionalAccessGrantControl>().ToList(); } },
                 {"customAuthenticationFactors", (o,n) => { (o as ConditionalAccessGrantControls).CustomAuthenticationFactors = n.GetCollectionOfPrimitiveValues<string>().ToList(); } },
                 {"termsOfUse", (o,n) => { (o as ConditionalAccessGrantControls).TermsOfUse = n.GetCollectionOfPrimitiveValues<string>().ToList(); } },
@@ -38,7 +38,7 @@ namespace ApiSdk.Models.Microsoft.Graph {
         /// </summary>
         public void Serialize(ISerializationWriter writer) {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
-            writer.WriteStringValue("@Operator", @Operator);
+            writer.WriteStringValue("operator", @Operator);
             writer.WriteCollectionOfEnumValues<ConditionalAccessGrantControl>("builtInControls", BuiltInControls);
             writer.WriteCollectionOfPrimitiveValues<string>("customAuthenticationFactors", CustomAuthenticationFactors);
             writer.WriteCollectionOfPrimitiveValues<string>("termsOfUse", TermsOfUse);

@@ -26,13 +26,15 @@ namespace ApiSdk.Sites.Item.ContentTypes.AddCopy {
             var command = new Command("post");
             command.Description = "Invoke action addCopy";
             // Create options for all the parameters
-            var siteIdOption = new Option<string>("--site-id", description: "key: id of site");
+            var siteIdOption = new Option<string>("--site-id", description: "key: id of site") {
+            };
             siteIdOption.IsRequired = true;
             command.AddOption(siteIdOption);
-            var bodyOption = new Option<string>("--body");
+            var bodyOption = new Option<string>("--body") {
+            };
             bodyOption.IsRequired = true;
             command.AddOption(bodyOption);
-            command.Handler = CommandHandler.Create<string, string>(async (siteId, body) => {
+            command.SetHandler(async (string siteId, string body) => {
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<AddCopyRequestBody>();
@@ -46,7 +48,7 @@ namespace ApiSdk.Sites.Item.ContentTypes.AddCopy {
                 using var reader = new StreamReader(content);
                 var strContent = await reader.ReadToEndAsync();
                 Console.Write(strContent + "\n");
-            });
+            }, siteIdOption, bodyOption);
             return command;
         }
         /// <summary>
@@ -71,7 +73,7 @@ namespace ApiSdk.Sites.Item.ContentTypes.AddCopy {
         public RequestInformation CreatePostRequestInformation(AddCopyRequestBody body, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
             _ = body ?? throw new ArgumentNullException(nameof(body));
             var requestInfo = new RequestInformation {
-                HttpMethod = HttpMethod.POST,
+                HttpMethod = Method.POST,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };

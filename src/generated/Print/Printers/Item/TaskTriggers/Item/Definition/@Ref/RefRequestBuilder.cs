@@ -25,19 +25,21 @@ namespace ApiSdk.Print.Printers.Item.TaskTriggers.Item.Definition.@Ref {
             var command = new Command("delete");
             command.Description = "An abstract definition that will be used to create a printTask when triggered by a print event. Read-only.";
             // Create options for all the parameters
-            var printerIdOption = new Option<string>("--printer-id", description: "key: id of printer");
+            var printerIdOption = new Option<string>("--printer-id", description: "key: id of printer") {
+            };
             printerIdOption.IsRequired = true;
             command.AddOption(printerIdOption);
-            var printTaskTriggerIdOption = new Option<string>("--printtasktrigger-id", description: "key: id of printTaskTrigger");
+            var printTaskTriggerIdOption = new Option<string>("--printtasktrigger-id", description: "key: id of printTaskTrigger") {
+            };
             printTaskTriggerIdOption.IsRequired = true;
             command.AddOption(printTaskTriggerIdOption);
-            command.Handler = CommandHandler.Create<string, string>(async (printerId, printTaskTriggerId) => {
+            command.SetHandler(async (string printerId, string printTaskTriggerId) => {
                 var requestInfo = CreateDeleteRequestInformation(q => {
                 });
                 await RequestAdapter.SendNoContentAsync(requestInfo);
                 // Print request output. What if the request has no return?
                 Console.WriteLine("Success");
-            });
+            }, printerIdOption, printTaskTriggerIdOption);
             return command;
         }
         /// <summary>
@@ -47,13 +49,15 @@ namespace ApiSdk.Print.Printers.Item.TaskTriggers.Item.Definition.@Ref {
             var command = new Command("get");
             command.Description = "An abstract definition that will be used to create a printTask when triggered by a print event. Read-only.";
             // Create options for all the parameters
-            var printerIdOption = new Option<string>("--printer-id", description: "key: id of printer");
+            var printerIdOption = new Option<string>("--printer-id", description: "key: id of printer") {
+            };
             printerIdOption.IsRequired = true;
             command.AddOption(printerIdOption);
-            var printTaskTriggerIdOption = new Option<string>("--printtasktrigger-id", description: "key: id of printTaskTrigger");
+            var printTaskTriggerIdOption = new Option<string>("--printtasktrigger-id", description: "key: id of printTaskTrigger") {
+            };
             printTaskTriggerIdOption.IsRequired = true;
             command.AddOption(printTaskTriggerIdOption);
-            command.Handler = CommandHandler.Create<string, string>(async (printerId, printTaskTriggerId) => {
+            command.SetHandler(async (string printerId, string printTaskTriggerId) => {
                 var requestInfo = CreateGetRequestInformation(q => {
                 });
                 var result = await RequestAdapter.SendPrimitiveAsync<string>(requestInfo);
@@ -64,7 +68,7 @@ namespace ApiSdk.Print.Printers.Item.TaskTriggers.Item.Definition.@Ref {
                 using var reader = new StreamReader(content);
                 var strContent = await reader.ReadToEndAsync();
                 Console.Write(strContent + "\n");
-            });
+            }, printerIdOption, printTaskTriggerIdOption);
             return command;
         }
         /// <summary>
@@ -74,16 +78,19 @@ namespace ApiSdk.Print.Printers.Item.TaskTriggers.Item.Definition.@Ref {
             var command = new Command("put");
             command.Description = "An abstract definition that will be used to create a printTask when triggered by a print event. Read-only.";
             // Create options for all the parameters
-            var printerIdOption = new Option<string>("--printer-id", description: "key: id of printer");
+            var printerIdOption = new Option<string>("--printer-id", description: "key: id of printer") {
+            };
             printerIdOption.IsRequired = true;
             command.AddOption(printerIdOption);
-            var printTaskTriggerIdOption = new Option<string>("--printtasktrigger-id", description: "key: id of printTaskTrigger");
+            var printTaskTriggerIdOption = new Option<string>("--printtasktrigger-id", description: "key: id of printTaskTrigger") {
+            };
             printTaskTriggerIdOption.IsRequired = true;
             command.AddOption(printTaskTriggerIdOption);
-            var bodyOption = new Option<string>("--body");
+            var bodyOption = new Option<string>("--body") {
+            };
             bodyOption.IsRequired = true;
             command.AddOption(bodyOption);
-            command.Handler = CommandHandler.Create<string, string, string>(async (printerId, printTaskTriggerId, body) => {
+            command.SetHandler(async (string printerId, string printTaskTriggerId, string body) => {
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<ApiSdk.Print.Printers.Item.TaskTriggers.Item.Definition.@Ref.@Ref>();
@@ -92,7 +99,7 @@ namespace ApiSdk.Print.Printers.Item.TaskTriggers.Item.Definition.@Ref {
                 await RequestAdapter.SendNoContentAsync(requestInfo);
                 // Print request output. What if the request has no return?
                 Console.WriteLine("Success");
-            });
+            }, printerIdOption, printTaskTriggerIdOption, bodyOption);
             return command;
         }
         /// <summary>
@@ -115,7 +122,7 @@ namespace ApiSdk.Print.Printers.Item.TaskTriggers.Item.Definition.@Ref {
         /// </summary>
         public RequestInformation CreateDeleteRequestInformation(Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
             var requestInfo = new RequestInformation {
-                HttpMethod = HttpMethod.DELETE,
+                HttpMethod = Method.DELETE,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };
@@ -130,7 +137,7 @@ namespace ApiSdk.Print.Printers.Item.TaskTriggers.Item.Definition.@Ref {
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
             var requestInfo = new RequestInformation {
-                HttpMethod = HttpMethod.GET,
+                HttpMethod = Method.GET,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };
@@ -147,7 +154,7 @@ namespace ApiSdk.Print.Printers.Item.TaskTriggers.Item.Definition.@Ref {
         public RequestInformation CreatePutRequestInformation(ApiSdk.Print.Printers.Item.TaskTriggers.Item.Definition.@Ref.@Ref body, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
             _ = body ?? throw new ArgumentNullException(nameof(body));
             var requestInfo = new RequestInformation {
-                HttpMethod = HttpMethod.PUT,
+                HttpMethod = Method.PUT,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };

@@ -25,10 +25,11 @@ namespace ApiSdk.Me.ContactFolders.Item.ChildFolders.Delta {
             var command = new Command("get");
             command.Description = "Invoke function delta";
             // Create options for all the parameters
-            var contactFolderIdOption = new Option<string>("--contactfolder-id", description: "key: id of contactFolder");
+            var contactFolderIdOption = new Option<string>("--contactfolder-id", description: "key: id of contactFolder") {
+            };
             contactFolderIdOption.IsRequired = true;
             command.AddOption(contactFolderIdOption);
-            command.Handler = CommandHandler.Create<string>(async (contactFolderId) => {
+            command.SetHandler(async (string contactFolderId) => {
                 var requestInfo = CreateGetRequestInformation(q => {
                 });
                 var result = await RequestAdapter.SendCollectionAsync<ApiSdk.Me.ContactFolders.Item.ChildFolders.Delta.Delta>(requestInfo);
@@ -39,7 +40,7 @@ namespace ApiSdk.Me.ContactFolders.Item.ChildFolders.Delta {
                 using var reader = new StreamReader(content);
                 var strContent = await reader.ReadToEndAsync();
                 Console.Write(strContent + "\n");
-            });
+            }, contactFolderIdOption);
             return command;
         }
         /// <summary>
@@ -62,7 +63,7 @@ namespace ApiSdk.Me.ContactFolders.Item.ChildFolders.Delta {
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
             var requestInfo = new RequestInformation {
-                HttpMethod = HttpMethod.GET,
+                HttpMethod = Method.GET,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };

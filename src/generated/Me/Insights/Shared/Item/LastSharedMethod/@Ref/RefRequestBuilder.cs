@@ -25,16 +25,17 @@ namespace ApiSdk.Me.Insights.Shared.Item.LastSharedMethod.@Ref {
             var command = new Command("delete");
             command.Description = "Delete ref of navigation property lastSharedMethod for me";
             // Create options for all the parameters
-            var sharedInsightIdOption = new Option<string>("--sharedinsight-id", description: "key: id of sharedInsight");
+            var sharedInsightIdOption = new Option<string>("--sharedinsight-id", description: "key: id of sharedInsight") {
+            };
             sharedInsightIdOption.IsRequired = true;
             command.AddOption(sharedInsightIdOption);
-            command.Handler = CommandHandler.Create<string>(async (sharedInsightId) => {
+            command.SetHandler(async (string sharedInsightId) => {
                 var requestInfo = CreateDeleteRequestInformation(q => {
                 });
                 await RequestAdapter.SendNoContentAsync(requestInfo);
                 // Print request output. What if the request has no return?
                 Console.WriteLine("Success");
-            });
+            }, sharedInsightIdOption);
             return command;
         }
         /// <summary>
@@ -44,10 +45,11 @@ namespace ApiSdk.Me.Insights.Shared.Item.LastSharedMethod.@Ref {
             var command = new Command("get");
             command.Description = "Get ref of lastSharedMethod from me";
             // Create options for all the parameters
-            var sharedInsightIdOption = new Option<string>("--sharedinsight-id", description: "key: id of sharedInsight");
+            var sharedInsightIdOption = new Option<string>("--sharedinsight-id", description: "key: id of sharedInsight") {
+            };
             sharedInsightIdOption.IsRequired = true;
             command.AddOption(sharedInsightIdOption);
-            command.Handler = CommandHandler.Create<string>(async (sharedInsightId) => {
+            command.SetHandler(async (string sharedInsightId) => {
                 var requestInfo = CreateGetRequestInformation(q => {
                 });
                 var result = await RequestAdapter.SendPrimitiveAsync<string>(requestInfo);
@@ -58,7 +60,7 @@ namespace ApiSdk.Me.Insights.Shared.Item.LastSharedMethod.@Ref {
                 using var reader = new StreamReader(content);
                 var strContent = await reader.ReadToEndAsync();
                 Console.Write(strContent + "\n");
-            });
+            }, sharedInsightIdOption);
             return command;
         }
         /// <summary>
@@ -68,13 +70,15 @@ namespace ApiSdk.Me.Insights.Shared.Item.LastSharedMethod.@Ref {
             var command = new Command("put");
             command.Description = "Update the ref of navigation property lastSharedMethod in me";
             // Create options for all the parameters
-            var sharedInsightIdOption = new Option<string>("--sharedinsight-id", description: "key: id of sharedInsight");
+            var sharedInsightIdOption = new Option<string>("--sharedinsight-id", description: "key: id of sharedInsight") {
+            };
             sharedInsightIdOption.IsRequired = true;
             command.AddOption(sharedInsightIdOption);
-            var bodyOption = new Option<string>("--body");
+            var bodyOption = new Option<string>("--body") {
+            };
             bodyOption.IsRequired = true;
             command.AddOption(bodyOption);
-            command.Handler = CommandHandler.Create<string, string>(async (sharedInsightId, body) => {
+            command.SetHandler(async (string sharedInsightId, string body) => {
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<ApiSdk.Me.Insights.Shared.Item.LastSharedMethod.@Ref.@Ref>();
@@ -83,7 +87,7 @@ namespace ApiSdk.Me.Insights.Shared.Item.LastSharedMethod.@Ref {
                 await RequestAdapter.SendNoContentAsync(requestInfo);
                 // Print request output. What if the request has no return?
                 Console.WriteLine("Success");
-            });
+            }, sharedInsightIdOption, bodyOption);
             return command;
         }
         /// <summary>
@@ -106,7 +110,7 @@ namespace ApiSdk.Me.Insights.Shared.Item.LastSharedMethod.@Ref {
         /// </summary>
         public RequestInformation CreateDeleteRequestInformation(Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
             var requestInfo = new RequestInformation {
-                HttpMethod = HttpMethod.DELETE,
+                HttpMethod = Method.DELETE,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };
@@ -121,7 +125,7 @@ namespace ApiSdk.Me.Insights.Shared.Item.LastSharedMethod.@Ref {
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
             var requestInfo = new RequestInformation {
-                HttpMethod = HttpMethod.GET,
+                HttpMethod = Method.GET,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };
@@ -138,7 +142,7 @@ namespace ApiSdk.Me.Insights.Shared.Item.LastSharedMethod.@Ref {
         public RequestInformation CreatePutRequestInformation(ApiSdk.Me.Insights.Shared.Item.LastSharedMethod.@Ref.@Ref body, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
             _ = body ?? throw new ArgumentNullException(nameof(body));
             var requestInfo = new RequestInformation {
-                HttpMethod = HttpMethod.PUT,
+                HttpMethod = Method.PUT,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };

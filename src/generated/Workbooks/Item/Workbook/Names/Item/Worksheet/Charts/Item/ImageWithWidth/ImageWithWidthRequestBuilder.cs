@@ -25,19 +25,23 @@ namespace ApiSdk.Workbooks.Item.Workbook.Names.Item.Worksheet.Charts.Item.ImageW
             var command = new Command("get");
             command.Description = "Invoke function image";
             // Create options for all the parameters
-            var driveItemIdOption = new Option<string>("--driveitem-id", description: "key: id of driveItem");
+            var driveItemIdOption = new Option<string>("--driveitem-id", description: "key: id of driveItem") {
+            };
             driveItemIdOption.IsRequired = true;
             command.AddOption(driveItemIdOption);
-            var workbookNamedItemIdOption = new Option<string>("--workbooknameditem-id", description: "key: id of workbookNamedItem");
+            var workbookNamedItemIdOption = new Option<string>("--workbooknameditem-id", description: "key: id of workbookNamedItem") {
+            };
             workbookNamedItemIdOption.IsRequired = true;
             command.AddOption(workbookNamedItemIdOption);
-            var workbookChartIdOption = new Option<string>("--workbookchart-id", description: "key: id of workbookChart");
+            var workbookChartIdOption = new Option<string>("--workbookchart-id", description: "key: id of workbookChart") {
+            };
             workbookChartIdOption.IsRequired = true;
             command.AddOption(workbookChartIdOption);
-            var widthOption = new Option<int?>("--width", description: "Usage: width={width}");
+            var widthOption = new Option<int?>("--width", description: "Usage: width={width}") {
+            };
             widthOption.IsRequired = true;
             command.AddOption(widthOption);
-            command.Handler = CommandHandler.Create<string, string, string, int?>(async (driveItemId, workbookNamedItemId, workbookChartId, width) => {
+            command.SetHandler(async (string driveItemId, string workbookNamedItemId, string workbookChartId, int? width) => {
                 var requestInfo = CreateGetRequestInformation(q => {
                 });
                 var result = await RequestAdapter.SendPrimitiveAsync<string>(requestInfo);
@@ -48,7 +52,7 @@ namespace ApiSdk.Workbooks.Item.Workbook.Names.Item.Worksheet.Charts.Item.ImageW
                 using var reader = new StreamReader(content);
                 var strContent = await reader.ReadToEndAsync();
                 Console.Write(strContent + "\n");
-            });
+            }, driveItemIdOption, workbookNamedItemIdOption, workbookChartIdOption, widthOption);
             return command;
         }
         /// <summary>
@@ -73,7 +77,7 @@ namespace ApiSdk.Workbooks.Item.Workbook.Names.Item.Worksheet.Charts.Item.ImageW
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
             var requestInfo = new RequestInformation {
-                HttpMethod = HttpMethod.GET,
+                HttpMethod = Method.GET,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };

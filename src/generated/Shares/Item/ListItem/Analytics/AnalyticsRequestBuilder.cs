@@ -27,18 +27,21 @@ namespace ApiSdk.Shares.Item.ListItem.Analytics {
             var command = new Command("get");
             command.Description = "Analytics about the view activities that took place on this item.";
             // Create options for all the parameters
-            var sharedDriveItemIdOption = new Option<string>("--shareddriveitem-id", description: "key: id of sharedDriveItem");
+            var sharedDriveItemIdOption = new Option<string>("--shareddriveitem-id", description: "key: id of sharedDriveItem") {
+            };
             sharedDriveItemIdOption.IsRequired = true;
             command.AddOption(sharedDriveItemIdOption);
-            var selectOption = new Option<string[]>("--select", description: "Select properties to be returned");
+            var selectOption = new Option<string[]>("--select", description: "Select properties to be returned") {
+                Arity = ArgumentArity.ZeroOrMore
+            };
             selectOption.IsRequired = false;
-            selectOption.Arity = ArgumentArity.ZeroOrMore;
             command.AddOption(selectOption);
-            var expandOption = new Option<string[]>("--expand", description: "Expand related entities");
+            var expandOption = new Option<string[]>("--expand", description: "Expand related entities") {
+                Arity = ArgumentArity.ZeroOrMore
+            };
             expandOption.IsRequired = false;
-            expandOption.Arity = ArgumentArity.ZeroOrMore;
             command.AddOption(expandOption);
-            command.Handler = CommandHandler.Create<string, string[], string[]>(async (sharedDriveItemId, select, expand) => {
+            command.SetHandler(async (string sharedDriveItemId, string[] select, string[] expand) => {
                 var requestInfo = CreateGetRequestInformation(q => {
                     q.Select = select;
                     q.Expand = expand;
@@ -51,7 +54,7 @@ namespace ApiSdk.Shares.Item.ListItem.Analytics {
                 using var reader = new StreamReader(content);
                 var strContent = await reader.ReadToEndAsync();
                 Console.Write(strContent + "\n");
-            });
+            }, sharedDriveItemIdOption, selectOption, expandOption);
             return command;
         }
         public Command BuildRefCommand() {
@@ -83,7 +86,7 @@ namespace ApiSdk.Shares.Item.ListItem.Analytics {
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<GetQueryParameters> q = default, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
             var requestInfo = new RequestInformation {
-                HttpMethod = HttpMethod.GET,
+                HttpMethod = Method.GET,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };

@@ -26,13 +26,15 @@ namespace ApiSdk.Education.Me.Assignments.Item.Submissions.Item.Unsubmit {
             var command = new Command("post");
             command.Description = "Invoke action unsubmit";
             // Create options for all the parameters
-            var educationAssignmentIdOption = new Option<string>("--educationassignment-id", description: "key: id of educationAssignment");
+            var educationAssignmentIdOption = new Option<string>("--educationassignment-id", description: "key: id of educationAssignment") {
+            };
             educationAssignmentIdOption.IsRequired = true;
             command.AddOption(educationAssignmentIdOption);
-            var educationSubmissionIdOption = new Option<string>("--educationsubmission-id", description: "key: id of educationSubmission");
+            var educationSubmissionIdOption = new Option<string>("--educationsubmission-id", description: "key: id of educationSubmission") {
+            };
             educationSubmissionIdOption.IsRequired = true;
             command.AddOption(educationSubmissionIdOption);
-            command.Handler = CommandHandler.Create<string, string>(async (educationAssignmentId, educationSubmissionId) => {
+            command.SetHandler(async (string educationAssignmentId, string educationSubmissionId) => {
                 var requestInfo = CreatePostRequestInformation(q => {
                 });
                 var result = await RequestAdapter.SendAsync<UnsubmitResponse>(requestInfo);
@@ -43,7 +45,7 @@ namespace ApiSdk.Education.Me.Assignments.Item.Submissions.Item.Unsubmit {
                 using var reader = new StreamReader(content);
                 var strContent = await reader.ReadToEndAsync();
                 Console.Write(strContent + "\n");
-            });
+            }, educationAssignmentIdOption, educationSubmissionIdOption);
             return command;
         }
         /// <summary>
@@ -66,7 +68,7 @@ namespace ApiSdk.Education.Me.Assignments.Item.Submissions.Item.Unsubmit {
         /// </summary>
         public RequestInformation CreatePostRequestInformation(Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
             var requestInfo = new RequestInformation {
-                HttpMethod = HttpMethod.POST,
+                HttpMethod = Method.POST,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };

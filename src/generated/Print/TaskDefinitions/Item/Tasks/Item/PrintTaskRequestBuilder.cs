@@ -35,19 +35,21 @@ namespace ApiSdk.Print.TaskDefinitions.Item.Tasks.Item {
             var command = new Command("delete");
             command.Description = "A list of tasks that have been created based on this definition. The list includes currently running tasks and recently completed tasks. Read-only.";
             // Create options for all the parameters
-            var printTaskDefinitionIdOption = new Option<string>("--printtaskdefinition-id", description: "key: id of printTaskDefinition");
+            var printTaskDefinitionIdOption = new Option<string>("--printtaskdefinition-id", description: "key: id of printTaskDefinition") {
+            };
             printTaskDefinitionIdOption.IsRequired = true;
             command.AddOption(printTaskDefinitionIdOption);
-            var printTaskIdOption = new Option<string>("--printtask-id", description: "key: id of printTask");
+            var printTaskIdOption = new Option<string>("--printtask-id", description: "key: id of printTask") {
+            };
             printTaskIdOption.IsRequired = true;
             command.AddOption(printTaskIdOption);
-            command.Handler = CommandHandler.Create<string, string>(async (printTaskDefinitionId, printTaskId) => {
+            command.SetHandler(async (string printTaskDefinitionId, string printTaskId) => {
                 var requestInfo = CreateDeleteRequestInformation(q => {
                 });
                 await RequestAdapter.SendNoContentAsync(requestInfo);
                 // Print request output. What if the request has no return?
                 Console.WriteLine("Success");
-            });
+            }, printTaskDefinitionIdOption, printTaskIdOption);
             return command;
         }
         /// <summary>
@@ -57,21 +59,25 @@ namespace ApiSdk.Print.TaskDefinitions.Item.Tasks.Item {
             var command = new Command("get");
             command.Description = "A list of tasks that have been created based on this definition. The list includes currently running tasks and recently completed tasks. Read-only.";
             // Create options for all the parameters
-            var printTaskDefinitionIdOption = new Option<string>("--printtaskdefinition-id", description: "key: id of printTaskDefinition");
+            var printTaskDefinitionIdOption = new Option<string>("--printtaskdefinition-id", description: "key: id of printTaskDefinition") {
+            };
             printTaskDefinitionIdOption.IsRequired = true;
             command.AddOption(printTaskDefinitionIdOption);
-            var printTaskIdOption = new Option<string>("--printtask-id", description: "key: id of printTask");
+            var printTaskIdOption = new Option<string>("--printtask-id", description: "key: id of printTask") {
+            };
             printTaskIdOption.IsRequired = true;
             command.AddOption(printTaskIdOption);
-            var selectOption = new Option<string[]>("--select", description: "Select properties to be returned");
+            var selectOption = new Option<string[]>("--select", description: "Select properties to be returned") {
+                Arity = ArgumentArity.ZeroOrMore
+            };
             selectOption.IsRequired = false;
-            selectOption.Arity = ArgumentArity.ZeroOrMore;
             command.AddOption(selectOption);
-            var expandOption = new Option<string[]>("--expand", description: "Expand related entities");
+            var expandOption = new Option<string[]>("--expand", description: "Expand related entities") {
+                Arity = ArgumentArity.ZeroOrMore
+            };
             expandOption.IsRequired = false;
-            expandOption.Arity = ArgumentArity.ZeroOrMore;
             command.AddOption(expandOption);
-            command.Handler = CommandHandler.Create<string, string, string[], string[]>(async (printTaskDefinitionId, printTaskId, select, expand) => {
+            command.SetHandler(async (string printTaskDefinitionId, string printTaskId, string[] select, string[] expand) => {
                 var requestInfo = CreateGetRequestInformation(q => {
                     q.Select = select;
                     q.Expand = expand;
@@ -84,7 +90,7 @@ namespace ApiSdk.Print.TaskDefinitions.Item.Tasks.Item {
                 using var reader = new StreamReader(content);
                 var strContent = await reader.ReadToEndAsync();
                 Console.Write(strContent + "\n");
-            });
+            }, printTaskDefinitionIdOption, printTaskIdOption, selectOption, expandOption);
             return command;
         }
         /// <summary>
@@ -94,16 +100,19 @@ namespace ApiSdk.Print.TaskDefinitions.Item.Tasks.Item {
             var command = new Command("patch");
             command.Description = "A list of tasks that have been created based on this definition. The list includes currently running tasks and recently completed tasks. Read-only.";
             // Create options for all the parameters
-            var printTaskDefinitionIdOption = new Option<string>("--printtaskdefinition-id", description: "key: id of printTaskDefinition");
+            var printTaskDefinitionIdOption = new Option<string>("--printtaskdefinition-id", description: "key: id of printTaskDefinition") {
+            };
             printTaskDefinitionIdOption.IsRequired = true;
             command.AddOption(printTaskDefinitionIdOption);
-            var printTaskIdOption = new Option<string>("--printtask-id", description: "key: id of printTask");
+            var printTaskIdOption = new Option<string>("--printtask-id", description: "key: id of printTask") {
+            };
             printTaskIdOption.IsRequired = true;
             command.AddOption(printTaskIdOption);
-            var bodyOption = new Option<string>("--body");
+            var bodyOption = new Option<string>("--body") {
+            };
             bodyOption.IsRequired = true;
             command.AddOption(bodyOption);
-            command.Handler = CommandHandler.Create<string, string, string>(async (printTaskDefinitionId, printTaskId, body) => {
+            command.SetHandler(async (string printTaskDefinitionId, string printTaskId, string body) => {
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<PrintTask>();
@@ -112,7 +121,7 @@ namespace ApiSdk.Print.TaskDefinitions.Item.Tasks.Item {
                 await RequestAdapter.SendNoContentAsync(requestInfo);
                 // Print request output. What if the request has no return?
                 Console.WriteLine("Success");
-            });
+            }, printTaskDefinitionIdOption, printTaskIdOption, bodyOption);
             return command;
         }
         public Command BuildTriggerCommand() {
@@ -142,7 +151,7 @@ namespace ApiSdk.Print.TaskDefinitions.Item.Tasks.Item {
         /// </summary>
         public RequestInformation CreateDeleteRequestInformation(Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
             var requestInfo = new RequestInformation {
-                HttpMethod = HttpMethod.DELETE,
+                HttpMethod = Method.DELETE,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };
@@ -158,7 +167,7 @@ namespace ApiSdk.Print.TaskDefinitions.Item.Tasks.Item {
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<GetQueryParameters> q = default, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
             var requestInfo = new RequestInformation {
-                HttpMethod = HttpMethod.GET,
+                HttpMethod = Method.GET,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };
@@ -180,7 +189,7 @@ namespace ApiSdk.Print.TaskDefinitions.Item.Tasks.Item {
         public RequestInformation CreatePatchRequestInformation(PrintTask body, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
             _ = body ?? throw new ArgumentNullException(nameof(body));
             var requestInfo = new RequestInformation {
-                HttpMethod = HttpMethod.PATCH,
+                HttpMethod = Method.PATCH,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };

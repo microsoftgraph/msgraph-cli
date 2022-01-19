@@ -25,29 +25,36 @@ namespace ApiSdk.Domains.Item.DomainNameReferences.@Ref {
             var command = new Command("get");
             command.Description = "Read-only, Nullable";
             // Create options for all the parameters
-            var domainIdOption = new Option<string>("--domain-id", description: "key: id of domain");
+            var domainIdOption = new Option<string>("--domain-id", description: "key: id of domain") {
+            };
             domainIdOption.IsRequired = true;
             command.AddOption(domainIdOption);
-            var topOption = new Option<int?>("--top", description: "Show only the first n items");
+            var topOption = new Option<int?>("--top", description: "Show only the first n items") {
+            };
             topOption.IsRequired = false;
             command.AddOption(topOption);
-            var skipOption = new Option<int?>("--skip", description: "Skip the first n items");
+            var skipOption = new Option<int?>("--skip", description: "Skip the first n items") {
+            };
             skipOption.IsRequired = false;
             command.AddOption(skipOption);
-            var searchOption = new Option<string>("--search", description: "Search items by search phrases");
+            var searchOption = new Option<string>("--search", description: "Search items by search phrases") {
+            };
             searchOption.IsRequired = false;
             command.AddOption(searchOption);
-            var filterOption = new Option<string>("--filter", description: "Filter items by property values");
+            var filterOption = new Option<string>("--filter", description: "Filter items by property values") {
+            };
             filterOption.IsRequired = false;
             command.AddOption(filterOption);
-            var countOption = new Option<bool?>("--count", description: "Include count of items");
+            var countOption = new Option<bool?>("--count", description: "Include count of items") {
+            };
             countOption.IsRequired = false;
             command.AddOption(countOption);
-            var orderbyOption = new Option<string[]>("--orderby", description: "Order items by property values");
+            var orderbyOption = new Option<string[]>("--orderby", description: "Order items by property values") {
+                Arity = ArgumentArity.ZeroOrMore
+            };
             orderbyOption.IsRequired = false;
-            orderbyOption.Arity = ArgumentArity.ZeroOrMore;
             command.AddOption(orderbyOption);
-            command.Handler = CommandHandler.Create<string, int?, int?, string, string, bool?, string[]>(async (domainId, top, skip, search, filter, count, orderby) => {
+            command.SetHandler(async (string domainId, int? top, int? skip, string search, string filter, bool? count, string[] orderby) => {
                 var requestInfo = CreateGetRequestInformation(q => {
                     q.Top = top;
                     q.Skip = skip;
@@ -64,7 +71,7 @@ namespace ApiSdk.Domains.Item.DomainNameReferences.@Ref {
                 using var reader = new StreamReader(content);
                 var strContent = await reader.ReadToEndAsync();
                 Console.Write(strContent + "\n");
-            });
+            }, domainIdOption, topOption, skipOption, searchOption, filterOption, countOption, orderbyOption);
             return command;
         }
         /// <summary>
@@ -74,13 +81,15 @@ namespace ApiSdk.Domains.Item.DomainNameReferences.@Ref {
             var command = new Command("post");
             command.Description = "Read-only, Nullable";
             // Create options for all the parameters
-            var domainIdOption = new Option<string>("--domain-id", description: "key: id of domain");
+            var domainIdOption = new Option<string>("--domain-id", description: "key: id of domain") {
+            };
             domainIdOption.IsRequired = true;
             command.AddOption(domainIdOption);
-            var bodyOption = new Option<string>("--body");
+            var bodyOption = new Option<string>("--body") {
+            };
             bodyOption.IsRequired = true;
             command.AddOption(bodyOption);
-            command.Handler = CommandHandler.Create<string, string>(async (domainId, body) => {
+            command.SetHandler(async (string domainId, string body) => {
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<ApiSdk.Domains.Item.DomainNameReferences.@Ref.@Ref>();
@@ -94,7 +103,7 @@ namespace ApiSdk.Domains.Item.DomainNameReferences.@Ref {
                 using var reader = new StreamReader(content);
                 var strContent = await reader.ReadToEndAsync();
                 Console.Write(strContent + "\n");
-            });
+            }, domainIdOption, bodyOption);
             return command;
         }
         /// <summary>
@@ -118,7 +127,7 @@ namespace ApiSdk.Domains.Item.DomainNameReferences.@Ref {
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<GetQueryParameters> q = default, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
             var requestInfo = new RequestInformation {
-                HttpMethod = HttpMethod.GET,
+                HttpMethod = Method.GET,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };
@@ -140,7 +149,7 @@ namespace ApiSdk.Domains.Item.DomainNameReferences.@Ref {
         public RequestInformation CreatePostRequestInformation(ApiSdk.Domains.Item.DomainNameReferences.@Ref.@Ref body, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
             _ = body ?? throw new ArgumentNullException(nameof(body));
             var requestInfo = new RequestInformation {
-                HttpMethod = HttpMethod.POST,
+                HttpMethod = Method.POST,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };

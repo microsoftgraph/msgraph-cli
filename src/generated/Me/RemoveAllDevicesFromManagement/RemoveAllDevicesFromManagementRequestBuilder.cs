@@ -25,7 +25,7 @@ namespace ApiSdk.Me.RemoveAllDevicesFromManagement {
             var command = new Command("post");
             command.Description = "Retire all devices from management for this user";
             // Create options for all the parameters
-            command.Handler = CommandHandler.Create(async () => {
+            command.SetHandler(async () => {
                 var requestInfo = CreatePostRequestInformation(q => {
                 });
                 await RequestAdapter.SendNoContentAsync(requestInfo);
@@ -54,7 +54,7 @@ namespace ApiSdk.Me.RemoveAllDevicesFromManagement {
         /// </summary>
         public RequestInformation CreatePostRequestInformation(Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
             var requestInfo = new RequestInformation {
-                HttpMethod = HttpMethod.POST,
+                HttpMethod = Method.POST,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };

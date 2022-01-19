@@ -27,24 +27,29 @@ namespace ApiSdk.Users.Item.Activities.Item.HistoryItems.Item.Activity {
             var command = new Command("get");
             command.Description = "Optional. NavigationProperty/Containment; navigation property to the associated activity.";
             // Create options for all the parameters
-            var userIdOption = new Option<string>("--user-id", description: "key: id of user");
+            var userIdOption = new Option<string>("--user-id", description: "key: id of user") {
+            };
             userIdOption.IsRequired = true;
             command.AddOption(userIdOption);
-            var userActivityIdOption = new Option<string>("--useractivity-id", description: "key: id of userActivity");
+            var userActivityIdOption = new Option<string>("--useractivity-id", description: "key: id of userActivity") {
+            };
             userActivityIdOption.IsRequired = true;
             command.AddOption(userActivityIdOption);
-            var activityHistoryItemIdOption = new Option<string>("--activityhistoryitem-id", description: "key: id of activityHistoryItem");
+            var activityHistoryItemIdOption = new Option<string>("--activityhistoryitem-id", description: "key: id of activityHistoryItem") {
+            };
             activityHistoryItemIdOption.IsRequired = true;
             command.AddOption(activityHistoryItemIdOption);
-            var selectOption = new Option<string[]>("--select", description: "Select properties to be returned");
+            var selectOption = new Option<string[]>("--select", description: "Select properties to be returned") {
+                Arity = ArgumentArity.ZeroOrMore
+            };
             selectOption.IsRequired = false;
-            selectOption.Arity = ArgumentArity.ZeroOrMore;
             command.AddOption(selectOption);
-            var expandOption = new Option<string[]>("--expand", description: "Expand related entities");
+            var expandOption = new Option<string[]>("--expand", description: "Expand related entities") {
+                Arity = ArgumentArity.ZeroOrMore
+            };
             expandOption.IsRequired = false;
-            expandOption.Arity = ArgumentArity.ZeroOrMore;
             command.AddOption(expandOption);
-            command.Handler = CommandHandler.Create<string, string, string, string[], string[]>(async (userId, userActivityId, activityHistoryItemId, select, expand) => {
+            command.SetHandler(async (string userId, string userActivityId, string activityHistoryItemId, string[] select, string[] expand) => {
                 var requestInfo = CreateGetRequestInformation(q => {
                     q.Select = select;
                     q.Expand = expand;
@@ -57,7 +62,7 @@ namespace ApiSdk.Users.Item.Activities.Item.HistoryItems.Item.Activity {
                 using var reader = new StreamReader(content);
                 var strContent = await reader.ReadToEndAsync();
                 Console.Write(strContent + "\n");
-            });
+            }, userIdOption, userActivityIdOption, activityHistoryItemIdOption, selectOption, expandOption);
             return command;
         }
         public Command BuildRefCommand() {
@@ -89,7 +94,7 @@ namespace ApiSdk.Users.Item.Activities.Item.HistoryItems.Item.Activity {
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<GetQueryParameters> q = default, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
             var requestInfo = new RequestInformation {
-                HttpMethod = HttpMethod.GET,
+                HttpMethod = Method.GET,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };

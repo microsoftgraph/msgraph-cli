@@ -25,14 +25,17 @@ namespace ApiSdk.Admin.ServiceAnnouncement.HealthOverviews.Item.Issues.Item.Inci
             var command = new Command("get");
             command.Description = "Invoke function incidentReport";
             // Create options for all the parameters
-            var serviceHealthIdOption = new Option<string>("--servicehealth-id", description: "key: id of serviceHealth");
+            var serviceHealthIdOption = new Option<string>("--servicehealth-id", description: "key: id of serviceHealth") {
+            };
             serviceHealthIdOption.IsRequired = true;
             command.AddOption(serviceHealthIdOption);
-            var serviceHealthIssueIdOption = new Option<string>("--servicehealthissue-id", description: "key: id of serviceHealthIssue");
+            var serviceHealthIssueIdOption = new Option<string>("--servicehealthissue-id", description: "key: id of serviceHealthIssue") {
+            };
             serviceHealthIssueIdOption.IsRequired = true;
             command.AddOption(serviceHealthIssueIdOption);
-            command.AddOption(new Option<FileInfo>("--output"));
-            command.Handler = CommandHandler.Create<string, string, FileInfo>(async (serviceHealthId, serviceHealthIssueId, output) => {
+            var outputOption = new Option<FileInfo>("--output");
+            command.AddOption(outputOption);
+            command.SetHandler(async (string serviceHealthId, string serviceHealthIssueId, FileInfo output) => {
                 var requestInfo = CreateGetRequestInformation(q => {
                 });
                 var result = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
@@ -47,7 +50,7 @@ namespace ApiSdk.Admin.ServiceAnnouncement.HealthOverviews.Item.Issues.Item.Inci
                     await result.CopyToAsync(writeStream);
                     Console.WriteLine($"Content written to {output.FullName}.");
                 }
-            });
+            }, serviceHealthIdOption, serviceHealthIssueIdOption, outputOption);
             return command;
         }
         /// <summary>
@@ -70,7 +73,7 @@ namespace ApiSdk.Admin.ServiceAnnouncement.HealthOverviews.Item.Issues.Item.Inci
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
             var requestInfo = new RequestInformation {
-                HttpMethod = HttpMethod.GET,
+                HttpMethod = Method.GET,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };

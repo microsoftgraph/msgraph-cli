@@ -25,10 +25,11 @@ namespace ApiSdk.DeviceManagement.VerifyWindowsEnrollmentAutoDiscoveryWithDomain
             var command = new Command("get");
             command.Description = "Invoke function verifyWindowsEnrollmentAutoDiscovery";
             // Create options for all the parameters
-            var domainNameOption = new Option<string>("--domainname", description: "Usage: domainName={domainName}");
+            var domainNameOption = new Option<string>("--domainname", description: "Usage: domainName={domainName}") {
+            };
             domainNameOption.IsRequired = true;
             command.AddOption(domainNameOption);
-            command.Handler = CommandHandler.Create<string>(async (domainName) => {
+            command.SetHandler(async (string domainName) => {
                 var requestInfo = CreateGetRequestInformation(q => {
                 });
                 var result = await RequestAdapter.SendPrimitiveAsync<bool?>(requestInfo);
@@ -39,7 +40,7 @@ namespace ApiSdk.DeviceManagement.VerifyWindowsEnrollmentAutoDiscoveryWithDomain
                 using var reader = new StreamReader(content);
                 var strContent = await reader.ReadToEndAsync();
                 Console.Write(strContent + "\n");
-            });
+            }, domainNameOption);
             return command;
         }
         /// <summary>
@@ -64,7 +65,7 @@ namespace ApiSdk.DeviceManagement.VerifyWindowsEnrollmentAutoDiscoveryWithDomain
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
             var requestInfo = new RequestInformation {
-                HttpMethod = HttpMethod.GET,
+                HttpMethod = Method.GET,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };

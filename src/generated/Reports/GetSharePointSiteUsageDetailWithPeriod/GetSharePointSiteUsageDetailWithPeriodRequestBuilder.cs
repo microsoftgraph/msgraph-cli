@@ -26,10 +26,11 @@ namespace ApiSdk.Reports.GetSharePointSiteUsageDetailWithPeriod {
             var command = new Command("get");
             command.Description = "Invoke function getSharePointSiteUsageDetail";
             // Create options for all the parameters
-            var periodOption = new Option<string>("--period", description: "Usage: period={period}");
+            var periodOption = new Option<string>("--period", description: "Usage: period={period}") {
+            };
             periodOption.IsRequired = true;
             command.AddOption(periodOption);
-            command.Handler = CommandHandler.Create<string>(async (period) => {
+            command.SetHandler(async (string period) => {
                 var requestInfo = CreateGetRequestInformation(q => {
                 });
                 var result = await RequestAdapter.SendAsync<Report>(requestInfo);
@@ -40,7 +41,7 @@ namespace ApiSdk.Reports.GetSharePointSiteUsageDetailWithPeriod {
                 using var reader = new StreamReader(content);
                 var strContent = await reader.ReadToEndAsync();
                 Console.Write(strContent + "\n");
-            });
+            }, periodOption);
             return command;
         }
         /// <summary>
@@ -65,7 +66,7 @@ namespace ApiSdk.Reports.GetSharePointSiteUsageDetailWithPeriod {
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
             var requestInfo = new RequestInformation {
-                HttpMethod = HttpMethod.GET,
+                HttpMethod = Method.GET,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };

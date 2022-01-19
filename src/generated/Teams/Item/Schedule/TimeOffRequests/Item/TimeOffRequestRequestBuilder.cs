@@ -26,19 +26,21 @@ namespace ApiSdk.Teams.Item.Schedule.TimeOffRequests.Item {
             var command = new Command("delete");
             command.Description = "Delete navigation property timeOffRequests for teams";
             // Create options for all the parameters
-            var teamIdOption = new Option<string>("--team-id", description: "key: id of team");
+            var teamIdOption = new Option<string>("--team-id", description: "key: id of team") {
+            };
             teamIdOption.IsRequired = true;
             command.AddOption(teamIdOption);
-            var timeOffRequestIdOption = new Option<string>("--timeoffrequest-id", description: "key: id of timeOffRequest");
+            var timeOffRequestIdOption = new Option<string>("--timeoffrequest-id", description: "key: id of timeOffRequest") {
+            };
             timeOffRequestIdOption.IsRequired = true;
             command.AddOption(timeOffRequestIdOption);
-            command.Handler = CommandHandler.Create<string, string>(async (teamId, timeOffRequestId) => {
+            command.SetHandler(async (string teamId, string timeOffRequestId) => {
                 var requestInfo = CreateDeleteRequestInformation(q => {
                 });
                 await RequestAdapter.SendNoContentAsync(requestInfo);
                 // Print request output. What if the request has no return?
                 Console.WriteLine("Success");
-            });
+            }, teamIdOption, timeOffRequestIdOption);
             return command;
         }
         /// <summary>
@@ -48,17 +50,20 @@ namespace ApiSdk.Teams.Item.Schedule.TimeOffRequests.Item {
             var command = new Command("get");
             command.Description = "Get timeOffRequests from teams";
             // Create options for all the parameters
-            var teamIdOption = new Option<string>("--team-id", description: "key: id of team");
+            var teamIdOption = new Option<string>("--team-id", description: "key: id of team") {
+            };
             teamIdOption.IsRequired = true;
             command.AddOption(teamIdOption);
-            var timeOffRequestIdOption = new Option<string>("--timeoffrequest-id", description: "key: id of timeOffRequest");
+            var timeOffRequestIdOption = new Option<string>("--timeoffrequest-id", description: "key: id of timeOffRequest") {
+            };
             timeOffRequestIdOption.IsRequired = true;
             command.AddOption(timeOffRequestIdOption);
-            var selectOption = new Option<string[]>("--select", description: "Select properties to be returned");
+            var selectOption = new Option<string[]>("--select", description: "Select properties to be returned") {
+                Arity = ArgumentArity.ZeroOrMore
+            };
             selectOption.IsRequired = false;
-            selectOption.Arity = ArgumentArity.ZeroOrMore;
             command.AddOption(selectOption);
-            command.Handler = CommandHandler.Create<string, string, string[]>(async (teamId, timeOffRequestId, select) => {
+            command.SetHandler(async (string teamId, string timeOffRequestId, string[] select) => {
                 var requestInfo = CreateGetRequestInformation(q => {
                     q.Select = select;
                 });
@@ -70,7 +75,7 @@ namespace ApiSdk.Teams.Item.Schedule.TimeOffRequests.Item {
                 using var reader = new StreamReader(content);
                 var strContent = await reader.ReadToEndAsync();
                 Console.Write(strContent + "\n");
-            });
+            }, teamIdOption, timeOffRequestIdOption, selectOption);
             return command;
         }
         /// <summary>
@@ -80,16 +85,19 @@ namespace ApiSdk.Teams.Item.Schedule.TimeOffRequests.Item {
             var command = new Command("patch");
             command.Description = "Update the navigation property timeOffRequests in teams";
             // Create options for all the parameters
-            var teamIdOption = new Option<string>("--team-id", description: "key: id of team");
+            var teamIdOption = new Option<string>("--team-id", description: "key: id of team") {
+            };
             teamIdOption.IsRequired = true;
             command.AddOption(teamIdOption);
-            var timeOffRequestIdOption = new Option<string>("--timeoffrequest-id", description: "key: id of timeOffRequest");
+            var timeOffRequestIdOption = new Option<string>("--timeoffrequest-id", description: "key: id of timeOffRequest") {
+            };
             timeOffRequestIdOption.IsRequired = true;
             command.AddOption(timeOffRequestIdOption);
-            var bodyOption = new Option<string>("--body");
+            var bodyOption = new Option<string>("--body") {
+            };
             bodyOption.IsRequired = true;
             command.AddOption(bodyOption);
-            command.Handler = CommandHandler.Create<string, string, string>(async (teamId, timeOffRequestId, body) => {
+            command.SetHandler(async (string teamId, string timeOffRequestId, string body) => {
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<TimeOffRequest>();
@@ -98,7 +106,7 @@ namespace ApiSdk.Teams.Item.Schedule.TimeOffRequests.Item {
                 await RequestAdapter.SendNoContentAsync(requestInfo);
                 // Print request output. What if the request has no return?
                 Console.WriteLine("Success");
-            });
+            }, teamIdOption, timeOffRequestIdOption, bodyOption);
             return command;
         }
         /// <summary>
@@ -121,7 +129,7 @@ namespace ApiSdk.Teams.Item.Schedule.TimeOffRequests.Item {
         /// </summary>
         public RequestInformation CreateDeleteRequestInformation(Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
             var requestInfo = new RequestInformation {
-                HttpMethod = HttpMethod.DELETE,
+                HttpMethod = Method.DELETE,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };
@@ -137,7 +145,7 @@ namespace ApiSdk.Teams.Item.Schedule.TimeOffRequests.Item {
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<GetQueryParameters> q = default, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
             var requestInfo = new RequestInformation {
-                HttpMethod = HttpMethod.GET,
+                HttpMethod = Method.GET,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };
@@ -159,7 +167,7 @@ namespace ApiSdk.Teams.Item.Schedule.TimeOffRequests.Item {
         public RequestInformation CreatePatchRequestInformation(TimeOffRequest body, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
             _ = body ?? throw new ArgumentNullException(nameof(body));
             var requestInfo = new RequestInformation {
-                HttpMethod = HttpMethod.PATCH,
+                HttpMethod = Method.PATCH,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };

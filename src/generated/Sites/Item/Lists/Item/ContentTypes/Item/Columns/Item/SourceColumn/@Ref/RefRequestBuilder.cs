@@ -25,25 +25,29 @@ namespace ApiSdk.Sites.Item.Lists.Item.ContentTypes.Item.Columns.Item.SourceColu
             var command = new Command("delete");
             command.Description = "The source column for content type column.";
             // Create options for all the parameters
-            var siteIdOption = new Option<string>("--site-id", description: "key: id of site");
+            var siteIdOption = new Option<string>("--site-id", description: "key: id of site") {
+            };
             siteIdOption.IsRequired = true;
             command.AddOption(siteIdOption);
-            var listIdOption = new Option<string>("--list-id", description: "key: id of list");
+            var listIdOption = new Option<string>("--list-id", description: "key: id of list") {
+            };
             listIdOption.IsRequired = true;
             command.AddOption(listIdOption);
-            var contentTypeIdOption = new Option<string>("--contenttype-id", description: "key: id of contentType");
+            var contentTypeIdOption = new Option<string>("--contenttype-id", description: "key: id of contentType") {
+            };
             contentTypeIdOption.IsRequired = true;
             command.AddOption(contentTypeIdOption);
-            var columnDefinitionIdOption = new Option<string>("--columndefinition-id", description: "key: id of columnDefinition");
+            var columnDefinitionIdOption = new Option<string>("--columndefinition-id", description: "key: id of columnDefinition") {
+            };
             columnDefinitionIdOption.IsRequired = true;
             command.AddOption(columnDefinitionIdOption);
-            command.Handler = CommandHandler.Create<string, string, string, string>(async (siteId, listId, contentTypeId, columnDefinitionId) => {
+            command.SetHandler(async (string siteId, string listId, string contentTypeId, string columnDefinitionId) => {
                 var requestInfo = CreateDeleteRequestInformation(q => {
                 });
                 await RequestAdapter.SendNoContentAsync(requestInfo);
                 // Print request output. What if the request has no return?
                 Console.WriteLine("Success");
-            });
+            }, siteIdOption, listIdOption, contentTypeIdOption, columnDefinitionIdOption);
             return command;
         }
         /// <summary>
@@ -53,19 +57,23 @@ namespace ApiSdk.Sites.Item.Lists.Item.ContentTypes.Item.Columns.Item.SourceColu
             var command = new Command("get");
             command.Description = "The source column for content type column.";
             // Create options for all the parameters
-            var siteIdOption = new Option<string>("--site-id", description: "key: id of site");
+            var siteIdOption = new Option<string>("--site-id", description: "key: id of site") {
+            };
             siteIdOption.IsRequired = true;
             command.AddOption(siteIdOption);
-            var listIdOption = new Option<string>("--list-id", description: "key: id of list");
+            var listIdOption = new Option<string>("--list-id", description: "key: id of list") {
+            };
             listIdOption.IsRequired = true;
             command.AddOption(listIdOption);
-            var contentTypeIdOption = new Option<string>("--contenttype-id", description: "key: id of contentType");
+            var contentTypeIdOption = new Option<string>("--contenttype-id", description: "key: id of contentType") {
+            };
             contentTypeIdOption.IsRequired = true;
             command.AddOption(contentTypeIdOption);
-            var columnDefinitionIdOption = new Option<string>("--columndefinition-id", description: "key: id of columnDefinition");
+            var columnDefinitionIdOption = new Option<string>("--columndefinition-id", description: "key: id of columnDefinition") {
+            };
             columnDefinitionIdOption.IsRequired = true;
             command.AddOption(columnDefinitionIdOption);
-            command.Handler = CommandHandler.Create<string, string, string, string>(async (siteId, listId, contentTypeId, columnDefinitionId) => {
+            command.SetHandler(async (string siteId, string listId, string contentTypeId, string columnDefinitionId) => {
                 var requestInfo = CreateGetRequestInformation(q => {
                 });
                 var result = await RequestAdapter.SendPrimitiveAsync<string>(requestInfo);
@@ -76,7 +84,7 @@ namespace ApiSdk.Sites.Item.Lists.Item.ContentTypes.Item.Columns.Item.SourceColu
                 using var reader = new StreamReader(content);
                 var strContent = await reader.ReadToEndAsync();
                 Console.Write(strContent + "\n");
-            });
+            }, siteIdOption, listIdOption, contentTypeIdOption, columnDefinitionIdOption);
             return command;
         }
         /// <summary>
@@ -86,22 +94,27 @@ namespace ApiSdk.Sites.Item.Lists.Item.ContentTypes.Item.Columns.Item.SourceColu
             var command = new Command("put");
             command.Description = "The source column for content type column.";
             // Create options for all the parameters
-            var siteIdOption = new Option<string>("--site-id", description: "key: id of site");
+            var siteIdOption = new Option<string>("--site-id", description: "key: id of site") {
+            };
             siteIdOption.IsRequired = true;
             command.AddOption(siteIdOption);
-            var listIdOption = new Option<string>("--list-id", description: "key: id of list");
+            var listIdOption = new Option<string>("--list-id", description: "key: id of list") {
+            };
             listIdOption.IsRequired = true;
             command.AddOption(listIdOption);
-            var contentTypeIdOption = new Option<string>("--contenttype-id", description: "key: id of contentType");
+            var contentTypeIdOption = new Option<string>("--contenttype-id", description: "key: id of contentType") {
+            };
             contentTypeIdOption.IsRequired = true;
             command.AddOption(contentTypeIdOption);
-            var columnDefinitionIdOption = new Option<string>("--columndefinition-id", description: "key: id of columnDefinition");
+            var columnDefinitionIdOption = new Option<string>("--columndefinition-id", description: "key: id of columnDefinition") {
+            };
             columnDefinitionIdOption.IsRequired = true;
             command.AddOption(columnDefinitionIdOption);
-            var bodyOption = new Option<string>("--body");
+            var bodyOption = new Option<string>("--body") {
+            };
             bodyOption.IsRequired = true;
             command.AddOption(bodyOption);
-            command.Handler = CommandHandler.Create<string, string, string, string, string>(async (siteId, listId, contentTypeId, columnDefinitionId, body) => {
+            command.SetHandler(async (string siteId, string listId, string contentTypeId, string columnDefinitionId, string body) => {
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<ApiSdk.Sites.Item.Lists.Item.ContentTypes.Item.Columns.Item.SourceColumn.@Ref.@Ref>();
@@ -110,7 +123,7 @@ namespace ApiSdk.Sites.Item.Lists.Item.ContentTypes.Item.Columns.Item.SourceColu
                 await RequestAdapter.SendNoContentAsync(requestInfo);
                 // Print request output. What if the request has no return?
                 Console.WriteLine("Success");
-            });
+            }, siteIdOption, listIdOption, contentTypeIdOption, columnDefinitionIdOption, bodyOption);
             return command;
         }
         /// <summary>
@@ -133,7 +146,7 @@ namespace ApiSdk.Sites.Item.Lists.Item.ContentTypes.Item.Columns.Item.SourceColu
         /// </summary>
         public RequestInformation CreateDeleteRequestInformation(Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
             var requestInfo = new RequestInformation {
-                HttpMethod = HttpMethod.DELETE,
+                HttpMethod = Method.DELETE,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };
@@ -148,7 +161,7 @@ namespace ApiSdk.Sites.Item.Lists.Item.ContentTypes.Item.Columns.Item.SourceColu
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
             var requestInfo = new RequestInformation {
-                HttpMethod = HttpMethod.GET,
+                HttpMethod = Method.GET,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };
@@ -165,7 +178,7 @@ namespace ApiSdk.Sites.Item.Lists.Item.ContentTypes.Item.Columns.Item.SourceColu
         public RequestInformation CreatePutRequestInformation(ApiSdk.Sites.Item.Lists.Item.ContentTypes.Item.Columns.Item.SourceColumn.@Ref.@Ref body, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
             _ = body ?? throw new ArgumentNullException(nameof(body));
             var requestInfo = new RequestInformation {
-                HttpMethod = HttpMethod.PUT,
+                HttpMethod = Method.PUT,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };

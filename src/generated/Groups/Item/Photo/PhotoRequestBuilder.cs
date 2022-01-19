@@ -34,16 +34,17 @@ namespace ApiSdk.Groups.Item.Photo {
             var command = new Command("delete");
             command.Description = "The group's profile photo.";
             // Create options for all the parameters
-            var groupIdOption = new Option<string>("--group-id", description: "key: id of group");
+            var groupIdOption = new Option<string>("--group-id", description: "key: id of group") {
+            };
             groupIdOption.IsRequired = true;
             command.AddOption(groupIdOption);
-            command.Handler = CommandHandler.Create<string>(async (groupId) => {
+            command.SetHandler(async (string groupId) => {
                 var requestInfo = CreateDeleteRequestInformation(q => {
                 });
                 await RequestAdapter.SendNoContentAsync(requestInfo);
                 // Print request output. What if the request has no return?
                 Console.WriteLine("Success");
-            });
+            }, groupIdOption);
             return command;
         }
         /// <summary>
@@ -53,14 +54,16 @@ namespace ApiSdk.Groups.Item.Photo {
             var command = new Command("get");
             command.Description = "The group's profile photo.";
             // Create options for all the parameters
-            var groupIdOption = new Option<string>("--group-id", description: "key: id of group");
+            var groupIdOption = new Option<string>("--group-id", description: "key: id of group") {
+            };
             groupIdOption.IsRequired = true;
             command.AddOption(groupIdOption);
-            var selectOption = new Option<string[]>("--select", description: "Select properties to be returned");
+            var selectOption = new Option<string[]>("--select", description: "Select properties to be returned") {
+                Arity = ArgumentArity.ZeroOrMore
+            };
             selectOption.IsRequired = false;
-            selectOption.Arity = ArgumentArity.ZeroOrMore;
             command.AddOption(selectOption);
-            command.Handler = CommandHandler.Create<string, string[]>(async (groupId, select) => {
+            command.SetHandler(async (string groupId, string[] select) => {
                 var requestInfo = CreateGetRequestInformation(q => {
                     q.Select = select;
                 });
@@ -72,7 +75,7 @@ namespace ApiSdk.Groups.Item.Photo {
                 using var reader = new StreamReader(content);
                 var strContent = await reader.ReadToEndAsync();
                 Console.Write(strContent + "\n");
-            });
+            }, groupIdOption, selectOption);
             return command;
         }
         /// <summary>
@@ -82,13 +85,15 @@ namespace ApiSdk.Groups.Item.Photo {
             var command = new Command("patch");
             command.Description = "The group's profile photo.";
             // Create options for all the parameters
-            var groupIdOption = new Option<string>("--group-id", description: "key: id of group");
+            var groupIdOption = new Option<string>("--group-id", description: "key: id of group") {
+            };
             groupIdOption.IsRequired = true;
             command.AddOption(groupIdOption);
-            var bodyOption = new Option<string>("--body");
+            var bodyOption = new Option<string>("--body") {
+            };
             bodyOption.IsRequired = true;
             command.AddOption(bodyOption);
-            command.Handler = CommandHandler.Create<string, string>(async (groupId, body) => {
+            command.SetHandler(async (string groupId, string body) => {
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<ProfilePhoto>();
@@ -97,7 +102,7 @@ namespace ApiSdk.Groups.Item.Photo {
                 await RequestAdapter.SendNoContentAsync(requestInfo);
                 // Print request output. What if the request has no return?
                 Console.WriteLine("Success");
-            });
+            }, groupIdOption, bodyOption);
             return command;
         }
         /// <summary>
@@ -120,7 +125,7 @@ namespace ApiSdk.Groups.Item.Photo {
         /// </summary>
         public RequestInformation CreateDeleteRequestInformation(Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
             var requestInfo = new RequestInformation {
-                HttpMethod = HttpMethod.DELETE,
+                HttpMethod = Method.DELETE,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };
@@ -136,7 +141,7 @@ namespace ApiSdk.Groups.Item.Photo {
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<GetQueryParameters> q = default, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
             var requestInfo = new RequestInformation {
-                HttpMethod = HttpMethod.GET,
+                HttpMethod = Method.GET,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };
@@ -158,7 +163,7 @@ namespace ApiSdk.Groups.Item.Photo {
         public RequestInformation CreatePatchRequestInformation(ProfilePhoto body, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
             _ = body ?? throw new ArgumentNullException(nameof(body));
             var requestInfo = new RequestInformation {
-                HttpMethod = HttpMethod.PATCH,
+                HttpMethod = Method.PATCH,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };

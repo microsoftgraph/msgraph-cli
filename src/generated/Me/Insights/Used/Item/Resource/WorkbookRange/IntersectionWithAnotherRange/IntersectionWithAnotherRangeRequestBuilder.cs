@@ -26,13 +26,15 @@ namespace ApiSdk.Me.Insights.Used.Item.Resource.WorkbookRange.IntersectionWithAn
             var command = new Command("get");
             command.Description = "Invoke function intersection";
             // Create options for all the parameters
-            var usedInsightIdOption = new Option<string>("--usedinsight-id", description: "key: id of usedInsight");
+            var usedInsightIdOption = new Option<string>("--usedinsight-id", description: "key: id of usedInsight") {
+            };
             usedInsightIdOption.IsRequired = true;
             command.AddOption(usedInsightIdOption);
-            var anotherRangeOption = new Option<string>("--anotherrange", description: "Usage: anotherRange={anotherRange}");
+            var anotherRangeOption = new Option<string>("--anotherrange", description: "Usage: anotherRange={anotherRange}") {
+            };
             anotherRangeOption.IsRequired = true;
             command.AddOption(anotherRangeOption);
-            command.Handler = CommandHandler.Create<string, string>(async (usedInsightId, anotherRange) => {
+            command.SetHandler(async (string usedInsightId, string anotherRange) => {
                 var requestInfo = CreateGetRequestInformation(q => {
                 });
                 var result = await RequestAdapter.SendAsync<IntersectionWithAnotherRangeResponse>(requestInfo);
@@ -43,7 +45,7 @@ namespace ApiSdk.Me.Insights.Used.Item.Resource.WorkbookRange.IntersectionWithAn
                 using var reader = new StreamReader(content);
                 var strContent = await reader.ReadToEndAsync();
                 Console.Write(strContent + "\n");
-            });
+            }, usedInsightIdOption, anotherRangeOption);
             return command;
         }
         /// <summary>
@@ -68,7 +70,7 @@ namespace ApiSdk.Me.Insights.Used.Item.Resource.WorkbookRange.IntersectionWithAn
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
             var requestInfo = new RequestInformation {
-                HttpMethod = HttpMethod.GET,
+                HttpMethod = Method.GET,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };

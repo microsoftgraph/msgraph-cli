@@ -33,19 +33,21 @@ namespace ApiSdk.Me.Onenote.Pages.Item.ParentNotebook.SectionGroups.Item.ParentN
             var command = new Command("delete");
             command.Description = "The notebook that contains the section group. Read-only.";
             // Create options for all the parameters
-            var onenotePageIdOption = new Option<string>("--onenotepage-id", description: "key: id of onenotePage");
+            var onenotePageIdOption = new Option<string>("--onenotepage-id", description: "key: id of onenotePage") {
+            };
             onenotePageIdOption.IsRequired = true;
             command.AddOption(onenotePageIdOption);
-            var sectionGroupIdOption = new Option<string>("--sectiongroup-id", description: "key: id of sectionGroup");
+            var sectionGroupIdOption = new Option<string>("--sectiongroup-id", description: "key: id of sectionGroup") {
+            };
             sectionGroupIdOption.IsRequired = true;
             command.AddOption(sectionGroupIdOption);
-            command.Handler = CommandHandler.Create<string, string>(async (onenotePageId, sectionGroupId) => {
+            command.SetHandler(async (string onenotePageId, string sectionGroupId) => {
                 var requestInfo = CreateDeleteRequestInformation(q => {
                 });
                 await RequestAdapter.SendNoContentAsync(requestInfo);
                 // Print request output. What if the request has no return?
                 Console.WriteLine("Success");
-            });
+            }, onenotePageIdOption, sectionGroupIdOption);
             return command;
         }
         /// <summary>
@@ -55,21 +57,25 @@ namespace ApiSdk.Me.Onenote.Pages.Item.ParentNotebook.SectionGroups.Item.ParentN
             var command = new Command("get");
             command.Description = "The notebook that contains the section group. Read-only.";
             // Create options for all the parameters
-            var onenotePageIdOption = new Option<string>("--onenotepage-id", description: "key: id of onenotePage");
+            var onenotePageIdOption = new Option<string>("--onenotepage-id", description: "key: id of onenotePage") {
+            };
             onenotePageIdOption.IsRequired = true;
             command.AddOption(onenotePageIdOption);
-            var sectionGroupIdOption = new Option<string>("--sectiongroup-id", description: "key: id of sectionGroup");
+            var sectionGroupIdOption = new Option<string>("--sectiongroup-id", description: "key: id of sectionGroup") {
+            };
             sectionGroupIdOption.IsRequired = true;
             command.AddOption(sectionGroupIdOption);
-            var selectOption = new Option<string[]>("--select", description: "Select properties to be returned");
+            var selectOption = new Option<string[]>("--select", description: "Select properties to be returned") {
+                Arity = ArgumentArity.ZeroOrMore
+            };
             selectOption.IsRequired = false;
-            selectOption.Arity = ArgumentArity.ZeroOrMore;
             command.AddOption(selectOption);
-            var expandOption = new Option<string[]>("--expand", description: "Expand related entities");
+            var expandOption = new Option<string[]>("--expand", description: "Expand related entities") {
+                Arity = ArgumentArity.ZeroOrMore
+            };
             expandOption.IsRequired = false;
-            expandOption.Arity = ArgumentArity.ZeroOrMore;
             command.AddOption(expandOption);
-            command.Handler = CommandHandler.Create<string, string, string[], string[]>(async (onenotePageId, sectionGroupId, select, expand) => {
+            command.SetHandler(async (string onenotePageId, string sectionGroupId, string[] select, string[] expand) => {
                 var requestInfo = CreateGetRequestInformation(q => {
                     q.Select = select;
                     q.Expand = expand;
@@ -82,7 +88,7 @@ namespace ApiSdk.Me.Onenote.Pages.Item.ParentNotebook.SectionGroups.Item.ParentN
                 using var reader = new StreamReader(content);
                 var strContent = await reader.ReadToEndAsync();
                 Console.Write(strContent + "\n");
-            });
+            }, onenotePageIdOption, sectionGroupIdOption, selectOption, expandOption);
             return command;
         }
         /// <summary>
@@ -92,16 +98,19 @@ namespace ApiSdk.Me.Onenote.Pages.Item.ParentNotebook.SectionGroups.Item.ParentN
             var command = new Command("patch");
             command.Description = "The notebook that contains the section group. Read-only.";
             // Create options for all the parameters
-            var onenotePageIdOption = new Option<string>("--onenotepage-id", description: "key: id of onenotePage");
+            var onenotePageIdOption = new Option<string>("--onenotepage-id", description: "key: id of onenotePage") {
+            };
             onenotePageIdOption.IsRequired = true;
             command.AddOption(onenotePageIdOption);
-            var sectionGroupIdOption = new Option<string>("--sectiongroup-id", description: "key: id of sectionGroup");
+            var sectionGroupIdOption = new Option<string>("--sectiongroup-id", description: "key: id of sectionGroup") {
+            };
             sectionGroupIdOption.IsRequired = true;
             command.AddOption(sectionGroupIdOption);
-            var bodyOption = new Option<string>("--body");
+            var bodyOption = new Option<string>("--body") {
+            };
             bodyOption.IsRequired = true;
             command.AddOption(bodyOption);
-            command.Handler = CommandHandler.Create<string, string, string>(async (onenotePageId, sectionGroupId, body) => {
+            command.SetHandler(async (string onenotePageId, string sectionGroupId, string body) => {
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<Notebook>();
@@ -110,7 +119,7 @@ namespace ApiSdk.Me.Onenote.Pages.Item.ParentNotebook.SectionGroups.Item.ParentN
                 await RequestAdapter.SendNoContentAsync(requestInfo);
                 // Print request output. What if the request has no return?
                 Console.WriteLine("Success");
-            });
+            }, onenotePageIdOption, sectionGroupIdOption, bodyOption);
             return command;
         }
         /// <summary>
@@ -133,7 +142,7 @@ namespace ApiSdk.Me.Onenote.Pages.Item.ParentNotebook.SectionGroups.Item.ParentN
         /// </summary>
         public RequestInformation CreateDeleteRequestInformation(Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
             var requestInfo = new RequestInformation {
-                HttpMethod = HttpMethod.DELETE,
+                HttpMethod = Method.DELETE,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };
@@ -149,7 +158,7 @@ namespace ApiSdk.Me.Onenote.Pages.Item.ParentNotebook.SectionGroups.Item.ParentN
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<GetQueryParameters> q = default, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
             var requestInfo = new RequestInformation {
-                HttpMethod = HttpMethod.GET,
+                HttpMethod = Method.GET,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };
@@ -171,7 +180,7 @@ namespace ApiSdk.Me.Onenote.Pages.Item.ParentNotebook.SectionGroups.Item.ParentN
         public RequestInformation CreatePatchRequestInformation(Notebook body, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
             _ = body ?? throw new ArgumentNullException(nameof(body));
             var requestInfo = new RequestInformation {
-                HttpMethod = HttpMethod.PATCH,
+                HttpMethod = Method.PATCH,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };

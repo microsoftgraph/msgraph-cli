@@ -25,13 +25,15 @@ namespace ApiSdk.Chats.Item.SendActivityNotification {
             var command = new Command("post");
             command.Description = "Invoke action sendActivityNotification";
             // Create options for all the parameters
-            var chatIdOption = new Option<string>("--chat-id", description: "key: id of chat");
+            var chatIdOption = new Option<string>("--chat-id", description: "key: id of chat") {
+            };
             chatIdOption.IsRequired = true;
             command.AddOption(chatIdOption);
-            var bodyOption = new Option<string>("--body");
+            var bodyOption = new Option<string>("--body") {
+            };
             bodyOption.IsRequired = true;
             command.AddOption(bodyOption);
-            command.Handler = CommandHandler.Create<string, string>(async (chatId, body) => {
+            command.SetHandler(async (string chatId, string body) => {
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<SendActivityNotificationRequestBody>();
@@ -40,7 +42,7 @@ namespace ApiSdk.Chats.Item.SendActivityNotification {
                 await RequestAdapter.SendNoContentAsync(requestInfo);
                 // Print request output. What if the request has no return?
                 Console.WriteLine("Success");
-            });
+            }, chatIdOption, bodyOption);
             return command;
         }
         /// <summary>
@@ -65,7 +67,7 @@ namespace ApiSdk.Chats.Item.SendActivityNotification {
         public RequestInformation CreatePostRequestInformation(SendActivityNotificationRequestBody body, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
             _ = body ?? throw new ArgumentNullException(nameof(body));
             var requestInfo = new RequestInformation {
-                HttpMethod = HttpMethod.POST,
+                HttpMethod = Method.POST,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };

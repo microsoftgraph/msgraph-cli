@@ -25,16 +25,19 @@ namespace ApiSdk.Reports.GetGroupArchivedPrintJobsWithGroupIdWithStartDateTimeWi
             var command = new Command("get");
             command.Description = "Invoke function getGroupArchivedPrintJobs";
             // Create options for all the parameters
-            var groupIdOption = new Option<string>("--groupid", description: "Usage: groupId={groupId}");
+            var groupIdOption = new Option<string>("--groupid", description: "Usage: groupId={groupId}") {
+            };
             groupIdOption.IsRequired = true;
             command.AddOption(groupIdOption);
-            var startDateTimeOption = new Option<string>("--startdatetime", description: "Usage: startDateTime={startDateTime}");
+            var startDateTimeOption = new Option<string>("--startdatetime", description: "Usage: startDateTime={startDateTime}") {
+            };
             startDateTimeOption.IsRequired = true;
             command.AddOption(startDateTimeOption);
-            var endDateTimeOption = new Option<string>("--enddatetime", description: "Usage: endDateTime={endDateTime}");
+            var endDateTimeOption = new Option<string>("--enddatetime", description: "Usage: endDateTime={endDateTime}") {
+            };
             endDateTimeOption.IsRequired = true;
             command.AddOption(endDateTimeOption);
-            command.Handler = CommandHandler.Create<string, string, string>(async (groupId, startDateTime, endDateTime) => {
+            command.SetHandler(async (string groupId, string startDateTime, string endDateTime) => {
                 var requestInfo = CreateGetRequestInformation(q => {
                 });
                 var result = await RequestAdapter.SendCollectionAsync<ApiSdk.Reports.GetGroupArchivedPrintJobsWithGroupIdWithStartDateTimeWithEndDateTime.GetGroupArchivedPrintJobsWithGroupIdWithStartDateTimeWithEndDateTime>(requestInfo);
@@ -45,7 +48,7 @@ namespace ApiSdk.Reports.GetGroupArchivedPrintJobsWithGroupIdWithStartDateTimeWi
                 using var reader = new StreamReader(content);
                 var strContent = await reader.ReadToEndAsync();
                 Console.Write(strContent + "\n");
-            });
+            }, groupIdOption, startDateTimeOption, endDateTimeOption);
             return command;
         }
         /// <summary>
@@ -74,7 +77,7 @@ namespace ApiSdk.Reports.GetGroupArchivedPrintJobsWithGroupIdWithStartDateTimeWi
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
             var requestInfo = new RequestInformation {
-                HttpMethod = HttpMethod.GET,
+                HttpMethod = Method.GET,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };

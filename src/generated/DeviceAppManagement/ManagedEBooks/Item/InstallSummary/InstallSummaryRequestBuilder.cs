@@ -26,16 +26,17 @@ namespace ApiSdk.DeviceAppManagement.ManagedEBooks.Item.InstallSummary {
             var command = new Command("delete");
             command.Description = "Mobile App Install Summary.";
             // Create options for all the parameters
-            var managedEBookIdOption = new Option<string>("--managedebook-id", description: "key: id of managedEBook");
+            var managedEBookIdOption = new Option<string>("--managedebook-id", description: "key: id of managedEBook") {
+            };
             managedEBookIdOption.IsRequired = true;
             command.AddOption(managedEBookIdOption);
-            command.Handler = CommandHandler.Create<string>(async (managedEBookId) => {
+            command.SetHandler(async (string managedEBookId) => {
                 var requestInfo = CreateDeleteRequestInformation(q => {
                 });
                 await RequestAdapter.SendNoContentAsync(requestInfo);
                 // Print request output. What if the request has no return?
                 Console.WriteLine("Success");
-            });
+            }, managedEBookIdOption);
             return command;
         }
         /// <summary>
@@ -45,18 +46,21 @@ namespace ApiSdk.DeviceAppManagement.ManagedEBooks.Item.InstallSummary {
             var command = new Command("get");
             command.Description = "Mobile App Install Summary.";
             // Create options for all the parameters
-            var managedEBookIdOption = new Option<string>("--managedebook-id", description: "key: id of managedEBook");
+            var managedEBookIdOption = new Option<string>("--managedebook-id", description: "key: id of managedEBook") {
+            };
             managedEBookIdOption.IsRequired = true;
             command.AddOption(managedEBookIdOption);
-            var selectOption = new Option<string[]>("--select", description: "Select properties to be returned");
+            var selectOption = new Option<string[]>("--select", description: "Select properties to be returned") {
+                Arity = ArgumentArity.ZeroOrMore
+            };
             selectOption.IsRequired = false;
-            selectOption.Arity = ArgumentArity.ZeroOrMore;
             command.AddOption(selectOption);
-            var expandOption = new Option<string[]>("--expand", description: "Expand related entities");
+            var expandOption = new Option<string[]>("--expand", description: "Expand related entities") {
+                Arity = ArgumentArity.ZeroOrMore
+            };
             expandOption.IsRequired = false;
-            expandOption.Arity = ArgumentArity.ZeroOrMore;
             command.AddOption(expandOption);
-            command.Handler = CommandHandler.Create<string, string[], string[]>(async (managedEBookId, select, expand) => {
+            command.SetHandler(async (string managedEBookId, string[] select, string[] expand) => {
                 var requestInfo = CreateGetRequestInformation(q => {
                     q.Select = select;
                     q.Expand = expand;
@@ -69,7 +73,7 @@ namespace ApiSdk.DeviceAppManagement.ManagedEBooks.Item.InstallSummary {
                 using var reader = new StreamReader(content);
                 var strContent = await reader.ReadToEndAsync();
                 Console.Write(strContent + "\n");
-            });
+            }, managedEBookIdOption, selectOption, expandOption);
             return command;
         }
         /// <summary>
@@ -79,13 +83,15 @@ namespace ApiSdk.DeviceAppManagement.ManagedEBooks.Item.InstallSummary {
             var command = new Command("patch");
             command.Description = "Mobile App Install Summary.";
             // Create options for all the parameters
-            var managedEBookIdOption = new Option<string>("--managedebook-id", description: "key: id of managedEBook");
+            var managedEBookIdOption = new Option<string>("--managedebook-id", description: "key: id of managedEBook") {
+            };
             managedEBookIdOption.IsRequired = true;
             command.AddOption(managedEBookIdOption);
-            var bodyOption = new Option<string>("--body");
+            var bodyOption = new Option<string>("--body") {
+            };
             bodyOption.IsRequired = true;
             command.AddOption(bodyOption);
-            command.Handler = CommandHandler.Create<string, string>(async (managedEBookId, body) => {
+            command.SetHandler(async (string managedEBookId, string body) => {
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<EBookInstallSummary>();
@@ -94,7 +100,7 @@ namespace ApiSdk.DeviceAppManagement.ManagedEBooks.Item.InstallSummary {
                 await RequestAdapter.SendNoContentAsync(requestInfo);
                 // Print request output. What if the request has no return?
                 Console.WriteLine("Success");
-            });
+            }, managedEBookIdOption, bodyOption);
             return command;
         }
         /// <summary>
@@ -117,7 +123,7 @@ namespace ApiSdk.DeviceAppManagement.ManagedEBooks.Item.InstallSummary {
         /// </summary>
         public RequestInformation CreateDeleteRequestInformation(Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
             var requestInfo = new RequestInformation {
-                HttpMethod = HttpMethod.DELETE,
+                HttpMethod = Method.DELETE,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };
@@ -133,7 +139,7 @@ namespace ApiSdk.DeviceAppManagement.ManagedEBooks.Item.InstallSummary {
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<GetQueryParameters> q = default, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
             var requestInfo = new RequestInformation {
-                HttpMethod = HttpMethod.GET,
+                HttpMethod = Method.GET,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };
@@ -155,7 +161,7 @@ namespace ApiSdk.DeviceAppManagement.ManagedEBooks.Item.InstallSummary {
         public RequestInformation CreatePatchRequestInformation(EBookInstallSummary body, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
             _ = body ?? throw new ArgumentNullException(nameof(body));
             var requestInfo = new RequestInformation {
-                HttpMethod = HttpMethod.PATCH,
+                HttpMethod = Method.PATCH,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };

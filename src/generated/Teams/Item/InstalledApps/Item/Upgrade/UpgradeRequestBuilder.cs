@@ -25,19 +25,21 @@ namespace ApiSdk.Teams.Item.InstalledApps.Item.Upgrade {
             var command = new Command("post");
             command.Description = "Invoke action upgrade";
             // Create options for all the parameters
-            var teamIdOption = new Option<string>("--team-id", description: "key: id of team");
+            var teamIdOption = new Option<string>("--team-id", description: "key: id of team") {
+            };
             teamIdOption.IsRequired = true;
             command.AddOption(teamIdOption);
-            var teamsAppInstallationIdOption = new Option<string>("--teamsappinstallation-id", description: "key: id of teamsAppInstallation");
+            var teamsAppInstallationIdOption = new Option<string>("--teamsappinstallation-id", description: "key: id of teamsAppInstallation") {
+            };
             teamsAppInstallationIdOption.IsRequired = true;
             command.AddOption(teamsAppInstallationIdOption);
-            command.Handler = CommandHandler.Create<string, string>(async (teamId, teamsAppInstallationId) => {
+            command.SetHandler(async (string teamId, string teamsAppInstallationId) => {
                 var requestInfo = CreatePostRequestInformation(q => {
                 });
                 await RequestAdapter.SendNoContentAsync(requestInfo);
                 // Print request output. What if the request has no return?
                 Console.WriteLine("Success");
-            });
+            }, teamIdOption, teamsAppInstallationIdOption);
             return command;
         }
         /// <summary>
@@ -60,7 +62,7 @@ namespace ApiSdk.Teams.Item.InstalledApps.Item.Upgrade {
         /// </summary>
         public RequestInformation CreatePostRequestInformation(Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
             var requestInfo = new RequestInformation {
-                HttpMethod = HttpMethod.POST,
+                HttpMethod = Method.POST,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };

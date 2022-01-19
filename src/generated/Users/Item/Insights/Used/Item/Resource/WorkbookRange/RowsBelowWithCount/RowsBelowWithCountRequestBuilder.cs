@@ -26,16 +26,19 @@ namespace ApiSdk.Users.Item.Insights.Used.Item.Resource.WorkbookRange.RowsBelowW
             var command = new Command("get");
             command.Description = "Invoke function rowsBelow";
             // Create options for all the parameters
-            var userIdOption = new Option<string>("--user-id", description: "key: id of user");
+            var userIdOption = new Option<string>("--user-id", description: "key: id of user") {
+            };
             userIdOption.IsRequired = true;
             command.AddOption(userIdOption);
-            var usedInsightIdOption = new Option<string>("--usedinsight-id", description: "key: id of usedInsight");
+            var usedInsightIdOption = new Option<string>("--usedinsight-id", description: "key: id of usedInsight") {
+            };
             usedInsightIdOption.IsRequired = true;
             command.AddOption(usedInsightIdOption);
-            var countOption = new Option<int?>("--count", description: "Usage: count={count}");
+            var countOption = new Option<int?>("--count", description: "Usage: count={count}") {
+            };
             countOption.IsRequired = true;
             command.AddOption(countOption);
-            command.Handler = CommandHandler.Create<string, string, int?>(async (userId, usedInsightId, count) => {
+            command.SetHandler(async (string userId, string usedInsightId, int? count) => {
                 var requestInfo = CreateGetRequestInformation(q => {
                 });
                 var result = await RequestAdapter.SendAsync<RowsBelowWithCountResponse>(requestInfo);
@@ -46,7 +49,7 @@ namespace ApiSdk.Users.Item.Insights.Used.Item.Resource.WorkbookRange.RowsBelowW
                 using var reader = new StreamReader(content);
                 var strContent = await reader.ReadToEndAsync();
                 Console.Write(strContent + "\n");
-            });
+            }, userIdOption, usedInsightIdOption, countOption);
             return command;
         }
         /// <summary>
@@ -71,7 +74,7 @@ namespace ApiSdk.Users.Item.Insights.Used.Item.Resource.WorkbookRange.RowsBelowW
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
             var requestInfo = new RequestInformation {
-                HttpMethod = HttpMethod.GET,
+                HttpMethod = Method.GET,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };

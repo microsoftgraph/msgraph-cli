@@ -26,19 +26,23 @@ namespace ApiSdk.Workbooks.Item.Workbook.Names.Item.Worksheet.Tables.Item.Rows.I
             var command = new Command("get");
             command.Description = "Invoke function itemAt";
             // Create options for all the parameters
-            var driveItemIdOption = new Option<string>("--driveitem-id", description: "key: id of driveItem");
+            var driveItemIdOption = new Option<string>("--driveitem-id", description: "key: id of driveItem") {
+            };
             driveItemIdOption.IsRequired = true;
             command.AddOption(driveItemIdOption);
-            var workbookNamedItemIdOption = new Option<string>("--workbooknameditem-id", description: "key: id of workbookNamedItem");
+            var workbookNamedItemIdOption = new Option<string>("--workbooknameditem-id", description: "key: id of workbookNamedItem") {
+            };
             workbookNamedItemIdOption.IsRequired = true;
             command.AddOption(workbookNamedItemIdOption);
-            var workbookTableIdOption = new Option<string>("--workbooktable-id", description: "key: id of workbookTable");
+            var workbookTableIdOption = new Option<string>("--workbooktable-id", description: "key: id of workbookTable") {
+            };
             workbookTableIdOption.IsRequired = true;
             command.AddOption(workbookTableIdOption);
-            var indexOption = new Option<int?>("--index", description: "Usage: index={index}");
+            var indexOption = new Option<int?>("--index", description: "Usage: index={index}") {
+            };
             indexOption.IsRequired = true;
             command.AddOption(indexOption);
-            command.Handler = CommandHandler.Create<string, string, string, int?>(async (driveItemId, workbookNamedItemId, workbookTableId, index) => {
+            command.SetHandler(async (string driveItemId, string workbookNamedItemId, string workbookTableId, int? index) => {
                 var requestInfo = CreateGetRequestInformation(q => {
                 });
                 var result = await RequestAdapter.SendAsync<ItemAtWithIndexResponse>(requestInfo);
@@ -49,7 +53,7 @@ namespace ApiSdk.Workbooks.Item.Workbook.Names.Item.Worksheet.Tables.Item.Rows.I
                 using var reader = new StreamReader(content);
                 var strContent = await reader.ReadToEndAsync();
                 Console.Write(strContent + "\n");
-            });
+            }, driveItemIdOption, workbookNamedItemIdOption, workbookTableIdOption, indexOption);
             return command;
         }
         /// <summary>
@@ -74,7 +78,7 @@ namespace ApiSdk.Workbooks.Item.Workbook.Names.Item.Worksheet.Tables.Item.Rows.I
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
             var requestInfo = new RequestInformation {
-                HttpMethod = HttpMethod.GET,
+                HttpMethod = Method.GET,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };

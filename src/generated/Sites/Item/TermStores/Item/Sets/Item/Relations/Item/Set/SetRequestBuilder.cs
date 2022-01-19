@@ -27,27 +27,33 @@ namespace ApiSdk.Sites.Item.TermStores.Item.Sets.Item.Relations.Item.Set {
             var command = new Command("get");
             command.Description = "The [set] in which the relation is relevant.";
             // Create options for all the parameters
-            var siteIdOption = new Option<string>("--site-id", description: "key: id of site");
+            var siteIdOption = new Option<string>("--site-id", description: "key: id of site") {
+            };
             siteIdOption.IsRequired = true;
             command.AddOption(siteIdOption);
-            var storeIdOption = new Option<string>("--store-id", description: "key: id of store");
+            var storeIdOption = new Option<string>("--store-id", description: "key: id of store") {
+            };
             storeIdOption.IsRequired = true;
             command.AddOption(storeIdOption);
-            var setIdOption = new Option<string>("--set-id", description: "key: id of set");
+            var setIdOption = new Option<string>("--set-id", description: "key: id of set") {
+            };
             setIdOption.IsRequired = true;
             command.AddOption(setIdOption);
-            var relationIdOption = new Option<string>("--relation-id", description: "key: id of relation");
+            var relationIdOption = new Option<string>("--relation-id", description: "key: id of relation") {
+            };
             relationIdOption.IsRequired = true;
             command.AddOption(relationIdOption);
-            var selectOption = new Option<string[]>("--select", description: "Select properties to be returned");
+            var selectOption = new Option<string[]>("--select", description: "Select properties to be returned") {
+                Arity = ArgumentArity.ZeroOrMore
+            };
             selectOption.IsRequired = false;
-            selectOption.Arity = ArgumentArity.ZeroOrMore;
             command.AddOption(selectOption);
-            var expandOption = new Option<string[]>("--expand", description: "Expand related entities");
+            var expandOption = new Option<string[]>("--expand", description: "Expand related entities") {
+                Arity = ArgumentArity.ZeroOrMore
+            };
             expandOption.IsRequired = false;
-            expandOption.Arity = ArgumentArity.ZeroOrMore;
             command.AddOption(expandOption);
-            command.Handler = CommandHandler.Create<string, string, string, string, string[], string[]>(async (siteId, storeId, setId, relationId, select, expand) => {
+            command.SetHandler(async (string siteId, string storeId, string setId, string relationId, string[] select, string[] expand) => {
                 var requestInfo = CreateGetRequestInformation(q => {
                     q.Select = select;
                     q.Expand = expand;
@@ -60,7 +66,7 @@ namespace ApiSdk.Sites.Item.TermStores.Item.Sets.Item.Relations.Item.Set {
                 using var reader = new StreamReader(content);
                 var strContent = await reader.ReadToEndAsync();
                 Console.Write(strContent + "\n");
-            });
+            }, siteIdOption, storeIdOption, setIdOption, relationIdOption, selectOption, expandOption);
             return command;
         }
         public Command BuildRefCommand() {
@@ -92,7 +98,7 @@ namespace ApiSdk.Sites.Item.TermStores.Item.Sets.Item.Relations.Item.Set {
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<GetQueryParameters> q = default, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
             var requestInfo = new RequestInformation {
-                HttpMethod = HttpMethod.GET,
+                HttpMethod = Method.GET,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };

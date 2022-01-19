@@ -25,16 +25,19 @@ namespace ApiSdk.Users.Item.Calendar.Events.Item.Calendar.AllowedCalendarSharing
             var command = new Command("get");
             command.Description = "Invoke function allowedCalendarSharingRoles";
             // Create options for all the parameters
-            var userIdOption = new Option<string>("--user-id", description: "key: id of user");
+            var userIdOption = new Option<string>("--user-id", description: "key: id of user") {
+            };
             userIdOption.IsRequired = true;
             command.AddOption(userIdOption);
-            var eventIdOption = new Option<string>("--event-id", description: "key: id of event");
+            var eventIdOption = new Option<string>("--event-id", description: "key: id of event") {
+            };
             eventIdOption.IsRequired = true;
             command.AddOption(eventIdOption);
-            var UserOption = new Option<string>("--user", description: "Usage: User={User}");
+            var UserOption = new Option<string>("--user", description: "Usage: User={User}") {
+            };
             UserOption.IsRequired = true;
             command.AddOption(UserOption);
-            command.Handler = CommandHandler.Create<string, string, string>(async (userId, eventId, User) => {
+            command.SetHandler(async (string userId, string eventId, string User) => {
                 var requestInfo = CreateGetRequestInformation(q => {
                 });
                 var result = await RequestAdapter.SendPrimitiveCollectionAsync<string>(requestInfo);
@@ -45,7 +48,7 @@ namespace ApiSdk.Users.Item.Calendar.Events.Item.Calendar.AllowedCalendarSharing
                 using var reader = new StreamReader(content);
                 var strContent = await reader.ReadToEndAsync();
                 Console.Write(strContent + "\n");
-            });
+            }, userIdOption, eventIdOption, UserOption);
             return command;
         }
         /// <summary>
@@ -70,7 +73,7 @@ namespace ApiSdk.Users.Item.Calendar.Events.Item.Calendar.AllowedCalendarSharing
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
             var requestInfo = new RequestInformation {
-                HttpMethod = HttpMethod.GET,
+                HttpMethod = Method.GET,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };

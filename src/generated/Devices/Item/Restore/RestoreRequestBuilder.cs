@@ -26,10 +26,11 @@ namespace ApiSdk.Devices.Item.Restore {
             var command = new Command("post");
             command.Description = "Invoke action restore";
             // Create options for all the parameters
-            var deviceIdOption = new Option<string>("--device-id", description: "key: id of device");
+            var deviceIdOption = new Option<string>("--device-id", description: "key: id of device") {
+            };
             deviceIdOption.IsRequired = true;
             command.AddOption(deviceIdOption);
-            command.Handler = CommandHandler.Create<string>(async (deviceId) => {
+            command.SetHandler(async (string deviceId) => {
                 var requestInfo = CreatePostRequestInformation(q => {
                 });
                 var result = await RequestAdapter.SendAsync<RestoreResponse>(requestInfo);
@@ -40,7 +41,7 @@ namespace ApiSdk.Devices.Item.Restore {
                 using var reader = new StreamReader(content);
                 var strContent = await reader.ReadToEndAsync();
                 Console.Write(strContent + "\n");
-            });
+            }, deviceIdOption);
             return command;
         }
         /// <summary>
@@ -63,7 +64,7 @@ namespace ApiSdk.Devices.Item.Restore {
         /// </summary>
         public RequestInformation CreatePostRequestInformation(Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
             var requestInfo = new RequestInformation {
-                HttpMethod = HttpMethod.POST,
+                HttpMethod = Method.POST,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };

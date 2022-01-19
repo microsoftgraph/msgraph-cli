@@ -26,10 +26,11 @@ namespace ApiSdk.Teams.Item.PrimaryChannel.ProvisionEmail {
             var command = new Command("post");
             command.Description = "Invoke action provisionEmail";
             // Create options for all the parameters
-            var teamIdOption = new Option<string>("--team-id", description: "key: id of team");
+            var teamIdOption = new Option<string>("--team-id", description: "key: id of team") {
+            };
             teamIdOption.IsRequired = true;
             command.AddOption(teamIdOption);
-            command.Handler = CommandHandler.Create<string>(async (teamId) => {
+            command.SetHandler(async (string teamId) => {
                 var requestInfo = CreatePostRequestInformation(q => {
                 });
                 var result = await RequestAdapter.SendAsync<ProvisionEmailResponse>(requestInfo);
@@ -40,7 +41,7 @@ namespace ApiSdk.Teams.Item.PrimaryChannel.ProvisionEmail {
                 using var reader = new StreamReader(content);
                 var strContent = await reader.ReadToEndAsync();
                 Console.Write(strContent + "\n");
-            });
+            }, teamIdOption);
             return command;
         }
         /// <summary>
@@ -63,7 +64,7 @@ namespace ApiSdk.Teams.Item.PrimaryChannel.ProvisionEmail {
         /// </summary>
         public RequestInformation CreatePostRequestInformation(Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
             var requestInfo = new RequestInformation {
-                HttpMethod = HttpMethod.POST,
+                HttpMethod = Method.POST,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };

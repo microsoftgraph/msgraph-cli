@@ -26,7 +26,7 @@ namespace ApiSdk.Reports.GetOffice365ActivationCounts {
             var command = new Command("get");
             command.Description = "Invoke function getOffice365ActivationCounts";
             // Create options for all the parameters
-            command.Handler = CommandHandler.Create(async () => {
+            command.SetHandler(async () => {
                 var requestInfo = CreateGetRequestInformation(q => {
                 });
                 var result = await RequestAdapter.SendAsync<Report>(requestInfo);
@@ -60,7 +60,7 @@ namespace ApiSdk.Reports.GetOffice365ActivationCounts {
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
             var requestInfo = new RequestInformation {
-                HttpMethod = HttpMethod.GET,
+                HttpMethod = Method.GET,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };

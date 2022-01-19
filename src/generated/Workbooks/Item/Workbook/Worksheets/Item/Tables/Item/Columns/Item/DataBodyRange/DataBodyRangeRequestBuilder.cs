@@ -26,19 +26,23 @@ namespace ApiSdk.Workbooks.Item.Workbook.Worksheets.Item.Tables.Item.Columns.Ite
             var command = new Command("get");
             command.Description = "Invoke function dataBodyRange";
             // Create options for all the parameters
-            var driveItemIdOption = new Option<string>("--driveitem-id", description: "key: id of driveItem");
+            var driveItemIdOption = new Option<string>("--driveitem-id", description: "key: id of driveItem") {
+            };
             driveItemIdOption.IsRequired = true;
             command.AddOption(driveItemIdOption);
-            var workbookWorksheetIdOption = new Option<string>("--workbookworksheet-id", description: "key: id of workbookWorksheet");
+            var workbookWorksheetIdOption = new Option<string>("--workbookworksheet-id", description: "key: id of workbookWorksheet") {
+            };
             workbookWorksheetIdOption.IsRequired = true;
             command.AddOption(workbookWorksheetIdOption);
-            var workbookTableIdOption = new Option<string>("--workbooktable-id", description: "key: id of workbookTable");
+            var workbookTableIdOption = new Option<string>("--workbooktable-id", description: "key: id of workbookTable") {
+            };
             workbookTableIdOption.IsRequired = true;
             command.AddOption(workbookTableIdOption);
-            var workbookTableColumnIdOption = new Option<string>("--workbooktablecolumn-id", description: "key: id of workbookTableColumn");
+            var workbookTableColumnIdOption = new Option<string>("--workbooktablecolumn-id", description: "key: id of workbookTableColumn") {
+            };
             workbookTableColumnIdOption.IsRequired = true;
             command.AddOption(workbookTableColumnIdOption);
-            command.Handler = CommandHandler.Create<string, string, string, string>(async (driveItemId, workbookWorksheetId, workbookTableId, workbookTableColumnId) => {
+            command.SetHandler(async (string driveItemId, string workbookWorksheetId, string workbookTableId, string workbookTableColumnId) => {
                 var requestInfo = CreateGetRequestInformation(q => {
                 });
                 var result = await RequestAdapter.SendAsync<DataBodyRangeResponse>(requestInfo);
@@ -49,7 +53,7 @@ namespace ApiSdk.Workbooks.Item.Workbook.Worksheets.Item.Tables.Item.Columns.Ite
                 using var reader = new StreamReader(content);
                 var strContent = await reader.ReadToEndAsync();
                 Console.Write(strContent + "\n");
-            });
+            }, driveItemIdOption, workbookWorksheetIdOption, workbookTableIdOption, workbookTableColumnIdOption);
             return command;
         }
         /// <summary>
@@ -72,7 +76,7 @@ namespace ApiSdk.Workbooks.Item.Workbook.Worksheets.Item.Tables.Item.Columns.Ite
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
             var requestInfo = new RequestInformation {
-                HttpMethod = HttpMethod.GET,
+                HttpMethod = Method.GET,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };

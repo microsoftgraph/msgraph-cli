@@ -25,10 +25,11 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.AccessPackages.Item.Ge
             var command = new Command("post");
             command.Description = "Invoke action getApplicablePolicyRequirements";
             // Create options for all the parameters
-            var accessPackageIdOption = new Option<string>("--accesspackage-id", description: "key: id of accessPackage");
+            var accessPackageIdOption = new Option<string>("--accesspackage-id", description: "key: id of accessPackage") {
+            };
             accessPackageIdOption.IsRequired = true;
             command.AddOption(accessPackageIdOption);
-            command.Handler = CommandHandler.Create<string>(async (accessPackageId) => {
+            command.SetHandler(async (string accessPackageId) => {
                 var requestInfo = CreatePostRequestInformation(q => {
                 });
                 var result = await RequestAdapter.SendCollectionAsync<ApiSdk.IdentityGovernance.EntitlementManagement.AccessPackages.Item.GetApplicablePolicyRequirements.GetApplicablePolicyRequirements>(requestInfo);
@@ -39,7 +40,7 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.AccessPackages.Item.Ge
                 using var reader = new StreamReader(content);
                 var strContent = await reader.ReadToEndAsync();
                 Console.Write(strContent + "\n");
-            });
+            }, accessPackageIdOption);
             return command;
         }
         /// <summary>
@@ -62,7 +63,7 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.AccessPackages.Item.Ge
         /// </summary>
         public RequestInformation CreatePostRequestInformation(Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
             var requestInfo = new RequestInformation {
-                HttpMethod = HttpMethod.POST,
+                HttpMethod = Method.POST,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };

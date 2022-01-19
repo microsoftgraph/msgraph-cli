@@ -25,22 +25,25 @@ namespace ApiSdk.Sites.Item.Lists.Item.ContentTypes.Item.Publish {
             var command = new Command("post");
             command.Description = "Invoke action publish";
             // Create options for all the parameters
-            var siteIdOption = new Option<string>("--site-id", description: "key: id of site");
+            var siteIdOption = new Option<string>("--site-id", description: "key: id of site") {
+            };
             siteIdOption.IsRequired = true;
             command.AddOption(siteIdOption);
-            var listIdOption = new Option<string>("--list-id", description: "key: id of list");
+            var listIdOption = new Option<string>("--list-id", description: "key: id of list") {
+            };
             listIdOption.IsRequired = true;
             command.AddOption(listIdOption);
-            var contentTypeIdOption = new Option<string>("--contenttype-id", description: "key: id of contentType");
+            var contentTypeIdOption = new Option<string>("--contenttype-id", description: "key: id of contentType") {
+            };
             contentTypeIdOption.IsRequired = true;
             command.AddOption(contentTypeIdOption);
-            command.Handler = CommandHandler.Create<string, string, string>(async (siteId, listId, contentTypeId) => {
+            command.SetHandler(async (string siteId, string listId, string contentTypeId) => {
                 var requestInfo = CreatePostRequestInformation(q => {
                 });
                 await RequestAdapter.SendNoContentAsync(requestInfo);
                 // Print request output. What if the request has no return?
                 Console.WriteLine("Success");
-            });
+            }, siteIdOption, listIdOption, contentTypeIdOption);
             return command;
         }
         /// <summary>
@@ -63,7 +66,7 @@ namespace ApiSdk.Sites.Item.Lists.Item.ContentTypes.Item.Publish {
         /// </summary>
         public RequestInformation CreatePostRequestInformation(Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
             var requestInfo = new RequestInformation {
-                HttpMethod = HttpMethod.POST,
+                HttpMethod = Method.POST,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };

@@ -27,16 +27,17 @@ namespace ApiSdk.Admin.ServiceAnnouncement.HealthOverviews.Item {
             var command = new Command("delete");
             command.Description = "A collection of service health information for tenant. This property is a contained navigation property, it is nullable and readonly.";
             // Create options for all the parameters
-            var serviceHealthIdOption = new Option<string>("--servicehealth-id", description: "key: id of serviceHealth");
+            var serviceHealthIdOption = new Option<string>("--servicehealth-id", description: "key: id of serviceHealth") {
+            };
             serviceHealthIdOption.IsRequired = true;
             command.AddOption(serviceHealthIdOption);
-            command.Handler = CommandHandler.Create<string>(async (serviceHealthId) => {
+            command.SetHandler(async (string serviceHealthId) => {
                 var requestInfo = CreateDeleteRequestInformation(q => {
                 });
                 await RequestAdapter.SendNoContentAsync(requestInfo);
                 // Print request output. What if the request has no return?
                 Console.WriteLine("Success");
-            });
+            }, serviceHealthIdOption);
             return command;
         }
         /// <summary>
@@ -46,18 +47,21 @@ namespace ApiSdk.Admin.ServiceAnnouncement.HealthOverviews.Item {
             var command = new Command("get");
             command.Description = "A collection of service health information for tenant. This property is a contained navigation property, it is nullable and readonly.";
             // Create options for all the parameters
-            var serviceHealthIdOption = new Option<string>("--servicehealth-id", description: "key: id of serviceHealth");
+            var serviceHealthIdOption = new Option<string>("--servicehealth-id", description: "key: id of serviceHealth") {
+            };
             serviceHealthIdOption.IsRequired = true;
             command.AddOption(serviceHealthIdOption);
-            var selectOption = new Option<string[]>("--select", description: "Select properties to be returned");
+            var selectOption = new Option<string[]>("--select", description: "Select properties to be returned") {
+                Arity = ArgumentArity.ZeroOrMore
+            };
             selectOption.IsRequired = false;
-            selectOption.Arity = ArgumentArity.ZeroOrMore;
             command.AddOption(selectOption);
-            var expandOption = new Option<string[]>("--expand", description: "Expand related entities");
+            var expandOption = new Option<string[]>("--expand", description: "Expand related entities") {
+                Arity = ArgumentArity.ZeroOrMore
+            };
             expandOption.IsRequired = false;
-            expandOption.Arity = ArgumentArity.ZeroOrMore;
             command.AddOption(expandOption);
-            command.Handler = CommandHandler.Create<string, string[], string[]>(async (serviceHealthId, select, expand) => {
+            command.SetHandler(async (string serviceHealthId, string[] select, string[] expand) => {
                 var requestInfo = CreateGetRequestInformation(q => {
                     q.Select = select;
                     q.Expand = expand;
@@ -70,7 +74,7 @@ namespace ApiSdk.Admin.ServiceAnnouncement.HealthOverviews.Item {
                 using var reader = new StreamReader(content);
                 var strContent = await reader.ReadToEndAsync();
                 Console.Write(strContent + "\n");
-            });
+            }, serviceHealthIdOption, selectOption, expandOption);
             return command;
         }
         public Command BuildIssuesCommand() {
@@ -87,13 +91,15 @@ namespace ApiSdk.Admin.ServiceAnnouncement.HealthOverviews.Item {
             var command = new Command("patch");
             command.Description = "A collection of service health information for tenant. This property is a contained navigation property, it is nullable and readonly.";
             // Create options for all the parameters
-            var serviceHealthIdOption = new Option<string>("--servicehealth-id", description: "key: id of serviceHealth");
+            var serviceHealthIdOption = new Option<string>("--servicehealth-id", description: "key: id of serviceHealth") {
+            };
             serviceHealthIdOption.IsRequired = true;
             command.AddOption(serviceHealthIdOption);
-            var bodyOption = new Option<string>("--body");
+            var bodyOption = new Option<string>("--body") {
+            };
             bodyOption.IsRequired = true;
             command.AddOption(bodyOption);
-            command.Handler = CommandHandler.Create<string, string>(async (serviceHealthId, body) => {
+            command.SetHandler(async (string serviceHealthId, string body) => {
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<ServiceHealth>();
@@ -102,7 +108,7 @@ namespace ApiSdk.Admin.ServiceAnnouncement.HealthOverviews.Item {
                 await RequestAdapter.SendNoContentAsync(requestInfo);
                 // Print request output. What if the request has no return?
                 Console.WriteLine("Success");
-            });
+            }, serviceHealthIdOption, bodyOption);
             return command;
         }
         /// <summary>
@@ -125,7 +131,7 @@ namespace ApiSdk.Admin.ServiceAnnouncement.HealthOverviews.Item {
         /// </summary>
         public RequestInformation CreateDeleteRequestInformation(Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
             var requestInfo = new RequestInformation {
-                HttpMethod = HttpMethod.DELETE,
+                HttpMethod = Method.DELETE,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };
@@ -141,7 +147,7 @@ namespace ApiSdk.Admin.ServiceAnnouncement.HealthOverviews.Item {
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<GetQueryParameters> q = default, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
             var requestInfo = new RequestInformation {
-                HttpMethod = HttpMethod.GET,
+                HttpMethod = Method.GET,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };
@@ -163,7 +169,7 @@ namespace ApiSdk.Admin.ServiceAnnouncement.HealthOverviews.Item {
         public RequestInformation CreatePatchRequestInformation(ServiceHealth body, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
             _ = body ?? throw new ArgumentNullException(nameof(body));
             var requestInfo = new RequestInformation {
-                HttpMethod = HttpMethod.PATCH,
+                HttpMethod = Method.PATCH,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };

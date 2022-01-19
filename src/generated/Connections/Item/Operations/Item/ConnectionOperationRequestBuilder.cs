@@ -26,19 +26,21 @@ namespace ApiSdk.Connections.Item.Operations.Item {
             var command = new Command("delete");
             command.Description = "Read-only. Nullable.";
             // Create options for all the parameters
-            var externalConnectionIdOption = new Option<string>("--externalconnection-id", description: "key: id of externalConnection");
+            var externalConnectionIdOption = new Option<string>("--externalconnection-id", description: "key: id of externalConnection") {
+            };
             externalConnectionIdOption.IsRequired = true;
             command.AddOption(externalConnectionIdOption);
-            var connectionOperationIdOption = new Option<string>("--connectionoperation-id", description: "key: id of connectionOperation");
+            var connectionOperationIdOption = new Option<string>("--connectionoperation-id", description: "key: id of connectionOperation") {
+            };
             connectionOperationIdOption.IsRequired = true;
             command.AddOption(connectionOperationIdOption);
-            command.Handler = CommandHandler.Create<string, string>(async (externalConnectionId, connectionOperationId) => {
+            command.SetHandler(async (string externalConnectionId, string connectionOperationId) => {
                 var requestInfo = CreateDeleteRequestInformation(q => {
                 });
                 await RequestAdapter.SendNoContentAsync(requestInfo);
                 // Print request output. What if the request has no return?
                 Console.WriteLine("Success");
-            });
+            }, externalConnectionIdOption, connectionOperationIdOption);
             return command;
         }
         /// <summary>
@@ -48,21 +50,25 @@ namespace ApiSdk.Connections.Item.Operations.Item {
             var command = new Command("get");
             command.Description = "Read-only. Nullable.";
             // Create options for all the parameters
-            var externalConnectionIdOption = new Option<string>("--externalconnection-id", description: "key: id of externalConnection");
+            var externalConnectionIdOption = new Option<string>("--externalconnection-id", description: "key: id of externalConnection") {
+            };
             externalConnectionIdOption.IsRequired = true;
             command.AddOption(externalConnectionIdOption);
-            var connectionOperationIdOption = new Option<string>("--connectionoperation-id", description: "key: id of connectionOperation");
+            var connectionOperationIdOption = new Option<string>("--connectionoperation-id", description: "key: id of connectionOperation") {
+            };
             connectionOperationIdOption.IsRequired = true;
             command.AddOption(connectionOperationIdOption);
-            var selectOption = new Option<string[]>("--select", description: "Select properties to be returned");
+            var selectOption = new Option<string[]>("--select", description: "Select properties to be returned") {
+                Arity = ArgumentArity.ZeroOrMore
+            };
             selectOption.IsRequired = false;
-            selectOption.Arity = ArgumentArity.ZeroOrMore;
             command.AddOption(selectOption);
-            var expandOption = new Option<string[]>("--expand", description: "Expand related entities");
+            var expandOption = new Option<string[]>("--expand", description: "Expand related entities") {
+                Arity = ArgumentArity.ZeroOrMore
+            };
             expandOption.IsRequired = false;
-            expandOption.Arity = ArgumentArity.ZeroOrMore;
             command.AddOption(expandOption);
-            command.Handler = CommandHandler.Create<string, string, string[], string[]>(async (externalConnectionId, connectionOperationId, select, expand) => {
+            command.SetHandler(async (string externalConnectionId, string connectionOperationId, string[] select, string[] expand) => {
                 var requestInfo = CreateGetRequestInformation(q => {
                     q.Select = select;
                     q.Expand = expand;
@@ -75,7 +81,7 @@ namespace ApiSdk.Connections.Item.Operations.Item {
                 using var reader = new StreamReader(content);
                 var strContent = await reader.ReadToEndAsync();
                 Console.Write(strContent + "\n");
-            });
+            }, externalConnectionIdOption, connectionOperationIdOption, selectOption, expandOption);
             return command;
         }
         /// <summary>
@@ -85,16 +91,19 @@ namespace ApiSdk.Connections.Item.Operations.Item {
             var command = new Command("patch");
             command.Description = "Read-only. Nullable.";
             // Create options for all the parameters
-            var externalConnectionIdOption = new Option<string>("--externalconnection-id", description: "key: id of externalConnection");
+            var externalConnectionIdOption = new Option<string>("--externalconnection-id", description: "key: id of externalConnection") {
+            };
             externalConnectionIdOption.IsRequired = true;
             command.AddOption(externalConnectionIdOption);
-            var connectionOperationIdOption = new Option<string>("--connectionoperation-id", description: "key: id of connectionOperation");
+            var connectionOperationIdOption = new Option<string>("--connectionoperation-id", description: "key: id of connectionOperation") {
+            };
             connectionOperationIdOption.IsRequired = true;
             command.AddOption(connectionOperationIdOption);
-            var bodyOption = new Option<string>("--body");
+            var bodyOption = new Option<string>("--body") {
+            };
             bodyOption.IsRequired = true;
             command.AddOption(bodyOption);
-            command.Handler = CommandHandler.Create<string, string, string>(async (externalConnectionId, connectionOperationId, body) => {
+            command.SetHandler(async (string externalConnectionId, string connectionOperationId, string body) => {
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<ConnectionOperation>();
@@ -103,7 +112,7 @@ namespace ApiSdk.Connections.Item.Operations.Item {
                 await RequestAdapter.SendNoContentAsync(requestInfo);
                 // Print request output. What if the request has no return?
                 Console.WriteLine("Success");
-            });
+            }, externalConnectionIdOption, connectionOperationIdOption, bodyOption);
             return command;
         }
         /// <summary>
@@ -126,7 +135,7 @@ namespace ApiSdk.Connections.Item.Operations.Item {
         /// </summary>
         public RequestInformation CreateDeleteRequestInformation(Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
             var requestInfo = new RequestInformation {
-                HttpMethod = HttpMethod.DELETE,
+                HttpMethod = Method.DELETE,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };
@@ -142,7 +151,7 @@ namespace ApiSdk.Connections.Item.Operations.Item {
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<GetQueryParameters> q = default, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
             var requestInfo = new RequestInformation {
-                HttpMethod = HttpMethod.GET,
+                HttpMethod = Method.GET,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };
@@ -164,7 +173,7 @@ namespace ApiSdk.Connections.Item.Operations.Item {
         public RequestInformation CreatePatchRequestInformation(ConnectionOperation body, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
             _ = body ?? throw new ArgumentNullException(nameof(body));
             var requestInfo = new RequestInformation {
-                HttpMethod = HttpMethod.PATCH,
+                HttpMethod = Method.PATCH,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };

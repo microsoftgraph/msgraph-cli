@@ -25,22 +25,27 @@ namespace ApiSdk.Workbooks.Item.Workbook.Worksheets.Item.Tables.Item.Columns.Ite
             var command = new Command("post");
             command.Description = "Invoke action apply";
             // Create options for all the parameters
-            var driveItemIdOption = new Option<string>("--driveitem-id", description: "key: id of driveItem");
+            var driveItemIdOption = new Option<string>("--driveitem-id", description: "key: id of driveItem") {
+            };
             driveItemIdOption.IsRequired = true;
             command.AddOption(driveItemIdOption);
-            var workbookWorksheetIdOption = new Option<string>("--workbookworksheet-id", description: "key: id of workbookWorksheet");
+            var workbookWorksheetIdOption = new Option<string>("--workbookworksheet-id", description: "key: id of workbookWorksheet") {
+            };
             workbookWorksheetIdOption.IsRequired = true;
             command.AddOption(workbookWorksheetIdOption);
-            var workbookTableIdOption = new Option<string>("--workbooktable-id", description: "key: id of workbookTable");
+            var workbookTableIdOption = new Option<string>("--workbooktable-id", description: "key: id of workbookTable") {
+            };
             workbookTableIdOption.IsRequired = true;
             command.AddOption(workbookTableIdOption);
-            var workbookTableColumnIdOption = new Option<string>("--workbooktablecolumn-id", description: "key: id of workbookTableColumn");
+            var workbookTableColumnIdOption = new Option<string>("--workbooktablecolumn-id", description: "key: id of workbookTableColumn") {
+            };
             workbookTableColumnIdOption.IsRequired = true;
             command.AddOption(workbookTableColumnIdOption);
-            var bodyOption = new Option<string>("--body");
+            var bodyOption = new Option<string>("--body") {
+            };
             bodyOption.IsRequired = true;
             command.AddOption(bodyOption);
-            command.Handler = CommandHandler.Create<string, string, string, string, string>(async (driveItemId, workbookWorksheetId, workbookTableId, workbookTableColumnId, body) => {
+            command.SetHandler(async (string driveItemId, string workbookWorksheetId, string workbookTableId, string workbookTableColumnId, string body) => {
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<ApplyRequestBody>();
@@ -49,7 +54,7 @@ namespace ApiSdk.Workbooks.Item.Workbook.Worksheets.Item.Tables.Item.Columns.Ite
                 await RequestAdapter.SendNoContentAsync(requestInfo);
                 // Print request output. What if the request has no return?
                 Console.WriteLine("Success");
-            });
+            }, driveItemIdOption, workbookWorksheetIdOption, workbookTableIdOption, workbookTableColumnIdOption, bodyOption);
             return command;
         }
         /// <summary>
@@ -74,7 +79,7 @@ namespace ApiSdk.Workbooks.Item.Workbook.Worksheets.Item.Tables.Item.Columns.Ite
         public RequestInformation CreatePostRequestInformation(ApplyRequestBody body, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
             _ = body ?? throw new ArgumentNullException(nameof(body));
             var requestInfo = new RequestInformation {
-                HttpMethod = HttpMethod.POST,
+                HttpMethod = Method.POST,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };

@@ -26,22 +26,25 @@ namespace ApiSdk.Me.Todo.Lists.Item.Tasks.Item.LinkedResources.Item {
             var command = new Command("delete");
             command.Description = "A collection of resources linked to the task.";
             // Create options for all the parameters
-            var todoTaskListIdOption = new Option<string>("--todotasklist-id", description: "key: id of todoTaskList");
+            var todoTaskListIdOption = new Option<string>("--todotasklist-id", description: "key: id of todoTaskList") {
+            };
             todoTaskListIdOption.IsRequired = true;
             command.AddOption(todoTaskListIdOption);
-            var todoTaskIdOption = new Option<string>("--todotask-id", description: "key: id of todoTask");
+            var todoTaskIdOption = new Option<string>("--todotask-id", description: "key: id of todoTask") {
+            };
             todoTaskIdOption.IsRequired = true;
             command.AddOption(todoTaskIdOption);
-            var linkedResourceIdOption = new Option<string>("--linkedresource-id", description: "key: id of linkedResource");
+            var linkedResourceIdOption = new Option<string>("--linkedresource-id", description: "key: id of linkedResource") {
+            };
             linkedResourceIdOption.IsRequired = true;
             command.AddOption(linkedResourceIdOption);
-            command.Handler = CommandHandler.Create<string, string, string>(async (todoTaskListId, todoTaskId, linkedResourceId) => {
+            command.SetHandler(async (string todoTaskListId, string todoTaskId, string linkedResourceId) => {
                 var requestInfo = CreateDeleteRequestInformation(q => {
                 });
                 await RequestAdapter.SendNoContentAsync(requestInfo);
                 // Print request output. What if the request has no return?
                 Console.WriteLine("Success");
-            });
+            }, todoTaskListIdOption, todoTaskIdOption, linkedResourceIdOption);
             return command;
         }
         /// <summary>
@@ -51,24 +54,29 @@ namespace ApiSdk.Me.Todo.Lists.Item.Tasks.Item.LinkedResources.Item {
             var command = new Command("get");
             command.Description = "A collection of resources linked to the task.";
             // Create options for all the parameters
-            var todoTaskListIdOption = new Option<string>("--todotasklist-id", description: "key: id of todoTaskList");
+            var todoTaskListIdOption = new Option<string>("--todotasklist-id", description: "key: id of todoTaskList") {
+            };
             todoTaskListIdOption.IsRequired = true;
             command.AddOption(todoTaskListIdOption);
-            var todoTaskIdOption = new Option<string>("--todotask-id", description: "key: id of todoTask");
+            var todoTaskIdOption = new Option<string>("--todotask-id", description: "key: id of todoTask") {
+            };
             todoTaskIdOption.IsRequired = true;
             command.AddOption(todoTaskIdOption);
-            var linkedResourceIdOption = new Option<string>("--linkedresource-id", description: "key: id of linkedResource");
+            var linkedResourceIdOption = new Option<string>("--linkedresource-id", description: "key: id of linkedResource") {
+            };
             linkedResourceIdOption.IsRequired = true;
             command.AddOption(linkedResourceIdOption);
-            var selectOption = new Option<string[]>("--select", description: "Select properties to be returned");
+            var selectOption = new Option<string[]>("--select", description: "Select properties to be returned") {
+                Arity = ArgumentArity.ZeroOrMore
+            };
             selectOption.IsRequired = false;
-            selectOption.Arity = ArgumentArity.ZeroOrMore;
             command.AddOption(selectOption);
-            var expandOption = new Option<string[]>("--expand", description: "Expand related entities");
+            var expandOption = new Option<string[]>("--expand", description: "Expand related entities") {
+                Arity = ArgumentArity.ZeroOrMore
+            };
             expandOption.IsRequired = false;
-            expandOption.Arity = ArgumentArity.ZeroOrMore;
             command.AddOption(expandOption);
-            command.Handler = CommandHandler.Create<string, string, string, string[], string[]>(async (todoTaskListId, todoTaskId, linkedResourceId, select, expand) => {
+            command.SetHandler(async (string todoTaskListId, string todoTaskId, string linkedResourceId, string[] select, string[] expand) => {
                 var requestInfo = CreateGetRequestInformation(q => {
                     q.Select = select;
                     q.Expand = expand;
@@ -81,7 +89,7 @@ namespace ApiSdk.Me.Todo.Lists.Item.Tasks.Item.LinkedResources.Item {
                 using var reader = new StreamReader(content);
                 var strContent = await reader.ReadToEndAsync();
                 Console.Write(strContent + "\n");
-            });
+            }, todoTaskListIdOption, todoTaskIdOption, linkedResourceIdOption, selectOption, expandOption);
             return command;
         }
         /// <summary>
@@ -91,19 +99,23 @@ namespace ApiSdk.Me.Todo.Lists.Item.Tasks.Item.LinkedResources.Item {
             var command = new Command("patch");
             command.Description = "A collection of resources linked to the task.";
             // Create options for all the parameters
-            var todoTaskListIdOption = new Option<string>("--todotasklist-id", description: "key: id of todoTaskList");
+            var todoTaskListIdOption = new Option<string>("--todotasklist-id", description: "key: id of todoTaskList") {
+            };
             todoTaskListIdOption.IsRequired = true;
             command.AddOption(todoTaskListIdOption);
-            var todoTaskIdOption = new Option<string>("--todotask-id", description: "key: id of todoTask");
+            var todoTaskIdOption = new Option<string>("--todotask-id", description: "key: id of todoTask") {
+            };
             todoTaskIdOption.IsRequired = true;
             command.AddOption(todoTaskIdOption);
-            var linkedResourceIdOption = new Option<string>("--linkedresource-id", description: "key: id of linkedResource");
+            var linkedResourceIdOption = new Option<string>("--linkedresource-id", description: "key: id of linkedResource") {
+            };
             linkedResourceIdOption.IsRequired = true;
             command.AddOption(linkedResourceIdOption);
-            var bodyOption = new Option<string>("--body");
+            var bodyOption = new Option<string>("--body") {
+            };
             bodyOption.IsRequired = true;
             command.AddOption(bodyOption);
-            command.Handler = CommandHandler.Create<string, string, string, string>(async (todoTaskListId, todoTaskId, linkedResourceId, body) => {
+            command.SetHandler(async (string todoTaskListId, string todoTaskId, string linkedResourceId, string body) => {
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<LinkedResource>();
@@ -112,7 +124,7 @@ namespace ApiSdk.Me.Todo.Lists.Item.Tasks.Item.LinkedResources.Item {
                 await RequestAdapter.SendNoContentAsync(requestInfo);
                 // Print request output. What if the request has no return?
                 Console.WriteLine("Success");
-            });
+            }, todoTaskListIdOption, todoTaskIdOption, linkedResourceIdOption, bodyOption);
             return command;
         }
         /// <summary>
@@ -135,7 +147,7 @@ namespace ApiSdk.Me.Todo.Lists.Item.Tasks.Item.LinkedResources.Item {
         /// </summary>
         public RequestInformation CreateDeleteRequestInformation(Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
             var requestInfo = new RequestInformation {
-                HttpMethod = HttpMethod.DELETE,
+                HttpMethod = Method.DELETE,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };
@@ -151,7 +163,7 @@ namespace ApiSdk.Me.Todo.Lists.Item.Tasks.Item.LinkedResources.Item {
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<GetQueryParameters> q = default, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
             var requestInfo = new RequestInformation {
-                HttpMethod = HttpMethod.GET,
+                HttpMethod = Method.GET,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };
@@ -173,7 +185,7 @@ namespace ApiSdk.Me.Todo.Lists.Item.Tasks.Item.LinkedResources.Item {
         public RequestInformation CreatePatchRequestInformation(LinkedResource body, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
             _ = body ?? throw new ArgumentNullException(nameof(body));
             var requestInfo = new RequestInformation {
-                HttpMethod = HttpMethod.PATCH,
+                HttpMethod = Method.PATCH,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };

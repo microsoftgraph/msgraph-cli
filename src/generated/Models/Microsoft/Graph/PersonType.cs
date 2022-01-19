@@ -22,7 +22,7 @@ namespace ApiSdk.Models.Microsoft.Graph {
         /// </summary>
         public IDictionary<string, Action<T, IParseNode>> GetFieldDeserializers<T>() {
             return new Dictionary<string, Action<T, IParseNode>> {
-                {"@Class", (o,n) => { (o as PersonType).@Class = n.GetStringValue(); } },
+                {"class", (o,n) => { (o as PersonType).@Class = n.GetStringValue(); } },
                 {"subclass", (o,n) => { (o as PersonType).Subclass = n.GetStringValue(); } },
             };
         }
@@ -32,7 +32,7 @@ namespace ApiSdk.Models.Microsoft.Graph {
         /// </summary>
         public void Serialize(ISerializationWriter writer) {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
-            writer.WriteStringValue("@Class", @Class);
+            writer.WriteStringValue("class", @Class);
             writer.WriteStringValue("subclass", Subclass);
             writer.WriteAdditionalData(AdditionalData);
         }

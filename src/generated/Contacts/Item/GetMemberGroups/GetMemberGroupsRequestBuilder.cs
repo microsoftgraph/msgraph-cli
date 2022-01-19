@@ -25,13 +25,15 @@ namespace ApiSdk.Contacts.Item.GetMemberGroups {
             var command = new Command("post");
             command.Description = "Invoke action getMemberGroups";
             // Create options for all the parameters
-            var orgContactIdOption = new Option<string>("--orgcontact-id", description: "key: id of orgContact");
+            var orgContactIdOption = new Option<string>("--orgcontact-id", description: "key: id of orgContact") {
+            };
             orgContactIdOption.IsRequired = true;
             command.AddOption(orgContactIdOption);
-            var bodyOption = new Option<string>("--body");
+            var bodyOption = new Option<string>("--body") {
+            };
             bodyOption.IsRequired = true;
             command.AddOption(bodyOption);
-            command.Handler = CommandHandler.Create<string, string>(async (orgContactId, body) => {
+            command.SetHandler(async (string orgContactId, string body) => {
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<GetMemberGroupsRequestBody>();
@@ -45,7 +47,7 @@ namespace ApiSdk.Contacts.Item.GetMemberGroups {
                 using var reader = new StreamReader(content);
                 var strContent = await reader.ReadToEndAsync();
                 Console.Write(strContent + "\n");
-            });
+            }, orgContactIdOption, bodyOption);
             return command;
         }
         /// <summary>
@@ -70,7 +72,7 @@ namespace ApiSdk.Contacts.Item.GetMemberGroups {
         public RequestInformation CreatePostRequestInformation(GetMemberGroupsRequestBody body, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
             _ = body ?? throw new ArgumentNullException(nameof(body));
             var requestInfo = new RequestInformation {
-                HttpMethod = HttpMethod.POST,
+                HttpMethod = Method.POST,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };

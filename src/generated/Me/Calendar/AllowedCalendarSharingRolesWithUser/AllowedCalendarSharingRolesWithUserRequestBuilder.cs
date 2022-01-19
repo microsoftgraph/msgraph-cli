@@ -25,10 +25,11 @@ namespace ApiSdk.Me.Calendar.AllowedCalendarSharingRolesWithUser {
             var command = new Command("get");
             command.Description = "Invoke function allowedCalendarSharingRoles";
             // Create options for all the parameters
-            var UserOption = new Option<string>("--user", description: "Usage: User={User}");
+            var UserOption = new Option<string>("--user", description: "Usage: User={User}") {
+            };
             UserOption.IsRequired = true;
             command.AddOption(UserOption);
-            command.Handler = CommandHandler.Create<string>(async (User) => {
+            command.SetHandler(async (string User) => {
                 var requestInfo = CreateGetRequestInformation(q => {
                 });
                 var result = await RequestAdapter.SendPrimitiveCollectionAsync<string>(requestInfo);
@@ -39,7 +40,7 @@ namespace ApiSdk.Me.Calendar.AllowedCalendarSharingRolesWithUser {
                 using var reader = new StreamReader(content);
                 var strContent = await reader.ReadToEndAsync();
                 Console.Write(strContent + "\n");
-            });
+            }, UserOption);
             return command;
         }
         /// <summary>
@@ -64,7 +65,7 @@ namespace ApiSdk.Me.Calendar.AllowedCalendarSharingRolesWithUser {
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
             var requestInfo = new RequestInformation {
-                HttpMethod = HttpMethod.GET,
+                HttpMethod = Method.GET,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };

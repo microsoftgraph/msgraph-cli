@@ -26,19 +26,23 @@ namespace ApiSdk.Me.Onenote.Pages.Item.ParentNotebook.SectionGroups.Item.Section
             var command = new Command("post");
             command.Description = "Invoke action copyToSectionGroup";
             // Create options for all the parameters
-            var onenotePageIdOption = new Option<string>("--onenotepage-id", description: "key: id of onenotePage");
+            var onenotePageIdOption = new Option<string>("--onenotepage-id", description: "key: id of onenotePage") {
+            };
             onenotePageIdOption.IsRequired = true;
             command.AddOption(onenotePageIdOption);
-            var sectionGroupIdOption = new Option<string>("--sectiongroup-id", description: "key: id of sectionGroup");
+            var sectionGroupIdOption = new Option<string>("--sectiongroup-id", description: "key: id of sectionGroup") {
+            };
             sectionGroupIdOption.IsRequired = true;
             command.AddOption(sectionGroupIdOption);
-            var onenoteSectionIdOption = new Option<string>("--onenotesection-id", description: "key: id of onenoteSection");
+            var onenoteSectionIdOption = new Option<string>("--onenotesection-id", description: "key: id of onenoteSection") {
+            };
             onenoteSectionIdOption.IsRequired = true;
             command.AddOption(onenoteSectionIdOption);
-            var bodyOption = new Option<string>("--body");
+            var bodyOption = new Option<string>("--body") {
+            };
             bodyOption.IsRequired = true;
             command.AddOption(bodyOption);
-            command.Handler = CommandHandler.Create<string, string, string, string>(async (onenotePageId, sectionGroupId, onenoteSectionId, body) => {
+            command.SetHandler(async (string onenotePageId, string sectionGroupId, string onenoteSectionId, string body) => {
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<CopyToSectionGroupRequestBody>();
@@ -52,7 +56,7 @@ namespace ApiSdk.Me.Onenote.Pages.Item.ParentNotebook.SectionGroups.Item.Section
                 using var reader = new StreamReader(content);
                 var strContent = await reader.ReadToEndAsync();
                 Console.Write(strContent + "\n");
-            });
+            }, onenotePageIdOption, sectionGroupIdOption, onenoteSectionIdOption, bodyOption);
             return command;
         }
         /// <summary>
@@ -77,7 +81,7 @@ namespace ApiSdk.Me.Onenote.Pages.Item.ParentNotebook.SectionGroups.Item.Section
         public RequestInformation CreatePostRequestInformation(CopyToSectionGroupRequestBody body, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
             _ = body ?? throw new ArgumentNullException(nameof(body));
             var requestInfo = new RequestInformation {
-                HttpMethod = HttpMethod.POST,
+                HttpMethod = Method.POST,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };

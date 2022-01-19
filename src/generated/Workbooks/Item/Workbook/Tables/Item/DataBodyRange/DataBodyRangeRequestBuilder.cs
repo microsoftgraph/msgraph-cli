@@ -26,13 +26,15 @@ namespace ApiSdk.Workbooks.Item.Workbook.Tables.Item.DataBodyRange {
             var command = new Command("get");
             command.Description = "Invoke function dataBodyRange";
             // Create options for all the parameters
-            var driveItemIdOption = new Option<string>("--driveitem-id", description: "key: id of driveItem");
+            var driveItemIdOption = new Option<string>("--driveitem-id", description: "key: id of driveItem") {
+            };
             driveItemIdOption.IsRequired = true;
             command.AddOption(driveItemIdOption);
-            var workbookTableIdOption = new Option<string>("--workbooktable-id", description: "key: id of workbookTable");
+            var workbookTableIdOption = new Option<string>("--workbooktable-id", description: "key: id of workbookTable") {
+            };
             workbookTableIdOption.IsRequired = true;
             command.AddOption(workbookTableIdOption);
-            command.Handler = CommandHandler.Create<string, string>(async (driveItemId, workbookTableId) => {
+            command.SetHandler(async (string driveItemId, string workbookTableId) => {
                 var requestInfo = CreateGetRequestInformation(q => {
                 });
                 var result = await RequestAdapter.SendAsync<DataBodyRangeResponse>(requestInfo);
@@ -43,7 +45,7 @@ namespace ApiSdk.Workbooks.Item.Workbook.Tables.Item.DataBodyRange {
                 using var reader = new StreamReader(content);
                 var strContent = await reader.ReadToEndAsync();
                 Console.Write(strContent + "\n");
-            });
+            }, driveItemIdOption, workbookTableIdOption);
             return command;
         }
         /// <summary>
@@ -66,7 +68,7 @@ namespace ApiSdk.Workbooks.Item.Workbook.Tables.Item.DataBodyRange {
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
             var requestInfo = new RequestInformation {
-                HttpMethod = HttpMethod.GET,
+                HttpMethod = Method.GET,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };

@@ -25,16 +25,19 @@ namespace ApiSdk.Sites.Item.Permissions.Item.Grant {
             var command = new Command("post");
             command.Description = "Invoke action grant";
             // Create options for all the parameters
-            var siteIdOption = new Option<string>("--site-id", description: "key: id of site");
+            var siteIdOption = new Option<string>("--site-id", description: "key: id of site") {
+            };
             siteIdOption.IsRequired = true;
             command.AddOption(siteIdOption);
-            var permissionIdOption = new Option<string>("--permission-id", description: "key: id of permission");
+            var permissionIdOption = new Option<string>("--permission-id", description: "key: id of permission") {
+            };
             permissionIdOption.IsRequired = true;
             command.AddOption(permissionIdOption);
-            var bodyOption = new Option<string>("--body");
+            var bodyOption = new Option<string>("--body") {
+            };
             bodyOption.IsRequired = true;
             command.AddOption(bodyOption);
-            command.Handler = CommandHandler.Create<string, string, string>(async (siteId, permissionId, body) => {
+            command.SetHandler(async (string siteId, string permissionId, string body) => {
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<GrantRequestBody>();
@@ -48,7 +51,7 @@ namespace ApiSdk.Sites.Item.Permissions.Item.Grant {
                 using var reader = new StreamReader(content);
                 var strContent = await reader.ReadToEndAsync();
                 Console.Write(strContent + "\n");
-            });
+            }, siteIdOption, permissionIdOption, bodyOption);
             return command;
         }
         /// <summary>
@@ -73,7 +76,7 @@ namespace ApiSdk.Sites.Item.Permissions.Item.Grant {
         public RequestInformation CreatePostRequestInformation(GrantRequestBody body, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
             _ = body ?? throw new ArgumentNullException(nameof(body));
             var requestInfo = new RequestInformation {
-                HttpMethod = HttpMethod.POST,
+                HttpMethod = Method.POST,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };

@@ -25,19 +25,23 @@ namespace ApiSdk.Groups.Item.Onenote.Pages.Item.ParentSection.Pages.Item.Onenote
             var command = new Command("post");
             command.Description = "Invoke action onenotePatchContent";
             // Create options for all the parameters
-            var groupIdOption = new Option<string>("--group-id", description: "key: id of group");
+            var groupIdOption = new Option<string>("--group-id", description: "key: id of group") {
+            };
             groupIdOption.IsRequired = true;
             command.AddOption(groupIdOption);
-            var onenotePageIdOption = new Option<string>("--onenotepage-id", description: "key: id of onenotePage");
+            var onenotePageIdOption = new Option<string>("--onenotepage-id", description: "key: id of onenotePage") {
+            };
             onenotePageIdOption.IsRequired = true;
             command.AddOption(onenotePageIdOption);
-            var onenotePageId1Option = new Option<string>("--onenotepage-id1", description: "key: id of onenotePage");
+            var onenotePageId1Option = new Option<string>("--onenotepage-id1", description: "key: id of onenotePage") {
+            };
             onenotePageId1Option.IsRequired = true;
             command.AddOption(onenotePageId1Option);
-            var bodyOption = new Option<string>("--body");
+            var bodyOption = new Option<string>("--body") {
+            };
             bodyOption.IsRequired = true;
             command.AddOption(bodyOption);
-            command.Handler = CommandHandler.Create<string, string, string, string>(async (groupId, onenotePageId, onenotePageId1, body) => {
+            command.SetHandler(async (string groupId, string onenotePageId, string onenotePageId1, string body) => {
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<OnenotePatchContentRequestBody>();
@@ -46,7 +50,7 @@ namespace ApiSdk.Groups.Item.Onenote.Pages.Item.ParentSection.Pages.Item.Onenote
                 await RequestAdapter.SendNoContentAsync(requestInfo);
                 // Print request output. What if the request has no return?
                 Console.WriteLine("Success");
-            });
+            }, groupIdOption, onenotePageIdOption, onenotePageId1Option, bodyOption);
             return command;
         }
         /// <summary>
@@ -71,7 +75,7 @@ namespace ApiSdk.Groups.Item.Onenote.Pages.Item.ParentSection.Pages.Item.Onenote
         public RequestInformation CreatePostRequestInformation(OnenotePatchContentRequestBody body, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
             _ = body ?? throw new ArgumentNullException(nameof(body));
             var requestInfo = new RequestInformation {
-                HttpMethod = HttpMethod.POST,
+                HttpMethod = Method.POST,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };

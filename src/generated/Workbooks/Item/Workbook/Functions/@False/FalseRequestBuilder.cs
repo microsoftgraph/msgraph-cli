@@ -26,10 +26,11 @@ namespace ApiSdk.Workbooks.Item.Workbook.Functions.@False {
             var command = new Command("post");
             command.Description = "Invoke action false";
             // Create options for all the parameters
-            var driveItemIdOption = new Option<string>("--driveitem-id", description: "key: id of driveItem");
+            var driveItemIdOption = new Option<string>("--driveitem-id", description: "key: id of driveItem") {
+            };
             driveItemIdOption.IsRequired = true;
             command.AddOption(driveItemIdOption);
-            command.Handler = CommandHandler.Create<string>(async (driveItemId) => {
+            command.SetHandler(async (string driveItemId) => {
                 var requestInfo = CreatePostRequestInformation(q => {
                 });
                 var result = await RequestAdapter.SendAsync<FalseResponse>(requestInfo);
@@ -40,7 +41,7 @@ namespace ApiSdk.Workbooks.Item.Workbook.Functions.@False {
                 using var reader = new StreamReader(content);
                 var strContent = await reader.ReadToEndAsync();
                 Console.Write(strContent + "\n");
-            });
+            }, driveItemIdOption);
             return command;
         }
         /// <summary>
@@ -63,7 +64,7 @@ namespace ApiSdk.Workbooks.Item.Workbook.Functions.@False {
         /// </summary>
         public RequestInformation CreatePostRequestInformation(Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
             var requestInfo = new RequestInformation {
-                HttpMethod = HttpMethod.POST,
+                HttpMethod = Method.POST,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };

@@ -30,7 +30,7 @@ namespace ApiSdk.Me.Outlook {
             var command = new Command("delete");
             command.Description = "Selective Outlook services available to the user. Read-only. Nullable.";
             // Create options for all the parameters
-            command.Handler = CommandHandler.Create(async () => {
+            command.SetHandler(async () => {
                 var requestInfo = CreateDeleteRequestInformation(q => {
                 });
                 await RequestAdapter.SendNoContentAsync(requestInfo);
@@ -46,11 +46,12 @@ namespace ApiSdk.Me.Outlook {
             var command = new Command("get");
             command.Description = "Selective Outlook services available to the user. Read-only. Nullable.";
             // Create options for all the parameters
-            var selectOption = new Option<string[]>("--select", description: "Select properties to be returned");
+            var selectOption = new Option<string[]>("--select", description: "Select properties to be returned") {
+                Arity = ArgumentArity.ZeroOrMore
+            };
             selectOption.IsRequired = false;
-            selectOption.Arity = ArgumentArity.ZeroOrMore;
             command.AddOption(selectOption);
-            command.Handler = CommandHandler.Create<string[]>(async (select) => {
+            command.SetHandler(async (string[] select) => {
                 var requestInfo = CreateGetRequestInformation(q => {
                     q.Select = select;
                 });
@@ -62,7 +63,7 @@ namespace ApiSdk.Me.Outlook {
                 using var reader = new StreamReader(content);
                 var strContent = await reader.ReadToEndAsync();
                 Console.Write(strContent + "\n");
-            });
+            }, selectOption);
             return command;
         }
         public Command BuildMasterCategoriesCommand() {
@@ -79,10 +80,11 @@ namespace ApiSdk.Me.Outlook {
             var command = new Command("patch");
             command.Description = "Selective Outlook services available to the user. Read-only. Nullable.";
             // Create options for all the parameters
-            var bodyOption = new Option<string>("--body");
+            var bodyOption = new Option<string>("--body") {
+            };
             bodyOption.IsRequired = true;
             command.AddOption(bodyOption);
-            command.Handler = CommandHandler.Create<string>(async (body) => {
+            command.SetHandler(async (string body) => {
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<OutlookUser>();
@@ -91,7 +93,7 @@ namespace ApiSdk.Me.Outlook {
                 await RequestAdapter.SendNoContentAsync(requestInfo);
                 // Print request output. What if the request has no return?
                 Console.WriteLine("Success");
-            });
+            }, bodyOption);
             return command;
         }
         /// <summary>
@@ -114,7 +116,7 @@ namespace ApiSdk.Me.Outlook {
         /// </summary>
         public RequestInformation CreateDeleteRequestInformation(Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
             var requestInfo = new RequestInformation {
-                HttpMethod = HttpMethod.DELETE,
+                HttpMethod = Method.DELETE,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };
@@ -130,7 +132,7 @@ namespace ApiSdk.Me.Outlook {
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<GetQueryParameters> q = default, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
             var requestInfo = new RequestInformation {
-                HttpMethod = HttpMethod.GET,
+                HttpMethod = Method.GET,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };
@@ -152,7 +154,7 @@ namespace ApiSdk.Me.Outlook {
         public RequestInformation CreatePatchRequestInformation(OutlookUser body, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
             _ = body ?? throw new ArgumentNullException(nameof(body));
             var requestInfo = new RequestInformation {
-                HttpMethod = HttpMethod.PATCH,
+                HttpMethod = Method.PATCH,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };

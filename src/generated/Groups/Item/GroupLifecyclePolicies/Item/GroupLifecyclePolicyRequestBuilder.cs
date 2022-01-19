@@ -26,19 +26,21 @@ namespace ApiSdk.Groups.Item.GroupLifecyclePolicies.Item {
             var command = new Command("delete");
             command.Description = "The collection of lifecycle policies for this group. Read-only. Nullable.";
             // Create options for all the parameters
-            var groupIdOption = new Option<string>("--group-id", description: "key: id of group");
+            var groupIdOption = new Option<string>("--group-id", description: "key: id of group") {
+            };
             groupIdOption.IsRequired = true;
             command.AddOption(groupIdOption);
-            var groupLifecyclePolicyIdOption = new Option<string>("--grouplifecyclepolicy-id", description: "key: id of groupLifecyclePolicy");
+            var groupLifecyclePolicyIdOption = new Option<string>("--grouplifecyclepolicy-id", description: "key: id of groupLifecyclePolicy") {
+            };
             groupLifecyclePolicyIdOption.IsRequired = true;
             command.AddOption(groupLifecyclePolicyIdOption);
-            command.Handler = CommandHandler.Create<string, string>(async (groupId, groupLifecyclePolicyId) => {
+            command.SetHandler(async (string groupId, string groupLifecyclePolicyId) => {
                 var requestInfo = CreateDeleteRequestInformation(q => {
                 });
                 await RequestAdapter.SendNoContentAsync(requestInfo);
                 // Print request output. What if the request has no return?
                 Console.WriteLine("Success");
-            });
+            }, groupIdOption, groupLifecyclePolicyIdOption);
             return command;
         }
         /// <summary>
@@ -48,21 +50,25 @@ namespace ApiSdk.Groups.Item.GroupLifecyclePolicies.Item {
             var command = new Command("get");
             command.Description = "The collection of lifecycle policies for this group. Read-only. Nullable.";
             // Create options for all the parameters
-            var groupIdOption = new Option<string>("--group-id", description: "key: id of group");
+            var groupIdOption = new Option<string>("--group-id", description: "key: id of group") {
+            };
             groupIdOption.IsRequired = true;
             command.AddOption(groupIdOption);
-            var groupLifecyclePolicyIdOption = new Option<string>("--grouplifecyclepolicy-id", description: "key: id of groupLifecyclePolicy");
+            var groupLifecyclePolicyIdOption = new Option<string>("--grouplifecyclepolicy-id", description: "key: id of groupLifecyclePolicy") {
+            };
             groupLifecyclePolicyIdOption.IsRequired = true;
             command.AddOption(groupLifecyclePolicyIdOption);
-            var selectOption = new Option<string[]>("--select", description: "Select properties to be returned");
+            var selectOption = new Option<string[]>("--select", description: "Select properties to be returned") {
+                Arity = ArgumentArity.ZeroOrMore
+            };
             selectOption.IsRequired = false;
-            selectOption.Arity = ArgumentArity.ZeroOrMore;
             command.AddOption(selectOption);
-            var expandOption = new Option<string[]>("--expand", description: "Expand related entities");
+            var expandOption = new Option<string[]>("--expand", description: "Expand related entities") {
+                Arity = ArgumentArity.ZeroOrMore
+            };
             expandOption.IsRequired = false;
-            expandOption.Arity = ArgumentArity.ZeroOrMore;
             command.AddOption(expandOption);
-            command.Handler = CommandHandler.Create<string, string, string[], string[]>(async (groupId, groupLifecyclePolicyId, select, expand) => {
+            command.SetHandler(async (string groupId, string groupLifecyclePolicyId, string[] select, string[] expand) => {
                 var requestInfo = CreateGetRequestInformation(q => {
                     q.Select = select;
                     q.Expand = expand;
@@ -75,7 +81,7 @@ namespace ApiSdk.Groups.Item.GroupLifecyclePolicies.Item {
                 using var reader = new StreamReader(content);
                 var strContent = await reader.ReadToEndAsync();
                 Console.Write(strContent + "\n");
-            });
+            }, groupIdOption, groupLifecyclePolicyIdOption, selectOption, expandOption);
             return command;
         }
         /// <summary>
@@ -85,16 +91,19 @@ namespace ApiSdk.Groups.Item.GroupLifecyclePolicies.Item {
             var command = new Command("patch");
             command.Description = "The collection of lifecycle policies for this group. Read-only. Nullable.";
             // Create options for all the parameters
-            var groupIdOption = new Option<string>("--group-id", description: "key: id of group");
+            var groupIdOption = new Option<string>("--group-id", description: "key: id of group") {
+            };
             groupIdOption.IsRequired = true;
             command.AddOption(groupIdOption);
-            var groupLifecyclePolicyIdOption = new Option<string>("--grouplifecyclepolicy-id", description: "key: id of groupLifecyclePolicy");
+            var groupLifecyclePolicyIdOption = new Option<string>("--grouplifecyclepolicy-id", description: "key: id of groupLifecyclePolicy") {
+            };
             groupLifecyclePolicyIdOption.IsRequired = true;
             command.AddOption(groupLifecyclePolicyIdOption);
-            var bodyOption = new Option<string>("--body");
+            var bodyOption = new Option<string>("--body") {
+            };
             bodyOption.IsRequired = true;
             command.AddOption(bodyOption);
-            command.Handler = CommandHandler.Create<string, string, string>(async (groupId, groupLifecyclePolicyId, body) => {
+            command.SetHandler(async (string groupId, string groupLifecyclePolicyId, string body) => {
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<GroupLifecyclePolicy>();
@@ -103,7 +112,7 @@ namespace ApiSdk.Groups.Item.GroupLifecyclePolicies.Item {
                 await RequestAdapter.SendNoContentAsync(requestInfo);
                 // Print request output. What if the request has no return?
                 Console.WriteLine("Success");
-            });
+            }, groupIdOption, groupLifecyclePolicyIdOption, bodyOption);
             return command;
         }
         /// <summary>
@@ -126,7 +135,7 @@ namespace ApiSdk.Groups.Item.GroupLifecyclePolicies.Item {
         /// </summary>
         public RequestInformation CreateDeleteRequestInformation(Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
             var requestInfo = new RequestInformation {
-                HttpMethod = HttpMethod.DELETE,
+                HttpMethod = Method.DELETE,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };
@@ -142,7 +151,7 @@ namespace ApiSdk.Groups.Item.GroupLifecyclePolicies.Item {
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<GetQueryParameters> q = default, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
             var requestInfo = new RequestInformation {
-                HttpMethod = HttpMethod.GET,
+                HttpMethod = Method.GET,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };
@@ -164,7 +173,7 @@ namespace ApiSdk.Groups.Item.GroupLifecyclePolicies.Item {
         public RequestInformation CreatePatchRequestInformation(GroupLifecyclePolicy body, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
             _ = body ?? throw new ArgumentNullException(nameof(body));
             var requestInfo = new RequestInformation {
-                HttpMethod = HttpMethod.PATCH,
+                HttpMethod = Method.PATCH,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };

@@ -26,19 +26,21 @@ namespace ApiSdk.Users.Item.Chats.Item {
             var command = new Command("delete");
             command.Description = "Delete navigation property chats for users";
             // Create options for all the parameters
-            var userIdOption = new Option<string>("--user-id", description: "key: id of user");
+            var userIdOption = new Option<string>("--user-id", description: "key: id of user") {
+            };
             userIdOption.IsRequired = true;
             command.AddOption(userIdOption);
-            var chatIdOption = new Option<string>("--chat-id", description: "key: id of chat");
+            var chatIdOption = new Option<string>("--chat-id", description: "key: id of chat") {
+            };
             chatIdOption.IsRequired = true;
             command.AddOption(chatIdOption);
-            command.Handler = CommandHandler.Create<string, string>(async (userId, chatId) => {
+            command.SetHandler(async (string userId, string chatId) => {
                 var requestInfo = CreateDeleteRequestInformation(q => {
                 });
                 await RequestAdapter.SendNoContentAsync(requestInfo);
                 // Print request output. What if the request has no return?
                 Console.WriteLine("Success");
-            });
+            }, userIdOption, chatIdOption);
             return command;
         }
         /// <summary>
@@ -48,21 +50,25 @@ namespace ApiSdk.Users.Item.Chats.Item {
             var command = new Command("get");
             command.Description = "Get chats from users";
             // Create options for all the parameters
-            var userIdOption = new Option<string>("--user-id", description: "key: id of user");
+            var userIdOption = new Option<string>("--user-id", description: "key: id of user") {
+            };
             userIdOption.IsRequired = true;
             command.AddOption(userIdOption);
-            var chatIdOption = new Option<string>("--chat-id", description: "key: id of chat");
+            var chatIdOption = new Option<string>("--chat-id", description: "key: id of chat") {
+            };
             chatIdOption.IsRequired = true;
             command.AddOption(chatIdOption);
-            var selectOption = new Option<string[]>("--select", description: "Select properties to be returned");
+            var selectOption = new Option<string[]>("--select", description: "Select properties to be returned") {
+                Arity = ArgumentArity.ZeroOrMore
+            };
             selectOption.IsRequired = false;
-            selectOption.Arity = ArgumentArity.ZeroOrMore;
             command.AddOption(selectOption);
-            var expandOption = new Option<string[]>("--expand", description: "Expand related entities");
+            var expandOption = new Option<string[]>("--expand", description: "Expand related entities") {
+                Arity = ArgumentArity.ZeroOrMore
+            };
             expandOption.IsRequired = false;
-            expandOption.Arity = ArgumentArity.ZeroOrMore;
             command.AddOption(expandOption);
-            command.Handler = CommandHandler.Create<string, string, string[], string[]>(async (userId, chatId, select, expand) => {
+            command.SetHandler(async (string userId, string chatId, string[] select, string[] expand) => {
                 var requestInfo = CreateGetRequestInformation(q => {
                     q.Select = select;
                     q.Expand = expand;
@@ -75,7 +81,7 @@ namespace ApiSdk.Users.Item.Chats.Item {
                 using var reader = new StreamReader(content);
                 var strContent = await reader.ReadToEndAsync();
                 Console.Write(strContent + "\n");
-            });
+            }, userIdOption, chatIdOption, selectOption, expandOption);
             return command;
         }
         /// <summary>
@@ -85,16 +91,19 @@ namespace ApiSdk.Users.Item.Chats.Item {
             var command = new Command("patch");
             command.Description = "Update the navigation property chats in users";
             // Create options for all the parameters
-            var userIdOption = new Option<string>("--user-id", description: "key: id of user");
+            var userIdOption = new Option<string>("--user-id", description: "key: id of user") {
+            };
             userIdOption.IsRequired = true;
             command.AddOption(userIdOption);
-            var chatIdOption = new Option<string>("--chat-id", description: "key: id of chat");
+            var chatIdOption = new Option<string>("--chat-id", description: "key: id of chat") {
+            };
             chatIdOption.IsRequired = true;
             command.AddOption(chatIdOption);
-            var bodyOption = new Option<string>("--body");
+            var bodyOption = new Option<string>("--body") {
+            };
             bodyOption.IsRequired = true;
             command.AddOption(bodyOption);
-            command.Handler = CommandHandler.Create<string, string, string>(async (userId, chatId, body) => {
+            command.SetHandler(async (string userId, string chatId, string body) => {
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<ApiSdk.Models.Microsoft.Graph.Chat>();
@@ -103,7 +112,7 @@ namespace ApiSdk.Users.Item.Chats.Item {
                 await RequestAdapter.SendNoContentAsync(requestInfo);
                 // Print request output. What if the request has no return?
                 Console.WriteLine("Success");
-            });
+            }, userIdOption, chatIdOption, bodyOption);
             return command;
         }
         /// <summary>
@@ -126,7 +135,7 @@ namespace ApiSdk.Users.Item.Chats.Item {
         /// </summary>
         public RequestInformation CreateDeleteRequestInformation(Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
             var requestInfo = new RequestInformation {
-                HttpMethod = HttpMethod.DELETE,
+                HttpMethod = Method.DELETE,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };
@@ -142,7 +151,7 @@ namespace ApiSdk.Users.Item.Chats.Item {
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<GetQueryParameters> q = default, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
             var requestInfo = new RequestInformation {
-                HttpMethod = HttpMethod.GET,
+                HttpMethod = Method.GET,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };
@@ -164,7 +173,7 @@ namespace ApiSdk.Users.Item.Chats.Item {
         public RequestInformation CreatePatchRequestInformation(ApiSdk.Models.Microsoft.Graph.Chat body, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
             _ = body ?? throw new ArgumentNullException(nameof(body));
             var requestInfo = new RequestInformation {
-                HttpMethod = HttpMethod.PATCH,
+                HttpMethod = Method.PATCH,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };

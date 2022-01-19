@@ -25,13 +25,15 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.Catalogs.Item.AccessPa
             var command = new Command("get");
             command.Description = "Invoke function filterByCurrentUser";
             // Create options for all the parameters
-            var accessPackageCatalogIdOption = new Option<string>("--accesspackagecatalog-id", description: "key: id of accessPackageCatalog");
+            var accessPackageCatalogIdOption = new Option<string>("--accesspackagecatalog-id", description: "key: id of accessPackageCatalog") {
+            };
             accessPackageCatalogIdOption.IsRequired = true;
             command.AddOption(accessPackageCatalogIdOption);
-            var onOption = new Option<object>("--on", description: "Usage: on={on}");
+            var onOption = new Option<object>("--on", description: "Usage: on={on}") {
+            };
             onOption.IsRequired = true;
             command.AddOption(onOption);
-            command.Handler = CommandHandler.Create<string, object>(async (accessPackageCatalogId, on) => {
+            command.SetHandler(async (string accessPackageCatalogId, object on) => {
                 var requestInfo = CreateGetRequestInformation(q => {
                 });
                 var result = await RequestAdapter.SendCollectionAsync<ApiSdk.IdentityGovernance.EntitlementManagement.Catalogs.Item.AccessPackages.FilterByCurrentUserWithOn.FilterByCurrentUserWithOn>(requestInfo);
@@ -42,7 +44,7 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.Catalogs.Item.AccessPa
                 using var reader = new StreamReader(content);
                 var strContent = await reader.ReadToEndAsync();
                 Console.Write(strContent + "\n");
-            });
+            }, accessPackageCatalogIdOption, onOption);
             return command;
         }
         /// <summary>
@@ -67,7 +69,7 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.Catalogs.Item.AccessPa
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
             var requestInfo = new RequestInformation {
-                HttpMethod = HttpMethod.GET,
+                HttpMethod = Method.GET,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };

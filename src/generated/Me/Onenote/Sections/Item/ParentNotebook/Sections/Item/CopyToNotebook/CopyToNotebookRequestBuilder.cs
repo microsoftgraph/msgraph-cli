@@ -26,16 +26,19 @@ namespace ApiSdk.Me.Onenote.Sections.Item.ParentNotebook.Sections.Item.CopyToNot
             var command = new Command("post");
             command.Description = "Invoke action copyToNotebook";
             // Create options for all the parameters
-            var onenoteSectionIdOption = new Option<string>("--onenotesection-id", description: "key: id of onenoteSection");
+            var onenoteSectionIdOption = new Option<string>("--onenotesection-id", description: "key: id of onenoteSection") {
+            };
             onenoteSectionIdOption.IsRequired = true;
             command.AddOption(onenoteSectionIdOption);
-            var onenoteSectionId1Option = new Option<string>("--onenotesection-id1", description: "key: id of onenoteSection");
+            var onenoteSectionId1Option = new Option<string>("--onenotesection-id1", description: "key: id of onenoteSection") {
+            };
             onenoteSectionId1Option.IsRequired = true;
             command.AddOption(onenoteSectionId1Option);
-            var bodyOption = new Option<string>("--body");
+            var bodyOption = new Option<string>("--body") {
+            };
             bodyOption.IsRequired = true;
             command.AddOption(bodyOption);
-            command.Handler = CommandHandler.Create<string, string, string>(async (onenoteSectionId, onenoteSectionId1, body) => {
+            command.SetHandler(async (string onenoteSectionId, string onenoteSectionId1, string body) => {
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<CopyToNotebookRequestBody>();
@@ -49,7 +52,7 @@ namespace ApiSdk.Me.Onenote.Sections.Item.ParentNotebook.Sections.Item.CopyToNot
                 using var reader = new StreamReader(content);
                 var strContent = await reader.ReadToEndAsync();
                 Console.Write(strContent + "\n");
-            });
+            }, onenoteSectionIdOption, onenoteSectionId1Option, bodyOption);
             return command;
         }
         /// <summary>
@@ -74,7 +77,7 @@ namespace ApiSdk.Me.Onenote.Sections.Item.ParentNotebook.Sections.Item.CopyToNot
         public RequestInformation CreatePostRequestInformation(CopyToNotebookRequestBody body, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
             _ = body ?? throw new ArgumentNullException(nameof(body));
             var requestInfo = new RequestInformation {
-                HttpMethod = HttpMethod.POST,
+                HttpMethod = Method.POST,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };

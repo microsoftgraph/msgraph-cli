@@ -72,7 +72,7 @@ namespace ApiSdk.Models.Microsoft.Graph {
         /// </summary>
         public new IDictionary<string, Action<T, IParseNode>> GetFieldDeserializers<T>() {
             return new Dictionary<string, Action<T, IParseNode>>(base.GetFieldDeserializers<T>()) {
-                {"@ReadOnly", (o,n) => { (o as ColumnDefinition).@ReadOnly = n.GetBoolValue(); } },
+                {"readOnly", (o,n) => { (o as ColumnDefinition).@ReadOnly = n.GetBoolValue(); } },
                 {"boolean", (o,n) => { (o as ColumnDefinition).Boolean = n.GetObjectValue<BooleanColumn>(); } },
                 {"calculated", (o,n) => { (o as ColumnDefinition).Calculated = n.GetObjectValue<CalculatedColumn>(); } },
                 {"choice", (o,n) => { (o as ColumnDefinition).Choice = n.GetObjectValue<ChoiceColumn>(); } },
@@ -112,7 +112,7 @@ namespace ApiSdk.Models.Microsoft.Graph {
         public new void Serialize(ISerializationWriter writer) {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             base.Serialize(writer);
-            writer.WriteBoolValue("@ReadOnly", @ReadOnly);
+            writer.WriteBoolValue("readOnly", @ReadOnly);
             writer.WriteObjectValue<BooleanColumn>("boolean", Boolean);
             writer.WriteObjectValue<CalculatedColumn>("calculated", Calculated);
             writer.WriteObjectValue<ChoiceColumn>("choice", Choice);

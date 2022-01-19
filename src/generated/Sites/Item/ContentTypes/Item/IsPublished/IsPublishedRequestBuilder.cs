@@ -25,13 +25,15 @@ namespace ApiSdk.Sites.Item.ContentTypes.Item.IsPublished {
             var command = new Command("get");
             command.Description = "Invoke function isPublished";
             // Create options for all the parameters
-            var siteIdOption = new Option<string>("--site-id", description: "key: id of site");
+            var siteIdOption = new Option<string>("--site-id", description: "key: id of site") {
+            };
             siteIdOption.IsRequired = true;
             command.AddOption(siteIdOption);
-            var contentTypeIdOption = new Option<string>("--contenttype-id", description: "key: id of contentType");
+            var contentTypeIdOption = new Option<string>("--contenttype-id", description: "key: id of contentType") {
+            };
             contentTypeIdOption.IsRequired = true;
             command.AddOption(contentTypeIdOption);
-            command.Handler = CommandHandler.Create<string, string>(async (siteId, contentTypeId) => {
+            command.SetHandler(async (string siteId, string contentTypeId) => {
                 var requestInfo = CreateGetRequestInformation(q => {
                 });
                 var result = await RequestAdapter.SendPrimitiveAsync<bool?>(requestInfo);
@@ -42,7 +44,7 @@ namespace ApiSdk.Sites.Item.ContentTypes.Item.IsPublished {
                 using var reader = new StreamReader(content);
                 var strContent = await reader.ReadToEndAsync();
                 Console.Write(strContent + "\n");
-            });
+            }, siteIdOption, contentTypeIdOption);
             return command;
         }
         /// <summary>
@@ -65,7 +67,7 @@ namespace ApiSdk.Sites.Item.ContentTypes.Item.IsPublished {
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
             var requestInfo = new RequestInformation {
-                HttpMethod = HttpMethod.GET,
+                HttpMethod = Method.GET,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };

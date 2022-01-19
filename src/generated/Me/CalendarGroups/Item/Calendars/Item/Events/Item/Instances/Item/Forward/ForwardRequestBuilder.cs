@@ -25,22 +25,27 @@ namespace ApiSdk.Me.CalendarGroups.Item.Calendars.Item.Events.Item.Instances.Ite
             var command = new Command("post");
             command.Description = "Invoke action forward";
             // Create options for all the parameters
-            var calendarGroupIdOption = new Option<string>("--calendargroup-id", description: "key: id of calendarGroup");
+            var calendarGroupIdOption = new Option<string>("--calendargroup-id", description: "key: id of calendarGroup") {
+            };
             calendarGroupIdOption.IsRequired = true;
             command.AddOption(calendarGroupIdOption);
-            var calendarIdOption = new Option<string>("--calendar-id", description: "key: id of calendar");
+            var calendarIdOption = new Option<string>("--calendar-id", description: "key: id of calendar") {
+            };
             calendarIdOption.IsRequired = true;
             command.AddOption(calendarIdOption);
-            var eventIdOption = new Option<string>("--event-id", description: "key: id of event");
+            var eventIdOption = new Option<string>("--event-id", description: "key: id of event") {
+            };
             eventIdOption.IsRequired = true;
             command.AddOption(eventIdOption);
-            var eventId1Option = new Option<string>("--event-id1", description: "key: id of event");
+            var eventId1Option = new Option<string>("--event-id1", description: "key: id of event") {
+            };
             eventId1Option.IsRequired = true;
             command.AddOption(eventId1Option);
-            var bodyOption = new Option<string>("--body");
+            var bodyOption = new Option<string>("--body") {
+            };
             bodyOption.IsRequired = true;
             command.AddOption(bodyOption);
-            command.Handler = CommandHandler.Create<string, string, string, string, string>(async (calendarGroupId, calendarId, eventId, eventId1, body) => {
+            command.SetHandler(async (string calendarGroupId, string calendarId, string eventId, string eventId1, string body) => {
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<ForwardRequestBody>();
@@ -49,7 +54,7 @@ namespace ApiSdk.Me.CalendarGroups.Item.Calendars.Item.Events.Item.Instances.Ite
                 await RequestAdapter.SendNoContentAsync(requestInfo);
                 // Print request output. What if the request has no return?
                 Console.WriteLine("Success");
-            });
+            }, calendarGroupIdOption, calendarIdOption, eventIdOption, eventId1Option, bodyOption);
             return command;
         }
         /// <summary>
@@ -74,7 +79,7 @@ namespace ApiSdk.Me.CalendarGroups.Item.Calendars.Item.Events.Item.Instances.Ite
         public RequestInformation CreatePostRequestInformation(ForwardRequestBody body, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
             _ = body ?? throw new ArgumentNullException(nameof(body));
             var requestInfo = new RequestInformation {
-                HttpMethod = HttpMethod.POST,
+                HttpMethod = Method.POST,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };

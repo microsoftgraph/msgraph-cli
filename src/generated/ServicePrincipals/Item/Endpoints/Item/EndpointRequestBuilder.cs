@@ -26,19 +26,21 @@ namespace ApiSdk.ServicePrincipals.Item.Endpoints.Item {
             var command = new Command("delete");
             command.Description = "Endpoints available for discovery. Services like Sharepoint populate this property with a tenant specific SharePoint endpoints that other applications can discover and use in their experiences.";
             // Create options for all the parameters
-            var servicePrincipalIdOption = new Option<string>("--serviceprincipal-id", description: "key: id of servicePrincipal");
+            var servicePrincipalIdOption = new Option<string>("--serviceprincipal-id", description: "key: id of servicePrincipal") {
+            };
             servicePrincipalIdOption.IsRequired = true;
             command.AddOption(servicePrincipalIdOption);
-            var endpointIdOption = new Option<string>("--endpoint-id", description: "key: id of endpoint");
+            var endpointIdOption = new Option<string>("--endpoint-id", description: "key: id of endpoint") {
+            };
             endpointIdOption.IsRequired = true;
             command.AddOption(endpointIdOption);
-            command.Handler = CommandHandler.Create<string, string>(async (servicePrincipalId, endpointId) => {
+            command.SetHandler(async (string servicePrincipalId, string endpointId) => {
                 var requestInfo = CreateDeleteRequestInformation(q => {
                 });
                 await RequestAdapter.SendNoContentAsync(requestInfo);
                 // Print request output. What if the request has no return?
                 Console.WriteLine("Success");
-            });
+            }, servicePrincipalIdOption, endpointIdOption);
             return command;
         }
         /// <summary>
@@ -48,21 +50,25 @@ namespace ApiSdk.ServicePrincipals.Item.Endpoints.Item {
             var command = new Command("get");
             command.Description = "Endpoints available for discovery. Services like Sharepoint populate this property with a tenant specific SharePoint endpoints that other applications can discover and use in their experiences.";
             // Create options for all the parameters
-            var servicePrincipalIdOption = new Option<string>("--serviceprincipal-id", description: "key: id of servicePrincipal");
+            var servicePrincipalIdOption = new Option<string>("--serviceprincipal-id", description: "key: id of servicePrincipal") {
+            };
             servicePrincipalIdOption.IsRequired = true;
             command.AddOption(servicePrincipalIdOption);
-            var endpointIdOption = new Option<string>("--endpoint-id", description: "key: id of endpoint");
+            var endpointIdOption = new Option<string>("--endpoint-id", description: "key: id of endpoint") {
+            };
             endpointIdOption.IsRequired = true;
             command.AddOption(endpointIdOption);
-            var selectOption = new Option<string[]>("--select", description: "Select properties to be returned");
+            var selectOption = new Option<string[]>("--select", description: "Select properties to be returned") {
+                Arity = ArgumentArity.ZeroOrMore
+            };
             selectOption.IsRequired = false;
-            selectOption.Arity = ArgumentArity.ZeroOrMore;
             command.AddOption(selectOption);
-            var expandOption = new Option<string[]>("--expand", description: "Expand related entities");
+            var expandOption = new Option<string[]>("--expand", description: "Expand related entities") {
+                Arity = ArgumentArity.ZeroOrMore
+            };
             expandOption.IsRequired = false;
-            expandOption.Arity = ArgumentArity.ZeroOrMore;
             command.AddOption(expandOption);
-            command.Handler = CommandHandler.Create<string, string, string[], string[]>(async (servicePrincipalId, endpointId, select, expand) => {
+            command.SetHandler(async (string servicePrincipalId, string endpointId, string[] select, string[] expand) => {
                 var requestInfo = CreateGetRequestInformation(q => {
                     q.Select = select;
                     q.Expand = expand;
@@ -75,7 +81,7 @@ namespace ApiSdk.ServicePrincipals.Item.Endpoints.Item {
                 using var reader = new StreamReader(content);
                 var strContent = await reader.ReadToEndAsync();
                 Console.Write(strContent + "\n");
-            });
+            }, servicePrincipalIdOption, endpointIdOption, selectOption, expandOption);
             return command;
         }
         /// <summary>
@@ -85,16 +91,19 @@ namespace ApiSdk.ServicePrincipals.Item.Endpoints.Item {
             var command = new Command("patch");
             command.Description = "Endpoints available for discovery. Services like Sharepoint populate this property with a tenant specific SharePoint endpoints that other applications can discover and use in their experiences.";
             // Create options for all the parameters
-            var servicePrincipalIdOption = new Option<string>("--serviceprincipal-id", description: "key: id of servicePrincipal");
+            var servicePrincipalIdOption = new Option<string>("--serviceprincipal-id", description: "key: id of servicePrincipal") {
+            };
             servicePrincipalIdOption.IsRequired = true;
             command.AddOption(servicePrincipalIdOption);
-            var endpointIdOption = new Option<string>("--endpoint-id", description: "key: id of endpoint");
+            var endpointIdOption = new Option<string>("--endpoint-id", description: "key: id of endpoint") {
+            };
             endpointIdOption.IsRequired = true;
             command.AddOption(endpointIdOption);
-            var bodyOption = new Option<string>("--body");
+            var bodyOption = new Option<string>("--body") {
+            };
             bodyOption.IsRequired = true;
             command.AddOption(bodyOption);
-            command.Handler = CommandHandler.Create<string, string, string>(async (servicePrincipalId, endpointId, body) => {
+            command.SetHandler(async (string servicePrincipalId, string endpointId, string body) => {
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<Endpoint>();
@@ -103,7 +112,7 @@ namespace ApiSdk.ServicePrincipals.Item.Endpoints.Item {
                 await RequestAdapter.SendNoContentAsync(requestInfo);
                 // Print request output. What if the request has no return?
                 Console.WriteLine("Success");
-            });
+            }, servicePrincipalIdOption, endpointIdOption, bodyOption);
             return command;
         }
         /// <summary>
@@ -126,7 +135,7 @@ namespace ApiSdk.ServicePrincipals.Item.Endpoints.Item {
         /// </summary>
         public RequestInformation CreateDeleteRequestInformation(Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
             var requestInfo = new RequestInformation {
-                HttpMethod = HttpMethod.DELETE,
+                HttpMethod = Method.DELETE,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };
@@ -142,7 +151,7 @@ namespace ApiSdk.ServicePrincipals.Item.Endpoints.Item {
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<GetQueryParameters> q = default, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
             var requestInfo = new RequestInformation {
-                HttpMethod = HttpMethod.GET,
+                HttpMethod = Method.GET,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };
@@ -164,7 +173,7 @@ namespace ApiSdk.ServicePrincipals.Item.Endpoints.Item {
         public RequestInformation CreatePatchRequestInformation(Endpoint body, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
             _ = body ?? throw new ArgumentNullException(nameof(body));
             var requestInfo = new RequestInformation {
-                HttpMethod = HttpMethod.PATCH,
+                HttpMethod = Method.PATCH,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };

@@ -26,13 +26,15 @@ namespace ApiSdk.Workbooks.Item.Workbook.Names.Item.Worksheet.UsedRange {
             var command = new Command("get");
             command.Description = "Invoke function usedRange";
             // Create options for all the parameters
-            var driveItemIdOption = new Option<string>("--driveitem-id", description: "key: id of driveItem");
+            var driveItemIdOption = new Option<string>("--driveitem-id", description: "key: id of driveItem") {
+            };
             driveItemIdOption.IsRequired = true;
             command.AddOption(driveItemIdOption);
-            var workbookNamedItemIdOption = new Option<string>("--workbooknameditem-id", description: "key: id of workbookNamedItem");
+            var workbookNamedItemIdOption = new Option<string>("--workbooknameditem-id", description: "key: id of workbookNamedItem") {
+            };
             workbookNamedItemIdOption.IsRequired = true;
             command.AddOption(workbookNamedItemIdOption);
-            command.Handler = CommandHandler.Create<string, string>(async (driveItemId, workbookNamedItemId) => {
+            command.SetHandler(async (string driveItemId, string workbookNamedItemId) => {
                 var requestInfo = CreateGetRequestInformation(q => {
                 });
                 var result = await RequestAdapter.SendAsync<UsedRangeResponse>(requestInfo);
@@ -43,7 +45,7 @@ namespace ApiSdk.Workbooks.Item.Workbook.Names.Item.Worksheet.UsedRange {
                 using var reader = new StreamReader(content);
                 var strContent = await reader.ReadToEndAsync();
                 Console.Write(strContent + "\n");
-            });
+            }, driveItemIdOption, workbookNamedItemIdOption);
             return command;
         }
         /// <summary>
@@ -66,7 +68,7 @@ namespace ApiSdk.Workbooks.Item.Workbook.Names.Item.Worksheet.UsedRange {
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
             var requestInfo = new RequestInformation {
-                HttpMethod = HttpMethod.GET,
+                HttpMethod = Method.GET,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };

@@ -25,13 +25,15 @@ namespace ApiSdk.PermissionGrants.Item.CheckMemberGroups {
             var command = new Command("post");
             command.Description = "Invoke action checkMemberGroups";
             // Create options for all the parameters
-            var resourceSpecificPermissionGrantIdOption = new Option<string>("--resourcespecificpermissiongrant-id", description: "key: id of resourceSpecificPermissionGrant");
+            var resourceSpecificPermissionGrantIdOption = new Option<string>("--resourcespecificpermissiongrant-id", description: "key: id of resourceSpecificPermissionGrant") {
+            };
             resourceSpecificPermissionGrantIdOption.IsRequired = true;
             command.AddOption(resourceSpecificPermissionGrantIdOption);
-            var bodyOption = new Option<string>("--body");
+            var bodyOption = new Option<string>("--body") {
+            };
             bodyOption.IsRequired = true;
             command.AddOption(bodyOption);
-            command.Handler = CommandHandler.Create<string, string>(async (resourceSpecificPermissionGrantId, body) => {
+            command.SetHandler(async (string resourceSpecificPermissionGrantId, string body) => {
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<CheckMemberGroupsRequestBody>();
@@ -45,7 +47,7 @@ namespace ApiSdk.PermissionGrants.Item.CheckMemberGroups {
                 using var reader = new StreamReader(content);
                 var strContent = await reader.ReadToEndAsync();
                 Console.Write(strContent + "\n");
-            });
+            }, resourceSpecificPermissionGrantIdOption, bodyOption);
             return command;
         }
         /// <summary>
@@ -70,7 +72,7 @@ namespace ApiSdk.PermissionGrants.Item.CheckMemberGroups {
         public RequestInformation CreatePostRequestInformation(CheckMemberGroupsRequestBody body, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
             _ = body ?? throw new ArgumentNullException(nameof(body));
             var requestInfo = new RequestInformation {
-                HttpMethod = HttpMethod.POST,
+                HttpMethod = Method.POST,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };

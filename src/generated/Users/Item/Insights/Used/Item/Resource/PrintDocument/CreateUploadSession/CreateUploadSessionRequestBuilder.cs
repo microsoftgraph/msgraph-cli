@@ -26,16 +26,19 @@ namespace ApiSdk.Users.Item.Insights.Used.Item.Resource.PrintDocument.CreateUplo
             var command = new Command("post");
             command.Description = "Invoke action createUploadSession";
             // Create options for all the parameters
-            var userIdOption = new Option<string>("--user-id", description: "key: id of user");
+            var userIdOption = new Option<string>("--user-id", description: "key: id of user") {
+            };
             userIdOption.IsRequired = true;
             command.AddOption(userIdOption);
-            var usedInsightIdOption = new Option<string>("--usedinsight-id", description: "key: id of usedInsight");
+            var usedInsightIdOption = new Option<string>("--usedinsight-id", description: "key: id of usedInsight") {
+            };
             usedInsightIdOption.IsRequired = true;
             command.AddOption(usedInsightIdOption);
-            var bodyOption = new Option<string>("--body");
+            var bodyOption = new Option<string>("--body") {
+            };
             bodyOption.IsRequired = true;
             command.AddOption(bodyOption);
-            command.Handler = CommandHandler.Create<string, string, string>(async (userId, usedInsightId, body) => {
+            command.SetHandler(async (string userId, string usedInsightId, string body) => {
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<CreateUploadSessionRequestBody>();
@@ -49,7 +52,7 @@ namespace ApiSdk.Users.Item.Insights.Used.Item.Resource.PrintDocument.CreateUplo
                 using var reader = new StreamReader(content);
                 var strContent = await reader.ReadToEndAsync();
                 Console.Write(strContent + "\n");
-            });
+            }, userIdOption, usedInsightIdOption, bodyOption);
             return command;
         }
         /// <summary>
@@ -74,7 +77,7 @@ namespace ApiSdk.Users.Item.Insights.Used.Item.Resource.PrintDocument.CreateUplo
         public RequestInformation CreatePostRequestInformation(CreateUploadSessionRequestBody body, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
             _ = body ?? throw new ArgumentNullException(nameof(body));
             var requestInfo = new RequestInformation {
-                HttpMethod = HttpMethod.POST,
+                HttpMethod = Method.POST,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };

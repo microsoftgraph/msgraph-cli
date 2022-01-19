@@ -26,19 +26,21 @@ namespace ApiSdk.Policies.PermissionGrantPolicies.Item.Includes.Item {
             var command = new Command("delete");
             command.Description = "Condition sets which are included in this permission grant policy. Automatically expanded on GET.";
             // Create options for all the parameters
-            var permissionGrantPolicyIdOption = new Option<string>("--permissiongrantpolicy-id", description: "key: id of permissionGrantPolicy");
+            var permissionGrantPolicyIdOption = new Option<string>("--permissiongrantpolicy-id", description: "key: id of permissionGrantPolicy") {
+            };
             permissionGrantPolicyIdOption.IsRequired = true;
             command.AddOption(permissionGrantPolicyIdOption);
-            var permissionGrantConditionSetIdOption = new Option<string>("--permissiongrantconditionset-id", description: "key: id of permissionGrantConditionSet");
+            var permissionGrantConditionSetIdOption = new Option<string>("--permissiongrantconditionset-id", description: "key: id of permissionGrantConditionSet") {
+            };
             permissionGrantConditionSetIdOption.IsRequired = true;
             command.AddOption(permissionGrantConditionSetIdOption);
-            command.Handler = CommandHandler.Create<string, string>(async (permissionGrantPolicyId, permissionGrantConditionSetId) => {
+            command.SetHandler(async (string permissionGrantPolicyId, string permissionGrantConditionSetId) => {
                 var requestInfo = CreateDeleteRequestInformation(q => {
                 });
                 await RequestAdapter.SendNoContentAsync(requestInfo);
                 // Print request output. What if the request has no return?
                 Console.WriteLine("Success");
-            });
+            }, permissionGrantPolicyIdOption, permissionGrantConditionSetIdOption);
             return command;
         }
         /// <summary>
@@ -48,21 +50,25 @@ namespace ApiSdk.Policies.PermissionGrantPolicies.Item.Includes.Item {
             var command = new Command("get");
             command.Description = "Condition sets which are included in this permission grant policy. Automatically expanded on GET.";
             // Create options for all the parameters
-            var permissionGrantPolicyIdOption = new Option<string>("--permissiongrantpolicy-id", description: "key: id of permissionGrantPolicy");
+            var permissionGrantPolicyIdOption = new Option<string>("--permissiongrantpolicy-id", description: "key: id of permissionGrantPolicy") {
+            };
             permissionGrantPolicyIdOption.IsRequired = true;
             command.AddOption(permissionGrantPolicyIdOption);
-            var permissionGrantConditionSetIdOption = new Option<string>("--permissiongrantconditionset-id", description: "key: id of permissionGrantConditionSet");
+            var permissionGrantConditionSetIdOption = new Option<string>("--permissiongrantconditionset-id", description: "key: id of permissionGrantConditionSet") {
+            };
             permissionGrantConditionSetIdOption.IsRequired = true;
             command.AddOption(permissionGrantConditionSetIdOption);
-            var selectOption = new Option<string[]>("--select", description: "Select properties to be returned");
+            var selectOption = new Option<string[]>("--select", description: "Select properties to be returned") {
+                Arity = ArgumentArity.ZeroOrMore
+            };
             selectOption.IsRequired = false;
-            selectOption.Arity = ArgumentArity.ZeroOrMore;
             command.AddOption(selectOption);
-            var expandOption = new Option<string[]>("--expand", description: "Expand related entities");
+            var expandOption = new Option<string[]>("--expand", description: "Expand related entities") {
+                Arity = ArgumentArity.ZeroOrMore
+            };
             expandOption.IsRequired = false;
-            expandOption.Arity = ArgumentArity.ZeroOrMore;
             command.AddOption(expandOption);
-            command.Handler = CommandHandler.Create<string, string, string[], string[]>(async (permissionGrantPolicyId, permissionGrantConditionSetId, select, expand) => {
+            command.SetHandler(async (string permissionGrantPolicyId, string permissionGrantConditionSetId, string[] select, string[] expand) => {
                 var requestInfo = CreateGetRequestInformation(q => {
                     q.Select = select;
                     q.Expand = expand;
@@ -75,7 +81,7 @@ namespace ApiSdk.Policies.PermissionGrantPolicies.Item.Includes.Item {
                 using var reader = new StreamReader(content);
                 var strContent = await reader.ReadToEndAsync();
                 Console.Write(strContent + "\n");
-            });
+            }, permissionGrantPolicyIdOption, permissionGrantConditionSetIdOption, selectOption, expandOption);
             return command;
         }
         /// <summary>
@@ -85,16 +91,19 @@ namespace ApiSdk.Policies.PermissionGrantPolicies.Item.Includes.Item {
             var command = new Command("patch");
             command.Description = "Condition sets which are included in this permission grant policy. Automatically expanded on GET.";
             // Create options for all the parameters
-            var permissionGrantPolicyIdOption = new Option<string>("--permissiongrantpolicy-id", description: "key: id of permissionGrantPolicy");
+            var permissionGrantPolicyIdOption = new Option<string>("--permissiongrantpolicy-id", description: "key: id of permissionGrantPolicy") {
+            };
             permissionGrantPolicyIdOption.IsRequired = true;
             command.AddOption(permissionGrantPolicyIdOption);
-            var permissionGrantConditionSetIdOption = new Option<string>("--permissiongrantconditionset-id", description: "key: id of permissionGrantConditionSet");
+            var permissionGrantConditionSetIdOption = new Option<string>("--permissiongrantconditionset-id", description: "key: id of permissionGrantConditionSet") {
+            };
             permissionGrantConditionSetIdOption.IsRequired = true;
             command.AddOption(permissionGrantConditionSetIdOption);
-            var bodyOption = new Option<string>("--body");
+            var bodyOption = new Option<string>("--body") {
+            };
             bodyOption.IsRequired = true;
             command.AddOption(bodyOption);
-            command.Handler = CommandHandler.Create<string, string, string>(async (permissionGrantPolicyId, permissionGrantConditionSetId, body) => {
+            command.SetHandler(async (string permissionGrantPolicyId, string permissionGrantConditionSetId, string body) => {
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<PermissionGrantConditionSet>();
@@ -103,7 +112,7 @@ namespace ApiSdk.Policies.PermissionGrantPolicies.Item.Includes.Item {
                 await RequestAdapter.SendNoContentAsync(requestInfo);
                 // Print request output. What if the request has no return?
                 Console.WriteLine("Success");
-            });
+            }, permissionGrantPolicyIdOption, permissionGrantConditionSetIdOption, bodyOption);
             return command;
         }
         /// <summary>
@@ -126,7 +135,7 @@ namespace ApiSdk.Policies.PermissionGrantPolicies.Item.Includes.Item {
         /// </summary>
         public RequestInformation CreateDeleteRequestInformation(Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
             var requestInfo = new RequestInformation {
-                HttpMethod = HttpMethod.DELETE,
+                HttpMethod = Method.DELETE,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };
@@ -142,7 +151,7 @@ namespace ApiSdk.Policies.PermissionGrantPolicies.Item.Includes.Item {
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<GetQueryParameters> q = default, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
             var requestInfo = new RequestInformation {
-                HttpMethod = HttpMethod.GET,
+                HttpMethod = Method.GET,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };
@@ -164,7 +173,7 @@ namespace ApiSdk.Policies.PermissionGrantPolicies.Item.Includes.Item {
         public RequestInformation CreatePatchRequestInformation(PermissionGrantConditionSet body, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
             _ = body ?? throw new ArgumentNullException(nameof(body));
             var requestInfo = new RequestInformation {
-                HttpMethod = HttpMethod.PATCH,
+                HttpMethod = Method.PATCH,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };

@@ -26,10 +26,11 @@ namespace ApiSdk.Identity.B2xUserFlows.Item.UserAttributeAssignments.GetOrder {
             var command = new Command("get");
             command.Description = "Invoke function getOrder";
             // Create options for all the parameters
-            var b2xIdentityUserFlowIdOption = new Option<string>("--b2xidentityuserflow-id", description: "key: id of b2xIdentityUserFlow");
+            var b2xIdentityUserFlowIdOption = new Option<string>("--b2xidentityuserflow-id", description: "key: id of b2xIdentityUserFlow") {
+            };
             b2xIdentityUserFlowIdOption.IsRequired = true;
             command.AddOption(b2xIdentityUserFlowIdOption);
-            command.Handler = CommandHandler.Create<string>(async (b2xIdentityUserFlowId) => {
+            command.SetHandler(async (string b2xIdentityUserFlowId) => {
                 var requestInfo = CreateGetRequestInformation(q => {
                 });
                 var result = await RequestAdapter.SendAsync<GetOrderResponse>(requestInfo);
@@ -40,7 +41,7 @@ namespace ApiSdk.Identity.B2xUserFlows.Item.UserAttributeAssignments.GetOrder {
                 using var reader = new StreamReader(content);
                 var strContent = await reader.ReadToEndAsync();
                 Console.Write(strContent + "\n");
-            });
+            }, b2xIdentityUserFlowIdOption);
             return command;
         }
         /// <summary>
@@ -63,7 +64,7 @@ namespace ApiSdk.Identity.B2xUserFlows.Item.UserAttributeAssignments.GetOrder {
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
             var requestInfo = new RequestInformation {
-                HttpMethod = HttpMethod.GET,
+                HttpMethod = Method.GET,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };

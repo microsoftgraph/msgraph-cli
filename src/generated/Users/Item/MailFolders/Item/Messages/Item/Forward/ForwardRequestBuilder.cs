@@ -25,19 +25,23 @@ namespace ApiSdk.Users.Item.MailFolders.Item.Messages.Item.Forward {
             var command = new Command("post");
             command.Description = "Invoke action forward";
             // Create options for all the parameters
-            var userIdOption = new Option<string>("--user-id", description: "key: id of user");
+            var userIdOption = new Option<string>("--user-id", description: "key: id of user") {
+            };
             userIdOption.IsRequired = true;
             command.AddOption(userIdOption);
-            var mailFolderIdOption = new Option<string>("--mailfolder-id", description: "key: id of mailFolder");
+            var mailFolderIdOption = new Option<string>("--mailfolder-id", description: "key: id of mailFolder") {
+            };
             mailFolderIdOption.IsRequired = true;
             command.AddOption(mailFolderIdOption);
-            var messageIdOption = new Option<string>("--message-id", description: "key: id of message");
+            var messageIdOption = new Option<string>("--message-id", description: "key: id of message") {
+            };
             messageIdOption.IsRequired = true;
             command.AddOption(messageIdOption);
-            var bodyOption = new Option<string>("--body");
+            var bodyOption = new Option<string>("--body") {
+            };
             bodyOption.IsRequired = true;
             command.AddOption(bodyOption);
-            command.Handler = CommandHandler.Create<string, string, string, string>(async (userId, mailFolderId, messageId, body) => {
+            command.SetHandler(async (string userId, string mailFolderId, string messageId, string body) => {
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<ForwardRequestBody>();
@@ -46,7 +50,7 @@ namespace ApiSdk.Users.Item.MailFolders.Item.Messages.Item.Forward {
                 await RequestAdapter.SendNoContentAsync(requestInfo);
                 // Print request output. What if the request has no return?
                 Console.WriteLine("Success");
-            });
+            }, userIdOption, mailFolderIdOption, messageIdOption, bodyOption);
             return command;
         }
         /// <summary>
@@ -71,7 +75,7 @@ namespace ApiSdk.Users.Item.MailFolders.Item.Messages.Item.Forward {
         public RequestInformation CreatePostRequestInformation(ForwardRequestBody body, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
             _ = body ?? throw new ArgumentNullException(nameof(body));
             var requestInfo = new RequestInformation {
-                HttpMethod = HttpMethod.POST,
+                HttpMethod = Method.POST,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };

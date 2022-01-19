@@ -25,22 +25,27 @@ namespace ApiSdk.Drives.Item.List.Items.Item.GetActivitiesByIntervalWithStartDat
             var command = new Command("get");
             command.Description = "Invoke function getActivitiesByInterval";
             // Create options for all the parameters
-            var driveIdOption = new Option<string>("--drive-id", description: "key: id of drive");
+            var driveIdOption = new Option<string>("--drive-id", description: "key: id of drive") {
+            };
             driveIdOption.IsRequired = true;
             command.AddOption(driveIdOption);
-            var listItemIdOption = new Option<string>("--listitem-id", description: "key: id of listItem");
+            var listItemIdOption = new Option<string>("--listitem-id", description: "key: id of listItem") {
+            };
             listItemIdOption.IsRequired = true;
             command.AddOption(listItemIdOption);
-            var startDateTimeOption = new Option<string>("--startdatetime", description: "Usage: startDateTime={startDateTime}");
+            var startDateTimeOption = new Option<string>("--startdatetime", description: "Usage: startDateTime={startDateTime}") {
+            };
             startDateTimeOption.IsRequired = true;
             command.AddOption(startDateTimeOption);
-            var endDateTimeOption = new Option<string>("--enddatetime", description: "Usage: endDateTime={endDateTime}");
+            var endDateTimeOption = new Option<string>("--enddatetime", description: "Usage: endDateTime={endDateTime}") {
+            };
             endDateTimeOption.IsRequired = true;
             command.AddOption(endDateTimeOption);
-            var intervalOption = new Option<string>("--interval", description: "Usage: interval={interval}");
+            var intervalOption = new Option<string>("--interval", description: "Usage: interval={interval}") {
+            };
             intervalOption.IsRequired = true;
             command.AddOption(intervalOption);
-            command.Handler = CommandHandler.Create<string, string, string, string, string>(async (driveId, listItemId, startDateTime, endDateTime, interval) => {
+            command.SetHandler(async (string driveId, string listItemId, string startDateTime, string endDateTime, string interval) => {
                 var requestInfo = CreateGetRequestInformation(q => {
                 });
                 var result = await RequestAdapter.SendCollectionAsync<ApiSdk.Drives.Item.List.Items.Item.GetActivitiesByIntervalWithStartDateTimeWithEndDateTimeWithInterval.GetActivitiesByIntervalWithStartDateTimeWithEndDateTimeWithInterval>(requestInfo);
@@ -51,7 +56,7 @@ namespace ApiSdk.Drives.Item.List.Items.Item.GetActivitiesByIntervalWithStartDat
                 using var reader = new StreamReader(content);
                 var strContent = await reader.ReadToEndAsync();
                 Console.Write(strContent + "\n");
-            });
+            }, driveIdOption, listItemIdOption, startDateTimeOption, endDateTimeOption, intervalOption);
             return command;
         }
         /// <summary>
@@ -80,7 +85,7 @@ namespace ApiSdk.Drives.Item.List.Items.Item.GetActivitiesByIntervalWithStartDat
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
             var requestInfo = new RequestInformation {
-                HttpMethod = HttpMethod.GET,
+                HttpMethod = Method.GET,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };

@@ -26,19 +26,21 @@ namespace ApiSdk.Me.MailFolders.Item.SingleValueExtendedProperties.Item {
             var command = new Command("delete");
             command.Description = "The collection of single-value extended properties defined for the mailFolder. Read-only. Nullable.";
             // Create options for all the parameters
-            var mailFolderIdOption = new Option<string>("--mailfolder-id", description: "key: id of mailFolder");
+            var mailFolderIdOption = new Option<string>("--mailfolder-id", description: "key: id of mailFolder") {
+            };
             mailFolderIdOption.IsRequired = true;
             command.AddOption(mailFolderIdOption);
-            var singleValueLegacyExtendedPropertyIdOption = new Option<string>("--singlevaluelegacyextendedproperty-id", description: "key: id of singleValueLegacyExtendedProperty");
+            var singleValueLegacyExtendedPropertyIdOption = new Option<string>("--singlevaluelegacyextendedproperty-id", description: "key: id of singleValueLegacyExtendedProperty") {
+            };
             singleValueLegacyExtendedPropertyIdOption.IsRequired = true;
             command.AddOption(singleValueLegacyExtendedPropertyIdOption);
-            command.Handler = CommandHandler.Create<string, string>(async (mailFolderId, singleValueLegacyExtendedPropertyId) => {
+            command.SetHandler(async (string mailFolderId, string singleValueLegacyExtendedPropertyId) => {
                 var requestInfo = CreateDeleteRequestInformation(q => {
                 });
                 await RequestAdapter.SendNoContentAsync(requestInfo);
                 // Print request output. What if the request has no return?
                 Console.WriteLine("Success");
-            });
+            }, mailFolderIdOption, singleValueLegacyExtendedPropertyIdOption);
             return command;
         }
         /// <summary>
@@ -48,21 +50,25 @@ namespace ApiSdk.Me.MailFolders.Item.SingleValueExtendedProperties.Item {
             var command = new Command("get");
             command.Description = "The collection of single-value extended properties defined for the mailFolder. Read-only. Nullable.";
             // Create options for all the parameters
-            var mailFolderIdOption = new Option<string>("--mailfolder-id", description: "key: id of mailFolder");
+            var mailFolderIdOption = new Option<string>("--mailfolder-id", description: "key: id of mailFolder") {
+            };
             mailFolderIdOption.IsRequired = true;
             command.AddOption(mailFolderIdOption);
-            var singleValueLegacyExtendedPropertyIdOption = new Option<string>("--singlevaluelegacyextendedproperty-id", description: "key: id of singleValueLegacyExtendedProperty");
+            var singleValueLegacyExtendedPropertyIdOption = new Option<string>("--singlevaluelegacyextendedproperty-id", description: "key: id of singleValueLegacyExtendedProperty") {
+            };
             singleValueLegacyExtendedPropertyIdOption.IsRequired = true;
             command.AddOption(singleValueLegacyExtendedPropertyIdOption);
-            var selectOption = new Option<string[]>("--select", description: "Select properties to be returned");
+            var selectOption = new Option<string[]>("--select", description: "Select properties to be returned") {
+                Arity = ArgumentArity.ZeroOrMore
+            };
             selectOption.IsRequired = false;
-            selectOption.Arity = ArgumentArity.ZeroOrMore;
             command.AddOption(selectOption);
-            var expandOption = new Option<string[]>("--expand", description: "Expand related entities");
+            var expandOption = new Option<string[]>("--expand", description: "Expand related entities") {
+                Arity = ArgumentArity.ZeroOrMore
+            };
             expandOption.IsRequired = false;
-            expandOption.Arity = ArgumentArity.ZeroOrMore;
             command.AddOption(expandOption);
-            command.Handler = CommandHandler.Create<string, string, string[], string[]>(async (mailFolderId, singleValueLegacyExtendedPropertyId, select, expand) => {
+            command.SetHandler(async (string mailFolderId, string singleValueLegacyExtendedPropertyId, string[] select, string[] expand) => {
                 var requestInfo = CreateGetRequestInformation(q => {
                     q.Select = select;
                     q.Expand = expand;
@@ -75,7 +81,7 @@ namespace ApiSdk.Me.MailFolders.Item.SingleValueExtendedProperties.Item {
                 using var reader = new StreamReader(content);
                 var strContent = await reader.ReadToEndAsync();
                 Console.Write(strContent + "\n");
-            });
+            }, mailFolderIdOption, singleValueLegacyExtendedPropertyIdOption, selectOption, expandOption);
             return command;
         }
         /// <summary>
@@ -85,16 +91,19 @@ namespace ApiSdk.Me.MailFolders.Item.SingleValueExtendedProperties.Item {
             var command = new Command("patch");
             command.Description = "The collection of single-value extended properties defined for the mailFolder. Read-only. Nullable.";
             // Create options for all the parameters
-            var mailFolderIdOption = new Option<string>("--mailfolder-id", description: "key: id of mailFolder");
+            var mailFolderIdOption = new Option<string>("--mailfolder-id", description: "key: id of mailFolder") {
+            };
             mailFolderIdOption.IsRequired = true;
             command.AddOption(mailFolderIdOption);
-            var singleValueLegacyExtendedPropertyIdOption = new Option<string>("--singlevaluelegacyextendedproperty-id", description: "key: id of singleValueLegacyExtendedProperty");
+            var singleValueLegacyExtendedPropertyIdOption = new Option<string>("--singlevaluelegacyextendedproperty-id", description: "key: id of singleValueLegacyExtendedProperty") {
+            };
             singleValueLegacyExtendedPropertyIdOption.IsRequired = true;
             command.AddOption(singleValueLegacyExtendedPropertyIdOption);
-            var bodyOption = new Option<string>("--body");
+            var bodyOption = new Option<string>("--body") {
+            };
             bodyOption.IsRequired = true;
             command.AddOption(bodyOption);
-            command.Handler = CommandHandler.Create<string, string, string>(async (mailFolderId, singleValueLegacyExtendedPropertyId, body) => {
+            command.SetHandler(async (string mailFolderId, string singleValueLegacyExtendedPropertyId, string body) => {
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<SingleValueLegacyExtendedProperty>();
@@ -103,7 +112,7 @@ namespace ApiSdk.Me.MailFolders.Item.SingleValueExtendedProperties.Item {
                 await RequestAdapter.SendNoContentAsync(requestInfo);
                 // Print request output. What if the request has no return?
                 Console.WriteLine("Success");
-            });
+            }, mailFolderIdOption, singleValueLegacyExtendedPropertyIdOption, bodyOption);
             return command;
         }
         /// <summary>
@@ -126,7 +135,7 @@ namespace ApiSdk.Me.MailFolders.Item.SingleValueExtendedProperties.Item {
         /// </summary>
         public RequestInformation CreateDeleteRequestInformation(Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
             var requestInfo = new RequestInformation {
-                HttpMethod = HttpMethod.DELETE,
+                HttpMethod = Method.DELETE,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };
@@ -142,7 +151,7 @@ namespace ApiSdk.Me.MailFolders.Item.SingleValueExtendedProperties.Item {
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<GetQueryParameters> q = default, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
             var requestInfo = new RequestInformation {
-                HttpMethod = HttpMethod.GET,
+                HttpMethod = Method.GET,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };
@@ -164,7 +173,7 @@ namespace ApiSdk.Me.MailFolders.Item.SingleValueExtendedProperties.Item {
         public RequestInformation CreatePatchRequestInformation(SingleValueLegacyExtendedProperty body, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
             _ = body ?? throw new ArgumentNullException(nameof(body));
             var requestInfo = new RequestInformation {
-                HttpMethod = HttpMethod.PATCH,
+                HttpMethod = Method.PATCH,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };

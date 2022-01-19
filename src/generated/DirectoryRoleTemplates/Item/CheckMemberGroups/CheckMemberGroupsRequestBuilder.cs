@@ -25,13 +25,15 @@ namespace ApiSdk.DirectoryRoleTemplates.Item.CheckMemberGroups {
             var command = new Command("post");
             command.Description = "Invoke action checkMemberGroups";
             // Create options for all the parameters
-            var directoryRoleTemplateIdOption = new Option<string>("--directoryroletemplate-id", description: "key: id of directoryRoleTemplate");
+            var directoryRoleTemplateIdOption = new Option<string>("--directoryroletemplate-id", description: "key: id of directoryRoleTemplate") {
+            };
             directoryRoleTemplateIdOption.IsRequired = true;
             command.AddOption(directoryRoleTemplateIdOption);
-            var bodyOption = new Option<string>("--body");
+            var bodyOption = new Option<string>("--body") {
+            };
             bodyOption.IsRequired = true;
             command.AddOption(bodyOption);
-            command.Handler = CommandHandler.Create<string, string>(async (directoryRoleTemplateId, body) => {
+            command.SetHandler(async (string directoryRoleTemplateId, string body) => {
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<CheckMemberGroupsRequestBody>();
@@ -45,7 +47,7 @@ namespace ApiSdk.DirectoryRoleTemplates.Item.CheckMemberGroups {
                 using var reader = new StreamReader(content);
                 var strContent = await reader.ReadToEndAsync();
                 Console.Write(strContent + "\n");
-            });
+            }, directoryRoleTemplateIdOption, bodyOption);
             return command;
         }
         /// <summary>
@@ -70,7 +72,7 @@ namespace ApiSdk.DirectoryRoleTemplates.Item.CheckMemberGroups {
         public RequestInformation CreatePostRequestInformation(CheckMemberGroupsRequestBody body, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
             _ = body ?? throw new ArgumentNullException(nameof(body));
             var requestInfo = new RequestInformation {
-                HttpMethod = HttpMethod.POST,
+                HttpMethod = Method.POST,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };

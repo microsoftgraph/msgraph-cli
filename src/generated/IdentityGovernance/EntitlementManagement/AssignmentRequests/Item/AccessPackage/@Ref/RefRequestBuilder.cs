@@ -25,16 +25,17 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.AssignmentRequests.Ite
             var command = new Command("delete");
             command.Description = "The access package associated with the accessPackageAssignmentRequest. An access package defines the collections of resource roles and the policies for how one or more users can get access to those resources. Read-only. Nullable. Supports $expand.";
             // Create options for all the parameters
-            var accessPackageAssignmentRequestIdOption = new Option<string>("--accesspackageassignmentrequest-id", description: "key: id of accessPackageAssignmentRequest");
+            var accessPackageAssignmentRequestIdOption = new Option<string>("--accesspackageassignmentrequest-id", description: "key: id of accessPackageAssignmentRequest") {
+            };
             accessPackageAssignmentRequestIdOption.IsRequired = true;
             command.AddOption(accessPackageAssignmentRequestIdOption);
-            command.Handler = CommandHandler.Create<string>(async (accessPackageAssignmentRequestId) => {
+            command.SetHandler(async (string accessPackageAssignmentRequestId) => {
                 var requestInfo = CreateDeleteRequestInformation(q => {
                 });
                 await RequestAdapter.SendNoContentAsync(requestInfo);
                 // Print request output. What if the request has no return?
                 Console.WriteLine("Success");
-            });
+            }, accessPackageAssignmentRequestIdOption);
             return command;
         }
         /// <summary>
@@ -44,10 +45,11 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.AssignmentRequests.Ite
             var command = new Command("get");
             command.Description = "The access package associated with the accessPackageAssignmentRequest. An access package defines the collections of resource roles and the policies for how one or more users can get access to those resources. Read-only. Nullable. Supports $expand.";
             // Create options for all the parameters
-            var accessPackageAssignmentRequestIdOption = new Option<string>("--accesspackageassignmentrequest-id", description: "key: id of accessPackageAssignmentRequest");
+            var accessPackageAssignmentRequestIdOption = new Option<string>("--accesspackageassignmentrequest-id", description: "key: id of accessPackageAssignmentRequest") {
+            };
             accessPackageAssignmentRequestIdOption.IsRequired = true;
             command.AddOption(accessPackageAssignmentRequestIdOption);
-            command.Handler = CommandHandler.Create<string>(async (accessPackageAssignmentRequestId) => {
+            command.SetHandler(async (string accessPackageAssignmentRequestId) => {
                 var requestInfo = CreateGetRequestInformation(q => {
                 });
                 var result = await RequestAdapter.SendPrimitiveAsync<string>(requestInfo);
@@ -58,7 +60,7 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.AssignmentRequests.Ite
                 using var reader = new StreamReader(content);
                 var strContent = await reader.ReadToEndAsync();
                 Console.Write(strContent + "\n");
-            });
+            }, accessPackageAssignmentRequestIdOption);
             return command;
         }
         /// <summary>
@@ -68,13 +70,15 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.AssignmentRequests.Ite
             var command = new Command("put");
             command.Description = "The access package associated with the accessPackageAssignmentRequest. An access package defines the collections of resource roles and the policies for how one or more users can get access to those resources. Read-only. Nullable. Supports $expand.";
             // Create options for all the parameters
-            var accessPackageAssignmentRequestIdOption = new Option<string>("--accesspackageassignmentrequest-id", description: "key: id of accessPackageAssignmentRequest");
+            var accessPackageAssignmentRequestIdOption = new Option<string>("--accesspackageassignmentrequest-id", description: "key: id of accessPackageAssignmentRequest") {
+            };
             accessPackageAssignmentRequestIdOption.IsRequired = true;
             command.AddOption(accessPackageAssignmentRequestIdOption);
-            var bodyOption = new Option<string>("--body");
+            var bodyOption = new Option<string>("--body") {
+            };
             bodyOption.IsRequired = true;
             command.AddOption(bodyOption);
-            command.Handler = CommandHandler.Create<string, string>(async (accessPackageAssignmentRequestId, body) => {
+            command.SetHandler(async (string accessPackageAssignmentRequestId, string body) => {
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<ApiSdk.IdentityGovernance.EntitlementManagement.AssignmentRequests.Item.AccessPackage.@Ref.@Ref>();
@@ -83,7 +87,7 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.AssignmentRequests.Ite
                 await RequestAdapter.SendNoContentAsync(requestInfo);
                 // Print request output. What if the request has no return?
                 Console.WriteLine("Success");
-            });
+            }, accessPackageAssignmentRequestIdOption, bodyOption);
             return command;
         }
         /// <summary>
@@ -106,7 +110,7 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.AssignmentRequests.Ite
         /// </summary>
         public RequestInformation CreateDeleteRequestInformation(Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
             var requestInfo = new RequestInformation {
-                HttpMethod = HttpMethod.DELETE,
+                HttpMethod = Method.DELETE,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };
@@ -121,7 +125,7 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.AssignmentRequests.Ite
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
             var requestInfo = new RequestInformation {
-                HttpMethod = HttpMethod.GET,
+                HttpMethod = Method.GET,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };
@@ -138,7 +142,7 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.AssignmentRequests.Ite
         public RequestInformation CreatePutRequestInformation(ApiSdk.IdentityGovernance.EntitlementManagement.AssignmentRequests.Item.AccessPackage.@Ref.@Ref body, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
             _ = body ?? throw new ArgumentNullException(nameof(body));
             var requestInfo = new RequestInformation {
-                HttpMethod = HttpMethod.PUT,
+                HttpMethod = Method.PUT,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };

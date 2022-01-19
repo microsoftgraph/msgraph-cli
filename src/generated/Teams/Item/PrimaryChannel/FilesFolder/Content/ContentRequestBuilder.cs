@@ -25,11 +25,13 @@ namespace ApiSdk.Teams.Item.PrimaryChannel.FilesFolder.Content {
             var command = new Command("get");
             command.Description = "Get media content for the navigation property filesFolder from teams";
             // Create options for all the parameters
-            var teamIdOption = new Option<string>("--team-id", description: "key: id of team");
+            var teamIdOption = new Option<string>("--team-id", description: "key: id of team") {
+            };
             teamIdOption.IsRequired = true;
             command.AddOption(teamIdOption);
-            command.AddOption(new Option<FileInfo>("--output"));
-            command.Handler = CommandHandler.Create<string, FileInfo>(async (teamId, output) => {
+            var outputOption = new Option<FileInfo>("--output");
+            command.AddOption(outputOption);
+            command.SetHandler(async (string teamId, FileInfo output) => {
                 var requestInfo = CreateGetRequestInformation(q => {
                 });
                 var result = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
@@ -44,7 +46,7 @@ namespace ApiSdk.Teams.Item.PrimaryChannel.FilesFolder.Content {
                     await result.CopyToAsync(writeStream);
                     Console.WriteLine($"Content written to {output.FullName}.");
                 }
-            });
+            }, teamIdOption, outputOption);
             return command;
         }
         /// <summary>
@@ -54,20 +56,22 @@ namespace ApiSdk.Teams.Item.PrimaryChannel.FilesFolder.Content {
             var command = new Command("put");
             command.Description = "Update media content for the navigation property filesFolder in teams";
             // Create options for all the parameters
-            var teamIdOption = new Option<string>("--team-id", description: "key: id of team");
+            var teamIdOption = new Option<string>("--team-id", description: "key: id of team") {
+            };
             teamIdOption.IsRequired = true;
             command.AddOption(teamIdOption);
-            var fileOption = new Option<Stream>("--file", description: "Binary request body");
-            fileOption.IsRequired = true;
-            command.AddOption(fileOption);
-            command.Handler = CommandHandler.Create<string, FileInfo>(async (teamId, file) => {
+            var bodyOption = new Option<Stream>("--file", description: "Binary request body") {
+            };
+            bodyOption.IsRequired = true;
+            command.AddOption(bodyOption);
+            command.SetHandler(async (string teamId, FileInfo file) => {
                 using var stream = file.OpenRead();
                 var requestInfo = CreatePutRequestInformation(stream, q => {
                 });
                 await RequestAdapter.SendNoContentAsync(requestInfo);
                 // Print request output. What if the request has no return?
                 Console.WriteLine("Success");
-            });
+            }, teamIdOption, bodyOption);
             return command;
         }
         /// <summary>
@@ -90,7 +94,7 @@ namespace ApiSdk.Teams.Item.PrimaryChannel.FilesFolder.Content {
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
             var requestInfo = new RequestInformation {
-                HttpMethod = HttpMethod.GET,
+                HttpMethod = Method.GET,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };
@@ -107,7 +111,7 @@ namespace ApiSdk.Teams.Item.PrimaryChannel.FilesFolder.Content {
         public RequestInformation CreatePutRequestInformation(Stream body, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
             _ = body ?? throw new ArgumentNullException(nameof(body));
             var requestInfo = new RequestInformation {
-                HttpMethod = HttpMethod.PUT,
+                HttpMethod = Method.PUT,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };

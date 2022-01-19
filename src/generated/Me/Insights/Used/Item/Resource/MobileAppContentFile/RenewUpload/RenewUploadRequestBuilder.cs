@@ -25,16 +25,17 @@ namespace ApiSdk.Me.Insights.Used.Item.Resource.MobileAppContentFile.RenewUpload
             var command = new Command("post");
             command.Description = "Renews the SAS URI for an application file upload.";
             // Create options for all the parameters
-            var usedInsightIdOption = new Option<string>("--usedinsight-id", description: "key: id of usedInsight");
+            var usedInsightIdOption = new Option<string>("--usedinsight-id", description: "key: id of usedInsight") {
+            };
             usedInsightIdOption.IsRequired = true;
             command.AddOption(usedInsightIdOption);
-            command.Handler = CommandHandler.Create<string>(async (usedInsightId) => {
+            command.SetHandler(async (string usedInsightId) => {
                 var requestInfo = CreatePostRequestInformation(q => {
                 });
                 await RequestAdapter.SendNoContentAsync(requestInfo);
                 // Print request output. What if the request has no return?
                 Console.WriteLine("Success");
-            });
+            }, usedInsightIdOption);
             return command;
         }
         /// <summary>
@@ -57,7 +58,7 @@ namespace ApiSdk.Me.Insights.Used.Item.Resource.MobileAppContentFile.RenewUpload
         /// </summary>
         public RequestInformation CreatePostRequestInformation(Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
             var requestInfo = new RequestInformation {
-                HttpMethod = HttpMethod.POST,
+                HttpMethod = Method.POST,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };

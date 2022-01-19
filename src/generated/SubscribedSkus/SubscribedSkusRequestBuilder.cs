@@ -36,10 +36,11 @@ namespace ApiSdk.SubscribedSkus {
             var command = new Command("create");
             command.Description = "Add new entity to subscribedSkus";
             // Create options for all the parameters
-            var bodyOption = new Option<string>("--body");
+            var bodyOption = new Option<string>("--body") {
+            };
             bodyOption.IsRequired = true;
             command.AddOption(bodyOption);
-            command.Handler = CommandHandler.Create<string>(async (body) => {
+            command.SetHandler(async (string body) => {
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<SubscribedSku>();
@@ -53,7 +54,7 @@ namespace ApiSdk.SubscribedSkus {
                 using var reader = new StreamReader(content);
                 var strContent = await reader.ReadToEndAsync();
                 Console.Write(strContent + "\n");
-            });
+            }, bodyOption);
             return command;
         }
         /// <summary>
@@ -63,18 +64,21 @@ namespace ApiSdk.SubscribedSkus {
             var command = new Command("list");
             command.Description = "Get entities from subscribedSkus";
             // Create options for all the parameters
-            var searchOption = new Option<string>("--search", description: "Search items by search phrases");
+            var searchOption = new Option<string>("--search", description: "Search items by search phrases") {
+            };
             searchOption.IsRequired = false;
             command.AddOption(searchOption);
-            var orderbyOption = new Option<string[]>("--orderby", description: "Order items by property values");
+            var orderbyOption = new Option<string[]>("--orderby", description: "Order items by property values") {
+                Arity = ArgumentArity.ZeroOrMore
+            };
             orderbyOption.IsRequired = false;
-            orderbyOption.Arity = ArgumentArity.ZeroOrMore;
             command.AddOption(orderbyOption);
-            var selectOption = new Option<string[]>("--select", description: "Select properties to be returned");
+            var selectOption = new Option<string[]>("--select", description: "Select properties to be returned") {
+                Arity = ArgumentArity.ZeroOrMore
+            };
             selectOption.IsRequired = false;
-            selectOption.Arity = ArgumentArity.ZeroOrMore;
             command.AddOption(selectOption);
-            command.Handler = CommandHandler.Create<string, string[], string[]>(async (search, orderby, select) => {
+            command.SetHandler(async (string search, string[] orderby, string[] select) => {
                 var requestInfo = CreateGetRequestInformation(q => {
                     if (!String.IsNullOrEmpty(search)) q.Search = search;
                     q.Orderby = orderby;
@@ -88,7 +92,7 @@ namespace ApiSdk.SubscribedSkus {
                 using var reader = new StreamReader(content);
                 var strContent = await reader.ReadToEndAsync();
                 Console.Write(strContent + "\n");
-            });
+            }, searchOption, orderbyOption, selectOption);
             return command;
         }
         /// <summary>
@@ -112,7 +116,7 @@ namespace ApiSdk.SubscribedSkus {
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<GetQueryParameters> q = default, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
             var requestInfo = new RequestInformation {
-                HttpMethod = HttpMethod.GET,
+                HttpMethod = Method.GET,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };
@@ -134,7 +138,7 @@ namespace ApiSdk.SubscribedSkus {
         public RequestInformation CreatePostRequestInformation(SubscribedSku body, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
             _ = body ?? throw new ArgumentNullException(nameof(body));
             var requestInfo = new RequestInformation {
-                HttpMethod = HttpMethod.POST,
+                HttpMethod = Method.POST,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };

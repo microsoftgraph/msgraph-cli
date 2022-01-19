@@ -28,18 +28,21 @@ namespace ApiSdk.Print.Shares.Item.Printer {
             var command = new Command("get");
             command.Description = "The printer that this printer share is related to.";
             // Create options for all the parameters
-            var printerShareIdOption = new Option<string>("--printershare-id", description: "key: id of printerShare");
+            var printerShareIdOption = new Option<string>("--printershare-id", description: "key: id of printerShare") {
+            };
             printerShareIdOption.IsRequired = true;
             command.AddOption(printerShareIdOption);
-            var selectOption = new Option<string[]>("--select", description: "Select properties to be returned");
+            var selectOption = new Option<string[]>("--select", description: "Select properties to be returned") {
+                Arity = ArgumentArity.ZeroOrMore
+            };
             selectOption.IsRequired = false;
-            selectOption.Arity = ArgumentArity.ZeroOrMore;
             command.AddOption(selectOption);
-            var expandOption = new Option<string[]>("--expand", description: "Expand related entities");
+            var expandOption = new Option<string[]>("--expand", description: "Expand related entities") {
+                Arity = ArgumentArity.ZeroOrMore
+            };
             expandOption.IsRequired = false;
-            expandOption.Arity = ArgumentArity.ZeroOrMore;
             command.AddOption(expandOption);
-            command.Handler = CommandHandler.Create<string, string[], string[]>(async (printerShareId, select, expand) => {
+            command.SetHandler(async (string printerShareId, string[] select, string[] expand) => {
                 var requestInfo = CreateGetRequestInformation(q => {
                     q.Select = select;
                     q.Expand = expand;
@@ -52,7 +55,7 @@ namespace ApiSdk.Print.Shares.Item.Printer {
                 using var reader = new StreamReader(content);
                 var strContent = await reader.ReadToEndAsync();
                 Console.Write(strContent + "\n");
-            });
+            }, printerShareIdOption, selectOption, expandOption);
             return command;
         }
         public Command BuildRefCommand() {
@@ -90,7 +93,7 @@ namespace ApiSdk.Print.Shares.Item.Printer {
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<GetQueryParameters> q = default, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
             var requestInfo = new RequestInformation {
-                HttpMethod = HttpMethod.GET,
+                HttpMethod = Method.GET,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };

@@ -36,13 +36,15 @@ namespace ApiSdk.Workbooks.Item.Workbook.Operations {
             var command = new Command("create");
             command.Description = "The status of Workbook operations. Getting an operation collection is not supported, but you can get the status of a long-running operation if the Location header is returned in the response. Read-only. Nullable.";
             // Create options for all the parameters
-            var driveItemIdOption = new Option<string>("--driveitem-id", description: "key: id of driveItem");
+            var driveItemIdOption = new Option<string>("--driveitem-id", description: "key: id of driveItem") {
+            };
             driveItemIdOption.IsRequired = true;
             command.AddOption(driveItemIdOption);
-            var bodyOption = new Option<string>("--body");
+            var bodyOption = new Option<string>("--body") {
+            };
             bodyOption.IsRequired = true;
             command.AddOption(bodyOption);
-            command.Handler = CommandHandler.Create<string, string>(async (driveItemId, body) => {
+            command.SetHandler(async (string driveItemId, string body) => {
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<WorkbookOperation>();
@@ -56,7 +58,7 @@ namespace ApiSdk.Workbooks.Item.Workbook.Operations {
                 using var reader = new StreamReader(content);
                 var strContent = await reader.ReadToEndAsync();
                 Console.Write(strContent + "\n");
-            });
+            }, driveItemIdOption, bodyOption);
             return command;
         }
         /// <summary>
@@ -66,25 +68,30 @@ namespace ApiSdk.Workbooks.Item.Workbook.Operations {
             var command = new Command("list");
             command.Description = "The status of Workbook operations. Getting an operation collection is not supported, but you can get the status of a long-running operation if the Location header is returned in the response. Read-only. Nullable.";
             // Create options for all the parameters
-            var driveItemIdOption = new Option<string>("--driveitem-id", description: "key: id of driveItem");
+            var driveItemIdOption = new Option<string>("--driveitem-id", description: "key: id of driveItem") {
+            };
             driveItemIdOption.IsRequired = true;
             command.AddOption(driveItemIdOption);
-            var searchOption = new Option<string>("--search", description: "Search items by search phrases");
+            var searchOption = new Option<string>("--search", description: "Search items by search phrases") {
+            };
             searchOption.IsRequired = false;
             command.AddOption(searchOption);
-            var orderbyOption = new Option<string[]>("--orderby", description: "Order items by property values");
+            var orderbyOption = new Option<string[]>("--orderby", description: "Order items by property values") {
+                Arity = ArgumentArity.ZeroOrMore
+            };
             orderbyOption.IsRequired = false;
-            orderbyOption.Arity = ArgumentArity.ZeroOrMore;
             command.AddOption(orderbyOption);
-            var selectOption = new Option<string[]>("--select", description: "Select properties to be returned");
+            var selectOption = new Option<string[]>("--select", description: "Select properties to be returned") {
+                Arity = ArgumentArity.ZeroOrMore
+            };
             selectOption.IsRequired = false;
-            selectOption.Arity = ArgumentArity.ZeroOrMore;
             command.AddOption(selectOption);
-            var expandOption = new Option<string[]>("--expand", description: "Expand related entities");
+            var expandOption = new Option<string[]>("--expand", description: "Expand related entities") {
+                Arity = ArgumentArity.ZeroOrMore
+            };
             expandOption.IsRequired = false;
-            expandOption.Arity = ArgumentArity.ZeroOrMore;
             command.AddOption(expandOption);
-            command.Handler = CommandHandler.Create<string, string, string[], string[], string[]>(async (driveItemId, search, orderby, select, expand) => {
+            command.SetHandler(async (string driveItemId, string search, string[] orderby, string[] select, string[] expand) => {
                 var requestInfo = CreateGetRequestInformation(q => {
                     if (!String.IsNullOrEmpty(search)) q.Search = search;
                     q.Orderby = orderby;
@@ -99,7 +106,7 @@ namespace ApiSdk.Workbooks.Item.Workbook.Operations {
                 using var reader = new StreamReader(content);
                 var strContent = await reader.ReadToEndAsync();
                 Console.Write(strContent + "\n");
-            });
+            }, driveItemIdOption, searchOption, orderbyOption, selectOption, expandOption);
             return command;
         }
         /// <summary>
@@ -123,7 +130,7 @@ namespace ApiSdk.Workbooks.Item.Workbook.Operations {
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<GetQueryParameters> q = default, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
             var requestInfo = new RequestInformation {
-                HttpMethod = HttpMethod.GET,
+                HttpMethod = Method.GET,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };
@@ -145,7 +152,7 @@ namespace ApiSdk.Workbooks.Item.Workbook.Operations {
         public RequestInformation CreatePostRequestInformation(WorkbookOperation body, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
             _ = body ?? throw new ArgumentNullException(nameof(body));
             var requestInfo = new RequestInformation {
-                HttpMethod = HttpMethod.POST,
+                HttpMethod = Method.POST,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };

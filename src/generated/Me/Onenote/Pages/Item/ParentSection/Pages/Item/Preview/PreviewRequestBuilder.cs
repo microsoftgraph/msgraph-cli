@@ -26,13 +26,15 @@ namespace ApiSdk.Me.Onenote.Pages.Item.ParentSection.Pages.Item.Preview {
             var command = new Command("get");
             command.Description = "Invoke function preview";
             // Create options for all the parameters
-            var onenotePageIdOption = new Option<string>("--onenotepage-id", description: "key: id of onenotePage");
+            var onenotePageIdOption = new Option<string>("--onenotepage-id", description: "key: id of onenotePage") {
+            };
             onenotePageIdOption.IsRequired = true;
             command.AddOption(onenotePageIdOption);
-            var onenotePageId1Option = new Option<string>("--onenotepage-id1", description: "key: id of onenotePage");
+            var onenotePageId1Option = new Option<string>("--onenotepage-id1", description: "key: id of onenotePage") {
+            };
             onenotePageId1Option.IsRequired = true;
             command.AddOption(onenotePageId1Option);
-            command.Handler = CommandHandler.Create<string, string>(async (onenotePageId, onenotePageId1) => {
+            command.SetHandler(async (string onenotePageId, string onenotePageId1) => {
                 var requestInfo = CreateGetRequestInformation(q => {
                 });
                 var result = await RequestAdapter.SendAsync<PreviewResponse>(requestInfo);
@@ -43,7 +45,7 @@ namespace ApiSdk.Me.Onenote.Pages.Item.ParentSection.Pages.Item.Preview {
                 using var reader = new StreamReader(content);
                 var strContent = await reader.ReadToEndAsync();
                 Console.Write(strContent + "\n");
-            });
+            }, onenotePageIdOption, onenotePageId1Option);
             return command;
         }
         /// <summary>
@@ -66,7 +68,7 @@ namespace ApiSdk.Me.Onenote.Pages.Item.ParentSection.Pages.Item.Preview {
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
             var requestInfo = new RequestInformation {
-                HttpMethod = HttpMethod.GET,
+                HttpMethod = Method.GET,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };

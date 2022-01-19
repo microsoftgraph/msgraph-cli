@@ -42,16 +42,17 @@ namespace ApiSdk.DeviceManagement.TermsAndConditions.Item {
             var command = new Command("delete");
             command.Description = "The terms and conditions associated with device management of the company.";
             // Create options for all the parameters
-            var termsAndConditionsIdOption = new Option<string>("--termsandconditions-id", description: "key: id of termsAndConditions");
+            var termsAndConditionsIdOption = new Option<string>("--termsandconditions-id", description: "key: id of termsAndConditions") {
+            };
             termsAndConditionsIdOption.IsRequired = true;
             command.AddOption(termsAndConditionsIdOption);
-            command.Handler = CommandHandler.Create<string>(async (termsAndConditionsId) => {
+            command.SetHandler(async (string termsAndConditionsId) => {
                 var requestInfo = CreateDeleteRequestInformation(q => {
                 });
                 await RequestAdapter.SendNoContentAsync(requestInfo);
                 // Print request output. What if the request has no return?
                 Console.WriteLine("Success");
-            });
+            }, termsAndConditionsIdOption);
             return command;
         }
         /// <summary>
@@ -61,18 +62,21 @@ namespace ApiSdk.DeviceManagement.TermsAndConditions.Item {
             var command = new Command("get");
             command.Description = "The terms and conditions associated with device management of the company.";
             // Create options for all the parameters
-            var termsAndConditionsIdOption = new Option<string>("--termsandconditions-id", description: "key: id of termsAndConditions");
+            var termsAndConditionsIdOption = new Option<string>("--termsandconditions-id", description: "key: id of termsAndConditions") {
+            };
             termsAndConditionsIdOption.IsRequired = true;
             command.AddOption(termsAndConditionsIdOption);
-            var selectOption = new Option<string[]>("--select", description: "Select properties to be returned");
+            var selectOption = new Option<string[]>("--select", description: "Select properties to be returned") {
+                Arity = ArgumentArity.ZeroOrMore
+            };
             selectOption.IsRequired = false;
-            selectOption.Arity = ArgumentArity.ZeroOrMore;
             command.AddOption(selectOption);
-            var expandOption = new Option<string[]>("--expand", description: "Expand related entities");
+            var expandOption = new Option<string[]>("--expand", description: "Expand related entities") {
+                Arity = ArgumentArity.ZeroOrMore
+            };
             expandOption.IsRequired = false;
-            expandOption.Arity = ArgumentArity.ZeroOrMore;
             command.AddOption(expandOption);
-            command.Handler = CommandHandler.Create<string, string[], string[]>(async (termsAndConditionsId, select, expand) => {
+            command.SetHandler(async (string termsAndConditionsId, string[] select, string[] expand) => {
                 var requestInfo = CreateGetRequestInformation(q => {
                     q.Select = select;
                     q.Expand = expand;
@@ -85,7 +89,7 @@ namespace ApiSdk.DeviceManagement.TermsAndConditions.Item {
                 using var reader = new StreamReader(content);
                 var strContent = await reader.ReadToEndAsync();
                 Console.Write(strContent + "\n");
-            });
+            }, termsAndConditionsIdOption, selectOption, expandOption);
             return command;
         }
         /// <summary>
@@ -95,13 +99,15 @@ namespace ApiSdk.DeviceManagement.TermsAndConditions.Item {
             var command = new Command("patch");
             command.Description = "The terms and conditions associated with device management of the company.";
             // Create options for all the parameters
-            var termsAndConditionsIdOption = new Option<string>("--termsandconditions-id", description: "key: id of termsAndConditions");
+            var termsAndConditionsIdOption = new Option<string>("--termsandconditions-id", description: "key: id of termsAndConditions") {
+            };
             termsAndConditionsIdOption.IsRequired = true;
             command.AddOption(termsAndConditionsIdOption);
-            var bodyOption = new Option<string>("--body");
+            var bodyOption = new Option<string>("--body") {
+            };
             bodyOption.IsRequired = true;
             command.AddOption(bodyOption);
-            command.Handler = CommandHandler.Create<string, string>(async (termsAndConditionsId, body) => {
+            command.SetHandler(async (string termsAndConditionsId, string body) => {
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<ApiSdk.Models.Microsoft.Graph.TermsAndConditions>();
@@ -110,7 +116,7 @@ namespace ApiSdk.DeviceManagement.TermsAndConditions.Item {
                 await RequestAdapter.SendNoContentAsync(requestInfo);
                 // Print request output. What if the request has no return?
                 Console.WriteLine("Success");
-            });
+            }, termsAndConditionsIdOption, bodyOption);
             return command;
         }
         /// <summary>
@@ -133,7 +139,7 @@ namespace ApiSdk.DeviceManagement.TermsAndConditions.Item {
         /// </summary>
         public RequestInformation CreateDeleteRequestInformation(Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
             var requestInfo = new RequestInformation {
-                HttpMethod = HttpMethod.DELETE,
+                HttpMethod = Method.DELETE,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };
@@ -149,7 +155,7 @@ namespace ApiSdk.DeviceManagement.TermsAndConditions.Item {
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<GetQueryParameters> q = default, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
             var requestInfo = new RequestInformation {
-                HttpMethod = HttpMethod.GET,
+                HttpMethod = Method.GET,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };
@@ -171,7 +177,7 @@ namespace ApiSdk.DeviceManagement.TermsAndConditions.Item {
         public RequestInformation CreatePatchRequestInformation(ApiSdk.Models.Microsoft.Graph.TermsAndConditions body, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
             _ = body ?? throw new ArgumentNullException(nameof(body));
             var requestInfo = new RequestInformation {
-                HttpMethod = HttpMethod.PATCH,
+                HttpMethod = Method.PATCH,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };

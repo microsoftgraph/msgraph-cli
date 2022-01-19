@@ -25,19 +25,21 @@ namespace ApiSdk.Users.Item.Teamwork.InstalledApps.Item.Chat.@Ref {
             var command = new Command("delete");
             command.Description = "The chat between the user and Teams app.";
             // Create options for all the parameters
-            var userIdOption = new Option<string>("--user-id", description: "key: id of user");
+            var userIdOption = new Option<string>("--user-id", description: "key: id of user") {
+            };
             userIdOption.IsRequired = true;
             command.AddOption(userIdOption);
-            var userScopeTeamsAppInstallationIdOption = new Option<string>("--userscopeteamsappinstallation-id", description: "key: id of userScopeTeamsAppInstallation");
+            var userScopeTeamsAppInstallationIdOption = new Option<string>("--userscopeteamsappinstallation-id", description: "key: id of userScopeTeamsAppInstallation") {
+            };
             userScopeTeamsAppInstallationIdOption.IsRequired = true;
             command.AddOption(userScopeTeamsAppInstallationIdOption);
-            command.Handler = CommandHandler.Create<string, string>(async (userId, userScopeTeamsAppInstallationId) => {
+            command.SetHandler(async (string userId, string userScopeTeamsAppInstallationId) => {
                 var requestInfo = CreateDeleteRequestInformation(q => {
                 });
                 await RequestAdapter.SendNoContentAsync(requestInfo);
                 // Print request output. What if the request has no return?
                 Console.WriteLine("Success");
-            });
+            }, userIdOption, userScopeTeamsAppInstallationIdOption);
             return command;
         }
         /// <summary>
@@ -47,13 +49,15 @@ namespace ApiSdk.Users.Item.Teamwork.InstalledApps.Item.Chat.@Ref {
             var command = new Command("get");
             command.Description = "The chat between the user and Teams app.";
             // Create options for all the parameters
-            var userIdOption = new Option<string>("--user-id", description: "key: id of user");
+            var userIdOption = new Option<string>("--user-id", description: "key: id of user") {
+            };
             userIdOption.IsRequired = true;
             command.AddOption(userIdOption);
-            var userScopeTeamsAppInstallationIdOption = new Option<string>("--userscopeteamsappinstallation-id", description: "key: id of userScopeTeamsAppInstallation");
+            var userScopeTeamsAppInstallationIdOption = new Option<string>("--userscopeteamsappinstallation-id", description: "key: id of userScopeTeamsAppInstallation") {
+            };
             userScopeTeamsAppInstallationIdOption.IsRequired = true;
             command.AddOption(userScopeTeamsAppInstallationIdOption);
-            command.Handler = CommandHandler.Create<string, string>(async (userId, userScopeTeamsAppInstallationId) => {
+            command.SetHandler(async (string userId, string userScopeTeamsAppInstallationId) => {
                 var requestInfo = CreateGetRequestInformation(q => {
                 });
                 var result = await RequestAdapter.SendPrimitiveAsync<string>(requestInfo);
@@ -64,7 +68,7 @@ namespace ApiSdk.Users.Item.Teamwork.InstalledApps.Item.Chat.@Ref {
                 using var reader = new StreamReader(content);
                 var strContent = await reader.ReadToEndAsync();
                 Console.Write(strContent + "\n");
-            });
+            }, userIdOption, userScopeTeamsAppInstallationIdOption);
             return command;
         }
         /// <summary>
@@ -74,16 +78,19 @@ namespace ApiSdk.Users.Item.Teamwork.InstalledApps.Item.Chat.@Ref {
             var command = new Command("put");
             command.Description = "The chat between the user and Teams app.";
             // Create options for all the parameters
-            var userIdOption = new Option<string>("--user-id", description: "key: id of user");
+            var userIdOption = new Option<string>("--user-id", description: "key: id of user") {
+            };
             userIdOption.IsRequired = true;
             command.AddOption(userIdOption);
-            var userScopeTeamsAppInstallationIdOption = new Option<string>("--userscopeteamsappinstallation-id", description: "key: id of userScopeTeamsAppInstallation");
+            var userScopeTeamsAppInstallationIdOption = new Option<string>("--userscopeteamsappinstallation-id", description: "key: id of userScopeTeamsAppInstallation") {
+            };
             userScopeTeamsAppInstallationIdOption.IsRequired = true;
             command.AddOption(userScopeTeamsAppInstallationIdOption);
-            var bodyOption = new Option<string>("--body");
+            var bodyOption = new Option<string>("--body") {
+            };
             bodyOption.IsRequired = true;
             command.AddOption(bodyOption);
-            command.Handler = CommandHandler.Create<string, string, string>(async (userId, userScopeTeamsAppInstallationId, body) => {
+            command.SetHandler(async (string userId, string userScopeTeamsAppInstallationId, string body) => {
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<ApiSdk.Users.Item.Teamwork.InstalledApps.Item.Chat.@Ref.@Ref>();
@@ -92,7 +99,7 @@ namespace ApiSdk.Users.Item.Teamwork.InstalledApps.Item.Chat.@Ref {
                 await RequestAdapter.SendNoContentAsync(requestInfo);
                 // Print request output. What if the request has no return?
                 Console.WriteLine("Success");
-            });
+            }, userIdOption, userScopeTeamsAppInstallationIdOption, bodyOption);
             return command;
         }
         /// <summary>
@@ -115,7 +122,7 @@ namespace ApiSdk.Users.Item.Teamwork.InstalledApps.Item.Chat.@Ref {
         /// </summary>
         public RequestInformation CreateDeleteRequestInformation(Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
             var requestInfo = new RequestInformation {
-                HttpMethod = HttpMethod.DELETE,
+                HttpMethod = Method.DELETE,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };
@@ -130,7 +137,7 @@ namespace ApiSdk.Users.Item.Teamwork.InstalledApps.Item.Chat.@Ref {
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
             var requestInfo = new RequestInformation {
-                HttpMethod = HttpMethod.GET,
+                HttpMethod = Method.GET,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };
@@ -147,7 +154,7 @@ namespace ApiSdk.Users.Item.Teamwork.InstalledApps.Item.Chat.@Ref {
         public RequestInformation CreatePutRequestInformation(ApiSdk.Users.Item.Teamwork.InstalledApps.Item.Chat.@Ref.@Ref body, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
             _ = body ?? throw new ArgumentNullException(nameof(body));
             var requestInfo = new RequestInformation {
-                HttpMethod = HttpMethod.PUT,
+                HttpMethod = Method.PUT,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };

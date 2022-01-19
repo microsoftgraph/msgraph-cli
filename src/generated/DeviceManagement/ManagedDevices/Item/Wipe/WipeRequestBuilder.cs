@@ -25,13 +25,15 @@ namespace ApiSdk.DeviceManagement.ManagedDevices.Item.Wipe {
             var command = new Command("post");
             command.Description = "Wipe a device";
             // Create options for all the parameters
-            var managedDeviceIdOption = new Option<string>("--manageddevice-id", description: "key: id of managedDevice");
+            var managedDeviceIdOption = new Option<string>("--manageddevice-id", description: "key: id of managedDevice") {
+            };
             managedDeviceIdOption.IsRequired = true;
             command.AddOption(managedDeviceIdOption);
-            var bodyOption = new Option<string>("--body");
+            var bodyOption = new Option<string>("--body") {
+            };
             bodyOption.IsRequired = true;
             command.AddOption(bodyOption);
-            command.Handler = CommandHandler.Create<string, string>(async (managedDeviceId, body) => {
+            command.SetHandler(async (string managedDeviceId, string body) => {
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<WipeRequestBody>();
@@ -40,7 +42,7 @@ namespace ApiSdk.DeviceManagement.ManagedDevices.Item.Wipe {
                 await RequestAdapter.SendNoContentAsync(requestInfo);
                 // Print request output. What if the request has no return?
                 Console.WriteLine("Success");
-            });
+            }, managedDeviceIdOption, bodyOption);
             return command;
         }
         /// <summary>
@@ -65,7 +67,7 @@ namespace ApiSdk.DeviceManagement.ManagedDevices.Item.Wipe {
         public RequestInformation CreatePostRequestInformation(WipeRequestBody body, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
             _ = body ?? throw new ArgumentNullException(nameof(body));
             var requestInfo = new RequestInformation {
-                HttpMethod = HttpMethod.POST,
+                HttpMethod = Method.POST,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };

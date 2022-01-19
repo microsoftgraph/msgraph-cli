@@ -25,13 +25,15 @@ namespace ApiSdk.DeviceManagement.DeviceConfigurations.Item.GetOmaSettingPlainTe
             var command = new Command("get");
             command.Description = "Invoke function getOmaSettingPlainTextValue";
             // Create options for all the parameters
-            var deviceConfigurationIdOption = new Option<string>("--deviceconfiguration-id", description: "key: id of deviceConfiguration");
+            var deviceConfigurationIdOption = new Option<string>("--deviceconfiguration-id", description: "key: id of deviceConfiguration") {
+            };
             deviceConfigurationIdOption.IsRequired = true;
             command.AddOption(deviceConfigurationIdOption);
-            var secretReferenceValueIdOption = new Option<string>("--secretreferencevalueid", description: "Usage: secretReferenceValueId={secretReferenceValueId}");
+            var secretReferenceValueIdOption = new Option<string>("--secretreferencevalueid", description: "Usage: secretReferenceValueId={secretReferenceValueId}") {
+            };
             secretReferenceValueIdOption.IsRequired = true;
             command.AddOption(secretReferenceValueIdOption);
-            command.Handler = CommandHandler.Create<string, string>(async (deviceConfigurationId, secretReferenceValueId) => {
+            command.SetHandler(async (string deviceConfigurationId, string secretReferenceValueId) => {
                 var requestInfo = CreateGetRequestInformation(q => {
                 });
                 var result = await RequestAdapter.SendPrimitiveAsync<string>(requestInfo);
@@ -42,7 +44,7 @@ namespace ApiSdk.DeviceManagement.DeviceConfigurations.Item.GetOmaSettingPlainTe
                 using var reader = new StreamReader(content);
                 var strContent = await reader.ReadToEndAsync();
                 Console.Write(strContent + "\n");
-            });
+            }, deviceConfigurationIdOption, secretReferenceValueIdOption);
             return command;
         }
         /// <summary>
@@ -67,7 +69,7 @@ namespace ApiSdk.DeviceManagement.DeviceConfigurations.Item.GetOmaSettingPlainTe
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
             var requestInfo = new RequestInformation {
-                HttpMethod = HttpMethod.GET,
+                HttpMethod = Method.GET,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };

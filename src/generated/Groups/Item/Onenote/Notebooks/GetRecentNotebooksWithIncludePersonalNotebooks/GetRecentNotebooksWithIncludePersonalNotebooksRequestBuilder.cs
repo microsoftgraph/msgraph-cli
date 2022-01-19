@@ -25,13 +25,15 @@ namespace ApiSdk.Groups.Item.Onenote.Notebooks.GetRecentNotebooksWithIncludePers
             var command = new Command("get");
             command.Description = "Invoke function getRecentNotebooks";
             // Create options for all the parameters
-            var groupIdOption = new Option<string>("--group-id", description: "key: id of group");
+            var groupIdOption = new Option<string>("--group-id", description: "key: id of group") {
+            };
             groupIdOption.IsRequired = true;
             command.AddOption(groupIdOption);
-            var includePersonalNotebooksOption = new Option<bool?>("--includepersonalnotebooks", description: "Usage: includePersonalNotebooks={includePersonalNotebooks}");
+            var includePersonalNotebooksOption = new Option<bool?>("--includepersonalnotebooks", description: "Usage: includePersonalNotebooks={includePersonalNotebooks}") {
+            };
             includePersonalNotebooksOption.IsRequired = true;
             command.AddOption(includePersonalNotebooksOption);
-            command.Handler = CommandHandler.Create<string, bool?>(async (groupId, includePersonalNotebooks) => {
+            command.SetHandler(async (string groupId, bool? includePersonalNotebooks) => {
                 var requestInfo = CreateGetRequestInformation(q => {
                 });
                 var result = await RequestAdapter.SendCollectionAsync<ApiSdk.Groups.Item.Onenote.Notebooks.GetRecentNotebooksWithIncludePersonalNotebooks.GetRecentNotebooksWithIncludePersonalNotebooks>(requestInfo);
@@ -42,7 +44,7 @@ namespace ApiSdk.Groups.Item.Onenote.Notebooks.GetRecentNotebooksWithIncludePers
                 using var reader = new StreamReader(content);
                 var strContent = await reader.ReadToEndAsync();
                 Console.Write(strContent + "\n");
-            });
+            }, groupIdOption, includePersonalNotebooksOption);
             return command;
         }
         /// <summary>
@@ -67,7 +69,7 @@ namespace ApiSdk.Groups.Item.Onenote.Notebooks.GetRecentNotebooksWithIncludePers
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
             var requestInfo = new RequestInformation {
-                HttpMethod = HttpMethod.GET,
+                HttpMethod = Method.GET,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };

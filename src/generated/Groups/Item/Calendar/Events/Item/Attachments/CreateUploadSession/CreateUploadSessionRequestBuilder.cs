@@ -26,16 +26,19 @@ namespace ApiSdk.Groups.Item.Calendar.Events.Item.Attachments.CreateUploadSessio
             var command = new Command("post");
             command.Description = "Invoke action createUploadSession";
             // Create options for all the parameters
-            var groupIdOption = new Option<string>("--group-id", description: "key: id of group");
+            var groupIdOption = new Option<string>("--group-id", description: "key: id of group") {
+            };
             groupIdOption.IsRequired = true;
             command.AddOption(groupIdOption);
-            var eventIdOption = new Option<string>("--event-id", description: "key: id of event");
+            var eventIdOption = new Option<string>("--event-id", description: "key: id of event") {
+            };
             eventIdOption.IsRequired = true;
             command.AddOption(eventIdOption);
-            var bodyOption = new Option<string>("--body");
+            var bodyOption = new Option<string>("--body") {
+            };
             bodyOption.IsRequired = true;
             command.AddOption(bodyOption);
-            command.Handler = CommandHandler.Create<string, string, string>(async (groupId, eventId, body) => {
+            command.SetHandler(async (string groupId, string eventId, string body) => {
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<CreateUploadSessionRequestBody>();
@@ -49,7 +52,7 @@ namespace ApiSdk.Groups.Item.Calendar.Events.Item.Attachments.CreateUploadSessio
                 using var reader = new StreamReader(content);
                 var strContent = await reader.ReadToEndAsync();
                 Console.Write(strContent + "\n");
-            });
+            }, groupIdOption, eventIdOption, bodyOption);
             return command;
         }
         /// <summary>
@@ -74,7 +77,7 @@ namespace ApiSdk.Groups.Item.Calendar.Events.Item.Attachments.CreateUploadSessio
         public RequestInformation CreatePostRequestInformation(CreateUploadSessionRequestBody body, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
             _ = body ?? throw new ArgumentNullException(nameof(body));
             var requestInfo = new RequestInformation {
-                HttpMethod = HttpMethod.POST,
+                HttpMethod = Method.POST,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };

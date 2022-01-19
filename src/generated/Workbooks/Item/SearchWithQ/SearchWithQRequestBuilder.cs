@@ -25,13 +25,15 @@ namespace ApiSdk.Workbooks.Item.SearchWithQ {
             var command = new Command("get");
             command.Description = "Invoke function search";
             // Create options for all the parameters
-            var driveItemIdOption = new Option<string>("--driveitem-id", description: "key: id of driveItem");
+            var driveItemIdOption = new Option<string>("--driveitem-id", description: "key: id of driveItem") {
+            };
             driveItemIdOption.IsRequired = true;
             command.AddOption(driveItemIdOption);
-            var qOption = new Option<string>("-q", description: "Usage: q={q}");
+            var qOption = new Option<string>("-q", description: "Usage: q={q}") {
+            };
             qOption.IsRequired = true;
             command.AddOption(qOption);
-            command.Handler = CommandHandler.Create<string, string>(async (driveItemId, q) => {
+            command.SetHandler(async (string driveItemId, string q) => {
                 var requestInfo = CreateGetRequestInformation(q => {
                 });
                 var result = await RequestAdapter.SendCollectionAsync<ApiSdk.Workbooks.Item.SearchWithQ.SearchWithQ>(requestInfo);
@@ -42,7 +44,7 @@ namespace ApiSdk.Workbooks.Item.SearchWithQ {
                 using var reader = new StreamReader(content);
                 var strContent = await reader.ReadToEndAsync();
                 Console.Write(strContent + "\n");
-            });
+            }, driveItemIdOption, qOption);
             return command;
         }
         /// <summary>
@@ -67,7 +69,7 @@ namespace ApiSdk.Workbooks.Item.SearchWithQ {
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
             var requestInfo = new RequestInformation {
-                HttpMethod = HttpMethod.GET,
+                HttpMethod = Method.GET,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };

@@ -26,30 +26,37 @@ namespace ApiSdk.Groups.Item.RejectedSenders {
             var command = new Command("get");
             command.Description = "The list of users or groups that are not allowed to create posts or calendar events in this group. Nullable";
             // Create options for all the parameters
-            var groupIdOption = new Option<string>("--group-id", description: "key: id of group");
+            var groupIdOption = new Option<string>("--group-id", description: "key: id of group") {
+            };
             groupIdOption.IsRequired = true;
             command.AddOption(groupIdOption);
-            var topOption = new Option<int?>("--top", description: "Show only the first n items");
+            var topOption = new Option<int?>("--top", description: "Show only the first n items") {
+            };
             topOption.IsRequired = false;
             command.AddOption(topOption);
-            var skipOption = new Option<int?>("--skip", description: "Skip the first n items");
+            var skipOption = new Option<int?>("--skip", description: "Skip the first n items") {
+            };
             skipOption.IsRequired = false;
             command.AddOption(skipOption);
-            var filterOption = new Option<string>("--filter", description: "Filter items by property values");
+            var filterOption = new Option<string>("--filter", description: "Filter items by property values") {
+            };
             filterOption.IsRequired = false;
             command.AddOption(filterOption);
-            var countOption = new Option<bool?>("--count", description: "Include count of items");
+            var countOption = new Option<bool?>("--count", description: "Include count of items") {
+            };
             countOption.IsRequired = false;
             command.AddOption(countOption);
-            var orderbyOption = new Option<string[]>("--orderby", description: "Order items by property values");
+            var orderbyOption = new Option<string[]>("--orderby", description: "Order items by property values") {
+                Arity = ArgumentArity.ZeroOrMore
+            };
             orderbyOption.IsRequired = false;
-            orderbyOption.Arity = ArgumentArity.ZeroOrMore;
             command.AddOption(orderbyOption);
-            var selectOption = new Option<string[]>("--select", description: "Select properties to be returned");
+            var selectOption = new Option<string[]>("--select", description: "Select properties to be returned") {
+                Arity = ArgumentArity.ZeroOrMore
+            };
             selectOption.IsRequired = false;
-            selectOption.Arity = ArgumentArity.ZeroOrMore;
             command.AddOption(selectOption);
-            command.Handler = CommandHandler.Create<string, int?, int?, string, bool?, string[], string[]>(async (groupId, top, skip, filter, count, orderby, select) => {
+            command.SetHandler(async (string groupId, int? top, int? skip, string filter, bool? count, string[] orderby, string[] select) => {
                 var requestInfo = CreateGetRequestInformation(q => {
                     q.Top = top;
                     q.Skip = skip;
@@ -66,7 +73,7 @@ namespace ApiSdk.Groups.Item.RejectedSenders {
                 using var reader = new StreamReader(content);
                 var strContent = await reader.ReadToEndAsync();
                 Console.Write(strContent + "\n");
-            });
+            }, groupIdOption, topOption, skipOption, filterOption, countOption, orderbyOption, selectOption);
             return command;
         }
         public Command BuildRefCommand() {
@@ -97,7 +104,7 @@ namespace ApiSdk.Groups.Item.RejectedSenders {
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<GetQueryParameters> q = default, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
             var requestInfo = new RequestInformation {
-                HttpMethod = HttpMethod.GET,
+                HttpMethod = Method.GET,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };

@@ -37,16 +37,19 @@ namespace ApiSdk.Users.Item.CalendarView.Item.Attachments {
             var command = new Command("create");
             command.Description = "The collection of FileAttachment, ItemAttachment, and referenceAttachment attachments for the event. Navigation property. Read-only. Nullable.";
             // Create options for all the parameters
-            var userIdOption = new Option<string>("--user-id", description: "key: id of user");
+            var userIdOption = new Option<string>("--user-id", description: "key: id of user") {
+            };
             userIdOption.IsRequired = true;
             command.AddOption(userIdOption);
-            var eventIdOption = new Option<string>("--event-id", description: "key: id of event");
+            var eventIdOption = new Option<string>("--event-id", description: "key: id of event") {
+            };
             eventIdOption.IsRequired = true;
             command.AddOption(eventIdOption);
-            var bodyOption = new Option<string>("--body");
+            var bodyOption = new Option<string>("--body") {
+            };
             bodyOption.IsRequired = true;
             command.AddOption(bodyOption);
-            command.Handler = CommandHandler.Create<string, string, string>(async (userId, eventId, body) => {
+            command.SetHandler(async (string userId, string eventId, string body) => {
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<Attachment>();
@@ -60,7 +63,7 @@ namespace ApiSdk.Users.Item.CalendarView.Item.Attachments {
                 using var reader = new StreamReader(content);
                 var strContent = await reader.ReadToEndAsync();
                 Console.Write(strContent + "\n");
-            });
+            }, userIdOption, eventIdOption, bodyOption);
             return command;
         }
         public Command BuildCreateUploadSessionCommand() {
@@ -76,37 +79,46 @@ namespace ApiSdk.Users.Item.CalendarView.Item.Attachments {
             var command = new Command("list");
             command.Description = "The collection of FileAttachment, ItemAttachment, and referenceAttachment attachments for the event. Navigation property. Read-only. Nullable.";
             // Create options for all the parameters
-            var userIdOption = new Option<string>("--user-id", description: "key: id of user");
+            var userIdOption = new Option<string>("--user-id", description: "key: id of user") {
+            };
             userIdOption.IsRequired = true;
             command.AddOption(userIdOption);
-            var eventIdOption = new Option<string>("--event-id", description: "key: id of event");
+            var eventIdOption = new Option<string>("--event-id", description: "key: id of event") {
+            };
             eventIdOption.IsRequired = true;
             command.AddOption(eventIdOption);
-            var topOption = new Option<int?>("--top", description: "Show only the first n items");
+            var topOption = new Option<int?>("--top", description: "Show only the first n items") {
+            };
             topOption.IsRequired = false;
             command.AddOption(topOption);
-            var skipOption = new Option<int?>("--skip", description: "Skip the first n items");
+            var skipOption = new Option<int?>("--skip", description: "Skip the first n items") {
+            };
             skipOption.IsRequired = false;
             command.AddOption(skipOption);
-            var filterOption = new Option<string>("--filter", description: "Filter items by property values");
+            var filterOption = new Option<string>("--filter", description: "Filter items by property values") {
+            };
             filterOption.IsRequired = false;
             command.AddOption(filterOption);
-            var countOption = new Option<bool?>("--count", description: "Include count of items");
+            var countOption = new Option<bool?>("--count", description: "Include count of items") {
+            };
             countOption.IsRequired = false;
             command.AddOption(countOption);
-            var orderbyOption = new Option<string[]>("--orderby", description: "Order items by property values");
+            var orderbyOption = new Option<string[]>("--orderby", description: "Order items by property values") {
+                Arity = ArgumentArity.ZeroOrMore
+            };
             orderbyOption.IsRequired = false;
-            orderbyOption.Arity = ArgumentArity.ZeroOrMore;
             command.AddOption(orderbyOption);
-            var selectOption = new Option<string[]>("--select", description: "Select properties to be returned");
+            var selectOption = new Option<string[]>("--select", description: "Select properties to be returned") {
+                Arity = ArgumentArity.ZeroOrMore
+            };
             selectOption.IsRequired = false;
-            selectOption.Arity = ArgumentArity.ZeroOrMore;
             command.AddOption(selectOption);
-            var expandOption = new Option<string[]>("--expand", description: "Expand related entities");
+            var expandOption = new Option<string[]>("--expand", description: "Expand related entities") {
+                Arity = ArgumentArity.ZeroOrMore
+            };
             expandOption.IsRequired = false;
-            expandOption.Arity = ArgumentArity.ZeroOrMore;
             command.AddOption(expandOption);
-            command.Handler = CommandHandler.Create<string, string, int?, int?, string, bool?, string[], string[], string[]>(async (userId, eventId, top, skip, filter, count, orderby, select, expand) => {
+            command.SetHandler(async (string userId, string eventId, int? top, int? skip, string filter, bool? count, string[] orderby, string[] select, string[] expand) => {
                 var requestInfo = CreateGetRequestInformation(q => {
                     q.Top = top;
                     q.Skip = skip;
@@ -124,7 +136,7 @@ namespace ApiSdk.Users.Item.CalendarView.Item.Attachments {
                 using var reader = new StreamReader(content);
                 var strContent = await reader.ReadToEndAsync();
                 Console.Write(strContent + "\n");
-            });
+            }, userIdOption, eventIdOption, topOption, skipOption, filterOption, countOption, orderbyOption, selectOption, expandOption);
             return command;
         }
         /// <summary>
@@ -148,7 +160,7 @@ namespace ApiSdk.Users.Item.CalendarView.Item.Attachments {
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<GetQueryParameters> q = default, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
             var requestInfo = new RequestInformation {
-                HttpMethod = HttpMethod.GET,
+                HttpMethod = Method.GET,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };
@@ -170,7 +182,7 @@ namespace ApiSdk.Users.Item.CalendarView.Item.Attachments {
         public RequestInformation CreatePostRequestInformation(Attachment body, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
             _ = body ?? throw new ArgumentNullException(nameof(body));
             var requestInfo = new RequestInformation {
-                HttpMethod = HttpMethod.POST,
+                HttpMethod = Method.POST,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };

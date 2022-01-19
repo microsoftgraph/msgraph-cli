@@ -27,16 +27,17 @@ namespace ApiSdk.Me.Authentication.MicrosoftAuthenticatorMethods.Item {
             var command = new Command("delete");
             command.Description = "Delete navigation property microsoftAuthenticatorMethods for me";
             // Create options for all the parameters
-            var microsoftAuthenticatorAuthenticationMethodIdOption = new Option<string>("--microsoftauthenticatorauthenticationmethod-id", description: "key: id of microsoftAuthenticatorAuthenticationMethod");
+            var microsoftAuthenticatorAuthenticationMethodIdOption = new Option<string>("--microsoftauthenticatorauthenticationmethod-id", description: "key: id of microsoftAuthenticatorAuthenticationMethod") {
+            };
             microsoftAuthenticatorAuthenticationMethodIdOption.IsRequired = true;
             command.AddOption(microsoftAuthenticatorAuthenticationMethodIdOption);
-            command.Handler = CommandHandler.Create<string>(async (microsoftAuthenticatorAuthenticationMethodId) => {
+            command.SetHandler(async (string microsoftAuthenticatorAuthenticationMethodId) => {
                 var requestInfo = CreateDeleteRequestInformation(q => {
                 });
                 await RequestAdapter.SendNoContentAsync(requestInfo);
                 // Print request output. What if the request has no return?
                 Console.WriteLine("Success");
-            });
+            }, microsoftAuthenticatorAuthenticationMethodIdOption);
             return command;
         }
         public Command BuildDeviceCommand() {
@@ -54,18 +55,21 @@ namespace ApiSdk.Me.Authentication.MicrosoftAuthenticatorMethods.Item {
             var command = new Command("get");
             command.Description = "Get microsoftAuthenticatorMethods from me";
             // Create options for all the parameters
-            var microsoftAuthenticatorAuthenticationMethodIdOption = new Option<string>("--microsoftauthenticatorauthenticationmethod-id", description: "key: id of microsoftAuthenticatorAuthenticationMethod");
+            var microsoftAuthenticatorAuthenticationMethodIdOption = new Option<string>("--microsoftauthenticatorauthenticationmethod-id", description: "key: id of microsoftAuthenticatorAuthenticationMethod") {
+            };
             microsoftAuthenticatorAuthenticationMethodIdOption.IsRequired = true;
             command.AddOption(microsoftAuthenticatorAuthenticationMethodIdOption);
-            var selectOption = new Option<string[]>("--select", description: "Select properties to be returned");
+            var selectOption = new Option<string[]>("--select", description: "Select properties to be returned") {
+                Arity = ArgumentArity.ZeroOrMore
+            };
             selectOption.IsRequired = false;
-            selectOption.Arity = ArgumentArity.ZeroOrMore;
             command.AddOption(selectOption);
-            var expandOption = new Option<string[]>("--expand", description: "Expand related entities");
+            var expandOption = new Option<string[]>("--expand", description: "Expand related entities") {
+                Arity = ArgumentArity.ZeroOrMore
+            };
             expandOption.IsRequired = false;
-            expandOption.Arity = ArgumentArity.ZeroOrMore;
             command.AddOption(expandOption);
-            command.Handler = CommandHandler.Create<string, string[], string[]>(async (microsoftAuthenticatorAuthenticationMethodId, select, expand) => {
+            command.SetHandler(async (string microsoftAuthenticatorAuthenticationMethodId, string[] select, string[] expand) => {
                 var requestInfo = CreateGetRequestInformation(q => {
                     q.Select = select;
                     q.Expand = expand;
@@ -78,7 +82,7 @@ namespace ApiSdk.Me.Authentication.MicrosoftAuthenticatorMethods.Item {
                 using var reader = new StreamReader(content);
                 var strContent = await reader.ReadToEndAsync();
                 Console.Write(strContent + "\n");
-            });
+            }, microsoftAuthenticatorAuthenticationMethodIdOption, selectOption, expandOption);
             return command;
         }
         /// <summary>
@@ -88,13 +92,15 @@ namespace ApiSdk.Me.Authentication.MicrosoftAuthenticatorMethods.Item {
             var command = new Command("patch");
             command.Description = "Update the navigation property microsoftAuthenticatorMethods in me";
             // Create options for all the parameters
-            var microsoftAuthenticatorAuthenticationMethodIdOption = new Option<string>("--microsoftauthenticatorauthenticationmethod-id", description: "key: id of microsoftAuthenticatorAuthenticationMethod");
+            var microsoftAuthenticatorAuthenticationMethodIdOption = new Option<string>("--microsoftauthenticatorauthenticationmethod-id", description: "key: id of microsoftAuthenticatorAuthenticationMethod") {
+            };
             microsoftAuthenticatorAuthenticationMethodIdOption.IsRequired = true;
             command.AddOption(microsoftAuthenticatorAuthenticationMethodIdOption);
-            var bodyOption = new Option<string>("--body");
+            var bodyOption = new Option<string>("--body") {
+            };
             bodyOption.IsRequired = true;
             command.AddOption(bodyOption);
-            command.Handler = CommandHandler.Create<string, string>(async (microsoftAuthenticatorAuthenticationMethodId, body) => {
+            command.SetHandler(async (string microsoftAuthenticatorAuthenticationMethodId, string body) => {
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<MicrosoftAuthenticatorAuthenticationMethod>();
@@ -103,7 +109,7 @@ namespace ApiSdk.Me.Authentication.MicrosoftAuthenticatorMethods.Item {
                 await RequestAdapter.SendNoContentAsync(requestInfo);
                 // Print request output. What if the request has no return?
                 Console.WriteLine("Success");
-            });
+            }, microsoftAuthenticatorAuthenticationMethodIdOption, bodyOption);
             return command;
         }
         /// <summary>
@@ -126,7 +132,7 @@ namespace ApiSdk.Me.Authentication.MicrosoftAuthenticatorMethods.Item {
         /// </summary>
         public RequestInformation CreateDeleteRequestInformation(Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
             var requestInfo = new RequestInformation {
-                HttpMethod = HttpMethod.DELETE,
+                HttpMethod = Method.DELETE,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };
@@ -142,7 +148,7 @@ namespace ApiSdk.Me.Authentication.MicrosoftAuthenticatorMethods.Item {
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<GetQueryParameters> q = default, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
             var requestInfo = new RequestInformation {
-                HttpMethod = HttpMethod.GET,
+                HttpMethod = Method.GET,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };
@@ -164,7 +170,7 @@ namespace ApiSdk.Me.Authentication.MicrosoftAuthenticatorMethods.Item {
         public RequestInformation CreatePatchRequestInformation(MicrosoftAuthenticatorAuthenticationMethod body, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
             _ = body ?? throw new ArgumentNullException(nameof(body));
             var requestInfo = new RequestInformation {
-                HttpMethod = HttpMethod.PATCH,
+                HttpMethod = Method.PATCH,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };

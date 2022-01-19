@@ -25,16 +25,19 @@ namespace ApiSdk.IdentityGovernance.AccessReviews.Definitions.Item.Instances.Ite
             var command = new Command("get");
             command.Description = "Invoke function filterByCurrentUser";
             // Create options for all the parameters
-            var accessReviewScheduleDefinitionIdOption = new Option<string>("--accessreviewscheduledefinition-id", description: "key: id of accessReviewScheduleDefinition");
+            var accessReviewScheduleDefinitionIdOption = new Option<string>("--accessreviewscheduledefinition-id", description: "key: id of accessReviewScheduleDefinition") {
+            };
             accessReviewScheduleDefinitionIdOption.IsRequired = true;
             command.AddOption(accessReviewScheduleDefinitionIdOption);
-            var accessReviewInstanceIdOption = new Option<string>("--accessreviewinstance-id", description: "key: id of accessReviewInstance");
+            var accessReviewInstanceIdOption = new Option<string>("--accessreviewinstance-id", description: "key: id of accessReviewInstance") {
+            };
             accessReviewInstanceIdOption.IsRequired = true;
             command.AddOption(accessReviewInstanceIdOption);
-            var onOption = new Option<object>("--on", description: "Usage: on={on}");
+            var onOption = new Option<object>("--on", description: "Usage: on={on}") {
+            };
             onOption.IsRequired = true;
             command.AddOption(onOption);
-            command.Handler = CommandHandler.Create<string, string, object>(async (accessReviewScheduleDefinitionId, accessReviewInstanceId, on) => {
+            command.SetHandler(async (string accessReviewScheduleDefinitionId, string accessReviewInstanceId, object on) => {
                 var requestInfo = CreateGetRequestInformation(q => {
                 });
                 var result = await RequestAdapter.SendCollectionAsync<ApiSdk.IdentityGovernance.AccessReviews.Definitions.Item.Instances.Item.Decisions.FilterByCurrentUserWithOn.FilterByCurrentUserWithOn>(requestInfo);
@@ -45,7 +48,7 @@ namespace ApiSdk.IdentityGovernance.AccessReviews.Definitions.Item.Instances.Ite
                 using var reader = new StreamReader(content);
                 var strContent = await reader.ReadToEndAsync();
                 Console.Write(strContent + "\n");
-            });
+            }, accessReviewScheduleDefinitionIdOption, accessReviewInstanceIdOption, onOption);
             return command;
         }
         /// <summary>
@@ -70,7 +73,7 @@ namespace ApiSdk.IdentityGovernance.AccessReviews.Definitions.Item.Instances.Ite
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
             var requestInfo = new RequestInformation {
-                HttpMethod = HttpMethod.GET,
+                HttpMethod = Method.GET,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };

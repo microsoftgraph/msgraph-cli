@@ -25,13 +25,15 @@ namespace ApiSdk.DeviceManagement.DeviceCompliancePolicies.Item.Assign {
             var command = new Command("post");
             command.Description = "Invoke action assign";
             // Create options for all the parameters
-            var deviceCompliancePolicyIdOption = new Option<string>("--devicecompliancepolicy-id", description: "key: id of deviceCompliancePolicy");
+            var deviceCompliancePolicyIdOption = new Option<string>("--devicecompliancepolicy-id", description: "key: id of deviceCompliancePolicy") {
+            };
             deviceCompliancePolicyIdOption.IsRequired = true;
             command.AddOption(deviceCompliancePolicyIdOption);
-            var bodyOption = new Option<string>("--body");
+            var bodyOption = new Option<string>("--body") {
+            };
             bodyOption.IsRequired = true;
             command.AddOption(bodyOption);
-            command.Handler = CommandHandler.Create<string, string>(async (deviceCompliancePolicyId, body) => {
+            command.SetHandler(async (string deviceCompliancePolicyId, string body) => {
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<AssignRequestBody>();
@@ -45,7 +47,7 @@ namespace ApiSdk.DeviceManagement.DeviceCompliancePolicies.Item.Assign {
                 using var reader = new StreamReader(content);
                 var strContent = await reader.ReadToEndAsync();
                 Console.Write(strContent + "\n");
-            });
+            }, deviceCompliancePolicyIdOption, bodyOption);
             return command;
         }
         /// <summary>
@@ -70,7 +72,7 @@ namespace ApiSdk.DeviceManagement.DeviceCompliancePolicies.Item.Assign {
         public RequestInformation CreatePostRequestInformation(AssignRequestBody body, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
             _ = body ?? throw new ArgumentNullException(nameof(body));
             var requestInfo = new RequestInformation {
-                HttpMethod = HttpMethod.POST,
+                HttpMethod = Method.POST,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };

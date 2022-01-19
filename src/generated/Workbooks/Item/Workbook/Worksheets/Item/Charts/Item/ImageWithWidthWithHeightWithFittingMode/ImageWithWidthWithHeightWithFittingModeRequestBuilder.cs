@@ -25,25 +25,31 @@ namespace ApiSdk.Workbooks.Item.Workbook.Worksheets.Item.Charts.Item.ImageWithWi
             var command = new Command("get");
             command.Description = "Invoke function image";
             // Create options for all the parameters
-            var driveItemIdOption = new Option<string>("--driveitem-id", description: "key: id of driveItem");
+            var driveItemIdOption = new Option<string>("--driveitem-id", description: "key: id of driveItem") {
+            };
             driveItemIdOption.IsRequired = true;
             command.AddOption(driveItemIdOption);
-            var workbookWorksheetIdOption = new Option<string>("--workbookworksheet-id", description: "key: id of workbookWorksheet");
+            var workbookWorksheetIdOption = new Option<string>("--workbookworksheet-id", description: "key: id of workbookWorksheet") {
+            };
             workbookWorksheetIdOption.IsRequired = true;
             command.AddOption(workbookWorksheetIdOption);
-            var workbookChartIdOption = new Option<string>("--workbookchart-id", description: "key: id of workbookChart");
+            var workbookChartIdOption = new Option<string>("--workbookchart-id", description: "key: id of workbookChart") {
+            };
             workbookChartIdOption.IsRequired = true;
             command.AddOption(workbookChartIdOption);
-            var widthOption = new Option<int?>("--width", description: "Usage: width={width}");
+            var widthOption = new Option<int?>("--width", description: "Usage: width={width}") {
+            };
             widthOption.IsRequired = true;
             command.AddOption(widthOption);
-            var heightOption = new Option<int?>("--height", description: "Usage: height={height}");
+            var heightOption = new Option<int?>("--height", description: "Usage: height={height}") {
+            };
             heightOption.IsRequired = true;
             command.AddOption(heightOption);
-            var fittingModeOption = new Option<string>("--fittingmode", description: "Usage: fittingMode={fittingMode}");
+            var fittingModeOption = new Option<string>("--fittingmode", description: "Usage: fittingMode={fittingMode}") {
+            };
             fittingModeOption.IsRequired = true;
             command.AddOption(fittingModeOption);
-            command.Handler = CommandHandler.Create<string, string, string, int?, int?, string>(async (driveItemId, workbookWorksheetId, workbookChartId, width, height, fittingMode) => {
+            command.SetHandler(async (string driveItemId, string workbookWorksheetId, string workbookChartId, int? width, int? height, string fittingMode) => {
                 var requestInfo = CreateGetRequestInformation(q => {
                 });
                 var result = await RequestAdapter.SendPrimitiveAsync<string>(requestInfo);
@@ -54,7 +60,7 @@ namespace ApiSdk.Workbooks.Item.Workbook.Worksheets.Item.Charts.Item.ImageWithWi
                 using var reader = new StreamReader(content);
                 var strContent = await reader.ReadToEndAsync();
                 Console.Write(strContent + "\n");
-            });
+            }, driveItemIdOption, workbookWorksheetIdOption, workbookChartIdOption, widthOption, heightOption, fittingModeOption);
             return command;
         }
         /// <summary>
@@ -83,7 +89,7 @@ namespace ApiSdk.Workbooks.Item.Workbook.Worksheets.Item.Charts.Item.ImageWithWi
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
             var requestInfo = new RequestInformation {
-                HttpMethod = HttpMethod.GET,
+                HttpMethod = Method.GET,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };

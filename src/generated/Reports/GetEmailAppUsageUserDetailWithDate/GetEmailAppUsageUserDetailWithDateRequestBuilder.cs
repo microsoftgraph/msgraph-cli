@@ -25,11 +25,13 @@ namespace ApiSdk.Reports.GetEmailAppUsageUserDetailWithDate {
             var command = new Command("get");
             command.Description = "Invoke function getEmailAppUsageUserDetail";
             // Create options for all the parameters
-            var dateOption = new Option<string>("--date", description: "Usage: date={date}");
+            var dateOption = new Option<string>("--date", description: "Usage: date={date}") {
+            };
             dateOption.IsRequired = true;
             command.AddOption(dateOption);
-            command.AddOption(new Option<FileInfo>("--output"));
-            command.Handler = CommandHandler.Create<string, FileInfo>(async (date, output) => {
+            var outputOption = new Option<FileInfo>("--output");
+            command.AddOption(outputOption);
+            command.SetHandler(async (string date, FileInfo output) => {
                 var requestInfo = CreateGetRequestInformation(q => {
                 });
                 var result = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
@@ -44,7 +46,7 @@ namespace ApiSdk.Reports.GetEmailAppUsageUserDetailWithDate {
                     await result.CopyToAsync(writeStream);
                     Console.WriteLine($"Content written to {output.FullName}.");
                 }
-            });
+            }, dateOption, outputOption);
             return command;
         }
         /// <summary>
@@ -69,7 +71,7 @@ namespace ApiSdk.Reports.GetEmailAppUsageUserDetailWithDate {
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
             var requestInfo = new RequestInformation {
-                HttpMethod = HttpMethod.GET,
+                HttpMethod = Method.GET,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };

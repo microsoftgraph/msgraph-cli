@@ -26,19 +26,21 @@ namespace ApiSdk.DeviceManagement.DeviceCompliancePolicySettingStateSummaries.It
             var command = new Command("delete");
             command.Description = "Not yet documented";
             // Create options for all the parameters
-            var deviceCompliancePolicySettingStateSummaryIdOption = new Option<string>("--devicecompliancepolicysettingstatesummary-id", description: "key: id of deviceCompliancePolicySettingStateSummary");
+            var deviceCompliancePolicySettingStateSummaryIdOption = new Option<string>("--devicecompliancepolicysettingstatesummary-id", description: "key: id of deviceCompliancePolicySettingStateSummary") {
+            };
             deviceCompliancePolicySettingStateSummaryIdOption.IsRequired = true;
             command.AddOption(deviceCompliancePolicySettingStateSummaryIdOption);
-            var deviceComplianceSettingStateIdOption = new Option<string>("--devicecompliancesettingstate-id", description: "key: id of deviceComplianceSettingState");
+            var deviceComplianceSettingStateIdOption = new Option<string>("--devicecompliancesettingstate-id", description: "key: id of deviceComplianceSettingState") {
+            };
             deviceComplianceSettingStateIdOption.IsRequired = true;
             command.AddOption(deviceComplianceSettingStateIdOption);
-            command.Handler = CommandHandler.Create<string, string>(async (deviceCompliancePolicySettingStateSummaryId, deviceComplianceSettingStateId) => {
+            command.SetHandler(async (string deviceCompliancePolicySettingStateSummaryId, string deviceComplianceSettingStateId) => {
                 var requestInfo = CreateDeleteRequestInformation(q => {
                 });
                 await RequestAdapter.SendNoContentAsync(requestInfo);
                 // Print request output. What if the request has no return?
                 Console.WriteLine("Success");
-            });
+            }, deviceCompliancePolicySettingStateSummaryIdOption, deviceComplianceSettingStateIdOption);
             return command;
         }
         /// <summary>
@@ -48,21 +50,25 @@ namespace ApiSdk.DeviceManagement.DeviceCompliancePolicySettingStateSummaries.It
             var command = new Command("get");
             command.Description = "Not yet documented";
             // Create options for all the parameters
-            var deviceCompliancePolicySettingStateSummaryIdOption = new Option<string>("--devicecompliancepolicysettingstatesummary-id", description: "key: id of deviceCompliancePolicySettingStateSummary");
+            var deviceCompliancePolicySettingStateSummaryIdOption = new Option<string>("--devicecompliancepolicysettingstatesummary-id", description: "key: id of deviceCompliancePolicySettingStateSummary") {
+            };
             deviceCompliancePolicySettingStateSummaryIdOption.IsRequired = true;
             command.AddOption(deviceCompliancePolicySettingStateSummaryIdOption);
-            var deviceComplianceSettingStateIdOption = new Option<string>("--devicecompliancesettingstate-id", description: "key: id of deviceComplianceSettingState");
+            var deviceComplianceSettingStateIdOption = new Option<string>("--devicecompliancesettingstate-id", description: "key: id of deviceComplianceSettingState") {
+            };
             deviceComplianceSettingStateIdOption.IsRequired = true;
             command.AddOption(deviceComplianceSettingStateIdOption);
-            var selectOption = new Option<string[]>("--select", description: "Select properties to be returned");
+            var selectOption = new Option<string[]>("--select", description: "Select properties to be returned") {
+                Arity = ArgumentArity.ZeroOrMore
+            };
             selectOption.IsRequired = false;
-            selectOption.Arity = ArgumentArity.ZeroOrMore;
             command.AddOption(selectOption);
-            var expandOption = new Option<string[]>("--expand", description: "Expand related entities");
+            var expandOption = new Option<string[]>("--expand", description: "Expand related entities") {
+                Arity = ArgumentArity.ZeroOrMore
+            };
             expandOption.IsRequired = false;
-            expandOption.Arity = ArgumentArity.ZeroOrMore;
             command.AddOption(expandOption);
-            command.Handler = CommandHandler.Create<string, string, string[], string[]>(async (deviceCompliancePolicySettingStateSummaryId, deviceComplianceSettingStateId, select, expand) => {
+            command.SetHandler(async (string deviceCompliancePolicySettingStateSummaryId, string deviceComplianceSettingStateId, string[] select, string[] expand) => {
                 var requestInfo = CreateGetRequestInformation(q => {
                     q.Select = select;
                     q.Expand = expand;
@@ -75,7 +81,7 @@ namespace ApiSdk.DeviceManagement.DeviceCompliancePolicySettingStateSummaries.It
                 using var reader = new StreamReader(content);
                 var strContent = await reader.ReadToEndAsync();
                 Console.Write(strContent + "\n");
-            });
+            }, deviceCompliancePolicySettingStateSummaryIdOption, deviceComplianceSettingStateIdOption, selectOption, expandOption);
             return command;
         }
         /// <summary>
@@ -85,16 +91,19 @@ namespace ApiSdk.DeviceManagement.DeviceCompliancePolicySettingStateSummaries.It
             var command = new Command("patch");
             command.Description = "Not yet documented";
             // Create options for all the parameters
-            var deviceCompliancePolicySettingStateSummaryIdOption = new Option<string>("--devicecompliancepolicysettingstatesummary-id", description: "key: id of deviceCompliancePolicySettingStateSummary");
+            var deviceCompliancePolicySettingStateSummaryIdOption = new Option<string>("--devicecompliancepolicysettingstatesummary-id", description: "key: id of deviceCompliancePolicySettingStateSummary") {
+            };
             deviceCompliancePolicySettingStateSummaryIdOption.IsRequired = true;
             command.AddOption(deviceCompliancePolicySettingStateSummaryIdOption);
-            var deviceComplianceSettingStateIdOption = new Option<string>("--devicecompliancesettingstate-id", description: "key: id of deviceComplianceSettingState");
+            var deviceComplianceSettingStateIdOption = new Option<string>("--devicecompliancesettingstate-id", description: "key: id of deviceComplianceSettingState") {
+            };
             deviceComplianceSettingStateIdOption.IsRequired = true;
             command.AddOption(deviceComplianceSettingStateIdOption);
-            var bodyOption = new Option<string>("--body");
+            var bodyOption = new Option<string>("--body") {
+            };
             bodyOption.IsRequired = true;
             command.AddOption(bodyOption);
-            command.Handler = CommandHandler.Create<string, string, string>(async (deviceCompliancePolicySettingStateSummaryId, deviceComplianceSettingStateId, body) => {
+            command.SetHandler(async (string deviceCompliancePolicySettingStateSummaryId, string deviceComplianceSettingStateId, string body) => {
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<DeviceComplianceSettingState>();
@@ -103,7 +112,7 @@ namespace ApiSdk.DeviceManagement.DeviceCompliancePolicySettingStateSummaries.It
                 await RequestAdapter.SendNoContentAsync(requestInfo);
                 // Print request output. What if the request has no return?
                 Console.WriteLine("Success");
-            });
+            }, deviceCompliancePolicySettingStateSummaryIdOption, deviceComplianceSettingStateIdOption, bodyOption);
             return command;
         }
         /// <summary>
@@ -126,7 +135,7 @@ namespace ApiSdk.DeviceManagement.DeviceCompliancePolicySettingStateSummaries.It
         /// </summary>
         public RequestInformation CreateDeleteRequestInformation(Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
             var requestInfo = new RequestInformation {
-                HttpMethod = HttpMethod.DELETE,
+                HttpMethod = Method.DELETE,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };
@@ -142,7 +151,7 @@ namespace ApiSdk.DeviceManagement.DeviceCompliancePolicySettingStateSummaries.It
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<GetQueryParameters> q = default, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
             var requestInfo = new RequestInformation {
-                HttpMethod = HttpMethod.GET,
+                HttpMethod = Method.GET,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };
@@ -164,7 +173,7 @@ namespace ApiSdk.DeviceManagement.DeviceCompliancePolicySettingStateSummaries.It
         public RequestInformation CreatePatchRequestInformation(DeviceComplianceSettingState body, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
             _ = body ?? throw new ArgumentNullException(nameof(body));
             var requestInfo = new RequestInformation {
-                HttpMethod = HttpMethod.PATCH,
+                HttpMethod = Method.PATCH,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };

@@ -25,25 +25,31 @@ namespace ApiSdk.Workbooks.Item.Workbook.Worksheets.Item.Charts.Item.Series.Item
             var command = new Command("post");
             command.Description = "Invoke action setSolidColor";
             // Create options for all the parameters
-            var driveItemIdOption = new Option<string>("--driveitem-id", description: "key: id of driveItem");
+            var driveItemIdOption = new Option<string>("--driveitem-id", description: "key: id of driveItem") {
+            };
             driveItemIdOption.IsRequired = true;
             command.AddOption(driveItemIdOption);
-            var workbookWorksheetIdOption = new Option<string>("--workbookworksheet-id", description: "key: id of workbookWorksheet");
+            var workbookWorksheetIdOption = new Option<string>("--workbookworksheet-id", description: "key: id of workbookWorksheet") {
+            };
             workbookWorksheetIdOption.IsRequired = true;
             command.AddOption(workbookWorksheetIdOption);
-            var workbookChartIdOption = new Option<string>("--workbookchart-id", description: "key: id of workbookChart");
+            var workbookChartIdOption = new Option<string>("--workbookchart-id", description: "key: id of workbookChart") {
+            };
             workbookChartIdOption.IsRequired = true;
             command.AddOption(workbookChartIdOption);
-            var workbookChartSeriesIdOption = new Option<string>("--workbookchartseries-id", description: "key: id of workbookChartSeries");
+            var workbookChartSeriesIdOption = new Option<string>("--workbookchartseries-id", description: "key: id of workbookChartSeries") {
+            };
             workbookChartSeriesIdOption.IsRequired = true;
             command.AddOption(workbookChartSeriesIdOption);
-            var workbookChartPointIdOption = new Option<string>("--workbookchartpoint-id", description: "key: id of workbookChartPoint");
+            var workbookChartPointIdOption = new Option<string>("--workbookchartpoint-id", description: "key: id of workbookChartPoint") {
+            };
             workbookChartPointIdOption.IsRequired = true;
             command.AddOption(workbookChartPointIdOption);
-            var bodyOption = new Option<string>("--body");
+            var bodyOption = new Option<string>("--body") {
+            };
             bodyOption.IsRequired = true;
             command.AddOption(bodyOption);
-            command.Handler = CommandHandler.Create<string, string, string, string, string, string>(async (driveItemId, workbookWorksheetId, workbookChartId, workbookChartSeriesId, workbookChartPointId, body) => {
+            command.SetHandler(async (string driveItemId, string workbookWorksheetId, string workbookChartId, string workbookChartSeriesId, string workbookChartPointId, string body) => {
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<SetSolidColorRequestBody>();
@@ -52,7 +58,7 @@ namespace ApiSdk.Workbooks.Item.Workbook.Worksheets.Item.Charts.Item.Series.Item
                 await RequestAdapter.SendNoContentAsync(requestInfo);
                 // Print request output. What if the request has no return?
                 Console.WriteLine("Success");
-            });
+            }, driveItemIdOption, workbookWorksheetIdOption, workbookChartIdOption, workbookChartSeriesIdOption, workbookChartPointIdOption, bodyOption);
             return command;
         }
         /// <summary>
@@ -77,7 +83,7 @@ namespace ApiSdk.Workbooks.Item.Workbook.Worksheets.Item.Charts.Item.Series.Item
         public RequestInformation CreatePostRequestInformation(SetSolidColorRequestBody body, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
             _ = body ?? throw new ArgumentNullException(nameof(body));
             var requestInfo = new RequestInformation {
-                HttpMethod = HttpMethod.POST,
+                HttpMethod = Method.POST,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };

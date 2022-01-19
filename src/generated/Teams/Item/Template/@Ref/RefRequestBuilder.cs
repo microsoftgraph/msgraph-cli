@@ -25,16 +25,17 @@ namespace ApiSdk.Teams.Item.Template.@Ref {
             var command = new Command("delete");
             command.Description = "The template this team was created from. See available templates.";
             // Create options for all the parameters
-            var teamIdOption = new Option<string>("--team-id", description: "key: id of team");
+            var teamIdOption = new Option<string>("--team-id", description: "key: id of team") {
+            };
             teamIdOption.IsRequired = true;
             command.AddOption(teamIdOption);
-            command.Handler = CommandHandler.Create<string>(async (teamId) => {
+            command.SetHandler(async (string teamId) => {
                 var requestInfo = CreateDeleteRequestInformation(q => {
                 });
                 await RequestAdapter.SendNoContentAsync(requestInfo);
                 // Print request output. What if the request has no return?
                 Console.WriteLine("Success");
-            });
+            }, teamIdOption);
             return command;
         }
         /// <summary>
@@ -44,10 +45,11 @@ namespace ApiSdk.Teams.Item.Template.@Ref {
             var command = new Command("get");
             command.Description = "The template this team was created from. See available templates.";
             // Create options for all the parameters
-            var teamIdOption = new Option<string>("--team-id", description: "key: id of team");
+            var teamIdOption = new Option<string>("--team-id", description: "key: id of team") {
+            };
             teamIdOption.IsRequired = true;
             command.AddOption(teamIdOption);
-            command.Handler = CommandHandler.Create<string>(async (teamId) => {
+            command.SetHandler(async (string teamId) => {
                 var requestInfo = CreateGetRequestInformation(q => {
                 });
                 var result = await RequestAdapter.SendPrimitiveAsync<string>(requestInfo);
@@ -58,7 +60,7 @@ namespace ApiSdk.Teams.Item.Template.@Ref {
                 using var reader = new StreamReader(content);
                 var strContent = await reader.ReadToEndAsync();
                 Console.Write(strContent + "\n");
-            });
+            }, teamIdOption);
             return command;
         }
         /// <summary>
@@ -68,13 +70,15 @@ namespace ApiSdk.Teams.Item.Template.@Ref {
             var command = new Command("put");
             command.Description = "The template this team was created from. See available templates.";
             // Create options for all the parameters
-            var teamIdOption = new Option<string>("--team-id", description: "key: id of team");
+            var teamIdOption = new Option<string>("--team-id", description: "key: id of team") {
+            };
             teamIdOption.IsRequired = true;
             command.AddOption(teamIdOption);
-            var bodyOption = new Option<string>("--body");
+            var bodyOption = new Option<string>("--body") {
+            };
             bodyOption.IsRequired = true;
             command.AddOption(bodyOption);
-            command.Handler = CommandHandler.Create<string, string>(async (teamId, body) => {
+            command.SetHandler(async (string teamId, string body) => {
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<ApiSdk.Teams.Item.Template.@Ref.@Ref>();
@@ -83,7 +87,7 @@ namespace ApiSdk.Teams.Item.Template.@Ref {
                 await RequestAdapter.SendNoContentAsync(requestInfo);
                 // Print request output. What if the request has no return?
                 Console.WriteLine("Success");
-            });
+            }, teamIdOption, bodyOption);
             return command;
         }
         /// <summary>
@@ -106,7 +110,7 @@ namespace ApiSdk.Teams.Item.Template.@Ref {
         /// </summary>
         public RequestInformation CreateDeleteRequestInformation(Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
             var requestInfo = new RequestInformation {
-                HttpMethod = HttpMethod.DELETE,
+                HttpMethod = Method.DELETE,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };
@@ -121,7 +125,7 @@ namespace ApiSdk.Teams.Item.Template.@Ref {
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
             var requestInfo = new RequestInformation {
-                HttpMethod = HttpMethod.GET,
+                HttpMethod = Method.GET,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };
@@ -138,7 +142,7 @@ namespace ApiSdk.Teams.Item.Template.@Ref {
         public RequestInformation CreatePutRequestInformation(ApiSdk.Teams.Item.Template.@Ref.@Ref body, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
             _ = body ?? throw new ArgumentNullException(nameof(body));
             var requestInfo = new RequestInformation {
-                HttpMethod = HttpMethod.PUT,
+                HttpMethod = Method.PUT,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };

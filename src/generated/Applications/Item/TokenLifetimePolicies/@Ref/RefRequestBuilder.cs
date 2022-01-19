@@ -25,29 +25,36 @@ namespace ApiSdk.Applications.Item.TokenLifetimePolicies.@Ref {
             var command = new Command("get");
             command.Description = "The tokenLifetimePolicies assigned to this application. Supports $expand.";
             // Create options for all the parameters
-            var applicationIdOption = new Option<string>("--application-id", description: "key: id of application");
+            var applicationIdOption = new Option<string>("--application-id", description: "key: id of application") {
+            };
             applicationIdOption.IsRequired = true;
             command.AddOption(applicationIdOption);
-            var topOption = new Option<int?>("--top", description: "Show only the first n items");
+            var topOption = new Option<int?>("--top", description: "Show only the first n items") {
+            };
             topOption.IsRequired = false;
             command.AddOption(topOption);
-            var skipOption = new Option<int?>("--skip", description: "Skip the first n items");
+            var skipOption = new Option<int?>("--skip", description: "Skip the first n items") {
+            };
             skipOption.IsRequired = false;
             command.AddOption(skipOption);
-            var searchOption = new Option<string>("--search", description: "Search items by search phrases");
+            var searchOption = new Option<string>("--search", description: "Search items by search phrases") {
+            };
             searchOption.IsRequired = false;
             command.AddOption(searchOption);
-            var filterOption = new Option<string>("--filter", description: "Filter items by property values");
+            var filterOption = new Option<string>("--filter", description: "Filter items by property values") {
+            };
             filterOption.IsRequired = false;
             command.AddOption(filterOption);
-            var countOption = new Option<bool?>("--count", description: "Include count of items");
+            var countOption = new Option<bool?>("--count", description: "Include count of items") {
+            };
             countOption.IsRequired = false;
             command.AddOption(countOption);
-            var orderbyOption = new Option<string[]>("--orderby", description: "Order items by property values");
+            var orderbyOption = new Option<string[]>("--orderby", description: "Order items by property values") {
+                Arity = ArgumentArity.ZeroOrMore
+            };
             orderbyOption.IsRequired = false;
-            orderbyOption.Arity = ArgumentArity.ZeroOrMore;
             command.AddOption(orderbyOption);
-            command.Handler = CommandHandler.Create<string, int?, int?, string, string, bool?, string[]>(async (applicationId, top, skip, search, filter, count, orderby) => {
+            command.SetHandler(async (string applicationId, int? top, int? skip, string search, string filter, bool? count, string[] orderby) => {
                 var requestInfo = CreateGetRequestInformation(q => {
                     q.Top = top;
                     q.Skip = skip;
@@ -64,7 +71,7 @@ namespace ApiSdk.Applications.Item.TokenLifetimePolicies.@Ref {
                 using var reader = new StreamReader(content);
                 var strContent = await reader.ReadToEndAsync();
                 Console.Write(strContent + "\n");
-            });
+            }, applicationIdOption, topOption, skipOption, searchOption, filterOption, countOption, orderbyOption);
             return command;
         }
         /// <summary>
@@ -74,13 +81,15 @@ namespace ApiSdk.Applications.Item.TokenLifetimePolicies.@Ref {
             var command = new Command("post");
             command.Description = "The tokenLifetimePolicies assigned to this application. Supports $expand.";
             // Create options for all the parameters
-            var applicationIdOption = new Option<string>("--application-id", description: "key: id of application");
+            var applicationIdOption = new Option<string>("--application-id", description: "key: id of application") {
+            };
             applicationIdOption.IsRequired = true;
             command.AddOption(applicationIdOption);
-            var bodyOption = new Option<string>("--body");
+            var bodyOption = new Option<string>("--body") {
+            };
             bodyOption.IsRequired = true;
             command.AddOption(bodyOption);
-            command.Handler = CommandHandler.Create<string, string>(async (applicationId, body) => {
+            command.SetHandler(async (string applicationId, string body) => {
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<ApiSdk.Applications.Item.TokenLifetimePolicies.@Ref.@Ref>();
@@ -94,7 +103,7 @@ namespace ApiSdk.Applications.Item.TokenLifetimePolicies.@Ref {
                 using var reader = new StreamReader(content);
                 var strContent = await reader.ReadToEndAsync();
                 Console.Write(strContent + "\n");
-            });
+            }, applicationIdOption, bodyOption);
             return command;
         }
         /// <summary>
@@ -118,7 +127,7 @@ namespace ApiSdk.Applications.Item.TokenLifetimePolicies.@Ref {
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<GetQueryParameters> q = default, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
             var requestInfo = new RequestInformation {
-                HttpMethod = HttpMethod.GET,
+                HttpMethod = Method.GET,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };
@@ -140,7 +149,7 @@ namespace ApiSdk.Applications.Item.TokenLifetimePolicies.@Ref {
         public RequestInformation CreatePostRequestInformation(ApiSdk.Applications.Item.TokenLifetimePolicies.@Ref.@Ref body, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
             _ = body ?? throw new ArgumentNullException(nameof(body));
             var requestInfo = new RequestInformation {
-                HttpMethod = HttpMethod.POST,
+                HttpMethod = Method.POST,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };

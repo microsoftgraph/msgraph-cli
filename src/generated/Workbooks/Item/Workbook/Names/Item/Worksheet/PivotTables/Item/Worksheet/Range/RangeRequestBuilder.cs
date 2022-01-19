@@ -26,16 +26,19 @@ namespace ApiSdk.Workbooks.Item.Workbook.Names.Item.Worksheet.PivotTables.Item.W
             var command = new Command("get");
             command.Description = "Invoke function range";
             // Create options for all the parameters
-            var driveItemIdOption = new Option<string>("--driveitem-id", description: "key: id of driveItem");
+            var driveItemIdOption = new Option<string>("--driveitem-id", description: "key: id of driveItem") {
+            };
             driveItemIdOption.IsRequired = true;
             command.AddOption(driveItemIdOption);
-            var workbookNamedItemIdOption = new Option<string>("--workbooknameditem-id", description: "key: id of workbookNamedItem");
+            var workbookNamedItemIdOption = new Option<string>("--workbooknameditem-id", description: "key: id of workbookNamedItem") {
+            };
             workbookNamedItemIdOption.IsRequired = true;
             command.AddOption(workbookNamedItemIdOption);
-            var workbookPivotTableIdOption = new Option<string>("--workbookpivottable-id", description: "key: id of workbookPivotTable");
+            var workbookPivotTableIdOption = new Option<string>("--workbookpivottable-id", description: "key: id of workbookPivotTable") {
+            };
             workbookPivotTableIdOption.IsRequired = true;
             command.AddOption(workbookPivotTableIdOption);
-            command.Handler = CommandHandler.Create<string, string, string>(async (driveItemId, workbookNamedItemId, workbookPivotTableId) => {
+            command.SetHandler(async (string driveItemId, string workbookNamedItemId, string workbookPivotTableId) => {
                 var requestInfo = CreateGetRequestInformation(q => {
                 });
                 var result = await RequestAdapter.SendAsync<RangeResponse>(requestInfo);
@@ -46,7 +49,7 @@ namespace ApiSdk.Workbooks.Item.Workbook.Names.Item.Worksheet.PivotTables.Item.W
                 using var reader = new StreamReader(content);
                 var strContent = await reader.ReadToEndAsync();
                 Console.Write(strContent + "\n");
-            });
+            }, driveItemIdOption, workbookNamedItemIdOption, workbookPivotTableIdOption);
             return command;
         }
         /// <summary>
@@ -69,7 +72,7 @@ namespace ApiSdk.Workbooks.Item.Workbook.Names.Item.Worksheet.PivotTables.Item.W
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
             var requestInfo = new RequestInformation {
-                HttpMethod = HttpMethod.GET,
+                HttpMethod = Method.GET,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };

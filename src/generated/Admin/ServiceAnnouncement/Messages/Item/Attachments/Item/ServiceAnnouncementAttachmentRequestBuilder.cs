@@ -34,19 +34,21 @@ namespace ApiSdk.Admin.ServiceAnnouncement.Messages.Item.Attachments.Item {
             var command = new Command("delete");
             command.Description = "Delete navigation property attachments for admin";
             // Create options for all the parameters
-            var serviceUpdateMessageIdOption = new Option<string>("--serviceupdatemessage-id", description: "key: id of serviceUpdateMessage");
+            var serviceUpdateMessageIdOption = new Option<string>("--serviceupdatemessage-id", description: "key: id of serviceUpdateMessage") {
+            };
             serviceUpdateMessageIdOption.IsRequired = true;
             command.AddOption(serviceUpdateMessageIdOption);
-            var serviceAnnouncementAttachmentIdOption = new Option<string>("--serviceannouncementattachment-id", description: "key: id of serviceAnnouncementAttachment");
+            var serviceAnnouncementAttachmentIdOption = new Option<string>("--serviceannouncementattachment-id", description: "key: id of serviceAnnouncementAttachment") {
+            };
             serviceAnnouncementAttachmentIdOption.IsRequired = true;
             command.AddOption(serviceAnnouncementAttachmentIdOption);
-            command.Handler = CommandHandler.Create<string, string>(async (serviceUpdateMessageId, serviceAnnouncementAttachmentId) => {
+            command.SetHandler(async (string serviceUpdateMessageId, string serviceAnnouncementAttachmentId) => {
                 var requestInfo = CreateDeleteRequestInformation(q => {
                 });
                 await RequestAdapter.SendNoContentAsync(requestInfo);
                 // Print request output. What if the request has no return?
                 Console.WriteLine("Success");
-            });
+            }, serviceUpdateMessageIdOption, serviceAnnouncementAttachmentIdOption);
             return command;
         }
         /// <summary>
@@ -56,21 +58,25 @@ namespace ApiSdk.Admin.ServiceAnnouncement.Messages.Item.Attachments.Item {
             var command = new Command("get");
             command.Description = "Get attachments from admin";
             // Create options for all the parameters
-            var serviceUpdateMessageIdOption = new Option<string>("--serviceupdatemessage-id", description: "key: id of serviceUpdateMessage");
+            var serviceUpdateMessageIdOption = new Option<string>("--serviceupdatemessage-id", description: "key: id of serviceUpdateMessage") {
+            };
             serviceUpdateMessageIdOption.IsRequired = true;
             command.AddOption(serviceUpdateMessageIdOption);
-            var serviceAnnouncementAttachmentIdOption = new Option<string>("--serviceannouncementattachment-id", description: "key: id of serviceAnnouncementAttachment");
+            var serviceAnnouncementAttachmentIdOption = new Option<string>("--serviceannouncementattachment-id", description: "key: id of serviceAnnouncementAttachment") {
+            };
             serviceAnnouncementAttachmentIdOption.IsRequired = true;
             command.AddOption(serviceAnnouncementAttachmentIdOption);
-            var selectOption = new Option<string[]>("--select", description: "Select properties to be returned");
+            var selectOption = new Option<string[]>("--select", description: "Select properties to be returned") {
+                Arity = ArgumentArity.ZeroOrMore
+            };
             selectOption.IsRequired = false;
-            selectOption.Arity = ArgumentArity.ZeroOrMore;
             command.AddOption(selectOption);
-            var expandOption = new Option<string[]>("--expand", description: "Expand related entities");
+            var expandOption = new Option<string[]>("--expand", description: "Expand related entities") {
+                Arity = ArgumentArity.ZeroOrMore
+            };
             expandOption.IsRequired = false;
-            expandOption.Arity = ArgumentArity.ZeroOrMore;
             command.AddOption(expandOption);
-            command.Handler = CommandHandler.Create<string, string, string[], string[]>(async (serviceUpdateMessageId, serviceAnnouncementAttachmentId, select, expand) => {
+            command.SetHandler(async (string serviceUpdateMessageId, string serviceAnnouncementAttachmentId, string[] select, string[] expand) => {
                 var requestInfo = CreateGetRequestInformation(q => {
                     q.Select = select;
                     q.Expand = expand;
@@ -83,7 +89,7 @@ namespace ApiSdk.Admin.ServiceAnnouncement.Messages.Item.Attachments.Item {
                 using var reader = new StreamReader(content);
                 var strContent = await reader.ReadToEndAsync();
                 Console.Write(strContent + "\n");
-            });
+            }, serviceUpdateMessageIdOption, serviceAnnouncementAttachmentIdOption, selectOption, expandOption);
             return command;
         }
         /// <summary>
@@ -93,16 +99,19 @@ namespace ApiSdk.Admin.ServiceAnnouncement.Messages.Item.Attachments.Item {
             var command = new Command("patch");
             command.Description = "Update the navigation property attachments in admin";
             // Create options for all the parameters
-            var serviceUpdateMessageIdOption = new Option<string>("--serviceupdatemessage-id", description: "key: id of serviceUpdateMessage");
+            var serviceUpdateMessageIdOption = new Option<string>("--serviceupdatemessage-id", description: "key: id of serviceUpdateMessage") {
+            };
             serviceUpdateMessageIdOption.IsRequired = true;
             command.AddOption(serviceUpdateMessageIdOption);
-            var serviceAnnouncementAttachmentIdOption = new Option<string>("--serviceannouncementattachment-id", description: "key: id of serviceAnnouncementAttachment");
+            var serviceAnnouncementAttachmentIdOption = new Option<string>("--serviceannouncementattachment-id", description: "key: id of serviceAnnouncementAttachment") {
+            };
             serviceAnnouncementAttachmentIdOption.IsRequired = true;
             command.AddOption(serviceAnnouncementAttachmentIdOption);
-            var bodyOption = new Option<string>("--body");
+            var bodyOption = new Option<string>("--body") {
+            };
             bodyOption.IsRequired = true;
             command.AddOption(bodyOption);
-            command.Handler = CommandHandler.Create<string, string, string>(async (serviceUpdateMessageId, serviceAnnouncementAttachmentId, body) => {
+            command.SetHandler(async (string serviceUpdateMessageId, string serviceAnnouncementAttachmentId, string body) => {
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<ServiceAnnouncementAttachment>();
@@ -111,7 +120,7 @@ namespace ApiSdk.Admin.ServiceAnnouncement.Messages.Item.Attachments.Item {
                 await RequestAdapter.SendNoContentAsync(requestInfo);
                 // Print request output. What if the request has no return?
                 Console.WriteLine("Success");
-            });
+            }, serviceUpdateMessageIdOption, serviceAnnouncementAttachmentIdOption, bodyOption);
             return command;
         }
         /// <summary>
@@ -134,7 +143,7 @@ namespace ApiSdk.Admin.ServiceAnnouncement.Messages.Item.Attachments.Item {
         /// </summary>
         public RequestInformation CreateDeleteRequestInformation(Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
             var requestInfo = new RequestInformation {
-                HttpMethod = HttpMethod.DELETE,
+                HttpMethod = Method.DELETE,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };
@@ -150,7 +159,7 @@ namespace ApiSdk.Admin.ServiceAnnouncement.Messages.Item.Attachments.Item {
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<GetQueryParameters> q = default, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
             var requestInfo = new RequestInformation {
-                HttpMethod = HttpMethod.GET,
+                HttpMethod = Method.GET,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };
@@ -172,7 +181,7 @@ namespace ApiSdk.Admin.ServiceAnnouncement.Messages.Item.Attachments.Item {
         public RequestInformation CreatePatchRequestInformation(ServiceAnnouncementAttachment body, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
             _ = body ?? throw new ArgumentNullException(nameof(body));
             var requestInfo = new RequestInformation {
-                HttpMethod = HttpMethod.PATCH,
+                HttpMethod = Method.PATCH,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };

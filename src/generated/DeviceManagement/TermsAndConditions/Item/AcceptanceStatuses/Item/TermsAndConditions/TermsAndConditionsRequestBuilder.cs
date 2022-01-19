@@ -27,21 +27,25 @@ namespace ApiSdk.DeviceManagement.TermsAndConditions.Item.AcceptanceStatuses.Ite
             var command = new Command("get");
             command.Description = "Navigation link to the terms and conditions that are assigned.";
             // Create options for all the parameters
-            var termsAndConditionsIdOption = new Option<string>("--termsandconditions-id", description: "key: id of termsAndConditions");
+            var termsAndConditionsIdOption = new Option<string>("--termsandconditions-id", description: "key: id of termsAndConditions") {
+            };
             termsAndConditionsIdOption.IsRequired = true;
             command.AddOption(termsAndConditionsIdOption);
-            var termsAndConditionsAcceptanceStatusIdOption = new Option<string>("--termsandconditionsacceptancestatus-id", description: "key: id of termsAndConditionsAcceptanceStatus");
+            var termsAndConditionsAcceptanceStatusIdOption = new Option<string>("--termsandconditionsacceptancestatus-id", description: "key: id of termsAndConditionsAcceptanceStatus") {
+            };
             termsAndConditionsAcceptanceStatusIdOption.IsRequired = true;
             command.AddOption(termsAndConditionsAcceptanceStatusIdOption);
-            var selectOption = new Option<string[]>("--select", description: "Select properties to be returned");
+            var selectOption = new Option<string[]>("--select", description: "Select properties to be returned") {
+                Arity = ArgumentArity.ZeroOrMore
+            };
             selectOption.IsRequired = false;
-            selectOption.Arity = ArgumentArity.ZeroOrMore;
             command.AddOption(selectOption);
-            var expandOption = new Option<string[]>("--expand", description: "Expand related entities");
+            var expandOption = new Option<string[]>("--expand", description: "Expand related entities") {
+                Arity = ArgumentArity.ZeroOrMore
+            };
             expandOption.IsRequired = false;
-            expandOption.Arity = ArgumentArity.ZeroOrMore;
             command.AddOption(expandOption);
-            command.Handler = CommandHandler.Create<string, string, string[], string[]>(async (termsAndConditionsId, termsAndConditionsAcceptanceStatusId, select, expand) => {
+            command.SetHandler(async (string termsAndConditionsId, string termsAndConditionsAcceptanceStatusId, string[] select, string[] expand) => {
                 var requestInfo = CreateGetRequestInformation(q => {
                     q.Select = select;
                     q.Expand = expand;
@@ -54,7 +58,7 @@ namespace ApiSdk.DeviceManagement.TermsAndConditions.Item.AcceptanceStatuses.Ite
                 using var reader = new StreamReader(content);
                 var strContent = await reader.ReadToEndAsync();
                 Console.Write(strContent + "\n");
-            });
+            }, termsAndConditionsIdOption, termsAndConditionsAcceptanceStatusIdOption, selectOption, expandOption);
             return command;
         }
         public Command BuildRefCommand() {
@@ -86,7 +90,7 @@ namespace ApiSdk.DeviceManagement.TermsAndConditions.Item.AcceptanceStatuses.Ite
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<GetQueryParameters> q = default, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
             var requestInfo = new RequestInformation {
-                HttpMethod = HttpMethod.GET,
+                HttpMethod = Method.GET,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };

@@ -25,16 +25,17 @@ namespace ApiSdk.RoleManagement.EntitlementManagement.RoleAssignments.Item.Princ
             var command = new Command("delete");
             command.Description = "The assigned principal. Provided so that callers can get the principal using $expand at the same time as getting the role assignment. Read-only. Supports $expand.";
             // Create options for all the parameters
-            var unifiedRoleAssignmentIdOption = new Option<string>("--unifiedroleassignment-id", description: "key: id of unifiedRoleAssignment");
+            var unifiedRoleAssignmentIdOption = new Option<string>("--unifiedroleassignment-id", description: "key: id of unifiedRoleAssignment") {
+            };
             unifiedRoleAssignmentIdOption.IsRequired = true;
             command.AddOption(unifiedRoleAssignmentIdOption);
-            command.Handler = CommandHandler.Create<string>(async (unifiedRoleAssignmentId) => {
+            command.SetHandler(async (string unifiedRoleAssignmentId) => {
                 var requestInfo = CreateDeleteRequestInformation(q => {
                 });
                 await RequestAdapter.SendNoContentAsync(requestInfo);
                 // Print request output. What if the request has no return?
                 Console.WriteLine("Success");
-            });
+            }, unifiedRoleAssignmentIdOption);
             return command;
         }
         /// <summary>
@@ -44,10 +45,11 @@ namespace ApiSdk.RoleManagement.EntitlementManagement.RoleAssignments.Item.Princ
             var command = new Command("get");
             command.Description = "The assigned principal. Provided so that callers can get the principal using $expand at the same time as getting the role assignment. Read-only. Supports $expand.";
             // Create options for all the parameters
-            var unifiedRoleAssignmentIdOption = new Option<string>("--unifiedroleassignment-id", description: "key: id of unifiedRoleAssignment");
+            var unifiedRoleAssignmentIdOption = new Option<string>("--unifiedroleassignment-id", description: "key: id of unifiedRoleAssignment") {
+            };
             unifiedRoleAssignmentIdOption.IsRequired = true;
             command.AddOption(unifiedRoleAssignmentIdOption);
-            command.Handler = CommandHandler.Create<string>(async (unifiedRoleAssignmentId) => {
+            command.SetHandler(async (string unifiedRoleAssignmentId) => {
                 var requestInfo = CreateGetRequestInformation(q => {
                 });
                 var result = await RequestAdapter.SendPrimitiveAsync<string>(requestInfo);
@@ -58,7 +60,7 @@ namespace ApiSdk.RoleManagement.EntitlementManagement.RoleAssignments.Item.Princ
                 using var reader = new StreamReader(content);
                 var strContent = await reader.ReadToEndAsync();
                 Console.Write(strContent + "\n");
-            });
+            }, unifiedRoleAssignmentIdOption);
             return command;
         }
         /// <summary>
@@ -68,13 +70,15 @@ namespace ApiSdk.RoleManagement.EntitlementManagement.RoleAssignments.Item.Princ
             var command = new Command("put");
             command.Description = "The assigned principal. Provided so that callers can get the principal using $expand at the same time as getting the role assignment. Read-only. Supports $expand.";
             // Create options for all the parameters
-            var unifiedRoleAssignmentIdOption = new Option<string>("--unifiedroleassignment-id", description: "key: id of unifiedRoleAssignment");
+            var unifiedRoleAssignmentIdOption = new Option<string>("--unifiedroleassignment-id", description: "key: id of unifiedRoleAssignment") {
+            };
             unifiedRoleAssignmentIdOption.IsRequired = true;
             command.AddOption(unifiedRoleAssignmentIdOption);
-            var bodyOption = new Option<string>("--body");
+            var bodyOption = new Option<string>("--body") {
+            };
             bodyOption.IsRequired = true;
             command.AddOption(bodyOption);
-            command.Handler = CommandHandler.Create<string, string>(async (unifiedRoleAssignmentId, body) => {
+            command.SetHandler(async (string unifiedRoleAssignmentId, string body) => {
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<ApiSdk.RoleManagement.EntitlementManagement.RoleAssignments.Item.Principal.@Ref.@Ref>();
@@ -83,7 +87,7 @@ namespace ApiSdk.RoleManagement.EntitlementManagement.RoleAssignments.Item.Princ
                 await RequestAdapter.SendNoContentAsync(requestInfo);
                 // Print request output. What if the request has no return?
                 Console.WriteLine("Success");
-            });
+            }, unifiedRoleAssignmentIdOption, bodyOption);
             return command;
         }
         /// <summary>
@@ -106,7 +110,7 @@ namespace ApiSdk.RoleManagement.EntitlementManagement.RoleAssignments.Item.Princ
         /// </summary>
         public RequestInformation CreateDeleteRequestInformation(Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
             var requestInfo = new RequestInformation {
-                HttpMethod = HttpMethod.DELETE,
+                HttpMethod = Method.DELETE,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };
@@ -121,7 +125,7 @@ namespace ApiSdk.RoleManagement.EntitlementManagement.RoleAssignments.Item.Princ
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
             var requestInfo = new RequestInformation {
-                HttpMethod = HttpMethod.GET,
+                HttpMethod = Method.GET,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };
@@ -138,7 +142,7 @@ namespace ApiSdk.RoleManagement.EntitlementManagement.RoleAssignments.Item.Princ
         public RequestInformation CreatePutRequestInformation(ApiSdk.RoleManagement.EntitlementManagement.RoleAssignments.Item.Principal.@Ref.@Ref body, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
             _ = body ?? throw new ArgumentNullException(nameof(body));
             var requestInfo = new RequestInformation {
-                HttpMethod = HttpMethod.PUT,
+                HttpMethod = Method.PUT,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };

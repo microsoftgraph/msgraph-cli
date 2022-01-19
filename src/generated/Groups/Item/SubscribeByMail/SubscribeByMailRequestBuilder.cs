@@ -25,16 +25,17 @@ namespace ApiSdk.Groups.Item.SubscribeByMail {
             var command = new Command("post");
             command.Description = "Invoke action subscribeByMail";
             // Create options for all the parameters
-            var groupIdOption = new Option<string>("--group-id", description: "key: id of group");
+            var groupIdOption = new Option<string>("--group-id", description: "key: id of group") {
+            };
             groupIdOption.IsRequired = true;
             command.AddOption(groupIdOption);
-            command.Handler = CommandHandler.Create<string>(async (groupId) => {
+            command.SetHandler(async (string groupId) => {
                 var requestInfo = CreatePostRequestInformation(q => {
                 });
                 await RequestAdapter.SendNoContentAsync(requestInfo);
                 // Print request output. What if the request has no return?
                 Console.WriteLine("Success");
-            });
+            }, groupIdOption);
             return command;
         }
         /// <summary>
@@ -57,7 +58,7 @@ namespace ApiSdk.Groups.Item.SubscribeByMail {
         /// </summary>
         public RequestInformation CreatePostRequestInformation(Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
             var requestInfo = new RequestInformation {
-                HttpMethod = HttpMethod.POST,
+                HttpMethod = Method.POST,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };

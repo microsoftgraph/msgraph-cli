@@ -36,25 +36,29 @@ namespace ApiSdk.Sites.Item.TermStore.Groups.Item.Sets.Item.Children.Item {
             var command = new Command("delete");
             command.Description = "Children terms of set in term [store].";
             // Create options for all the parameters
-            var siteIdOption = new Option<string>("--site-id", description: "key: id of site");
+            var siteIdOption = new Option<string>("--site-id", description: "key: id of site") {
+            };
             siteIdOption.IsRequired = true;
             command.AddOption(siteIdOption);
-            var groupIdOption = new Option<string>("--group-id", description: "key: id of group");
+            var groupIdOption = new Option<string>("--group-id", description: "key: id of group") {
+            };
             groupIdOption.IsRequired = true;
             command.AddOption(groupIdOption);
-            var setIdOption = new Option<string>("--set-id", description: "key: id of set");
+            var setIdOption = new Option<string>("--set-id", description: "key: id of set") {
+            };
             setIdOption.IsRequired = true;
             command.AddOption(setIdOption);
-            var termIdOption = new Option<string>("--term-id", description: "key: id of term");
+            var termIdOption = new Option<string>("--term-id", description: "key: id of term") {
+            };
             termIdOption.IsRequired = true;
             command.AddOption(termIdOption);
-            command.Handler = CommandHandler.Create<string, string, string, string>(async (siteId, groupId, setId, termId) => {
+            command.SetHandler(async (string siteId, string groupId, string setId, string termId) => {
                 var requestInfo = CreateDeleteRequestInformation(q => {
                 });
                 await RequestAdapter.SendNoContentAsync(requestInfo);
                 // Print request output. What if the request has no return?
                 Console.WriteLine("Success");
-            });
+            }, siteIdOption, groupIdOption, setIdOption, termIdOption);
             return command;
         }
         /// <summary>
@@ -64,27 +68,33 @@ namespace ApiSdk.Sites.Item.TermStore.Groups.Item.Sets.Item.Children.Item {
             var command = new Command("get");
             command.Description = "Children terms of set in term [store].";
             // Create options for all the parameters
-            var siteIdOption = new Option<string>("--site-id", description: "key: id of site");
+            var siteIdOption = new Option<string>("--site-id", description: "key: id of site") {
+            };
             siteIdOption.IsRequired = true;
             command.AddOption(siteIdOption);
-            var groupIdOption = new Option<string>("--group-id", description: "key: id of group");
+            var groupIdOption = new Option<string>("--group-id", description: "key: id of group") {
+            };
             groupIdOption.IsRequired = true;
             command.AddOption(groupIdOption);
-            var setIdOption = new Option<string>("--set-id", description: "key: id of set");
+            var setIdOption = new Option<string>("--set-id", description: "key: id of set") {
+            };
             setIdOption.IsRequired = true;
             command.AddOption(setIdOption);
-            var termIdOption = new Option<string>("--term-id", description: "key: id of term");
+            var termIdOption = new Option<string>("--term-id", description: "key: id of term") {
+            };
             termIdOption.IsRequired = true;
             command.AddOption(termIdOption);
-            var selectOption = new Option<string[]>("--select", description: "Select properties to be returned");
+            var selectOption = new Option<string[]>("--select", description: "Select properties to be returned") {
+                Arity = ArgumentArity.ZeroOrMore
+            };
             selectOption.IsRequired = false;
-            selectOption.Arity = ArgumentArity.ZeroOrMore;
             command.AddOption(selectOption);
-            var expandOption = new Option<string[]>("--expand", description: "Expand related entities");
+            var expandOption = new Option<string[]>("--expand", description: "Expand related entities") {
+                Arity = ArgumentArity.ZeroOrMore
+            };
             expandOption.IsRequired = false;
-            expandOption.Arity = ArgumentArity.ZeroOrMore;
             command.AddOption(expandOption);
-            command.Handler = CommandHandler.Create<string, string, string, string, string[], string[]>(async (siteId, groupId, setId, termId, select, expand) => {
+            command.SetHandler(async (string siteId, string groupId, string setId, string termId, string[] select, string[] expand) => {
                 var requestInfo = CreateGetRequestInformation(q => {
                     q.Select = select;
                     q.Expand = expand;
@@ -97,7 +107,7 @@ namespace ApiSdk.Sites.Item.TermStore.Groups.Item.Sets.Item.Children.Item {
                 using var reader = new StreamReader(content);
                 var strContent = await reader.ReadToEndAsync();
                 Console.Write(strContent + "\n");
-            });
+            }, siteIdOption, groupIdOption, setIdOption, termIdOption, selectOption, expandOption);
             return command;
         }
         /// <summary>
@@ -107,22 +117,27 @@ namespace ApiSdk.Sites.Item.TermStore.Groups.Item.Sets.Item.Children.Item {
             var command = new Command("patch");
             command.Description = "Children terms of set in term [store].";
             // Create options for all the parameters
-            var siteIdOption = new Option<string>("--site-id", description: "key: id of site");
+            var siteIdOption = new Option<string>("--site-id", description: "key: id of site") {
+            };
             siteIdOption.IsRequired = true;
             command.AddOption(siteIdOption);
-            var groupIdOption = new Option<string>("--group-id", description: "key: id of group");
+            var groupIdOption = new Option<string>("--group-id", description: "key: id of group") {
+            };
             groupIdOption.IsRequired = true;
             command.AddOption(groupIdOption);
-            var setIdOption = new Option<string>("--set-id", description: "key: id of set");
+            var setIdOption = new Option<string>("--set-id", description: "key: id of set") {
+            };
             setIdOption.IsRequired = true;
             command.AddOption(setIdOption);
-            var termIdOption = new Option<string>("--term-id", description: "key: id of term");
+            var termIdOption = new Option<string>("--term-id", description: "key: id of term") {
+            };
             termIdOption.IsRequired = true;
             command.AddOption(termIdOption);
-            var bodyOption = new Option<string>("--body");
+            var bodyOption = new Option<string>("--body") {
+            };
             bodyOption.IsRequired = true;
             command.AddOption(bodyOption);
-            command.Handler = CommandHandler.Create<string, string, string, string, string>(async (siteId, groupId, setId, termId, body) => {
+            command.SetHandler(async (string siteId, string groupId, string setId, string termId, string body) => {
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<Term>();
@@ -131,7 +146,7 @@ namespace ApiSdk.Sites.Item.TermStore.Groups.Item.Sets.Item.Children.Item {
                 await RequestAdapter.SendNoContentAsync(requestInfo);
                 // Print request output. What if the request has no return?
                 Console.WriteLine("Success");
-            });
+            }, siteIdOption, groupIdOption, setIdOption, termIdOption, bodyOption);
             return command;
         }
         public Command BuildRelationsCommand() {
@@ -168,7 +183,7 @@ namespace ApiSdk.Sites.Item.TermStore.Groups.Item.Sets.Item.Children.Item {
         /// </summary>
         public RequestInformation CreateDeleteRequestInformation(Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
             var requestInfo = new RequestInformation {
-                HttpMethod = HttpMethod.DELETE,
+                HttpMethod = Method.DELETE,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };
@@ -184,7 +199,7 @@ namespace ApiSdk.Sites.Item.TermStore.Groups.Item.Sets.Item.Children.Item {
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<GetQueryParameters> q = default, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
             var requestInfo = new RequestInformation {
-                HttpMethod = HttpMethod.GET,
+                HttpMethod = Method.GET,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };
@@ -206,7 +221,7 @@ namespace ApiSdk.Sites.Item.TermStore.Groups.Item.Sets.Item.Children.Item {
         public RequestInformation CreatePatchRequestInformation(Term body, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
             _ = body ?? throw new ArgumentNullException(nameof(body));
             var requestInfo = new RequestInformation {
-                HttpMethod = HttpMethod.PATCH,
+                HttpMethod = Method.PATCH,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };

@@ -25,16 +25,17 @@ namespace ApiSdk.DeviceManagement.RemoteAssistancePartners.Item.Disconnect {
             var command = new Command("post");
             command.Description = "A request to remove the active TeamViewer connector";
             // Create options for all the parameters
-            var remoteAssistancePartnerIdOption = new Option<string>("--remoteassistancepartner-id", description: "key: id of remoteAssistancePartner");
+            var remoteAssistancePartnerIdOption = new Option<string>("--remoteassistancepartner-id", description: "key: id of remoteAssistancePartner") {
+            };
             remoteAssistancePartnerIdOption.IsRequired = true;
             command.AddOption(remoteAssistancePartnerIdOption);
-            command.Handler = CommandHandler.Create<string>(async (remoteAssistancePartnerId) => {
+            command.SetHandler(async (string remoteAssistancePartnerId) => {
                 var requestInfo = CreatePostRequestInformation(q => {
                 });
                 await RequestAdapter.SendNoContentAsync(requestInfo);
                 // Print request output. What if the request has no return?
                 Console.WriteLine("Success");
-            });
+            }, remoteAssistancePartnerIdOption);
             return command;
         }
         /// <summary>
@@ -57,7 +58,7 @@ namespace ApiSdk.DeviceManagement.RemoteAssistancePartners.Item.Disconnect {
         /// </summary>
         public RequestInformation CreatePostRequestInformation(Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
             var requestInfo = new RequestInformation {
-                HttpMethod = HttpMethod.POST,
+                HttpMethod = Method.POST,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };

@@ -26,13 +26,15 @@ namespace ApiSdk.Me.Onenote.Sections.Item.ParentNotebook.CopyNotebook {
             var command = new Command("post");
             command.Description = "Invoke action copyNotebook";
             // Create options for all the parameters
-            var onenoteSectionIdOption = new Option<string>("--onenotesection-id", description: "key: id of onenoteSection");
+            var onenoteSectionIdOption = new Option<string>("--onenotesection-id", description: "key: id of onenoteSection") {
+            };
             onenoteSectionIdOption.IsRequired = true;
             command.AddOption(onenoteSectionIdOption);
-            var bodyOption = new Option<string>("--body");
+            var bodyOption = new Option<string>("--body") {
+            };
             bodyOption.IsRequired = true;
             command.AddOption(bodyOption);
-            command.Handler = CommandHandler.Create<string, string>(async (onenoteSectionId, body) => {
+            command.SetHandler(async (string onenoteSectionId, string body) => {
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<CopyNotebookRequestBody>();
@@ -46,7 +48,7 @@ namespace ApiSdk.Me.Onenote.Sections.Item.ParentNotebook.CopyNotebook {
                 using var reader = new StreamReader(content);
                 var strContent = await reader.ReadToEndAsync();
                 Console.Write(strContent + "\n");
-            });
+            }, onenoteSectionIdOption, bodyOption);
             return command;
         }
         /// <summary>
@@ -71,7 +73,7 @@ namespace ApiSdk.Me.Onenote.Sections.Item.ParentNotebook.CopyNotebook {
         public RequestInformation CreatePostRequestInformation(CopyNotebookRequestBody body, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
             _ = body ?? throw new ArgumentNullException(nameof(body));
             var requestInfo = new RequestInformation {
-                HttpMethod = HttpMethod.POST,
+                HttpMethod = Method.POST,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };

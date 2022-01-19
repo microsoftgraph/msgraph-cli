@@ -26,10 +26,11 @@ namespace ApiSdk.Me.Insights.Trending.Item.Resource.WorkbookRange.VisibleView {
             var command = new Command("get");
             command.Description = "Invoke function visibleView";
             // Create options for all the parameters
-            var trendingIdOption = new Option<string>("--trending-id", description: "key: id of trending");
+            var trendingIdOption = new Option<string>("--trending-id", description: "key: id of trending") {
+            };
             trendingIdOption.IsRequired = true;
             command.AddOption(trendingIdOption);
-            command.Handler = CommandHandler.Create<string>(async (trendingId) => {
+            command.SetHandler(async (string trendingId) => {
                 var requestInfo = CreateGetRequestInformation(q => {
                 });
                 var result = await RequestAdapter.SendAsync<VisibleViewResponse>(requestInfo);
@@ -40,7 +41,7 @@ namespace ApiSdk.Me.Insights.Trending.Item.Resource.WorkbookRange.VisibleView {
                 using var reader = new StreamReader(content);
                 var strContent = await reader.ReadToEndAsync();
                 Console.Write(strContent + "\n");
-            });
+            }, trendingIdOption);
             return command;
         }
         /// <summary>
@@ -63,7 +64,7 @@ namespace ApiSdk.Me.Insights.Trending.Item.Resource.WorkbookRange.VisibleView {
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
             var requestInfo = new RequestInformation {
-                HttpMethod = HttpMethod.GET,
+                HttpMethod = Method.GET,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };

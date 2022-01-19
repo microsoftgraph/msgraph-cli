@@ -26,16 +26,19 @@ namespace ApiSdk.Users.Item.Insights.Trending.Item.Resource.WorkbookRange.RowWit
             var command = new Command("get");
             command.Description = "Invoke function row";
             // Create options for all the parameters
-            var userIdOption = new Option<string>("--user-id", description: "key: id of user");
+            var userIdOption = new Option<string>("--user-id", description: "key: id of user") {
+            };
             userIdOption.IsRequired = true;
             command.AddOption(userIdOption);
-            var trendingIdOption = new Option<string>("--trending-id", description: "key: id of trending");
+            var trendingIdOption = new Option<string>("--trending-id", description: "key: id of trending") {
+            };
             trendingIdOption.IsRequired = true;
             command.AddOption(trendingIdOption);
-            var rowOption = new Option<int?>("--row", description: "Usage: row={row}");
+            var rowOption = new Option<int?>("--row", description: "Usage: row={row}") {
+            };
             rowOption.IsRequired = true;
             command.AddOption(rowOption);
-            command.Handler = CommandHandler.Create<string, string, int?>(async (userId, trendingId, row) => {
+            command.SetHandler(async (string userId, string trendingId, int? row) => {
                 var requestInfo = CreateGetRequestInformation(q => {
                 });
                 var result = await RequestAdapter.SendAsync<RowWithRowResponse>(requestInfo);
@@ -46,7 +49,7 @@ namespace ApiSdk.Users.Item.Insights.Trending.Item.Resource.WorkbookRange.RowWit
                 using var reader = new StreamReader(content);
                 var strContent = await reader.ReadToEndAsync();
                 Console.Write(strContent + "\n");
-            });
+            }, userIdOption, trendingIdOption, rowOption);
             return command;
         }
         /// <summary>
@@ -71,7 +74,7 @@ namespace ApiSdk.Users.Item.Insights.Trending.Item.Resource.WorkbookRange.RowWit
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
             var requestInfo = new RequestInformation {
-                HttpMethod = HttpMethod.GET,
+                HttpMethod = Method.GET,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };

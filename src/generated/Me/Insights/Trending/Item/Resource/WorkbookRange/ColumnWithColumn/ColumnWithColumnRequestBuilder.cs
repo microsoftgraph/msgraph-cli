@@ -26,13 +26,15 @@ namespace ApiSdk.Me.Insights.Trending.Item.Resource.WorkbookRange.ColumnWithColu
             var command = new Command("get");
             command.Description = "Invoke function column";
             // Create options for all the parameters
-            var trendingIdOption = new Option<string>("--trending-id", description: "key: id of trending");
+            var trendingIdOption = new Option<string>("--trending-id", description: "key: id of trending") {
+            };
             trendingIdOption.IsRequired = true;
             command.AddOption(trendingIdOption);
-            var columnOption = new Option<int?>("--column", description: "Usage: column={column}");
+            var columnOption = new Option<int?>("--column", description: "Usage: column={column}") {
+            };
             columnOption.IsRequired = true;
             command.AddOption(columnOption);
-            command.Handler = CommandHandler.Create<string, int?>(async (trendingId, column) => {
+            command.SetHandler(async (string trendingId, int? column) => {
                 var requestInfo = CreateGetRequestInformation(q => {
                 });
                 var result = await RequestAdapter.SendAsync<ColumnWithColumnResponse>(requestInfo);
@@ -43,7 +45,7 @@ namespace ApiSdk.Me.Insights.Trending.Item.Resource.WorkbookRange.ColumnWithColu
                 using var reader = new StreamReader(content);
                 var strContent = await reader.ReadToEndAsync();
                 Console.Write(strContent + "\n");
-            });
+            }, trendingIdOption, columnOption);
             return command;
         }
         /// <summary>
@@ -68,7 +70,7 @@ namespace ApiSdk.Me.Insights.Trending.Item.Resource.WorkbookRange.ColumnWithColu
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
             var requestInfo = new RequestInformation {
-                HttpMethod = HttpMethod.GET,
+                HttpMethod = Method.GET,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };

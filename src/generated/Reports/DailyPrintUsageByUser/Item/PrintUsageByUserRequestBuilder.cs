@@ -26,16 +26,17 @@ namespace ApiSdk.Reports.DailyPrintUsageByUser.Item {
             var command = new Command("delete");
             command.Description = "Delete navigation property dailyPrintUsageByUser for reports";
             // Create options for all the parameters
-            var printUsageByUserIdOption = new Option<string>("--printusagebyuser-id", description: "key: id of printUsageByUser");
+            var printUsageByUserIdOption = new Option<string>("--printusagebyuser-id", description: "key: id of printUsageByUser") {
+            };
             printUsageByUserIdOption.IsRequired = true;
             command.AddOption(printUsageByUserIdOption);
-            command.Handler = CommandHandler.Create<string>(async (printUsageByUserId) => {
+            command.SetHandler(async (string printUsageByUserId) => {
                 var requestInfo = CreateDeleteRequestInformation(q => {
                 });
                 await RequestAdapter.SendNoContentAsync(requestInfo);
                 // Print request output. What if the request has no return?
                 Console.WriteLine("Success");
-            });
+            }, printUsageByUserIdOption);
             return command;
         }
         /// <summary>
@@ -45,18 +46,21 @@ namespace ApiSdk.Reports.DailyPrintUsageByUser.Item {
             var command = new Command("get");
             command.Description = "Get dailyPrintUsageByUser from reports";
             // Create options for all the parameters
-            var printUsageByUserIdOption = new Option<string>("--printusagebyuser-id", description: "key: id of printUsageByUser");
+            var printUsageByUserIdOption = new Option<string>("--printusagebyuser-id", description: "key: id of printUsageByUser") {
+            };
             printUsageByUserIdOption.IsRequired = true;
             command.AddOption(printUsageByUserIdOption);
-            var selectOption = new Option<string[]>("--select", description: "Select properties to be returned");
+            var selectOption = new Option<string[]>("--select", description: "Select properties to be returned") {
+                Arity = ArgumentArity.ZeroOrMore
+            };
             selectOption.IsRequired = false;
-            selectOption.Arity = ArgumentArity.ZeroOrMore;
             command.AddOption(selectOption);
-            var expandOption = new Option<string[]>("--expand", description: "Expand related entities");
+            var expandOption = new Option<string[]>("--expand", description: "Expand related entities") {
+                Arity = ArgumentArity.ZeroOrMore
+            };
             expandOption.IsRequired = false;
-            expandOption.Arity = ArgumentArity.ZeroOrMore;
             command.AddOption(expandOption);
-            command.Handler = CommandHandler.Create<string, string[], string[]>(async (printUsageByUserId, select, expand) => {
+            command.SetHandler(async (string printUsageByUserId, string[] select, string[] expand) => {
                 var requestInfo = CreateGetRequestInformation(q => {
                     q.Select = select;
                     q.Expand = expand;
@@ -69,7 +73,7 @@ namespace ApiSdk.Reports.DailyPrintUsageByUser.Item {
                 using var reader = new StreamReader(content);
                 var strContent = await reader.ReadToEndAsync();
                 Console.Write(strContent + "\n");
-            });
+            }, printUsageByUserIdOption, selectOption, expandOption);
             return command;
         }
         /// <summary>
@@ -79,13 +83,15 @@ namespace ApiSdk.Reports.DailyPrintUsageByUser.Item {
             var command = new Command("patch");
             command.Description = "Update the navigation property dailyPrintUsageByUser in reports";
             // Create options for all the parameters
-            var printUsageByUserIdOption = new Option<string>("--printusagebyuser-id", description: "key: id of printUsageByUser");
+            var printUsageByUserIdOption = new Option<string>("--printusagebyuser-id", description: "key: id of printUsageByUser") {
+            };
             printUsageByUserIdOption.IsRequired = true;
             command.AddOption(printUsageByUserIdOption);
-            var bodyOption = new Option<string>("--body");
+            var bodyOption = new Option<string>("--body") {
+            };
             bodyOption.IsRequired = true;
             command.AddOption(bodyOption);
-            command.Handler = CommandHandler.Create<string, string>(async (printUsageByUserId, body) => {
+            command.SetHandler(async (string printUsageByUserId, string body) => {
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<PrintUsageByUser>();
@@ -94,7 +100,7 @@ namespace ApiSdk.Reports.DailyPrintUsageByUser.Item {
                 await RequestAdapter.SendNoContentAsync(requestInfo);
                 // Print request output. What if the request has no return?
                 Console.WriteLine("Success");
-            });
+            }, printUsageByUserIdOption, bodyOption);
             return command;
         }
         /// <summary>
@@ -117,7 +123,7 @@ namespace ApiSdk.Reports.DailyPrintUsageByUser.Item {
         /// </summary>
         public RequestInformation CreateDeleteRequestInformation(Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
             var requestInfo = new RequestInformation {
-                HttpMethod = HttpMethod.DELETE,
+                HttpMethod = Method.DELETE,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };
@@ -133,7 +139,7 @@ namespace ApiSdk.Reports.DailyPrintUsageByUser.Item {
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<GetQueryParameters> q = default, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
             var requestInfo = new RequestInformation {
-                HttpMethod = HttpMethod.GET,
+                HttpMethod = Method.GET,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };
@@ -155,7 +161,7 @@ namespace ApiSdk.Reports.DailyPrintUsageByUser.Item {
         public RequestInformation CreatePatchRequestInformation(PrintUsageByUser body, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
             _ = body ?? throw new ArgumentNullException(nameof(body));
             var requestInfo = new RequestInformation {
-                HttpMethod = HttpMethod.PATCH,
+                HttpMethod = Method.PATCH,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };

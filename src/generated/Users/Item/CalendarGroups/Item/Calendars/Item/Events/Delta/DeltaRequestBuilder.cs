@@ -25,16 +25,19 @@ namespace ApiSdk.Users.Item.CalendarGroups.Item.Calendars.Item.Events.Delta {
             var command = new Command("get");
             command.Description = "Invoke function delta";
             // Create options for all the parameters
-            var userIdOption = new Option<string>("--user-id", description: "key: id of user");
+            var userIdOption = new Option<string>("--user-id", description: "key: id of user") {
+            };
             userIdOption.IsRequired = true;
             command.AddOption(userIdOption);
-            var calendarGroupIdOption = new Option<string>("--calendargroup-id", description: "key: id of calendarGroup");
+            var calendarGroupIdOption = new Option<string>("--calendargroup-id", description: "key: id of calendarGroup") {
+            };
             calendarGroupIdOption.IsRequired = true;
             command.AddOption(calendarGroupIdOption);
-            var calendarIdOption = new Option<string>("--calendar-id", description: "key: id of calendar");
+            var calendarIdOption = new Option<string>("--calendar-id", description: "key: id of calendar") {
+            };
             calendarIdOption.IsRequired = true;
             command.AddOption(calendarIdOption);
-            command.Handler = CommandHandler.Create<string, string, string>(async (userId, calendarGroupId, calendarId) => {
+            command.SetHandler(async (string userId, string calendarGroupId, string calendarId) => {
                 var requestInfo = CreateGetRequestInformation(q => {
                 });
                 var result = await RequestAdapter.SendCollectionAsync<ApiSdk.Users.Item.CalendarGroups.Item.Calendars.Item.Events.Delta.Delta>(requestInfo);
@@ -45,7 +48,7 @@ namespace ApiSdk.Users.Item.CalendarGroups.Item.Calendars.Item.Events.Delta {
                 using var reader = new StreamReader(content);
                 var strContent = await reader.ReadToEndAsync();
                 Console.Write(strContent + "\n");
-            });
+            }, userIdOption, calendarGroupIdOption, calendarIdOption);
             return command;
         }
         /// <summary>
@@ -68,7 +71,7 @@ namespace ApiSdk.Users.Item.CalendarGroups.Item.Calendars.Item.Events.Delta {
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
             var requestInfo = new RequestInformation {
-                HttpMethod = HttpMethod.GET,
+                HttpMethod = Method.GET,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };

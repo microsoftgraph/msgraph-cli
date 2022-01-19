@@ -25,16 +25,19 @@ namespace ApiSdk.Me.CalendarGroups.Item.Calendars.Item.GetSchedule {
             var command = new Command("post");
             command.Description = "Invoke action getSchedule";
             // Create options for all the parameters
-            var calendarGroupIdOption = new Option<string>("--calendargroup-id", description: "key: id of calendarGroup");
+            var calendarGroupIdOption = new Option<string>("--calendargroup-id", description: "key: id of calendarGroup") {
+            };
             calendarGroupIdOption.IsRequired = true;
             command.AddOption(calendarGroupIdOption);
-            var calendarIdOption = new Option<string>("--calendar-id", description: "key: id of calendar");
+            var calendarIdOption = new Option<string>("--calendar-id", description: "key: id of calendar") {
+            };
             calendarIdOption.IsRequired = true;
             command.AddOption(calendarIdOption);
-            var bodyOption = new Option<string>("--body");
+            var bodyOption = new Option<string>("--body") {
+            };
             bodyOption.IsRequired = true;
             command.AddOption(bodyOption);
-            command.Handler = CommandHandler.Create<string, string, string>(async (calendarGroupId, calendarId, body) => {
+            command.SetHandler(async (string calendarGroupId, string calendarId, string body) => {
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<GetScheduleRequestBody>();
@@ -48,7 +51,7 @@ namespace ApiSdk.Me.CalendarGroups.Item.Calendars.Item.GetSchedule {
                 using var reader = new StreamReader(content);
                 var strContent = await reader.ReadToEndAsync();
                 Console.Write(strContent + "\n");
-            });
+            }, calendarGroupIdOption, calendarIdOption, bodyOption);
             return command;
         }
         /// <summary>
@@ -73,7 +76,7 @@ namespace ApiSdk.Me.CalendarGroups.Item.Calendars.Item.GetSchedule {
         public RequestInformation CreatePostRequestInformation(GetScheduleRequestBody body, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
             _ = body ?? throw new ArgumentNullException(nameof(body));
             var requestInfo = new RequestInformation {
-                HttpMethod = HttpMethod.POST,
+                HttpMethod = Method.POST,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };

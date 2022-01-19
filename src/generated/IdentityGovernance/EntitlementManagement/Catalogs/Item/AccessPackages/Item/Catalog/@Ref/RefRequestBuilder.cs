@@ -25,19 +25,21 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.Catalogs.Item.AccessPa
             var command = new Command("delete");
             command.Description = "Read-only. Nullable.";
             // Create options for all the parameters
-            var accessPackageCatalogIdOption = new Option<string>("--accesspackagecatalog-id", description: "key: id of accessPackageCatalog");
+            var accessPackageCatalogIdOption = new Option<string>("--accesspackagecatalog-id", description: "key: id of accessPackageCatalog") {
+            };
             accessPackageCatalogIdOption.IsRequired = true;
             command.AddOption(accessPackageCatalogIdOption);
-            var accessPackageIdOption = new Option<string>("--accesspackage-id", description: "key: id of accessPackage");
+            var accessPackageIdOption = new Option<string>("--accesspackage-id", description: "key: id of accessPackage") {
+            };
             accessPackageIdOption.IsRequired = true;
             command.AddOption(accessPackageIdOption);
-            command.Handler = CommandHandler.Create<string, string>(async (accessPackageCatalogId, accessPackageId) => {
+            command.SetHandler(async (string accessPackageCatalogId, string accessPackageId) => {
                 var requestInfo = CreateDeleteRequestInformation(q => {
                 });
                 await RequestAdapter.SendNoContentAsync(requestInfo);
                 // Print request output. What if the request has no return?
                 Console.WriteLine("Success");
-            });
+            }, accessPackageCatalogIdOption, accessPackageIdOption);
             return command;
         }
         /// <summary>
@@ -47,13 +49,15 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.Catalogs.Item.AccessPa
             var command = new Command("get");
             command.Description = "Read-only. Nullable.";
             // Create options for all the parameters
-            var accessPackageCatalogIdOption = new Option<string>("--accesspackagecatalog-id", description: "key: id of accessPackageCatalog");
+            var accessPackageCatalogIdOption = new Option<string>("--accesspackagecatalog-id", description: "key: id of accessPackageCatalog") {
+            };
             accessPackageCatalogIdOption.IsRequired = true;
             command.AddOption(accessPackageCatalogIdOption);
-            var accessPackageIdOption = new Option<string>("--accesspackage-id", description: "key: id of accessPackage");
+            var accessPackageIdOption = new Option<string>("--accesspackage-id", description: "key: id of accessPackage") {
+            };
             accessPackageIdOption.IsRequired = true;
             command.AddOption(accessPackageIdOption);
-            command.Handler = CommandHandler.Create<string, string>(async (accessPackageCatalogId, accessPackageId) => {
+            command.SetHandler(async (string accessPackageCatalogId, string accessPackageId) => {
                 var requestInfo = CreateGetRequestInformation(q => {
                 });
                 var result = await RequestAdapter.SendPrimitiveAsync<string>(requestInfo);
@@ -64,7 +68,7 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.Catalogs.Item.AccessPa
                 using var reader = new StreamReader(content);
                 var strContent = await reader.ReadToEndAsync();
                 Console.Write(strContent + "\n");
-            });
+            }, accessPackageCatalogIdOption, accessPackageIdOption);
             return command;
         }
         /// <summary>
@@ -74,16 +78,19 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.Catalogs.Item.AccessPa
             var command = new Command("put");
             command.Description = "Read-only. Nullable.";
             // Create options for all the parameters
-            var accessPackageCatalogIdOption = new Option<string>("--accesspackagecatalog-id", description: "key: id of accessPackageCatalog");
+            var accessPackageCatalogIdOption = new Option<string>("--accesspackagecatalog-id", description: "key: id of accessPackageCatalog") {
+            };
             accessPackageCatalogIdOption.IsRequired = true;
             command.AddOption(accessPackageCatalogIdOption);
-            var accessPackageIdOption = new Option<string>("--accesspackage-id", description: "key: id of accessPackage");
+            var accessPackageIdOption = new Option<string>("--accesspackage-id", description: "key: id of accessPackage") {
+            };
             accessPackageIdOption.IsRequired = true;
             command.AddOption(accessPackageIdOption);
-            var bodyOption = new Option<string>("--body");
+            var bodyOption = new Option<string>("--body") {
+            };
             bodyOption.IsRequired = true;
             command.AddOption(bodyOption);
-            command.Handler = CommandHandler.Create<string, string, string>(async (accessPackageCatalogId, accessPackageId, body) => {
+            command.SetHandler(async (string accessPackageCatalogId, string accessPackageId, string body) => {
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<ApiSdk.IdentityGovernance.EntitlementManagement.Catalogs.Item.AccessPackages.Item.Catalog.@Ref.@Ref>();
@@ -92,7 +99,7 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.Catalogs.Item.AccessPa
                 await RequestAdapter.SendNoContentAsync(requestInfo);
                 // Print request output. What if the request has no return?
                 Console.WriteLine("Success");
-            });
+            }, accessPackageCatalogIdOption, accessPackageIdOption, bodyOption);
             return command;
         }
         /// <summary>
@@ -115,7 +122,7 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.Catalogs.Item.AccessPa
         /// </summary>
         public RequestInformation CreateDeleteRequestInformation(Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
             var requestInfo = new RequestInformation {
-                HttpMethod = HttpMethod.DELETE,
+                HttpMethod = Method.DELETE,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };
@@ -130,7 +137,7 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.Catalogs.Item.AccessPa
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
             var requestInfo = new RequestInformation {
-                HttpMethod = HttpMethod.GET,
+                HttpMethod = Method.GET,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };
@@ -147,7 +154,7 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.Catalogs.Item.AccessPa
         public RequestInformation CreatePutRequestInformation(ApiSdk.IdentityGovernance.EntitlementManagement.Catalogs.Item.AccessPackages.Item.Catalog.@Ref.@Ref body, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
             _ = body ?? throw new ArgumentNullException(nameof(body));
             var requestInfo = new RequestInformation {
-                HttpMethod = HttpMethod.PUT,
+                HttpMethod = Method.PUT,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };

@@ -25,7 +25,7 @@ namespace ApiSdk.DeviceAppManagement.ManagedAppRegistrations.GetUserIdsWithFlagg
             var command = new Command("get");
             command.Description = "Invoke function getUserIdsWithFlaggedAppRegistration";
             // Create options for all the parameters
-            command.Handler = CommandHandler.Create(async () => {
+            command.SetHandler(async () => {
                 var requestInfo = CreateGetRequestInformation(q => {
                 });
                 var result = await RequestAdapter.SendPrimitiveCollectionAsync<string>(requestInfo);
@@ -59,7 +59,7 @@ namespace ApiSdk.DeviceAppManagement.ManagedAppRegistrations.GetUserIdsWithFlagg
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
             var requestInfo = new RequestInformation {
-                HttpMethod = HttpMethod.GET,
+                HttpMethod = Method.GET,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };

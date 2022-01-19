@@ -25,16 +25,19 @@ namespace ApiSdk.DeviceAppManagement.ManagedAppRegistrations.Item.AppliedPolicie
             var command = new Command("post");
             command.Description = "Invoke action targetApps";
             // Create options for all the parameters
-            var managedAppRegistrationIdOption = new Option<string>("--managedappregistration-id", description: "key: id of managedAppRegistration");
+            var managedAppRegistrationIdOption = new Option<string>("--managedappregistration-id", description: "key: id of managedAppRegistration") {
+            };
             managedAppRegistrationIdOption.IsRequired = true;
             command.AddOption(managedAppRegistrationIdOption);
-            var managedAppPolicyIdOption = new Option<string>("--managedapppolicy-id", description: "key: id of managedAppPolicy");
+            var managedAppPolicyIdOption = new Option<string>("--managedapppolicy-id", description: "key: id of managedAppPolicy") {
+            };
             managedAppPolicyIdOption.IsRequired = true;
             command.AddOption(managedAppPolicyIdOption);
-            var bodyOption = new Option<string>("--body");
+            var bodyOption = new Option<string>("--body") {
+            };
             bodyOption.IsRequired = true;
             command.AddOption(bodyOption);
-            command.Handler = CommandHandler.Create<string, string, string>(async (managedAppRegistrationId, managedAppPolicyId, body) => {
+            command.SetHandler(async (string managedAppRegistrationId, string managedAppPolicyId, string body) => {
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<TargetAppsRequestBody>();
@@ -43,7 +46,7 @@ namespace ApiSdk.DeviceAppManagement.ManagedAppRegistrations.Item.AppliedPolicie
                 await RequestAdapter.SendNoContentAsync(requestInfo);
                 // Print request output. What if the request has no return?
                 Console.WriteLine("Success");
-            });
+            }, managedAppRegistrationIdOption, managedAppPolicyIdOption, bodyOption);
             return command;
         }
         /// <summary>
@@ -68,7 +71,7 @@ namespace ApiSdk.DeviceAppManagement.ManagedAppRegistrations.Item.AppliedPolicie
         public RequestInformation CreatePostRequestInformation(TargetAppsRequestBody body, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
             _ = body ?? throw new ArgumentNullException(nameof(body));
             var requestInfo = new RequestInformation {
-                HttpMethod = HttpMethod.POST,
+                HttpMethod = Method.POST,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };

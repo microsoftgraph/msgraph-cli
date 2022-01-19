@@ -27,18 +27,21 @@ namespace ApiSdk.Drive.List.Items.Item.Analytics {
             var command = new Command("get");
             command.Description = "Analytics about the view activities that took place on this item.";
             // Create options for all the parameters
-            var listItemIdOption = new Option<string>("--listitem-id", description: "key: id of listItem");
+            var listItemIdOption = new Option<string>("--listitem-id", description: "key: id of listItem") {
+            };
             listItemIdOption.IsRequired = true;
             command.AddOption(listItemIdOption);
-            var selectOption = new Option<string[]>("--select", description: "Select properties to be returned");
+            var selectOption = new Option<string[]>("--select", description: "Select properties to be returned") {
+                Arity = ArgumentArity.ZeroOrMore
+            };
             selectOption.IsRequired = false;
-            selectOption.Arity = ArgumentArity.ZeroOrMore;
             command.AddOption(selectOption);
-            var expandOption = new Option<string[]>("--expand", description: "Expand related entities");
+            var expandOption = new Option<string[]>("--expand", description: "Expand related entities") {
+                Arity = ArgumentArity.ZeroOrMore
+            };
             expandOption.IsRequired = false;
-            expandOption.Arity = ArgumentArity.ZeroOrMore;
             command.AddOption(expandOption);
-            command.Handler = CommandHandler.Create<string, string[], string[]>(async (listItemId, select, expand) => {
+            command.SetHandler(async (string listItemId, string[] select, string[] expand) => {
                 var requestInfo = CreateGetRequestInformation(q => {
                     q.Select = select;
                     q.Expand = expand;
@@ -51,7 +54,7 @@ namespace ApiSdk.Drive.List.Items.Item.Analytics {
                 using var reader = new StreamReader(content);
                 var strContent = await reader.ReadToEndAsync();
                 Console.Write(strContent + "\n");
-            });
+            }, listItemIdOption, selectOption, expandOption);
             return command;
         }
         public Command BuildRefCommand() {
@@ -83,7 +86,7 @@ namespace ApiSdk.Drive.List.Items.Item.Analytics {
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<GetQueryParameters> q = default, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
             var requestInfo = new RequestInformation {
-                HttpMethod = HttpMethod.GET,
+                HttpMethod = Method.GET,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };

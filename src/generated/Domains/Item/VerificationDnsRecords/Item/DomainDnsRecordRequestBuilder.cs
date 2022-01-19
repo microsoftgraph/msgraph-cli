@@ -26,19 +26,21 @@ namespace ApiSdk.Domains.Item.VerificationDnsRecords.Item {
             var command = new Command("delete");
             command.Description = "DNS records that the customer adds to the DNS zone file of the domain before the customer can complete domain ownership verification with Azure AD. Read-only, Nullable";
             // Create options for all the parameters
-            var domainIdOption = new Option<string>("--domain-id", description: "key: id of domain");
+            var domainIdOption = new Option<string>("--domain-id", description: "key: id of domain") {
+            };
             domainIdOption.IsRequired = true;
             command.AddOption(domainIdOption);
-            var domainDnsRecordIdOption = new Option<string>("--domaindnsrecord-id", description: "key: id of domainDnsRecord");
+            var domainDnsRecordIdOption = new Option<string>("--domaindnsrecord-id", description: "key: id of domainDnsRecord") {
+            };
             domainDnsRecordIdOption.IsRequired = true;
             command.AddOption(domainDnsRecordIdOption);
-            command.Handler = CommandHandler.Create<string, string>(async (domainId, domainDnsRecordId) => {
+            command.SetHandler(async (string domainId, string domainDnsRecordId) => {
                 var requestInfo = CreateDeleteRequestInformation(q => {
                 });
                 await RequestAdapter.SendNoContentAsync(requestInfo);
                 // Print request output. What if the request has no return?
                 Console.WriteLine("Success");
-            });
+            }, domainIdOption, domainDnsRecordIdOption);
             return command;
         }
         /// <summary>
@@ -48,21 +50,25 @@ namespace ApiSdk.Domains.Item.VerificationDnsRecords.Item {
             var command = new Command("get");
             command.Description = "DNS records that the customer adds to the DNS zone file of the domain before the customer can complete domain ownership verification with Azure AD. Read-only, Nullable";
             // Create options for all the parameters
-            var domainIdOption = new Option<string>("--domain-id", description: "key: id of domain");
+            var domainIdOption = new Option<string>("--domain-id", description: "key: id of domain") {
+            };
             domainIdOption.IsRequired = true;
             command.AddOption(domainIdOption);
-            var domainDnsRecordIdOption = new Option<string>("--domaindnsrecord-id", description: "key: id of domainDnsRecord");
+            var domainDnsRecordIdOption = new Option<string>("--domaindnsrecord-id", description: "key: id of domainDnsRecord") {
+            };
             domainDnsRecordIdOption.IsRequired = true;
             command.AddOption(domainDnsRecordIdOption);
-            var selectOption = new Option<string[]>("--select", description: "Select properties to be returned");
+            var selectOption = new Option<string[]>("--select", description: "Select properties to be returned") {
+                Arity = ArgumentArity.ZeroOrMore
+            };
             selectOption.IsRequired = false;
-            selectOption.Arity = ArgumentArity.ZeroOrMore;
             command.AddOption(selectOption);
-            var expandOption = new Option<string[]>("--expand", description: "Expand related entities");
+            var expandOption = new Option<string[]>("--expand", description: "Expand related entities") {
+                Arity = ArgumentArity.ZeroOrMore
+            };
             expandOption.IsRequired = false;
-            expandOption.Arity = ArgumentArity.ZeroOrMore;
             command.AddOption(expandOption);
-            command.Handler = CommandHandler.Create<string, string, string[], string[]>(async (domainId, domainDnsRecordId, select, expand) => {
+            command.SetHandler(async (string domainId, string domainDnsRecordId, string[] select, string[] expand) => {
                 var requestInfo = CreateGetRequestInformation(q => {
                     q.Select = select;
                     q.Expand = expand;
@@ -75,7 +81,7 @@ namespace ApiSdk.Domains.Item.VerificationDnsRecords.Item {
                 using var reader = new StreamReader(content);
                 var strContent = await reader.ReadToEndAsync();
                 Console.Write(strContent + "\n");
-            });
+            }, domainIdOption, domainDnsRecordIdOption, selectOption, expandOption);
             return command;
         }
         /// <summary>
@@ -85,16 +91,19 @@ namespace ApiSdk.Domains.Item.VerificationDnsRecords.Item {
             var command = new Command("patch");
             command.Description = "DNS records that the customer adds to the DNS zone file of the domain before the customer can complete domain ownership verification with Azure AD. Read-only, Nullable";
             // Create options for all the parameters
-            var domainIdOption = new Option<string>("--domain-id", description: "key: id of domain");
+            var domainIdOption = new Option<string>("--domain-id", description: "key: id of domain") {
+            };
             domainIdOption.IsRequired = true;
             command.AddOption(domainIdOption);
-            var domainDnsRecordIdOption = new Option<string>("--domaindnsrecord-id", description: "key: id of domainDnsRecord");
+            var domainDnsRecordIdOption = new Option<string>("--domaindnsrecord-id", description: "key: id of domainDnsRecord") {
+            };
             domainDnsRecordIdOption.IsRequired = true;
             command.AddOption(domainDnsRecordIdOption);
-            var bodyOption = new Option<string>("--body");
+            var bodyOption = new Option<string>("--body") {
+            };
             bodyOption.IsRequired = true;
             command.AddOption(bodyOption);
-            command.Handler = CommandHandler.Create<string, string, string>(async (domainId, domainDnsRecordId, body) => {
+            command.SetHandler(async (string domainId, string domainDnsRecordId, string body) => {
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<DomainDnsRecord>();
@@ -103,7 +112,7 @@ namespace ApiSdk.Domains.Item.VerificationDnsRecords.Item {
                 await RequestAdapter.SendNoContentAsync(requestInfo);
                 // Print request output. What if the request has no return?
                 Console.WriteLine("Success");
-            });
+            }, domainIdOption, domainDnsRecordIdOption, bodyOption);
             return command;
         }
         /// <summary>
@@ -126,7 +135,7 @@ namespace ApiSdk.Domains.Item.VerificationDnsRecords.Item {
         /// </summary>
         public RequestInformation CreateDeleteRequestInformation(Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
             var requestInfo = new RequestInformation {
-                HttpMethod = HttpMethod.DELETE,
+                HttpMethod = Method.DELETE,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };
@@ -142,7 +151,7 @@ namespace ApiSdk.Domains.Item.VerificationDnsRecords.Item {
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<GetQueryParameters> q = default, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
             var requestInfo = new RequestInformation {
-                HttpMethod = HttpMethod.GET,
+                HttpMethod = Method.GET,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };
@@ -164,7 +173,7 @@ namespace ApiSdk.Domains.Item.VerificationDnsRecords.Item {
         public RequestInformation CreatePatchRequestInformation(DomainDnsRecord body, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
             _ = body ?? throw new ArgumentNullException(nameof(body));
             var requestInfo = new RequestInformation {
-                HttpMethod = HttpMethod.PATCH,
+                HttpMethod = Method.PATCH,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };

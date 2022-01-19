@@ -25,13 +25,15 @@ namespace ApiSdk.DeviceManagement.WindowsAutopilotDeviceIdentities.Item.UpdateDe
             var command = new Command("post");
             command.Description = "Updates properties on Autopilot devices.";
             // Create options for all the parameters
-            var windowsAutopilotDeviceIdentityIdOption = new Option<string>("--windowsautopilotdeviceidentity-id", description: "key: id of windowsAutopilotDeviceIdentity");
+            var windowsAutopilotDeviceIdentityIdOption = new Option<string>("--windowsautopilotdeviceidentity-id", description: "key: id of windowsAutopilotDeviceIdentity") {
+            };
             windowsAutopilotDeviceIdentityIdOption.IsRequired = true;
             command.AddOption(windowsAutopilotDeviceIdentityIdOption);
-            var bodyOption = new Option<string>("--body");
+            var bodyOption = new Option<string>("--body") {
+            };
             bodyOption.IsRequired = true;
             command.AddOption(bodyOption);
-            command.Handler = CommandHandler.Create<string, string>(async (windowsAutopilotDeviceIdentityId, body) => {
+            command.SetHandler(async (string windowsAutopilotDeviceIdentityId, string body) => {
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<UpdateDevicePropertiesRequestBody>();
@@ -40,7 +42,7 @@ namespace ApiSdk.DeviceManagement.WindowsAutopilotDeviceIdentities.Item.UpdateDe
                 await RequestAdapter.SendNoContentAsync(requestInfo);
                 // Print request output. What if the request has no return?
                 Console.WriteLine("Success");
-            });
+            }, windowsAutopilotDeviceIdentityIdOption, bodyOption);
             return command;
         }
         /// <summary>
@@ -65,7 +67,7 @@ namespace ApiSdk.DeviceManagement.WindowsAutopilotDeviceIdentities.Item.UpdateDe
         public RequestInformation CreatePostRequestInformation(UpdateDevicePropertiesRequestBody body, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
             _ = body ?? throw new ArgumentNullException(nameof(body));
             var requestInfo = new RequestInformation {
-                HttpMethod = HttpMethod.POST,
+                HttpMethod = Method.POST,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };

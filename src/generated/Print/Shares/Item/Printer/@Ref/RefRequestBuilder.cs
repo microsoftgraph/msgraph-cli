@@ -25,16 +25,17 @@ namespace ApiSdk.Print.Shares.Item.Printer.@Ref {
             var command = new Command("delete");
             command.Description = "The printer that this printer share is related to.";
             // Create options for all the parameters
-            var printerShareIdOption = new Option<string>("--printershare-id", description: "key: id of printerShare");
+            var printerShareIdOption = new Option<string>("--printershare-id", description: "key: id of printerShare") {
+            };
             printerShareIdOption.IsRequired = true;
             command.AddOption(printerShareIdOption);
-            command.Handler = CommandHandler.Create<string>(async (printerShareId) => {
+            command.SetHandler(async (string printerShareId) => {
                 var requestInfo = CreateDeleteRequestInformation(q => {
                 });
                 await RequestAdapter.SendNoContentAsync(requestInfo);
                 // Print request output. What if the request has no return?
                 Console.WriteLine("Success");
-            });
+            }, printerShareIdOption);
             return command;
         }
         /// <summary>
@@ -44,10 +45,11 @@ namespace ApiSdk.Print.Shares.Item.Printer.@Ref {
             var command = new Command("get");
             command.Description = "The printer that this printer share is related to.";
             // Create options for all the parameters
-            var printerShareIdOption = new Option<string>("--printershare-id", description: "key: id of printerShare");
+            var printerShareIdOption = new Option<string>("--printershare-id", description: "key: id of printerShare") {
+            };
             printerShareIdOption.IsRequired = true;
             command.AddOption(printerShareIdOption);
-            command.Handler = CommandHandler.Create<string>(async (printerShareId) => {
+            command.SetHandler(async (string printerShareId) => {
                 var requestInfo = CreateGetRequestInformation(q => {
                 });
                 var result = await RequestAdapter.SendPrimitiveAsync<string>(requestInfo);
@@ -58,7 +60,7 @@ namespace ApiSdk.Print.Shares.Item.Printer.@Ref {
                 using var reader = new StreamReader(content);
                 var strContent = await reader.ReadToEndAsync();
                 Console.Write(strContent + "\n");
-            });
+            }, printerShareIdOption);
             return command;
         }
         /// <summary>
@@ -68,13 +70,15 @@ namespace ApiSdk.Print.Shares.Item.Printer.@Ref {
             var command = new Command("put");
             command.Description = "The printer that this printer share is related to.";
             // Create options for all the parameters
-            var printerShareIdOption = new Option<string>("--printershare-id", description: "key: id of printerShare");
+            var printerShareIdOption = new Option<string>("--printershare-id", description: "key: id of printerShare") {
+            };
             printerShareIdOption.IsRequired = true;
             command.AddOption(printerShareIdOption);
-            var bodyOption = new Option<string>("--body");
+            var bodyOption = new Option<string>("--body") {
+            };
             bodyOption.IsRequired = true;
             command.AddOption(bodyOption);
-            command.Handler = CommandHandler.Create<string, string>(async (printerShareId, body) => {
+            command.SetHandler(async (string printerShareId, string body) => {
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<ApiSdk.Print.Shares.Item.Printer.@Ref.@Ref>();
@@ -83,7 +87,7 @@ namespace ApiSdk.Print.Shares.Item.Printer.@Ref {
                 await RequestAdapter.SendNoContentAsync(requestInfo);
                 // Print request output. What if the request has no return?
                 Console.WriteLine("Success");
-            });
+            }, printerShareIdOption, bodyOption);
             return command;
         }
         /// <summary>
@@ -106,7 +110,7 @@ namespace ApiSdk.Print.Shares.Item.Printer.@Ref {
         /// </summary>
         public RequestInformation CreateDeleteRequestInformation(Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
             var requestInfo = new RequestInformation {
-                HttpMethod = HttpMethod.DELETE,
+                HttpMethod = Method.DELETE,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };
@@ -121,7 +125,7 @@ namespace ApiSdk.Print.Shares.Item.Printer.@Ref {
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
             var requestInfo = new RequestInformation {
-                HttpMethod = HttpMethod.GET,
+                HttpMethod = Method.GET,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };
@@ -138,7 +142,7 @@ namespace ApiSdk.Print.Shares.Item.Printer.@Ref {
         public RequestInformation CreatePutRequestInformation(ApiSdk.Print.Shares.Item.Printer.@Ref.@Ref body, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
             _ = body ?? throw new ArgumentNullException(nameof(body));
             var requestInfo = new RequestInformation {
-                HttpMethod = HttpMethod.PUT,
+                HttpMethod = Method.PUT,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };

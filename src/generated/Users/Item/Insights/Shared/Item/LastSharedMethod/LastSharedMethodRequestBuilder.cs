@@ -46,21 +46,25 @@ namespace ApiSdk.Users.Item.Insights.Shared.Item.LastSharedMethod {
             var command = new Command("get");
             command.Description = "Get lastSharedMethod from users";
             // Create options for all the parameters
-            var userIdOption = new Option<string>("--user-id", description: "key: id of user");
+            var userIdOption = new Option<string>("--user-id", description: "key: id of user") {
+            };
             userIdOption.IsRequired = true;
             command.AddOption(userIdOption);
-            var sharedInsightIdOption = new Option<string>("--sharedinsight-id", description: "key: id of sharedInsight");
+            var sharedInsightIdOption = new Option<string>("--sharedinsight-id", description: "key: id of sharedInsight") {
+            };
             sharedInsightIdOption.IsRequired = true;
             command.AddOption(sharedInsightIdOption);
-            var selectOption = new Option<string[]>("--select", description: "Select properties to be returned");
+            var selectOption = new Option<string[]>("--select", description: "Select properties to be returned") {
+                Arity = ArgumentArity.ZeroOrMore
+            };
             selectOption.IsRequired = false;
-            selectOption.Arity = ArgumentArity.ZeroOrMore;
             command.AddOption(selectOption);
-            var expandOption = new Option<string[]>("--expand", description: "Expand related entities");
+            var expandOption = new Option<string[]>("--expand", description: "Expand related entities") {
+                Arity = ArgumentArity.ZeroOrMore
+            };
             expandOption.IsRequired = false;
-            expandOption.Arity = ArgumentArity.ZeroOrMore;
             command.AddOption(expandOption);
-            command.Handler = CommandHandler.Create<string, string, string[], string[]>(async (userId, sharedInsightId, select, expand) => {
+            command.SetHandler(async (string userId, string sharedInsightId, string[] select, string[] expand) => {
                 var requestInfo = CreateGetRequestInformation(q => {
                     q.Select = select;
                     q.Expand = expand;
@@ -73,7 +77,7 @@ namespace ApiSdk.Users.Item.Insights.Shared.Item.LastSharedMethod {
                 using var reader = new StreamReader(content);
                 var strContent = await reader.ReadToEndAsync();
                 Console.Write(strContent + "\n");
-            });
+            }, userIdOption, sharedInsightIdOption, selectOption, expandOption);
             return command;
         }
         public Command BuildManagedAppProtectionCommand() {
@@ -187,7 +191,7 @@ namespace ApiSdk.Users.Item.Insights.Shared.Item.LastSharedMethod {
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<GetQueryParameters> q = default, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
             var requestInfo = new RequestInformation {
-                HttpMethod = HttpMethod.GET,
+                HttpMethod = Method.GET,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };

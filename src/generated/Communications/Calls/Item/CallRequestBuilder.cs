@@ -67,16 +67,17 @@ namespace ApiSdk.Communications.Calls.Item {
             var command = new Command("delete");
             command.Description = "Delete navigation property calls for communications";
             // Create options for all the parameters
-            var callIdOption = new Option<string>("--call-id", description: "key: id of call");
+            var callIdOption = new Option<string>("--call-id", description: "key: id of call") {
+            };
             callIdOption.IsRequired = true;
             command.AddOption(callIdOption);
-            command.Handler = CommandHandler.Create<string>(async (callId) => {
+            command.SetHandler(async (string callId) => {
                 var requestInfo = CreateDeleteRequestInformation(q => {
                 });
                 await RequestAdapter.SendNoContentAsync(requestInfo);
                 // Print request output. What if the request has no return?
                 Console.WriteLine("Success");
-            });
+            }, callIdOption);
             return command;
         }
         /// <summary>
@@ -86,18 +87,21 @@ namespace ApiSdk.Communications.Calls.Item {
             var command = new Command("get");
             command.Description = "Get calls from communications";
             // Create options for all the parameters
-            var callIdOption = new Option<string>("--call-id", description: "key: id of call");
+            var callIdOption = new Option<string>("--call-id", description: "key: id of call") {
+            };
             callIdOption.IsRequired = true;
             command.AddOption(callIdOption);
-            var selectOption = new Option<string[]>("--select", description: "Select properties to be returned");
+            var selectOption = new Option<string[]>("--select", description: "Select properties to be returned") {
+                Arity = ArgumentArity.ZeroOrMore
+            };
             selectOption.IsRequired = false;
-            selectOption.Arity = ArgumentArity.ZeroOrMore;
             command.AddOption(selectOption);
-            var expandOption = new Option<string[]>("--expand", description: "Expand related entities");
+            var expandOption = new Option<string[]>("--expand", description: "Expand related entities") {
+                Arity = ArgumentArity.ZeroOrMore
+            };
             expandOption.IsRequired = false;
-            expandOption.Arity = ArgumentArity.ZeroOrMore;
             command.AddOption(expandOption);
-            command.Handler = CommandHandler.Create<string, string[], string[]>(async (callId, select, expand) => {
+            command.SetHandler(async (string callId, string[] select, string[] expand) => {
                 var requestInfo = CreateGetRequestInformation(q => {
                     q.Select = select;
                     q.Expand = expand;
@@ -110,7 +114,7 @@ namespace ApiSdk.Communications.Calls.Item {
                 using var reader = new StreamReader(content);
                 var strContent = await reader.ReadToEndAsync();
                 Console.Write(strContent + "\n");
-            });
+            }, callIdOption, selectOption, expandOption);
             return command;
         }
         public Command BuildKeepAliveCommand() {
@@ -147,13 +151,15 @@ namespace ApiSdk.Communications.Calls.Item {
             var command = new Command("patch");
             command.Description = "Update the navigation property calls in communications";
             // Create options for all the parameters
-            var callIdOption = new Option<string>("--call-id", description: "key: id of call");
+            var callIdOption = new Option<string>("--call-id", description: "key: id of call") {
+            };
             callIdOption.IsRequired = true;
             command.AddOption(callIdOption);
-            var bodyOption = new Option<string>("--body");
+            var bodyOption = new Option<string>("--body") {
+            };
             bodyOption.IsRequired = true;
             command.AddOption(bodyOption);
-            command.Handler = CommandHandler.Create<string, string>(async (callId, body) => {
+            command.SetHandler(async (string callId, string body) => {
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<Call>();
@@ -162,7 +168,7 @@ namespace ApiSdk.Communications.Calls.Item {
                 await RequestAdapter.SendNoContentAsync(requestInfo);
                 // Print request output. What if the request has no return?
                 Console.WriteLine("Success");
-            });
+            }, callIdOption, bodyOption);
             return command;
         }
         public Command BuildPlayPromptCommand() {
@@ -233,7 +239,7 @@ namespace ApiSdk.Communications.Calls.Item {
         /// </summary>
         public RequestInformation CreateDeleteRequestInformation(Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
             var requestInfo = new RequestInformation {
-                HttpMethod = HttpMethod.DELETE,
+                HttpMethod = Method.DELETE,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };
@@ -249,7 +255,7 @@ namespace ApiSdk.Communications.Calls.Item {
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<GetQueryParameters> q = default, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
             var requestInfo = new RequestInformation {
-                HttpMethod = HttpMethod.GET,
+                HttpMethod = Method.GET,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };
@@ -271,7 +277,7 @@ namespace ApiSdk.Communications.Calls.Item {
         public RequestInformation CreatePatchRequestInformation(Call body, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
             _ = body ?? throw new ArgumentNullException(nameof(body));
             var requestInfo = new RequestInformation {
-                HttpMethod = HttpMethod.PATCH,
+                HttpMethod = Method.PATCH,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };

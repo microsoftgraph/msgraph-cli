@@ -51,25 +51,29 @@ namespace ApiSdk.Me.CalendarGroups.Item.Calendars.Item.CalendarView.Item.Instanc
             var command = new Command("delete");
             command.Description = "The occurrences of a recurring series, if the event is a series master. This property includes occurrences that are part of the recurrence pattern, and exceptions that have been modified, but does not include occurrences that have been cancelled from the series. Navigation property. Read-only. Nullable.";
             // Create options for all the parameters
-            var calendarGroupIdOption = new Option<string>("--calendargroup-id", description: "key: id of calendarGroup");
+            var calendarGroupIdOption = new Option<string>("--calendargroup-id", description: "key: id of calendarGroup") {
+            };
             calendarGroupIdOption.IsRequired = true;
             command.AddOption(calendarGroupIdOption);
-            var calendarIdOption = new Option<string>("--calendar-id", description: "key: id of calendar");
+            var calendarIdOption = new Option<string>("--calendar-id", description: "key: id of calendar") {
+            };
             calendarIdOption.IsRequired = true;
             command.AddOption(calendarIdOption);
-            var eventIdOption = new Option<string>("--event-id", description: "key: id of event");
+            var eventIdOption = new Option<string>("--event-id", description: "key: id of event") {
+            };
             eventIdOption.IsRequired = true;
             command.AddOption(eventIdOption);
-            var eventId1Option = new Option<string>("--event-id1", description: "key: id of event");
+            var eventId1Option = new Option<string>("--event-id1", description: "key: id of event") {
+            };
             eventId1Option.IsRequired = true;
             command.AddOption(eventId1Option);
-            command.Handler = CommandHandler.Create<string, string, string, string>(async (calendarGroupId, calendarId, eventId, eventId1) => {
+            command.SetHandler(async (string calendarGroupId, string calendarId, string eventId, string eventId1) => {
                 var requestInfo = CreateDeleteRequestInformation(q => {
                 });
                 await RequestAdapter.SendNoContentAsync(requestInfo);
                 // Print request output. What if the request has no return?
                 Console.WriteLine("Success");
-            });
+            }, calendarGroupIdOption, calendarIdOption, eventIdOption, eventId1Option);
             return command;
         }
         public Command BuildDismissReminderCommand() {
@@ -91,23 +95,28 @@ namespace ApiSdk.Me.CalendarGroups.Item.Calendars.Item.CalendarView.Item.Instanc
             var command = new Command("get");
             command.Description = "The occurrences of a recurring series, if the event is a series master. This property includes occurrences that are part of the recurrence pattern, and exceptions that have been modified, but does not include occurrences that have been cancelled from the series. Navigation property. Read-only. Nullable.";
             // Create options for all the parameters
-            var calendarGroupIdOption = new Option<string>("--calendargroup-id", description: "key: id of calendarGroup");
+            var calendarGroupIdOption = new Option<string>("--calendargroup-id", description: "key: id of calendarGroup") {
+            };
             calendarGroupIdOption.IsRequired = true;
             command.AddOption(calendarGroupIdOption);
-            var calendarIdOption = new Option<string>("--calendar-id", description: "key: id of calendar");
+            var calendarIdOption = new Option<string>("--calendar-id", description: "key: id of calendar") {
+            };
             calendarIdOption.IsRequired = true;
             command.AddOption(calendarIdOption);
-            var eventIdOption = new Option<string>("--event-id", description: "key: id of event");
+            var eventIdOption = new Option<string>("--event-id", description: "key: id of event") {
+            };
             eventIdOption.IsRequired = true;
             command.AddOption(eventIdOption);
-            var eventId1Option = new Option<string>("--event-id1", description: "key: id of event");
+            var eventId1Option = new Option<string>("--event-id1", description: "key: id of event") {
+            };
             eventId1Option.IsRequired = true;
             command.AddOption(eventId1Option);
-            var selectOption = new Option<string[]>("--select", description: "Select properties to be returned");
+            var selectOption = new Option<string[]>("--select", description: "Select properties to be returned") {
+                Arity = ArgumentArity.ZeroOrMore
+            };
             selectOption.IsRequired = false;
-            selectOption.Arity = ArgumentArity.ZeroOrMore;
             command.AddOption(selectOption);
-            command.Handler = CommandHandler.Create<string, string, string, string, string[]>(async (calendarGroupId, calendarId, eventId, eventId1, select) => {
+            command.SetHandler(async (string calendarGroupId, string calendarId, string eventId, string eventId1, string[] select) => {
                 var requestInfo = CreateGetRequestInformation(q => {
                     q.Select = select;
                 });
@@ -119,7 +128,7 @@ namespace ApiSdk.Me.CalendarGroups.Item.Calendars.Item.CalendarView.Item.Instanc
                 using var reader = new StreamReader(content);
                 var strContent = await reader.ReadToEndAsync();
                 Console.Write(strContent + "\n");
-            });
+            }, calendarGroupIdOption, calendarIdOption, eventIdOption, eventId1Option, selectOption);
             return command;
         }
         /// <summary>
@@ -129,22 +138,27 @@ namespace ApiSdk.Me.CalendarGroups.Item.Calendars.Item.CalendarView.Item.Instanc
             var command = new Command("patch");
             command.Description = "The occurrences of a recurring series, if the event is a series master. This property includes occurrences that are part of the recurrence pattern, and exceptions that have been modified, but does not include occurrences that have been cancelled from the series. Navigation property. Read-only. Nullable.";
             // Create options for all the parameters
-            var calendarGroupIdOption = new Option<string>("--calendargroup-id", description: "key: id of calendarGroup");
+            var calendarGroupIdOption = new Option<string>("--calendargroup-id", description: "key: id of calendarGroup") {
+            };
             calendarGroupIdOption.IsRequired = true;
             command.AddOption(calendarGroupIdOption);
-            var calendarIdOption = new Option<string>("--calendar-id", description: "key: id of calendar");
+            var calendarIdOption = new Option<string>("--calendar-id", description: "key: id of calendar") {
+            };
             calendarIdOption.IsRequired = true;
             command.AddOption(calendarIdOption);
-            var eventIdOption = new Option<string>("--event-id", description: "key: id of event");
+            var eventIdOption = new Option<string>("--event-id", description: "key: id of event") {
+            };
             eventIdOption.IsRequired = true;
             command.AddOption(eventIdOption);
-            var eventId1Option = new Option<string>("--event-id1", description: "key: id of event");
+            var eventId1Option = new Option<string>("--event-id1", description: "key: id of event") {
+            };
             eventId1Option.IsRequired = true;
             command.AddOption(eventId1Option);
-            var bodyOption = new Option<string>("--body");
+            var bodyOption = new Option<string>("--body") {
+            };
             bodyOption.IsRequired = true;
             command.AddOption(bodyOption);
-            command.Handler = CommandHandler.Create<string, string, string, string, string>(async (calendarGroupId, calendarId, eventId, eventId1, body) => {
+            command.SetHandler(async (string calendarGroupId, string calendarId, string eventId, string eventId1, string body) => {
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<@Event>();
@@ -153,7 +167,7 @@ namespace ApiSdk.Me.CalendarGroups.Item.Calendars.Item.CalendarView.Item.Instanc
                 await RequestAdapter.SendNoContentAsync(requestInfo);
                 // Print request output. What if the request has no return?
                 Console.WriteLine("Success");
-            });
+            }, calendarGroupIdOption, calendarIdOption, eventIdOption, eventId1Option, bodyOption);
             return command;
         }
         public Command BuildSnoozeReminderCommand() {
@@ -188,7 +202,7 @@ namespace ApiSdk.Me.CalendarGroups.Item.Calendars.Item.CalendarView.Item.Instanc
         /// </summary>
         public RequestInformation CreateDeleteRequestInformation(Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
             var requestInfo = new RequestInformation {
-                HttpMethod = HttpMethod.DELETE,
+                HttpMethod = Method.DELETE,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };
@@ -204,7 +218,7 @@ namespace ApiSdk.Me.CalendarGroups.Item.Calendars.Item.CalendarView.Item.Instanc
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<GetQueryParameters> q = default, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
             var requestInfo = new RequestInformation {
-                HttpMethod = HttpMethod.GET,
+                HttpMethod = Method.GET,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };
@@ -226,7 +240,7 @@ namespace ApiSdk.Me.CalendarGroups.Item.Calendars.Item.CalendarView.Item.Instanc
         public RequestInformation CreatePatchRequestInformation(@Event body, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
             _ = body ?? throw new ArgumentNullException(nameof(body));
             var requestInfo = new RequestInformation {
-                HttpMethod = HttpMethod.PATCH,
+                HttpMethod = Method.PATCH,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };

@@ -26,19 +26,23 @@ namespace ApiSdk.Users.Item.Insights.Trending.Item.Resource.WorkbookRange.Resize
             var command = new Command("get");
             command.Description = "Invoke function resizedRange";
             // Create options for all the parameters
-            var userIdOption = new Option<string>("--user-id", description: "key: id of user");
+            var userIdOption = new Option<string>("--user-id", description: "key: id of user") {
+            };
             userIdOption.IsRequired = true;
             command.AddOption(userIdOption);
-            var trendingIdOption = new Option<string>("--trending-id", description: "key: id of trending");
+            var trendingIdOption = new Option<string>("--trending-id", description: "key: id of trending") {
+            };
             trendingIdOption.IsRequired = true;
             command.AddOption(trendingIdOption);
-            var deltaRowsOption = new Option<int?>("--deltarows", description: "Usage: deltaRows={deltaRows}");
+            var deltaRowsOption = new Option<int?>("--deltarows", description: "Usage: deltaRows={deltaRows}") {
+            };
             deltaRowsOption.IsRequired = true;
             command.AddOption(deltaRowsOption);
-            var deltaColumnsOption = new Option<int?>("--deltacolumns", description: "Usage: deltaColumns={deltaColumns}");
+            var deltaColumnsOption = new Option<int?>("--deltacolumns", description: "Usage: deltaColumns={deltaColumns}") {
+            };
             deltaColumnsOption.IsRequired = true;
             command.AddOption(deltaColumnsOption);
-            command.Handler = CommandHandler.Create<string, string, int?, int?>(async (userId, trendingId, deltaRows, deltaColumns) => {
+            command.SetHandler(async (string userId, string trendingId, int? deltaRows, int? deltaColumns) => {
                 var requestInfo = CreateGetRequestInformation(q => {
                 });
                 var result = await RequestAdapter.SendAsync<ResizedRangeWithDeltaRowsWithDeltaColumnsResponse>(requestInfo);
@@ -49,7 +53,7 @@ namespace ApiSdk.Users.Item.Insights.Trending.Item.Resource.WorkbookRange.Resize
                 using var reader = new StreamReader(content);
                 var strContent = await reader.ReadToEndAsync();
                 Console.Write(strContent + "\n");
-            });
+            }, userIdOption, trendingIdOption, deltaRowsOption, deltaColumnsOption);
             return command;
         }
         /// <summary>
@@ -76,7 +80,7 @@ namespace ApiSdk.Users.Item.Insights.Trending.Item.Resource.WorkbookRange.Resize
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
             var requestInfo = new RequestInformation {
-                HttpMethod = HttpMethod.GET,
+                HttpMethod = Method.GET,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };

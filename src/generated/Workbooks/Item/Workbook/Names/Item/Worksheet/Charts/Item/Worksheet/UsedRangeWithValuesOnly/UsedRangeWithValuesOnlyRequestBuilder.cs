@@ -26,19 +26,23 @@ namespace ApiSdk.Workbooks.Item.Workbook.Names.Item.Worksheet.Charts.Item.Worksh
             var command = new Command("get");
             command.Description = "Invoke function usedRange";
             // Create options for all the parameters
-            var driveItemIdOption = new Option<string>("--driveitem-id", description: "key: id of driveItem");
+            var driveItemIdOption = new Option<string>("--driveitem-id", description: "key: id of driveItem") {
+            };
             driveItemIdOption.IsRequired = true;
             command.AddOption(driveItemIdOption);
-            var workbookNamedItemIdOption = new Option<string>("--workbooknameditem-id", description: "key: id of workbookNamedItem");
+            var workbookNamedItemIdOption = new Option<string>("--workbooknameditem-id", description: "key: id of workbookNamedItem") {
+            };
             workbookNamedItemIdOption.IsRequired = true;
             command.AddOption(workbookNamedItemIdOption);
-            var workbookChartIdOption = new Option<string>("--workbookchart-id", description: "key: id of workbookChart");
+            var workbookChartIdOption = new Option<string>("--workbookchart-id", description: "key: id of workbookChart") {
+            };
             workbookChartIdOption.IsRequired = true;
             command.AddOption(workbookChartIdOption);
-            var valuesOnlyOption = new Option<bool?>("--valuesonly", description: "Usage: valuesOnly={valuesOnly}");
+            var valuesOnlyOption = new Option<bool?>("--valuesonly", description: "Usage: valuesOnly={valuesOnly}") {
+            };
             valuesOnlyOption.IsRequired = true;
             command.AddOption(valuesOnlyOption);
-            command.Handler = CommandHandler.Create<string, string, string, bool?>(async (driveItemId, workbookNamedItemId, workbookChartId, valuesOnly) => {
+            command.SetHandler(async (string driveItemId, string workbookNamedItemId, string workbookChartId, bool? valuesOnly) => {
                 var requestInfo = CreateGetRequestInformation(q => {
                 });
                 var result = await RequestAdapter.SendAsync<UsedRangeWithValuesOnlyResponse>(requestInfo);
@@ -49,7 +53,7 @@ namespace ApiSdk.Workbooks.Item.Workbook.Names.Item.Worksheet.Charts.Item.Worksh
                 using var reader = new StreamReader(content);
                 var strContent = await reader.ReadToEndAsync();
                 Console.Write(strContent + "\n");
-            });
+            }, driveItemIdOption, workbookNamedItemIdOption, workbookChartIdOption, valuesOnlyOption);
             return command;
         }
         /// <summary>
@@ -74,7 +78,7 @@ namespace ApiSdk.Workbooks.Item.Workbook.Names.Item.Worksheet.Charts.Item.Worksh
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
             var requestInfo = new RequestInformation {
-                HttpMethod = HttpMethod.GET,
+                HttpMethod = Method.GET,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };

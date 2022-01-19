@@ -31,16 +31,17 @@ namespace ApiSdk.Domains.Item {
             var command = new Command("delete");
             command.Description = "Delete entity from domains";
             // Create options for all the parameters
-            var domainIdOption = new Option<string>("--domain-id", description: "key: id of domain");
+            var domainIdOption = new Option<string>("--domain-id", description: "key: id of domain") {
+            };
             domainIdOption.IsRequired = true;
             command.AddOption(domainIdOption);
-            command.Handler = CommandHandler.Create<string>(async (domainId) => {
+            command.SetHandler(async (string domainId) => {
                 var requestInfo = CreateDeleteRequestInformation(q => {
                 });
                 await RequestAdapter.SendNoContentAsync(requestInfo);
                 // Print request output. What if the request has no return?
                 Console.WriteLine("Success");
-            });
+            }, domainIdOption);
             return command;
         }
         public Command BuildDomainNameReferencesCommand() {
@@ -63,18 +64,21 @@ namespace ApiSdk.Domains.Item {
             var command = new Command("get");
             command.Description = "Get entity from domains by key";
             // Create options for all the parameters
-            var domainIdOption = new Option<string>("--domain-id", description: "key: id of domain");
+            var domainIdOption = new Option<string>("--domain-id", description: "key: id of domain") {
+            };
             domainIdOption.IsRequired = true;
             command.AddOption(domainIdOption);
-            var selectOption = new Option<string[]>("--select", description: "Select properties to be returned");
+            var selectOption = new Option<string[]>("--select", description: "Select properties to be returned") {
+                Arity = ArgumentArity.ZeroOrMore
+            };
             selectOption.IsRequired = false;
-            selectOption.Arity = ArgumentArity.ZeroOrMore;
             command.AddOption(selectOption);
-            var expandOption = new Option<string[]>("--expand", description: "Expand related entities");
+            var expandOption = new Option<string[]>("--expand", description: "Expand related entities") {
+                Arity = ArgumentArity.ZeroOrMore
+            };
             expandOption.IsRequired = false;
-            expandOption.Arity = ArgumentArity.ZeroOrMore;
             command.AddOption(expandOption);
-            command.Handler = CommandHandler.Create<string, string[], string[]>(async (domainId, select, expand) => {
+            command.SetHandler(async (string domainId, string[] select, string[] expand) => {
                 var requestInfo = CreateGetRequestInformation(q => {
                     q.Select = select;
                     q.Expand = expand;
@@ -87,7 +91,7 @@ namespace ApiSdk.Domains.Item {
                 using var reader = new StreamReader(content);
                 var strContent = await reader.ReadToEndAsync();
                 Console.Write(strContent + "\n");
-            });
+            }, domainIdOption, selectOption, expandOption);
             return command;
         }
         /// <summary>
@@ -97,13 +101,15 @@ namespace ApiSdk.Domains.Item {
             var command = new Command("patch");
             command.Description = "Update entity in domains";
             // Create options for all the parameters
-            var domainIdOption = new Option<string>("--domain-id", description: "key: id of domain");
+            var domainIdOption = new Option<string>("--domain-id", description: "key: id of domain") {
+            };
             domainIdOption.IsRequired = true;
             command.AddOption(domainIdOption);
-            var bodyOption = new Option<string>("--body");
+            var bodyOption = new Option<string>("--body") {
+            };
             bodyOption.IsRequired = true;
             command.AddOption(bodyOption);
-            command.Handler = CommandHandler.Create<string, string>(async (domainId, body) => {
+            command.SetHandler(async (string domainId, string body) => {
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<Domain>();
@@ -112,7 +118,7 @@ namespace ApiSdk.Domains.Item {
                 await RequestAdapter.SendNoContentAsync(requestInfo);
                 // Print request output. What if the request has no return?
                 Console.WriteLine("Success");
-            });
+            }, domainIdOption, bodyOption);
             return command;
         }
         public Command BuildServiceConfigurationRecordsCommand() {
@@ -155,7 +161,7 @@ namespace ApiSdk.Domains.Item {
         /// </summary>
         public RequestInformation CreateDeleteRequestInformation(Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
             var requestInfo = new RequestInformation {
-                HttpMethod = HttpMethod.DELETE,
+                HttpMethod = Method.DELETE,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };
@@ -171,7 +177,7 @@ namespace ApiSdk.Domains.Item {
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<GetQueryParameters> q = default, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
             var requestInfo = new RequestInformation {
-                HttpMethod = HttpMethod.GET,
+                HttpMethod = Method.GET,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };
@@ -193,7 +199,7 @@ namespace ApiSdk.Domains.Item {
         public RequestInformation CreatePatchRequestInformation(Domain body, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
             _ = body ?? throw new ArgumentNullException(nameof(body));
             var requestInfo = new RequestInformation {
-                HttpMethod = HttpMethod.PATCH,
+                HttpMethod = Method.PATCH,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };

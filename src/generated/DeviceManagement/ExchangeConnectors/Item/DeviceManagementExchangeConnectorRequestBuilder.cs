@@ -27,16 +27,17 @@ namespace ApiSdk.DeviceManagement.ExchangeConnectors.Item {
             var command = new Command("delete");
             command.Description = "The list of Exchange Connectors configured by the tenant.";
             // Create options for all the parameters
-            var deviceManagementExchangeConnectorIdOption = new Option<string>("--devicemanagementexchangeconnector-id", description: "key: id of deviceManagementExchangeConnector");
+            var deviceManagementExchangeConnectorIdOption = new Option<string>("--devicemanagementexchangeconnector-id", description: "key: id of deviceManagementExchangeConnector") {
+            };
             deviceManagementExchangeConnectorIdOption.IsRequired = true;
             command.AddOption(deviceManagementExchangeConnectorIdOption);
-            command.Handler = CommandHandler.Create<string>(async (deviceManagementExchangeConnectorId) => {
+            command.SetHandler(async (string deviceManagementExchangeConnectorId) => {
                 var requestInfo = CreateDeleteRequestInformation(q => {
                 });
                 await RequestAdapter.SendNoContentAsync(requestInfo);
                 // Print request output. What if the request has no return?
                 Console.WriteLine("Success");
-            });
+            }, deviceManagementExchangeConnectorIdOption);
             return command;
         }
         /// <summary>
@@ -46,18 +47,21 @@ namespace ApiSdk.DeviceManagement.ExchangeConnectors.Item {
             var command = new Command("get");
             command.Description = "The list of Exchange Connectors configured by the tenant.";
             // Create options for all the parameters
-            var deviceManagementExchangeConnectorIdOption = new Option<string>("--devicemanagementexchangeconnector-id", description: "key: id of deviceManagementExchangeConnector");
+            var deviceManagementExchangeConnectorIdOption = new Option<string>("--devicemanagementexchangeconnector-id", description: "key: id of deviceManagementExchangeConnector") {
+            };
             deviceManagementExchangeConnectorIdOption.IsRequired = true;
             command.AddOption(deviceManagementExchangeConnectorIdOption);
-            var selectOption = new Option<string[]>("--select", description: "Select properties to be returned");
+            var selectOption = new Option<string[]>("--select", description: "Select properties to be returned") {
+                Arity = ArgumentArity.ZeroOrMore
+            };
             selectOption.IsRequired = false;
-            selectOption.Arity = ArgumentArity.ZeroOrMore;
             command.AddOption(selectOption);
-            var expandOption = new Option<string[]>("--expand", description: "Expand related entities");
+            var expandOption = new Option<string[]>("--expand", description: "Expand related entities") {
+                Arity = ArgumentArity.ZeroOrMore
+            };
             expandOption.IsRequired = false;
-            expandOption.Arity = ArgumentArity.ZeroOrMore;
             command.AddOption(expandOption);
-            command.Handler = CommandHandler.Create<string, string[], string[]>(async (deviceManagementExchangeConnectorId, select, expand) => {
+            command.SetHandler(async (string deviceManagementExchangeConnectorId, string[] select, string[] expand) => {
                 var requestInfo = CreateGetRequestInformation(q => {
                     q.Select = select;
                     q.Expand = expand;
@@ -70,7 +74,7 @@ namespace ApiSdk.DeviceManagement.ExchangeConnectors.Item {
                 using var reader = new StreamReader(content);
                 var strContent = await reader.ReadToEndAsync();
                 Console.Write(strContent + "\n");
-            });
+            }, deviceManagementExchangeConnectorIdOption, selectOption, expandOption);
             return command;
         }
         /// <summary>
@@ -80,13 +84,15 @@ namespace ApiSdk.DeviceManagement.ExchangeConnectors.Item {
             var command = new Command("patch");
             command.Description = "The list of Exchange Connectors configured by the tenant.";
             // Create options for all the parameters
-            var deviceManagementExchangeConnectorIdOption = new Option<string>("--devicemanagementexchangeconnector-id", description: "key: id of deviceManagementExchangeConnector");
+            var deviceManagementExchangeConnectorIdOption = new Option<string>("--devicemanagementexchangeconnector-id", description: "key: id of deviceManagementExchangeConnector") {
+            };
             deviceManagementExchangeConnectorIdOption.IsRequired = true;
             command.AddOption(deviceManagementExchangeConnectorIdOption);
-            var bodyOption = new Option<string>("--body");
+            var bodyOption = new Option<string>("--body") {
+            };
             bodyOption.IsRequired = true;
             command.AddOption(bodyOption);
-            command.Handler = CommandHandler.Create<string, string>(async (deviceManagementExchangeConnectorId, body) => {
+            command.SetHandler(async (string deviceManagementExchangeConnectorId, string body) => {
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<DeviceManagementExchangeConnector>();
@@ -95,7 +101,7 @@ namespace ApiSdk.DeviceManagement.ExchangeConnectors.Item {
                 await RequestAdapter.SendNoContentAsync(requestInfo);
                 // Print request output. What if the request has no return?
                 Console.WriteLine("Success");
-            });
+            }, deviceManagementExchangeConnectorIdOption, bodyOption);
             return command;
         }
         public Command BuildSyncCommand() {
@@ -124,7 +130,7 @@ namespace ApiSdk.DeviceManagement.ExchangeConnectors.Item {
         /// </summary>
         public RequestInformation CreateDeleteRequestInformation(Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
             var requestInfo = new RequestInformation {
-                HttpMethod = HttpMethod.DELETE,
+                HttpMethod = Method.DELETE,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };
@@ -140,7 +146,7 @@ namespace ApiSdk.DeviceManagement.ExchangeConnectors.Item {
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<GetQueryParameters> q = default, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
             var requestInfo = new RequestInformation {
-                HttpMethod = HttpMethod.GET,
+                HttpMethod = Method.GET,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };
@@ -162,7 +168,7 @@ namespace ApiSdk.DeviceManagement.ExchangeConnectors.Item {
         public RequestInformation CreatePatchRequestInformation(DeviceManagementExchangeConnector body, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
             _ = body ?? throw new ArgumentNullException(nameof(body));
             var requestInfo = new RequestInformation {
-                HttpMethod = HttpMethod.PATCH,
+                HttpMethod = Method.PATCH,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };

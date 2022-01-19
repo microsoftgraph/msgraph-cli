@@ -26,19 +26,21 @@ namespace ApiSdk.DeviceAppManagement.TargetedManagedAppConfigurations.Item.Assig
             var command = new Command("delete");
             command.Description = "Navigation property to list of inclusion and exclusion groups to which the policy is deployed.";
             // Create options for all the parameters
-            var targetedManagedAppConfigurationIdOption = new Option<string>("--targetedmanagedappconfiguration-id", description: "key: id of targetedManagedAppConfiguration");
+            var targetedManagedAppConfigurationIdOption = new Option<string>("--targetedmanagedappconfiguration-id", description: "key: id of targetedManagedAppConfiguration") {
+            };
             targetedManagedAppConfigurationIdOption.IsRequired = true;
             command.AddOption(targetedManagedAppConfigurationIdOption);
-            var targetedManagedAppPolicyAssignmentIdOption = new Option<string>("--targetedmanagedapppolicyassignment-id", description: "key: id of targetedManagedAppPolicyAssignment");
+            var targetedManagedAppPolicyAssignmentIdOption = new Option<string>("--targetedmanagedapppolicyassignment-id", description: "key: id of targetedManagedAppPolicyAssignment") {
+            };
             targetedManagedAppPolicyAssignmentIdOption.IsRequired = true;
             command.AddOption(targetedManagedAppPolicyAssignmentIdOption);
-            command.Handler = CommandHandler.Create<string, string>(async (targetedManagedAppConfigurationId, targetedManagedAppPolicyAssignmentId) => {
+            command.SetHandler(async (string targetedManagedAppConfigurationId, string targetedManagedAppPolicyAssignmentId) => {
                 var requestInfo = CreateDeleteRequestInformation(q => {
                 });
                 await RequestAdapter.SendNoContentAsync(requestInfo);
                 // Print request output. What if the request has no return?
                 Console.WriteLine("Success");
-            });
+            }, targetedManagedAppConfigurationIdOption, targetedManagedAppPolicyAssignmentIdOption);
             return command;
         }
         /// <summary>
@@ -48,21 +50,25 @@ namespace ApiSdk.DeviceAppManagement.TargetedManagedAppConfigurations.Item.Assig
             var command = new Command("get");
             command.Description = "Navigation property to list of inclusion and exclusion groups to which the policy is deployed.";
             // Create options for all the parameters
-            var targetedManagedAppConfigurationIdOption = new Option<string>("--targetedmanagedappconfiguration-id", description: "key: id of targetedManagedAppConfiguration");
+            var targetedManagedAppConfigurationIdOption = new Option<string>("--targetedmanagedappconfiguration-id", description: "key: id of targetedManagedAppConfiguration") {
+            };
             targetedManagedAppConfigurationIdOption.IsRequired = true;
             command.AddOption(targetedManagedAppConfigurationIdOption);
-            var targetedManagedAppPolicyAssignmentIdOption = new Option<string>("--targetedmanagedapppolicyassignment-id", description: "key: id of targetedManagedAppPolicyAssignment");
+            var targetedManagedAppPolicyAssignmentIdOption = new Option<string>("--targetedmanagedapppolicyassignment-id", description: "key: id of targetedManagedAppPolicyAssignment") {
+            };
             targetedManagedAppPolicyAssignmentIdOption.IsRequired = true;
             command.AddOption(targetedManagedAppPolicyAssignmentIdOption);
-            var selectOption = new Option<string[]>("--select", description: "Select properties to be returned");
+            var selectOption = new Option<string[]>("--select", description: "Select properties to be returned") {
+                Arity = ArgumentArity.ZeroOrMore
+            };
             selectOption.IsRequired = false;
-            selectOption.Arity = ArgumentArity.ZeroOrMore;
             command.AddOption(selectOption);
-            var expandOption = new Option<string[]>("--expand", description: "Expand related entities");
+            var expandOption = new Option<string[]>("--expand", description: "Expand related entities") {
+                Arity = ArgumentArity.ZeroOrMore
+            };
             expandOption.IsRequired = false;
-            expandOption.Arity = ArgumentArity.ZeroOrMore;
             command.AddOption(expandOption);
-            command.Handler = CommandHandler.Create<string, string, string[], string[]>(async (targetedManagedAppConfigurationId, targetedManagedAppPolicyAssignmentId, select, expand) => {
+            command.SetHandler(async (string targetedManagedAppConfigurationId, string targetedManagedAppPolicyAssignmentId, string[] select, string[] expand) => {
                 var requestInfo = CreateGetRequestInformation(q => {
                     q.Select = select;
                     q.Expand = expand;
@@ -75,7 +81,7 @@ namespace ApiSdk.DeviceAppManagement.TargetedManagedAppConfigurations.Item.Assig
                 using var reader = new StreamReader(content);
                 var strContent = await reader.ReadToEndAsync();
                 Console.Write(strContent + "\n");
-            });
+            }, targetedManagedAppConfigurationIdOption, targetedManagedAppPolicyAssignmentIdOption, selectOption, expandOption);
             return command;
         }
         /// <summary>
@@ -85,16 +91,19 @@ namespace ApiSdk.DeviceAppManagement.TargetedManagedAppConfigurations.Item.Assig
             var command = new Command("patch");
             command.Description = "Navigation property to list of inclusion and exclusion groups to which the policy is deployed.";
             // Create options for all the parameters
-            var targetedManagedAppConfigurationIdOption = new Option<string>("--targetedmanagedappconfiguration-id", description: "key: id of targetedManagedAppConfiguration");
+            var targetedManagedAppConfigurationIdOption = new Option<string>("--targetedmanagedappconfiguration-id", description: "key: id of targetedManagedAppConfiguration") {
+            };
             targetedManagedAppConfigurationIdOption.IsRequired = true;
             command.AddOption(targetedManagedAppConfigurationIdOption);
-            var targetedManagedAppPolicyAssignmentIdOption = new Option<string>("--targetedmanagedapppolicyassignment-id", description: "key: id of targetedManagedAppPolicyAssignment");
+            var targetedManagedAppPolicyAssignmentIdOption = new Option<string>("--targetedmanagedapppolicyassignment-id", description: "key: id of targetedManagedAppPolicyAssignment") {
+            };
             targetedManagedAppPolicyAssignmentIdOption.IsRequired = true;
             command.AddOption(targetedManagedAppPolicyAssignmentIdOption);
-            var bodyOption = new Option<string>("--body");
+            var bodyOption = new Option<string>("--body") {
+            };
             bodyOption.IsRequired = true;
             command.AddOption(bodyOption);
-            command.Handler = CommandHandler.Create<string, string, string>(async (targetedManagedAppConfigurationId, targetedManagedAppPolicyAssignmentId, body) => {
+            command.SetHandler(async (string targetedManagedAppConfigurationId, string targetedManagedAppPolicyAssignmentId, string body) => {
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<TargetedManagedAppPolicyAssignment>();
@@ -103,7 +112,7 @@ namespace ApiSdk.DeviceAppManagement.TargetedManagedAppConfigurations.Item.Assig
                 await RequestAdapter.SendNoContentAsync(requestInfo);
                 // Print request output. What if the request has no return?
                 Console.WriteLine("Success");
-            });
+            }, targetedManagedAppConfigurationIdOption, targetedManagedAppPolicyAssignmentIdOption, bodyOption);
             return command;
         }
         /// <summary>
@@ -126,7 +135,7 @@ namespace ApiSdk.DeviceAppManagement.TargetedManagedAppConfigurations.Item.Assig
         /// </summary>
         public RequestInformation CreateDeleteRequestInformation(Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
             var requestInfo = new RequestInformation {
-                HttpMethod = HttpMethod.DELETE,
+                HttpMethod = Method.DELETE,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };
@@ -142,7 +151,7 @@ namespace ApiSdk.DeviceAppManagement.TargetedManagedAppConfigurations.Item.Assig
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<GetQueryParameters> q = default, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
             var requestInfo = new RequestInformation {
-                HttpMethod = HttpMethod.GET,
+                HttpMethod = Method.GET,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };
@@ -164,7 +173,7 @@ namespace ApiSdk.DeviceAppManagement.TargetedManagedAppConfigurations.Item.Assig
         public RequestInformation CreatePatchRequestInformation(TargetedManagedAppPolicyAssignment body, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
             _ = body ?? throw new ArgumentNullException(nameof(body));
             var requestInfo = new RequestInformation {
-                HttpMethod = HttpMethod.PATCH,
+                HttpMethod = Method.PATCH,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };

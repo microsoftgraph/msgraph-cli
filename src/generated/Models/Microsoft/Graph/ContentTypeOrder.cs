@@ -22,7 +22,7 @@ namespace ApiSdk.Models.Microsoft.Graph {
         /// </summary>
         public IDictionary<string, Action<T, IParseNode>> GetFieldDeserializers<T>() {
             return new Dictionary<string, Action<T, IParseNode>> {
-                {"@Default", (o,n) => { (o as ContentTypeOrder).@Default = n.GetBoolValue(); } },
+                {"default", (o,n) => { (o as ContentTypeOrder).@Default = n.GetBoolValue(); } },
                 {"position", (o,n) => { (o as ContentTypeOrder).Position = n.GetIntValue(); } },
             };
         }
@@ -32,7 +32,7 @@ namespace ApiSdk.Models.Microsoft.Graph {
         /// </summary>
         public void Serialize(ISerializationWriter writer) {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
-            writer.WriteBoolValue("@Default", @Default);
+            writer.WriteBoolValue("default", @Default);
             writer.WriteIntValue("position", Position);
             writer.WriteAdditionalData(AdditionalData);
         }

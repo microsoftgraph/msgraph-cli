@@ -25,13 +25,15 @@ namespace ApiSdk.Communications.Calls.Item.Redirect {
             var command = new Command("post");
             command.Description = "Invoke action redirect";
             // Create options for all the parameters
-            var callIdOption = new Option<string>("--call-id", description: "key: id of call");
+            var callIdOption = new Option<string>("--call-id", description: "key: id of call") {
+            };
             callIdOption.IsRequired = true;
             command.AddOption(callIdOption);
-            var bodyOption = new Option<string>("--body");
+            var bodyOption = new Option<string>("--body") {
+            };
             bodyOption.IsRequired = true;
             command.AddOption(bodyOption);
-            command.Handler = CommandHandler.Create<string, string>(async (callId, body) => {
+            command.SetHandler(async (string callId, string body) => {
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<RedirectRequestBody>();
@@ -40,7 +42,7 @@ namespace ApiSdk.Communications.Calls.Item.Redirect {
                 await RequestAdapter.SendNoContentAsync(requestInfo);
                 // Print request output. What if the request has no return?
                 Console.WriteLine("Success");
-            });
+            }, callIdOption, bodyOption);
             return command;
         }
         /// <summary>
@@ -65,7 +67,7 @@ namespace ApiSdk.Communications.Calls.Item.Redirect {
         public RequestInformation CreatePostRequestInformation(RedirectRequestBody body, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
             _ = body ?? throw new ArgumentNullException(nameof(body));
             var requestInfo = new RequestInformation {
-                HttpMethod = HttpMethod.POST,
+                HttpMethod = Method.POST,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };

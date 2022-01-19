@@ -25,10 +25,11 @@ namespace ApiSdk.Workbooks.Item.GetActivitiesByInterval {
             var command = new Command("get");
             command.Description = "Invoke function getActivitiesByInterval";
             // Create options for all the parameters
-            var driveItemIdOption = new Option<string>("--driveitem-id", description: "key: id of driveItem");
+            var driveItemIdOption = new Option<string>("--driveitem-id", description: "key: id of driveItem") {
+            };
             driveItemIdOption.IsRequired = true;
             command.AddOption(driveItemIdOption);
-            command.Handler = CommandHandler.Create<string>(async (driveItemId) => {
+            command.SetHandler(async (string driveItemId) => {
                 var requestInfo = CreateGetRequestInformation(q => {
                 });
                 var result = await RequestAdapter.SendCollectionAsync<ApiSdk.Workbooks.Item.GetActivitiesByInterval.GetActivitiesByInterval>(requestInfo);
@@ -39,7 +40,7 @@ namespace ApiSdk.Workbooks.Item.GetActivitiesByInterval {
                 using var reader = new StreamReader(content);
                 var strContent = await reader.ReadToEndAsync();
                 Console.Write(strContent + "\n");
-            });
+            }, driveItemIdOption);
             return command;
         }
         /// <summary>
@@ -62,7 +63,7 @@ namespace ApiSdk.Workbooks.Item.GetActivitiesByInterval {
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
             var requestInfo = new RequestInformation {
-                HttpMethod = HttpMethod.GET,
+                HttpMethod = Method.GET,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };

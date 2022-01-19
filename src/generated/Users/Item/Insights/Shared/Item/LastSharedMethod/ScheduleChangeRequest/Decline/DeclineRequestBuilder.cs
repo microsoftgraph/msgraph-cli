@@ -25,16 +25,19 @@ namespace ApiSdk.Users.Item.Insights.Shared.Item.LastSharedMethod.ScheduleChange
             var command = new Command("post");
             command.Description = "Invoke action decline";
             // Create options for all the parameters
-            var userIdOption = new Option<string>("--user-id", description: "key: id of user");
+            var userIdOption = new Option<string>("--user-id", description: "key: id of user") {
+            };
             userIdOption.IsRequired = true;
             command.AddOption(userIdOption);
-            var sharedInsightIdOption = new Option<string>("--sharedinsight-id", description: "key: id of sharedInsight");
+            var sharedInsightIdOption = new Option<string>("--sharedinsight-id", description: "key: id of sharedInsight") {
+            };
             sharedInsightIdOption.IsRequired = true;
             command.AddOption(sharedInsightIdOption);
-            var bodyOption = new Option<string>("--body");
+            var bodyOption = new Option<string>("--body") {
+            };
             bodyOption.IsRequired = true;
             command.AddOption(bodyOption);
-            command.Handler = CommandHandler.Create<string, string, string>(async (userId, sharedInsightId, body) => {
+            command.SetHandler(async (string userId, string sharedInsightId, string body) => {
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<DeclineRequestBody>();
@@ -43,7 +46,7 @@ namespace ApiSdk.Users.Item.Insights.Shared.Item.LastSharedMethod.ScheduleChange
                 await RequestAdapter.SendNoContentAsync(requestInfo);
                 // Print request output. What if the request has no return?
                 Console.WriteLine("Success");
-            });
+            }, userIdOption, sharedInsightIdOption, bodyOption);
             return command;
         }
         /// <summary>
@@ -68,7 +71,7 @@ namespace ApiSdk.Users.Item.Insights.Shared.Item.LastSharedMethod.ScheduleChange
         public RequestInformation CreatePostRequestInformation(DeclineRequestBody body, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
             _ = body ?? throw new ArgumentNullException(nameof(body));
             var requestInfo = new RequestInformation {
-                HttpMethod = HttpMethod.POST,
+                HttpMethod = Method.POST,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };

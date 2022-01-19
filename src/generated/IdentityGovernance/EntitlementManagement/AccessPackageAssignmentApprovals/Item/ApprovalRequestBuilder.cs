@@ -27,16 +27,17 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.AccessPackageAssignmen
             var command = new Command("delete");
             command.Description = "Delete navigation property accessPackageAssignmentApprovals for identityGovernance";
             // Create options for all the parameters
-            var approvalIdOption = new Option<string>("--approval-id", description: "key: id of approval");
+            var approvalIdOption = new Option<string>("--approval-id", description: "key: id of approval") {
+            };
             approvalIdOption.IsRequired = true;
             command.AddOption(approvalIdOption);
-            command.Handler = CommandHandler.Create<string>(async (approvalId) => {
+            command.SetHandler(async (string approvalId) => {
                 var requestInfo = CreateDeleteRequestInformation(q => {
                 });
                 await RequestAdapter.SendNoContentAsync(requestInfo);
                 // Print request output. What if the request has no return?
                 Console.WriteLine("Success");
-            });
+            }, approvalIdOption);
             return command;
         }
         /// <summary>
@@ -46,18 +47,21 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.AccessPackageAssignmen
             var command = new Command("get");
             command.Description = "Get accessPackageAssignmentApprovals from identityGovernance";
             // Create options for all the parameters
-            var approvalIdOption = new Option<string>("--approval-id", description: "key: id of approval");
+            var approvalIdOption = new Option<string>("--approval-id", description: "key: id of approval") {
+            };
             approvalIdOption.IsRequired = true;
             command.AddOption(approvalIdOption);
-            var selectOption = new Option<string[]>("--select", description: "Select properties to be returned");
+            var selectOption = new Option<string[]>("--select", description: "Select properties to be returned") {
+                Arity = ArgumentArity.ZeroOrMore
+            };
             selectOption.IsRequired = false;
-            selectOption.Arity = ArgumentArity.ZeroOrMore;
             command.AddOption(selectOption);
-            var expandOption = new Option<string[]>("--expand", description: "Expand related entities");
+            var expandOption = new Option<string[]>("--expand", description: "Expand related entities") {
+                Arity = ArgumentArity.ZeroOrMore
+            };
             expandOption.IsRequired = false;
-            expandOption.Arity = ArgumentArity.ZeroOrMore;
             command.AddOption(expandOption);
-            command.Handler = CommandHandler.Create<string, string[], string[]>(async (approvalId, select, expand) => {
+            command.SetHandler(async (string approvalId, string[] select, string[] expand) => {
                 var requestInfo = CreateGetRequestInformation(q => {
                     q.Select = select;
                     q.Expand = expand;
@@ -70,7 +74,7 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.AccessPackageAssignmen
                 using var reader = new StreamReader(content);
                 var strContent = await reader.ReadToEndAsync();
                 Console.Write(strContent + "\n");
-            });
+            }, approvalIdOption, selectOption, expandOption);
             return command;
         }
         /// <summary>
@@ -80,13 +84,15 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.AccessPackageAssignmen
             var command = new Command("patch");
             command.Description = "Update the navigation property accessPackageAssignmentApprovals in identityGovernance";
             // Create options for all the parameters
-            var approvalIdOption = new Option<string>("--approval-id", description: "key: id of approval");
+            var approvalIdOption = new Option<string>("--approval-id", description: "key: id of approval") {
+            };
             approvalIdOption.IsRequired = true;
             command.AddOption(approvalIdOption);
-            var bodyOption = new Option<string>("--body");
+            var bodyOption = new Option<string>("--body") {
+            };
             bodyOption.IsRequired = true;
             command.AddOption(bodyOption);
-            command.Handler = CommandHandler.Create<string, string>(async (approvalId, body) => {
+            command.SetHandler(async (string approvalId, string body) => {
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<ApiSdk.Models.Microsoft.Graph.Approval>();
@@ -95,7 +101,7 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.AccessPackageAssignmen
                 await RequestAdapter.SendNoContentAsync(requestInfo);
                 // Print request output. What if the request has no return?
                 Console.WriteLine("Success");
-            });
+            }, approvalIdOption, bodyOption);
             return command;
         }
         public Command BuildStagesCommand() {
@@ -125,7 +131,7 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.AccessPackageAssignmen
         /// </summary>
         public RequestInformation CreateDeleteRequestInformation(Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
             var requestInfo = new RequestInformation {
-                HttpMethod = HttpMethod.DELETE,
+                HttpMethod = Method.DELETE,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };
@@ -141,7 +147,7 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.AccessPackageAssignmen
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<GetQueryParameters> q = default, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
             var requestInfo = new RequestInformation {
-                HttpMethod = HttpMethod.GET,
+                HttpMethod = Method.GET,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };
@@ -163,7 +169,7 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.AccessPackageAssignmen
         public RequestInformation CreatePatchRequestInformation(ApiSdk.Models.Microsoft.Graph.Approval body, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
             _ = body ?? throw new ArgumentNullException(nameof(body));
             var requestInfo = new RequestInformation {
-                HttpMethod = HttpMethod.PATCH,
+                HttpMethod = Method.PATCH,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };

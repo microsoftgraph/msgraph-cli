@@ -25,22 +25,25 @@ namespace ApiSdk.Workbooks.Item.Workbook.Tables.Item.Worksheet.Tables.Item.Clear
             var command = new Command("post");
             command.Description = "Invoke action clearFilters";
             // Create options for all the parameters
-            var driveItemIdOption = new Option<string>("--driveitem-id", description: "key: id of driveItem");
+            var driveItemIdOption = new Option<string>("--driveitem-id", description: "key: id of driveItem") {
+            };
             driveItemIdOption.IsRequired = true;
             command.AddOption(driveItemIdOption);
-            var workbookTableIdOption = new Option<string>("--workbooktable-id", description: "key: id of workbookTable");
+            var workbookTableIdOption = new Option<string>("--workbooktable-id", description: "key: id of workbookTable") {
+            };
             workbookTableIdOption.IsRequired = true;
             command.AddOption(workbookTableIdOption);
-            var workbookTableId1Option = new Option<string>("--workbooktable-id1", description: "key: id of workbookTable");
+            var workbookTableId1Option = new Option<string>("--workbooktable-id1", description: "key: id of workbookTable") {
+            };
             workbookTableId1Option.IsRequired = true;
             command.AddOption(workbookTableId1Option);
-            command.Handler = CommandHandler.Create<string, string, string>(async (driveItemId, workbookTableId, workbookTableId1) => {
+            command.SetHandler(async (string driveItemId, string workbookTableId, string workbookTableId1) => {
                 var requestInfo = CreatePostRequestInformation(q => {
                 });
                 await RequestAdapter.SendNoContentAsync(requestInfo);
                 // Print request output. What if the request has no return?
                 Console.WriteLine("Success");
-            });
+            }, driveItemIdOption, workbookTableIdOption, workbookTableId1Option);
             return command;
         }
         /// <summary>
@@ -63,7 +66,7 @@ namespace ApiSdk.Workbooks.Item.Workbook.Tables.Item.Worksheet.Tables.Item.Clear
         /// </summary>
         public RequestInformation CreatePostRequestInformation(Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
             var requestInfo = new RequestInformation {
-                HttpMethod = HttpMethod.POST,
+                HttpMethod = Method.POST,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };

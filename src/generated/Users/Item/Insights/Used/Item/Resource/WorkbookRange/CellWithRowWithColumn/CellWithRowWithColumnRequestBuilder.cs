@@ -26,19 +26,23 @@ namespace ApiSdk.Users.Item.Insights.Used.Item.Resource.WorkbookRange.CellWithRo
             var command = new Command("get");
             command.Description = "Invoke function cell";
             // Create options for all the parameters
-            var userIdOption = new Option<string>("--user-id", description: "key: id of user");
+            var userIdOption = new Option<string>("--user-id", description: "key: id of user") {
+            };
             userIdOption.IsRequired = true;
             command.AddOption(userIdOption);
-            var usedInsightIdOption = new Option<string>("--usedinsight-id", description: "key: id of usedInsight");
+            var usedInsightIdOption = new Option<string>("--usedinsight-id", description: "key: id of usedInsight") {
+            };
             usedInsightIdOption.IsRequired = true;
             command.AddOption(usedInsightIdOption);
-            var rowOption = new Option<int?>("--row", description: "Usage: row={row}");
+            var rowOption = new Option<int?>("--row", description: "Usage: row={row}") {
+            };
             rowOption.IsRequired = true;
             command.AddOption(rowOption);
-            var columnOption = new Option<int?>("--column", description: "Usage: column={column}");
+            var columnOption = new Option<int?>("--column", description: "Usage: column={column}") {
+            };
             columnOption.IsRequired = true;
             command.AddOption(columnOption);
-            command.Handler = CommandHandler.Create<string, string, int?, int?>(async (userId, usedInsightId, row, column) => {
+            command.SetHandler(async (string userId, string usedInsightId, int? row, int? column) => {
                 var requestInfo = CreateGetRequestInformation(q => {
                 });
                 var result = await RequestAdapter.SendAsync<CellWithRowWithColumnResponse>(requestInfo);
@@ -49,7 +53,7 @@ namespace ApiSdk.Users.Item.Insights.Used.Item.Resource.WorkbookRange.CellWithRo
                 using var reader = new StreamReader(content);
                 var strContent = await reader.ReadToEndAsync();
                 Console.Write(strContent + "\n");
-            });
+            }, userIdOption, usedInsightIdOption, rowOption, columnOption);
             return command;
         }
         /// <summary>
@@ -76,7 +80,7 @@ namespace ApiSdk.Users.Item.Insights.Used.Item.Resource.WorkbookRange.CellWithRo
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
             var requestInfo = new RequestInformation {
-                HttpMethod = HttpMethod.GET,
+                HttpMethod = Method.GET,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };

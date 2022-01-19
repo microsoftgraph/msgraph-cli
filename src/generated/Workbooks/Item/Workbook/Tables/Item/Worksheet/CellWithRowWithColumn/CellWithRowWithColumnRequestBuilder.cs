@@ -26,19 +26,23 @@ namespace ApiSdk.Workbooks.Item.Workbook.Tables.Item.Worksheet.CellWithRowWithCo
             var command = new Command("get");
             command.Description = "Invoke function cell";
             // Create options for all the parameters
-            var driveItemIdOption = new Option<string>("--driveitem-id", description: "key: id of driveItem");
+            var driveItemIdOption = new Option<string>("--driveitem-id", description: "key: id of driveItem") {
+            };
             driveItemIdOption.IsRequired = true;
             command.AddOption(driveItemIdOption);
-            var workbookTableIdOption = new Option<string>("--workbooktable-id", description: "key: id of workbookTable");
+            var workbookTableIdOption = new Option<string>("--workbooktable-id", description: "key: id of workbookTable") {
+            };
             workbookTableIdOption.IsRequired = true;
             command.AddOption(workbookTableIdOption);
-            var rowOption = new Option<int?>("--row", description: "Usage: row={row}");
+            var rowOption = new Option<int?>("--row", description: "Usage: row={row}") {
+            };
             rowOption.IsRequired = true;
             command.AddOption(rowOption);
-            var columnOption = new Option<int?>("--column", description: "Usage: column={column}");
+            var columnOption = new Option<int?>("--column", description: "Usage: column={column}") {
+            };
             columnOption.IsRequired = true;
             command.AddOption(columnOption);
-            command.Handler = CommandHandler.Create<string, string, int?, int?>(async (driveItemId, workbookTableId, row, column) => {
+            command.SetHandler(async (string driveItemId, string workbookTableId, int? row, int? column) => {
                 var requestInfo = CreateGetRequestInformation(q => {
                 });
                 var result = await RequestAdapter.SendAsync<CellWithRowWithColumnResponse>(requestInfo);
@@ -49,7 +53,7 @@ namespace ApiSdk.Workbooks.Item.Workbook.Tables.Item.Worksheet.CellWithRowWithCo
                 using var reader = new StreamReader(content);
                 var strContent = await reader.ReadToEndAsync();
                 Console.Write(strContent + "\n");
-            });
+            }, driveItemIdOption, workbookTableIdOption, rowOption, columnOption);
             return command;
         }
         /// <summary>
@@ -76,7 +80,7 @@ namespace ApiSdk.Workbooks.Item.Workbook.Tables.Item.Worksheet.CellWithRowWithCo
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
             var requestInfo = new RequestInformation {
-                HttpMethod = HttpMethod.GET,
+                HttpMethod = Method.GET,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };
