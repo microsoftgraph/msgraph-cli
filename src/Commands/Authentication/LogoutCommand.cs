@@ -15,8 +15,7 @@ class LogoutCommand
 
     public Command Build() {
         var logoutCommand = new Command("logout", "Logout by deleting the stored session used in commands");
-
-        logoutCommand.Handler = CommandHandler.Create(() =>
+        logoutCommand.SetHandler(() =>
         {
             this.logoutService.Logout();
         });

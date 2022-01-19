@@ -21,6 +21,7 @@ using System.Linq;
 using System.Net.Http;
 using System.Reflection;
 using System.Threading.Tasks;
+using System.Collections.Generic;
 
 namespace Microsoft.Graph.Cli
 {
@@ -65,23 +66,31 @@ namespace Microsoft.Graph.Cli
             using var httpClient = KiotaClientFactory.Create(finalHandler);
             var core = new HttpClientRequestAdapter(authProvider, httpClient: httpClient);
             var client = new GraphClient(core);
-            var builder = BuildCommandLine(client);
+            var rootCommand = client.BuildCommand();
+            rootCommand.Description = "Microsoft Graph CLI";
 
+            var commands = new List<Command>();
             var loginCommand = new LoginCommand(authServiceFactory);
-            builder.AddCommand(loginCommand.Build());
+            commands.Add(loginCommand.Build());
 
             var logoutCommand = new LogoutCommand(new LogoutService());
-            builder.AddCommand(logoutCommand.Build());
+            commands.Add(logoutCommand.Build());
+
+            var builder = BuildCommandLine(client, commands);
 
             var parser = builder.UseHost(CreateHostBuilder).UseDefaults().Build();
 
             return await parser.InvokeAsync(args);
         }
 
-        static CommandLineBuilder BuildCommandLine(GraphClient client)
+        static CommandLineBuilder BuildCommandLine(GraphClient client, IEnumerable<Command> commands)
         {
             var rootCommand = client.BuildCommand();
             rootCommand.Description = "Microsoft Graph CLI";
+
+            foreach (var command in commands) {
+                rootCommand.AddCommand(command);
+            }
 
             return new CommandLineBuilder(rootCommand);
         }

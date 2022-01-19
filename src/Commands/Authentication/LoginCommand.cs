@@ -19,20 +19,20 @@ class LoginCommand
 
     public Command Build() {
         var loginCommand = new Command("login", "Login and store the session for use in subsequent commands");
-        var scopes = new Option<string>("--scopes", "The login scopes e.g. User.Read");
+        var scopes = new Option<string>("--scopes", "The login scopes e.g. User.Read") {
+            Arity = ArgumentArity.OneOrMore
+        };
         scopes.IsRequired = true;
-        scopes.Arity = ArgumentArity.OneOrMore;
         loginCommand.AddOption(scopes);
 
         var strategy = new Option<AuthenticationStrategy>("--strategy", () => Constants.defaultAuthStrategy, "The authentication strategy to use.");
         loginCommand.AddOption(strategy);
-
-        loginCommand.Handler = CommandHandler.Create<string[], AuthenticationStrategy, IHost>(async (scopes, strategy, host) =>
+        loginCommand.SetHandler<string[], AuthenticationStrategy, IHost>(async (scopes, strategy, host) =>
         {
             var options = host.Services.GetRequiredService<IOptionsMonitor<AuthenticationOptions>>().CurrentValue;
             var authService = await this.authenticationServiceFactory.GetAuthenticationServiceAsync(strategy, options?.TenantId, options?.ClientId);
             await authService.LoginAsync(scopes);
-        });
+        }, scopes, strategy);
 
         return loginCommand;
     }
