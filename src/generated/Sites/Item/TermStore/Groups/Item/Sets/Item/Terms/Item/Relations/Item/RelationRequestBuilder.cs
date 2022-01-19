@@ -29,28 +29,33 @@ namespace ApiSdk.Sites.Item.TermStore.Groups.Item.Sets.Item.Terms.Item.Relations
             var command = new Command("delete");
             command.Description = "To indicate which terms are related to the current term as either pinned or reused.";
             // Create options for all the parameters
-            var siteIdOption = new Option<string>("--site-id", description: "key: id of site");
+            var siteIdOption = new Option<string>("--site-id", description: "key: id of site") {
+            };
             siteIdOption.IsRequired = true;
             command.AddOption(siteIdOption);
-            var groupIdOption = new Option<string>("--group-id", description: "key: id of group");
+            var groupIdOption = new Option<string>("--group-id", description: "key: id of group") {
+            };
             groupIdOption.IsRequired = true;
             command.AddOption(groupIdOption);
-            var setIdOption = new Option<string>("--set-id", description: "key: id of set");
+            var setIdOption = new Option<string>("--set-id", description: "key: id of set") {
+            };
             setIdOption.IsRequired = true;
             command.AddOption(setIdOption);
-            var termIdOption = new Option<string>("--term-id", description: "key: id of term");
+            var termIdOption = new Option<string>("--term-id", description: "key: id of term") {
+            };
             termIdOption.IsRequired = true;
             command.AddOption(termIdOption);
-            var relationIdOption = new Option<string>("--relation-id", description: "key: id of relation");
+            var relationIdOption = new Option<string>("--relation-id", description: "key: id of relation") {
+            };
             relationIdOption.IsRequired = true;
             command.AddOption(relationIdOption);
-            command.Handler = CommandHandler.Create<string, string, string, string, string>(async (siteId, groupId, setId, termId, relationId) => {
+            command.SetHandler(async (string siteId, string groupId, string setId, string termId, string relationId) => {
                 var requestInfo = CreateDeleteRequestInformation(q => {
                 });
                 await RequestAdapter.SendNoContentAsync(requestInfo);
                 // Print request output. What if the request has no return?
                 Console.WriteLine("Success");
-            });
+            }, siteIdOption, groupIdOption, setIdOption, termIdOption, relationIdOption);
             return command;
         }
         public Command BuildFromTermCommand() {
@@ -67,30 +72,37 @@ namespace ApiSdk.Sites.Item.TermStore.Groups.Item.Sets.Item.Terms.Item.Relations
             var command = new Command("get");
             command.Description = "To indicate which terms are related to the current term as either pinned or reused.";
             // Create options for all the parameters
-            var siteIdOption = new Option<string>("--site-id", description: "key: id of site");
+            var siteIdOption = new Option<string>("--site-id", description: "key: id of site") {
+            };
             siteIdOption.IsRequired = true;
             command.AddOption(siteIdOption);
-            var groupIdOption = new Option<string>("--group-id", description: "key: id of group");
+            var groupIdOption = new Option<string>("--group-id", description: "key: id of group") {
+            };
             groupIdOption.IsRequired = true;
             command.AddOption(groupIdOption);
-            var setIdOption = new Option<string>("--set-id", description: "key: id of set");
+            var setIdOption = new Option<string>("--set-id", description: "key: id of set") {
+            };
             setIdOption.IsRequired = true;
             command.AddOption(setIdOption);
-            var termIdOption = new Option<string>("--term-id", description: "key: id of term");
+            var termIdOption = new Option<string>("--term-id", description: "key: id of term") {
+            };
             termIdOption.IsRequired = true;
             command.AddOption(termIdOption);
-            var relationIdOption = new Option<string>("--relation-id", description: "key: id of relation");
+            var relationIdOption = new Option<string>("--relation-id", description: "key: id of relation") {
+            };
             relationIdOption.IsRequired = true;
             command.AddOption(relationIdOption);
-            var selectOption = new Option<string[]>("--select", description: "Select properties to be returned");
+            var selectOption = new Option<string[]>("--select", description: "Select properties to be returned") {
+                Arity = ArgumentArity.ZeroOrMore
+            };
             selectOption.IsRequired = false;
-            selectOption.Arity = ArgumentArity.ZeroOrMore;
             command.AddOption(selectOption);
-            var expandOption = new Option<string[]>("--expand", description: "Expand related entities");
+            var expandOption = new Option<string[]>("--expand", description: "Expand related entities") {
+                Arity = ArgumentArity.ZeroOrMore
+            };
             expandOption.IsRequired = false;
-            expandOption.Arity = ArgumentArity.ZeroOrMore;
             command.AddOption(expandOption);
-            command.Handler = CommandHandler.Create<string, string, string, string, string, string[], string[]>(async (siteId, groupId, setId, termId, relationId, select, expand) => {
+            command.SetHandler(async (string siteId, string groupId, string setId, string termId, string relationId, string[] select, string[] expand) => {
                 var requestInfo = CreateGetRequestInformation(q => {
                     q.Select = select;
                     q.Expand = expand;
@@ -103,7 +115,7 @@ namespace ApiSdk.Sites.Item.TermStore.Groups.Item.Sets.Item.Terms.Item.Relations
                 using var reader = new StreamReader(content);
                 var strContent = await reader.ReadToEndAsync();
                 Console.Write(strContent + "\n");
-            });
+            }, siteIdOption, groupIdOption, setIdOption, termIdOption, relationIdOption, selectOption, expandOption);
             return command;
         }
         /// <summary>
@@ -113,25 +125,31 @@ namespace ApiSdk.Sites.Item.TermStore.Groups.Item.Sets.Item.Terms.Item.Relations
             var command = new Command("patch");
             command.Description = "To indicate which terms are related to the current term as either pinned or reused.";
             // Create options for all the parameters
-            var siteIdOption = new Option<string>("--site-id", description: "key: id of site");
+            var siteIdOption = new Option<string>("--site-id", description: "key: id of site") {
+            };
             siteIdOption.IsRequired = true;
             command.AddOption(siteIdOption);
-            var groupIdOption = new Option<string>("--group-id", description: "key: id of group");
+            var groupIdOption = new Option<string>("--group-id", description: "key: id of group") {
+            };
             groupIdOption.IsRequired = true;
             command.AddOption(groupIdOption);
-            var setIdOption = new Option<string>("--set-id", description: "key: id of set");
+            var setIdOption = new Option<string>("--set-id", description: "key: id of set") {
+            };
             setIdOption.IsRequired = true;
             command.AddOption(setIdOption);
-            var termIdOption = new Option<string>("--term-id", description: "key: id of term");
+            var termIdOption = new Option<string>("--term-id", description: "key: id of term") {
+            };
             termIdOption.IsRequired = true;
             command.AddOption(termIdOption);
-            var relationIdOption = new Option<string>("--relation-id", description: "key: id of relation");
+            var relationIdOption = new Option<string>("--relation-id", description: "key: id of relation") {
+            };
             relationIdOption.IsRequired = true;
             command.AddOption(relationIdOption);
-            var bodyOption = new Option<string>("--body");
+            var bodyOption = new Option<string>("--body") {
+            };
             bodyOption.IsRequired = true;
             command.AddOption(bodyOption);
-            command.Handler = CommandHandler.Create<string, string, string, string, string, string>(async (siteId, groupId, setId, termId, relationId, body) => {
+            command.SetHandler(async (string siteId, string groupId, string setId, string termId, string relationId, string body) => {
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<Relation>();
@@ -140,7 +158,7 @@ namespace ApiSdk.Sites.Item.TermStore.Groups.Item.Sets.Item.Terms.Item.Relations
                 await RequestAdapter.SendNoContentAsync(requestInfo);
                 // Print request output. What if the request has no return?
                 Console.WriteLine("Success");
-            });
+            }, siteIdOption, groupIdOption, setIdOption, termIdOption, relationIdOption, bodyOption);
             return command;
         }
         public Command BuildSetCommand() {
@@ -177,7 +195,7 @@ namespace ApiSdk.Sites.Item.TermStore.Groups.Item.Sets.Item.Terms.Item.Relations
         /// </summary>
         public RequestInformation CreateDeleteRequestInformation(Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
             var requestInfo = new RequestInformation {
-                HttpMethod = HttpMethod.DELETE,
+                HttpMethod = Method.DELETE,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };
@@ -193,7 +211,7 @@ namespace ApiSdk.Sites.Item.TermStore.Groups.Item.Sets.Item.Terms.Item.Relations
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<GetQueryParameters> q = default, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
             var requestInfo = new RequestInformation {
-                HttpMethod = HttpMethod.GET,
+                HttpMethod = Method.GET,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };
@@ -215,7 +233,7 @@ namespace ApiSdk.Sites.Item.TermStore.Groups.Item.Sets.Item.Terms.Item.Relations
         public RequestInformation CreatePatchRequestInformation(Relation body, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
             _ = body ?? throw new ArgumentNullException(nameof(body));
             var requestInfo = new RequestInformation {
-                HttpMethod = HttpMethod.PATCH,
+                HttpMethod = Method.PATCH,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };

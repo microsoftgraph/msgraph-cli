@@ -34,22 +34,25 @@ namespace ApiSdk.Identity.B2xUserFlows.Item.Languages.Item.OverridesPages.Item {
             var command = new Command("delete");
             command.Description = "Collection of pages with the overrides messages to display in a user flow for a specified language. This collection only allows to modify the content of the page, any other modification is not allowed (creation or deletion of pages).";
             // Create options for all the parameters
-            var b2xIdentityUserFlowIdOption = new Option<string>("--b2xidentityuserflow-id", description: "key: id of b2xIdentityUserFlow");
+            var b2xIdentityUserFlowIdOption = new Option<string>("--b2xidentityuserflow-id", description: "key: id of b2xIdentityUserFlow") {
+            };
             b2xIdentityUserFlowIdOption.IsRequired = true;
             command.AddOption(b2xIdentityUserFlowIdOption);
-            var userFlowLanguageConfigurationIdOption = new Option<string>("--userflowlanguageconfiguration-id", description: "key: id of userFlowLanguageConfiguration");
+            var userFlowLanguageConfigurationIdOption = new Option<string>("--userflowlanguageconfiguration-id", description: "key: id of userFlowLanguageConfiguration") {
+            };
             userFlowLanguageConfigurationIdOption.IsRequired = true;
             command.AddOption(userFlowLanguageConfigurationIdOption);
-            var userFlowLanguagePageIdOption = new Option<string>("--userflowlanguagepage-id", description: "key: id of userFlowLanguagePage");
+            var userFlowLanguagePageIdOption = new Option<string>("--userflowlanguagepage-id", description: "key: id of userFlowLanguagePage") {
+            };
             userFlowLanguagePageIdOption.IsRequired = true;
             command.AddOption(userFlowLanguagePageIdOption);
-            command.Handler = CommandHandler.Create<string, string, string>(async (b2xIdentityUserFlowId, userFlowLanguageConfigurationId, userFlowLanguagePageId) => {
+            command.SetHandler(async (string b2xIdentityUserFlowId, string userFlowLanguageConfigurationId, string userFlowLanguagePageId) => {
                 var requestInfo = CreateDeleteRequestInformation(q => {
                 });
                 await RequestAdapter.SendNoContentAsync(requestInfo);
                 // Print request output. What if the request has no return?
                 Console.WriteLine("Success");
-            });
+            }, b2xIdentityUserFlowIdOption, userFlowLanguageConfigurationIdOption, userFlowLanguagePageIdOption);
             return command;
         }
         /// <summary>
@@ -59,24 +62,29 @@ namespace ApiSdk.Identity.B2xUserFlows.Item.Languages.Item.OverridesPages.Item {
             var command = new Command("get");
             command.Description = "Collection of pages with the overrides messages to display in a user flow for a specified language. This collection only allows to modify the content of the page, any other modification is not allowed (creation or deletion of pages).";
             // Create options for all the parameters
-            var b2xIdentityUserFlowIdOption = new Option<string>("--b2xidentityuserflow-id", description: "key: id of b2xIdentityUserFlow");
+            var b2xIdentityUserFlowIdOption = new Option<string>("--b2xidentityuserflow-id", description: "key: id of b2xIdentityUserFlow") {
+            };
             b2xIdentityUserFlowIdOption.IsRequired = true;
             command.AddOption(b2xIdentityUserFlowIdOption);
-            var userFlowLanguageConfigurationIdOption = new Option<string>("--userflowlanguageconfiguration-id", description: "key: id of userFlowLanguageConfiguration");
+            var userFlowLanguageConfigurationIdOption = new Option<string>("--userflowlanguageconfiguration-id", description: "key: id of userFlowLanguageConfiguration") {
+            };
             userFlowLanguageConfigurationIdOption.IsRequired = true;
             command.AddOption(userFlowLanguageConfigurationIdOption);
-            var userFlowLanguagePageIdOption = new Option<string>("--userflowlanguagepage-id", description: "key: id of userFlowLanguagePage");
+            var userFlowLanguagePageIdOption = new Option<string>("--userflowlanguagepage-id", description: "key: id of userFlowLanguagePage") {
+            };
             userFlowLanguagePageIdOption.IsRequired = true;
             command.AddOption(userFlowLanguagePageIdOption);
-            var selectOption = new Option<string[]>("--select", description: "Select properties to be returned");
+            var selectOption = new Option<string[]>("--select", description: "Select properties to be returned") {
+                Arity = ArgumentArity.ZeroOrMore
+            };
             selectOption.IsRequired = false;
-            selectOption.Arity = ArgumentArity.ZeroOrMore;
             command.AddOption(selectOption);
-            var expandOption = new Option<string[]>("--expand", description: "Expand related entities");
+            var expandOption = new Option<string[]>("--expand", description: "Expand related entities") {
+                Arity = ArgumentArity.ZeroOrMore
+            };
             expandOption.IsRequired = false;
-            expandOption.Arity = ArgumentArity.ZeroOrMore;
             command.AddOption(expandOption);
-            command.Handler = CommandHandler.Create<string, string, string, string[], string[]>(async (b2xIdentityUserFlowId, userFlowLanguageConfigurationId, userFlowLanguagePageId, select, expand) => {
+            command.SetHandler(async (string b2xIdentityUserFlowId, string userFlowLanguageConfigurationId, string userFlowLanguagePageId, string[] select, string[] expand) => {
                 var requestInfo = CreateGetRequestInformation(q => {
                     q.Select = select;
                     q.Expand = expand;
@@ -89,7 +97,7 @@ namespace ApiSdk.Identity.B2xUserFlows.Item.Languages.Item.OverridesPages.Item {
                 using var reader = new StreamReader(content);
                 var strContent = await reader.ReadToEndAsync();
                 Console.Write(strContent + "\n");
-            });
+            }, b2xIdentityUserFlowIdOption, userFlowLanguageConfigurationIdOption, userFlowLanguagePageIdOption, selectOption, expandOption);
             return command;
         }
         /// <summary>
@@ -99,19 +107,23 @@ namespace ApiSdk.Identity.B2xUserFlows.Item.Languages.Item.OverridesPages.Item {
             var command = new Command("patch");
             command.Description = "Collection of pages with the overrides messages to display in a user flow for a specified language. This collection only allows to modify the content of the page, any other modification is not allowed (creation or deletion of pages).";
             // Create options for all the parameters
-            var b2xIdentityUserFlowIdOption = new Option<string>("--b2xidentityuserflow-id", description: "key: id of b2xIdentityUserFlow");
+            var b2xIdentityUserFlowIdOption = new Option<string>("--b2xidentityuserflow-id", description: "key: id of b2xIdentityUserFlow") {
+            };
             b2xIdentityUserFlowIdOption.IsRequired = true;
             command.AddOption(b2xIdentityUserFlowIdOption);
-            var userFlowLanguageConfigurationIdOption = new Option<string>("--userflowlanguageconfiguration-id", description: "key: id of userFlowLanguageConfiguration");
+            var userFlowLanguageConfigurationIdOption = new Option<string>("--userflowlanguageconfiguration-id", description: "key: id of userFlowLanguageConfiguration") {
+            };
             userFlowLanguageConfigurationIdOption.IsRequired = true;
             command.AddOption(userFlowLanguageConfigurationIdOption);
-            var userFlowLanguagePageIdOption = new Option<string>("--userflowlanguagepage-id", description: "key: id of userFlowLanguagePage");
+            var userFlowLanguagePageIdOption = new Option<string>("--userflowlanguagepage-id", description: "key: id of userFlowLanguagePage") {
+            };
             userFlowLanguagePageIdOption.IsRequired = true;
             command.AddOption(userFlowLanguagePageIdOption);
-            var bodyOption = new Option<string>("--body");
+            var bodyOption = new Option<string>("--body") {
+            };
             bodyOption.IsRequired = true;
             command.AddOption(bodyOption);
-            command.Handler = CommandHandler.Create<string, string, string, string>(async (b2xIdentityUserFlowId, userFlowLanguageConfigurationId, userFlowLanguagePageId, body) => {
+            command.SetHandler(async (string b2xIdentityUserFlowId, string userFlowLanguageConfigurationId, string userFlowLanguagePageId, string body) => {
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<UserFlowLanguagePage>();
@@ -120,7 +132,7 @@ namespace ApiSdk.Identity.B2xUserFlows.Item.Languages.Item.OverridesPages.Item {
                 await RequestAdapter.SendNoContentAsync(requestInfo);
                 // Print request output. What if the request has no return?
                 Console.WriteLine("Success");
-            });
+            }, b2xIdentityUserFlowIdOption, userFlowLanguageConfigurationIdOption, userFlowLanguagePageIdOption, bodyOption);
             return command;
         }
         /// <summary>
@@ -143,7 +155,7 @@ namespace ApiSdk.Identity.B2xUserFlows.Item.Languages.Item.OverridesPages.Item {
         /// </summary>
         public RequestInformation CreateDeleteRequestInformation(Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
             var requestInfo = new RequestInformation {
-                HttpMethod = HttpMethod.DELETE,
+                HttpMethod = Method.DELETE,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };
@@ -159,7 +171,7 @@ namespace ApiSdk.Identity.B2xUserFlows.Item.Languages.Item.OverridesPages.Item {
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<GetQueryParameters> q = default, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
             var requestInfo = new RequestInformation {
-                HttpMethod = HttpMethod.GET,
+                HttpMethod = Method.GET,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };
@@ -181,7 +193,7 @@ namespace ApiSdk.Identity.B2xUserFlows.Item.Languages.Item.OverridesPages.Item {
         public RequestInformation CreatePatchRequestInformation(UserFlowLanguagePage body, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
             _ = body ?? throw new ArgumentNullException(nameof(body));
             var requestInfo = new RequestInformation {
-                HttpMethod = HttpMethod.PATCH,
+                HttpMethod = Method.PATCH,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };

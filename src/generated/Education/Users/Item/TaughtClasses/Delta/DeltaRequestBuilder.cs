@@ -25,10 +25,11 @@ namespace ApiSdk.Education.Users.Item.TaughtClasses.Delta {
             var command = new Command("get");
             command.Description = "Invoke function delta";
             // Create options for all the parameters
-            var educationUserIdOption = new Option<string>("--educationuser-id", description: "key: id of educationUser");
+            var educationUserIdOption = new Option<string>("--educationuser-id", description: "key: id of educationUser") {
+            };
             educationUserIdOption.IsRequired = true;
             command.AddOption(educationUserIdOption);
-            command.Handler = CommandHandler.Create<string>(async (educationUserId) => {
+            command.SetHandler(async (string educationUserId) => {
                 var requestInfo = CreateGetRequestInformation(q => {
                 });
                 var result = await RequestAdapter.SendCollectionAsync<ApiSdk.Education.Users.Item.TaughtClasses.Delta.Delta>(requestInfo);
@@ -39,7 +40,7 @@ namespace ApiSdk.Education.Users.Item.TaughtClasses.Delta {
                 using var reader = new StreamReader(content);
                 var strContent = await reader.ReadToEndAsync();
                 Console.Write(strContent + "\n");
-            });
+            }, educationUserIdOption);
             return command;
         }
         /// <summary>
@@ -62,7 +63,7 @@ namespace ApiSdk.Education.Users.Item.TaughtClasses.Delta {
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
             var requestInfo = new RequestInformation {
-                HttpMethod = HttpMethod.GET,
+                HttpMethod = Method.GET,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };

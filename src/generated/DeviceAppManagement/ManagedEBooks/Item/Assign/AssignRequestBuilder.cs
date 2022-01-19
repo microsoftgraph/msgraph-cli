@@ -25,13 +25,15 @@ namespace ApiSdk.DeviceAppManagement.ManagedEBooks.Item.Assign {
             var command = new Command("post");
             command.Description = "Invoke action assign";
             // Create options for all the parameters
-            var managedEBookIdOption = new Option<string>("--managedebook-id", description: "key: id of managedEBook");
+            var managedEBookIdOption = new Option<string>("--managedebook-id", description: "key: id of managedEBook") {
+            };
             managedEBookIdOption.IsRequired = true;
             command.AddOption(managedEBookIdOption);
-            var bodyOption = new Option<string>("--body");
+            var bodyOption = new Option<string>("--body") {
+            };
             bodyOption.IsRequired = true;
             command.AddOption(bodyOption);
-            command.Handler = CommandHandler.Create<string, string>(async (managedEBookId, body) => {
+            command.SetHandler(async (string managedEBookId, string body) => {
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<AssignRequestBody>();
@@ -40,7 +42,7 @@ namespace ApiSdk.DeviceAppManagement.ManagedEBooks.Item.Assign {
                 await RequestAdapter.SendNoContentAsync(requestInfo);
                 // Print request output. What if the request has no return?
                 Console.WriteLine("Success");
-            });
+            }, managedEBookIdOption, bodyOption);
             return command;
         }
         /// <summary>
@@ -65,7 +67,7 @@ namespace ApiSdk.DeviceAppManagement.ManagedEBooks.Item.Assign {
         public RequestInformation CreatePostRequestInformation(AssignRequestBody body, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
             _ = body ?? throw new ArgumentNullException(nameof(body));
             var requestInfo = new RequestInformation {
-                HttpMethod = HttpMethod.POST,
+                HttpMethod = Method.POST,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };

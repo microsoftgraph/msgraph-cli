@@ -48,9 +48,9 @@ namespace ApiSdk.Models.Microsoft.Graph {
         /// </summary>
         public new IDictionary<string, Action<T, IParseNode>> GetFieldDeserializers<T>() {
             return new Dictionary<string, Action<T, IParseNode>>(base.GetFieldDeserializers<T>()) {
-                {"@Base", (o,n) => { (o as ContentType).@Base = n.GetObjectValue<ContentType>(); } },
-                {"@ReadOnly", (o,n) => { (o as ContentType).@ReadOnly = n.GetBoolValue(); } },
-                {"@Sealed", (o,n) => { (o as ContentType).@Sealed = n.GetBoolValue(); } },
+                {"base", (o,n) => { (o as ContentType).@Base = n.GetObjectValue<ContentType>(); } },
+                {"readOnly", (o,n) => { (o as ContentType).@ReadOnly = n.GetBoolValue(); } },
+                {"sealed", (o,n) => { (o as ContentType).@Sealed = n.GetBoolValue(); } },
                 {"associatedHubsUrls", (o,n) => { (o as ContentType).AssociatedHubsUrls = n.GetCollectionOfPrimitiveValues<string>().ToList(); } },
                 {"baseTypes", (o,n) => { (o as ContentType).BaseTypes = n.GetCollectionOfObjectValues<ContentType>().ToList(); } },
                 {"columnLinks", (o,n) => { (o as ContentType).ColumnLinks = n.GetCollectionOfObjectValues<ColumnLink>().ToList(); } },
@@ -76,9 +76,9 @@ namespace ApiSdk.Models.Microsoft.Graph {
         public new void Serialize(ISerializationWriter writer) {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             base.Serialize(writer);
-            writer.WriteObjectValue<ContentType>("@Base", @Base);
-            writer.WriteBoolValue("@ReadOnly", @ReadOnly);
-            writer.WriteBoolValue("@Sealed", @Sealed);
+            writer.WriteObjectValue<ContentType>("base", @Base);
+            writer.WriteBoolValue("readOnly", @ReadOnly);
+            writer.WriteBoolValue("sealed", @Sealed);
             writer.WriteCollectionOfPrimitiveValues<string>("associatedHubsUrls", AssociatedHubsUrls);
             writer.WriteCollectionOfObjectValues<ContentType>("baseTypes", BaseTypes);
             writer.WriteCollectionOfObjectValues<ColumnLink>("columnLinks", ColumnLinks);

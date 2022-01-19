@@ -26,10 +26,11 @@ namespace ApiSdk.Me.Insights.Trending.Item.Resource.PrintJob.Start {
             var command = new Command("post");
             command.Description = "Invoke action start";
             // Create options for all the parameters
-            var trendingIdOption = new Option<string>("--trending-id", description: "key: id of trending");
+            var trendingIdOption = new Option<string>("--trending-id", description: "key: id of trending") {
+            };
             trendingIdOption.IsRequired = true;
             command.AddOption(trendingIdOption);
-            command.Handler = CommandHandler.Create<string>(async (trendingId) => {
+            command.SetHandler(async (string trendingId) => {
                 var requestInfo = CreatePostRequestInformation(q => {
                 });
                 var result = await RequestAdapter.SendAsync<StartResponse>(requestInfo);
@@ -40,7 +41,7 @@ namespace ApiSdk.Me.Insights.Trending.Item.Resource.PrintJob.Start {
                 using var reader = new StreamReader(content);
                 var strContent = await reader.ReadToEndAsync();
                 Console.Write(strContent + "\n");
-            });
+            }, trendingIdOption);
             return command;
         }
         /// <summary>
@@ -63,7 +64,7 @@ namespace ApiSdk.Me.Insights.Trending.Item.Resource.PrintJob.Start {
         /// </summary>
         public RequestInformation CreatePostRequestInformation(Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
             var requestInfo = new RequestInformation {
-                HttpMethod = HttpMethod.POST,
+                HttpMethod = Method.POST,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };

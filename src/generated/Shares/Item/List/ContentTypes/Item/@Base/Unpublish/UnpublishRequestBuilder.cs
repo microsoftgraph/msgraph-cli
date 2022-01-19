@@ -25,19 +25,21 @@ namespace ApiSdk.Shares.Item.List.ContentTypes.Item.@Base.Unpublish {
             var command = new Command("post");
             command.Description = "Invoke action unpublish";
             // Create options for all the parameters
-            var sharedDriveItemIdOption = new Option<string>("--shareddriveitem-id", description: "key: id of sharedDriveItem");
+            var sharedDriveItemIdOption = new Option<string>("--shareddriveitem-id", description: "key: id of sharedDriveItem") {
+            };
             sharedDriveItemIdOption.IsRequired = true;
             command.AddOption(sharedDriveItemIdOption);
-            var contentTypeIdOption = new Option<string>("--contenttype-id", description: "key: id of contentType");
+            var contentTypeIdOption = new Option<string>("--contenttype-id", description: "key: id of contentType") {
+            };
             contentTypeIdOption.IsRequired = true;
             command.AddOption(contentTypeIdOption);
-            command.Handler = CommandHandler.Create<string, string>(async (sharedDriveItemId, contentTypeId) => {
+            command.SetHandler(async (string sharedDriveItemId, string contentTypeId) => {
                 var requestInfo = CreatePostRequestInformation(q => {
                 });
                 await RequestAdapter.SendNoContentAsync(requestInfo);
                 // Print request output. What if the request has no return?
                 Console.WriteLine("Success");
-            });
+            }, sharedDriveItemIdOption, contentTypeIdOption);
             return command;
         }
         /// <summary>
@@ -60,7 +62,7 @@ namespace ApiSdk.Shares.Item.List.ContentTypes.Item.@Base.Unpublish {
         /// </summary>
         public RequestInformation CreatePostRequestInformation(Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
             var requestInfo = new RequestInformation {
-                HttpMethod = HttpMethod.POST,
+                HttpMethod = Method.POST,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };

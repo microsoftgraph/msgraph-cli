@@ -25,13 +25,15 @@ namespace ApiSdk.Devices.Item.GetMemberObjects {
             var command = new Command("post");
             command.Description = "Invoke action getMemberObjects";
             // Create options for all the parameters
-            var deviceIdOption = new Option<string>("--device-id", description: "key: id of device");
+            var deviceIdOption = new Option<string>("--device-id", description: "key: id of device") {
+            };
             deviceIdOption.IsRequired = true;
             command.AddOption(deviceIdOption);
-            var bodyOption = new Option<string>("--body");
+            var bodyOption = new Option<string>("--body") {
+            };
             bodyOption.IsRequired = true;
             command.AddOption(bodyOption);
-            command.Handler = CommandHandler.Create<string, string>(async (deviceId, body) => {
+            command.SetHandler(async (string deviceId, string body) => {
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<GetMemberObjectsRequestBody>();
@@ -45,7 +47,7 @@ namespace ApiSdk.Devices.Item.GetMemberObjects {
                 using var reader = new StreamReader(content);
                 var strContent = await reader.ReadToEndAsync();
                 Console.Write(strContent + "\n");
-            });
+            }, deviceIdOption, bodyOption);
             return command;
         }
         /// <summary>
@@ -70,7 +72,7 @@ namespace ApiSdk.Devices.Item.GetMemberObjects {
         public RequestInformation CreatePostRequestInformation(GetMemberObjectsRequestBody body, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
             _ = body ?? throw new ArgumentNullException(nameof(body));
             var requestInfo = new RequestInformation {
-                HttpMethod = HttpMethod.POST,
+                HttpMethod = Method.POST,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };

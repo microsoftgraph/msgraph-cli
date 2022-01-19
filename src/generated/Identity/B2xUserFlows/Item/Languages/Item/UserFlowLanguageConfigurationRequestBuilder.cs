@@ -35,19 +35,21 @@ namespace ApiSdk.Identity.B2xUserFlows.Item.Languages.Item {
             var command = new Command("delete");
             command.Description = "The languages supported for customization within the user flow. Language customization is enabled by default in self-service sign up user flow. You cannot create custom languages in self-service sign up user flows.";
             // Create options for all the parameters
-            var b2xIdentityUserFlowIdOption = new Option<string>("--b2xidentityuserflow-id", description: "key: id of b2xIdentityUserFlow");
+            var b2xIdentityUserFlowIdOption = new Option<string>("--b2xidentityuserflow-id", description: "key: id of b2xIdentityUserFlow") {
+            };
             b2xIdentityUserFlowIdOption.IsRequired = true;
             command.AddOption(b2xIdentityUserFlowIdOption);
-            var userFlowLanguageConfigurationIdOption = new Option<string>("--userflowlanguageconfiguration-id", description: "key: id of userFlowLanguageConfiguration");
+            var userFlowLanguageConfigurationIdOption = new Option<string>("--userflowlanguageconfiguration-id", description: "key: id of userFlowLanguageConfiguration") {
+            };
             userFlowLanguageConfigurationIdOption.IsRequired = true;
             command.AddOption(userFlowLanguageConfigurationIdOption);
-            command.Handler = CommandHandler.Create<string, string>(async (b2xIdentityUserFlowId, userFlowLanguageConfigurationId) => {
+            command.SetHandler(async (string b2xIdentityUserFlowId, string userFlowLanguageConfigurationId) => {
                 var requestInfo = CreateDeleteRequestInformation(q => {
                 });
                 await RequestAdapter.SendNoContentAsync(requestInfo);
                 // Print request output. What if the request has no return?
                 Console.WriteLine("Success");
-            });
+            }, b2xIdentityUserFlowIdOption, userFlowLanguageConfigurationIdOption);
             return command;
         }
         /// <summary>
@@ -57,21 +59,25 @@ namespace ApiSdk.Identity.B2xUserFlows.Item.Languages.Item {
             var command = new Command("get");
             command.Description = "The languages supported for customization within the user flow. Language customization is enabled by default in self-service sign up user flow. You cannot create custom languages in self-service sign up user flows.";
             // Create options for all the parameters
-            var b2xIdentityUserFlowIdOption = new Option<string>("--b2xidentityuserflow-id", description: "key: id of b2xIdentityUserFlow");
+            var b2xIdentityUserFlowIdOption = new Option<string>("--b2xidentityuserflow-id", description: "key: id of b2xIdentityUserFlow") {
+            };
             b2xIdentityUserFlowIdOption.IsRequired = true;
             command.AddOption(b2xIdentityUserFlowIdOption);
-            var userFlowLanguageConfigurationIdOption = new Option<string>("--userflowlanguageconfiguration-id", description: "key: id of userFlowLanguageConfiguration");
+            var userFlowLanguageConfigurationIdOption = new Option<string>("--userflowlanguageconfiguration-id", description: "key: id of userFlowLanguageConfiguration") {
+            };
             userFlowLanguageConfigurationIdOption.IsRequired = true;
             command.AddOption(userFlowLanguageConfigurationIdOption);
-            var selectOption = new Option<string[]>("--select", description: "Select properties to be returned");
+            var selectOption = new Option<string[]>("--select", description: "Select properties to be returned") {
+                Arity = ArgumentArity.ZeroOrMore
+            };
             selectOption.IsRequired = false;
-            selectOption.Arity = ArgumentArity.ZeroOrMore;
             command.AddOption(selectOption);
-            var expandOption = new Option<string[]>("--expand", description: "Expand related entities");
+            var expandOption = new Option<string[]>("--expand", description: "Expand related entities") {
+                Arity = ArgumentArity.ZeroOrMore
+            };
             expandOption.IsRequired = false;
-            expandOption.Arity = ArgumentArity.ZeroOrMore;
             command.AddOption(expandOption);
-            command.Handler = CommandHandler.Create<string, string, string[], string[]>(async (b2xIdentityUserFlowId, userFlowLanguageConfigurationId, select, expand) => {
+            command.SetHandler(async (string b2xIdentityUserFlowId, string userFlowLanguageConfigurationId, string[] select, string[] expand) => {
                 var requestInfo = CreateGetRequestInformation(q => {
                     q.Select = select;
                     q.Expand = expand;
@@ -84,7 +90,7 @@ namespace ApiSdk.Identity.B2xUserFlows.Item.Languages.Item {
                 using var reader = new StreamReader(content);
                 var strContent = await reader.ReadToEndAsync();
                 Console.Write(strContent + "\n");
-            });
+            }, b2xIdentityUserFlowIdOption, userFlowLanguageConfigurationIdOption, selectOption, expandOption);
             return command;
         }
         public Command BuildOverridesPagesCommand() {
@@ -101,16 +107,19 @@ namespace ApiSdk.Identity.B2xUserFlows.Item.Languages.Item {
             var command = new Command("patch");
             command.Description = "The languages supported for customization within the user flow. Language customization is enabled by default in self-service sign up user flow. You cannot create custom languages in self-service sign up user flows.";
             // Create options for all the parameters
-            var b2xIdentityUserFlowIdOption = new Option<string>("--b2xidentityuserflow-id", description: "key: id of b2xIdentityUserFlow");
+            var b2xIdentityUserFlowIdOption = new Option<string>("--b2xidentityuserflow-id", description: "key: id of b2xIdentityUserFlow") {
+            };
             b2xIdentityUserFlowIdOption.IsRequired = true;
             command.AddOption(b2xIdentityUserFlowIdOption);
-            var userFlowLanguageConfigurationIdOption = new Option<string>("--userflowlanguageconfiguration-id", description: "key: id of userFlowLanguageConfiguration");
+            var userFlowLanguageConfigurationIdOption = new Option<string>("--userflowlanguageconfiguration-id", description: "key: id of userFlowLanguageConfiguration") {
+            };
             userFlowLanguageConfigurationIdOption.IsRequired = true;
             command.AddOption(userFlowLanguageConfigurationIdOption);
-            var bodyOption = new Option<string>("--body");
+            var bodyOption = new Option<string>("--body") {
+            };
             bodyOption.IsRequired = true;
             command.AddOption(bodyOption);
-            command.Handler = CommandHandler.Create<string, string, string>(async (b2xIdentityUserFlowId, userFlowLanguageConfigurationId, body) => {
+            command.SetHandler(async (string b2xIdentityUserFlowId, string userFlowLanguageConfigurationId, string body) => {
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<UserFlowLanguageConfiguration>();
@@ -119,7 +128,7 @@ namespace ApiSdk.Identity.B2xUserFlows.Item.Languages.Item {
                 await RequestAdapter.SendNoContentAsync(requestInfo);
                 // Print request output. What if the request has no return?
                 Console.WriteLine("Success");
-            });
+            }, b2xIdentityUserFlowIdOption, userFlowLanguageConfigurationIdOption, bodyOption);
             return command;
         }
         /// <summary>
@@ -142,7 +151,7 @@ namespace ApiSdk.Identity.B2xUserFlows.Item.Languages.Item {
         /// </summary>
         public RequestInformation CreateDeleteRequestInformation(Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
             var requestInfo = new RequestInformation {
-                HttpMethod = HttpMethod.DELETE,
+                HttpMethod = Method.DELETE,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };
@@ -158,7 +167,7 @@ namespace ApiSdk.Identity.B2xUserFlows.Item.Languages.Item {
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<GetQueryParameters> q = default, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
             var requestInfo = new RequestInformation {
-                HttpMethod = HttpMethod.GET,
+                HttpMethod = Method.GET,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };
@@ -180,7 +189,7 @@ namespace ApiSdk.Identity.B2xUserFlows.Item.Languages.Item {
         public RequestInformation CreatePatchRequestInformation(UserFlowLanguageConfiguration body, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
             _ = body ?? throw new ArgumentNullException(nameof(body));
             var requestInfo = new RequestInformation {
-                HttpMethod = HttpMethod.PATCH,
+                HttpMethod = Method.PATCH,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };

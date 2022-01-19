@@ -30,16 +30,17 @@ namespace ApiSdk.DeviceAppManagement.ManagedAppPolicies.Item {
             var command = new Command("delete");
             command.Description = "Managed app policies.";
             // Create options for all the parameters
-            var managedAppPolicyIdOption = new Option<string>("--managedapppolicy-id", description: "key: id of managedAppPolicy");
+            var managedAppPolicyIdOption = new Option<string>("--managedapppolicy-id", description: "key: id of managedAppPolicy") {
+            };
             managedAppPolicyIdOption.IsRequired = true;
             command.AddOption(managedAppPolicyIdOption);
-            command.Handler = CommandHandler.Create<string>(async (managedAppPolicyId) => {
+            command.SetHandler(async (string managedAppPolicyId) => {
                 var requestInfo = CreateDeleteRequestInformation(q => {
                 });
                 await RequestAdapter.SendNoContentAsync(requestInfo);
                 // Print request output. What if the request has no return?
                 Console.WriteLine("Success");
-            });
+            }, managedAppPolicyIdOption);
             return command;
         }
         /// <summary>
@@ -49,18 +50,21 @@ namespace ApiSdk.DeviceAppManagement.ManagedAppPolicies.Item {
             var command = new Command("get");
             command.Description = "Managed app policies.";
             // Create options for all the parameters
-            var managedAppPolicyIdOption = new Option<string>("--managedapppolicy-id", description: "key: id of managedAppPolicy");
+            var managedAppPolicyIdOption = new Option<string>("--managedapppolicy-id", description: "key: id of managedAppPolicy") {
+            };
             managedAppPolicyIdOption.IsRequired = true;
             command.AddOption(managedAppPolicyIdOption);
-            var selectOption = new Option<string[]>("--select", description: "Select properties to be returned");
+            var selectOption = new Option<string[]>("--select", description: "Select properties to be returned") {
+                Arity = ArgumentArity.ZeroOrMore
+            };
             selectOption.IsRequired = false;
-            selectOption.Arity = ArgumentArity.ZeroOrMore;
             command.AddOption(selectOption);
-            var expandOption = new Option<string[]>("--expand", description: "Expand related entities");
+            var expandOption = new Option<string[]>("--expand", description: "Expand related entities") {
+                Arity = ArgumentArity.ZeroOrMore
+            };
             expandOption.IsRequired = false;
-            expandOption.Arity = ArgumentArity.ZeroOrMore;
             command.AddOption(expandOption);
-            command.Handler = CommandHandler.Create<string, string[], string[]>(async (managedAppPolicyId, select, expand) => {
+            command.SetHandler(async (string managedAppPolicyId, string[] select, string[] expand) => {
                 var requestInfo = CreateGetRequestInformation(q => {
                     q.Select = select;
                     q.Expand = expand;
@@ -73,7 +77,7 @@ namespace ApiSdk.DeviceAppManagement.ManagedAppPolicies.Item {
                 using var reader = new StreamReader(content);
                 var strContent = await reader.ReadToEndAsync();
                 Console.Write(strContent + "\n");
-            });
+            }, managedAppPolicyIdOption, selectOption, expandOption);
             return command;
         }
         public Command BuildManagedAppProtectionCommand() {
@@ -89,13 +93,15 @@ namespace ApiSdk.DeviceAppManagement.ManagedAppPolicies.Item {
             var command = new Command("patch");
             command.Description = "Managed app policies.";
             // Create options for all the parameters
-            var managedAppPolicyIdOption = new Option<string>("--managedapppolicy-id", description: "key: id of managedAppPolicy");
+            var managedAppPolicyIdOption = new Option<string>("--managedapppolicy-id", description: "key: id of managedAppPolicy") {
+            };
             managedAppPolicyIdOption.IsRequired = true;
             command.AddOption(managedAppPolicyIdOption);
-            var bodyOption = new Option<string>("--body");
+            var bodyOption = new Option<string>("--body") {
+            };
             bodyOption.IsRequired = true;
             command.AddOption(bodyOption);
-            command.Handler = CommandHandler.Create<string, string>(async (managedAppPolicyId, body) => {
+            command.SetHandler(async (string managedAppPolicyId, string body) => {
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<ManagedAppPolicy>();
@@ -104,7 +110,7 @@ namespace ApiSdk.DeviceAppManagement.ManagedAppPolicies.Item {
                 await RequestAdapter.SendNoContentAsync(requestInfo);
                 // Print request output. What if the request has no return?
                 Console.WriteLine("Success");
-            });
+            }, managedAppPolicyIdOption, bodyOption);
             return command;
         }
         public Command BuildTargetAppsCommand() {
@@ -146,7 +152,7 @@ namespace ApiSdk.DeviceAppManagement.ManagedAppPolicies.Item {
         /// </summary>
         public RequestInformation CreateDeleteRequestInformation(Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
             var requestInfo = new RequestInformation {
-                HttpMethod = HttpMethod.DELETE,
+                HttpMethod = Method.DELETE,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };
@@ -162,7 +168,7 @@ namespace ApiSdk.DeviceAppManagement.ManagedAppPolicies.Item {
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<GetQueryParameters> q = default, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
             var requestInfo = new RequestInformation {
-                HttpMethod = HttpMethod.GET,
+                HttpMethod = Method.GET,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };
@@ -184,7 +190,7 @@ namespace ApiSdk.DeviceAppManagement.ManagedAppPolicies.Item {
         public RequestInformation CreatePatchRequestInformation(ManagedAppPolicy body, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
             _ = body ?? throw new ArgumentNullException(nameof(body));
             var requestInfo = new RequestInformation {
-                HttpMethod = HttpMethod.PATCH,
+                HttpMethod = Method.PATCH,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };

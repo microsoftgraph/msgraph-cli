@@ -25,19 +25,21 @@ namespace ApiSdk.Shares.Item.List.Items.Item.Analytics.@Ref {
             var command = new Command("delete");
             command.Description = "Analytics about the view activities that took place on this item.";
             // Create options for all the parameters
-            var sharedDriveItemIdOption = new Option<string>("--shareddriveitem-id", description: "key: id of sharedDriveItem");
+            var sharedDriveItemIdOption = new Option<string>("--shareddriveitem-id", description: "key: id of sharedDriveItem") {
+            };
             sharedDriveItemIdOption.IsRequired = true;
             command.AddOption(sharedDriveItemIdOption);
-            var listItemIdOption = new Option<string>("--listitem-id", description: "key: id of listItem");
+            var listItemIdOption = new Option<string>("--listitem-id", description: "key: id of listItem") {
+            };
             listItemIdOption.IsRequired = true;
             command.AddOption(listItemIdOption);
-            command.Handler = CommandHandler.Create<string, string>(async (sharedDriveItemId, listItemId) => {
+            command.SetHandler(async (string sharedDriveItemId, string listItemId) => {
                 var requestInfo = CreateDeleteRequestInformation(q => {
                 });
                 await RequestAdapter.SendNoContentAsync(requestInfo);
                 // Print request output. What if the request has no return?
                 Console.WriteLine("Success");
-            });
+            }, sharedDriveItemIdOption, listItemIdOption);
             return command;
         }
         /// <summary>
@@ -47,13 +49,15 @@ namespace ApiSdk.Shares.Item.List.Items.Item.Analytics.@Ref {
             var command = new Command("get");
             command.Description = "Analytics about the view activities that took place on this item.";
             // Create options for all the parameters
-            var sharedDriveItemIdOption = new Option<string>("--shareddriveitem-id", description: "key: id of sharedDriveItem");
+            var sharedDriveItemIdOption = new Option<string>("--shareddriveitem-id", description: "key: id of sharedDriveItem") {
+            };
             sharedDriveItemIdOption.IsRequired = true;
             command.AddOption(sharedDriveItemIdOption);
-            var listItemIdOption = new Option<string>("--listitem-id", description: "key: id of listItem");
+            var listItemIdOption = new Option<string>("--listitem-id", description: "key: id of listItem") {
+            };
             listItemIdOption.IsRequired = true;
             command.AddOption(listItemIdOption);
-            command.Handler = CommandHandler.Create<string, string>(async (sharedDriveItemId, listItemId) => {
+            command.SetHandler(async (string sharedDriveItemId, string listItemId) => {
                 var requestInfo = CreateGetRequestInformation(q => {
                 });
                 var result = await RequestAdapter.SendPrimitiveAsync<string>(requestInfo);
@@ -64,7 +68,7 @@ namespace ApiSdk.Shares.Item.List.Items.Item.Analytics.@Ref {
                 using var reader = new StreamReader(content);
                 var strContent = await reader.ReadToEndAsync();
                 Console.Write(strContent + "\n");
-            });
+            }, sharedDriveItemIdOption, listItemIdOption);
             return command;
         }
         /// <summary>
@@ -74,16 +78,19 @@ namespace ApiSdk.Shares.Item.List.Items.Item.Analytics.@Ref {
             var command = new Command("put");
             command.Description = "Analytics about the view activities that took place on this item.";
             // Create options for all the parameters
-            var sharedDriveItemIdOption = new Option<string>("--shareddriveitem-id", description: "key: id of sharedDriveItem");
+            var sharedDriveItemIdOption = new Option<string>("--shareddriveitem-id", description: "key: id of sharedDriveItem") {
+            };
             sharedDriveItemIdOption.IsRequired = true;
             command.AddOption(sharedDriveItemIdOption);
-            var listItemIdOption = new Option<string>("--listitem-id", description: "key: id of listItem");
+            var listItemIdOption = new Option<string>("--listitem-id", description: "key: id of listItem") {
+            };
             listItemIdOption.IsRequired = true;
             command.AddOption(listItemIdOption);
-            var bodyOption = new Option<string>("--body");
+            var bodyOption = new Option<string>("--body") {
+            };
             bodyOption.IsRequired = true;
             command.AddOption(bodyOption);
-            command.Handler = CommandHandler.Create<string, string, string>(async (sharedDriveItemId, listItemId, body) => {
+            command.SetHandler(async (string sharedDriveItemId, string listItemId, string body) => {
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<ApiSdk.Shares.Item.List.Items.Item.Analytics.@Ref.@Ref>();
@@ -92,7 +99,7 @@ namespace ApiSdk.Shares.Item.List.Items.Item.Analytics.@Ref {
                 await RequestAdapter.SendNoContentAsync(requestInfo);
                 // Print request output. What if the request has no return?
                 Console.WriteLine("Success");
-            });
+            }, sharedDriveItemIdOption, listItemIdOption, bodyOption);
             return command;
         }
         /// <summary>
@@ -115,7 +122,7 @@ namespace ApiSdk.Shares.Item.List.Items.Item.Analytics.@Ref {
         /// </summary>
         public RequestInformation CreateDeleteRequestInformation(Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
             var requestInfo = new RequestInformation {
-                HttpMethod = HttpMethod.DELETE,
+                HttpMethod = Method.DELETE,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };
@@ -130,7 +137,7 @@ namespace ApiSdk.Shares.Item.List.Items.Item.Analytics.@Ref {
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
             var requestInfo = new RequestInformation {
-                HttpMethod = HttpMethod.GET,
+                HttpMethod = Method.GET,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };
@@ -147,7 +154,7 @@ namespace ApiSdk.Shares.Item.List.Items.Item.Analytics.@Ref {
         public RequestInformation CreatePutRequestInformation(ApiSdk.Shares.Item.List.Items.Item.Analytics.@Ref.@Ref body, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
             _ = body ?? throw new ArgumentNullException(nameof(body));
             var requestInfo = new RequestInformation {
-                HttpMethod = HttpMethod.PUT,
+                HttpMethod = Method.PUT,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };

@@ -25,11 +25,13 @@ namespace ApiSdk.DeviceManagement.Reports.GetCompliancePolicyNonComplianceSummar
             var command = new Command("post");
             command.Description = "Invoke action getCompliancePolicyNonComplianceSummaryReport";
             // Create options for all the parameters
-            var bodyOption = new Option<string>("--body");
+            var bodyOption = new Option<string>("--body") {
+            };
             bodyOption.IsRequired = true;
             command.AddOption(bodyOption);
-            command.AddOption(new Option<FileInfo>("--output"));
-            command.Handler = CommandHandler.Create<string, FileInfo>(async (body, output) => {
+            var outputOption = new Option<FileInfo>("--output");
+            command.AddOption(outputOption);
+            command.SetHandler(async (string body, FileInfo output) => {
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<GetCompliancePolicyNonComplianceSummaryReportRequestBody>();
@@ -47,7 +49,7 @@ namespace ApiSdk.DeviceManagement.Reports.GetCompliancePolicyNonComplianceSummar
                     await result.CopyToAsync(writeStream);
                     Console.WriteLine($"Content written to {output.FullName}.");
                 }
-            });
+            }, bodyOption, outputOption);
             return command;
         }
         /// <summary>
@@ -72,7 +74,7 @@ namespace ApiSdk.DeviceManagement.Reports.GetCompliancePolicyNonComplianceSummar
         public RequestInformation CreatePostRequestInformation(GetCompliancePolicyNonComplianceSummaryReportRequestBody body, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
             _ = body ?? throw new ArgumentNullException(nameof(body));
             var requestInfo = new RequestInformation {
-                HttpMethod = HttpMethod.POST,
+                HttpMethod = Method.POST,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };

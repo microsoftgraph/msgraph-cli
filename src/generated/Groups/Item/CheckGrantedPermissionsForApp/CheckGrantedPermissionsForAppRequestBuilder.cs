@@ -25,10 +25,11 @@ namespace ApiSdk.Groups.Item.CheckGrantedPermissionsForApp {
             var command = new Command("post");
             command.Description = "Invoke action checkGrantedPermissionsForApp";
             // Create options for all the parameters
-            var groupIdOption = new Option<string>("--group-id", description: "key: id of group");
+            var groupIdOption = new Option<string>("--group-id", description: "key: id of group") {
+            };
             groupIdOption.IsRequired = true;
             command.AddOption(groupIdOption);
-            command.Handler = CommandHandler.Create<string>(async (groupId) => {
+            command.SetHandler(async (string groupId) => {
                 var requestInfo = CreatePostRequestInformation(q => {
                 });
                 var result = await RequestAdapter.SendCollectionAsync<ApiSdk.Groups.Item.CheckGrantedPermissionsForApp.CheckGrantedPermissionsForApp>(requestInfo);
@@ -39,7 +40,7 @@ namespace ApiSdk.Groups.Item.CheckGrantedPermissionsForApp {
                 using var reader = new StreamReader(content);
                 var strContent = await reader.ReadToEndAsync();
                 Console.Write(strContent + "\n");
-            });
+            }, groupIdOption);
             return command;
         }
         /// <summary>
@@ -62,7 +63,7 @@ namespace ApiSdk.Groups.Item.CheckGrantedPermissionsForApp {
         /// </summary>
         public RequestInformation CreatePostRequestInformation(Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
             var requestInfo = new RequestInformation {
-                HttpMethod = HttpMethod.POST,
+                HttpMethod = Method.POST,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };

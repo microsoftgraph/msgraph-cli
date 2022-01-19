@@ -26,19 +26,21 @@ namespace ApiSdk.DeviceAppManagement.MobileAppConfigurations.Item.DeviceStatuses
             var command = new Command("delete");
             command.Description = "List of ManagedDeviceMobileAppConfigurationDeviceStatus.";
             // Create options for all the parameters
-            var managedDeviceMobileAppConfigurationIdOption = new Option<string>("--manageddevicemobileappconfiguration-id", description: "key: id of managedDeviceMobileAppConfiguration");
+            var managedDeviceMobileAppConfigurationIdOption = new Option<string>("--manageddevicemobileappconfiguration-id", description: "key: id of managedDeviceMobileAppConfiguration") {
+            };
             managedDeviceMobileAppConfigurationIdOption.IsRequired = true;
             command.AddOption(managedDeviceMobileAppConfigurationIdOption);
-            var managedDeviceMobileAppConfigurationDeviceStatusIdOption = new Option<string>("--manageddevicemobileappconfigurationdevicestatus-id", description: "key: id of managedDeviceMobileAppConfigurationDeviceStatus");
+            var managedDeviceMobileAppConfigurationDeviceStatusIdOption = new Option<string>("--manageddevicemobileappconfigurationdevicestatus-id", description: "key: id of managedDeviceMobileAppConfigurationDeviceStatus") {
+            };
             managedDeviceMobileAppConfigurationDeviceStatusIdOption.IsRequired = true;
             command.AddOption(managedDeviceMobileAppConfigurationDeviceStatusIdOption);
-            command.Handler = CommandHandler.Create<string, string>(async (managedDeviceMobileAppConfigurationId, managedDeviceMobileAppConfigurationDeviceStatusId) => {
+            command.SetHandler(async (string managedDeviceMobileAppConfigurationId, string managedDeviceMobileAppConfigurationDeviceStatusId) => {
                 var requestInfo = CreateDeleteRequestInformation(q => {
                 });
                 await RequestAdapter.SendNoContentAsync(requestInfo);
                 // Print request output. What if the request has no return?
                 Console.WriteLine("Success");
-            });
+            }, managedDeviceMobileAppConfigurationIdOption, managedDeviceMobileAppConfigurationDeviceStatusIdOption);
             return command;
         }
         /// <summary>
@@ -48,21 +50,25 @@ namespace ApiSdk.DeviceAppManagement.MobileAppConfigurations.Item.DeviceStatuses
             var command = new Command("get");
             command.Description = "List of ManagedDeviceMobileAppConfigurationDeviceStatus.";
             // Create options for all the parameters
-            var managedDeviceMobileAppConfigurationIdOption = new Option<string>("--manageddevicemobileappconfiguration-id", description: "key: id of managedDeviceMobileAppConfiguration");
+            var managedDeviceMobileAppConfigurationIdOption = new Option<string>("--manageddevicemobileappconfiguration-id", description: "key: id of managedDeviceMobileAppConfiguration") {
+            };
             managedDeviceMobileAppConfigurationIdOption.IsRequired = true;
             command.AddOption(managedDeviceMobileAppConfigurationIdOption);
-            var managedDeviceMobileAppConfigurationDeviceStatusIdOption = new Option<string>("--manageddevicemobileappconfigurationdevicestatus-id", description: "key: id of managedDeviceMobileAppConfigurationDeviceStatus");
+            var managedDeviceMobileAppConfigurationDeviceStatusIdOption = new Option<string>("--manageddevicemobileappconfigurationdevicestatus-id", description: "key: id of managedDeviceMobileAppConfigurationDeviceStatus") {
+            };
             managedDeviceMobileAppConfigurationDeviceStatusIdOption.IsRequired = true;
             command.AddOption(managedDeviceMobileAppConfigurationDeviceStatusIdOption);
-            var selectOption = new Option<string[]>("--select", description: "Select properties to be returned");
+            var selectOption = new Option<string[]>("--select", description: "Select properties to be returned") {
+                Arity = ArgumentArity.ZeroOrMore
+            };
             selectOption.IsRequired = false;
-            selectOption.Arity = ArgumentArity.ZeroOrMore;
             command.AddOption(selectOption);
-            var expandOption = new Option<string[]>("--expand", description: "Expand related entities");
+            var expandOption = new Option<string[]>("--expand", description: "Expand related entities") {
+                Arity = ArgumentArity.ZeroOrMore
+            };
             expandOption.IsRequired = false;
-            expandOption.Arity = ArgumentArity.ZeroOrMore;
             command.AddOption(expandOption);
-            command.Handler = CommandHandler.Create<string, string, string[], string[]>(async (managedDeviceMobileAppConfigurationId, managedDeviceMobileAppConfigurationDeviceStatusId, select, expand) => {
+            command.SetHandler(async (string managedDeviceMobileAppConfigurationId, string managedDeviceMobileAppConfigurationDeviceStatusId, string[] select, string[] expand) => {
                 var requestInfo = CreateGetRequestInformation(q => {
                     q.Select = select;
                     q.Expand = expand;
@@ -75,7 +81,7 @@ namespace ApiSdk.DeviceAppManagement.MobileAppConfigurations.Item.DeviceStatuses
                 using var reader = new StreamReader(content);
                 var strContent = await reader.ReadToEndAsync();
                 Console.Write(strContent + "\n");
-            });
+            }, managedDeviceMobileAppConfigurationIdOption, managedDeviceMobileAppConfigurationDeviceStatusIdOption, selectOption, expandOption);
             return command;
         }
         /// <summary>
@@ -85,16 +91,19 @@ namespace ApiSdk.DeviceAppManagement.MobileAppConfigurations.Item.DeviceStatuses
             var command = new Command("patch");
             command.Description = "List of ManagedDeviceMobileAppConfigurationDeviceStatus.";
             // Create options for all the parameters
-            var managedDeviceMobileAppConfigurationIdOption = new Option<string>("--manageddevicemobileappconfiguration-id", description: "key: id of managedDeviceMobileAppConfiguration");
+            var managedDeviceMobileAppConfigurationIdOption = new Option<string>("--manageddevicemobileappconfiguration-id", description: "key: id of managedDeviceMobileAppConfiguration") {
+            };
             managedDeviceMobileAppConfigurationIdOption.IsRequired = true;
             command.AddOption(managedDeviceMobileAppConfigurationIdOption);
-            var managedDeviceMobileAppConfigurationDeviceStatusIdOption = new Option<string>("--manageddevicemobileappconfigurationdevicestatus-id", description: "key: id of managedDeviceMobileAppConfigurationDeviceStatus");
+            var managedDeviceMobileAppConfigurationDeviceStatusIdOption = new Option<string>("--manageddevicemobileappconfigurationdevicestatus-id", description: "key: id of managedDeviceMobileAppConfigurationDeviceStatus") {
+            };
             managedDeviceMobileAppConfigurationDeviceStatusIdOption.IsRequired = true;
             command.AddOption(managedDeviceMobileAppConfigurationDeviceStatusIdOption);
-            var bodyOption = new Option<string>("--body");
+            var bodyOption = new Option<string>("--body") {
+            };
             bodyOption.IsRequired = true;
             command.AddOption(bodyOption);
-            command.Handler = CommandHandler.Create<string, string, string>(async (managedDeviceMobileAppConfigurationId, managedDeviceMobileAppConfigurationDeviceStatusId, body) => {
+            command.SetHandler(async (string managedDeviceMobileAppConfigurationId, string managedDeviceMobileAppConfigurationDeviceStatusId, string body) => {
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<ManagedDeviceMobileAppConfigurationDeviceStatus>();
@@ -103,7 +112,7 @@ namespace ApiSdk.DeviceAppManagement.MobileAppConfigurations.Item.DeviceStatuses
                 await RequestAdapter.SendNoContentAsync(requestInfo);
                 // Print request output. What if the request has no return?
                 Console.WriteLine("Success");
-            });
+            }, managedDeviceMobileAppConfigurationIdOption, managedDeviceMobileAppConfigurationDeviceStatusIdOption, bodyOption);
             return command;
         }
         /// <summary>
@@ -126,7 +135,7 @@ namespace ApiSdk.DeviceAppManagement.MobileAppConfigurations.Item.DeviceStatuses
         /// </summary>
         public RequestInformation CreateDeleteRequestInformation(Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
             var requestInfo = new RequestInformation {
-                HttpMethod = HttpMethod.DELETE,
+                HttpMethod = Method.DELETE,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };
@@ -142,7 +151,7 @@ namespace ApiSdk.DeviceAppManagement.MobileAppConfigurations.Item.DeviceStatuses
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<GetQueryParameters> q = default, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
             var requestInfo = new RequestInformation {
-                HttpMethod = HttpMethod.GET,
+                HttpMethod = Method.GET,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };
@@ -164,7 +173,7 @@ namespace ApiSdk.DeviceAppManagement.MobileAppConfigurations.Item.DeviceStatuses
         public RequestInformation CreatePatchRequestInformation(ManagedDeviceMobileAppConfigurationDeviceStatus body, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
             _ = body ?? throw new ArgumentNullException(nameof(body));
             var requestInfo = new RequestInformation {
-                HttpMethod = HttpMethod.PATCH,
+                HttpMethod = Method.PATCH,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };

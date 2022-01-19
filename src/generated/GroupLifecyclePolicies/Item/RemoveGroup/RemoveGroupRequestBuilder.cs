@@ -25,13 +25,15 @@ namespace ApiSdk.GroupLifecyclePolicies.Item.RemoveGroup {
             var command = new Command("post");
             command.Description = "Invoke action removeGroup";
             // Create options for all the parameters
-            var groupLifecyclePolicyIdOption = new Option<string>("--grouplifecyclepolicy-id", description: "key: id of groupLifecyclePolicy");
+            var groupLifecyclePolicyIdOption = new Option<string>("--grouplifecyclepolicy-id", description: "key: id of groupLifecyclePolicy") {
+            };
             groupLifecyclePolicyIdOption.IsRequired = true;
             command.AddOption(groupLifecyclePolicyIdOption);
-            var bodyOption = new Option<string>("--body");
+            var bodyOption = new Option<string>("--body") {
+            };
             bodyOption.IsRequired = true;
             command.AddOption(bodyOption);
-            command.Handler = CommandHandler.Create<string, string>(async (groupLifecyclePolicyId, body) => {
+            command.SetHandler(async (string groupLifecyclePolicyId, string body) => {
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<RemoveGroupRequestBody>();
@@ -45,7 +47,7 @@ namespace ApiSdk.GroupLifecyclePolicies.Item.RemoveGroup {
                 using var reader = new StreamReader(content);
                 var strContent = await reader.ReadToEndAsync();
                 Console.Write(strContent + "\n");
-            });
+            }, groupLifecyclePolicyIdOption, bodyOption);
             return command;
         }
         /// <summary>
@@ -70,7 +72,7 @@ namespace ApiSdk.GroupLifecyclePolicies.Item.RemoveGroup {
         public RequestInformation CreatePostRequestInformation(RemoveGroupRequestBody body, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
             _ = body ?? throw new ArgumentNullException(nameof(body));
             var requestInfo = new RequestInformation {
-                HttpMethod = HttpMethod.POST,
+                HttpMethod = Method.POST,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };

@@ -28,25 +28,29 @@ namespace ApiSdk.Groups.Item.Conversations.Item.Threads.Item.Posts.Item.InReplyT
             var command = new Command("delete");
             command.Description = "The earlier post that this post is replying to in the conversationThread. Read-only. Supports $expand.";
             // Create options for all the parameters
-            var groupIdOption = new Option<string>("--group-id", description: "key: id of group");
+            var groupIdOption = new Option<string>("--group-id", description: "key: id of group") {
+            };
             groupIdOption.IsRequired = true;
             command.AddOption(groupIdOption);
-            var conversationIdOption = new Option<string>("--conversation-id", description: "key: id of conversation");
+            var conversationIdOption = new Option<string>("--conversation-id", description: "key: id of conversation") {
+            };
             conversationIdOption.IsRequired = true;
             command.AddOption(conversationIdOption);
-            var conversationThreadIdOption = new Option<string>("--conversationthread-id", description: "key: id of conversationThread");
+            var conversationThreadIdOption = new Option<string>("--conversationthread-id", description: "key: id of conversationThread") {
+            };
             conversationThreadIdOption.IsRequired = true;
             command.AddOption(conversationThreadIdOption);
-            var postIdOption = new Option<string>("--post-id", description: "key: id of post");
+            var postIdOption = new Option<string>("--post-id", description: "key: id of post") {
+            };
             postIdOption.IsRequired = true;
             command.AddOption(postIdOption);
-            command.Handler = CommandHandler.Create<string, string, string, string>(async (groupId, conversationId, conversationThreadId, postId) => {
+            command.SetHandler(async (string groupId, string conversationId, string conversationThreadId, string postId) => {
                 var requestInfo = CreateDeleteRequestInformation(q => {
                 });
                 await RequestAdapter.SendNoContentAsync(requestInfo);
                 // Print request output. What if the request has no return?
                 Console.WriteLine("Success");
-            });
+            }, groupIdOption, conversationIdOption, conversationThreadIdOption, postIdOption);
             return command;
         }
         public Command BuildForwardCommand() {
@@ -62,27 +66,33 @@ namespace ApiSdk.Groups.Item.Conversations.Item.Threads.Item.Posts.Item.InReplyT
             var command = new Command("get");
             command.Description = "The earlier post that this post is replying to in the conversationThread. Read-only. Supports $expand.";
             // Create options for all the parameters
-            var groupIdOption = new Option<string>("--group-id", description: "key: id of group");
+            var groupIdOption = new Option<string>("--group-id", description: "key: id of group") {
+            };
             groupIdOption.IsRequired = true;
             command.AddOption(groupIdOption);
-            var conversationIdOption = new Option<string>("--conversation-id", description: "key: id of conversation");
+            var conversationIdOption = new Option<string>("--conversation-id", description: "key: id of conversation") {
+            };
             conversationIdOption.IsRequired = true;
             command.AddOption(conversationIdOption);
-            var conversationThreadIdOption = new Option<string>("--conversationthread-id", description: "key: id of conversationThread");
+            var conversationThreadIdOption = new Option<string>("--conversationthread-id", description: "key: id of conversationThread") {
+            };
             conversationThreadIdOption.IsRequired = true;
             command.AddOption(conversationThreadIdOption);
-            var postIdOption = new Option<string>("--post-id", description: "key: id of post");
+            var postIdOption = new Option<string>("--post-id", description: "key: id of post") {
+            };
             postIdOption.IsRequired = true;
             command.AddOption(postIdOption);
-            var selectOption = new Option<string[]>("--select", description: "Select properties to be returned");
+            var selectOption = new Option<string[]>("--select", description: "Select properties to be returned") {
+                Arity = ArgumentArity.ZeroOrMore
+            };
             selectOption.IsRequired = false;
-            selectOption.Arity = ArgumentArity.ZeroOrMore;
             command.AddOption(selectOption);
-            var expandOption = new Option<string[]>("--expand", description: "Expand related entities");
+            var expandOption = new Option<string[]>("--expand", description: "Expand related entities") {
+                Arity = ArgumentArity.ZeroOrMore
+            };
             expandOption.IsRequired = false;
-            expandOption.Arity = ArgumentArity.ZeroOrMore;
             command.AddOption(expandOption);
-            command.Handler = CommandHandler.Create<string, string, string, string, string[], string[]>(async (groupId, conversationId, conversationThreadId, postId, select, expand) => {
+            command.SetHandler(async (string groupId, string conversationId, string conversationThreadId, string postId, string[] select, string[] expand) => {
                 var requestInfo = CreateGetRequestInformation(q => {
                     q.Select = select;
                     q.Expand = expand;
@@ -95,7 +105,7 @@ namespace ApiSdk.Groups.Item.Conversations.Item.Threads.Item.Posts.Item.InReplyT
                 using var reader = new StreamReader(content);
                 var strContent = await reader.ReadToEndAsync();
                 Console.Write(strContent + "\n");
-            });
+            }, groupIdOption, conversationIdOption, conversationThreadIdOption, postIdOption, selectOption, expandOption);
             return command;
         }
         /// <summary>
@@ -105,22 +115,27 @@ namespace ApiSdk.Groups.Item.Conversations.Item.Threads.Item.Posts.Item.InReplyT
             var command = new Command("patch");
             command.Description = "The earlier post that this post is replying to in the conversationThread. Read-only. Supports $expand.";
             // Create options for all the parameters
-            var groupIdOption = new Option<string>("--group-id", description: "key: id of group");
+            var groupIdOption = new Option<string>("--group-id", description: "key: id of group") {
+            };
             groupIdOption.IsRequired = true;
             command.AddOption(groupIdOption);
-            var conversationIdOption = new Option<string>("--conversation-id", description: "key: id of conversation");
+            var conversationIdOption = new Option<string>("--conversation-id", description: "key: id of conversation") {
+            };
             conversationIdOption.IsRequired = true;
             command.AddOption(conversationIdOption);
-            var conversationThreadIdOption = new Option<string>("--conversationthread-id", description: "key: id of conversationThread");
+            var conversationThreadIdOption = new Option<string>("--conversationthread-id", description: "key: id of conversationThread") {
+            };
             conversationThreadIdOption.IsRequired = true;
             command.AddOption(conversationThreadIdOption);
-            var postIdOption = new Option<string>("--post-id", description: "key: id of post");
+            var postIdOption = new Option<string>("--post-id", description: "key: id of post") {
+            };
             postIdOption.IsRequired = true;
             command.AddOption(postIdOption);
-            var bodyOption = new Option<string>("--body");
+            var bodyOption = new Option<string>("--body") {
+            };
             bodyOption.IsRequired = true;
             command.AddOption(bodyOption);
-            command.Handler = CommandHandler.Create<string, string, string, string, string>(async (groupId, conversationId, conversationThreadId, postId, body) => {
+            command.SetHandler(async (string groupId, string conversationId, string conversationThreadId, string postId, string body) => {
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<Post>();
@@ -129,7 +144,7 @@ namespace ApiSdk.Groups.Item.Conversations.Item.Threads.Item.Posts.Item.InReplyT
                 await RequestAdapter.SendNoContentAsync(requestInfo);
                 // Print request output. What if the request has no return?
                 Console.WriteLine("Success");
-            });
+            }, groupIdOption, conversationIdOption, conversationThreadIdOption, postIdOption, bodyOption);
             return command;
         }
         public Command BuildReplyCommand() {
@@ -158,7 +173,7 @@ namespace ApiSdk.Groups.Item.Conversations.Item.Threads.Item.Posts.Item.InReplyT
         /// </summary>
         public RequestInformation CreateDeleteRequestInformation(Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
             var requestInfo = new RequestInformation {
-                HttpMethod = HttpMethod.DELETE,
+                HttpMethod = Method.DELETE,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };
@@ -174,7 +189,7 @@ namespace ApiSdk.Groups.Item.Conversations.Item.Threads.Item.Posts.Item.InReplyT
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<GetQueryParameters> q = default, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
             var requestInfo = new RequestInformation {
-                HttpMethod = HttpMethod.GET,
+                HttpMethod = Method.GET,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };
@@ -196,7 +211,7 @@ namespace ApiSdk.Groups.Item.Conversations.Item.Threads.Item.Posts.Item.InReplyT
         public RequestInformation CreatePatchRequestInformation(Post body, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
             _ = body ?? throw new ArgumentNullException(nameof(body));
             var requestInfo = new RequestInformation {
-                HttpMethod = HttpMethod.PATCH,
+                HttpMethod = Method.PATCH,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };

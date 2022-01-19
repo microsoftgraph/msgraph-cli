@@ -26,10 +26,11 @@ namespace ApiSdk.Reports.GetOffice365GroupsActivityDetailWithDate {
             var command = new Command("get");
             command.Description = "Invoke function getOffice365GroupsActivityDetail";
             // Create options for all the parameters
-            var dateOption = new Option<string>("--date", description: "Usage: date={date}");
+            var dateOption = new Option<string>("--date", description: "Usage: date={date}") {
+            };
             dateOption.IsRequired = true;
             command.AddOption(dateOption);
-            command.Handler = CommandHandler.Create<string>(async (date) => {
+            command.SetHandler(async (string date) => {
                 var requestInfo = CreateGetRequestInformation(q => {
                 });
                 var result = await RequestAdapter.SendAsync<Report>(requestInfo);
@@ -40,7 +41,7 @@ namespace ApiSdk.Reports.GetOffice365GroupsActivityDetailWithDate {
                 using var reader = new StreamReader(content);
                 var strContent = await reader.ReadToEndAsync();
                 Console.Write(strContent + "\n");
-            });
+            }, dateOption);
             return command;
         }
         /// <summary>
@@ -65,7 +66,7 @@ namespace ApiSdk.Reports.GetOffice365GroupsActivityDetailWithDate {
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
             var requestInfo = new RequestInformation {
-                HttpMethod = HttpMethod.GET,
+                HttpMethod = Method.GET,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };

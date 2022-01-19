@@ -25,13 +25,15 @@ namespace ApiSdk.Chats.Item.Messages.Item.Replies.Delta {
             var command = new Command("get");
             command.Description = "Invoke function delta";
             // Create options for all the parameters
-            var chatIdOption = new Option<string>("--chat-id", description: "key: id of chat");
+            var chatIdOption = new Option<string>("--chat-id", description: "key: id of chat") {
+            };
             chatIdOption.IsRequired = true;
             command.AddOption(chatIdOption);
-            var chatMessageIdOption = new Option<string>("--chatmessage-id", description: "key: id of chatMessage");
+            var chatMessageIdOption = new Option<string>("--chatmessage-id", description: "key: id of chatMessage") {
+            };
             chatMessageIdOption.IsRequired = true;
             command.AddOption(chatMessageIdOption);
-            command.Handler = CommandHandler.Create<string, string>(async (chatId, chatMessageId) => {
+            command.SetHandler(async (string chatId, string chatMessageId) => {
                 var requestInfo = CreateGetRequestInformation(q => {
                 });
                 var result = await RequestAdapter.SendCollectionAsync<ApiSdk.Chats.Item.Messages.Item.Replies.Delta.Delta>(requestInfo);
@@ -42,7 +44,7 @@ namespace ApiSdk.Chats.Item.Messages.Item.Replies.Delta {
                 using var reader = new StreamReader(content);
                 var strContent = await reader.ReadToEndAsync();
                 Console.Write(strContent + "\n");
-            });
+            }, chatIdOption, chatMessageIdOption);
             return command;
         }
         /// <summary>
@@ -65,7 +67,7 @@ namespace ApiSdk.Chats.Item.Messages.Item.Replies.Delta {
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
             var requestInfo = new RequestInformation {
-                HttpMethod = HttpMethod.GET,
+                HttpMethod = Method.GET,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };

@@ -26,13 +26,15 @@ namespace ApiSdk.Me.MailFolders.Item.Messages.Item.CalendarSharingMessage.Accept
             var command = new Command("post");
             command.Description = "Invoke action accept";
             // Create options for all the parameters
-            var mailFolderIdOption = new Option<string>("--mailfolder-id", description: "key: id of mailFolder");
+            var mailFolderIdOption = new Option<string>("--mailfolder-id", description: "key: id of mailFolder") {
+            };
             mailFolderIdOption.IsRequired = true;
             command.AddOption(mailFolderIdOption);
-            var messageIdOption = new Option<string>("--message-id", description: "key: id of message");
+            var messageIdOption = new Option<string>("--message-id", description: "key: id of message") {
+            };
             messageIdOption.IsRequired = true;
             command.AddOption(messageIdOption);
-            command.Handler = CommandHandler.Create<string, string>(async (mailFolderId, messageId) => {
+            command.SetHandler(async (string mailFolderId, string messageId) => {
                 var requestInfo = CreatePostRequestInformation(q => {
                 });
                 var result = await RequestAdapter.SendAsync<ApiSdk.Models.Microsoft.Graph.Calendar>(requestInfo);
@@ -43,7 +45,7 @@ namespace ApiSdk.Me.MailFolders.Item.Messages.Item.CalendarSharingMessage.Accept
                 using var reader = new StreamReader(content);
                 var strContent = await reader.ReadToEndAsync();
                 Console.Write(strContent + "\n");
-            });
+            }, mailFolderIdOption, messageIdOption);
             return command;
         }
         /// <summary>
@@ -66,7 +68,7 @@ namespace ApiSdk.Me.MailFolders.Item.Messages.Item.CalendarSharingMessage.Accept
         /// </summary>
         public RequestInformation CreatePostRequestInformation(Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
             var requestInfo = new RequestInformation {
-                HttpMethod = HttpMethod.POST,
+                HttpMethod = Method.POST,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };

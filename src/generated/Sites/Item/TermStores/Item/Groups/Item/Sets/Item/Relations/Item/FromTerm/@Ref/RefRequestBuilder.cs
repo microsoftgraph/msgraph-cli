@@ -25,28 +25,33 @@ namespace ApiSdk.Sites.Item.TermStores.Item.Groups.Item.Sets.Item.Relations.Item
             var command = new Command("delete");
             command.Description = "The from [term] of the relation. The term from which the relationship is defined. A null value would indicate the relation is directly with the [set].";
             // Create options for all the parameters
-            var siteIdOption = new Option<string>("--site-id", description: "key: id of site");
+            var siteIdOption = new Option<string>("--site-id", description: "key: id of site") {
+            };
             siteIdOption.IsRequired = true;
             command.AddOption(siteIdOption);
-            var storeIdOption = new Option<string>("--store-id", description: "key: id of store");
+            var storeIdOption = new Option<string>("--store-id", description: "key: id of store") {
+            };
             storeIdOption.IsRequired = true;
             command.AddOption(storeIdOption);
-            var groupIdOption = new Option<string>("--group-id", description: "key: id of group");
+            var groupIdOption = new Option<string>("--group-id", description: "key: id of group") {
+            };
             groupIdOption.IsRequired = true;
             command.AddOption(groupIdOption);
-            var setIdOption = new Option<string>("--set-id", description: "key: id of set");
+            var setIdOption = new Option<string>("--set-id", description: "key: id of set") {
+            };
             setIdOption.IsRequired = true;
             command.AddOption(setIdOption);
-            var relationIdOption = new Option<string>("--relation-id", description: "key: id of relation");
+            var relationIdOption = new Option<string>("--relation-id", description: "key: id of relation") {
+            };
             relationIdOption.IsRequired = true;
             command.AddOption(relationIdOption);
-            command.Handler = CommandHandler.Create<string, string, string, string, string>(async (siteId, storeId, groupId, setId, relationId) => {
+            command.SetHandler(async (string siteId, string storeId, string groupId, string setId, string relationId) => {
                 var requestInfo = CreateDeleteRequestInformation(q => {
                 });
                 await RequestAdapter.SendNoContentAsync(requestInfo);
                 // Print request output. What if the request has no return?
                 Console.WriteLine("Success");
-            });
+            }, siteIdOption, storeIdOption, groupIdOption, setIdOption, relationIdOption);
             return command;
         }
         /// <summary>
@@ -56,22 +61,27 @@ namespace ApiSdk.Sites.Item.TermStores.Item.Groups.Item.Sets.Item.Relations.Item
             var command = new Command("get");
             command.Description = "The from [term] of the relation. The term from which the relationship is defined. A null value would indicate the relation is directly with the [set].";
             // Create options for all the parameters
-            var siteIdOption = new Option<string>("--site-id", description: "key: id of site");
+            var siteIdOption = new Option<string>("--site-id", description: "key: id of site") {
+            };
             siteIdOption.IsRequired = true;
             command.AddOption(siteIdOption);
-            var storeIdOption = new Option<string>("--store-id", description: "key: id of store");
+            var storeIdOption = new Option<string>("--store-id", description: "key: id of store") {
+            };
             storeIdOption.IsRequired = true;
             command.AddOption(storeIdOption);
-            var groupIdOption = new Option<string>("--group-id", description: "key: id of group");
+            var groupIdOption = new Option<string>("--group-id", description: "key: id of group") {
+            };
             groupIdOption.IsRequired = true;
             command.AddOption(groupIdOption);
-            var setIdOption = new Option<string>("--set-id", description: "key: id of set");
+            var setIdOption = new Option<string>("--set-id", description: "key: id of set") {
+            };
             setIdOption.IsRequired = true;
             command.AddOption(setIdOption);
-            var relationIdOption = new Option<string>("--relation-id", description: "key: id of relation");
+            var relationIdOption = new Option<string>("--relation-id", description: "key: id of relation") {
+            };
             relationIdOption.IsRequired = true;
             command.AddOption(relationIdOption);
-            command.Handler = CommandHandler.Create<string, string, string, string, string>(async (siteId, storeId, groupId, setId, relationId) => {
+            command.SetHandler(async (string siteId, string storeId, string groupId, string setId, string relationId) => {
                 var requestInfo = CreateGetRequestInformation(q => {
                 });
                 var result = await RequestAdapter.SendPrimitiveAsync<string>(requestInfo);
@@ -82,7 +92,7 @@ namespace ApiSdk.Sites.Item.TermStores.Item.Groups.Item.Sets.Item.Relations.Item
                 using var reader = new StreamReader(content);
                 var strContent = await reader.ReadToEndAsync();
                 Console.Write(strContent + "\n");
-            });
+            }, siteIdOption, storeIdOption, groupIdOption, setIdOption, relationIdOption);
             return command;
         }
         /// <summary>
@@ -92,25 +102,31 @@ namespace ApiSdk.Sites.Item.TermStores.Item.Groups.Item.Sets.Item.Relations.Item
             var command = new Command("put");
             command.Description = "The from [term] of the relation. The term from which the relationship is defined. A null value would indicate the relation is directly with the [set].";
             // Create options for all the parameters
-            var siteIdOption = new Option<string>("--site-id", description: "key: id of site");
+            var siteIdOption = new Option<string>("--site-id", description: "key: id of site") {
+            };
             siteIdOption.IsRequired = true;
             command.AddOption(siteIdOption);
-            var storeIdOption = new Option<string>("--store-id", description: "key: id of store");
+            var storeIdOption = new Option<string>("--store-id", description: "key: id of store") {
+            };
             storeIdOption.IsRequired = true;
             command.AddOption(storeIdOption);
-            var groupIdOption = new Option<string>("--group-id", description: "key: id of group");
+            var groupIdOption = new Option<string>("--group-id", description: "key: id of group") {
+            };
             groupIdOption.IsRequired = true;
             command.AddOption(groupIdOption);
-            var setIdOption = new Option<string>("--set-id", description: "key: id of set");
+            var setIdOption = new Option<string>("--set-id", description: "key: id of set") {
+            };
             setIdOption.IsRequired = true;
             command.AddOption(setIdOption);
-            var relationIdOption = new Option<string>("--relation-id", description: "key: id of relation");
+            var relationIdOption = new Option<string>("--relation-id", description: "key: id of relation") {
+            };
             relationIdOption.IsRequired = true;
             command.AddOption(relationIdOption);
-            var bodyOption = new Option<string>("--body");
+            var bodyOption = new Option<string>("--body") {
+            };
             bodyOption.IsRequired = true;
             command.AddOption(bodyOption);
-            command.Handler = CommandHandler.Create<string, string, string, string, string, string>(async (siteId, storeId, groupId, setId, relationId, body) => {
+            command.SetHandler(async (string siteId, string storeId, string groupId, string setId, string relationId, string body) => {
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<ApiSdk.Sites.Item.TermStores.Item.Groups.Item.Sets.Item.Relations.Item.FromTerm.@Ref.@Ref>();
@@ -119,7 +135,7 @@ namespace ApiSdk.Sites.Item.TermStores.Item.Groups.Item.Sets.Item.Relations.Item
                 await RequestAdapter.SendNoContentAsync(requestInfo);
                 // Print request output. What if the request has no return?
                 Console.WriteLine("Success");
-            });
+            }, siteIdOption, storeIdOption, groupIdOption, setIdOption, relationIdOption, bodyOption);
             return command;
         }
         /// <summary>
@@ -142,7 +158,7 @@ namespace ApiSdk.Sites.Item.TermStores.Item.Groups.Item.Sets.Item.Relations.Item
         /// </summary>
         public RequestInformation CreateDeleteRequestInformation(Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
             var requestInfo = new RequestInformation {
-                HttpMethod = HttpMethod.DELETE,
+                HttpMethod = Method.DELETE,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };
@@ -157,7 +173,7 @@ namespace ApiSdk.Sites.Item.TermStores.Item.Groups.Item.Sets.Item.Relations.Item
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
             var requestInfo = new RequestInformation {
-                HttpMethod = HttpMethod.GET,
+                HttpMethod = Method.GET,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };
@@ -174,7 +190,7 @@ namespace ApiSdk.Sites.Item.TermStores.Item.Groups.Item.Sets.Item.Relations.Item
         public RequestInformation CreatePutRequestInformation(ApiSdk.Sites.Item.TermStores.Item.Groups.Item.Sets.Item.Relations.Item.FromTerm.@Ref.@Ref body, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
             _ = body ?? throw new ArgumentNullException(nameof(body));
             var requestInfo = new RequestInformation {
-                HttpMethod = HttpMethod.PUT,
+                HttpMethod = Method.PUT,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };

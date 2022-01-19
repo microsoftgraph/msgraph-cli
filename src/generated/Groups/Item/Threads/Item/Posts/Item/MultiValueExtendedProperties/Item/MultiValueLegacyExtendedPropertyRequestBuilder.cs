@@ -26,25 +26,29 @@ namespace ApiSdk.Groups.Item.Threads.Item.Posts.Item.MultiValueExtendedPropertie
             var command = new Command("delete");
             command.Description = "The collection of multi-value extended properties defined for the post. Read-only. Nullable.";
             // Create options for all the parameters
-            var groupIdOption = new Option<string>("--group-id", description: "key: id of group");
+            var groupIdOption = new Option<string>("--group-id", description: "key: id of group") {
+            };
             groupIdOption.IsRequired = true;
             command.AddOption(groupIdOption);
-            var conversationThreadIdOption = new Option<string>("--conversationthread-id", description: "key: id of conversationThread");
+            var conversationThreadIdOption = new Option<string>("--conversationthread-id", description: "key: id of conversationThread") {
+            };
             conversationThreadIdOption.IsRequired = true;
             command.AddOption(conversationThreadIdOption);
-            var postIdOption = new Option<string>("--post-id", description: "key: id of post");
+            var postIdOption = new Option<string>("--post-id", description: "key: id of post") {
+            };
             postIdOption.IsRequired = true;
             command.AddOption(postIdOption);
-            var multiValueLegacyExtendedPropertyIdOption = new Option<string>("--multivaluelegacyextendedproperty-id", description: "key: id of multiValueLegacyExtendedProperty");
+            var multiValueLegacyExtendedPropertyIdOption = new Option<string>("--multivaluelegacyextendedproperty-id", description: "key: id of multiValueLegacyExtendedProperty") {
+            };
             multiValueLegacyExtendedPropertyIdOption.IsRequired = true;
             command.AddOption(multiValueLegacyExtendedPropertyIdOption);
-            command.Handler = CommandHandler.Create<string, string, string, string>(async (groupId, conversationThreadId, postId, multiValueLegacyExtendedPropertyId) => {
+            command.SetHandler(async (string groupId, string conversationThreadId, string postId, string multiValueLegacyExtendedPropertyId) => {
                 var requestInfo = CreateDeleteRequestInformation(q => {
                 });
                 await RequestAdapter.SendNoContentAsync(requestInfo);
                 // Print request output. What if the request has no return?
                 Console.WriteLine("Success");
-            });
+            }, groupIdOption, conversationThreadIdOption, postIdOption, multiValueLegacyExtendedPropertyIdOption);
             return command;
         }
         /// <summary>
@@ -54,27 +58,33 @@ namespace ApiSdk.Groups.Item.Threads.Item.Posts.Item.MultiValueExtendedPropertie
             var command = new Command("get");
             command.Description = "The collection of multi-value extended properties defined for the post. Read-only. Nullable.";
             // Create options for all the parameters
-            var groupIdOption = new Option<string>("--group-id", description: "key: id of group");
+            var groupIdOption = new Option<string>("--group-id", description: "key: id of group") {
+            };
             groupIdOption.IsRequired = true;
             command.AddOption(groupIdOption);
-            var conversationThreadIdOption = new Option<string>("--conversationthread-id", description: "key: id of conversationThread");
+            var conversationThreadIdOption = new Option<string>("--conversationthread-id", description: "key: id of conversationThread") {
+            };
             conversationThreadIdOption.IsRequired = true;
             command.AddOption(conversationThreadIdOption);
-            var postIdOption = new Option<string>("--post-id", description: "key: id of post");
+            var postIdOption = new Option<string>("--post-id", description: "key: id of post") {
+            };
             postIdOption.IsRequired = true;
             command.AddOption(postIdOption);
-            var multiValueLegacyExtendedPropertyIdOption = new Option<string>("--multivaluelegacyextendedproperty-id", description: "key: id of multiValueLegacyExtendedProperty");
+            var multiValueLegacyExtendedPropertyIdOption = new Option<string>("--multivaluelegacyextendedproperty-id", description: "key: id of multiValueLegacyExtendedProperty") {
+            };
             multiValueLegacyExtendedPropertyIdOption.IsRequired = true;
             command.AddOption(multiValueLegacyExtendedPropertyIdOption);
-            var selectOption = new Option<string[]>("--select", description: "Select properties to be returned");
+            var selectOption = new Option<string[]>("--select", description: "Select properties to be returned") {
+                Arity = ArgumentArity.ZeroOrMore
+            };
             selectOption.IsRequired = false;
-            selectOption.Arity = ArgumentArity.ZeroOrMore;
             command.AddOption(selectOption);
-            var expandOption = new Option<string[]>("--expand", description: "Expand related entities");
+            var expandOption = new Option<string[]>("--expand", description: "Expand related entities") {
+                Arity = ArgumentArity.ZeroOrMore
+            };
             expandOption.IsRequired = false;
-            expandOption.Arity = ArgumentArity.ZeroOrMore;
             command.AddOption(expandOption);
-            command.Handler = CommandHandler.Create<string, string, string, string, string[], string[]>(async (groupId, conversationThreadId, postId, multiValueLegacyExtendedPropertyId, select, expand) => {
+            command.SetHandler(async (string groupId, string conversationThreadId, string postId, string multiValueLegacyExtendedPropertyId, string[] select, string[] expand) => {
                 var requestInfo = CreateGetRequestInformation(q => {
                     q.Select = select;
                     q.Expand = expand;
@@ -87,7 +97,7 @@ namespace ApiSdk.Groups.Item.Threads.Item.Posts.Item.MultiValueExtendedPropertie
                 using var reader = new StreamReader(content);
                 var strContent = await reader.ReadToEndAsync();
                 Console.Write(strContent + "\n");
-            });
+            }, groupIdOption, conversationThreadIdOption, postIdOption, multiValueLegacyExtendedPropertyIdOption, selectOption, expandOption);
             return command;
         }
         /// <summary>
@@ -97,22 +107,27 @@ namespace ApiSdk.Groups.Item.Threads.Item.Posts.Item.MultiValueExtendedPropertie
             var command = new Command("patch");
             command.Description = "The collection of multi-value extended properties defined for the post. Read-only. Nullable.";
             // Create options for all the parameters
-            var groupIdOption = new Option<string>("--group-id", description: "key: id of group");
+            var groupIdOption = new Option<string>("--group-id", description: "key: id of group") {
+            };
             groupIdOption.IsRequired = true;
             command.AddOption(groupIdOption);
-            var conversationThreadIdOption = new Option<string>("--conversationthread-id", description: "key: id of conversationThread");
+            var conversationThreadIdOption = new Option<string>("--conversationthread-id", description: "key: id of conversationThread") {
+            };
             conversationThreadIdOption.IsRequired = true;
             command.AddOption(conversationThreadIdOption);
-            var postIdOption = new Option<string>("--post-id", description: "key: id of post");
+            var postIdOption = new Option<string>("--post-id", description: "key: id of post") {
+            };
             postIdOption.IsRequired = true;
             command.AddOption(postIdOption);
-            var multiValueLegacyExtendedPropertyIdOption = new Option<string>("--multivaluelegacyextendedproperty-id", description: "key: id of multiValueLegacyExtendedProperty");
+            var multiValueLegacyExtendedPropertyIdOption = new Option<string>("--multivaluelegacyextendedproperty-id", description: "key: id of multiValueLegacyExtendedProperty") {
+            };
             multiValueLegacyExtendedPropertyIdOption.IsRequired = true;
             command.AddOption(multiValueLegacyExtendedPropertyIdOption);
-            var bodyOption = new Option<string>("--body");
+            var bodyOption = new Option<string>("--body") {
+            };
             bodyOption.IsRequired = true;
             command.AddOption(bodyOption);
-            command.Handler = CommandHandler.Create<string, string, string, string, string>(async (groupId, conversationThreadId, postId, multiValueLegacyExtendedPropertyId, body) => {
+            command.SetHandler(async (string groupId, string conversationThreadId, string postId, string multiValueLegacyExtendedPropertyId, string body) => {
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<MultiValueLegacyExtendedProperty>();
@@ -121,7 +136,7 @@ namespace ApiSdk.Groups.Item.Threads.Item.Posts.Item.MultiValueExtendedPropertie
                 await RequestAdapter.SendNoContentAsync(requestInfo);
                 // Print request output. What if the request has no return?
                 Console.WriteLine("Success");
-            });
+            }, groupIdOption, conversationThreadIdOption, postIdOption, multiValueLegacyExtendedPropertyIdOption, bodyOption);
             return command;
         }
         /// <summary>
@@ -144,7 +159,7 @@ namespace ApiSdk.Groups.Item.Threads.Item.Posts.Item.MultiValueExtendedPropertie
         /// </summary>
         public RequestInformation CreateDeleteRequestInformation(Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
             var requestInfo = new RequestInformation {
-                HttpMethod = HttpMethod.DELETE,
+                HttpMethod = Method.DELETE,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };
@@ -160,7 +175,7 @@ namespace ApiSdk.Groups.Item.Threads.Item.Posts.Item.MultiValueExtendedPropertie
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<GetQueryParameters> q = default, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
             var requestInfo = new RequestInformation {
-                HttpMethod = HttpMethod.GET,
+                HttpMethod = Method.GET,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };
@@ -182,7 +197,7 @@ namespace ApiSdk.Groups.Item.Threads.Item.Posts.Item.MultiValueExtendedPropertie
         public RequestInformation CreatePatchRequestInformation(MultiValueLegacyExtendedProperty body, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
             _ = body ?? throw new ArgumentNullException(nameof(body));
             var requestInfo = new RequestInformation {
-                HttpMethod = HttpMethod.PATCH,
+                HttpMethod = Method.PATCH,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };

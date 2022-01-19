@@ -25,13 +25,15 @@ namespace ApiSdk.Users.Item.Outlook.SupportedTimeZonesWithTimeZoneStandard {
             var command = new Command("get");
             command.Description = "Invoke function supportedTimeZones";
             // Create options for all the parameters
-            var userIdOption = new Option<string>("--user-id", description: "key: id of user");
+            var userIdOption = new Option<string>("--user-id", description: "key: id of user") {
+            };
             userIdOption.IsRequired = true;
             command.AddOption(userIdOption);
-            var TimeZoneStandardOption = new Option<object>("--timezonestandard", description: "Usage: TimeZoneStandard={TimeZoneStandard}");
+            var TimeZoneStandardOption = new Option<object>("--timezonestandard", description: "Usage: TimeZoneStandard={TimeZoneStandard}") {
+            };
             TimeZoneStandardOption.IsRequired = true;
             command.AddOption(TimeZoneStandardOption);
-            command.Handler = CommandHandler.Create<string, object>(async (userId, TimeZoneStandard) => {
+            command.SetHandler(async (string userId, object TimeZoneStandard) => {
                 var requestInfo = CreateGetRequestInformation(q => {
                 });
                 var result = await RequestAdapter.SendCollectionAsync<ApiSdk.Users.Item.Outlook.SupportedTimeZonesWithTimeZoneStandard.SupportedTimeZonesWithTimeZoneStandard>(requestInfo);
@@ -42,7 +44,7 @@ namespace ApiSdk.Users.Item.Outlook.SupportedTimeZonesWithTimeZoneStandard {
                 using var reader = new StreamReader(content);
                 var strContent = await reader.ReadToEndAsync();
                 Console.Write(strContent + "\n");
-            });
+            }, userIdOption, TimeZoneStandardOption);
             return command;
         }
         /// <summary>
@@ -67,7 +69,7 @@ namespace ApiSdk.Users.Item.Outlook.SupportedTimeZonesWithTimeZoneStandard {
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
             var requestInfo = new RequestInformation {
-                HttpMethod = HttpMethod.GET,
+                HttpMethod = Method.GET,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };

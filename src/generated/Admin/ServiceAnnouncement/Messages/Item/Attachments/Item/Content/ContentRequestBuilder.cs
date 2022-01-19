@@ -25,14 +25,17 @@ namespace ApiSdk.Admin.ServiceAnnouncement.Messages.Item.Attachments.Item.Conten
             var command = new Command("get");
             command.Description = "Get media content for the navigation property attachments from admin";
             // Create options for all the parameters
-            var serviceUpdateMessageIdOption = new Option<string>("--serviceupdatemessage-id", description: "key: id of serviceUpdateMessage");
+            var serviceUpdateMessageIdOption = new Option<string>("--serviceupdatemessage-id", description: "key: id of serviceUpdateMessage") {
+            };
             serviceUpdateMessageIdOption.IsRequired = true;
             command.AddOption(serviceUpdateMessageIdOption);
-            var serviceAnnouncementAttachmentIdOption = new Option<string>("--serviceannouncementattachment-id", description: "key: id of serviceAnnouncementAttachment");
+            var serviceAnnouncementAttachmentIdOption = new Option<string>("--serviceannouncementattachment-id", description: "key: id of serviceAnnouncementAttachment") {
+            };
             serviceAnnouncementAttachmentIdOption.IsRequired = true;
             command.AddOption(serviceAnnouncementAttachmentIdOption);
-            command.AddOption(new Option<FileInfo>("--output"));
-            command.Handler = CommandHandler.Create<string, string, FileInfo>(async (serviceUpdateMessageId, serviceAnnouncementAttachmentId, output) => {
+            var outputOption = new Option<FileInfo>("--output");
+            command.AddOption(outputOption);
+            command.SetHandler(async (string serviceUpdateMessageId, string serviceAnnouncementAttachmentId, FileInfo output) => {
                 var requestInfo = CreateGetRequestInformation(q => {
                 });
                 var result = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
@@ -47,7 +50,7 @@ namespace ApiSdk.Admin.ServiceAnnouncement.Messages.Item.Attachments.Item.Conten
                     await result.CopyToAsync(writeStream);
                     Console.WriteLine($"Content written to {output.FullName}.");
                 }
-            });
+            }, serviceUpdateMessageIdOption, serviceAnnouncementAttachmentIdOption, outputOption);
             return command;
         }
         /// <summary>
@@ -57,23 +60,26 @@ namespace ApiSdk.Admin.ServiceAnnouncement.Messages.Item.Attachments.Item.Conten
             var command = new Command("put");
             command.Description = "Update media content for the navigation property attachments in admin";
             // Create options for all the parameters
-            var serviceUpdateMessageIdOption = new Option<string>("--serviceupdatemessage-id", description: "key: id of serviceUpdateMessage");
+            var serviceUpdateMessageIdOption = new Option<string>("--serviceupdatemessage-id", description: "key: id of serviceUpdateMessage") {
+            };
             serviceUpdateMessageIdOption.IsRequired = true;
             command.AddOption(serviceUpdateMessageIdOption);
-            var serviceAnnouncementAttachmentIdOption = new Option<string>("--serviceannouncementattachment-id", description: "key: id of serviceAnnouncementAttachment");
+            var serviceAnnouncementAttachmentIdOption = new Option<string>("--serviceannouncementattachment-id", description: "key: id of serviceAnnouncementAttachment") {
+            };
             serviceAnnouncementAttachmentIdOption.IsRequired = true;
             command.AddOption(serviceAnnouncementAttachmentIdOption);
-            var fileOption = new Option<Stream>("--file", description: "Binary request body");
-            fileOption.IsRequired = true;
-            command.AddOption(fileOption);
-            command.Handler = CommandHandler.Create<string, string, FileInfo>(async (serviceUpdateMessageId, serviceAnnouncementAttachmentId, file) => {
+            var bodyOption = new Option<Stream>("--file", description: "Binary request body") {
+            };
+            bodyOption.IsRequired = true;
+            command.AddOption(bodyOption);
+            command.SetHandler(async (string serviceUpdateMessageId, string serviceAnnouncementAttachmentId, FileInfo file) => {
                 using var stream = file.OpenRead();
                 var requestInfo = CreatePutRequestInformation(stream, q => {
                 });
                 await RequestAdapter.SendNoContentAsync(requestInfo);
                 // Print request output. What if the request has no return?
                 Console.WriteLine("Success");
-            });
+            }, serviceUpdateMessageIdOption, serviceAnnouncementAttachmentIdOption, bodyOption);
             return command;
         }
         /// <summary>
@@ -96,7 +102,7 @@ namespace ApiSdk.Admin.ServiceAnnouncement.Messages.Item.Attachments.Item.Conten
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
             var requestInfo = new RequestInformation {
-                HttpMethod = HttpMethod.GET,
+                HttpMethod = Method.GET,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };
@@ -113,7 +119,7 @@ namespace ApiSdk.Admin.ServiceAnnouncement.Messages.Item.Attachments.Item.Conten
         public RequestInformation CreatePutRequestInformation(Stream body, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
             _ = body ?? throw new ArgumentNullException(nameof(body));
             var requestInfo = new RequestInformation {
-                HttpMethod = HttpMethod.PUT,
+                HttpMethod = Method.PUT,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };

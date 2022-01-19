@@ -27,21 +27,25 @@ namespace ApiSdk.DeviceManagement.RoleDefinitions.Item.RoleAssignments.Item.Role
             var command = new Command("get");
             command.Description = "Role definition this assignment is part of.";
             // Create options for all the parameters
-            var roleDefinitionIdOption = new Option<string>("--roledefinition-id", description: "key: id of roleDefinition");
+            var roleDefinitionIdOption = new Option<string>("--roledefinition-id", description: "key: id of roleDefinition") {
+            };
             roleDefinitionIdOption.IsRequired = true;
             command.AddOption(roleDefinitionIdOption);
-            var roleAssignmentIdOption = new Option<string>("--roleassignment-id", description: "key: id of roleAssignment");
+            var roleAssignmentIdOption = new Option<string>("--roleassignment-id", description: "key: id of roleAssignment") {
+            };
             roleAssignmentIdOption.IsRequired = true;
             command.AddOption(roleAssignmentIdOption);
-            var selectOption = new Option<string[]>("--select", description: "Select properties to be returned");
+            var selectOption = new Option<string[]>("--select", description: "Select properties to be returned") {
+                Arity = ArgumentArity.ZeroOrMore
+            };
             selectOption.IsRequired = false;
-            selectOption.Arity = ArgumentArity.ZeroOrMore;
             command.AddOption(selectOption);
-            var expandOption = new Option<string[]>("--expand", description: "Expand related entities");
+            var expandOption = new Option<string[]>("--expand", description: "Expand related entities") {
+                Arity = ArgumentArity.ZeroOrMore
+            };
             expandOption.IsRequired = false;
-            expandOption.Arity = ArgumentArity.ZeroOrMore;
             command.AddOption(expandOption);
-            command.Handler = CommandHandler.Create<string, string, string[], string[]>(async (roleDefinitionId, roleAssignmentId, select, expand) => {
+            command.SetHandler(async (string roleDefinitionId, string roleAssignmentId, string[] select, string[] expand) => {
                 var requestInfo = CreateGetRequestInformation(q => {
                     q.Select = select;
                     q.Expand = expand;
@@ -54,7 +58,7 @@ namespace ApiSdk.DeviceManagement.RoleDefinitions.Item.RoleAssignments.Item.Role
                 using var reader = new StreamReader(content);
                 var strContent = await reader.ReadToEndAsync();
                 Console.Write(strContent + "\n");
-            });
+            }, roleDefinitionIdOption, roleAssignmentIdOption, selectOption, expandOption);
             return command;
         }
         public Command BuildRefCommand() {
@@ -86,7 +90,7 @@ namespace ApiSdk.DeviceManagement.RoleDefinitions.Item.RoleAssignments.Item.Role
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<GetQueryParameters> q = default, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
             var requestInfo = new RequestInformation {
-                HttpMethod = HttpMethod.GET,
+                HttpMethod = Method.GET,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };

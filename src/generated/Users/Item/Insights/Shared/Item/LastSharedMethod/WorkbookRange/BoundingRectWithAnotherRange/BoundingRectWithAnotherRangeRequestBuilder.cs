@@ -26,16 +26,19 @@ namespace ApiSdk.Users.Item.Insights.Shared.Item.LastSharedMethod.WorkbookRange.
             var command = new Command("get");
             command.Description = "Invoke function boundingRect";
             // Create options for all the parameters
-            var userIdOption = new Option<string>("--user-id", description: "key: id of user");
+            var userIdOption = new Option<string>("--user-id", description: "key: id of user") {
+            };
             userIdOption.IsRequired = true;
             command.AddOption(userIdOption);
-            var sharedInsightIdOption = new Option<string>("--sharedinsight-id", description: "key: id of sharedInsight");
+            var sharedInsightIdOption = new Option<string>("--sharedinsight-id", description: "key: id of sharedInsight") {
+            };
             sharedInsightIdOption.IsRequired = true;
             command.AddOption(sharedInsightIdOption);
-            var anotherRangeOption = new Option<string>("--anotherrange", description: "Usage: anotherRange={anotherRange}");
+            var anotherRangeOption = new Option<string>("--anotherrange", description: "Usage: anotherRange={anotherRange}") {
+            };
             anotherRangeOption.IsRequired = true;
             command.AddOption(anotherRangeOption);
-            command.Handler = CommandHandler.Create<string, string, string>(async (userId, sharedInsightId, anotherRange) => {
+            command.SetHandler(async (string userId, string sharedInsightId, string anotherRange) => {
                 var requestInfo = CreateGetRequestInformation(q => {
                 });
                 var result = await RequestAdapter.SendAsync<BoundingRectWithAnotherRangeResponse>(requestInfo);
@@ -46,7 +49,7 @@ namespace ApiSdk.Users.Item.Insights.Shared.Item.LastSharedMethod.WorkbookRange.
                 using var reader = new StreamReader(content);
                 var strContent = await reader.ReadToEndAsync();
                 Console.Write(strContent + "\n");
-            });
+            }, userIdOption, sharedInsightIdOption, anotherRangeOption);
             return command;
         }
         /// <summary>
@@ -71,7 +74,7 @@ namespace ApiSdk.Users.Item.Insights.Shared.Item.LastSharedMethod.WorkbookRange.
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
             var requestInfo = new RequestInformation {
-                HttpMethod = HttpMethod.GET,
+                HttpMethod = Method.GET,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };

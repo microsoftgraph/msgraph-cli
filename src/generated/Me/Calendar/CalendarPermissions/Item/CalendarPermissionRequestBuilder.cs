@@ -26,16 +26,17 @@ namespace ApiSdk.Me.Calendar.CalendarPermissions.Item {
             var command = new Command("delete");
             command.Description = "The permissions of the users with whom the calendar is shared.";
             // Create options for all the parameters
-            var calendarPermissionIdOption = new Option<string>("--calendarpermission-id", description: "key: id of calendarPermission");
+            var calendarPermissionIdOption = new Option<string>("--calendarpermission-id", description: "key: id of calendarPermission") {
+            };
             calendarPermissionIdOption.IsRequired = true;
             command.AddOption(calendarPermissionIdOption);
-            command.Handler = CommandHandler.Create<string>(async (calendarPermissionId) => {
+            command.SetHandler(async (string calendarPermissionId) => {
                 var requestInfo = CreateDeleteRequestInformation(q => {
                 });
                 await RequestAdapter.SendNoContentAsync(requestInfo);
                 // Print request output. What if the request has no return?
                 Console.WriteLine("Success");
-            });
+            }, calendarPermissionIdOption);
             return command;
         }
         /// <summary>
@@ -45,14 +46,16 @@ namespace ApiSdk.Me.Calendar.CalendarPermissions.Item {
             var command = new Command("get");
             command.Description = "The permissions of the users with whom the calendar is shared.";
             // Create options for all the parameters
-            var calendarPermissionIdOption = new Option<string>("--calendarpermission-id", description: "key: id of calendarPermission");
+            var calendarPermissionIdOption = new Option<string>("--calendarpermission-id", description: "key: id of calendarPermission") {
+            };
             calendarPermissionIdOption.IsRequired = true;
             command.AddOption(calendarPermissionIdOption);
-            var selectOption = new Option<string[]>("--select", description: "Select properties to be returned");
+            var selectOption = new Option<string[]>("--select", description: "Select properties to be returned") {
+                Arity = ArgumentArity.ZeroOrMore
+            };
             selectOption.IsRequired = false;
-            selectOption.Arity = ArgumentArity.ZeroOrMore;
             command.AddOption(selectOption);
-            command.Handler = CommandHandler.Create<string, string[]>(async (calendarPermissionId, select) => {
+            command.SetHandler(async (string calendarPermissionId, string[] select) => {
                 var requestInfo = CreateGetRequestInformation(q => {
                     q.Select = select;
                 });
@@ -64,7 +67,7 @@ namespace ApiSdk.Me.Calendar.CalendarPermissions.Item {
                 using var reader = new StreamReader(content);
                 var strContent = await reader.ReadToEndAsync();
                 Console.Write(strContent + "\n");
-            });
+            }, calendarPermissionIdOption, selectOption);
             return command;
         }
         /// <summary>
@@ -74,13 +77,15 @@ namespace ApiSdk.Me.Calendar.CalendarPermissions.Item {
             var command = new Command("patch");
             command.Description = "The permissions of the users with whom the calendar is shared.";
             // Create options for all the parameters
-            var calendarPermissionIdOption = new Option<string>("--calendarpermission-id", description: "key: id of calendarPermission");
+            var calendarPermissionIdOption = new Option<string>("--calendarpermission-id", description: "key: id of calendarPermission") {
+            };
             calendarPermissionIdOption.IsRequired = true;
             command.AddOption(calendarPermissionIdOption);
-            var bodyOption = new Option<string>("--body");
+            var bodyOption = new Option<string>("--body") {
+            };
             bodyOption.IsRequired = true;
             command.AddOption(bodyOption);
-            command.Handler = CommandHandler.Create<string, string>(async (calendarPermissionId, body) => {
+            command.SetHandler(async (string calendarPermissionId, string body) => {
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<CalendarPermission>();
@@ -89,7 +94,7 @@ namespace ApiSdk.Me.Calendar.CalendarPermissions.Item {
                 await RequestAdapter.SendNoContentAsync(requestInfo);
                 // Print request output. What if the request has no return?
                 Console.WriteLine("Success");
-            });
+            }, calendarPermissionIdOption, bodyOption);
             return command;
         }
         /// <summary>
@@ -112,7 +117,7 @@ namespace ApiSdk.Me.Calendar.CalendarPermissions.Item {
         /// </summary>
         public RequestInformation CreateDeleteRequestInformation(Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
             var requestInfo = new RequestInformation {
-                HttpMethod = HttpMethod.DELETE,
+                HttpMethod = Method.DELETE,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };
@@ -128,7 +133,7 @@ namespace ApiSdk.Me.Calendar.CalendarPermissions.Item {
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<GetQueryParameters> q = default, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
             var requestInfo = new RequestInformation {
-                HttpMethod = HttpMethod.GET,
+                HttpMethod = Method.GET,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };
@@ -150,7 +155,7 @@ namespace ApiSdk.Me.Calendar.CalendarPermissions.Item {
         public RequestInformation CreatePatchRequestInformation(CalendarPermission body, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
             _ = body ?? throw new ArgumentNullException(nameof(body));
             var requestInfo = new RequestInformation {
-                HttpMethod = HttpMethod.PATCH,
+                HttpMethod = Method.PATCH,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };

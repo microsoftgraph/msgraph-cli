@@ -26,19 +26,23 @@ namespace ApiSdk.Users.Item.Insights.Used.Item.Resource.WorkbookRange.ResizedRan
             var command = new Command("get");
             command.Description = "Invoke function resizedRange";
             // Create options for all the parameters
-            var userIdOption = new Option<string>("--user-id", description: "key: id of user");
+            var userIdOption = new Option<string>("--user-id", description: "key: id of user") {
+            };
             userIdOption.IsRequired = true;
             command.AddOption(userIdOption);
-            var usedInsightIdOption = new Option<string>("--usedinsight-id", description: "key: id of usedInsight");
+            var usedInsightIdOption = new Option<string>("--usedinsight-id", description: "key: id of usedInsight") {
+            };
             usedInsightIdOption.IsRequired = true;
             command.AddOption(usedInsightIdOption);
-            var deltaRowsOption = new Option<int?>("--deltarows", description: "Usage: deltaRows={deltaRows}");
+            var deltaRowsOption = new Option<int?>("--deltarows", description: "Usage: deltaRows={deltaRows}") {
+            };
             deltaRowsOption.IsRequired = true;
             command.AddOption(deltaRowsOption);
-            var deltaColumnsOption = new Option<int?>("--deltacolumns", description: "Usage: deltaColumns={deltaColumns}");
+            var deltaColumnsOption = new Option<int?>("--deltacolumns", description: "Usage: deltaColumns={deltaColumns}") {
+            };
             deltaColumnsOption.IsRequired = true;
             command.AddOption(deltaColumnsOption);
-            command.Handler = CommandHandler.Create<string, string, int?, int?>(async (userId, usedInsightId, deltaRows, deltaColumns) => {
+            command.SetHandler(async (string userId, string usedInsightId, int? deltaRows, int? deltaColumns) => {
                 var requestInfo = CreateGetRequestInformation(q => {
                 });
                 var result = await RequestAdapter.SendAsync<ResizedRangeWithDeltaRowsWithDeltaColumnsResponse>(requestInfo);
@@ -49,7 +53,7 @@ namespace ApiSdk.Users.Item.Insights.Used.Item.Resource.WorkbookRange.ResizedRan
                 using var reader = new StreamReader(content);
                 var strContent = await reader.ReadToEndAsync();
                 Console.Write(strContent + "\n");
-            });
+            }, userIdOption, usedInsightIdOption, deltaRowsOption, deltaColumnsOption);
             return command;
         }
         /// <summary>
@@ -76,7 +80,7 @@ namespace ApiSdk.Users.Item.Insights.Used.Item.Resource.WorkbookRange.ResizedRan
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
             var requestInfo = new RequestInformation {
-                HttpMethod = HttpMethod.GET,
+                HttpMethod = Method.GET,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };

@@ -26,16 +26,17 @@ namespace ApiSdk.AgreementAcceptances.Item {
             var command = new Command("delete");
             command.Description = "Delete entity from agreementAcceptances";
             // Create options for all the parameters
-            var agreementAcceptanceIdOption = new Option<string>("--agreementacceptance-id", description: "key: id of agreementAcceptance");
+            var agreementAcceptanceIdOption = new Option<string>("--agreementacceptance-id", description: "key: id of agreementAcceptance") {
+            };
             agreementAcceptanceIdOption.IsRequired = true;
             command.AddOption(agreementAcceptanceIdOption);
-            command.Handler = CommandHandler.Create<string>(async (agreementAcceptanceId) => {
+            command.SetHandler(async (string agreementAcceptanceId) => {
                 var requestInfo = CreateDeleteRequestInformation(q => {
                 });
                 await RequestAdapter.SendNoContentAsync(requestInfo);
                 // Print request output. What if the request has no return?
                 Console.WriteLine("Success");
-            });
+            }, agreementAcceptanceIdOption);
             return command;
         }
         /// <summary>
@@ -45,14 +46,16 @@ namespace ApiSdk.AgreementAcceptances.Item {
             var command = new Command("get");
             command.Description = "Get entity from agreementAcceptances by key";
             // Create options for all the parameters
-            var agreementAcceptanceIdOption = new Option<string>("--agreementacceptance-id", description: "key: id of agreementAcceptance");
+            var agreementAcceptanceIdOption = new Option<string>("--agreementacceptance-id", description: "key: id of agreementAcceptance") {
+            };
             agreementAcceptanceIdOption.IsRequired = true;
             command.AddOption(agreementAcceptanceIdOption);
-            var selectOption = new Option<string[]>("--select", description: "Select properties to be returned");
+            var selectOption = new Option<string[]>("--select", description: "Select properties to be returned") {
+                Arity = ArgumentArity.ZeroOrMore
+            };
             selectOption.IsRequired = false;
-            selectOption.Arity = ArgumentArity.ZeroOrMore;
             command.AddOption(selectOption);
-            command.Handler = CommandHandler.Create<string, string[]>(async (agreementAcceptanceId, select) => {
+            command.SetHandler(async (string agreementAcceptanceId, string[] select) => {
                 var requestInfo = CreateGetRequestInformation(q => {
                     q.Select = select;
                 });
@@ -64,7 +67,7 @@ namespace ApiSdk.AgreementAcceptances.Item {
                 using var reader = new StreamReader(content);
                 var strContent = await reader.ReadToEndAsync();
                 Console.Write(strContent + "\n");
-            });
+            }, agreementAcceptanceIdOption, selectOption);
             return command;
         }
         /// <summary>
@@ -74,13 +77,15 @@ namespace ApiSdk.AgreementAcceptances.Item {
             var command = new Command("patch");
             command.Description = "Update entity in agreementAcceptances";
             // Create options for all the parameters
-            var agreementAcceptanceIdOption = new Option<string>("--agreementacceptance-id", description: "key: id of agreementAcceptance");
+            var agreementAcceptanceIdOption = new Option<string>("--agreementacceptance-id", description: "key: id of agreementAcceptance") {
+            };
             agreementAcceptanceIdOption.IsRequired = true;
             command.AddOption(agreementAcceptanceIdOption);
-            var bodyOption = new Option<string>("--body");
+            var bodyOption = new Option<string>("--body") {
+            };
             bodyOption.IsRequired = true;
             command.AddOption(bodyOption);
-            command.Handler = CommandHandler.Create<string, string>(async (agreementAcceptanceId, body) => {
+            command.SetHandler(async (string agreementAcceptanceId, string body) => {
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<AgreementAcceptance>();
@@ -89,7 +94,7 @@ namespace ApiSdk.AgreementAcceptances.Item {
                 await RequestAdapter.SendNoContentAsync(requestInfo);
                 // Print request output. What if the request has no return?
                 Console.WriteLine("Success");
-            });
+            }, agreementAcceptanceIdOption, bodyOption);
             return command;
         }
         /// <summary>
@@ -112,7 +117,7 @@ namespace ApiSdk.AgreementAcceptances.Item {
         /// </summary>
         public RequestInformation CreateDeleteRequestInformation(Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
             var requestInfo = new RequestInformation {
-                HttpMethod = HttpMethod.DELETE,
+                HttpMethod = Method.DELETE,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };
@@ -128,7 +133,7 @@ namespace ApiSdk.AgreementAcceptances.Item {
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<GetQueryParameters> q = default, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
             var requestInfo = new RequestInformation {
-                HttpMethod = HttpMethod.GET,
+                HttpMethod = Method.GET,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };
@@ -150,7 +155,7 @@ namespace ApiSdk.AgreementAcceptances.Item {
         public RequestInformation CreatePatchRequestInformation(AgreementAcceptance body, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
             _ = body ?? throw new ArgumentNullException(nameof(body));
             var requestInfo = new RequestInformation {
-                HttpMethod = HttpMethod.PATCH,
+                HttpMethod = Method.PATCH,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };

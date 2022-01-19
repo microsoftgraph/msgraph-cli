@@ -26,19 +26,23 @@ namespace ApiSdk.Users.Item.Insights.Shared.Item.Resource.WorkbookRange.OffsetRa
             var command = new Command("get");
             command.Description = "Invoke function offsetRange";
             // Create options for all the parameters
-            var userIdOption = new Option<string>("--user-id", description: "key: id of user");
+            var userIdOption = new Option<string>("--user-id", description: "key: id of user") {
+            };
             userIdOption.IsRequired = true;
             command.AddOption(userIdOption);
-            var sharedInsightIdOption = new Option<string>("--sharedinsight-id", description: "key: id of sharedInsight");
+            var sharedInsightIdOption = new Option<string>("--sharedinsight-id", description: "key: id of sharedInsight") {
+            };
             sharedInsightIdOption.IsRequired = true;
             command.AddOption(sharedInsightIdOption);
-            var rowOffsetOption = new Option<int?>("--rowoffset", description: "Usage: rowOffset={rowOffset}");
+            var rowOffsetOption = new Option<int?>("--rowoffset", description: "Usage: rowOffset={rowOffset}") {
+            };
             rowOffsetOption.IsRequired = true;
             command.AddOption(rowOffsetOption);
-            var columnOffsetOption = new Option<int?>("--columnoffset", description: "Usage: columnOffset={columnOffset}");
+            var columnOffsetOption = new Option<int?>("--columnoffset", description: "Usage: columnOffset={columnOffset}") {
+            };
             columnOffsetOption.IsRequired = true;
             command.AddOption(columnOffsetOption);
-            command.Handler = CommandHandler.Create<string, string, int?, int?>(async (userId, sharedInsightId, rowOffset, columnOffset) => {
+            command.SetHandler(async (string userId, string sharedInsightId, int? rowOffset, int? columnOffset) => {
                 var requestInfo = CreateGetRequestInformation(q => {
                 });
                 var result = await RequestAdapter.SendAsync<OffsetRangeWithRowOffsetWithColumnOffsetResponse>(requestInfo);
@@ -49,7 +53,7 @@ namespace ApiSdk.Users.Item.Insights.Shared.Item.Resource.WorkbookRange.OffsetRa
                 using var reader = new StreamReader(content);
                 var strContent = await reader.ReadToEndAsync();
                 Console.Write(strContent + "\n");
-            });
+            }, userIdOption, sharedInsightIdOption, rowOffsetOption, columnOffsetOption);
             return command;
         }
         /// <summary>
@@ -76,7 +80,7 @@ namespace ApiSdk.Users.Item.Insights.Shared.Item.Resource.WorkbookRange.OffsetRa
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
             var requestInfo = new RequestInformation {
-                HttpMethod = HttpMethod.GET,
+                HttpMethod = Method.GET,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };

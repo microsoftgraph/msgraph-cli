@@ -25,16 +25,17 @@ namespace ApiSdk.DeviceManagement.NotificationMessageTemplates.Item.SendTestMess
             var command = new Command("post");
             command.Description = "Sends test message using the specified notificationMessageTemplate in the default locale";
             // Create options for all the parameters
-            var notificationMessageTemplateIdOption = new Option<string>("--notificationmessagetemplate-id", description: "key: id of notificationMessageTemplate");
+            var notificationMessageTemplateIdOption = new Option<string>("--notificationmessagetemplate-id", description: "key: id of notificationMessageTemplate") {
+            };
             notificationMessageTemplateIdOption.IsRequired = true;
             command.AddOption(notificationMessageTemplateIdOption);
-            command.Handler = CommandHandler.Create<string>(async (notificationMessageTemplateId) => {
+            command.SetHandler(async (string notificationMessageTemplateId) => {
                 var requestInfo = CreatePostRequestInformation(q => {
                 });
                 await RequestAdapter.SendNoContentAsync(requestInfo);
                 // Print request output. What if the request has no return?
                 Console.WriteLine("Success");
-            });
+            }, notificationMessageTemplateIdOption);
             return command;
         }
         /// <summary>
@@ -57,7 +58,7 @@ namespace ApiSdk.DeviceManagement.NotificationMessageTemplates.Item.SendTestMess
         /// </summary>
         public RequestInformation CreatePostRequestInformation(Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
             var requestInfo = new RequestInformation {
-                HttpMethod = HttpMethod.POST,
+                HttpMethod = Method.POST,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };

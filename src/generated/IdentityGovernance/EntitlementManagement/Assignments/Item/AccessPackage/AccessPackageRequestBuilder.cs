@@ -34,18 +34,21 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.Assignments.Item.Acces
             var command = new Command("get");
             command.Description = "Read-only. Nullable. Supports $filter (eq) on the id property and $expand query parameters.";
             // Create options for all the parameters
-            var accessPackageAssignmentIdOption = new Option<string>("--accesspackageassignment-id", description: "key: id of accessPackageAssignment");
+            var accessPackageAssignmentIdOption = new Option<string>("--accesspackageassignment-id", description: "key: id of accessPackageAssignment") {
+            };
             accessPackageAssignmentIdOption.IsRequired = true;
             command.AddOption(accessPackageAssignmentIdOption);
-            var selectOption = new Option<string[]>("--select", description: "Select properties to be returned");
+            var selectOption = new Option<string[]>("--select", description: "Select properties to be returned") {
+                Arity = ArgumentArity.ZeroOrMore
+            };
             selectOption.IsRequired = false;
-            selectOption.Arity = ArgumentArity.ZeroOrMore;
             command.AddOption(selectOption);
-            var expandOption = new Option<string[]>("--expand", description: "Expand related entities");
+            var expandOption = new Option<string[]>("--expand", description: "Expand related entities") {
+                Arity = ArgumentArity.ZeroOrMore
+            };
             expandOption.IsRequired = false;
-            expandOption.Arity = ArgumentArity.ZeroOrMore;
             command.AddOption(expandOption);
-            command.Handler = CommandHandler.Create<string, string[], string[]>(async (accessPackageAssignmentId, select, expand) => {
+            command.SetHandler(async (string accessPackageAssignmentId, string[] select, string[] expand) => {
                 var requestInfo = CreateGetRequestInformation(q => {
                     q.Select = select;
                     q.Expand = expand;
@@ -58,7 +61,7 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.Assignments.Item.Acces
                 using var reader = new StreamReader(content);
                 var strContent = await reader.ReadToEndAsync();
                 Console.Write(strContent + "\n");
-            });
+            }, accessPackageAssignmentIdOption, selectOption, expandOption);
             return command;
         }
         public Command BuildRefCommand() {
@@ -90,7 +93,7 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.Assignments.Item.Acces
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<GetQueryParameters> q = default, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
             var requestInfo = new RequestInformation {
-                HttpMethod = HttpMethod.GET,
+                HttpMethod = Method.GET,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };

@@ -22,7 +22,7 @@ namespace ApiSdk.Users.Item.Outlook.SupportedTimeZones {
         /// </summary>
         public IDictionary<string, Action<T, IParseNode>> GetFieldDeserializers<T>() {
             return new Dictionary<string, Action<T, IParseNode>> {
-                {"@Alias", (o,n) => { (o as SupportedTimeZones).@Alias = n.GetStringValue(); } },
+                {"alias", (o,n) => { (o as SupportedTimeZones).@Alias = n.GetStringValue(); } },
                 {"displayName", (o,n) => { (o as SupportedTimeZones).DisplayName = n.GetStringValue(); } },
             };
         }
@@ -32,7 +32,7 @@ namespace ApiSdk.Users.Item.Outlook.SupportedTimeZones {
         /// </summary>
         public void Serialize(ISerializationWriter writer) {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
-            writer.WriteStringValue("@Alias", @Alias);
+            writer.WriteStringValue("alias", @Alias);
             writer.WriteStringValue("displayName", DisplayName);
             writer.WriteAdditionalData(AdditionalData);
         }

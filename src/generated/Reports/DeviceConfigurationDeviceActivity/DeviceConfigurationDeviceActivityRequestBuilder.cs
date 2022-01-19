@@ -26,7 +26,7 @@ namespace ApiSdk.Reports.DeviceConfigurationDeviceActivity {
             var command = new Command("get");
             command.Description = "Metadata for the device configuration device activity report";
             // Create options for all the parameters
-            command.Handler = CommandHandler.Create(async () => {
+            command.SetHandler(async () => {
                 var requestInfo = CreateGetRequestInformation(q => {
                 });
                 var result = await RequestAdapter.SendAsync<DeviceConfigurationDeviceActivityResponse>(requestInfo);
@@ -60,7 +60,7 @@ namespace ApiSdk.Reports.DeviceConfigurationDeviceActivity {
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
             var requestInfo = new RequestInformation {
-                HttpMethod = HttpMethod.GET,
+                HttpMethod = Method.GET,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };

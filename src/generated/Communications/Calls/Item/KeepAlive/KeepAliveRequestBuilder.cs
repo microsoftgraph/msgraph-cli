@@ -25,16 +25,17 @@ namespace ApiSdk.Communications.Calls.Item.KeepAlive {
             var command = new Command("post");
             command.Description = "Invoke action keepAlive";
             // Create options for all the parameters
-            var callIdOption = new Option<string>("--call-id", description: "key: id of call");
+            var callIdOption = new Option<string>("--call-id", description: "key: id of call") {
+            };
             callIdOption.IsRequired = true;
             command.AddOption(callIdOption);
-            command.Handler = CommandHandler.Create<string>(async (callId) => {
+            command.SetHandler(async (string callId) => {
                 var requestInfo = CreatePostRequestInformation(q => {
                 });
                 await RequestAdapter.SendNoContentAsync(requestInfo);
                 // Print request output. What if the request has no return?
                 Console.WriteLine("Success");
-            });
+            }, callIdOption);
             return command;
         }
         /// <summary>
@@ -57,7 +58,7 @@ namespace ApiSdk.Communications.Calls.Item.KeepAlive {
         /// </summary>
         public RequestInformation CreatePostRequestInformation(Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
             var requestInfo = new RequestInformation {
-                HttpMethod = HttpMethod.POST,
+                HttpMethod = Method.POST,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };

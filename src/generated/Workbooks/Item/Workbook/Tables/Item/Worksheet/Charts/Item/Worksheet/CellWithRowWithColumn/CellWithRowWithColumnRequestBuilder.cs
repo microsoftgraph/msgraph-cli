@@ -26,22 +26,27 @@ namespace ApiSdk.Workbooks.Item.Workbook.Tables.Item.Worksheet.Charts.Item.Works
             var command = new Command("get");
             command.Description = "Invoke function cell";
             // Create options for all the parameters
-            var driveItemIdOption = new Option<string>("--driveitem-id", description: "key: id of driveItem");
+            var driveItemIdOption = new Option<string>("--driveitem-id", description: "key: id of driveItem") {
+            };
             driveItemIdOption.IsRequired = true;
             command.AddOption(driveItemIdOption);
-            var workbookTableIdOption = new Option<string>("--workbooktable-id", description: "key: id of workbookTable");
+            var workbookTableIdOption = new Option<string>("--workbooktable-id", description: "key: id of workbookTable") {
+            };
             workbookTableIdOption.IsRequired = true;
             command.AddOption(workbookTableIdOption);
-            var workbookChartIdOption = new Option<string>("--workbookchart-id", description: "key: id of workbookChart");
+            var workbookChartIdOption = new Option<string>("--workbookchart-id", description: "key: id of workbookChart") {
+            };
             workbookChartIdOption.IsRequired = true;
             command.AddOption(workbookChartIdOption);
-            var rowOption = new Option<int?>("--row", description: "Usage: row={row}");
+            var rowOption = new Option<int?>("--row", description: "Usage: row={row}") {
+            };
             rowOption.IsRequired = true;
             command.AddOption(rowOption);
-            var columnOption = new Option<int?>("--column", description: "Usage: column={column}");
+            var columnOption = new Option<int?>("--column", description: "Usage: column={column}") {
+            };
             columnOption.IsRequired = true;
             command.AddOption(columnOption);
-            command.Handler = CommandHandler.Create<string, string, string, int?, int?>(async (driveItemId, workbookTableId, workbookChartId, row, column) => {
+            command.SetHandler(async (string driveItemId, string workbookTableId, string workbookChartId, int? row, int? column) => {
                 var requestInfo = CreateGetRequestInformation(q => {
                 });
                 var result = await RequestAdapter.SendAsync<CellWithRowWithColumnResponse>(requestInfo);
@@ -52,7 +57,7 @@ namespace ApiSdk.Workbooks.Item.Workbook.Tables.Item.Worksheet.Charts.Item.Works
                 using var reader = new StreamReader(content);
                 var strContent = await reader.ReadToEndAsync();
                 Console.Write(strContent + "\n");
-            });
+            }, driveItemIdOption, workbookTableIdOption, workbookChartIdOption, rowOption, columnOption);
             return command;
         }
         /// <summary>
@@ -79,7 +84,7 @@ namespace ApiSdk.Workbooks.Item.Workbook.Tables.Item.Worksheet.Charts.Item.Works
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
             var requestInfo = new RequestInformation {
-                HttpMethod = HttpMethod.GET,
+                HttpMethod = Method.GET,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };

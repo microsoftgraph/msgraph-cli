@@ -27,24 +27,29 @@ namespace ApiSdk.Teams.Item.Channels.Item.Tabs.Item.TeamsApp {
             var command = new Command("get");
             command.Description = "The application that is linked to the tab.";
             // Create options for all the parameters
-            var teamIdOption = new Option<string>("--team-id", description: "key: id of team");
+            var teamIdOption = new Option<string>("--team-id", description: "key: id of team") {
+            };
             teamIdOption.IsRequired = true;
             command.AddOption(teamIdOption);
-            var channelIdOption = new Option<string>("--channel-id", description: "key: id of channel");
+            var channelIdOption = new Option<string>("--channel-id", description: "key: id of channel") {
+            };
             channelIdOption.IsRequired = true;
             command.AddOption(channelIdOption);
-            var teamsTabIdOption = new Option<string>("--teamstab-id", description: "key: id of teamsTab");
+            var teamsTabIdOption = new Option<string>("--teamstab-id", description: "key: id of teamsTab") {
+            };
             teamsTabIdOption.IsRequired = true;
             command.AddOption(teamsTabIdOption);
-            var selectOption = new Option<string[]>("--select", description: "Select properties to be returned");
+            var selectOption = new Option<string[]>("--select", description: "Select properties to be returned") {
+                Arity = ArgumentArity.ZeroOrMore
+            };
             selectOption.IsRequired = false;
-            selectOption.Arity = ArgumentArity.ZeroOrMore;
             command.AddOption(selectOption);
-            var expandOption = new Option<string[]>("--expand", description: "Expand related entities");
+            var expandOption = new Option<string[]>("--expand", description: "Expand related entities") {
+                Arity = ArgumentArity.ZeroOrMore
+            };
             expandOption.IsRequired = false;
-            expandOption.Arity = ArgumentArity.ZeroOrMore;
             command.AddOption(expandOption);
-            command.Handler = CommandHandler.Create<string, string, string, string[], string[]>(async (teamId, channelId, teamsTabId, select, expand) => {
+            command.SetHandler(async (string teamId, string channelId, string teamsTabId, string[] select, string[] expand) => {
                 var requestInfo = CreateGetRequestInformation(q => {
                     q.Select = select;
                     q.Expand = expand;
@@ -57,7 +62,7 @@ namespace ApiSdk.Teams.Item.Channels.Item.Tabs.Item.TeamsApp {
                 using var reader = new StreamReader(content);
                 var strContent = await reader.ReadToEndAsync();
                 Console.Write(strContent + "\n");
-            });
+            }, teamIdOption, channelIdOption, teamsTabIdOption, selectOption, expandOption);
             return command;
         }
         public Command BuildRefCommand() {
@@ -89,7 +94,7 @@ namespace ApiSdk.Teams.Item.Channels.Item.Tabs.Item.TeamsApp {
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<GetQueryParameters> q = default, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
             var requestInfo = new RequestInformation {
-                HttpMethod = HttpMethod.GET,
+                HttpMethod = Method.GET,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };

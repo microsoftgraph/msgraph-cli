@@ -27,21 +27,25 @@ namespace ApiSdk.Print.Printers.Item.TaskTriggers.Item.Definition {
             var command = new Command("get");
             command.Description = "An abstract definition that will be used to create a printTask when triggered by a print event. Read-only.";
             // Create options for all the parameters
-            var printerIdOption = new Option<string>("--printer-id", description: "key: id of printer");
+            var printerIdOption = new Option<string>("--printer-id", description: "key: id of printer") {
+            };
             printerIdOption.IsRequired = true;
             command.AddOption(printerIdOption);
-            var printTaskTriggerIdOption = new Option<string>("--printtasktrigger-id", description: "key: id of printTaskTrigger");
+            var printTaskTriggerIdOption = new Option<string>("--printtasktrigger-id", description: "key: id of printTaskTrigger") {
+            };
             printTaskTriggerIdOption.IsRequired = true;
             command.AddOption(printTaskTriggerIdOption);
-            var selectOption = new Option<string[]>("--select", description: "Select properties to be returned");
+            var selectOption = new Option<string[]>("--select", description: "Select properties to be returned") {
+                Arity = ArgumentArity.ZeroOrMore
+            };
             selectOption.IsRequired = false;
-            selectOption.Arity = ArgumentArity.ZeroOrMore;
             command.AddOption(selectOption);
-            var expandOption = new Option<string[]>("--expand", description: "Expand related entities");
+            var expandOption = new Option<string[]>("--expand", description: "Expand related entities") {
+                Arity = ArgumentArity.ZeroOrMore
+            };
             expandOption.IsRequired = false;
-            expandOption.Arity = ArgumentArity.ZeroOrMore;
             command.AddOption(expandOption);
-            command.Handler = CommandHandler.Create<string, string, string[], string[]>(async (printerId, printTaskTriggerId, select, expand) => {
+            command.SetHandler(async (string printerId, string printTaskTriggerId, string[] select, string[] expand) => {
                 var requestInfo = CreateGetRequestInformation(q => {
                     q.Select = select;
                     q.Expand = expand;
@@ -54,7 +58,7 @@ namespace ApiSdk.Print.Printers.Item.TaskTriggers.Item.Definition {
                 using var reader = new StreamReader(content);
                 var strContent = await reader.ReadToEndAsync();
                 Console.Write(strContent + "\n");
-            });
+            }, printerIdOption, printTaskTriggerIdOption, selectOption, expandOption);
             return command;
         }
         public Command BuildRefCommand() {
@@ -86,7 +90,7 @@ namespace ApiSdk.Print.Printers.Item.TaskTriggers.Item.Definition {
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<GetQueryParameters> q = default, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
             var requestInfo = new RequestInformation {
-                HttpMethod = HttpMethod.GET,
+                HttpMethod = Method.GET,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };

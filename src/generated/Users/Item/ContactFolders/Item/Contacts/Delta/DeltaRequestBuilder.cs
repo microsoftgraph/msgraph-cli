@@ -25,13 +25,15 @@ namespace ApiSdk.Users.Item.ContactFolders.Item.Contacts.Delta {
             var command = new Command("get");
             command.Description = "Invoke function delta";
             // Create options for all the parameters
-            var userIdOption = new Option<string>("--user-id", description: "key: id of user");
+            var userIdOption = new Option<string>("--user-id", description: "key: id of user") {
+            };
             userIdOption.IsRequired = true;
             command.AddOption(userIdOption);
-            var contactFolderIdOption = new Option<string>("--contactfolder-id", description: "key: id of contactFolder");
+            var contactFolderIdOption = new Option<string>("--contactfolder-id", description: "key: id of contactFolder") {
+            };
             contactFolderIdOption.IsRequired = true;
             command.AddOption(contactFolderIdOption);
-            command.Handler = CommandHandler.Create<string, string>(async (userId, contactFolderId) => {
+            command.SetHandler(async (string userId, string contactFolderId) => {
                 var requestInfo = CreateGetRequestInformation(q => {
                 });
                 var result = await RequestAdapter.SendCollectionAsync<ApiSdk.Users.Item.ContactFolders.Item.Contacts.Delta.Delta>(requestInfo);
@@ -42,7 +44,7 @@ namespace ApiSdk.Users.Item.ContactFolders.Item.Contacts.Delta {
                 using var reader = new StreamReader(content);
                 var strContent = await reader.ReadToEndAsync();
                 Console.Write(strContent + "\n");
-            });
+            }, userIdOption, contactFolderIdOption);
             return command;
         }
         /// <summary>
@@ -65,7 +67,7 @@ namespace ApiSdk.Users.Item.ContactFolders.Item.Contacts.Delta {
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
             var requestInfo = new RequestInformation {
-                HttpMethod = HttpMethod.GET,
+                HttpMethod = Method.GET,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };

@@ -25,19 +25,21 @@ namespace ApiSdk.Drives.Item.List.Columns.Item.SourceColumn.@Ref {
             var command = new Command("delete");
             command.Description = "The source column for content type column.";
             // Create options for all the parameters
-            var driveIdOption = new Option<string>("--drive-id", description: "key: id of drive");
+            var driveIdOption = new Option<string>("--drive-id", description: "key: id of drive") {
+            };
             driveIdOption.IsRequired = true;
             command.AddOption(driveIdOption);
-            var columnDefinitionIdOption = new Option<string>("--columndefinition-id", description: "key: id of columnDefinition");
+            var columnDefinitionIdOption = new Option<string>("--columndefinition-id", description: "key: id of columnDefinition") {
+            };
             columnDefinitionIdOption.IsRequired = true;
             command.AddOption(columnDefinitionIdOption);
-            command.Handler = CommandHandler.Create<string, string>(async (driveId, columnDefinitionId) => {
+            command.SetHandler(async (string driveId, string columnDefinitionId) => {
                 var requestInfo = CreateDeleteRequestInformation(q => {
                 });
                 await RequestAdapter.SendNoContentAsync(requestInfo);
                 // Print request output. What if the request has no return?
                 Console.WriteLine("Success");
-            });
+            }, driveIdOption, columnDefinitionIdOption);
             return command;
         }
         /// <summary>
@@ -47,13 +49,15 @@ namespace ApiSdk.Drives.Item.List.Columns.Item.SourceColumn.@Ref {
             var command = new Command("get");
             command.Description = "The source column for content type column.";
             // Create options for all the parameters
-            var driveIdOption = new Option<string>("--drive-id", description: "key: id of drive");
+            var driveIdOption = new Option<string>("--drive-id", description: "key: id of drive") {
+            };
             driveIdOption.IsRequired = true;
             command.AddOption(driveIdOption);
-            var columnDefinitionIdOption = new Option<string>("--columndefinition-id", description: "key: id of columnDefinition");
+            var columnDefinitionIdOption = new Option<string>("--columndefinition-id", description: "key: id of columnDefinition") {
+            };
             columnDefinitionIdOption.IsRequired = true;
             command.AddOption(columnDefinitionIdOption);
-            command.Handler = CommandHandler.Create<string, string>(async (driveId, columnDefinitionId) => {
+            command.SetHandler(async (string driveId, string columnDefinitionId) => {
                 var requestInfo = CreateGetRequestInformation(q => {
                 });
                 var result = await RequestAdapter.SendPrimitiveAsync<string>(requestInfo);
@@ -64,7 +68,7 @@ namespace ApiSdk.Drives.Item.List.Columns.Item.SourceColumn.@Ref {
                 using var reader = new StreamReader(content);
                 var strContent = await reader.ReadToEndAsync();
                 Console.Write(strContent + "\n");
-            });
+            }, driveIdOption, columnDefinitionIdOption);
             return command;
         }
         /// <summary>
@@ -74,16 +78,19 @@ namespace ApiSdk.Drives.Item.List.Columns.Item.SourceColumn.@Ref {
             var command = new Command("put");
             command.Description = "The source column for content type column.";
             // Create options for all the parameters
-            var driveIdOption = new Option<string>("--drive-id", description: "key: id of drive");
+            var driveIdOption = new Option<string>("--drive-id", description: "key: id of drive") {
+            };
             driveIdOption.IsRequired = true;
             command.AddOption(driveIdOption);
-            var columnDefinitionIdOption = new Option<string>("--columndefinition-id", description: "key: id of columnDefinition");
+            var columnDefinitionIdOption = new Option<string>("--columndefinition-id", description: "key: id of columnDefinition") {
+            };
             columnDefinitionIdOption.IsRequired = true;
             command.AddOption(columnDefinitionIdOption);
-            var bodyOption = new Option<string>("--body");
+            var bodyOption = new Option<string>("--body") {
+            };
             bodyOption.IsRequired = true;
             command.AddOption(bodyOption);
-            command.Handler = CommandHandler.Create<string, string, string>(async (driveId, columnDefinitionId, body) => {
+            command.SetHandler(async (string driveId, string columnDefinitionId, string body) => {
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<ApiSdk.Drives.Item.List.Columns.Item.SourceColumn.@Ref.@Ref>();
@@ -92,7 +99,7 @@ namespace ApiSdk.Drives.Item.List.Columns.Item.SourceColumn.@Ref {
                 await RequestAdapter.SendNoContentAsync(requestInfo);
                 // Print request output. What if the request has no return?
                 Console.WriteLine("Success");
-            });
+            }, driveIdOption, columnDefinitionIdOption, bodyOption);
             return command;
         }
         /// <summary>
@@ -115,7 +122,7 @@ namespace ApiSdk.Drives.Item.List.Columns.Item.SourceColumn.@Ref {
         /// </summary>
         public RequestInformation CreateDeleteRequestInformation(Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
             var requestInfo = new RequestInformation {
-                HttpMethod = HttpMethod.DELETE,
+                HttpMethod = Method.DELETE,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };
@@ -130,7 +137,7 @@ namespace ApiSdk.Drives.Item.List.Columns.Item.SourceColumn.@Ref {
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
             var requestInfo = new RequestInformation {
-                HttpMethod = HttpMethod.GET,
+                HttpMethod = Method.GET,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };
@@ -147,7 +154,7 @@ namespace ApiSdk.Drives.Item.List.Columns.Item.SourceColumn.@Ref {
         public RequestInformation CreatePutRequestInformation(ApiSdk.Drives.Item.List.Columns.Item.SourceColumn.@Ref.@Ref body, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
             _ = body ?? throw new ArgumentNullException(nameof(body));
             var requestInfo = new RequestInformation {
-                HttpMethod = HttpMethod.PUT,
+                HttpMethod = Method.PUT,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };

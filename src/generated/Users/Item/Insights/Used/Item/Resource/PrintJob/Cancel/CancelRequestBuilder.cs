@@ -25,19 +25,21 @@ namespace ApiSdk.Users.Item.Insights.Used.Item.Resource.PrintJob.Cancel {
             var command = new Command("post");
             command.Description = "Invoke action cancel";
             // Create options for all the parameters
-            var userIdOption = new Option<string>("--user-id", description: "key: id of user");
+            var userIdOption = new Option<string>("--user-id", description: "key: id of user") {
+            };
             userIdOption.IsRequired = true;
             command.AddOption(userIdOption);
-            var usedInsightIdOption = new Option<string>("--usedinsight-id", description: "key: id of usedInsight");
+            var usedInsightIdOption = new Option<string>("--usedinsight-id", description: "key: id of usedInsight") {
+            };
             usedInsightIdOption.IsRequired = true;
             command.AddOption(usedInsightIdOption);
-            command.Handler = CommandHandler.Create<string, string>(async (userId, usedInsightId) => {
+            command.SetHandler(async (string userId, string usedInsightId) => {
                 var requestInfo = CreatePostRequestInformation(q => {
                 });
                 await RequestAdapter.SendNoContentAsync(requestInfo);
                 // Print request output. What if the request has no return?
                 Console.WriteLine("Success");
-            });
+            }, userIdOption, usedInsightIdOption);
             return command;
         }
         /// <summary>
@@ -60,7 +62,7 @@ namespace ApiSdk.Users.Item.Insights.Used.Item.Resource.PrintJob.Cancel {
         /// </summary>
         public RequestInformation CreatePostRequestInformation(Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
             var requestInfo = new RequestInformation {
-                HttpMethod = HttpMethod.POST,
+                HttpMethod = Method.POST,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };

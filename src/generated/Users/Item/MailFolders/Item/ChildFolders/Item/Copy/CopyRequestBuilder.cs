@@ -26,19 +26,23 @@ namespace ApiSdk.Users.Item.MailFolders.Item.ChildFolders.Item.Copy {
             var command = new Command("post");
             command.Description = "Invoke action copy";
             // Create options for all the parameters
-            var userIdOption = new Option<string>("--user-id", description: "key: id of user");
+            var userIdOption = new Option<string>("--user-id", description: "key: id of user") {
+            };
             userIdOption.IsRequired = true;
             command.AddOption(userIdOption);
-            var mailFolderIdOption = new Option<string>("--mailfolder-id", description: "key: id of mailFolder");
+            var mailFolderIdOption = new Option<string>("--mailfolder-id", description: "key: id of mailFolder") {
+            };
             mailFolderIdOption.IsRequired = true;
             command.AddOption(mailFolderIdOption);
-            var mailFolderId1Option = new Option<string>("--mailfolder-id1", description: "key: id of mailFolder");
+            var mailFolderId1Option = new Option<string>("--mailfolder-id1", description: "key: id of mailFolder") {
+            };
             mailFolderId1Option.IsRequired = true;
             command.AddOption(mailFolderId1Option);
-            var bodyOption = new Option<string>("--body");
+            var bodyOption = new Option<string>("--body") {
+            };
             bodyOption.IsRequired = true;
             command.AddOption(bodyOption);
-            command.Handler = CommandHandler.Create<string, string, string, string>(async (userId, mailFolderId, mailFolderId1, body) => {
+            command.SetHandler(async (string userId, string mailFolderId, string mailFolderId1, string body) => {
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<CopyRequestBody>();
@@ -52,7 +56,7 @@ namespace ApiSdk.Users.Item.MailFolders.Item.ChildFolders.Item.Copy {
                 using var reader = new StreamReader(content);
                 var strContent = await reader.ReadToEndAsync();
                 Console.Write(strContent + "\n");
-            });
+            }, userIdOption, mailFolderIdOption, mailFolderId1Option, bodyOption);
             return command;
         }
         /// <summary>
@@ -77,7 +81,7 @@ namespace ApiSdk.Users.Item.MailFolders.Item.ChildFolders.Item.Copy {
         public RequestInformation CreatePostRequestInformation(CopyRequestBody body, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
             _ = body ?? throw new ArgumentNullException(nameof(body));
             var requestInfo = new RequestInformation {
-                HttpMethod = HttpMethod.POST,
+                HttpMethod = Method.POST,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };

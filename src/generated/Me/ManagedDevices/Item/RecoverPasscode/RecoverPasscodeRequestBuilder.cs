@@ -25,16 +25,17 @@ namespace ApiSdk.Me.ManagedDevices.Item.RecoverPasscode {
             var command = new Command("post");
             command.Description = "Recover passcode";
             // Create options for all the parameters
-            var managedDeviceIdOption = new Option<string>("--manageddevice-id", description: "key: id of managedDevice");
+            var managedDeviceIdOption = new Option<string>("--manageddevice-id", description: "key: id of managedDevice") {
+            };
             managedDeviceIdOption.IsRequired = true;
             command.AddOption(managedDeviceIdOption);
-            command.Handler = CommandHandler.Create<string>(async (managedDeviceId) => {
+            command.SetHandler(async (string managedDeviceId) => {
                 var requestInfo = CreatePostRequestInformation(q => {
                 });
                 await RequestAdapter.SendNoContentAsync(requestInfo);
                 // Print request output. What if the request has no return?
                 Console.WriteLine("Success");
-            });
+            }, managedDeviceIdOption);
             return command;
         }
         /// <summary>
@@ -57,7 +58,7 @@ namespace ApiSdk.Me.ManagedDevices.Item.RecoverPasscode {
         /// </summary>
         public RequestInformation CreatePostRequestInformation(Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
             var requestInfo = new RequestInformation {
-                HttpMethod = HttpMethod.POST,
+                HttpMethod = Method.POST,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };

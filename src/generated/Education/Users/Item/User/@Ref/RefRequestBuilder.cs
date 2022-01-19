@@ -25,16 +25,17 @@ namespace ApiSdk.Education.Users.Item.User.@Ref {
             var command = new Command("delete");
             command.Description = "The directory user corresponding to this user.";
             // Create options for all the parameters
-            var educationUserIdOption = new Option<string>("--educationuser-id", description: "key: id of educationUser");
+            var educationUserIdOption = new Option<string>("--educationuser-id", description: "key: id of educationUser") {
+            };
             educationUserIdOption.IsRequired = true;
             command.AddOption(educationUserIdOption);
-            command.Handler = CommandHandler.Create<string>(async (educationUserId) => {
+            command.SetHandler(async (string educationUserId) => {
                 var requestInfo = CreateDeleteRequestInformation(q => {
                 });
                 await RequestAdapter.SendNoContentAsync(requestInfo);
                 // Print request output. What if the request has no return?
                 Console.WriteLine("Success");
-            });
+            }, educationUserIdOption);
             return command;
         }
         /// <summary>
@@ -44,10 +45,11 @@ namespace ApiSdk.Education.Users.Item.User.@Ref {
             var command = new Command("get");
             command.Description = "The directory user corresponding to this user.";
             // Create options for all the parameters
-            var educationUserIdOption = new Option<string>("--educationuser-id", description: "key: id of educationUser");
+            var educationUserIdOption = new Option<string>("--educationuser-id", description: "key: id of educationUser") {
+            };
             educationUserIdOption.IsRequired = true;
             command.AddOption(educationUserIdOption);
-            command.Handler = CommandHandler.Create<string>(async (educationUserId) => {
+            command.SetHandler(async (string educationUserId) => {
                 var requestInfo = CreateGetRequestInformation(q => {
                 });
                 var result = await RequestAdapter.SendPrimitiveAsync<string>(requestInfo);
@@ -58,7 +60,7 @@ namespace ApiSdk.Education.Users.Item.User.@Ref {
                 using var reader = new StreamReader(content);
                 var strContent = await reader.ReadToEndAsync();
                 Console.Write(strContent + "\n");
-            });
+            }, educationUserIdOption);
             return command;
         }
         /// <summary>
@@ -68,13 +70,15 @@ namespace ApiSdk.Education.Users.Item.User.@Ref {
             var command = new Command("put");
             command.Description = "The directory user corresponding to this user.";
             // Create options for all the parameters
-            var educationUserIdOption = new Option<string>("--educationuser-id", description: "key: id of educationUser");
+            var educationUserIdOption = new Option<string>("--educationuser-id", description: "key: id of educationUser") {
+            };
             educationUserIdOption.IsRequired = true;
             command.AddOption(educationUserIdOption);
-            var bodyOption = new Option<string>("--body");
+            var bodyOption = new Option<string>("--body") {
+            };
             bodyOption.IsRequired = true;
             command.AddOption(bodyOption);
-            command.Handler = CommandHandler.Create<string, string>(async (educationUserId, body) => {
+            command.SetHandler(async (string educationUserId, string body) => {
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<ApiSdk.Education.Users.Item.User.@Ref.@Ref>();
@@ -83,7 +87,7 @@ namespace ApiSdk.Education.Users.Item.User.@Ref {
                 await RequestAdapter.SendNoContentAsync(requestInfo);
                 // Print request output. What if the request has no return?
                 Console.WriteLine("Success");
-            });
+            }, educationUserIdOption, bodyOption);
             return command;
         }
         /// <summary>
@@ -106,7 +110,7 @@ namespace ApiSdk.Education.Users.Item.User.@Ref {
         /// </summary>
         public RequestInformation CreateDeleteRequestInformation(Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
             var requestInfo = new RequestInformation {
-                HttpMethod = HttpMethod.DELETE,
+                HttpMethod = Method.DELETE,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };
@@ -121,7 +125,7 @@ namespace ApiSdk.Education.Users.Item.User.@Ref {
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
             var requestInfo = new RequestInformation {
-                HttpMethod = HttpMethod.GET,
+                HttpMethod = Method.GET,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };
@@ -138,7 +142,7 @@ namespace ApiSdk.Education.Users.Item.User.@Ref {
         public RequestInformation CreatePutRequestInformation(ApiSdk.Education.Users.Item.User.@Ref.@Ref body, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
             _ = body ?? throw new ArgumentNullException(nameof(body));
             var requestInfo = new RequestInformation {
-                HttpMethod = HttpMethod.PUT,
+                HttpMethod = Method.PUT,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };

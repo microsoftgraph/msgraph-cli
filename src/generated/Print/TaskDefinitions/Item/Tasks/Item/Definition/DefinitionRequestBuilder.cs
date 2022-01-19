@@ -27,21 +27,25 @@ namespace ApiSdk.Print.TaskDefinitions.Item.Tasks.Item.Definition {
             var command = new Command("get");
             command.Description = "The printTaskDefinition that was used to create this task. Read-only.";
             // Create options for all the parameters
-            var printTaskDefinitionIdOption = new Option<string>("--printtaskdefinition-id", description: "key: id of printTaskDefinition");
+            var printTaskDefinitionIdOption = new Option<string>("--printtaskdefinition-id", description: "key: id of printTaskDefinition") {
+            };
             printTaskDefinitionIdOption.IsRequired = true;
             command.AddOption(printTaskDefinitionIdOption);
-            var printTaskIdOption = new Option<string>("--printtask-id", description: "key: id of printTask");
+            var printTaskIdOption = new Option<string>("--printtask-id", description: "key: id of printTask") {
+            };
             printTaskIdOption.IsRequired = true;
             command.AddOption(printTaskIdOption);
-            var selectOption = new Option<string[]>("--select", description: "Select properties to be returned");
+            var selectOption = new Option<string[]>("--select", description: "Select properties to be returned") {
+                Arity = ArgumentArity.ZeroOrMore
+            };
             selectOption.IsRequired = false;
-            selectOption.Arity = ArgumentArity.ZeroOrMore;
             command.AddOption(selectOption);
-            var expandOption = new Option<string[]>("--expand", description: "Expand related entities");
+            var expandOption = new Option<string[]>("--expand", description: "Expand related entities") {
+                Arity = ArgumentArity.ZeroOrMore
+            };
             expandOption.IsRequired = false;
-            expandOption.Arity = ArgumentArity.ZeroOrMore;
             command.AddOption(expandOption);
-            command.Handler = CommandHandler.Create<string, string, string[], string[]>(async (printTaskDefinitionId, printTaskId, select, expand) => {
+            command.SetHandler(async (string printTaskDefinitionId, string printTaskId, string[] select, string[] expand) => {
                 var requestInfo = CreateGetRequestInformation(q => {
                     q.Select = select;
                     q.Expand = expand;
@@ -54,7 +58,7 @@ namespace ApiSdk.Print.TaskDefinitions.Item.Tasks.Item.Definition {
                 using var reader = new StreamReader(content);
                 var strContent = await reader.ReadToEndAsync();
                 Console.Write(strContent + "\n");
-            });
+            }, printTaskDefinitionIdOption, printTaskIdOption, selectOption, expandOption);
             return command;
         }
         public Command BuildRefCommand() {
@@ -86,7 +90,7 @@ namespace ApiSdk.Print.TaskDefinitions.Item.Tasks.Item.Definition {
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<GetQueryParameters> q = default, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
             var requestInfo = new RequestInformation {
-                HttpMethod = HttpMethod.GET,
+                HttpMethod = Method.GET,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };

@@ -25,13 +25,15 @@ namespace ApiSdk.Applications.Item.RemovePassword {
             var command = new Command("post");
             command.Description = "Invoke action removePassword";
             // Create options for all the parameters
-            var applicationIdOption = new Option<string>("--application-id", description: "key: id of application");
+            var applicationIdOption = new Option<string>("--application-id", description: "key: id of application") {
+            };
             applicationIdOption.IsRequired = true;
             command.AddOption(applicationIdOption);
-            var bodyOption = new Option<string>("--body");
+            var bodyOption = new Option<string>("--body") {
+            };
             bodyOption.IsRequired = true;
             command.AddOption(bodyOption);
-            command.Handler = CommandHandler.Create<string, string>(async (applicationId, body) => {
+            command.SetHandler(async (string applicationId, string body) => {
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<RemovePasswordRequestBody>();
@@ -40,7 +42,7 @@ namespace ApiSdk.Applications.Item.RemovePassword {
                 await RequestAdapter.SendNoContentAsync(requestInfo);
                 // Print request output. What if the request has no return?
                 Console.WriteLine("Success");
-            });
+            }, applicationIdOption, bodyOption);
             return command;
         }
         /// <summary>
@@ -65,7 +67,7 @@ namespace ApiSdk.Applications.Item.RemovePassword {
         public RequestInformation CreatePostRequestInformation(RemovePasswordRequestBody body, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
             _ = body ?? throw new ArgumentNullException(nameof(body));
             var requestInfo = new RequestInformation {
-                HttpMethod = HttpMethod.POST,
+                HttpMethod = Method.POST,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };

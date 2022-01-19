@@ -35,19 +35,21 @@ namespace ApiSdk.Workbooks.Item.Versions.Item {
             var command = new Command("delete");
             command.Description = "The list of previous versions of the item. For more info, see [getting previous versions][]. Read-only. Nullable.";
             // Create options for all the parameters
-            var driveItemIdOption = new Option<string>("--driveitem-id", description: "key: id of driveItem");
+            var driveItemIdOption = new Option<string>("--driveitem-id", description: "key: id of driveItem") {
+            };
             driveItemIdOption.IsRequired = true;
             command.AddOption(driveItemIdOption);
-            var driveItemVersionIdOption = new Option<string>("--driveitemversion-id", description: "key: id of driveItemVersion");
+            var driveItemVersionIdOption = new Option<string>("--driveitemversion-id", description: "key: id of driveItemVersion") {
+            };
             driveItemVersionIdOption.IsRequired = true;
             command.AddOption(driveItemVersionIdOption);
-            command.Handler = CommandHandler.Create<string, string>(async (driveItemId, driveItemVersionId) => {
+            command.SetHandler(async (string driveItemId, string driveItemVersionId) => {
                 var requestInfo = CreateDeleteRequestInformation(q => {
                 });
                 await RequestAdapter.SendNoContentAsync(requestInfo);
                 // Print request output. What if the request has no return?
                 Console.WriteLine("Success");
-            });
+            }, driveItemIdOption, driveItemVersionIdOption);
             return command;
         }
         /// <summary>
@@ -57,21 +59,25 @@ namespace ApiSdk.Workbooks.Item.Versions.Item {
             var command = new Command("get");
             command.Description = "The list of previous versions of the item. For more info, see [getting previous versions][]. Read-only. Nullable.";
             // Create options for all the parameters
-            var driveItemIdOption = new Option<string>("--driveitem-id", description: "key: id of driveItem");
+            var driveItemIdOption = new Option<string>("--driveitem-id", description: "key: id of driveItem") {
+            };
             driveItemIdOption.IsRequired = true;
             command.AddOption(driveItemIdOption);
-            var driveItemVersionIdOption = new Option<string>("--driveitemversion-id", description: "key: id of driveItemVersion");
+            var driveItemVersionIdOption = new Option<string>("--driveitemversion-id", description: "key: id of driveItemVersion") {
+            };
             driveItemVersionIdOption.IsRequired = true;
             command.AddOption(driveItemVersionIdOption);
-            var selectOption = new Option<string[]>("--select", description: "Select properties to be returned");
+            var selectOption = new Option<string[]>("--select", description: "Select properties to be returned") {
+                Arity = ArgumentArity.ZeroOrMore
+            };
             selectOption.IsRequired = false;
-            selectOption.Arity = ArgumentArity.ZeroOrMore;
             command.AddOption(selectOption);
-            var expandOption = new Option<string[]>("--expand", description: "Expand related entities");
+            var expandOption = new Option<string[]>("--expand", description: "Expand related entities") {
+                Arity = ArgumentArity.ZeroOrMore
+            };
             expandOption.IsRequired = false;
-            expandOption.Arity = ArgumentArity.ZeroOrMore;
             command.AddOption(expandOption);
-            command.Handler = CommandHandler.Create<string, string, string[], string[]>(async (driveItemId, driveItemVersionId, select, expand) => {
+            command.SetHandler(async (string driveItemId, string driveItemVersionId, string[] select, string[] expand) => {
                 var requestInfo = CreateGetRequestInformation(q => {
                     q.Select = select;
                     q.Expand = expand;
@@ -84,7 +90,7 @@ namespace ApiSdk.Workbooks.Item.Versions.Item {
                 using var reader = new StreamReader(content);
                 var strContent = await reader.ReadToEndAsync();
                 Console.Write(strContent + "\n");
-            });
+            }, driveItemIdOption, driveItemVersionIdOption, selectOption, expandOption);
             return command;
         }
         /// <summary>
@@ -94,16 +100,19 @@ namespace ApiSdk.Workbooks.Item.Versions.Item {
             var command = new Command("patch");
             command.Description = "The list of previous versions of the item. For more info, see [getting previous versions][]. Read-only. Nullable.";
             // Create options for all the parameters
-            var driveItemIdOption = new Option<string>("--driveitem-id", description: "key: id of driveItem");
+            var driveItemIdOption = new Option<string>("--driveitem-id", description: "key: id of driveItem") {
+            };
             driveItemIdOption.IsRequired = true;
             command.AddOption(driveItemIdOption);
-            var driveItemVersionIdOption = new Option<string>("--driveitemversion-id", description: "key: id of driveItemVersion");
+            var driveItemVersionIdOption = new Option<string>("--driveitemversion-id", description: "key: id of driveItemVersion") {
+            };
             driveItemVersionIdOption.IsRequired = true;
             command.AddOption(driveItemVersionIdOption);
-            var bodyOption = new Option<string>("--body");
+            var bodyOption = new Option<string>("--body") {
+            };
             bodyOption.IsRequired = true;
             command.AddOption(bodyOption);
-            command.Handler = CommandHandler.Create<string, string, string>(async (driveItemId, driveItemVersionId, body) => {
+            command.SetHandler(async (string driveItemId, string driveItemVersionId, string body) => {
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<DriveItemVersion>();
@@ -112,7 +121,7 @@ namespace ApiSdk.Workbooks.Item.Versions.Item {
                 await RequestAdapter.SendNoContentAsync(requestInfo);
                 // Print request output. What if the request has no return?
                 Console.WriteLine("Success");
-            });
+            }, driveItemIdOption, driveItemVersionIdOption, bodyOption);
             return command;
         }
         public Command BuildRestoreVersionCommand() {
@@ -141,7 +150,7 @@ namespace ApiSdk.Workbooks.Item.Versions.Item {
         /// </summary>
         public RequestInformation CreateDeleteRequestInformation(Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
             var requestInfo = new RequestInformation {
-                HttpMethod = HttpMethod.DELETE,
+                HttpMethod = Method.DELETE,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };
@@ -157,7 +166,7 @@ namespace ApiSdk.Workbooks.Item.Versions.Item {
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<GetQueryParameters> q = default, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
             var requestInfo = new RequestInformation {
-                HttpMethod = HttpMethod.GET,
+                HttpMethod = Method.GET,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };
@@ -179,7 +188,7 @@ namespace ApiSdk.Workbooks.Item.Versions.Item {
         public RequestInformation CreatePatchRequestInformation(DriveItemVersion body, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
             _ = body ?? throw new ArgumentNullException(nameof(body));
             var requestInfo = new RequestInformation {
-                HttpMethod = HttpMethod.PATCH,
+                HttpMethod = Method.PATCH,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };

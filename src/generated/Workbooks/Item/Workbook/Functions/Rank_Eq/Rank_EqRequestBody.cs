@@ -22,7 +22,7 @@ namespace ApiSdk.Workbooks.Item.Workbook.Functions.Rank_Eq {
         /// </summary>
         public IDictionary<string, Action<T, IParseNode>> GetFieldDeserializers<T>() {
             return new Dictionary<string, Action<T, IParseNode>> {
-                {"@Ref", (o,n) => { (o as Rank_EqRequestBody).@Ref = n.GetObjectValue<Json>(); } },
+                {"ref", (o,n) => { (o as Rank_EqRequestBody).@Ref = n.GetObjectValue<Json>(); } },
                 {"number", (o,n) => { (o as Rank_EqRequestBody).Number = n.GetObjectValue<Json>(); } },
                 {"order", (o,n) => { (o as Rank_EqRequestBody).Order = n.GetObjectValue<Json>(); } },
             };
@@ -33,7 +33,7 @@ namespace ApiSdk.Workbooks.Item.Workbook.Functions.Rank_Eq {
         /// </summary>
         public void Serialize(ISerializationWriter writer) {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
-            writer.WriteObjectValue<Json>("@Ref", @Ref);
+            writer.WriteObjectValue<Json>("ref", @Ref);
             writer.WriteObjectValue<Json>("number", Number);
             writer.WriteObjectValue<Json>("order", Order);
             writer.WriteAdditionalData(AdditionalData);

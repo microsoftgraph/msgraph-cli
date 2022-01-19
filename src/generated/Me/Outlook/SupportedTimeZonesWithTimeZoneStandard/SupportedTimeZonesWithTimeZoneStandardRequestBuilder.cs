@@ -25,10 +25,11 @@ namespace ApiSdk.Me.Outlook.SupportedTimeZonesWithTimeZoneStandard {
             var command = new Command("get");
             command.Description = "Invoke function supportedTimeZones";
             // Create options for all the parameters
-            var TimeZoneStandardOption = new Option<object>("--timezonestandard", description: "Usage: TimeZoneStandard={TimeZoneStandard}");
+            var TimeZoneStandardOption = new Option<object>("--timezonestandard", description: "Usage: TimeZoneStandard={TimeZoneStandard}") {
+            };
             TimeZoneStandardOption.IsRequired = true;
             command.AddOption(TimeZoneStandardOption);
-            command.Handler = CommandHandler.Create<object>(async (TimeZoneStandard) => {
+            command.SetHandler(async (object TimeZoneStandard) => {
                 var requestInfo = CreateGetRequestInformation(q => {
                 });
                 var result = await RequestAdapter.SendCollectionAsync<ApiSdk.Me.Outlook.SupportedTimeZonesWithTimeZoneStandard.SupportedTimeZonesWithTimeZoneStandard>(requestInfo);
@@ -39,7 +40,7 @@ namespace ApiSdk.Me.Outlook.SupportedTimeZonesWithTimeZoneStandard {
                 using var reader = new StreamReader(content);
                 var strContent = await reader.ReadToEndAsync();
                 Console.Write(strContent + "\n");
-            });
+            }, TimeZoneStandardOption);
             return command;
         }
         /// <summary>
@@ -64,7 +65,7 @@ namespace ApiSdk.Me.Outlook.SupportedTimeZonesWithTimeZoneStandard {
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
             var requestInfo = new RequestInformation {
-                HttpMethod = HttpMethod.GET,
+                HttpMethod = Method.GET,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };

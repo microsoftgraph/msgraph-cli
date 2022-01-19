@@ -25,16 +25,19 @@ namespace ApiSdk.Reports.GetPrinterArchivedPrintJobsWithPrinterIdWithStartDateTi
             var command = new Command("get");
             command.Description = "Invoke function getPrinterArchivedPrintJobs";
             // Create options for all the parameters
-            var printerIdOption = new Option<string>("--printerid", description: "Usage: printerId={printerId}");
+            var printerIdOption = new Option<string>("--printerid", description: "Usage: printerId={printerId}") {
+            };
             printerIdOption.IsRequired = true;
             command.AddOption(printerIdOption);
-            var startDateTimeOption = new Option<string>("--startdatetime", description: "Usage: startDateTime={startDateTime}");
+            var startDateTimeOption = new Option<string>("--startdatetime", description: "Usage: startDateTime={startDateTime}") {
+            };
             startDateTimeOption.IsRequired = true;
             command.AddOption(startDateTimeOption);
-            var endDateTimeOption = new Option<string>("--enddatetime", description: "Usage: endDateTime={endDateTime}");
+            var endDateTimeOption = new Option<string>("--enddatetime", description: "Usage: endDateTime={endDateTime}") {
+            };
             endDateTimeOption.IsRequired = true;
             command.AddOption(endDateTimeOption);
-            command.Handler = CommandHandler.Create<string, string, string>(async (printerId, startDateTime, endDateTime) => {
+            command.SetHandler(async (string printerId, string startDateTime, string endDateTime) => {
                 var requestInfo = CreateGetRequestInformation(q => {
                 });
                 var result = await RequestAdapter.SendCollectionAsync<ApiSdk.Reports.GetPrinterArchivedPrintJobsWithPrinterIdWithStartDateTimeWithEndDateTime.GetPrinterArchivedPrintJobsWithPrinterIdWithStartDateTimeWithEndDateTime>(requestInfo);
@@ -45,7 +48,7 @@ namespace ApiSdk.Reports.GetPrinterArchivedPrintJobsWithPrinterIdWithStartDateTi
                 using var reader = new StreamReader(content);
                 var strContent = await reader.ReadToEndAsync();
                 Console.Write(strContent + "\n");
-            });
+            }, printerIdOption, startDateTimeOption, endDateTimeOption);
             return command;
         }
         /// <summary>
@@ -74,7 +77,7 @@ namespace ApiSdk.Reports.GetPrinterArchivedPrintJobsWithPrinterIdWithStartDateTi
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
             var requestInfo = new RequestInformation {
-                HttpMethod = HttpMethod.GET,
+                HttpMethod = Method.GET,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };

@@ -26,16 +26,19 @@ namespace ApiSdk.Education.Classes.Item.Assignments.Item.Submissions.Item.@Retur
             var command = new Command("post");
             command.Description = "Invoke action return";
             // Create options for all the parameters
-            var educationClassIdOption = new Option<string>("--educationclass-id", description: "key: id of educationClass");
+            var educationClassIdOption = new Option<string>("--educationclass-id", description: "key: id of educationClass") {
+            };
             educationClassIdOption.IsRequired = true;
             command.AddOption(educationClassIdOption);
-            var educationAssignmentIdOption = new Option<string>("--educationassignment-id", description: "key: id of educationAssignment");
+            var educationAssignmentIdOption = new Option<string>("--educationassignment-id", description: "key: id of educationAssignment") {
+            };
             educationAssignmentIdOption.IsRequired = true;
             command.AddOption(educationAssignmentIdOption);
-            var educationSubmissionIdOption = new Option<string>("--educationsubmission-id", description: "key: id of educationSubmission");
+            var educationSubmissionIdOption = new Option<string>("--educationsubmission-id", description: "key: id of educationSubmission") {
+            };
             educationSubmissionIdOption.IsRequired = true;
             command.AddOption(educationSubmissionIdOption);
-            command.Handler = CommandHandler.Create<string, string, string>(async (educationClassId, educationAssignmentId, educationSubmissionId) => {
+            command.SetHandler(async (string educationClassId, string educationAssignmentId, string educationSubmissionId) => {
                 var requestInfo = CreatePostRequestInformation(q => {
                 });
                 var result = await RequestAdapter.SendAsync<ReturnResponse>(requestInfo);
@@ -46,7 +49,7 @@ namespace ApiSdk.Education.Classes.Item.Assignments.Item.Submissions.Item.@Retur
                 using var reader = new StreamReader(content);
                 var strContent = await reader.ReadToEndAsync();
                 Console.Write(strContent + "\n");
-            });
+            }, educationClassIdOption, educationAssignmentIdOption, educationSubmissionIdOption);
             return command;
         }
         /// <summary>
@@ -69,7 +72,7 @@ namespace ApiSdk.Education.Classes.Item.Assignments.Item.Submissions.Item.@Retur
         /// </summary>
         public RequestInformation CreatePostRequestInformation(Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
             var requestInfo = new RequestInformation {
-                HttpMethod = HttpMethod.POST,
+                HttpMethod = Method.POST,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };

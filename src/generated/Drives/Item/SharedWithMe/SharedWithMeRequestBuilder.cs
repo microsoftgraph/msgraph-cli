@@ -25,10 +25,11 @@ namespace ApiSdk.Drives.Item.SharedWithMe {
             var command = new Command("get");
             command.Description = "Invoke function sharedWithMe";
             // Create options for all the parameters
-            var driveIdOption = new Option<string>("--drive-id", description: "key: id of drive");
+            var driveIdOption = new Option<string>("--drive-id", description: "key: id of drive") {
+            };
             driveIdOption.IsRequired = true;
             command.AddOption(driveIdOption);
-            command.Handler = CommandHandler.Create<string>(async (driveId) => {
+            command.SetHandler(async (string driveId) => {
                 var requestInfo = CreateGetRequestInformation(q => {
                 });
                 var result = await RequestAdapter.SendCollectionAsync<ApiSdk.Drives.Item.SharedWithMe.SharedWithMe>(requestInfo);
@@ -39,7 +40,7 @@ namespace ApiSdk.Drives.Item.SharedWithMe {
                 using var reader = new StreamReader(content);
                 var strContent = await reader.ReadToEndAsync();
                 Console.Write(strContent + "\n");
-            });
+            }, driveIdOption);
             return command;
         }
         /// <summary>
@@ -62,7 +63,7 @@ namespace ApiSdk.Drives.Item.SharedWithMe {
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
             var requestInfo = new RequestInformation {
-                HttpMethod = HttpMethod.GET,
+                HttpMethod = Method.GET,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };

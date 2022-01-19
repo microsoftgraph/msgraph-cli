@@ -26,13 +26,15 @@ namespace ApiSdk.Me.Insights.Used.Item.Resource.WorkbookRange.UsedRangeWithValue
             var command = new Command("get");
             command.Description = "Invoke function usedRange";
             // Create options for all the parameters
-            var usedInsightIdOption = new Option<string>("--usedinsight-id", description: "key: id of usedInsight");
+            var usedInsightIdOption = new Option<string>("--usedinsight-id", description: "key: id of usedInsight") {
+            };
             usedInsightIdOption.IsRequired = true;
             command.AddOption(usedInsightIdOption);
-            var valuesOnlyOption = new Option<bool?>("--valuesonly", description: "Usage: valuesOnly={valuesOnly}");
+            var valuesOnlyOption = new Option<bool?>("--valuesonly", description: "Usage: valuesOnly={valuesOnly}") {
+            };
             valuesOnlyOption.IsRequired = true;
             command.AddOption(valuesOnlyOption);
-            command.Handler = CommandHandler.Create<string, bool?>(async (usedInsightId, valuesOnly) => {
+            command.SetHandler(async (string usedInsightId, bool? valuesOnly) => {
                 var requestInfo = CreateGetRequestInformation(q => {
                 });
                 var result = await RequestAdapter.SendAsync<UsedRangeWithValuesOnlyResponse>(requestInfo);
@@ -43,7 +45,7 @@ namespace ApiSdk.Me.Insights.Used.Item.Resource.WorkbookRange.UsedRangeWithValue
                 using var reader = new StreamReader(content);
                 var strContent = await reader.ReadToEndAsync();
                 Console.Write(strContent + "\n");
-            });
+            }, usedInsightIdOption, valuesOnlyOption);
             return command;
         }
         /// <summary>
@@ -68,7 +70,7 @@ namespace ApiSdk.Me.Insights.Used.Item.Resource.WorkbookRange.UsedRangeWithValue
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
             var requestInfo = new RequestInformation {
-                HttpMethod = HttpMethod.GET,
+                HttpMethod = Method.GET,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };

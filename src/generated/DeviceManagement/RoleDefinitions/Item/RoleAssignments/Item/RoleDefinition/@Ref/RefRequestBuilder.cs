@@ -25,19 +25,21 @@ namespace ApiSdk.DeviceManagement.RoleDefinitions.Item.RoleAssignments.Item.Role
             var command = new Command("delete");
             command.Description = "Role definition this assignment is part of.";
             // Create options for all the parameters
-            var roleDefinitionIdOption = new Option<string>("--roledefinition-id", description: "key: id of roleDefinition");
+            var roleDefinitionIdOption = new Option<string>("--roledefinition-id", description: "key: id of roleDefinition") {
+            };
             roleDefinitionIdOption.IsRequired = true;
             command.AddOption(roleDefinitionIdOption);
-            var roleAssignmentIdOption = new Option<string>("--roleassignment-id", description: "key: id of roleAssignment");
+            var roleAssignmentIdOption = new Option<string>("--roleassignment-id", description: "key: id of roleAssignment") {
+            };
             roleAssignmentIdOption.IsRequired = true;
             command.AddOption(roleAssignmentIdOption);
-            command.Handler = CommandHandler.Create<string, string>(async (roleDefinitionId, roleAssignmentId) => {
+            command.SetHandler(async (string roleDefinitionId, string roleAssignmentId) => {
                 var requestInfo = CreateDeleteRequestInformation(q => {
                 });
                 await RequestAdapter.SendNoContentAsync(requestInfo);
                 // Print request output. What if the request has no return?
                 Console.WriteLine("Success");
-            });
+            }, roleDefinitionIdOption, roleAssignmentIdOption);
             return command;
         }
         /// <summary>
@@ -47,13 +49,15 @@ namespace ApiSdk.DeviceManagement.RoleDefinitions.Item.RoleAssignments.Item.Role
             var command = new Command("get");
             command.Description = "Role definition this assignment is part of.";
             // Create options for all the parameters
-            var roleDefinitionIdOption = new Option<string>("--roledefinition-id", description: "key: id of roleDefinition");
+            var roleDefinitionIdOption = new Option<string>("--roledefinition-id", description: "key: id of roleDefinition") {
+            };
             roleDefinitionIdOption.IsRequired = true;
             command.AddOption(roleDefinitionIdOption);
-            var roleAssignmentIdOption = new Option<string>("--roleassignment-id", description: "key: id of roleAssignment");
+            var roleAssignmentIdOption = new Option<string>("--roleassignment-id", description: "key: id of roleAssignment") {
+            };
             roleAssignmentIdOption.IsRequired = true;
             command.AddOption(roleAssignmentIdOption);
-            command.Handler = CommandHandler.Create<string, string>(async (roleDefinitionId, roleAssignmentId) => {
+            command.SetHandler(async (string roleDefinitionId, string roleAssignmentId) => {
                 var requestInfo = CreateGetRequestInformation(q => {
                 });
                 var result = await RequestAdapter.SendPrimitiveAsync<string>(requestInfo);
@@ -64,7 +68,7 @@ namespace ApiSdk.DeviceManagement.RoleDefinitions.Item.RoleAssignments.Item.Role
                 using var reader = new StreamReader(content);
                 var strContent = await reader.ReadToEndAsync();
                 Console.Write(strContent + "\n");
-            });
+            }, roleDefinitionIdOption, roleAssignmentIdOption);
             return command;
         }
         /// <summary>
@@ -74,16 +78,19 @@ namespace ApiSdk.DeviceManagement.RoleDefinitions.Item.RoleAssignments.Item.Role
             var command = new Command("put");
             command.Description = "Role definition this assignment is part of.";
             // Create options for all the parameters
-            var roleDefinitionIdOption = new Option<string>("--roledefinition-id", description: "key: id of roleDefinition");
+            var roleDefinitionIdOption = new Option<string>("--roledefinition-id", description: "key: id of roleDefinition") {
+            };
             roleDefinitionIdOption.IsRequired = true;
             command.AddOption(roleDefinitionIdOption);
-            var roleAssignmentIdOption = new Option<string>("--roleassignment-id", description: "key: id of roleAssignment");
+            var roleAssignmentIdOption = new Option<string>("--roleassignment-id", description: "key: id of roleAssignment") {
+            };
             roleAssignmentIdOption.IsRequired = true;
             command.AddOption(roleAssignmentIdOption);
-            var bodyOption = new Option<string>("--body");
+            var bodyOption = new Option<string>("--body") {
+            };
             bodyOption.IsRequired = true;
             command.AddOption(bodyOption);
-            command.Handler = CommandHandler.Create<string, string, string>(async (roleDefinitionId, roleAssignmentId, body) => {
+            command.SetHandler(async (string roleDefinitionId, string roleAssignmentId, string body) => {
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<ApiSdk.DeviceManagement.RoleDefinitions.Item.RoleAssignments.Item.RoleDefinition.@Ref.@Ref>();
@@ -92,7 +99,7 @@ namespace ApiSdk.DeviceManagement.RoleDefinitions.Item.RoleAssignments.Item.Role
                 await RequestAdapter.SendNoContentAsync(requestInfo);
                 // Print request output. What if the request has no return?
                 Console.WriteLine("Success");
-            });
+            }, roleDefinitionIdOption, roleAssignmentIdOption, bodyOption);
             return command;
         }
         /// <summary>
@@ -115,7 +122,7 @@ namespace ApiSdk.DeviceManagement.RoleDefinitions.Item.RoleAssignments.Item.Role
         /// </summary>
         public RequestInformation CreateDeleteRequestInformation(Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
             var requestInfo = new RequestInformation {
-                HttpMethod = HttpMethod.DELETE,
+                HttpMethod = Method.DELETE,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };
@@ -130,7 +137,7 @@ namespace ApiSdk.DeviceManagement.RoleDefinitions.Item.RoleAssignments.Item.Role
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
             var requestInfo = new RequestInformation {
-                HttpMethod = HttpMethod.GET,
+                HttpMethod = Method.GET,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };
@@ -147,7 +154,7 @@ namespace ApiSdk.DeviceManagement.RoleDefinitions.Item.RoleAssignments.Item.Role
         public RequestInformation CreatePutRequestInformation(ApiSdk.DeviceManagement.RoleDefinitions.Item.RoleAssignments.Item.RoleDefinition.@Ref.@Ref body, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
             _ = body ?? throw new ArgumentNullException(nameof(body));
             var requestInfo = new RequestInformation {
-                HttpMethod = HttpMethod.PUT,
+                HttpMethod = Method.PUT,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };

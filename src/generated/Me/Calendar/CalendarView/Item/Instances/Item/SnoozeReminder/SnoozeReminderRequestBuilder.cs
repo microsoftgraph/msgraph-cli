@@ -25,16 +25,19 @@ namespace ApiSdk.Me.Calendar.CalendarView.Item.Instances.Item.SnoozeReminder {
             var command = new Command("post");
             command.Description = "Invoke action snoozeReminder";
             // Create options for all the parameters
-            var eventIdOption = new Option<string>("--event-id", description: "key: id of event");
+            var eventIdOption = new Option<string>("--event-id", description: "key: id of event") {
+            };
             eventIdOption.IsRequired = true;
             command.AddOption(eventIdOption);
-            var eventId1Option = new Option<string>("--event-id1", description: "key: id of event");
+            var eventId1Option = new Option<string>("--event-id1", description: "key: id of event") {
+            };
             eventId1Option.IsRequired = true;
             command.AddOption(eventId1Option);
-            var bodyOption = new Option<string>("--body");
+            var bodyOption = new Option<string>("--body") {
+            };
             bodyOption.IsRequired = true;
             command.AddOption(bodyOption);
-            command.Handler = CommandHandler.Create<string, string, string>(async (eventId, eventId1, body) => {
+            command.SetHandler(async (string eventId, string eventId1, string body) => {
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<SnoozeReminderRequestBody>();
@@ -43,7 +46,7 @@ namespace ApiSdk.Me.Calendar.CalendarView.Item.Instances.Item.SnoozeReminder {
                 await RequestAdapter.SendNoContentAsync(requestInfo);
                 // Print request output. What if the request has no return?
                 Console.WriteLine("Success");
-            });
+            }, eventIdOption, eventId1Option, bodyOption);
             return command;
         }
         /// <summary>
@@ -68,7 +71,7 @@ namespace ApiSdk.Me.Calendar.CalendarView.Item.Instances.Item.SnoozeReminder {
         public RequestInformation CreatePostRequestInformation(SnoozeReminderRequestBody body, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
             _ = body ?? throw new ArgumentNullException(nameof(body));
             var requestInfo = new RequestInformation {
-                HttpMethod = HttpMethod.POST,
+                HttpMethod = Method.POST,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };

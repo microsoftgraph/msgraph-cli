@@ -26,10 +26,11 @@ namespace ApiSdk.DirectoryObjects.Item.Restore {
             var command = new Command("post");
             command.Description = "Invoke action restore";
             // Create options for all the parameters
-            var directoryObjectIdOption = new Option<string>("--directoryobject-id", description: "key: id of directoryObject");
+            var directoryObjectIdOption = new Option<string>("--directoryobject-id", description: "key: id of directoryObject") {
+            };
             directoryObjectIdOption.IsRequired = true;
             command.AddOption(directoryObjectIdOption);
-            command.Handler = CommandHandler.Create<string>(async (directoryObjectId) => {
+            command.SetHandler(async (string directoryObjectId) => {
                 var requestInfo = CreatePostRequestInformation(q => {
                 });
                 var result = await RequestAdapter.SendAsync<RestoreResponse>(requestInfo);
@@ -40,7 +41,7 @@ namespace ApiSdk.DirectoryObjects.Item.Restore {
                 using var reader = new StreamReader(content);
                 var strContent = await reader.ReadToEndAsync();
                 Console.Write(strContent + "\n");
-            });
+            }, directoryObjectIdOption);
             return command;
         }
         /// <summary>
@@ -63,7 +64,7 @@ namespace ApiSdk.DirectoryObjects.Item.Restore {
         /// </summary>
         public RequestInformation CreatePostRequestInformation(Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
             var requestInfo = new RequestInformation {
-                HttpMethod = HttpMethod.POST,
+                HttpMethod = Method.POST,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };

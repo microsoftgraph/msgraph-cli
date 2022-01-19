@@ -26,16 +26,17 @@ namespace ApiSdk.DeviceManagement.Reports.ExportJobs.Item {
             var command = new Command("delete");
             command.Description = "Entity representing a job to export a report";
             // Create options for all the parameters
-            var deviceManagementExportJobIdOption = new Option<string>("--devicemanagementexportjob-id", description: "key: id of deviceManagementExportJob");
+            var deviceManagementExportJobIdOption = new Option<string>("--devicemanagementexportjob-id", description: "key: id of deviceManagementExportJob") {
+            };
             deviceManagementExportJobIdOption.IsRequired = true;
             command.AddOption(deviceManagementExportJobIdOption);
-            command.Handler = CommandHandler.Create<string>(async (deviceManagementExportJobId) => {
+            command.SetHandler(async (string deviceManagementExportJobId) => {
                 var requestInfo = CreateDeleteRequestInformation(q => {
                 });
                 await RequestAdapter.SendNoContentAsync(requestInfo);
                 // Print request output. What if the request has no return?
                 Console.WriteLine("Success");
-            });
+            }, deviceManagementExportJobIdOption);
             return command;
         }
         /// <summary>
@@ -45,18 +46,21 @@ namespace ApiSdk.DeviceManagement.Reports.ExportJobs.Item {
             var command = new Command("get");
             command.Description = "Entity representing a job to export a report";
             // Create options for all the parameters
-            var deviceManagementExportJobIdOption = new Option<string>("--devicemanagementexportjob-id", description: "key: id of deviceManagementExportJob");
+            var deviceManagementExportJobIdOption = new Option<string>("--devicemanagementexportjob-id", description: "key: id of deviceManagementExportJob") {
+            };
             deviceManagementExportJobIdOption.IsRequired = true;
             command.AddOption(deviceManagementExportJobIdOption);
-            var selectOption = new Option<string[]>("--select", description: "Select properties to be returned");
+            var selectOption = new Option<string[]>("--select", description: "Select properties to be returned") {
+                Arity = ArgumentArity.ZeroOrMore
+            };
             selectOption.IsRequired = false;
-            selectOption.Arity = ArgumentArity.ZeroOrMore;
             command.AddOption(selectOption);
-            var expandOption = new Option<string[]>("--expand", description: "Expand related entities");
+            var expandOption = new Option<string[]>("--expand", description: "Expand related entities") {
+                Arity = ArgumentArity.ZeroOrMore
+            };
             expandOption.IsRequired = false;
-            expandOption.Arity = ArgumentArity.ZeroOrMore;
             command.AddOption(expandOption);
-            command.Handler = CommandHandler.Create<string, string[], string[]>(async (deviceManagementExportJobId, select, expand) => {
+            command.SetHandler(async (string deviceManagementExportJobId, string[] select, string[] expand) => {
                 var requestInfo = CreateGetRequestInformation(q => {
                     q.Select = select;
                     q.Expand = expand;
@@ -69,7 +73,7 @@ namespace ApiSdk.DeviceManagement.Reports.ExportJobs.Item {
                 using var reader = new StreamReader(content);
                 var strContent = await reader.ReadToEndAsync();
                 Console.Write(strContent + "\n");
-            });
+            }, deviceManagementExportJobIdOption, selectOption, expandOption);
             return command;
         }
         /// <summary>
@@ -79,13 +83,15 @@ namespace ApiSdk.DeviceManagement.Reports.ExportJobs.Item {
             var command = new Command("patch");
             command.Description = "Entity representing a job to export a report";
             // Create options for all the parameters
-            var deviceManagementExportJobIdOption = new Option<string>("--devicemanagementexportjob-id", description: "key: id of deviceManagementExportJob");
+            var deviceManagementExportJobIdOption = new Option<string>("--devicemanagementexportjob-id", description: "key: id of deviceManagementExportJob") {
+            };
             deviceManagementExportJobIdOption.IsRequired = true;
             command.AddOption(deviceManagementExportJobIdOption);
-            var bodyOption = new Option<string>("--body");
+            var bodyOption = new Option<string>("--body") {
+            };
             bodyOption.IsRequired = true;
             command.AddOption(bodyOption);
-            command.Handler = CommandHandler.Create<string, string>(async (deviceManagementExportJobId, body) => {
+            command.SetHandler(async (string deviceManagementExportJobId, string body) => {
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<DeviceManagementExportJob>();
@@ -94,7 +100,7 @@ namespace ApiSdk.DeviceManagement.Reports.ExportJobs.Item {
                 await RequestAdapter.SendNoContentAsync(requestInfo);
                 // Print request output. What if the request has no return?
                 Console.WriteLine("Success");
-            });
+            }, deviceManagementExportJobIdOption, bodyOption);
             return command;
         }
         /// <summary>
@@ -117,7 +123,7 @@ namespace ApiSdk.DeviceManagement.Reports.ExportJobs.Item {
         /// </summary>
         public RequestInformation CreateDeleteRequestInformation(Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
             var requestInfo = new RequestInformation {
-                HttpMethod = HttpMethod.DELETE,
+                HttpMethod = Method.DELETE,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };
@@ -133,7 +139,7 @@ namespace ApiSdk.DeviceManagement.Reports.ExportJobs.Item {
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<GetQueryParameters> q = default, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
             var requestInfo = new RequestInformation {
-                HttpMethod = HttpMethod.GET,
+                HttpMethod = Method.GET,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };
@@ -155,7 +161,7 @@ namespace ApiSdk.DeviceManagement.Reports.ExportJobs.Item {
         public RequestInformation CreatePatchRequestInformation(DeviceManagementExportJob body, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
             _ = body ?? throw new ArgumentNullException(nameof(body));
             var requestInfo = new RequestInformation {
-                HttpMethod = HttpMethod.PATCH,
+                HttpMethod = Method.PATCH,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };

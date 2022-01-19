@@ -25,16 +25,17 @@ namespace ApiSdk.Me.Messages.Item.Send {
             var command = new Command("post");
             command.Description = "Invoke action send";
             // Create options for all the parameters
-            var messageIdOption = new Option<string>("--message-id", description: "key: id of message");
+            var messageIdOption = new Option<string>("--message-id", description: "key: id of message") {
+            };
             messageIdOption.IsRequired = true;
             command.AddOption(messageIdOption);
-            command.Handler = CommandHandler.Create<string>(async (messageId) => {
+            command.SetHandler(async (string messageId) => {
                 var requestInfo = CreatePostRequestInformation(q => {
                 });
                 await RequestAdapter.SendNoContentAsync(requestInfo);
                 // Print request output. What if the request has no return?
                 Console.WriteLine("Success");
-            });
+            }, messageIdOption);
             return command;
         }
         /// <summary>
@@ -57,7 +58,7 @@ namespace ApiSdk.Me.Messages.Item.Send {
         /// </summary>
         public RequestInformation CreatePostRequestInformation(Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
             var requestInfo = new RequestInformation {
-                HttpMethod = HttpMethod.POST,
+                HttpMethod = Method.POST,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };

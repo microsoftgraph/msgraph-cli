@@ -35,16 +35,17 @@ namespace ApiSdk.DeviceAppManagement.DefaultManagedAppProtections.Item {
             var command = new Command("delete");
             command.Description = "Default managed app policies.";
             // Create options for all the parameters
-            var defaultManagedAppProtectionIdOption = new Option<string>("--defaultmanagedappprotection-id", description: "key: id of defaultManagedAppProtection");
+            var defaultManagedAppProtectionIdOption = new Option<string>("--defaultmanagedappprotection-id", description: "key: id of defaultManagedAppProtection") {
+            };
             defaultManagedAppProtectionIdOption.IsRequired = true;
             command.AddOption(defaultManagedAppProtectionIdOption);
-            command.Handler = CommandHandler.Create<string>(async (defaultManagedAppProtectionId) => {
+            command.SetHandler(async (string defaultManagedAppProtectionId) => {
                 var requestInfo = CreateDeleteRequestInformation(q => {
                 });
                 await RequestAdapter.SendNoContentAsync(requestInfo);
                 // Print request output. What if the request has no return?
                 Console.WriteLine("Success");
-            });
+            }, defaultManagedAppProtectionIdOption);
             return command;
         }
         public Command BuildDeploymentSummaryCommand() {
@@ -62,18 +63,21 @@ namespace ApiSdk.DeviceAppManagement.DefaultManagedAppProtections.Item {
             var command = new Command("get");
             command.Description = "Default managed app policies.";
             // Create options for all the parameters
-            var defaultManagedAppProtectionIdOption = new Option<string>("--defaultmanagedappprotection-id", description: "key: id of defaultManagedAppProtection");
+            var defaultManagedAppProtectionIdOption = new Option<string>("--defaultmanagedappprotection-id", description: "key: id of defaultManagedAppProtection") {
+            };
             defaultManagedAppProtectionIdOption.IsRequired = true;
             command.AddOption(defaultManagedAppProtectionIdOption);
-            var selectOption = new Option<string[]>("--select", description: "Select properties to be returned");
+            var selectOption = new Option<string[]>("--select", description: "Select properties to be returned") {
+                Arity = ArgumentArity.ZeroOrMore
+            };
             selectOption.IsRequired = false;
-            selectOption.Arity = ArgumentArity.ZeroOrMore;
             command.AddOption(selectOption);
-            var expandOption = new Option<string[]>("--expand", description: "Expand related entities");
+            var expandOption = new Option<string[]>("--expand", description: "Expand related entities") {
+                Arity = ArgumentArity.ZeroOrMore
+            };
             expandOption.IsRequired = false;
-            expandOption.Arity = ArgumentArity.ZeroOrMore;
             command.AddOption(expandOption);
-            command.Handler = CommandHandler.Create<string, string[], string[]>(async (defaultManagedAppProtectionId, select, expand) => {
+            command.SetHandler(async (string defaultManagedAppProtectionId, string[] select, string[] expand) => {
                 var requestInfo = CreateGetRequestInformation(q => {
                     q.Select = select;
                     q.Expand = expand;
@@ -86,7 +90,7 @@ namespace ApiSdk.DeviceAppManagement.DefaultManagedAppProtections.Item {
                 using var reader = new StreamReader(content);
                 var strContent = await reader.ReadToEndAsync();
                 Console.Write(strContent + "\n");
-            });
+            }, defaultManagedAppProtectionIdOption, selectOption, expandOption);
             return command;
         }
         /// <summary>
@@ -96,13 +100,15 @@ namespace ApiSdk.DeviceAppManagement.DefaultManagedAppProtections.Item {
             var command = new Command("patch");
             command.Description = "Default managed app policies.";
             // Create options for all the parameters
-            var defaultManagedAppProtectionIdOption = new Option<string>("--defaultmanagedappprotection-id", description: "key: id of defaultManagedAppProtection");
+            var defaultManagedAppProtectionIdOption = new Option<string>("--defaultmanagedappprotection-id", description: "key: id of defaultManagedAppProtection") {
+            };
             defaultManagedAppProtectionIdOption.IsRequired = true;
             command.AddOption(defaultManagedAppProtectionIdOption);
-            var bodyOption = new Option<string>("--body");
+            var bodyOption = new Option<string>("--body") {
+            };
             bodyOption.IsRequired = true;
             command.AddOption(bodyOption);
-            command.Handler = CommandHandler.Create<string, string>(async (defaultManagedAppProtectionId, body) => {
+            command.SetHandler(async (string defaultManagedAppProtectionId, string body) => {
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<DefaultManagedAppProtection>();
@@ -111,7 +117,7 @@ namespace ApiSdk.DeviceAppManagement.DefaultManagedAppProtections.Item {
                 await RequestAdapter.SendNoContentAsync(requestInfo);
                 // Print request output. What if the request has no return?
                 Console.WriteLine("Success");
-            });
+            }, defaultManagedAppProtectionIdOption, bodyOption);
             return command;
         }
         /// <summary>
@@ -134,7 +140,7 @@ namespace ApiSdk.DeviceAppManagement.DefaultManagedAppProtections.Item {
         /// </summary>
         public RequestInformation CreateDeleteRequestInformation(Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
             var requestInfo = new RequestInformation {
-                HttpMethod = HttpMethod.DELETE,
+                HttpMethod = Method.DELETE,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };
@@ -150,7 +156,7 @@ namespace ApiSdk.DeviceAppManagement.DefaultManagedAppProtections.Item {
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<GetQueryParameters> q = default, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
             var requestInfo = new RequestInformation {
-                HttpMethod = HttpMethod.GET,
+                HttpMethod = Method.GET,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };
@@ -172,7 +178,7 @@ namespace ApiSdk.DeviceAppManagement.DefaultManagedAppProtections.Item {
         public RequestInformation CreatePatchRequestInformation(DefaultManagedAppProtection body, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
             _ = body ?? throw new ArgumentNullException(nameof(body));
             var requestInfo = new RequestInformation {
-                HttpMethod = HttpMethod.PATCH,
+                HttpMethod = Method.PATCH,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };

@@ -26,13 +26,15 @@ namespace ApiSdk.Workbooks.Item.Workbook.Tables.ItemAtWithIndex {
             var command = new Command("get");
             command.Description = "Invoke function itemAt";
             // Create options for all the parameters
-            var driveItemIdOption = new Option<string>("--driveitem-id", description: "key: id of driveItem");
+            var driveItemIdOption = new Option<string>("--driveitem-id", description: "key: id of driveItem") {
+            };
             driveItemIdOption.IsRequired = true;
             command.AddOption(driveItemIdOption);
-            var indexOption = new Option<int?>("--index", description: "Usage: index={index}");
+            var indexOption = new Option<int?>("--index", description: "Usage: index={index}") {
+            };
             indexOption.IsRequired = true;
             command.AddOption(indexOption);
-            command.Handler = CommandHandler.Create<string, int?>(async (driveItemId, index) => {
+            command.SetHandler(async (string driveItemId, int? index) => {
                 var requestInfo = CreateGetRequestInformation(q => {
                 });
                 var result = await RequestAdapter.SendAsync<ItemAtWithIndexResponse>(requestInfo);
@@ -43,7 +45,7 @@ namespace ApiSdk.Workbooks.Item.Workbook.Tables.ItemAtWithIndex {
                 using var reader = new StreamReader(content);
                 var strContent = await reader.ReadToEndAsync();
                 Console.Write(strContent + "\n");
-            });
+            }, driveItemIdOption, indexOption);
             return command;
         }
         /// <summary>
@@ -68,7 +70,7 @@ namespace ApiSdk.Workbooks.Item.Workbook.Tables.ItemAtWithIndex {
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
             var requestInfo = new RequestInformation {
-                HttpMethod = HttpMethod.GET,
+                HttpMethod = Method.GET,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };

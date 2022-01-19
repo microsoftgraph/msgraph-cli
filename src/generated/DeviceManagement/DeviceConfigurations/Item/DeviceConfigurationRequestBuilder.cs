@@ -47,16 +47,17 @@ namespace ApiSdk.DeviceManagement.DeviceConfigurations.Item {
             var command = new Command("delete");
             command.Description = "The device configurations.";
             // Create options for all the parameters
-            var deviceConfigurationIdOption = new Option<string>("--deviceconfiguration-id", description: "key: id of deviceConfiguration");
+            var deviceConfigurationIdOption = new Option<string>("--deviceconfiguration-id", description: "key: id of deviceConfiguration") {
+            };
             deviceConfigurationIdOption.IsRequired = true;
             command.AddOption(deviceConfigurationIdOption);
-            command.Handler = CommandHandler.Create<string>(async (deviceConfigurationId) => {
+            command.SetHandler(async (string deviceConfigurationId) => {
                 var requestInfo = CreateDeleteRequestInformation(q => {
                 });
                 await RequestAdapter.SendNoContentAsync(requestInfo);
                 // Print request output. What if the request has no return?
                 Console.WriteLine("Success");
-            });
+            }, deviceConfigurationIdOption);
             return command;
         }
         public Command BuildDeviceSettingStateSummariesCommand() {
@@ -88,18 +89,21 @@ namespace ApiSdk.DeviceManagement.DeviceConfigurations.Item {
             var command = new Command("get");
             command.Description = "The device configurations.";
             // Create options for all the parameters
-            var deviceConfigurationIdOption = new Option<string>("--deviceconfiguration-id", description: "key: id of deviceConfiguration");
+            var deviceConfigurationIdOption = new Option<string>("--deviceconfiguration-id", description: "key: id of deviceConfiguration") {
+            };
             deviceConfigurationIdOption.IsRequired = true;
             command.AddOption(deviceConfigurationIdOption);
-            var selectOption = new Option<string[]>("--select", description: "Select properties to be returned");
+            var selectOption = new Option<string[]>("--select", description: "Select properties to be returned") {
+                Arity = ArgumentArity.ZeroOrMore
+            };
             selectOption.IsRequired = false;
-            selectOption.Arity = ArgumentArity.ZeroOrMore;
             command.AddOption(selectOption);
-            var expandOption = new Option<string[]>("--expand", description: "Expand related entities");
+            var expandOption = new Option<string[]>("--expand", description: "Expand related entities") {
+                Arity = ArgumentArity.ZeroOrMore
+            };
             expandOption.IsRequired = false;
-            expandOption.Arity = ArgumentArity.ZeroOrMore;
             command.AddOption(expandOption);
-            command.Handler = CommandHandler.Create<string, string[], string[]>(async (deviceConfigurationId, select, expand) => {
+            command.SetHandler(async (string deviceConfigurationId, string[] select, string[] expand) => {
                 var requestInfo = CreateGetRequestInformation(q => {
                     q.Select = select;
                     q.Expand = expand;
@@ -112,7 +116,7 @@ namespace ApiSdk.DeviceManagement.DeviceConfigurations.Item {
                 using var reader = new StreamReader(content);
                 var strContent = await reader.ReadToEndAsync();
                 Console.Write(strContent + "\n");
-            });
+            }, deviceConfigurationIdOption, selectOption, expandOption);
             return command;
         }
         /// <summary>
@@ -122,13 +126,15 @@ namespace ApiSdk.DeviceManagement.DeviceConfigurations.Item {
             var command = new Command("patch");
             command.Description = "The device configurations.";
             // Create options for all the parameters
-            var deviceConfigurationIdOption = new Option<string>("--deviceconfiguration-id", description: "key: id of deviceConfiguration");
+            var deviceConfigurationIdOption = new Option<string>("--deviceconfiguration-id", description: "key: id of deviceConfiguration") {
+            };
             deviceConfigurationIdOption.IsRequired = true;
             command.AddOption(deviceConfigurationIdOption);
-            var bodyOption = new Option<string>("--body");
+            var bodyOption = new Option<string>("--body") {
+            };
             bodyOption.IsRequired = true;
             command.AddOption(bodyOption);
-            command.Handler = CommandHandler.Create<string, string>(async (deviceConfigurationId, body) => {
+            command.SetHandler(async (string deviceConfigurationId, string body) => {
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<DeviceConfiguration>();
@@ -137,7 +143,7 @@ namespace ApiSdk.DeviceManagement.DeviceConfigurations.Item {
                 await RequestAdapter.SendNoContentAsync(requestInfo);
                 // Print request output. What if the request has no return?
                 Console.WriteLine("Success");
-            });
+            }, deviceConfigurationIdOption, bodyOption);
             return command;
         }
         public Command BuildUserStatusesCommand() {
@@ -175,7 +181,7 @@ namespace ApiSdk.DeviceManagement.DeviceConfigurations.Item {
         /// </summary>
         public RequestInformation CreateDeleteRequestInformation(Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
             var requestInfo = new RequestInformation {
-                HttpMethod = HttpMethod.DELETE,
+                HttpMethod = Method.DELETE,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };
@@ -191,7 +197,7 @@ namespace ApiSdk.DeviceManagement.DeviceConfigurations.Item {
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<GetQueryParameters> q = default, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
             var requestInfo = new RequestInformation {
-                HttpMethod = HttpMethod.GET,
+                HttpMethod = Method.GET,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };
@@ -213,7 +219,7 @@ namespace ApiSdk.DeviceManagement.DeviceConfigurations.Item {
         public RequestInformation CreatePatchRequestInformation(DeviceConfiguration body, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
             _ = body ?? throw new ArgumentNullException(nameof(body));
             var requestInfo = new RequestInformation {
-                HttpMethod = HttpMethod.PATCH,
+                HttpMethod = Method.PATCH,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };

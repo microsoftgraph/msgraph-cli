@@ -26,16 +26,19 @@ namespace ApiSdk.Communications.Calls.Item.Participants.Item.StopHoldMusic {
             var command = new Command("post");
             command.Description = "Invoke action stopHoldMusic";
             // Create options for all the parameters
-            var callIdOption = new Option<string>("--call-id", description: "key: id of call");
+            var callIdOption = new Option<string>("--call-id", description: "key: id of call") {
+            };
             callIdOption.IsRequired = true;
             command.AddOption(callIdOption);
-            var participantIdOption = new Option<string>("--participant-id", description: "key: id of participant");
+            var participantIdOption = new Option<string>("--participant-id", description: "key: id of participant") {
+            };
             participantIdOption.IsRequired = true;
             command.AddOption(participantIdOption);
-            var bodyOption = new Option<string>("--body");
+            var bodyOption = new Option<string>("--body") {
+            };
             bodyOption.IsRequired = true;
             command.AddOption(bodyOption);
-            command.Handler = CommandHandler.Create<string, string, string>(async (callId, participantId, body) => {
+            command.SetHandler(async (string callId, string participantId, string body) => {
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<StopHoldMusicRequestBody>();
@@ -49,7 +52,7 @@ namespace ApiSdk.Communications.Calls.Item.Participants.Item.StopHoldMusic {
                 using var reader = new StreamReader(content);
                 var strContent = await reader.ReadToEndAsync();
                 Console.Write(strContent + "\n");
-            });
+            }, callIdOption, participantIdOption, bodyOption);
             return command;
         }
         /// <summary>
@@ -74,7 +77,7 @@ namespace ApiSdk.Communications.Calls.Item.Participants.Item.StopHoldMusic {
         public RequestInformation CreatePostRequestInformation(StopHoldMusicRequestBody body, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
             _ = body ?? throw new ArgumentNullException(nameof(body));
             var requestInfo = new RequestInformation {
-                HttpMethod = HttpMethod.POST,
+                HttpMethod = Method.POST,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };

@@ -26,16 +26,19 @@ namespace ApiSdk.Me.Insights.Shared.Item.Resource.WorkbookRange.OffsetRangeWithR
             var command = new Command("get");
             command.Description = "Invoke function offsetRange";
             // Create options for all the parameters
-            var sharedInsightIdOption = new Option<string>("--sharedinsight-id", description: "key: id of sharedInsight");
+            var sharedInsightIdOption = new Option<string>("--sharedinsight-id", description: "key: id of sharedInsight") {
+            };
             sharedInsightIdOption.IsRequired = true;
             command.AddOption(sharedInsightIdOption);
-            var rowOffsetOption = new Option<int?>("--rowoffset", description: "Usage: rowOffset={rowOffset}");
+            var rowOffsetOption = new Option<int?>("--rowoffset", description: "Usage: rowOffset={rowOffset}") {
+            };
             rowOffsetOption.IsRequired = true;
             command.AddOption(rowOffsetOption);
-            var columnOffsetOption = new Option<int?>("--columnoffset", description: "Usage: columnOffset={columnOffset}");
+            var columnOffsetOption = new Option<int?>("--columnoffset", description: "Usage: columnOffset={columnOffset}") {
+            };
             columnOffsetOption.IsRequired = true;
             command.AddOption(columnOffsetOption);
-            command.Handler = CommandHandler.Create<string, int?, int?>(async (sharedInsightId, rowOffset, columnOffset) => {
+            command.SetHandler(async (string sharedInsightId, int? rowOffset, int? columnOffset) => {
                 var requestInfo = CreateGetRequestInformation(q => {
                 });
                 var result = await RequestAdapter.SendAsync<OffsetRangeWithRowOffsetWithColumnOffsetResponse>(requestInfo);
@@ -46,7 +49,7 @@ namespace ApiSdk.Me.Insights.Shared.Item.Resource.WorkbookRange.OffsetRangeWithR
                 using var reader = new StreamReader(content);
                 var strContent = await reader.ReadToEndAsync();
                 Console.Write(strContent + "\n");
-            });
+            }, sharedInsightIdOption, rowOffsetOption, columnOffsetOption);
             return command;
         }
         /// <summary>
@@ -73,7 +76,7 @@ namespace ApiSdk.Me.Insights.Shared.Item.Resource.WorkbookRange.OffsetRangeWithR
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
             var requestInfo = new RequestInformation {
-                HttpMethod = HttpMethod.GET,
+                HttpMethod = Method.GET,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };

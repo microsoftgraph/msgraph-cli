@@ -26,19 +26,21 @@ namespace ApiSdk.DeviceAppManagement.ManagedAppRegistrations.Item.Operations.Ite
             var command = new Command("delete");
             command.Description = "Zero or more long running operations triggered on the app registration.";
             // Create options for all the parameters
-            var managedAppRegistrationIdOption = new Option<string>("--managedappregistration-id", description: "key: id of managedAppRegistration");
+            var managedAppRegistrationIdOption = new Option<string>("--managedappregistration-id", description: "key: id of managedAppRegistration") {
+            };
             managedAppRegistrationIdOption.IsRequired = true;
             command.AddOption(managedAppRegistrationIdOption);
-            var managedAppOperationIdOption = new Option<string>("--managedappoperation-id", description: "key: id of managedAppOperation");
+            var managedAppOperationIdOption = new Option<string>("--managedappoperation-id", description: "key: id of managedAppOperation") {
+            };
             managedAppOperationIdOption.IsRequired = true;
             command.AddOption(managedAppOperationIdOption);
-            command.Handler = CommandHandler.Create<string, string>(async (managedAppRegistrationId, managedAppOperationId) => {
+            command.SetHandler(async (string managedAppRegistrationId, string managedAppOperationId) => {
                 var requestInfo = CreateDeleteRequestInformation(q => {
                 });
                 await RequestAdapter.SendNoContentAsync(requestInfo);
                 // Print request output. What if the request has no return?
                 Console.WriteLine("Success");
-            });
+            }, managedAppRegistrationIdOption, managedAppOperationIdOption);
             return command;
         }
         /// <summary>
@@ -48,21 +50,25 @@ namespace ApiSdk.DeviceAppManagement.ManagedAppRegistrations.Item.Operations.Ite
             var command = new Command("get");
             command.Description = "Zero or more long running operations triggered on the app registration.";
             // Create options for all the parameters
-            var managedAppRegistrationIdOption = new Option<string>("--managedappregistration-id", description: "key: id of managedAppRegistration");
+            var managedAppRegistrationIdOption = new Option<string>("--managedappregistration-id", description: "key: id of managedAppRegistration") {
+            };
             managedAppRegistrationIdOption.IsRequired = true;
             command.AddOption(managedAppRegistrationIdOption);
-            var managedAppOperationIdOption = new Option<string>("--managedappoperation-id", description: "key: id of managedAppOperation");
+            var managedAppOperationIdOption = new Option<string>("--managedappoperation-id", description: "key: id of managedAppOperation") {
+            };
             managedAppOperationIdOption.IsRequired = true;
             command.AddOption(managedAppOperationIdOption);
-            var selectOption = new Option<string[]>("--select", description: "Select properties to be returned");
+            var selectOption = new Option<string[]>("--select", description: "Select properties to be returned") {
+                Arity = ArgumentArity.ZeroOrMore
+            };
             selectOption.IsRequired = false;
-            selectOption.Arity = ArgumentArity.ZeroOrMore;
             command.AddOption(selectOption);
-            var expandOption = new Option<string[]>("--expand", description: "Expand related entities");
+            var expandOption = new Option<string[]>("--expand", description: "Expand related entities") {
+                Arity = ArgumentArity.ZeroOrMore
+            };
             expandOption.IsRequired = false;
-            expandOption.Arity = ArgumentArity.ZeroOrMore;
             command.AddOption(expandOption);
-            command.Handler = CommandHandler.Create<string, string, string[], string[]>(async (managedAppRegistrationId, managedAppOperationId, select, expand) => {
+            command.SetHandler(async (string managedAppRegistrationId, string managedAppOperationId, string[] select, string[] expand) => {
                 var requestInfo = CreateGetRequestInformation(q => {
                     q.Select = select;
                     q.Expand = expand;
@@ -75,7 +81,7 @@ namespace ApiSdk.DeviceAppManagement.ManagedAppRegistrations.Item.Operations.Ite
                 using var reader = new StreamReader(content);
                 var strContent = await reader.ReadToEndAsync();
                 Console.Write(strContent + "\n");
-            });
+            }, managedAppRegistrationIdOption, managedAppOperationIdOption, selectOption, expandOption);
             return command;
         }
         /// <summary>
@@ -85,16 +91,19 @@ namespace ApiSdk.DeviceAppManagement.ManagedAppRegistrations.Item.Operations.Ite
             var command = new Command("patch");
             command.Description = "Zero or more long running operations triggered on the app registration.";
             // Create options for all the parameters
-            var managedAppRegistrationIdOption = new Option<string>("--managedappregistration-id", description: "key: id of managedAppRegistration");
+            var managedAppRegistrationIdOption = new Option<string>("--managedappregistration-id", description: "key: id of managedAppRegistration") {
+            };
             managedAppRegistrationIdOption.IsRequired = true;
             command.AddOption(managedAppRegistrationIdOption);
-            var managedAppOperationIdOption = new Option<string>("--managedappoperation-id", description: "key: id of managedAppOperation");
+            var managedAppOperationIdOption = new Option<string>("--managedappoperation-id", description: "key: id of managedAppOperation") {
+            };
             managedAppOperationIdOption.IsRequired = true;
             command.AddOption(managedAppOperationIdOption);
-            var bodyOption = new Option<string>("--body");
+            var bodyOption = new Option<string>("--body") {
+            };
             bodyOption.IsRequired = true;
             command.AddOption(bodyOption);
-            command.Handler = CommandHandler.Create<string, string, string>(async (managedAppRegistrationId, managedAppOperationId, body) => {
+            command.SetHandler(async (string managedAppRegistrationId, string managedAppOperationId, string body) => {
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<ManagedAppOperation>();
@@ -103,7 +112,7 @@ namespace ApiSdk.DeviceAppManagement.ManagedAppRegistrations.Item.Operations.Ite
                 await RequestAdapter.SendNoContentAsync(requestInfo);
                 // Print request output. What if the request has no return?
                 Console.WriteLine("Success");
-            });
+            }, managedAppRegistrationIdOption, managedAppOperationIdOption, bodyOption);
             return command;
         }
         /// <summary>
@@ -126,7 +135,7 @@ namespace ApiSdk.DeviceAppManagement.ManagedAppRegistrations.Item.Operations.Ite
         /// </summary>
         public RequestInformation CreateDeleteRequestInformation(Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
             var requestInfo = new RequestInformation {
-                HttpMethod = HttpMethod.DELETE,
+                HttpMethod = Method.DELETE,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };
@@ -142,7 +151,7 @@ namespace ApiSdk.DeviceAppManagement.ManagedAppRegistrations.Item.Operations.Ite
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<GetQueryParameters> q = default, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
             var requestInfo = new RequestInformation {
-                HttpMethod = HttpMethod.GET,
+                HttpMethod = Method.GET,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };
@@ -164,7 +173,7 @@ namespace ApiSdk.DeviceAppManagement.ManagedAppRegistrations.Item.Operations.Ite
         public RequestInformation CreatePatchRequestInformation(ManagedAppOperation body, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
             _ = body ?? throw new ArgumentNullException(nameof(body));
             var requestInfo = new RequestInformation {
-                HttpMethod = HttpMethod.PATCH,
+                HttpMethod = Method.PATCH,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };

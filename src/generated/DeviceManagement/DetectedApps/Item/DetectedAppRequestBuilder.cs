@@ -27,16 +27,17 @@ namespace ApiSdk.DeviceManagement.DetectedApps.Item {
             var command = new Command("delete");
             command.Description = "The list of detected apps associated with a device.";
             // Create options for all the parameters
-            var detectedAppIdOption = new Option<string>("--detectedapp-id", description: "key: id of detectedApp");
+            var detectedAppIdOption = new Option<string>("--detectedapp-id", description: "key: id of detectedApp") {
+            };
             detectedAppIdOption.IsRequired = true;
             command.AddOption(detectedAppIdOption);
-            command.Handler = CommandHandler.Create<string>(async (detectedAppId) => {
+            command.SetHandler(async (string detectedAppId) => {
                 var requestInfo = CreateDeleteRequestInformation(q => {
                 });
                 await RequestAdapter.SendNoContentAsync(requestInfo);
                 // Print request output. What if the request has no return?
                 Console.WriteLine("Success");
-            });
+            }, detectedAppIdOption);
             return command;
         }
         /// <summary>
@@ -46,18 +47,21 @@ namespace ApiSdk.DeviceManagement.DetectedApps.Item {
             var command = new Command("get");
             command.Description = "The list of detected apps associated with a device.";
             // Create options for all the parameters
-            var detectedAppIdOption = new Option<string>("--detectedapp-id", description: "key: id of detectedApp");
+            var detectedAppIdOption = new Option<string>("--detectedapp-id", description: "key: id of detectedApp") {
+            };
             detectedAppIdOption.IsRequired = true;
             command.AddOption(detectedAppIdOption);
-            var selectOption = new Option<string[]>("--select", description: "Select properties to be returned");
+            var selectOption = new Option<string[]>("--select", description: "Select properties to be returned") {
+                Arity = ArgumentArity.ZeroOrMore
+            };
             selectOption.IsRequired = false;
-            selectOption.Arity = ArgumentArity.ZeroOrMore;
             command.AddOption(selectOption);
-            var expandOption = new Option<string[]>("--expand", description: "Expand related entities");
+            var expandOption = new Option<string[]>("--expand", description: "Expand related entities") {
+                Arity = ArgumentArity.ZeroOrMore
+            };
             expandOption.IsRequired = false;
-            expandOption.Arity = ArgumentArity.ZeroOrMore;
             command.AddOption(expandOption);
-            command.Handler = CommandHandler.Create<string, string[], string[]>(async (detectedAppId, select, expand) => {
+            command.SetHandler(async (string detectedAppId, string[] select, string[] expand) => {
                 var requestInfo = CreateGetRequestInformation(q => {
                     q.Select = select;
                     q.Expand = expand;
@@ -70,7 +74,7 @@ namespace ApiSdk.DeviceManagement.DetectedApps.Item {
                 using var reader = new StreamReader(content);
                 var strContent = await reader.ReadToEndAsync();
                 Console.Write(strContent + "\n");
-            });
+            }, detectedAppIdOption, selectOption, expandOption);
             return command;
         }
         public Command BuildManagedDevicesCommand() {
@@ -87,13 +91,15 @@ namespace ApiSdk.DeviceManagement.DetectedApps.Item {
             var command = new Command("patch");
             command.Description = "The list of detected apps associated with a device.";
             // Create options for all the parameters
-            var detectedAppIdOption = new Option<string>("--detectedapp-id", description: "key: id of detectedApp");
+            var detectedAppIdOption = new Option<string>("--detectedapp-id", description: "key: id of detectedApp") {
+            };
             detectedAppIdOption.IsRequired = true;
             command.AddOption(detectedAppIdOption);
-            var bodyOption = new Option<string>("--body");
+            var bodyOption = new Option<string>("--body") {
+            };
             bodyOption.IsRequired = true;
             command.AddOption(bodyOption);
-            command.Handler = CommandHandler.Create<string, string>(async (detectedAppId, body) => {
+            command.SetHandler(async (string detectedAppId, string body) => {
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<DetectedApp>();
@@ -102,7 +108,7 @@ namespace ApiSdk.DeviceManagement.DetectedApps.Item {
                 await RequestAdapter.SendNoContentAsync(requestInfo);
                 // Print request output. What if the request has no return?
                 Console.WriteLine("Success");
-            });
+            }, detectedAppIdOption, bodyOption);
             return command;
         }
         /// <summary>
@@ -125,7 +131,7 @@ namespace ApiSdk.DeviceManagement.DetectedApps.Item {
         /// </summary>
         public RequestInformation CreateDeleteRequestInformation(Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
             var requestInfo = new RequestInformation {
-                HttpMethod = HttpMethod.DELETE,
+                HttpMethod = Method.DELETE,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };
@@ -141,7 +147,7 @@ namespace ApiSdk.DeviceManagement.DetectedApps.Item {
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<GetQueryParameters> q = default, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
             var requestInfo = new RequestInformation {
-                HttpMethod = HttpMethod.GET,
+                HttpMethod = Method.GET,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };
@@ -163,7 +169,7 @@ namespace ApiSdk.DeviceManagement.DetectedApps.Item {
         public RequestInformation CreatePatchRequestInformation(DetectedApp body, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
             _ = body ?? throw new ArgumentNullException(nameof(body));
             var requestInfo = new RequestInformation {
-                HttpMethod = HttpMethod.PATCH,
+                HttpMethod = Method.PATCH,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };

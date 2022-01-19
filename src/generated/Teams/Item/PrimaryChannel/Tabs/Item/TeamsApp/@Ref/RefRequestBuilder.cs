@@ -25,19 +25,21 @@ namespace ApiSdk.Teams.Item.PrimaryChannel.Tabs.Item.TeamsApp.@Ref {
             var command = new Command("delete");
             command.Description = "The application that is linked to the tab.";
             // Create options for all the parameters
-            var teamIdOption = new Option<string>("--team-id", description: "key: id of team");
+            var teamIdOption = new Option<string>("--team-id", description: "key: id of team") {
+            };
             teamIdOption.IsRequired = true;
             command.AddOption(teamIdOption);
-            var teamsTabIdOption = new Option<string>("--teamstab-id", description: "key: id of teamsTab");
+            var teamsTabIdOption = new Option<string>("--teamstab-id", description: "key: id of teamsTab") {
+            };
             teamsTabIdOption.IsRequired = true;
             command.AddOption(teamsTabIdOption);
-            command.Handler = CommandHandler.Create<string, string>(async (teamId, teamsTabId) => {
+            command.SetHandler(async (string teamId, string teamsTabId) => {
                 var requestInfo = CreateDeleteRequestInformation(q => {
                 });
                 await RequestAdapter.SendNoContentAsync(requestInfo);
                 // Print request output. What if the request has no return?
                 Console.WriteLine("Success");
-            });
+            }, teamIdOption, teamsTabIdOption);
             return command;
         }
         /// <summary>
@@ -47,13 +49,15 @@ namespace ApiSdk.Teams.Item.PrimaryChannel.Tabs.Item.TeamsApp.@Ref {
             var command = new Command("get");
             command.Description = "The application that is linked to the tab.";
             // Create options for all the parameters
-            var teamIdOption = new Option<string>("--team-id", description: "key: id of team");
+            var teamIdOption = new Option<string>("--team-id", description: "key: id of team") {
+            };
             teamIdOption.IsRequired = true;
             command.AddOption(teamIdOption);
-            var teamsTabIdOption = new Option<string>("--teamstab-id", description: "key: id of teamsTab");
+            var teamsTabIdOption = new Option<string>("--teamstab-id", description: "key: id of teamsTab") {
+            };
             teamsTabIdOption.IsRequired = true;
             command.AddOption(teamsTabIdOption);
-            command.Handler = CommandHandler.Create<string, string>(async (teamId, teamsTabId) => {
+            command.SetHandler(async (string teamId, string teamsTabId) => {
                 var requestInfo = CreateGetRequestInformation(q => {
                 });
                 var result = await RequestAdapter.SendPrimitiveAsync<string>(requestInfo);
@@ -64,7 +68,7 @@ namespace ApiSdk.Teams.Item.PrimaryChannel.Tabs.Item.TeamsApp.@Ref {
                 using var reader = new StreamReader(content);
                 var strContent = await reader.ReadToEndAsync();
                 Console.Write(strContent + "\n");
-            });
+            }, teamIdOption, teamsTabIdOption);
             return command;
         }
         /// <summary>
@@ -74,16 +78,19 @@ namespace ApiSdk.Teams.Item.PrimaryChannel.Tabs.Item.TeamsApp.@Ref {
             var command = new Command("put");
             command.Description = "The application that is linked to the tab.";
             // Create options for all the parameters
-            var teamIdOption = new Option<string>("--team-id", description: "key: id of team");
+            var teamIdOption = new Option<string>("--team-id", description: "key: id of team") {
+            };
             teamIdOption.IsRequired = true;
             command.AddOption(teamIdOption);
-            var teamsTabIdOption = new Option<string>("--teamstab-id", description: "key: id of teamsTab");
+            var teamsTabIdOption = new Option<string>("--teamstab-id", description: "key: id of teamsTab") {
+            };
             teamsTabIdOption.IsRequired = true;
             command.AddOption(teamsTabIdOption);
-            var bodyOption = new Option<string>("--body");
+            var bodyOption = new Option<string>("--body") {
+            };
             bodyOption.IsRequired = true;
             command.AddOption(bodyOption);
-            command.Handler = CommandHandler.Create<string, string, string>(async (teamId, teamsTabId, body) => {
+            command.SetHandler(async (string teamId, string teamsTabId, string body) => {
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<ApiSdk.Teams.Item.PrimaryChannel.Tabs.Item.TeamsApp.@Ref.@Ref>();
@@ -92,7 +99,7 @@ namespace ApiSdk.Teams.Item.PrimaryChannel.Tabs.Item.TeamsApp.@Ref {
                 await RequestAdapter.SendNoContentAsync(requestInfo);
                 // Print request output. What if the request has no return?
                 Console.WriteLine("Success");
-            });
+            }, teamIdOption, teamsTabIdOption, bodyOption);
             return command;
         }
         /// <summary>
@@ -115,7 +122,7 @@ namespace ApiSdk.Teams.Item.PrimaryChannel.Tabs.Item.TeamsApp.@Ref {
         /// </summary>
         public RequestInformation CreateDeleteRequestInformation(Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
             var requestInfo = new RequestInformation {
-                HttpMethod = HttpMethod.DELETE,
+                HttpMethod = Method.DELETE,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };
@@ -130,7 +137,7 @@ namespace ApiSdk.Teams.Item.PrimaryChannel.Tabs.Item.TeamsApp.@Ref {
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
             var requestInfo = new RequestInformation {
-                HttpMethod = HttpMethod.GET,
+                HttpMethod = Method.GET,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };
@@ -147,7 +154,7 @@ namespace ApiSdk.Teams.Item.PrimaryChannel.Tabs.Item.TeamsApp.@Ref {
         public RequestInformation CreatePutRequestInformation(ApiSdk.Teams.Item.PrimaryChannel.Tabs.Item.TeamsApp.@Ref.@Ref body, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
             _ = body ?? throw new ArgumentNullException(nameof(body));
             var requestInfo = new RequestInformation {
-                HttpMethod = HttpMethod.PUT,
+                HttpMethod = Method.PUT,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };

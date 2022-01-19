@@ -25,13 +25,15 @@ namespace ApiSdk.Domains.Item.ForceDelete {
             var command = new Command("post");
             command.Description = "Invoke action forceDelete";
             // Create options for all the parameters
-            var domainIdOption = new Option<string>("--domain-id", description: "key: id of domain");
+            var domainIdOption = new Option<string>("--domain-id", description: "key: id of domain") {
+            };
             domainIdOption.IsRequired = true;
             command.AddOption(domainIdOption);
-            var bodyOption = new Option<string>("--body");
+            var bodyOption = new Option<string>("--body") {
+            };
             bodyOption.IsRequired = true;
             command.AddOption(bodyOption);
-            command.Handler = CommandHandler.Create<string, string>(async (domainId, body) => {
+            command.SetHandler(async (string domainId, string body) => {
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<ForceDeleteRequestBody>();
@@ -40,7 +42,7 @@ namespace ApiSdk.Domains.Item.ForceDelete {
                 await RequestAdapter.SendNoContentAsync(requestInfo);
                 // Print request output. What if the request has no return?
                 Console.WriteLine("Success");
-            });
+            }, domainIdOption, bodyOption);
             return command;
         }
         /// <summary>
@@ -65,7 +67,7 @@ namespace ApiSdk.Domains.Item.ForceDelete {
         public RequestInformation CreatePostRequestInformation(ForceDeleteRequestBody body, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
             _ = body ?? throw new ArgumentNullException(nameof(body));
             var requestInfo = new RequestInformation {
-                HttpMethod = HttpMethod.POST,
+                HttpMethod = Method.POST,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };

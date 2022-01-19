@@ -30,16 +30,17 @@ namespace ApiSdk.Connections.Item {
             var command = new Command("delete");
             command.Description = "Delete entity from connections";
             // Create options for all the parameters
-            var externalConnectionIdOption = new Option<string>("--externalconnection-id", description: "key: id of externalConnection");
+            var externalConnectionIdOption = new Option<string>("--externalconnection-id", description: "key: id of externalConnection") {
+            };
             externalConnectionIdOption.IsRequired = true;
             command.AddOption(externalConnectionIdOption);
-            command.Handler = CommandHandler.Create<string>(async (externalConnectionId) => {
+            command.SetHandler(async (string externalConnectionId) => {
                 var requestInfo = CreateDeleteRequestInformation(q => {
                 });
                 await RequestAdapter.SendNoContentAsync(requestInfo);
                 // Print request output. What if the request has no return?
                 Console.WriteLine("Success");
-            });
+            }, externalConnectionIdOption);
             return command;
         }
         /// <summary>
@@ -49,18 +50,21 @@ namespace ApiSdk.Connections.Item {
             var command = new Command("get");
             command.Description = "Get entity from connections by key";
             // Create options for all the parameters
-            var externalConnectionIdOption = new Option<string>("--externalconnection-id", description: "key: id of externalConnection");
+            var externalConnectionIdOption = new Option<string>("--externalconnection-id", description: "key: id of externalConnection") {
+            };
             externalConnectionIdOption.IsRequired = true;
             command.AddOption(externalConnectionIdOption);
-            var selectOption = new Option<string[]>("--select", description: "Select properties to be returned");
+            var selectOption = new Option<string[]>("--select", description: "Select properties to be returned") {
+                Arity = ArgumentArity.ZeroOrMore
+            };
             selectOption.IsRequired = false;
-            selectOption.Arity = ArgumentArity.ZeroOrMore;
             command.AddOption(selectOption);
-            var expandOption = new Option<string[]>("--expand", description: "Expand related entities");
+            var expandOption = new Option<string[]>("--expand", description: "Expand related entities") {
+                Arity = ArgumentArity.ZeroOrMore
+            };
             expandOption.IsRequired = false;
-            expandOption.Arity = ArgumentArity.ZeroOrMore;
             command.AddOption(expandOption);
-            command.Handler = CommandHandler.Create<string, string[], string[]>(async (externalConnectionId, select, expand) => {
+            command.SetHandler(async (string externalConnectionId, string[] select, string[] expand) => {
                 var requestInfo = CreateGetRequestInformation(q => {
                     q.Select = select;
                     q.Expand = expand;
@@ -73,7 +77,7 @@ namespace ApiSdk.Connections.Item {
                 using var reader = new StreamReader(content);
                 var strContent = await reader.ReadToEndAsync();
                 Console.Write(strContent + "\n");
-            });
+            }, externalConnectionIdOption, selectOption, expandOption);
             return command;
         }
         public Command BuildGroupsCommand() {
@@ -104,13 +108,15 @@ namespace ApiSdk.Connections.Item {
             var command = new Command("patch");
             command.Description = "Update entity in connections";
             // Create options for all the parameters
-            var externalConnectionIdOption = new Option<string>("--externalconnection-id", description: "key: id of externalConnection");
+            var externalConnectionIdOption = new Option<string>("--externalconnection-id", description: "key: id of externalConnection") {
+            };
             externalConnectionIdOption.IsRequired = true;
             command.AddOption(externalConnectionIdOption);
-            var bodyOption = new Option<string>("--body");
+            var bodyOption = new Option<string>("--body") {
+            };
             bodyOption.IsRequired = true;
             command.AddOption(bodyOption);
-            command.Handler = CommandHandler.Create<string, string>(async (externalConnectionId, body) => {
+            command.SetHandler(async (string externalConnectionId, string body) => {
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<ExternalConnection>();
@@ -119,7 +125,7 @@ namespace ApiSdk.Connections.Item {
                 await RequestAdapter.SendNoContentAsync(requestInfo);
                 // Print request output. What if the request has no return?
                 Console.WriteLine("Success");
-            });
+            }, externalConnectionIdOption, bodyOption);
             return command;
         }
         public Command BuildSchemaCommand() {
@@ -150,7 +156,7 @@ namespace ApiSdk.Connections.Item {
         /// </summary>
         public RequestInformation CreateDeleteRequestInformation(Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
             var requestInfo = new RequestInformation {
-                HttpMethod = HttpMethod.DELETE,
+                HttpMethod = Method.DELETE,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };
@@ -166,7 +172,7 @@ namespace ApiSdk.Connections.Item {
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<GetQueryParameters> q = default, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
             var requestInfo = new RequestInformation {
-                HttpMethod = HttpMethod.GET,
+                HttpMethod = Method.GET,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };
@@ -188,7 +194,7 @@ namespace ApiSdk.Connections.Item {
         public RequestInformation CreatePatchRequestInformation(ExternalConnection body, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
             _ = body ?? throw new ArgumentNullException(nameof(body));
             var requestInfo = new RequestInformation {
-                HttpMethod = HttpMethod.PATCH,
+                HttpMethod = Method.PATCH,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };

@@ -26,16 +26,17 @@ namespace ApiSdk.DeviceAppManagement.ManagedAppStatuses.Item {
             var command = new Command("delete");
             command.Description = "The managed app statuses.";
             // Create options for all the parameters
-            var managedAppStatusIdOption = new Option<string>("--managedappstatus-id", description: "key: id of managedAppStatus");
+            var managedAppStatusIdOption = new Option<string>("--managedappstatus-id", description: "key: id of managedAppStatus") {
+            };
             managedAppStatusIdOption.IsRequired = true;
             command.AddOption(managedAppStatusIdOption);
-            command.Handler = CommandHandler.Create<string>(async (managedAppStatusId) => {
+            command.SetHandler(async (string managedAppStatusId) => {
                 var requestInfo = CreateDeleteRequestInformation(q => {
                 });
                 await RequestAdapter.SendNoContentAsync(requestInfo);
                 // Print request output. What if the request has no return?
                 Console.WriteLine("Success");
-            });
+            }, managedAppStatusIdOption);
             return command;
         }
         /// <summary>
@@ -45,18 +46,21 @@ namespace ApiSdk.DeviceAppManagement.ManagedAppStatuses.Item {
             var command = new Command("get");
             command.Description = "The managed app statuses.";
             // Create options for all the parameters
-            var managedAppStatusIdOption = new Option<string>("--managedappstatus-id", description: "key: id of managedAppStatus");
+            var managedAppStatusIdOption = new Option<string>("--managedappstatus-id", description: "key: id of managedAppStatus") {
+            };
             managedAppStatusIdOption.IsRequired = true;
             command.AddOption(managedAppStatusIdOption);
-            var selectOption = new Option<string[]>("--select", description: "Select properties to be returned");
+            var selectOption = new Option<string[]>("--select", description: "Select properties to be returned") {
+                Arity = ArgumentArity.ZeroOrMore
+            };
             selectOption.IsRequired = false;
-            selectOption.Arity = ArgumentArity.ZeroOrMore;
             command.AddOption(selectOption);
-            var expandOption = new Option<string[]>("--expand", description: "Expand related entities");
+            var expandOption = new Option<string[]>("--expand", description: "Expand related entities") {
+                Arity = ArgumentArity.ZeroOrMore
+            };
             expandOption.IsRequired = false;
-            expandOption.Arity = ArgumentArity.ZeroOrMore;
             command.AddOption(expandOption);
-            command.Handler = CommandHandler.Create<string, string[], string[]>(async (managedAppStatusId, select, expand) => {
+            command.SetHandler(async (string managedAppStatusId, string[] select, string[] expand) => {
                 var requestInfo = CreateGetRequestInformation(q => {
                     q.Select = select;
                     q.Expand = expand;
@@ -69,7 +73,7 @@ namespace ApiSdk.DeviceAppManagement.ManagedAppStatuses.Item {
                 using var reader = new StreamReader(content);
                 var strContent = await reader.ReadToEndAsync();
                 Console.Write(strContent + "\n");
-            });
+            }, managedAppStatusIdOption, selectOption, expandOption);
             return command;
         }
         /// <summary>
@@ -79,13 +83,15 @@ namespace ApiSdk.DeviceAppManagement.ManagedAppStatuses.Item {
             var command = new Command("patch");
             command.Description = "The managed app statuses.";
             // Create options for all the parameters
-            var managedAppStatusIdOption = new Option<string>("--managedappstatus-id", description: "key: id of managedAppStatus");
+            var managedAppStatusIdOption = new Option<string>("--managedappstatus-id", description: "key: id of managedAppStatus") {
+            };
             managedAppStatusIdOption.IsRequired = true;
             command.AddOption(managedAppStatusIdOption);
-            var bodyOption = new Option<string>("--body");
+            var bodyOption = new Option<string>("--body") {
+            };
             bodyOption.IsRequired = true;
             command.AddOption(bodyOption);
-            command.Handler = CommandHandler.Create<string, string>(async (managedAppStatusId, body) => {
+            command.SetHandler(async (string managedAppStatusId, string body) => {
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<ManagedAppStatus>();
@@ -94,7 +100,7 @@ namespace ApiSdk.DeviceAppManagement.ManagedAppStatuses.Item {
                 await RequestAdapter.SendNoContentAsync(requestInfo);
                 // Print request output. What if the request has no return?
                 Console.WriteLine("Success");
-            });
+            }, managedAppStatusIdOption, bodyOption);
             return command;
         }
         /// <summary>
@@ -117,7 +123,7 @@ namespace ApiSdk.DeviceAppManagement.ManagedAppStatuses.Item {
         /// </summary>
         public RequestInformation CreateDeleteRequestInformation(Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
             var requestInfo = new RequestInformation {
-                HttpMethod = HttpMethod.DELETE,
+                HttpMethod = Method.DELETE,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };
@@ -133,7 +139,7 @@ namespace ApiSdk.DeviceAppManagement.ManagedAppStatuses.Item {
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<GetQueryParameters> q = default, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
             var requestInfo = new RequestInformation {
-                HttpMethod = HttpMethod.GET,
+                HttpMethod = Method.GET,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };
@@ -155,7 +161,7 @@ namespace ApiSdk.DeviceAppManagement.ManagedAppStatuses.Item {
         public RequestInformation CreatePatchRequestInformation(ManagedAppStatus body, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
             _ = body ?? throw new ArgumentNullException(nameof(body));
             var requestInfo = new RequestInformation {
-                HttpMethod = HttpMethod.PATCH,
+                HttpMethod = Method.PATCH,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };

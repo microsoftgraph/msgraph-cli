@@ -30,7 +30,7 @@ namespace ApiSdk.Models.Microsoft.Graph {
         /// </summary>
         public IDictionary<string, Action<T, IParseNode>> GetFieldDeserializers<T>() {
             return new Dictionary<string, Action<T, IParseNode>> {
-                {"@Ascending", (o,n) => { (o as WorkbookSortField).@Ascending = n.GetBoolValue(); } },
+                {"ascending", (o,n) => { (o as WorkbookSortField).@Ascending = n.GetBoolValue(); } },
                 {"color", (o,n) => { (o as WorkbookSortField).Color = n.GetStringValue(); } },
                 {"dataOption", (o,n) => { (o as WorkbookSortField).DataOption = n.GetStringValue(); } },
                 {"icon", (o,n) => { (o as WorkbookSortField).Icon = n.GetObjectValue<WorkbookIcon>(); } },
@@ -44,7 +44,7 @@ namespace ApiSdk.Models.Microsoft.Graph {
         /// </summary>
         public void Serialize(ISerializationWriter writer) {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
-            writer.WriteBoolValue("@Ascending", @Ascending);
+            writer.WriteBoolValue("ascending", @Ascending);
             writer.WriteStringValue("color", Color);
             writer.WriteStringValue("dataOption", DataOption);
             writer.WriteObjectValue<WorkbookIcon>("icon", Icon);

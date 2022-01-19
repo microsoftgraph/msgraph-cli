@@ -27,19 +27,21 @@ namespace ApiSdk.Workbooks.Item.Workbook.Comments.Item {
             var command = new Command("delete");
             command.Description = "Delete navigation property comments for workbooks";
             // Create options for all the parameters
-            var driveItemIdOption = new Option<string>("--driveitem-id", description: "key: id of driveItem");
+            var driveItemIdOption = new Option<string>("--driveitem-id", description: "key: id of driveItem") {
+            };
             driveItemIdOption.IsRequired = true;
             command.AddOption(driveItemIdOption);
-            var workbookCommentIdOption = new Option<string>("--workbookcomment-id", description: "key: id of workbookComment");
+            var workbookCommentIdOption = new Option<string>("--workbookcomment-id", description: "key: id of workbookComment") {
+            };
             workbookCommentIdOption.IsRequired = true;
             command.AddOption(workbookCommentIdOption);
-            command.Handler = CommandHandler.Create<string, string>(async (driveItemId, workbookCommentId) => {
+            command.SetHandler(async (string driveItemId, string workbookCommentId) => {
                 var requestInfo = CreateDeleteRequestInformation(q => {
                 });
                 await RequestAdapter.SendNoContentAsync(requestInfo);
                 // Print request output. What if the request has no return?
                 Console.WriteLine("Success");
-            });
+            }, driveItemIdOption, workbookCommentIdOption);
             return command;
         }
         /// <summary>
@@ -49,21 +51,25 @@ namespace ApiSdk.Workbooks.Item.Workbook.Comments.Item {
             var command = new Command("get");
             command.Description = "Get comments from workbooks";
             // Create options for all the parameters
-            var driveItemIdOption = new Option<string>("--driveitem-id", description: "key: id of driveItem");
+            var driveItemIdOption = new Option<string>("--driveitem-id", description: "key: id of driveItem") {
+            };
             driveItemIdOption.IsRequired = true;
             command.AddOption(driveItemIdOption);
-            var workbookCommentIdOption = new Option<string>("--workbookcomment-id", description: "key: id of workbookComment");
+            var workbookCommentIdOption = new Option<string>("--workbookcomment-id", description: "key: id of workbookComment") {
+            };
             workbookCommentIdOption.IsRequired = true;
             command.AddOption(workbookCommentIdOption);
-            var selectOption = new Option<string[]>("--select", description: "Select properties to be returned");
+            var selectOption = new Option<string[]>("--select", description: "Select properties to be returned") {
+                Arity = ArgumentArity.ZeroOrMore
+            };
             selectOption.IsRequired = false;
-            selectOption.Arity = ArgumentArity.ZeroOrMore;
             command.AddOption(selectOption);
-            var expandOption = new Option<string[]>("--expand", description: "Expand related entities");
+            var expandOption = new Option<string[]>("--expand", description: "Expand related entities") {
+                Arity = ArgumentArity.ZeroOrMore
+            };
             expandOption.IsRequired = false;
-            expandOption.Arity = ArgumentArity.ZeroOrMore;
             command.AddOption(expandOption);
-            command.Handler = CommandHandler.Create<string, string, string[], string[]>(async (driveItemId, workbookCommentId, select, expand) => {
+            command.SetHandler(async (string driveItemId, string workbookCommentId, string[] select, string[] expand) => {
                 var requestInfo = CreateGetRequestInformation(q => {
                     q.Select = select;
                     q.Expand = expand;
@@ -76,7 +82,7 @@ namespace ApiSdk.Workbooks.Item.Workbook.Comments.Item {
                 using var reader = new StreamReader(content);
                 var strContent = await reader.ReadToEndAsync();
                 Console.Write(strContent + "\n");
-            });
+            }, driveItemIdOption, workbookCommentIdOption, selectOption, expandOption);
             return command;
         }
         /// <summary>
@@ -86,16 +92,19 @@ namespace ApiSdk.Workbooks.Item.Workbook.Comments.Item {
             var command = new Command("patch");
             command.Description = "Update the navigation property comments in workbooks";
             // Create options for all the parameters
-            var driveItemIdOption = new Option<string>("--driveitem-id", description: "key: id of driveItem");
+            var driveItemIdOption = new Option<string>("--driveitem-id", description: "key: id of driveItem") {
+            };
             driveItemIdOption.IsRequired = true;
             command.AddOption(driveItemIdOption);
-            var workbookCommentIdOption = new Option<string>("--workbookcomment-id", description: "key: id of workbookComment");
+            var workbookCommentIdOption = new Option<string>("--workbookcomment-id", description: "key: id of workbookComment") {
+            };
             workbookCommentIdOption.IsRequired = true;
             command.AddOption(workbookCommentIdOption);
-            var bodyOption = new Option<string>("--body");
+            var bodyOption = new Option<string>("--body") {
+            };
             bodyOption.IsRequired = true;
             command.AddOption(bodyOption);
-            command.Handler = CommandHandler.Create<string, string, string>(async (driveItemId, workbookCommentId, body) => {
+            command.SetHandler(async (string driveItemId, string workbookCommentId, string body) => {
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<WorkbookComment>();
@@ -104,7 +113,7 @@ namespace ApiSdk.Workbooks.Item.Workbook.Comments.Item {
                 await RequestAdapter.SendNoContentAsync(requestInfo);
                 // Print request output. What if the request has no return?
                 Console.WriteLine("Success");
-            });
+            }, driveItemIdOption, workbookCommentIdOption, bodyOption);
             return command;
         }
         public Command BuildRepliesCommand() {
@@ -134,7 +143,7 @@ namespace ApiSdk.Workbooks.Item.Workbook.Comments.Item {
         /// </summary>
         public RequestInformation CreateDeleteRequestInformation(Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
             var requestInfo = new RequestInformation {
-                HttpMethod = HttpMethod.DELETE,
+                HttpMethod = Method.DELETE,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };
@@ -150,7 +159,7 @@ namespace ApiSdk.Workbooks.Item.Workbook.Comments.Item {
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<GetQueryParameters> q = default, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
             var requestInfo = new RequestInformation {
-                HttpMethod = HttpMethod.GET,
+                HttpMethod = Method.GET,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };
@@ -172,7 +181,7 @@ namespace ApiSdk.Workbooks.Item.Workbook.Comments.Item {
         public RequestInformation CreatePatchRequestInformation(WorkbookComment body, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
             _ = body ?? throw new ArgumentNullException(nameof(body));
             var requestInfo = new RequestInformation {
-                HttpMethod = HttpMethod.PATCH,
+                HttpMethod = Method.PATCH,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };

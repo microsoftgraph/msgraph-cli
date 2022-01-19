@@ -25,10 +25,11 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.AccessPackages.FilterB
             var command = new Command("get");
             command.Description = "Invoke function filterByCurrentUser";
             // Create options for all the parameters
-            var onOption = new Option<object>("--on", description: "Usage: on={on}");
+            var onOption = new Option<object>("--on", description: "Usage: on={on}") {
+            };
             onOption.IsRequired = true;
             command.AddOption(onOption);
-            command.Handler = CommandHandler.Create<object>(async (on) => {
+            command.SetHandler(async (object on) => {
                 var requestInfo = CreateGetRequestInformation(q => {
                 });
                 var result = await RequestAdapter.SendCollectionAsync<ApiSdk.IdentityGovernance.EntitlementManagement.AccessPackages.FilterByCurrentUserWithOn.FilterByCurrentUserWithOn>(requestInfo);
@@ -39,7 +40,7 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.AccessPackages.FilterB
                 using var reader = new StreamReader(content);
                 var strContent = await reader.ReadToEndAsync();
                 Console.Write(strContent + "\n");
-            });
+            }, onOption);
             return command;
         }
         /// <summary>
@@ -64,7 +65,7 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.AccessPackages.FilterB
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
             var requestInfo = new RequestInformation {
-                HttpMethod = HttpMethod.GET,
+                HttpMethod = Method.GET,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };

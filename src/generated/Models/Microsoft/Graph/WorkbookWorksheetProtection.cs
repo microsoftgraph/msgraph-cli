@@ -14,7 +14,7 @@ namespace ApiSdk.Models.Microsoft.Graph {
         /// </summary>
         public new IDictionary<string, Action<T, IParseNode>> GetFieldDeserializers<T>() {
             return new Dictionary<string, Action<T, IParseNode>>(base.GetFieldDeserializers<T>()) {
-                {"@Protected", (o,n) => { (o as WorkbookWorksheetProtection).@Protected = n.GetBoolValue(); } },
+                {"protected", (o,n) => { (o as WorkbookWorksheetProtection).@Protected = n.GetBoolValue(); } },
                 {"options", (o,n) => { (o as WorkbookWorksheetProtection).Options = n.GetObjectValue<WorkbookWorksheetProtectionOptions>(); } },
             };
         }
@@ -25,7 +25,7 @@ namespace ApiSdk.Models.Microsoft.Graph {
         public new void Serialize(ISerializationWriter writer) {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             base.Serialize(writer);
-            writer.WriteBoolValue("@Protected", @Protected);
+            writer.WriteBoolValue("protected", @Protected);
             writer.WriteObjectValue<WorkbookWorksheetProtectionOptions>("options", Options);
         }
     }

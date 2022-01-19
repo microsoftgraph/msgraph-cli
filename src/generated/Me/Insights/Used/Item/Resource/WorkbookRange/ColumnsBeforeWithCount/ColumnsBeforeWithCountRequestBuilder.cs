@@ -26,13 +26,15 @@ namespace ApiSdk.Me.Insights.Used.Item.Resource.WorkbookRange.ColumnsBeforeWithC
             var command = new Command("get");
             command.Description = "Invoke function columnsBefore";
             // Create options for all the parameters
-            var usedInsightIdOption = new Option<string>("--usedinsight-id", description: "key: id of usedInsight");
+            var usedInsightIdOption = new Option<string>("--usedinsight-id", description: "key: id of usedInsight") {
+            };
             usedInsightIdOption.IsRequired = true;
             command.AddOption(usedInsightIdOption);
-            var countOption = new Option<int?>("--count", description: "Usage: count={count}");
+            var countOption = new Option<int?>("--count", description: "Usage: count={count}") {
+            };
             countOption.IsRequired = true;
             command.AddOption(countOption);
-            command.Handler = CommandHandler.Create<string, int?>(async (usedInsightId, count) => {
+            command.SetHandler(async (string usedInsightId, int? count) => {
                 var requestInfo = CreateGetRequestInformation(q => {
                 });
                 var result = await RequestAdapter.SendAsync<ColumnsBeforeWithCountResponse>(requestInfo);
@@ -43,7 +45,7 @@ namespace ApiSdk.Me.Insights.Used.Item.Resource.WorkbookRange.ColumnsBeforeWithC
                 using var reader = new StreamReader(content);
                 var strContent = await reader.ReadToEndAsync();
                 Console.Write(strContent + "\n");
-            });
+            }, usedInsightIdOption, countOption);
             return command;
         }
         /// <summary>
@@ -68,7 +70,7 @@ namespace ApiSdk.Me.Insights.Used.Item.Resource.WorkbookRange.ColumnsBeforeWithC
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
             var requestInfo = new RequestInformation {
-                HttpMethod = HttpMethod.GET,
+                HttpMethod = Method.GET,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };

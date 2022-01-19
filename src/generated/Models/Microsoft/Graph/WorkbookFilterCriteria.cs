@@ -26,7 +26,7 @@ namespace ApiSdk.Models.Microsoft.Graph {
         /// </summary>
         public IDictionary<string, Action<T, IParseNode>> GetFieldDeserializers<T>() {
             return new Dictionary<string, Action<T, IParseNode>> {
-                {"@Operator", (o,n) => { (o as WorkbookFilterCriteria).@Operator = n.GetStringValue(); } },
+                {"operator", (o,n) => { (o as WorkbookFilterCriteria).@Operator = n.GetStringValue(); } },
                 {"color", (o,n) => { (o as WorkbookFilterCriteria).Color = n.GetStringValue(); } },
                 {"criterion1", (o,n) => { (o as WorkbookFilterCriteria).Criterion1 = n.GetStringValue(); } },
                 {"criterion2", (o,n) => { (o as WorkbookFilterCriteria).Criterion2 = n.GetStringValue(); } },
@@ -42,7 +42,7 @@ namespace ApiSdk.Models.Microsoft.Graph {
         /// </summary>
         public void Serialize(ISerializationWriter writer) {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
-            writer.WriteStringValue("@Operator", @Operator);
+            writer.WriteStringValue("operator", @Operator);
             writer.WriteStringValue("color", Color);
             writer.WriteStringValue("criterion1", Criterion1);
             writer.WriteStringValue("criterion2", Criterion2);

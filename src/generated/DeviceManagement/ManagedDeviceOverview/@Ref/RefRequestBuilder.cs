@@ -25,7 +25,7 @@ namespace ApiSdk.DeviceManagement.ManagedDeviceOverview.@Ref {
             var command = new Command("delete");
             command.Description = "Device overview";
             // Create options for all the parameters
-            command.Handler = CommandHandler.Create(async () => {
+            command.SetHandler(async () => {
                 var requestInfo = CreateDeleteRequestInformation(q => {
                 });
                 await RequestAdapter.SendNoContentAsync(requestInfo);
@@ -41,7 +41,7 @@ namespace ApiSdk.DeviceManagement.ManagedDeviceOverview.@Ref {
             var command = new Command("get");
             command.Description = "Device overview";
             // Create options for all the parameters
-            command.Handler = CommandHandler.Create(async () => {
+            command.SetHandler(async () => {
                 var requestInfo = CreateGetRequestInformation(q => {
                 });
                 var result = await RequestAdapter.SendPrimitiveAsync<string>(requestInfo);
@@ -62,10 +62,11 @@ namespace ApiSdk.DeviceManagement.ManagedDeviceOverview.@Ref {
             var command = new Command("put");
             command.Description = "Device overview";
             // Create options for all the parameters
-            var bodyOption = new Option<string>("--body");
+            var bodyOption = new Option<string>("--body") {
+            };
             bodyOption.IsRequired = true;
             command.AddOption(bodyOption);
-            command.Handler = CommandHandler.Create<string>(async (body) => {
+            command.SetHandler(async (string body) => {
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<ApiSdk.DeviceManagement.ManagedDeviceOverview.@Ref.@Ref>();
@@ -74,7 +75,7 @@ namespace ApiSdk.DeviceManagement.ManagedDeviceOverview.@Ref {
                 await RequestAdapter.SendNoContentAsync(requestInfo);
                 // Print request output. What if the request has no return?
                 Console.WriteLine("Success");
-            });
+            }, bodyOption);
             return command;
         }
         /// <summary>
@@ -97,7 +98,7 @@ namespace ApiSdk.DeviceManagement.ManagedDeviceOverview.@Ref {
         /// </summary>
         public RequestInformation CreateDeleteRequestInformation(Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
             var requestInfo = new RequestInformation {
-                HttpMethod = HttpMethod.DELETE,
+                HttpMethod = Method.DELETE,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };
@@ -112,7 +113,7 @@ namespace ApiSdk.DeviceManagement.ManagedDeviceOverview.@Ref {
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
             var requestInfo = new RequestInformation {
-                HttpMethod = HttpMethod.GET,
+                HttpMethod = Method.GET,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };
@@ -129,7 +130,7 @@ namespace ApiSdk.DeviceManagement.ManagedDeviceOverview.@Ref {
         public RequestInformation CreatePutRequestInformation(ApiSdk.DeviceManagement.ManagedDeviceOverview.@Ref.@Ref body, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
             _ = body ?? throw new ArgumentNullException(nameof(body));
             var requestInfo = new RequestInformation {
-                HttpMethod = HttpMethod.PUT,
+                HttpMethod = Method.PUT,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };

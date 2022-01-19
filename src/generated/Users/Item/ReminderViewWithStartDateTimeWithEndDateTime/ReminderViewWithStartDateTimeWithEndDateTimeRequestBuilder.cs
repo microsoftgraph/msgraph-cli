@@ -25,16 +25,19 @@ namespace ApiSdk.Users.Item.ReminderViewWithStartDateTimeWithEndDateTime {
             var command = new Command("get");
             command.Description = "Invoke function reminderView";
             // Create options for all the parameters
-            var userIdOption = new Option<string>("--user-id", description: "key: id of user");
+            var userIdOption = new Option<string>("--user-id", description: "key: id of user") {
+            };
             userIdOption.IsRequired = true;
             command.AddOption(userIdOption);
-            var StartDateTimeOption = new Option<string>("--startdatetime", description: "Usage: StartDateTime={StartDateTime}");
+            var StartDateTimeOption = new Option<string>("--startdatetime", description: "Usage: StartDateTime={StartDateTime}") {
+            };
             StartDateTimeOption.IsRequired = true;
             command.AddOption(StartDateTimeOption);
-            var EndDateTimeOption = new Option<string>("--enddatetime", description: "Usage: EndDateTime={EndDateTime}");
+            var EndDateTimeOption = new Option<string>("--enddatetime", description: "Usage: EndDateTime={EndDateTime}") {
+            };
             EndDateTimeOption.IsRequired = true;
             command.AddOption(EndDateTimeOption);
-            command.Handler = CommandHandler.Create<string, string, string>(async (userId, StartDateTime, EndDateTime) => {
+            command.SetHandler(async (string userId, string StartDateTime, string EndDateTime) => {
                 var requestInfo = CreateGetRequestInformation(q => {
                 });
                 var result = await RequestAdapter.SendCollectionAsync<ApiSdk.Users.Item.ReminderViewWithStartDateTimeWithEndDateTime.ReminderViewWithStartDateTimeWithEndDateTime>(requestInfo);
@@ -45,7 +48,7 @@ namespace ApiSdk.Users.Item.ReminderViewWithStartDateTimeWithEndDateTime {
                 using var reader = new StreamReader(content);
                 var strContent = await reader.ReadToEndAsync();
                 Console.Write(strContent + "\n");
-            });
+            }, userIdOption, StartDateTimeOption, EndDateTimeOption);
             return command;
         }
         /// <summary>
@@ -72,7 +75,7 @@ namespace ApiSdk.Users.Item.ReminderViewWithStartDateTimeWithEndDateTime {
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
             var requestInfo = new RequestInformation {
-                HttpMethod = HttpMethod.GET,
+                HttpMethod = Method.GET,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };

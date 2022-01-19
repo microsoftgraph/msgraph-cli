@@ -25,13 +25,15 @@ namespace ApiSdk.GroupSettingTemplates.Item.GetMemberGroups {
             var command = new Command("post");
             command.Description = "Invoke action getMemberGroups";
             // Create options for all the parameters
-            var groupSettingTemplateIdOption = new Option<string>("--groupsettingtemplate-id", description: "key: id of groupSettingTemplate");
+            var groupSettingTemplateIdOption = new Option<string>("--groupsettingtemplate-id", description: "key: id of groupSettingTemplate") {
+            };
             groupSettingTemplateIdOption.IsRequired = true;
             command.AddOption(groupSettingTemplateIdOption);
-            var bodyOption = new Option<string>("--body");
+            var bodyOption = new Option<string>("--body") {
+            };
             bodyOption.IsRequired = true;
             command.AddOption(bodyOption);
-            command.Handler = CommandHandler.Create<string, string>(async (groupSettingTemplateId, body) => {
+            command.SetHandler(async (string groupSettingTemplateId, string body) => {
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<GetMemberGroupsRequestBody>();
@@ -45,7 +47,7 @@ namespace ApiSdk.GroupSettingTemplates.Item.GetMemberGroups {
                 using var reader = new StreamReader(content);
                 var strContent = await reader.ReadToEndAsync();
                 Console.Write(strContent + "\n");
-            });
+            }, groupSettingTemplateIdOption, bodyOption);
             return command;
         }
         /// <summary>
@@ -70,7 +72,7 @@ namespace ApiSdk.GroupSettingTemplates.Item.GetMemberGroups {
         public RequestInformation CreatePostRequestInformation(GetMemberGroupsRequestBody body, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
             _ = body ?? throw new ArgumentNullException(nameof(body));
             var requestInfo = new RequestInformation {
-                HttpMethod = HttpMethod.POST,
+                HttpMethod = Method.POST,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };

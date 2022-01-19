@@ -25,16 +25,17 @@ namespace ApiSdk.Privacy.SubjectRightsRequests.Item.Team.@Ref {
             var command = new Command("delete");
             command.Description = "Information about the Microsoft Teams team that was created for the request.";
             // Create options for all the parameters
-            var subjectRightsRequestIdOption = new Option<string>("--subjectrightsrequest-id", description: "key: id of subjectRightsRequest");
+            var subjectRightsRequestIdOption = new Option<string>("--subjectrightsrequest-id", description: "key: id of subjectRightsRequest") {
+            };
             subjectRightsRequestIdOption.IsRequired = true;
             command.AddOption(subjectRightsRequestIdOption);
-            command.Handler = CommandHandler.Create<string>(async (subjectRightsRequestId) => {
+            command.SetHandler(async (string subjectRightsRequestId) => {
                 var requestInfo = CreateDeleteRequestInformation(q => {
                 });
                 await RequestAdapter.SendNoContentAsync(requestInfo);
                 // Print request output. What if the request has no return?
                 Console.WriteLine("Success");
-            });
+            }, subjectRightsRequestIdOption);
             return command;
         }
         /// <summary>
@@ -44,10 +45,11 @@ namespace ApiSdk.Privacy.SubjectRightsRequests.Item.Team.@Ref {
             var command = new Command("get");
             command.Description = "Information about the Microsoft Teams team that was created for the request.";
             // Create options for all the parameters
-            var subjectRightsRequestIdOption = new Option<string>("--subjectrightsrequest-id", description: "key: id of subjectRightsRequest");
+            var subjectRightsRequestIdOption = new Option<string>("--subjectrightsrequest-id", description: "key: id of subjectRightsRequest") {
+            };
             subjectRightsRequestIdOption.IsRequired = true;
             command.AddOption(subjectRightsRequestIdOption);
-            command.Handler = CommandHandler.Create<string>(async (subjectRightsRequestId) => {
+            command.SetHandler(async (string subjectRightsRequestId) => {
                 var requestInfo = CreateGetRequestInformation(q => {
                 });
                 var result = await RequestAdapter.SendPrimitiveAsync<string>(requestInfo);
@@ -58,7 +60,7 @@ namespace ApiSdk.Privacy.SubjectRightsRequests.Item.Team.@Ref {
                 using var reader = new StreamReader(content);
                 var strContent = await reader.ReadToEndAsync();
                 Console.Write(strContent + "\n");
-            });
+            }, subjectRightsRequestIdOption);
             return command;
         }
         /// <summary>
@@ -68,13 +70,15 @@ namespace ApiSdk.Privacy.SubjectRightsRequests.Item.Team.@Ref {
             var command = new Command("put");
             command.Description = "Information about the Microsoft Teams team that was created for the request.";
             // Create options for all the parameters
-            var subjectRightsRequestIdOption = new Option<string>("--subjectrightsrequest-id", description: "key: id of subjectRightsRequest");
+            var subjectRightsRequestIdOption = new Option<string>("--subjectrightsrequest-id", description: "key: id of subjectRightsRequest") {
+            };
             subjectRightsRequestIdOption.IsRequired = true;
             command.AddOption(subjectRightsRequestIdOption);
-            var bodyOption = new Option<string>("--body");
+            var bodyOption = new Option<string>("--body") {
+            };
             bodyOption.IsRequired = true;
             command.AddOption(bodyOption);
-            command.Handler = CommandHandler.Create<string, string>(async (subjectRightsRequestId, body) => {
+            command.SetHandler(async (string subjectRightsRequestId, string body) => {
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<ApiSdk.Privacy.SubjectRightsRequests.Item.Team.@Ref.@Ref>();
@@ -83,7 +87,7 @@ namespace ApiSdk.Privacy.SubjectRightsRequests.Item.Team.@Ref {
                 await RequestAdapter.SendNoContentAsync(requestInfo);
                 // Print request output. What if the request has no return?
                 Console.WriteLine("Success");
-            });
+            }, subjectRightsRequestIdOption, bodyOption);
             return command;
         }
         /// <summary>
@@ -106,7 +110,7 @@ namespace ApiSdk.Privacy.SubjectRightsRequests.Item.Team.@Ref {
         /// </summary>
         public RequestInformation CreateDeleteRequestInformation(Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
             var requestInfo = new RequestInformation {
-                HttpMethod = HttpMethod.DELETE,
+                HttpMethod = Method.DELETE,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };
@@ -121,7 +125,7 @@ namespace ApiSdk.Privacy.SubjectRightsRequests.Item.Team.@Ref {
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
             var requestInfo = new RequestInformation {
-                HttpMethod = HttpMethod.GET,
+                HttpMethod = Method.GET,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };
@@ -138,7 +142,7 @@ namespace ApiSdk.Privacy.SubjectRightsRequests.Item.Team.@Ref {
         public RequestInformation CreatePutRequestInformation(ApiSdk.Privacy.SubjectRightsRequests.Item.Team.@Ref.@Ref body, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
             _ = body ?? throw new ArgumentNullException(nameof(body));
             var requestInfo = new RequestInformation {
-                HttpMethod = HttpMethod.PUT,
+                HttpMethod = Method.PUT,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };

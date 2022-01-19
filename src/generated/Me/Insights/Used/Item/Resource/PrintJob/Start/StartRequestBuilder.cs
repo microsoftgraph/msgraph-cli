@@ -26,10 +26,11 @@ namespace ApiSdk.Me.Insights.Used.Item.Resource.PrintJob.Start {
             var command = new Command("post");
             command.Description = "Invoke action start";
             // Create options for all the parameters
-            var usedInsightIdOption = new Option<string>("--usedinsight-id", description: "key: id of usedInsight");
+            var usedInsightIdOption = new Option<string>("--usedinsight-id", description: "key: id of usedInsight") {
+            };
             usedInsightIdOption.IsRequired = true;
             command.AddOption(usedInsightIdOption);
-            command.Handler = CommandHandler.Create<string>(async (usedInsightId) => {
+            command.SetHandler(async (string usedInsightId) => {
                 var requestInfo = CreatePostRequestInformation(q => {
                 });
                 var result = await RequestAdapter.SendAsync<StartResponse>(requestInfo);
@@ -40,7 +41,7 @@ namespace ApiSdk.Me.Insights.Used.Item.Resource.PrintJob.Start {
                 using var reader = new StreamReader(content);
                 var strContent = await reader.ReadToEndAsync();
                 Console.Write(strContent + "\n");
-            });
+            }, usedInsightIdOption);
             return command;
         }
         /// <summary>
@@ -63,7 +64,7 @@ namespace ApiSdk.Me.Insights.Used.Item.Resource.PrintJob.Start {
         /// </summary>
         public RequestInformation CreatePostRequestInformation(Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
             var requestInfo = new RequestInformation {
-                HttpMethod = HttpMethod.POST,
+                HttpMethod = Method.POST,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };

@@ -26,19 +26,21 @@ namespace ApiSdk.DeviceManagement.TermsAndConditions.Item.Assignments.Item {
             var command = new Command("delete");
             command.Description = "The list of assignments for this T&C policy.";
             // Create options for all the parameters
-            var termsAndConditionsIdOption = new Option<string>("--termsandconditions-id", description: "key: id of termsAndConditions");
+            var termsAndConditionsIdOption = new Option<string>("--termsandconditions-id", description: "key: id of termsAndConditions") {
+            };
             termsAndConditionsIdOption.IsRequired = true;
             command.AddOption(termsAndConditionsIdOption);
-            var termsAndConditionsAssignmentIdOption = new Option<string>("--termsandconditionsassignment-id", description: "key: id of termsAndConditionsAssignment");
+            var termsAndConditionsAssignmentIdOption = new Option<string>("--termsandconditionsassignment-id", description: "key: id of termsAndConditionsAssignment") {
+            };
             termsAndConditionsAssignmentIdOption.IsRequired = true;
             command.AddOption(termsAndConditionsAssignmentIdOption);
-            command.Handler = CommandHandler.Create<string, string>(async (termsAndConditionsId, termsAndConditionsAssignmentId) => {
+            command.SetHandler(async (string termsAndConditionsId, string termsAndConditionsAssignmentId) => {
                 var requestInfo = CreateDeleteRequestInformation(q => {
                 });
                 await RequestAdapter.SendNoContentAsync(requestInfo);
                 // Print request output. What if the request has no return?
                 Console.WriteLine("Success");
-            });
+            }, termsAndConditionsIdOption, termsAndConditionsAssignmentIdOption);
             return command;
         }
         /// <summary>
@@ -48,21 +50,25 @@ namespace ApiSdk.DeviceManagement.TermsAndConditions.Item.Assignments.Item {
             var command = new Command("get");
             command.Description = "The list of assignments for this T&C policy.";
             // Create options for all the parameters
-            var termsAndConditionsIdOption = new Option<string>("--termsandconditions-id", description: "key: id of termsAndConditions");
+            var termsAndConditionsIdOption = new Option<string>("--termsandconditions-id", description: "key: id of termsAndConditions") {
+            };
             termsAndConditionsIdOption.IsRequired = true;
             command.AddOption(termsAndConditionsIdOption);
-            var termsAndConditionsAssignmentIdOption = new Option<string>("--termsandconditionsassignment-id", description: "key: id of termsAndConditionsAssignment");
+            var termsAndConditionsAssignmentIdOption = new Option<string>("--termsandconditionsassignment-id", description: "key: id of termsAndConditionsAssignment") {
+            };
             termsAndConditionsAssignmentIdOption.IsRequired = true;
             command.AddOption(termsAndConditionsAssignmentIdOption);
-            var selectOption = new Option<string[]>("--select", description: "Select properties to be returned");
+            var selectOption = new Option<string[]>("--select", description: "Select properties to be returned") {
+                Arity = ArgumentArity.ZeroOrMore
+            };
             selectOption.IsRequired = false;
-            selectOption.Arity = ArgumentArity.ZeroOrMore;
             command.AddOption(selectOption);
-            var expandOption = new Option<string[]>("--expand", description: "Expand related entities");
+            var expandOption = new Option<string[]>("--expand", description: "Expand related entities") {
+                Arity = ArgumentArity.ZeroOrMore
+            };
             expandOption.IsRequired = false;
-            expandOption.Arity = ArgumentArity.ZeroOrMore;
             command.AddOption(expandOption);
-            command.Handler = CommandHandler.Create<string, string, string[], string[]>(async (termsAndConditionsId, termsAndConditionsAssignmentId, select, expand) => {
+            command.SetHandler(async (string termsAndConditionsId, string termsAndConditionsAssignmentId, string[] select, string[] expand) => {
                 var requestInfo = CreateGetRequestInformation(q => {
                     q.Select = select;
                     q.Expand = expand;
@@ -75,7 +81,7 @@ namespace ApiSdk.DeviceManagement.TermsAndConditions.Item.Assignments.Item {
                 using var reader = new StreamReader(content);
                 var strContent = await reader.ReadToEndAsync();
                 Console.Write(strContent + "\n");
-            });
+            }, termsAndConditionsIdOption, termsAndConditionsAssignmentIdOption, selectOption, expandOption);
             return command;
         }
         /// <summary>
@@ -85,16 +91,19 @@ namespace ApiSdk.DeviceManagement.TermsAndConditions.Item.Assignments.Item {
             var command = new Command("patch");
             command.Description = "The list of assignments for this T&C policy.";
             // Create options for all the parameters
-            var termsAndConditionsIdOption = new Option<string>("--termsandconditions-id", description: "key: id of termsAndConditions");
+            var termsAndConditionsIdOption = new Option<string>("--termsandconditions-id", description: "key: id of termsAndConditions") {
+            };
             termsAndConditionsIdOption.IsRequired = true;
             command.AddOption(termsAndConditionsIdOption);
-            var termsAndConditionsAssignmentIdOption = new Option<string>("--termsandconditionsassignment-id", description: "key: id of termsAndConditionsAssignment");
+            var termsAndConditionsAssignmentIdOption = new Option<string>("--termsandconditionsassignment-id", description: "key: id of termsAndConditionsAssignment") {
+            };
             termsAndConditionsAssignmentIdOption.IsRequired = true;
             command.AddOption(termsAndConditionsAssignmentIdOption);
-            var bodyOption = new Option<string>("--body");
+            var bodyOption = new Option<string>("--body") {
+            };
             bodyOption.IsRequired = true;
             command.AddOption(bodyOption);
-            command.Handler = CommandHandler.Create<string, string, string>(async (termsAndConditionsId, termsAndConditionsAssignmentId, body) => {
+            command.SetHandler(async (string termsAndConditionsId, string termsAndConditionsAssignmentId, string body) => {
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<TermsAndConditionsAssignment>();
@@ -103,7 +112,7 @@ namespace ApiSdk.DeviceManagement.TermsAndConditions.Item.Assignments.Item {
                 await RequestAdapter.SendNoContentAsync(requestInfo);
                 // Print request output. What if the request has no return?
                 Console.WriteLine("Success");
-            });
+            }, termsAndConditionsIdOption, termsAndConditionsAssignmentIdOption, bodyOption);
             return command;
         }
         /// <summary>
@@ -126,7 +135,7 @@ namespace ApiSdk.DeviceManagement.TermsAndConditions.Item.Assignments.Item {
         /// </summary>
         public RequestInformation CreateDeleteRequestInformation(Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
             var requestInfo = new RequestInformation {
-                HttpMethod = HttpMethod.DELETE,
+                HttpMethod = Method.DELETE,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };
@@ -142,7 +151,7 @@ namespace ApiSdk.DeviceManagement.TermsAndConditions.Item.Assignments.Item {
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<GetQueryParameters> q = default, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
             var requestInfo = new RequestInformation {
-                HttpMethod = HttpMethod.GET,
+                HttpMethod = Method.GET,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };
@@ -164,7 +173,7 @@ namespace ApiSdk.DeviceManagement.TermsAndConditions.Item.Assignments.Item {
         public RequestInformation CreatePatchRequestInformation(TermsAndConditionsAssignment body, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
             _ = body ?? throw new ArgumentNullException(nameof(body));
             var requestInfo = new RequestInformation {
-                HttpMethod = HttpMethod.PATCH,
+                HttpMethod = Method.PATCH,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };

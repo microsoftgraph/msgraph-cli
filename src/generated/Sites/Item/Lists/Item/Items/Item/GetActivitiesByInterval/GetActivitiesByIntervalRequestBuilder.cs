@@ -25,16 +25,19 @@ namespace ApiSdk.Sites.Item.Lists.Item.Items.Item.GetActivitiesByInterval {
             var command = new Command("get");
             command.Description = "Invoke function getActivitiesByInterval";
             // Create options for all the parameters
-            var siteIdOption = new Option<string>("--site-id", description: "key: id of site");
+            var siteIdOption = new Option<string>("--site-id", description: "key: id of site") {
+            };
             siteIdOption.IsRequired = true;
             command.AddOption(siteIdOption);
-            var listIdOption = new Option<string>("--list-id", description: "key: id of list");
+            var listIdOption = new Option<string>("--list-id", description: "key: id of list") {
+            };
             listIdOption.IsRequired = true;
             command.AddOption(listIdOption);
-            var listItemIdOption = new Option<string>("--listitem-id", description: "key: id of listItem");
+            var listItemIdOption = new Option<string>("--listitem-id", description: "key: id of listItem") {
+            };
             listItemIdOption.IsRequired = true;
             command.AddOption(listItemIdOption);
-            command.Handler = CommandHandler.Create<string, string, string>(async (siteId, listId, listItemId) => {
+            command.SetHandler(async (string siteId, string listId, string listItemId) => {
                 var requestInfo = CreateGetRequestInformation(q => {
                 });
                 var result = await RequestAdapter.SendCollectionAsync<ApiSdk.Sites.Item.Lists.Item.Items.Item.GetActivitiesByInterval.GetActivitiesByInterval>(requestInfo);
@@ -45,7 +48,7 @@ namespace ApiSdk.Sites.Item.Lists.Item.Items.Item.GetActivitiesByInterval {
                 using var reader = new StreamReader(content);
                 var strContent = await reader.ReadToEndAsync();
                 Console.Write(strContent + "\n");
-            });
+            }, siteIdOption, listIdOption, listItemIdOption);
             return command;
         }
         /// <summary>
@@ -68,7 +71,7 @@ namespace ApiSdk.Sites.Item.Lists.Item.Items.Item.GetActivitiesByInterval {
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
             var requestInfo = new RequestInformation {
-                HttpMethod = HttpMethod.GET,
+                HttpMethod = Method.GET,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };

@@ -25,16 +25,17 @@ namespace ApiSdk.Applications.Item.UnsetVerifiedPublisher {
             var command = new Command("post");
             command.Description = "Invoke action unsetVerifiedPublisher";
             // Create options for all the parameters
-            var applicationIdOption = new Option<string>("--application-id", description: "key: id of application");
+            var applicationIdOption = new Option<string>("--application-id", description: "key: id of application") {
+            };
             applicationIdOption.IsRequired = true;
             command.AddOption(applicationIdOption);
-            command.Handler = CommandHandler.Create<string>(async (applicationId) => {
+            command.SetHandler(async (string applicationId) => {
                 var requestInfo = CreatePostRequestInformation(q => {
                 });
                 await RequestAdapter.SendNoContentAsync(requestInfo);
                 // Print request output. What if the request has no return?
                 Console.WriteLine("Success");
-            });
+            }, applicationIdOption);
             return command;
         }
         /// <summary>
@@ -57,7 +58,7 @@ namespace ApiSdk.Applications.Item.UnsetVerifiedPublisher {
         /// </summary>
         public RequestInformation CreatePostRequestInformation(Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
             var requestInfo = new RequestInformation {
-                HttpMethod = HttpMethod.POST,
+                HttpMethod = Method.POST,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };

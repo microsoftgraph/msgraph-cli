@@ -26,13 +26,15 @@ namespace ApiSdk.Sites.Item.GetByPathWithPath {
             var command = new Command("get");
             command.Description = "Invoke function getByPath";
             // Create options for all the parameters
-            var siteIdOption = new Option<string>("--site-id", description: "key: id of site");
+            var siteIdOption = new Option<string>("--site-id", description: "key: id of site") {
+            };
             siteIdOption.IsRequired = true;
             command.AddOption(siteIdOption);
-            var pathOption = new Option<string>("--path", description: "Usage: path={path}");
+            var pathOption = new Option<string>("--path", description: "Usage: path={path}") {
+            };
             pathOption.IsRequired = true;
             command.AddOption(pathOption);
-            command.Handler = CommandHandler.Create<string, string>(async (siteId, path) => {
+            command.SetHandler(async (string siteId, string path) => {
                 var requestInfo = CreateGetRequestInformation(q => {
                 });
                 var result = await RequestAdapter.SendAsync<GetByPathWithPathResponse>(requestInfo);
@@ -43,7 +45,7 @@ namespace ApiSdk.Sites.Item.GetByPathWithPath {
                 using var reader = new StreamReader(content);
                 var strContent = await reader.ReadToEndAsync();
                 Console.Write(strContent + "\n");
-            });
+            }, siteIdOption, pathOption);
             return command;
         }
         /// <summary>
@@ -68,7 +70,7 @@ namespace ApiSdk.Sites.Item.GetByPathWithPath {
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
             var requestInfo = new RequestInformation {
-                HttpMethod = HttpMethod.GET,
+                HttpMethod = Method.GET,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };

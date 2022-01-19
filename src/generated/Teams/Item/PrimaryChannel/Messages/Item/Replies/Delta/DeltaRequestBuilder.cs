@@ -25,13 +25,15 @@ namespace ApiSdk.Teams.Item.PrimaryChannel.Messages.Item.Replies.Delta {
             var command = new Command("get");
             command.Description = "Invoke function delta";
             // Create options for all the parameters
-            var teamIdOption = new Option<string>("--team-id", description: "key: id of team");
+            var teamIdOption = new Option<string>("--team-id", description: "key: id of team") {
+            };
             teamIdOption.IsRequired = true;
             command.AddOption(teamIdOption);
-            var chatMessageIdOption = new Option<string>("--chatmessage-id", description: "key: id of chatMessage");
+            var chatMessageIdOption = new Option<string>("--chatmessage-id", description: "key: id of chatMessage") {
+            };
             chatMessageIdOption.IsRequired = true;
             command.AddOption(chatMessageIdOption);
-            command.Handler = CommandHandler.Create<string, string>(async (teamId, chatMessageId) => {
+            command.SetHandler(async (string teamId, string chatMessageId) => {
                 var requestInfo = CreateGetRequestInformation(q => {
                 });
                 var result = await RequestAdapter.SendCollectionAsync<ApiSdk.Teams.Item.PrimaryChannel.Messages.Item.Replies.Delta.Delta>(requestInfo);
@@ -42,7 +44,7 @@ namespace ApiSdk.Teams.Item.PrimaryChannel.Messages.Item.Replies.Delta {
                 using var reader = new StreamReader(content);
                 var strContent = await reader.ReadToEndAsync();
                 Console.Write(strContent + "\n");
-            });
+            }, teamIdOption, chatMessageIdOption);
             return command;
         }
         /// <summary>
@@ -65,7 +67,7 @@ namespace ApiSdk.Teams.Item.PrimaryChannel.Messages.Item.Replies.Delta {
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
             var requestInfo = new RequestInformation {
-                HttpMethod = HttpMethod.GET,
+                HttpMethod = Method.GET,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };

@@ -24,7 +24,7 @@ namespace ApiSdk.Models.Microsoft.Graph {
         /// </summary>
         public IDictionary<string, Action<T, IParseNode>> GetFieldDeserializers<T>() {
             return new Dictionary<string, Action<T, IParseNode>> {
-                {"@Alias", (o,n) => { (o as DriveRecipient).@Alias = n.GetStringValue(); } },
+                {"alias", (o,n) => { (o as DriveRecipient).@Alias = n.GetStringValue(); } },
                 {"email", (o,n) => { (o as DriveRecipient).Email = n.GetStringValue(); } },
                 {"objectId", (o,n) => { (o as DriveRecipient).ObjectId = n.GetStringValue(); } },
             };
@@ -35,7 +35,7 @@ namespace ApiSdk.Models.Microsoft.Graph {
         /// </summary>
         public void Serialize(ISerializationWriter writer) {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
-            writer.WriteStringValue("@Alias", @Alias);
+            writer.WriteStringValue("alias", @Alias);
             writer.WriteStringValue("email", Email);
             writer.WriteStringValue("objectId", ObjectId);
             writer.WriteAdditionalData(AdditionalData);

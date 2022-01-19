@@ -26,19 +26,21 @@ namespace ApiSdk.ServicePrincipals.Item.DelegatedPermissionClassifications.Item 
             var command = new Command("delete");
             command.Description = "The permission classifications for delegated permissions exposed by the app that this service principal represents. Supports $expand.";
             // Create options for all the parameters
-            var servicePrincipalIdOption = new Option<string>("--serviceprincipal-id", description: "key: id of servicePrincipal");
+            var servicePrincipalIdOption = new Option<string>("--serviceprincipal-id", description: "key: id of servicePrincipal") {
+            };
             servicePrincipalIdOption.IsRequired = true;
             command.AddOption(servicePrincipalIdOption);
-            var delegatedPermissionClassificationIdOption = new Option<string>("--delegatedpermissionclassification-id", description: "key: id of delegatedPermissionClassification");
+            var delegatedPermissionClassificationIdOption = new Option<string>("--delegatedpermissionclassification-id", description: "key: id of delegatedPermissionClassification") {
+            };
             delegatedPermissionClassificationIdOption.IsRequired = true;
             command.AddOption(delegatedPermissionClassificationIdOption);
-            command.Handler = CommandHandler.Create<string, string>(async (servicePrincipalId, delegatedPermissionClassificationId) => {
+            command.SetHandler(async (string servicePrincipalId, string delegatedPermissionClassificationId) => {
                 var requestInfo = CreateDeleteRequestInformation(q => {
                 });
                 await RequestAdapter.SendNoContentAsync(requestInfo);
                 // Print request output. What if the request has no return?
                 Console.WriteLine("Success");
-            });
+            }, servicePrincipalIdOption, delegatedPermissionClassificationIdOption);
             return command;
         }
         /// <summary>
@@ -48,21 +50,25 @@ namespace ApiSdk.ServicePrincipals.Item.DelegatedPermissionClassifications.Item 
             var command = new Command("get");
             command.Description = "The permission classifications for delegated permissions exposed by the app that this service principal represents. Supports $expand.";
             // Create options for all the parameters
-            var servicePrincipalIdOption = new Option<string>("--serviceprincipal-id", description: "key: id of servicePrincipal");
+            var servicePrincipalIdOption = new Option<string>("--serviceprincipal-id", description: "key: id of servicePrincipal") {
+            };
             servicePrincipalIdOption.IsRequired = true;
             command.AddOption(servicePrincipalIdOption);
-            var delegatedPermissionClassificationIdOption = new Option<string>("--delegatedpermissionclassification-id", description: "key: id of delegatedPermissionClassification");
+            var delegatedPermissionClassificationIdOption = new Option<string>("--delegatedpermissionclassification-id", description: "key: id of delegatedPermissionClassification") {
+            };
             delegatedPermissionClassificationIdOption.IsRequired = true;
             command.AddOption(delegatedPermissionClassificationIdOption);
-            var selectOption = new Option<string[]>("--select", description: "Select properties to be returned");
+            var selectOption = new Option<string[]>("--select", description: "Select properties to be returned") {
+                Arity = ArgumentArity.ZeroOrMore
+            };
             selectOption.IsRequired = false;
-            selectOption.Arity = ArgumentArity.ZeroOrMore;
             command.AddOption(selectOption);
-            var expandOption = new Option<string[]>("--expand", description: "Expand related entities");
+            var expandOption = new Option<string[]>("--expand", description: "Expand related entities") {
+                Arity = ArgumentArity.ZeroOrMore
+            };
             expandOption.IsRequired = false;
-            expandOption.Arity = ArgumentArity.ZeroOrMore;
             command.AddOption(expandOption);
-            command.Handler = CommandHandler.Create<string, string, string[], string[]>(async (servicePrincipalId, delegatedPermissionClassificationId, select, expand) => {
+            command.SetHandler(async (string servicePrincipalId, string delegatedPermissionClassificationId, string[] select, string[] expand) => {
                 var requestInfo = CreateGetRequestInformation(q => {
                     q.Select = select;
                     q.Expand = expand;
@@ -75,7 +81,7 @@ namespace ApiSdk.ServicePrincipals.Item.DelegatedPermissionClassifications.Item 
                 using var reader = new StreamReader(content);
                 var strContent = await reader.ReadToEndAsync();
                 Console.Write(strContent + "\n");
-            });
+            }, servicePrincipalIdOption, delegatedPermissionClassificationIdOption, selectOption, expandOption);
             return command;
         }
         /// <summary>
@@ -85,16 +91,19 @@ namespace ApiSdk.ServicePrincipals.Item.DelegatedPermissionClassifications.Item 
             var command = new Command("patch");
             command.Description = "The permission classifications for delegated permissions exposed by the app that this service principal represents. Supports $expand.";
             // Create options for all the parameters
-            var servicePrincipalIdOption = new Option<string>("--serviceprincipal-id", description: "key: id of servicePrincipal");
+            var servicePrincipalIdOption = new Option<string>("--serviceprincipal-id", description: "key: id of servicePrincipal") {
+            };
             servicePrincipalIdOption.IsRequired = true;
             command.AddOption(servicePrincipalIdOption);
-            var delegatedPermissionClassificationIdOption = new Option<string>("--delegatedpermissionclassification-id", description: "key: id of delegatedPermissionClassification");
+            var delegatedPermissionClassificationIdOption = new Option<string>("--delegatedpermissionclassification-id", description: "key: id of delegatedPermissionClassification") {
+            };
             delegatedPermissionClassificationIdOption.IsRequired = true;
             command.AddOption(delegatedPermissionClassificationIdOption);
-            var bodyOption = new Option<string>("--body");
+            var bodyOption = new Option<string>("--body") {
+            };
             bodyOption.IsRequired = true;
             command.AddOption(bodyOption);
-            command.Handler = CommandHandler.Create<string, string, string>(async (servicePrincipalId, delegatedPermissionClassificationId, body) => {
+            command.SetHandler(async (string servicePrincipalId, string delegatedPermissionClassificationId, string body) => {
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<DelegatedPermissionClassification>();
@@ -103,7 +112,7 @@ namespace ApiSdk.ServicePrincipals.Item.DelegatedPermissionClassifications.Item 
                 await RequestAdapter.SendNoContentAsync(requestInfo);
                 // Print request output. What if the request has no return?
                 Console.WriteLine("Success");
-            });
+            }, servicePrincipalIdOption, delegatedPermissionClassificationIdOption, bodyOption);
             return command;
         }
         /// <summary>
@@ -126,7 +135,7 @@ namespace ApiSdk.ServicePrincipals.Item.DelegatedPermissionClassifications.Item 
         /// </summary>
         public RequestInformation CreateDeleteRequestInformation(Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
             var requestInfo = new RequestInformation {
-                HttpMethod = HttpMethod.DELETE,
+                HttpMethod = Method.DELETE,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };
@@ -142,7 +151,7 @@ namespace ApiSdk.ServicePrincipals.Item.DelegatedPermissionClassifications.Item 
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<GetQueryParameters> q = default, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
             var requestInfo = new RequestInformation {
-                HttpMethod = HttpMethod.GET,
+                HttpMethod = Method.GET,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };
@@ -164,7 +173,7 @@ namespace ApiSdk.ServicePrincipals.Item.DelegatedPermissionClassifications.Item 
         public RequestInformation CreatePatchRequestInformation(DelegatedPermissionClassification body, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
             _ = body ?? throw new ArgumentNullException(nameof(body));
             var requestInfo = new RequestInformation {
-                HttpMethod = HttpMethod.PATCH,
+                HttpMethod = Method.PATCH,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };

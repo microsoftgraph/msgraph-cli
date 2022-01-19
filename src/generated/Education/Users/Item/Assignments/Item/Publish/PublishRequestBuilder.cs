@@ -26,13 +26,15 @@ namespace ApiSdk.Education.Users.Item.Assignments.Item.Publish {
             var command = new Command("post");
             command.Description = "Invoke action publish";
             // Create options for all the parameters
-            var educationUserIdOption = new Option<string>("--educationuser-id", description: "key: id of educationUser");
+            var educationUserIdOption = new Option<string>("--educationuser-id", description: "key: id of educationUser") {
+            };
             educationUserIdOption.IsRequired = true;
             command.AddOption(educationUserIdOption);
-            var educationAssignmentIdOption = new Option<string>("--educationassignment-id", description: "key: id of educationAssignment");
+            var educationAssignmentIdOption = new Option<string>("--educationassignment-id", description: "key: id of educationAssignment") {
+            };
             educationAssignmentIdOption.IsRequired = true;
             command.AddOption(educationAssignmentIdOption);
-            command.Handler = CommandHandler.Create<string, string>(async (educationUserId, educationAssignmentId) => {
+            command.SetHandler(async (string educationUserId, string educationAssignmentId) => {
                 var requestInfo = CreatePostRequestInformation(q => {
                 });
                 var result = await RequestAdapter.SendAsync<PublishResponse>(requestInfo);
@@ -43,7 +45,7 @@ namespace ApiSdk.Education.Users.Item.Assignments.Item.Publish {
                 using var reader = new StreamReader(content);
                 var strContent = await reader.ReadToEndAsync();
                 Console.Write(strContent + "\n");
-            });
+            }, educationUserIdOption, educationAssignmentIdOption);
             return command;
         }
         /// <summary>
@@ -66,7 +68,7 @@ namespace ApiSdk.Education.Users.Item.Assignments.Item.Publish {
         /// </summary>
         public RequestInformation CreatePostRequestInformation(Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
             var requestInfo = new RequestInformation {
-                HttpMethod = HttpMethod.POST,
+                HttpMethod = Method.POST,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };

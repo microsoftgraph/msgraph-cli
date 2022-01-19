@@ -25,19 +25,23 @@ namespace ApiSdk.Sites.Item.GetActivitiesByIntervalWithStartDateTimeWithEndDateT
             var command = new Command("get");
             command.Description = "Invoke function getActivitiesByInterval";
             // Create options for all the parameters
-            var siteIdOption = new Option<string>("--site-id", description: "key: id of site");
+            var siteIdOption = new Option<string>("--site-id", description: "key: id of site") {
+            };
             siteIdOption.IsRequired = true;
             command.AddOption(siteIdOption);
-            var startDateTimeOption = new Option<string>("--startdatetime", description: "Usage: startDateTime={startDateTime}");
+            var startDateTimeOption = new Option<string>("--startdatetime", description: "Usage: startDateTime={startDateTime}") {
+            };
             startDateTimeOption.IsRequired = true;
             command.AddOption(startDateTimeOption);
-            var endDateTimeOption = new Option<string>("--enddatetime", description: "Usage: endDateTime={endDateTime}");
+            var endDateTimeOption = new Option<string>("--enddatetime", description: "Usage: endDateTime={endDateTime}") {
+            };
             endDateTimeOption.IsRequired = true;
             command.AddOption(endDateTimeOption);
-            var intervalOption = new Option<string>("--interval", description: "Usage: interval={interval}");
+            var intervalOption = new Option<string>("--interval", description: "Usage: interval={interval}") {
+            };
             intervalOption.IsRequired = true;
             command.AddOption(intervalOption);
-            command.Handler = CommandHandler.Create<string, string, string, string>(async (siteId, startDateTime, endDateTime, interval) => {
+            command.SetHandler(async (string siteId, string startDateTime, string endDateTime, string interval) => {
                 var requestInfo = CreateGetRequestInformation(q => {
                 });
                 var result = await RequestAdapter.SendCollectionAsync<ApiSdk.Sites.Item.GetActivitiesByIntervalWithStartDateTimeWithEndDateTimeWithInterval.GetActivitiesByIntervalWithStartDateTimeWithEndDateTimeWithInterval>(requestInfo);
@@ -48,7 +52,7 @@ namespace ApiSdk.Sites.Item.GetActivitiesByIntervalWithStartDateTimeWithEndDateT
                 using var reader = new StreamReader(content);
                 var strContent = await reader.ReadToEndAsync();
                 Console.Write(strContent + "\n");
-            });
+            }, siteIdOption, startDateTimeOption, endDateTimeOption, intervalOption);
             return command;
         }
         /// <summary>
@@ -77,7 +81,7 @@ namespace ApiSdk.Sites.Item.GetActivitiesByIntervalWithStartDateTimeWithEndDateT
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
             var requestInfo = new RequestInformation {
-                HttpMethod = HttpMethod.GET,
+                HttpMethod = Method.GET,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };

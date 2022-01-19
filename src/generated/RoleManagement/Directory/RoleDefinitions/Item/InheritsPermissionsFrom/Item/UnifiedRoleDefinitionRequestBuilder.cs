@@ -26,19 +26,21 @@ namespace ApiSdk.RoleManagement.Directory.RoleDefinitions.Item.InheritsPermissio
             var command = new Command("delete");
             command.Description = "Read-only collection of role definitions that the given role definition inherits from. Only Azure AD built-in roles support this attribute.";
             // Create options for all the parameters
-            var unifiedRoleDefinitionIdOption = new Option<string>("--unifiedroledefinition-id", description: "key: id of unifiedRoleDefinition");
+            var unifiedRoleDefinitionIdOption = new Option<string>("--unifiedroledefinition-id", description: "key: id of unifiedRoleDefinition") {
+            };
             unifiedRoleDefinitionIdOption.IsRequired = true;
             command.AddOption(unifiedRoleDefinitionIdOption);
-            var unifiedRoleDefinitionId1Option = new Option<string>("--unifiedroledefinition-id1", description: "key: id of unifiedRoleDefinition");
+            var unifiedRoleDefinitionId1Option = new Option<string>("--unifiedroledefinition-id1", description: "key: id of unifiedRoleDefinition") {
+            };
             unifiedRoleDefinitionId1Option.IsRequired = true;
             command.AddOption(unifiedRoleDefinitionId1Option);
-            command.Handler = CommandHandler.Create<string, string>(async (unifiedRoleDefinitionId, unifiedRoleDefinitionId1) => {
+            command.SetHandler(async (string unifiedRoleDefinitionId, string unifiedRoleDefinitionId1) => {
                 var requestInfo = CreateDeleteRequestInformation(q => {
                 });
                 await RequestAdapter.SendNoContentAsync(requestInfo);
                 // Print request output. What if the request has no return?
                 Console.WriteLine("Success");
-            });
+            }, unifiedRoleDefinitionIdOption, unifiedRoleDefinitionId1Option);
             return command;
         }
         /// <summary>
@@ -48,21 +50,25 @@ namespace ApiSdk.RoleManagement.Directory.RoleDefinitions.Item.InheritsPermissio
             var command = new Command("get");
             command.Description = "Read-only collection of role definitions that the given role definition inherits from. Only Azure AD built-in roles support this attribute.";
             // Create options for all the parameters
-            var unifiedRoleDefinitionIdOption = new Option<string>("--unifiedroledefinition-id", description: "key: id of unifiedRoleDefinition");
+            var unifiedRoleDefinitionIdOption = new Option<string>("--unifiedroledefinition-id", description: "key: id of unifiedRoleDefinition") {
+            };
             unifiedRoleDefinitionIdOption.IsRequired = true;
             command.AddOption(unifiedRoleDefinitionIdOption);
-            var unifiedRoleDefinitionId1Option = new Option<string>("--unifiedroledefinition-id1", description: "key: id of unifiedRoleDefinition");
+            var unifiedRoleDefinitionId1Option = new Option<string>("--unifiedroledefinition-id1", description: "key: id of unifiedRoleDefinition") {
+            };
             unifiedRoleDefinitionId1Option.IsRequired = true;
             command.AddOption(unifiedRoleDefinitionId1Option);
-            var selectOption = new Option<string[]>("--select", description: "Select properties to be returned");
+            var selectOption = new Option<string[]>("--select", description: "Select properties to be returned") {
+                Arity = ArgumentArity.ZeroOrMore
+            };
             selectOption.IsRequired = false;
-            selectOption.Arity = ArgumentArity.ZeroOrMore;
             command.AddOption(selectOption);
-            var expandOption = new Option<string[]>("--expand", description: "Expand related entities");
+            var expandOption = new Option<string[]>("--expand", description: "Expand related entities") {
+                Arity = ArgumentArity.ZeroOrMore
+            };
             expandOption.IsRequired = false;
-            expandOption.Arity = ArgumentArity.ZeroOrMore;
             command.AddOption(expandOption);
-            command.Handler = CommandHandler.Create<string, string, string[], string[]>(async (unifiedRoleDefinitionId, unifiedRoleDefinitionId1, select, expand) => {
+            command.SetHandler(async (string unifiedRoleDefinitionId, string unifiedRoleDefinitionId1, string[] select, string[] expand) => {
                 var requestInfo = CreateGetRequestInformation(q => {
                     q.Select = select;
                     q.Expand = expand;
@@ -75,7 +81,7 @@ namespace ApiSdk.RoleManagement.Directory.RoleDefinitions.Item.InheritsPermissio
                 using var reader = new StreamReader(content);
                 var strContent = await reader.ReadToEndAsync();
                 Console.Write(strContent + "\n");
-            });
+            }, unifiedRoleDefinitionIdOption, unifiedRoleDefinitionId1Option, selectOption, expandOption);
             return command;
         }
         /// <summary>
@@ -85,16 +91,19 @@ namespace ApiSdk.RoleManagement.Directory.RoleDefinitions.Item.InheritsPermissio
             var command = new Command("patch");
             command.Description = "Read-only collection of role definitions that the given role definition inherits from. Only Azure AD built-in roles support this attribute.";
             // Create options for all the parameters
-            var unifiedRoleDefinitionIdOption = new Option<string>("--unifiedroledefinition-id", description: "key: id of unifiedRoleDefinition");
+            var unifiedRoleDefinitionIdOption = new Option<string>("--unifiedroledefinition-id", description: "key: id of unifiedRoleDefinition") {
+            };
             unifiedRoleDefinitionIdOption.IsRequired = true;
             command.AddOption(unifiedRoleDefinitionIdOption);
-            var unifiedRoleDefinitionId1Option = new Option<string>("--unifiedroledefinition-id1", description: "key: id of unifiedRoleDefinition");
+            var unifiedRoleDefinitionId1Option = new Option<string>("--unifiedroledefinition-id1", description: "key: id of unifiedRoleDefinition") {
+            };
             unifiedRoleDefinitionId1Option.IsRequired = true;
             command.AddOption(unifiedRoleDefinitionId1Option);
-            var bodyOption = new Option<string>("--body");
+            var bodyOption = new Option<string>("--body") {
+            };
             bodyOption.IsRequired = true;
             command.AddOption(bodyOption);
-            command.Handler = CommandHandler.Create<string, string, string>(async (unifiedRoleDefinitionId, unifiedRoleDefinitionId1, body) => {
+            command.SetHandler(async (string unifiedRoleDefinitionId, string unifiedRoleDefinitionId1, string body) => {
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<UnifiedRoleDefinition>();
@@ -103,7 +112,7 @@ namespace ApiSdk.RoleManagement.Directory.RoleDefinitions.Item.InheritsPermissio
                 await RequestAdapter.SendNoContentAsync(requestInfo);
                 // Print request output. What if the request has no return?
                 Console.WriteLine("Success");
-            });
+            }, unifiedRoleDefinitionIdOption, unifiedRoleDefinitionId1Option, bodyOption);
             return command;
         }
         /// <summary>
@@ -126,7 +135,7 @@ namespace ApiSdk.RoleManagement.Directory.RoleDefinitions.Item.InheritsPermissio
         /// </summary>
         public RequestInformation CreateDeleteRequestInformation(Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
             var requestInfo = new RequestInformation {
-                HttpMethod = HttpMethod.DELETE,
+                HttpMethod = Method.DELETE,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };
@@ -142,7 +151,7 @@ namespace ApiSdk.RoleManagement.Directory.RoleDefinitions.Item.InheritsPermissio
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<GetQueryParameters> q = default, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
             var requestInfo = new RequestInformation {
-                HttpMethod = HttpMethod.GET,
+                HttpMethod = Method.GET,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };
@@ -164,7 +173,7 @@ namespace ApiSdk.RoleManagement.Directory.RoleDefinitions.Item.InheritsPermissio
         public RequestInformation CreatePatchRequestInformation(UnifiedRoleDefinition body, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
             _ = body ?? throw new ArgumentNullException(nameof(body));
             var requestInfo = new RequestInformation {
-                HttpMethod = HttpMethod.PATCH,
+                HttpMethod = Method.PATCH,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };

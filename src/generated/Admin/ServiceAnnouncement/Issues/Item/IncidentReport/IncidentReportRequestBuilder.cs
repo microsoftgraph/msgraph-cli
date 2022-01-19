@@ -25,11 +25,13 @@ namespace ApiSdk.Admin.ServiceAnnouncement.Issues.Item.IncidentReport {
             var command = new Command("get");
             command.Description = "Invoke function incidentReport";
             // Create options for all the parameters
-            var serviceHealthIssueIdOption = new Option<string>("--servicehealthissue-id", description: "key: id of serviceHealthIssue");
+            var serviceHealthIssueIdOption = new Option<string>("--servicehealthissue-id", description: "key: id of serviceHealthIssue") {
+            };
             serviceHealthIssueIdOption.IsRequired = true;
             command.AddOption(serviceHealthIssueIdOption);
-            command.AddOption(new Option<FileInfo>("--output"));
-            command.Handler = CommandHandler.Create<string, FileInfo>(async (serviceHealthIssueId, output) => {
+            var outputOption = new Option<FileInfo>("--output");
+            command.AddOption(outputOption);
+            command.SetHandler(async (string serviceHealthIssueId, FileInfo output) => {
                 var requestInfo = CreateGetRequestInformation(q => {
                 });
                 var result = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
@@ -44,7 +46,7 @@ namespace ApiSdk.Admin.ServiceAnnouncement.Issues.Item.IncidentReport {
                     await result.CopyToAsync(writeStream);
                     Console.WriteLine($"Content written to {output.FullName}.");
                 }
-            });
+            }, serviceHealthIssueIdOption, outputOption);
             return command;
         }
         /// <summary>
@@ -67,7 +69,7 @@ namespace ApiSdk.Admin.ServiceAnnouncement.Issues.Item.IncidentReport {
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
             var requestInfo = new RequestInformation {
-                HttpMethod = HttpMethod.GET,
+                HttpMethod = Method.GET,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };

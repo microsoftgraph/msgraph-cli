@@ -25,25 +25,29 @@ namespace ApiSdk.Sites.Item.TermStores.Item.Sets.Item.Children.Item.Set.@Ref {
             var command = new Command("delete");
             command.Description = "The [set] in which the term is created.";
             // Create options for all the parameters
-            var siteIdOption = new Option<string>("--site-id", description: "key: id of site");
+            var siteIdOption = new Option<string>("--site-id", description: "key: id of site") {
+            };
             siteIdOption.IsRequired = true;
             command.AddOption(siteIdOption);
-            var storeIdOption = new Option<string>("--store-id", description: "key: id of store");
+            var storeIdOption = new Option<string>("--store-id", description: "key: id of store") {
+            };
             storeIdOption.IsRequired = true;
             command.AddOption(storeIdOption);
-            var setIdOption = new Option<string>("--set-id", description: "key: id of set");
+            var setIdOption = new Option<string>("--set-id", description: "key: id of set") {
+            };
             setIdOption.IsRequired = true;
             command.AddOption(setIdOption);
-            var termIdOption = new Option<string>("--term-id", description: "key: id of term");
+            var termIdOption = new Option<string>("--term-id", description: "key: id of term") {
+            };
             termIdOption.IsRequired = true;
             command.AddOption(termIdOption);
-            command.Handler = CommandHandler.Create<string, string, string, string>(async (siteId, storeId, setId, termId) => {
+            command.SetHandler(async (string siteId, string storeId, string setId, string termId) => {
                 var requestInfo = CreateDeleteRequestInformation(q => {
                 });
                 await RequestAdapter.SendNoContentAsync(requestInfo);
                 // Print request output. What if the request has no return?
                 Console.WriteLine("Success");
-            });
+            }, siteIdOption, storeIdOption, setIdOption, termIdOption);
             return command;
         }
         /// <summary>
@@ -53,19 +57,23 @@ namespace ApiSdk.Sites.Item.TermStores.Item.Sets.Item.Children.Item.Set.@Ref {
             var command = new Command("get");
             command.Description = "The [set] in which the term is created.";
             // Create options for all the parameters
-            var siteIdOption = new Option<string>("--site-id", description: "key: id of site");
+            var siteIdOption = new Option<string>("--site-id", description: "key: id of site") {
+            };
             siteIdOption.IsRequired = true;
             command.AddOption(siteIdOption);
-            var storeIdOption = new Option<string>("--store-id", description: "key: id of store");
+            var storeIdOption = new Option<string>("--store-id", description: "key: id of store") {
+            };
             storeIdOption.IsRequired = true;
             command.AddOption(storeIdOption);
-            var setIdOption = new Option<string>("--set-id", description: "key: id of set");
+            var setIdOption = new Option<string>("--set-id", description: "key: id of set") {
+            };
             setIdOption.IsRequired = true;
             command.AddOption(setIdOption);
-            var termIdOption = new Option<string>("--term-id", description: "key: id of term");
+            var termIdOption = new Option<string>("--term-id", description: "key: id of term") {
+            };
             termIdOption.IsRequired = true;
             command.AddOption(termIdOption);
-            command.Handler = CommandHandler.Create<string, string, string, string>(async (siteId, storeId, setId, termId) => {
+            command.SetHandler(async (string siteId, string storeId, string setId, string termId) => {
                 var requestInfo = CreateGetRequestInformation(q => {
                 });
                 var result = await RequestAdapter.SendPrimitiveAsync<string>(requestInfo);
@@ -76,7 +84,7 @@ namespace ApiSdk.Sites.Item.TermStores.Item.Sets.Item.Children.Item.Set.@Ref {
                 using var reader = new StreamReader(content);
                 var strContent = await reader.ReadToEndAsync();
                 Console.Write(strContent + "\n");
-            });
+            }, siteIdOption, storeIdOption, setIdOption, termIdOption);
             return command;
         }
         /// <summary>
@@ -86,22 +94,27 @@ namespace ApiSdk.Sites.Item.TermStores.Item.Sets.Item.Children.Item.Set.@Ref {
             var command = new Command("put");
             command.Description = "The [set] in which the term is created.";
             // Create options for all the parameters
-            var siteIdOption = new Option<string>("--site-id", description: "key: id of site");
+            var siteIdOption = new Option<string>("--site-id", description: "key: id of site") {
+            };
             siteIdOption.IsRequired = true;
             command.AddOption(siteIdOption);
-            var storeIdOption = new Option<string>("--store-id", description: "key: id of store");
+            var storeIdOption = new Option<string>("--store-id", description: "key: id of store") {
+            };
             storeIdOption.IsRequired = true;
             command.AddOption(storeIdOption);
-            var setIdOption = new Option<string>("--set-id", description: "key: id of set");
+            var setIdOption = new Option<string>("--set-id", description: "key: id of set") {
+            };
             setIdOption.IsRequired = true;
             command.AddOption(setIdOption);
-            var termIdOption = new Option<string>("--term-id", description: "key: id of term");
+            var termIdOption = new Option<string>("--term-id", description: "key: id of term") {
+            };
             termIdOption.IsRequired = true;
             command.AddOption(termIdOption);
-            var bodyOption = new Option<string>("--body");
+            var bodyOption = new Option<string>("--body") {
+            };
             bodyOption.IsRequired = true;
             command.AddOption(bodyOption);
-            command.Handler = CommandHandler.Create<string, string, string, string, string>(async (siteId, storeId, setId, termId, body) => {
+            command.SetHandler(async (string siteId, string storeId, string setId, string termId, string body) => {
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<ApiSdk.Sites.Item.TermStores.Item.Sets.Item.Children.Item.Set.@Ref.@Ref>();
@@ -110,7 +123,7 @@ namespace ApiSdk.Sites.Item.TermStores.Item.Sets.Item.Children.Item.Set.@Ref {
                 await RequestAdapter.SendNoContentAsync(requestInfo);
                 // Print request output. What if the request has no return?
                 Console.WriteLine("Success");
-            });
+            }, siteIdOption, storeIdOption, setIdOption, termIdOption, bodyOption);
             return command;
         }
         /// <summary>
@@ -133,7 +146,7 @@ namespace ApiSdk.Sites.Item.TermStores.Item.Sets.Item.Children.Item.Set.@Ref {
         /// </summary>
         public RequestInformation CreateDeleteRequestInformation(Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
             var requestInfo = new RequestInformation {
-                HttpMethod = HttpMethod.DELETE,
+                HttpMethod = Method.DELETE,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };
@@ -148,7 +161,7 @@ namespace ApiSdk.Sites.Item.TermStores.Item.Sets.Item.Children.Item.Set.@Ref {
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
             var requestInfo = new RequestInformation {
-                HttpMethod = HttpMethod.GET,
+                HttpMethod = Method.GET,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };
@@ -165,7 +178,7 @@ namespace ApiSdk.Sites.Item.TermStores.Item.Sets.Item.Children.Item.Set.@Ref {
         public RequestInformation CreatePutRequestInformation(ApiSdk.Sites.Item.TermStores.Item.Sets.Item.Children.Item.Set.@Ref.@Ref body, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
             _ = body ?? throw new ArgumentNullException(nameof(body));
             var requestInfo = new RequestInformation {
-                HttpMethod = HttpMethod.PUT,
+                HttpMethod = Method.PUT,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };
