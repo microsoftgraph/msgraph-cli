@@ -25,18 +25,24 @@ namespace ApiSdk.DeviceManagement.ExchangeConnectors.Item.Sync {
             var command = new Command("post");
             command.Description = "Invoke action sync";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--devicemanagementexchangeconnector-id", description: "key: id of deviceManagementExchangeConnector"));
-            command.AddOption(new Option<string>("--body"));
-            command.Handler = CommandHandler.Create<string, string>(async (deviceManagementExchangeConnectorId, body) => {
+            var deviceManagementExchangeConnectorIdOption = new Option<string>("--devicemanagementexchangeconnector-id", description: "key: id of deviceManagementExchangeConnector") {
+            };
+            deviceManagementExchangeConnectorIdOption.IsRequired = true;
+            command.AddOption(deviceManagementExchangeConnectorIdOption);
+            var bodyOption = new Option<string>("--body") {
+            };
+            bodyOption.IsRequired = true;
+            command.AddOption(bodyOption);
+            command.SetHandler(async (string deviceManagementExchangeConnectorId, string body) => {
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<SyncRequestBody>();
-                var requestInfo = CreatePostRequestInformation(model);
-                if (!String.IsNullOrEmpty(deviceManagementExchangeConnectorId)) requestInfo.PathParameters.Add("deviceManagementExchangeConnector_id", deviceManagementExchangeConnectorId);
+                var requestInfo = CreatePostRequestInformation(model, q => {
+                });
                 await RequestAdapter.SendNoContentAsync(requestInfo);
                 // Print request output. What if the request has no return?
                 Console.WriteLine("Success");
-            });
+            }, deviceManagementExchangeConnectorIdOption, bodyOption);
             return command;
         }
         /// <summary>
@@ -61,7 +67,7 @@ namespace ApiSdk.DeviceManagement.ExchangeConnectors.Item.Sync {
         public RequestInformation CreatePostRequestInformation(SyncRequestBody body, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
             _ = body ?? throw new ArgumentNullException(nameof(body));
             var requestInfo = new RequestInformation {
-                HttpMethod = HttpMethod.POST,
+                HttpMethod = Method.POST,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };

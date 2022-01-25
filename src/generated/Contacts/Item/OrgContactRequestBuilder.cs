@@ -47,14 +47,17 @@ namespace ApiSdk.Contacts.Item {
             var command = new Command("delete");
             command.Description = "Delete entity from contacts";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--orgcontact-id", description: "key: id of orgContact"));
-            command.Handler = CommandHandler.Create<string>(async (orgContactId) => {
-                var requestInfo = CreateDeleteRequestInformation();
-                if (!String.IsNullOrEmpty(orgContactId)) requestInfo.PathParameters.Add("orgContact_id", orgContactId);
+            var orgContactIdOption = new Option<string>("--orgcontact-id", description: "key: id of orgContact") {
+            };
+            orgContactIdOption.IsRequired = true;
+            command.AddOption(orgContactIdOption);
+            command.SetHandler(async (string orgContactId) => {
+                var requestInfo = CreateDeleteRequestInformation(q => {
+                });
                 await RequestAdapter.SendNoContentAsync(requestInfo);
                 // Print request output. What if the request has no return?
                 Console.WriteLine("Success");
-            });
+            }, orgContactIdOption);
             return command;
         }
         public Command BuildDirectReportsCommand() {
@@ -71,14 +74,25 @@ namespace ApiSdk.Contacts.Item {
             var command = new Command("get");
             command.Description = "Get entity from contacts by key";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--orgcontact-id", description: "key: id of orgContact"));
-            command.AddOption(new Option<object>("--select", description: "Select properties to be returned"));
-            command.AddOption(new Option<object>("--expand", description: "Expand related entities"));
-            command.Handler = CommandHandler.Create<string, object, object>(async (orgContactId, select, expand) => {
-                var requestInfo = CreateGetRequestInformation();
-                if (!String.IsNullOrEmpty(orgContactId)) requestInfo.PathParameters.Add("orgContact_id", orgContactId);
-                requestInfo.QueryParameters.Add("select", select);
-                requestInfo.QueryParameters.Add("expand", expand);
+            var orgContactIdOption = new Option<string>("--orgcontact-id", description: "key: id of orgContact") {
+            };
+            orgContactIdOption.IsRequired = true;
+            command.AddOption(orgContactIdOption);
+            var selectOption = new Option<string[]>("--select", description: "Select properties to be returned") {
+                Arity = ArgumentArity.ZeroOrMore
+            };
+            selectOption.IsRequired = false;
+            command.AddOption(selectOption);
+            var expandOption = new Option<string[]>("--expand", description: "Expand related entities") {
+                Arity = ArgumentArity.ZeroOrMore
+            };
+            expandOption.IsRequired = false;
+            command.AddOption(expandOption);
+            command.SetHandler(async (string orgContactId, string[] select, string[] expand) => {
+                var requestInfo = CreateGetRequestInformation(q => {
+                    q.Select = select;
+                    q.Expand = expand;
+                });
                 var result = await RequestAdapter.SendAsync<OrgContact>(requestInfo);
                 // Print request output. What if the request has no return?
                 using var serializer = RequestAdapter.SerializationWriterFactory.GetSerializationWriter("application/json");
@@ -87,7 +101,7 @@ namespace ApiSdk.Contacts.Item {
                 using var reader = new StreamReader(content);
                 var strContent = await reader.ReadToEndAsync();
                 Console.Write(strContent + "\n");
-            });
+            }, orgContactIdOption, selectOption, expandOption);
             return command;
         }
         public Command BuildGetMemberGroupsCommand() {
@@ -123,18 +137,24 @@ namespace ApiSdk.Contacts.Item {
             var command = new Command("patch");
             command.Description = "Update entity in contacts";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--orgcontact-id", description: "key: id of orgContact"));
-            command.AddOption(new Option<string>("--body"));
-            command.Handler = CommandHandler.Create<string, string>(async (orgContactId, body) => {
+            var orgContactIdOption = new Option<string>("--orgcontact-id", description: "key: id of orgContact") {
+            };
+            orgContactIdOption.IsRequired = true;
+            command.AddOption(orgContactIdOption);
+            var bodyOption = new Option<string>("--body") {
+            };
+            bodyOption.IsRequired = true;
+            command.AddOption(bodyOption);
+            command.SetHandler(async (string orgContactId, string body) => {
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<OrgContact>();
-                var requestInfo = CreatePatchRequestInformation(model);
-                if (!String.IsNullOrEmpty(orgContactId)) requestInfo.PathParameters.Add("orgContact_id", orgContactId);
+                var requestInfo = CreatePatchRequestInformation(model, q => {
+                });
                 await RequestAdapter.SendNoContentAsync(requestInfo);
                 // Print request output. What if the request has no return?
                 Console.WriteLine("Success");
-            });
+            }, orgContactIdOption, bodyOption);
             return command;
         }
         public Command BuildRestoreCommand() {
@@ -170,7 +190,7 @@ namespace ApiSdk.Contacts.Item {
         /// </summary>
         public RequestInformation CreateDeleteRequestInformation(Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
             var requestInfo = new RequestInformation {
-                HttpMethod = HttpMethod.DELETE,
+                HttpMethod = Method.DELETE,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };
@@ -186,7 +206,7 @@ namespace ApiSdk.Contacts.Item {
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<GetQueryParameters> q = default, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
             var requestInfo = new RequestInformation {
-                HttpMethod = HttpMethod.GET,
+                HttpMethod = Method.GET,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };
@@ -208,7 +228,7 @@ namespace ApiSdk.Contacts.Item {
         public RequestInformation CreatePatchRequestInformation(OrgContact body, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
             _ = body ?? throw new ArgumentNullException(nameof(body));
             var requestInfo = new RequestInformation {
-                HttpMethod = HttpMethod.PATCH,
+                HttpMethod = Method.PATCH,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };

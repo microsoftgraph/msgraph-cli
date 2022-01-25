@@ -26,12 +26,17 @@ namespace ApiSdk.Users.Item.Insights.Shared.Item.LastSharedMethod.CalendarSharin
             var command = new Command("post");
             command.Description = "Invoke action accept";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--user-id", description: "key: id of user"));
-            command.AddOption(new Option<string>("--sharedinsight-id", description: "key: id of sharedInsight"));
-            command.Handler = CommandHandler.Create<string, string>(async (userId, sharedInsightId) => {
-                var requestInfo = CreatePostRequestInformation();
-                if (!String.IsNullOrEmpty(userId)) requestInfo.PathParameters.Add("user_id", userId);
-                if (!String.IsNullOrEmpty(sharedInsightId)) requestInfo.PathParameters.Add("sharedInsight_id", sharedInsightId);
+            var userIdOption = new Option<string>("--user-id", description: "key: id of user") {
+            };
+            userIdOption.IsRequired = true;
+            command.AddOption(userIdOption);
+            var sharedInsightIdOption = new Option<string>("--sharedinsight-id", description: "key: id of sharedInsight") {
+            };
+            sharedInsightIdOption.IsRequired = true;
+            command.AddOption(sharedInsightIdOption);
+            command.SetHandler(async (string userId, string sharedInsightId) => {
+                var requestInfo = CreatePostRequestInformation(q => {
+                });
                 var result = await RequestAdapter.SendAsync<ApiSdk.Models.Microsoft.Graph.Calendar>(requestInfo);
                 // Print request output. What if the request has no return?
                 using var serializer = RequestAdapter.SerializationWriterFactory.GetSerializationWriter("application/json");
@@ -40,7 +45,7 @@ namespace ApiSdk.Users.Item.Insights.Shared.Item.LastSharedMethod.CalendarSharin
                 using var reader = new StreamReader(content);
                 var strContent = await reader.ReadToEndAsync();
                 Console.Write(strContent + "\n");
-            });
+            }, userIdOption, sharedInsightIdOption);
             return command;
         }
         /// <summary>
@@ -63,7 +68,7 @@ namespace ApiSdk.Users.Item.Insights.Shared.Item.LastSharedMethod.CalendarSharin
         /// </summary>
         public RequestInformation CreatePostRequestInformation(Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
             var requestInfo = new RequestInformation {
-                HttpMethod = HttpMethod.POST,
+                HttpMethod = Method.POST,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };

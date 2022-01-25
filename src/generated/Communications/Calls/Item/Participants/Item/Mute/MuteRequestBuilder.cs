@@ -26,16 +26,24 @@ namespace ApiSdk.Communications.Calls.Item.Participants.Item.Mute {
             var command = new Command("post");
             command.Description = "Invoke action mute";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--call-id", description: "key: id of call"));
-            command.AddOption(new Option<string>("--participant-id", description: "key: id of participant"));
-            command.AddOption(new Option<string>("--body"));
-            command.Handler = CommandHandler.Create<string, string, string>(async (callId, participantId, body) => {
+            var callIdOption = new Option<string>("--call-id", description: "key: id of call") {
+            };
+            callIdOption.IsRequired = true;
+            command.AddOption(callIdOption);
+            var participantIdOption = new Option<string>("--participant-id", description: "key: id of participant") {
+            };
+            participantIdOption.IsRequired = true;
+            command.AddOption(participantIdOption);
+            var bodyOption = new Option<string>("--body") {
+            };
+            bodyOption.IsRequired = true;
+            command.AddOption(bodyOption);
+            command.SetHandler(async (string callId, string participantId, string body) => {
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<MuteRequestBody>();
-                var requestInfo = CreatePostRequestInformation(model);
-                if (!String.IsNullOrEmpty(callId)) requestInfo.PathParameters.Add("call_id", callId);
-                if (!String.IsNullOrEmpty(participantId)) requestInfo.PathParameters.Add("participant_id", participantId);
+                var requestInfo = CreatePostRequestInformation(model, q => {
+                });
                 var result = await RequestAdapter.SendAsync<MuteResponse>(requestInfo);
                 // Print request output. What if the request has no return?
                 using var serializer = RequestAdapter.SerializationWriterFactory.GetSerializationWriter("application/json");
@@ -44,7 +52,7 @@ namespace ApiSdk.Communications.Calls.Item.Participants.Item.Mute {
                 using var reader = new StreamReader(content);
                 var strContent = await reader.ReadToEndAsync();
                 Console.Write(strContent + "\n");
-            });
+            }, callIdOption, participantIdOption, bodyOption);
             return command;
         }
         /// <summary>
@@ -69,7 +77,7 @@ namespace ApiSdk.Communications.Calls.Item.Participants.Item.Mute {
         public RequestInformation CreatePostRequestInformation(MuteRequestBody body, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
             _ = body ?? throw new ArgumentNullException(nameof(body));
             var requestInfo = new RequestInformation {
-                HttpMethod = HttpMethod.POST,
+                HttpMethod = Method.POST,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };

@@ -21,20 +21,31 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.Assignments.Item.Targe
         /// <summary>Url template to use to build the URL for the current request builder</summary>
         private string UrlTemplate { get; set; }
         /// <summary>
-        /// The subject of the access package assignment. Read-only. Nullable.
+        /// The subject of the access package assignment. Read-only. Nullable. Supports $expand. Supports $filter (eq) on objectId.
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "The subject of the access package assignment. Read-only. Nullable.";
+            command.Description = "The subject of the access package assignment. Read-only. Nullable. Supports $expand. Supports $filter (eq) on objectId.";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--accesspackageassignment-id", description: "key: id of accessPackageAssignment"));
-            command.AddOption(new Option<object>("--select", description: "Select properties to be returned"));
-            command.AddOption(new Option<object>("--expand", description: "Expand related entities"));
-            command.Handler = CommandHandler.Create<string, object, object>(async (accessPackageAssignmentId, select, expand) => {
-                var requestInfo = CreateGetRequestInformation();
-                if (!String.IsNullOrEmpty(accessPackageAssignmentId)) requestInfo.PathParameters.Add("accessPackageAssignment_id", accessPackageAssignmentId);
-                requestInfo.QueryParameters.Add("select", select);
-                requestInfo.QueryParameters.Add("expand", expand);
+            var accessPackageAssignmentIdOption = new Option<string>("--accesspackageassignment-id", description: "key: id of accessPackageAssignment") {
+            };
+            accessPackageAssignmentIdOption.IsRequired = true;
+            command.AddOption(accessPackageAssignmentIdOption);
+            var selectOption = new Option<string[]>("--select", description: "Select properties to be returned") {
+                Arity = ArgumentArity.ZeroOrMore
+            };
+            selectOption.IsRequired = false;
+            command.AddOption(selectOption);
+            var expandOption = new Option<string[]>("--expand", description: "Expand related entities") {
+                Arity = ArgumentArity.ZeroOrMore
+            };
+            expandOption.IsRequired = false;
+            command.AddOption(expandOption);
+            command.SetHandler(async (string accessPackageAssignmentId, string[] select, string[] expand) => {
+                var requestInfo = CreateGetRequestInformation(q => {
+                    q.Select = select;
+                    q.Expand = expand;
+                });
                 var result = await RequestAdapter.SendAsync<AccessPackageSubject>(requestInfo);
                 // Print request output. What if the request has no return?
                 using var serializer = RequestAdapter.SerializationWriterFactory.GetSerializationWriter("application/json");
@@ -43,7 +54,7 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.Assignments.Item.Targe
                 using var reader = new StreamReader(content);
                 var strContent = await reader.ReadToEndAsync();
                 Console.Write(strContent + "\n");
-            });
+            }, accessPackageAssignmentIdOption, selectOption, expandOption);
             return command;
         }
         public Command BuildRefCommand() {
@@ -68,14 +79,14 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.Assignments.Item.Targe
             RequestAdapter = requestAdapter;
         }
         /// <summary>
-        /// The subject of the access package assignment. Read-only. Nullable.
+        /// The subject of the access package assignment. Read-only. Nullable. Supports $expand. Supports $filter (eq) on objectId.
         /// <param name="h">Request headers</param>
         /// <param name="o">Request options</param>
         /// <param name="q">Request query parameters</param>
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<GetQueryParameters> q = default, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
             var requestInfo = new RequestInformation {
-                HttpMethod = HttpMethod.GET,
+                HttpMethod = Method.GET,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };
@@ -89,7 +100,7 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.Assignments.Item.Targe
             return requestInfo;
         }
         /// <summary>
-        /// The subject of the access package assignment. Read-only. Nullable.
+        /// The subject of the access package assignment. Read-only. Nullable. Supports $expand. Supports $filter (eq) on objectId.
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="h">Request headers</param>
         /// <param name="o">Request options</param>
@@ -100,7 +111,7 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.Assignments.Item.Targe
             var requestInfo = CreateGetRequestInformation(q, h, o);
             return await RequestAdapter.SendAsync<AccessPackageSubject>(requestInfo, responseHandler, cancellationToken);
         }
-        /// <summary>The subject of the access package assignment. Read-only. Nullable.</summary>
+        /// <summary>The subject of the access package assignment. Read-only. Nullable. Supports $expand. Supports $filter (eq) on objectId.</summary>
         public class GetQueryParameters : QueryParametersBase {
             /// <summary>Expand related entities</summary>
             public string[] Expand { get; set; }

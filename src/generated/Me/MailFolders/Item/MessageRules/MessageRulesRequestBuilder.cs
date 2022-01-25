@@ -36,14 +36,20 @@ namespace ApiSdk.Me.MailFolders.Item.MessageRules {
             var command = new Command("create");
             command.Description = "The collection of rules that apply to the user's Inbox folder.";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--mailfolder-id", description: "key: id of mailFolder"));
-            command.AddOption(new Option<string>("--body"));
-            command.Handler = CommandHandler.Create<string, string>(async (mailFolderId, body) => {
+            var mailFolderIdOption = new Option<string>("--mailfolder-id", description: "key: id of mailFolder") {
+            };
+            mailFolderIdOption.IsRequired = true;
+            command.AddOption(mailFolderIdOption);
+            var bodyOption = new Option<string>("--body") {
+            };
+            bodyOption.IsRequired = true;
+            command.AddOption(bodyOption);
+            command.SetHandler(async (string mailFolderId, string body) => {
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<MessageRule>();
-                var requestInfo = CreatePostRequestInformation(model);
-                if (!String.IsNullOrEmpty(mailFolderId)) requestInfo.PathParameters.Add("mailFolder_id", mailFolderId);
+                var requestInfo = CreatePostRequestInformation(model, q => {
+                });
                 var result = await RequestAdapter.SendAsync<MessageRule>(requestInfo);
                 // Print request output. What if the request has no return?
                 using var serializer = RequestAdapter.SerializationWriterFactory.GetSerializationWriter("application/json");
@@ -52,7 +58,7 @@ namespace ApiSdk.Me.MailFolders.Item.MessageRules {
                 using var reader = new StreamReader(content);
                 var strContent = await reader.ReadToEndAsync();
                 Console.Write(strContent + "\n");
-            });
+            }, mailFolderIdOption, bodyOption);
             return command;
         }
         /// <summary>
@@ -62,22 +68,45 @@ namespace ApiSdk.Me.MailFolders.Item.MessageRules {
             var command = new Command("list");
             command.Description = "The collection of rules that apply to the user's Inbox folder.";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--mailfolder-id", description: "key: id of mailFolder"));
-            command.AddOption(new Option<int?>("--top", description: "Show only the first n items"));
-            command.AddOption(new Option<int?>("--skip", description: "Skip the first n items"));
-            command.AddOption(new Option<string>("--filter", description: "Filter items by property values"));
-            command.AddOption(new Option<bool?>("--count", description: "Include count of items"));
-            command.AddOption(new Option<object>("--orderby", description: "Order items by property values"));
-            command.AddOption(new Option<object>("--select", description: "Select properties to be returned"));
-            command.Handler = CommandHandler.Create<string, int?, int?, string, bool?, object, object>(async (mailFolderId, top, skip, filter, count, orderby, select) => {
-                var requestInfo = CreateGetRequestInformation();
-                if (!String.IsNullOrEmpty(mailFolderId)) requestInfo.PathParameters.Add("mailFolder_id", mailFolderId);
-                requestInfo.QueryParameters.Add("top", top);
-                requestInfo.QueryParameters.Add("skip", skip);
-                if (!String.IsNullOrEmpty(filter)) requestInfo.QueryParameters.Add("filter", filter);
-                requestInfo.QueryParameters.Add("count", count);
-                requestInfo.QueryParameters.Add("orderby", orderby);
-                requestInfo.QueryParameters.Add("select", select);
+            var mailFolderIdOption = new Option<string>("--mailfolder-id", description: "key: id of mailFolder") {
+            };
+            mailFolderIdOption.IsRequired = true;
+            command.AddOption(mailFolderIdOption);
+            var topOption = new Option<int?>("--top", description: "Show only the first n items") {
+            };
+            topOption.IsRequired = false;
+            command.AddOption(topOption);
+            var skipOption = new Option<int?>("--skip", description: "Skip the first n items") {
+            };
+            skipOption.IsRequired = false;
+            command.AddOption(skipOption);
+            var filterOption = new Option<string>("--filter", description: "Filter items by property values") {
+            };
+            filterOption.IsRequired = false;
+            command.AddOption(filterOption);
+            var countOption = new Option<bool?>("--count", description: "Include count of items") {
+            };
+            countOption.IsRequired = false;
+            command.AddOption(countOption);
+            var orderbyOption = new Option<string[]>("--orderby", description: "Order items by property values") {
+                Arity = ArgumentArity.ZeroOrMore
+            };
+            orderbyOption.IsRequired = false;
+            command.AddOption(orderbyOption);
+            var selectOption = new Option<string[]>("--select", description: "Select properties to be returned") {
+                Arity = ArgumentArity.ZeroOrMore
+            };
+            selectOption.IsRequired = false;
+            command.AddOption(selectOption);
+            command.SetHandler(async (string mailFolderId, int? top, int? skip, string filter, bool? count, string[] orderby, string[] select) => {
+                var requestInfo = CreateGetRequestInformation(q => {
+                    q.Top = top;
+                    q.Skip = skip;
+                    if (!String.IsNullOrEmpty(filter)) q.Filter = filter;
+                    q.Count = count;
+                    q.Orderby = orderby;
+                    q.Select = select;
+                });
                 var result = await RequestAdapter.SendAsync<MessageRulesResponse>(requestInfo);
                 // Print request output. What if the request has no return?
                 using var serializer = RequestAdapter.SerializationWriterFactory.GetSerializationWriter("application/json");
@@ -86,7 +115,7 @@ namespace ApiSdk.Me.MailFolders.Item.MessageRules {
                 using var reader = new StreamReader(content);
                 var strContent = await reader.ReadToEndAsync();
                 Console.Write(strContent + "\n");
-            });
+            }, mailFolderIdOption, topOption, skipOption, filterOption, countOption, orderbyOption, selectOption);
             return command;
         }
         /// <summary>
@@ -110,7 +139,7 @@ namespace ApiSdk.Me.MailFolders.Item.MessageRules {
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<GetQueryParameters> q = default, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
             var requestInfo = new RequestInformation {
-                HttpMethod = HttpMethod.GET,
+                HttpMethod = Method.GET,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };
@@ -132,7 +161,7 @@ namespace ApiSdk.Me.MailFolders.Item.MessageRules {
         public RequestInformation CreatePostRequestInformation(MessageRule body, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
             _ = body ?? throw new ArgumentNullException(nameof(body));
             var requestInfo = new RequestInformation {
-                HttpMethod = HttpMethod.POST,
+                HttpMethod = Method.POST,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };

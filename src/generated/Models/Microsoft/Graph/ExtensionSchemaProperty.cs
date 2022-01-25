@@ -7,7 +7,7 @@ namespace ApiSdk.Models.Microsoft.Graph {
     public class ExtensionSchemaProperty : IParsable {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
-        /// <summary>The name of the strongly-typed property defined as part of a schema extension.</summary>
+        /// <summary>The name of the strongly typed property defined as part of a schema extension.</summary>
         public string Name { get; set; }
         /// <summary>The type of the property that is defined as part of a schema extension.  Allowed values are Binary, Boolean, DateTime, Integer or String.  See the table below for more details.</summary>
         public string Type { get; set; }

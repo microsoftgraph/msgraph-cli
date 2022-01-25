@@ -88,18 +88,25 @@ namespace ApiSdk.Sites.Item.Lists.Item.ContentTypes.Item {
             var command = new Command("delete");
             command.Description = "The collection of content types present in this list.";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--site-id", description: "key: id of site"));
-            command.AddOption(new Option<string>("--list-id", description: "key: id of list"));
-            command.AddOption(new Option<string>("--contenttype-id", description: "key: id of contentType"));
-            command.Handler = CommandHandler.Create<string, string, string>(async (siteId, listId, contentTypeId) => {
-                var requestInfo = CreateDeleteRequestInformation();
-                if (!String.IsNullOrEmpty(siteId)) requestInfo.PathParameters.Add("site_id", siteId);
-                if (!String.IsNullOrEmpty(listId)) requestInfo.PathParameters.Add("list_id", listId);
-                if (!String.IsNullOrEmpty(contentTypeId)) requestInfo.PathParameters.Add("contentType_id", contentTypeId);
+            var siteIdOption = new Option<string>("--site-id", description: "key: id of site") {
+            };
+            siteIdOption.IsRequired = true;
+            command.AddOption(siteIdOption);
+            var listIdOption = new Option<string>("--list-id", description: "key: id of list") {
+            };
+            listIdOption.IsRequired = true;
+            command.AddOption(listIdOption);
+            var contentTypeIdOption = new Option<string>("--contenttype-id", description: "key: id of contentType") {
+            };
+            contentTypeIdOption.IsRequired = true;
+            command.AddOption(contentTypeIdOption);
+            command.SetHandler(async (string siteId, string listId, string contentTypeId) => {
+                var requestInfo = CreateDeleteRequestInformation(q => {
+                });
                 await RequestAdapter.SendNoContentAsync(requestInfo);
                 // Print request output. What if the request has no return?
                 Console.WriteLine("Success");
-            });
+            }, siteIdOption, listIdOption, contentTypeIdOption);
             return command;
         }
         /// <summary>
@@ -109,18 +116,33 @@ namespace ApiSdk.Sites.Item.Lists.Item.ContentTypes.Item {
             var command = new Command("get");
             command.Description = "The collection of content types present in this list.";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--site-id", description: "key: id of site"));
-            command.AddOption(new Option<string>("--list-id", description: "key: id of list"));
-            command.AddOption(new Option<string>("--contenttype-id", description: "key: id of contentType"));
-            command.AddOption(new Option<object>("--select", description: "Select properties to be returned"));
-            command.AddOption(new Option<object>("--expand", description: "Expand related entities"));
-            command.Handler = CommandHandler.Create<string, string, string, object, object>(async (siteId, listId, contentTypeId, select, expand) => {
-                var requestInfo = CreateGetRequestInformation();
-                if (!String.IsNullOrEmpty(siteId)) requestInfo.PathParameters.Add("site_id", siteId);
-                if (!String.IsNullOrEmpty(listId)) requestInfo.PathParameters.Add("list_id", listId);
-                if (!String.IsNullOrEmpty(contentTypeId)) requestInfo.PathParameters.Add("contentType_id", contentTypeId);
-                requestInfo.QueryParameters.Add("select", select);
-                requestInfo.QueryParameters.Add("expand", expand);
+            var siteIdOption = new Option<string>("--site-id", description: "key: id of site") {
+            };
+            siteIdOption.IsRequired = true;
+            command.AddOption(siteIdOption);
+            var listIdOption = new Option<string>("--list-id", description: "key: id of list") {
+            };
+            listIdOption.IsRequired = true;
+            command.AddOption(listIdOption);
+            var contentTypeIdOption = new Option<string>("--contenttype-id", description: "key: id of contentType") {
+            };
+            contentTypeIdOption.IsRequired = true;
+            command.AddOption(contentTypeIdOption);
+            var selectOption = new Option<string[]>("--select", description: "Select properties to be returned") {
+                Arity = ArgumentArity.ZeroOrMore
+            };
+            selectOption.IsRequired = false;
+            command.AddOption(selectOption);
+            var expandOption = new Option<string[]>("--expand", description: "Expand related entities") {
+                Arity = ArgumentArity.ZeroOrMore
+            };
+            expandOption.IsRequired = false;
+            command.AddOption(expandOption);
+            command.SetHandler(async (string siteId, string listId, string contentTypeId, string[] select, string[] expand) => {
+                var requestInfo = CreateGetRequestInformation(q => {
+                    q.Select = select;
+                    q.Expand = expand;
+                });
                 var result = await RequestAdapter.SendAsync<ContentType>(requestInfo);
                 // Print request output. What if the request has no return?
                 using var serializer = RequestAdapter.SerializationWriterFactory.GetSerializationWriter("application/json");
@@ -129,7 +151,7 @@ namespace ApiSdk.Sites.Item.Lists.Item.ContentTypes.Item {
                 using var reader = new StreamReader(content);
                 var strContent = await reader.ReadToEndAsync();
                 Console.Write(strContent + "\n");
-            });
+            }, siteIdOption, listIdOption, contentTypeIdOption, selectOption, expandOption);
             return command;
         }
         /// <summary>
@@ -139,22 +161,32 @@ namespace ApiSdk.Sites.Item.Lists.Item.ContentTypes.Item {
             var command = new Command("patch");
             command.Description = "The collection of content types present in this list.";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--site-id", description: "key: id of site"));
-            command.AddOption(new Option<string>("--list-id", description: "key: id of list"));
-            command.AddOption(new Option<string>("--contenttype-id", description: "key: id of contentType"));
-            command.AddOption(new Option<string>("--body"));
-            command.Handler = CommandHandler.Create<string, string, string, string>(async (siteId, listId, contentTypeId, body) => {
+            var siteIdOption = new Option<string>("--site-id", description: "key: id of site") {
+            };
+            siteIdOption.IsRequired = true;
+            command.AddOption(siteIdOption);
+            var listIdOption = new Option<string>("--list-id", description: "key: id of list") {
+            };
+            listIdOption.IsRequired = true;
+            command.AddOption(listIdOption);
+            var contentTypeIdOption = new Option<string>("--contenttype-id", description: "key: id of contentType") {
+            };
+            contentTypeIdOption.IsRequired = true;
+            command.AddOption(contentTypeIdOption);
+            var bodyOption = new Option<string>("--body") {
+            };
+            bodyOption.IsRequired = true;
+            command.AddOption(bodyOption);
+            command.SetHandler(async (string siteId, string listId, string contentTypeId, string body) => {
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<ContentType>();
-                var requestInfo = CreatePatchRequestInformation(model);
-                if (!String.IsNullOrEmpty(siteId)) requestInfo.PathParameters.Add("site_id", siteId);
-                if (!String.IsNullOrEmpty(listId)) requestInfo.PathParameters.Add("list_id", listId);
-                if (!String.IsNullOrEmpty(contentTypeId)) requestInfo.PathParameters.Add("contentType_id", contentTypeId);
+                var requestInfo = CreatePatchRequestInformation(model, q => {
+                });
                 await RequestAdapter.SendNoContentAsync(requestInfo);
                 // Print request output. What if the request has no return?
                 Console.WriteLine("Success");
-            });
+            }, siteIdOption, listIdOption, contentTypeIdOption, bodyOption);
             return command;
         }
         public Command BuildPublishCommand() {
@@ -189,7 +221,7 @@ namespace ApiSdk.Sites.Item.Lists.Item.ContentTypes.Item {
         /// </summary>
         public RequestInformation CreateDeleteRequestInformation(Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
             var requestInfo = new RequestInformation {
-                HttpMethod = HttpMethod.DELETE,
+                HttpMethod = Method.DELETE,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };
@@ -205,7 +237,7 @@ namespace ApiSdk.Sites.Item.Lists.Item.ContentTypes.Item {
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<GetQueryParameters> q = default, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
             var requestInfo = new RequestInformation {
-                HttpMethod = HttpMethod.GET,
+                HttpMethod = Method.GET,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };
@@ -227,7 +259,7 @@ namespace ApiSdk.Sites.Item.Lists.Item.ContentTypes.Item {
         public RequestInformation CreatePatchRequestInformation(ContentType body, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
             _ = body ?? throw new ArgumentNullException(nameof(body));
             var requestInfo = new RequestInformation {
-                HttpMethod = HttpMethod.PATCH,
+                HttpMethod = Method.PATCH,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };

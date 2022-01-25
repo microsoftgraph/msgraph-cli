@@ -26,18 +26,28 @@ namespace ApiSdk.Users.Item.Onenote.SectionGroups.Item.ParentNotebook.Sections.I
             var command = new Command("post");
             command.Description = "Invoke action copyToSectionGroup";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--user-id", description: "key: id of user"));
-            command.AddOption(new Option<string>("--sectiongroup-id", description: "key: id of sectionGroup"));
-            command.AddOption(new Option<string>("--onenotesection-id", description: "key: id of onenoteSection"));
-            command.AddOption(new Option<string>("--body"));
-            command.Handler = CommandHandler.Create<string, string, string, string>(async (userId, sectionGroupId, onenoteSectionId, body) => {
+            var userIdOption = new Option<string>("--user-id", description: "key: id of user") {
+            };
+            userIdOption.IsRequired = true;
+            command.AddOption(userIdOption);
+            var sectionGroupIdOption = new Option<string>("--sectiongroup-id", description: "key: id of sectionGroup") {
+            };
+            sectionGroupIdOption.IsRequired = true;
+            command.AddOption(sectionGroupIdOption);
+            var onenoteSectionIdOption = new Option<string>("--onenotesection-id", description: "key: id of onenoteSection") {
+            };
+            onenoteSectionIdOption.IsRequired = true;
+            command.AddOption(onenoteSectionIdOption);
+            var bodyOption = new Option<string>("--body") {
+            };
+            bodyOption.IsRequired = true;
+            command.AddOption(bodyOption);
+            command.SetHandler(async (string userId, string sectionGroupId, string onenoteSectionId, string body) => {
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<CopyToSectionGroupRequestBody>();
-                var requestInfo = CreatePostRequestInformation(model);
-                if (!String.IsNullOrEmpty(userId)) requestInfo.PathParameters.Add("user_id", userId);
-                if (!String.IsNullOrEmpty(sectionGroupId)) requestInfo.PathParameters.Add("sectionGroup_id", sectionGroupId);
-                if (!String.IsNullOrEmpty(onenoteSectionId)) requestInfo.PathParameters.Add("onenoteSection_id", onenoteSectionId);
+                var requestInfo = CreatePostRequestInformation(model, q => {
+                });
                 var result = await RequestAdapter.SendAsync<CopyToSectionGroupResponse>(requestInfo);
                 // Print request output. What if the request has no return?
                 using var serializer = RequestAdapter.SerializationWriterFactory.GetSerializationWriter("application/json");
@@ -46,7 +56,7 @@ namespace ApiSdk.Users.Item.Onenote.SectionGroups.Item.ParentNotebook.Sections.I
                 using var reader = new StreamReader(content);
                 var strContent = await reader.ReadToEndAsync();
                 Console.Write(strContent + "\n");
-            });
+            }, userIdOption, sectionGroupIdOption, onenoteSectionIdOption, bodyOption);
             return command;
         }
         /// <summary>
@@ -71,7 +81,7 @@ namespace ApiSdk.Users.Item.Onenote.SectionGroups.Item.ParentNotebook.Sections.I
         public RequestInformation CreatePostRequestInformation(CopyToSectionGroupRequestBody body, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
             _ = body ?? throw new ArgumentNullException(nameof(body));
             var requestInfo = new RequestInformation {
-                HttpMethod = HttpMethod.POST,
+                HttpMethod = Method.POST,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };

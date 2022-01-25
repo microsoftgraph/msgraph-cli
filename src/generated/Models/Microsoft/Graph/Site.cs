@@ -21,7 +21,7 @@ namespace ApiSdk.Models.Microsoft.Graph {
         public PublicError Error { get; set; }
         /// <summary>The collection of column definitions available in the site that are referenced from the sites in the parent hierarchy of the current site.</summary>
         public List<ColumnDefinition> ExternalColumns { get; set; }
-        /// <summary>Used to address any item contained in this site. This collection can't be enumerated.</summary>
+        /// <summary>Used to address any item contained in this site. This collection cannot be enumerated.</summary>
         public List<BaseItem> Items { get; set; }
         /// <summary>The collection of lists under this site.</summary>
         public List<ApiSdk.Models.Microsoft.Graph.List> Lists { get; set; }
@@ -37,7 +37,7 @@ namespace ApiSdk.Models.Microsoft.Graph {
         public SiteCollection SiteCollection { get; set; }
         /// <summary>The collection of the sub-sites under this site.</summary>
         public List<ApiSdk.Models.Microsoft.Graph.Site> Sites { get; set; }
-        /// <summary>The default termStore under this site.</summary>
+        /// <summary>The termStore under this site.</summary>
         public Store TermStore { get; set; }
         /// <summary>The collection of termStores under this site.</summary>
         public List<Store> TermStores { get; set; }

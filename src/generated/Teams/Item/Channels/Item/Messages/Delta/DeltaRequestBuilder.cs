@@ -25,12 +25,17 @@ namespace ApiSdk.Teams.Item.Channels.Item.Messages.Delta {
             var command = new Command("get");
             command.Description = "Invoke function delta";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--team-id", description: "key: id of team"));
-            command.AddOption(new Option<string>("--channel-id", description: "key: id of channel"));
-            command.Handler = CommandHandler.Create<string, string>(async (teamId, channelId) => {
-                var requestInfo = CreateGetRequestInformation();
-                if (!String.IsNullOrEmpty(teamId)) requestInfo.PathParameters.Add("team_id", teamId);
-                if (!String.IsNullOrEmpty(channelId)) requestInfo.PathParameters.Add("channel_id", channelId);
+            var teamIdOption = new Option<string>("--team-id", description: "key: id of team") {
+            };
+            teamIdOption.IsRequired = true;
+            command.AddOption(teamIdOption);
+            var channelIdOption = new Option<string>("--channel-id", description: "key: id of channel") {
+            };
+            channelIdOption.IsRequired = true;
+            command.AddOption(channelIdOption);
+            command.SetHandler(async (string teamId, string channelId) => {
+                var requestInfo = CreateGetRequestInformation(q => {
+                });
                 var result = await RequestAdapter.SendCollectionAsync<ApiSdk.Teams.Item.Channels.Item.Messages.Delta.Delta>(requestInfo);
                 // Print request output. What if the request has no return?
                 using var serializer = RequestAdapter.SerializationWriterFactory.GetSerializationWriter("application/json");
@@ -39,7 +44,7 @@ namespace ApiSdk.Teams.Item.Channels.Item.Messages.Delta {
                 using var reader = new StreamReader(content);
                 var strContent = await reader.ReadToEndAsync();
                 Console.Write(strContent + "\n");
-            });
+            }, teamIdOption, channelIdOption);
             return command;
         }
         /// <summary>
@@ -62,7 +67,7 @@ namespace ApiSdk.Teams.Item.Channels.Item.Messages.Delta {
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
             var requestInfo = new RequestInformation {
-                HttpMethod = HttpMethod.GET,
+                HttpMethod = Method.GET,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };

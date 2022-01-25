@@ -25,17 +25,27 @@ namespace ApiSdk.Groups.Item.Onenote.Notebooks.Item.Sections.Item.Pages.Item.Con
             var command = new Command("get");
             command.Description = "Get media content for the navigation property pages from groups";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--group-id", description: "key: id of group"));
-            command.AddOption(new Option<string>("--notebook-id", description: "key: id of notebook"));
-            command.AddOption(new Option<string>("--onenotesection-id", description: "key: id of onenoteSection"));
-            command.AddOption(new Option<string>("--onenotepage-id", description: "key: id of onenotePage"));
-            command.AddOption(new Option<FileInfo>("--output"));
-            command.Handler = CommandHandler.Create<string, string, string, string, FileInfo>(async (groupId, notebookId, onenoteSectionId, onenotePageId, output) => {
-                var requestInfo = CreateGetRequestInformation();
-                if (!String.IsNullOrEmpty(groupId)) requestInfo.PathParameters.Add("group_id", groupId);
-                if (!String.IsNullOrEmpty(notebookId)) requestInfo.PathParameters.Add("notebook_id", notebookId);
-                if (!String.IsNullOrEmpty(onenoteSectionId)) requestInfo.PathParameters.Add("onenoteSection_id", onenoteSectionId);
-                if (!String.IsNullOrEmpty(onenotePageId)) requestInfo.PathParameters.Add("onenotePage_id", onenotePageId);
+            var groupIdOption = new Option<string>("--group-id", description: "key: id of group") {
+            };
+            groupIdOption.IsRequired = true;
+            command.AddOption(groupIdOption);
+            var notebookIdOption = new Option<string>("--notebook-id", description: "key: id of notebook") {
+            };
+            notebookIdOption.IsRequired = true;
+            command.AddOption(notebookIdOption);
+            var onenoteSectionIdOption = new Option<string>("--onenotesection-id", description: "key: id of onenoteSection") {
+            };
+            onenoteSectionIdOption.IsRequired = true;
+            command.AddOption(onenoteSectionIdOption);
+            var onenotePageIdOption = new Option<string>("--onenotepage-id", description: "key: id of onenotePage") {
+            };
+            onenotePageIdOption.IsRequired = true;
+            command.AddOption(onenotePageIdOption);
+            var outputOption = new Option<FileInfo>("--output");
+            command.AddOption(outputOption);
+            command.SetHandler(async (string groupId, string notebookId, string onenoteSectionId, string onenotePageId, FileInfo output) => {
+                var requestInfo = CreateGetRequestInformation(q => {
+                });
                 var result = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 // Print request output. What if the request has no return?
                 if (output == null) {
@@ -48,7 +58,7 @@ namespace ApiSdk.Groups.Item.Onenote.Notebooks.Item.Sections.Item.Pages.Item.Con
                     await result.CopyToAsync(writeStream);
                     Console.WriteLine($"Content written to {output.FullName}.");
                 }
-            });
+            }, groupIdOption, notebookIdOption, onenoteSectionIdOption, onenotePageIdOption, outputOption);
             return command;
         }
         /// <summary>
@@ -58,22 +68,34 @@ namespace ApiSdk.Groups.Item.Onenote.Notebooks.Item.Sections.Item.Pages.Item.Con
             var command = new Command("put");
             command.Description = "Update media content for the navigation property pages in groups";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--group-id", description: "key: id of group"));
-            command.AddOption(new Option<string>("--notebook-id", description: "key: id of notebook"));
-            command.AddOption(new Option<string>("--onenotesection-id", description: "key: id of onenoteSection"));
-            command.AddOption(new Option<string>("--onenotepage-id", description: "key: id of onenotePage"));
-            command.AddOption(new Option<Stream>("--file", description: "Binary request body"));
-            command.Handler = CommandHandler.Create<string, string, string, string, FileInfo>(async (groupId, notebookId, onenoteSectionId, onenotePageId, file) => {
+            var groupIdOption = new Option<string>("--group-id", description: "key: id of group") {
+            };
+            groupIdOption.IsRequired = true;
+            command.AddOption(groupIdOption);
+            var notebookIdOption = new Option<string>("--notebook-id", description: "key: id of notebook") {
+            };
+            notebookIdOption.IsRequired = true;
+            command.AddOption(notebookIdOption);
+            var onenoteSectionIdOption = new Option<string>("--onenotesection-id", description: "key: id of onenoteSection") {
+            };
+            onenoteSectionIdOption.IsRequired = true;
+            command.AddOption(onenoteSectionIdOption);
+            var onenotePageIdOption = new Option<string>("--onenotepage-id", description: "key: id of onenotePage") {
+            };
+            onenotePageIdOption.IsRequired = true;
+            command.AddOption(onenotePageIdOption);
+            var bodyOption = new Option<Stream>("--file", description: "Binary request body") {
+            };
+            bodyOption.IsRequired = true;
+            command.AddOption(bodyOption);
+            command.SetHandler(async (string groupId, string notebookId, string onenoteSectionId, string onenotePageId, FileInfo file) => {
                 using var stream = file.OpenRead();
-                var requestInfo = CreatePutRequestInformation(stream);
-                if (!String.IsNullOrEmpty(groupId)) requestInfo.PathParameters.Add("group_id", groupId);
-                if (!String.IsNullOrEmpty(notebookId)) requestInfo.PathParameters.Add("notebook_id", notebookId);
-                if (!String.IsNullOrEmpty(onenoteSectionId)) requestInfo.PathParameters.Add("onenoteSection_id", onenoteSectionId);
-                if (!String.IsNullOrEmpty(onenotePageId)) requestInfo.PathParameters.Add("onenotePage_id", onenotePageId);
+                var requestInfo = CreatePutRequestInformation(stream, q => {
+                });
                 await RequestAdapter.SendNoContentAsync(requestInfo);
                 // Print request output. What if the request has no return?
                 Console.WriteLine("Success");
-            });
+            }, groupIdOption, notebookIdOption, onenoteSectionIdOption, onenotePageIdOption, bodyOption);
             return command;
         }
         /// <summary>
@@ -96,7 +118,7 @@ namespace ApiSdk.Groups.Item.Onenote.Notebooks.Item.Sections.Item.Pages.Item.Con
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
             var requestInfo = new RequestInformation {
-                HttpMethod = HttpMethod.GET,
+                HttpMethod = Method.GET,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };
@@ -113,7 +135,7 @@ namespace ApiSdk.Groups.Item.Onenote.Notebooks.Item.Sections.Item.Pages.Item.Con
         public RequestInformation CreatePutRequestInformation(Stream body, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
             _ = body ?? throw new ArgumentNullException(nameof(body));
             var requestInfo = new RequestInformation {
-                HttpMethod = HttpMethod.PUT,
+                HttpMethod = Method.PUT,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };

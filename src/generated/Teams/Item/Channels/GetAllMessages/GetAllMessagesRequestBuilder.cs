@@ -25,10 +25,13 @@ namespace ApiSdk.Teams.Item.Channels.GetAllMessages {
             var command = new Command("get");
             command.Description = "Invoke function getAllMessages";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--team-id", description: "key: id of team"));
-            command.Handler = CommandHandler.Create<string>(async (teamId) => {
-                var requestInfo = CreateGetRequestInformation();
-                if (!String.IsNullOrEmpty(teamId)) requestInfo.PathParameters.Add("team_id", teamId);
+            var teamIdOption = new Option<string>("--team-id", description: "key: id of team") {
+            };
+            teamIdOption.IsRequired = true;
+            command.AddOption(teamIdOption);
+            command.SetHandler(async (string teamId) => {
+                var requestInfo = CreateGetRequestInformation(q => {
+                });
                 var result = await RequestAdapter.SendCollectionAsync<ApiSdk.Teams.Item.Channels.GetAllMessages.GetAllMessages>(requestInfo);
                 // Print request output. What if the request has no return?
                 using var serializer = RequestAdapter.SerializationWriterFactory.GetSerializationWriter("application/json");
@@ -37,7 +40,7 @@ namespace ApiSdk.Teams.Item.Channels.GetAllMessages {
                 using var reader = new StreamReader(content);
                 var strContent = await reader.ReadToEndAsync();
                 Console.Write(strContent + "\n");
-            });
+            }, teamIdOption);
             return command;
         }
         /// <summary>
@@ -60,7 +63,7 @@ namespace ApiSdk.Teams.Item.Channels.GetAllMessages {
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
             var requestInfo = new RequestInformation {
-                HttpMethod = HttpMethod.GET,
+                HttpMethod = Method.GET,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };

@@ -26,10 +26,13 @@ namespace ApiSdk.Me.Insights.Trending.Item.Resource.CalendarSharingMessage.Accep
             var command = new Command("post");
             command.Description = "Invoke action accept";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--trending-id", description: "key: id of trending"));
-            command.Handler = CommandHandler.Create<string>(async (trendingId) => {
-                var requestInfo = CreatePostRequestInformation();
-                if (!String.IsNullOrEmpty(trendingId)) requestInfo.PathParameters.Add("trending_id", trendingId);
+            var trendingIdOption = new Option<string>("--trending-id", description: "key: id of trending") {
+            };
+            trendingIdOption.IsRequired = true;
+            command.AddOption(trendingIdOption);
+            command.SetHandler(async (string trendingId) => {
+                var requestInfo = CreatePostRequestInformation(q => {
+                });
                 var result = await RequestAdapter.SendAsync<ApiSdk.Models.Microsoft.Graph.Calendar>(requestInfo);
                 // Print request output. What if the request has no return?
                 using var serializer = RequestAdapter.SerializationWriterFactory.GetSerializationWriter("application/json");
@@ -38,7 +41,7 @@ namespace ApiSdk.Me.Insights.Trending.Item.Resource.CalendarSharingMessage.Accep
                 using var reader = new StreamReader(content);
                 var strContent = await reader.ReadToEndAsync();
                 Console.Write(strContent + "\n");
-            });
+            }, trendingIdOption);
             return command;
         }
         /// <summary>
@@ -61,7 +64,7 @@ namespace ApiSdk.Me.Insights.Trending.Item.Resource.CalendarSharingMessage.Accep
         /// </summary>
         public RequestInformation CreatePostRequestInformation(Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
             var requestInfo = new RequestInformation {
-                HttpMethod = HttpMethod.POST,
+                HttpMethod = Method.POST,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };

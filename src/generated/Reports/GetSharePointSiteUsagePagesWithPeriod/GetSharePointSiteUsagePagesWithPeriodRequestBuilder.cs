@@ -26,10 +26,13 @@ namespace ApiSdk.Reports.GetSharePointSiteUsagePagesWithPeriod {
             var command = new Command("get");
             command.Description = "Invoke function getSharePointSiteUsagePages";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--period", description: "Usage: period={period}"));
-            command.Handler = CommandHandler.Create<string>(async (period) => {
-                var requestInfo = CreateGetRequestInformation();
-                if (!String.IsNullOrEmpty(period)) requestInfo.PathParameters.Add("period", period);
+            var periodOption = new Option<string>("--period", description: "Usage: period={period}") {
+            };
+            periodOption.IsRequired = true;
+            command.AddOption(periodOption);
+            command.SetHandler(async (string period) => {
+                var requestInfo = CreateGetRequestInformation(q => {
+                });
                 var result = await RequestAdapter.SendAsync<Report>(requestInfo);
                 // Print request output. What if the request has no return?
                 using var serializer = RequestAdapter.SerializationWriterFactory.GetSerializationWriter("application/json");
@@ -38,7 +41,7 @@ namespace ApiSdk.Reports.GetSharePointSiteUsagePagesWithPeriod {
                 using var reader = new StreamReader(content);
                 var strContent = await reader.ReadToEndAsync();
                 Console.Write(strContent + "\n");
-            });
+            }, periodOption);
             return command;
         }
         /// <summary>
@@ -63,7 +66,7 @@ namespace ApiSdk.Reports.GetSharePointSiteUsagePagesWithPeriod {
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
             var requestInfo = new RequestInformation {
-                HttpMethod = HttpMethod.GET,
+                HttpMethod = Method.GET,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };

@@ -25,14 +25,17 @@ namespace ApiSdk.Applications.Item.CreatedOnBehalfOf.@Ref {
             var command = new Command("delete");
             command.Description = "Read-only.";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--application-id", description: "key: id of application"));
-            command.Handler = CommandHandler.Create<string>(async (applicationId) => {
-                var requestInfo = CreateDeleteRequestInformation();
-                if (!String.IsNullOrEmpty(applicationId)) requestInfo.PathParameters.Add("application_id", applicationId);
+            var applicationIdOption = new Option<string>("--application-id", description: "key: id of application") {
+            };
+            applicationIdOption.IsRequired = true;
+            command.AddOption(applicationIdOption);
+            command.SetHandler(async (string applicationId) => {
+                var requestInfo = CreateDeleteRequestInformation(q => {
+                });
                 await RequestAdapter.SendNoContentAsync(requestInfo);
                 // Print request output. What if the request has no return?
                 Console.WriteLine("Success");
-            });
+            }, applicationIdOption);
             return command;
         }
         /// <summary>
@@ -42,10 +45,13 @@ namespace ApiSdk.Applications.Item.CreatedOnBehalfOf.@Ref {
             var command = new Command("get");
             command.Description = "Read-only.";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--application-id", description: "key: id of application"));
-            command.Handler = CommandHandler.Create<string>(async (applicationId) => {
-                var requestInfo = CreateGetRequestInformation();
-                if (!String.IsNullOrEmpty(applicationId)) requestInfo.PathParameters.Add("application_id", applicationId);
+            var applicationIdOption = new Option<string>("--application-id", description: "key: id of application") {
+            };
+            applicationIdOption.IsRequired = true;
+            command.AddOption(applicationIdOption);
+            command.SetHandler(async (string applicationId) => {
+                var requestInfo = CreateGetRequestInformation(q => {
+                });
                 var result = await RequestAdapter.SendPrimitiveAsync<string>(requestInfo);
                 // Print request output. What if the request has no return?
                 using var serializer = RequestAdapter.SerializationWriterFactory.GetSerializationWriter("application/json");
@@ -54,7 +60,7 @@ namespace ApiSdk.Applications.Item.CreatedOnBehalfOf.@Ref {
                 using var reader = new StreamReader(content);
                 var strContent = await reader.ReadToEndAsync();
                 Console.Write(strContent + "\n");
-            });
+            }, applicationIdOption);
             return command;
         }
         /// <summary>
@@ -64,18 +70,24 @@ namespace ApiSdk.Applications.Item.CreatedOnBehalfOf.@Ref {
             var command = new Command("put");
             command.Description = "Read-only.";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--application-id", description: "key: id of application"));
-            command.AddOption(new Option<string>("--body"));
-            command.Handler = CommandHandler.Create<string, string>(async (applicationId, body) => {
+            var applicationIdOption = new Option<string>("--application-id", description: "key: id of application") {
+            };
+            applicationIdOption.IsRequired = true;
+            command.AddOption(applicationIdOption);
+            var bodyOption = new Option<string>("--body") {
+            };
+            bodyOption.IsRequired = true;
+            command.AddOption(bodyOption);
+            command.SetHandler(async (string applicationId, string body) => {
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<ApiSdk.Applications.Item.CreatedOnBehalfOf.@Ref.@Ref>();
-                var requestInfo = CreatePutRequestInformation(model);
-                if (!String.IsNullOrEmpty(applicationId)) requestInfo.PathParameters.Add("application_id", applicationId);
+                var requestInfo = CreatePutRequestInformation(model, q => {
+                });
                 await RequestAdapter.SendNoContentAsync(requestInfo);
                 // Print request output. What if the request has no return?
                 Console.WriteLine("Success");
-            });
+            }, applicationIdOption, bodyOption);
             return command;
         }
         /// <summary>
@@ -98,7 +110,7 @@ namespace ApiSdk.Applications.Item.CreatedOnBehalfOf.@Ref {
         /// </summary>
         public RequestInformation CreateDeleteRequestInformation(Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
             var requestInfo = new RequestInformation {
-                HttpMethod = HttpMethod.DELETE,
+                HttpMethod = Method.DELETE,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };
@@ -113,7 +125,7 @@ namespace ApiSdk.Applications.Item.CreatedOnBehalfOf.@Ref {
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
             var requestInfo = new RequestInformation {
-                HttpMethod = HttpMethod.GET,
+                HttpMethod = Method.GET,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };
@@ -130,7 +142,7 @@ namespace ApiSdk.Applications.Item.CreatedOnBehalfOf.@Ref {
         public RequestInformation CreatePutRequestInformation(ApiSdk.Applications.Item.CreatedOnBehalfOf.@Ref.@Ref body, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
             _ = body ?? throw new ArgumentNullException(nameof(body));
             var requestInfo = new RequestInformation {
-                HttpMethod = HttpMethod.PUT,
+                HttpMethod = Method.PUT,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };

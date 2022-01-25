@@ -43,14 +43,17 @@ namespace ApiSdk.Education.Schools.Item {
             var command = new Command("delete");
             command.Description = "Delete navigation property schools for education";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--educationschool-id", description: "key: id of educationSchool"));
-            command.Handler = CommandHandler.Create<string>(async (educationSchoolId) => {
-                var requestInfo = CreateDeleteRequestInformation();
-                if (!String.IsNullOrEmpty(educationSchoolId)) requestInfo.PathParameters.Add("educationSchool_id", educationSchoolId);
+            var educationSchoolIdOption = new Option<string>("--educationschool-id", description: "key: id of educationSchool") {
+            };
+            educationSchoolIdOption.IsRequired = true;
+            command.AddOption(educationSchoolIdOption);
+            command.SetHandler(async (string educationSchoolId) => {
+                var requestInfo = CreateDeleteRequestInformation(q => {
+                });
                 await RequestAdapter.SendNoContentAsync(requestInfo);
                 // Print request output. What if the request has no return?
                 Console.WriteLine("Success");
-            });
+            }, educationSchoolIdOption);
             return command;
         }
         /// <summary>
@@ -60,14 +63,25 @@ namespace ApiSdk.Education.Schools.Item {
             var command = new Command("get");
             command.Description = "Get schools from education";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--educationschool-id", description: "key: id of educationSchool"));
-            command.AddOption(new Option<object>("--select", description: "Select properties to be returned"));
-            command.AddOption(new Option<object>("--expand", description: "Expand related entities"));
-            command.Handler = CommandHandler.Create<string, object, object>(async (educationSchoolId, select, expand) => {
-                var requestInfo = CreateGetRequestInformation();
-                if (!String.IsNullOrEmpty(educationSchoolId)) requestInfo.PathParameters.Add("educationSchool_id", educationSchoolId);
-                requestInfo.QueryParameters.Add("select", select);
-                requestInfo.QueryParameters.Add("expand", expand);
+            var educationSchoolIdOption = new Option<string>("--educationschool-id", description: "key: id of educationSchool") {
+            };
+            educationSchoolIdOption.IsRequired = true;
+            command.AddOption(educationSchoolIdOption);
+            var selectOption = new Option<string[]>("--select", description: "Select properties to be returned") {
+                Arity = ArgumentArity.ZeroOrMore
+            };
+            selectOption.IsRequired = false;
+            command.AddOption(selectOption);
+            var expandOption = new Option<string[]>("--expand", description: "Expand related entities") {
+                Arity = ArgumentArity.ZeroOrMore
+            };
+            expandOption.IsRequired = false;
+            command.AddOption(expandOption);
+            command.SetHandler(async (string educationSchoolId, string[] select, string[] expand) => {
+                var requestInfo = CreateGetRequestInformation(q => {
+                    q.Select = select;
+                    q.Expand = expand;
+                });
                 var result = await RequestAdapter.SendAsync<EducationSchool>(requestInfo);
                 // Print request output. What if the request has no return?
                 using var serializer = RequestAdapter.SerializationWriterFactory.GetSerializationWriter("application/json");
@@ -76,7 +90,7 @@ namespace ApiSdk.Education.Schools.Item {
                 using var reader = new StreamReader(content);
                 var strContent = await reader.ReadToEndAsync();
                 Console.Write(strContent + "\n");
-            });
+            }, educationSchoolIdOption, selectOption, expandOption);
             return command;
         }
         /// <summary>
@@ -86,18 +100,24 @@ namespace ApiSdk.Education.Schools.Item {
             var command = new Command("patch");
             command.Description = "Update the navigation property schools in education";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--educationschool-id", description: "key: id of educationSchool"));
-            command.AddOption(new Option<string>("--body"));
-            command.Handler = CommandHandler.Create<string, string>(async (educationSchoolId, body) => {
+            var educationSchoolIdOption = new Option<string>("--educationschool-id", description: "key: id of educationSchool") {
+            };
+            educationSchoolIdOption.IsRequired = true;
+            command.AddOption(educationSchoolIdOption);
+            var bodyOption = new Option<string>("--body") {
+            };
+            bodyOption.IsRequired = true;
+            command.AddOption(bodyOption);
+            command.SetHandler(async (string educationSchoolId, string body) => {
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<EducationSchool>();
-                var requestInfo = CreatePatchRequestInformation(model);
-                if (!String.IsNullOrEmpty(educationSchoolId)) requestInfo.PathParameters.Add("educationSchool_id", educationSchoolId);
+                var requestInfo = CreatePatchRequestInformation(model, q => {
+                });
                 await RequestAdapter.SendNoContentAsync(requestInfo);
                 // Print request output. What if the request has no return?
                 Console.WriteLine("Success");
-            });
+            }, educationSchoolIdOption, bodyOption);
             return command;
         }
         public Command BuildUsersCommand() {
@@ -127,7 +147,7 @@ namespace ApiSdk.Education.Schools.Item {
         /// </summary>
         public RequestInformation CreateDeleteRequestInformation(Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
             var requestInfo = new RequestInformation {
-                HttpMethod = HttpMethod.DELETE,
+                HttpMethod = Method.DELETE,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };
@@ -143,7 +163,7 @@ namespace ApiSdk.Education.Schools.Item {
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<GetQueryParameters> q = default, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
             var requestInfo = new RequestInformation {
-                HttpMethod = HttpMethod.GET,
+                HttpMethod = Method.GET,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };
@@ -165,7 +185,7 @@ namespace ApiSdk.Education.Schools.Item {
         public RequestInformation CreatePatchRequestInformation(EducationSchool body, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
             _ = body ?? throw new ArgumentNullException(nameof(body));
             var requestInfo = new RequestInformation {
-                HttpMethod = HttpMethod.PATCH,
+                HttpMethod = Method.PATCH,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };

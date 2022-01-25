@@ -25,18 +25,24 @@ namespace ApiSdk.Communications.Calls.Item.Reject {
             var command = new Command("post");
             command.Description = "Invoke action reject";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--call-id", description: "key: id of call"));
-            command.AddOption(new Option<string>("--body"));
-            command.Handler = CommandHandler.Create<string, string>(async (callId, body) => {
+            var callIdOption = new Option<string>("--call-id", description: "key: id of call") {
+            };
+            callIdOption.IsRequired = true;
+            command.AddOption(callIdOption);
+            var bodyOption = new Option<string>("--body") {
+            };
+            bodyOption.IsRequired = true;
+            command.AddOption(bodyOption);
+            command.SetHandler(async (string callId, string body) => {
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<RejectRequestBody>();
-                var requestInfo = CreatePostRequestInformation(model);
-                if (!String.IsNullOrEmpty(callId)) requestInfo.PathParameters.Add("call_id", callId);
+                var requestInfo = CreatePostRequestInformation(model, q => {
+                });
                 await RequestAdapter.SendNoContentAsync(requestInfo);
                 // Print request output. What if the request has no return?
                 Console.WriteLine("Success");
-            });
+            }, callIdOption, bodyOption);
             return command;
         }
         /// <summary>
@@ -61,7 +67,7 @@ namespace ApiSdk.Communications.Calls.Item.Reject {
         public RequestInformation CreatePostRequestInformation(RejectRequestBody body, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
             _ = body ?? throw new ArgumentNullException(nameof(body));
             var requestInfo = new RequestInformation {
-                HttpMethod = HttpMethod.POST,
+                HttpMethod = Method.POST,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };

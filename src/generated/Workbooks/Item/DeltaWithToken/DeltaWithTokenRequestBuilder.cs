@@ -25,12 +25,17 @@ namespace ApiSdk.Workbooks.Item.DeltaWithToken {
             var command = new Command("get");
             command.Description = "Invoke function delta";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--driveitem-id", description: "key: id of driveItem"));
-            command.AddOption(new Option<string>("--token", description: "Usage: token={token}"));
-            command.Handler = CommandHandler.Create<string, string>(async (driveItemId, token) => {
-                var requestInfo = CreateGetRequestInformation();
-                if (!String.IsNullOrEmpty(driveItemId)) requestInfo.PathParameters.Add("driveItem_id", driveItemId);
-                if (!String.IsNullOrEmpty(token)) requestInfo.PathParameters.Add("token", token);
+            var driveItemIdOption = new Option<string>("--driveitem-id", description: "key: id of driveItem") {
+            };
+            driveItemIdOption.IsRequired = true;
+            command.AddOption(driveItemIdOption);
+            var tokenOption = new Option<string>("--token", description: "Usage: token={token}") {
+            };
+            tokenOption.IsRequired = true;
+            command.AddOption(tokenOption);
+            command.SetHandler(async (string driveItemId, string token) => {
+                var requestInfo = CreateGetRequestInformation(q => {
+                });
                 var result = await RequestAdapter.SendCollectionAsync<ApiSdk.Workbooks.Item.DeltaWithToken.DeltaWithToken>(requestInfo);
                 // Print request output. What if the request has no return?
                 using var serializer = RequestAdapter.SerializationWriterFactory.GetSerializationWriter("application/json");
@@ -39,7 +44,7 @@ namespace ApiSdk.Workbooks.Item.DeltaWithToken {
                 using var reader = new StreamReader(content);
                 var strContent = await reader.ReadToEndAsync();
                 Console.Write(strContent + "\n");
-            });
+            }, driveItemIdOption, tokenOption);
             return command;
         }
         /// <summary>
@@ -64,7 +69,7 @@ namespace ApiSdk.Workbooks.Item.DeltaWithToken {
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
             var requestInfo = new RequestInformation {
-                HttpMethod = HttpMethod.GET,
+                HttpMethod = Method.GET,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };

@@ -25,20 +25,29 @@ namespace ApiSdk.Users.Item.CalendarGroups.Item.Calendars.Item.CalendarView.Item
             var command = new Command("post");
             command.Description = "Invoke action dismissReminder";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--user-id", description: "key: id of user"));
-            command.AddOption(new Option<string>("--calendargroup-id", description: "key: id of calendarGroup"));
-            command.AddOption(new Option<string>("--calendar-id", description: "key: id of calendar"));
-            command.AddOption(new Option<string>("--event-id", description: "key: id of event"));
-            command.Handler = CommandHandler.Create<string, string, string, string>(async (userId, calendarGroupId, calendarId, eventId) => {
-                var requestInfo = CreatePostRequestInformation();
-                if (!String.IsNullOrEmpty(userId)) requestInfo.PathParameters.Add("user_id", userId);
-                if (!String.IsNullOrEmpty(calendarGroupId)) requestInfo.PathParameters.Add("calendarGroup_id", calendarGroupId);
-                if (!String.IsNullOrEmpty(calendarId)) requestInfo.PathParameters.Add("calendar_id", calendarId);
-                if (!String.IsNullOrEmpty(eventId)) requestInfo.PathParameters.Add("event_id", eventId);
+            var userIdOption = new Option<string>("--user-id", description: "key: id of user") {
+            };
+            userIdOption.IsRequired = true;
+            command.AddOption(userIdOption);
+            var calendarGroupIdOption = new Option<string>("--calendargroup-id", description: "key: id of calendarGroup") {
+            };
+            calendarGroupIdOption.IsRequired = true;
+            command.AddOption(calendarGroupIdOption);
+            var calendarIdOption = new Option<string>("--calendar-id", description: "key: id of calendar") {
+            };
+            calendarIdOption.IsRequired = true;
+            command.AddOption(calendarIdOption);
+            var eventIdOption = new Option<string>("--event-id", description: "key: id of event") {
+            };
+            eventIdOption.IsRequired = true;
+            command.AddOption(eventIdOption);
+            command.SetHandler(async (string userId, string calendarGroupId, string calendarId, string eventId) => {
+                var requestInfo = CreatePostRequestInformation(q => {
+                });
                 await RequestAdapter.SendNoContentAsync(requestInfo);
                 // Print request output. What if the request has no return?
                 Console.WriteLine("Success");
-            });
+            }, userIdOption, calendarGroupIdOption, calendarIdOption, eventIdOption);
             return command;
         }
         /// <summary>
@@ -61,7 +70,7 @@ namespace ApiSdk.Users.Item.CalendarGroups.Item.Calendars.Item.CalendarView.Item
         /// </summary>
         public RequestInformation CreatePostRequestInformation(Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
             var requestInfo = new RequestInformation {
-                HttpMethod = HttpMethod.POST,
+                HttpMethod = Method.POST,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };

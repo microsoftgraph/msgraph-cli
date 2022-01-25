@@ -26,14 +26,17 @@ namespace ApiSdk.Me.Authentication.Fido2Methods.Item {
             var command = new Command("delete");
             command.Description = "Delete navigation property fido2Methods for me";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--fido2authenticationmethod-id", description: "key: id of fido2AuthenticationMethod"));
-            command.Handler = CommandHandler.Create<string>(async (fido2AuthenticationMethodId) => {
-                var requestInfo = CreateDeleteRequestInformation();
-                if (!String.IsNullOrEmpty(fido2AuthenticationMethodId)) requestInfo.PathParameters.Add("fido2AuthenticationMethod_id", fido2AuthenticationMethodId);
+            var fido2AuthenticationMethodIdOption = new Option<string>("--fido2authenticationmethod-id", description: "key: id of fido2AuthenticationMethod") {
+            };
+            fido2AuthenticationMethodIdOption.IsRequired = true;
+            command.AddOption(fido2AuthenticationMethodIdOption);
+            command.SetHandler(async (string fido2AuthenticationMethodId) => {
+                var requestInfo = CreateDeleteRequestInformation(q => {
+                });
                 await RequestAdapter.SendNoContentAsync(requestInfo);
                 // Print request output. What if the request has no return?
                 Console.WriteLine("Success");
-            });
+            }, fido2AuthenticationMethodIdOption);
             return command;
         }
         /// <summary>
@@ -43,14 +46,25 @@ namespace ApiSdk.Me.Authentication.Fido2Methods.Item {
             var command = new Command("get");
             command.Description = "Get fido2Methods from me";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--fido2authenticationmethod-id", description: "key: id of fido2AuthenticationMethod"));
-            command.AddOption(new Option<object>("--select", description: "Select properties to be returned"));
-            command.AddOption(new Option<object>("--expand", description: "Expand related entities"));
-            command.Handler = CommandHandler.Create<string, object, object>(async (fido2AuthenticationMethodId, select, expand) => {
-                var requestInfo = CreateGetRequestInformation();
-                if (!String.IsNullOrEmpty(fido2AuthenticationMethodId)) requestInfo.PathParameters.Add("fido2AuthenticationMethod_id", fido2AuthenticationMethodId);
-                requestInfo.QueryParameters.Add("select", select);
-                requestInfo.QueryParameters.Add("expand", expand);
+            var fido2AuthenticationMethodIdOption = new Option<string>("--fido2authenticationmethod-id", description: "key: id of fido2AuthenticationMethod") {
+            };
+            fido2AuthenticationMethodIdOption.IsRequired = true;
+            command.AddOption(fido2AuthenticationMethodIdOption);
+            var selectOption = new Option<string[]>("--select", description: "Select properties to be returned") {
+                Arity = ArgumentArity.ZeroOrMore
+            };
+            selectOption.IsRequired = false;
+            command.AddOption(selectOption);
+            var expandOption = new Option<string[]>("--expand", description: "Expand related entities") {
+                Arity = ArgumentArity.ZeroOrMore
+            };
+            expandOption.IsRequired = false;
+            command.AddOption(expandOption);
+            command.SetHandler(async (string fido2AuthenticationMethodId, string[] select, string[] expand) => {
+                var requestInfo = CreateGetRequestInformation(q => {
+                    q.Select = select;
+                    q.Expand = expand;
+                });
                 var result = await RequestAdapter.SendAsync<Fido2AuthenticationMethod>(requestInfo);
                 // Print request output. What if the request has no return?
                 using var serializer = RequestAdapter.SerializationWriterFactory.GetSerializationWriter("application/json");
@@ -59,7 +73,7 @@ namespace ApiSdk.Me.Authentication.Fido2Methods.Item {
                 using var reader = new StreamReader(content);
                 var strContent = await reader.ReadToEndAsync();
                 Console.Write(strContent + "\n");
-            });
+            }, fido2AuthenticationMethodIdOption, selectOption, expandOption);
             return command;
         }
         /// <summary>
@@ -69,18 +83,24 @@ namespace ApiSdk.Me.Authentication.Fido2Methods.Item {
             var command = new Command("patch");
             command.Description = "Update the navigation property fido2Methods in me";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--fido2authenticationmethod-id", description: "key: id of fido2AuthenticationMethod"));
-            command.AddOption(new Option<string>("--body"));
-            command.Handler = CommandHandler.Create<string, string>(async (fido2AuthenticationMethodId, body) => {
+            var fido2AuthenticationMethodIdOption = new Option<string>("--fido2authenticationmethod-id", description: "key: id of fido2AuthenticationMethod") {
+            };
+            fido2AuthenticationMethodIdOption.IsRequired = true;
+            command.AddOption(fido2AuthenticationMethodIdOption);
+            var bodyOption = new Option<string>("--body") {
+            };
+            bodyOption.IsRequired = true;
+            command.AddOption(bodyOption);
+            command.SetHandler(async (string fido2AuthenticationMethodId, string body) => {
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<Fido2AuthenticationMethod>();
-                var requestInfo = CreatePatchRequestInformation(model);
-                if (!String.IsNullOrEmpty(fido2AuthenticationMethodId)) requestInfo.PathParameters.Add("fido2AuthenticationMethod_id", fido2AuthenticationMethodId);
+                var requestInfo = CreatePatchRequestInformation(model, q => {
+                });
                 await RequestAdapter.SendNoContentAsync(requestInfo);
                 // Print request output. What if the request has no return?
                 Console.WriteLine("Success");
-            });
+            }, fido2AuthenticationMethodIdOption, bodyOption);
             return command;
         }
         /// <summary>
@@ -103,7 +123,7 @@ namespace ApiSdk.Me.Authentication.Fido2Methods.Item {
         /// </summary>
         public RequestInformation CreateDeleteRequestInformation(Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
             var requestInfo = new RequestInformation {
-                HttpMethod = HttpMethod.DELETE,
+                HttpMethod = Method.DELETE,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };
@@ -119,7 +139,7 @@ namespace ApiSdk.Me.Authentication.Fido2Methods.Item {
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<GetQueryParameters> q = default, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
             var requestInfo = new RequestInformation {
-                HttpMethod = HttpMethod.GET,
+                HttpMethod = Method.GET,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };
@@ -141,7 +161,7 @@ namespace ApiSdk.Me.Authentication.Fido2Methods.Item {
         public RequestInformation CreatePatchRequestInformation(Fido2AuthenticationMethod body, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
             _ = body ?? throw new ArgumentNullException(nameof(body));
             var requestInfo = new RequestInformation {
-                HttpMethod = HttpMethod.PATCH,
+                HttpMethod = Method.PATCH,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };

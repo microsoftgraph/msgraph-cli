@@ -34,14 +34,17 @@ namespace ApiSdk.DeviceManagement.RemoteAssistancePartners.Item {
             var command = new Command("delete");
             command.Description = "The remote assist partners.";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--remoteassistancepartner-id", description: "key: id of remoteAssistancePartner"));
-            command.Handler = CommandHandler.Create<string>(async (remoteAssistancePartnerId) => {
-                var requestInfo = CreateDeleteRequestInformation();
-                if (!String.IsNullOrEmpty(remoteAssistancePartnerId)) requestInfo.PathParameters.Add("remoteAssistancePartner_id", remoteAssistancePartnerId);
+            var remoteAssistancePartnerIdOption = new Option<string>("--remoteassistancepartner-id", description: "key: id of remoteAssistancePartner") {
+            };
+            remoteAssistancePartnerIdOption.IsRequired = true;
+            command.AddOption(remoteAssistancePartnerIdOption);
+            command.SetHandler(async (string remoteAssistancePartnerId) => {
+                var requestInfo = CreateDeleteRequestInformation(q => {
+                });
                 await RequestAdapter.SendNoContentAsync(requestInfo);
                 // Print request output. What if the request has no return?
                 Console.WriteLine("Success");
-            });
+            }, remoteAssistancePartnerIdOption);
             return command;
         }
         public Command BuildDisconnectCommand() {
@@ -57,14 +60,25 @@ namespace ApiSdk.DeviceManagement.RemoteAssistancePartners.Item {
             var command = new Command("get");
             command.Description = "The remote assist partners.";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--remoteassistancepartner-id", description: "key: id of remoteAssistancePartner"));
-            command.AddOption(new Option<object>("--select", description: "Select properties to be returned"));
-            command.AddOption(new Option<object>("--expand", description: "Expand related entities"));
-            command.Handler = CommandHandler.Create<string, object, object>(async (remoteAssistancePartnerId, select, expand) => {
-                var requestInfo = CreateGetRequestInformation();
-                if (!String.IsNullOrEmpty(remoteAssistancePartnerId)) requestInfo.PathParameters.Add("remoteAssistancePartner_id", remoteAssistancePartnerId);
-                requestInfo.QueryParameters.Add("select", select);
-                requestInfo.QueryParameters.Add("expand", expand);
+            var remoteAssistancePartnerIdOption = new Option<string>("--remoteassistancepartner-id", description: "key: id of remoteAssistancePartner") {
+            };
+            remoteAssistancePartnerIdOption.IsRequired = true;
+            command.AddOption(remoteAssistancePartnerIdOption);
+            var selectOption = new Option<string[]>("--select", description: "Select properties to be returned") {
+                Arity = ArgumentArity.ZeroOrMore
+            };
+            selectOption.IsRequired = false;
+            command.AddOption(selectOption);
+            var expandOption = new Option<string[]>("--expand", description: "Expand related entities") {
+                Arity = ArgumentArity.ZeroOrMore
+            };
+            expandOption.IsRequired = false;
+            command.AddOption(expandOption);
+            command.SetHandler(async (string remoteAssistancePartnerId, string[] select, string[] expand) => {
+                var requestInfo = CreateGetRequestInformation(q => {
+                    q.Select = select;
+                    q.Expand = expand;
+                });
                 var result = await RequestAdapter.SendAsync<RemoteAssistancePartner>(requestInfo);
                 // Print request output. What if the request has no return?
                 using var serializer = RequestAdapter.SerializationWriterFactory.GetSerializationWriter("application/json");
@@ -73,7 +87,7 @@ namespace ApiSdk.DeviceManagement.RemoteAssistancePartners.Item {
                 using var reader = new StreamReader(content);
                 var strContent = await reader.ReadToEndAsync();
                 Console.Write(strContent + "\n");
-            });
+            }, remoteAssistancePartnerIdOption, selectOption, expandOption);
             return command;
         }
         /// <summary>
@@ -83,18 +97,24 @@ namespace ApiSdk.DeviceManagement.RemoteAssistancePartners.Item {
             var command = new Command("patch");
             command.Description = "The remote assist partners.";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--remoteassistancepartner-id", description: "key: id of remoteAssistancePartner"));
-            command.AddOption(new Option<string>("--body"));
-            command.Handler = CommandHandler.Create<string, string>(async (remoteAssistancePartnerId, body) => {
+            var remoteAssistancePartnerIdOption = new Option<string>("--remoteassistancepartner-id", description: "key: id of remoteAssistancePartner") {
+            };
+            remoteAssistancePartnerIdOption.IsRequired = true;
+            command.AddOption(remoteAssistancePartnerIdOption);
+            var bodyOption = new Option<string>("--body") {
+            };
+            bodyOption.IsRequired = true;
+            command.AddOption(bodyOption);
+            command.SetHandler(async (string remoteAssistancePartnerId, string body) => {
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<RemoteAssistancePartner>();
-                var requestInfo = CreatePatchRequestInformation(model);
-                if (!String.IsNullOrEmpty(remoteAssistancePartnerId)) requestInfo.PathParameters.Add("remoteAssistancePartner_id", remoteAssistancePartnerId);
+                var requestInfo = CreatePatchRequestInformation(model, q => {
+                });
                 await RequestAdapter.SendNoContentAsync(requestInfo);
                 // Print request output. What if the request has no return?
                 Console.WriteLine("Success");
-            });
+            }, remoteAssistancePartnerIdOption, bodyOption);
             return command;
         }
         /// <summary>
@@ -117,7 +137,7 @@ namespace ApiSdk.DeviceManagement.RemoteAssistancePartners.Item {
         /// </summary>
         public RequestInformation CreateDeleteRequestInformation(Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
             var requestInfo = new RequestInformation {
-                HttpMethod = HttpMethod.DELETE,
+                HttpMethod = Method.DELETE,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };
@@ -133,7 +153,7 @@ namespace ApiSdk.DeviceManagement.RemoteAssistancePartners.Item {
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<GetQueryParameters> q = default, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
             var requestInfo = new RequestInformation {
-                HttpMethod = HttpMethod.GET,
+                HttpMethod = Method.GET,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };
@@ -155,7 +175,7 @@ namespace ApiSdk.DeviceManagement.RemoteAssistancePartners.Item {
         public RequestInformation CreatePatchRequestInformation(RemoteAssistancePartner body, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
             _ = body ?? throw new ArgumentNullException(nameof(body));
             var requestInfo = new RequestInformation {
-                HttpMethod = HttpMethod.PATCH,
+                HttpMethod = Method.PATCH,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };

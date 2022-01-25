@@ -26,12 +26,17 @@ namespace ApiSdk.Me.Insights.Trending.Item.Resource.WorkbookRange.BoundingRectWi
             var command = new Command("get");
             command.Description = "Invoke function boundingRect";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--trending-id", description: "key: id of trending"));
-            command.AddOption(new Option<string>("--anotherrange", description: "Usage: anotherRange={anotherRange}"));
-            command.Handler = CommandHandler.Create<string, string>(async (trendingId, anotherRange) => {
-                var requestInfo = CreateGetRequestInformation();
-                if (!String.IsNullOrEmpty(trendingId)) requestInfo.PathParameters.Add("trending_id", trendingId);
-                if (!String.IsNullOrEmpty(anotherRange)) requestInfo.PathParameters.Add("anotherRange", anotherRange);
+            var trendingIdOption = new Option<string>("--trending-id", description: "key: id of trending") {
+            };
+            trendingIdOption.IsRequired = true;
+            command.AddOption(trendingIdOption);
+            var anotherRangeOption = new Option<string>("--anotherrange", description: "Usage: anotherRange={anotherRange}") {
+            };
+            anotherRangeOption.IsRequired = true;
+            command.AddOption(anotherRangeOption);
+            command.SetHandler(async (string trendingId, string anotherRange) => {
+                var requestInfo = CreateGetRequestInformation(q => {
+                });
                 var result = await RequestAdapter.SendAsync<BoundingRectWithAnotherRangeResponse>(requestInfo);
                 // Print request output. What if the request has no return?
                 using var serializer = RequestAdapter.SerializationWriterFactory.GetSerializationWriter("application/json");
@@ -40,7 +45,7 @@ namespace ApiSdk.Me.Insights.Trending.Item.Resource.WorkbookRange.BoundingRectWi
                 using var reader = new StreamReader(content);
                 var strContent = await reader.ReadToEndAsync();
                 Console.Write(strContent + "\n");
-            });
+            }, trendingIdOption, anotherRangeOption);
             return command;
         }
         /// <summary>
@@ -65,7 +70,7 @@ namespace ApiSdk.Me.Insights.Trending.Item.Resource.WorkbookRange.BoundingRectWi
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
             var requestInfo = new RequestInformation {
-                HttpMethod = HttpMethod.GET,
+                HttpMethod = Method.GET,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };

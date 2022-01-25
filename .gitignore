@@ -371,7 +371,7 @@ DocProject/Help/Html2
 DocProject/Help/html
 
 # Click-Once directory
-publish/
+bin/**/publish/
 
 # Publish Web Output
 *.[Pp]ublish.xml
@@ -571,3 +571,6 @@ FodyWeavers.xsd
 # Additional files built by Visual Studio
 
 # End of https://www.toptal.com/developers/gitignore/api/visualstudiocode,visualstudio,intellij+all,dotnetcore,windows,macos,linux
+
+app-settings.*.json
+!app-settings.sample.json

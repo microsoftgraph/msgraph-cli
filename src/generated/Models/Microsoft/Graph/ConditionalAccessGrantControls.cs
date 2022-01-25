@@ -11,7 +11,7 @@ namespace ApiSdk.Models.Microsoft.Graph {
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>List of values of built-in controls required by the policy. Possible values: block, mfa, compliantDevice, domainJoinedDevice, approvedApplication, compliantApplication, passwordChange, unknownFutureValue.</summary>
         public List<ConditionalAccessGrantControl?> BuiltInControls { get; set; }
-        /// <summary>List of custom controls IDs required by the policy. For more information, see Custom controls.</summary>
+        /// <summary>List of custom controls IDs required by the policy. To learn more about custom control, see Custom controls (preview).</summary>
         public List<string> CustomAuthenticationFactors { get; set; }
         /// <summary>List of terms of use IDs required by the policy.</summary>
         public List<string> TermsOfUse { get; set; }
@@ -26,7 +26,7 @@ namespace ApiSdk.Models.Microsoft.Graph {
         /// </summary>
         public IDictionary<string, Action<T, IParseNode>> GetFieldDeserializers<T>() {
             return new Dictionary<string, Action<T, IParseNode>> {
-                {"@Operator", (o,n) => { (o as ConditionalAccessGrantControls).@Operator = n.GetStringValue(); } },
+                {"operator", (o,n) => { (o as ConditionalAccessGrantControls).@Operator = n.GetStringValue(); } },
                 {"builtInControls", (o,n) => { (o as ConditionalAccessGrantControls).BuiltInControls = n.GetCollectionOfEnumValues<ConditionalAccessGrantControl>().ToList(); } },
                 {"customAuthenticationFactors", (o,n) => { (o as ConditionalAccessGrantControls).CustomAuthenticationFactors = n.GetCollectionOfPrimitiveValues<string>().ToList(); } },
                 {"termsOfUse", (o,n) => { (o as ConditionalAccessGrantControls).TermsOfUse = n.GetCollectionOfPrimitiveValues<string>().ToList(); } },
@@ -38,7 +38,7 @@ namespace ApiSdk.Models.Microsoft.Graph {
         /// </summary>
         public void Serialize(ISerializationWriter writer) {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
-            writer.WriteStringValue("@Operator", @Operator);
+            writer.WriteStringValue("operator", @Operator);
             writer.WriteCollectionOfEnumValues<ConditionalAccessGrantControl>("builtInControls", BuiltInControls);
             writer.WriteCollectionOfPrimitiveValues<string>("customAuthenticationFactors", CustomAuthenticationFactors);
             writer.WriteCollectionOfPrimitiveValues<string>("termsOfUse", TermsOfUse);

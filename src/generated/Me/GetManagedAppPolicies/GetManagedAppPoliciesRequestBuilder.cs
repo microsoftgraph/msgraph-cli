@@ -25,8 +25,9 @@ namespace ApiSdk.Me.GetManagedAppPolicies {
             var command = new Command("get");
             command.Description = "Gets app restrictions for a given user.";
             // Create options for all the parameters
-            command.Handler = CommandHandler.Create(async () => {
-                var requestInfo = CreateGetRequestInformation();
+            command.SetHandler(async () => {
+                var requestInfo = CreateGetRequestInformation(q => {
+                });
                 var result = await RequestAdapter.SendCollectionAsync<ApiSdk.Me.GetManagedAppPolicies.GetManagedAppPolicies>(requestInfo);
                 // Print request output. What if the request has no return?
                 using var serializer = RequestAdapter.SerializationWriterFactory.GetSerializationWriter("application/json");
@@ -58,7 +59,7 @@ namespace ApiSdk.Me.GetManagedAppPolicies {
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
             var requestInfo = new RequestInformation {
-                HttpMethod = HttpMethod.GET,
+                HttpMethod = Method.GET,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };

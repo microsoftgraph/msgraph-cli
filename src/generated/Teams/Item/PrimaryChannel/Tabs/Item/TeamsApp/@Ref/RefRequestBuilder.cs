@@ -19,37 +19,47 @@ namespace ApiSdk.Teams.Item.PrimaryChannel.Tabs.Item.TeamsApp.@Ref {
         /// <summary>Url template to use to build the URL for the current request builder</summary>
         private string UrlTemplate { get; set; }
         /// <summary>
-        /// The application that is linked to the tab. This cannot be changed after tab creation.
+        /// The application that is linked to the tab.
         /// </summary>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
-            command.Description = "The application that is linked to the tab. This cannot be changed after tab creation.";
+            command.Description = "The application that is linked to the tab.";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--team-id", description: "key: id of team"));
-            command.AddOption(new Option<string>("--teamstab-id", description: "key: id of teamsTab"));
-            command.Handler = CommandHandler.Create<string, string>(async (teamId, teamsTabId) => {
-                var requestInfo = CreateDeleteRequestInformation();
-                if (!String.IsNullOrEmpty(teamId)) requestInfo.PathParameters.Add("team_id", teamId);
-                if (!String.IsNullOrEmpty(teamsTabId)) requestInfo.PathParameters.Add("teamsTab_id", teamsTabId);
+            var teamIdOption = new Option<string>("--team-id", description: "key: id of team") {
+            };
+            teamIdOption.IsRequired = true;
+            command.AddOption(teamIdOption);
+            var teamsTabIdOption = new Option<string>("--teamstab-id", description: "key: id of teamsTab") {
+            };
+            teamsTabIdOption.IsRequired = true;
+            command.AddOption(teamsTabIdOption);
+            command.SetHandler(async (string teamId, string teamsTabId) => {
+                var requestInfo = CreateDeleteRequestInformation(q => {
+                });
                 await RequestAdapter.SendNoContentAsync(requestInfo);
                 // Print request output. What if the request has no return?
                 Console.WriteLine("Success");
-            });
+            }, teamIdOption, teamsTabIdOption);
             return command;
         }
         /// <summary>
-        /// The application that is linked to the tab. This cannot be changed after tab creation.
+        /// The application that is linked to the tab.
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "The application that is linked to the tab. This cannot be changed after tab creation.";
+            command.Description = "The application that is linked to the tab.";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--team-id", description: "key: id of team"));
-            command.AddOption(new Option<string>("--teamstab-id", description: "key: id of teamsTab"));
-            command.Handler = CommandHandler.Create<string, string>(async (teamId, teamsTabId) => {
-                var requestInfo = CreateGetRequestInformation();
-                if (!String.IsNullOrEmpty(teamId)) requestInfo.PathParameters.Add("team_id", teamId);
-                if (!String.IsNullOrEmpty(teamsTabId)) requestInfo.PathParameters.Add("teamsTab_id", teamsTabId);
+            var teamIdOption = new Option<string>("--team-id", description: "key: id of team") {
+            };
+            teamIdOption.IsRequired = true;
+            command.AddOption(teamIdOption);
+            var teamsTabIdOption = new Option<string>("--teamstab-id", description: "key: id of teamsTab") {
+            };
+            teamsTabIdOption.IsRequired = true;
+            command.AddOption(teamsTabIdOption);
+            command.SetHandler(async (string teamId, string teamsTabId) => {
+                var requestInfo = CreateGetRequestInformation(q => {
+                });
                 var result = await RequestAdapter.SendPrimitiveAsync<string>(requestInfo);
                 // Print request output. What if the request has no return?
                 using var serializer = RequestAdapter.SerializationWriterFactory.GetSerializationWriter("application/json");
@@ -58,30 +68,38 @@ namespace ApiSdk.Teams.Item.PrimaryChannel.Tabs.Item.TeamsApp.@Ref {
                 using var reader = new StreamReader(content);
                 var strContent = await reader.ReadToEndAsync();
                 Console.Write(strContent + "\n");
-            });
+            }, teamIdOption, teamsTabIdOption);
             return command;
         }
         /// <summary>
-        /// The application that is linked to the tab. This cannot be changed after tab creation.
+        /// The application that is linked to the tab.
         /// </summary>
         public Command BuildPutCommand() {
             var command = new Command("put");
-            command.Description = "The application that is linked to the tab. This cannot be changed after tab creation.";
+            command.Description = "The application that is linked to the tab.";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--team-id", description: "key: id of team"));
-            command.AddOption(new Option<string>("--teamstab-id", description: "key: id of teamsTab"));
-            command.AddOption(new Option<string>("--body"));
-            command.Handler = CommandHandler.Create<string, string, string>(async (teamId, teamsTabId, body) => {
+            var teamIdOption = new Option<string>("--team-id", description: "key: id of team") {
+            };
+            teamIdOption.IsRequired = true;
+            command.AddOption(teamIdOption);
+            var teamsTabIdOption = new Option<string>("--teamstab-id", description: "key: id of teamsTab") {
+            };
+            teamsTabIdOption.IsRequired = true;
+            command.AddOption(teamsTabIdOption);
+            var bodyOption = new Option<string>("--body") {
+            };
+            bodyOption.IsRequired = true;
+            command.AddOption(bodyOption);
+            command.SetHandler(async (string teamId, string teamsTabId, string body) => {
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<ApiSdk.Teams.Item.PrimaryChannel.Tabs.Item.TeamsApp.@Ref.@Ref>();
-                var requestInfo = CreatePutRequestInformation(model);
-                if (!String.IsNullOrEmpty(teamId)) requestInfo.PathParameters.Add("team_id", teamId);
-                if (!String.IsNullOrEmpty(teamsTabId)) requestInfo.PathParameters.Add("teamsTab_id", teamsTabId);
+                var requestInfo = CreatePutRequestInformation(model, q => {
+                });
                 await RequestAdapter.SendNoContentAsync(requestInfo);
                 // Print request output. What if the request has no return?
                 Console.WriteLine("Success");
-            });
+            }, teamIdOption, teamsTabIdOption, bodyOption);
             return command;
         }
         /// <summary>
@@ -98,13 +116,13 @@ namespace ApiSdk.Teams.Item.PrimaryChannel.Tabs.Item.TeamsApp.@Ref {
             RequestAdapter = requestAdapter;
         }
         /// <summary>
-        /// The application that is linked to the tab. This cannot be changed after tab creation.
+        /// The application that is linked to the tab.
         /// <param name="h">Request headers</param>
         /// <param name="o">Request options</param>
         /// </summary>
         public RequestInformation CreateDeleteRequestInformation(Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
             var requestInfo = new RequestInformation {
-                HttpMethod = HttpMethod.DELETE,
+                HttpMethod = Method.DELETE,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };
@@ -113,13 +131,13 @@ namespace ApiSdk.Teams.Item.PrimaryChannel.Tabs.Item.TeamsApp.@Ref {
             return requestInfo;
         }
         /// <summary>
-        /// The application that is linked to the tab. This cannot be changed after tab creation.
+        /// The application that is linked to the tab.
         /// <param name="h">Request headers</param>
         /// <param name="o">Request options</param>
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
             var requestInfo = new RequestInformation {
-                HttpMethod = HttpMethod.GET,
+                HttpMethod = Method.GET,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };
@@ -128,7 +146,7 @@ namespace ApiSdk.Teams.Item.PrimaryChannel.Tabs.Item.TeamsApp.@Ref {
             return requestInfo;
         }
         /// <summary>
-        /// The application that is linked to the tab. This cannot be changed after tab creation.
+        /// The application that is linked to the tab.
         /// <param name="body"></param>
         /// <param name="h">Request headers</param>
         /// <param name="o">Request options</param>
@@ -136,7 +154,7 @@ namespace ApiSdk.Teams.Item.PrimaryChannel.Tabs.Item.TeamsApp.@Ref {
         public RequestInformation CreatePutRequestInformation(ApiSdk.Teams.Item.PrimaryChannel.Tabs.Item.TeamsApp.@Ref.@Ref body, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
             _ = body ?? throw new ArgumentNullException(nameof(body));
             var requestInfo = new RequestInformation {
-                HttpMethod = HttpMethod.PUT,
+                HttpMethod = Method.PUT,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };
@@ -146,7 +164,7 @@ namespace ApiSdk.Teams.Item.PrimaryChannel.Tabs.Item.TeamsApp.@Ref {
             return requestInfo;
         }
         /// <summary>
-        /// The application that is linked to the tab. This cannot be changed after tab creation.
+        /// The application that is linked to the tab.
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="h">Request headers</param>
         /// <param name="o">Request options</param>
@@ -157,7 +175,7 @@ namespace ApiSdk.Teams.Item.PrimaryChannel.Tabs.Item.TeamsApp.@Ref {
             await RequestAdapter.SendNoContentAsync(requestInfo, responseHandler, cancellationToken);
         }
         /// <summary>
-        /// The application that is linked to the tab. This cannot be changed after tab creation.
+        /// The application that is linked to the tab.
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="h">Request headers</param>
         /// <param name="o">Request options</param>
@@ -168,7 +186,7 @@ namespace ApiSdk.Teams.Item.PrimaryChannel.Tabs.Item.TeamsApp.@Ref {
             return await RequestAdapter.SendPrimitiveAsync<string>(requestInfo, responseHandler, cancellationToken);
         }
         /// <summary>
-        /// The application that is linked to the tab. This cannot be changed after tab creation.
+        /// The application that is linked to the tab.
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="h">Request headers</param>
         /// <param name="model"></param>

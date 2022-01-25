@@ -59,16 +59,21 @@ namespace ApiSdk.Users.Item.ManagedDevices.Item {
             var command = new Command("delete");
             command.Description = "The managed devices associated with the user.";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--user-id", description: "key: id of user"));
-            command.AddOption(new Option<string>("--manageddevice-id", description: "key: id of managedDevice"));
-            command.Handler = CommandHandler.Create<string, string>(async (userId, managedDeviceId) => {
-                var requestInfo = CreateDeleteRequestInformation();
-                if (!String.IsNullOrEmpty(userId)) requestInfo.PathParameters.Add("user_id", userId);
-                if (!String.IsNullOrEmpty(managedDeviceId)) requestInfo.PathParameters.Add("managedDevice_id", managedDeviceId);
+            var userIdOption = new Option<string>("--user-id", description: "key: id of user") {
+            };
+            userIdOption.IsRequired = true;
+            command.AddOption(userIdOption);
+            var managedDeviceIdOption = new Option<string>("--manageddevice-id", description: "key: id of managedDevice") {
+            };
+            managedDeviceIdOption.IsRequired = true;
+            command.AddOption(managedDeviceIdOption);
+            command.SetHandler(async (string userId, string managedDeviceId) => {
+                var requestInfo = CreateDeleteRequestInformation(q => {
+                });
                 await RequestAdapter.SendNoContentAsync(requestInfo);
                 // Print request output. What if the request has no return?
                 Console.WriteLine("Success");
-            });
+            }, userIdOption, managedDeviceIdOption);
             return command;
         }
         public Command BuildDeleteUserFromSharedAppleDeviceCommand() {
@@ -112,16 +117,29 @@ namespace ApiSdk.Users.Item.ManagedDevices.Item {
             var command = new Command("get");
             command.Description = "The managed devices associated with the user.";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--user-id", description: "key: id of user"));
-            command.AddOption(new Option<string>("--manageddevice-id", description: "key: id of managedDevice"));
-            command.AddOption(new Option<object>("--select", description: "Select properties to be returned"));
-            command.AddOption(new Option<object>("--expand", description: "Expand related entities"));
-            command.Handler = CommandHandler.Create<string, string, object, object>(async (userId, managedDeviceId, select, expand) => {
-                var requestInfo = CreateGetRequestInformation();
-                if (!String.IsNullOrEmpty(userId)) requestInfo.PathParameters.Add("user_id", userId);
-                if (!String.IsNullOrEmpty(managedDeviceId)) requestInfo.PathParameters.Add("managedDevice_id", managedDeviceId);
-                requestInfo.QueryParameters.Add("select", select);
-                requestInfo.QueryParameters.Add("expand", expand);
+            var userIdOption = new Option<string>("--user-id", description: "key: id of user") {
+            };
+            userIdOption.IsRequired = true;
+            command.AddOption(userIdOption);
+            var managedDeviceIdOption = new Option<string>("--manageddevice-id", description: "key: id of managedDevice") {
+            };
+            managedDeviceIdOption.IsRequired = true;
+            command.AddOption(managedDeviceIdOption);
+            var selectOption = new Option<string[]>("--select", description: "Select properties to be returned") {
+                Arity = ArgumentArity.ZeroOrMore
+            };
+            selectOption.IsRequired = false;
+            command.AddOption(selectOption);
+            var expandOption = new Option<string[]>("--expand", description: "Expand related entities") {
+                Arity = ArgumentArity.ZeroOrMore
+            };
+            expandOption.IsRequired = false;
+            command.AddOption(expandOption);
+            command.SetHandler(async (string userId, string managedDeviceId, string[] select, string[] expand) => {
+                var requestInfo = CreateGetRequestInformation(q => {
+                    q.Select = select;
+                    q.Expand = expand;
+                });
                 var result = await RequestAdapter.SendAsync<ManagedDevice>(requestInfo);
                 // Print request output. What if the request has no return?
                 using var serializer = RequestAdapter.SerializationWriterFactory.GetSerializationWriter("application/json");
@@ -130,7 +148,7 @@ namespace ApiSdk.Users.Item.ManagedDevices.Item {
                 using var reader = new StreamReader(content);
                 var strContent = await reader.ReadToEndAsync();
                 Console.Write(strContent + "\n");
-            });
+            }, userIdOption, managedDeviceIdOption, selectOption, expandOption);
             return command;
         }
         public Command BuildLocateDeviceCommand() {
@@ -152,20 +170,28 @@ namespace ApiSdk.Users.Item.ManagedDevices.Item {
             var command = new Command("patch");
             command.Description = "The managed devices associated with the user.";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--user-id", description: "key: id of user"));
-            command.AddOption(new Option<string>("--manageddevice-id", description: "key: id of managedDevice"));
-            command.AddOption(new Option<string>("--body"));
-            command.Handler = CommandHandler.Create<string, string, string>(async (userId, managedDeviceId, body) => {
+            var userIdOption = new Option<string>("--user-id", description: "key: id of user") {
+            };
+            userIdOption.IsRequired = true;
+            command.AddOption(userIdOption);
+            var managedDeviceIdOption = new Option<string>("--manageddevice-id", description: "key: id of managedDevice") {
+            };
+            managedDeviceIdOption.IsRequired = true;
+            command.AddOption(managedDeviceIdOption);
+            var bodyOption = new Option<string>("--body") {
+            };
+            bodyOption.IsRequired = true;
+            command.AddOption(bodyOption);
+            command.SetHandler(async (string userId, string managedDeviceId, string body) => {
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<ManagedDevice>();
-                var requestInfo = CreatePatchRequestInformation(model);
-                if (!String.IsNullOrEmpty(userId)) requestInfo.PathParameters.Add("user_id", userId);
-                if (!String.IsNullOrEmpty(managedDeviceId)) requestInfo.PathParameters.Add("managedDevice_id", managedDeviceId);
+                var requestInfo = CreatePatchRequestInformation(model, q => {
+                });
                 await RequestAdapter.SendNoContentAsync(requestInfo);
                 // Print request output. What if the request has no return?
                 Console.WriteLine("Success");
-            });
+            }, userIdOption, managedDeviceIdOption, bodyOption);
             return command;
         }
         public Command BuildRebootNowCommand() {
@@ -260,7 +286,7 @@ namespace ApiSdk.Users.Item.ManagedDevices.Item {
         /// </summary>
         public RequestInformation CreateDeleteRequestInformation(Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
             var requestInfo = new RequestInformation {
-                HttpMethod = HttpMethod.DELETE,
+                HttpMethod = Method.DELETE,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };
@@ -276,7 +302,7 @@ namespace ApiSdk.Users.Item.ManagedDevices.Item {
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<GetQueryParameters> q = default, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
             var requestInfo = new RequestInformation {
-                HttpMethod = HttpMethod.GET,
+                HttpMethod = Method.GET,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };
@@ -298,7 +324,7 @@ namespace ApiSdk.Users.Item.ManagedDevices.Item {
         public RequestInformation CreatePatchRequestInformation(ManagedDevice body, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
             _ = body ?? throw new ArgumentNullException(nameof(body));
             var requestInfo = new RequestInformation {
-                HttpMethod = HttpMethod.PATCH,
+                HttpMethod = Method.PATCH,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };

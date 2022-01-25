@@ -21,7 +21,7 @@ namespace ApiSdk.Workbooks.Item.Workbook.Functions.Log {
         /// </summary>
         public IDictionary<string, Action<T, IParseNode>> GetFieldDeserializers<T>() {
             return new Dictionary<string, Action<T, IParseNode>> {
-                {"@Base", (o,n) => { (o as LogRequestBody).@Base = n.GetObjectValue<Json>(); } },
+                {"base", (o,n) => { (o as LogRequestBody).@Base = n.GetObjectValue<Json>(); } },
                 {"number", (o,n) => { (o as LogRequestBody).Number = n.GetObjectValue<Json>(); } },
             };
         }
@@ -31,7 +31,7 @@ namespace ApiSdk.Workbooks.Item.Workbook.Functions.Log {
         /// </summary>
         public void Serialize(ISerializationWriter writer) {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
-            writer.WriteObjectValue<Json>("@Base", @Base);
+            writer.WriteObjectValue<Json>("base", @Base);
             writer.WriteObjectValue<Json>("number", Number);
             writer.WriteAdditionalData(AdditionalData);
         }

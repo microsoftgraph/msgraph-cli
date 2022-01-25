@@ -26,18 +26,28 @@ namespace ApiSdk.Sites.Item.Onenote.Pages.Item.ParentSection.Pages.Item.CopyToSe
             var command = new Command("post");
             command.Description = "Invoke action copyToSection";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--site-id", description: "key: id of site"));
-            command.AddOption(new Option<string>("--onenotepage-id", description: "key: id of onenotePage"));
-            command.AddOption(new Option<string>("--onenotepage-id1", description: "key: id of onenotePage"));
-            command.AddOption(new Option<string>("--body"));
-            command.Handler = CommandHandler.Create<string, string, string, string>(async (siteId, onenotePageId, onenotePageId1, body) => {
+            var siteIdOption = new Option<string>("--site-id", description: "key: id of site") {
+            };
+            siteIdOption.IsRequired = true;
+            command.AddOption(siteIdOption);
+            var onenotePageIdOption = new Option<string>("--onenotepage-id", description: "key: id of onenotePage") {
+            };
+            onenotePageIdOption.IsRequired = true;
+            command.AddOption(onenotePageIdOption);
+            var onenotePageId1Option = new Option<string>("--onenotepage-id1", description: "key: id of onenotePage") {
+            };
+            onenotePageId1Option.IsRequired = true;
+            command.AddOption(onenotePageId1Option);
+            var bodyOption = new Option<string>("--body") {
+            };
+            bodyOption.IsRequired = true;
+            command.AddOption(bodyOption);
+            command.SetHandler(async (string siteId, string onenotePageId, string onenotePageId1, string body) => {
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<CopyToSectionRequestBody>();
-                var requestInfo = CreatePostRequestInformation(model);
-                if (!String.IsNullOrEmpty(siteId)) requestInfo.PathParameters.Add("site_id", siteId);
-                if (!String.IsNullOrEmpty(onenotePageId)) requestInfo.PathParameters.Add("onenotePage_id", onenotePageId);
-                if (!String.IsNullOrEmpty(onenotePageId1)) requestInfo.PathParameters.Add("onenotePage_id1", onenotePageId1);
+                var requestInfo = CreatePostRequestInformation(model, q => {
+                });
                 var result = await RequestAdapter.SendAsync<CopyToSectionResponse>(requestInfo);
                 // Print request output. What if the request has no return?
                 using var serializer = RequestAdapter.SerializationWriterFactory.GetSerializationWriter("application/json");
@@ -46,7 +56,7 @@ namespace ApiSdk.Sites.Item.Onenote.Pages.Item.ParentSection.Pages.Item.CopyToSe
                 using var reader = new StreamReader(content);
                 var strContent = await reader.ReadToEndAsync();
                 Console.Write(strContent + "\n");
-            });
+            }, siteIdOption, onenotePageIdOption, onenotePageId1Option, bodyOption);
             return command;
         }
         /// <summary>
@@ -71,7 +81,7 @@ namespace ApiSdk.Sites.Item.Onenote.Pages.Item.ParentSection.Pages.Item.CopyToSe
         public RequestInformation CreatePostRequestInformation(CopyToSectionRequestBody body, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
             _ = body ?? throw new ArgumentNullException(nameof(body));
             var requestInfo = new RequestInformation {
-                HttpMethod = HttpMethod.POST,
+                HttpMethod = Method.POST,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };

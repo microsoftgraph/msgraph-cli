@@ -28,16 +28,21 @@ namespace ApiSdk.Groups.Item.Threads.Item {
             var command = new Command("delete");
             command.Description = "The group's conversation threads. Nullable.";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--group-id", description: "key: id of group"));
-            command.AddOption(new Option<string>("--conversationthread-id", description: "key: id of conversationThread"));
-            command.Handler = CommandHandler.Create<string, string>(async (groupId, conversationThreadId) => {
-                var requestInfo = CreateDeleteRequestInformation();
-                if (!String.IsNullOrEmpty(groupId)) requestInfo.PathParameters.Add("group_id", groupId);
-                if (!String.IsNullOrEmpty(conversationThreadId)) requestInfo.PathParameters.Add("conversationThread_id", conversationThreadId);
+            var groupIdOption = new Option<string>("--group-id", description: "key: id of group") {
+            };
+            groupIdOption.IsRequired = true;
+            command.AddOption(groupIdOption);
+            var conversationThreadIdOption = new Option<string>("--conversationthread-id", description: "key: id of conversationThread") {
+            };
+            conversationThreadIdOption.IsRequired = true;
+            command.AddOption(conversationThreadIdOption);
+            command.SetHandler(async (string groupId, string conversationThreadId) => {
+                var requestInfo = CreateDeleteRequestInformation(q => {
+                });
                 await RequestAdapter.SendNoContentAsync(requestInfo);
                 // Print request output. What if the request has no return?
                 Console.WriteLine("Success");
-            });
+            }, groupIdOption, conversationThreadIdOption);
             return command;
         }
         /// <summary>
@@ -47,14 +52,23 @@ namespace ApiSdk.Groups.Item.Threads.Item {
             var command = new Command("get");
             command.Description = "The group's conversation threads. Nullable.";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--group-id", description: "key: id of group"));
-            command.AddOption(new Option<string>("--conversationthread-id", description: "key: id of conversationThread"));
-            command.AddOption(new Option<object>("--select", description: "Select properties to be returned"));
-            command.Handler = CommandHandler.Create<string, string, object>(async (groupId, conversationThreadId, select) => {
-                var requestInfo = CreateGetRequestInformation();
-                if (!String.IsNullOrEmpty(groupId)) requestInfo.PathParameters.Add("group_id", groupId);
-                if (!String.IsNullOrEmpty(conversationThreadId)) requestInfo.PathParameters.Add("conversationThread_id", conversationThreadId);
-                requestInfo.QueryParameters.Add("select", select);
+            var groupIdOption = new Option<string>("--group-id", description: "key: id of group") {
+            };
+            groupIdOption.IsRequired = true;
+            command.AddOption(groupIdOption);
+            var conversationThreadIdOption = new Option<string>("--conversationthread-id", description: "key: id of conversationThread") {
+            };
+            conversationThreadIdOption.IsRequired = true;
+            command.AddOption(conversationThreadIdOption);
+            var selectOption = new Option<string[]>("--select", description: "Select properties to be returned") {
+                Arity = ArgumentArity.ZeroOrMore
+            };
+            selectOption.IsRequired = false;
+            command.AddOption(selectOption);
+            command.SetHandler(async (string groupId, string conversationThreadId, string[] select) => {
+                var requestInfo = CreateGetRequestInformation(q => {
+                    q.Select = select;
+                });
                 var result = await RequestAdapter.SendAsync<ConversationThread>(requestInfo);
                 // Print request output. What if the request has no return?
                 using var serializer = RequestAdapter.SerializationWriterFactory.GetSerializationWriter("application/json");
@@ -63,7 +77,7 @@ namespace ApiSdk.Groups.Item.Threads.Item {
                 using var reader = new StreamReader(content);
                 var strContent = await reader.ReadToEndAsync();
                 Console.Write(strContent + "\n");
-            });
+            }, groupIdOption, conversationThreadIdOption, selectOption);
             return command;
         }
         /// <summary>
@@ -73,20 +87,28 @@ namespace ApiSdk.Groups.Item.Threads.Item {
             var command = new Command("patch");
             command.Description = "The group's conversation threads. Nullable.";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--group-id", description: "key: id of group"));
-            command.AddOption(new Option<string>("--conversationthread-id", description: "key: id of conversationThread"));
-            command.AddOption(new Option<string>("--body"));
-            command.Handler = CommandHandler.Create<string, string, string>(async (groupId, conversationThreadId, body) => {
+            var groupIdOption = new Option<string>("--group-id", description: "key: id of group") {
+            };
+            groupIdOption.IsRequired = true;
+            command.AddOption(groupIdOption);
+            var conversationThreadIdOption = new Option<string>("--conversationthread-id", description: "key: id of conversationThread") {
+            };
+            conversationThreadIdOption.IsRequired = true;
+            command.AddOption(conversationThreadIdOption);
+            var bodyOption = new Option<string>("--body") {
+            };
+            bodyOption.IsRequired = true;
+            command.AddOption(bodyOption);
+            command.SetHandler(async (string groupId, string conversationThreadId, string body) => {
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<ConversationThread>();
-                var requestInfo = CreatePatchRequestInformation(model);
-                if (!String.IsNullOrEmpty(groupId)) requestInfo.PathParameters.Add("group_id", groupId);
-                if (!String.IsNullOrEmpty(conversationThreadId)) requestInfo.PathParameters.Add("conversationThread_id", conversationThreadId);
+                var requestInfo = CreatePatchRequestInformation(model, q => {
+                });
                 await RequestAdapter.SendNoContentAsync(requestInfo);
                 // Print request output. What if the request has no return?
                 Console.WriteLine("Success");
-            });
+            }, groupIdOption, conversationThreadIdOption, bodyOption);
             return command;
         }
         public Command BuildPostsCommand() {
@@ -122,7 +144,7 @@ namespace ApiSdk.Groups.Item.Threads.Item {
         /// </summary>
         public RequestInformation CreateDeleteRequestInformation(Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
             var requestInfo = new RequestInformation {
-                HttpMethod = HttpMethod.DELETE,
+                HttpMethod = Method.DELETE,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };
@@ -138,7 +160,7 @@ namespace ApiSdk.Groups.Item.Threads.Item {
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<GetQueryParameters> q = default, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
             var requestInfo = new RequestInformation {
-                HttpMethod = HttpMethod.GET,
+                HttpMethod = Method.GET,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };
@@ -160,7 +182,7 @@ namespace ApiSdk.Groups.Item.Threads.Item {
         public RequestInformation CreatePatchRequestInformation(ConversationThread body, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
             _ = body ?? throw new ArgumentNullException(nameof(body));
             var requestInfo = new RequestInformation {
-                HttpMethod = HttpMethod.PATCH,
+                HttpMethod = Method.PATCH,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };

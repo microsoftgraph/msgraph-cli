@@ -26,14 +26,21 @@ namespace ApiSdk.Workbooks.Item.Workbook.Tables.Item.Rows.Item.Range {
             var command = new Command("get");
             command.Description = "Invoke function range";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--driveitem-id", description: "key: id of driveItem"));
-            command.AddOption(new Option<string>("--workbooktable-id", description: "key: id of workbookTable"));
-            command.AddOption(new Option<string>("--workbooktablerow-id", description: "key: id of workbookTableRow"));
-            command.Handler = CommandHandler.Create<string, string, string>(async (driveItemId, workbookTableId, workbookTableRowId) => {
-                var requestInfo = CreateGetRequestInformation();
-                if (!String.IsNullOrEmpty(driveItemId)) requestInfo.PathParameters.Add("driveItem_id", driveItemId);
-                if (!String.IsNullOrEmpty(workbookTableId)) requestInfo.PathParameters.Add("workbookTable_id", workbookTableId);
-                if (!String.IsNullOrEmpty(workbookTableRowId)) requestInfo.PathParameters.Add("workbookTableRow_id", workbookTableRowId);
+            var driveItemIdOption = new Option<string>("--driveitem-id", description: "key: id of driveItem") {
+            };
+            driveItemIdOption.IsRequired = true;
+            command.AddOption(driveItemIdOption);
+            var workbookTableIdOption = new Option<string>("--workbooktable-id", description: "key: id of workbookTable") {
+            };
+            workbookTableIdOption.IsRequired = true;
+            command.AddOption(workbookTableIdOption);
+            var workbookTableRowIdOption = new Option<string>("--workbooktablerow-id", description: "key: id of workbookTableRow") {
+            };
+            workbookTableRowIdOption.IsRequired = true;
+            command.AddOption(workbookTableRowIdOption);
+            command.SetHandler(async (string driveItemId, string workbookTableId, string workbookTableRowId) => {
+                var requestInfo = CreateGetRequestInformation(q => {
+                });
                 var result = await RequestAdapter.SendAsync<RangeResponse>(requestInfo);
                 // Print request output. What if the request has no return?
                 using var serializer = RequestAdapter.SerializationWriterFactory.GetSerializationWriter("application/json");
@@ -42,7 +49,7 @@ namespace ApiSdk.Workbooks.Item.Workbook.Tables.Item.Rows.Item.Range {
                 using var reader = new StreamReader(content);
                 var strContent = await reader.ReadToEndAsync();
                 Console.Write(strContent + "\n");
-            });
+            }, driveItemIdOption, workbookTableIdOption, workbookTableRowIdOption);
             return command;
         }
         /// <summary>
@@ -65,7 +72,7 @@ namespace ApiSdk.Workbooks.Item.Workbook.Tables.Item.Rows.Item.Range {
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
             var requestInfo = new RequestInformation {
-                HttpMethod = HttpMethod.GET,
+                HttpMethod = Method.GET,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };

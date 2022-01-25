@@ -26,16 +26,21 @@ namespace ApiSdk.Policies.FeatureRolloutPolicies.Item.AppliesTo.Item {
             var command = new Command("delete");
             command.Description = "Nullable. Specifies a list of directoryObjects that feature is enabled for.";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--featurerolloutpolicy-id", description: "key: id of featureRolloutPolicy"));
-            command.AddOption(new Option<string>("--directoryobject-id", description: "key: id of directoryObject"));
-            command.Handler = CommandHandler.Create<string, string>(async (featureRolloutPolicyId, directoryObjectId) => {
-                var requestInfo = CreateDeleteRequestInformation();
-                if (!String.IsNullOrEmpty(featureRolloutPolicyId)) requestInfo.PathParameters.Add("featureRolloutPolicy_id", featureRolloutPolicyId);
-                if (!String.IsNullOrEmpty(directoryObjectId)) requestInfo.PathParameters.Add("directoryObject_id", directoryObjectId);
+            var featureRolloutPolicyIdOption = new Option<string>("--featurerolloutpolicy-id", description: "key: id of featureRolloutPolicy") {
+            };
+            featureRolloutPolicyIdOption.IsRequired = true;
+            command.AddOption(featureRolloutPolicyIdOption);
+            var directoryObjectIdOption = new Option<string>("--directoryobject-id", description: "key: id of directoryObject") {
+            };
+            directoryObjectIdOption.IsRequired = true;
+            command.AddOption(directoryObjectIdOption);
+            command.SetHandler(async (string featureRolloutPolicyId, string directoryObjectId) => {
+                var requestInfo = CreateDeleteRequestInformation(q => {
+                });
                 await RequestAdapter.SendNoContentAsync(requestInfo);
                 // Print request output. What if the request has no return?
                 Console.WriteLine("Success");
-            });
+            }, featureRolloutPolicyIdOption, directoryObjectIdOption);
             return command;
         }
         /// <summary>
@@ -45,16 +50,29 @@ namespace ApiSdk.Policies.FeatureRolloutPolicies.Item.AppliesTo.Item {
             var command = new Command("get");
             command.Description = "Nullable. Specifies a list of directoryObjects that feature is enabled for.";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--featurerolloutpolicy-id", description: "key: id of featureRolloutPolicy"));
-            command.AddOption(new Option<string>("--directoryobject-id", description: "key: id of directoryObject"));
-            command.AddOption(new Option<object>("--select", description: "Select properties to be returned"));
-            command.AddOption(new Option<object>("--expand", description: "Expand related entities"));
-            command.Handler = CommandHandler.Create<string, string, object, object>(async (featureRolloutPolicyId, directoryObjectId, select, expand) => {
-                var requestInfo = CreateGetRequestInformation();
-                if (!String.IsNullOrEmpty(featureRolloutPolicyId)) requestInfo.PathParameters.Add("featureRolloutPolicy_id", featureRolloutPolicyId);
-                if (!String.IsNullOrEmpty(directoryObjectId)) requestInfo.PathParameters.Add("directoryObject_id", directoryObjectId);
-                requestInfo.QueryParameters.Add("select", select);
-                requestInfo.QueryParameters.Add("expand", expand);
+            var featureRolloutPolicyIdOption = new Option<string>("--featurerolloutpolicy-id", description: "key: id of featureRolloutPolicy") {
+            };
+            featureRolloutPolicyIdOption.IsRequired = true;
+            command.AddOption(featureRolloutPolicyIdOption);
+            var directoryObjectIdOption = new Option<string>("--directoryobject-id", description: "key: id of directoryObject") {
+            };
+            directoryObjectIdOption.IsRequired = true;
+            command.AddOption(directoryObjectIdOption);
+            var selectOption = new Option<string[]>("--select", description: "Select properties to be returned") {
+                Arity = ArgumentArity.ZeroOrMore
+            };
+            selectOption.IsRequired = false;
+            command.AddOption(selectOption);
+            var expandOption = new Option<string[]>("--expand", description: "Expand related entities") {
+                Arity = ArgumentArity.ZeroOrMore
+            };
+            expandOption.IsRequired = false;
+            command.AddOption(expandOption);
+            command.SetHandler(async (string featureRolloutPolicyId, string directoryObjectId, string[] select, string[] expand) => {
+                var requestInfo = CreateGetRequestInformation(q => {
+                    q.Select = select;
+                    q.Expand = expand;
+                });
                 var result = await RequestAdapter.SendAsync<DirectoryObject>(requestInfo);
                 // Print request output. What if the request has no return?
                 using var serializer = RequestAdapter.SerializationWriterFactory.GetSerializationWriter("application/json");
@@ -63,7 +81,7 @@ namespace ApiSdk.Policies.FeatureRolloutPolicies.Item.AppliesTo.Item {
                 using var reader = new StreamReader(content);
                 var strContent = await reader.ReadToEndAsync();
                 Console.Write(strContent + "\n");
-            });
+            }, featureRolloutPolicyIdOption, directoryObjectIdOption, selectOption, expandOption);
             return command;
         }
         /// <summary>
@@ -73,20 +91,28 @@ namespace ApiSdk.Policies.FeatureRolloutPolicies.Item.AppliesTo.Item {
             var command = new Command("patch");
             command.Description = "Nullable. Specifies a list of directoryObjects that feature is enabled for.";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--featurerolloutpolicy-id", description: "key: id of featureRolloutPolicy"));
-            command.AddOption(new Option<string>("--directoryobject-id", description: "key: id of directoryObject"));
-            command.AddOption(new Option<string>("--body"));
-            command.Handler = CommandHandler.Create<string, string, string>(async (featureRolloutPolicyId, directoryObjectId, body) => {
+            var featureRolloutPolicyIdOption = new Option<string>("--featurerolloutpolicy-id", description: "key: id of featureRolloutPolicy") {
+            };
+            featureRolloutPolicyIdOption.IsRequired = true;
+            command.AddOption(featureRolloutPolicyIdOption);
+            var directoryObjectIdOption = new Option<string>("--directoryobject-id", description: "key: id of directoryObject") {
+            };
+            directoryObjectIdOption.IsRequired = true;
+            command.AddOption(directoryObjectIdOption);
+            var bodyOption = new Option<string>("--body") {
+            };
+            bodyOption.IsRequired = true;
+            command.AddOption(bodyOption);
+            command.SetHandler(async (string featureRolloutPolicyId, string directoryObjectId, string body) => {
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<DirectoryObject>();
-                var requestInfo = CreatePatchRequestInformation(model);
-                if (!String.IsNullOrEmpty(featureRolloutPolicyId)) requestInfo.PathParameters.Add("featureRolloutPolicy_id", featureRolloutPolicyId);
-                if (!String.IsNullOrEmpty(directoryObjectId)) requestInfo.PathParameters.Add("directoryObject_id", directoryObjectId);
+                var requestInfo = CreatePatchRequestInformation(model, q => {
+                });
                 await RequestAdapter.SendNoContentAsync(requestInfo);
                 // Print request output. What if the request has no return?
                 Console.WriteLine("Success");
-            });
+            }, featureRolloutPolicyIdOption, directoryObjectIdOption, bodyOption);
             return command;
         }
         /// <summary>
@@ -109,7 +135,7 @@ namespace ApiSdk.Policies.FeatureRolloutPolicies.Item.AppliesTo.Item {
         /// </summary>
         public RequestInformation CreateDeleteRequestInformation(Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
             var requestInfo = new RequestInformation {
-                HttpMethod = HttpMethod.DELETE,
+                HttpMethod = Method.DELETE,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };
@@ -125,7 +151,7 @@ namespace ApiSdk.Policies.FeatureRolloutPolicies.Item.AppliesTo.Item {
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<GetQueryParameters> q = default, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
             var requestInfo = new RequestInformation {
-                HttpMethod = HttpMethod.GET,
+                HttpMethod = Method.GET,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };
@@ -147,7 +173,7 @@ namespace ApiSdk.Policies.FeatureRolloutPolicies.Item.AppliesTo.Item {
         public RequestInformation CreatePatchRequestInformation(DirectoryObject body, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
             _ = body ?? throw new ArgumentNullException(nameof(body));
             var requestInfo = new RequestInformation {
-                HttpMethod = HttpMethod.PATCH,
+                HttpMethod = Method.PATCH,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };

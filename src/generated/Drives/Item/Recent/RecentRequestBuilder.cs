@@ -25,10 +25,13 @@ namespace ApiSdk.Drives.Item.Recent {
             var command = new Command("get");
             command.Description = "Invoke function recent";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--drive-id", description: "key: id of drive"));
-            command.Handler = CommandHandler.Create<string>(async (driveId) => {
-                var requestInfo = CreateGetRequestInformation();
-                if (!String.IsNullOrEmpty(driveId)) requestInfo.PathParameters.Add("drive_id", driveId);
+            var driveIdOption = new Option<string>("--drive-id", description: "key: id of drive") {
+            };
+            driveIdOption.IsRequired = true;
+            command.AddOption(driveIdOption);
+            command.SetHandler(async (string driveId) => {
+                var requestInfo = CreateGetRequestInformation(q => {
+                });
                 var result = await RequestAdapter.SendCollectionAsync<ApiSdk.Drives.Item.Recent.Recent>(requestInfo);
                 // Print request output. What if the request has no return?
                 using var serializer = RequestAdapter.SerializationWriterFactory.GetSerializationWriter("application/json");
@@ -37,7 +40,7 @@ namespace ApiSdk.Drives.Item.Recent {
                 using var reader = new StreamReader(content);
                 var strContent = await reader.ReadToEndAsync();
                 Console.Write(strContent + "\n");
-            });
+            }, driveIdOption);
             return command;
         }
         /// <summary>
@@ -60,7 +63,7 @@ namespace ApiSdk.Drives.Item.Recent {
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
             var requestInfo = new RequestInformation {
-                HttpMethod = HttpMethod.GET,
+                HttpMethod = Method.GET,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };

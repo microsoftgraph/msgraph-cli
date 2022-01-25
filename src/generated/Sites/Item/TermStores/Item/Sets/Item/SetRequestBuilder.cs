@@ -37,18 +37,25 @@ namespace ApiSdk.Sites.Item.TermStores.Item.Sets.Item {
             var command = new Command("delete");
             command.Description = "Collection of all sets available in the term store.";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--site-id", description: "key: id of site"));
-            command.AddOption(new Option<string>("--store-id", description: "key: id of store"));
-            command.AddOption(new Option<string>("--set-id", description: "key: id of set"));
-            command.Handler = CommandHandler.Create<string, string, string>(async (siteId, storeId, setId) => {
-                var requestInfo = CreateDeleteRequestInformation();
-                if (!String.IsNullOrEmpty(siteId)) requestInfo.PathParameters.Add("site_id", siteId);
-                if (!String.IsNullOrEmpty(storeId)) requestInfo.PathParameters.Add("store_id", storeId);
-                if (!String.IsNullOrEmpty(setId)) requestInfo.PathParameters.Add("set_id", setId);
+            var siteIdOption = new Option<string>("--site-id", description: "key: id of site") {
+            };
+            siteIdOption.IsRequired = true;
+            command.AddOption(siteIdOption);
+            var storeIdOption = new Option<string>("--store-id", description: "key: id of store") {
+            };
+            storeIdOption.IsRequired = true;
+            command.AddOption(storeIdOption);
+            var setIdOption = new Option<string>("--set-id", description: "key: id of set") {
+            };
+            setIdOption.IsRequired = true;
+            command.AddOption(setIdOption);
+            command.SetHandler(async (string siteId, string storeId, string setId) => {
+                var requestInfo = CreateDeleteRequestInformation(q => {
+                });
                 await RequestAdapter.SendNoContentAsync(requestInfo);
                 // Print request output. What if the request has no return?
                 Console.WriteLine("Success");
-            });
+            }, siteIdOption, storeIdOption, setIdOption);
             return command;
         }
         /// <summary>
@@ -58,18 +65,33 @@ namespace ApiSdk.Sites.Item.TermStores.Item.Sets.Item {
             var command = new Command("get");
             command.Description = "Collection of all sets available in the term store.";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--site-id", description: "key: id of site"));
-            command.AddOption(new Option<string>("--store-id", description: "key: id of store"));
-            command.AddOption(new Option<string>("--set-id", description: "key: id of set"));
-            command.AddOption(new Option<object>("--select", description: "Select properties to be returned"));
-            command.AddOption(new Option<object>("--expand", description: "Expand related entities"));
-            command.Handler = CommandHandler.Create<string, string, string, object, object>(async (siteId, storeId, setId, select, expand) => {
-                var requestInfo = CreateGetRequestInformation();
-                if (!String.IsNullOrEmpty(siteId)) requestInfo.PathParameters.Add("site_id", siteId);
-                if (!String.IsNullOrEmpty(storeId)) requestInfo.PathParameters.Add("store_id", storeId);
-                if (!String.IsNullOrEmpty(setId)) requestInfo.PathParameters.Add("set_id", setId);
-                requestInfo.QueryParameters.Add("select", select);
-                requestInfo.QueryParameters.Add("expand", expand);
+            var siteIdOption = new Option<string>("--site-id", description: "key: id of site") {
+            };
+            siteIdOption.IsRequired = true;
+            command.AddOption(siteIdOption);
+            var storeIdOption = new Option<string>("--store-id", description: "key: id of store") {
+            };
+            storeIdOption.IsRequired = true;
+            command.AddOption(storeIdOption);
+            var setIdOption = new Option<string>("--set-id", description: "key: id of set") {
+            };
+            setIdOption.IsRequired = true;
+            command.AddOption(setIdOption);
+            var selectOption = new Option<string[]>("--select", description: "Select properties to be returned") {
+                Arity = ArgumentArity.ZeroOrMore
+            };
+            selectOption.IsRequired = false;
+            command.AddOption(selectOption);
+            var expandOption = new Option<string[]>("--expand", description: "Expand related entities") {
+                Arity = ArgumentArity.ZeroOrMore
+            };
+            expandOption.IsRequired = false;
+            command.AddOption(expandOption);
+            command.SetHandler(async (string siteId, string storeId, string setId, string[] select, string[] expand) => {
+                var requestInfo = CreateGetRequestInformation(q => {
+                    q.Select = select;
+                    q.Expand = expand;
+                });
                 var result = await RequestAdapter.SendAsync<ApiSdk.Models.Microsoft.Graph.TermStore.Set>(requestInfo);
                 // Print request output. What if the request has no return?
                 using var serializer = RequestAdapter.SerializationWriterFactory.GetSerializationWriter("application/json");
@@ -78,7 +100,7 @@ namespace ApiSdk.Sites.Item.TermStores.Item.Sets.Item {
                 using var reader = new StreamReader(content);
                 var strContent = await reader.ReadToEndAsync();
                 Console.Write(strContent + "\n");
-            });
+            }, siteIdOption, storeIdOption, setIdOption, selectOption, expandOption);
             return command;
         }
         public Command BuildParentGroupCommand() {
@@ -97,22 +119,32 @@ namespace ApiSdk.Sites.Item.TermStores.Item.Sets.Item {
             var command = new Command("patch");
             command.Description = "Collection of all sets available in the term store.";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--site-id", description: "key: id of site"));
-            command.AddOption(new Option<string>("--store-id", description: "key: id of store"));
-            command.AddOption(new Option<string>("--set-id", description: "key: id of set"));
-            command.AddOption(new Option<string>("--body"));
-            command.Handler = CommandHandler.Create<string, string, string, string>(async (siteId, storeId, setId, body) => {
+            var siteIdOption = new Option<string>("--site-id", description: "key: id of site") {
+            };
+            siteIdOption.IsRequired = true;
+            command.AddOption(siteIdOption);
+            var storeIdOption = new Option<string>("--store-id", description: "key: id of store") {
+            };
+            storeIdOption.IsRequired = true;
+            command.AddOption(storeIdOption);
+            var setIdOption = new Option<string>("--set-id", description: "key: id of set") {
+            };
+            setIdOption.IsRequired = true;
+            command.AddOption(setIdOption);
+            var bodyOption = new Option<string>("--body") {
+            };
+            bodyOption.IsRequired = true;
+            command.AddOption(bodyOption);
+            command.SetHandler(async (string siteId, string storeId, string setId, string body) => {
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<ApiSdk.Models.Microsoft.Graph.TermStore.Set>();
-                var requestInfo = CreatePatchRequestInformation(model);
-                if (!String.IsNullOrEmpty(siteId)) requestInfo.PathParameters.Add("site_id", siteId);
-                if (!String.IsNullOrEmpty(storeId)) requestInfo.PathParameters.Add("store_id", storeId);
-                if (!String.IsNullOrEmpty(setId)) requestInfo.PathParameters.Add("set_id", setId);
+                var requestInfo = CreatePatchRequestInformation(model, q => {
+                });
                 await RequestAdapter.SendNoContentAsync(requestInfo);
                 // Print request output. What if the request has no return?
                 Console.WriteLine("Success");
-            });
+            }, siteIdOption, storeIdOption, setIdOption, bodyOption);
             return command;
         }
         public Command BuildRelationsCommand() {
@@ -149,7 +181,7 @@ namespace ApiSdk.Sites.Item.TermStores.Item.Sets.Item {
         /// </summary>
         public RequestInformation CreateDeleteRequestInformation(Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
             var requestInfo = new RequestInformation {
-                HttpMethod = HttpMethod.DELETE,
+                HttpMethod = Method.DELETE,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };
@@ -165,7 +197,7 @@ namespace ApiSdk.Sites.Item.TermStores.Item.Sets.Item {
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<GetQueryParameters> q = default, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
             var requestInfo = new RequestInformation {
-                HttpMethod = HttpMethod.GET,
+                HttpMethod = Method.GET,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };
@@ -187,7 +219,7 @@ namespace ApiSdk.Sites.Item.TermStores.Item.Sets.Item {
         public RequestInformation CreatePatchRequestInformation(ApiSdk.Models.Microsoft.Graph.TermStore.Set body, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
             _ = body ?? throw new ArgumentNullException(nameof(body));
             var requestInfo = new RequestInformation {
-                HttpMethod = HttpMethod.PATCH,
+                HttpMethod = Method.PATCH,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };

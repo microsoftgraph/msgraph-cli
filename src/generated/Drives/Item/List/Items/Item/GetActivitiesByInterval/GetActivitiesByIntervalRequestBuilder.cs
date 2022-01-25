@@ -25,12 +25,17 @@ namespace ApiSdk.Drives.Item.List.Items.Item.GetActivitiesByInterval {
             var command = new Command("get");
             command.Description = "Invoke function getActivitiesByInterval";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--drive-id", description: "key: id of drive"));
-            command.AddOption(new Option<string>("--listitem-id", description: "key: id of listItem"));
-            command.Handler = CommandHandler.Create<string, string>(async (driveId, listItemId) => {
-                var requestInfo = CreateGetRequestInformation();
-                if (!String.IsNullOrEmpty(driveId)) requestInfo.PathParameters.Add("drive_id", driveId);
-                if (!String.IsNullOrEmpty(listItemId)) requestInfo.PathParameters.Add("listItem_id", listItemId);
+            var driveIdOption = new Option<string>("--drive-id", description: "key: id of drive") {
+            };
+            driveIdOption.IsRequired = true;
+            command.AddOption(driveIdOption);
+            var listItemIdOption = new Option<string>("--listitem-id", description: "key: id of listItem") {
+            };
+            listItemIdOption.IsRequired = true;
+            command.AddOption(listItemIdOption);
+            command.SetHandler(async (string driveId, string listItemId) => {
+                var requestInfo = CreateGetRequestInformation(q => {
+                });
                 var result = await RequestAdapter.SendCollectionAsync<ApiSdk.Drives.Item.List.Items.Item.GetActivitiesByInterval.GetActivitiesByInterval>(requestInfo);
                 // Print request output. What if the request has no return?
                 using var serializer = RequestAdapter.SerializationWriterFactory.GetSerializationWriter("application/json");
@@ -39,7 +44,7 @@ namespace ApiSdk.Drives.Item.List.Items.Item.GetActivitiesByInterval {
                 using var reader = new StreamReader(content);
                 var strContent = await reader.ReadToEndAsync();
                 Console.Write(strContent + "\n");
-            });
+            }, driveIdOption, listItemIdOption);
             return command;
         }
         /// <summary>
@@ -62,7 +67,7 @@ namespace ApiSdk.Drives.Item.List.Items.Item.GetActivitiesByInterval {
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
             var requestInfo = new RequestInformation {
-                HttpMethod = HttpMethod.GET,
+                HttpMethod = Method.GET,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };

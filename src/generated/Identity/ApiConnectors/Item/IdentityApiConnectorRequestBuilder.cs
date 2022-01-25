@@ -27,14 +27,17 @@ namespace ApiSdk.Identity.ApiConnectors.Item {
             var command = new Command("delete");
             command.Description = "Represents entry point for API connectors.";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--identityapiconnector-id", description: "key: id of identityApiConnector"));
-            command.Handler = CommandHandler.Create<string>(async (identityApiConnectorId) => {
-                var requestInfo = CreateDeleteRequestInformation();
-                if (!String.IsNullOrEmpty(identityApiConnectorId)) requestInfo.PathParameters.Add("identityApiConnector_id", identityApiConnectorId);
+            var identityApiConnectorIdOption = new Option<string>("--identityapiconnector-id", description: "key: id of identityApiConnector") {
+            };
+            identityApiConnectorIdOption.IsRequired = true;
+            command.AddOption(identityApiConnectorIdOption);
+            command.SetHandler(async (string identityApiConnectorId) => {
+                var requestInfo = CreateDeleteRequestInformation(q => {
+                });
                 await RequestAdapter.SendNoContentAsync(requestInfo);
                 // Print request output. What if the request has no return?
                 Console.WriteLine("Success");
-            });
+            }, identityApiConnectorIdOption);
             return command;
         }
         /// <summary>
@@ -44,14 +47,25 @@ namespace ApiSdk.Identity.ApiConnectors.Item {
             var command = new Command("get");
             command.Description = "Represents entry point for API connectors.";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--identityapiconnector-id", description: "key: id of identityApiConnector"));
-            command.AddOption(new Option<object>("--select", description: "Select properties to be returned"));
-            command.AddOption(new Option<object>("--expand", description: "Expand related entities"));
-            command.Handler = CommandHandler.Create<string, object, object>(async (identityApiConnectorId, select, expand) => {
-                var requestInfo = CreateGetRequestInformation();
-                if (!String.IsNullOrEmpty(identityApiConnectorId)) requestInfo.PathParameters.Add("identityApiConnector_id", identityApiConnectorId);
-                requestInfo.QueryParameters.Add("select", select);
-                requestInfo.QueryParameters.Add("expand", expand);
+            var identityApiConnectorIdOption = new Option<string>("--identityapiconnector-id", description: "key: id of identityApiConnector") {
+            };
+            identityApiConnectorIdOption.IsRequired = true;
+            command.AddOption(identityApiConnectorIdOption);
+            var selectOption = new Option<string[]>("--select", description: "Select properties to be returned") {
+                Arity = ArgumentArity.ZeroOrMore
+            };
+            selectOption.IsRequired = false;
+            command.AddOption(selectOption);
+            var expandOption = new Option<string[]>("--expand", description: "Expand related entities") {
+                Arity = ArgumentArity.ZeroOrMore
+            };
+            expandOption.IsRequired = false;
+            command.AddOption(expandOption);
+            command.SetHandler(async (string identityApiConnectorId, string[] select, string[] expand) => {
+                var requestInfo = CreateGetRequestInformation(q => {
+                    q.Select = select;
+                    q.Expand = expand;
+                });
                 var result = await RequestAdapter.SendAsync<IdentityApiConnector>(requestInfo);
                 // Print request output. What if the request has no return?
                 using var serializer = RequestAdapter.SerializationWriterFactory.GetSerializationWriter("application/json");
@@ -60,7 +74,7 @@ namespace ApiSdk.Identity.ApiConnectors.Item {
                 using var reader = new StreamReader(content);
                 var strContent = await reader.ReadToEndAsync();
                 Console.Write(strContent + "\n");
-            });
+            }, identityApiConnectorIdOption, selectOption, expandOption);
             return command;
         }
         /// <summary>
@@ -70,18 +84,24 @@ namespace ApiSdk.Identity.ApiConnectors.Item {
             var command = new Command("patch");
             command.Description = "Represents entry point for API connectors.";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--identityapiconnector-id", description: "key: id of identityApiConnector"));
-            command.AddOption(new Option<string>("--body"));
-            command.Handler = CommandHandler.Create<string, string>(async (identityApiConnectorId, body) => {
+            var identityApiConnectorIdOption = new Option<string>("--identityapiconnector-id", description: "key: id of identityApiConnector") {
+            };
+            identityApiConnectorIdOption.IsRequired = true;
+            command.AddOption(identityApiConnectorIdOption);
+            var bodyOption = new Option<string>("--body") {
+            };
+            bodyOption.IsRequired = true;
+            command.AddOption(bodyOption);
+            command.SetHandler(async (string identityApiConnectorId, string body) => {
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<IdentityApiConnector>();
-                var requestInfo = CreatePatchRequestInformation(model);
-                if (!String.IsNullOrEmpty(identityApiConnectorId)) requestInfo.PathParameters.Add("identityApiConnector_id", identityApiConnectorId);
+                var requestInfo = CreatePatchRequestInformation(model, q => {
+                });
                 await RequestAdapter.SendNoContentAsync(requestInfo);
                 // Print request output. What if the request has no return?
                 Console.WriteLine("Success");
-            });
+            }, identityApiConnectorIdOption, bodyOption);
             return command;
         }
         public Command BuildUploadClientCertificateCommand() {
@@ -110,7 +130,7 @@ namespace ApiSdk.Identity.ApiConnectors.Item {
         /// </summary>
         public RequestInformation CreateDeleteRequestInformation(Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
             var requestInfo = new RequestInformation {
-                HttpMethod = HttpMethod.DELETE,
+                HttpMethod = Method.DELETE,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };
@@ -126,7 +146,7 @@ namespace ApiSdk.Identity.ApiConnectors.Item {
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<GetQueryParameters> q = default, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
             var requestInfo = new RequestInformation {
-                HttpMethod = HttpMethod.GET,
+                HttpMethod = Method.GET,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };
@@ -148,7 +168,7 @@ namespace ApiSdk.Identity.ApiConnectors.Item {
         public RequestInformation CreatePatchRequestInformation(IdentityApiConnector body, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
             _ = body ?? throw new ArgumentNullException(nameof(body));
             var requestInfo = new RequestInformation {
-                HttpMethod = HttpMethod.PATCH,
+                HttpMethod = Method.PATCH,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };

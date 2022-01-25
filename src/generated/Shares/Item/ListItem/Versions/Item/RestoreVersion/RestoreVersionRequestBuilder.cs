@@ -25,16 +25,21 @@ namespace ApiSdk.Shares.Item.ListItem.Versions.Item.RestoreVersion {
             var command = new Command("post");
             command.Description = "Invoke action restoreVersion";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--shareddriveitem-id", description: "key: id of sharedDriveItem"));
-            command.AddOption(new Option<string>("--listitemversion-id", description: "key: id of listItemVersion"));
-            command.Handler = CommandHandler.Create<string, string>(async (sharedDriveItemId, listItemVersionId) => {
-                var requestInfo = CreatePostRequestInformation();
-                if (!String.IsNullOrEmpty(sharedDriveItemId)) requestInfo.PathParameters.Add("sharedDriveItem_id", sharedDriveItemId);
-                if (!String.IsNullOrEmpty(listItemVersionId)) requestInfo.PathParameters.Add("listItemVersion_id", listItemVersionId);
+            var sharedDriveItemIdOption = new Option<string>("--shareddriveitem-id", description: "key: id of sharedDriveItem") {
+            };
+            sharedDriveItemIdOption.IsRequired = true;
+            command.AddOption(sharedDriveItemIdOption);
+            var listItemVersionIdOption = new Option<string>("--listitemversion-id", description: "key: id of listItemVersion") {
+            };
+            listItemVersionIdOption.IsRequired = true;
+            command.AddOption(listItemVersionIdOption);
+            command.SetHandler(async (string sharedDriveItemId, string listItemVersionId) => {
+                var requestInfo = CreatePostRequestInformation(q => {
+                });
                 await RequestAdapter.SendNoContentAsync(requestInfo);
                 // Print request output. What if the request has no return?
                 Console.WriteLine("Success");
-            });
+            }, sharedDriveItemIdOption, listItemVersionIdOption);
             return command;
         }
         /// <summary>
@@ -57,7 +62,7 @@ namespace ApiSdk.Shares.Item.ListItem.Versions.Item.RestoreVersion {
         /// </summary>
         public RequestInformation CreatePostRequestInformation(Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
             var requestInfo = new RequestInformation {
-                HttpMethod = HttpMethod.POST,
+                HttpMethod = Method.POST,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };

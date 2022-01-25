@@ -9,7 +9,7 @@ namespace ApiSdk.Models.Microsoft.Graph {
         public string Description { get; set; }
         /// <summary>Organization display name.</summary>
         public string DisplayName { get; set; }
-        /// <summary>Source where this organization was created from. Possible values are: sis, manual.</summary>
+        /// <summary>Where this user was created from. Possible values are: sis, lms, or manual.</summary>
         public EducationExternalSource? ExternalSource { get; set; }
         /// <summary>The name of the external source this resources was generated from.</summary>
         public string ExternalSourceDetail { get; set; }

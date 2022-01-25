@@ -11,7 +11,7 @@ namespace ApiSdk.Models.Microsoft.Graph {
         public string DefaultLanguage { get; set; }
         /// <summary>Localized messages that explain what is needed for this column's value to be considered valid. User will be prompted with this message if validation fails.</summary>
         public List<DisplayNameLocalization> Descriptions { get; set; }
-        /// <summary>The formula to validate column value. For examples, see Examples of common formulas in lists.</summary>
+        /// <summary>The formula to validate column value. For examples, see Examples of common formulas in lists</summary>
         public string Formula { get; set; }
         /// <summary>
         /// Instantiates a new columnValidation and sets the default values.

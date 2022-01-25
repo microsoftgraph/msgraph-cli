@@ -26,16 +26,21 @@ namespace ApiSdk.Me.Messages.Item.MultiValueExtendedProperties.Item {
             var command = new Command("delete");
             command.Description = "The collection of multi-value extended properties defined for the message. Nullable.";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--message-id", description: "key: id of message"));
-            command.AddOption(new Option<string>("--multivaluelegacyextendedproperty-id", description: "key: id of multiValueLegacyExtendedProperty"));
-            command.Handler = CommandHandler.Create<string, string>(async (messageId, multiValueLegacyExtendedPropertyId) => {
-                var requestInfo = CreateDeleteRequestInformation();
-                if (!String.IsNullOrEmpty(messageId)) requestInfo.PathParameters.Add("message_id", messageId);
-                if (!String.IsNullOrEmpty(multiValueLegacyExtendedPropertyId)) requestInfo.PathParameters.Add("multiValueLegacyExtendedProperty_id", multiValueLegacyExtendedPropertyId);
+            var messageIdOption = new Option<string>("--message-id", description: "key: id of message") {
+            };
+            messageIdOption.IsRequired = true;
+            command.AddOption(messageIdOption);
+            var multiValueLegacyExtendedPropertyIdOption = new Option<string>("--multivaluelegacyextendedproperty-id", description: "key: id of multiValueLegacyExtendedProperty") {
+            };
+            multiValueLegacyExtendedPropertyIdOption.IsRequired = true;
+            command.AddOption(multiValueLegacyExtendedPropertyIdOption);
+            command.SetHandler(async (string messageId, string multiValueLegacyExtendedPropertyId) => {
+                var requestInfo = CreateDeleteRequestInformation(q => {
+                });
                 await RequestAdapter.SendNoContentAsync(requestInfo);
                 // Print request output. What if the request has no return?
                 Console.WriteLine("Success");
-            });
+            }, messageIdOption, multiValueLegacyExtendedPropertyIdOption);
             return command;
         }
         /// <summary>
@@ -45,16 +50,29 @@ namespace ApiSdk.Me.Messages.Item.MultiValueExtendedProperties.Item {
             var command = new Command("get");
             command.Description = "The collection of multi-value extended properties defined for the message. Nullable.";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--message-id", description: "key: id of message"));
-            command.AddOption(new Option<string>("--multivaluelegacyextendedproperty-id", description: "key: id of multiValueLegacyExtendedProperty"));
-            command.AddOption(new Option<object>("--select", description: "Select properties to be returned"));
-            command.AddOption(new Option<object>("--expand", description: "Expand related entities"));
-            command.Handler = CommandHandler.Create<string, string, object, object>(async (messageId, multiValueLegacyExtendedPropertyId, select, expand) => {
-                var requestInfo = CreateGetRequestInformation();
-                if (!String.IsNullOrEmpty(messageId)) requestInfo.PathParameters.Add("message_id", messageId);
-                if (!String.IsNullOrEmpty(multiValueLegacyExtendedPropertyId)) requestInfo.PathParameters.Add("multiValueLegacyExtendedProperty_id", multiValueLegacyExtendedPropertyId);
-                requestInfo.QueryParameters.Add("select", select);
-                requestInfo.QueryParameters.Add("expand", expand);
+            var messageIdOption = new Option<string>("--message-id", description: "key: id of message") {
+            };
+            messageIdOption.IsRequired = true;
+            command.AddOption(messageIdOption);
+            var multiValueLegacyExtendedPropertyIdOption = new Option<string>("--multivaluelegacyextendedproperty-id", description: "key: id of multiValueLegacyExtendedProperty") {
+            };
+            multiValueLegacyExtendedPropertyIdOption.IsRequired = true;
+            command.AddOption(multiValueLegacyExtendedPropertyIdOption);
+            var selectOption = new Option<string[]>("--select", description: "Select properties to be returned") {
+                Arity = ArgumentArity.ZeroOrMore
+            };
+            selectOption.IsRequired = false;
+            command.AddOption(selectOption);
+            var expandOption = new Option<string[]>("--expand", description: "Expand related entities") {
+                Arity = ArgumentArity.ZeroOrMore
+            };
+            expandOption.IsRequired = false;
+            command.AddOption(expandOption);
+            command.SetHandler(async (string messageId, string multiValueLegacyExtendedPropertyId, string[] select, string[] expand) => {
+                var requestInfo = CreateGetRequestInformation(q => {
+                    q.Select = select;
+                    q.Expand = expand;
+                });
                 var result = await RequestAdapter.SendAsync<MultiValueLegacyExtendedProperty>(requestInfo);
                 // Print request output. What if the request has no return?
                 using var serializer = RequestAdapter.SerializationWriterFactory.GetSerializationWriter("application/json");
@@ -63,7 +81,7 @@ namespace ApiSdk.Me.Messages.Item.MultiValueExtendedProperties.Item {
                 using var reader = new StreamReader(content);
                 var strContent = await reader.ReadToEndAsync();
                 Console.Write(strContent + "\n");
-            });
+            }, messageIdOption, multiValueLegacyExtendedPropertyIdOption, selectOption, expandOption);
             return command;
         }
         /// <summary>
@@ -73,20 +91,28 @@ namespace ApiSdk.Me.Messages.Item.MultiValueExtendedProperties.Item {
             var command = new Command("patch");
             command.Description = "The collection of multi-value extended properties defined for the message. Nullable.";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--message-id", description: "key: id of message"));
-            command.AddOption(new Option<string>("--multivaluelegacyextendedproperty-id", description: "key: id of multiValueLegacyExtendedProperty"));
-            command.AddOption(new Option<string>("--body"));
-            command.Handler = CommandHandler.Create<string, string, string>(async (messageId, multiValueLegacyExtendedPropertyId, body) => {
+            var messageIdOption = new Option<string>("--message-id", description: "key: id of message") {
+            };
+            messageIdOption.IsRequired = true;
+            command.AddOption(messageIdOption);
+            var multiValueLegacyExtendedPropertyIdOption = new Option<string>("--multivaluelegacyextendedproperty-id", description: "key: id of multiValueLegacyExtendedProperty") {
+            };
+            multiValueLegacyExtendedPropertyIdOption.IsRequired = true;
+            command.AddOption(multiValueLegacyExtendedPropertyIdOption);
+            var bodyOption = new Option<string>("--body") {
+            };
+            bodyOption.IsRequired = true;
+            command.AddOption(bodyOption);
+            command.SetHandler(async (string messageId, string multiValueLegacyExtendedPropertyId, string body) => {
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<MultiValueLegacyExtendedProperty>();
-                var requestInfo = CreatePatchRequestInformation(model);
-                if (!String.IsNullOrEmpty(messageId)) requestInfo.PathParameters.Add("message_id", messageId);
-                if (!String.IsNullOrEmpty(multiValueLegacyExtendedPropertyId)) requestInfo.PathParameters.Add("multiValueLegacyExtendedProperty_id", multiValueLegacyExtendedPropertyId);
+                var requestInfo = CreatePatchRequestInformation(model, q => {
+                });
                 await RequestAdapter.SendNoContentAsync(requestInfo);
                 // Print request output. What if the request has no return?
                 Console.WriteLine("Success");
-            });
+            }, messageIdOption, multiValueLegacyExtendedPropertyIdOption, bodyOption);
             return command;
         }
         /// <summary>
@@ -109,7 +135,7 @@ namespace ApiSdk.Me.Messages.Item.MultiValueExtendedProperties.Item {
         /// </summary>
         public RequestInformation CreateDeleteRequestInformation(Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
             var requestInfo = new RequestInformation {
-                HttpMethod = HttpMethod.DELETE,
+                HttpMethod = Method.DELETE,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };
@@ -125,7 +151,7 @@ namespace ApiSdk.Me.Messages.Item.MultiValueExtendedProperties.Item {
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<GetQueryParameters> q = default, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
             var requestInfo = new RequestInformation {
-                HttpMethod = HttpMethod.GET,
+                HttpMethod = Method.GET,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };
@@ -147,7 +173,7 @@ namespace ApiSdk.Me.Messages.Item.MultiValueExtendedProperties.Item {
         public RequestInformation CreatePatchRequestInformation(MultiValueLegacyExtendedProperty body, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
             _ = body ?? throw new ArgumentNullException(nameof(body));
             var requestInfo = new RequestInformation {
-                HttpMethod = HttpMethod.PATCH,
+                HttpMethod = Method.PATCH,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };

@@ -5,13 +5,38 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "name": ".NET Core Launch (console)",
+            "name": "help",
             "type": "coreclr",
             "request": "launch",
             "preLaunchTask": "build",
-            "program": "${workspaceFolder}/src/bin/Debug/net6.0/msgraph-cli.dll",
+            "program": "${workspaceFolder}/src/bin/Debug/net6.0/mgc.dll",
             "args": ["-h"],
-            "cwd": "${workspaceFolder}",
+            "cwd": "${workspaceFolder}/src",
+            "envFile": "${workspaceFolder}/src/.env",
+            "console": "internalConsole",
+            "stopAtEntry": false
+        },
+        {
+            "name": "login",
+            "type": "coreclr",
+            "request": "launch",
+            "preLaunchTask": "build",
+            "program": "${workspaceFolder}/src/bin/Debug/net6.0/mgc.dll",
+            "args": ["login", "--scopes", "User.ReadWrite Mail.ReadWrite"],
+            "cwd": "${workspaceFolder}/src",
+            "envFile": "${workspaceFolder}/src/.env",
+            "console": "internalConsole",
+            "stopAtEntry": false
+        },
+        {
+            "name": "me get",
+            "type": "coreclr",
+            "request": "launch",
+            "preLaunchTask": "build",
+            "program": "${workspaceFolder}/src/bin/Debug/net6.0/mgc.dll",
+            "args": ["me", "get"],
+            "cwd": "${workspaceFolder}/src",
+            "envFile": "${workspaceFolder}/src/.env",
             "console": "internalConsole",
             "stopAtEntry": false
         },

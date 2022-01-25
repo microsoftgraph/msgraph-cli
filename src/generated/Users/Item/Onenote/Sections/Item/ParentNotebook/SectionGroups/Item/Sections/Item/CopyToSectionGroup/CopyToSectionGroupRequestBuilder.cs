@@ -26,20 +26,32 @@ namespace ApiSdk.Users.Item.Onenote.Sections.Item.ParentNotebook.SectionGroups.I
             var command = new Command("post");
             command.Description = "Invoke action copyToSectionGroup";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--user-id", description: "key: id of user"));
-            command.AddOption(new Option<string>("--onenotesection-id", description: "key: id of onenoteSection"));
-            command.AddOption(new Option<string>("--sectiongroup-id", description: "key: id of sectionGroup"));
-            command.AddOption(new Option<string>("--onenotesection-id1", description: "key: id of onenoteSection"));
-            command.AddOption(new Option<string>("--body"));
-            command.Handler = CommandHandler.Create<string, string, string, string, string>(async (userId, onenoteSectionId, sectionGroupId, onenoteSectionId1, body) => {
+            var userIdOption = new Option<string>("--user-id", description: "key: id of user") {
+            };
+            userIdOption.IsRequired = true;
+            command.AddOption(userIdOption);
+            var onenoteSectionIdOption = new Option<string>("--onenotesection-id", description: "key: id of onenoteSection") {
+            };
+            onenoteSectionIdOption.IsRequired = true;
+            command.AddOption(onenoteSectionIdOption);
+            var sectionGroupIdOption = new Option<string>("--sectiongroup-id", description: "key: id of sectionGroup") {
+            };
+            sectionGroupIdOption.IsRequired = true;
+            command.AddOption(sectionGroupIdOption);
+            var onenoteSectionId1Option = new Option<string>("--onenotesection-id1", description: "key: id of onenoteSection") {
+            };
+            onenoteSectionId1Option.IsRequired = true;
+            command.AddOption(onenoteSectionId1Option);
+            var bodyOption = new Option<string>("--body") {
+            };
+            bodyOption.IsRequired = true;
+            command.AddOption(bodyOption);
+            command.SetHandler(async (string userId, string onenoteSectionId, string sectionGroupId, string onenoteSectionId1, string body) => {
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<CopyToSectionGroupRequestBody>();
-                var requestInfo = CreatePostRequestInformation(model);
-                if (!String.IsNullOrEmpty(userId)) requestInfo.PathParameters.Add("user_id", userId);
-                if (!String.IsNullOrEmpty(onenoteSectionId)) requestInfo.PathParameters.Add("onenoteSection_id", onenoteSectionId);
-                if (!String.IsNullOrEmpty(sectionGroupId)) requestInfo.PathParameters.Add("sectionGroup_id", sectionGroupId);
-                if (!String.IsNullOrEmpty(onenoteSectionId1)) requestInfo.PathParameters.Add("onenoteSection_id1", onenoteSectionId1);
+                var requestInfo = CreatePostRequestInformation(model, q => {
+                });
                 var result = await RequestAdapter.SendAsync<CopyToSectionGroupResponse>(requestInfo);
                 // Print request output. What if the request has no return?
                 using var serializer = RequestAdapter.SerializationWriterFactory.GetSerializationWriter("application/json");
@@ -48,7 +60,7 @@ namespace ApiSdk.Users.Item.Onenote.Sections.Item.ParentNotebook.SectionGroups.I
                 using var reader = new StreamReader(content);
                 var strContent = await reader.ReadToEndAsync();
                 Console.Write(strContent + "\n");
-            });
+            }, userIdOption, onenoteSectionIdOption, sectionGroupIdOption, onenoteSectionId1Option, bodyOption);
             return command;
         }
         /// <summary>
@@ -73,7 +85,7 @@ namespace ApiSdk.Users.Item.Onenote.Sections.Item.ParentNotebook.SectionGroups.I
         public RequestInformation CreatePostRequestInformation(CopyToSectionGroupRequestBody body, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
             _ = body ?? throw new ArgumentNullException(nameof(body));
             var requestInfo = new RequestInformation {
-                HttpMethod = HttpMethod.POST,
+                HttpMethod = Method.POST,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };

@@ -25,14 +25,17 @@ namespace ApiSdk.Drive.List.ContentTypes.Item.@Base.Unpublish {
             var command = new Command("post");
             command.Description = "Invoke action unpublish";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--contenttype-id", description: "key: id of contentType"));
-            command.Handler = CommandHandler.Create<string>(async (contentTypeId) => {
-                var requestInfo = CreatePostRequestInformation();
-                if (!String.IsNullOrEmpty(contentTypeId)) requestInfo.PathParameters.Add("contentType_id", contentTypeId);
+            var contentTypeIdOption = new Option<string>("--contenttype-id", description: "key: id of contentType") {
+            };
+            contentTypeIdOption.IsRequired = true;
+            command.AddOption(contentTypeIdOption);
+            command.SetHandler(async (string contentTypeId) => {
+                var requestInfo = CreatePostRequestInformation(q => {
+                });
                 await RequestAdapter.SendNoContentAsync(requestInfo);
                 // Print request output. What if the request has no return?
                 Console.WriteLine("Success");
-            });
+            }, contentTypeIdOption);
             return command;
         }
         /// <summary>
@@ -55,7 +58,7 @@ namespace ApiSdk.Drive.List.ContentTypes.Item.@Base.Unpublish {
         /// </summary>
         public RequestInformation CreatePostRequestInformation(Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
             var requestInfo = new RequestInformation {
-                HttpMethod = HttpMethod.POST,
+                HttpMethod = Method.POST,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };

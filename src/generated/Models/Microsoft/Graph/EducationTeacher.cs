@@ -7,7 +7,7 @@ namespace ApiSdk.Models.Microsoft.Graph {
     public class EducationTeacher : IParsable {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
-        /// <summary>ID of the teacher in the source system.</summary>
+        /// <summary>Id of the Teacher in external source system.</summary>
         public string ExternalId { get; set; }
         /// <summary>Teacher number.</summary>
         public string TeacherNumber { get; set; }

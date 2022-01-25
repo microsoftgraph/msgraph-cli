@@ -35,16 +35,21 @@ namespace ApiSdk.AppCatalogs.TeamsApps.Item.AppDefinitions.Item {
             var command = new Command("delete");
             command.Description = "The details for each version of the app.";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--teamsapp-id", description: "key: id of teamsApp"));
-            command.AddOption(new Option<string>("--teamsappdefinition-id", description: "key: id of teamsAppDefinition"));
-            command.Handler = CommandHandler.Create<string, string>(async (teamsAppId, teamsAppDefinitionId) => {
-                var requestInfo = CreateDeleteRequestInformation();
-                if (!String.IsNullOrEmpty(teamsAppId)) requestInfo.PathParameters.Add("teamsApp_id", teamsAppId);
-                if (!String.IsNullOrEmpty(teamsAppDefinitionId)) requestInfo.PathParameters.Add("teamsAppDefinition_id", teamsAppDefinitionId);
+            var teamsAppIdOption = new Option<string>("--teamsapp-id", description: "key: id of teamsApp") {
+            };
+            teamsAppIdOption.IsRequired = true;
+            command.AddOption(teamsAppIdOption);
+            var teamsAppDefinitionIdOption = new Option<string>("--teamsappdefinition-id", description: "key: id of teamsAppDefinition") {
+            };
+            teamsAppDefinitionIdOption.IsRequired = true;
+            command.AddOption(teamsAppDefinitionIdOption);
+            command.SetHandler(async (string teamsAppId, string teamsAppDefinitionId) => {
+                var requestInfo = CreateDeleteRequestInformation(q => {
+                });
                 await RequestAdapter.SendNoContentAsync(requestInfo);
                 // Print request output. What if the request has no return?
                 Console.WriteLine("Success");
-            });
+            }, teamsAppIdOption, teamsAppDefinitionIdOption);
             return command;
         }
         /// <summary>
@@ -54,16 +59,29 @@ namespace ApiSdk.AppCatalogs.TeamsApps.Item.AppDefinitions.Item {
             var command = new Command("get");
             command.Description = "The details for each version of the app.";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--teamsapp-id", description: "key: id of teamsApp"));
-            command.AddOption(new Option<string>("--teamsappdefinition-id", description: "key: id of teamsAppDefinition"));
-            command.AddOption(new Option<object>("--select", description: "Select properties to be returned"));
-            command.AddOption(new Option<object>("--expand", description: "Expand related entities"));
-            command.Handler = CommandHandler.Create<string, string, object, object>(async (teamsAppId, teamsAppDefinitionId, select, expand) => {
-                var requestInfo = CreateGetRequestInformation();
-                if (!String.IsNullOrEmpty(teamsAppId)) requestInfo.PathParameters.Add("teamsApp_id", teamsAppId);
-                if (!String.IsNullOrEmpty(teamsAppDefinitionId)) requestInfo.PathParameters.Add("teamsAppDefinition_id", teamsAppDefinitionId);
-                requestInfo.QueryParameters.Add("select", select);
-                requestInfo.QueryParameters.Add("expand", expand);
+            var teamsAppIdOption = new Option<string>("--teamsapp-id", description: "key: id of teamsApp") {
+            };
+            teamsAppIdOption.IsRequired = true;
+            command.AddOption(teamsAppIdOption);
+            var teamsAppDefinitionIdOption = new Option<string>("--teamsappdefinition-id", description: "key: id of teamsAppDefinition") {
+            };
+            teamsAppDefinitionIdOption.IsRequired = true;
+            command.AddOption(teamsAppDefinitionIdOption);
+            var selectOption = new Option<string[]>("--select", description: "Select properties to be returned") {
+                Arity = ArgumentArity.ZeroOrMore
+            };
+            selectOption.IsRequired = false;
+            command.AddOption(selectOption);
+            var expandOption = new Option<string[]>("--expand", description: "Expand related entities") {
+                Arity = ArgumentArity.ZeroOrMore
+            };
+            expandOption.IsRequired = false;
+            command.AddOption(expandOption);
+            command.SetHandler(async (string teamsAppId, string teamsAppDefinitionId, string[] select, string[] expand) => {
+                var requestInfo = CreateGetRequestInformation(q => {
+                    q.Select = select;
+                    q.Expand = expand;
+                });
                 var result = await RequestAdapter.SendAsync<ApiSdk.Models.Microsoft.Graph.TeamsAppDefinition>(requestInfo);
                 // Print request output. What if the request has no return?
                 using var serializer = RequestAdapter.SerializationWriterFactory.GetSerializationWriter("application/json");
@@ -72,7 +90,7 @@ namespace ApiSdk.AppCatalogs.TeamsApps.Item.AppDefinitions.Item {
                 using var reader = new StreamReader(content);
                 var strContent = await reader.ReadToEndAsync();
                 Console.Write(strContent + "\n");
-            });
+            }, teamsAppIdOption, teamsAppDefinitionIdOption, selectOption, expandOption);
             return command;
         }
         /// <summary>
@@ -82,20 +100,28 @@ namespace ApiSdk.AppCatalogs.TeamsApps.Item.AppDefinitions.Item {
             var command = new Command("patch");
             command.Description = "The details for each version of the app.";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--teamsapp-id", description: "key: id of teamsApp"));
-            command.AddOption(new Option<string>("--teamsappdefinition-id", description: "key: id of teamsAppDefinition"));
-            command.AddOption(new Option<string>("--body"));
-            command.Handler = CommandHandler.Create<string, string, string>(async (teamsAppId, teamsAppDefinitionId, body) => {
+            var teamsAppIdOption = new Option<string>("--teamsapp-id", description: "key: id of teamsApp") {
+            };
+            teamsAppIdOption.IsRequired = true;
+            command.AddOption(teamsAppIdOption);
+            var teamsAppDefinitionIdOption = new Option<string>("--teamsappdefinition-id", description: "key: id of teamsAppDefinition") {
+            };
+            teamsAppDefinitionIdOption.IsRequired = true;
+            command.AddOption(teamsAppDefinitionIdOption);
+            var bodyOption = new Option<string>("--body") {
+            };
+            bodyOption.IsRequired = true;
+            command.AddOption(bodyOption);
+            command.SetHandler(async (string teamsAppId, string teamsAppDefinitionId, string body) => {
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<ApiSdk.Models.Microsoft.Graph.TeamsAppDefinition>();
-                var requestInfo = CreatePatchRequestInformation(model);
-                if (!String.IsNullOrEmpty(teamsAppId)) requestInfo.PathParameters.Add("teamsApp_id", teamsAppId);
-                if (!String.IsNullOrEmpty(teamsAppDefinitionId)) requestInfo.PathParameters.Add("teamsAppDefinition_id", teamsAppDefinitionId);
+                var requestInfo = CreatePatchRequestInformation(model, q => {
+                });
                 await RequestAdapter.SendNoContentAsync(requestInfo);
                 // Print request output. What if the request has no return?
                 Console.WriteLine("Success");
-            });
+            }, teamsAppIdOption, teamsAppDefinitionIdOption, bodyOption);
             return command;
         }
         /// <summary>
@@ -118,7 +144,7 @@ namespace ApiSdk.AppCatalogs.TeamsApps.Item.AppDefinitions.Item {
         /// </summary>
         public RequestInformation CreateDeleteRequestInformation(Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
             var requestInfo = new RequestInformation {
-                HttpMethod = HttpMethod.DELETE,
+                HttpMethod = Method.DELETE,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };
@@ -134,7 +160,7 @@ namespace ApiSdk.AppCatalogs.TeamsApps.Item.AppDefinitions.Item {
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<GetQueryParameters> q = default, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
             var requestInfo = new RequestInformation {
-                HttpMethod = HttpMethod.GET,
+                HttpMethod = Method.GET,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };
@@ -156,7 +182,7 @@ namespace ApiSdk.AppCatalogs.TeamsApps.Item.AppDefinitions.Item {
         public RequestInformation CreatePatchRequestInformation(ApiSdk.Models.Microsoft.Graph.TeamsAppDefinition body, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
             _ = body ?? throw new ArgumentNullException(nameof(body));
             var requestInfo = new RequestInformation {
-                HttpMethod = HttpMethod.PATCH,
+                HttpMethod = Method.PATCH,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };

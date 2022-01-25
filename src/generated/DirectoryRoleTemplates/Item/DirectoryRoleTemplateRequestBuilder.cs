@@ -43,14 +43,17 @@ namespace ApiSdk.DirectoryRoleTemplates.Item {
             var command = new Command("delete");
             command.Description = "Delete entity from directoryRoleTemplates";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--directoryroletemplate-id", description: "key: id of directoryRoleTemplate"));
-            command.Handler = CommandHandler.Create<string>(async (directoryRoleTemplateId) => {
-                var requestInfo = CreateDeleteRequestInformation();
-                if (!String.IsNullOrEmpty(directoryRoleTemplateId)) requestInfo.PathParameters.Add("directoryRoleTemplate_id", directoryRoleTemplateId);
+            var directoryRoleTemplateIdOption = new Option<string>("--directoryroletemplate-id", description: "key: id of directoryRoleTemplate") {
+            };
+            directoryRoleTemplateIdOption.IsRequired = true;
+            command.AddOption(directoryRoleTemplateIdOption);
+            command.SetHandler(async (string directoryRoleTemplateId) => {
+                var requestInfo = CreateDeleteRequestInformation(q => {
+                });
                 await RequestAdapter.SendNoContentAsync(requestInfo);
                 // Print request output. What if the request has no return?
                 Console.WriteLine("Success");
-            });
+            }, directoryRoleTemplateIdOption);
             return command;
         }
         /// <summary>
@@ -60,14 +63,25 @@ namespace ApiSdk.DirectoryRoleTemplates.Item {
             var command = new Command("get");
             command.Description = "Get entity from directoryRoleTemplates by key";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--directoryroletemplate-id", description: "key: id of directoryRoleTemplate"));
-            command.AddOption(new Option<object>("--select", description: "Select properties to be returned"));
-            command.AddOption(new Option<object>("--expand", description: "Expand related entities"));
-            command.Handler = CommandHandler.Create<string, object, object>(async (directoryRoleTemplateId, select, expand) => {
-                var requestInfo = CreateGetRequestInformation();
-                if (!String.IsNullOrEmpty(directoryRoleTemplateId)) requestInfo.PathParameters.Add("directoryRoleTemplate_id", directoryRoleTemplateId);
-                requestInfo.QueryParameters.Add("select", select);
-                requestInfo.QueryParameters.Add("expand", expand);
+            var directoryRoleTemplateIdOption = new Option<string>("--directoryroletemplate-id", description: "key: id of directoryRoleTemplate") {
+            };
+            directoryRoleTemplateIdOption.IsRequired = true;
+            command.AddOption(directoryRoleTemplateIdOption);
+            var selectOption = new Option<string[]>("--select", description: "Select properties to be returned") {
+                Arity = ArgumentArity.ZeroOrMore
+            };
+            selectOption.IsRequired = false;
+            command.AddOption(selectOption);
+            var expandOption = new Option<string[]>("--expand", description: "Expand related entities") {
+                Arity = ArgumentArity.ZeroOrMore
+            };
+            expandOption.IsRequired = false;
+            command.AddOption(expandOption);
+            command.SetHandler(async (string directoryRoleTemplateId, string[] select, string[] expand) => {
+                var requestInfo = CreateGetRequestInformation(q => {
+                    q.Select = select;
+                    q.Expand = expand;
+                });
                 var result = await RequestAdapter.SendAsync<DirectoryRoleTemplate>(requestInfo);
                 // Print request output. What if the request has no return?
                 using var serializer = RequestAdapter.SerializationWriterFactory.GetSerializationWriter("application/json");
@@ -76,7 +90,7 @@ namespace ApiSdk.DirectoryRoleTemplates.Item {
                 using var reader = new StreamReader(content);
                 var strContent = await reader.ReadToEndAsync();
                 Console.Write(strContent + "\n");
-            });
+            }, directoryRoleTemplateIdOption, selectOption, expandOption);
             return command;
         }
         public Command BuildGetMemberGroupsCommand() {
@@ -98,18 +112,24 @@ namespace ApiSdk.DirectoryRoleTemplates.Item {
             var command = new Command("patch");
             command.Description = "Update entity in directoryRoleTemplates";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--directoryroletemplate-id", description: "key: id of directoryRoleTemplate"));
-            command.AddOption(new Option<string>("--body"));
-            command.Handler = CommandHandler.Create<string, string>(async (directoryRoleTemplateId, body) => {
+            var directoryRoleTemplateIdOption = new Option<string>("--directoryroletemplate-id", description: "key: id of directoryRoleTemplate") {
+            };
+            directoryRoleTemplateIdOption.IsRequired = true;
+            command.AddOption(directoryRoleTemplateIdOption);
+            var bodyOption = new Option<string>("--body") {
+            };
+            bodyOption.IsRequired = true;
+            command.AddOption(bodyOption);
+            command.SetHandler(async (string directoryRoleTemplateId, string body) => {
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<DirectoryRoleTemplate>();
-                var requestInfo = CreatePatchRequestInformation(model);
-                if (!String.IsNullOrEmpty(directoryRoleTemplateId)) requestInfo.PathParameters.Add("directoryRoleTemplate_id", directoryRoleTemplateId);
+                var requestInfo = CreatePatchRequestInformation(model, q => {
+                });
                 await RequestAdapter.SendNoContentAsync(requestInfo);
                 // Print request output. What if the request has no return?
                 Console.WriteLine("Success");
-            });
+            }, directoryRoleTemplateIdOption, bodyOption);
             return command;
         }
         public Command BuildRestoreCommand() {
@@ -138,7 +158,7 @@ namespace ApiSdk.DirectoryRoleTemplates.Item {
         /// </summary>
         public RequestInformation CreateDeleteRequestInformation(Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
             var requestInfo = new RequestInformation {
-                HttpMethod = HttpMethod.DELETE,
+                HttpMethod = Method.DELETE,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };
@@ -154,7 +174,7 @@ namespace ApiSdk.DirectoryRoleTemplates.Item {
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<GetQueryParameters> q = default, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
             var requestInfo = new RequestInformation {
-                HttpMethod = HttpMethod.GET,
+                HttpMethod = Method.GET,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };
@@ -176,7 +196,7 @@ namespace ApiSdk.DirectoryRoleTemplates.Item {
         public RequestInformation CreatePatchRequestInformation(DirectoryRoleTemplate body, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
             _ = body ?? throw new ArgumentNullException(nameof(body));
             var requestInfo = new RequestInformation {
-                HttpMethod = HttpMethod.PATCH,
+                HttpMethod = Method.PATCH,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };

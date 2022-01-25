@@ -28,18 +28,25 @@ namespace ApiSdk.Users.Item.Todo.Lists.Item.Tasks.Item {
             var command = new Command("delete");
             command.Description = "The tasks in this task list. Read-only. Nullable.";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--user-id", description: "key: id of user"));
-            command.AddOption(new Option<string>("--todotasklist-id", description: "key: id of todoTaskList"));
-            command.AddOption(new Option<string>("--todotask-id", description: "key: id of todoTask"));
-            command.Handler = CommandHandler.Create<string, string, string>(async (userId, todoTaskListId, todoTaskId) => {
-                var requestInfo = CreateDeleteRequestInformation();
-                if (!String.IsNullOrEmpty(userId)) requestInfo.PathParameters.Add("user_id", userId);
-                if (!String.IsNullOrEmpty(todoTaskListId)) requestInfo.PathParameters.Add("todoTaskList_id", todoTaskListId);
-                if (!String.IsNullOrEmpty(todoTaskId)) requestInfo.PathParameters.Add("todoTask_id", todoTaskId);
+            var userIdOption = new Option<string>("--user-id", description: "key: id of user") {
+            };
+            userIdOption.IsRequired = true;
+            command.AddOption(userIdOption);
+            var todoTaskListIdOption = new Option<string>("--todotasklist-id", description: "key: id of todoTaskList") {
+            };
+            todoTaskListIdOption.IsRequired = true;
+            command.AddOption(todoTaskListIdOption);
+            var todoTaskIdOption = new Option<string>("--todotask-id", description: "key: id of todoTask") {
+            };
+            todoTaskIdOption.IsRequired = true;
+            command.AddOption(todoTaskIdOption);
+            command.SetHandler(async (string userId, string todoTaskListId, string todoTaskId) => {
+                var requestInfo = CreateDeleteRequestInformation(q => {
+                });
                 await RequestAdapter.SendNoContentAsync(requestInfo);
                 // Print request output. What if the request has no return?
                 Console.WriteLine("Success");
-            });
+            }, userIdOption, todoTaskListIdOption, todoTaskIdOption);
             return command;
         }
         public Command BuildExtensionsCommand() {
@@ -56,18 +63,33 @@ namespace ApiSdk.Users.Item.Todo.Lists.Item.Tasks.Item {
             var command = new Command("get");
             command.Description = "The tasks in this task list. Read-only. Nullable.";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--user-id", description: "key: id of user"));
-            command.AddOption(new Option<string>("--todotasklist-id", description: "key: id of todoTaskList"));
-            command.AddOption(new Option<string>("--todotask-id", description: "key: id of todoTask"));
-            command.AddOption(new Option<object>("--select", description: "Select properties to be returned"));
-            command.AddOption(new Option<object>("--expand", description: "Expand related entities"));
-            command.Handler = CommandHandler.Create<string, string, string, object, object>(async (userId, todoTaskListId, todoTaskId, select, expand) => {
-                var requestInfo = CreateGetRequestInformation();
-                if (!String.IsNullOrEmpty(userId)) requestInfo.PathParameters.Add("user_id", userId);
-                if (!String.IsNullOrEmpty(todoTaskListId)) requestInfo.PathParameters.Add("todoTaskList_id", todoTaskListId);
-                if (!String.IsNullOrEmpty(todoTaskId)) requestInfo.PathParameters.Add("todoTask_id", todoTaskId);
-                requestInfo.QueryParameters.Add("select", select);
-                requestInfo.QueryParameters.Add("expand", expand);
+            var userIdOption = new Option<string>("--user-id", description: "key: id of user") {
+            };
+            userIdOption.IsRequired = true;
+            command.AddOption(userIdOption);
+            var todoTaskListIdOption = new Option<string>("--todotasklist-id", description: "key: id of todoTaskList") {
+            };
+            todoTaskListIdOption.IsRequired = true;
+            command.AddOption(todoTaskListIdOption);
+            var todoTaskIdOption = new Option<string>("--todotask-id", description: "key: id of todoTask") {
+            };
+            todoTaskIdOption.IsRequired = true;
+            command.AddOption(todoTaskIdOption);
+            var selectOption = new Option<string[]>("--select", description: "Select properties to be returned") {
+                Arity = ArgumentArity.ZeroOrMore
+            };
+            selectOption.IsRequired = false;
+            command.AddOption(selectOption);
+            var expandOption = new Option<string[]>("--expand", description: "Expand related entities") {
+                Arity = ArgumentArity.ZeroOrMore
+            };
+            expandOption.IsRequired = false;
+            command.AddOption(expandOption);
+            command.SetHandler(async (string userId, string todoTaskListId, string todoTaskId, string[] select, string[] expand) => {
+                var requestInfo = CreateGetRequestInformation(q => {
+                    q.Select = select;
+                    q.Expand = expand;
+                });
                 var result = await RequestAdapter.SendAsync<TodoTask>(requestInfo);
                 // Print request output. What if the request has no return?
                 using var serializer = RequestAdapter.SerializationWriterFactory.GetSerializationWriter("application/json");
@@ -76,7 +98,7 @@ namespace ApiSdk.Users.Item.Todo.Lists.Item.Tasks.Item {
                 using var reader = new StreamReader(content);
                 var strContent = await reader.ReadToEndAsync();
                 Console.Write(strContent + "\n");
-            });
+            }, userIdOption, todoTaskListIdOption, todoTaskIdOption, selectOption, expandOption);
             return command;
         }
         public Command BuildLinkedResourcesCommand() {
@@ -93,22 +115,32 @@ namespace ApiSdk.Users.Item.Todo.Lists.Item.Tasks.Item {
             var command = new Command("patch");
             command.Description = "The tasks in this task list. Read-only. Nullable.";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--user-id", description: "key: id of user"));
-            command.AddOption(new Option<string>("--todotasklist-id", description: "key: id of todoTaskList"));
-            command.AddOption(new Option<string>("--todotask-id", description: "key: id of todoTask"));
-            command.AddOption(new Option<string>("--body"));
-            command.Handler = CommandHandler.Create<string, string, string, string>(async (userId, todoTaskListId, todoTaskId, body) => {
+            var userIdOption = new Option<string>("--user-id", description: "key: id of user") {
+            };
+            userIdOption.IsRequired = true;
+            command.AddOption(userIdOption);
+            var todoTaskListIdOption = new Option<string>("--todotasklist-id", description: "key: id of todoTaskList") {
+            };
+            todoTaskListIdOption.IsRequired = true;
+            command.AddOption(todoTaskListIdOption);
+            var todoTaskIdOption = new Option<string>("--todotask-id", description: "key: id of todoTask") {
+            };
+            todoTaskIdOption.IsRequired = true;
+            command.AddOption(todoTaskIdOption);
+            var bodyOption = new Option<string>("--body") {
+            };
+            bodyOption.IsRequired = true;
+            command.AddOption(bodyOption);
+            command.SetHandler(async (string userId, string todoTaskListId, string todoTaskId, string body) => {
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<TodoTask>();
-                var requestInfo = CreatePatchRequestInformation(model);
-                if (!String.IsNullOrEmpty(userId)) requestInfo.PathParameters.Add("user_id", userId);
-                if (!String.IsNullOrEmpty(todoTaskListId)) requestInfo.PathParameters.Add("todoTaskList_id", todoTaskListId);
-                if (!String.IsNullOrEmpty(todoTaskId)) requestInfo.PathParameters.Add("todoTask_id", todoTaskId);
+                var requestInfo = CreatePatchRequestInformation(model, q => {
+                });
                 await RequestAdapter.SendNoContentAsync(requestInfo);
                 // Print request output. What if the request has no return?
                 Console.WriteLine("Success");
-            });
+            }, userIdOption, todoTaskListIdOption, todoTaskIdOption, bodyOption);
             return command;
         }
         /// <summary>
@@ -131,7 +163,7 @@ namespace ApiSdk.Users.Item.Todo.Lists.Item.Tasks.Item {
         /// </summary>
         public RequestInformation CreateDeleteRequestInformation(Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
             var requestInfo = new RequestInformation {
-                HttpMethod = HttpMethod.DELETE,
+                HttpMethod = Method.DELETE,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };
@@ -147,7 +179,7 @@ namespace ApiSdk.Users.Item.Todo.Lists.Item.Tasks.Item {
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<GetQueryParameters> q = default, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
             var requestInfo = new RequestInformation {
-                HttpMethod = HttpMethod.GET,
+                HttpMethod = Method.GET,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };
@@ -169,7 +201,7 @@ namespace ApiSdk.Users.Item.Todo.Lists.Item.Tasks.Item {
         public RequestInformation CreatePatchRequestInformation(TodoTask body, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
             _ = body ?? throw new ArgumentNullException(nameof(body));
             var requestInfo = new RequestInformation {
-                HttpMethod = HttpMethod.PATCH,
+                HttpMethod = Method.PATCH,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };

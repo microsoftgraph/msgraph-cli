@@ -26,14 +26,21 @@ namespace ApiSdk.Education.Classes.Item.Assignments.Item.Submissions.Item.@Retur
             var command = new Command("post");
             command.Description = "Invoke action return";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--educationclass-id", description: "key: id of educationClass"));
-            command.AddOption(new Option<string>("--educationassignment-id", description: "key: id of educationAssignment"));
-            command.AddOption(new Option<string>("--educationsubmission-id", description: "key: id of educationSubmission"));
-            command.Handler = CommandHandler.Create<string, string, string>(async (educationClassId, educationAssignmentId, educationSubmissionId) => {
-                var requestInfo = CreatePostRequestInformation();
-                if (!String.IsNullOrEmpty(educationClassId)) requestInfo.PathParameters.Add("educationClass_id", educationClassId);
-                if (!String.IsNullOrEmpty(educationAssignmentId)) requestInfo.PathParameters.Add("educationAssignment_id", educationAssignmentId);
-                if (!String.IsNullOrEmpty(educationSubmissionId)) requestInfo.PathParameters.Add("educationSubmission_id", educationSubmissionId);
+            var educationClassIdOption = new Option<string>("--educationclass-id", description: "key: id of educationClass") {
+            };
+            educationClassIdOption.IsRequired = true;
+            command.AddOption(educationClassIdOption);
+            var educationAssignmentIdOption = new Option<string>("--educationassignment-id", description: "key: id of educationAssignment") {
+            };
+            educationAssignmentIdOption.IsRequired = true;
+            command.AddOption(educationAssignmentIdOption);
+            var educationSubmissionIdOption = new Option<string>("--educationsubmission-id", description: "key: id of educationSubmission") {
+            };
+            educationSubmissionIdOption.IsRequired = true;
+            command.AddOption(educationSubmissionIdOption);
+            command.SetHandler(async (string educationClassId, string educationAssignmentId, string educationSubmissionId) => {
+                var requestInfo = CreatePostRequestInformation(q => {
+                });
                 var result = await RequestAdapter.SendAsync<ReturnResponse>(requestInfo);
                 // Print request output. What if the request has no return?
                 using var serializer = RequestAdapter.SerializationWriterFactory.GetSerializationWriter("application/json");
@@ -42,7 +49,7 @@ namespace ApiSdk.Education.Classes.Item.Assignments.Item.Submissions.Item.@Retur
                 using var reader = new StreamReader(content);
                 var strContent = await reader.ReadToEndAsync();
                 Console.Write(strContent + "\n");
-            });
+            }, educationClassIdOption, educationAssignmentIdOption, educationSubmissionIdOption);
             return command;
         }
         /// <summary>
@@ -65,7 +72,7 @@ namespace ApiSdk.Education.Classes.Item.Assignments.Item.Submissions.Item.@Retur
         /// </summary>
         public RequestInformation CreatePostRequestInformation(Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
             var requestInfo = new RequestInformation {
-                HttpMethod = HttpMethod.POST,
+                HttpMethod = Method.POST,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };

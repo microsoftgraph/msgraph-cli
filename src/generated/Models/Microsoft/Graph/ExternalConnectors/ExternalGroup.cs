@@ -9,7 +9,7 @@ namespace ApiSdk.Models.Microsoft.Graph.ExternalConnectors {
         public string Description { get; set; }
         /// <summary>The friendly name of the external group. Optional.</summary>
         public string DisplayName { get; set; }
-        /// <summary>A member added to an externalGroup. You can add Azure Active Directory users, Azure Active Directory groups, or an externalGroup as members.</summary>
+        /// <summary>A member added to an externalGroup. You can add Azure Active Directory users, Azure Active Directory groups, or other externalGroups as members.</summary>
         public List<ApiSdk.Models.Microsoft.Graph.Identity> Members { get; set; }
         /// <summary>
         /// The deserialization information for the current model

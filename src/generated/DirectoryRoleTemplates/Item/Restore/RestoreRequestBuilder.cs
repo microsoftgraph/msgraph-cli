@@ -26,10 +26,13 @@ namespace ApiSdk.DirectoryRoleTemplates.Item.Restore {
             var command = new Command("post");
             command.Description = "Invoke action restore";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--directoryroletemplate-id", description: "key: id of directoryRoleTemplate"));
-            command.Handler = CommandHandler.Create<string>(async (directoryRoleTemplateId) => {
-                var requestInfo = CreatePostRequestInformation();
-                if (!String.IsNullOrEmpty(directoryRoleTemplateId)) requestInfo.PathParameters.Add("directoryRoleTemplate_id", directoryRoleTemplateId);
+            var directoryRoleTemplateIdOption = new Option<string>("--directoryroletemplate-id", description: "key: id of directoryRoleTemplate") {
+            };
+            directoryRoleTemplateIdOption.IsRequired = true;
+            command.AddOption(directoryRoleTemplateIdOption);
+            command.SetHandler(async (string directoryRoleTemplateId) => {
+                var requestInfo = CreatePostRequestInformation(q => {
+                });
                 var result = await RequestAdapter.SendAsync<RestoreResponse>(requestInfo);
                 // Print request output. What if the request has no return?
                 using var serializer = RequestAdapter.SerializationWriterFactory.GetSerializationWriter("application/json");
@@ -38,7 +41,7 @@ namespace ApiSdk.DirectoryRoleTemplates.Item.Restore {
                 using var reader = new StreamReader(content);
                 var strContent = await reader.ReadToEndAsync();
                 Console.Write(strContent + "\n");
-            });
+            }, directoryRoleTemplateIdOption);
             return command;
         }
         /// <summary>
@@ -61,7 +64,7 @@ namespace ApiSdk.DirectoryRoleTemplates.Item.Restore {
         /// </summary>
         public RequestInformation CreatePostRequestInformation(Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
             var requestInfo = new RequestInformation {
-                HttpMethod = HttpMethod.POST,
+                HttpMethod = Method.POST,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };

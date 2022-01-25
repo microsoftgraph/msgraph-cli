@@ -26,10 +26,13 @@ namespace ApiSdk.Applications.Item.Restore {
             var command = new Command("post");
             command.Description = "Invoke action restore";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--application-id", description: "key: id of application"));
-            command.Handler = CommandHandler.Create<string>(async (applicationId) => {
-                var requestInfo = CreatePostRequestInformation();
-                if (!String.IsNullOrEmpty(applicationId)) requestInfo.PathParameters.Add("application_id", applicationId);
+            var applicationIdOption = new Option<string>("--application-id", description: "key: id of application") {
+            };
+            applicationIdOption.IsRequired = true;
+            command.AddOption(applicationIdOption);
+            command.SetHandler(async (string applicationId) => {
+                var requestInfo = CreatePostRequestInformation(q => {
+                });
                 var result = await RequestAdapter.SendAsync<RestoreResponse>(requestInfo);
                 // Print request output. What if the request has no return?
                 using var serializer = RequestAdapter.SerializationWriterFactory.GetSerializationWriter("application/json");
@@ -38,7 +41,7 @@ namespace ApiSdk.Applications.Item.Restore {
                 using var reader = new StreamReader(content);
                 var strContent = await reader.ReadToEndAsync();
                 Console.Write(strContent + "\n");
-            });
+            }, applicationIdOption);
             return command;
         }
         /// <summary>
@@ -61,7 +64,7 @@ namespace ApiSdk.Applications.Item.Restore {
         /// </summary>
         public RequestInformation CreatePostRequestInformation(Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
             var requestInfo = new RequestInformation {
-                HttpMethod = HttpMethod.POST,
+                HttpMethod = Method.POST,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };

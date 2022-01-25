@@ -25,18 +25,25 @@ namespace ApiSdk.Groups.Item.Events.Item.Instances.Item.DismissReminder {
             var command = new Command("post");
             command.Description = "Invoke action dismissReminder";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--group-id", description: "key: id of group"));
-            command.AddOption(new Option<string>("--event-id", description: "key: id of event"));
-            command.AddOption(new Option<string>("--event-id1", description: "key: id of event"));
-            command.Handler = CommandHandler.Create<string, string, string>(async (groupId, eventId, eventId1) => {
-                var requestInfo = CreatePostRequestInformation();
-                if (!String.IsNullOrEmpty(groupId)) requestInfo.PathParameters.Add("group_id", groupId);
-                if (!String.IsNullOrEmpty(eventId)) requestInfo.PathParameters.Add("event_id", eventId);
-                if (!String.IsNullOrEmpty(eventId1)) requestInfo.PathParameters.Add("event_id1", eventId1);
+            var groupIdOption = new Option<string>("--group-id", description: "key: id of group") {
+            };
+            groupIdOption.IsRequired = true;
+            command.AddOption(groupIdOption);
+            var eventIdOption = new Option<string>("--event-id", description: "key: id of event") {
+            };
+            eventIdOption.IsRequired = true;
+            command.AddOption(eventIdOption);
+            var eventId1Option = new Option<string>("--event-id1", description: "key: id of event") {
+            };
+            eventId1Option.IsRequired = true;
+            command.AddOption(eventId1Option);
+            command.SetHandler(async (string groupId, string eventId, string eventId1) => {
+                var requestInfo = CreatePostRequestInformation(q => {
+                });
                 await RequestAdapter.SendNoContentAsync(requestInfo);
                 // Print request output. What if the request has no return?
                 Console.WriteLine("Success");
-            });
+            }, groupIdOption, eventIdOption, eventId1Option);
             return command;
         }
         /// <summary>
@@ -59,7 +66,7 @@ namespace ApiSdk.Groups.Item.Events.Item.Instances.Item.DismissReminder {
         /// </summary>
         public RequestInformation CreatePostRequestInformation(Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
             var requestInfo = new RequestInformation {
-                HttpMethod = HttpMethod.POST,
+                HttpMethod = Method.POST,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };

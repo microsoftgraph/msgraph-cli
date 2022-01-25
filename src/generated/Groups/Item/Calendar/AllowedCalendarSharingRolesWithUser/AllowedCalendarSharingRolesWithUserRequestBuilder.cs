@@ -25,12 +25,17 @@ namespace ApiSdk.Groups.Item.Calendar.AllowedCalendarSharingRolesWithUser {
             var command = new Command("get");
             command.Description = "Invoke function allowedCalendarSharingRoles";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--group-id", description: "key: id of group"));
-            command.AddOption(new Option<string>("--user", description: "Usage: User={User}"));
-            command.Handler = CommandHandler.Create<string, string>(async (groupId, User) => {
-                var requestInfo = CreateGetRequestInformation();
-                if (!String.IsNullOrEmpty(groupId)) requestInfo.PathParameters.Add("group_id", groupId);
-                if (!String.IsNullOrEmpty(User)) requestInfo.PathParameters.Add("User", User);
+            var groupIdOption = new Option<string>("--group-id", description: "key: id of group") {
+            };
+            groupIdOption.IsRequired = true;
+            command.AddOption(groupIdOption);
+            var UserOption = new Option<string>("--user", description: "Usage: User={User}") {
+            };
+            UserOption.IsRequired = true;
+            command.AddOption(UserOption);
+            command.SetHandler(async (string groupId, string User) => {
+                var requestInfo = CreateGetRequestInformation(q => {
+                });
                 var result = await RequestAdapter.SendPrimitiveCollectionAsync<string>(requestInfo);
                 // Print request output. What if the request has no return?
                 using var serializer = RequestAdapter.SerializationWriterFactory.GetSerializationWriter("application/json");
@@ -39,7 +44,7 @@ namespace ApiSdk.Groups.Item.Calendar.AllowedCalendarSharingRolesWithUser {
                 using var reader = new StreamReader(content);
                 var strContent = await reader.ReadToEndAsync();
                 Console.Write(strContent + "\n");
-            });
+            }, groupIdOption, UserOption);
             return command;
         }
         /// <summary>
@@ -64,7 +69,7 @@ namespace ApiSdk.Groups.Item.Calendar.AllowedCalendarSharingRolesWithUser {
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
             var requestInfo = new RequestInformation {
-                HttpMethod = HttpMethod.GET,
+                HttpMethod = Method.GET,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };

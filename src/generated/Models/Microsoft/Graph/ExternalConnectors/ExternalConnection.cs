@@ -19,7 +19,7 @@ namespace ApiSdk.Models.Microsoft.Graph.ExternalConnectors {
         public List<ConnectionOperation> Operations { get; set; }
         /// <summary>Read-only. Nullable.</summary>
         public ApiSdk.Models.Microsoft.Graph.ExternalConnectors.Schema Schema { get; set; }
-        /// <summary>Indicates the current state of the connection. Possible values are: draft, ready, obsolete, limitExceeded, unknownFutureValue.</summary>
+        /// <summary>Indicates the current state of the connection. Possible values are draft, ready, obsolete, and limitExceeded. Required.</summary>
         public ConnectionState? State { get; set; }
         /// <summary>
         /// The deserialization information for the current model

@@ -25,24 +25,36 @@ namespace ApiSdk.Groups.Item.Conversations.Item.Threads.Item.Posts.Item.InReplyT
             var command = new Command("post");
             command.Description = "Invoke action reply";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--group-id", description: "key: id of group"));
-            command.AddOption(new Option<string>("--conversation-id", description: "key: id of conversation"));
-            command.AddOption(new Option<string>("--conversationthread-id", description: "key: id of conversationThread"));
-            command.AddOption(new Option<string>("--post-id", description: "key: id of post"));
-            command.AddOption(new Option<string>("--body"));
-            command.Handler = CommandHandler.Create<string, string, string, string, string>(async (groupId, conversationId, conversationThreadId, postId, body) => {
+            var groupIdOption = new Option<string>("--group-id", description: "key: id of group") {
+            };
+            groupIdOption.IsRequired = true;
+            command.AddOption(groupIdOption);
+            var conversationIdOption = new Option<string>("--conversation-id", description: "key: id of conversation") {
+            };
+            conversationIdOption.IsRequired = true;
+            command.AddOption(conversationIdOption);
+            var conversationThreadIdOption = new Option<string>("--conversationthread-id", description: "key: id of conversationThread") {
+            };
+            conversationThreadIdOption.IsRequired = true;
+            command.AddOption(conversationThreadIdOption);
+            var postIdOption = new Option<string>("--post-id", description: "key: id of post") {
+            };
+            postIdOption.IsRequired = true;
+            command.AddOption(postIdOption);
+            var bodyOption = new Option<string>("--body") {
+            };
+            bodyOption.IsRequired = true;
+            command.AddOption(bodyOption);
+            command.SetHandler(async (string groupId, string conversationId, string conversationThreadId, string postId, string body) => {
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<ReplyRequestBody>();
-                var requestInfo = CreatePostRequestInformation(model);
-                if (!String.IsNullOrEmpty(groupId)) requestInfo.PathParameters.Add("group_id", groupId);
-                if (!String.IsNullOrEmpty(conversationId)) requestInfo.PathParameters.Add("conversation_id", conversationId);
-                if (!String.IsNullOrEmpty(conversationThreadId)) requestInfo.PathParameters.Add("conversationThread_id", conversationThreadId);
-                if (!String.IsNullOrEmpty(postId)) requestInfo.PathParameters.Add("post_id", postId);
+                var requestInfo = CreatePostRequestInformation(model, q => {
+                });
                 await RequestAdapter.SendNoContentAsync(requestInfo);
                 // Print request output. What if the request has no return?
                 Console.WriteLine("Success");
-            });
+            }, groupIdOption, conversationIdOption, conversationThreadIdOption, postIdOption, bodyOption);
             return command;
         }
         /// <summary>
@@ -67,7 +79,7 @@ namespace ApiSdk.Groups.Item.Conversations.Item.Threads.Item.Posts.Item.InReplyT
         public RequestInformation CreatePostRequestInformation(ReplyRequestBody body, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
             _ = body ?? throw new ArgumentNullException(nameof(body));
             var requestInfo = new RequestInformation {
-                HttpMethod = HttpMethod.POST,
+                HttpMethod = Method.POST,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };

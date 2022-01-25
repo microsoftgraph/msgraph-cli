@@ -26,16 +26,21 @@ namespace ApiSdk.Applications.Item.ExtensionProperties.Item {
             var command = new Command("delete");
             command.Description = "Read-only. Nullable.";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--application-id", description: "key: id of application"));
-            command.AddOption(new Option<string>("--extensionproperty-id", description: "key: id of extensionProperty"));
-            command.Handler = CommandHandler.Create<string, string>(async (applicationId, extensionPropertyId) => {
-                var requestInfo = CreateDeleteRequestInformation();
-                if (!String.IsNullOrEmpty(applicationId)) requestInfo.PathParameters.Add("application_id", applicationId);
-                if (!String.IsNullOrEmpty(extensionPropertyId)) requestInfo.PathParameters.Add("extensionProperty_id", extensionPropertyId);
+            var applicationIdOption = new Option<string>("--application-id", description: "key: id of application") {
+            };
+            applicationIdOption.IsRequired = true;
+            command.AddOption(applicationIdOption);
+            var extensionPropertyIdOption = new Option<string>("--extensionproperty-id", description: "key: id of extensionProperty") {
+            };
+            extensionPropertyIdOption.IsRequired = true;
+            command.AddOption(extensionPropertyIdOption);
+            command.SetHandler(async (string applicationId, string extensionPropertyId) => {
+                var requestInfo = CreateDeleteRequestInformation(q => {
+                });
                 await RequestAdapter.SendNoContentAsync(requestInfo);
                 // Print request output. What if the request has no return?
                 Console.WriteLine("Success");
-            });
+            }, applicationIdOption, extensionPropertyIdOption);
             return command;
         }
         /// <summary>
@@ -45,16 +50,29 @@ namespace ApiSdk.Applications.Item.ExtensionProperties.Item {
             var command = new Command("get");
             command.Description = "Read-only. Nullable.";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--application-id", description: "key: id of application"));
-            command.AddOption(new Option<string>("--extensionproperty-id", description: "key: id of extensionProperty"));
-            command.AddOption(new Option<object>("--select", description: "Select properties to be returned"));
-            command.AddOption(new Option<object>("--expand", description: "Expand related entities"));
-            command.Handler = CommandHandler.Create<string, string, object, object>(async (applicationId, extensionPropertyId, select, expand) => {
-                var requestInfo = CreateGetRequestInformation();
-                if (!String.IsNullOrEmpty(applicationId)) requestInfo.PathParameters.Add("application_id", applicationId);
-                if (!String.IsNullOrEmpty(extensionPropertyId)) requestInfo.PathParameters.Add("extensionProperty_id", extensionPropertyId);
-                requestInfo.QueryParameters.Add("select", select);
-                requestInfo.QueryParameters.Add("expand", expand);
+            var applicationIdOption = new Option<string>("--application-id", description: "key: id of application") {
+            };
+            applicationIdOption.IsRequired = true;
+            command.AddOption(applicationIdOption);
+            var extensionPropertyIdOption = new Option<string>("--extensionproperty-id", description: "key: id of extensionProperty") {
+            };
+            extensionPropertyIdOption.IsRequired = true;
+            command.AddOption(extensionPropertyIdOption);
+            var selectOption = new Option<string[]>("--select", description: "Select properties to be returned") {
+                Arity = ArgumentArity.ZeroOrMore
+            };
+            selectOption.IsRequired = false;
+            command.AddOption(selectOption);
+            var expandOption = new Option<string[]>("--expand", description: "Expand related entities") {
+                Arity = ArgumentArity.ZeroOrMore
+            };
+            expandOption.IsRequired = false;
+            command.AddOption(expandOption);
+            command.SetHandler(async (string applicationId, string extensionPropertyId, string[] select, string[] expand) => {
+                var requestInfo = CreateGetRequestInformation(q => {
+                    q.Select = select;
+                    q.Expand = expand;
+                });
                 var result = await RequestAdapter.SendAsync<ExtensionProperty>(requestInfo);
                 // Print request output. What if the request has no return?
                 using var serializer = RequestAdapter.SerializationWriterFactory.GetSerializationWriter("application/json");
@@ -63,7 +81,7 @@ namespace ApiSdk.Applications.Item.ExtensionProperties.Item {
                 using var reader = new StreamReader(content);
                 var strContent = await reader.ReadToEndAsync();
                 Console.Write(strContent + "\n");
-            });
+            }, applicationIdOption, extensionPropertyIdOption, selectOption, expandOption);
             return command;
         }
         /// <summary>
@@ -73,20 +91,28 @@ namespace ApiSdk.Applications.Item.ExtensionProperties.Item {
             var command = new Command("patch");
             command.Description = "Read-only. Nullable.";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--application-id", description: "key: id of application"));
-            command.AddOption(new Option<string>("--extensionproperty-id", description: "key: id of extensionProperty"));
-            command.AddOption(new Option<string>("--body"));
-            command.Handler = CommandHandler.Create<string, string, string>(async (applicationId, extensionPropertyId, body) => {
+            var applicationIdOption = new Option<string>("--application-id", description: "key: id of application") {
+            };
+            applicationIdOption.IsRequired = true;
+            command.AddOption(applicationIdOption);
+            var extensionPropertyIdOption = new Option<string>("--extensionproperty-id", description: "key: id of extensionProperty") {
+            };
+            extensionPropertyIdOption.IsRequired = true;
+            command.AddOption(extensionPropertyIdOption);
+            var bodyOption = new Option<string>("--body") {
+            };
+            bodyOption.IsRequired = true;
+            command.AddOption(bodyOption);
+            command.SetHandler(async (string applicationId, string extensionPropertyId, string body) => {
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<ExtensionProperty>();
-                var requestInfo = CreatePatchRequestInformation(model);
-                if (!String.IsNullOrEmpty(applicationId)) requestInfo.PathParameters.Add("application_id", applicationId);
-                if (!String.IsNullOrEmpty(extensionPropertyId)) requestInfo.PathParameters.Add("extensionProperty_id", extensionPropertyId);
+                var requestInfo = CreatePatchRequestInformation(model, q => {
+                });
                 await RequestAdapter.SendNoContentAsync(requestInfo);
                 // Print request output. What if the request has no return?
                 Console.WriteLine("Success");
-            });
+            }, applicationIdOption, extensionPropertyIdOption, bodyOption);
             return command;
         }
         /// <summary>
@@ -109,7 +135,7 @@ namespace ApiSdk.Applications.Item.ExtensionProperties.Item {
         /// </summary>
         public RequestInformation CreateDeleteRequestInformation(Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
             var requestInfo = new RequestInformation {
-                HttpMethod = HttpMethod.DELETE,
+                HttpMethod = Method.DELETE,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };
@@ -125,7 +151,7 @@ namespace ApiSdk.Applications.Item.ExtensionProperties.Item {
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<GetQueryParameters> q = default, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
             var requestInfo = new RequestInformation {
-                HttpMethod = HttpMethod.GET,
+                HttpMethod = Method.GET,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };
@@ -147,7 +173,7 @@ namespace ApiSdk.Applications.Item.ExtensionProperties.Item {
         public RequestInformation CreatePatchRequestInformation(ExtensionProperty body, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
             _ = body ?? throw new ArgumentNullException(nameof(body));
             var requestInfo = new RequestInformation {
-                HttpMethod = HttpMethod.PATCH,
+                HttpMethod = Method.PATCH,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };

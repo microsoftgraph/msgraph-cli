@@ -29,18 +29,25 @@ namespace ApiSdk.Sites.Item.TermStore.Sets.Item.Relations.Item {
             var command = new Command("delete");
             command.Description = "Indicates which terms have been pinned or reused directly under the set.";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--site-id", description: "key: id of site"));
-            command.AddOption(new Option<string>("--set-id", description: "key: id of set"));
-            command.AddOption(new Option<string>("--relation-id", description: "key: id of relation"));
-            command.Handler = CommandHandler.Create<string, string, string>(async (siteId, setId, relationId) => {
-                var requestInfo = CreateDeleteRequestInformation();
-                if (!String.IsNullOrEmpty(siteId)) requestInfo.PathParameters.Add("site_id", siteId);
-                if (!String.IsNullOrEmpty(setId)) requestInfo.PathParameters.Add("set_id", setId);
-                if (!String.IsNullOrEmpty(relationId)) requestInfo.PathParameters.Add("relation_id", relationId);
+            var siteIdOption = new Option<string>("--site-id", description: "key: id of site") {
+            };
+            siteIdOption.IsRequired = true;
+            command.AddOption(siteIdOption);
+            var setIdOption = new Option<string>("--set-id", description: "key: id of set") {
+            };
+            setIdOption.IsRequired = true;
+            command.AddOption(setIdOption);
+            var relationIdOption = new Option<string>("--relation-id", description: "key: id of relation") {
+            };
+            relationIdOption.IsRequired = true;
+            command.AddOption(relationIdOption);
+            command.SetHandler(async (string siteId, string setId, string relationId) => {
+                var requestInfo = CreateDeleteRequestInformation(q => {
+                });
                 await RequestAdapter.SendNoContentAsync(requestInfo);
                 // Print request output. What if the request has no return?
                 Console.WriteLine("Success");
-            });
+            }, siteIdOption, setIdOption, relationIdOption);
             return command;
         }
         public Command BuildFromTermCommand() {
@@ -57,18 +64,33 @@ namespace ApiSdk.Sites.Item.TermStore.Sets.Item.Relations.Item {
             var command = new Command("get");
             command.Description = "Indicates which terms have been pinned or reused directly under the set.";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--site-id", description: "key: id of site"));
-            command.AddOption(new Option<string>("--set-id", description: "key: id of set"));
-            command.AddOption(new Option<string>("--relation-id", description: "key: id of relation"));
-            command.AddOption(new Option<object>("--select", description: "Select properties to be returned"));
-            command.AddOption(new Option<object>("--expand", description: "Expand related entities"));
-            command.Handler = CommandHandler.Create<string, string, string, object, object>(async (siteId, setId, relationId, select, expand) => {
-                var requestInfo = CreateGetRequestInformation();
-                if (!String.IsNullOrEmpty(siteId)) requestInfo.PathParameters.Add("site_id", siteId);
-                if (!String.IsNullOrEmpty(setId)) requestInfo.PathParameters.Add("set_id", setId);
-                if (!String.IsNullOrEmpty(relationId)) requestInfo.PathParameters.Add("relation_id", relationId);
-                requestInfo.QueryParameters.Add("select", select);
-                requestInfo.QueryParameters.Add("expand", expand);
+            var siteIdOption = new Option<string>("--site-id", description: "key: id of site") {
+            };
+            siteIdOption.IsRequired = true;
+            command.AddOption(siteIdOption);
+            var setIdOption = new Option<string>("--set-id", description: "key: id of set") {
+            };
+            setIdOption.IsRequired = true;
+            command.AddOption(setIdOption);
+            var relationIdOption = new Option<string>("--relation-id", description: "key: id of relation") {
+            };
+            relationIdOption.IsRequired = true;
+            command.AddOption(relationIdOption);
+            var selectOption = new Option<string[]>("--select", description: "Select properties to be returned") {
+                Arity = ArgumentArity.ZeroOrMore
+            };
+            selectOption.IsRequired = false;
+            command.AddOption(selectOption);
+            var expandOption = new Option<string[]>("--expand", description: "Expand related entities") {
+                Arity = ArgumentArity.ZeroOrMore
+            };
+            expandOption.IsRequired = false;
+            command.AddOption(expandOption);
+            command.SetHandler(async (string siteId, string setId, string relationId, string[] select, string[] expand) => {
+                var requestInfo = CreateGetRequestInformation(q => {
+                    q.Select = select;
+                    q.Expand = expand;
+                });
                 var result = await RequestAdapter.SendAsync<Relation>(requestInfo);
                 // Print request output. What if the request has no return?
                 using var serializer = RequestAdapter.SerializationWriterFactory.GetSerializationWriter("application/json");
@@ -77,7 +99,7 @@ namespace ApiSdk.Sites.Item.TermStore.Sets.Item.Relations.Item {
                 using var reader = new StreamReader(content);
                 var strContent = await reader.ReadToEndAsync();
                 Console.Write(strContent + "\n");
-            });
+            }, siteIdOption, setIdOption, relationIdOption, selectOption, expandOption);
             return command;
         }
         /// <summary>
@@ -87,22 +109,32 @@ namespace ApiSdk.Sites.Item.TermStore.Sets.Item.Relations.Item {
             var command = new Command("patch");
             command.Description = "Indicates which terms have been pinned or reused directly under the set.";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--site-id", description: "key: id of site"));
-            command.AddOption(new Option<string>("--set-id", description: "key: id of set"));
-            command.AddOption(new Option<string>("--relation-id", description: "key: id of relation"));
-            command.AddOption(new Option<string>("--body"));
-            command.Handler = CommandHandler.Create<string, string, string, string>(async (siteId, setId, relationId, body) => {
+            var siteIdOption = new Option<string>("--site-id", description: "key: id of site") {
+            };
+            siteIdOption.IsRequired = true;
+            command.AddOption(siteIdOption);
+            var setIdOption = new Option<string>("--set-id", description: "key: id of set") {
+            };
+            setIdOption.IsRequired = true;
+            command.AddOption(setIdOption);
+            var relationIdOption = new Option<string>("--relation-id", description: "key: id of relation") {
+            };
+            relationIdOption.IsRequired = true;
+            command.AddOption(relationIdOption);
+            var bodyOption = new Option<string>("--body") {
+            };
+            bodyOption.IsRequired = true;
+            command.AddOption(bodyOption);
+            command.SetHandler(async (string siteId, string setId, string relationId, string body) => {
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<Relation>();
-                var requestInfo = CreatePatchRequestInformation(model);
-                if (!String.IsNullOrEmpty(siteId)) requestInfo.PathParameters.Add("site_id", siteId);
-                if (!String.IsNullOrEmpty(setId)) requestInfo.PathParameters.Add("set_id", setId);
-                if (!String.IsNullOrEmpty(relationId)) requestInfo.PathParameters.Add("relation_id", relationId);
+                var requestInfo = CreatePatchRequestInformation(model, q => {
+                });
                 await RequestAdapter.SendNoContentAsync(requestInfo);
                 // Print request output. What if the request has no return?
                 Console.WriteLine("Success");
-            });
+            }, siteIdOption, setIdOption, relationIdOption, bodyOption);
             return command;
         }
         public Command BuildSetCommand() {
@@ -139,7 +171,7 @@ namespace ApiSdk.Sites.Item.TermStore.Sets.Item.Relations.Item {
         /// </summary>
         public RequestInformation CreateDeleteRequestInformation(Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
             var requestInfo = new RequestInformation {
-                HttpMethod = HttpMethod.DELETE,
+                HttpMethod = Method.DELETE,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };
@@ -155,7 +187,7 @@ namespace ApiSdk.Sites.Item.TermStore.Sets.Item.Relations.Item {
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<GetQueryParameters> q = default, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
             var requestInfo = new RequestInformation {
-                HttpMethod = HttpMethod.GET,
+                HttpMethod = Method.GET,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };
@@ -177,7 +209,7 @@ namespace ApiSdk.Sites.Item.TermStore.Sets.Item.Relations.Item {
         public RequestInformation CreatePatchRequestInformation(Relation body, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
             _ = body ?? throw new ArgumentNullException(nameof(body));
             var requestInfo = new RequestInformation {
-                HttpMethod = HttpMethod.PATCH,
+                HttpMethod = Method.PATCH,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };

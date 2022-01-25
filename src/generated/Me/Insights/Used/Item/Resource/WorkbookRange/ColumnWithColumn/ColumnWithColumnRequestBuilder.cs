@@ -26,12 +26,17 @@ namespace ApiSdk.Me.Insights.Used.Item.Resource.WorkbookRange.ColumnWithColumn {
             var command = new Command("get");
             command.Description = "Invoke function column";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--usedinsight-id", description: "key: id of usedInsight"));
-            command.AddOption(new Option<int?>("--column", description: "Usage: column={column}"));
-            command.Handler = CommandHandler.Create<string, int?>(async (usedInsightId, column) => {
-                var requestInfo = CreateGetRequestInformation();
-                if (!String.IsNullOrEmpty(usedInsightId)) requestInfo.PathParameters.Add("usedInsight_id", usedInsightId);
-                requestInfo.PathParameters.Add("column", column);
+            var usedInsightIdOption = new Option<string>("--usedinsight-id", description: "key: id of usedInsight") {
+            };
+            usedInsightIdOption.IsRequired = true;
+            command.AddOption(usedInsightIdOption);
+            var columnOption = new Option<int?>("--column", description: "Usage: column={column}") {
+            };
+            columnOption.IsRequired = true;
+            command.AddOption(columnOption);
+            command.SetHandler(async (string usedInsightId, int? column) => {
+                var requestInfo = CreateGetRequestInformation(q => {
+                });
                 var result = await RequestAdapter.SendAsync<ColumnWithColumnResponse>(requestInfo);
                 // Print request output. What if the request has no return?
                 using var serializer = RequestAdapter.SerializationWriterFactory.GetSerializationWriter("application/json");
@@ -40,7 +45,7 @@ namespace ApiSdk.Me.Insights.Used.Item.Resource.WorkbookRange.ColumnWithColumn {
                 using var reader = new StreamReader(content);
                 var strContent = await reader.ReadToEndAsync();
                 Console.Write(strContent + "\n");
-            });
+            }, usedInsightIdOption, columnOption);
             return command;
         }
         /// <summary>
@@ -65,7 +70,7 @@ namespace ApiSdk.Me.Insights.Used.Item.Resource.WorkbookRange.ColumnWithColumn {
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
             var requestInfo = new RequestInformation {
-                HttpMethod = HttpMethod.GET,
+                HttpMethod = Method.GET,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };

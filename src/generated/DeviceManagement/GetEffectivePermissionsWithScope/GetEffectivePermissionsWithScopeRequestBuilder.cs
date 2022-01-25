@@ -25,10 +25,13 @@ namespace ApiSdk.DeviceManagement.GetEffectivePermissionsWithScope {
             var command = new Command("get");
             command.Description = "Retrieves the effective permissions of the currently authenticated user";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--scope", description: "Usage: scope={scope}"));
-            command.Handler = CommandHandler.Create<string>(async (scope) => {
-                var requestInfo = CreateGetRequestInformation();
-                if (!String.IsNullOrEmpty(scope)) requestInfo.PathParameters.Add("scope", scope);
+            var scopeOption = new Option<string>("--scope", description: "Usage: scope={scope}") {
+            };
+            scopeOption.IsRequired = true;
+            command.AddOption(scopeOption);
+            command.SetHandler(async (string scope) => {
+                var requestInfo = CreateGetRequestInformation(q => {
+                });
                 var result = await RequestAdapter.SendCollectionAsync<ApiSdk.DeviceManagement.GetEffectivePermissionsWithScope.GetEffectivePermissionsWithScope>(requestInfo);
                 // Print request output. What if the request has no return?
                 using var serializer = RequestAdapter.SerializationWriterFactory.GetSerializationWriter("application/json");
@@ -37,7 +40,7 @@ namespace ApiSdk.DeviceManagement.GetEffectivePermissionsWithScope {
                 using var reader = new StreamReader(content);
                 var strContent = await reader.ReadToEndAsync();
                 Console.Write(strContent + "\n");
-            });
+            }, scopeOption);
             return command;
         }
         /// <summary>
@@ -62,7 +65,7 @@ namespace ApiSdk.DeviceManagement.GetEffectivePermissionsWithScope {
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
             var requestInfo = new RequestInformation {
-                HttpMethod = HttpMethod.GET,
+                HttpMethod = Method.GET,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };

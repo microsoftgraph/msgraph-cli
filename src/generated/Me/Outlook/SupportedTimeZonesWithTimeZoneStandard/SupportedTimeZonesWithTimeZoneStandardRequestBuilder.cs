@@ -25,10 +25,13 @@ namespace ApiSdk.Me.Outlook.SupportedTimeZonesWithTimeZoneStandard {
             var command = new Command("get");
             command.Description = "Invoke function supportedTimeZones";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--timezonestandard", description: "Usage: TimeZoneStandard={TimeZoneStandard}"));
-            command.Handler = CommandHandler.Create<string>(async (TimeZoneStandard) => {
-                var requestInfo = CreateGetRequestInformation();
-                if (!String.IsNullOrEmpty(TimeZoneStandard)) requestInfo.PathParameters.Add("TimeZoneStandard", TimeZoneStandard);
+            var TimeZoneStandardOption = new Option<object>("--timezonestandard", description: "Usage: TimeZoneStandard={TimeZoneStandard}") {
+            };
+            TimeZoneStandardOption.IsRequired = true;
+            command.AddOption(TimeZoneStandardOption);
+            command.SetHandler(async (object TimeZoneStandard) => {
+                var requestInfo = CreateGetRequestInformation(q => {
+                });
                 var result = await RequestAdapter.SendCollectionAsync<ApiSdk.Me.Outlook.SupportedTimeZonesWithTimeZoneStandard.SupportedTimeZonesWithTimeZoneStandard>(requestInfo);
                 // Print request output. What if the request has no return?
                 using var serializer = RequestAdapter.SerializationWriterFactory.GetSerializationWriter("application/json");
@@ -37,7 +40,7 @@ namespace ApiSdk.Me.Outlook.SupportedTimeZonesWithTimeZoneStandard {
                 using var reader = new StreamReader(content);
                 var strContent = await reader.ReadToEndAsync();
                 Console.Write(strContent + "\n");
-            });
+            }, TimeZoneStandardOption);
             return command;
         }
         /// <summary>
@@ -62,7 +65,7 @@ namespace ApiSdk.Me.Outlook.SupportedTimeZonesWithTimeZoneStandard {
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
             var requestInfo = new RequestInformation {
-                HttpMethod = HttpMethod.GET,
+                HttpMethod = Method.GET,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };

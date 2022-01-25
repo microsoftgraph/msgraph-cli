@@ -25,20 +25,29 @@ namespace ApiSdk.Sites.Item.Lists.Item.Items.Item.Versions.Item.RestoreVersion {
             var command = new Command("post");
             command.Description = "Invoke action restoreVersion";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--site-id", description: "key: id of site"));
-            command.AddOption(new Option<string>("--list-id", description: "key: id of list"));
-            command.AddOption(new Option<string>("--listitem-id", description: "key: id of listItem"));
-            command.AddOption(new Option<string>("--listitemversion-id", description: "key: id of listItemVersion"));
-            command.Handler = CommandHandler.Create<string, string, string, string>(async (siteId, listId, listItemId, listItemVersionId) => {
-                var requestInfo = CreatePostRequestInformation();
-                if (!String.IsNullOrEmpty(siteId)) requestInfo.PathParameters.Add("site_id", siteId);
-                if (!String.IsNullOrEmpty(listId)) requestInfo.PathParameters.Add("list_id", listId);
-                if (!String.IsNullOrEmpty(listItemId)) requestInfo.PathParameters.Add("listItem_id", listItemId);
-                if (!String.IsNullOrEmpty(listItemVersionId)) requestInfo.PathParameters.Add("listItemVersion_id", listItemVersionId);
+            var siteIdOption = new Option<string>("--site-id", description: "key: id of site") {
+            };
+            siteIdOption.IsRequired = true;
+            command.AddOption(siteIdOption);
+            var listIdOption = new Option<string>("--list-id", description: "key: id of list") {
+            };
+            listIdOption.IsRequired = true;
+            command.AddOption(listIdOption);
+            var listItemIdOption = new Option<string>("--listitem-id", description: "key: id of listItem") {
+            };
+            listItemIdOption.IsRequired = true;
+            command.AddOption(listItemIdOption);
+            var listItemVersionIdOption = new Option<string>("--listitemversion-id", description: "key: id of listItemVersion") {
+            };
+            listItemVersionIdOption.IsRequired = true;
+            command.AddOption(listItemVersionIdOption);
+            command.SetHandler(async (string siteId, string listId, string listItemId, string listItemVersionId) => {
+                var requestInfo = CreatePostRequestInformation(q => {
+                });
                 await RequestAdapter.SendNoContentAsync(requestInfo);
                 // Print request output. What if the request has no return?
                 Console.WriteLine("Success");
-            });
+            }, siteIdOption, listIdOption, listItemIdOption, listItemVersionIdOption);
             return command;
         }
         /// <summary>
@@ -61,7 +70,7 @@ namespace ApiSdk.Sites.Item.Lists.Item.Items.Item.Versions.Item.RestoreVersion {
         /// </summary>
         public RequestInformation CreatePostRequestInformation(Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
             var requestInfo = new RequestInformation {
-                HttpMethod = HttpMethod.POST,
+                HttpMethod = Method.POST,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };

@@ -25,13 +25,19 @@ namespace ApiSdk.Workbooks.Item.Children.Item.Content {
             var command = new Command("get");
             command.Description = "The content stream, if the item represents a file.";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--driveitem-id", description: "key: id of driveItem"));
-            command.AddOption(new Option<string>("--driveitem-id1", description: "key: id of driveItem"));
-            command.AddOption(new Option<FileInfo>("--output"));
-            command.Handler = CommandHandler.Create<string, string, FileInfo>(async (driveItemId, driveItemId1, output) => {
-                var requestInfo = CreateGetRequestInformation();
-                if (!String.IsNullOrEmpty(driveItemId)) requestInfo.PathParameters.Add("driveItem_id", driveItemId);
-                if (!String.IsNullOrEmpty(driveItemId1)) requestInfo.PathParameters.Add("driveItem_id1", driveItemId1);
+            var driveItemIdOption = new Option<string>("--driveitem-id", description: "key: id of driveItem") {
+            };
+            driveItemIdOption.IsRequired = true;
+            command.AddOption(driveItemIdOption);
+            var driveItemId1Option = new Option<string>("--driveitem-id1", description: "key: id of driveItem") {
+            };
+            driveItemId1Option.IsRequired = true;
+            command.AddOption(driveItemId1Option);
+            var outputOption = new Option<FileInfo>("--output");
+            command.AddOption(outputOption);
+            command.SetHandler(async (string driveItemId, string driveItemId1, FileInfo output) => {
+                var requestInfo = CreateGetRequestInformation(q => {
+                });
                 var result = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 // Print request output. What if the request has no return?
                 if (output == null) {
@@ -44,7 +50,7 @@ namespace ApiSdk.Workbooks.Item.Children.Item.Content {
                     await result.CopyToAsync(writeStream);
                     Console.WriteLine($"Content written to {output.FullName}.");
                 }
-            });
+            }, driveItemIdOption, driveItemId1Option, outputOption);
             return command;
         }
         /// <summary>
@@ -54,18 +60,26 @@ namespace ApiSdk.Workbooks.Item.Children.Item.Content {
             var command = new Command("put");
             command.Description = "The content stream, if the item represents a file.";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--driveitem-id", description: "key: id of driveItem"));
-            command.AddOption(new Option<string>("--driveitem-id1", description: "key: id of driveItem"));
-            command.AddOption(new Option<Stream>("--file", description: "Binary request body"));
-            command.Handler = CommandHandler.Create<string, string, FileInfo>(async (driveItemId, driveItemId1, file) => {
+            var driveItemIdOption = new Option<string>("--driveitem-id", description: "key: id of driveItem") {
+            };
+            driveItemIdOption.IsRequired = true;
+            command.AddOption(driveItemIdOption);
+            var driveItemId1Option = new Option<string>("--driveitem-id1", description: "key: id of driveItem") {
+            };
+            driveItemId1Option.IsRequired = true;
+            command.AddOption(driveItemId1Option);
+            var bodyOption = new Option<Stream>("--file", description: "Binary request body") {
+            };
+            bodyOption.IsRequired = true;
+            command.AddOption(bodyOption);
+            command.SetHandler(async (string driveItemId, string driveItemId1, FileInfo file) => {
                 using var stream = file.OpenRead();
-                var requestInfo = CreatePutRequestInformation(stream);
-                if (!String.IsNullOrEmpty(driveItemId)) requestInfo.PathParameters.Add("driveItem_id", driveItemId);
-                if (!String.IsNullOrEmpty(driveItemId1)) requestInfo.PathParameters.Add("driveItem_id1", driveItemId1);
+                var requestInfo = CreatePutRequestInformation(stream, q => {
+                });
                 await RequestAdapter.SendNoContentAsync(requestInfo);
                 // Print request output. What if the request has no return?
                 Console.WriteLine("Success");
-            });
+            }, driveItemIdOption, driveItemId1Option, bodyOption);
             return command;
         }
         /// <summary>
@@ -88,7 +102,7 @@ namespace ApiSdk.Workbooks.Item.Children.Item.Content {
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
             var requestInfo = new RequestInformation {
-                HttpMethod = HttpMethod.GET,
+                HttpMethod = Method.GET,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };
@@ -105,7 +119,7 @@ namespace ApiSdk.Workbooks.Item.Children.Item.Content {
         public RequestInformation CreatePutRequestInformation(Stream body, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
             _ = body ?? throw new ArgumentNullException(nameof(body));
             var requestInfo = new RequestInformation {
-                HttpMethod = HttpMethod.PUT,
+                HttpMethod = Method.PUT,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };

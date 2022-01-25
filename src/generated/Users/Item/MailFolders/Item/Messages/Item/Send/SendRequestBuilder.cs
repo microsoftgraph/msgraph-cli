@@ -25,18 +25,25 @@ namespace ApiSdk.Users.Item.MailFolders.Item.Messages.Item.Send {
             var command = new Command("post");
             command.Description = "Invoke action send";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--user-id", description: "key: id of user"));
-            command.AddOption(new Option<string>("--mailfolder-id", description: "key: id of mailFolder"));
-            command.AddOption(new Option<string>("--message-id", description: "key: id of message"));
-            command.Handler = CommandHandler.Create<string, string, string>(async (userId, mailFolderId, messageId) => {
-                var requestInfo = CreatePostRequestInformation();
-                if (!String.IsNullOrEmpty(userId)) requestInfo.PathParameters.Add("user_id", userId);
-                if (!String.IsNullOrEmpty(mailFolderId)) requestInfo.PathParameters.Add("mailFolder_id", mailFolderId);
-                if (!String.IsNullOrEmpty(messageId)) requestInfo.PathParameters.Add("message_id", messageId);
+            var userIdOption = new Option<string>("--user-id", description: "key: id of user") {
+            };
+            userIdOption.IsRequired = true;
+            command.AddOption(userIdOption);
+            var mailFolderIdOption = new Option<string>("--mailfolder-id", description: "key: id of mailFolder") {
+            };
+            mailFolderIdOption.IsRequired = true;
+            command.AddOption(mailFolderIdOption);
+            var messageIdOption = new Option<string>("--message-id", description: "key: id of message") {
+            };
+            messageIdOption.IsRequired = true;
+            command.AddOption(messageIdOption);
+            command.SetHandler(async (string userId, string mailFolderId, string messageId) => {
+                var requestInfo = CreatePostRequestInformation(q => {
+                });
                 await RequestAdapter.SendNoContentAsync(requestInfo);
                 // Print request output. What if the request has no return?
                 Console.WriteLine("Success");
-            });
+            }, userIdOption, mailFolderIdOption, messageIdOption);
             return command;
         }
         /// <summary>
@@ -59,7 +66,7 @@ namespace ApiSdk.Users.Item.MailFolders.Item.Messages.Item.Send {
         /// </summary>
         public RequestInformation CreatePostRequestInformation(Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
             var requestInfo = new RequestInformation {
-                HttpMethod = HttpMethod.POST,
+                HttpMethod = Method.POST,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };

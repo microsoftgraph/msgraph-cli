@@ -44,14 +44,17 @@ namespace ApiSdk.Me.ContactFolders.Item {
             var command = new Command("delete");
             command.Description = "The user's contacts folders. Read-only. Nullable.";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--contactfolder-id", description: "key: id of contactFolder"));
-            command.Handler = CommandHandler.Create<string>(async (contactFolderId) => {
-                var requestInfo = CreateDeleteRequestInformation();
-                if (!String.IsNullOrEmpty(contactFolderId)) requestInfo.PathParameters.Add("contactFolder_id", contactFolderId);
+            var contactFolderIdOption = new Option<string>("--contactfolder-id", description: "key: id of contactFolder") {
+            };
+            contactFolderIdOption.IsRequired = true;
+            command.AddOption(contactFolderIdOption);
+            command.SetHandler(async (string contactFolderId) => {
+                var requestInfo = CreateDeleteRequestInformation(q => {
+                });
                 await RequestAdapter.SendNoContentAsync(requestInfo);
                 // Print request output. What if the request has no return?
                 Console.WriteLine("Success");
-            });
+            }, contactFolderIdOption);
             return command;
         }
         /// <summary>
@@ -61,12 +64,19 @@ namespace ApiSdk.Me.ContactFolders.Item {
             var command = new Command("get");
             command.Description = "The user's contacts folders. Read-only. Nullable.";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--contactfolder-id", description: "key: id of contactFolder"));
-            command.AddOption(new Option<object>("--select", description: "Select properties to be returned"));
-            command.Handler = CommandHandler.Create<string, object>(async (contactFolderId, select) => {
-                var requestInfo = CreateGetRequestInformation();
-                if (!String.IsNullOrEmpty(contactFolderId)) requestInfo.PathParameters.Add("contactFolder_id", contactFolderId);
-                requestInfo.QueryParameters.Add("select", select);
+            var contactFolderIdOption = new Option<string>("--contactfolder-id", description: "key: id of contactFolder") {
+            };
+            contactFolderIdOption.IsRequired = true;
+            command.AddOption(contactFolderIdOption);
+            var selectOption = new Option<string[]>("--select", description: "Select properties to be returned") {
+                Arity = ArgumentArity.ZeroOrMore
+            };
+            selectOption.IsRequired = false;
+            command.AddOption(selectOption);
+            command.SetHandler(async (string contactFolderId, string[] select) => {
+                var requestInfo = CreateGetRequestInformation(q => {
+                    q.Select = select;
+                });
                 var result = await RequestAdapter.SendAsync<ContactFolder>(requestInfo);
                 // Print request output. What if the request has no return?
                 using var serializer = RequestAdapter.SerializationWriterFactory.GetSerializationWriter("application/json");
@@ -75,7 +85,7 @@ namespace ApiSdk.Me.ContactFolders.Item {
                 using var reader = new StreamReader(content);
                 var strContent = await reader.ReadToEndAsync();
                 Console.Write(strContent + "\n");
-            });
+            }, contactFolderIdOption, selectOption);
             return command;
         }
         public Command BuildMultiValueExtendedPropertiesCommand() {
@@ -92,18 +102,24 @@ namespace ApiSdk.Me.ContactFolders.Item {
             var command = new Command("patch");
             command.Description = "The user's contacts folders. Read-only. Nullable.";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--contactfolder-id", description: "key: id of contactFolder"));
-            command.AddOption(new Option<string>("--body"));
-            command.Handler = CommandHandler.Create<string, string>(async (contactFolderId, body) => {
+            var contactFolderIdOption = new Option<string>("--contactfolder-id", description: "key: id of contactFolder") {
+            };
+            contactFolderIdOption.IsRequired = true;
+            command.AddOption(contactFolderIdOption);
+            var bodyOption = new Option<string>("--body") {
+            };
+            bodyOption.IsRequired = true;
+            command.AddOption(bodyOption);
+            command.SetHandler(async (string contactFolderId, string body) => {
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<ContactFolder>();
-                var requestInfo = CreatePatchRequestInformation(model);
-                if (!String.IsNullOrEmpty(contactFolderId)) requestInfo.PathParameters.Add("contactFolder_id", contactFolderId);
+                var requestInfo = CreatePatchRequestInformation(model, q => {
+                });
                 await RequestAdapter.SendNoContentAsync(requestInfo);
                 // Print request output. What if the request has no return?
                 Console.WriteLine("Success");
-            });
+            }, contactFolderIdOption, bodyOption);
             return command;
         }
         public Command BuildSingleValueExtendedPropertiesCommand() {
@@ -133,7 +149,7 @@ namespace ApiSdk.Me.ContactFolders.Item {
         /// </summary>
         public RequestInformation CreateDeleteRequestInformation(Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
             var requestInfo = new RequestInformation {
-                HttpMethod = HttpMethod.DELETE,
+                HttpMethod = Method.DELETE,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };
@@ -149,7 +165,7 @@ namespace ApiSdk.Me.ContactFolders.Item {
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<GetQueryParameters> q = default, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
             var requestInfo = new RequestInformation {
-                HttpMethod = HttpMethod.GET,
+                HttpMethod = Method.GET,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };
@@ -171,7 +187,7 @@ namespace ApiSdk.Me.ContactFolders.Item {
         public RequestInformation CreatePatchRequestInformation(ContactFolder body, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
             _ = body ?? throw new ArgumentNullException(nameof(body));
             var requestInfo = new RequestInformation {
-                HttpMethod = HttpMethod.PATCH,
+                HttpMethod = Method.PATCH,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };

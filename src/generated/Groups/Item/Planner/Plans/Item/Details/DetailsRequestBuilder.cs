@@ -20,41 +20,59 @@ namespace ApiSdk.Groups.Item.Planner.Plans.Item.Details {
         /// <summary>Url template to use to build the URL for the current request builder</summary>
         private string UrlTemplate { get; set; }
         /// <summary>
-        /// Read-only. Nullable. Additional details about the plan.
+        /// Additional details about the plan. Read-only. Nullable.
         /// </summary>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
-            command.Description = "Read-only. Nullable. Additional details about the plan.";
+            command.Description = "Additional details about the plan. Read-only. Nullable.";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--group-id", description: "key: id of group"));
-            command.AddOption(new Option<string>("--plannerplan-id", description: "key: id of plannerPlan"));
-            command.Handler = CommandHandler.Create<string, string>(async (groupId, plannerPlanId) => {
-                var requestInfo = CreateDeleteRequestInformation();
-                if (!String.IsNullOrEmpty(groupId)) requestInfo.PathParameters.Add("group_id", groupId);
-                if (!String.IsNullOrEmpty(plannerPlanId)) requestInfo.PathParameters.Add("plannerPlan_id", plannerPlanId);
+            var groupIdOption = new Option<string>("--group-id", description: "key: id of group") {
+            };
+            groupIdOption.IsRequired = true;
+            command.AddOption(groupIdOption);
+            var plannerPlanIdOption = new Option<string>("--plannerplan-id", description: "key: id of plannerPlan") {
+            };
+            plannerPlanIdOption.IsRequired = true;
+            command.AddOption(plannerPlanIdOption);
+            command.SetHandler(async (string groupId, string plannerPlanId) => {
+                var requestInfo = CreateDeleteRequestInformation(q => {
+                });
                 await RequestAdapter.SendNoContentAsync(requestInfo);
                 // Print request output. What if the request has no return?
                 Console.WriteLine("Success");
-            });
+            }, groupIdOption, plannerPlanIdOption);
             return command;
         }
         /// <summary>
-        /// Read-only. Nullable. Additional details about the plan.
+        /// Additional details about the plan. Read-only. Nullable.
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "Read-only. Nullable. Additional details about the plan.";
+            command.Description = "Additional details about the plan. Read-only. Nullable.";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--group-id", description: "key: id of group"));
-            command.AddOption(new Option<string>("--plannerplan-id", description: "key: id of plannerPlan"));
-            command.AddOption(new Option<object>("--select", description: "Select properties to be returned"));
-            command.AddOption(new Option<object>("--expand", description: "Expand related entities"));
-            command.Handler = CommandHandler.Create<string, string, object, object>(async (groupId, plannerPlanId, select, expand) => {
-                var requestInfo = CreateGetRequestInformation();
-                if (!String.IsNullOrEmpty(groupId)) requestInfo.PathParameters.Add("group_id", groupId);
-                if (!String.IsNullOrEmpty(plannerPlanId)) requestInfo.PathParameters.Add("plannerPlan_id", plannerPlanId);
-                requestInfo.QueryParameters.Add("select", select);
-                requestInfo.QueryParameters.Add("expand", expand);
+            var groupIdOption = new Option<string>("--group-id", description: "key: id of group") {
+            };
+            groupIdOption.IsRequired = true;
+            command.AddOption(groupIdOption);
+            var plannerPlanIdOption = new Option<string>("--plannerplan-id", description: "key: id of plannerPlan") {
+            };
+            plannerPlanIdOption.IsRequired = true;
+            command.AddOption(plannerPlanIdOption);
+            var selectOption = new Option<string[]>("--select", description: "Select properties to be returned") {
+                Arity = ArgumentArity.ZeroOrMore
+            };
+            selectOption.IsRequired = false;
+            command.AddOption(selectOption);
+            var expandOption = new Option<string[]>("--expand", description: "Expand related entities") {
+                Arity = ArgumentArity.ZeroOrMore
+            };
+            expandOption.IsRequired = false;
+            command.AddOption(expandOption);
+            command.SetHandler(async (string groupId, string plannerPlanId, string[] select, string[] expand) => {
+                var requestInfo = CreateGetRequestInformation(q => {
+                    q.Select = select;
+                    q.Expand = expand;
+                });
                 var result = await RequestAdapter.SendAsync<PlannerPlanDetails>(requestInfo);
                 // Print request output. What if the request has no return?
                 using var serializer = RequestAdapter.SerializationWriterFactory.GetSerializationWriter("application/json");
@@ -63,30 +81,38 @@ namespace ApiSdk.Groups.Item.Planner.Plans.Item.Details {
                 using var reader = new StreamReader(content);
                 var strContent = await reader.ReadToEndAsync();
                 Console.Write(strContent + "\n");
-            });
+            }, groupIdOption, plannerPlanIdOption, selectOption, expandOption);
             return command;
         }
         /// <summary>
-        /// Read-only. Nullable. Additional details about the plan.
+        /// Additional details about the plan. Read-only. Nullable.
         /// </summary>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
-            command.Description = "Read-only. Nullable. Additional details about the plan.";
+            command.Description = "Additional details about the plan. Read-only. Nullable.";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--group-id", description: "key: id of group"));
-            command.AddOption(new Option<string>("--plannerplan-id", description: "key: id of plannerPlan"));
-            command.AddOption(new Option<string>("--body"));
-            command.Handler = CommandHandler.Create<string, string, string>(async (groupId, plannerPlanId, body) => {
+            var groupIdOption = new Option<string>("--group-id", description: "key: id of group") {
+            };
+            groupIdOption.IsRequired = true;
+            command.AddOption(groupIdOption);
+            var plannerPlanIdOption = new Option<string>("--plannerplan-id", description: "key: id of plannerPlan") {
+            };
+            plannerPlanIdOption.IsRequired = true;
+            command.AddOption(plannerPlanIdOption);
+            var bodyOption = new Option<string>("--body") {
+            };
+            bodyOption.IsRequired = true;
+            command.AddOption(bodyOption);
+            command.SetHandler(async (string groupId, string plannerPlanId, string body) => {
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<PlannerPlanDetails>();
-                var requestInfo = CreatePatchRequestInformation(model);
-                if (!String.IsNullOrEmpty(groupId)) requestInfo.PathParameters.Add("group_id", groupId);
-                if (!String.IsNullOrEmpty(plannerPlanId)) requestInfo.PathParameters.Add("plannerPlan_id", plannerPlanId);
+                var requestInfo = CreatePatchRequestInformation(model, q => {
+                });
                 await RequestAdapter.SendNoContentAsync(requestInfo);
                 // Print request output. What if the request has no return?
                 Console.WriteLine("Success");
-            });
+            }, groupIdOption, plannerPlanIdOption, bodyOption);
             return command;
         }
         /// <summary>
@@ -103,13 +129,13 @@ namespace ApiSdk.Groups.Item.Planner.Plans.Item.Details {
             RequestAdapter = requestAdapter;
         }
         /// <summary>
-        /// Read-only. Nullable. Additional details about the plan.
+        /// Additional details about the plan. Read-only. Nullable.
         /// <param name="h">Request headers</param>
         /// <param name="o">Request options</param>
         /// </summary>
         public RequestInformation CreateDeleteRequestInformation(Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
             var requestInfo = new RequestInformation {
-                HttpMethod = HttpMethod.DELETE,
+                HttpMethod = Method.DELETE,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };
@@ -118,14 +144,14 @@ namespace ApiSdk.Groups.Item.Planner.Plans.Item.Details {
             return requestInfo;
         }
         /// <summary>
-        /// Read-only. Nullable. Additional details about the plan.
+        /// Additional details about the plan. Read-only. Nullable.
         /// <param name="h">Request headers</param>
         /// <param name="o">Request options</param>
         /// <param name="q">Request query parameters</param>
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<GetQueryParameters> q = default, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
             var requestInfo = new RequestInformation {
-                HttpMethod = HttpMethod.GET,
+                HttpMethod = Method.GET,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };
@@ -139,7 +165,7 @@ namespace ApiSdk.Groups.Item.Planner.Plans.Item.Details {
             return requestInfo;
         }
         /// <summary>
-        /// Read-only. Nullable. Additional details about the plan.
+        /// Additional details about the plan. Read-only. Nullable.
         /// <param name="body"></param>
         /// <param name="h">Request headers</param>
         /// <param name="o">Request options</param>
@@ -147,7 +173,7 @@ namespace ApiSdk.Groups.Item.Planner.Plans.Item.Details {
         public RequestInformation CreatePatchRequestInformation(PlannerPlanDetails body, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
             _ = body ?? throw new ArgumentNullException(nameof(body));
             var requestInfo = new RequestInformation {
-                HttpMethod = HttpMethod.PATCH,
+                HttpMethod = Method.PATCH,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };
@@ -157,7 +183,7 @@ namespace ApiSdk.Groups.Item.Planner.Plans.Item.Details {
             return requestInfo;
         }
         /// <summary>
-        /// Read-only. Nullable. Additional details about the plan.
+        /// Additional details about the plan. Read-only. Nullable.
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="h">Request headers</param>
         /// <param name="o">Request options</param>
@@ -168,7 +194,7 @@ namespace ApiSdk.Groups.Item.Planner.Plans.Item.Details {
             await RequestAdapter.SendNoContentAsync(requestInfo, responseHandler, cancellationToken);
         }
         /// <summary>
-        /// Read-only. Nullable. Additional details about the plan.
+        /// Additional details about the plan. Read-only. Nullable.
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="h">Request headers</param>
         /// <param name="o">Request options</param>
@@ -180,7 +206,7 @@ namespace ApiSdk.Groups.Item.Planner.Plans.Item.Details {
             return await RequestAdapter.SendAsync<PlannerPlanDetails>(requestInfo, responseHandler, cancellationToken);
         }
         /// <summary>
-        /// Read-only. Nullable. Additional details about the plan.
+        /// Additional details about the plan. Read-only. Nullable.
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="h">Request headers</param>
         /// <param name="model"></param>
@@ -192,7 +218,7 @@ namespace ApiSdk.Groups.Item.Planner.Plans.Item.Details {
             var requestInfo = CreatePatchRequestInformation(model, h, o);
             await RequestAdapter.SendNoContentAsync(requestInfo, responseHandler, cancellationToken);
         }
-        /// <summary>Read-only. Nullable. Additional details about the plan.</summary>
+        /// <summary>Additional details about the plan. Read-only. Nullable.</summary>
         public class GetQueryParameters : QueryParametersBase {
             /// <summary>Expand related entities</summary>
             public string[] Expand { get; set; }

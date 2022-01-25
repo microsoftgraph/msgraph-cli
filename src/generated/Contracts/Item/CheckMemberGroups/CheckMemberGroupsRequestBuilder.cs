@@ -25,14 +25,20 @@ namespace ApiSdk.Contracts.Item.CheckMemberGroups {
             var command = new Command("post");
             command.Description = "Invoke action checkMemberGroups";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--contract-id", description: "key: id of contract"));
-            command.AddOption(new Option<string>("--body"));
-            command.Handler = CommandHandler.Create<string, string>(async (contractId, body) => {
+            var contractIdOption = new Option<string>("--contract-id", description: "key: id of contract") {
+            };
+            contractIdOption.IsRequired = true;
+            command.AddOption(contractIdOption);
+            var bodyOption = new Option<string>("--body") {
+            };
+            bodyOption.IsRequired = true;
+            command.AddOption(bodyOption);
+            command.SetHandler(async (string contractId, string body) => {
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<CheckMemberGroupsRequestBody>();
-                var requestInfo = CreatePostRequestInformation(model);
-                if (!String.IsNullOrEmpty(contractId)) requestInfo.PathParameters.Add("contract_id", contractId);
+                var requestInfo = CreatePostRequestInformation(model, q => {
+                });
                 var result = await RequestAdapter.SendPrimitiveCollectionAsync<string>(requestInfo);
                 // Print request output. What if the request has no return?
                 using var serializer = RequestAdapter.SerializationWriterFactory.GetSerializationWriter("application/json");
@@ -41,7 +47,7 @@ namespace ApiSdk.Contracts.Item.CheckMemberGroups {
                 using var reader = new StreamReader(content);
                 var strContent = await reader.ReadToEndAsync();
                 Console.Write(strContent + "\n");
-            });
+            }, contractIdOption, bodyOption);
             return command;
         }
         /// <summary>
@@ -66,7 +72,7 @@ namespace ApiSdk.Contracts.Item.CheckMemberGroups {
         public RequestInformation CreatePostRequestInformation(CheckMemberGroupsRequestBody body, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
             _ = body ?? throw new ArgumentNullException(nameof(body));
             var requestInfo = new RequestInformation {
-                HttpMethod = HttpMethod.POST,
+                HttpMethod = Method.POST,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };

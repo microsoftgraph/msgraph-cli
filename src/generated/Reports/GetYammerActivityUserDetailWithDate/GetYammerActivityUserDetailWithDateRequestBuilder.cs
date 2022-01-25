@@ -26,10 +26,13 @@ namespace ApiSdk.Reports.GetYammerActivityUserDetailWithDate {
             var command = new Command("get");
             command.Description = "Invoke function getYammerActivityUserDetail";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--date", description: "Usage: date={date}"));
-            command.Handler = CommandHandler.Create<string>(async (date) => {
-                var requestInfo = CreateGetRequestInformation();
-                if (!String.IsNullOrEmpty(date)) requestInfo.PathParameters.Add("date", date);
+            var dateOption = new Option<string>("--date", description: "Usage: date={date}") {
+            };
+            dateOption.IsRequired = true;
+            command.AddOption(dateOption);
+            command.SetHandler(async (string date) => {
+                var requestInfo = CreateGetRequestInformation(q => {
+                });
                 var result = await RequestAdapter.SendAsync<Report>(requestInfo);
                 // Print request output. What if the request has no return?
                 using var serializer = RequestAdapter.SerializationWriterFactory.GetSerializationWriter("application/json");
@@ -38,7 +41,7 @@ namespace ApiSdk.Reports.GetYammerActivityUserDetailWithDate {
                 using var reader = new StreamReader(content);
                 var strContent = await reader.ReadToEndAsync();
                 Console.Write(strContent + "\n");
-            });
+            }, dateOption);
             return command;
         }
         /// <summary>
@@ -63,7 +66,7 @@ namespace ApiSdk.Reports.GetYammerActivityUserDetailWithDate {
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
             var requestInfo = new RequestInformation {
-                HttpMethod = HttpMethod.GET,
+                HttpMethod = Method.GET,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };

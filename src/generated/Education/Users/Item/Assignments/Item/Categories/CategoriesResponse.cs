@@ -1,17 +1,19 @@
+using ApiSdk.Models.Microsoft.Graph;
 using Microsoft.Kiota.Abstractions.Serialization;
 using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-namespace ApiSdk.ApplicationTemplates.Item.Instantiate {
-    public class ApplicationServicePrincipalRequestBody : IParsable {
+namespace ApiSdk.Education.Users.Item.Assignments.Item.Categories {
+    public class CategoriesResponse : IParsable {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
-        public string DisplayName { get; set; }
+        public string NextLink { get; set; }
+        public List<EducationCategory> Value { get; set; }
         /// <summary>
-        /// Instantiates a new ApplicationServicePrincipalRequestBody and sets the default values.
+        /// Instantiates a new categoriesResponse and sets the default values.
         /// </summary>
-        public ApplicationServicePrincipalRequestBody() {
+        public CategoriesResponse() {
             AdditionalData = new Dictionary<string, object>();
         }
         /// <summary>
@@ -19,7 +21,8 @@ namespace ApiSdk.ApplicationTemplates.Item.Instantiate {
         /// </summary>
         public IDictionary<string, Action<T, IParseNode>> GetFieldDeserializers<T>() {
             return new Dictionary<string, Action<T, IParseNode>> {
-                {"displayName", (o,n) => { (o as ApplicationServicePrincipalRequestBody).DisplayName = n.GetStringValue(); } },
+                {"@odata.nextLink", (o,n) => { (o as CategoriesResponse).NextLink = n.GetStringValue(); } },
+                {"value", (o,n) => { (o as CategoriesResponse).Value = n.GetCollectionOfObjectValues<EducationCategory>().ToList(); } },
             };
         }
         /// <summary>
@@ -28,7 +31,8 @@ namespace ApiSdk.ApplicationTemplates.Item.Instantiate {
         /// </summary>
         public void Serialize(ISerializationWriter writer) {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
-            writer.WriteStringValue("displayName", DisplayName);
+            writer.WriteStringValue("@odata.nextLink", NextLink);
+            writer.WriteCollectionOfObjectValues<EducationCategory>("value", Value);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

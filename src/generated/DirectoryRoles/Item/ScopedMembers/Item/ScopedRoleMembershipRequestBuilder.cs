@@ -26,16 +26,21 @@ namespace ApiSdk.DirectoryRoles.Item.ScopedMembers.Item {
             var command = new Command("delete");
             command.Description = "Members of this directory role that are scoped to administrative units. Read-only. Nullable.";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--directoryrole-id", description: "key: id of directoryRole"));
-            command.AddOption(new Option<string>("--scopedrolemembership-id", description: "key: id of scopedRoleMembership"));
-            command.Handler = CommandHandler.Create<string, string>(async (directoryRoleId, scopedRoleMembershipId) => {
-                var requestInfo = CreateDeleteRequestInformation();
-                if (!String.IsNullOrEmpty(directoryRoleId)) requestInfo.PathParameters.Add("directoryRole_id", directoryRoleId);
-                if (!String.IsNullOrEmpty(scopedRoleMembershipId)) requestInfo.PathParameters.Add("scopedRoleMembership_id", scopedRoleMembershipId);
+            var directoryRoleIdOption = new Option<string>("--directoryrole-id", description: "key: id of directoryRole") {
+            };
+            directoryRoleIdOption.IsRequired = true;
+            command.AddOption(directoryRoleIdOption);
+            var scopedRoleMembershipIdOption = new Option<string>("--scopedrolemembership-id", description: "key: id of scopedRoleMembership") {
+            };
+            scopedRoleMembershipIdOption.IsRequired = true;
+            command.AddOption(scopedRoleMembershipIdOption);
+            command.SetHandler(async (string directoryRoleId, string scopedRoleMembershipId) => {
+                var requestInfo = CreateDeleteRequestInformation(q => {
+                });
                 await RequestAdapter.SendNoContentAsync(requestInfo);
                 // Print request output. What if the request has no return?
                 Console.WriteLine("Success");
-            });
+            }, directoryRoleIdOption, scopedRoleMembershipIdOption);
             return command;
         }
         /// <summary>
@@ -45,16 +50,29 @@ namespace ApiSdk.DirectoryRoles.Item.ScopedMembers.Item {
             var command = new Command("get");
             command.Description = "Members of this directory role that are scoped to administrative units. Read-only. Nullable.";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--directoryrole-id", description: "key: id of directoryRole"));
-            command.AddOption(new Option<string>("--scopedrolemembership-id", description: "key: id of scopedRoleMembership"));
-            command.AddOption(new Option<object>("--select", description: "Select properties to be returned"));
-            command.AddOption(new Option<object>("--expand", description: "Expand related entities"));
-            command.Handler = CommandHandler.Create<string, string, object, object>(async (directoryRoleId, scopedRoleMembershipId, select, expand) => {
-                var requestInfo = CreateGetRequestInformation();
-                if (!String.IsNullOrEmpty(directoryRoleId)) requestInfo.PathParameters.Add("directoryRole_id", directoryRoleId);
-                if (!String.IsNullOrEmpty(scopedRoleMembershipId)) requestInfo.PathParameters.Add("scopedRoleMembership_id", scopedRoleMembershipId);
-                requestInfo.QueryParameters.Add("select", select);
-                requestInfo.QueryParameters.Add("expand", expand);
+            var directoryRoleIdOption = new Option<string>("--directoryrole-id", description: "key: id of directoryRole") {
+            };
+            directoryRoleIdOption.IsRequired = true;
+            command.AddOption(directoryRoleIdOption);
+            var scopedRoleMembershipIdOption = new Option<string>("--scopedrolemembership-id", description: "key: id of scopedRoleMembership") {
+            };
+            scopedRoleMembershipIdOption.IsRequired = true;
+            command.AddOption(scopedRoleMembershipIdOption);
+            var selectOption = new Option<string[]>("--select", description: "Select properties to be returned") {
+                Arity = ArgumentArity.ZeroOrMore
+            };
+            selectOption.IsRequired = false;
+            command.AddOption(selectOption);
+            var expandOption = new Option<string[]>("--expand", description: "Expand related entities") {
+                Arity = ArgumentArity.ZeroOrMore
+            };
+            expandOption.IsRequired = false;
+            command.AddOption(expandOption);
+            command.SetHandler(async (string directoryRoleId, string scopedRoleMembershipId, string[] select, string[] expand) => {
+                var requestInfo = CreateGetRequestInformation(q => {
+                    q.Select = select;
+                    q.Expand = expand;
+                });
                 var result = await RequestAdapter.SendAsync<ScopedRoleMembership>(requestInfo);
                 // Print request output. What if the request has no return?
                 using var serializer = RequestAdapter.SerializationWriterFactory.GetSerializationWriter("application/json");
@@ -63,7 +81,7 @@ namespace ApiSdk.DirectoryRoles.Item.ScopedMembers.Item {
                 using var reader = new StreamReader(content);
                 var strContent = await reader.ReadToEndAsync();
                 Console.Write(strContent + "\n");
-            });
+            }, directoryRoleIdOption, scopedRoleMembershipIdOption, selectOption, expandOption);
             return command;
         }
         /// <summary>
@@ -73,20 +91,28 @@ namespace ApiSdk.DirectoryRoles.Item.ScopedMembers.Item {
             var command = new Command("patch");
             command.Description = "Members of this directory role that are scoped to administrative units. Read-only. Nullable.";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--directoryrole-id", description: "key: id of directoryRole"));
-            command.AddOption(new Option<string>("--scopedrolemembership-id", description: "key: id of scopedRoleMembership"));
-            command.AddOption(new Option<string>("--body"));
-            command.Handler = CommandHandler.Create<string, string, string>(async (directoryRoleId, scopedRoleMembershipId, body) => {
+            var directoryRoleIdOption = new Option<string>("--directoryrole-id", description: "key: id of directoryRole") {
+            };
+            directoryRoleIdOption.IsRequired = true;
+            command.AddOption(directoryRoleIdOption);
+            var scopedRoleMembershipIdOption = new Option<string>("--scopedrolemembership-id", description: "key: id of scopedRoleMembership") {
+            };
+            scopedRoleMembershipIdOption.IsRequired = true;
+            command.AddOption(scopedRoleMembershipIdOption);
+            var bodyOption = new Option<string>("--body") {
+            };
+            bodyOption.IsRequired = true;
+            command.AddOption(bodyOption);
+            command.SetHandler(async (string directoryRoleId, string scopedRoleMembershipId, string body) => {
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<ScopedRoleMembership>();
-                var requestInfo = CreatePatchRequestInformation(model);
-                if (!String.IsNullOrEmpty(directoryRoleId)) requestInfo.PathParameters.Add("directoryRole_id", directoryRoleId);
-                if (!String.IsNullOrEmpty(scopedRoleMembershipId)) requestInfo.PathParameters.Add("scopedRoleMembership_id", scopedRoleMembershipId);
+                var requestInfo = CreatePatchRequestInformation(model, q => {
+                });
                 await RequestAdapter.SendNoContentAsync(requestInfo);
                 // Print request output. What if the request has no return?
                 Console.WriteLine("Success");
-            });
+            }, directoryRoleIdOption, scopedRoleMembershipIdOption, bodyOption);
             return command;
         }
         /// <summary>
@@ -109,7 +135,7 @@ namespace ApiSdk.DirectoryRoles.Item.ScopedMembers.Item {
         /// </summary>
         public RequestInformation CreateDeleteRequestInformation(Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
             var requestInfo = new RequestInformation {
-                HttpMethod = HttpMethod.DELETE,
+                HttpMethod = Method.DELETE,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };
@@ -125,7 +151,7 @@ namespace ApiSdk.DirectoryRoles.Item.ScopedMembers.Item {
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<GetQueryParameters> q = default, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
             var requestInfo = new RequestInformation {
-                HttpMethod = HttpMethod.GET,
+                HttpMethod = Method.GET,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };
@@ -147,7 +173,7 @@ namespace ApiSdk.DirectoryRoles.Item.ScopedMembers.Item {
         public RequestInformation CreatePatchRequestInformation(ScopedRoleMembership body, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
             _ = body ?? throw new ArgumentNullException(nameof(body));
             var requestInfo = new RequestInformation {
-                HttpMethod = HttpMethod.PATCH,
+                HttpMethod = Method.PATCH,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };

@@ -26,14 +26,17 @@ namespace ApiSdk.Connections.Item.Schema {
             var command = new Command("delete");
             command.Description = "Read-only. Nullable.";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--externalconnection-id", description: "key: id of externalConnection"));
-            command.Handler = CommandHandler.Create<string>(async (externalConnectionId) => {
-                var requestInfo = CreateDeleteRequestInformation();
-                if (!String.IsNullOrEmpty(externalConnectionId)) requestInfo.PathParameters.Add("externalConnection_id", externalConnectionId);
+            var externalConnectionIdOption = new Option<string>("--externalconnection-id", description: "key: id of externalConnection") {
+            };
+            externalConnectionIdOption.IsRequired = true;
+            command.AddOption(externalConnectionIdOption);
+            command.SetHandler(async (string externalConnectionId) => {
+                var requestInfo = CreateDeleteRequestInformation(q => {
+                });
                 await RequestAdapter.SendNoContentAsync(requestInfo);
                 // Print request output. What if the request has no return?
                 Console.WriteLine("Success");
-            });
+            }, externalConnectionIdOption);
             return command;
         }
         /// <summary>
@@ -43,14 +46,25 @@ namespace ApiSdk.Connections.Item.Schema {
             var command = new Command("get");
             command.Description = "Read-only. Nullable.";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--externalconnection-id", description: "key: id of externalConnection"));
-            command.AddOption(new Option<object>("--select", description: "Select properties to be returned"));
-            command.AddOption(new Option<object>("--expand", description: "Expand related entities"));
-            command.Handler = CommandHandler.Create<string, object, object>(async (externalConnectionId, select, expand) => {
-                var requestInfo = CreateGetRequestInformation();
-                if (!String.IsNullOrEmpty(externalConnectionId)) requestInfo.PathParameters.Add("externalConnection_id", externalConnectionId);
-                requestInfo.QueryParameters.Add("select", select);
-                requestInfo.QueryParameters.Add("expand", expand);
+            var externalConnectionIdOption = new Option<string>("--externalconnection-id", description: "key: id of externalConnection") {
+            };
+            externalConnectionIdOption.IsRequired = true;
+            command.AddOption(externalConnectionIdOption);
+            var selectOption = new Option<string[]>("--select", description: "Select properties to be returned") {
+                Arity = ArgumentArity.ZeroOrMore
+            };
+            selectOption.IsRequired = false;
+            command.AddOption(selectOption);
+            var expandOption = new Option<string[]>("--expand", description: "Expand related entities") {
+                Arity = ArgumentArity.ZeroOrMore
+            };
+            expandOption.IsRequired = false;
+            command.AddOption(expandOption);
+            command.SetHandler(async (string externalConnectionId, string[] select, string[] expand) => {
+                var requestInfo = CreateGetRequestInformation(q => {
+                    q.Select = select;
+                    q.Expand = expand;
+                });
                 var result = await RequestAdapter.SendAsync<ApiSdk.Models.Microsoft.Graph.ExternalConnectors.Schema>(requestInfo);
                 // Print request output. What if the request has no return?
                 using var serializer = RequestAdapter.SerializationWriterFactory.GetSerializationWriter("application/json");
@@ -59,7 +73,7 @@ namespace ApiSdk.Connections.Item.Schema {
                 using var reader = new StreamReader(content);
                 var strContent = await reader.ReadToEndAsync();
                 Console.Write(strContent + "\n");
-            });
+            }, externalConnectionIdOption, selectOption, expandOption);
             return command;
         }
         /// <summary>
@@ -69,18 +83,24 @@ namespace ApiSdk.Connections.Item.Schema {
             var command = new Command("patch");
             command.Description = "Read-only. Nullable.";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--externalconnection-id", description: "key: id of externalConnection"));
-            command.AddOption(new Option<string>("--body"));
-            command.Handler = CommandHandler.Create<string, string>(async (externalConnectionId, body) => {
+            var externalConnectionIdOption = new Option<string>("--externalconnection-id", description: "key: id of externalConnection") {
+            };
+            externalConnectionIdOption.IsRequired = true;
+            command.AddOption(externalConnectionIdOption);
+            var bodyOption = new Option<string>("--body") {
+            };
+            bodyOption.IsRequired = true;
+            command.AddOption(bodyOption);
+            command.SetHandler(async (string externalConnectionId, string body) => {
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<ApiSdk.Models.Microsoft.Graph.ExternalConnectors.Schema>();
-                var requestInfo = CreatePatchRequestInformation(model);
-                if (!String.IsNullOrEmpty(externalConnectionId)) requestInfo.PathParameters.Add("externalConnection_id", externalConnectionId);
+                var requestInfo = CreatePatchRequestInformation(model, q => {
+                });
                 await RequestAdapter.SendNoContentAsync(requestInfo);
                 // Print request output. What if the request has no return?
                 Console.WriteLine("Success");
-            });
+            }, externalConnectionIdOption, bodyOption);
             return command;
         }
         /// <summary>
@@ -103,7 +123,7 @@ namespace ApiSdk.Connections.Item.Schema {
         /// </summary>
         public RequestInformation CreateDeleteRequestInformation(Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
             var requestInfo = new RequestInformation {
-                HttpMethod = HttpMethod.DELETE,
+                HttpMethod = Method.DELETE,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };
@@ -119,7 +139,7 @@ namespace ApiSdk.Connections.Item.Schema {
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<GetQueryParameters> q = default, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
             var requestInfo = new RequestInformation {
-                HttpMethod = HttpMethod.GET,
+                HttpMethod = Method.GET,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };
@@ -141,7 +161,7 @@ namespace ApiSdk.Connections.Item.Schema {
         public RequestInformation CreatePatchRequestInformation(ApiSdk.Models.Microsoft.Graph.ExternalConnectors.Schema body, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
             _ = body ?? throw new ArgumentNullException(nameof(body));
             var requestInfo = new RequestInformation {
-                HttpMethod = HttpMethod.PATCH,
+                HttpMethod = Method.PATCH,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };

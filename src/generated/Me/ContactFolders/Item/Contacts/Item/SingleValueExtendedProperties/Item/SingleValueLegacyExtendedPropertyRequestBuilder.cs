@@ -26,18 +26,25 @@ namespace ApiSdk.Me.ContactFolders.Item.Contacts.Item.SingleValueExtendedPropert
             var command = new Command("delete");
             command.Description = "The collection of single-value extended properties defined for the contact. Read-only. Nullable.";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--contactfolder-id", description: "key: id of contactFolder"));
-            command.AddOption(new Option<string>("--contact-id", description: "key: id of contact"));
-            command.AddOption(new Option<string>("--singlevaluelegacyextendedproperty-id", description: "key: id of singleValueLegacyExtendedProperty"));
-            command.Handler = CommandHandler.Create<string, string, string>(async (contactFolderId, contactId, singleValueLegacyExtendedPropertyId) => {
-                var requestInfo = CreateDeleteRequestInformation();
-                if (!String.IsNullOrEmpty(contactFolderId)) requestInfo.PathParameters.Add("contactFolder_id", contactFolderId);
-                if (!String.IsNullOrEmpty(contactId)) requestInfo.PathParameters.Add("contact_id", contactId);
-                if (!String.IsNullOrEmpty(singleValueLegacyExtendedPropertyId)) requestInfo.PathParameters.Add("singleValueLegacyExtendedProperty_id", singleValueLegacyExtendedPropertyId);
+            var contactFolderIdOption = new Option<string>("--contactfolder-id", description: "key: id of contactFolder") {
+            };
+            contactFolderIdOption.IsRequired = true;
+            command.AddOption(contactFolderIdOption);
+            var contactIdOption = new Option<string>("--contact-id", description: "key: id of contact") {
+            };
+            contactIdOption.IsRequired = true;
+            command.AddOption(contactIdOption);
+            var singleValueLegacyExtendedPropertyIdOption = new Option<string>("--singlevaluelegacyextendedproperty-id", description: "key: id of singleValueLegacyExtendedProperty") {
+            };
+            singleValueLegacyExtendedPropertyIdOption.IsRequired = true;
+            command.AddOption(singleValueLegacyExtendedPropertyIdOption);
+            command.SetHandler(async (string contactFolderId, string contactId, string singleValueLegacyExtendedPropertyId) => {
+                var requestInfo = CreateDeleteRequestInformation(q => {
+                });
                 await RequestAdapter.SendNoContentAsync(requestInfo);
                 // Print request output. What if the request has no return?
                 Console.WriteLine("Success");
-            });
+            }, contactFolderIdOption, contactIdOption, singleValueLegacyExtendedPropertyIdOption);
             return command;
         }
         /// <summary>
@@ -47,18 +54,33 @@ namespace ApiSdk.Me.ContactFolders.Item.Contacts.Item.SingleValueExtendedPropert
             var command = new Command("get");
             command.Description = "The collection of single-value extended properties defined for the contact. Read-only. Nullable.";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--contactfolder-id", description: "key: id of contactFolder"));
-            command.AddOption(new Option<string>("--contact-id", description: "key: id of contact"));
-            command.AddOption(new Option<string>("--singlevaluelegacyextendedproperty-id", description: "key: id of singleValueLegacyExtendedProperty"));
-            command.AddOption(new Option<object>("--select", description: "Select properties to be returned"));
-            command.AddOption(new Option<object>("--expand", description: "Expand related entities"));
-            command.Handler = CommandHandler.Create<string, string, string, object, object>(async (contactFolderId, contactId, singleValueLegacyExtendedPropertyId, select, expand) => {
-                var requestInfo = CreateGetRequestInformation();
-                if (!String.IsNullOrEmpty(contactFolderId)) requestInfo.PathParameters.Add("contactFolder_id", contactFolderId);
-                if (!String.IsNullOrEmpty(contactId)) requestInfo.PathParameters.Add("contact_id", contactId);
-                if (!String.IsNullOrEmpty(singleValueLegacyExtendedPropertyId)) requestInfo.PathParameters.Add("singleValueLegacyExtendedProperty_id", singleValueLegacyExtendedPropertyId);
-                requestInfo.QueryParameters.Add("select", select);
-                requestInfo.QueryParameters.Add("expand", expand);
+            var contactFolderIdOption = new Option<string>("--contactfolder-id", description: "key: id of contactFolder") {
+            };
+            contactFolderIdOption.IsRequired = true;
+            command.AddOption(contactFolderIdOption);
+            var contactIdOption = new Option<string>("--contact-id", description: "key: id of contact") {
+            };
+            contactIdOption.IsRequired = true;
+            command.AddOption(contactIdOption);
+            var singleValueLegacyExtendedPropertyIdOption = new Option<string>("--singlevaluelegacyextendedproperty-id", description: "key: id of singleValueLegacyExtendedProperty") {
+            };
+            singleValueLegacyExtendedPropertyIdOption.IsRequired = true;
+            command.AddOption(singleValueLegacyExtendedPropertyIdOption);
+            var selectOption = new Option<string[]>("--select", description: "Select properties to be returned") {
+                Arity = ArgumentArity.ZeroOrMore
+            };
+            selectOption.IsRequired = false;
+            command.AddOption(selectOption);
+            var expandOption = new Option<string[]>("--expand", description: "Expand related entities") {
+                Arity = ArgumentArity.ZeroOrMore
+            };
+            expandOption.IsRequired = false;
+            command.AddOption(expandOption);
+            command.SetHandler(async (string contactFolderId, string contactId, string singleValueLegacyExtendedPropertyId, string[] select, string[] expand) => {
+                var requestInfo = CreateGetRequestInformation(q => {
+                    q.Select = select;
+                    q.Expand = expand;
+                });
                 var result = await RequestAdapter.SendAsync<SingleValueLegacyExtendedProperty>(requestInfo);
                 // Print request output. What if the request has no return?
                 using var serializer = RequestAdapter.SerializationWriterFactory.GetSerializationWriter("application/json");
@@ -67,7 +89,7 @@ namespace ApiSdk.Me.ContactFolders.Item.Contacts.Item.SingleValueExtendedPropert
                 using var reader = new StreamReader(content);
                 var strContent = await reader.ReadToEndAsync();
                 Console.Write(strContent + "\n");
-            });
+            }, contactFolderIdOption, contactIdOption, singleValueLegacyExtendedPropertyIdOption, selectOption, expandOption);
             return command;
         }
         /// <summary>
@@ -77,22 +99,32 @@ namespace ApiSdk.Me.ContactFolders.Item.Contacts.Item.SingleValueExtendedPropert
             var command = new Command("patch");
             command.Description = "The collection of single-value extended properties defined for the contact. Read-only. Nullable.";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--contactfolder-id", description: "key: id of contactFolder"));
-            command.AddOption(new Option<string>("--contact-id", description: "key: id of contact"));
-            command.AddOption(new Option<string>("--singlevaluelegacyextendedproperty-id", description: "key: id of singleValueLegacyExtendedProperty"));
-            command.AddOption(new Option<string>("--body"));
-            command.Handler = CommandHandler.Create<string, string, string, string>(async (contactFolderId, contactId, singleValueLegacyExtendedPropertyId, body) => {
+            var contactFolderIdOption = new Option<string>("--contactfolder-id", description: "key: id of contactFolder") {
+            };
+            contactFolderIdOption.IsRequired = true;
+            command.AddOption(contactFolderIdOption);
+            var contactIdOption = new Option<string>("--contact-id", description: "key: id of contact") {
+            };
+            contactIdOption.IsRequired = true;
+            command.AddOption(contactIdOption);
+            var singleValueLegacyExtendedPropertyIdOption = new Option<string>("--singlevaluelegacyextendedproperty-id", description: "key: id of singleValueLegacyExtendedProperty") {
+            };
+            singleValueLegacyExtendedPropertyIdOption.IsRequired = true;
+            command.AddOption(singleValueLegacyExtendedPropertyIdOption);
+            var bodyOption = new Option<string>("--body") {
+            };
+            bodyOption.IsRequired = true;
+            command.AddOption(bodyOption);
+            command.SetHandler(async (string contactFolderId, string contactId, string singleValueLegacyExtendedPropertyId, string body) => {
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<SingleValueLegacyExtendedProperty>();
-                var requestInfo = CreatePatchRequestInformation(model);
-                if (!String.IsNullOrEmpty(contactFolderId)) requestInfo.PathParameters.Add("contactFolder_id", contactFolderId);
-                if (!String.IsNullOrEmpty(contactId)) requestInfo.PathParameters.Add("contact_id", contactId);
-                if (!String.IsNullOrEmpty(singleValueLegacyExtendedPropertyId)) requestInfo.PathParameters.Add("singleValueLegacyExtendedProperty_id", singleValueLegacyExtendedPropertyId);
+                var requestInfo = CreatePatchRequestInformation(model, q => {
+                });
                 await RequestAdapter.SendNoContentAsync(requestInfo);
                 // Print request output. What if the request has no return?
                 Console.WriteLine("Success");
-            });
+            }, contactFolderIdOption, contactIdOption, singleValueLegacyExtendedPropertyIdOption, bodyOption);
             return command;
         }
         /// <summary>
@@ -115,7 +147,7 @@ namespace ApiSdk.Me.ContactFolders.Item.Contacts.Item.SingleValueExtendedPropert
         /// </summary>
         public RequestInformation CreateDeleteRequestInformation(Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
             var requestInfo = new RequestInformation {
-                HttpMethod = HttpMethod.DELETE,
+                HttpMethod = Method.DELETE,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };
@@ -131,7 +163,7 @@ namespace ApiSdk.Me.ContactFolders.Item.Contacts.Item.SingleValueExtendedPropert
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<GetQueryParameters> q = default, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
             var requestInfo = new RequestInformation {
-                HttpMethod = HttpMethod.GET,
+                HttpMethod = Method.GET,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };
@@ -153,7 +185,7 @@ namespace ApiSdk.Me.ContactFolders.Item.Contacts.Item.SingleValueExtendedPropert
         public RequestInformation CreatePatchRequestInformation(SingleValueLegacyExtendedProperty body, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
             _ = body ?? throw new ArgumentNullException(nameof(body));
             var requestInfo = new RequestInformation {
-                HttpMethod = HttpMethod.PATCH,
+                HttpMethod = Method.PATCH,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };

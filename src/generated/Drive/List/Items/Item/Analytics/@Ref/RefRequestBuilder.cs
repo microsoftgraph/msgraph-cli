@@ -25,14 +25,17 @@ namespace ApiSdk.Drive.List.Items.Item.Analytics.@Ref {
             var command = new Command("delete");
             command.Description = "Analytics about the view activities that took place on this item.";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--listitem-id", description: "key: id of listItem"));
-            command.Handler = CommandHandler.Create<string>(async (listItemId) => {
-                var requestInfo = CreateDeleteRequestInformation();
-                if (!String.IsNullOrEmpty(listItemId)) requestInfo.PathParameters.Add("listItem_id", listItemId);
+            var listItemIdOption = new Option<string>("--listitem-id", description: "key: id of listItem") {
+            };
+            listItemIdOption.IsRequired = true;
+            command.AddOption(listItemIdOption);
+            command.SetHandler(async (string listItemId) => {
+                var requestInfo = CreateDeleteRequestInformation(q => {
+                });
                 await RequestAdapter.SendNoContentAsync(requestInfo);
                 // Print request output. What if the request has no return?
                 Console.WriteLine("Success");
-            });
+            }, listItemIdOption);
             return command;
         }
         /// <summary>
@@ -42,10 +45,13 @@ namespace ApiSdk.Drive.List.Items.Item.Analytics.@Ref {
             var command = new Command("get");
             command.Description = "Analytics about the view activities that took place on this item.";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--listitem-id", description: "key: id of listItem"));
-            command.Handler = CommandHandler.Create<string>(async (listItemId) => {
-                var requestInfo = CreateGetRequestInformation();
-                if (!String.IsNullOrEmpty(listItemId)) requestInfo.PathParameters.Add("listItem_id", listItemId);
+            var listItemIdOption = new Option<string>("--listitem-id", description: "key: id of listItem") {
+            };
+            listItemIdOption.IsRequired = true;
+            command.AddOption(listItemIdOption);
+            command.SetHandler(async (string listItemId) => {
+                var requestInfo = CreateGetRequestInformation(q => {
+                });
                 var result = await RequestAdapter.SendPrimitiveAsync<string>(requestInfo);
                 // Print request output. What if the request has no return?
                 using var serializer = RequestAdapter.SerializationWriterFactory.GetSerializationWriter("application/json");
@@ -54,7 +60,7 @@ namespace ApiSdk.Drive.List.Items.Item.Analytics.@Ref {
                 using var reader = new StreamReader(content);
                 var strContent = await reader.ReadToEndAsync();
                 Console.Write(strContent + "\n");
-            });
+            }, listItemIdOption);
             return command;
         }
         /// <summary>
@@ -64,18 +70,24 @@ namespace ApiSdk.Drive.List.Items.Item.Analytics.@Ref {
             var command = new Command("put");
             command.Description = "Analytics about the view activities that took place on this item.";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--listitem-id", description: "key: id of listItem"));
-            command.AddOption(new Option<string>("--body"));
-            command.Handler = CommandHandler.Create<string, string>(async (listItemId, body) => {
+            var listItemIdOption = new Option<string>("--listitem-id", description: "key: id of listItem") {
+            };
+            listItemIdOption.IsRequired = true;
+            command.AddOption(listItemIdOption);
+            var bodyOption = new Option<string>("--body") {
+            };
+            bodyOption.IsRequired = true;
+            command.AddOption(bodyOption);
+            command.SetHandler(async (string listItemId, string body) => {
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<ApiSdk.Drive.List.Items.Item.Analytics.@Ref.@Ref>();
-                var requestInfo = CreatePutRequestInformation(model);
-                if (!String.IsNullOrEmpty(listItemId)) requestInfo.PathParameters.Add("listItem_id", listItemId);
+                var requestInfo = CreatePutRequestInformation(model, q => {
+                });
                 await RequestAdapter.SendNoContentAsync(requestInfo);
                 // Print request output. What if the request has no return?
                 Console.WriteLine("Success");
-            });
+            }, listItemIdOption, bodyOption);
             return command;
         }
         /// <summary>
@@ -98,7 +110,7 @@ namespace ApiSdk.Drive.List.Items.Item.Analytics.@Ref {
         /// </summary>
         public RequestInformation CreateDeleteRequestInformation(Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
             var requestInfo = new RequestInformation {
-                HttpMethod = HttpMethod.DELETE,
+                HttpMethod = Method.DELETE,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };
@@ -113,7 +125,7 @@ namespace ApiSdk.Drive.List.Items.Item.Analytics.@Ref {
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
             var requestInfo = new RequestInformation {
-                HttpMethod = HttpMethod.GET,
+                HttpMethod = Method.GET,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };
@@ -130,7 +142,7 @@ namespace ApiSdk.Drive.List.Items.Item.Analytics.@Ref {
         public RequestInformation CreatePutRequestInformation(ApiSdk.Drive.List.Items.Item.Analytics.@Ref.@Ref body, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
             _ = body ?? throw new ArgumentNullException(nameof(body));
             var requestInfo = new RequestInformation {
-                HttpMethod = HttpMethod.PUT,
+                HttpMethod = Method.PUT,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };

@@ -25,16 +25,21 @@ namespace ApiSdk.Drives.Item.List.Items.Item.Analytics.@Ref {
             var command = new Command("delete");
             command.Description = "Analytics about the view activities that took place on this item.";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--drive-id", description: "key: id of drive"));
-            command.AddOption(new Option<string>("--listitem-id", description: "key: id of listItem"));
-            command.Handler = CommandHandler.Create<string, string>(async (driveId, listItemId) => {
-                var requestInfo = CreateDeleteRequestInformation();
-                if (!String.IsNullOrEmpty(driveId)) requestInfo.PathParameters.Add("drive_id", driveId);
-                if (!String.IsNullOrEmpty(listItemId)) requestInfo.PathParameters.Add("listItem_id", listItemId);
+            var driveIdOption = new Option<string>("--drive-id", description: "key: id of drive") {
+            };
+            driveIdOption.IsRequired = true;
+            command.AddOption(driveIdOption);
+            var listItemIdOption = new Option<string>("--listitem-id", description: "key: id of listItem") {
+            };
+            listItemIdOption.IsRequired = true;
+            command.AddOption(listItemIdOption);
+            command.SetHandler(async (string driveId, string listItemId) => {
+                var requestInfo = CreateDeleteRequestInformation(q => {
+                });
                 await RequestAdapter.SendNoContentAsync(requestInfo);
                 // Print request output. What if the request has no return?
                 Console.WriteLine("Success");
-            });
+            }, driveIdOption, listItemIdOption);
             return command;
         }
         /// <summary>
@@ -44,12 +49,17 @@ namespace ApiSdk.Drives.Item.List.Items.Item.Analytics.@Ref {
             var command = new Command("get");
             command.Description = "Analytics about the view activities that took place on this item.";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--drive-id", description: "key: id of drive"));
-            command.AddOption(new Option<string>("--listitem-id", description: "key: id of listItem"));
-            command.Handler = CommandHandler.Create<string, string>(async (driveId, listItemId) => {
-                var requestInfo = CreateGetRequestInformation();
-                if (!String.IsNullOrEmpty(driveId)) requestInfo.PathParameters.Add("drive_id", driveId);
-                if (!String.IsNullOrEmpty(listItemId)) requestInfo.PathParameters.Add("listItem_id", listItemId);
+            var driveIdOption = new Option<string>("--drive-id", description: "key: id of drive") {
+            };
+            driveIdOption.IsRequired = true;
+            command.AddOption(driveIdOption);
+            var listItemIdOption = new Option<string>("--listitem-id", description: "key: id of listItem") {
+            };
+            listItemIdOption.IsRequired = true;
+            command.AddOption(listItemIdOption);
+            command.SetHandler(async (string driveId, string listItemId) => {
+                var requestInfo = CreateGetRequestInformation(q => {
+                });
                 var result = await RequestAdapter.SendPrimitiveAsync<string>(requestInfo);
                 // Print request output. What if the request has no return?
                 using var serializer = RequestAdapter.SerializationWriterFactory.GetSerializationWriter("application/json");
@@ -58,7 +68,7 @@ namespace ApiSdk.Drives.Item.List.Items.Item.Analytics.@Ref {
                 using var reader = new StreamReader(content);
                 var strContent = await reader.ReadToEndAsync();
                 Console.Write(strContent + "\n");
-            });
+            }, driveIdOption, listItemIdOption);
             return command;
         }
         /// <summary>
@@ -68,20 +78,28 @@ namespace ApiSdk.Drives.Item.List.Items.Item.Analytics.@Ref {
             var command = new Command("put");
             command.Description = "Analytics about the view activities that took place on this item.";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--drive-id", description: "key: id of drive"));
-            command.AddOption(new Option<string>("--listitem-id", description: "key: id of listItem"));
-            command.AddOption(new Option<string>("--body"));
-            command.Handler = CommandHandler.Create<string, string, string>(async (driveId, listItemId, body) => {
+            var driveIdOption = new Option<string>("--drive-id", description: "key: id of drive") {
+            };
+            driveIdOption.IsRequired = true;
+            command.AddOption(driveIdOption);
+            var listItemIdOption = new Option<string>("--listitem-id", description: "key: id of listItem") {
+            };
+            listItemIdOption.IsRequired = true;
+            command.AddOption(listItemIdOption);
+            var bodyOption = new Option<string>("--body") {
+            };
+            bodyOption.IsRequired = true;
+            command.AddOption(bodyOption);
+            command.SetHandler(async (string driveId, string listItemId, string body) => {
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<ApiSdk.Drives.Item.List.Items.Item.Analytics.@Ref.@Ref>();
-                var requestInfo = CreatePutRequestInformation(model);
-                if (!String.IsNullOrEmpty(driveId)) requestInfo.PathParameters.Add("drive_id", driveId);
-                if (!String.IsNullOrEmpty(listItemId)) requestInfo.PathParameters.Add("listItem_id", listItemId);
+                var requestInfo = CreatePutRequestInformation(model, q => {
+                });
                 await RequestAdapter.SendNoContentAsync(requestInfo);
                 // Print request output. What if the request has no return?
                 Console.WriteLine("Success");
-            });
+            }, driveIdOption, listItemIdOption, bodyOption);
             return command;
         }
         /// <summary>
@@ -104,7 +122,7 @@ namespace ApiSdk.Drives.Item.List.Items.Item.Analytics.@Ref {
         /// </summary>
         public RequestInformation CreateDeleteRequestInformation(Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
             var requestInfo = new RequestInformation {
-                HttpMethod = HttpMethod.DELETE,
+                HttpMethod = Method.DELETE,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };
@@ -119,7 +137,7 @@ namespace ApiSdk.Drives.Item.List.Items.Item.Analytics.@Ref {
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
             var requestInfo = new RequestInformation {
-                HttpMethod = HttpMethod.GET,
+                HttpMethod = Method.GET,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };
@@ -136,7 +154,7 @@ namespace ApiSdk.Drives.Item.List.Items.Item.Analytics.@Ref {
         public RequestInformation CreatePutRequestInformation(ApiSdk.Drives.Item.List.Items.Item.Analytics.@Ref.@Ref body, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
             _ = body ?? throw new ArgumentNullException(nameof(body));
             var requestInfo = new RequestInformation {
-                HttpMethod = HttpMethod.PUT,
+                HttpMethod = Method.PUT,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };

@@ -26,16 +26,21 @@ namespace ApiSdk.Teams.Item.Schedule.SchedulingGroups.Item {
             var command = new Command("delete");
             command.Description = "The logical grouping of users in the schedule (usually by role).";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--team-id", description: "key: id of team"));
-            command.AddOption(new Option<string>("--schedulinggroup-id", description: "key: id of schedulingGroup"));
-            command.Handler = CommandHandler.Create<string, string>(async (teamId, schedulingGroupId) => {
-                var requestInfo = CreateDeleteRequestInformation();
-                if (!String.IsNullOrEmpty(teamId)) requestInfo.PathParameters.Add("team_id", teamId);
-                if (!String.IsNullOrEmpty(schedulingGroupId)) requestInfo.PathParameters.Add("schedulingGroup_id", schedulingGroupId);
+            var teamIdOption = new Option<string>("--team-id", description: "key: id of team") {
+            };
+            teamIdOption.IsRequired = true;
+            command.AddOption(teamIdOption);
+            var schedulingGroupIdOption = new Option<string>("--schedulinggroup-id", description: "key: id of schedulingGroup") {
+            };
+            schedulingGroupIdOption.IsRequired = true;
+            command.AddOption(schedulingGroupIdOption);
+            command.SetHandler(async (string teamId, string schedulingGroupId) => {
+                var requestInfo = CreateDeleteRequestInformation(q => {
+                });
                 await RequestAdapter.SendNoContentAsync(requestInfo);
                 // Print request output. What if the request has no return?
                 Console.WriteLine("Success");
-            });
+            }, teamIdOption, schedulingGroupIdOption);
             return command;
         }
         /// <summary>
@@ -45,14 +50,23 @@ namespace ApiSdk.Teams.Item.Schedule.SchedulingGroups.Item {
             var command = new Command("get");
             command.Description = "The logical grouping of users in the schedule (usually by role).";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--team-id", description: "key: id of team"));
-            command.AddOption(new Option<string>("--schedulinggroup-id", description: "key: id of schedulingGroup"));
-            command.AddOption(new Option<object>("--select", description: "Select properties to be returned"));
-            command.Handler = CommandHandler.Create<string, string, object>(async (teamId, schedulingGroupId, select) => {
-                var requestInfo = CreateGetRequestInformation();
-                if (!String.IsNullOrEmpty(teamId)) requestInfo.PathParameters.Add("team_id", teamId);
-                if (!String.IsNullOrEmpty(schedulingGroupId)) requestInfo.PathParameters.Add("schedulingGroup_id", schedulingGroupId);
-                requestInfo.QueryParameters.Add("select", select);
+            var teamIdOption = new Option<string>("--team-id", description: "key: id of team") {
+            };
+            teamIdOption.IsRequired = true;
+            command.AddOption(teamIdOption);
+            var schedulingGroupIdOption = new Option<string>("--schedulinggroup-id", description: "key: id of schedulingGroup") {
+            };
+            schedulingGroupIdOption.IsRequired = true;
+            command.AddOption(schedulingGroupIdOption);
+            var selectOption = new Option<string[]>("--select", description: "Select properties to be returned") {
+                Arity = ArgumentArity.ZeroOrMore
+            };
+            selectOption.IsRequired = false;
+            command.AddOption(selectOption);
+            command.SetHandler(async (string teamId, string schedulingGroupId, string[] select) => {
+                var requestInfo = CreateGetRequestInformation(q => {
+                    q.Select = select;
+                });
                 var result = await RequestAdapter.SendAsync<SchedulingGroup>(requestInfo);
                 // Print request output. What if the request has no return?
                 using var serializer = RequestAdapter.SerializationWriterFactory.GetSerializationWriter("application/json");
@@ -61,7 +75,7 @@ namespace ApiSdk.Teams.Item.Schedule.SchedulingGroups.Item {
                 using var reader = new StreamReader(content);
                 var strContent = await reader.ReadToEndAsync();
                 Console.Write(strContent + "\n");
-            });
+            }, teamIdOption, schedulingGroupIdOption, selectOption);
             return command;
         }
         /// <summary>
@@ -71,20 +85,28 @@ namespace ApiSdk.Teams.Item.Schedule.SchedulingGroups.Item {
             var command = new Command("patch");
             command.Description = "The logical grouping of users in the schedule (usually by role).";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--team-id", description: "key: id of team"));
-            command.AddOption(new Option<string>("--schedulinggroup-id", description: "key: id of schedulingGroup"));
-            command.AddOption(new Option<string>("--body"));
-            command.Handler = CommandHandler.Create<string, string, string>(async (teamId, schedulingGroupId, body) => {
+            var teamIdOption = new Option<string>("--team-id", description: "key: id of team") {
+            };
+            teamIdOption.IsRequired = true;
+            command.AddOption(teamIdOption);
+            var schedulingGroupIdOption = new Option<string>("--schedulinggroup-id", description: "key: id of schedulingGroup") {
+            };
+            schedulingGroupIdOption.IsRequired = true;
+            command.AddOption(schedulingGroupIdOption);
+            var bodyOption = new Option<string>("--body") {
+            };
+            bodyOption.IsRequired = true;
+            command.AddOption(bodyOption);
+            command.SetHandler(async (string teamId, string schedulingGroupId, string body) => {
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<SchedulingGroup>();
-                var requestInfo = CreatePatchRequestInformation(model);
-                if (!String.IsNullOrEmpty(teamId)) requestInfo.PathParameters.Add("team_id", teamId);
-                if (!String.IsNullOrEmpty(schedulingGroupId)) requestInfo.PathParameters.Add("schedulingGroup_id", schedulingGroupId);
+                var requestInfo = CreatePatchRequestInformation(model, q => {
+                });
                 await RequestAdapter.SendNoContentAsync(requestInfo);
                 // Print request output. What if the request has no return?
                 Console.WriteLine("Success");
-            });
+            }, teamIdOption, schedulingGroupIdOption, bodyOption);
             return command;
         }
         /// <summary>
@@ -107,7 +129,7 @@ namespace ApiSdk.Teams.Item.Schedule.SchedulingGroups.Item {
         /// </summary>
         public RequestInformation CreateDeleteRequestInformation(Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
             var requestInfo = new RequestInformation {
-                HttpMethod = HttpMethod.DELETE,
+                HttpMethod = Method.DELETE,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };
@@ -123,7 +145,7 @@ namespace ApiSdk.Teams.Item.Schedule.SchedulingGroups.Item {
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<GetQueryParameters> q = default, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
             var requestInfo = new RequestInformation {
-                HttpMethod = HttpMethod.GET,
+                HttpMethod = Method.GET,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };
@@ -145,7 +167,7 @@ namespace ApiSdk.Teams.Item.Schedule.SchedulingGroups.Item {
         public RequestInformation CreatePatchRequestInformation(SchedulingGroup body, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
             _ = body ?? throw new ArgumentNullException(nameof(body));
             var requestInfo = new RequestInformation {
-                HttpMethod = HttpMethod.PATCH,
+                HttpMethod = Method.PATCH,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };

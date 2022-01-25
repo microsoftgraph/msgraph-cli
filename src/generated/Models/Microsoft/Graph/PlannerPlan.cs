@@ -5,17 +5,17 @@ using System.IO;
 using System.Linq;
 namespace ApiSdk.Models.Microsoft.Graph {
     public class PlannerPlan : Entity, IParsable {
-        /// <summary>Read-only. Nullable. Collection of buckets in the plan.</summary>
+        /// <summary>Collection of buckets in the plan. Read-only. Nullable.</summary>
         public List<PlannerBucket> Buckets { get; set; }
         /// <summary>Read-only. The user who created the plan.</summary>
         public IdentitySet CreatedBy { get; set; }
         /// <summary>Read-only. Date and time at which the plan is created. The Timestamp type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z</summary>
         public DateTimeOffset? CreatedDateTime { get; set; }
-        /// <summary>Read-only. Nullable. Additional details about the plan.</summary>
+        /// <summary>Additional details about the plan. Read-only. Nullable.</summary>
         public PlannerPlanDetails Details { get; set; }
         /// <summary>ID of the Group that owns the plan. A valid group must exist before this field can be set. After it is set, this property can’t be updated.</summary>
         public string Owner { get; set; }
-        /// <summary>Read-only. Nullable. Collection of tasks in the plan.</summary>
+        /// <summary>Collection of tasks in the plan. Read-only. Nullable.</summary>
         public List<PlannerTask> Tasks { get; set; }
         /// <summary>Required. Title of the plan.</summary>
         public string Title { get; set; }

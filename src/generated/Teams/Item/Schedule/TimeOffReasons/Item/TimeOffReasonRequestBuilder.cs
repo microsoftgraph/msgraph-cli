@@ -26,16 +26,21 @@ namespace ApiSdk.Teams.Item.Schedule.TimeOffReasons.Item {
             var command = new Command("delete");
             command.Description = "The set of reasons for a time off in the schedule.";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--team-id", description: "key: id of team"));
-            command.AddOption(new Option<string>("--timeoffreason-id", description: "key: id of timeOffReason"));
-            command.Handler = CommandHandler.Create<string, string>(async (teamId, timeOffReasonId) => {
-                var requestInfo = CreateDeleteRequestInformation();
-                if (!String.IsNullOrEmpty(teamId)) requestInfo.PathParameters.Add("team_id", teamId);
-                if (!String.IsNullOrEmpty(timeOffReasonId)) requestInfo.PathParameters.Add("timeOffReason_id", timeOffReasonId);
+            var teamIdOption = new Option<string>("--team-id", description: "key: id of team") {
+            };
+            teamIdOption.IsRequired = true;
+            command.AddOption(teamIdOption);
+            var timeOffReasonIdOption = new Option<string>("--timeoffreason-id", description: "key: id of timeOffReason") {
+            };
+            timeOffReasonIdOption.IsRequired = true;
+            command.AddOption(timeOffReasonIdOption);
+            command.SetHandler(async (string teamId, string timeOffReasonId) => {
+                var requestInfo = CreateDeleteRequestInformation(q => {
+                });
                 await RequestAdapter.SendNoContentAsync(requestInfo);
                 // Print request output. What if the request has no return?
                 Console.WriteLine("Success");
-            });
+            }, teamIdOption, timeOffReasonIdOption);
             return command;
         }
         /// <summary>
@@ -45,14 +50,23 @@ namespace ApiSdk.Teams.Item.Schedule.TimeOffReasons.Item {
             var command = new Command("get");
             command.Description = "The set of reasons for a time off in the schedule.";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--team-id", description: "key: id of team"));
-            command.AddOption(new Option<string>("--timeoffreason-id", description: "key: id of timeOffReason"));
-            command.AddOption(new Option<object>("--select", description: "Select properties to be returned"));
-            command.Handler = CommandHandler.Create<string, string, object>(async (teamId, timeOffReasonId, select) => {
-                var requestInfo = CreateGetRequestInformation();
-                if (!String.IsNullOrEmpty(teamId)) requestInfo.PathParameters.Add("team_id", teamId);
-                if (!String.IsNullOrEmpty(timeOffReasonId)) requestInfo.PathParameters.Add("timeOffReason_id", timeOffReasonId);
-                requestInfo.QueryParameters.Add("select", select);
+            var teamIdOption = new Option<string>("--team-id", description: "key: id of team") {
+            };
+            teamIdOption.IsRequired = true;
+            command.AddOption(teamIdOption);
+            var timeOffReasonIdOption = new Option<string>("--timeoffreason-id", description: "key: id of timeOffReason") {
+            };
+            timeOffReasonIdOption.IsRequired = true;
+            command.AddOption(timeOffReasonIdOption);
+            var selectOption = new Option<string[]>("--select", description: "Select properties to be returned") {
+                Arity = ArgumentArity.ZeroOrMore
+            };
+            selectOption.IsRequired = false;
+            command.AddOption(selectOption);
+            command.SetHandler(async (string teamId, string timeOffReasonId, string[] select) => {
+                var requestInfo = CreateGetRequestInformation(q => {
+                    q.Select = select;
+                });
                 var result = await RequestAdapter.SendAsync<TimeOffReason>(requestInfo);
                 // Print request output. What if the request has no return?
                 using var serializer = RequestAdapter.SerializationWriterFactory.GetSerializationWriter("application/json");
@@ -61,7 +75,7 @@ namespace ApiSdk.Teams.Item.Schedule.TimeOffReasons.Item {
                 using var reader = new StreamReader(content);
                 var strContent = await reader.ReadToEndAsync();
                 Console.Write(strContent + "\n");
-            });
+            }, teamIdOption, timeOffReasonIdOption, selectOption);
             return command;
         }
         /// <summary>
@@ -71,20 +85,28 @@ namespace ApiSdk.Teams.Item.Schedule.TimeOffReasons.Item {
             var command = new Command("patch");
             command.Description = "The set of reasons for a time off in the schedule.";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--team-id", description: "key: id of team"));
-            command.AddOption(new Option<string>("--timeoffreason-id", description: "key: id of timeOffReason"));
-            command.AddOption(new Option<string>("--body"));
-            command.Handler = CommandHandler.Create<string, string, string>(async (teamId, timeOffReasonId, body) => {
+            var teamIdOption = new Option<string>("--team-id", description: "key: id of team") {
+            };
+            teamIdOption.IsRequired = true;
+            command.AddOption(teamIdOption);
+            var timeOffReasonIdOption = new Option<string>("--timeoffreason-id", description: "key: id of timeOffReason") {
+            };
+            timeOffReasonIdOption.IsRequired = true;
+            command.AddOption(timeOffReasonIdOption);
+            var bodyOption = new Option<string>("--body") {
+            };
+            bodyOption.IsRequired = true;
+            command.AddOption(bodyOption);
+            command.SetHandler(async (string teamId, string timeOffReasonId, string body) => {
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<TimeOffReason>();
-                var requestInfo = CreatePatchRequestInformation(model);
-                if (!String.IsNullOrEmpty(teamId)) requestInfo.PathParameters.Add("team_id", teamId);
-                if (!String.IsNullOrEmpty(timeOffReasonId)) requestInfo.PathParameters.Add("timeOffReason_id", timeOffReasonId);
+                var requestInfo = CreatePatchRequestInformation(model, q => {
+                });
                 await RequestAdapter.SendNoContentAsync(requestInfo);
                 // Print request output. What if the request has no return?
                 Console.WriteLine("Success");
-            });
+            }, teamIdOption, timeOffReasonIdOption, bodyOption);
             return command;
         }
         /// <summary>
@@ -107,7 +129,7 @@ namespace ApiSdk.Teams.Item.Schedule.TimeOffReasons.Item {
         /// </summary>
         public RequestInformation CreateDeleteRequestInformation(Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
             var requestInfo = new RequestInformation {
-                HttpMethod = HttpMethod.DELETE,
+                HttpMethod = Method.DELETE,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };
@@ -123,7 +145,7 @@ namespace ApiSdk.Teams.Item.Schedule.TimeOffReasons.Item {
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<GetQueryParameters> q = default, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
             var requestInfo = new RequestInformation {
-                HttpMethod = HttpMethod.GET,
+                HttpMethod = Method.GET,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };
@@ -145,7 +167,7 @@ namespace ApiSdk.Teams.Item.Schedule.TimeOffReasons.Item {
         public RequestInformation CreatePatchRequestInformation(TimeOffReason body, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
             _ = body ?? throw new ArgumentNullException(nameof(body));
             var requestInfo = new RequestInformation {
-                HttpMethod = HttpMethod.PATCH,
+                HttpMethod = Method.PATCH,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };

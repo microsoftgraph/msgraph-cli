@@ -25,16 +25,25 @@ namespace ApiSdk.Workbooks.Item.ListItem.GetActivitiesByIntervalWithStartDateTim
             var command = new Command("get");
             command.Description = "Invoke function getActivitiesByInterval";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--driveitem-id", description: "key: id of driveItem"));
-            command.AddOption(new Option<string>("--startdatetime", description: "Usage: startDateTime={startDateTime}"));
-            command.AddOption(new Option<string>("--enddatetime", description: "Usage: endDateTime={endDateTime}"));
-            command.AddOption(new Option<string>("--interval", description: "Usage: interval={interval}"));
-            command.Handler = CommandHandler.Create<string, string, string, string>(async (driveItemId, startDateTime, endDateTime, interval) => {
-                var requestInfo = CreateGetRequestInformation();
-                if (!String.IsNullOrEmpty(driveItemId)) requestInfo.PathParameters.Add("driveItem_id", driveItemId);
-                if (!String.IsNullOrEmpty(startDateTime)) requestInfo.PathParameters.Add("startDateTime", startDateTime);
-                if (!String.IsNullOrEmpty(endDateTime)) requestInfo.PathParameters.Add("endDateTime", endDateTime);
-                if (!String.IsNullOrEmpty(interval)) requestInfo.PathParameters.Add("interval", interval);
+            var driveItemIdOption = new Option<string>("--driveitem-id", description: "key: id of driveItem") {
+            };
+            driveItemIdOption.IsRequired = true;
+            command.AddOption(driveItemIdOption);
+            var startDateTimeOption = new Option<string>("--startdatetime", description: "Usage: startDateTime={startDateTime}") {
+            };
+            startDateTimeOption.IsRequired = true;
+            command.AddOption(startDateTimeOption);
+            var endDateTimeOption = new Option<string>("--enddatetime", description: "Usage: endDateTime={endDateTime}") {
+            };
+            endDateTimeOption.IsRequired = true;
+            command.AddOption(endDateTimeOption);
+            var intervalOption = new Option<string>("--interval", description: "Usage: interval={interval}") {
+            };
+            intervalOption.IsRequired = true;
+            command.AddOption(intervalOption);
+            command.SetHandler(async (string driveItemId, string startDateTime, string endDateTime, string interval) => {
+                var requestInfo = CreateGetRequestInformation(q => {
+                });
                 var result = await RequestAdapter.SendCollectionAsync<ApiSdk.Workbooks.Item.ListItem.GetActivitiesByIntervalWithStartDateTimeWithEndDateTimeWithInterval.GetActivitiesByIntervalWithStartDateTimeWithEndDateTimeWithInterval>(requestInfo);
                 // Print request output. What if the request has no return?
                 using var serializer = RequestAdapter.SerializationWriterFactory.GetSerializationWriter("application/json");
@@ -43,7 +52,7 @@ namespace ApiSdk.Workbooks.Item.ListItem.GetActivitiesByIntervalWithStartDateTim
                 using var reader = new StreamReader(content);
                 var strContent = await reader.ReadToEndAsync();
                 Console.Write(strContent + "\n");
-            });
+            }, driveItemIdOption, startDateTimeOption, endDateTimeOption, intervalOption);
             return command;
         }
         /// <summary>
@@ -72,7 +81,7 @@ namespace ApiSdk.Workbooks.Item.ListItem.GetActivitiesByIntervalWithStartDateTim
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
             var requestInfo = new RequestInformation {
-                HttpMethod = HttpMethod.GET,
+                HttpMethod = Method.GET,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };

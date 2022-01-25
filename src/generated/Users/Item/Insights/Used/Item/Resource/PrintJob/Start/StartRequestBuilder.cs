@@ -26,12 +26,17 @@ namespace ApiSdk.Users.Item.Insights.Used.Item.Resource.PrintJob.Start {
             var command = new Command("post");
             command.Description = "Invoke action start";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--user-id", description: "key: id of user"));
-            command.AddOption(new Option<string>("--usedinsight-id", description: "key: id of usedInsight"));
-            command.Handler = CommandHandler.Create<string, string>(async (userId, usedInsightId) => {
-                var requestInfo = CreatePostRequestInformation();
-                if (!String.IsNullOrEmpty(userId)) requestInfo.PathParameters.Add("user_id", userId);
-                if (!String.IsNullOrEmpty(usedInsightId)) requestInfo.PathParameters.Add("usedInsight_id", usedInsightId);
+            var userIdOption = new Option<string>("--user-id", description: "key: id of user") {
+            };
+            userIdOption.IsRequired = true;
+            command.AddOption(userIdOption);
+            var usedInsightIdOption = new Option<string>("--usedinsight-id", description: "key: id of usedInsight") {
+            };
+            usedInsightIdOption.IsRequired = true;
+            command.AddOption(usedInsightIdOption);
+            command.SetHandler(async (string userId, string usedInsightId) => {
+                var requestInfo = CreatePostRequestInformation(q => {
+                });
                 var result = await RequestAdapter.SendAsync<StartResponse>(requestInfo);
                 // Print request output. What if the request has no return?
                 using var serializer = RequestAdapter.SerializationWriterFactory.GetSerializationWriter("application/json");
@@ -40,7 +45,7 @@ namespace ApiSdk.Users.Item.Insights.Used.Item.Resource.PrintJob.Start {
                 using var reader = new StreamReader(content);
                 var strContent = await reader.ReadToEndAsync();
                 Console.Write(strContent + "\n");
-            });
+            }, userIdOption, usedInsightIdOption);
             return command;
         }
         /// <summary>
@@ -63,7 +68,7 @@ namespace ApiSdk.Users.Item.Insights.Used.Item.Resource.PrintJob.Start {
         /// </summary>
         public RequestInformation CreatePostRequestInformation(Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
             var requestInfo = new RequestInformation {
-                HttpMethod = HttpMethod.POST,
+                HttpMethod = Method.POST,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };

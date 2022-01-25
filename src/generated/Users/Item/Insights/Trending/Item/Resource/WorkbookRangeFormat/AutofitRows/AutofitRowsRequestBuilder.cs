@@ -25,16 +25,21 @@ namespace ApiSdk.Users.Item.Insights.Trending.Item.Resource.WorkbookRangeFormat.
             var command = new Command("post");
             command.Description = "Invoke action autofitRows";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--user-id", description: "key: id of user"));
-            command.AddOption(new Option<string>("--trending-id", description: "key: id of trending"));
-            command.Handler = CommandHandler.Create<string, string>(async (userId, trendingId) => {
-                var requestInfo = CreatePostRequestInformation();
-                if (!String.IsNullOrEmpty(userId)) requestInfo.PathParameters.Add("user_id", userId);
-                if (!String.IsNullOrEmpty(trendingId)) requestInfo.PathParameters.Add("trending_id", trendingId);
+            var userIdOption = new Option<string>("--user-id", description: "key: id of user") {
+            };
+            userIdOption.IsRequired = true;
+            command.AddOption(userIdOption);
+            var trendingIdOption = new Option<string>("--trending-id", description: "key: id of trending") {
+            };
+            trendingIdOption.IsRequired = true;
+            command.AddOption(trendingIdOption);
+            command.SetHandler(async (string userId, string trendingId) => {
+                var requestInfo = CreatePostRequestInformation(q => {
+                });
                 await RequestAdapter.SendNoContentAsync(requestInfo);
                 // Print request output. What if the request has no return?
                 Console.WriteLine("Success");
-            });
+            }, userIdOption, trendingIdOption);
             return command;
         }
         /// <summary>
@@ -57,7 +62,7 @@ namespace ApiSdk.Users.Item.Insights.Trending.Item.Resource.WorkbookRangeFormat.
         /// </summary>
         public RequestInformation CreatePostRequestInformation(Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
             var requestInfo = new RequestInformation {
-                HttpMethod = HttpMethod.POST,
+                HttpMethod = Method.POST,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };

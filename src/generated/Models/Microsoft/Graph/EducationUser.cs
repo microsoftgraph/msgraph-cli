@@ -5,55 +5,57 @@ using System.IO;
 using System.Linq;
 namespace ApiSdk.Models.Microsoft.Graph {
     public class EducationUser : Entity, IParsable {
-        /// <summary>True if the account is enabled; otherwise, false. This property is required when a user is created. Supports $filter.</summary>
+        /// <summary>True if the account is enabled; otherwise, false. This property is required when a user is created. Supports /$filter.</summary>
         public bool? AccountEnabled { get; set; }
         /// <summary>The licenses that are assigned to the user. Not nullable.</summary>
         public List<AssignedLicense> AssignedLicenses { get; set; }
         /// <summary>The plans that are assigned to the user. Read-only. Not nullable.</summary>
         public List<AssignedPlan> AssignedPlans { get; set; }
+        /// <summary>List of assignments for the user. Nullable.</summary>
+        public List<EducationAssignment> Assignments { get; set; }
         /// <summary>The telephone numbers for the user. Note: Although this is a string collection, only one number can be set for this property.</summary>
         public List<string> BusinessPhones { get; set; }
         /// <summary>Classes to which the user belongs. Nullable.</summary>
         public List<EducationClass> Classes { get; set; }
         /// <summary>Entity who created the user.</summary>
         public IdentitySet CreatedBy { get; set; }
-        /// <summary>The name for the department in which the user works. Supports $filter.</summary>
+        /// <summary>The name for the department in which the user works. Supports /$filter.</summary>
         public string Department { get; set; }
-        /// <summary>The name displayed in the address book for the user. This is usually the combination of the user's first name, middle initial, and last name. This property is required when a user is created and it cannot be cleared during updates. Supports $filter and $orderby.</summary>
+        /// <summary>The name displayed in the address book for the user. Supports $filter and $orderby.</summary>
         public string DisplayName { get; set; }
-        /// <summary>Where this user was created from. Possible values are: sis, manual.</summary>
+        /// <summary>The type of external source this resource was generated from (automatically determined from externalSourceDetail). Possible values are: sis, lms, or manual.</summary>
         public EducationExternalSource? ExternalSource { get; set; }
         /// <summary>The name of the external source this resources was generated from.</summary>
         public string ExternalSourceDetail { get; set; }
-        /// <summary>The given name (first name) of the user. Supports $filter.</summary>
+        /// <summary>The given name (first name) of the user. Supports /$filter.</summary>
         public string GivenName { get; set; }
-        /// <summary>The SMTP address for the user; for example, jeff@contoso.onmicrosoft.com. Read-Only. Supports $filter.</summary>
+        /// <summary>The SMTP address for the user; for example, 'jeff@contoso.onmicrosoft.com'. Read-Only. Supports /$filter.</summary>
         public string Mail { get; set; }
-        /// <summary>Mail address of user.</summary>
+        /// <summary>Mail address of user. Note: type and postOfficeBox are not supported for educationUser resources.</summary>
         public PhysicalAddress MailingAddress { get; set; }
-        /// <summary>The mail alias for the user. This property must be specified when a user is created. Supports $filter.</summary>
+        /// <summary>The mail alias for the user. This property must be specified when a user is created. Supports /$filter.</summary>
         public string MailNickname { get; set; }
         /// <summary>The middle name of user.</summary>
         public string MiddleName { get; set; }
         /// <summary>The primary cellular telephone number for the user.</summary>
         public string MobilePhone { get; set; }
         public string OfficeLocation { get; set; }
-        /// <summary>Additional information used to associate the Azure AD user with its Active Directory counterpart.</summary>
+        /// <summary>Additional information used to associate the AAD user with it's Active Directory counterpart.</summary>
         public EducationOnPremisesInfo OnPremisesInfo { get; set; }
-        /// <summary>Specifies password policies for the user. This value is an enumeration with one possible value being DisableStrongPassword, which allows weaker passwords than the default policy to be specified. DisablePasswordExpiration can also be specified. The two can be specified together; for example: DisablePasswordExpiration, DisableStrongPassword.</summary>
+        /// <summary>Specifies password policies for the user. See standard [user] resource for additional details.</summary>
         public string PasswordPolicies { get; set; }
-        /// <summary>Specifies the password profile for the user. The profile contains the user's password. This property is required when a user is created. The password in the profile must satisfy minimum requirements as specified by the passwordPolicies property. By default, a strong password is required.</summary>
+        /// <summary>Specifies the password profile for the user. The profile contains the user's password. This property is required when a user is created. See standard [user] resource for additional details.</summary>
         public PasswordProfile PasswordProfile { get; set; }
         /// <summary>The preferred language for the user. Should follow ISO 639-1 Code; for example, 'en-US'.</summary>
         public string PreferredLanguage { get; set; }
-        /// <summary>Default role for a user. The user's role might be different in an individual class. Possible values are: student, teacher, none, unknownFutureValue.</summary>
+        /// <summary>Default role for a user. The user's role might be different in an individual class. Possible values are: student, teacher, faculty. Supports /$filter.</summary>
         public EducationUserRole? PrimaryRole { get; set; }
         /// <summary>The plans that are provisioned for the user. Read-only. Not nullable.</summary>
         public List<ProvisionedPlan> ProvisionedPlans { get; set; }
         public DateTimeOffset? RefreshTokensValidFromDateTime { get; set; }
         /// <summary>Related records related to the user. Possible relationships are parent, relative, aide, doctor, guardian, child, other, unknownFutureValue</summary>
         public List<RelatedContact> RelatedContacts { get; set; }
-        /// <summary>Address where user lives.</summary>
+        /// <summary>Address where user lives. Note: type and postOfficeBox are not supported for educationUser resources.</summary>
         public PhysicalAddress ResidenceAddress { get; set; }
         public List<EducationRubric> Rubrics { get; set; }
         /// <summary>Schools to which the user belongs. Nullable.</summary>
@@ -62,19 +64,19 @@ namespace ApiSdk.Models.Microsoft.Graph {
         public bool? ShowInAddressList { get; set; }
         /// <summary>If the primary role is student, this block will contain student specific data.</summary>
         public EducationStudent Student { get; set; }
-        /// <summary>The user's surname (family name or last name). Supports $filter.</summary>
+        /// <summary>The user's surname (family name or last name). Supports /$filter.</summary>
         public string Surname { get; set; }
         /// <summary>Classes for which the user is a teacher.</summary>
         public List<EducationClass> TaughtClasses { get; set; }
         /// <summary>If the primary role is teacher, this block will contain teacher specific data.</summary>
         public EducationTeacher Teacher { get; set; }
-        /// <summary>A two-letter country code (ISO standard 3166). Required for users who will be assigned licenses due to a legal requirement to check for availability of services in countries or regions. Examples include: 'US', 'JP', and 'GB'. Not nullable. Supports $filter.</summary>
+        /// <summary>A two-letter country code ([ISO 3166 Alpha-2]). Required for users who will be assigned licenses. Not nullable. Supports /$filter.</summary>
         public string UsageLocation { get; set; }
         /// <summary>The directory user corresponding to this user.</summary>
         public ApiSdk.Models.Microsoft.Graph.User User { get; set; }
-        /// <summary>The user principal name (UPN) of the user. The UPN is an Internet-style login name for the user based on the Internet standard RFC 822. By convention, this should map to the user's email name. The general format is alias@domain, where domain must be present in the tenant's collection of verified domains. This property is required when a user is created. The verified domains for the tenant can be accessed from the verifiedDomains property of organization. Supports $filter and $orderby.</summary>
+        /// <summary>The user principal name (UPN) for the user. Supports $filter and $orderby. See standard [user] resource for additional details.</summary>
         public string UserPrincipalName { get; set; }
-        /// <summary>A string value that can be used to classify user types in your directory, such as 'Member' and 'Guest'. Supports $filter.</summary>
+        /// <summary>A string value that can be used to classify user types in your directory, such as 'Member' and 'Guest'. Supports /$filter.</summary>
         public string UserType { get; set; }
         /// <summary>
         /// The deserialization information for the current model
@@ -84,6 +86,7 @@ namespace ApiSdk.Models.Microsoft.Graph {
                 {"accountEnabled", (o,n) => { (o as EducationUser).AccountEnabled = n.GetBoolValue(); } },
                 {"assignedLicenses", (o,n) => { (o as EducationUser).AssignedLicenses = n.GetCollectionOfObjectValues<AssignedLicense>().ToList(); } },
                 {"assignedPlans", (o,n) => { (o as EducationUser).AssignedPlans = n.GetCollectionOfObjectValues<AssignedPlan>().ToList(); } },
+                {"assignments", (o,n) => { (o as EducationUser).Assignments = n.GetCollectionOfObjectValues<EducationAssignment>().ToList(); } },
                 {"businessPhones", (o,n) => { (o as EducationUser).BusinessPhones = n.GetCollectionOfPrimitiveValues<string>().ToList(); } },
                 {"classes", (o,n) => { (o as EducationUser).Classes = n.GetCollectionOfObjectValues<EducationClass>().ToList(); } },
                 {"createdBy", (o,n) => { (o as EducationUser).CreatedBy = n.GetObjectValue<IdentitySet>(); } },
@@ -130,6 +133,7 @@ namespace ApiSdk.Models.Microsoft.Graph {
             writer.WriteBoolValue("accountEnabled", AccountEnabled);
             writer.WriteCollectionOfObjectValues<AssignedLicense>("assignedLicenses", AssignedLicenses);
             writer.WriteCollectionOfObjectValues<AssignedPlan>("assignedPlans", AssignedPlans);
+            writer.WriteCollectionOfObjectValues<EducationAssignment>("assignments", Assignments);
             writer.WriteCollectionOfPrimitiveValues<string>("businessPhones", BusinessPhones);
             writer.WriteCollectionOfObjectValues<EducationClass>("classes", Classes);
             writer.WriteObjectValue<IdentitySet>("createdBy", CreatedBy);

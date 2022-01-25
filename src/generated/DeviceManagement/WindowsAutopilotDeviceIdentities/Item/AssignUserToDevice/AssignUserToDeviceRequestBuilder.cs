@@ -25,18 +25,24 @@ namespace ApiSdk.DeviceManagement.WindowsAutopilotDeviceIdentities.Item.AssignUs
             var command = new Command("post");
             command.Description = "Assigns user to Autopilot devices.";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--windowsautopilotdeviceidentity-id", description: "key: id of windowsAutopilotDeviceIdentity"));
-            command.AddOption(new Option<string>("--body"));
-            command.Handler = CommandHandler.Create<string, string>(async (windowsAutopilotDeviceIdentityId, body) => {
+            var windowsAutopilotDeviceIdentityIdOption = new Option<string>("--windowsautopilotdeviceidentity-id", description: "key: id of windowsAutopilotDeviceIdentity") {
+            };
+            windowsAutopilotDeviceIdentityIdOption.IsRequired = true;
+            command.AddOption(windowsAutopilotDeviceIdentityIdOption);
+            var bodyOption = new Option<string>("--body") {
+            };
+            bodyOption.IsRequired = true;
+            command.AddOption(bodyOption);
+            command.SetHandler(async (string windowsAutopilotDeviceIdentityId, string body) => {
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<AssignUserToDeviceRequestBody>();
-                var requestInfo = CreatePostRequestInformation(model);
-                if (!String.IsNullOrEmpty(windowsAutopilotDeviceIdentityId)) requestInfo.PathParameters.Add("windowsAutopilotDeviceIdentity_id", windowsAutopilotDeviceIdentityId);
+                var requestInfo = CreatePostRequestInformation(model, q => {
+                });
                 await RequestAdapter.SendNoContentAsync(requestInfo);
                 // Print request output. What if the request has no return?
                 Console.WriteLine("Success");
-            });
+            }, windowsAutopilotDeviceIdentityIdOption, bodyOption);
             return command;
         }
         /// <summary>
@@ -61,7 +67,7 @@ namespace ApiSdk.DeviceManagement.WindowsAutopilotDeviceIdentities.Item.AssignUs
         public RequestInformation CreatePostRequestInformation(AssignUserToDeviceRequestBody body, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
             _ = body ?? throw new ArgumentNullException(nameof(body));
             var requestInfo = new RequestInformation {
-                HttpMethod = HttpMethod.POST,
+                HttpMethod = Method.POST,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };

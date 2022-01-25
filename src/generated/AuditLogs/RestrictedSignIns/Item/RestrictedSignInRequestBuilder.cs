@@ -26,14 +26,17 @@ namespace ApiSdk.AuditLogs.RestrictedSignIns.Item {
             var command = new Command("delete");
             command.Description = "Delete navigation property restrictedSignIns for auditLogs";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--restrictedsignin-id", description: "key: id of restrictedSignIn"));
-            command.Handler = CommandHandler.Create<string>(async (restrictedSignInId) => {
-                var requestInfo = CreateDeleteRequestInformation();
-                if (!String.IsNullOrEmpty(restrictedSignInId)) requestInfo.PathParameters.Add("restrictedSignIn_id", restrictedSignInId);
+            var restrictedSignInIdOption = new Option<string>("--restrictedsignin-id", description: "key: id of restrictedSignIn") {
+            };
+            restrictedSignInIdOption.IsRequired = true;
+            command.AddOption(restrictedSignInIdOption);
+            command.SetHandler(async (string restrictedSignInId) => {
+                var requestInfo = CreateDeleteRequestInformation(q => {
+                });
                 await RequestAdapter.SendNoContentAsync(requestInfo);
                 // Print request output. What if the request has no return?
                 Console.WriteLine("Success");
-            });
+            }, restrictedSignInIdOption);
             return command;
         }
         /// <summary>
@@ -43,14 +46,25 @@ namespace ApiSdk.AuditLogs.RestrictedSignIns.Item {
             var command = new Command("get");
             command.Description = "Get restrictedSignIns from auditLogs";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--restrictedsignin-id", description: "key: id of restrictedSignIn"));
-            command.AddOption(new Option<object>("--select", description: "Select properties to be returned"));
-            command.AddOption(new Option<object>("--expand", description: "Expand related entities"));
-            command.Handler = CommandHandler.Create<string, object, object>(async (restrictedSignInId, select, expand) => {
-                var requestInfo = CreateGetRequestInformation();
-                if (!String.IsNullOrEmpty(restrictedSignInId)) requestInfo.PathParameters.Add("restrictedSignIn_id", restrictedSignInId);
-                requestInfo.QueryParameters.Add("select", select);
-                requestInfo.QueryParameters.Add("expand", expand);
+            var restrictedSignInIdOption = new Option<string>("--restrictedsignin-id", description: "key: id of restrictedSignIn") {
+            };
+            restrictedSignInIdOption.IsRequired = true;
+            command.AddOption(restrictedSignInIdOption);
+            var selectOption = new Option<string[]>("--select", description: "Select properties to be returned") {
+                Arity = ArgumentArity.ZeroOrMore
+            };
+            selectOption.IsRequired = false;
+            command.AddOption(selectOption);
+            var expandOption = new Option<string[]>("--expand", description: "Expand related entities") {
+                Arity = ArgumentArity.ZeroOrMore
+            };
+            expandOption.IsRequired = false;
+            command.AddOption(expandOption);
+            command.SetHandler(async (string restrictedSignInId, string[] select, string[] expand) => {
+                var requestInfo = CreateGetRequestInformation(q => {
+                    q.Select = select;
+                    q.Expand = expand;
+                });
                 var result = await RequestAdapter.SendAsync<RestrictedSignIn>(requestInfo);
                 // Print request output. What if the request has no return?
                 using var serializer = RequestAdapter.SerializationWriterFactory.GetSerializationWriter("application/json");
@@ -59,7 +73,7 @@ namespace ApiSdk.AuditLogs.RestrictedSignIns.Item {
                 using var reader = new StreamReader(content);
                 var strContent = await reader.ReadToEndAsync();
                 Console.Write(strContent + "\n");
-            });
+            }, restrictedSignInIdOption, selectOption, expandOption);
             return command;
         }
         /// <summary>
@@ -69,18 +83,24 @@ namespace ApiSdk.AuditLogs.RestrictedSignIns.Item {
             var command = new Command("patch");
             command.Description = "Update the navigation property restrictedSignIns in auditLogs";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--restrictedsignin-id", description: "key: id of restrictedSignIn"));
-            command.AddOption(new Option<string>("--body"));
-            command.Handler = CommandHandler.Create<string, string>(async (restrictedSignInId, body) => {
+            var restrictedSignInIdOption = new Option<string>("--restrictedsignin-id", description: "key: id of restrictedSignIn") {
+            };
+            restrictedSignInIdOption.IsRequired = true;
+            command.AddOption(restrictedSignInIdOption);
+            var bodyOption = new Option<string>("--body") {
+            };
+            bodyOption.IsRequired = true;
+            command.AddOption(bodyOption);
+            command.SetHandler(async (string restrictedSignInId, string body) => {
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<RestrictedSignIn>();
-                var requestInfo = CreatePatchRequestInformation(model);
-                if (!String.IsNullOrEmpty(restrictedSignInId)) requestInfo.PathParameters.Add("restrictedSignIn_id", restrictedSignInId);
+                var requestInfo = CreatePatchRequestInformation(model, q => {
+                });
                 await RequestAdapter.SendNoContentAsync(requestInfo);
                 // Print request output. What if the request has no return?
                 Console.WriteLine("Success");
-            });
+            }, restrictedSignInIdOption, bodyOption);
             return command;
         }
         /// <summary>
@@ -103,7 +123,7 @@ namespace ApiSdk.AuditLogs.RestrictedSignIns.Item {
         /// </summary>
         public RequestInformation CreateDeleteRequestInformation(Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
             var requestInfo = new RequestInformation {
-                HttpMethod = HttpMethod.DELETE,
+                HttpMethod = Method.DELETE,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };
@@ -119,7 +139,7 @@ namespace ApiSdk.AuditLogs.RestrictedSignIns.Item {
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<GetQueryParameters> q = default, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
             var requestInfo = new RequestInformation {
-                HttpMethod = HttpMethod.GET,
+                HttpMethod = Method.GET,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };
@@ -141,7 +161,7 @@ namespace ApiSdk.AuditLogs.RestrictedSignIns.Item {
         public RequestInformation CreatePatchRequestInformation(RestrictedSignIn body, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
             _ = body ?? throw new ArgumentNullException(nameof(body));
             var requestInfo = new RequestInformation {
-                HttpMethod = HttpMethod.PATCH,
+                HttpMethod = Method.PATCH,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };

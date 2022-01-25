@@ -48,14 +48,17 @@ namespace ApiSdk.DeviceManagement.DeviceCompliancePolicies.Item {
             var command = new Command("delete");
             command.Description = "The device compliance policies.";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--devicecompliancepolicy-id", description: "key: id of deviceCompliancePolicy"));
-            command.Handler = CommandHandler.Create<string>(async (deviceCompliancePolicyId) => {
-                var requestInfo = CreateDeleteRequestInformation();
-                if (!String.IsNullOrEmpty(deviceCompliancePolicyId)) requestInfo.PathParameters.Add("deviceCompliancePolicy_id", deviceCompliancePolicyId);
+            var deviceCompliancePolicyIdOption = new Option<string>("--devicecompliancepolicy-id", description: "key: id of deviceCompliancePolicy") {
+            };
+            deviceCompliancePolicyIdOption.IsRequired = true;
+            command.AddOption(deviceCompliancePolicyIdOption);
+            command.SetHandler(async (string deviceCompliancePolicyId) => {
+                var requestInfo = CreateDeleteRequestInformation(q => {
+                });
                 await RequestAdapter.SendNoContentAsync(requestInfo);
                 // Print request output. What if the request has no return?
                 Console.WriteLine("Success");
-            });
+            }, deviceCompliancePolicyIdOption);
             return command;
         }
         public Command BuildDeviceSettingStateSummariesCommand() {
@@ -87,14 +90,25 @@ namespace ApiSdk.DeviceManagement.DeviceCompliancePolicies.Item {
             var command = new Command("get");
             command.Description = "The device compliance policies.";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--devicecompliancepolicy-id", description: "key: id of deviceCompliancePolicy"));
-            command.AddOption(new Option<object>("--select", description: "Select properties to be returned"));
-            command.AddOption(new Option<object>("--expand", description: "Expand related entities"));
-            command.Handler = CommandHandler.Create<string, object, object>(async (deviceCompliancePolicyId, select, expand) => {
-                var requestInfo = CreateGetRequestInformation();
-                if (!String.IsNullOrEmpty(deviceCompliancePolicyId)) requestInfo.PathParameters.Add("deviceCompliancePolicy_id", deviceCompliancePolicyId);
-                requestInfo.QueryParameters.Add("select", select);
-                requestInfo.QueryParameters.Add("expand", expand);
+            var deviceCompliancePolicyIdOption = new Option<string>("--devicecompliancepolicy-id", description: "key: id of deviceCompliancePolicy") {
+            };
+            deviceCompliancePolicyIdOption.IsRequired = true;
+            command.AddOption(deviceCompliancePolicyIdOption);
+            var selectOption = new Option<string[]>("--select", description: "Select properties to be returned") {
+                Arity = ArgumentArity.ZeroOrMore
+            };
+            selectOption.IsRequired = false;
+            command.AddOption(selectOption);
+            var expandOption = new Option<string[]>("--expand", description: "Expand related entities") {
+                Arity = ArgumentArity.ZeroOrMore
+            };
+            expandOption.IsRequired = false;
+            command.AddOption(expandOption);
+            command.SetHandler(async (string deviceCompliancePolicyId, string[] select, string[] expand) => {
+                var requestInfo = CreateGetRequestInformation(q => {
+                    q.Select = select;
+                    q.Expand = expand;
+                });
                 var result = await RequestAdapter.SendAsync<DeviceCompliancePolicy>(requestInfo);
                 // Print request output. What if the request has no return?
                 using var serializer = RequestAdapter.SerializationWriterFactory.GetSerializationWriter("application/json");
@@ -103,7 +117,7 @@ namespace ApiSdk.DeviceManagement.DeviceCompliancePolicies.Item {
                 using var reader = new StreamReader(content);
                 var strContent = await reader.ReadToEndAsync();
                 Console.Write(strContent + "\n");
-            });
+            }, deviceCompliancePolicyIdOption, selectOption, expandOption);
             return command;
         }
         /// <summary>
@@ -113,18 +127,24 @@ namespace ApiSdk.DeviceManagement.DeviceCompliancePolicies.Item {
             var command = new Command("patch");
             command.Description = "The device compliance policies.";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--devicecompliancepolicy-id", description: "key: id of deviceCompliancePolicy"));
-            command.AddOption(new Option<string>("--body"));
-            command.Handler = CommandHandler.Create<string, string>(async (deviceCompliancePolicyId, body) => {
+            var deviceCompliancePolicyIdOption = new Option<string>("--devicecompliancepolicy-id", description: "key: id of deviceCompliancePolicy") {
+            };
+            deviceCompliancePolicyIdOption.IsRequired = true;
+            command.AddOption(deviceCompliancePolicyIdOption);
+            var bodyOption = new Option<string>("--body") {
+            };
+            bodyOption.IsRequired = true;
+            command.AddOption(bodyOption);
+            command.SetHandler(async (string deviceCompliancePolicyId, string body) => {
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<DeviceCompliancePolicy>();
-                var requestInfo = CreatePatchRequestInformation(model);
-                if (!String.IsNullOrEmpty(deviceCompliancePolicyId)) requestInfo.PathParameters.Add("deviceCompliancePolicy_id", deviceCompliancePolicyId);
+                var requestInfo = CreatePatchRequestInformation(model, q => {
+                });
                 await RequestAdapter.SendNoContentAsync(requestInfo);
                 // Print request output. What if the request has no return?
                 Console.WriteLine("Success");
-            });
+            }, deviceCompliancePolicyIdOption, bodyOption);
             return command;
         }
         public Command BuildScheduleActionsForRulesCommand() {
@@ -175,7 +195,7 @@ namespace ApiSdk.DeviceManagement.DeviceCompliancePolicies.Item {
         /// </summary>
         public RequestInformation CreateDeleteRequestInformation(Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
             var requestInfo = new RequestInformation {
-                HttpMethod = HttpMethod.DELETE,
+                HttpMethod = Method.DELETE,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };
@@ -191,7 +211,7 @@ namespace ApiSdk.DeviceManagement.DeviceCompliancePolicies.Item {
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<GetQueryParameters> q = default, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
             var requestInfo = new RequestInformation {
-                HttpMethod = HttpMethod.GET,
+                HttpMethod = Method.GET,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };
@@ -213,7 +233,7 @@ namespace ApiSdk.DeviceManagement.DeviceCompliancePolicies.Item {
         public RequestInformation CreatePatchRequestInformation(DeviceCompliancePolicy body, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
             _ = body ?? throw new ArgumentNullException(nameof(body));
             var requestInfo = new RequestInformation {
-                HttpMethod = HttpMethod.PATCH,
+                HttpMethod = Method.PATCH,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };

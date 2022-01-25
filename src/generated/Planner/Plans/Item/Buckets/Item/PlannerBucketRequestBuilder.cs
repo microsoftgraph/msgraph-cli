@@ -21,41 +21,59 @@ namespace ApiSdk.Planner.Plans.Item.Buckets.Item {
         /// <summary>Url template to use to build the URL for the current request builder</summary>
         private string UrlTemplate { get; set; }
         /// <summary>
-        /// Read-only. Nullable. Collection of buckets in the plan.
+        /// Collection of buckets in the plan. Read-only. Nullable.
         /// </summary>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
-            command.Description = "Read-only. Nullable. Collection of buckets in the plan.";
+            command.Description = "Collection of buckets in the plan. Read-only. Nullable.";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--plannerplan-id", description: "key: id of plannerPlan"));
-            command.AddOption(new Option<string>("--plannerbucket-id", description: "key: id of plannerBucket"));
-            command.Handler = CommandHandler.Create<string, string>(async (plannerPlanId, plannerBucketId) => {
-                var requestInfo = CreateDeleteRequestInformation();
-                if (!String.IsNullOrEmpty(plannerPlanId)) requestInfo.PathParameters.Add("plannerPlan_id", plannerPlanId);
-                if (!String.IsNullOrEmpty(plannerBucketId)) requestInfo.PathParameters.Add("plannerBucket_id", plannerBucketId);
+            var plannerPlanIdOption = new Option<string>("--plannerplan-id", description: "key: id of plannerPlan") {
+            };
+            plannerPlanIdOption.IsRequired = true;
+            command.AddOption(plannerPlanIdOption);
+            var plannerBucketIdOption = new Option<string>("--plannerbucket-id", description: "key: id of plannerBucket") {
+            };
+            plannerBucketIdOption.IsRequired = true;
+            command.AddOption(plannerBucketIdOption);
+            command.SetHandler(async (string plannerPlanId, string plannerBucketId) => {
+                var requestInfo = CreateDeleteRequestInformation(q => {
+                });
                 await RequestAdapter.SendNoContentAsync(requestInfo);
                 // Print request output. What if the request has no return?
                 Console.WriteLine("Success");
-            });
+            }, plannerPlanIdOption, plannerBucketIdOption);
             return command;
         }
         /// <summary>
-        /// Read-only. Nullable. Collection of buckets in the plan.
+        /// Collection of buckets in the plan. Read-only. Nullable.
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "Read-only. Nullable. Collection of buckets in the plan.";
+            command.Description = "Collection of buckets in the plan. Read-only. Nullable.";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--plannerplan-id", description: "key: id of plannerPlan"));
-            command.AddOption(new Option<string>("--plannerbucket-id", description: "key: id of plannerBucket"));
-            command.AddOption(new Option<object>("--select", description: "Select properties to be returned"));
-            command.AddOption(new Option<object>("--expand", description: "Expand related entities"));
-            command.Handler = CommandHandler.Create<string, string, object, object>(async (plannerPlanId, plannerBucketId, select, expand) => {
-                var requestInfo = CreateGetRequestInformation();
-                if (!String.IsNullOrEmpty(plannerPlanId)) requestInfo.PathParameters.Add("plannerPlan_id", plannerPlanId);
-                if (!String.IsNullOrEmpty(plannerBucketId)) requestInfo.PathParameters.Add("plannerBucket_id", plannerBucketId);
-                requestInfo.QueryParameters.Add("select", select);
-                requestInfo.QueryParameters.Add("expand", expand);
+            var plannerPlanIdOption = new Option<string>("--plannerplan-id", description: "key: id of plannerPlan") {
+            };
+            plannerPlanIdOption.IsRequired = true;
+            command.AddOption(plannerPlanIdOption);
+            var plannerBucketIdOption = new Option<string>("--plannerbucket-id", description: "key: id of plannerBucket") {
+            };
+            plannerBucketIdOption.IsRequired = true;
+            command.AddOption(plannerBucketIdOption);
+            var selectOption = new Option<string[]>("--select", description: "Select properties to be returned") {
+                Arity = ArgumentArity.ZeroOrMore
+            };
+            selectOption.IsRequired = false;
+            command.AddOption(selectOption);
+            var expandOption = new Option<string[]>("--expand", description: "Expand related entities") {
+                Arity = ArgumentArity.ZeroOrMore
+            };
+            expandOption.IsRequired = false;
+            command.AddOption(expandOption);
+            command.SetHandler(async (string plannerPlanId, string plannerBucketId, string[] select, string[] expand) => {
+                var requestInfo = CreateGetRequestInformation(q => {
+                    q.Select = select;
+                    q.Expand = expand;
+                });
                 var result = await RequestAdapter.SendAsync<PlannerBucket>(requestInfo);
                 // Print request output. What if the request has no return?
                 using var serializer = RequestAdapter.SerializationWriterFactory.GetSerializationWriter("application/json");
@@ -64,30 +82,38 @@ namespace ApiSdk.Planner.Plans.Item.Buckets.Item {
                 using var reader = new StreamReader(content);
                 var strContent = await reader.ReadToEndAsync();
                 Console.Write(strContent + "\n");
-            });
+            }, plannerPlanIdOption, plannerBucketIdOption, selectOption, expandOption);
             return command;
         }
         /// <summary>
-        /// Read-only. Nullable. Collection of buckets in the plan.
+        /// Collection of buckets in the plan. Read-only. Nullable.
         /// </summary>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
-            command.Description = "Read-only. Nullable. Collection of buckets in the plan.";
+            command.Description = "Collection of buckets in the plan. Read-only. Nullable.";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--plannerplan-id", description: "key: id of plannerPlan"));
-            command.AddOption(new Option<string>("--plannerbucket-id", description: "key: id of plannerBucket"));
-            command.AddOption(new Option<string>("--body"));
-            command.Handler = CommandHandler.Create<string, string, string>(async (plannerPlanId, plannerBucketId, body) => {
+            var plannerPlanIdOption = new Option<string>("--plannerplan-id", description: "key: id of plannerPlan") {
+            };
+            plannerPlanIdOption.IsRequired = true;
+            command.AddOption(plannerPlanIdOption);
+            var plannerBucketIdOption = new Option<string>("--plannerbucket-id", description: "key: id of plannerBucket") {
+            };
+            plannerBucketIdOption.IsRequired = true;
+            command.AddOption(plannerBucketIdOption);
+            var bodyOption = new Option<string>("--body") {
+            };
+            bodyOption.IsRequired = true;
+            command.AddOption(bodyOption);
+            command.SetHandler(async (string plannerPlanId, string plannerBucketId, string body) => {
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<PlannerBucket>();
-                var requestInfo = CreatePatchRequestInformation(model);
-                if (!String.IsNullOrEmpty(plannerPlanId)) requestInfo.PathParameters.Add("plannerPlan_id", plannerPlanId);
-                if (!String.IsNullOrEmpty(plannerBucketId)) requestInfo.PathParameters.Add("plannerBucket_id", plannerBucketId);
+                var requestInfo = CreatePatchRequestInformation(model, q => {
+                });
                 await RequestAdapter.SendNoContentAsync(requestInfo);
                 // Print request output. What if the request has no return?
                 Console.WriteLine("Success");
-            });
+            }, plannerPlanIdOption, plannerBucketIdOption, bodyOption);
             return command;
         }
         public Command BuildTasksCommand() {
@@ -111,13 +137,13 @@ namespace ApiSdk.Planner.Plans.Item.Buckets.Item {
             RequestAdapter = requestAdapter;
         }
         /// <summary>
-        /// Read-only. Nullable. Collection of buckets in the plan.
+        /// Collection of buckets in the plan. Read-only. Nullable.
         /// <param name="h">Request headers</param>
         /// <param name="o">Request options</param>
         /// </summary>
         public RequestInformation CreateDeleteRequestInformation(Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
             var requestInfo = new RequestInformation {
-                HttpMethod = HttpMethod.DELETE,
+                HttpMethod = Method.DELETE,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };
@@ -126,14 +152,14 @@ namespace ApiSdk.Planner.Plans.Item.Buckets.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Read-only. Nullable. Collection of buckets in the plan.
+        /// Collection of buckets in the plan. Read-only. Nullable.
         /// <param name="h">Request headers</param>
         /// <param name="o">Request options</param>
         /// <param name="q">Request query parameters</param>
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<GetQueryParameters> q = default, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
             var requestInfo = new RequestInformation {
-                HttpMethod = HttpMethod.GET,
+                HttpMethod = Method.GET,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };
@@ -147,7 +173,7 @@ namespace ApiSdk.Planner.Plans.Item.Buckets.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Read-only. Nullable. Collection of buckets in the plan.
+        /// Collection of buckets in the plan. Read-only. Nullable.
         /// <param name="body"></param>
         /// <param name="h">Request headers</param>
         /// <param name="o">Request options</param>
@@ -155,7 +181,7 @@ namespace ApiSdk.Planner.Plans.Item.Buckets.Item {
         public RequestInformation CreatePatchRequestInformation(PlannerBucket body, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
             _ = body ?? throw new ArgumentNullException(nameof(body));
             var requestInfo = new RequestInformation {
-                HttpMethod = HttpMethod.PATCH,
+                HttpMethod = Method.PATCH,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };
@@ -165,7 +191,7 @@ namespace ApiSdk.Planner.Plans.Item.Buckets.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Read-only. Nullable. Collection of buckets in the plan.
+        /// Collection of buckets in the plan. Read-only. Nullable.
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="h">Request headers</param>
         /// <param name="o">Request options</param>
@@ -176,7 +202,7 @@ namespace ApiSdk.Planner.Plans.Item.Buckets.Item {
             await RequestAdapter.SendNoContentAsync(requestInfo, responseHandler, cancellationToken);
         }
         /// <summary>
-        /// Read-only. Nullable. Collection of buckets in the plan.
+        /// Collection of buckets in the plan. Read-only. Nullable.
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="h">Request headers</param>
         /// <param name="o">Request options</param>
@@ -188,7 +214,7 @@ namespace ApiSdk.Planner.Plans.Item.Buckets.Item {
             return await RequestAdapter.SendAsync<PlannerBucket>(requestInfo, responseHandler, cancellationToken);
         }
         /// <summary>
-        /// Read-only. Nullable. Collection of buckets in the plan.
+        /// Collection of buckets in the plan. Read-only. Nullable.
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="h">Request headers</param>
         /// <param name="model"></param>
@@ -200,7 +226,7 @@ namespace ApiSdk.Planner.Plans.Item.Buckets.Item {
             var requestInfo = CreatePatchRequestInformation(model, h, o);
             await RequestAdapter.SendNoContentAsync(requestInfo, responseHandler, cancellationToken);
         }
-        /// <summary>Read-only. Nullable. Collection of buckets in the plan.</summary>
+        /// <summary>Collection of buckets in the plan. Read-only. Nullable.</summary>
         public class GetQueryParameters : QueryParametersBase {
             /// <summary>Expand related entities</summary>
             public string[] Expand { get; set; }

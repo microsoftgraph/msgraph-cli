@@ -11,6 +11,8 @@ namespace ApiSdk.Models.Microsoft.Graph {
         public ApplicationEnforcedRestrictionsSessionControl ApplicationEnforcedRestrictions { get; set; }
         /// <summary>Session control to apply cloud app security.</summary>
         public CloudAppSecuritySessionControl CloudAppSecurity { get; set; }
+        /// <summary>Session control that determines whether it is acceptable for Azure AD to extend existing sessions based on information collected prior to an outage or not.</summary>
+        public bool? DisableResilienceDefaults { get; set; }
         /// <summary>Session control to define whether to persist cookies or not. All apps should be selected for this session control to work correctly.</summary>
         public PersistentBrowserSessionControl PersistentBrowser { get; set; }
         /// <summary>Session control to enforce signin frequency.</summary>
@@ -28,6 +30,7 @@ namespace ApiSdk.Models.Microsoft.Graph {
             return new Dictionary<string, Action<T, IParseNode>> {
                 {"applicationEnforcedRestrictions", (o,n) => { (o as ConditionalAccessSessionControls).ApplicationEnforcedRestrictions = n.GetObjectValue<ApplicationEnforcedRestrictionsSessionControl>(); } },
                 {"cloudAppSecurity", (o,n) => { (o as ConditionalAccessSessionControls).CloudAppSecurity = n.GetObjectValue<CloudAppSecuritySessionControl>(); } },
+                {"disableResilienceDefaults", (o,n) => { (o as ConditionalAccessSessionControls).DisableResilienceDefaults = n.GetBoolValue(); } },
                 {"persistentBrowser", (o,n) => { (o as ConditionalAccessSessionControls).PersistentBrowser = n.GetObjectValue<PersistentBrowserSessionControl>(); } },
                 {"signInFrequency", (o,n) => { (o as ConditionalAccessSessionControls).SignInFrequency = n.GetObjectValue<SignInFrequencySessionControl>(); } },
             };
@@ -40,6 +43,7 @@ namespace ApiSdk.Models.Microsoft.Graph {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             writer.WriteObjectValue<ApplicationEnforcedRestrictionsSessionControl>("applicationEnforcedRestrictions", ApplicationEnforcedRestrictions);
             writer.WriteObjectValue<CloudAppSecuritySessionControl>("cloudAppSecurity", CloudAppSecurity);
+            writer.WriteBoolValue("disableResilienceDefaults", DisableResilienceDefaults);
             writer.WriteObjectValue<PersistentBrowserSessionControl>("persistentBrowser", PersistentBrowser);
             writer.WriteObjectValue<SignInFrequencySessionControl>("signInFrequency", SignInFrequency);
             writer.WriteAdditionalData(AdditionalData);

@@ -51,16 +51,21 @@ namespace ApiSdk.Me.CalendarView.Item.Calendar.CalendarView.Item {
             var command = new Command("delete");
             command.Description = "The calendar view for the calendar. Navigation property. Read-only.";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--event-id", description: "key: id of event"));
-            command.AddOption(new Option<string>("--event-id1", description: "key: id of event"));
-            command.Handler = CommandHandler.Create<string, string>(async (eventId, eventId1) => {
-                var requestInfo = CreateDeleteRequestInformation();
-                if (!String.IsNullOrEmpty(eventId)) requestInfo.PathParameters.Add("event_id", eventId);
-                if (!String.IsNullOrEmpty(eventId1)) requestInfo.PathParameters.Add("event_id1", eventId1);
+            var eventIdOption = new Option<string>("--event-id", description: "key: id of event") {
+            };
+            eventIdOption.IsRequired = true;
+            command.AddOption(eventIdOption);
+            var eventId1Option = new Option<string>("--event-id1", description: "key: id of event") {
+            };
+            eventId1Option.IsRequired = true;
+            command.AddOption(eventId1Option);
+            command.SetHandler(async (string eventId, string eventId1) => {
+                var requestInfo = CreateDeleteRequestInformation(q => {
+                });
                 await RequestAdapter.SendNoContentAsync(requestInfo);
                 // Print request output. What if the request has no return?
                 Console.WriteLine("Success");
-            });
+            }, eventIdOption, eventId1Option);
             return command;
         }
         public Command BuildDismissReminderCommand() {
@@ -82,14 +87,23 @@ namespace ApiSdk.Me.CalendarView.Item.Calendar.CalendarView.Item {
             var command = new Command("get");
             command.Description = "The calendar view for the calendar. Navigation property. Read-only.";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--event-id", description: "key: id of event"));
-            command.AddOption(new Option<string>("--event-id1", description: "key: id of event"));
-            command.AddOption(new Option<object>("--select", description: "Select properties to be returned"));
-            command.Handler = CommandHandler.Create<string, string, object>(async (eventId, eventId1, select) => {
-                var requestInfo = CreateGetRequestInformation();
-                if (!String.IsNullOrEmpty(eventId)) requestInfo.PathParameters.Add("event_id", eventId);
-                if (!String.IsNullOrEmpty(eventId1)) requestInfo.PathParameters.Add("event_id1", eventId1);
-                requestInfo.QueryParameters.Add("select", select);
+            var eventIdOption = new Option<string>("--event-id", description: "key: id of event") {
+            };
+            eventIdOption.IsRequired = true;
+            command.AddOption(eventIdOption);
+            var eventId1Option = new Option<string>("--event-id1", description: "key: id of event") {
+            };
+            eventId1Option.IsRequired = true;
+            command.AddOption(eventId1Option);
+            var selectOption = new Option<string[]>("--select", description: "Select properties to be returned") {
+                Arity = ArgumentArity.ZeroOrMore
+            };
+            selectOption.IsRequired = false;
+            command.AddOption(selectOption);
+            command.SetHandler(async (string eventId, string eventId1, string[] select) => {
+                var requestInfo = CreateGetRequestInformation(q => {
+                    q.Select = select;
+                });
                 var result = await RequestAdapter.SendAsync<@Event>(requestInfo);
                 // Print request output. What if the request has no return?
                 using var serializer = RequestAdapter.SerializationWriterFactory.GetSerializationWriter("application/json");
@@ -98,7 +112,7 @@ namespace ApiSdk.Me.CalendarView.Item.Calendar.CalendarView.Item {
                 using var reader = new StreamReader(content);
                 var strContent = await reader.ReadToEndAsync();
                 Console.Write(strContent + "\n");
-            });
+            }, eventIdOption, eventId1Option, selectOption);
             return command;
         }
         /// <summary>
@@ -108,20 +122,28 @@ namespace ApiSdk.Me.CalendarView.Item.Calendar.CalendarView.Item {
             var command = new Command("patch");
             command.Description = "The calendar view for the calendar. Navigation property. Read-only.";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--event-id", description: "key: id of event"));
-            command.AddOption(new Option<string>("--event-id1", description: "key: id of event"));
-            command.AddOption(new Option<string>("--body"));
-            command.Handler = CommandHandler.Create<string, string, string>(async (eventId, eventId1, body) => {
+            var eventIdOption = new Option<string>("--event-id", description: "key: id of event") {
+            };
+            eventIdOption.IsRequired = true;
+            command.AddOption(eventIdOption);
+            var eventId1Option = new Option<string>("--event-id1", description: "key: id of event") {
+            };
+            eventId1Option.IsRequired = true;
+            command.AddOption(eventId1Option);
+            var bodyOption = new Option<string>("--body") {
+            };
+            bodyOption.IsRequired = true;
+            command.AddOption(bodyOption);
+            command.SetHandler(async (string eventId, string eventId1, string body) => {
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<@Event>();
-                var requestInfo = CreatePatchRequestInformation(model);
-                if (!String.IsNullOrEmpty(eventId)) requestInfo.PathParameters.Add("event_id", eventId);
-                if (!String.IsNullOrEmpty(eventId1)) requestInfo.PathParameters.Add("event_id1", eventId1);
+                var requestInfo = CreatePatchRequestInformation(model, q => {
+                });
                 await RequestAdapter.SendNoContentAsync(requestInfo);
                 // Print request output. What if the request has no return?
                 Console.WriteLine("Success");
-            });
+            }, eventIdOption, eventId1Option, bodyOption);
             return command;
         }
         public Command BuildSnoozeReminderCommand() {
@@ -156,7 +178,7 @@ namespace ApiSdk.Me.CalendarView.Item.Calendar.CalendarView.Item {
         /// </summary>
         public RequestInformation CreateDeleteRequestInformation(Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
             var requestInfo = new RequestInformation {
-                HttpMethod = HttpMethod.DELETE,
+                HttpMethod = Method.DELETE,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };
@@ -172,7 +194,7 @@ namespace ApiSdk.Me.CalendarView.Item.Calendar.CalendarView.Item {
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<GetQueryParameters> q = default, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
             var requestInfo = new RequestInformation {
-                HttpMethod = HttpMethod.GET,
+                HttpMethod = Method.GET,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };
@@ -194,7 +216,7 @@ namespace ApiSdk.Me.CalendarView.Item.Calendar.CalendarView.Item {
         public RequestInformation CreatePatchRequestInformation(@Event body, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
             _ = body ?? throw new ArgumentNullException(nameof(body));
             var requestInfo = new RequestInformation {
-                HttpMethod = HttpMethod.PATCH,
+                HttpMethod = Method.PATCH,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };

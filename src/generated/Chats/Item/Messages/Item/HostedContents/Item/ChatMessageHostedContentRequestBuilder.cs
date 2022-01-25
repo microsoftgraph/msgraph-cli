@@ -26,18 +26,25 @@ namespace ApiSdk.Chats.Item.Messages.Item.HostedContents.Item {
             var command = new Command("delete");
             command.Description = "Content in a message hosted by Microsoft Teams - for example, images or code snippets.";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--chat-id", description: "key: id of chat"));
-            command.AddOption(new Option<string>("--chatmessage-id", description: "key: id of chatMessage"));
-            command.AddOption(new Option<string>("--chatmessagehostedcontent-id", description: "key: id of chatMessageHostedContent"));
-            command.Handler = CommandHandler.Create<string, string, string>(async (chatId, chatMessageId, chatMessageHostedContentId) => {
-                var requestInfo = CreateDeleteRequestInformation();
-                if (!String.IsNullOrEmpty(chatId)) requestInfo.PathParameters.Add("chat_id", chatId);
-                if (!String.IsNullOrEmpty(chatMessageId)) requestInfo.PathParameters.Add("chatMessage_id", chatMessageId);
-                if (!String.IsNullOrEmpty(chatMessageHostedContentId)) requestInfo.PathParameters.Add("chatMessageHostedContent_id", chatMessageHostedContentId);
+            var chatIdOption = new Option<string>("--chat-id", description: "key: id of chat") {
+            };
+            chatIdOption.IsRequired = true;
+            command.AddOption(chatIdOption);
+            var chatMessageIdOption = new Option<string>("--chatmessage-id", description: "key: id of chatMessage") {
+            };
+            chatMessageIdOption.IsRequired = true;
+            command.AddOption(chatMessageIdOption);
+            var chatMessageHostedContentIdOption = new Option<string>("--chatmessagehostedcontent-id", description: "key: id of chatMessageHostedContent") {
+            };
+            chatMessageHostedContentIdOption.IsRequired = true;
+            command.AddOption(chatMessageHostedContentIdOption);
+            command.SetHandler(async (string chatId, string chatMessageId, string chatMessageHostedContentId) => {
+                var requestInfo = CreateDeleteRequestInformation(q => {
+                });
                 await RequestAdapter.SendNoContentAsync(requestInfo);
                 // Print request output. What if the request has no return?
                 Console.WriteLine("Success");
-            });
+            }, chatIdOption, chatMessageIdOption, chatMessageHostedContentIdOption);
             return command;
         }
         /// <summary>
@@ -47,18 +54,33 @@ namespace ApiSdk.Chats.Item.Messages.Item.HostedContents.Item {
             var command = new Command("get");
             command.Description = "Content in a message hosted by Microsoft Teams - for example, images or code snippets.";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--chat-id", description: "key: id of chat"));
-            command.AddOption(new Option<string>("--chatmessage-id", description: "key: id of chatMessage"));
-            command.AddOption(new Option<string>("--chatmessagehostedcontent-id", description: "key: id of chatMessageHostedContent"));
-            command.AddOption(new Option<object>("--select", description: "Select properties to be returned"));
-            command.AddOption(new Option<object>("--expand", description: "Expand related entities"));
-            command.Handler = CommandHandler.Create<string, string, string, object, object>(async (chatId, chatMessageId, chatMessageHostedContentId, select, expand) => {
-                var requestInfo = CreateGetRequestInformation();
-                if (!String.IsNullOrEmpty(chatId)) requestInfo.PathParameters.Add("chat_id", chatId);
-                if (!String.IsNullOrEmpty(chatMessageId)) requestInfo.PathParameters.Add("chatMessage_id", chatMessageId);
-                if (!String.IsNullOrEmpty(chatMessageHostedContentId)) requestInfo.PathParameters.Add("chatMessageHostedContent_id", chatMessageHostedContentId);
-                requestInfo.QueryParameters.Add("select", select);
-                requestInfo.QueryParameters.Add("expand", expand);
+            var chatIdOption = new Option<string>("--chat-id", description: "key: id of chat") {
+            };
+            chatIdOption.IsRequired = true;
+            command.AddOption(chatIdOption);
+            var chatMessageIdOption = new Option<string>("--chatmessage-id", description: "key: id of chatMessage") {
+            };
+            chatMessageIdOption.IsRequired = true;
+            command.AddOption(chatMessageIdOption);
+            var chatMessageHostedContentIdOption = new Option<string>("--chatmessagehostedcontent-id", description: "key: id of chatMessageHostedContent") {
+            };
+            chatMessageHostedContentIdOption.IsRequired = true;
+            command.AddOption(chatMessageHostedContentIdOption);
+            var selectOption = new Option<string[]>("--select", description: "Select properties to be returned") {
+                Arity = ArgumentArity.ZeroOrMore
+            };
+            selectOption.IsRequired = false;
+            command.AddOption(selectOption);
+            var expandOption = new Option<string[]>("--expand", description: "Expand related entities") {
+                Arity = ArgumentArity.ZeroOrMore
+            };
+            expandOption.IsRequired = false;
+            command.AddOption(expandOption);
+            command.SetHandler(async (string chatId, string chatMessageId, string chatMessageHostedContentId, string[] select, string[] expand) => {
+                var requestInfo = CreateGetRequestInformation(q => {
+                    q.Select = select;
+                    q.Expand = expand;
+                });
                 var result = await RequestAdapter.SendAsync<ChatMessageHostedContent>(requestInfo);
                 // Print request output. What if the request has no return?
                 using var serializer = RequestAdapter.SerializationWriterFactory.GetSerializationWriter("application/json");
@@ -67,7 +89,7 @@ namespace ApiSdk.Chats.Item.Messages.Item.HostedContents.Item {
                 using var reader = new StreamReader(content);
                 var strContent = await reader.ReadToEndAsync();
                 Console.Write(strContent + "\n");
-            });
+            }, chatIdOption, chatMessageIdOption, chatMessageHostedContentIdOption, selectOption, expandOption);
             return command;
         }
         /// <summary>
@@ -77,22 +99,32 @@ namespace ApiSdk.Chats.Item.Messages.Item.HostedContents.Item {
             var command = new Command("patch");
             command.Description = "Content in a message hosted by Microsoft Teams - for example, images or code snippets.";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--chat-id", description: "key: id of chat"));
-            command.AddOption(new Option<string>("--chatmessage-id", description: "key: id of chatMessage"));
-            command.AddOption(new Option<string>("--chatmessagehostedcontent-id", description: "key: id of chatMessageHostedContent"));
-            command.AddOption(new Option<string>("--body"));
-            command.Handler = CommandHandler.Create<string, string, string, string>(async (chatId, chatMessageId, chatMessageHostedContentId, body) => {
+            var chatIdOption = new Option<string>("--chat-id", description: "key: id of chat") {
+            };
+            chatIdOption.IsRequired = true;
+            command.AddOption(chatIdOption);
+            var chatMessageIdOption = new Option<string>("--chatmessage-id", description: "key: id of chatMessage") {
+            };
+            chatMessageIdOption.IsRequired = true;
+            command.AddOption(chatMessageIdOption);
+            var chatMessageHostedContentIdOption = new Option<string>("--chatmessagehostedcontent-id", description: "key: id of chatMessageHostedContent") {
+            };
+            chatMessageHostedContentIdOption.IsRequired = true;
+            command.AddOption(chatMessageHostedContentIdOption);
+            var bodyOption = new Option<string>("--body") {
+            };
+            bodyOption.IsRequired = true;
+            command.AddOption(bodyOption);
+            command.SetHandler(async (string chatId, string chatMessageId, string chatMessageHostedContentId, string body) => {
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<ChatMessageHostedContent>();
-                var requestInfo = CreatePatchRequestInformation(model);
-                if (!String.IsNullOrEmpty(chatId)) requestInfo.PathParameters.Add("chat_id", chatId);
-                if (!String.IsNullOrEmpty(chatMessageId)) requestInfo.PathParameters.Add("chatMessage_id", chatMessageId);
-                if (!String.IsNullOrEmpty(chatMessageHostedContentId)) requestInfo.PathParameters.Add("chatMessageHostedContent_id", chatMessageHostedContentId);
+                var requestInfo = CreatePatchRequestInformation(model, q => {
+                });
                 await RequestAdapter.SendNoContentAsync(requestInfo);
                 // Print request output. What if the request has no return?
                 Console.WriteLine("Success");
-            });
+            }, chatIdOption, chatMessageIdOption, chatMessageHostedContentIdOption, bodyOption);
             return command;
         }
         /// <summary>
@@ -115,7 +147,7 @@ namespace ApiSdk.Chats.Item.Messages.Item.HostedContents.Item {
         /// </summary>
         public RequestInformation CreateDeleteRequestInformation(Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
             var requestInfo = new RequestInformation {
-                HttpMethod = HttpMethod.DELETE,
+                HttpMethod = Method.DELETE,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };
@@ -131,7 +163,7 @@ namespace ApiSdk.Chats.Item.Messages.Item.HostedContents.Item {
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<GetQueryParameters> q = default, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
             var requestInfo = new RequestInformation {
-                HttpMethod = HttpMethod.GET,
+                HttpMethod = Method.GET,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };
@@ -153,7 +185,7 @@ namespace ApiSdk.Chats.Item.Messages.Item.HostedContents.Item {
         public RequestInformation CreatePatchRequestInformation(ChatMessageHostedContent body, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
             _ = body ?? throw new ArgumentNullException(nameof(body));
             var requestInfo = new RequestInformation {
-                HttpMethod = HttpMethod.PATCH,
+                HttpMethod = Method.PATCH,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };

@@ -25,14 +25,20 @@ namespace ApiSdk.DeviceManagement.DeviceConfigurations.Item.Assign {
             var command = new Command("post");
             command.Description = "Invoke action assign";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--deviceconfiguration-id", description: "key: id of deviceConfiguration"));
-            command.AddOption(new Option<string>("--body"));
-            command.Handler = CommandHandler.Create<string, string>(async (deviceConfigurationId, body) => {
+            var deviceConfigurationIdOption = new Option<string>("--deviceconfiguration-id", description: "key: id of deviceConfiguration") {
+            };
+            deviceConfigurationIdOption.IsRequired = true;
+            command.AddOption(deviceConfigurationIdOption);
+            var bodyOption = new Option<string>("--body") {
+            };
+            bodyOption.IsRequired = true;
+            command.AddOption(bodyOption);
+            command.SetHandler(async (string deviceConfigurationId, string body) => {
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<AssignRequestBody>();
-                var requestInfo = CreatePostRequestInformation(model);
-                if (!String.IsNullOrEmpty(deviceConfigurationId)) requestInfo.PathParameters.Add("deviceConfiguration_id", deviceConfigurationId);
+                var requestInfo = CreatePostRequestInformation(model, q => {
+                });
                 var result = await RequestAdapter.SendCollectionAsync<ApiSdk.DeviceManagement.DeviceConfigurations.Item.Assign.Assign>(requestInfo);
                 // Print request output. What if the request has no return?
                 using var serializer = RequestAdapter.SerializationWriterFactory.GetSerializationWriter("application/json");
@@ -41,7 +47,7 @@ namespace ApiSdk.DeviceManagement.DeviceConfigurations.Item.Assign {
                 using var reader = new StreamReader(content);
                 var strContent = await reader.ReadToEndAsync();
                 Console.Write(strContent + "\n");
-            });
+            }, deviceConfigurationIdOption, bodyOption);
             return command;
         }
         /// <summary>
@@ -66,7 +72,7 @@ namespace ApiSdk.DeviceManagement.DeviceConfigurations.Item.Assign {
         public RequestInformation CreatePostRequestInformation(AssignRequestBody body, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
             _ = body ?? throw new ArgumentNullException(nameof(body));
             var requestInfo = new RequestInformation {
-                HttpMethod = HttpMethod.POST,
+                HttpMethod = Method.POST,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };

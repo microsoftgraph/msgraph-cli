@@ -25,14 +25,20 @@ namespace ApiSdk.DirectoryRoles.Item.CheckMemberObjects {
             var command = new Command("post");
             command.Description = "Invoke action checkMemberObjects";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--directoryrole-id", description: "key: id of directoryRole"));
-            command.AddOption(new Option<string>("--body"));
-            command.Handler = CommandHandler.Create<string, string>(async (directoryRoleId, body) => {
+            var directoryRoleIdOption = new Option<string>("--directoryrole-id", description: "key: id of directoryRole") {
+            };
+            directoryRoleIdOption.IsRequired = true;
+            command.AddOption(directoryRoleIdOption);
+            var bodyOption = new Option<string>("--body") {
+            };
+            bodyOption.IsRequired = true;
+            command.AddOption(bodyOption);
+            command.SetHandler(async (string directoryRoleId, string body) => {
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<CheckMemberObjectsRequestBody>();
-                var requestInfo = CreatePostRequestInformation(model);
-                if (!String.IsNullOrEmpty(directoryRoleId)) requestInfo.PathParameters.Add("directoryRole_id", directoryRoleId);
+                var requestInfo = CreatePostRequestInformation(model, q => {
+                });
                 var result = await RequestAdapter.SendPrimitiveCollectionAsync<string>(requestInfo);
                 // Print request output. What if the request has no return?
                 using var serializer = RequestAdapter.SerializationWriterFactory.GetSerializationWriter("application/json");
@@ -41,7 +47,7 @@ namespace ApiSdk.DirectoryRoles.Item.CheckMemberObjects {
                 using var reader = new StreamReader(content);
                 var strContent = await reader.ReadToEndAsync();
                 Console.Write(strContent + "\n");
-            });
+            }, directoryRoleIdOption, bodyOption);
             return command;
         }
         /// <summary>
@@ -66,7 +72,7 @@ namespace ApiSdk.DirectoryRoles.Item.CheckMemberObjects {
         public RequestInformation CreatePostRequestInformation(CheckMemberObjectsRequestBody body, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
             _ = body ?? throw new ArgumentNullException(nameof(body));
             var requestInfo = new RequestInformation {
-                HttpMethod = HttpMethod.POST,
+                HttpMethod = Method.POST,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };

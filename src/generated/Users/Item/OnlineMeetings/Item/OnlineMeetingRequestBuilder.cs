@@ -1,4 +1,5 @@
 using ApiSdk.Models.Microsoft.Graph;
+using ApiSdk.Users.Item.OnlineMeetings.Item.AttendanceReports;
 using ApiSdk.Users.Item.OnlineMeetings.Item.AttendeeReport;
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
@@ -20,6 +21,13 @@ namespace ApiSdk.Users.Item.OnlineMeetings.Item {
         private IRequestAdapter RequestAdapter { get; set; }
         /// <summary>Url template to use to build the URL for the current request builder</summary>
         private string UrlTemplate { get; set; }
+        public Command BuildAttendanceReportsCommand() {
+            var command = new Command("attendance-reports");
+            var builder = new ApiSdk.Users.Item.OnlineMeetings.Item.AttendanceReports.AttendanceReportsRequestBuilder(PathParameters, RequestAdapter);
+            command.AddCommand(builder.BuildCreateCommand());
+            command.AddCommand(builder.BuildListCommand());
+            return command;
+        }
         public Command BuildAttendeeReportCommand() {
             var command = new Command("attendee-report");
             var builder = new ApiSdk.Users.Item.OnlineMeetings.Item.AttendeeReport.AttendeeReportRequestBuilder(PathParameters, RequestAdapter);
@@ -34,16 +42,21 @@ namespace ApiSdk.Users.Item.OnlineMeetings.Item {
             var command = new Command("delete");
             command.Description = "Delete navigation property onlineMeetings for users";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--user-id", description: "key: id of user"));
-            command.AddOption(new Option<string>("--onlinemeeting-id", description: "key: id of onlineMeeting"));
-            command.Handler = CommandHandler.Create<string, string>(async (userId, onlineMeetingId) => {
-                var requestInfo = CreateDeleteRequestInformation();
-                if (!String.IsNullOrEmpty(userId)) requestInfo.PathParameters.Add("user_id", userId);
-                if (!String.IsNullOrEmpty(onlineMeetingId)) requestInfo.PathParameters.Add("onlineMeeting_id", onlineMeetingId);
+            var userIdOption = new Option<string>("--user-id", description: "key: id of user") {
+            };
+            userIdOption.IsRequired = true;
+            command.AddOption(userIdOption);
+            var onlineMeetingIdOption = new Option<string>("--onlinemeeting-id", description: "key: id of onlineMeeting") {
+            };
+            onlineMeetingIdOption.IsRequired = true;
+            command.AddOption(onlineMeetingIdOption);
+            command.SetHandler(async (string userId, string onlineMeetingId) => {
+                var requestInfo = CreateDeleteRequestInformation(q => {
+                });
                 await RequestAdapter.SendNoContentAsync(requestInfo);
                 // Print request output. What if the request has no return?
                 Console.WriteLine("Success");
-            });
+            }, userIdOption, onlineMeetingIdOption);
             return command;
         }
         /// <summary>
@@ -53,16 +66,29 @@ namespace ApiSdk.Users.Item.OnlineMeetings.Item {
             var command = new Command("get");
             command.Description = "Get onlineMeetings from users";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--user-id", description: "key: id of user"));
-            command.AddOption(new Option<string>("--onlinemeeting-id", description: "key: id of onlineMeeting"));
-            command.AddOption(new Option<object>("--select", description: "Select properties to be returned"));
-            command.AddOption(new Option<object>("--expand", description: "Expand related entities"));
-            command.Handler = CommandHandler.Create<string, string, object, object>(async (userId, onlineMeetingId, select, expand) => {
-                var requestInfo = CreateGetRequestInformation();
-                if (!String.IsNullOrEmpty(userId)) requestInfo.PathParameters.Add("user_id", userId);
-                if (!String.IsNullOrEmpty(onlineMeetingId)) requestInfo.PathParameters.Add("onlineMeeting_id", onlineMeetingId);
-                requestInfo.QueryParameters.Add("select", select);
-                requestInfo.QueryParameters.Add("expand", expand);
+            var userIdOption = new Option<string>("--user-id", description: "key: id of user") {
+            };
+            userIdOption.IsRequired = true;
+            command.AddOption(userIdOption);
+            var onlineMeetingIdOption = new Option<string>("--onlinemeeting-id", description: "key: id of onlineMeeting") {
+            };
+            onlineMeetingIdOption.IsRequired = true;
+            command.AddOption(onlineMeetingIdOption);
+            var selectOption = new Option<string[]>("--select", description: "Select properties to be returned") {
+                Arity = ArgumentArity.ZeroOrMore
+            };
+            selectOption.IsRequired = false;
+            command.AddOption(selectOption);
+            var expandOption = new Option<string[]>("--expand", description: "Expand related entities") {
+                Arity = ArgumentArity.ZeroOrMore
+            };
+            expandOption.IsRequired = false;
+            command.AddOption(expandOption);
+            command.SetHandler(async (string userId, string onlineMeetingId, string[] select, string[] expand) => {
+                var requestInfo = CreateGetRequestInformation(q => {
+                    q.Select = select;
+                    q.Expand = expand;
+                });
                 var result = await RequestAdapter.SendAsync<OnlineMeeting>(requestInfo);
                 // Print request output. What if the request has no return?
                 using var serializer = RequestAdapter.SerializationWriterFactory.GetSerializationWriter("application/json");
@@ -71,7 +97,7 @@ namespace ApiSdk.Users.Item.OnlineMeetings.Item {
                 using var reader = new StreamReader(content);
                 var strContent = await reader.ReadToEndAsync();
                 Console.Write(strContent + "\n");
-            });
+            }, userIdOption, onlineMeetingIdOption, selectOption, expandOption);
             return command;
         }
         /// <summary>
@@ -81,20 +107,28 @@ namespace ApiSdk.Users.Item.OnlineMeetings.Item {
             var command = new Command("patch");
             command.Description = "Update the navigation property onlineMeetings in users";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--user-id", description: "key: id of user"));
-            command.AddOption(new Option<string>("--onlinemeeting-id", description: "key: id of onlineMeeting"));
-            command.AddOption(new Option<string>("--body"));
-            command.Handler = CommandHandler.Create<string, string, string>(async (userId, onlineMeetingId, body) => {
+            var userIdOption = new Option<string>("--user-id", description: "key: id of user") {
+            };
+            userIdOption.IsRequired = true;
+            command.AddOption(userIdOption);
+            var onlineMeetingIdOption = new Option<string>("--onlinemeeting-id", description: "key: id of onlineMeeting") {
+            };
+            onlineMeetingIdOption.IsRequired = true;
+            command.AddOption(onlineMeetingIdOption);
+            var bodyOption = new Option<string>("--body") {
+            };
+            bodyOption.IsRequired = true;
+            command.AddOption(bodyOption);
+            command.SetHandler(async (string userId, string onlineMeetingId, string body) => {
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<OnlineMeeting>();
-                var requestInfo = CreatePatchRequestInformation(model);
-                if (!String.IsNullOrEmpty(userId)) requestInfo.PathParameters.Add("user_id", userId);
-                if (!String.IsNullOrEmpty(onlineMeetingId)) requestInfo.PathParameters.Add("onlineMeeting_id", onlineMeetingId);
+                var requestInfo = CreatePatchRequestInformation(model, q => {
+                });
                 await RequestAdapter.SendNoContentAsync(requestInfo);
                 // Print request output. What if the request has no return?
                 Console.WriteLine("Success");
-            });
+            }, userIdOption, onlineMeetingIdOption, bodyOption);
             return command;
         }
         /// <summary>
@@ -117,7 +151,7 @@ namespace ApiSdk.Users.Item.OnlineMeetings.Item {
         /// </summary>
         public RequestInformation CreateDeleteRequestInformation(Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
             var requestInfo = new RequestInformation {
-                HttpMethod = HttpMethod.DELETE,
+                HttpMethod = Method.DELETE,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };
@@ -133,7 +167,7 @@ namespace ApiSdk.Users.Item.OnlineMeetings.Item {
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<GetQueryParameters> q = default, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
             var requestInfo = new RequestInformation {
-                HttpMethod = HttpMethod.GET,
+                HttpMethod = Method.GET,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };
@@ -155,7 +189,7 @@ namespace ApiSdk.Users.Item.OnlineMeetings.Item {
         public RequestInformation CreatePatchRequestInformation(OnlineMeeting body, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
             _ = body ?? throw new ArgumentNullException(nameof(body));
             var requestInfo = new RequestInformation {
-                HttpMethod = HttpMethod.PATCH,
+                HttpMethod = Method.PATCH,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };

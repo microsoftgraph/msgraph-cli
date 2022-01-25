@@ -27,16 +27,21 @@ namespace ApiSdk.Chats.Item.Tabs.Item {
             var command = new Command("delete");
             command.Description = "Delete navigation property tabs for chats";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--chat-id", description: "key: id of chat"));
-            command.AddOption(new Option<string>("--teamstab-id", description: "key: id of teamsTab"));
-            command.Handler = CommandHandler.Create<string, string>(async (chatId, teamsTabId) => {
-                var requestInfo = CreateDeleteRequestInformation();
-                if (!String.IsNullOrEmpty(chatId)) requestInfo.PathParameters.Add("chat_id", chatId);
-                if (!String.IsNullOrEmpty(teamsTabId)) requestInfo.PathParameters.Add("teamsTab_id", teamsTabId);
+            var chatIdOption = new Option<string>("--chat-id", description: "key: id of chat") {
+            };
+            chatIdOption.IsRequired = true;
+            command.AddOption(chatIdOption);
+            var teamsTabIdOption = new Option<string>("--teamstab-id", description: "key: id of teamsTab") {
+            };
+            teamsTabIdOption.IsRequired = true;
+            command.AddOption(teamsTabIdOption);
+            command.SetHandler(async (string chatId, string teamsTabId) => {
+                var requestInfo = CreateDeleteRequestInformation(q => {
+                });
                 await RequestAdapter.SendNoContentAsync(requestInfo);
                 // Print request output. What if the request has no return?
                 Console.WriteLine("Success");
-            });
+            }, chatIdOption, teamsTabIdOption);
             return command;
         }
         /// <summary>
@@ -46,16 +51,29 @@ namespace ApiSdk.Chats.Item.Tabs.Item {
             var command = new Command("get");
             command.Description = "Get tabs from chats";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--chat-id", description: "key: id of chat"));
-            command.AddOption(new Option<string>("--teamstab-id", description: "key: id of teamsTab"));
-            command.AddOption(new Option<object>("--select", description: "Select properties to be returned"));
-            command.AddOption(new Option<object>("--expand", description: "Expand related entities"));
-            command.Handler = CommandHandler.Create<string, string, object, object>(async (chatId, teamsTabId, select, expand) => {
-                var requestInfo = CreateGetRequestInformation();
-                if (!String.IsNullOrEmpty(chatId)) requestInfo.PathParameters.Add("chat_id", chatId);
-                if (!String.IsNullOrEmpty(teamsTabId)) requestInfo.PathParameters.Add("teamsTab_id", teamsTabId);
-                requestInfo.QueryParameters.Add("select", select);
-                requestInfo.QueryParameters.Add("expand", expand);
+            var chatIdOption = new Option<string>("--chat-id", description: "key: id of chat") {
+            };
+            chatIdOption.IsRequired = true;
+            command.AddOption(chatIdOption);
+            var teamsTabIdOption = new Option<string>("--teamstab-id", description: "key: id of teamsTab") {
+            };
+            teamsTabIdOption.IsRequired = true;
+            command.AddOption(teamsTabIdOption);
+            var selectOption = new Option<string[]>("--select", description: "Select properties to be returned") {
+                Arity = ArgumentArity.ZeroOrMore
+            };
+            selectOption.IsRequired = false;
+            command.AddOption(selectOption);
+            var expandOption = new Option<string[]>("--expand", description: "Expand related entities") {
+                Arity = ArgumentArity.ZeroOrMore
+            };
+            expandOption.IsRequired = false;
+            command.AddOption(expandOption);
+            command.SetHandler(async (string chatId, string teamsTabId, string[] select, string[] expand) => {
+                var requestInfo = CreateGetRequestInformation(q => {
+                    q.Select = select;
+                    q.Expand = expand;
+                });
                 var result = await RequestAdapter.SendAsync<TeamsTab>(requestInfo);
                 // Print request output. What if the request has no return?
                 using var serializer = RequestAdapter.SerializationWriterFactory.GetSerializationWriter("application/json");
@@ -64,7 +82,7 @@ namespace ApiSdk.Chats.Item.Tabs.Item {
                 using var reader = new StreamReader(content);
                 var strContent = await reader.ReadToEndAsync();
                 Console.Write(strContent + "\n");
-            });
+            }, chatIdOption, teamsTabIdOption, selectOption, expandOption);
             return command;
         }
         /// <summary>
@@ -74,20 +92,28 @@ namespace ApiSdk.Chats.Item.Tabs.Item {
             var command = new Command("patch");
             command.Description = "Update the navigation property tabs in chats";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--chat-id", description: "key: id of chat"));
-            command.AddOption(new Option<string>("--teamstab-id", description: "key: id of teamsTab"));
-            command.AddOption(new Option<string>("--body"));
-            command.Handler = CommandHandler.Create<string, string, string>(async (chatId, teamsTabId, body) => {
+            var chatIdOption = new Option<string>("--chat-id", description: "key: id of chat") {
+            };
+            chatIdOption.IsRequired = true;
+            command.AddOption(chatIdOption);
+            var teamsTabIdOption = new Option<string>("--teamstab-id", description: "key: id of teamsTab") {
+            };
+            teamsTabIdOption.IsRequired = true;
+            command.AddOption(teamsTabIdOption);
+            var bodyOption = new Option<string>("--body") {
+            };
+            bodyOption.IsRequired = true;
+            command.AddOption(bodyOption);
+            command.SetHandler(async (string chatId, string teamsTabId, string body) => {
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<TeamsTab>();
-                var requestInfo = CreatePatchRequestInformation(model);
-                if (!String.IsNullOrEmpty(chatId)) requestInfo.PathParameters.Add("chat_id", chatId);
-                if (!String.IsNullOrEmpty(teamsTabId)) requestInfo.PathParameters.Add("teamsTab_id", teamsTabId);
+                var requestInfo = CreatePatchRequestInformation(model, q => {
+                });
                 await RequestAdapter.SendNoContentAsync(requestInfo);
                 // Print request output. What if the request has no return?
                 Console.WriteLine("Success");
-            });
+            }, chatIdOption, teamsTabIdOption, bodyOption);
             return command;
         }
         public Command BuildTeamsAppCommand() {
@@ -117,7 +143,7 @@ namespace ApiSdk.Chats.Item.Tabs.Item {
         /// </summary>
         public RequestInformation CreateDeleteRequestInformation(Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
             var requestInfo = new RequestInformation {
-                HttpMethod = HttpMethod.DELETE,
+                HttpMethod = Method.DELETE,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };
@@ -133,7 +159,7 @@ namespace ApiSdk.Chats.Item.Tabs.Item {
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<GetQueryParameters> q = default, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
             var requestInfo = new RequestInformation {
-                HttpMethod = HttpMethod.GET,
+                HttpMethod = Method.GET,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };
@@ -155,7 +181,7 @@ namespace ApiSdk.Chats.Item.Tabs.Item {
         public RequestInformation CreatePatchRequestInformation(TeamsTab body, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
             _ = body ?? throw new ArgumentNullException(nameof(body));
             var requestInfo = new RequestInformation {
-                HttpMethod = HttpMethod.PATCH,
+                HttpMethod = Method.PATCH,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };

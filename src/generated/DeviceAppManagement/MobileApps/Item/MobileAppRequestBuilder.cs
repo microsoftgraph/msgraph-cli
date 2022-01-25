@@ -49,14 +49,17 @@ namespace ApiSdk.DeviceAppManagement.MobileApps.Item {
             var command = new Command("delete");
             command.Description = "The mobile apps.";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--mobileapp-id", description: "key: id of mobileApp"));
-            command.Handler = CommandHandler.Create<string>(async (mobileAppId) => {
-                var requestInfo = CreateDeleteRequestInformation();
-                if (!String.IsNullOrEmpty(mobileAppId)) requestInfo.PathParameters.Add("mobileApp_id", mobileAppId);
+            var mobileAppIdOption = new Option<string>("--mobileapp-id", description: "key: id of mobileApp") {
+            };
+            mobileAppIdOption.IsRequired = true;
+            command.AddOption(mobileAppIdOption);
+            command.SetHandler(async (string mobileAppId) => {
+                var requestInfo = CreateDeleteRequestInformation(q => {
+                });
                 await RequestAdapter.SendNoContentAsync(requestInfo);
                 // Print request output. What if the request has no return?
                 Console.WriteLine("Success");
-            });
+            }, mobileAppIdOption);
             return command;
         }
         /// <summary>
@@ -66,14 +69,25 @@ namespace ApiSdk.DeviceAppManagement.MobileApps.Item {
             var command = new Command("get");
             command.Description = "The mobile apps.";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--mobileapp-id", description: "key: id of mobileApp"));
-            command.AddOption(new Option<object>("--select", description: "Select properties to be returned"));
-            command.AddOption(new Option<object>("--expand", description: "Expand related entities"));
-            command.Handler = CommandHandler.Create<string, object, object>(async (mobileAppId, select, expand) => {
-                var requestInfo = CreateGetRequestInformation();
-                if (!String.IsNullOrEmpty(mobileAppId)) requestInfo.PathParameters.Add("mobileApp_id", mobileAppId);
-                requestInfo.QueryParameters.Add("select", select);
-                requestInfo.QueryParameters.Add("expand", expand);
+            var mobileAppIdOption = new Option<string>("--mobileapp-id", description: "key: id of mobileApp") {
+            };
+            mobileAppIdOption.IsRequired = true;
+            command.AddOption(mobileAppIdOption);
+            var selectOption = new Option<string[]>("--select", description: "Select properties to be returned") {
+                Arity = ArgumentArity.ZeroOrMore
+            };
+            selectOption.IsRequired = false;
+            command.AddOption(selectOption);
+            var expandOption = new Option<string[]>("--expand", description: "Expand related entities") {
+                Arity = ArgumentArity.ZeroOrMore
+            };
+            expandOption.IsRequired = false;
+            command.AddOption(expandOption);
+            command.SetHandler(async (string mobileAppId, string[] select, string[] expand) => {
+                var requestInfo = CreateGetRequestInformation(q => {
+                    q.Select = select;
+                    q.Expand = expand;
+                });
                 var result = await RequestAdapter.SendAsync<MobileApp>(requestInfo);
                 // Print request output. What if the request has no return?
                 using var serializer = RequestAdapter.SerializationWriterFactory.GetSerializationWriter("application/json");
@@ -82,7 +96,7 @@ namespace ApiSdk.DeviceAppManagement.MobileApps.Item {
                 using var reader = new StreamReader(content);
                 var strContent = await reader.ReadToEndAsync();
                 Console.Write(strContent + "\n");
-            });
+            }, mobileAppIdOption, selectOption, expandOption);
             return command;
         }
         /// <summary>
@@ -92,18 +106,24 @@ namespace ApiSdk.DeviceAppManagement.MobileApps.Item {
             var command = new Command("patch");
             command.Description = "The mobile apps.";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--mobileapp-id", description: "key: id of mobileApp"));
-            command.AddOption(new Option<string>("--body"));
-            command.Handler = CommandHandler.Create<string, string>(async (mobileAppId, body) => {
+            var mobileAppIdOption = new Option<string>("--mobileapp-id", description: "key: id of mobileApp") {
+            };
+            mobileAppIdOption.IsRequired = true;
+            command.AddOption(mobileAppIdOption);
+            var bodyOption = new Option<string>("--body") {
+            };
+            bodyOption.IsRequired = true;
+            command.AddOption(bodyOption);
+            command.SetHandler(async (string mobileAppId, string body) => {
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<MobileApp>();
-                var requestInfo = CreatePatchRequestInformation(model);
-                if (!String.IsNullOrEmpty(mobileAppId)) requestInfo.PathParameters.Add("mobileApp_id", mobileAppId);
+                var requestInfo = CreatePatchRequestInformation(model, q => {
+                });
                 await RequestAdapter.SendNoContentAsync(requestInfo);
                 // Print request output. What if the request has no return?
                 Console.WriteLine("Success");
-            });
+            }, mobileAppIdOption, bodyOption);
             return command;
         }
         /// <summary>
@@ -126,7 +146,7 @@ namespace ApiSdk.DeviceAppManagement.MobileApps.Item {
         /// </summary>
         public RequestInformation CreateDeleteRequestInformation(Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
             var requestInfo = new RequestInformation {
-                HttpMethod = HttpMethod.DELETE,
+                HttpMethod = Method.DELETE,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };
@@ -142,7 +162,7 @@ namespace ApiSdk.DeviceAppManagement.MobileApps.Item {
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<GetQueryParameters> q = default, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
             var requestInfo = new RequestInformation {
-                HttpMethod = HttpMethod.GET,
+                HttpMethod = Method.GET,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };
@@ -164,7 +184,7 @@ namespace ApiSdk.DeviceAppManagement.MobileApps.Item {
         public RequestInformation CreatePatchRequestInformation(MobileApp body, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
             _ = body ?? throw new ArgumentNullException(nameof(body));
             var requestInfo = new RequestInformation {
-                HttpMethod = HttpMethod.PATCH,
+                HttpMethod = Method.PATCH,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };

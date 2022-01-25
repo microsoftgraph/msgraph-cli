@@ -26,16 +26,24 @@ namespace ApiSdk.Me.MailFolders.Item.ChildFolders.Item.Copy {
             var command = new Command("post");
             command.Description = "Invoke action copy";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--mailfolder-id", description: "key: id of mailFolder"));
-            command.AddOption(new Option<string>("--mailfolder-id1", description: "key: id of mailFolder"));
-            command.AddOption(new Option<string>("--body"));
-            command.Handler = CommandHandler.Create<string, string, string>(async (mailFolderId, mailFolderId1, body) => {
+            var mailFolderIdOption = new Option<string>("--mailfolder-id", description: "key: id of mailFolder") {
+            };
+            mailFolderIdOption.IsRequired = true;
+            command.AddOption(mailFolderIdOption);
+            var mailFolderId1Option = new Option<string>("--mailfolder-id1", description: "key: id of mailFolder") {
+            };
+            mailFolderId1Option.IsRequired = true;
+            command.AddOption(mailFolderId1Option);
+            var bodyOption = new Option<string>("--body") {
+            };
+            bodyOption.IsRequired = true;
+            command.AddOption(bodyOption);
+            command.SetHandler(async (string mailFolderId, string mailFolderId1, string body) => {
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<CopyRequestBody>();
-                var requestInfo = CreatePostRequestInformation(model);
-                if (!String.IsNullOrEmpty(mailFolderId)) requestInfo.PathParameters.Add("mailFolder_id", mailFolderId);
-                if (!String.IsNullOrEmpty(mailFolderId1)) requestInfo.PathParameters.Add("mailFolder_id1", mailFolderId1);
+                var requestInfo = CreatePostRequestInformation(model, q => {
+                });
                 var result = await RequestAdapter.SendAsync<CopyResponse>(requestInfo);
                 // Print request output. What if the request has no return?
                 using var serializer = RequestAdapter.SerializationWriterFactory.GetSerializationWriter("application/json");
@@ -44,7 +52,7 @@ namespace ApiSdk.Me.MailFolders.Item.ChildFolders.Item.Copy {
                 using var reader = new StreamReader(content);
                 var strContent = await reader.ReadToEndAsync();
                 Console.Write(strContent + "\n");
-            });
+            }, mailFolderIdOption, mailFolderId1Option, bodyOption);
             return command;
         }
         /// <summary>
@@ -69,7 +77,7 @@ namespace ApiSdk.Me.MailFolders.Item.ChildFolders.Item.Copy {
         public RequestInformation CreatePostRequestInformation(CopyRequestBody body, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
             _ = body ?? throw new ArgumentNullException(nameof(body));
             var requestInfo = new RequestInformation {
-                HttpMethod = HttpMethod.POST,
+                HttpMethod = Method.POST,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };

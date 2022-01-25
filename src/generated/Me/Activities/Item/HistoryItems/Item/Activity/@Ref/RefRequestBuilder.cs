@@ -25,16 +25,21 @@ namespace ApiSdk.Me.Activities.Item.HistoryItems.Item.Activity.@Ref {
             var command = new Command("delete");
             command.Description = "Optional. NavigationProperty/Containment; navigation property to the associated activity.";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--useractivity-id", description: "key: id of userActivity"));
-            command.AddOption(new Option<string>("--activityhistoryitem-id", description: "key: id of activityHistoryItem"));
-            command.Handler = CommandHandler.Create<string, string>(async (userActivityId, activityHistoryItemId) => {
-                var requestInfo = CreateDeleteRequestInformation();
-                if (!String.IsNullOrEmpty(userActivityId)) requestInfo.PathParameters.Add("userActivity_id", userActivityId);
-                if (!String.IsNullOrEmpty(activityHistoryItemId)) requestInfo.PathParameters.Add("activityHistoryItem_id", activityHistoryItemId);
+            var userActivityIdOption = new Option<string>("--useractivity-id", description: "key: id of userActivity") {
+            };
+            userActivityIdOption.IsRequired = true;
+            command.AddOption(userActivityIdOption);
+            var activityHistoryItemIdOption = new Option<string>("--activityhistoryitem-id", description: "key: id of activityHistoryItem") {
+            };
+            activityHistoryItemIdOption.IsRequired = true;
+            command.AddOption(activityHistoryItemIdOption);
+            command.SetHandler(async (string userActivityId, string activityHistoryItemId) => {
+                var requestInfo = CreateDeleteRequestInformation(q => {
+                });
                 await RequestAdapter.SendNoContentAsync(requestInfo);
                 // Print request output. What if the request has no return?
                 Console.WriteLine("Success");
-            });
+            }, userActivityIdOption, activityHistoryItemIdOption);
             return command;
         }
         /// <summary>
@@ -44,12 +49,17 @@ namespace ApiSdk.Me.Activities.Item.HistoryItems.Item.Activity.@Ref {
             var command = new Command("get");
             command.Description = "Optional. NavigationProperty/Containment; navigation property to the associated activity.";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--useractivity-id", description: "key: id of userActivity"));
-            command.AddOption(new Option<string>("--activityhistoryitem-id", description: "key: id of activityHistoryItem"));
-            command.Handler = CommandHandler.Create<string, string>(async (userActivityId, activityHistoryItemId) => {
-                var requestInfo = CreateGetRequestInformation();
-                if (!String.IsNullOrEmpty(userActivityId)) requestInfo.PathParameters.Add("userActivity_id", userActivityId);
-                if (!String.IsNullOrEmpty(activityHistoryItemId)) requestInfo.PathParameters.Add("activityHistoryItem_id", activityHistoryItemId);
+            var userActivityIdOption = new Option<string>("--useractivity-id", description: "key: id of userActivity") {
+            };
+            userActivityIdOption.IsRequired = true;
+            command.AddOption(userActivityIdOption);
+            var activityHistoryItemIdOption = new Option<string>("--activityhistoryitem-id", description: "key: id of activityHistoryItem") {
+            };
+            activityHistoryItemIdOption.IsRequired = true;
+            command.AddOption(activityHistoryItemIdOption);
+            command.SetHandler(async (string userActivityId, string activityHistoryItemId) => {
+                var requestInfo = CreateGetRequestInformation(q => {
+                });
                 var result = await RequestAdapter.SendPrimitiveAsync<string>(requestInfo);
                 // Print request output. What if the request has no return?
                 using var serializer = RequestAdapter.SerializationWriterFactory.GetSerializationWriter("application/json");
@@ -58,7 +68,7 @@ namespace ApiSdk.Me.Activities.Item.HistoryItems.Item.Activity.@Ref {
                 using var reader = new StreamReader(content);
                 var strContent = await reader.ReadToEndAsync();
                 Console.Write(strContent + "\n");
-            });
+            }, userActivityIdOption, activityHistoryItemIdOption);
             return command;
         }
         /// <summary>
@@ -68,20 +78,28 @@ namespace ApiSdk.Me.Activities.Item.HistoryItems.Item.Activity.@Ref {
             var command = new Command("put");
             command.Description = "Optional. NavigationProperty/Containment; navigation property to the associated activity.";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--useractivity-id", description: "key: id of userActivity"));
-            command.AddOption(new Option<string>("--activityhistoryitem-id", description: "key: id of activityHistoryItem"));
-            command.AddOption(new Option<string>("--body"));
-            command.Handler = CommandHandler.Create<string, string, string>(async (userActivityId, activityHistoryItemId, body) => {
+            var userActivityIdOption = new Option<string>("--useractivity-id", description: "key: id of userActivity") {
+            };
+            userActivityIdOption.IsRequired = true;
+            command.AddOption(userActivityIdOption);
+            var activityHistoryItemIdOption = new Option<string>("--activityhistoryitem-id", description: "key: id of activityHistoryItem") {
+            };
+            activityHistoryItemIdOption.IsRequired = true;
+            command.AddOption(activityHistoryItemIdOption);
+            var bodyOption = new Option<string>("--body") {
+            };
+            bodyOption.IsRequired = true;
+            command.AddOption(bodyOption);
+            command.SetHandler(async (string userActivityId, string activityHistoryItemId, string body) => {
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<ApiSdk.Me.Activities.Item.HistoryItems.Item.Activity.@Ref.@Ref>();
-                var requestInfo = CreatePutRequestInformation(model);
-                if (!String.IsNullOrEmpty(userActivityId)) requestInfo.PathParameters.Add("userActivity_id", userActivityId);
-                if (!String.IsNullOrEmpty(activityHistoryItemId)) requestInfo.PathParameters.Add("activityHistoryItem_id", activityHistoryItemId);
+                var requestInfo = CreatePutRequestInformation(model, q => {
+                });
                 await RequestAdapter.SendNoContentAsync(requestInfo);
                 // Print request output. What if the request has no return?
                 Console.WriteLine("Success");
-            });
+            }, userActivityIdOption, activityHistoryItemIdOption, bodyOption);
             return command;
         }
         /// <summary>
@@ -104,7 +122,7 @@ namespace ApiSdk.Me.Activities.Item.HistoryItems.Item.Activity.@Ref {
         /// </summary>
         public RequestInformation CreateDeleteRequestInformation(Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
             var requestInfo = new RequestInformation {
-                HttpMethod = HttpMethod.DELETE,
+                HttpMethod = Method.DELETE,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };
@@ -119,7 +137,7 @@ namespace ApiSdk.Me.Activities.Item.HistoryItems.Item.Activity.@Ref {
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
             var requestInfo = new RequestInformation {
-                HttpMethod = HttpMethod.GET,
+                HttpMethod = Method.GET,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };
@@ -136,7 +154,7 @@ namespace ApiSdk.Me.Activities.Item.HistoryItems.Item.Activity.@Ref {
         public RequestInformation CreatePutRequestInformation(ApiSdk.Me.Activities.Item.HistoryItems.Item.Activity.@Ref.@Ref body, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
             _ = body ?? throw new ArgumentNullException(nameof(body));
             var requestInfo = new RequestInformation {
-                HttpMethod = HttpMethod.PUT,
+                HttpMethod = Method.PUT,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };

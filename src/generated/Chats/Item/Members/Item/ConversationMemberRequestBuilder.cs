@@ -26,16 +26,21 @@ namespace ApiSdk.Chats.Item.Members.Item {
             var command = new Command("delete");
             command.Description = "A collection of all the members in the chat. Nullable.";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--chat-id", description: "key: id of chat"));
-            command.AddOption(new Option<string>("--conversationmember-id", description: "key: id of conversationMember"));
-            command.Handler = CommandHandler.Create<string, string>(async (chatId, conversationMemberId) => {
-                var requestInfo = CreateDeleteRequestInformation();
-                if (!String.IsNullOrEmpty(chatId)) requestInfo.PathParameters.Add("chat_id", chatId);
-                if (!String.IsNullOrEmpty(conversationMemberId)) requestInfo.PathParameters.Add("conversationMember_id", conversationMemberId);
+            var chatIdOption = new Option<string>("--chat-id", description: "key: id of chat") {
+            };
+            chatIdOption.IsRequired = true;
+            command.AddOption(chatIdOption);
+            var conversationMemberIdOption = new Option<string>("--conversationmember-id", description: "key: id of conversationMember") {
+            };
+            conversationMemberIdOption.IsRequired = true;
+            command.AddOption(conversationMemberIdOption);
+            command.SetHandler(async (string chatId, string conversationMemberId) => {
+                var requestInfo = CreateDeleteRequestInformation(q => {
+                });
                 await RequestAdapter.SendNoContentAsync(requestInfo);
                 // Print request output. What if the request has no return?
                 Console.WriteLine("Success");
-            });
+            }, chatIdOption, conversationMemberIdOption);
             return command;
         }
         /// <summary>
@@ -45,16 +50,29 @@ namespace ApiSdk.Chats.Item.Members.Item {
             var command = new Command("get");
             command.Description = "A collection of all the members in the chat. Nullable.";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--chat-id", description: "key: id of chat"));
-            command.AddOption(new Option<string>("--conversationmember-id", description: "key: id of conversationMember"));
-            command.AddOption(new Option<object>("--select", description: "Select properties to be returned"));
-            command.AddOption(new Option<object>("--expand", description: "Expand related entities"));
-            command.Handler = CommandHandler.Create<string, string, object, object>(async (chatId, conversationMemberId, select, expand) => {
-                var requestInfo = CreateGetRequestInformation();
-                if (!String.IsNullOrEmpty(chatId)) requestInfo.PathParameters.Add("chat_id", chatId);
-                if (!String.IsNullOrEmpty(conversationMemberId)) requestInfo.PathParameters.Add("conversationMember_id", conversationMemberId);
-                requestInfo.QueryParameters.Add("select", select);
-                requestInfo.QueryParameters.Add("expand", expand);
+            var chatIdOption = new Option<string>("--chat-id", description: "key: id of chat") {
+            };
+            chatIdOption.IsRequired = true;
+            command.AddOption(chatIdOption);
+            var conversationMemberIdOption = new Option<string>("--conversationmember-id", description: "key: id of conversationMember") {
+            };
+            conversationMemberIdOption.IsRequired = true;
+            command.AddOption(conversationMemberIdOption);
+            var selectOption = new Option<string[]>("--select", description: "Select properties to be returned") {
+                Arity = ArgumentArity.ZeroOrMore
+            };
+            selectOption.IsRequired = false;
+            command.AddOption(selectOption);
+            var expandOption = new Option<string[]>("--expand", description: "Expand related entities") {
+                Arity = ArgumentArity.ZeroOrMore
+            };
+            expandOption.IsRequired = false;
+            command.AddOption(expandOption);
+            command.SetHandler(async (string chatId, string conversationMemberId, string[] select, string[] expand) => {
+                var requestInfo = CreateGetRequestInformation(q => {
+                    q.Select = select;
+                    q.Expand = expand;
+                });
                 var result = await RequestAdapter.SendAsync<ConversationMember>(requestInfo);
                 // Print request output. What if the request has no return?
                 using var serializer = RequestAdapter.SerializationWriterFactory.GetSerializationWriter("application/json");
@@ -63,7 +81,7 @@ namespace ApiSdk.Chats.Item.Members.Item {
                 using var reader = new StreamReader(content);
                 var strContent = await reader.ReadToEndAsync();
                 Console.Write(strContent + "\n");
-            });
+            }, chatIdOption, conversationMemberIdOption, selectOption, expandOption);
             return command;
         }
         /// <summary>
@@ -73,20 +91,28 @@ namespace ApiSdk.Chats.Item.Members.Item {
             var command = new Command("patch");
             command.Description = "A collection of all the members in the chat. Nullable.";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--chat-id", description: "key: id of chat"));
-            command.AddOption(new Option<string>("--conversationmember-id", description: "key: id of conversationMember"));
-            command.AddOption(new Option<string>("--body"));
-            command.Handler = CommandHandler.Create<string, string, string>(async (chatId, conversationMemberId, body) => {
+            var chatIdOption = new Option<string>("--chat-id", description: "key: id of chat") {
+            };
+            chatIdOption.IsRequired = true;
+            command.AddOption(chatIdOption);
+            var conversationMemberIdOption = new Option<string>("--conversationmember-id", description: "key: id of conversationMember") {
+            };
+            conversationMemberIdOption.IsRequired = true;
+            command.AddOption(conversationMemberIdOption);
+            var bodyOption = new Option<string>("--body") {
+            };
+            bodyOption.IsRequired = true;
+            command.AddOption(bodyOption);
+            command.SetHandler(async (string chatId, string conversationMemberId, string body) => {
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<ConversationMember>();
-                var requestInfo = CreatePatchRequestInformation(model);
-                if (!String.IsNullOrEmpty(chatId)) requestInfo.PathParameters.Add("chat_id", chatId);
-                if (!String.IsNullOrEmpty(conversationMemberId)) requestInfo.PathParameters.Add("conversationMember_id", conversationMemberId);
+                var requestInfo = CreatePatchRequestInformation(model, q => {
+                });
                 await RequestAdapter.SendNoContentAsync(requestInfo);
                 // Print request output. What if the request has no return?
                 Console.WriteLine("Success");
-            });
+            }, chatIdOption, conversationMemberIdOption, bodyOption);
             return command;
         }
         /// <summary>
@@ -109,7 +135,7 @@ namespace ApiSdk.Chats.Item.Members.Item {
         /// </summary>
         public RequestInformation CreateDeleteRequestInformation(Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
             var requestInfo = new RequestInformation {
-                HttpMethod = HttpMethod.DELETE,
+                HttpMethod = Method.DELETE,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };
@@ -125,7 +151,7 @@ namespace ApiSdk.Chats.Item.Members.Item {
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<GetQueryParameters> q = default, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
             var requestInfo = new RequestInformation {
-                HttpMethod = HttpMethod.GET,
+                HttpMethod = Method.GET,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };
@@ -147,7 +173,7 @@ namespace ApiSdk.Chats.Item.Members.Item {
         public RequestInformation CreatePatchRequestInformation(ConversationMember body, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
             _ = body ?? throw new ArgumentNullException(nameof(body));
             var requestInfo = new RequestInformation {
-                HttpMethod = HttpMethod.PATCH,
+                HttpMethod = Method.PATCH,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };

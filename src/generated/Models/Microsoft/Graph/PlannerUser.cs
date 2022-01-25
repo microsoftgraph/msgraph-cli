@@ -7,7 +7,7 @@ namespace ApiSdk.Models.Microsoft.Graph {
     public class PlannerUser : Entity, IParsable {
         /// <summary>Read-only. Nullable. Returns the plannerTasks assigned to the user.</summary>
         public List<PlannerPlan> Plans { get; set; }
-        /// <summary>Read-only. Nullable. Returns the plannerPlans shared with the user.</summary>
+        /// <summary>Read-only. Nullable. Returns the plannerTasks assigned to the user.</summary>
         public List<PlannerTask> Tasks { get; set; }
         /// <summary>
         /// The deserialization information for the current model

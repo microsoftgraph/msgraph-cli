@@ -25,14 +25,17 @@ namespace ApiSdk.Invitations.Item.InvitedUser.@Ref {
             var command = new Command("delete");
             command.Description = "The user created as part of the invitation creation. Read-Only";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--invitation-id", description: "key: id of invitation"));
-            command.Handler = CommandHandler.Create<string>(async (invitationId) => {
-                var requestInfo = CreateDeleteRequestInformation();
-                if (!String.IsNullOrEmpty(invitationId)) requestInfo.PathParameters.Add("invitation_id", invitationId);
+            var invitationIdOption = new Option<string>("--invitation-id", description: "key: id of invitation") {
+            };
+            invitationIdOption.IsRequired = true;
+            command.AddOption(invitationIdOption);
+            command.SetHandler(async (string invitationId) => {
+                var requestInfo = CreateDeleteRequestInformation(q => {
+                });
                 await RequestAdapter.SendNoContentAsync(requestInfo);
                 // Print request output. What if the request has no return?
                 Console.WriteLine("Success");
-            });
+            }, invitationIdOption);
             return command;
         }
         /// <summary>
@@ -42,10 +45,13 @@ namespace ApiSdk.Invitations.Item.InvitedUser.@Ref {
             var command = new Command("get");
             command.Description = "The user created as part of the invitation creation. Read-Only";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--invitation-id", description: "key: id of invitation"));
-            command.Handler = CommandHandler.Create<string>(async (invitationId) => {
-                var requestInfo = CreateGetRequestInformation();
-                if (!String.IsNullOrEmpty(invitationId)) requestInfo.PathParameters.Add("invitation_id", invitationId);
+            var invitationIdOption = new Option<string>("--invitation-id", description: "key: id of invitation") {
+            };
+            invitationIdOption.IsRequired = true;
+            command.AddOption(invitationIdOption);
+            command.SetHandler(async (string invitationId) => {
+                var requestInfo = CreateGetRequestInformation(q => {
+                });
                 var result = await RequestAdapter.SendPrimitiveAsync<string>(requestInfo);
                 // Print request output. What if the request has no return?
                 using var serializer = RequestAdapter.SerializationWriterFactory.GetSerializationWriter("application/json");
@@ -54,7 +60,7 @@ namespace ApiSdk.Invitations.Item.InvitedUser.@Ref {
                 using var reader = new StreamReader(content);
                 var strContent = await reader.ReadToEndAsync();
                 Console.Write(strContent + "\n");
-            });
+            }, invitationIdOption);
             return command;
         }
         /// <summary>
@@ -64,18 +70,24 @@ namespace ApiSdk.Invitations.Item.InvitedUser.@Ref {
             var command = new Command("put");
             command.Description = "The user created as part of the invitation creation. Read-Only";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--invitation-id", description: "key: id of invitation"));
-            command.AddOption(new Option<string>("--body"));
-            command.Handler = CommandHandler.Create<string, string>(async (invitationId, body) => {
+            var invitationIdOption = new Option<string>("--invitation-id", description: "key: id of invitation") {
+            };
+            invitationIdOption.IsRequired = true;
+            command.AddOption(invitationIdOption);
+            var bodyOption = new Option<string>("--body") {
+            };
+            bodyOption.IsRequired = true;
+            command.AddOption(bodyOption);
+            command.SetHandler(async (string invitationId, string body) => {
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<ApiSdk.Invitations.Item.InvitedUser.@Ref.@Ref>();
-                var requestInfo = CreatePutRequestInformation(model);
-                if (!String.IsNullOrEmpty(invitationId)) requestInfo.PathParameters.Add("invitation_id", invitationId);
+                var requestInfo = CreatePutRequestInformation(model, q => {
+                });
                 await RequestAdapter.SendNoContentAsync(requestInfo);
                 // Print request output. What if the request has no return?
                 Console.WriteLine("Success");
-            });
+            }, invitationIdOption, bodyOption);
             return command;
         }
         /// <summary>
@@ -98,7 +110,7 @@ namespace ApiSdk.Invitations.Item.InvitedUser.@Ref {
         /// </summary>
         public RequestInformation CreateDeleteRequestInformation(Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
             var requestInfo = new RequestInformation {
-                HttpMethod = HttpMethod.DELETE,
+                HttpMethod = Method.DELETE,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };
@@ -113,7 +125,7 @@ namespace ApiSdk.Invitations.Item.InvitedUser.@Ref {
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
             var requestInfo = new RequestInformation {
-                HttpMethod = HttpMethod.GET,
+                HttpMethod = Method.GET,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };
@@ -130,7 +142,7 @@ namespace ApiSdk.Invitations.Item.InvitedUser.@Ref {
         public RequestInformation CreatePutRequestInformation(ApiSdk.Invitations.Item.InvitedUser.@Ref.@Ref body, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
             _ = body ?? throw new ArgumentNullException(nameof(body));
             var requestInfo = new RequestInformation {
-                HttpMethod = HttpMethod.PUT,
+                HttpMethod = Method.PUT,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };

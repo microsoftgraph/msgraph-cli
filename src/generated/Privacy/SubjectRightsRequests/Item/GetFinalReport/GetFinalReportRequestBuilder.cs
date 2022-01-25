@@ -25,11 +25,15 @@ namespace ApiSdk.Privacy.SubjectRightsRequests.Item.GetFinalReport {
             var command = new Command("get");
             command.Description = "Invoke function getFinalReport";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--subjectrightsrequest-id", description: "key: id of subjectRightsRequest"));
-            command.AddOption(new Option<FileInfo>("--output"));
-            command.Handler = CommandHandler.Create<string, FileInfo>(async (subjectRightsRequestId, output) => {
-                var requestInfo = CreateGetRequestInformation();
-                if (!String.IsNullOrEmpty(subjectRightsRequestId)) requestInfo.PathParameters.Add("subjectRightsRequest_id", subjectRightsRequestId);
+            var subjectRightsRequestIdOption = new Option<string>("--subjectrightsrequest-id", description: "key: id of subjectRightsRequest") {
+            };
+            subjectRightsRequestIdOption.IsRequired = true;
+            command.AddOption(subjectRightsRequestIdOption);
+            var outputOption = new Option<FileInfo>("--output");
+            command.AddOption(outputOption);
+            command.SetHandler(async (string subjectRightsRequestId, FileInfo output) => {
+                var requestInfo = CreateGetRequestInformation(q => {
+                });
                 var result = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 // Print request output. What if the request has no return?
                 if (output == null) {
@@ -42,7 +46,7 @@ namespace ApiSdk.Privacy.SubjectRightsRequests.Item.GetFinalReport {
                     await result.CopyToAsync(writeStream);
                     Console.WriteLine($"Content written to {output.FullName}.");
                 }
-            });
+            }, subjectRightsRequestIdOption, outputOption);
             return command;
         }
         /// <summary>
@@ -65,7 +69,7 @@ namespace ApiSdk.Privacy.SubjectRightsRequests.Item.GetFinalReport {
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
             var requestInfo = new RequestInformation {
-                HttpMethod = HttpMethod.GET,
+                HttpMethod = Method.GET,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };

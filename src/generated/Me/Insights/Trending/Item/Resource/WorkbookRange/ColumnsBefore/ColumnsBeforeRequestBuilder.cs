@@ -26,10 +26,13 @@ namespace ApiSdk.Me.Insights.Trending.Item.Resource.WorkbookRange.ColumnsBefore 
             var command = new Command("get");
             command.Description = "Invoke function columnsBefore";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--trending-id", description: "key: id of trending"));
-            command.Handler = CommandHandler.Create<string>(async (trendingId) => {
-                var requestInfo = CreateGetRequestInformation();
-                if (!String.IsNullOrEmpty(trendingId)) requestInfo.PathParameters.Add("trending_id", trendingId);
+            var trendingIdOption = new Option<string>("--trending-id", description: "key: id of trending") {
+            };
+            trendingIdOption.IsRequired = true;
+            command.AddOption(trendingIdOption);
+            command.SetHandler(async (string trendingId) => {
+                var requestInfo = CreateGetRequestInformation(q => {
+                });
                 var result = await RequestAdapter.SendAsync<ColumnsBeforeResponse>(requestInfo);
                 // Print request output. What if the request has no return?
                 using var serializer = RequestAdapter.SerializationWriterFactory.GetSerializationWriter("application/json");
@@ -38,7 +41,7 @@ namespace ApiSdk.Me.Insights.Trending.Item.Resource.WorkbookRange.ColumnsBefore 
                 using var reader = new StreamReader(content);
                 var strContent = await reader.ReadToEndAsync();
                 Console.Write(strContent + "\n");
-            });
+            }, trendingIdOption);
             return command;
         }
         /// <summary>
@@ -61,7 +64,7 @@ namespace ApiSdk.Me.Insights.Trending.Item.Resource.WorkbookRange.ColumnsBefore 
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
             var requestInfo = new RequestInformation {
-                HttpMethod = HttpMethod.GET,
+                HttpMethod = Method.GET,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };

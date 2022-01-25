@@ -48,14 +48,17 @@ namespace ApiSdk.Devices.Item {
             var command = new Command("delete");
             command.Description = "Delete entity from devices";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--device-id", description: "key: id of device"));
-            command.Handler = CommandHandler.Create<string>(async (deviceId) => {
-                var requestInfo = CreateDeleteRequestInformation();
-                if (!String.IsNullOrEmpty(deviceId)) requestInfo.PathParameters.Add("device_id", deviceId);
+            var deviceIdOption = new Option<string>("--device-id", description: "key: id of device") {
+            };
+            deviceIdOption.IsRequired = true;
+            command.AddOption(deviceIdOption);
+            command.SetHandler(async (string deviceId) => {
+                var requestInfo = CreateDeleteRequestInformation(q => {
+                });
                 await RequestAdapter.SendNoContentAsync(requestInfo);
                 // Print request output. What if the request has no return?
                 Console.WriteLine("Success");
-            });
+            }, deviceIdOption);
             return command;
         }
         public Command BuildExtensionsCommand() {
@@ -72,14 +75,25 @@ namespace ApiSdk.Devices.Item {
             var command = new Command("get");
             command.Description = "Get entity from devices by key";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--device-id", description: "key: id of device"));
-            command.AddOption(new Option<object>("--select", description: "Select properties to be returned"));
-            command.AddOption(new Option<object>("--expand", description: "Expand related entities"));
-            command.Handler = CommandHandler.Create<string, object, object>(async (deviceId, select, expand) => {
-                var requestInfo = CreateGetRequestInformation();
-                if (!String.IsNullOrEmpty(deviceId)) requestInfo.PathParameters.Add("device_id", deviceId);
-                requestInfo.QueryParameters.Add("select", select);
-                requestInfo.QueryParameters.Add("expand", expand);
+            var deviceIdOption = new Option<string>("--device-id", description: "key: id of device") {
+            };
+            deviceIdOption.IsRequired = true;
+            command.AddOption(deviceIdOption);
+            var selectOption = new Option<string[]>("--select", description: "Select properties to be returned") {
+                Arity = ArgumentArity.ZeroOrMore
+            };
+            selectOption.IsRequired = false;
+            command.AddOption(selectOption);
+            var expandOption = new Option<string[]>("--expand", description: "Expand related entities") {
+                Arity = ArgumentArity.ZeroOrMore
+            };
+            expandOption.IsRequired = false;
+            command.AddOption(expandOption);
+            command.SetHandler(async (string deviceId, string[] select, string[] expand) => {
+                var requestInfo = CreateGetRequestInformation(q => {
+                    q.Select = select;
+                    q.Expand = expand;
+                });
                 var result = await RequestAdapter.SendAsync<ApiSdk.Models.Microsoft.Graph.Device>(requestInfo);
                 // Print request output. What if the request has no return?
                 using var serializer = RequestAdapter.SerializationWriterFactory.GetSerializationWriter("application/json");
@@ -88,7 +102,7 @@ namespace ApiSdk.Devices.Item {
                 using var reader = new StreamReader(content);
                 var strContent = await reader.ReadToEndAsync();
                 Console.Write(strContent + "\n");
-            });
+            }, deviceIdOption, selectOption, expandOption);
             return command;
         }
         public Command BuildGetMemberGroupsCommand() {
@@ -117,18 +131,24 @@ namespace ApiSdk.Devices.Item {
             var command = new Command("patch");
             command.Description = "Update entity in devices";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--device-id", description: "key: id of device"));
-            command.AddOption(new Option<string>("--body"));
-            command.Handler = CommandHandler.Create<string, string>(async (deviceId, body) => {
+            var deviceIdOption = new Option<string>("--device-id", description: "key: id of device") {
+            };
+            deviceIdOption.IsRequired = true;
+            command.AddOption(deviceIdOption);
+            var bodyOption = new Option<string>("--body") {
+            };
+            bodyOption.IsRequired = true;
+            command.AddOption(bodyOption);
+            command.SetHandler(async (string deviceId, string body) => {
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<ApiSdk.Models.Microsoft.Graph.Device>();
-                var requestInfo = CreatePatchRequestInformation(model);
-                if (!String.IsNullOrEmpty(deviceId)) requestInfo.PathParameters.Add("device_id", deviceId);
+                var requestInfo = CreatePatchRequestInformation(model, q => {
+                });
                 await RequestAdapter.SendNoContentAsync(requestInfo);
                 // Print request output. What if the request has no return?
                 Console.WriteLine("Success");
-            });
+            }, deviceIdOption, bodyOption);
             return command;
         }
         public Command BuildRegisteredOwnersCommand() {
@@ -178,7 +198,7 @@ namespace ApiSdk.Devices.Item {
         /// </summary>
         public RequestInformation CreateDeleteRequestInformation(Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
             var requestInfo = new RequestInformation {
-                HttpMethod = HttpMethod.DELETE,
+                HttpMethod = Method.DELETE,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };
@@ -194,7 +214,7 @@ namespace ApiSdk.Devices.Item {
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<GetQueryParameters> q = default, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
             var requestInfo = new RequestInformation {
-                HttpMethod = HttpMethod.GET,
+                HttpMethod = Method.GET,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };
@@ -216,7 +236,7 @@ namespace ApiSdk.Devices.Item {
         public RequestInformation CreatePatchRequestInformation(ApiSdk.Models.Microsoft.Graph.Device body, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
             _ = body ?? throw new ArgumentNullException(nameof(body));
             var requestInfo = new RequestInformation {
-                HttpMethod = HttpMethod.PATCH,
+                HttpMethod = Method.PATCH,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };

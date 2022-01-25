@@ -25,13 +25,19 @@ namespace ApiSdk.Me.ContactFolders.Item.Contacts.Item.Photo.Value {
             var command = new Command("get");
             command.Description = "The user's profile photo. Read-only.";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--contactfolder-id", description: "key: id of contactFolder"));
-            command.AddOption(new Option<string>("--contact-id", description: "key: id of contact"));
-            command.AddOption(new Option<FileInfo>("--output"));
-            command.Handler = CommandHandler.Create<string, string, FileInfo>(async (contactFolderId, contactId, output) => {
-                var requestInfo = CreateGetRequestInformation();
-                if (!String.IsNullOrEmpty(contactFolderId)) requestInfo.PathParameters.Add("contactFolder_id", contactFolderId);
-                if (!String.IsNullOrEmpty(contactId)) requestInfo.PathParameters.Add("contact_id", contactId);
+            var contactFolderIdOption = new Option<string>("--contactfolder-id", description: "key: id of contactFolder") {
+            };
+            contactFolderIdOption.IsRequired = true;
+            command.AddOption(contactFolderIdOption);
+            var contactIdOption = new Option<string>("--contact-id", description: "key: id of contact") {
+            };
+            contactIdOption.IsRequired = true;
+            command.AddOption(contactIdOption);
+            var outputOption = new Option<FileInfo>("--output");
+            command.AddOption(outputOption);
+            command.SetHandler(async (string contactFolderId, string contactId, FileInfo output) => {
+                var requestInfo = CreateGetRequestInformation(q => {
+                });
                 var result = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 // Print request output. What if the request has no return?
                 if (output == null) {
@@ -44,7 +50,7 @@ namespace ApiSdk.Me.ContactFolders.Item.Contacts.Item.Photo.Value {
                     await result.CopyToAsync(writeStream);
                     Console.WriteLine($"Content written to {output.FullName}.");
                 }
-            });
+            }, contactFolderIdOption, contactIdOption, outputOption);
             return command;
         }
         /// <summary>
@@ -54,18 +60,26 @@ namespace ApiSdk.Me.ContactFolders.Item.Contacts.Item.Photo.Value {
             var command = new Command("put");
             command.Description = "The user's profile photo. Read-only.";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--contactfolder-id", description: "key: id of contactFolder"));
-            command.AddOption(new Option<string>("--contact-id", description: "key: id of contact"));
-            command.AddOption(new Option<Stream>("--file", description: "Binary request body"));
-            command.Handler = CommandHandler.Create<string, string, FileInfo>(async (contactFolderId, contactId, file) => {
+            var contactFolderIdOption = new Option<string>("--contactfolder-id", description: "key: id of contactFolder") {
+            };
+            contactFolderIdOption.IsRequired = true;
+            command.AddOption(contactFolderIdOption);
+            var contactIdOption = new Option<string>("--contact-id", description: "key: id of contact") {
+            };
+            contactIdOption.IsRequired = true;
+            command.AddOption(contactIdOption);
+            var bodyOption = new Option<Stream>("--file", description: "Binary request body") {
+            };
+            bodyOption.IsRequired = true;
+            command.AddOption(bodyOption);
+            command.SetHandler(async (string contactFolderId, string contactId, FileInfo file) => {
                 using var stream = file.OpenRead();
-                var requestInfo = CreatePutRequestInformation(stream);
-                if (!String.IsNullOrEmpty(contactFolderId)) requestInfo.PathParameters.Add("contactFolder_id", contactFolderId);
-                if (!String.IsNullOrEmpty(contactId)) requestInfo.PathParameters.Add("contact_id", contactId);
+                var requestInfo = CreatePutRequestInformation(stream, q => {
+                });
                 await RequestAdapter.SendNoContentAsync(requestInfo);
                 // Print request output. What if the request has no return?
                 Console.WriteLine("Success");
-            });
+            }, contactFolderIdOption, contactIdOption, bodyOption);
             return command;
         }
         /// <summary>
@@ -88,7 +102,7 @@ namespace ApiSdk.Me.ContactFolders.Item.Contacts.Item.Photo.Value {
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
             var requestInfo = new RequestInformation {
-                HttpMethod = HttpMethod.GET,
+                HttpMethod = Method.GET,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };
@@ -105,7 +119,7 @@ namespace ApiSdk.Me.ContactFolders.Item.Contacts.Item.Photo.Value {
         public RequestInformation CreatePutRequestInformation(Stream body, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
             _ = body ?? throw new ArgumentNullException(nameof(body));
             var requestInfo = new RequestInformation {
-                HttpMethod = HttpMethod.PUT,
+                HttpMethod = Method.PUT,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };

@@ -26,10 +26,13 @@ namespace ApiSdk.GroupSettingTemplates.Item.Restore {
             var command = new Command("post");
             command.Description = "Invoke action restore";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--groupsettingtemplate-id", description: "key: id of groupSettingTemplate"));
-            command.Handler = CommandHandler.Create<string>(async (groupSettingTemplateId) => {
-                var requestInfo = CreatePostRequestInformation();
-                if (!String.IsNullOrEmpty(groupSettingTemplateId)) requestInfo.PathParameters.Add("groupSettingTemplate_id", groupSettingTemplateId);
+            var groupSettingTemplateIdOption = new Option<string>("--groupsettingtemplate-id", description: "key: id of groupSettingTemplate") {
+            };
+            groupSettingTemplateIdOption.IsRequired = true;
+            command.AddOption(groupSettingTemplateIdOption);
+            command.SetHandler(async (string groupSettingTemplateId) => {
+                var requestInfo = CreatePostRequestInformation(q => {
+                });
                 var result = await RequestAdapter.SendAsync<RestoreResponse>(requestInfo);
                 // Print request output. What if the request has no return?
                 using var serializer = RequestAdapter.SerializationWriterFactory.GetSerializationWriter("application/json");
@@ -38,7 +41,7 @@ namespace ApiSdk.GroupSettingTemplates.Item.Restore {
                 using var reader = new StreamReader(content);
                 var strContent = await reader.ReadToEndAsync();
                 Console.Write(strContent + "\n");
-            });
+            }, groupSettingTemplateIdOption);
             return command;
         }
         /// <summary>
@@ -61,7 +64,7 @@ namespace ApiSdk.GroupSettingTemplates.Item.Restore {
         /// </summary>
         public RequestInformation CreatePostRequestInformation(Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
             var requestInfo = new RequestInformation {
-                HttpMethod = HttpMethod.POST,
+                HttpMethod = Method.POST,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };

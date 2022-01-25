@@ -13,7 +13,7 @@ namespace ApiSdk.Models.Microsoft.Graph {
         /// </summary>
         public new IDictionary<string, Action<T, IParseNode>> GetFieldDeserializers<T>() {
             return new Dictionary<string, Action<T, IParseNode>>(base.GetFieldDeserializers<T>()) {
-                {"@Event", (o,n) => { (o as PrintTaskTrigger).@Event = n.GetEnumValue<PrintEvent>(); } },
+                {"event", (o,n) => { (o as PrintTaskTrigger).@Event = n.GetEnumValue<PrintEvent>(); } },
                 {"definition", (o,n) => { (o as PrintTaskTrigger).Definition = n.GetObjectValue<PrintTaskDefinition>(); } },
             };
         }
@@ -24,7 +24,7 @@ namespace ApiSdk.Models.Microsoft.Graph {
         public new void Serialize(ISerializationWriter writer) {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             base.Serialize(writer);
-            writer.WriteEnumValue<PrintEvent>("@Event", @Event);
+            writer.WriteEnumValue<PrintEvent>("event", @Event);
             writer.WriteObjectValue<PrintTaskDefinition>("definition", Definition);
         }
     }

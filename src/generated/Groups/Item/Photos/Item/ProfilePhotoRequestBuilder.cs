@@ -34,16 +34,21 @@ namespace ApiSdk.Groups.Item.Photos.Item {
             var command = new Command("delete");
             command.Description = "The profile photos owned by the group. Read-only. Nullable.";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--group-id", description: "key: id of group"));
-            command.AddOption(new Option<string>("--profilephoto-id", description: "key: id of profilePhoto"));
-            command.Handler = CommandHandler.Create<string, string>(async (groupId, profilePhotoId) => {
-                var requestInfo = CreateDeleteRequestInformation();
-                if (!String.IsNullOrEmpty(groupId)) requestInfo.PathParameters.Add("group_id", groupId);
-                if (!String.IsNullOrEmpty(profilePhotoId)) requestInfo.PathParameters.Add("profilePhoto_id", profilePhotoId);
+            var groupIdOption = new Option<string>("--group-id", description: "key: id of group") {
+            };
+            groupIdOption.IsRequired = true;
+            command.AddOption(groupIdOption);
+            var profilePhotoIdOption = new Option<string>("--profilephoto-id", description: "key: id of profilePhoto") {
+            };
+            profilePhotoIdOption.IsRequired = true;
+            command.AddOption(profilePhotoIdOption);
+            command.SetHandler(async (string groupId, string profilePhotoId) => {
+                var requestInfo = CreateDeleteRequestInformation(q => {
+                });
                 await RequestAdapter.SendNoContentAsync(requestInfo);
                 // Print request output. What if the request has no return?
                 Console.WriteLine("Success");
-            });
+            }, groupIdOption, profilePhotoIdOption);
             return command;
         }
         /// <summary>
@@ -53,14 +58,23 @@ namespace ApiSdk.Groups.Item.Photos.Item {
             var command = new Command("get");
             command.Description = "The profile photos owned by the group. Read-only. Nullable.";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--group-id", description: "key: id of group"));
-            command.AddOption(new Option<string>("--profilephoto-id", description: "key: id of profilePhoto"));
-            command.AddOption(new Option<object>("--select", description: "Select properties to be returned"));
-            command.Handler = CommandHandler.Create<string, string, object>(async (groupId, profilePhotoId, select) => {
-                var requestInfo = CreateGetRequestInformation();
-                if (!String.IsNullOrEmpty(groupId)) requestInfo.PathParameters.Add("group_id", groupId);
-                if (!String.IsNullOrEmpty(profilePhotoId)) requestInfo.PathParameters.Add("profilePhoto_id", profilePhotoId);
-                requestInfo.QueryParameters.Add("select", select);
+            var groupIdOption = new Option<string>("--group-id", description: "key: id of group") {
+            };
+            groupIdOption.IsRequired = true;
+            command.AddOption(groupIdOption);
+            var profilePhotoIdOption = new Option<string>("--profilephoto-id", description: "key: id of profilePhoto") {
+            };
+            profilePhotoIdOption.IsRequired = true;
+            command.AddOption(profilePhotoIdOption);
+            var selectOption = new Option<string[]>("--select", description: "Select properties to be returned") {
+                Arity = ArgumentArity.ZeroOrMore
+            };
+            selectOption.IsRequired = false;
+            command.AddOption(selectOption);
+            command.SetHandler(async (string groupId, string profilePhotoId, string[] select) => {
+                var requestInfo = CreateGetRequestInformation(q => {
+                    q.Select = select;
+                });
                 var result = await RequestAdapter.SendAsync<ProfilePhoto>(requestInfo);
                 // Print request output. What if the request has no return?
                 using var serializer = RequestAdapter.SerializationWriterFactory.GetSerializationWriter("application/json");
@@ -69,7 +83,7 @@ namespace ApiSdk.Groups.Item.Photos.Item {
                 using var reader = new StreamReader(content);
                 var strContent = await reader.ReadToEndAsync();
                 Console.Write(strContent + "\n");
-            });
+            }, groupIdOption, profilePhotoIdOption, selectOption);
             return command;
         }
         /// <summary>
@@ -79,20 +93,28 @@ namespace ApiSdk.Groups.Item.Photos.Item {
             var command = new Command("patch");
             command.Description = "The profile photos owned by the group. Read-only. Nullable.";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--group-id", description: "key: id of group"));
-            command.AddOption(new Option<string>("--profilephoto-id", description: "key: id of profilePhoto"));
-            command.AddOption(new Option<string>("--body"));
-            command.Handler = CommandHandler.Create<string, string, string>(async (groupId, profilePhotoId, body) => {
+            var groupIdOption = new Option<string>("--group-id", description: "key: id of group") {
+            };
+            groupIdOption.IsRequired = true;
+            command.AddOption(groupIdOption);
+            var profilePhotoIdOption = new Option<string>("--profilephoto-id", description: "key: id of profilePhoto") {
+            };
+            profilePhotoIdOption.IsRequired = true;
+            command.AddOption(profilePhotoIdOption);
+            var bodyOption = new Option<string>("--body") {
+            };
+            bodyOption.IsRequired = true;
+            command.AddOption(bodyOption);
+            command.SetHandler(async (string groupId, string profilePhotoId, string body) => {
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<ProfilePhoto>();
-                var requestInfo = CreatePatchRequestInformation(model);
-                if (!String.IsNullOrEmpty(groupId)) requestInfo.PathParameters.Add("group_id", groupId);
-                if (!String.IsNullOrEmpty(profilePhotoId)) requestInfo.PathParameters.Add("profilePhoto_id", profilePhotoId);
+                var requestInfo = CreatePatchRequestInformation(model, q => {
+                });
                 await RequestAdapter.SendNoContentAsync(requestInfo);
                 // Print request output. What if the request has no return?
                 Console.WriteLine("Success");
-            });
+            }, groupIdOption, profilePhotoIdOption, bodyOption);
             return command;
         }
         /// <summary>
@@ -115,7 +137,7 @@ namespace ApiSdk.Groups.Item.Photos.Item {
         /// </summary>
         public RequestInformation CreateDeleteRequestInformation(Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
             var requestInfo = new RequestInformation {
-                HttpMethod = HttpMethod.DELETE,
+                HttpMethod = Method.DELETE,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };
@@ -131,7 +153,7 @@ namespace ApiSdk.Groups.Item.Photos.Item {
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<GetQueryParameters> q = default, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
             var requestInfo = new RequestInformation {
-                HttpMethod = HttpMethod.GET,
+                HttpMethod = Method.GET,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };
@@ -153,7 +175,7 @@ namespace ApiSdk.Groups.Item.Photos.Item {
         public RequestInformation CreatePatchRequestInformation(ProfilePhoto body, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
             _ = body ?? throw new ArgumentNullException(nameof(body));
             var requestInfo = new RequestInformation {
-                HttpMethod = HttpMethod.PATCH,
+                HttpMethod = Method.PATCH,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };

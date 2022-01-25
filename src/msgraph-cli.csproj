@@ -9,15 +9,31 @@
     <PublishSingleFile>true</PublishSingleFile>
     <SelfContained>false</SelfContained>
     <PublishReadyToRun>true</PublishReadyToRun>
+    <AssemblyName>mgc</AssemblyName>
+    <Version>0.1.0-preview.1</Version>
   </PropertyGroup>
 
   <ItemGroup>
+    <Content Include="app-settings.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Azure.Identity" Version="1.5.0" />
-    <PackageReference Include="Microsoft.Kiota.Abstractions" Version="1.0.25" />
+    <PackageReference Include="Microsoft.Extensions.Configuration" Version="6.0.0" />
+    <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="6.0.0" />
+    <PackageReference Include="Microsoft.Extensions.Hosting" Version="6.0.0" />
+    <PackageReference Include="Microsoft.Extensions.Logging.Console" Version="6.0.0" />
+    <PackageReference Include="Microsoft.Kiota.Abstractions" Version="1.0.26" />
     <PackageReference Include="Microsoft.Kiota.Authentication.Azure" Version="1.0.6" />
     <PackageReference Include="Microsoft.Kiota.Http.HttpClientLibrary" Version="1.0.16" />
     <PackageReference Include="Microsoft.Kiota.Serialization.Json" Version="1.0.6" />
-    <PackageReference Include="System.CommandLine" Version="2.0.0-beta1.21308.1" />
+    <PackageReference Include="System.CommandLine.Hosting" Version="0.4.0-alpha.21617.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\msgraph-cli-core\src\Microsoft.Graph.Cli.Core\Microsoft.Graph.Cli.Core.csproj" />
   </ItemGroup>
 
 </Project>

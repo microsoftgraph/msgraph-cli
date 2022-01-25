@@ -25,20 +25,33 @@ namespace ApiSdk.Sites.Item.Lists.Item.Items.Item.GetActivitiesByIntervalWithSta
             var command = new Command("get");
             command.Description = "Invoke function getActivitiesByInterval";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--site-id", description: "key: id of site"));
-            command.AddOption(new Option<string>("--list-id", description: "key: id of list"));
-            command.AddOption(new Option<string>("--listitem-id", description: "key: id of listItem"));
-            command.AddOption(new Option<string>("--startdatetime", description: "Usage: startDateTime={startDateTime}"));
-            command.AddOption(new Option<string>("--enddatetime", description: "Usage: endDateTime={endDateTime}"));
-            command.AddOption(new Option<string>("--interval", description: "Usage: interval={interval}"));
-            command.Handler = CommandHandler.Create<string, string, string, string, string, string>(async (siteId, listId, listItemId, startDateTime, endDateTime, interval) => {
-                var requestInfo = CreateGetRequestInformation();
-                if (!String.IsNullOrEmpty(siteId)) requestInfo.PathParameters.Add("site_id", siteId);
-                if (!String.IsNullOrEmpty(listId)) requestInfo.PathParameters.Add("list_id", listId);
-                if (!String.IsNullOrEmpty(listItemId)) requestInfo.PathParameters.Add("listItem_id", listItemId);
-                if (!String.IsNullOrEmpty(startDateTime)) requestInfo.PathParameters.Add("startDateTime", startDateTime);
-                if (!String.IsNullOrEmpty(endDateTime)) requestInfo.PathParameters.Add("endDateTime", endDateTime);
-                if (!String.IsNullOrEmpty(interval)) requestInfo.PathParameters.Add("interval", interval);
+            var siteIdOption = new Option<string>("--site-id", description: "key: id of site") {
+            };
+            siteIdOption.IsRequired = true;
+            command.AddOption(siteIdOption);
+            var listIdOption = new Option<string>("--list-id", description: "key: id of list") {
+            };
+            listIdOption.IsRequired = true;
+            command.AddOption(listIdOption);
+            var listItemIdOption = new Option<string>("--listitem-id", description: "key: id of listItem") {
+            };
+            listItemIdOption.IsRequired = true;
+            command.AddOption(listItemIdOption);
+            var startDateTimeOption = new Option<string>("--startdatetime", description: "Usage: startDateTime={startDateTime}") {
+            };
+            startDateTimeOption.IsRequired = true;
+            command.AddOption(startDateTimeOption);
+            var endDateTimeOption = new Option<string>("--enddatetime", description: "Usage: endDateTime={endDateTime}") {
+            };
+            endDateTimeOption.IsRequired = true;
+            command.AddOption(endDateTimeOption);
+            var intervalOption = new Option<string>("--interval", description: "Usage: interval={interval}") {
+            };
+            intervalOption.IsRequired = true;
+            command.AddOption(intervalOption);
+            command.SetHandler(async (string siteId, string listId, string listItemId, string startDateTime, string endDateTime, string interval) => {
+                var requestInfo = CreateGetRequestInformation(q => {
+                });
                 var result = await RequestAdapter.SendCollectionAsync<ApiSdk.Sites.Item.Lists.Item.Items.Item.GetActivitiesByIntervalWithStartDateTimeWithEndDateTimeWithInterval.GetActivitiesByIntervalWithStartDateTimeWithEndDateTimeWithInterval>(requestInfo);
                 // Print request output. What if the request has no return?
                 using var serializer = RequestAdapter.SerializationWriterFactory.GetSerializationWriter("application/json");
@@ -47,7 +60,7 @@ namespace ApiSdk.Sites.Item.Lists.Item.Items.Item.GetActivitiesByIntervalWithSta
                 using var reader = new StreamReader(content);
                 var strContent = await reader.ReadToEndAsync();
                 Console.Write(strContent + "\n");
-            });
+            }, siteIdOption, listIdOption, listItemIdOption, startDateTimeOption, endDateTimeOption, intervalOption);
             return command;
         }
         /// <summary>
@@ -76,7 +89,7 @@ namespace ApiSdk.Sites.Item.Lists.Item.Items.Item.GetActivitiesByIntervalWithSta
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
             var requestInfo = new RequestInformation {
-                HttpMethod = HttpMethod.GET,
+                HttpMethod = Method.GET,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };

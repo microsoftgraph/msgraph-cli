@@ -25,14 +25,21 @@ namespace ApiSdk.Me.Calendars.Item.CalendarView.Item.Calendar.AllowedCalendarSha
             var command = new Command("get");
             command.Description = "Invoke function allowedCalendarSharingRoles";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--calendar-id", description: "key: id of calendar"));
-            command.AddOption(new Option<string>("--event-id", description: "key: id of event"));
-            command.AddOption(new Option<string>("--user", description: "Usage: User={User}"));
-            command.Handler = CommandHandler.Create<string, string, string>(async (calendarId, eventId, User) => {
-                var requestInfo = CreateGetRequestInformation();
-                if (!String.IsNullOrEmpty(calendarId)) requestInfo.PathParameters.Add("calendar_id", calendarId);
-                if (!String.IsNullOrEmpty(eventId)) requestInfo.PathParameters.Add("event_id", eventId);
-                if (!String.IsNullOrEmpty(User)) requestInfo.PathParameters.Add("User", User);
+            var calendarIdOption = new Option<string>("--calendar-id", description: "key: id of calendar") {
+            };
+            calendarIdOption.IsRequired = true;
+            command.AddOption(calendarIdOption);
+            var eventIdOption = new Option<string>("--event-id", description: "key: id of event") {
+            };
+            eventIdOption.IsRequired = true;
+            command.AddOption(eventIdOption);
+            var UserOption = new Option<string>("--user", description: "Usage: User={User}") {
+            };
+            UserOption.IsRequired = true;
+            command.AddOption(UserOption);
+            command.SetHandler(async (string calendarId, string eventId, string User) => {
+                var requestInfo = CreateGetRequestInformation(q => {
+                });
                 var result = await RequestAdapter.SendPrimitiveCollectionAsync<string>(requestInfo);
                 // Print request output. What if the request has no return?
                 using var serializer = RequestAdapter.SerializationWriterFactory.GetSerializationWriter("application/json");
@@ -41,7 +48,7 @@ namespace ApiSdk.Me.Calendars.Item.CalendarView.Item.Calendar.AllowedCalendarSha
                 using var reader = new StreamReader(content);
                 var strContent = await reader.ReadToEndAsync();
                 Console.Write(strContent + "\n");
-            });
+            }, calendarIdOption, eventIdOption, UserOption);
             return command;
         }
         /// <summary>
@@ -66,7 +73,7 @@ namespace ApiSdk.Me.Calendars.Item.CalendarView.Item.Calendar.AllowedCalendarSha
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
             var requestInfo = new RequestInformation {
-                HttpMethod = HttpMethod.GET,
+                HttpMethod = Method.GET,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };

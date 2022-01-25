@@ -26,8 +26,9 @@ namespace ApiSdk.Me.ReprocessLicenseAssignment {
             var command = new Command("post");
             command.Description = "Invoke action reprocessLicenseAssignment";
             // Create options for all the parameters
-            command.Handler = CommandHandler.Create(async () => {
-                var requestInfo = CreatePostRequestInformation();
+            command.SetHandler(async () => {
+                var requestInfo = CreatePostRequestInformation(q => {
+                });
                 var result = await RequestAdapter.SendAsync<ReprocessLicenseAssignmentResponse>(requestInfo);
                 // Print request output. What if the request has no return?
                 using var serializer = RequestAdapter.SerializationWriterFactory.GetSerializationWriter("application/json");
@@ -59,7 +60,7 @@ namespace ApiSdk.Me.ReprocessLicenseAssignment {
         /// </summary>
         public RequestInformation CreatePostRequestInformation(Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
             var requestInfo = new RequestInformation {
-                HttpMethod = HttpMethod.POST,
+                HttpMethod = Method.POST,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };

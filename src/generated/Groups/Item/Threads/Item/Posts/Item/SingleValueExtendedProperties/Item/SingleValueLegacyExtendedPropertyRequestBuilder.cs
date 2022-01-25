@@ -26,20 +26,29 @@ namespace ApiSdk.Groups.Item.Threads.Item.Posts.Item.SingleValueExtendedProperti
             var command = new Command("delete");
             command.Description = "The collection of single-value extended properties defined for the post. Read-only. Nullable.";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--group-id", description: "key: id of group"));
-            command.AddOption(new Option<string>("--conversationthread-id", description: "key: id of conversationThread"));
-            command.AddOption(new Option<string>("--post-id", description: "key: id of post"));
-            command.AddOption(new Option<string>("--singlevaluelegacyextendedproperty-id", description: "key: id of singleValueLegacyExtendedProperty"));
-            command.Handler = CommandHandler.Create<string, string, string, string>(async (groupId, conversationThreadId, postId, singleValueLegacyExtendedPropertyId) => {
-                var requestInfo = CreateDeleteRequestInformation();
-                if (!String.IsNullOrEmpty(groupId)) requestInfo.PathParameters.Add("group_id", groupId);
-                if (!String.IsNullOrEmpty(conversationThreadId)) requestInfo.PathParameters.Add("conversationThread_id", conversationThreadId);
-                if (!String.IsNullOrEmpty(postId)) requestInfo.PathParameters.Add("post_id", postId);
-                if (!String.IsNullOrEmpty(singleValueLegacyExtendedPropertyId)) requestInfo.PathParameters.Add("singleValueLegacyExtendedProperty_id", singleValueLegacyExtendedPropertyId);
+            var groupIdOption = new Option<string>("--group-id", description: "key: id of group") {
+            };
+            groupIdOption.IsRequired = true;
+            command.AddOption(groupIdOption);
+            var conversationThreadIdOption = new Option<string>("--conversationthread-id", description: "key: id of conversationThread") {
+            };
+            conversationThreadIdOption.IsRequired = true;
+            command.AddOption(conversationThreadIdOption);
+            var postIdOption = new Option<string>("--post-id", description: "key: id of post") {
+            };
+            postIdOption.IsRequired = true;
+            command.AddOption(postIdOption);
+            var singleValueLegacyExtendedPropertyIdOption = new Option<string>("--singlevaluelegacyextendedproperty-id", description: "key: id of singleValueLegacyExtendedProperty") {
+            };
+            singleValueLegacyExtendedPropertyIdOption.IsRequired = true;
+            command.AddOption(singleValueLegacyExtendedPropertyIdOption);
+            command.SetHandler(async (string groupId, string conversationThreadId, string postId, string singleValueLegacyExtendedPropertyId) => {
+                var requestInfo = CreateDeleteRequestInformation(q => {
+                });
                 await RequestAdapter.SendNoContentAsync(requestInfo);
                 // Print request output. What if the request has no return?
                 Console.WriteLine("Success");
-            });
+            }, groupIdOption, conversationThreadIdOption, postIdOption, singleValueLegacyExtendedPropertyIdOption);
             return command;
         }
         /// <summary>
@@ -49,20 +58,37 @@ namespace ApiSdk.Groups.Item.Threads.Item.Posts.Item.SingleValueExtendedProperti
             var command = new Command("get");
             command.Description = "The collection of single-value extended properties defined for the post. Read-only. Nullable.";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--group-id", description: "key: id of group"));
-            command.AddOption(new Option<string>("--conversationthread-id", description: "key: id of conversationThread"));
-            command.AddOption(new Option<string>("--post-id", description: "key: id of post"));
-            command.AddOption(new Option<string>("--singlevaluelegacyextendedproperty-id", description: "key: id of singleValueLegacyExtendedProperty"));
-            command.AddOption(new Option<object>("--select", description: "Select properties to be returned"));
-            command.AddOption(new Option<object>("--expand", description: "Expand related entities"));
-            command.Handler = CommandHandler.Create<string, string, string, string, object, object>(async (groupId, conversationThreadId, postId, singleValueLegacyExtendedPropertyId, select, expand) => {
-                var requestInfo = CreateGetRequestInformation();
-                if (!String.IsNullOrEmpty(groupId)) requestInfo.PathParameters.Add("group_id", groupId);
-                if (!String.IsNullOrEmpty(conversationThreadId)) requestInfo.PathParameters.Add("conversationThread_id", conversationThreadId);
-                if (!String.IsNullOrEmpty(postId)) requestInfo.PathParameters.Add("post_id", postId);
-                if (!String.IsNullOrEmpty(singleValueLegacyExtendedPropertyId)) requestInfo.PathParameters.Add("singleValueLegacyExtendedProperty_id", singleValueLegacyExtendedPropertyId);
-                requestInfo.QueryParameters.Add("select", select);
-                requestInfo.QueryParameters.Add("expand", expand);
+            var groupIdOption = new Option<string>("--group-id", description: "key: id of group") {
+            };
+            groupIdOption.IsRequired = true;
+            command.AddOption(groupIdOption);
+            var conversationThreadIdOption = new Option<string>("--conversationthread-id", description: "key: id of conversationThread") {
+            };
+            conversationThreadIdOption.IsRequired = true;
+            command.AddOption(conversationThreadIdOption);
+            var postIdOption = new Option<string>("--post-id", description: "key: id of post") {
+            };
+            postIdOption.IsRequired = true;
+            command.AddOption(postIdOption);
+            var singleValueLegacyExtendedPropertyIdOption = new Option<string>("--singlevaluelegacyextendedproperty-id", description: "key: id of singleValueLegacyExtendedProperty") {
+            };
+            singleValueLegacyExtendedPropertyIdOption.IsRequired = true;
+            command.AddOption(singleValueLegacyExtendedPropertyIdOption);
+            var selectOption = new Option<string[]>("--select", description: "Select properties to be returned") {
+                Arity = ArgumentArity.ZeroOrMore
+            };
+            selectOption.IsRequired = false;
+            command.AddOption(selectOption);
+            var expandOption = new Option<string[]>("--expand", description: "Expand related entities") {
+                Arity = ArgumentArity.ZeroOrMore
+            };
+            expandOption.IsRequired = false;
+            command.AddOption(expandOption);
+            command.SetHandler(async (string groupId, string conversationThreadId, string postId, string singleValueLegacyExtendedPropertyId, string[] select, string[] expand) => {
+                var requestInfo = CreateGetRequestInformation(q => {
+                    q.Select = select;
+                    q.Expand = expand;
+                });
                 var result = await RequestAdapter.SendAsync<SingleValueLegacyExtendedProperty>(requestInfo);
                 // Print request output. What if the request has no return?
                 using var serializer = RequestAdapter.SerializationWriterFactory.GetSerializationWriter("application/json");
@@ -71,7 +97,7 @@ namespace ApiSdk.Groups.Item.Threads.Item.Posts.Item.SingleValueExtendedProperti
                 using var reader = new StreamReader(content);
                 var strContent = await reader.ReadToEndAsync();
                 Console.Write(strContent + "\n");
-            });
+            }, groupIdOption, conversationThreadIdOption, postIdOption, singleValueLegacyExtendedPropertyIdOption, selectOption, expandOption);
             return command;
         }
         /// <summary>
@@ -81,24 +107,36 @@ namespace ApiSdk.Groups.Item.Threads.Item.Posts.Item.SingleValueExtendedProperti
             var command = new Command("patch");
             command.Description = "The collection of single-value extended properties defined for the post. Read-only. Nullable.";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--group-id", description: "key: id of group"));
-            command.AddOption(new Option<string>("--conversationthread-id", description: "key: id of conversationThread"));
-            command.AddOption(new Option<string>("--post-id", description: "key: id of post"));
-            command.AddOption(new Option<string>("--singlevaluelegacyextendedproperty-id", description: "key: id of singleValueLegacyExtendedProperty"));
-            command.AddOption(new Option<string>("--body"));
-            command.Handler = CommandHandler.Create<string, string, string, string, string>(async (groupId, conversationThreadId, postId, singleValueLegacyExtendedPropertyId, body) => {
+            var groupIdOption = new Option<string>("--group-id", description: "key: id of group") {
+            };
+            groupIdOption.IsRequired = true;
+            command.AddOption(groupIdOption);
+            var conversationThreadIdOption = new Option<string>("--conversationthread-id", description: "key: id of conversationThread") {
+            };
+            conversationThreadIdOption.IsRequired = true;
+            command.AddOption(conversationThreadIdOption);
+            var postIdOption = new Option<string>("--post-id", description: "key: id of post") {
+            };
+            postIdOption.IsRequired = true;
+            command.AddOption(postIdOption);
+            var singleValueLegacyExtendedPropertyIdOption = new Option<string>("--singlevaluelegacyextendedproperty-id", description: "key: id of singleValueLegacyExtendedProperty") {
+            };
+            singleValueLegacyExtendedPropertyIdOption.IsRequired = true;
+            command.AddOption(singleValueLegacyExtendedPropertyIdOption);
+            var bodyOption = new Option<string>("--body") {
+            };
+            bodyOption.IsRequired = true;
+            command.AddOption(bodyOption);
+            command.SetHandler(async (string groupId, string conversationThreadId, string postId, string singleValueLegacyExtendedPropertyId, string body) => {
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<SingleValueLegacyExtendedProperty>();
-                var requestInfo = CreatePatchRequestInformation(model);
-                if (!String.IsNullOrEmpty(groupId)) requestInfo.PathParameters.Add("group_id", groupId);
-                if (!String.IsNullOrEmpty(conversationThreadId)) requestInfo.PathParameters.Add("conversationThread_id", conversationThreadId);
-                if (!String.IsNullOrEmpty(postId)) requestInfo.PathParameters.Add("post_id", postId);
-                if (!String.IsNullOrEmpty(singleValueLegacyExtendedPropertyId)) requestInfo.PathParameters.Add("singleValueLegacyExtendedProperty_id", singleValueLegacyExtendedPropertyId);
+                var requestInfo = CreatePatchRequestInformation(model, q => {
+                });
                 await RequestAdapter.SendNoContentAsync(requestInfo);
                 // Print request output. What if the request has no return?
                 Console.WriteLine("Success");
-            });
+            }, groupIdOption, conversationThreadIdOption, postIdOption, singleValueLegacyExtendedPropertyIdOption, bodyOption);
             return command;
         }
         /// <summary>
@@ -121,7 +159,7 @@ namespace ApiSdk.Groups.Item.Threads.Item.Posts.Item.SingleValueExtendedProperti
         /// </summary>
         public RequestInformation CreateDeleteRequestInformation(Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
             var requestInfo = new RequestInformation {
-                HttpMethod = HttpMethod.DELETE,
+                HttpMethod = Method.DELETE,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };
@@ -137,7 +175,7 @@ namespace ApiSdk.Groups.Item.Threads.Item.Posts.Item.SingleValueExtendedProperti
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<GetQueryParameters> q = default, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
             var requestInfo = new RequestInformation {
-                HttpMethod = HttpMethod.GET,
+                HttpMethod = Method.GET,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };
@@ -159,7 +197,7 @@ namespace ApiSdk.Groups.Item.Threads.Item.Posts.Item.SingleValueExtendedProperti
         public RequestInformation CreatePatchRequestInformation(SingleValueLegacyExtendedProperty body, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
             _ = body ?? throw new ArgumentNullException(nameof(body));
             var requestInfo = new RequestInformation {
-                HttpMethod = HttpMethod.PATCH,
+                HttpMethod = Method.PATCH,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };

@@ -25,16 +25,21 @@ namespace ApiSdk.Print.TaskDefinitions.Item.Tasks.Item.Trigger.@Ref {
             var command = new Command("delete");
             command.Description = "The printTaskTrigger that triggered this task's execution. Read-only.";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--printtaskdefinition-id", description: "key: id of printTaskDefinition"));
-            command.AddOption(new Option<string>("--printtask-id", description: "key: id of printTask"));
-            command.Handler = CommandHandler.Create<string, string>(async (printTaskDefinitionId, printTaskId) => {
-                var requestInfo = CreateDeleteRequestInformation();
-                if (!String.IsNullOrEmpty(printTaskDefinitionId)) requestInfo.PathParameters.Add("printTaskDefinition_id", printTaskDefinitionId);
-                if (!String.IsNullOrEmpty(printTaskId)) requestInfo.PathParameters.Add("printTask_id", printTaskId);
+            var printTaskDefinitionIdOption = new Option<string>("--printtaskdefinition-id", description: "key: id of printTaskDefinition") {
+            };
+            printTaskDefinitionIdOption.IsRequired = true;
+            command.AddOption(printTaskDefinitionIdOption);
+            var printTaskIdOption = new Option<string>("--printtask-id", description: "key: id of printTask") {
+            };
+            printTaskIdOption.IsRequired = true;
+            command.AddOption(printTaskIdOption);
+            command.SetHandler(async (string printTaskDefinitionId, string printTaskId) => {
+                var requestInfo = CreateDeleteRequestInformation(q => {
+                });
                 await RequestAdapter.SendNoContentAsync(requestInfo);
                 // Print request output. What if the request has no return?
                 Console.WriteLine("Success");
-            });
+            }, printTaskDefinitionIdOption, printTaskIdOption);
             return command;
         }
         /// <summary>
@@ -44,12 +49,17 @@ namespace ApiSdk.Print.TaskDefinitions.Item.Tasks.Item.Trigger.@Ref {
             var command = new Command("get");
             command.Description = "The printTaskTrigger that triggered this task's execution. Read-only.";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--printtaskdefinition-id", description: "key: id of printTaskDefinition"));
-            command.AddOption(new Option<string>("--printtask-id", description: "key: id of printTask"));
-            command.Handler = CommandHandler.Create<string, string>(async (printTaskDefinitionId, printTaskId) => {
-                var requestInfo = CreateGetRequestInformation();
-                if (!String.IsNullOrEmpty(printTaskDefinitionId)) requestInfo.PathParameters.Add("printTaskDefinition_id", printTaskDefinitionId);
-                if (!String.IsNullOrEmpty(printTaskId)) requestInfo.PathParameters.Add("printTask_id", printTaskId);
+            var printTaskDefinitionIdOption = new Option<string>("--printtaskdefinition-id", description: "key: id of printTaskDefinition") {
+            };
+            printTaskDefinitionIdOption.IsRequired = true;
+            command.AddOption(printTaskDefinitionIdOption);
+            var printTaskIdOption = new Option<string>("--printtask-id", description: "key: id of printTask") {
+            };
+            printTaskIdOption.IsRequired = true;
+            command.AddOption(printTaskIdOption);
+            command.SetHandler(async (string printTaskDefinitionId, string printTaskId) => {
+                var requestInfo = CreateGetRequestInformation(q => {
+                });
                 var result = await RequestAdapter.SendPrimitiveAsync<string>(requestInfo);
                 // Print request output. What if the request has no return?
                 using var serializer = RequestAdapter.SerializationWriterFactory.GetSerializationWriter("application/json");
@@ -58,7 +68,7 @@ namespace ApiSdk.Print.TaskDefinitions.Item.Tasks.Item.Trigger.@Ref {
                 using var reader = new StreamReader(content);
                 var strContent = await reader.ReadToEndAsync();
                 Console.Write(strContent + "\n");
-            });
+            }, printTaskDefinitionIdOption, printTaskIdOption);
             return command;
         }
         /// <summary>
@@ -68,20 +78,28 @@ namespace ApiSdk.Print.TaskDefinitions.Item.Tasks.Item.Trigger.@Ref {
             var command = new Command("put");
             command.Description = "The printTaskTrigger that triggered this task's execution. Read-only.";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--printtaskdefinition-id", description: "key: id of printTaskDefinition"));
-            command.AddOption(new Option<string>("--printtask-id", description: "key: id of printTask"));
-            command.AddOption(new Option<string>("--body"));
-            command.Handler = CommandHandler.Create<string, string, string>(async (printTaskDefinitionId, printTaskId, body) => {
+            var printTaskDefinitionIdOption = new Option<string>("--printtaskdefinition-id", description: "key: id of printTaskDefinition") {
+            };
+            printTaskDefinitionIdOption.IsRequired = true;
+            command.AddOption(printTaskDefinitionIdOption);
+            var printTaskIdOption = new Option<string>("--printtask-id", description: "key: id of printTask") {
+            };
+            printTaskIdOption.IsRequired = true;
+            command.AddOption(printTaskIdOption);
+            var bodyOption = new Option<string>("--body") {
+            };
+            bodyOption.IsRequired = true;
+            command.AddOption(bodyOption);
+            command.SetHandler(async (string printTaskDefinitionId, string printTaskId, string body) => {
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<ApiSdk.Print.TaskDefinitions.Item.Tasks.Item.Trigger.@Ref.@Ref>();
-                var requestInfo = CreatePutRequestInformation(model);
-                if (!String.IsNullOrEmpty(printTaskDefinitionId)) requestInfo.PathParameters.Add("printTaskDefinition_id", printTaskDefinitionId);
-                if (!String.IsNullOrEmpty(printTaskId)) requestInfo.PathParameters.Add("printTask_id", printTaskId);
+                var requestInfo = CreatePutRequestInformation(model, q => {
+                });
                 await RequestAdapter.SendNoContentAsync(requestInfo);
                 // Print request output. What if the request has no return?
                 Console.WriteLine("Success");
-            });
+            }, printTaskDefinitionIdOption, printTaskIdOption, bodyOption);
             return command;
         }
         /// <summary>
@@ -104,7 +122,7 @@ namespace ApiSdk.Print.TaskDefinitions.Item.Tasks.Item.Trigger.@Ref {
         /// </summary>
         public RequestInformation CreateDeleteRequestInformation(Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
             var requestInfo = new RequestInformation {
-                HttpMethod = HttpMethod.DELETE,
+                HttpMethod = Method.DELETE,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };
@@ -119,7 +137,7 @@ namespace ApiSdk.Print.TaskDefinitions.Item.Tasks.Item.Trigger.@Ref {
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
             var requestInfo = new RequestInformation {
-                HttpMethod = HttpMethod.GET,
+                HttpMethod = Method.GET,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };
@@ -136,7 +154,7 @@ namespace ApiSdk.Print.TaskDefinitions.Item.Tasks.Item.Trigger.@Ref {
         public RequestInformation CreatePutRequestInformation(ApiSdk.Print.TaskDefinitions.Item.Tasks.Item.Trigger.@Ref.@Ref body, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
             _ = body ?? throw new ArgumentNullException(nameof(body));
             var requestInfo = new RequestInformation {
-                HttpMethod = HttpMethod.PUT,
+                HttpMethod = Method.PUT,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };

@@ -27,14 +27,25 @@ namespace ApiSdk.Me.Teamwork.InstalledApps.Item.Chat {
             var command = new Command("get");
             command.Description = "The chat between the user and Teams app.";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--userscopeteamsappinstallation-id", description: "key: id of userScopeTeamsAppInstallation"));
-            command.AddOption(new Option<object>("--select", description: "Select properties to be returned"));
-            command.AddOption(new Option<object>("--expand", description: "Expand related entities"));
-            command.Handler = CommandHandler.Create<string, object, object>(async (userScopeTeamsAppInstallationId, select, expand) => {
-                var requestInfo = CreateGetRequestInformation();
-                if (!String.IsNullOrEmpty(userScopeTeamsAppInstallationId)) requestInfo.PathParameters.Add("userScopeTeamsAppInstallation_id", userScopeTeamsAppInstallationId);
-                requestInfo.QueryParameters.Add("select", select);
-                requestInfo.QueryParameters.Add("expand", expand);
+            var userScopeTeamsAppInstallationIdOption = new Option<string>("--userscopeteamsappinstallation-id", description: "key: id of userScopeTeamsAppInstallation") {
+            };
+            userScopeTeamsAppInstallationIdOption.IsRequired = true;
+            command.AddOption(userScopeTeamsAppInstallationIdOption);
+            var selectOption = new Option<string[]>("--select", description: "Select properties to be returned") {
+                Arity = ArgumentArity.ZeroOrMore
+            };
+            selectOption.IsRequired = false;
+            command.AddOption(selectOption);
+            var expandOption = new Option<string[]>("--expand", description: "Expand related entities") {
+                Arity = ArgumentArity.ZeroOrMore
+            };
+            expandOption.IsRequired = false;
+            command.AddOption(expandOption);
+            command.SetHandler(async (string userScopeTeamsAppInstallationId, string[] select, string[] expand) => {
+                var requestInfo = CreateGetRequestInformation(q => {
+                    q.Select = select;
+                    q.Expand = expand;
+                });
                 var result = await RequestAdapter.SendAsync<ApiSdk.Models.Microsoft.Graph.Chat>(requestInfo);
                 // Print request output. What if the request has no return?
                 using var serializer = RequestAdapter.SerializationWriterFactory.GetSerializationWriter("application/json");
@@ -43,7 +54,7 @@ namespace ApiSdk.Me.Teamwork.InstalledApps.Item.Chat {
                 using var reader = new StreamReader(content);
                 var strContent = await reader.ReadToEndAsync();
                 Console.Write(strContent + "\n");
-            });
+            }, userScopeTeamsAppInstallationIdOption, selectOption, expandOption);
             return command;
         }
         public Command BuildRefCommand() {
@@ -75,7 +86,7 @@ namespace ApiSdk.Me.Teamwork.InstalledApps.Item.Chat {
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<GetQueryParameters> q = default, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
             var requestInfo = new RequestInformation {
-                HttpMethod = HttpMethod.GET,
+                HttpMethod = Method.GET,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };

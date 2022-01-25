@@ -25,12 +25,17 @@ namespace ApiSdk.Users.Item.Onenote.Notebooks.GetRecentNotebooksWithIncludePerso
             var command = new Command("get");
             command.Description = "Invoke function getRecentNotebooks";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--user-id", description: "key: id of user"));
-            command.AddOption(new Option<bool?>("--includepersonalnotebooks", description: "Usage: includePersonalNotebooks={includePersonalNotebooks}"));
-            command.Handler = CommandHandler.Create<string, bool?>(async (userId, includePersonalNotebooks) => {
-                var requestInfo = CreateGetRequestInformation();
-                if (!String.IsNullOrEmpty(userId)) requestInfo.PathParameters.Add("user_id", userId);
-                requestInfo.PathParameters.Add("includePersonalNotebooks", includePersonalNotebooks);
+            var userIdOption = new Option<string>("--user-id", description: "key: id of user") {
+            };
+            userIdOption.IsRequired = true;
+            command.AddOption(userIdOption);
+            var includePersonalNotebooksOption = new Option<bool?>("--includepersonalnotebooks", description: "Usage: includePersonalNotebooks={includePersonalNotebooks}") {
+            };
+            includePersonalNotebooksOption.IsRequired = true;
+            command.AddOption(includePersonalNotebooksOption);
+            command.SetHandler(async (string userId, bool? includePersonalNotebooks) => {
+                var requestInfo = CreateGetRequestInformation(q => {
+                });
                 var result = await RequestAdapter.SendCollectionAsync<ApiSdk.Users.Item.Onenote.Notebooks.GetRecentNotebooksWithIncludePersonalNotebooks.GetRecentNotebooksWithIncludePersonalNotebooks>(requestInfo);
                 // Print request output. What if the request has no return?
                 using var serializer = RequestAdapter.SerializationWriterFactory.GetSerializationWriter("application/json");
@@ -39,7 +44,7 @@ namespace ApiSdk.Users.Item.Onenote.Notebooks.GetRecentNotebooksWithIncludePerso
                 using var reader = new StreamReader(content);
                 var strContent = await reader.ReadToEndAsync();
                 Console.Write(strContent + "\n");
-            });
+            }, userIdOption, includePersonalNotebooksOption);
             return command;
         }
         /// <summary>
@@ -64,7 +69,7 @@ namespace ApiSdk.Users.Item.Onenote.Notebooks.GetRecentNotebooksWithIncludePerso
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
             var requestInfo = new RequestInformation {
-                HttpMethod = HttpMethod.GET,
+                HttpMethod = Method.GET,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };

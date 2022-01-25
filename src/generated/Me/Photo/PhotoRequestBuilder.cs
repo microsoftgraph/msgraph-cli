@@ -34,8 +34,9 @@ namespace ApiSdk.Me.Photo {
             var command = new Command("delete");
             command.Description = "The user's profile photo. Read-only.";
             // Create options for all the parameters
-            command.Handler = CommandHandler.Create(async () => {
-                var requestInfo = CreateDeleteRequestInformation();
+            command.SetHandler(async () => {
+                var requestInfo = CreateDeleteRequestInformation(q => {
+                });
                 await RequestAdapter.SendNoContentAsync(requestInfo);
                 // Print request output. What if the request has no return?
                 Console.WriteLine("Success");
@@ -49,10 +50,15 @@ namespace ApiSdk.Me.Photo {
             var command = new Command("get");
             command.Description = "The user's profile photo. Read-only.";
             // Create options for all the parameters
-            command.AddOption(new Option<object>("--select", description: "Select properties to be returned"));
-            command.Handler = CommandHandler.Create<object>(async (select) => {
-                var requestInfo = CreateGetRequestInformation();
-                requestInfo.QueryParameters.Add("select", select);
+            var selectOption = new Option<string[]>("--select", description: "Select properties to be returned") {
+                Arity = ArgumentArity.ZeroOrMore
+            };
+            selectOption.IsRequired = false;
+            command.AddOption(selectOption);
+            command.SetHandler(async (string[] select) => {
+                var requestInfo = CreateGetRequestInformation(q => {
+                    q.Select = select;
+                });
                 var result = await RequestAdapter.SendAsync<ProfilePhoto>(requestInfo);
                 // Print request output. What if the request has no return?
                 using var serializer = RequestAdapter.SerializationWriterFactory.GetSerializationWriter("application/json");
@@ -61,7 +67,7 @@ namespace ApiSdk.Me.Photo {
                 using var reader = new StreamReader(content);
                 var strContent = await reader.ReadToEndAsync();
                 Console.Write(strContent + "\n");
-            });
+            }, selectOption);
             return command;
         }
         /// <summary>
@@ -71,16 +77,20 @@ namespace ApiSdk.Me.Photo {
             var command = new Command("patch");
             command.Description = "The user's profile photo. Read-only.";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--body"));
-            command.Handler = CommandHandler.Create<string>(async (body) => {
+            var bodyOption = new Option<string>("--body") {
+            };
+            bodyOption.IsRequired = true;
+            command.AddOption(bodyOption);
+            command.SetHandler(async (string body) => {
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<ProfilePhoto>();
-                var requestInfo = CreatePatchRequestInformation(model);
+                var requestInfo = CreatePatchRequestInformation(model, q => {
+                });
                 await RequestAdapter.SendNoContentAsync(requestInfo);
                 // Print request output. What if the request has no return?
                 Console.WriteLine("Success");
-            });
+            }, bodyOption);
             return command;
         }
         /// <summary>
@@ -103,7 +113,7 @@ namespace ApiSdk.Me.Photo {
         /// </summary>
         public RequestInformation CreateDeleteRequestInformation(Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
             var requestInfo = new RequestInformation {
-                HttpMethod = HttpMethod.DELETE,
+                HttpMethod = Method.DELETE,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };
@@ -119,7 +129,7 @@ namespace ApiSdk.Me.Photo {
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<GetQueryParameters> q = default, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
             var requestInfo = new RequestInformation {
-                HttpMethod = HttpMethod.GET,
+                HttpMethod = Method.GET,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };
@@ -141,7 +151,7 @@ namespace ApiSdk.Me.Photo {
         public RequestInformation CreatePatchRequestInformation(ProfilePhoto body, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
             _ = body ?? throw new ArgumentNullException(nameof(body));
             var requestInfo = new RequestInformation {
-                HttpMethod = HttpMethod.PATCH,
+                HttpMethod = Method.PATCH,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };

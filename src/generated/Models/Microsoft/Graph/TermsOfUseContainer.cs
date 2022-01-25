@@ -5,7 +5,9 @@ using System.IO;
 using System.Linq;
 namespace ApiSdk.Models.Microsoft.Graph {
     public class TermsOfUseContainer : Entity, IParsable {
+        /// <summary>Represents the current status of a user's response to a company's customizable terms of use agreement.</summary>
         public List<AgreementAcceptance> AgreementAcceptances { get; set; }
+        /// <summary>Represents a tenant's customizable terms of use agreement that's created and managed with Azure Active Directory (Azure AD).</summary>
         public List<Agreement> Agreements { get; set; }
         /// <summary>
         /// The deserialization information for the current model

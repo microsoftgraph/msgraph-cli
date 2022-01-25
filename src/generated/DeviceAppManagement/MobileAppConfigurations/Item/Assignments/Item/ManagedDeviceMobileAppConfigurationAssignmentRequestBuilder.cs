@@ -26,16 +26,21 @@ namespace ApiSdk.DeviceAppManagement.MobileAppConfigurations.Item.Assignments.It
             var command = new Command("delete");
             command.Description = "The list of group assignemenets for app configration.";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--manageddevicemobileappconfiguration-id", description: "key: id of managedDeviceMobileAppConfiguration"));
-            command.AddOption(new Option<string>("--manageddevicemobileappconfigurationassignment-id", description: "key: id of managedDeviceMobileAppConfigurationAssignment"));
-            command.Handler = CommandHandler.Create<string, string>(async (managedDeviceMobileAppConfigurationId, managedDeviceMobileAppConfigurationAssignmentId) => {
-                var requestInfo = CreateDeleteRequestInformation();
-                if (!String.IsNullOrEmpty(managedDeviceMobileAppConfigurationId)) requestInfo.PathParameters.Add("managedDeviceMobileAppConfiguration_id", managedDeviceMobileAppConfigurationId);
-                if (!String.IsNullOrEmpty(managedDeviceMobileAppConfigurationAssignmentId)) requestInfo.PathParameters.Add("managedDeviceMobileAppConfigurationAssignment_id", managedDeviceMobileAppConfigurationAssignmentId);
+            var managedDeviceMobileAppConfigurationIdOption = new Option<string>("--manageddevicemobileappconfiguration-id", description: "key: id of managedDeviceMobileAppConfiguration") {
+            };
+            managedDeviceMobileAppConfigurationIdOption.IsRequired = true;
+            command.AddOption(managedDeviceMobileAppConfigurationIdOption);
+            var managedDeviceMobileAppConfigurationAssignmentIdOption = new Option<string>("--manageddevicemobileappconfigurationassignment-id", description: "key: id of managedDeviceMobileAppConfigurationAssignment") {
+            };
+            managedDeviceMobileAppConfigurationAssignmentIdOption.IsRequired = true;
+            command.AddOption(managedDeviceMobileAppConfigurationAssignmentIdOption);
+            command.SetHandler(async (string managedDeviceMobileAppConfigurationId, string managedDeviceMobileAppConfigurationAssignmentId) => {
+                var requestInfo = CreateDeleteRequestInformation(q => {
+                });
                 await RequestAdapter.SendNoContentAsync(requestInfo);
                 // Print request output. What if the request has no return?
                 Console.WriteLine("Success");
-            });
+            }, managedDeviceMobileAppConfigurationIdOption, managedDeviceMobileAppConfigurationAssignmentIdOption);
             return command;
         }
         /// <summary>
@@ -45,16 +50,29 @@ namespace ApiSdk.DeviceAppManagement.MobileAppConfigurations.Item.Assignments.It
             var command = new Command("get");
             command.Description = "The list of group assignemenets for app configration.";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--manageddevicemobileappconfiguration-id", description: "key: id of managedDeviceMobileAppConfiguration"));
-            command.AddOption(new Option<string>("--manageddevicemobileappconfigurationassignment-id", description: "key: id of managedDeviceMobileAppConfigurationAssignment"));
-            command.AddOption(new Option<object>("--select", description: "Select properties to be returned"));
-            command.AddOption(new Option<object>("--expand", description: "Expand related entities"));
-            command.Handler = CommandHandler.Create<string, string, object, object>(async (managedDeviceMobileAppConfigurationId, managedDeviceMobileAppConfigurationAssignmentId, select, expand) => {
-                var requestInfo = CreateGetRequestInformation();
-                if (!String.IsNullOrEmpty(managedDeviceMobileAppConfigurationId)) requestInfo.PathParameters.Add("managedDeviceMobileAppConfiguration_id", managedDeviceMobileAppConfigurationId);
-                if (!String.IsNullOrEmpty(managedDeviceMobileAppConfigurationAssignmentId)) requestInfo.PathParameters.Add("managedDeviceMobileAppConfigurationAssignment_id", managedDeviceMobileAppConfigurationAssignmentId);
-                requestInfo.QueryParameters.Add("select", select);
-                requestInfo.QueryParameters.Add("expand", expand);
+            var managedDeviceMobileAppConfigurationIdOption = new Option<string>("--manageddevicemobileappconfiguration-id", description: "key: id of managedDeviceMobileAppConfiguration") {
+            };
+            managedDeviceMobileAppConfigurationIdOption.IsRequired = true;
+            command.AddOption(managedDeviceMobileAppConfigurationIdOption);
+            var managedDeviceMobileAppConfigurationAssignmentIdOption = new Option<string>("--manageddevicemobileappconfigurationassignment-id", description: "key: id of managedDeviceMobileAppConfigurationAssignment") {
+            };
+            managedDeviceMobileAppConfigurationAssignmentIdOption.IsRequired = true;
+            command.AddOption(managedDeviceMobileAppConfigurationAssignmentIdOption);
+            var selectOption = new Option<string[]>("--select", description: "Select properties to be returned") {
+                Arity = ArgumentArity.ZeroOrMore
+            };
+            selectOption.IsRequired = false;
+            command.AddOption(selectOption);
+            var expandOption = new Option<string[]>("--expand", description: "Expand related entities") {
+                Arity = ArgumentArity.ZeroOrMore
+            };
+            expandOption.IsRequired = false;
+            command.AddOption(expandOption);
+            command.SetHandler(async (string managedDeviceMobileAppConfigurationId, string managedDeviceMobileAppConfigurationAssignmentId, string[] select, string[] expand) => {
+                var requestInfo = CreateGetRequestInformation(q => {
+                    q.Select = select;
+                    q.Expand = expand;
+                });
                 var result = await RequestAdapter.SendAsync<ManagedDeviceMobileAppConfigurationAssignment>(requestInfo);
                 // Print request output. What if the request has no return?
                 using var serializer = RequestAdapter.SerializationWriterFactory.GetSerializationWriter("application/json");
@@ -63,7 +81,7 @@ namespace ApiSdk.DeviceAppManagement.MobileAppConfigurations.Item.Assignments.It
                 using var reader = new StreamReader(content);
                 var strContent = await reader.ReadToEndAsync();
                 Console.Write(strContent + "\n");
-            });
+            }, managedDeviceMobileAppConfigurationIdOption, managedDeviceMobileAppConfigurationAssignmentIdOption, selectOption, expandOption);
             return command;
         }
         /// <summary>
@@ -73,20 +91,28 @@ namespace ApiSdk.DeviceAppManagement.MobileAppConfigurations.Item.Assignments.It
             var command = new Command("patch");
             command.Description = "The list of group assignemenets for app configration.";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--manageddevicemobileappconfiguration-id", description: "key: id of managedDeviceMobileAppConfiguration"));
-            command.AddOption(new Option<string>("--manageddevicemobileappconfigurationassignment-id", description: "key: id of managedDeviceMobileAppConfigurationAssignment"));
-            command.AddOption(new Option<string>("--body"));
-            command.Handler = CommandHandler.Create<string, string, string>(async (managedDeviceMobileAppConfigurationId, managedDeviceMobileAppConfigurationAssignmentId, body) => {
+            var managedDeviceMobileAppConfigurationIdOption = new Option<string>("--manageddevicemobileappconfiguration-id", description: "key: id of managedDeviceMobileAppConfiguration") {
+            };
+            managedDeviceMobileAppConfigurationIdOption.IsRequired = true;
+            command.AddOption(managedDeviceMobileAppConfigurationIdOption);
+            var managedDeviceMobileAppConfigurationAssignmentIdOption = new Option<string>("--manageddevicemobileappconfigurationassignment-id", description: "key: id of managedDeviceMobileAppConfigurationAssignment") {
+            };
+            managedDeviceMobileAppConfigurationAssignmentIdOption.IsRequired = true;
+            command.AddOption(managedDeviceMobileAppConfigurationAssignmentIdOption);
+            var bodyOption = new Option<string>("--body") {
+            };
+            bodyOption.IsRequired = true;
+            command.AddOption(bodyOption);
+            command.SetHandler(async (string managedDeviceMobileAppConfigurationId, string managedDeviceMobileAppConfigurationAssignmentId, string body) => {
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<ManagedDeviceMobileAppConfigurationAssignment>();
-                var requestInfo = CreatePatchRequestInformation(model);
-                if (!String.IsNullOrEmpty(managedDeviceMobileAppConfigurationId)) requestInfo.PathParameters.Add("managedDeviceMobileAppConfiguration_id", managedDeviceMobileAppConfigurationId);
-                if (!String.IsNullOrEmpty(managedDeviceMobileAppConfigurationAssignmentId)) requestInfo.PathParameters.Add("managedDeviceMobileAppConfigurationAssignment_id", managedDeviceMobileAppConfigurationAssignmentId);
+                var requestInfo = CreatePatchRequestInformation(model, q => {
+                });
                 await RequestAdapter.SendNoContentAsync(requestInfo);
                 // Print request output. What if the request has no return?
                 Console.WriteLine("Success");
-            });
+            }, managedDeviceMobileAppConfigurationIdOption, managedDeviceMobileAppConfigurationAssignmentIdOption, bodyOption);
             return command;
         }
         /// <summary>
@@ -109,7 +135,7 @@ namespace ApiSdk.DeviceAppManagement.MobileAppConfigurations.Item.Assignments.It
         /// </summary>
         public RequestInformation CreateDeleteRequestInformation(Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
             var requestInfo = new RequestInformation {
-                HttpMethod = HttpMethod.DELETE,
+                HttpMethod = Method.DELETE,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };
@@ -125,7 +151,7 @@ namespace ApiSdk.DeviceAppManagement.MobileAppConfigurations.Item.Assignments.It
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<GetQueryParameters> q = default, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
             var requestInfo = new RequestInformation {
-                HttpMethod = HttpMethod.GET,
+                HttpMethod = Method.GET,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };
@@ -147,7 +173,7 @@ namespace ApiSdk.DeviceAppManagement.MobileAppConfigurations.Item.Assignments.It
         public RequestInformation CreatePatchRequestInformation(ManagedDeviceMobileAppConfigurationAssignment body, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
             _ = body ?? throw new ArgumentNullException(nameof(body));
             var requestInfo = new RequestInformation {
-                HttpMethod = HttpMethod.PATCH,
+                HttpMethod = Method.PATCH,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };

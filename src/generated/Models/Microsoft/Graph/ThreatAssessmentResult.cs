@@ -9,7 +9,7 @@ namespace ApiSdk.Models.Microsoft.Graph {
         public DateTimeOffset? CreatedDateTime { get; set; }
         /// <summary>The result message for each threat assessment.</summary>
         public string Message { get; set; }
-        /// <summary>The threat assessment result type. Possible values are: checkPolicy, rescan.</summary>
+        /// <summary>The threat assessment result type. Possible values are: checkPolicy (only for mail assessment), rescan.</summary>
         public ThreatAssessmentResultType? ResultType { get; set; }
         /// <summary>
         /// The deserialization information for the current model

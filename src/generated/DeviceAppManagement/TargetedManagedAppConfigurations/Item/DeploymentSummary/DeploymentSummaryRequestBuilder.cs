@@ -26,14 +26,17 @@ namespace ApiSdk.DeviceAppManagement.TargetedManagedAppConfigurations.Item.Deplo
             var command = new Command("delete");
             command.Description = "Navigation property to deployment summary of the configuration.";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--targetedmanagedappconfiguration-id", description: "key: id of targetedManagedAppConfiguration"));
-            command.Handler = CommandHandler.Create<string>(async (targetedManagedAppConfigurationId) => {
-                var requestInfo = CreateDeleteRequestInformation();
-                if (!String.IsNullOrEmpty(targetedManagedAppConfigurationId)) requestInfo.PathParameters.Add("targetedManagedAppConfiguration_id", targetedManagedAppConfigurationId);
+            var targetedManagedAppConfigurationIdOption = new Option<string>("--targetedmanagedappconfiguration-id", description: "key: id of targetedManagedAppConfiguration") {
+            };
+            targetedManagedAppConfigurationIdOption.IsRequired = true;
+            command.AddOption(targetedManagedAppConfigurationIdOption);
+            command.SetHandler(async (string targetedManagedAppConfigurationId) => {
+                var requestInfo = CreateDeleteRequestInformation(q => {
+                });
                 await RequestAdapter.SendNoContentAsync(requestInfo);
                 // Print request output. What if the request has no return?
                 Console.WriteLine("Success");
-            });
+            }, targetedManagedAppConfigurationIdOption);
             return command;
         }
         /// <summary>
@@ -43,14 +46,25 @@ namespace ApiSdk.DeviceAppManagement.TargetedManagedAppConfigurations.Item.Deplo
             var command = new Command("get");
             command.Description = "Navigation property to deployment summary of the configuration.";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--targetedmanagedappconfiguration-id", description: "key: id of targetedManagedAppConfiguration"));
-            command.AddOption(new Option<object>("--select", description: "Select properties to be returned"));
-            command.AddOption(new Option<object>("--expand", description: "Expand related entities"));
-            command.Handler = CommandHandler.Create<string, object, object>(async (targetedManagedAppConfigurationId, select, expand) => {
-                var requestInfo = CreateGetRequestInformation();
-                if (!String.IsNullOrEmpty(targetedManagedAppConfigurationId)) requestInfo.PathParameters.Add("targetedManagedAppConfiguration_id", targetedManagedAppConfigurationId);
-                requestInfo.QueryParameters.Add("select", select);
-                requestInfo.QueryParameters.Add("expand", expand);
+            var targetedManagedAppConfigurationIdOption = new Option<string>("--targetedmanagedappconfiguration-id", description: "key: id of targetedManagedAppConfiguration") {
+            };
+            targetedManagedAppConfigurationIdOption.IsRequired = true;
+            command.AddOption(targetedManagedAppConfigurationIdOption);
+            var selectOption = new Option<string[]>("--select", description: "Select properties to be returned") {
+                Arity = ArgumentArity.ZeroOrMore
+            };
+            selectOption.IsRequired = false;
+            command.AddOption(selectOption);
+            var expandOption = new Option<string[]>("--expand", description: "Expand related entities") {
+                Arity = ArgumentArity.ZeroOrMore
+            };
+            expandOption.IsRequired = false;
+            command.AddOption(expandOption);
+            command.SetHandler(async (string targetedManagedAppConfigurationId, string[] select, string[] expand) => {
+                var requestInfo = CreateGetRequestInformation(q => {
+                    q.Select = select;
+                    q.Expand = expand;
+                });
                 var result = await RequestAdapter.SendAsync<ManagedAppPolicyDeploymentSummary>(requestInfo);
                 // Print request output. What if the request has no return?
                 using var serializer = RequestAdapter.SerializationWriterFactory.GetSerializationWriter("application/json");
@@ -59,7 +73,7 @@ namespace ApiSdk.DeviceAppManagement.TargetedManagedAppConfigurations.Item.Deplo
                 using var reader = new StreamReader(content);
                 var strContent = await reader.ReadToEndAsync();
                 Console.Write(strContent + "\n");
-            });
+            }, targetedManagedAppConfigurationIdOption, selectOption, expandOption);
             return command;
         }
         /// <summary>
@@ -69,18 +83,24 @@ namespace ApiSdk.DeviceAppManagement.TargetedManagedAppConfigurations.Item.Deplo
             var command = new Command("patch");
             command.Description = "Navigation property to deployment summary of the configuration.";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--targetedmanagedappconfiguration-id", description: "key: id of targetedManagedAppConfiguration"));
-            command.AddOption(new Option<string>("--body"));
-            command.Handler = CommandHandler.Create<string, string>(async (targetedManagedAppConfigurationId, body) => {
+            var targetedManagedAppConfigurationIdOption = new Option<string>("--targetedmanagedappconfiguration-id", description: "key: id of targetedManagedAppConfiguration") {
+            };
+            targetedManagedAppConfigurationIdOption.IsRequired = true;
+            command.AddOption(targetedManagedAppConfigurationIdOption);
+            var bodyOption = new Option<string>("--body") {
+            };
+            bodyOption.IsRequired = true;
+            command.AddOption(bodyOption);
+            command.SetHandler(async (string targetedManagedAppConfigurationId, string body) => {
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<ManagedAppPolicyDeploymentSummary>();
-                var requestInfo = CreatePatchRequestInformation(model);
-                if (!String.IsNullOrEmpty(targetedManagedAppConfigurationId)) requestInfo.PathParameters.Add("targetedManagedAppConfiguration_id", targetedManagedAppConfigurationId);
+                var requestInfo = CreatePatchRequestInformation(model, q => {
+                });
                 await RequestAdapter.SendNoContentAsync(requestInfo);
                 // Print request output. What if the request has no return?
                 Console.WriteLine("Success");
-            });
+            }, targetedManagedAppConfigurationIdOption, bodyOption);
             return command;
         }
         /// <summary>
@@ -103,7 +123,7 @@ namespace ApiSdk.DeviceAppManagement.TargetedManagedAppConfigurations.Item.Deplo
         /// </summary>
         public RequestInformation CreateDeleteRequestInformation(Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
             var requestInfo = new RequestInformation {
-                HttpMethod = HttpMethod.DELETE,
+                HttpMethod = Method.DELETE,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };
@@ -119,7 +139,7 @@ namespace ApiSdk.DeviceAppManagement.TargetedManagedAppConfigurations.Item.Deplo
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<GetQueryParameters> q = default, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
             var requestInfo = new RequestInformation {
-                HttpMethod = HttpMethod.GET,
+                HttpMethod = Method.GET,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };
@@ -141,7 +161,7 @@ namespace ApiSdk.DeviceAppManagement.TargetedManagedAppConfigurations.Item.Deplo
         public RequestInformation CreatePatchRequestInformation(ManagedAppPolicyDeploymentSummary body, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
             _ = body ?? throw new ArgumentNullException(nameof(body));
             var requestInfo = new RequestInformation {
-                HttpMethod = HttpMethod.PATCH,
+                HttpMethod = Method.PATCH,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };

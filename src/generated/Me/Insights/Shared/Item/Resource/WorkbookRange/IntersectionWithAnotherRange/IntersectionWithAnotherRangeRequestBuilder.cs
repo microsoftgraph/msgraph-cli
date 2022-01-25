@@ -26,12 +26,17 @@ namespace ApiSdk.Me.Insights.Shared.Item.Resource.WorkbookRange.IntersectionWith
             var command = new Command("get");
             command.Description = "Invoke function intersection";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--sharedinsight-id", description: "key: id of sharedInsight"));
-            command.AddOption(new Option<string>("--anotherrange", description: "Usage: anotherRange={anotherRange}"));
-            command.Handler = CommandHandler.Create<string, string>(async (sharedInsightId, anotherRange) => {
-                var requestInfo = CreateGetRequestInformation();
-                if (!String.IsNullOrEmpty(sharedInsightId)) requestInfo.PathParameters.Add("sharedInsight_id", sharedInsightId);
-                if (!String.IsNullOrEmpty(anotherRange)) requestInfo.PathParameters.Add("anotherRange", anotherRange);
+            var sharedInsightIdOption = new Option<string>("--sharedinsight-id", description: "key: id of sharedInsight") {
+            };
+            sharedInsightIdOption.IsRequired = true;
+            command.AddOption(sharedInsightIdOption);
+            var anotherRangeOption = new Option<string>("--anotherrange", description: "Usage: anotherRange={anotherRange}") {
+            };
+            anotherRangeOption.IsRequired = true;
+            command.AddOption(anotherRangeOption);
+            command.SetHandler(async (string sharedInsightId, string anotherRange) => {
+                var requestInfo = CreateGetRequestInformation(q => {
+                });
                 var result = await RequestAdapter.SendAsync<IntersectionWithAnotherRangeResponse>(requestInfo);
                 // Print request output. What if the request has no return?
                 using var serializer = RequestAdapter.SerializationWriterFactory.GetSerializationWriter("application/json");
@@ -40,7 +45,7 @@ namespace ApiSdk.Me.Insights.Shared.Item.Resource.WorkbookRange.IntersectionWith
                 using var reader = new StreamReader(content);
                 var strContent = await reader.ReadToEndAsync();
                 Console.Write(strContent + "\n");
-            });
+            }, sharedInsightIdOption, anotherRangeOption);
             return command;
         }
         /// <summary>
@@ -65,7 +70,7 @@ namespace ApiSdk.Me.Insights.Shared.Item.Resource.WorkbookRange.IntersectionWith
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
             var requestInfo = new RequestInformation {
-                HttpMethod = HttpMethod.GET,
+                HttpMethod = Method.GET,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };

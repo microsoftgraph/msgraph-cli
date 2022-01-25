@@ -27,16 +27,21 @@ namespace ApiSdk.DeviceManagement.RoleDefinitions.Item.RoleAssignments.Item {
             var command = new Command("delete");
             command.Description = "List of Role assignments for this role definition.";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--roledefinition-id", description: "key: id of roleDefinition"));
-            command.AddOption(new Option<string>("--roleassignment-id", description: "key: id of roleAssignment"));
-            command.Handler = CommandHandler.Create<string, string>(async (roleDefinitionId, roleAssignmentId) => {
-                var requestInfo = CreateDeleteRequestInformation();
-                if (!String.IsNullOrEmpty(roleDefinitionId)) requestInfo.PathParameters.Add("roleDefinition_id", roleDefinitionId);
-                if (!String.IsNullOrEmpty(roleAssignmentId)) requestInfo.PathParameters.Add("roleAssignment_id", roleAssignmentId);
+            var roleDefinitionIdOption = new Option<string>("--roledefinition-id", description: "key: id of roleDefinition") {
+            };
+            roleDefinitionIdOption.IsRequired = true;
+            command.AddOption(roleDefinitionIdOption);
+            var roleAssignmentIdOption = new Option<string>("--roleassignment-id", description: "key: id of roleAssignment") {
+            };
+            roleAssignmentIdOption.IsRequired = true;
+            command.AddOption(roleAssignmentIdOption);
+            command.SetHandler(async (string roleDefinitionId, string roleAssignmentId) => {
+                var requestInfo = CreateDeleteRequestInformation(q => {
+                });
                 await RequestAdapter.SendNoContentAsync(requestInfo);
                 // Print request output. What if the request has no return?
                 Console.WriteLine("Success");
-            });
+            }, roleDefinitionIdOption, roleAssignmentIdOption);
             return command;
         }
         /// <summary>
@@ -46,16 +51,29 @@ namespace ApiSdk.DeviceManagement.RoleDefinitions.Item.RoleAssignments.Item {
             var command = new Command("get");
             command.Description = "List of Role assignments for this role definition.";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--roledefinition-id", description: "key: id of roleDefinition"));
-            command.AddOption(new Option<string>("--roleassignment-id", description: "key: id of roleAssignment"));
-            command.AddOption(new Option<object>("--select", description: "Select properties to be returned"));
-            command.AddOption(new Option<object>("--expand", description: "Expand related entities"));
-            command.Handler = CommandHandler.Create<string, string, object, object>(async (roleDefinitionId, roleAssignmentId, select, expand) => {
-                var requestInfo = CreateGetRequestInformation();
-                if (!String.IsNullOrEmpty(roleDefinitionId)) requestInfo.PathParameters.Add("roleDefinition_id", roleDefinitionId);
-                if (!String.IsNullOrEmpty(roleAssignmentId)) requestInfo.PathParameters.Add("roleAssignment_id", roleAssignmentId);
-                requestInfo.QueryParameters.Add("select", select);
-                requestInfo.QueryParameters.Add("expand", expand);
+            var roleDefinitionIdOption = new Option<string>("--roledefinition-id", description: "key: id of roleDefinition") {
+            };
+            roleDefinitionIdOption.IsRequired = true;
+            command.AddOption(roleDefinitionIdOption);
+            var roleAssignmentIdOption = new Option<string>("--roleassignment-id", description: "key: id of roleAssignment") {
+            };
+            roleAssignmentIdOption.IsRequired = true;
+            command.AddOption(roleAssignmentIdOption);
+            var selectOption = new Option<string[]>("--select", description: "Select properties to be returned") {
+                Arity = ArgumentArity.ZeroOrMore
+            };
+            selectOption.IsRequired = false;
+            command.AddOption(selectOption);
+            var expandOption = new Option<string[]>("--expand", description: "Expand related entities") {
+                Arity = ArgumentArity.ZeroOrMore
+            };
+            expandOption.IsRequired = false;
+            command.AddOption(expandOption);
+            command.SetHandler(async (string roleDefinitionId, string roleAssignmentId, string[] select, string[] expand) => {
+                var requestInfo = CreateGetRequestInformation(q => {
+                    q.Select = select;
+                    q.Expand = expand;
+                });
                 var result = await RequestAdapter.SendAsync<RoleAssignment>(requestInfo);
                 // Print request output. What if the request has no return?
                 using var serializer = RequestAdapter.SerializationWriterFactory.GetSerializationWriter("application/json");
@@ -64,7 +82,7 @@ namespace ApiSdk.DeviceManagement.RoleDefinitions.Item.RoleAssignments.Item {
                 using var reader = new StreamReader(content);
                 var strContent = await reader.ReadToEndAsync();
                 Console.Write(strContent + "\n");
-            });
+            }, roleDefinitionIdOption, roleAssignmentIdOption, selectOption, expandOption);
             return command;
         }
         /// <summary>
@@ -74,20 +92,28 @@ namespace ApiSdk.DeviceManagement.RoleDefinitions.Item.RoleAssignments.Item {
             var command = new Command("patch");
             command.Description = "List of Role assignments for this role definition.";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--roledefinition-id", description: "key: id of roleDefinition"));
-            command.AddOption(new Option<string>("--roleassignment-id", description: "key: id of roleAssignment"));
-            command.AddOption(new Option<string>("--body"));
-            command.Handler = CommandHandler.Create<string, string, string>(async (roleDefinitionId, roleAssignmentId, body) => {
+            var roleDefinitionIdOption = new Option<string>("--roledefinition-id", description: "key: id of roleDefinition") {
+            };
+            roleDefinitionIdOption.IsRequired = true;
+            command.AddOption(roleDefinitionIdOption);
+            var roleAssignmentIdOption = new Option<string>("--roleassignment-id", description: "key: id of roleAssignment") {
+            };
+            roleAssignmentIdOption.IsRequired = true;
+            command.AddOption(roleAssignmentIdOption);
+            var bodyOption = new Option<string>("--body") {
+            };
+            bodyOption.IsRequired = true;
+            command.AddOption(bodyOption);
+            command.SetHandler(async (string roleDefinitionId, string roleAssignmentId, string body) => {
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<RoleAssignment>();
-                var requestInfo = CreatePatchRequestInformation(model);
-                if (!String.IsNullOrEmpty(roleDefinitionId)) requestInfo.PathParameters.Add("roleDefinition_id", roleDefinitionId);
-                if (!String.IsNullOrEmpty(roleAssignmentId)) requestInfo.PathParameters.Add("roleAssignment_id", roleAssignmentId);
+                var requestInfo = CreatePatchRequestInformation(model, q => {
+                });
                 await RequestAdapter.SendNoContentAsync(requestInfo);
                 // Print request output. What if the request has no return?
                 Console.WriteLine("Success");
-            });
+            }, roleDefinitionIdOption, roleAssignmentIdOption, bodyOption);
             return command;
         }
         public Command BuildRoleDefinitionCommand() {
@@ -117,7 +143,7 @@ namespace ApiSdk.DeviceManagement.RoleDefinitions.Item.RoleAssignments.Item {
         /// </summary>
         public RequestInformation CreateDeleteRequestInformation(Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
             var requestInfo = new RequestInformation {
-                HttpMethod = HttpMethod.DELETE,
+                HttpMethod = Method.DELETE,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };
@@ -133,7 +159,7 @@ namespace ApiSdk.DeviceManagement.RoleDefinitions.Item.RoleAssignments.Item {
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<GetQueryParameters> q = default, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
             var requestInfo = new RequestInformation {
-                HttpMethod = HttpMethod.GET,
+                HttpMethod = Method.GET,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };
@@ -155,7 +181,7 @@ namespace ApiSdk.DeviceManagement.RoleDefinitions.Item.RoleAssignments.Item {
         public RequestInformation CreatePatchRequestInformation(RoleAssignment body, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
             _ = body ?? throw new ArgumentNullException(nameof(body));
             var requestInfo = new RequestInformation {
-                HttpMethod = HttpMethod.PATCH,
+                HttpMethod = Method.PATCH,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };

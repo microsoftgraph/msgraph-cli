@@ -26,16 +26,21 @@ namespace ApiSdk.DeviceManagement.DeviceConfigurations.Item.DeviceStatuses.Item 
             var command = new Command("delete");
             command.Description = "Device configuration installation status by device.";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--deviceconfiguration-id", description: "key: id of deviceConfiguration"));
-            command.AddOption(new Option<string>("--deviceconfigurationdevicestatus-id", description: "key: id of deviceConfigurationDeviceStatus"));
-            command.Handler = CommandHandler.Create<string, string>(async (deviceConfigurationId, deviceConfigurationDeviceStatusId) => {
-                var requestInfo = CreateDeleteRequestInformation();
-                if (!String.IsNullOrEmpty(deviceConfigurationId)) requestInfo.PathParameters.Add("deviceConfiguration_id", deviceConfigurationId);
-                if (!String.IsNullOrEmpty(deviceConfigurationDeviceStatusId)) requestInfo.PathParameters.Add("deviceConfigurationDeviceStatus_id", deviceConfigurationDeviceStatusId);
+            var deviceConfigurationIdOption = new Option<string>("--deviceconfiguration-id", description: "key: id of deviceConfiguration") {
+            };
+            deviceConfigurationIdOption.IsRequired = true;
+            command.AddOption(deviceConfigurationIdOption);
+            var deviceConfigurationDeviceStatusIdOption = new Option<string>("--deviceconfigurationdevicestatus-id", description: "key: id of deviceConfigurationDeviceStatus") {
+            };
+            deviceConfigurationDeviceStatusIdOption.IsRequired = true;
+            command.AddOption(deviceConfigurationDeviceStatusIdOption);
+            command.SetHandler(async (string deviceConfigurationId, string deviceConfigurationDeviceStatusId) => {
+                var requestInfo = CreateDeleteRequestInformation(q => {
+                });
                 await RequestAdapter.SendNoContentAsync(requestInfo);
                 // Print request output. What if the request has no return?
                 Console.WriteLine("Success");
-            });
+            }, deviceConfigurationIdOption, deviceConfigurationDeviceStatusIdOption);
             return command;
         }
         /// <summary>
@@ -45,16 +50,29 @@ namespace ApiSdk.DeviceManagement.DeviceConfigurations.Item.DeviceStatuses.Item 
             var command = new Command("get");
             command.Description = "Device configuration installation status by device.";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--deviceconfiguration-id", description: "key: id of deviceConfiguration"));
-            command.AddOption(new Option<string>("--deviceconfigurationdevicestatus-id", description: "key: id of deviceConfigurationDeviceStatus"));
-            command.AddOption(new Option<object>("--select", description: "Select properties to be returned"));
-            command.AddOption(new Option<object>("--expand", description: "Expand related entities"));
-            command.Handler = CommandHandler.Create<string, string, object, object>(async (deviceConfigurationId, deviceConfigurationDeviceStatusId, select, expand) => {
-                var requestInfo = CreateGetRequestInformation();
-                if (!String.IsNullOrEmpty(deviceConfigurationId)) requestInfo.PathParameters.Add("deviceConfiguration_id", deviceConfigurationId);
-                if (!String.IsNullOrEmpty(deviceConfigurationDeviceStatusId)) requestInfo.PathParameters.Add("deviceConfigurationDeviceStatus_id", deviceConfigurationDeviceStatusId);
-                requestInfo.QueryParameters.Add("select", select);
-                requestInfo.QueryParameters.Add("expand", expand);
+            var deviceConfigurationIdOption = new Option<string>("--deviceconfiguration-id", description: "key: id of deviceConfiguration") {
+            };
+            deviceConfigurationIdOption.IsRequired = true;
+            command.AddOption(deviceConfigurationIdOption);
+            var deviceConfigurationDeviceStatusIdOption = new Option<string>("--deviceconfigurationdevicestatus-id", description: "key: id of deviceConfigurationDeviceStatus") {
+            };
+            deviceConfigurationDeviceStatusIdOption.IsRequired = true;
+            command.AddOption(deviceConfigurationDeviceStatusIdOption);
+            var selectOption = new Option<string[]>("--select", description: "Select properties to be returned") {
+                Arity = ArgumentArity.ZeroOrMore
+            };
+            selectOption.IsRequired = false;
+            command.AddOption(selectOption);
+            var expandOption = new Option<string[]>("--expand", description: "Expand related entities") {
+                Arity = ArgumentArity.ZeroOrMore
+            };
+            expandOption.IsRequired = false;
+            command.AddOption(expandOption);
+            command.SetHandler(async (string deviceConfigurationId, string deviceConfigurationDeviceStatusId, string[] select, string[] expand) => {
+                var requestInfo = CreateGetRequestInformation(q => {
+                    q.Select = select;
+                    q.Expand = expand;
+                });
                 var result = await RequestAdapter.SendAsync<DeviceConfigurationDeviceStatus>(requestInfo);
                 // Print request output. What if the request has no return?
                 using var serializer = RequestAdapter.SerializationWriterFactory.GetSerializationWriter("application/json");
@@ -63,7 +81,7 @@ namespace ApiSdk.DeviceManagement.DeviceConfigurations.Item.DeviceStatuses.Item 
                 using var reader = new StreamReader(content);
                 var strContent = await reader.ReadToEndAsync();
                 Console.Write(strContent + "\n");
-            });
+            }, deviceConfigurationIdOption, deviceConfigurationDeviceStatusIdOption, selectOption, expandOption);
             return command;
         }
         /// <summary>
@@ -73,20 +91,28 @@ namespace ApiSdk.DeviceManagement.DeviceConfigurations.Item.DeviceStatuses.Item 
             var command = new Command("patch");
             command.Description = "Device configuration installation status by device.";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--deviceconfiguration-id", description: "key: id of deviceConfiguration"));
-            command.AddOption(new Option<string>("--deviceconfigurationdevicestatus-id", description: "key: id of deviceConfigurationDeviceStatus"));
-            command.AddOption(new Option<string>("--body"));
-            command.Handler = CommandHandler.Create<string, string, string>(async (deviceConfigurationId, deviceConfigurationDeviceStatusId, body) => {
+            var deviceConfigurationIdOption = new Option<string>("--deviceconfiguration-id", description: "key: id of deviceConfiguration") {
+            };
+            deviceConfigurationIdOption.IsRequired = true;
+            command.AddOption(deviceConfigurationIdOption);
+            var deviceConfigurationDeviceStatusIdOption = new Option<string>("--deviceconfigurationdevicestatus-id", description: "key: id of deviceConfigurationDeviceStatus") {
+            };
+            deviceConfigurationDeviceStatusIdOption.IsRequired = true;
+            command.AddOption(deviceConfigurationDeviceStatusIdOption);
+            var bodyOption = new Option<string>("--body") {
+            };
+            bodyOption.IsRequired = true;
+            command.AddOption(bodyOption);
+            command.SetHandler(async (string deviceConfigurationId, string deviceConfigurationDeviceStatusId, string body) => {
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<DeviceConfigurationDeviceStatus>();
-                var requestInfo = CreatePatchRequestInformation(model);
-                if (!String.IsNullOrEmpty(deviceConfigurationId)) requestInfo.PathParameters.Add("deviceConfiguration_id", deviceConfigurationId);
-                if (!String.IsNullOrEmpty(deviceConfigurationDeviceStatusId)) requestInfo.PathParameters.Add("deviceConfigurationDeviceStatus_id", deviceConfigurationDeviceStatusId);
+                var requestInfo = CreatePatchRequestInformation(model, q => {
+                });
                 await RequestAdapter.SendNoContentAsync(requestInfo);
                 // Print request output. What if the request has no return?
                 Console.WriteLine("Success");
-            });
+            }, deviceConfigurationIdOption, deviceConfigurationDeviceStatusIdOption, bodyOption);
             return command;
         }
         /// <summary>
@@ -109,7 +135,7 @@ namespace ApiSdk.DeviceManagement.DeviceConfigurations.Item.DeviceStatuses.Item 
         /// </summary>
         public RequestInformation CreateDeleteRequestInformation(Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
             var requestInfo = new RequestInformation {
-                HttpMethod = HttpMethod.DELETE,
+                HttpMethod = Method.DELETE,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };
@@ -125,7 +151,7 @@ namespace ApiSdk.DeviceManagement.DeviceConfigurations.Item.DeviceStatuses.Item 
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<GetQueryParameters> q = default, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
             var requestInfo = new RequestInformation {
-                HttpMethod = HttpMethod.GET,
+                HttpMethod = Method.GET,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };
@@ -147,7 +173,7 @@ namespace ApiSdk.DeviceManagement.DeviceConfigurations.Item.DeviceStatuses.Item 
         public RequestInformation CreatePatchRequestInformation(DeviceConfigurationDeviceStatus body, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
             _ = body ?? throw new ArgumentNullException(nameof(body));
             var requestInfo = new RequestInformation {
-                HttpMethod = HttpMethod.PATCH,
+                HttpMethod = Method.PATCH,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };

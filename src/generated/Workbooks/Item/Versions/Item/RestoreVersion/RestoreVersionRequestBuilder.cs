@@ -25,16 +25,21 @@ namespace ApiSdk.Workbooks.Item.Versions.Item.RestoreVersion {
             var command = new Command("post");
             command.Description = "Invoke action restoreVersion";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--driveitem-id", description: "key: id of driveItem"));
-            command.AddOption(new Option<string>("--driveitemversion-id", description: "key: id of driveItemVersion"));
-            command.Handler = CommandHandler.Create<string, string>(async (driveItemId, driveItemVersionId) => {
-                var requestInfo = CreatePostRequestInformation();
-                if (!String.IsNullOrEmpty(driveItemId)) requestInfo.PathParameters.Add("driveItem_id", driveItemId);
-                if (!String.IsNullOrEmpty(driveItemVersionId)) requestInfo.PathParameters.Add("driveItemVersion_id", driveItemVersionId);
+            var driveItemIdOption = new Option<string>("--driveitem-id", description: "key: id of driveItem") {
+            };
+            driveItemIdOption.IsRequired = true;
+            command.AddOption(driveItemIdOption);
+            var driveItemVersionIdOption = new Option<string>("--driveitemversion-id", description: "key: id of driveItemVersion") {
+            };
+            driveItemVersionIdOption.IsRequired = true;
+            command.AddOption(driveItemVersionIdOption);
+            command.SetHandler(async (string driveItemId, string driveItemVersionId) => {
+                var requestInfo = CreatePostRequestInformation(q => {
+                });
                 await RequestAdapter.SendNoContentAsync(requestInfo);
                 // Print request output. What if the request has no return?
                 Console.WriteLine("Success");
-            });
+            }, driveItemIdOption, driveItemVersionIdOption);
             return command;
         }
         /// <summary>
@@ -57,7 +62,7 @@ namespace ApiSdk.Workbooks.Item.Versions.Item.RestoreVersion {
         /// </summary>
         public RequestInformation CreatePostRequestInformation(Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
             var requestInfo = new RequestInformation {
-                HttpMethod = HttpMethod.POST,
+                HttpMethod = Method.POST,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };

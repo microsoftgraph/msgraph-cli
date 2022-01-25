@@ -26,14 +26,17 @@ namespace ApiSdk.DeviceManagement.WindowsInformationProtectionAppLearningSummari
             var command = new Command("delete");
             command.Description = "The windows information protection app learning summaries.";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--windowsinformationprotectionapplearningsummary-id", description: "key: id of windowsInformationProtectionAppLearningSummary"));
-            command.Handler = CommandHandler.Create<string>(async (windowsInformationProtectionAppLearningSummaryId) => {
-                var requestInfo = CreateDeleteRequestInformation();
-                if (!String.IsNullOrEmpty(windowsInformationProtectionAppLearningSummaryId)) requestInfo.PathParameters.Add("windowsInformationProtectionAppLearningSummary_id", windowsInformationProtectionAppLearningSummaryId);
+            var windowsInformationProtectionAppLearningSummaryIdOption = new Option<string>("--windowsinformationprotectionapplearningsummary-id", description: "key: id of windowsInformationProtectionAppLearningSummary") {
+            };
+            windowsInformationProtectionAppLearningSummaryIdOption.IsRequired = true;
+            command.AddOption(windowsInformationProtectionAppLearningSummaryIdOption);
+            command.SetHandler(async (string windowsInformationProtectionAppLearningSummaryId) => {
+                var requestInfo = CreateDeleteRequestInformation(q => {
+                });
                 await RequestAdapter.SendNoContentAsync(requestInfo);
                 // Print request output. What if the request has no return?
                 Console.WriteLine("Success");
-            });
+            }, windowsInformationProtectionAppLearningSummaryIdOption);
             return command;
         }
         /// <summary>
@@ -43,14 +46,25 @@ namespace ApiSdk.DeviceManagement.WindowsInformationProtectionAppLearningSummari
             var command = new Command("get");
             command.Description = "The windows information protection app learning summaries.";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--windowsinformationprotectionapplearningsummary-id", description: "key: id of windowsInformationProtectionAppLearningSummary"));
-            command.AddOption(new Option<object>("--select", description: "Select properties to be returned"));
-            command.AddOption(new Option<object>("--expand", description: "Expand related entities"));
-            command.Handler = CommandHandler.Create<string, object, object>(async (windowsInformationProtectionAppLearningSummaryId, select, expand) => {
-                var requestInfo = CreateGetRequestInformation();
-                if (!String.IsNullOrEmpty(windowsInformationProtectionAppLearningSummaryId)) requestInfo.PathParameters.Add("windowsInformationProtectionAppLearningSummary_id", windowsInformationProtectionAppLearningSummaryId);
-                requestInfo.QueryParameters.Add("select", select);
-                requestInfo.QueryParameters.Add("expand", expand);
+            var windowsInformationProtectionAppLearningSummaryIdOption = new Option<string>("--windowsinformationprotectionapplearningsummary-id", description: "key: id of windowsInformationProtectionAppLearningSummary") {
+            };
+            windowsInformationProtectionAppLearningSummaryIdOption.IsRequired = true;
+            command.AddOption(windowsInformationProtectionAppLearningSummaryIdOption);
+            var selectOption = new Option<string[]>("--select", description: "Select properties to be returned") {
+                Arity = ArgumentArity.ZeroOrMore
+            };
+            selectOption.IsRequired = false;
+            command.AddOption(selectOption);
+            var expandOption = new Option<string[]>("--expand", description: "Expand related entities") {
+                Arity = ArgumentArity.ZeroOrMore
+            };
+            expandOption.IsRequired = false;
+            command.AddOption(expandOption);
+            command.SetHandler(async (string windowsInformationProtectionAppLearningSummaryId, string[] select, string[] expand) => {
+                var requestInfo = CreateGetRequestInformation(q => {
+                    q.Select = select;
+                    q.Expand = expand;
+                });
                 var result = await RequestAdapter.SendAsync<WindowsInformationProtectionAppLearningSummary>(requestInfo);
                 // Print request output. What if the request has no return?
                 using var serializer = RequestAdapter.SerializationWriterFactory.GetSerializationWriter("application/json");
@@ -59,7 +73,7 @@ namespace ApiSdk.DeviceManagement.WindowsInformationProtectionAppLearningSummari
                 using var reader = new StreamReader(content);
                 var strContent = await reader.ReadToEndAsync();
                 Console.Write(strContent + "\n");
-            });
+            }, windowsInformationProtectionAppLearningSummaryIdOption, selectOption, expandOption);
             return command;
         }
         /// <summary>
@@ -69,18 +83,24 @@ namespace ApiSdk.DeviceManagement.WindowsInformationProtectionAppLearningSummari
             var command = new Command("patch");
             command.Description = "The windows information protection app learning summaries.";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--windowsinformationprotectionapplearningsummary-id", description: "key: id of windowsInformationProtectionAppLearningSummary"));
-            command.AddOption(new Option<string>("--body"));
-            command.Handler = CommandHandler.Create<string, string>(async (windowsInformationProtectionAppLearningSummaryId, body) => {
+            var windowsInformationProtectionAppLearningSummaryIdOption = new Option<string>("--windowsinformationprotectionapplearningsummary-id", description: "key: id of windowsInformationProtectionAppLearningSummary") {
+            };
+            windowsInformationProtectionAppLearningSummaryIdOption.IsRequired = true;
+            command.AddOption(windowsInformationProtectionAppLearningSummaryIdOption);
+            var bodyOption = new Option<string>("--body") {
+            };
+            bodyOption.IsRequired = true;
+            command.AddOption(bodyOption);
+            command.SetHandler(async (string windowsInformationProtectionAppLearningSummaryId, string body) => {
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<WindowsInformationProtectionAppLearningSummary>();
-                var requestInfo = CreatePatchRequestInformation(model);
-                if (!String.IsNullOrEmpty(windowsInformationProtectionAppLearningSummaryId)) requestInfo.PathParameters.Add("windowsInformationProtectionAppLearningSummary_id", windowsInformationProtectionAppLearningSummaryId);
+                var requestInfo = CreatePatchRequestInformation(model, q => {
+                });
                 await RequestAdapter.SendNoContentAsync(requestInfo);
                 // Print request output. What if the request has no return?
                 Console.WriteLine("Success");
-            });
+            }, windowsInformationProtectionAppLearningSummaryIdOption, bodyOption);
             return command;
         }
         /// <summary>
@@ -103,7 +123,7 @@ namespace ApiSdk.DeviceManagement.WindowsInformationProtectionAppLearningSummari
         /// </summary>
         public RequestInformation CreateDeleteRequestInformation(Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
             var requestInfo = new RequestInformation {
-                HttpMethod = HttpMethod.DELETE,
+                HttpMethod = Method.DELETE,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };
@@ -119,7 +139,7 @@ namespace ApiSdk.DeviceManagement.WindowsInformationProtectionAppLearningSummari
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<GetQueryParameters> q = default, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
             var requestInfo = new RequestInformation {
-                HttpMethod = HttpMethod.GET,
+                HttpMethod = Method.GET,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };
@@ -141,7 +161,7 @@ namespace ApiSdk.DeviceManagement.WindowsInformationProtectionAppLearningSummari
         public RequestInformation CreatePatchRequestInformation(WindowsInformationProtectionAppLearningSummary body, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
             _ = body ?? throw new ArgumentNullException(nameof(body));
             var requestInfo = new RequestInformation {
-                HttpMethod = HttpMethod.PATCH,
+                HttpMethod = Method.PATCH,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };

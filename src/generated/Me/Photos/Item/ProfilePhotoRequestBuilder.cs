@@ -34,14 +34,17 @@ namespace ApiSdk.Me.Photos.Item {
             var command = new Command("delete");
             command.Description = "Read-only. Nullable.";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--profilephoto-id", description: "key: id of profilePhoto"));
-            command.Handler = CommandHandler.Create<string>(async (profilePhotoId) => {
-                var requestInfo = CreateDeleteRequestInformation();
-                if (!String.IsNullOrEmpty(profilePhotoId)) requestInfo.PathParameters.Add("profilePhoto_id", profilePhotoId);
+            var profilePhotoIdOption = new Option<string>("--profilephoto-id", description: "key: id of profilePhoto") {
+            };
+            profilePhotoIdOption.IsRequired = true;
+            command.AddOption(profilePhotoIdOption);
+            command.SetHandler(async (string profilePhotoId) => {
+                var requestInfo = CreateDeleteRequestInformation(q => {
+                });
                 await RequestAdapter.SendNoContentAsync(requestInfo);
                 // Print request output. What if the request has no return?
                 Console.WriteLine("Success");
-            });
+            }, profilePhotoIdOption);
             return command;
         }
         /// <summary>
@@ -51,12 +54,19 @@ namespace ApiSdk.Me.Photos.Item {
             var command = new Command("get");
             command.Description = "Read-only. Nullable.";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--profilephoto-id", description: "key: id of profilePhoto"));
-            command.AddOption(new Option<object>("--select", description: "Select properties to be returned"));
-            command.Handler = CommandHandler.Create<string, object>(async (profilePhotoId, select) => {
-                var requestInfo = CreateGetRequestInformation();
-                if (!String.IsNullOrEmpty(profilePhotoId)) requestInfo.PathParameters.Add("profilePhoto_id", profilePhotoId);
-                requestInfo.QueryParameters.Add("select", select);
+            var profilePhotoIdOption = new Option<string>("--profilephoto-id", description: "key: id of profilePhoto") {
+            };
+            profilePhotoIdOption.IsRequired = true;
+            command.AddOption(profilePhotoIdOption);
+            var selectOption = new Option<string[]>("--select", description: "Select properties to be returned") {
+                Arity = ArgumentArity.ZeroOrMore
+            };
+            selectOption.IsRequired = false;
+            command.AddOption(selectOption);
+            command.SetHandler(async (string profilePhotoId, string[] select) => {
+                var requestInfo = CreateGetRequestInformation(q => {
+                    q.Select = select;
+                });
                 var result = await RequestAdapter.SendAsync<ProfilePhoto>(requestInfo);
                 // Print request output. What if the request has no return?
                 using var serializer = RequestAdapter.SerializationWriterFactory.GetSerializationWriter("application/json");
@@ -65,7 +75,7 @@ namespace ApiSdk.Me.Photos.Item {
                 using var reader = new StreamReader(content);
                 var strContent = await reader.ReadToEndAsync();
                 Console.Write(strContent + "\n");
-            });
+            }, profilePhotoIdOption, selectOption);
             return command;
         }
         /// <summary>
@@ -75,18 +85,24 @@ namespace ApiSdk.Me.Photos.Item {
             var command = new Command("patch");
             command.Description = "Read-only. Nullable.";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--profilephoto-id", description: "key: id of profilePhoto"));
-            command.AddOption(new Option<string>("--body"));
-            command.Handler = CommandHandler.Create<string, string>(async (profilePhotoId, body) => {
+            var profilePhotoIdOption = new Option<string>("--profilephoto-id", description: "key: id of profilePhoto") {
+            };
+            profilePhotoIdOption.IsRequired = true;
+            command.AddOption(profilePhotoIdOption);
+            var bodyOption = new Option<string>("--body") {
+            };
+            bodyOption.IsRequired = true;
+            command.AddOption(bodyOption);
+            command.SetHandler(async (string profilePhotoId, string body) => {
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<ProfilePhoto>();
-                var requestInfo = CreatePatchRequestInformation(model);
-                if (!String.IsNullOrEmpty(profilePhotoId)) requestInfo.PathParameters.Add("profilePhoto_id", profilePhotoId);
+                var requestInfo = CreatePatchRequestInformation(model, q => {
+                });
                 await RequestAdapter.SendNoContentAsync(requestInfo);
                 // Print request output. What if the request has no return?
                 Console.WriteLine("Success");
-            });
+            }, profilePhotoIdOption, bodyOption);
             return command;
         }
         /// <summary>
@@ -109,7 +125,7 @@ namespace ApiSdk.Me.Photos.Item {
         /// </summary>
         public RequestInformation CreateDeleteRequestInformation(Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
             var requestInfo = new RequestInformation {
-                HttpMethod = HttpMethod.DELETE,
+                HttpMethod = Method.DELETE,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };
@@ -125,7 +141,7 @@ namespace ApiSdk.Me.Photos.Item {
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<GetQueryParameters> q = default, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
             var requestInfo = new RequestInformation {
-                HttpMethod = HttpMethod.GET,
+                HttpMethod = Method.GET,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };
@@ -147,7 +163,7 @@ namespace ApiSdk.Me.Photos.Item {
         public RequestInformation CreatePatchRequestInformation(ProfilePhoto body, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
             _ = body ?? throw new ArgumentNullException(nameof(body));
             var requestInfo = new RequestInformation {
-                HttpMethod = HttpMethod.PATCH,
+                HttpMethod = Method.PATCH,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };

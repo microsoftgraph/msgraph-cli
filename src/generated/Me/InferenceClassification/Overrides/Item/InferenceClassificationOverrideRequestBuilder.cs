@@ -26,14 +26,17 @@ namespace ApiSdk.Me.InferenceClassification.Overrides.Item {
             var command = new Command("delete");
             command.Description = "A set of overrides for a user to always classify messages from specific senders in certain ways: focused, or other. Read-only. Nullable.";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--inferenceclassificationoverride-id", description: "key: id of inferenceClassificationOverride"));
-            command.Handler = CommandHandler.Create<string>(async (inferenceClassificationOverrideId) => {
-                var requestInfo = CreateDeleteRequestInformation();
-                if (!String.IsNullOrEmpty(inferenceClassificationOverrideId)) requestInfo.PathParameters.Add("inferenceClassificationOverride_id", inferenceClassificationOverrideId);
+            var inferenceClassificationOverrideIdOption = new Option<string>("--inferenceclassificationoverride-id", description: "key: id of inferenceClassificationOverride") {
+            };
+            inferenceClassificationOverrideIdOption.IsRequired = true;
+            command.AddOption(inferenceClassificationOverrideIdOption);
+            command.SetHandler(async (string inferenceClassificationOverrideId) => {
+                var requestInfo = CreateDeleteRequestInformation(q => {
+                });
                 await RequestAdapter.SendNoContentAsync(requestInfo);
                 // Print request output. What if the request has no return?
                 Console.WriteLine("Success");
-            });
+            }, inferenceClassificationOverrideIdOption);
             return command;
         }
         /// <summary>
@@ -43,12 +46,19 @@ namespace ApiSdk.Me.InferenceClassification.Overrides.Item {
             var command = new Command("get");
             command.Description = "A set of overrides for a user to always classify messages from specific senders in certain ways: focused, or other. Read-only. Nullable.";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--inferenceclassificationoverride-id", description: "key: id of inferenceClassificationOverride"));
-            command.AddOption(new Option<object>("--select", description: "Select properties to be returned"));
-            command.Handler = CommandHandler.Create<string, object>(async (inferenceClassificationOverrideId, select) => {
-                var requestInfo = CreateGetRequestInformation();
-                if (!String.IsNullOrEmpty(inferenceClassificationOverrideId)) requestInfo.PathParameters.Add("inferenceClassificationOverride_id", inferenceClassificationOverrideId);
-                requestInfo.QueryParameters.Add("select", select);
+            var inferenceClassificationOverrideIdOption = new Option<string>("--inferenceclassificationoverride-id", description: "key: id of inferenceClassificationOverride") {
+            };
+            inferenceClassificationOverrideIdOption.IsRequired = true;
+            command.AddOption(inferenceClassificationOverrideIdOption);
+            var selectOption = new Option<string[]>("--select", description: "Select properties to be returned") {
+                Arity = ArgumentArity.ZeroOrMore
+            };
+            selectOption.IsRequired = false;
+            command.AddOption(selectOption);
+            command.SetHandler(async (string inferenceClassificationOverrideId, string[] select) => {
+                var requestInfo = CreateGetRequestInformation(q => {
+                    q.Select = select;
+                });
                 var result = await RequestAdapter.SendAsync<InferenceClassificationOverride>(requestInfo);
                 // Print request output. What if the request has no return?
                 using var serializer = RequestAdapter.SerializationWriterFactory.GetSerializationWriter("application/json");
@@ -57,7 +67,7 @@ namespace ApiSdk.Me.InferenceClassification.Overrides.Item {
                 using var reader = new StreamReader(content);
                 var strContent = await reader.ReadToEndAsync();
                 Console.Write(strContent + "\n");
-            });
+            }, inferenceClassificationOverrideIdOption, selectOption);
             return command;
         }
         /// <summary>
@@ -67,18 +77,24 @@ namespace ApiSdk.Me.InferenceClassification.Overrides.Item {
             var command = new Command("patch");
             command.Description = "A set of overrides for a user to always classify messages from specific senders in certain ways: focused, or other. Read-only. Nullable.";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--inferenceclassificationoverride-id", description: "key: id of inferenceClassificationOverride"));
-            command.AddOption(new Option<string>("--body"));
-            command.Handler = CommandHandler.Create<string, string>(async (inferenceClassificationOverrideId, body) => {
+            var inferenceClassificationOverrideIdOption = new Option<string>("--inferenceclassificationoverride-id", description: "key: id of inferenceClassificationOverride") {
+            };
+            inferenceClassificationOverrideIdOption.IsRequired = true;
+            command.AddOption(inferenceClassificationOverrideIdOption);
+            var bodyOption = new Option<string>("--body") {
+            };
+            bodyOption.IsRequired = true;
+            command.AddOption(bodyOption);
+            command.SetHandler(async (string inferenceClassificationOverrideId, string body) => {
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<InferenceClassificationOverride>();
-                var requestInfo = CreatePatchRequestInformation(model);
-                if (!String.IsNullOrEmpty(inferenceClassificationOverrideId)) requestInfo.PathParameters.Add("inferenceClassificationOverride_id", inferenceClassificationOverrideId);
+                var requestInfo = CreatePatchRequestInformation(model, q => {
+                });
                 await RequestAdapter.SendNoContentAsync(requestInfo);
                 // Print request output. What if the request has no return?
                 Console.WriteLine("Success");
-            });
+            }, inferenceClassificationOverrideIdOption, bodyOption);
             return command;
         }
         /// <summary>
@@ -101,7 +117,7 @@ namespace ApiSdk.Me.InferenceClassification.Overrides.Item {
         /// </summary>
         public RequestInformation CreateDeleteRequestInformation(Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
             var requestInfo = new RequestInformation {
-                HttpMethod = HttpMethod.DELETE,
+                HttpMethod = Method.DELETE,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };
@@ -117,7 +133,7 @@ namespace ApiSdk.Me.InferenceClassification.Overrides.Item {
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<GetQueryParameters> q = default, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
             var requestInfo = new RequestInformation {
-                HttpMethod = HttpMethod.GET,
+                HttpMethod = Method.GET,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };
@@ -139,7 +155,7 @@ namespace ApiSdk.Me.InferenceClassification.Overrides.Item {
         public RequestInformation CreatePatchRequestInformation(InferenceClassificationOverride body, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
             _ = body ?? throw new ArgumentNullException(nameof(body));
             var requestInfo = new RequestInformation {
-                HttpMethod = HttpMethod.PATCH,
+                HttpMethod = Method.PATCH,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };

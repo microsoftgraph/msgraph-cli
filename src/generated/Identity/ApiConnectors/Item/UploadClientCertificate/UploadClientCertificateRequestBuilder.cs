@@ -26,14 +26,20 @@ namespace ApiSdk.Identity.ApiConnectors.Item.UploadClientCertificate {
             var command = new Command("post");
             command.Description = "Invoke action uploadClientCertificate";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--identityapiconnector-id", description: "key: id of identityApiConnector"));
-            command.AddOption(new Option<string>("--body"));
-            command.Handler = CommandHandler.Create<string, string>(async (identityApiConnectorId, body) => {
+            var identityApiConnectorIdOption = new Option<string>("--identityapiconnector-id", description: "key: id of identityApiConnector") {
+            };
+            identityApiConnectorIdOption.IsRequired = true;
+            command.AddOption(identityApiConnectorIdOption);
+            var bodyOption = new Option<string>("--body") {
+            };
+            bodyOption.IsRequired = true;
+            command.AddOption(bodyOption);
+            command.SetHandler(async (string identityApiConnectorId, string body) => {
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<UploadClientCertificateRequestBody>();
-                var requestInfo = CreatePostRequestInformation(model);
-                if (!String.IsNullOrEmpty(identityApiConnectorId)) requestInfo.PathParameters.Add("identityApiConnector_id", identityApiConnectorId);
+                var requestInfo = CreatePostRequestInformation(model, q => {
+                });
                 var result = await RequestAdapter.SendAsync<UploadClientCertificateResponse>(requestInfo);
                 // Print request output. What if the request has no return?
                 using var serializer = RequestAdapter.SerializationWriterFactory.GetSerializationWriter("application/json");
@@ -42,7 +48,7 @@ namespace ApiSdk.Identity.ApiConnectors.Item.UploadClientCertificate {
                 using var reader = new StreamReader(content);
                 var strContent = await reader.ReadToEndAsync();
                 Console.Write(strContent + "\n");
-            });
+            }, identityApiConnectorIdOption, bodyOption);
             return command;
         }
         /// <summary>
@@ -67,7 +73,7 @@ namespace ApiSdk.Identity.ApiConnectors.Item.UploadClientCertificate {
         public RequestInformation CreatePostRequestInformation(UploadClientCertificateRequestBody body, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
             _ = body ?? throw new ArgumentNullException(nameof(body));
             var requestInfo = new RequestInformation {
-                HttpMethod = HttpMethod.POST,
+                HttpMethod = Method.POST,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };

@@ -26,10 +26,13 @@ namespace ApiSdk.DirectoryRoles.Item.Restore {
             var command = new Command("post");
             command.Description = "Invoke action restore";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--directoryrole-id", description: "key: id of directoryRole"));
-            command.Handler = CommandHandler.Create<string>(async (directoryRoleId) => {
-                var requestInfo = CreatePostRequestInformation();
-                if (!String.IsNullOrEmpty(directoryRoleId)) requestInfo.PathParameters.Add("directoryRole_id", directoryRoleId);
+            var directoryRoleIdOption = new Option<string>("--directoryrole-id", description: "key: id of directoryRole") {
+            };
+            directoryRoleIdOption.IsRequired = true;
+            command.AddOption(directoryRoleIdOption);
+            command.SetHandler(async (string directoryRoleId) => {
+                var requestInfo = CreatePostRequestInformation(q => {
+                });
                 var result = await RequestAdapter.SendAsync<RestoreResponse>(requestInfo);
                 // Print request output. What if the request has no return?
                 using var serializer = RequestAdapter.SerializationWriterFactory.GetSerializationWriter("application/json");
@@ -38,7 +41,7 @@ namespace ApiSdk.DirectoryRoles.Item.Restore {
                 using var reader = new StreamReader(content);
                 var strContent = await reader.ReadToEndAsync();
                 Console.Write(strContent + "\n");
-            });
+            }, directoryRoleIdOption);
             return command;
         }
         /// <summary>
@@ -61,7 +64,7 @@ namespace ApiSdk.DirectoryRoles.Item.Restore {
         /// </summary>
         public RequestInformation CreatePostRequestInformation(Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
             var requestInfo = new RequestInformation {
-                HttpMethod = HttpMethod.POST,
+                HttpMethod = Method.POST,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };

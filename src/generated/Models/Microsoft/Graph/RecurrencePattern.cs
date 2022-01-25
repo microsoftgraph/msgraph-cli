@@ -19,7 +19,7 @@ namespace ApiSdk.Models.Microsoft.Graph {
         public int? Interval { get; set; }
         /// <summary>The month in which the event occurs.  This is a number from 1 to 12.</summary>
         public int? Month { get; set; }
-        /// <summary>The recurrence pattern type: daily, weekly, absoluteMonthly, relativeMonthly, absoluteYearly, relativeYearly. Required.</summary>
+        /// <summary>The recurrence pattern type: daily, weekly, absoluteMonthly, relativeMonthly, absoluteYearly, relativeYearly. Required. For more information, see values of type property.</summary>
         public RecurrencePatternType? Type { get; set; }
         /// <summary>
         /// Instantiates a new recurrencePattern and sets the default values.

@@ -26,16 +26,25 @@ namespace ApiSdk.Reports.ManagedDeviceEnrollmentFailureDetailsWithSkipWithTopWit
             var command = new Command("get");
             command.Description = "Invoke function managedDeviceEnrollmentFailureDetails";
             // Create options for all the parameters
-            command.AddOption(new Option<int?>("--skip", description: "Usage: skip={skip}"));
-            command.AddOption(new Option<int?>("--top", description: "Usage: top={top}"));
-            command.AddOption(new Option<string>("--filter", description: "Usage: filter={filter}"));
-            command.AddOption(new Option<string>("--skiptoken", description: "Usage: skipToken={skipToken}"));
-            command.Handler = CommandHandler.Create<int?, int?, string, string>(async (skip, top, filter, skipToken) => {
-                var requestInfo = CreateGetRequestInformation();
-                requestInfo.PathParameters.Add("skip", skip);
-                requestInfo.PathParameters.Add("top", top);
-                if (!String.IsNullOrEmpty(filter)) requestInfo.PathParameters.Add("filter", filter);
-                if (!String.IsNullOrEmpty(skipToken)) requestInfo.PathParameters.Add("skipToken", skipToken);
+            var skipOption = new Option<int?>("--skip", description: "Usage: skip={skip}") {
+            };
+            skipOption.IsRequired = true;
+            command.AddOption(skipOption);
+            var topOption = new Option<int?>("--top", description: "Usage: top={top}") {
+            };
+            topOption.IsRequired = true;
+            command.AddOption(topOption);
+            var filterOption = new Option<string>("--filter", description: "Usage: filter={filter}") {
+            };
+            filterOption.IsRequired = true;
+            command.AddOption(filterOption);
+            var skipTokenOption = new Option<string>("--skiptoken", description: "Usage: skipToken={skipToken}") {
+            };
+            skipTokenOption.IsRequired = true;
+            command.AddOption(skipTokenOption);
+            command.SetHandler(async (int? skip, int? top, string filter, string skipToken) => {
+                var requestInfo = CreateGetRequestInformation(q => {
+                });
                 var result = await RequestAdapter.SendAsync<ManagedDeviceEnrollmentFailureDetailsWithSkipWithTopWithFilterWithSkipTokenResponse>(requestInfo);
                 // Print request output. What if the request has no return?
                 using var serializer = RequestAdapter.SerializationWriterFactory.GetSerializationWriter("application/json");
@@ -44,7 +53,7 @@ namespace ApiSdk.Reports.ManagedDeviceEnrollmentFailureDetailsWithSkipWithTopWit
                 using var reader = new StreamReader(content);
                 var strContent = await reader.ReadToEndAsync();
                 Console.Write(strContent + "\n");
-            });
+            }, skipOption, topOption, filterOption, skipTokenOption);
             return command;
         }
         /// <summary>
@@ -75,7 +84,7 @@ namespace ApiSdk.Reports.ManagedDeviceEnrollmentFailureDetailsWithSkipWithTopWit
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
             var requestInfo = new RequestInformation {
-                HttpMethod = HttpMethod.GET,
+                HttpMethod = Method.GET,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };

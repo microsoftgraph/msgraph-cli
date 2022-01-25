@@ -26,14 +26,21 @@ namespace ApiSdk.Me.Insights.Trending.Item.Resource.WorkbookRange.ResizedRangeWi
             var command = new Command("get");
             command.Description = "Invoke function resizedRange";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--trending-id", description: "key: id of trending"));
-            command.AddOption(new Option<int?>("--deltarows", description: "Usage: deltaRows={deltaRows}"));
-            command.AddOption(new Option<int?>("--deltacolumns", description: "Usage: deltaColumns={deltaColumns}"));
-            command.Handler = CommandHandler.Create<string, int?, int?>(async (trendingId, deltaRows, deltaColumns) => {
-                var requestInfo = CreateGetRequestInformation();
-                if (!String.IsNullOrEmpty(trendingId)) requestInfo.PathParameters.Add("trending_id", trendingId);
-                requestInfo.PathParameters.Add("deltaRows", deltaRows);
-                requestInfo.PathParameters.Add("deltaColumns", deltaColumns);
+            var trendingIdOption = new Option<string>("--trending-id", description: "key: id of trending") {
+            };
+            trendingIdOption.IsRequired = true;
+            command.AddOption(trendingIdOption);
+            var deltaRowsOption = new Option<int?>("--deltarows", description: "Usage: deltaRows={deltaRows}") {
+            };
+            deltaRowsOption.IsRequired = true;
+            command.AddOption(deltaRowsOption);
+            var deltaColumnsOption = new Option<int?>("--deltacolumns", description: "Usage: deltaColumns={deltaColumns}") {
+            };
+            deltaColumnsOption.IsRequired = true;
+            command.AddOption(deltaColumnsOption);
+            command.SetHandler(async (string trendingId, int? deltaRows, int? deltaColumns) => {
+                var requestInfo = CreateGetRequestInformation(q => {
+                });
                 var result = await RequestAdapter.SendAsync<ResizedRangeWithDeltaRowsWithDeltaColumnsResponse>(requestInfo);
                 // Print request output. What if the request has no return?
                 using var serializer = RequestAdapter.SerializationWriterFactory.GetSerializationWriter("application/json");
@@ -42,7 +49,7 @@ namespace ApiSdk.Me.Insights.Trending.Item.Resource.WorkbookRange.ResizedRangeWi
                 using var reader = new StreamReader(content);
                 var strContent = await reader.ReadToEndAsync();
                 Console.Write(strContent + "\n");
-            });
+            }, trendingIdOption, deltaRowsOption, deltaColumnsOption);
             return command;
         }
         /// <summary>
@@ -69,7 +76,7 @@ namespace ApiSdk.Me.Insights.Trending.Item.Resource.WorkbookRange.ResizedRangeWi
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
             var requestInfo = new RequestInformation {
-                HttpMethod = HttpMethod.GET,
+                HttpMethod = Method.GET,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };

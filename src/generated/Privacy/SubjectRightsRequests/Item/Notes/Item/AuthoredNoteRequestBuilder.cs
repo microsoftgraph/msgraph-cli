@@ -26,16 +26,21 @@ namespace ApiSdk.Privacy.SubjectRightsRequests.Item.Notes.Item {
             var command = new Command("delete");
             command.Description = "List of notes associcated with the request.";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--subjectrightsrequest-id", description: "key: id of subjectRightsRequest"));
-            command.AddOption(new Option<string>("--authorednote-id", description: "key: id of authoredNote"));
-            command.Handler = CommandHandler.Create<string, string>(async (subjectRightsRequestId, authoredNoteId) => {
-                var requestInfo = CreateDeleteRequestInformation();
-                if (!String.IsNullOrEmpty(subjectRightsRequestId)) requestInfo.PathParameters.Add("subjectRightsRequest_id", subjectRightsRequestId);
-                if (!String.IsNullOrEmpty(authoredNoteId)) requestInfo.PathParameters.Add("authoredNote_id", authoredNoteId);
+            var subjectRightsRequestIdOption = new Option<string>("--subjectrightsrequest-id", description: "key: id of subjectRightsRequest") {
+            };
+            subjectRightsRequestIdOption.IsRequired = true;
+            command.AddOption(subjectRightsRequestIdOption);
+            var authoredNoteIdOption = new Option<string>("--authorednote-id", description: "key: id of authoredNote") {
+            };
+            authoredNoteIdOption.IsRequired = true;
+            command.AddOption(authoredNoteIdOption);
+            command.SetHandler(async (string subjectRightsRequestId, string authoredNoteId) => {
+                var requestInfo = CreateDeleteRequestInformation(q => {
+                });
                 await RequestAdapter.SendNoContentAsync(requestInfo);
                 // Print request output. What if the request has no return?
                 Console.WriteLine("Success");
-            });
+            }, subjectRightsRequestIdOption, authoredNoteIdOption);
             return command;
         }
         /// <summary>
@@ -45,16 +50,29 @@ namespace ApiSdk.Privacy.SubjectRightsRequests.Item.Notes.Item {
             var command = new Command("get");
             command.Description = "List of notes associcated with the request.";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--subjectrightsrequest-id", description: "key: id of subjectRightsRequest"));
-            command.AddOption(new Option<string>("--authorednote-id", description: "key: id of authoredNote"));
-            command.AddOption(new Option<object>("--select", description: "Select properties to be returned"));
-            command.AddOption(new Option<object>("--expand", description: "Expand related entities"));
-            command.Handler = CommandHandler.Create<string, string, object, object>(async (subjectRightsRequestId, authoredNoteId, select, expand) => {
-                var requestInfo = CreateGetRequestInformation();
-                if (!String.IsNullOrEmpty(subjectRightsRequestId)) requestInfo.PathParameters.Add("subjectRightsRequest_id", subjectRightsRequestId);
-                if (!String.IsNullOrEmpty(authoredNoteId)) requestInfo.PathParameters.Add("authoredNote_id", authoredNoteId);
-                requestInfo.QueryParameters.Add("select", select);
-                requestInfo.QueryParameters.Add("expand", expand);
+            var subjectRightsRequestIdOption = new Option<string>("--subjectrightsrequest-id", description: "key: id of subjectRightsRequest") {
+            };
+            subjectRightsRequestIdOption.IsRequired = true;
+            command.AddOption(subjectRightsRequestIdOption);
+            var authoredNoteIdOption = new Option<string>("--authorednote-id", description: "key: id of authoredNote") {
+            };
+            authoredNoteIdOption.IsRequired = true;
+            command.AddOption(authoredNoteIdOption);
+            var selectOption = new Option<string[]>("--select", description: "Select properties to be returned") {
+                Arity = ArgumentArity.ZeroOrMore
+            };
+            selectOption.IsRequired = false;
+            command.AddOption(selectOption);
+            var expandOption = new Option<string[]>("--expand", description: "Expand related entities") {
+                Arity = ArgumentArity.ZeroOrMore
+            };
+            expandOption.IsRequired = false;
+            command.AddOption(expandOption);
+            command.SetHandler(async (string subjectRightsRequestId, string authoredNoteId, string[] select, string[] expand) => {
+                var requestInfo = CreateGetRequestInformation(q => {
+                    q.Select = select;
+                    q.Expand = expand;
+                });
                 var result = await RequestAdapter.SendAsync<AuthoredNote>(requestInfo);
                 // Print request output. What if the request has no return?
                 using var serializer = RequestAdapter.SerializationWriterFactory.GetSerializationWriter("application/json");
@@ -63,7 +81,7 @@ namespace ApiSdk.Privacy.SubjectRightsRequests.Item.Notes.Item {
                 using var reader = new StreamReader(content);
                 var strContent = await reader.ReadToEndAsync();
                 Console.Write(strContent + "\n");
-            });
+            }, subjectRightsRequestIdOption, authoredNoteIdOption, selectOption, expandOption);
             return command;
         }
         /// <summary>
@@ -73,20 +91,28 @@ namespace ApiSdk.Privacy.SubjectRightsRequests.Item.Notes.Item {
             var command = new Command("patch");
             command.Description = "List of notes associcated with the request.";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--subjectrightsrequest-id", description: "key: id of subjectRightsRequest"));
-            command.AddOption(new Option<string>("--authorednote-id", description: "key: id of authoredNote"));
-            command.AddOption(new Option<string>("--body"));
-            command.Handler = CommandHandler.Create<string, string, string>(async (subjectRightsRequestId, authoredNoteId, body) => {
+            var subjectRightsRequestIdOption = new Option<string>("--subjectrightsrequest-id", description: "key: id of subjectRightsRequest") {
+            };
+            subjectRightsRequestIdOption.IsRequired = true;
+            command.AddOption(subjectRightsRequestIdOption);
+            var authoredNoteIdOption = new Option<string>("--authorednote-id", description: "key: id of authoredNote") {
+            };
+            authoredNoteIdOption.IsRequired = true;
+            command.AddOption(authoredNoteIdOption);
+            var bodyOption = new Option<string>("--body") {
+            };
+            bodyOption.IsRequired = true;
+            command.AddOption(bodyOption);
+            command.SetHandler(async (string subjectRightsRequestId, string authoredNoteId, string body) => {
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<AuthoredNote>();
-                var requestInfo = CreatePatchRequestInformation(model);
-                if (!String.IsNullOrEmpty(subjectRightsRequestId)) requestInfo.PathParameters.Add("subjectRightsRequest_id", subjectRightsRequestId);
-                if (!String.IsNullOrEmpty(authoredNoteId)) requestInfo.PathParameters.Add("authoredNote_id", authoredNoteId);
+                var requestInfo = CreatePatchRequestInformation(model, q => {
+                });
                 await RequestAdapter.SendNoContentAsync(requestInfo);
                 // Print request output. What if the request has no return?
                 Console.WriteLine("Success");
-            });
+            }, subjectRightsRequestIdOption, authoredNoteIdOption, bodyOption);
             return command;
         }
         /// <summary>
@@ -109,7 +135,7 @@ namespace ApiSdk.Privacy.SubjectRightsRequests.Item.Notes.Item {
         /// </summary>
         public RequestInformation CreateDeleteRequestInformation(Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
             var requestInfo = new RequestInformation {
-                HttpMethod = HttpMethod.DELETE,
+                HttpMethod = Method.DELETE,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };
@@ -125,7 +151,7 @@ namespace ApiSdk.Privacy.SubjectRightsRequests.Item.Notes.Item {
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<GetQueryParameters> q = default, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
             var requestInfo = new RequestInformation {
-                HttpMethod = HttpMethod.GET,
+                HttpMethod = Method.GET,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };
@@ -147,7 +173,7 @@ namespace ApiSdk.Privacy.SubjectRightsRequests.Item.Notes.Item {
         public RequestInformation CreatePatchRequestInformation(AuthoredNote body, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
             _ = body ?? throw new ArgumentNullException(nameof(body));
             var requestInfo = new RequestInformation {
-                HttpMethod = HttpMethod.PATCH,
+                HttpMethod = Method.PATCH,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };

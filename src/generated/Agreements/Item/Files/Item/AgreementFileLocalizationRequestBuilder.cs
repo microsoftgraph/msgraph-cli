@@ -21,41 +21,59 @@ namespace ApiSdk.Agreements.Item.Files.Item {
         /// <summary>Url template to use to build the URL for the current request builder</summary>
         private string UrlTemplate { get; set; }
         /// <summary>
-        /// PDFs linked to this agreement. This property is in the process of being deprecated. Use the  file property instead.
+        /// PDFs linked to this agreement. Note: This property is in the process of being deprecated. Use the  file property instead.
         /// </summary>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
-            command.Description = "PDFs linked to this agreement. This property is in the process of being deprecated. Use the  file property instead.";
+            command.Description = "PDFs linked to this agreement. Note: This property is in the process of being deprecated. Use the  file property instead.";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--agreement-id", description: "key: id of agreement"));
-            command.AddOption(new Option<string>("--agreementfilelocalization-id", description: "key: id of agreementFileLocalization"));
-            command.Handler = CommandHandler.Create<string, string>(async (agreementId, agreementFileLocalizationId) => {
-                var requestInfo = CreateDeleteRequestInformation();
-                if (!String.IsNullOrEmpty(agreementId)) requestInfo.PathParameters.Add("agreement_id", agreementId);
-                if (!String.IsNullOrEmpty(agreementFileLocalizationId)) requestInfo.PathParameters.Add("agreementFileLocalization_id", agreementFileLocalizationId);
+            var agreementIdOption = new Option<string>("--agreement-id", description: "key: id of agreement") {
+            };
+            agreementIdOption.IsRequired = true;
+            command.AddOption(agreementIdOption);
+            var agreementFileLocalizationIdOption = new Option<string>("--agreementfilelocalization-id", description: "key: id of agreementFileLocalization") {
+            };
+            agreementFileLocalizationIdOption.IsRequired = true;
+            command.AddOption(agreementFileLocalizationIdOption);
+            command.SetHandler(async (string agreementId, string agreementFileLocalizationId) => {
+                var requestInfo = CreateDeleteRequestInformation(q => {
+                });
                 await RequestAdapter.SendNoContentAsync(requestInfo);
                 // Print request output. What if the request has no return?
                 Console.WriteLine("Success");
-            });
+            }, agreementIdOption, agreementFileLocalizationIdOption);
             return command;
         }
         /// <summary>
-        /// PDFs linked to this agreement. This property is in the process of being deprecated. Use the  file property instead.
+        /// PDFs linked to this agreement. Note: This property is in the process of being deprecated. Use the  file property instead.
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "PDFs linked to this agreement. This property is in the process of being deprecated. Use the  file property instead.";
+            command.Description = "PDFs linked to this agreement. Note: This property is in the process of being deprecated. Use the  file property instead.";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--agreement-id", description: "key: id of agreement"));
-            command.AddOption(new Option<string>("--agreementfilelocalization-id", description: "key: id of agreementFileLocalization"));
-            command.AddOption(new Option<object>("--select", description: "Select properties to be returned"));
-            command.AddOption(new Option<object>("--expand", description: "Expand related entities"));
-            command.Handler = CommandHandler.Create<string, string, object, object>(async (agreementId, agreementFileLocalizationId, select, expand) => {
-                var requestInfo = CreateGetRequestInformation();
-                if (!String.IsNullOrEmpty(agreementId)) requestInfo.PathParameters.Add("agreement_id", agreementId);
-                if (!String.IsNullOrEmpty(agreementFileLocalizationId)) requestInfo.PathParameters.Add("agreementFileLocalization_id", agreementFileLocalizationId);
-                requestInfo.QueryParameters.Add("select", select);
-                requestInfo.QueryParameters.Add("expand", expand);
+            var agreementIdOption = new Option<string>("--agreement-id", description: "key: id of agreement") {
+            };
+            agreementIdOption.IsRequired = true;
+            command.AddOption(agreementIdOption);
+            var agreementFileLocalizationIdOption = new Option<string>("--agreementfilelocalization-id", description: "key: id of agreementFileLocalization") {
+            };
+            agreementFileLocalizationIdOption.IsRequired = true;
+            command.AddOption(agreementFileLocalizationIdOption);
+            var selectOption = new Option<string[]>("--select", description: "Select properties to be returned") {
+                Arity = ArgumentArity.ZeroOrMore
+            };
+            selectOption.IsRequired = false;
+            command.AddOption(selectOption);
+            var expandOption = new Option<string[]>("--expand", description: "Expand related entities") {
+                Arity = ArgumentArity.ZeroOrMore
+            };
+            expandOption.IsRequired = false;
+            command.AddOption(expandOption);
+            command.SetHandler(async (string agreementId, string agreementFileLocalizationId, string[] select, string[] expand) => {
+                var requestInfo = CreateGetRequestInformation(q => {
+                    q.Select = select;
+                    q.Expand = expand;
+                });
                 var result = await RequestAdapter.SendAsync<AgreementFileLocalization>(requestInfo);
                 // Print request output. What if the request has no return?
                 using var serializer = RequestAdapter.SerializationWriterFactory.GetSerializationWriter("application/json");
@@ -64,30 +82,38 @@ namespace ApiSdk.Agreements.Item.Files.Item {
                 using var reader = new StreamReader(content);
                 var strContent = await reader.ReadToEndAsync();
                 Console.Write(strContent + "\n");
-            });
+            }, agreementIdOption, agreementFileLocalizationIdOption, selectOption, expandOption);
             return command;
         }
         /// <summary>
-        /// PDFs linked to this agreement. This property is in the process of being deprecated. Use the  file property instead.
+        /// PDFs linked to this agreement. Note: This property is in the process of being deprecated. Use the  file property instead.
         /// </summary>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
-            command.Description = "PDFs linked to this agreement. This property is in the process of being deprecated. Use the  file property instead.";
+            command.Description = "PDFs linked to this agreement. Note: This property is in the process of being deprecated. Use the  file property instead.";
             // Create options for all the parameters
-            command.AddOption(new Option<string>("--agreement-id", description: "key: id of agreement"));
-            command.AddOption(new Option<string>("--agreementfilelocalization-id", description: "key: id of agreementFileLocalization"));
-            command.AddOption(new Option<string>("--body"));
-            command.Handler = CommandHandler.Create<string, string, string>(async (agreementId, agreementFileLocalizationId, body) => {
+            var agreementIdOption = new Option<string>("--agreement-id", description: "key: id of agreement") {
+            };
+            agreementIdOption.IsRequired = true;
+            command.AddOption(agreementIdOption);
+            var agreementFileLocalizationIdOption = new Option<string>("--agreementfilelocalization-id", description: "key: id of agreementFileLocalization") {
+            };
+            agreementFileLocalizationIdOption.IsRequired = true;
+            command.AddOption(agreementFileLocalizationIdOption);
+            var bodyOption = new Option<string>("--body") {
+            };
+            bodyOption.IsRequired = true;
+            command.AddOption(bodyOption);
+            command.SetHandler(async (string agreementId, string agreementFileLocalizationId, string body) => {
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<AgreementFileLocalization>();
-                var requestInfo = CreatePatchRequestInformation(model);
-                if (!String.IsNullOrEmpty(agreementId)) requestInfo.PathParameters.Add("agreement_id", agreementId);
-                if (!String.IsNullOrEmpty(agreementFileLocalizationId)) requestInfo.PathParameters.Add("agreementFileLocalization_id", agreementFileLocalizationId);
+                var requestInfo = CreatePatchRequestInformation(model, q => {
+                });
                 await RequestAdapter.SendNoContentAsync(requestInfo);
                 // Print request output. What if the request has no return?
                 Console.WriteLine("Success");
-            });
+            }, agreementIdOption, agreementFileLocalizationIdOption, bodyOption);
             return command;
         }
         public Command BuildVersionsCommand() {
@@ -111,13 +137,13 @@ namespace ApiSdk.Agreements.Item.Files.Item {
             RequestAdapter = requestAdapter;
         }
         /// <summary>
-        /// PDFs linked to this agreement. This property is in the process of being deprecated. Use the  file property instead.
+        /// PDFs linked to this agreement. Note: This property is in the process of being deprecated. Use the  file property instead.
         /// <param name="h">Request headers</param>
         /// <param name="o">Request options</param>
         /// </summary>
         public RequestInformation CreateDeleteRequestInformation(Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
             var requestInfo = new RequestInformation {
-                HttpMethod = HttpMethod.DELETE,
+                HttpMethod = Method.DELETE,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };
@@ -126,14 +152,14 @@ namespace ApiSdk.Agreements.Item.Files.Item {
             return requestInfo;
         }
         /// <summary>
-        /// PDFs linked to this agreement. This property is in the process of being deprecated. Use the  file property instead.
+        /// PDFs linked to this agreement. Note: This property is in the process of being deprecated. Use the  file property instead.
         /// <param name="h">Request headers</param>
         /// <param name="o">Request options</param>
         /// <param name="q">Request query parameters</param>
         /// </summary>
         public RequestInformation CreateGetRequestInformation(Action<GetQueryParameters> q = default, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
             var requestInfo = new RequestInformation {
-                HttpMethod = HttpMethod.GET,
+                HttpMethod = Method.GET,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };
@@ -147,7 +173,7 @@ namespace ApiSdk.Agreements.Item.Files.Item {
             return requestInfo;
         }
         /// <summary>
-        /// PDFs linked to this agreement. This property is in the process of being deprecated. Use the  file property instead.
+        /// PDFs linked to this agreement. Note: This property is in the process of being deprecated. Use the  file property instead.
         /// <param name="body"></param>
         /// <param name="h">Request headers</param>
         /// <param name="o">Request options</param>
@@ -155,7 +181,7 @@ namespace ApiSdk.Agreements.Item.Files.Item {
         public RequestInformation CreatePatchRequestInformation(AgreementFileLocalization body, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
             _ = body ?? throw new ArgumentNullException(nameof(body));
             var requestInfo = new RequestInformation {
-                HttpMethod = HttpMethod.PATCH,
+                HttpMethod = Method.PATCH,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };
@@ -165,7 +191,7 @@ namespace ApiSdk.Agreements.Item.Files.Item {
             return requestInfo;
         }
         /// <summary>
-        /// PDFs linked to this agreement. This property is in the process of being deprecated. Use the  file property instead.
+        /// PDFs linked to this agreement. Note: This property is in the process of being deprecated. Use the  file property instead.
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="h">Request headers</param>
         /// <param name="o">Request options</param>
@@ -176,7 +202,7 @@ namespace ApiSdk.Agreements.Item.Files.Item {
             await RequestAdapter.SendNoContentAsync(requestInfo, responseHandler, cancellationToken);
         }
         /// <summary>
-        /// PDFs linked to this agreement. This property is in the process of being deprecated. Use the  file property instead.
+        /// PDFs linked to this agreement. Note: This property is in the process of being deprecated. Use the  file property instead.
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="h">Request headers</param>
         /// <param name="o">Request options</param>
@@ -188,7 +214,7 @@ namespace ApiSdk.Agreements.Item.Files.Item {
             return await RequestAdapter.SendAsync<AgreementFileLocalization>(requestInfo, responseHandler, cancellationToken);
         }
         /// <summary>
-        /// PDFs linked to this agreement. This property is in the process of being deprecated. Use the  file property instead.
+        /// PDFs linked to this agreement. Note: This property is in the process of being deprecated. Use the  file property instead.
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="h">Request headers</param>
         /// <param name="model"></param>
@@ -200,7 +226,7 @@ namespace ApiSdk.Agreements.Item.Files.Item {
             var requestInfo = CreatePatchRequestInformation(model, h, o);
             await RequestAdapter.SendNoContentAsync(requestInfo, responseHandler, cancellationToken);
         }
-        /// <summary>PDFs linked to this agreement. This property is in the process of being deprecated. Use the  file property instead.</summary>
+        /// <summary>PDFs linked to this agreement. Note: This property is in the process of being deprecated. Use the  file property instead.</summary>
         public class GetQueryParameters : QueryParametersBase {
             /// <summary>Expand related entities</summary>
             public string[] Expand { get; set; }
