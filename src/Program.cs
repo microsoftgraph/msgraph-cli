@@ -22,6 +22,7 @@ using System.Net.Http;
 using System.Reflection;
 using System.Threading.Tasks;
 using System.Collections.Generic;
+using System;
 
 namespace Microsoft.Graph.Cli
 {
@@ -76,9 +77,17 @@ namespace Microsoft.Graph.Cli
             var logoutCommand = new LogoutCommand(new LogoutService());
             commands.Add(logoutCommand.Build());
 
-            var builder = BuildCommandLine(client, commands);
+            var builder = BuildCommandLine(client, commands).UseDefaults();
+            builder.UseExceptionHandler((ex, context) => {
+                if (ex is AuthenticationRequiredException) {
+                    Console.ResetColor();
+                    Console.ForegroundColor = ConsoleColor.Red;
+                    Console.Error.WriteLine("Token acquisition failed. Run mgc login command first to get an access token.");
+                    Console.ResetColor();
+                }
+            });
 
-            var parser = builder.UseHost(CreateHostBuilder).UseDefaults().Build();
+            var parser = builder.UseHost(CreateHostBuilder).Build();
 
             return await parser.InvokeAsync(args);
         }
