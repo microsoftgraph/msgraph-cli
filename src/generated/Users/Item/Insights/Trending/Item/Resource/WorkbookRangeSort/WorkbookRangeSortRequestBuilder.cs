@@ -1,15 +1,16 @@
 using ApiSdk.Users.Item.Insights.Trending.Item.Resource.WorkbookRangeSort.Apply;
+using Microsoft.Graph.Cli.Core.IO;
 using Microsoft.Kiota.Abstractions;
 using System;
 using System.Collections.Generic;
 using System.CommandLine;
-using System.CommandLine.Invocation;
 using System.IO;
 using System.Linq;
+using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 namespace ApiSdk.Users.Item.Insights.Trending.Item.Resource.WorkbookRangeSort {
-    /// <summary>Builds and executes requests for operations under \users\{user-id}\insights\trending\{trending-id}\resource\microsoft.graph.workbookRangeSort</summary>
+    /// <summary>Builds and executes requests for operations under \users\{user-id}\insights\trending\{trendingItem-Id}\resource\microsoft.graph.workbookRangeSort</summary>
     public class WorkbookRangeSortRequestBuilder {
         /// <summary>Path parameters for the request</summary>
         private Dictionary<string, object> PathParameters { get; set; }
@@ -31,8 +32,22 @@ namespace ApiSdk.Users.Item.Insights.Trending.Item.Resource.WorkbookRangeSort {
         public WorkbookRangeSortRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) {
             _ = pathParameters ?? throw new ArgumentNullException(nameof(pathParameters));
             _ = requestAdapter ?? throw new ArgumentNullException(nameof(requestAdapter));
-            UrlTemplate = "{+baseurl}/users/{user_id}/insights/trending/{trending_id}/resource/microsoft.graph.workbookRangeSort";
+            UrlTemplate = "{+baseurl}/users/{user_id}/insights/trending/{trendingItem_Id}/resource/microsoft.graph.workbookRangeSort";
             var urlTplParams = new Dictionary<string, object>(pathParameters);
+            PathParameters = urlTplParams;
+            RequestAdapter = requestAdapter;
+        }
+        /// <summary>
+        /// Instantiates a new WorkbookRangeSortRequestBuilder and sets the default values.
+        /// <param name="rawUrl">The raw URL to use for the request builder.</param>
+        /// <param name="requestAdapter">The request adapter to use to execute the requests.</param>
+        /// </summary>
+        public WorkbookRangeSortRequestBuilder(string rawUrl, IRequestAdapter requestAdapter) {
+            if(string.IsNullOrEmpty(rawUrl)) throw new ArgumentNullException(nameof(rawUrl));
+            _ = requestAdapter ?? throw new ArgumentNullException(nameof(requestAdapter));
+            UrlTemplate = "{+baseurl}/users/{user_id}/insights/trending/{trendingItem_Id}/resource/microsoft.graph.workbookRangeSort";
+            var urlTplParams = new Dictionary<string, object>();
+            urlTplParams.Add("request-raw-url", rawUrl);
             PathParameters = urlTplParams;
             RequestAdapter = requestAdapter;
         }

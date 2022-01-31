@@ -1,14 +1,15 @@
 using ApiSdk.Me.MailFolders.Item.Messages.Delta;
 using ApiSdk.Me.MailFolders.Item.Messages.Item;
 using ApiSdk.Models.Microsoft.Graph;
+using Microsoft.Graph.Cli.Core.IO;
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
 using System;
 using System.Collections.Generic;
 using System.CommandLine;
-using System.CommandLine.Invocation;
 using System.IO;
 using System.Linq;
+using System.Net.Http;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
@@ -23,26 +24,25 @@ namespace ApiSdk.Me.MailFolders.Item.Messages {
         private string UrlTemplate { get; set; }
         public List<Command> BuildCommand() {
             var builder = new MessageRequestBuilder(PathParameters, RequestAdapter);
-            var commands = new List<Command> { 
-                builder.BuildAttachmentsCommand(),
-                builder.BuildCalendarSharingMessageCommand(),
-                builder.BuildContentCommand(),
-                builder.BuildCopyCommand(),
-                builder.BuildCreateForwardCommand(),
-                builder.BuildCreateReplyAllCommand(),
-                builder.BuildCreateReplyCommand(),
-                builder.BuildDeleteCommand(),
-                builder.BuildExtensionsCommand(),
-                builder.BuildForwardCommand(),
-                builder.BuildGetCommand(),
-                builder.BuildMoveCommand(),
-                builder.BuildMultiValueExtendedPropertiesCommand(),
-                builder.BuildPatchCommand(),
-                builder.BuildReplyAllCommand(),
-                builder.BuildReplyCommand(),
-                builder.BuildSendCommand(),
-                builder.BuildSingleValueExtendedPropertiesCommand(),
-            };
+            var commands = new List<Command>();
+            commands.Add(builder.BuildAttachmentsCommand());
+            commands.Add(builder.BuildCalendarSharingMessageCommand());
+            commands.Add(builder.BuildContentCommand());
+            commands.Add(builder.BuildCopyCommand());
+            commands.Add(builder.BuildCreateForwardCommand());
+            commands.Add(builder.BuildCreateReplyAllCommand());
+            commands.Add(builder.BuildCreateReplyCommand());
+            commands.Add(builder.BuildDeleteCommand());
+            commands.Add(builder.BuildExtensionsCommand());
+            commands.Add(builder.BuildForwardCommand());
+            commands.Add(builder.BuildGetCommand());
+            commands.Add(builder.BuildMoveCommand());
+            commands.Add(builder.BuildMultiValueExtendedPropertiesCommand());
+            commands.Add(builder.BuildPatchCommand());
+            commands.Add(builder.BuildReplyAllCommand());
+            commands.Add(builder.BuildReplyCommand());
+            commands.Add(builder.BuildSendCommand());
+            commands.Add(builder.BuildSingleValueExtendedPropertiesCommand());
             return commands;
         }
         /// <summary>
@@ -60,21 +60,30 @@ namespace ApiSdk.Me.MailFolders.Item.Messages {
             };
             bodyOption.IsRequired = true;
             command.AddOption(bodyOption);
-            command.SetHandler(async (string mailFolderId, string body) => {
+            var outputOption = new Option<FormatterType>("--output", () => FormatterType.JSON){
+                IsRequired = true
+            };
+            command.AddOption(outputOption);
+            command.SetHandler(async (string mailFolderId, string body, FormatterType output, IConsole console) => {
+                var responseHandler = new NativeResponseHandler();
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<Message>();
                 var requestInfo = CreatePostRequestInformation(model, q => {
                 });
-                var result = await RequestAdapter.SendAsync<Message>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo, responseHandler);
                 // Print request output. What if the request has no return?
-                using var serializer = RequestAdapter.SerializationWriterFactory.GetSerializationWriter("application/json");
-                serializer.WriteObjectValue(null, result);
-                using var content = serializer.GetSerializedContent();
-                using var reader = new StreamReader(content);
-                var strContent = await reader.ReadToEndAsync();
-                Console.Write(strContent + "\n");
-            }, mailFolderIdOption, bodyOption);
+                var response = responseHandler.Value as HttpResponseMessage;
+                var formatter = OutputFormatterFactory.Instance.GetFormatter(output);
+                if (response.IsSuccessStatusCode) {
+                    var content = await response.Content.ReadAsStringAsync();
+                    formatter.WriteOutput(content, console);
+                }
+                else {
+                    var content = await response.Content.ReadAsStringAsync();
+                    console.WriteLine(content);
+                }
+            }, mailFolderIdOption, bodyOption, outputOption);
             return command;
         }
         /// <summary>
@@ -123,7 +132,12 @@ namespace ApiSdk.Me.MailFolders.Item.Messages {
             };
             expandOption.IsRequired = false;
             command.AddOption(expandOption);
-            command.SetHandler(async (string mailFolderId, int? top, int? skip, string search, string filter, bool? count, string[] orderby, string[] select, string[] expand) => {
+            var outputOption = new Option<FormatterType>("--output", () => FormatterType.JSON){
+                IsRequired = true
+            };
+            command.AddOption(outputOption);
+            command.SetHandler(async (string mailFolderId, int? top, int? skip, string search, string filter, bool? count, string[] orderby, string[] select, string[] expand, FormatterType output, IConsole console) => {
+                var responseHandler = new NativeResponseHandler();
                 var requestInfo = CreateGetRequestInformation(q => {
                     q.Top = top;
                     q.Skip = skip;
@@ -134,15 +148,19 @@ namespace ApiSdk.Me.MailFolders.Item.Messages {
                     q.Select = select;
                     q.Expand = expand;
                 });
-                var result = await RequestAdapter.SendAsync<MessagesResponse>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo, responseHandler);
                 // Print request output. What if the request has no return?
-                using var serializer = RequestAdapter.SerializationWriterFactory.GetSerializationWriter("application/json");
-                serializer.WriteObjectValue(null, result);
-                using var content = serializer.GetSerializedContent();
-                using var reader = new StreamReader(content);
-                var strContent = await reader.ReadToEndAsync();
-                Console.Write(strContent + "\n");
-            }, mailFolderIdOption, topOption, skipOption, searchOption, filterOption, countOption, orderbyOption, selectOption, expandOption);
+                var response = responseHandler.Value as HttpResponseMessage;
+                var formatter = OutputFormatterFactory.Instance.GetFormatter(output);
+                if (response.IsSuccessStatusCode) {
+                    var content = await response.Content.ReadAsStringAsync();
+                    formatter.WriteOutput(content, console);
+                }
+                else {
+                    var content = await response.Content.ReadAsStringAsync();
+                    console.WriteLine(content);
+                }
+            }, mailFolderIdOption, topOption, skipOption, searchOption, filterOption, countOption, orderbyOption, selectOption, expandOption, outputOption);
             return command;
         }
         /// <summary>
@@ -155,6 +173,20 @@ namespace ApiSdk.Me.MailFolders.Item.Messages {
             _ = requestAdapter ?? throw new ArgumentNullException(nameof(requestAdapter));
             UrlTemplate = "{+baseurl}/me/mailFolders/{mailFolder_id}/messages{?top,skip,search,filter,count,orderby,select,expand}";
             var urlTplParams = new Dictionary<string, object>(pathParameters);
+            PathParameters = urlTplParams;
+            RequestAdapter = requestAdapter;
+        }
+        /// <summary>
+        /// Instantiates a new MessagesRequestBuilder and sets the default values.
+        /// <param name="rawUrl">The raw URL to use for the request builder.</param>
+        /// <param name="requestAdapter">The request adapter to use to execute the requests.</param>
+        /// </summary>
+        public MessagesRequestBuilder(string rawUrl, IRequestAdapter requestAdapter) {
+            if(string.IsNullOrEmpty(rawUrl)) throw new ArgumentNullException(nameof(rawUrl));
+            _ = requestAdapter ?? throw new ArgumentNullException(nameof(requestAdapter));
+            UrlTemplate = "{+baseurl}/me/mailFolders/{mailFolder_id}/messages{?top,skip,search,filter,count,orderby,select,expand}";
+            var urlTplParams = new Dictionary<string, object>();
+            urlTplParams.Add("request-raw-url", rawUrl);
             PathParameters = urlTplParams;
             RequestAdapter = requestAdapter;
         }

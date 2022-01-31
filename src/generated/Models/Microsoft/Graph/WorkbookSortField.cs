@@ -5,10 +5,10 @@ using System.IO;
 using System.Linq;
 namespace ApiSdk.Models.Microsoft.Graph {
     public class WorkbookSortField : IParsable {
-        /// <summary>Represents whether the sorting is done in an ascending fashion.</summary>
-        public bool? @Ascending { get; set; }
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
+        /// <summary>Represents whether the sorting is done in an ascending fashion.</summary>
+        public bool? Ascending { get; set; }
         /// <summary>Represents the color that is the target of the condition if the sorting is on font or cell color.</summary>
         public string Color { get; set; }
         /// <summary>Represents additional sorting options for this field. Possible values are: Normal, TextAsNumber.</summary>
@@ -30,7 +30,7 @@ namespace ApiSdk.Models.Microsoft.Graph {
         /// </summary>
         public IDictionary<string, Action<T, IParseNode>> GetFieldDeserializers<T>() {
             return new Dictionary<string, Action<T, IParseNode>> {
-                {"ascending", (o,n) => { (o as WorkbookSortField).@Ascending = n.GetBoolValue(); } },
+                {"ascending", (o,n) => { (o as WorkbookSortField).Ascending = n.GetBoolValue(); } },
                 {"color", (o,n) => { (o as WorkbookSortField).Color = n.GetStringValue(); } },
                 {"dataOption", (o,n) => { (o as WorkbookSortField).DataOption = n.GetStringValue(); } },
                 {"icon", (o,n) => { (o as WorkbookSortField).Icon = n.GetObjectValue<WorkbookIcon>(); } },
@@ -44,7 +44,7 @@ namespace ApiSdk.Models.Microsoft.Graph {
         /// </summary>
         public void Serialize(ISerializationWriter writer) {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
-            writer.WriteBoolValue("ascending", @Ascending);
+            writer.WriteBoolValue("ascending", Ascending);
             writer.WriteStringValue("color", Color);
             writer.WriteStringValue("dataOption", DataOption);
             writer.WriteObjectValue<WorkbookIcon>("icon", Icon);

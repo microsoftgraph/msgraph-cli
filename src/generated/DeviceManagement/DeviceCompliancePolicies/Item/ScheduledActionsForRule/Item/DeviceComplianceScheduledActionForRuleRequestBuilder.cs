@@ -1,13 +1,14 @@
 using ApiSdk.DeviceManagement.DeviceCompliancePolicies.Item.ScheduledActionsForRule.Item.ScheduledActionConfigurations;
 using ApiSdk.Models.Microsoft.Graph;
+using Microsoft.Graph.Cli.Core.IO;
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
 using System;
 using System.Collections.Generic;
 using System.CommandLine;
-using System.CommandLine.Invocation;
 using System.IO;
 using System.Linq;
+using System.Net.Http;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
@@ -35,12 +36,13 @@ namespace ApiSdk.DeviceManagement.DeviceCompliancePolicies.Item.ScheduledActions
             };
             deviceComplianceScheduledActionForRuleIdOption.IsRequired = true;
             command.AddOption(deviceComplianceScheduledActionForRuleIdOption);
-            command.SetHandler(async (string deviceCompliancePolicyId, string deviceComplianceScheduledActionForRuleId) => {
+            command.SetHandler(async (string deviceCompliancePolicyId, string deviceComplianceScheduledActionForRuleId, IConsole console) => {
+                var responseHandler = new NativeResponseHandler();
                 var requestInfo = CreateDeleteRequestInformation(q => {
                 });
-                await RequestAdapter.SendNoContentAsync(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo, responseHandler);
                 // Print request output. What if the request has no return?
-                Console.WriteLine("Success");
+                console.WriteLine("Success");
             }, deviceCompliancePolicyIdOption, deviceComplianceScheduledActionForRuleIdOption);
             return command;
         }
@@ -69,20 +71,29 @@ namespace ApiSdk.DeviceManagement.DeviceCompliancePolicies.Item.ScheduledActions
             };
             expandOption.IsRequired = false;
             command.AddOption(expandOption);
-            command.SetHandler(async (string deviceCompliancePolicyId, string deviceComplianceScheduledActionForRuleId, string[] select, string[] expand) => {
+            var outputOption = new Option<FormatterType>("--output", () => FormatterType.JSON){
+                IsRequired = true
+            };
+            command.AddOption(outputOption);
+            command.SetHandler(async (string deviceCompliancePolicyId, string deviceComplianceScheduledActionForRuleId, string[] select, string[] expand, FormatterType output, IConsole console) => {
+                var responseHandler = new NativeResponseHandler();
                 var requestInfo = CreateGetRequestInformation(q => {
                     q.Select = select;
                     q.Expand = expand;
                 });
-                var result = await RequestAdapter.SendAsync<DeviceComplianceScheduledActionForRule>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo, responseHandler);
                 // Print request output. What if the request has no return?
-                using var serializer = RequestAdapter.SerializationWriterFactory.GetSerializationWriter("application/json");
-                serializer.WriteObjectValue(null, result);
-                using var content = serializer.GetSerializedContent();
-                using var reader = new StreamReader(content);
-                var strContent = await reader.ReadToEndAsync();
-                Console.Write(strContent + "\n");
-            }, deviceCompliancePolicyIdOption, deviceComplianceScheduledActionForRuleIdOption, selectOption, expandOption);
+                var response = responseHandler.Value as HttpResponseMessage;
+                var formatter = OutputFormatterFactory.Instance.GetFormatter(output);
+                if (response.IsSuccessStatusCode) {
+                    var content = await response.Content.ReadAsStringAsync();
+                    formatter.WriteOutput(content, console);
+                }
+                else {
+                    var content = await response.Content.ReadAsStringAsync();
+                    console.WriteLine(content);
+                }
+            }, deviceCompliancePolicyIdOption, deviceComplianceScheduledActionForRuleIdOption, selectOption, expandOption, outputOption);
             return command;
         }
         /// <summary>
@@ -104,21 +115,25 @@ namespace ApiSdk.DeviceManagement.DeviceCompliancePolicies.Item.ScheduledActions
             };
             bodyOption.IsRequired = true;
             command.AddOption(bodyOption);
-            command.SetHandler(async (string deviceCompliancePolicyId, string deviceComplianceScheduledActionForRuleId, string body) => {
+            command.SetHandler(async (string deviceCompliancePolicyId, string deviceComplianceScheduledActionForRuleId, string body, IConsole console) => {
+                var responseHandler = new NativeResponseHandler();
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<DeviceComplianceScheduledActionForRule>();
                 var requestInfo = CreatePatchRequestInformation(model, q => {
                 });
-                await RequestAdapter.SendNoContentAsync(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo, responseHandler);
                 // Print request output. What if the request has no return?
-                Console.WriteLine("Success");
+                console.WriteLine("Success");
             }, deviceCompliancePolicyIdOption, deviceComplianceScheduledActionForRuleIdOption, bodyOption);
             return command;
         }
         public Command BuildScheduledActionConfigurationsCommand() {
             var command = new Command("scheduled-action-configurations");
             var builder = new ApiSdk.DeviceManagement.DeviceCompliancePolicies.Item.ScheduledActionsForRule.Item.ScheduledActionConfigurations.ScheduledActionConfigurationsRequestBuilder(PathParameters, RequestAdapter);
+            foreach (var cmd in builder.BuildCommand()) {
+                command.AddCommand(cmd);
+            }
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;
@@ -133,6 +148,20 @@ namespace ApiSdk.DeviceManagement.DeviceCompliancePolicies.Item.ScheduledActions
             _ = requestAdapter ?? throw new ArgumentNullException(nameof(requestAdapter));
             UrlTemplate = "{+baseurl}/deviceManagement/deviceCompliancePolicies/{deviceCompliancePolicy_id}/scheduledActionsForRule/{deviceComplianceScheduledActionForRule_id}{?select,expand}";
             var urlTplParams = new Dictionary<string, object>(pathParameters);
+            PathParameters = urlTplParams;
+            RequestAdapter = requestAdapter;
+        }
+        /// <summary>
+        /// Instantiates a new DeviceComplianceScheduledActionForRuleRequestBuilder and sets the default values.
+        /// <param name="rawUrl">The raw URL to use for the request builder.</param>
+        /// <param name="requestAdapter">The request adapter to use to execute the requests.</param>
+        /// </summary>
+        public DeviceComplianceScheduledActionForRuleRequestBuilder(string rawUrl, IRequestAdapter requestAdapter) {
+            if(string.IsNullOrEmpty(rawUrl)) throw new ArgumentNullException(nameof(rawUrl));
+            _ = requestAdapter ?? throw new ArgumentNullException(nameof(requestAdapter));
+            UrlTemplate = "{+baseurl}/deviceManagement/deviceCompliancePolicies/{deviceCompliancePolicy_id}/scheduledActionsForRule/{deviceComplianceScheduledActionForRule_id}{?select,expand}";
+            var urlTplParams = new Dictionary<string, object>();
+            urlTplParams.Add("request-raw-url", rawUrl);
             PathParameters = urlTplParams;
             RequestAdapter = requestAdapter;
         }

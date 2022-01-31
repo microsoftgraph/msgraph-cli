@@ -1,14 +1,15 @@
 using ApiSdk.Me.Calendar.CalendarView.Delta;
 using ApiSdk.Me.Calendar.CalendarView.Item;
 using ApiSdk.Models.Microsoft.Graph;
+using Microsoft.Graph.Cli.Core.IO;
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
 using System;
 using System.Collections.Generic;
 using System.CommandLine;
-using System.CommandLine.Invocation;
 using System.IO;
 using System.Linq;
+using System.Net.Http;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
@@ -23,24 +24,23 @@ namespace ApiSdk.Me.Calendar.CalendarView {
         private string UrlTemplate { get; set; }
         public List<Command> BuildCommand() {
             var builder = new EventRequestBuilder(PathParameters, RequestAdapter);
-            var commands = new List<Command> { 
-                builder.BuildAcceptCommand(),
-                builder.BuildAttachmentsCommand(),
-                builder.BuildCalendarCommand(),
-                builder.BuildCancelCommand(),
-                builder.BuildDeclineCommand(),
-                builder.BuildDeleteCommand(),
-                builder.BuildDismissReminderCommand(),
-                builder.BuildExtensionsCommand(),
-                builder.BuildForwardCommand(),
-                builder.BuildGetCommand(),
-                builder.BuildInstancesCommand(),
-                builder.BuildMultiValueExtendedPropertiesCommand(),
-                builder.BuildPatchCommand(),
-                builder.BuildSingleValueExtendedPropertiesCommand(),
-                builder.BuildSnoozeReminderCommand(),
-                builder.BuildTentativelyAcceptCommand(),
-            };
+            var commands = new List<Command>();
+            commands.Add(builder.BuildAcceptCommand());
+            commands.Add(builder.BuildAttachmentsCommand());
+            commands.Add(builder.BuildCalendarCommand());
+            commands.Add(builder.BuildCancelCommand());
+            commands.Add(builder.BuildDeclineCommand());
+            commands.Add(builder.BuildDeleteCommand());
+            commands.Add(builder.BuildDismissReminderCommand());
+            commands.Add(builder.BuildExtensionsCommand());
+            commands.Add(builder.BuildForwardCommand());
+            commands.Add(builder.BuildGetCommand());
+            commands.Add(builder.BuildInstancesCommand());
+            commands.Add(builder.BuildMultiValueExtendedPropertiesCommand());
+            commands.Add(builder.BuildPatchCommand());
+            commands.Add(builder.BuildSingleValueExtendedPropertiesCommand());
+            commands.Add(builder.BuildSnoozeReminderCommand());
+            commands.Add(builder.BuildTentativelyAcceptCommand());
             return commands;
         }
         /// <summary>
@@ -54,21 +54,30 @@ namespace ApiSdk.Me.Calendar.CalendarView {
             };
             bodyOption.IsRequired = true;
             command.AddOption(bodyOption);
-            command.SetHandler(async (string body) => {
+            var outputOption = new Option<FormatterType>("--output", () => FormatterType.JSON){
+                IsRequired = true
+            };
+            command.AddOption(outputOption);
+            command.SetHandler(async (string body, FormatterType output, IConsole console) => {
+                var responseHandler = new NativeResponseHandler();
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
-                var model = parseNode.GetObjectValue<@Event>();
+                var model = parseNode.GetObjectValue<Event>();
                 var requestInfo = CreatePostRequestInformation(model, q => {
                 });
-                var result = await RequestAdapter.SendAsync<@Event>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo, responseHandler);
                 // Print request output. What if the request has no return?
-                using var serializer = RequestAdapter.SerializationWriterFactory.GetSerializationWriter("application/json");
-                serializer.WriteObjectValue(null, result);
-                using var content = serializer.GetSerializedContent();
-                using var reader = new StreamReader(content);
-                var strContent = await reader.ReadToEndAsync();
-                Console.Write(strContent + "\n");
-            }, bodyOption);
+                var response = responseHandler.Value as HttpResponseMessage;
+                var formatter = OutputFormatterFactory.Instance.GetFormatter(output);
+                if (response.IsSuccessStatusCode) {
+                    var content = await response.Content.ReadAsStringAsync();
+                    formatter.WriteOutput(content, console);
+                }
+                else {
+                    var content = await response.Content.ReadAsStringAsync();
+                    console.WriteLine(content);
+                }
+            }, bodyOption, outputOption);
             return command;
         }
         /// <summary>
@@ -112,7 +121,12 @@ namespace ApiSdk.Me.Calendar.CalendarView {
             };
             selectOption.IsRequired = false;
             command.AddOption(selectOption);
-            command.SetHandler(async (string startDateTime, string endDateTime, int? top, int? skip, string filter, bool? count, string[] orderby, string[] select) => {
+            var outputOption = new Option<FormatterType>("--output", () => FormatterType.JSON){
+                IsRequired = true
+            };
+            command.AddOption(outputOption);
+            command.SetHandler(async (string startDateTime, string endDateTime, int? top, int? skip, string filter, bool? count, string[] orderby, string[] select, FormatterType output, IConsole console) => {
+                var responseHandler = new NativeResponseHandler();
                 var requestInfo = CreateGetRequestInformation(q => {
                     if (!String.IsNullOrEmpty(startDateTime)) q.StartDateTime = startDateTime;
                     if (!String.IsNullOrEmpty(endDateTime)) q.EndDateTime = endDateTime;
@@ -123,15 +137,19 @@ namespace ApiSdk.Me.Calendar.CalendarView {
                     q.Orderby = orderby;
                     q.Select = select;
                 });
-                var result = await RequestAdapter.SendAsync<CalendarViewResponse>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo, responseHandler);
                 // Print request output. What if the request has no return?
-                using var serializer = RequestAdapter.SerializationWriterFactory.GetSerializationWriter("application/json");
-                serializer.WriteObjectValue(null, result);
-                using var content = serializer.GetSerializedContent();
-                using var reader = new StreamReader(content);
-                var strContent = await reader.ReadToEndAsync();
-                Console.Write(strContent + "\n");
-            }, startDateTimeOption, endDateTimeOption, topOption, skipOption, filterOption, countOption, orderbyOption, selectOption);
+                var response = responseHandler.Value as HttpResponseMessage;
+                var formatter = OutputFormatterFactory.Instance.GetFormatter(output);
+                if (response.IsSuccessStatusCode) {
+                    var content = await response.Content.ReadAsStringAsync();
+                    formatter.WriteOutput(content, console);
+                }
+                else {
+                    var content = await response.Content.ReadAsStringAsync();
+                    console.WriteLine(content);
+                }
+            }, startDateTimeOption, endDateTimeOption, topOption, skipOption, filterOption, countOption, orderbyOption, selectOption, outputOption);
             return command;
         }
         /// <summary>
@@ -144,6 +162,20 @@ namespace ApiSdk.Me.Calendar.CalendarView {
             _ = requestAdapter ?? throw new ArgumentNullException(nameof(requestAdapter));
             UrlTemplate = "{+baseurl}/me/calendar/calendarView{?startDateTime,endDateTime,top,skip,filter,count,orderby,select}";
             var urlTplParams = new Dictionary<string, object>(pathParameters);
+            PathParameters = urlTplParams;
+            RequestAdapter = requestAdapter;
+        }
+        /// <summary>
+        /// Instantiates a new CalendarViewRequestBuilder and sets the default values.
+        /// <param name="rawUrl">The raw URL to use for the request builder.</param>
+        /// <param name="requestAdapter">The request adapter to use to execute the requests.</param>
+        /// </summary>
+        public CalendarViewRequestBuilder(string rawUrl, IRequestAdapter requestAdapter) {
+            if(string.IsNullOrEmpty(rawUrl)) throw new ArgumentNullException(nameof(rawUrl));
+            _ = requestAdapter ?? throw new ArgumentNullException(nameof(requestAdapter));
+            UrlTemplate = "{+baseurl}/me/calendar/calendarView{?startDateTime,endDateTime,top,skip,filter,count,orderby,select}";
+            var urlTplParams = new Dictionary<string, object>();
+            urlTplParams.Add("request-raw-url", rawUrl);
             PathParameters = urlTplParams;
             RequestAdapter = requestAdapter;
         }
@@ -174,7 +206,7 @@ namespace ApiSdk.Me.Calendar.CalendarView {
         /// <param name="h">Request headers</param>
         /// <param name="o">Request options</param>
         /// </summary>
-        public RequestInformation CreatePostRequestInformation(@Event body, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
+        public RequestInformation CreatePostRequestInformation(Event body, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
             _ = body ?? throw new ArgumentNullException(nameof(body));
             var requestInfo = new RequestInformation {
                 HttpMethod = Method.POST,
@@ -212,10 +244,10 @@ namespace ApiSdk.Me.Calendar.CalendarView {
         /// <param name="o">Request options</param>
         /// <param name="responseHandler">Response handler to use in place of the default response handling provided by the core service</param>
         /// </summary>
-        public async Task<@Event> PostAsync(@Event model, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default, CancellationToken cancellationToken = default) {
+        public async Task<Event> PostAsync(Event model, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default, CancellationToken cancellationToken = default) {
             _ = model ?? throw new ArgumentNullException(nameof(model));
             var requestInfo = CreatePostRequestInformation(model, h, o);
-            return await RequestAdapter.SendAsync<@Event>(requestInfo, responseHandler, cancellationToken);
+            return await RequestAdapter.SendAsync<Event>(requestInfo, responseHandler, cancellationToken);
         }
         /// <summary>The calendar view for the calendar. Navigation property. Read-only.</summary>
         public class GetQueryParameters : QueryParametersBase {

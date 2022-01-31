@@ -21,7 +21,7 @@ namespace ApiSdk.Models.Microsoft.Graph {
         public List<ServiceHealthIssuePost> Posts { get; set; }
         /// <summary>Indicates the service affected by the issue.</summary>
         public string Service { get; set; }
-        /// <summary>The status of the service issue. Possible values are: serviceOperational, investigating, restoringService, verifyingService, serviceRestored, postIncidentReviewPublished, serviceDegradation, serviceInterruption, extendedRecovery, falsePositive, investigationSuspended, resolved, mitigatedExternal, mitigated, resolvedExternal, confirmed, reported, unknownFutureValue.</summary>
+        /// <summary>The status of the service issue. Possible values are: serviceOperational, investigating, restoringService, verifyingService, serviceRestored, postIncidentReviewPublished, serviceDegradation, serviceInterruption, extendedRecovery, falsePositive, investigationSuspended, resolved, mitigatedExternal, mitigated, resolvedExternal, confirmed, reported, unknownFutureValue. For more details, see serviceHealthStatus values.</summary>
         public ServiceHealthStatus? Status { get; set; }
         /// <summary>
         /// The deserialization information for the current model

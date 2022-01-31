@@ -26,17 +26,18 @@ using ApiSdk.Me.Insights.Trending.Item.Resource.WorkbookRange.Unmerge;
 using ApiSdk.Me.Insights.Trending.Item.Resource.WorkbookRange.UsedRange;
 using ApiSdk.Me.Insights.Trending.Item.Resource.WorkbookRange.UsedRangeWithValuesOnly;
 using ApiSdk.Me.Insights.Trending.Item.Resource.WorkbookRange.VisibleView;
+using Microsoft.Graph.Cli.Core.IO;
 using Microsoft.Kiota.Abstractions;
 using System;
 using System.Collections.Generic;
 using System.CommandLine;
-using System.CommandLine.Invocation;
 using System.IO;
 using System.Linq;
+using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 namespace ApiSdk.Me.Insights.Trending.Item.Resource.WorkbookRange {
-    /// <summary>Builds and executes requests for operations under \me\insights\trending\{trending-id}\resource\microsoft.graph.workbookRange</summary>
+    /// <summary>Builds and executes requests for operations under \me\insights\trending\{trendingItem-Id}\resource\microsoft.graph.workbookRange</summary>
     public class WorkbookRangeRequestBuilder {
         /// <summary>Path parameters for the request</summary>
         private Dictionary<string, object> PathParameters { get; set; }
@@ -45,7 +46,7 @@ namespace ApiSdk.Me.Insights.Trending.Item.Resource.WorkbookRange {
         /// <summary>Url template to use to build the URL for the current request builder</summary>
         private string UrlTemplate { get; set; }
         /// <summary>
-        /// Builds and executes requests for operations under \me\insights\trending\{trending-id}\resource\microsoft.graph.workbookRange\microsoft.graph.boundingRect(anotherRange='{anotherRange}')
+        /// Builds and executes requests for operations under \me\insights\trending\{trendingItem-Id}\resource\microsoft.graph.workbookRange\microsoft.graph.boundingRect(anotherRange='{anotherRange}')
         /// <param name="anotherRange">Usage: anotherRange={anotherRange}</param>
         /// </summary>
         public BoundingRectWithAnotherRangeRequestBuilder BoundingRectWithAnotherRange(string anotherRange) {
@@ -83,7 +84,7 @@ namespace ApiSdk.Me.Insights.Trending.Item.Resource.WorkbookRange {
             return command;
         }
         /// <summary>
-        /// Builds and executes requests for operations under \me\insights\trending\{trending-id}\resource\microsoft.graph.workbookRange\microsoft.graph.cell(row={row},column={column})
+        /// Builds and executes requests for operations under \me\insights\trending\{trendingItem-Id}\resource\microsoft.graph.workbookRange\microsoft.graph.cell(row={row},column={column})
         /// <param name="column">Usage: column={column}</param>
         /// <param name="row">Usage: row={row}</param>
         /// </summary>
@@ -93,13 +94,13 @@ namespace ApiSdk.Me.Insights.Trending.Item.Resource.WorkbookRange {
             return new CellWithRowWithColumnRequestBuilder(PathParameters, RequestAdapter, row, column);
         }
         /// <summary>
-        /// Builds and executes requests for operations under \me\insights\trending\{trending-id}\resource\microsoft.graph.workbookRange\microsoft.graph.columnsAfter()
+        /// Builds and executes requests for operations under \me\insights\trending\{trendingItem-Id}\resource\microsoft.graph.workbookRange\microsoft.graph.columnsAfter()
         /// </summary>
         public ColumnsAfterRequestBuilder ColumnsAfter() {
             return new ColumnsAfterRequestBuilder(PathParameters, RequestAdapter);
         }
         /// <summary>
-        /// Builds and executes requests for operations under \me\insights\trending\{trending-id}\resource\microsoft.graph.workbookRange\microsoft.graph.columnsAfter(count={count})
+        /// Builds and executes requests for operations under \me\insights\trending\{trendingItem-Id}\resource\microsoft.graph.workbookRange\microsoft.graph.columnsAfter(count={count})
         /// <param name="count">Usage: count={count}</param>
         /// </summary>
         public ColumnsAfterWithCountRequestBuilder ColumnsAfterWithCount(int? count) {
@@ -107,13 +108,13 @@ namespace ApiSdk.Me.Insights.Trending.Item.Resource.WorkbookRange {
             return new ColumnsAfterWithCountRequestBuilder(PathParameters, RequestAdapter, count);
         }
         /// <summary>
-        /// Builds and executes requests for operations under \me\insights\trending\{trending-id}\resource\microsoft.graph.workbookRange\microsoft.graph.columnsBefore()
+        /// Builds and executes requests for operations under \me\insights\trending\{trendingItem-Id}\resource\microsoft.graph.workbookRange\microsoft.graph.columnsBefore()
         /// </summary>
         public ColumnsBeforeRequestBuilder ColumnsBefore() {
             return new ColumnsBeforeRequestBuilder(PathParameters, RequestAdapter);
         }
         /// <summary>
-        /// Builds and executes requests for operations under \me\insights\trending\{trending-id}\resource\microsoft.graph.workbookRange\microsoft.graph.columnsBefore(count={count})
+        /// Builds and executes requests for operations under \me\insights\trending\{trendingItem-Id}\resource\microsoft.graph.workbookRange\microsoft.graph.columnsBefore(count={count})
         /// <param name="count">Usage: count={count}</param>
         /// </summary>
         public ColumnsBeforeWithCountRequestBuilder ColumnsBeforeWithCount(int? count) {
@@ -121,7 +122,7 @@ namespace ApiSdk.Me.Insights.Trending.Item.Resource.WorkbookRange {
             return new ColumnsBeforeWithCountRequestBuilder(PathParameters, RequestAdapter, count);
         }
         /// <summary>
-        /// Builds and executes requests for operations under \me\insights\trending\{trending-id}\resource\microsoft.graph.workbookRange\microsoft.graph.column(column={column})
+        /// Builds and executes requests for operations under \me\insights\trending\{trendingItem-Id}\resource\microsoft.graph.workbookRange\microsoft.graph.column(column={column})
         /// <param name="column">Usage: column={column}</param>
         /// </summary>
         public ColumnWithColumnRequestBuilder ColumnWithColumn(int? column) {
@@ -136,25 +137,39 @@ namespace ApiSdk.Me.Insights.Trending.Item.Resource.WorkbookRange {
         public WorkbookRangeRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) {
             _ = pathParameters ?? throw new ArgumentNullException(nameof(pathParameters));
             _ = requestAdapter ?? throw new ArgumentNullException(nameof(requestAdapter));
-            UrlTemplate = "{+baseurl}/me/insights/trending/{trending_id}/resource/microsoft.graph.workbookRange";
+            UrlTemplate = "{+baseurl}/me/insights/trending/{trendingItem_Id}/resource/microsoft.graph.workbookRange";
             var urlTplParams = new Dictionary<string, object>(pathParameters);
             PathParameters = urlTplParams;
             RequestAdapter = requestAdapter;
         }
         /// <summary>
-        /// Builds and executes requests for operations under \me\insights\trending\{trending-id}\resource\microsoft.graph.workbookRange\microsoft.graph.entireColumn()
+        /// Instantiates a new WorkbookRangeRequestBuilder and sets the default values.
+        /// <param name="rawUrl">The raw URL to use for the request builder.</param>
+        /// <param name="requestAdapter">The request adapter to use to execute the requests.</param>
+        /// </summary>
+        public WorkbookRangeRequestBuilder(string rawUrl, IRequestAdapter requestAdapter) {
+            if(string.IsNullOrEmpty(rawUrl)) throw new ArgumentNullException(nameof(rawUrl));
+            _ = requestAdapter ?? throw new ArgumentNullException(nameof(requestAdapter));
+            UrlTemplate = "{+baseurl}/me/insights/trending/{trendingItem_Id}/resource/microsoft.graph.workbookRange";
+            var urlTplParams = new Dictionary<string, object>();
+            urlTplParams.Add("request-raw-url", rawUrl);
+            PathParameters = urlTplParams;
+            RequestAdapter = requestAdapter;
+        }
+        /// <summary>
+        /// Builds and executes requests for operations under \me\insights\trending\{trendingItem-Id}\resource\microsoft.graph.workbookRange\microsoft.graph.entireColumn()
         /// </summary>
         public EntireColumnRequestBuilder EntireColumn() {
             return new EntireColumnRequestBuilder(PathParameters, RequestAdapter);
         }
         /// <summary>
-        /// Builds and executes requests for operations under \me\insights\trending\{trending-id}\resource\microsoft.graph.workbookRange\microsoft.graph.entireRow()
+        /// Builds and executes requests for operations under \me\insights\trending\{trendingItem-Id}\resource\microsoft.graph.workbookRange\microsoft.graph.entireRow()
         /// </summary>
         public EntireRowRequestBuilder EntireRow() {
             return new EntireRowRequestBuilder(PathParameters, RequestAdapter);
         }
         /// <summary>
-        /// Builds and executes requests for operations under \me\insights\trending\{trending-id}\resource\microsoft.graph.workbookRange\microsoft.graph.intersection(anotherRange='{anotherRange}')
+        /// Builds and executes requests for operations under \me\insights\trending\{trendingItem-Id}\resource\microsoft.graph.workbookRange\microsoft.graph.intersection(anotherRange='{anotherRange}')
         /// <param name="anotherRange">Usage: anotherRange={anotherRange}</param>
         /// </summary>
         public IntersectionWithAnotherRangeRequestBuilder IntersectionWithAnotherRange(string anotherRange) {
@@ -162,25 +177,25 @@ namespace ApiSdk.Me.Insights.Trending.Item.Resource.WorkbookRange {
             return new IntersectionWithAnotherRangeRequestBuilder(PathParameters, RequestAdapter, anotherRange);
         }
         /// <summary>
-        /// Builds and executes requests for operations under \me\insights\trending\{trending-id}\resource\microsoft.graph.workbookRange\microsoft.graph.lastCell()
+        /// Builds and executes requests for operations under \me\insights\trending\{trendingItem-Id}\resource\microsoft.graph.workbookRange\microsoft.graph.lastCell()
         /// </summary>
         public LastCellRequestBuilder LastCell() {
             return new LastCellRequestBuilder(PathParameters, RequestAdapter);
         }
         /// <summary>
-        /// Builds and executes requests for operations under \me\insights\trending\{trending-id}\resource\microsoft.graph.workbookRange\microsoft.graph.lastColumn()
+        /// Builds and executes requests for operations under \me\insights\trending\{trendingItem-Id}\resource\microsoft.graph.workbookRange\microsoft.graph.lastColumn()
         /// </summary>
         public LastColumnRequestBuilder LastColumn() {
             return new LastColumnRequestBuilder(PathParameters, RequestAdapter);
         }
         /// <summary>
-        /// Builds and executes requests for operations under \me\insights\trending\{trending-id}\resource\microsoft.graph.workbookRange\microsoft.graph.lastRow()
+        /// Builds and executes requests for operations under \me\insights\trending\{trendingItem-Id}\resource\microsoft.graph.workbookRange\microsoft.graph.lastRow()
         /// </summary>
         public LastRowRequestBuilder LastRow() {
             return new LastRowRequestBuilder(PathParameters, RequestAdapter);
         }
         /// <summary>
-        /// Builds and executes requests for operations under \me\insights\trending\{trending-id}\resource\microsoft.graph.workbookRange\microsoft.graph.offsetRange(rowOffset={rowOffset},columnOffset={columnOffset})
+        /// Builds and executes requests for operations under \me\insights\trending\{trendingItem-Id}\resource\microsoft.graph.workbookRange\microsoft.graph.offsetRange(rowOffset={rowOffset},columnOffset={columnOffset})
         /// <param name="columnOffset">Usage: columnOffset={columnOffset}</param>
         /// <param name="rowOffset">Usage: rowOffset={rowOffset}</param>
         /// </summary>
@@ -190,7 +205,7 @@ namespace ApiSdk.Me.Insights.Trending.Item.Resource.WorkbookRange {
             return new OffsetRangeWithRowOffsetWithColumnOffsetRequestBuilder(PathParameters, RequestAdapter, rowOffset, columnOffset);
         }
         /// <summary>
-        /// Builds and executes requests for operations under \me\insights\trending\{trending-id}\resource\microsoft.graph.workbookRange\microsoft.graph.resizedRange(deltaRows={deltaRows},deltaColumns={deltaColumns})
+        /// Builds and executes requests for operations under \me\insights\trending\{trendingItem-Id}\resource\microsoft.graph.workbookRange\microsoft.graph.resizedRange(deltaRows={deltaRows},deltaColumns={deltaColumns})
         /// <param name="deltaColumns">Usage: deltaColumns={deltaColumns}</param>
         /// <param name="deltaRows">Usage: deltaRows={deltaRows}</param>
         /// </summary>
@@ -200,13 +215,13 @@ namespace ApiSdk.Me.Insights.Trending.Item.Resource.WorkbookRange {
             return new ResizedRangeWithDeltaRowsWithDeltaColumnsRequestBuilder(PathParameters, RequestAdapter, deltaRows, deltaColumns);
         }
         /// <summary>
-        /// Builds and executes requests for operations under \me\insights\trending\{trending-id}\resource\microsoft.graph.workbookRange\microsoft.graph.rowsAbove()
+        /// Builds and executes requests for operations under \me\insights\trending\{trendingItem-Id}\resource\microsoft.graph.workbookRange\microsoft.graph.rowsAbove()
         /// </summary>
         public RowsAboveRequestBuilder RowsAbove() {
             return new RowsAboveRequestBuilder(PathParameters, RequestAdapter);
         }
         /// <summary>
-        /// Builds and executes requests for operations under \me\insights\trending\{trending-id}\resource\microsoft.graph.workbookRange\microsoft.graph.rowsAbove(count={count})
+        /// Builds and executes requests for operations under \me\insights\trending\{trendingItem-Id}\resource\microsoft.graph.workbookRange\microsoft.graph.rowsAbove(count={count})
         /// <param name="count">Usage: count={count}</param>
         /// </summary>
         public RowsAboveWithCountRequestBuilder RowsAboveWithCount(int? count) {
@@ -214,13 +229,13 @@ namespace ApiSdk.Me.Insights.Trending.Item.Resource.WorkbookRange {
             return new RowsAboveWithCountRequestBuilder(PathParameters, RequestAdapter, count);
         }
         /// <summary>
-        /// Builds and executes requests for operations under \me\insights\trending\{trending-id}\resource\microsoft.graph.workbookRange\microsoft.graph.rowsBelow()
+        /// Builds and executes requests for operations under \me\insights\trending\{trendingItem-Id}\resource\microsoft.graph.workbookRange\microsoft.graph.rowsBelow()
         /// </summary>
         public RowsBelowRequestBuilder RowsBelow() {
             return new RowsBelowRequestBuilder(PathParameters, RequestAdapter);
         }
         /// <summary>
-        /// Builds and executes requests for operations under \me\insights\trending\{trending-id}\resource\microsoft.graph.workbookRange\microsoft.graph.rowsBelow(count={count})
+        /// Builds and executes requests for operations under \me\insights\trending\{trendingItem-Id}\resource\microsoft.graph.workbookRange\microsoft.graph.rowsBelow(count={count})
         /// <param name="count">Usage: count={count}</param>
         /// </summary>
         public RowsBelowWithCountRequestBuilder RowsBelowWithCount(int? count) {
@@ -228,7 +243,7 @@ namespace ApiSdk.Me.Insights.Trending.Item.Resource.WorkbookRange {
             return new RowsBelowWithCountRequestBuilder(PathParameters, RequestAdapter, count);
         }
         /// <summary>
-        /// Builds and executes requests for operations under \me\insights\trending\{trending-id}\resource\microsoft.graph.workbookRange\microsoft.graph.row(row={row})
+        /// Builds and executes requests for operations under \me\insights\trending\{trendingItem-Id}\resource\microsoft.graph.workbookRange\microsoft.graph.row(row={row})
         /// <param name="row">Usage: row={row}</param>
         /// </summary>
         public RowWithRowRequestBuilder RowWithRow(int? row) {
@@ -236,13 +251,13 @@ namespace ApiSdk.Me.Insights.Trending.Item.Resource.WorkbookRange {
             return new RowWithRowRequestBuilder(PathParameters, RequestAdapter, row);
         }
         /// <summary>
-        /// Builds and executes requests for operations under \me\insights\trending\{trending-id}\resource\microsoft.graph.workbookRange\microsoft.graph.usedRange()
+        /// Builds and executes requests for operations under \me\insights\trending\{trendingItem-Id}\resource\microsoft.graph.workbookRange\microsoft.graph.usedRange()
         /// </summary>
         public UsedRangeRequestBuilder UsedRange() {
             return new UsedRangeRequestBuilder(PathParameters, RequestAdapter);
         }
         /// <summary>
-        /// Builds and executes requests for operations under \me\insights\trending\{trending-id}\resource\microsoft.graph.workbookRange\microsoft.graph.usedRange(valuesOnly={valuesOnly})
+        /// Builds and executes requests for operations under \me\insights\trending\{trendingItem-Id}\resource\microsoft.graph.workbookRange\microsoft.graph.usedRange(valuesOnly={valuesOnly})
         /// <param name="valuesOnly">Usage: valuesOnly={valuesOnly}</param>
         /// </summary>
         public UsedRangeWithValuesOnlyRequestBuilder UsedRangeWithValuesOnly(bool? valuesOnly) {
@@ -250,7 +265,7 @@ namespace ApiSdk.Me.Insights.Trending.Item.Resource.WorkbookRange {
             return new UsedRangeWithValuesOnlyRequestBuilder(PathParameters, RequestAdapter, valuesOnly);
         }
         /// <summary>
-        /// Builds and executes requests for operations under \me\insights\trending\{trending-id}\resource\microsoft.graph.workbookRange\microsoft.graph.visibleView()
+        /// Builds and executes requests for operations under \me\insights\trending\{trendingItem-Id}\resource\microsoft.graph.workbookRange\microsoft.graph.visibleView()
         /// </summary>
         public VisibleViewRequestBuilder VisibleView() {
             return new VisibleViewRequestBuilder(PathParameters, RequestAdapter);

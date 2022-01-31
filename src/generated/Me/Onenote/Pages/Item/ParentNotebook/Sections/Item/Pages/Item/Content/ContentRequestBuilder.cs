@@ -1,11 +1,12 @@
+using Microsoft.Graph.Cli.Core.IO;
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
 using System;
 using System.Collections.Generic;
 using System.CommandLine;
-using System.CommandLine.Invocation;
 using System.IO;
 using System.Linq;
+using System.Net.Http;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
@@ -37,24 +38,36 @@ namespace ApiSdk.Me.Onenote.Pages.Item.ParentNotebook.Sections.Item.Pages.Item.C
             };
             onenotePageId1Option.IsRequired = true;
             command.AddOption(onenotePageId1Option);
-            var outputOption = new Option<FileInfo>("--output");
+            var fileOption = new Option<FileInfo>("--file");
+            command.AddOption(fileOption);
+            var outputOption = new Option<FormatterType>("--output", () => FormatterType.JSON){
+                IsRequired = true
+            };
             command.AddOption(outputOption);
-            command.SetHandler(async (string onenotePageId, string onenoteSectionId, string onenotePageId1, FileInfo output) => {
+            command.SetHandler(async (string onenotePageId, string onenoteSectionId, string onenotePageId1, FileInfo file, FormatterType output, IConsole console) => {
+                var responseHandler = new NativeResponseHandler();
                 var requestInfo = CreateGetRequestInformation(q => {
                 });
-                var result = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo, responseHandler);
                 // Print request output. What if the request has no return?
-                if (output == null) {
-                    using var reader = new StreamReader(result);
-                    var strContent = await reader.ReadToEndAsync();
-                    Console.Write(strContent + "\n");
+                var response = responseHandler.Value as HttpResponseMessage;
+                var formatter = OutputFormatterFactory.Instance.GetFormatter(output);
+                if (response.IsSuccessStatusCode) {
+                    var content = await response.Content.ReadAsStreamAsync();
+                    if (file == null) {
+                        formatter.WriteOutput(content, console);
+                    }
+                    else {
+                        using var writeStream = file.OpenWrite();
+                        await content.CopyToAsync(writeStream);
+                        console.WriteLine($"Content written to {file.FullName}.");
+                    }
                 }
                 else {
-                    using var writeStream = output.OpenWrite();
-                    await result.CopyToAsync(writeStream);
-                    Console.WriteLine($"Content written to {output.FullName}.");
+                    var content = await response.Content.ReadAsStringAsync();
+                    console.WriteLine(content);
                 }
-            }, onenotePageIdOption, onenoteSectionIdOption, onenotePageId1Option, outputOption);
+            }, onenotePageIdOption, onenoteSectionIdOption, onenotePageId1Option, fileOption, outputOption);
             return command;
         }
         /// <summary>
@@ -80,13 +93,14 @@ namespace ApiSdk.Me.Onenote.Pages.Item.ParentNotebook.Sections.Item.Pages.Item.C
             };
             bodyOption.IsRequired = true;
             command.AddOption(bodyOption);
-            command.SetHandler(async (string onenotePageId, string onenoteSectionId, string onenotePageId1, FileInfo file) => {
+            command.SetHandler(async (string onenotePageId, string onenoteSectionId, string onenotePageId1, FileInfo file, IConsole console) => {
+                var responseHandler = new NativeResponseHandler();
                 using var stream = file.OpenRead();
                 var requestInfo = CreatePutRequestInformation(stream, q => {
                 });
-                await RequestAdapter.SendNoContentAsync(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo, responseHandler);
                 // Print request output. What if the request has no return?
-                Console.WriteLine("Success");
+                console.WriteLine("Success");
             }, onenotePageIdOption, onenoteSectionIdOption, onenotePageId1Option, bodyOption);
             return command;
         }
@@ -100,6 +114,20 @@ namespace ApiSdk.Me.Onenote.Pages.Item.ParentNotebook.Sections.Item.Pages.Item.C
             _ = requestAdapter ?? throw new ArgumentNullException(nameof(requestAdapter));
             UrlTemplate = "{+baseurl}/me/onenote/pages/{onenotePage_id}/parentNotebook/sections/{onenoteSection_id}/pages/{onenotePage_id1}/content";
             var urlTplParams = new Dictionary<string, object>(pathParameters);
+            PathParameters = urlTplParams;
+            RequestAdapter = requestAdapter;
+        }
+        /// <summary>
+        /// Instantiates a new ContentRequestBuilder and sets the default values.
+        /// <param name="rawUrl">The raw URL to use for the request builder.</param>
+        /// <param name="requestAdapter">The request adapter to use to execute the requests.</param>
+        /// </summary>
+        public ContentRequestBuilder(string rawUrl, IRequestAdapter requestAdapter) {
+            if(string.IsNullOrEmpty(rawUrl)) throw new ArgumentNullException(nameof(rawUrl));
+            _ = requestAdapter ?? throw new ArgumentNullException(nameof(requestAdapter));
+            UrlTemplate = "{+baseurl}/me/onenote/pages/{onenotePage_id}/parentNotebook/sections/{onenoteSection_id}/pages/{onenotePage_id1}/content";
+            var urlTplParams = new Dictionary<string, object>();
+            urlTplParams.Add("request-raw-url", rawUrl);
             PathParameters = urlTplParams;
             RequestAdapter = requestAdapter;
         }

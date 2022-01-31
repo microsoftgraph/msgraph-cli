@@ -2,14 +2,15 @@ using ApiSdk.IdentityProtection.RiskyUsers.ConfirmCompromised;
 using ApiSdk.IdentityProtection.RiskyUsers.Dismiss;
 using ApiSdk.IdentityProtection.RiskyUsers.Item;
 using ApiSdk.Models.Microsoft.Graph;
+using Microsoft.Graph.Cli.Core.IO;
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
 using System;
 using System.Collections.Generic;
 using System.CommandLine;
-using System.CommandLine.Invocation;
 using System.IO;
 using System.Linq;
+using System.Net.Http;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
@@ -24,12 +25,11 @@ namespace ApiSdk.IdentityProtection.RiskyUsers {
         private string UrlTemplate { get; set; }
         public List<Command> BuildCommand() {
             var builder = new RiskyUserRequestBuilder(PathParameters, RequestAdapter);
-            var commands = new List<Command> { 
-                builder.BuildDeleteCommand(),
-                builder.BuildGetCommand(),
-                builder.BuildHistoryCommand(),
-                builder.BuildPatchCommand(),
-            };
+            var commands = new List<Command>();
+            commands.Add(builder.BuildDeleteCommand());
+            commands.Add(builder.BuildGetCommand());
+            commands.Add(builder.BuildHistoryCommand());
+            commands.Add(builder.BuildPatchCommand());
             return commands;
         }
         public Command BuildConfirmCompromisedCommand() {
@@ -39,31 +39,40 @@ namespace ApiSdk.IdentityProtection.RiskyUsers {
             return command;
         }
         /// <summary>
-        /// Create new navigation property to riskyUsers for identityProtection
+        /// Users that are flagged as at-risk by Azure AD Identity Protection.
         /// </summary>
         public Command BuildCreateCommand() {
             var command = new Command("create");
-            command.Description = "Create new navigation property to riskyUsers for identityProtection";
+            command.Description = "Users that are flagged as at-risk by Azure AD Identity Protection.";
             // Create options for all the parameters
             var bodyOption = new Option<string>("--body") {
             };
             bodyOption.IsRequired = true;
             command.AddOption(bodyOption);
-            command.SetHandler(async (string body) => {
+            var outputOption = new Option<FormatterType>("--output", () => FormatterType.JSON){
+                IsRequired = true
+            };
+            command.AddOption(outputOption);
+            command.SetHandler(async (string body, FormatterType output, IConsole console) => {
+                var responseHandler = new NativeResponseHandler();
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<RiskyUser>();
                 var requestInfo = CreatePostRequestInformation(model, q => {
                 });
-                var result = await RequestAdapter.SendAsync<RiskyUser>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo, responseHandler);
                 // Print request output. What if the request has no return?
-                using var serializer = RequestAdapter.SerializationWriterFactory.GetSerializationWriter("application/json");
-                serializer.WriteObjectValue(null, result);
-                using var content = serializer.GetSerializedContent();
-                using var reader = new StreamReader(content);
-                var strContent = await reader.ReadToEndAsync();
-                Console.Write(strContent + "\n");
-            }, bodyOption);
+                var response = responseHandler.Value as HttpResponseMessage;
+                var formatter = OutputFormatterFactory.Instance.GetFormatter(output);
+                if (response.IsSuccessStatusCode) {
+                    var content = await response.Content.ReadAsStringAsync();
+                    formatter.WriteOutput(content, console);
+                }
+                else {
+                    var content = await response.Content.ReadAsStringAsync();
+                    console.WriteLine(content);
+                }
+            }, bodyOption, outputOption);
             return command;
         }
         public Command BuildDismissCommand() {
@@ -73,11 +82,11 @@ namespace ApiSdk.IdentityProtection.RiskyUsers {
             return command;
         }
         /// <summary>
-        /// Get riskyUsers from identityProtection
+        /// Users that are flagged as at-risk by Azure AD Identity Protection.
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "Get riskyUsers from identityProtection";
+            command.Description = "Users that are flagged as at-risk by Azure AD Identity Protection.";
             // Create options for all the parameters
             var topOption = new Option<int?>("--top", description: "Show only the first n items") {
             };
@@ -114,7 +123,12 @@ namespace ApiSdk.IdentityProtection.RiskyUsers {
             };
             expandOption.IsRequired = false;
             command.AddOption(expandOption);
-            command.SetHandler(async (int? top, int? skip, string search, string filter, bool? count, string[] orderby, string[] select, string[] expand) => {
+            var outputOption = new Option<FormatterType>("--output", () => FormatterType.JSON){
+                IsRequired = true
+            };
+            command.AddOption(outputOption);
+            command.SetHandler(async (int? top, int? skip, string search, string filter, bool? count, string[] orderby, string[] select, string[] expand, FormatterType output, IConsole console) => {
+                var responseHandler = new NativeResponseHandler();
                 var requestInfo = CreateGetRequestInformation(q => {
                     q.Top = top;
                     q.Skip = skip;
@@ -125,15 +139,19 @@ namespace ApiSdk.IdentityProtection.RiskyUsers {
                     q.Select = select;
                     q.Expand = expand;
                 });
-                var result = await RequestAdapter.SendAsync<RiskyUsersResponse>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo, responseHandler);
                 // Print request output. What if the request has no return?
-                using var serializer = RequestAdapter.SerializationWriterFactory.GetSerializationWriter("application/json");
-                serializer.WriteObjectValue(null, result);
-                using var content = serializer.GetSerializedContent();
-                using var reader = new StreamReader(content);
-                var strContent = await reader.ReadToEndAsync();
-                Console.Write(strContent + "\n");
-            }, topOption, skipOption, searchOption, filterOption, countOption, orderbyOption, selectOption, expandOption);
+                var response = responseHandler.Value as HttpResponseMessage;
+                var formatter = OutputFormatterFactory.Instance.GetFormatter(output);
+                if (response.IsSuccessStatusCode) {
+                    var content = await response.Content.ReadAsStringAsync();
+                    formatter.WriteOutput(content, console);
+                }
+                else {
+                    var content = await response.Content.ReadAsStringAsync();
+                    console.WriteLine(content);
+                }
+            }, topOption, skipOption, searchOption, filterOption, countOption, orderbyOption, selectOption, expandOption, outputOption);
             return command;
         }
         /// <summary>
@@ -150,7 +168,21 @@ namespace ApiSdk.IdentityProtection.RiskyUsers {
             RequestAdapter = requestAdapter;
         }
         /// <summary>
-        /// Get riskyUsers from identityProtection
+        /// Instantiates a new RiskyUsersRequestBuilder and sets the default values.
+        /// <param name="rawUrl">The raw URL to use for the request builder.</param>
+        /// <param name="requestAdapter">The request adapter to use to execute the requests.</param>
+        /// </summary>
+        public RiskyUsersRequestBuilder(string rawUrl, IRequestAdapter requestAdapter) {
+            if(string.IsNullOrEmpty(rawUrl)) throw new ArgumentNullException(nameof(rawUrl));
+            _ = requestAdapter ?? throw new ArgumentNullException(nameof(requestAdapter));
+            UrlTemplate = "{+baseurl}/identityProtection/riskyUsers{?top,skip,search,filter,count,orderby,select,expand}";
+            var urlTplParams = new Dictionary<string, object>();
+            urlTplParams.Add("request-raw-url", rawUrl);
+            PathParameters = urlTplParams;
+            RequestAdapter = requestAdapter;
+        }
+        /// <summary>
+        /// Users that are flagged as at-risk by Azure AD Identity Protection.
         /// <param name="h">Request headers</param>
         /// <param name="o">Request options</param>
         /// <param name="q">Request query parameters</param>
@@ -171,7 +203,7 @@ namespace ApiSdk.IdentityProtection.RiskyUsers {
             return requestInfo;
         }
         /// <summary>
-        /// Create new navigation property to riskyUsers for identityProtection
+        /// Users that are flagged as at-risk by Azure AD Identity Protection.
         /// <param name="body"></param>
         /// <param name="h">Request headers</param>
         /// <param name="o">Request options</param>
@@ -189,7 +221,7 @@ namespace ApiSdk.IdentityProtection.RiskyUsers {
             return requestInfo;
         }
         /// <summary>
-        /// Get riskyUsers from identityProtection
+        /// Users that are flagged as at-risk by Azure AD Identity Protection.
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="h">Request headers</param>
         /// <param name="o">Request options</param>
@@ -201,7 +233,7 @@ namespace ApiSdk.IdentityProtection.RiskyUsers {
             return await RequestAdapter.SendAsync<RiskyUsersResponse>(requestInfo, responseHandler, cancellationToken);
         }
         /// <summary>
-        /// Create new navigation property to riskyUsers for identityProtection
+        /// Users that are flagged as at-risk by Azure AD Identity Protection.
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="h">Request headers</param>
         /// <param name="model"></param>
@@ -213,7 +245,7 @@ namespace ApiSdk.IdentityProtection.RiskyUsers {
             var requestInfo = CreatePostRequestInformation(model, h, o);
             return await RequestAdapter.SendAsync<RiskyUser>(requestInfo, responseHandler, cancellationToken);
         }
-        /// <summary>Get riskyUsers from identityProtection</summary>
+        /// <summary>Users that are flagged as at-risk by Azure AD Identity Protection.</summary>
         public class GetQueryParameters : QueryParametersBase {
             /// <summary>Include count of items</summary>
             public bool? Count { get; set; }

@@ -4,14 +4,15 @@ using ApiSdk.Users.GetAvailableExtensionProperties;
 using ApiSdk.Users.GetByIds;
 using ApiSdk.Users.Item;
 using ApiSdk.Users.ValidateProperties;
+using Microsoft.Graph.Cli.Core.IO;
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
 using System;
 using System.Collections.Generic;
 using System.CommandLine;
-using System.CommandLine.Invocation;
 using System.IO;
 using System.Linq;
+using System.Net.Http;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
@@ -26,73 +27,72 @@ namespace ApiSdk.Users {
         private string UrlTemplate { get; set; }
         public List<Command> BuildCommand() {
             var builder = new UserRequestBuilder(PathParameters, RequestAdapter);
-            var commands = new List<Command> { 
-                builder.BuildActivitiesCommand(),
-                builder.BuildAgreementAcceptancesCommand(),
-                builder.BuildAppRoleAssignmentsCommand(),
-                builder.BuildAssignLicenseCommand(),
-                builder.BuildAuthenticationCommand(),
-                builder.BuildCalendarCommand(),
-                builder.BuildCalendarGroupsCommand(),
-                builder.BuildCalendarsCommand(),
-                builder.BuildCalendarViewCommand(),
-                builder.BuildChangePasswordCommand(),
-                builder.BuildChatsCommand(),
-                builder.BuildCheckMemberGroupsCommand(),
-                builder.BuildCheckMemberObjectsCommand(),
-                builder.BuildContactFoldersCommand(),
-                builder.BuildContactsCommand(),
-                builder.BuildCreatedObjectsCommand(),
-                builder.BuildDeleteCommand(),
-                builder.BuildDeviceManagementTroubleshootingEventsCommand(),
-                builder.BuildDirectReportsCommand(),
-                builder.BuildDriveCommand(),
-                builder.BuildDrivesCommand(),
-                builder.BuildEventsCommand(),
-                builder.BuildExportPersonalDataCommand(),
-                builder.BuildExtensionsCommand(),
-                builder.BuildFindMeetingTimesCommand(),
-                builder.BuildFollowedSitesCommand(),
-                builder.BuildGetCommand(),
-                builder.BuildGetMailTipsCommand(),
-                builder.BuildGetMemberGroupsCommand(),
-                builder.BuildGetMemberObjectsCommand(),
-                builder.BuildInferenceClassificationCommand(),
-                builder.BuildInsightsCommand(),
-                builder.BuildJoinedTeamsCommand(),
-                builder.BuildLicenseDetailsCommand(),
-                builder.BuildMailFoldersCommand(),
-                builder.BuildManagedAppRegistrationsCommand(),
-                builder.BuildManagedDevicesCommand(),
-                builder.BuildManagerCommand(),
-                builder.BuildMemberOfCommand(),
-                builder.BuildMessagesCommand(),
-                builder.BuildOauth2PermissionGrantsCommand(),
-                builder.BuildOnenoteCommand(),
-                builder.BuildOnlineMeetingsCommand(),
-                builder.BuildOutlookCommand(),
-                builder.BuildOwnedDevicesCommand(),
-                builder.BuildOwnedObjectsCommand(),
-                builder.BuildPatchCommand(),
-                builder.BuildPeopleCommand(),
-                builder.BuildPhotoCommand(),
-                builder.BuildPhotosCommand(),
-                builder.BuildPlannerCommand(),
-                builder.BuildPresenceCommand(),
-                builder.BuildRegisteredDevicesCommand(),
-                builder.BuildRemoveAllDevicesFromManagementCommand(),
-                builder.BuildReprocessLicenseAssignmentCommand(),
-                builder.BuildRestoreCommand(),
-                builder.BuildRevokeSignInSessionsCommand(),
-                builder.BuildScopedRoleMemberOfCommand(),
-                builder.BuildSendMailCommand(),
-                builder.BuildSettingsCommand(),
-                builder.BuildTeamworkCommand(),
-                builder.BuildTodoCommand(),
-                builder.BuildTransitiveMemberOfCommand(),
-                builder.BuildTranslateExchangeIdsCommand(),
-                builder.BuildWipeManagedAppRegistrationsByDeviceTagCommand(),
-            };
+            var commands = new List<Command>();
+            commands.Add(builder.BuildActivitiesCommand());
+            commands.Add(builder.BuildAgreementAcceptancesCommand());
+            commands.Add(builder.BuildAppRoleAssignmentsCommand());
+            commands.Add(builder.BuildAssignLicenseCommand());
+            commands.Add(builder.BuildAuthenticationCommand());
+            commands.Add(builder.BuildCalendarCommand());
+            commands.Add(builder.BuildCalendarGroupsCommand());
+            commands.Add(builder.BuildCalendarsCommand());
+            commands.Add(builder.BuildCalendarViewCommand());
+            commands.Add(builder.BuildChangePasswordCommand());
+            commands.Add(builder.BuildChatsCommand());
+            commands.Add(builder.BuildCheckMemberGroupsCommand());
+            commands.Add(builder.BuildCheckMemberObjectsCommand());
+            commands.Add(builder.BuildContactFoldersCommand());
+            commands.Add(builder.BuildContactsCommand());
+            commands.Add(builder.BuildCreatedObjectsCommand());
+            commands.Add(builder.BuildDeleteCommand());
+            commands.Add(builder.BuildDeviceManagementTroubleshootingEventsCommand());
+            commands.Add(builder.BuildDirectReportsCommand());
+            commands.Add(builder.BuildDriveCommand());
+            commands.Add(builder.BuildDrivesCommand());
+            commands.Add(builder.BuildEventsCommand());
+            commands.Add(builder.BuildExportPersonalDataCommand());
+            commands.Add(builder.BuildExtensionsCommand());
+            commands.Add(builder.BuildFindMeetingTimesCommand());
+            commands.Add(builder.BuildFollowedSitesCommand());
+            commands.Add(builder.BuildGetCommand());
+            commands.Add(builder.BuildGetMailTipsCommand());
+            commands.Add(builder.BuildGetMemberGroupsCommand());
+            commands.Add(builder.BuildGetMemberObjectsCommand());
+            commands.Add(builder.BuildInferenceClassificationCommand());
+            commands.Add(builder.BuildInsightsCommand());
+            commands.Add(builder.BuildJoinedTeamsCommand());
+            commands.Add(builder.BuildLicenseDetailsCommand());
+            commands.Add(builder.BuildMailFoldersCommand());
+            commands.Add(builder.BuildManagedAppRegistrationsCommand());
+            commands.Add(builder.BuildManagedDevicesCommand());
+            commands.Add(builder.BuildManagerCommand());
+            commands.Add(builder.BuildMemberOfCommand());
+            commands.Add(builder.BuildMessagesCommand());
+            commands.Add(builder.BuildOauth2PermissionGrantsCommand());
+            commands.Add(builder.BuildOnenoteCommand());
+            commands.Add(builder.BuildOnlineMeetingsCommand());
+            commands.Add(builder.BuildOutlookCommand());
+            commands.Add(builder.BuildOwnedDevicesCommand());
+            commands.Add(builder.BuildOwnedObjectsCommand());
+            commands.Add(builder.BuildPatchCommand());
+            commands.Add(builder.BuildPeopleCommand());
+            commands.Add(builder.BuildPhotoCommand());
+            commands.Add(builder.BuildPhotosCommand());
+            commands.Add(builder.BuildPlannerCommand());
+            commands.Add(builder.BuildPresenceCommand());
+            commands.Add(builder.BuildRegisteredDevicesCommand());
+            commands.Add(builder.BuildRemoveAllDevicesFromManagementCommand());
+            commands.Add(builder.BuildReprocessLicenseAssignmentCommand());
+            commands.Add(builder.BuildRestoreCommand());
+            commands.Add(builder.BuildRevokeSignInSessionsCommand());
+            commands.Add(builder.BuildScopedRoleMemberOfCommand());
+            commands.Add(builder.BuildSendMailCommand());
+            commands.Add(builder.BuildSettingsCommand());
+            commands.Add(builder.BuildTeamworkCommand());
+            commands.Add(builder.BuildTodoCommand());
+            commands.Add(builder.BuildTransitiveMemberOfCommand());
+            commands.Add(builder.BuildTranslateExchangeIdsCommand());
+            commands.Add(builder.BuildWipeManagedAppRegistrationsByDeviceTagCommand());
             return commands;
         }
         /// <summary>
@@ -106,21 +106,30 @@ namespace ApiSdk.Users {
             };
             bodyOption.IsRequired = true;
             command.AddOption(bodyOption);
-            command.SetHandler(async (string body) => {
+            var outputOption = new Option<FormatterType>("--output", () => FormatterType.JSON){
+                IsRequired = true
+            };
+            command.AddOption(outputOption);
+            command.SetHandler(async (string body, FormatterType output, IConsole console) => {
+                var responseHandler = new NativeResponseHandler();
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<ApiSdk.Models.Microsoft.Graph.User>();
                 var requestInfo = CreatePostRequestInformation(model, q => {
                 });
-                var result = await RequestAdapter.SendAsync<ApiSdk.Models.Microsoft.Graph.User>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo, responseHandler);
                 // Print request output. What if the request has no return?
-                using var serializer = RequestAdapter.SerializationWriterFactory.GetSerializationWriter("application/json");
-                serializer.WriteObjectValue(null, result);
-                using var content = serializer.GetSerializedContent();
-                using var reader = new StreamReader(content);
-                var strContent = await reader.ReadToEndAsync();
-                Console.Write(strContent + "\n");
-            }, bodyOption);
+                var response = responseHandler.Value as HttpResponseMessage;
+                var formatter = OutputFormatterFactory.Instance.GetFormatter(output);
+                if (response.IsSuccessStatusCode) {
+                    var content = await response.Content.ReadAsStringAsync();
+                    formatter.WriteOutput(content, console);
+                }
+                else {
+                    var content = await response.Content.ReadAsStringAsync();
+                    console.WriteLine(content);
+                }
+            }, bodyOption, outputOption);
             return command;
         }
         public Command BuildGetAvailableExtensionPropertiesCommand() {
@@ -177,7 +186,12 @@ namespace ApiSdk.Users {
             };
             expandOption.IsRequired = false;
             command.AddOption(expandOption);
-            command.SetHandler(async (int? top, int? skip, string search, string filter, bool? count, string[] orderby, string[] select, string[] expand) => {
+            var outputOption = new Option<FormatterType>("--output", () => FormatterType.JSON){
+                IsRequired = true
+            };
+            command.AddOption(outputOption);
+            command.SetHandler(async (int? top, int? skip, string search, string filter, bool? count, string[] orderby, string[] select, string[] expand, FormatterType output, IConsole console) => {
+                var responseHandler = new NativeResponseHandler();
                 var requestInfo = CreateGetRequestInformation(q => {
                     q.Top = top;
                     q.Skip = skip;
@@ -188,15 +202,19 @@ namespace ApiSdk.Users {
                     q.Select = select;
                     q.Expand = expand;
                 });
-                var result = await RequestAdapter.SendAsync<UsersResponse>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo, responseHandler);
                 // Print request output. What if the request has no return?
-                using var serializer = RequestAdapter.SerializationWriterFactory.GetSerializationWriter("application/json");
-                serializer.WriteObjectValue(null, result);
-                using var content = serializer.GetSerializedContent();
-                using var reader = new StreamReader(content);
-                var strContent = await reader.ReadToEndAsync();
-                Console.Write(strContent + "\n");
-            }, topOption, skipOption, searchOption, filterOption, countOption, orderbyOption, selectOption, expandOption);
+                var response = responseHandler.Value as HttpResponseMessage;
+                var formatter = OutputFormatterFactory.Instance.GetFormatter(output);
+                if (response.IsSuccessStatusCode) {
+                    var content = await response.Content.ReadAsStringAsync();
+                    formatter.WriteOutput(content, console);
+                }
+                else {
+                    var content = await response.Content.ReadAsStringAsync();
+                    console.WriteLine(content);
+                }
+            }, topOption, skipOption, searchOption, filterOption, countOption, orderbyOption, selectOption, expandOption, outputOption);
             return command;
         }
         public Command BuildValidatePropertiesCommand() {
@@ -215,6 +233,20 @@ namespace ApiSdk.Users {
             _ = requestAdapter ?? throw new ArgumentNullException(nameof(requestAdapter));
             UrlTemplate = "{+baseurl}/users{?top,skip,search,filter,count,orderby,select,expand}";
             var urlTplParams = new Dictionary<string, object>(pathParameters);
+            PathParameters = urlTplParams;
+            RequestAdapter = requestAdapter;
+        }
+        /// <summary>
+        /// Instantiates a new UsersRequestBuilder and sets the default values.
+        /// <param name="rawUrl">The raw URL to use for the request builder.</param>
+        /// <param name="requestAdapter">The request adapter to use to execute the requests.</param>
+        /// </summary>
+        public UsersRequestBuilder(string rawUrl, IRequestAdapter requestAdapter) {
+            if(string.IsNullOrEmpty(rawUrl)) throw new ArgumentNullException(nameof(rawUrl));
+            _ = requestAdapter ?? throw new ArgumentNullException(nameof(requestAdapter));
+            UrlTemplate = "{+baseurl}/users{?top,skip,search,filter,count,orderby,select,expand}";
+            var urlTplParams = new Dictionary<string, object>();
+            urlTplParams.Add("request-raw-url", rawUrl);
             PathParameters = urlTplParams;
             RequestAdapter = requestAdapter;
         }

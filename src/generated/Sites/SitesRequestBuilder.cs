@@ -2,14 +2,15 @@ using ApiSdk.Models.Microsoft.Graph;
 using ApiSdk.Sites.Add;
 using ApiSdk.Sites.Item;
 using ApiSdk.Sites.Remove;
+using Microsoft.Graph.Cli.Core.IO;
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
 using System;
 using System.Collections.Generic;
 using System.CommandLine;
-using System.CommandLine.Invocation;
 using System.IO;
 using System.Linq;
+using System.Net.Http;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
@@ -24,30 +25,29 @@ namespace ApiSdk.Sites {
         private string UrlTemplate { get; set; }
         public Command BuildAddCommand() {
             var command = new Command("add");
-            var builder = new ApiSdk.Sites.@Add.AddRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new ApiSdk.Sites.Add.AddRequestBuilder(PathParameters, RequestAdapter);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
         public List<Command> BuildCommand() {
             var builder = new SiteRequestBuilder(PathParameters, RequestAdapter);
-            var commands = new List<Command> { 
-                builder.BuildAnalyticsCommand(),
-                builder.BuildColumnsCommand(),
-                builder.BuildContentTypesCommand(),
-                builder.BuildDeleteCommand(),
-                builder.BuildDriveCommand(),
-                builder.BuildDrivesCommand(),
-                builder.BuildExternalColumnsCommand(),
-                builder.BuildGetCommand(),
-                builder.BuildItemsCommand(),
-                builder.BuildListsCommand(),
-                builder.BuildOnenoteCommand(),
-                builder.BuildPatchCommand(),
-                builder.BuildPermissionsCommand(),
-                builder.BuildSitesCommand(),
-                builder.BuildTermStoreCommand(),
-                builder.BuildTermStoresCommand(),
-            };
+            var commands = new List<Command>();
+            commands.Add(builder.BuildAnalyticsCommand());
+            commands.Add(builder.BuildColumnsCommand());
+            commands.Add(builder.BuildContentTypesCommand());
+            commands.Add(builder.BuildDeleteCommand());
+            commands.Add(builder.BuildDriveCommand());
+            commands.Add(builder.BuildDrivesCommand());
+            commands.Add(builder.BuildExternalColumnsCommand());
+            commands.Add(builder.BuildGetCommand());
+            commands.Add(builder.BuildItemsCommand());
+            commands.Add(builder.BuildListsCommand());
+            commands.Add(builder.BuildOnenoteCommand());
+            commands.Add(builder.BuildPatchCommand());
+            commands.Add(builder.BuildPermissionsCommand());
+            commands.Add(builder.BuildSitesCommand());
+            commands.Add(builder.BuildTermStoreCommand());
+            commands.Add(builder.BuildTermStoresCommand());
             return commands;
         }
         /// <summary>
@@ -61,21 +61,30 @@ namespace ApiSdk.Sites {
             };
             bodyOption.IsRequired = true;
             command.AddOption(bodyOption);
-            command.SetHandler(async (string body) => {
+            var outputOption = new Option<FormatterType>("--output", () => FormatterType.JSON){
+                IsRequired = true
+            };
+            command.AddOption(outputOption);
+            command.SetHandler(async (string body, FormatterType output, IConsole console) => {
+                var responseHandler = new NativeResponseHandler();
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<ApiSdk.Models.Microsoft.Graph.Site>();
                 var requestInfo = CreatePostRequestInformation(model, q => {
                 });
-                var result = await RequestAdapter.SendAsync<ApiSdk.Models.Microsoft.Graph.Site>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo, responseHandler);
                 // Print request output. What if the request has no return?
-                using var serializer = RequestAdapter.SerializationWriterFactory.GetSerializationWriter("application/json");
-                serializer.WriteObjectValue(null, result);
-                using var content = serializer.GetSerializedContent();
-                using var reader = new StreamReader(content);
-                var strContent = await reader.ReadToEndAsync();
-                Console.Write(strContent + "\n");
-            }, bodyOption);
+                var response = responseHandler.Value as HttpResponseMessage;
+                var formatter = OutputFormatterFactory.Instance.GetFormatter(output);
+                if (response.IsSuccessStatusCode) {
+                    var content = await response.Content.ReadAsStringAsync();
+                    formatter.WriteOutput(content, console);
+                }
+                else {
+                    var content = await response.Content.ReadAsStringAsync();
+                    console.WriteLine(content);
+                }
+            }, bodyOption, outputOption);
             return command;
         }
         /// <summary>
@@ -120,7 +129,12 @@ namespace ApiSdk.Sites {
             };
             expandOption.IsRequired = false;
             command.AddOption(expandOption);
-            command.SetHandler(async (int? top, int? skip, string search, string filter, bool? count, string[] orderby, string[] select, string[] expand) => {
+            var outputOption = new Option<FormatterType>("--output", () => FormatterType.JSON){
+                IsRequired = true
+            };
+            command.AddOption(outputOption);
+            command.SetHandler(async (int? top, int? skip, string search, string filter, bool? count, string[] orderby, string[] select, string[] expand, FormatterType output, IConsole console) => {
+                var responseHandler = new NativeResponseHandler();
                 var requestInfo = CreateGetRequestInformation(q => {
                     q.Top = top;
                     q.Skip = skip;
@@ -131,20 +145,24 @@ namespace ApiSdk.Sites {
                     q.Select = select;
                     q.Expand = expand;
                 });
-                var result = await RequestAdapter.SendAsync<SitesResponse>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo, responseHandler);
                 // Print request output. What if the request has no return?
-                using var serializer = RequestAdapter.SerializationWriterFactory.GetSerializationWriter("application/json");
-                serializer.WriteObjectValue(null, result);
-                using var content = serializer.GetSerializedContent();
-                using var reader = new StreamReader(content);
-                var strContent = await reader.ReadToEndAsync();
-                Console.Write(strContent + "\n");
-            }, topOption, skipOption, searchOption, filterOption, countOption, orderbyOption, selectOption, expandOption);
+                var response = responseHandler.Value as HttpResponseMessage;
+                var formatter = OutputFormatterFactory.Instance.GetFormatter(output);
+                if (response.IsSuccessStatusCode) {
+                    var content = await response.Content.ReadAsStringAsync();
+                    formatter.WriteOutput(content, console);
+                }
+                else {
+                    var content = await response.Content.ReadAsStringAsync();
+                    console.WriteLine(content);
+                }
+            }, topOption, skipOption, searchOption, filterOption, countOption, orderbyOption, selectOption, expandOption, outputOption);
             return command;
         }
         public Command BuildRemoveCommand() {
             var command = new Command("remove");
-            var builder = new ApiSdk.Sites.@Remove.RemoveRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new ApiSdk.Sites.Remove.RemoveRequestBuilder(PathParameters, RequestAdapter);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
@@ -158,6 +176,20 @@ namespace ApiSdk.Sites {
             _ = requestAdapter ?? throw new ArgumentNullException(nameof(requestAdapter));
             UrlTemplate = "{+baseurl}/sites{?top,skip,search,filter,count,orderby,select,expand}";
             var urlTplParams = new Dictionary<string, object>(pathParameters);
+            PathParameters = urlTplParams;
+            RequestAdapter = requestAdapter;
+        }
+        /// <summary>
+        /// Instantiates a new SitesRequestBuilder and sets the default values.
+        /// <param name="rawUrl">The raw URL to use for the request builder.</param>
+        /// <param name="requestAdapter">The request adapter to use to execute the requests.</param>
+        /// </summary>
+        public SitesRequestBuilder(string rawUrl, IRequestAdapter requestAdapter) {
+            if(string.IsNullOrEmpty(rawUrl)) throw new ArgumentNullException(nameof(rawUrl));
+            _ = requestAdapter ?? throw new ArgumentNullException(nameof(requestAdapter));
+            UrlTemplate = "{+baseurl}/sites{?top,skip,search,filter,count,orderby,select,expand}";
+            var urlTplParams = new Dictionary<string, object>();
+            urlTplParams.Add("request-raw-url", rawUrl);
             PathParameters = urlTplParams;
             RequestAdapter = requestAdapter;
         }

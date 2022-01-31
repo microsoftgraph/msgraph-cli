@@ -7,9 +7,9 @@ namespace ApiSdk.Models.Microsoft.Graph {
     public class Identity : IParsable {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
-        /// <summary>The identity's display name. Note that this may not always be available or up to date. For example, if a user changes their display name, the API may show the new value in a future response, but the items associated with the user won't show up as having changed when using delta.</summary>
+        /// <summary>The display name of the identity. This property is read-only.</summary>
         public string DisplayName { get; set; }
-        /// <summary>Unique identifier for the identity.</summary>
+        /// <summary>The identifier of the identity. This property is read-only.</summary>
         public string Id { get; set; }
         /// <summary>
         /// Instantiates a new identity and sets the default values.

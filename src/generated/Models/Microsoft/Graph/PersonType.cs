@@ -5,10 +5,10 @@ using System.IO;
 using System.Linq;
 namespace ApiSdk.Models.Microsoft.Graph {
     public class PersonType : IParsable {
-        /// <summary>The type of data source, such as Person.</summary>
-        public string @Class { get; set; }
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
+        /// <summary>The type of data source, such as Person.</summary>
+        public string Class { get; set; }
         /// <summary>The secondary type of data source, such as OrganizationUser.</summary>
         public string Subclass { get; set; }
         /// <summary>
@@ -22,7 +22,7 @@ namespace ApiSdk.Models.Microsoft.Graph {
         /// </summary>
         public IDictionary<string, Action<T, IParseNode>> GetFieldDeserializers<T>() {
             return new Dictionary<string, Action<T, IParseNode>> {
-                {"class", (o,n) => { (o as PersonType).@Class = n.GetStringValue(); } },
+                {"class", (o,n) => { (o as PersonType).Class = n.GetStringValue(); } },
                 {"subclass", (o,n) => { (o as PersonType).Subclass = n.GetStringValue(); } },
             };
         }
@@ -32,7 +32,7 @@ namespace ApiSdk.Models.Microsoft.Graph {
         /// </summary>
         public void Serialize(ISerializationWriter writer) {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
-            writer.WriteStringValue("class", @Class);
+            writer.WriteStringValue("class", Class);
             writer.WriteStringValue("subclass", Subclass);
             writer.WriteAdditionalData(AdditionalData);
         }

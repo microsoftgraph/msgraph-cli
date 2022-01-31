@@ -5,10 +5,10 @@ using System.IO;
 using System.Linq;
 namespace ApiSdk.Me.Outlook.SupportedTimeZonesWithTimeZoneStandard {
     public class SupportedTimeZonesWithTimeZoneStandard : IParsable {
-        /// <summary>An identifier for the time zone.</summary>
-        public string @Alias { get; set; }
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
+        /// <summary>An identifier for the time zone.</summary>
+        public string Alias { get; set; }
         /// <summary>A display string that represents the time zone.</summary>
         public string DisplayName { get; set; }
         /// <summary>
@@ -22,7 +22,7 @@ namespace ApiSdk.Me.Outlook.SupportedTimeZonesWithTimeZoneStandard {
         /// </summary>
         public IDictionary<string, Action<T, IParseNode>> GetFieldDeserializers<T>() {
             return new Dictionary<string, Action<T, IParseNode>> {
-                {"alias", (o,n) => { (o as SupportedTimeZonesWithTimeZoneStandard).@Alias = n.GetStringValue(); } },
+                {"alias", (o,n) => { (o as SupportedTimeZonesWithTimeZoneStandard).Alias = n.GetStringValue(); } },
                 {"displayName", (o,n) => { (o as SupportedTimeZonesWithTimeZoneStandard).DisplayName = n.GetStringValue(); } },
             };
         }
@@ -32,7 +32,7 @@ namespace ApiSdk.Me.Outlook.SupportedTimeZonesWithTimeZoneStandard {
         /// </summary>
         public void Serialize(ISerializationWriter writer) {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
-            writer.WriteStringValue("alias", @Alias);
+            writer.WriteStringValue("alias", Alias);
             writer.WriteStringValue("displayName", DisplayName);
             writer.WriteAdditionalData(AdditionalData);
         }

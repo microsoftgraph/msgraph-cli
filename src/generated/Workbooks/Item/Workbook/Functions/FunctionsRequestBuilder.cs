@@ -365,14 +365,15 @@ using ApiSdk.Workbooks.Item.Workbook.Functions.Yield;
 using ApiSdk.Workbooks.Item.Workbook.Functions.YieldDisc;
 using ApiSdk.Workbooks.Item.Workbook.Functions.YieldMat;
 using ApiSdk.Workbooks.Item.Workbook.Functions.Z_Test;
+using Microsoft.Graph.Cli.Core.IO;
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
 using System;
 using System.Collections.Generic;
 using System.CommandLine;
-using System.CommandLine.Invocation;
 using System.IO;
 using System.Linq;
+using System.Net.Http;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
@@ -441,7 +442,7 @@ namespace ApiSdk.Workbooks.Item.Workbook.Functions {
         }
         public Command BuildAndCommand() {
             var command = new Command("and");
-            var builder = new ApiSdk.Workbooks.Item.Workbook.Functions.@And.AndRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new ApiSdk.Workbooks.Item.Workbook.Functions.And.AndRequestBuilder(PathParameters, RequestAdapter);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
@@ -531,7 +532,7 @@ namespace ApiSdk.Workbooks.Item.Workbook.Functions {
         }
         public Command BuildBaseCommand() {
             var command = new Command("base");
-            var builder = new ApiSdk.Workbooks.Item.Workbook.Functions.@Base.BaseRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new ApiSdk.Workbooks.Item.Workbook.Functions.Base.BaseRequestBuilder(PathParameters, RequestAdapter);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
@@ -651,7 +652,7 @@ namespace ApiSdk.Workbooks.Item.Workbook.Functions {
         }
         public Command BuildCharCommand() {
             var command = new Command("char");
-            var builder = new ApiSdk.Workbooks.Item.Workbook.Functions.@Char.CharRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new ApiSdk.Workbooks.Item.Workbook.Functions.Char.CharRequestBuilder(PathParameters, RequestAdapter);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
@@ -945,7 +946,7 @@ namespace ApiSdk.Workbooks.Item.Workbook.Functions {
         }
         public Command BuildDecimalCommand() {
             var command = new Command("decimal");
-            var builder = new ApiSdk.Workbooks.Item.Workbook.Functions.@Decimal.DecimalRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new ApiSdk.Workbooks.Item.Workbook.Functions.Decimal.DecimalRequestBuilder(PathParameters, RequestAdapter);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
@@ -966,12 +967,13 @@ namespace ApiSdk.Workbooks.Item.Workbook.Functions {
             };
             driveItemIdOption.IsRequired = true;
             command.AddOption(driveItemIdOption);
-            command.SetHandler(async (string driveItemId) => {
+            command.SetHandler(async (string driveItemId, IConsole console) => {
+                var responseHandler = new NativeResponseHandler();
                 var requestInfo = CreateDeleteRequestInformation(q => {
                 });
-                await RequestAdapter.SendNoContentAsync(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo, responseHandler);
                 // Print request output. What if the request has no return?
-                Console.WriteLine("Success");
+                console.WriteLine("Success");
             }, driveItemIdOption);
             return command;
         }
@@ -1187,7 +1189,7 @@ namespace ApiSdk.Workbooks.Item.Workbook.Functions {
         }
         public Command BuildFalseCommand() {
             var command = new Command("false");
-            var builder = new ApiSdk.Workbooks.Item.Workbook.Functions.@False.FalseRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new ApiSdk.Workbooks.Item.Workbook.Functions.False.FalseRequestBuilder(PathParameters, RequestAdapter);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
@@ -1217,7 +1219,7 @@ namespace ApiSdk.Workbooks.Item.Workbook.Functions {
         }
         public Command BuildFixedCommand() {
             var command = new Command("fixed");
-            var builder = new ApiSdk.Workbooks.Item.Workbook.Functions.@Fixed.FixedRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new ApiSdk.Workbooks.Item.Workbook.Functions.Fixed.FixedRequestBuilder(PathParameters, RequestAdapter);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
@@ -1320,20 +1322,29 @@ namespace ApiSdk.Workbooks.Item.Workbook.Functions {
             };
             expandOption.IsRequired = false;
             command.AddOption(expandOption);
-            command.SetHandler(async (string driveItemId, string[] select, string[] expand) => {
+            var outputOption = new Option<FormatterType>("--output", () => FormatterType.JSON){
+                IsRequired = true
+            };
+            command.AddOption(outputOption);
+            command.SetHandler(async (string driveItemId, string[] select, string[] expand, FormatterType output, IConsole console) => {
+                var responseHandler = new NativeResponseHandler();
                 var requestInfo = CreateGetRequestInformation(q => {
                     q.Select = select;
                     q.Expand = expand;
                 });
-                var result = await RequestAdapter.SendAsync<WorkbookFunctions>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo, responseHandler);
                 // Print request output. What if the request has no return?
-                using var serializer = RequestAdapter.SerializationWriterFactory.GetSerializationWriter("application/json");
-                serializer.WriteObjectValue(null, result);
-                using var content = serializer.GetSerializedContent();
-                using var reader = new StreamReader(content);
-                var strContent = await reader.ReadToEndAsync();
-                Console.Write(strContent + "\n");
-            }, driveItemIdOption, selectOption, expandOption);
+                var response = responseHandler.Value as HttpResponseMessage;
+                var formatter = OutputFormatterFactory.Instance.GetFormatter(output);
+                if (response.IsSuccessStatusCode) {
+                    var content = await response.Content.ReadAsStringAsync();
+                    formatter.WriteOutput(content, console);
+                }
+                else {
+                    var content = await response.Content.ReadAsStringAsync();
+                    console.WriteLine(content);
+                }
+            }, driveItemIdOption, selectOption, expandOption, outputOption);
             return command;
         }
         public Command BuildHarMeanCommand() {
@@ -1386,7 +1397,7 @@ namespace ApiSdk.Workbooks.Item.Workbook.Functions {
         }
         public Command BuildIfCommand() {
             var command = new Command("if");
-            var builder = new ApiSdk.Workbooks.Item.Workbook.Functions.@If.IfRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new ApiSdk.Workbooks.Item.Workbook.Functions.If.IfRequestBuilder(PathParameters, RequestAdapter);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
@@ -1542,7 +1553,7 @@ namespace ApiSdk.Workbooks.Item.Workbook.Functions {
         }
         public Command BuildIntCommand() {
             var command = new Command("int");
-            var builder = new ApiSdk.Workbooks.Item.Workbook.Functions.@Int.IntRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new ApiSdk.Workbooks.Item.Workbook.Functions.Int.IntRequestBuilder(PathParameters, RequestAdapter);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
@@ -1884,7 +1895,7 @@ namespace ApiSdk.Workbooks.Item.Workbook.Functions {
         }
         public Command BuildNotCommand() {
             var command = new Command("not");
-            var builder = new ApiSdk.Workbooks.Item.Workbook.Functions.@Not.NotRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new ApiSdk.Workbooks.Item.Workbook.Functions.Not.NotRequestBuilder(PathParameters, RequestAdapter);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
@@ -1962,7 +1973,7 @@ namespace ApiSdk.Workbooks.Item.Workbook.Functions {
         }
         public Command BuildOrCommand() {
             var command = new Command("or");
-            var builder = new ApiSdk.Workbooks.Item.Workbook.Functions.@Or.OrRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new ApiSdk.Workbooks.Item.Workbook.Functions.Or.OrRequestBuilder(PathParameters, RequestAdapter);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
@@ -1981,15 +1992,16 @@ namespace ApiSdk.Workbooks.Item.Workbook.Functions {
             };
             bodyOption.IsRequired = true;
             command.AddOption(bodyOption);
-            command.SetHandler(async (string driveItemId, string body) => {
+            command.SetHandler(async (string driveItemId, string body, IConsole console) => {
+                var responseHandler = new NativeResponseHandler();
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<WorkbookFunctions>();
                 var requestInfo = CreatePatchRequestInformation(model, q => {
                 });
-                await RequestAdapter.SendNoContentAsync(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo, responseHandler);
                 // Print request output. What if the request has no return?
-                Console.WriteLine("Success");
+                console.WriteLine("Success");
             }, driveItemIdOption, bodyOption);
             return command;
         }
@@ -2499,7 +2511,7 @@ namespace ApiSdk.Workbooks.Item.Workbook.Functions {
         }
         public Command BuildTrueCommand() {
             var command = new Command("true");
-            var builder = new ApiSdk.Workbooks.Item.Workbook.Functions.@True.TrueRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new ApiSdk.Workbooks.Item.Workbook.Functions.True.TrueRequestBuilder(PathParameters, RequestAdapter);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
@@ -2643,7 +2655,7 @@ namespace ApiSdk.Workbooks.Item.Workbook.Functions {
         }
         public Command BuildYieldCommand() {
             var command = new Command("yield");
-            var builder = new ApiSdk.Workbooks.Item.Workbook.Functions.@Yield.YieldRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new ApiSdk.Workbooks.Item.Workbook.Functions.Yield.YieldRequestBuilder(PathParameters, RequestAdapter);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
@@ -2675,6 +2687,20 @@ namespace ApiSdk.Workbooks.Item.Workbook.Functions {
             _ = requestAdapter ?? throw new ArgumentNullException(nameof(requestAdapter));
             UrlTemplate = "{+baseurl}/workbooks/{driveItem_id}/workbook/functions{?select,expand}";
             var urlTplParams = new Dictionary<string, object>(pathParameters);
+            PathParameters = urlTplParams;
+            RequestAdapter = requestAdapter;
+        }
+        /// <summary>
+        /// Instantiates a new FunctionsRequestBuilder and sets the default values.
+        /// <param name="rawUrl">The raw URL to use for the request builder.</param>
+        /// <param name="requestAdapter">The request adapter to use to execute the requests.</param>
+        /// </summary>
+        public FunctionsRequestBuilder(string rawUrl, IRequestAdapter requestAdapter) {
+            if(string.IsNullOrEmpty(rawUrl)) throw new ArgumentNullException(nameof(rawUrl));
+            _ = requestAdapter ?? throw new ArgumentNullException(nameof(requestAdapter));
+            UrlTemplate = "{+baseurl}/workbooks/{driveItem_id}/workbook/functions{?select,expand}";
+            var urlTplParams = new Dictionary<string, object>();
+            urlTplParams.Add("request-raw-url", rawUrl);
             PathParameters = urlTplParams;
             RequestAdapter = requestAdapter;
         }

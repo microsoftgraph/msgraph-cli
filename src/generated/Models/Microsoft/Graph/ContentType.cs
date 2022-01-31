@@ -5,14 +5,10 @@ using System.IO;
 using System.Linq;
 namespace ApiSdk.Models.Microsoft.Graph {
     public class ContentType : Entity, IParsable {
-        /// <summary>Parent contentType from which this content type is derived.</summary>
-        public ContentType @Base { get; set; }
-        /// <summary>If true, the content type cannot be modified unless this value is first set to false.</summary>
-        public bool? @ReadOnly { get; set; }
-        /// <summary>If true, the content type cannot be modified by users or through push-down operations. Only site collection administrators can seal or unseal content types.</summary>
-        public bool? @Sealed { get; set; }
         /// <summary>List of canonical URLs for hub sites with which this content type is associated to. This will contain all hubsites where this content type is queued to be enforced or is already enforced. Enforcing a content type means that the content type will be applied to the lists in the enforced sites.</summary>
         public List<string> AssociatedHubsUrls { get; set; }
+        /// <summary>Parent contentType from which this content type is derived.</summary>
+        public ContentType Base { get; set; }
         /// <summary>The collection of content types that are ancestors of this content type.</summary>
         public List<ContentType> BaseTypes { get; set; }
         /// <summary>The collection of columns that are required by this content type</summary>
@@ -43,15 +39,17 @@ namespace ApiSdk.Models.Microsoft.Graph {
         public string ParentId { get; set; }
         /// <summary>If true, any changes made to the content type will be pushed to inherited content types and lists that implement the content type.</summary>
         public bool? PropagateChanges { get; set; }
+        /// <summary>If true, the content type cannot be modified unless this value is first set to false.</summary>
+        public bool? ReadOnly { get; set; }
+        /// <summary>If true, the content type cannot be modified by users or through push-down operations. Only site collection administrators can seal or unseal content types.</summary>
+        public bool? Sealed { get; set; }
         /// <summary>
         /// The deserialization information for the current model
         /// </summary>
         public new IDictionary<string, Action<T, IParseNode>> GetFieldDeserializers<T>() {
             return new Dictionary<string, Action<T, IParseNode>>(base.GetFieldDeserializers<T>()) {
-                {"base", (o,n) => { (o as ContentType).@Base = n.GetObjectValue<ContentType>(); } },
-                {"readOnly", (o,n) => { (o as ContentType).@ReadOnly = n.GetBoolValue(); } },
-                {"sealed", (o,n) => { (o as ContentType).@Sealed = n.GetBoolValue(); } },
                 {"associatedHubsUrls", (o,n) => { (o as ContentType).AssociatedHubsUrls = n.GetCollectionOfPrimitiveValues<string>().ToList(); } },
+                {"base", (o,n) => { (o as ContentType).Base = n.GetObjectValue<ContentType>(); } },
                 {"baseTypes", (o,n) => { (o as ContentType).BaseTypes = n.GetCollectionOfObjectValues<ContentType>().ToList(); } },
                 {"columnLinks", (o,n) => { (o as ContentType).ColumnLinks = n.GetCollectionOfObjectValues<ColumnLink>().ToList(); } },
                 {"columnPositions", (o,n) => { (o as ContentType).ColumnPositions = n.GetCollectionOfObjectValues<ColumnDefinition>().ToList(); } },
@@ -67,6 +65,8 @@ namespace ApiSdk.Models.Microsoft.Graph {
                 {"order", (o,n) => { (o as ContentType).Order = n.GetObjectValue<ContentTypeOrder>(); } },
                 {"parentId", (o,n) => { (o as ContentType).ParentId = n.GetStringValue(); } },
                 {"propagateChanges", (o,n) => { (o as ContentType).PropagateChanges = n.GetBoolValue(); } },
+                {"readOnly", (o,n) => { (o as ContentType).ReadOnly = n.GetBoolValue(); } },
+                {"sealed", (o,n) => { (o as ContentType).Sealed = n.GetBoolValue(); } },
             };
         }
         /// <summary>
@@ -76,10 +76,8 @@ namespace ApiSdk.Models.Microsoft.Graph {
         public new void Serialize(ISerializationWriter writer) {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             base.Serialize(writer);
-            writer.WriteObjectValue<ContentType>("base", @Base);
-            writer.WriteBoolValue("readOnly", @ReadOnly);
-            writer.WriteBoolValue("sealed", @Sealed);
             writer.WriteCollectionOfPrimitiveValues<string>("associatedHubsUrls", AssociatedHubsUrls);
+            writer.WriteObjectValue<ContentType>("base", Base);
             writer.WriteCollectionOfObjectValues<ContentType>("baseTypes", BaseTypes);
             writer.WriteCollectionOfObjectValues<ColumnLink>("columnLinks", ColumnLinks);
             writer.WriteCollectionOfObjectValues<ColumnDefinition>("columnPositions", ColumnPositions);
@@ -95,6 +93,8 @@ namespace ApiSdk.Models.Microsoft.Graph {
             writer.WriteObjectValue<ContentTypeOrder>("order", Order);
             writer.WriteStringValue("parentId", ParentId);
             writer.WriteBoolValue("propagateChanges", PropagateChanges);
+            writer.WriteBoolValue("readOnly", ReadOnly);
+            writer.WriteBoolValue("sealed", Sealed);
         }
     }
 }

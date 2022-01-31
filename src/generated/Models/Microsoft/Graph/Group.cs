@@ -20,7 +20,7 @@ namespace ApiSdk.Models.Microsoft.Graph {
         /// <summary>The group's calendar. Read-only.</summary>
         public ApiSdk.Models.Microsoft.Graph.Calendar Calendar { get; set; }
         /// <summary>The calendar view for the calendar. Read-only.</summary>
-        public List<@Event> CalendarView { get; set; }
+        public List<Event> CalendarView { get; set; }
         /// <summary>Describes a classification for the group (such as low, medium or high business impact). Valid values for this property are defined by creating a ClassificationList setting value, based on the template definition.Returned by default. Supports $filter (eq, ne, not, ge, le, startsWith).</summary>
         public string Classification { get; set; }
         /// <summary>The group's conversations.</summary>
@@ -38,7 +38,7 @@ namespace ApiSdk.Models.Microsoft.Graph {
         /// <summary>The group's drives. Read-only.</summary>
         public List<ApiSdk.Models.Microsoft.Graph.Drive> Drives { get; set; }
         /// <summary>The group's events.</summary>
-        public List<@Event> Events { get; set; }
+        public List<Event> Events { get; set; }
         /// <summary>Timestamp of when the group is set to expire. The value cannot be modified and is automatically populated when the group is created. The Timestamp type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z. Returned by default. Supports $filter (eq, ne, not, ge, le, in). Read-only.</summary>
         public DateTimeOffset? ExpirationDateTime { get; set; }
         /// <summary>The collection of open extensions defined for the group. Read-only. Nullable.</summary>
@@ -68,7 +68,7 @@ namespace ApiSdk.Models.Microsoft.Graph {
         public string MailNickname { get; set; }
         /// <summary>Groups and administrative units that this group is a member of. HTTP Methods: GET (supported for all groups). Read-only. Nullable. Supports $expand.</summary>
         public List<DirectoryObject> MemberOf { get; set; }
-        /// <summary>Users, contacts, and groups that are members of this group. HTTP Methods: GET (supported for all groups), POST (supported for security groups and mail-enabled security groups), DELETE (supported only for security groups) Read-only. Nullable. Supports $expand.</summary>
+        /// <summary>Members of this group, who can be users, devices, other groups, or service principals. Supports the List members, Add member, and Remove member operations. Nullable. Supports $expand including nested $select. For example, /groups?$filter=startsWith(displayName,'Role')&$select=id,displayName&$expand=members($select=id,userPrincipalName,displayName).</summary>
         public List<DirectoryObject> Members { get; set; }
         /// <summary>The rule that determines members for this group if the group is a dynamic group (groupTypes contains DynamicMembership). For more information about the syntax of the membership rule, see Membership Rules syntax. Returned by default. Supports $filter (eq, ne, not, ge, le, startsWith).</summary>
         public string MembershipRule { get; set; }
@@ -92,7 +92,7 @@ namespace ApiSdk.Models.Microsoft.Graph {
         public string OnPremisesSecurityIdentifier { get; set; }
         /// <summary>true if this group is synced from an on-premises directory; false if this group was originally synced from an on-premises directory but is no longer synced; null if this object has never been synced from an on-premises directory (default). Returned by default. Read-only. Supports $filter (eq, ne, not, in, and eq on null values).</summary>
         public bool? OnPremisesSyncEnabled { get; set; }
-        /// <summary>The owners of the group. The owners are a set of non-admin users who are allowed to modify this object. Nullable. If this property is not specified when creating a Microsoft 365 group, the calling user is automatically assigned as the group owner. Supports $expand.</summary>
+        /// <summary>The owners of the group who can be users or service principals. Nullable. If this property is not specified when creating a Microsoft 365 group, the calling user is automatically assigned as the group owner. Supports $expand including nested $select. For example, /groups?$filter=startsWith(displayName,'Role')&$select=id,displayName&$expand=owners($select=id,userPrincipalName,displayName).</summary>
         public List<DirectoryObject> Owners { get; set; }
         /// <summary>The permissions that have been granted for a group to a specific application. Supports $expand.</summary>
         public List<ResourceSpecificPermissionGrant> PermissionGrants { get; set; }
@@ -143,7 +143,7 @@ namespace ApiSdk.Models.Microsoft.Graph {
                 {"assignedLicenses", (o,n) => { (o as Group).AssignedLicenses = n.GetCollectionOfObjectValues<AssignedLicense>().ToList(); } },
                 {"autoSubscribeNewMembers", (o,n) => { (o as Group).AutoSubscribeNewMembers = n.GetBoolValue(); } },
                 {"calendar", (o,n) => { (o as Group).Calendar = n.GetObjectValue<ApiSdk.Models.Microsoft.Graph.Calendar>(); } },
-                {"calendarView", (o,n) => { (o as Group).CalendarView = n.GetCollectionOfObjectValues<@Event>().ToList(); } },
+                {"calendarView", (o,n) => { (o as Group).CalendarView = n.GetCollectionOfObjectValues<Event>().ToList(); } },
                 {"classification", (o,n) => { (o as Group).Classification = n.GetStringValue(); } },
                 {"conversations", (o,n) => { (o as Group).Conversations = n.GetCollectionOfObjectValues<Conversation>().ToList(); } },
                 {"createdDateTime", (o,n) => { (o as Group).CreatedDateTime = n.GetDateTimeOffsetValue(); } },
@@ -152,7 +152,7 @@ namespace ApiSdk.Models.Microsoft.Graph {
                 {"displayName", (o,n) => { (o as Group).DisplayName = n.GetStringValue(); } },
                 {"drive", (o,n) => { (o as Group).Drive = n.GetObjectValue<ApiSdk.Models.Microsoft.Graph.Drive>(); } },
                 {"drives", (o,n) => { (o as Group).Drives = n.GetCollectionOfObjectValues<ApiSdk.Models.Microsoft.Graph.Drive>().ToList(); } },
-                {"events", (o,n) => { (o as Group).Events = n.GetCollectionOfObjectValues<@Event>().ToList(); } },
+                {"events", (o,n) => { (o as Group).Events = n.GetCollectionOfObjectValues<Event>().ToList(); } },
                 {"expirationDateTime", (o,n) => { (o as Group).ExpirationDateTime = n.GetDateTimeOffsetValue(); } },
                 {"extensions", (o,n) => { (o as Group).Extensions = n.GetCollectionOfObjectValues<Extension>().ToList(); } },
                 {"groupLifecyclePolicies", (o,n) => { (o as Group).GroupLifecyclePolicies = n.GetCollectionOfObjectValues<GroupLifecyclePolicy>().ToList(); } },
@@ -217,7 +217,7 @@ namespace ApiSdk.Models.Microsoft.Graph {
             writer.WriteCollectionOfObjectValues<AssignedLicense>("assignedLicenses", AssignedLicenses);
             writer.WriteBoolValue("autoSubscribeNewMembers", AutoSubscribeNewMembers);
             writer.WriteObjectValue<ApiSdk.Models.Microsoft.Graph.Calendar>("calendar", Calendar);
-            writer.WriteCollectionOfObjectValues<@Event>("calendarView", CalendarView);
+            writer.WriteCollectionOfObjectValues<Event>("calendarView", CalendarView);
             writer.WriteStringValue("classification", Classification);
             writer.WriteCollectionOfObjectValues<Conversation>("conversations", Conversations);
             writer.WriteDateTimeOffsetValue("createdDateTime", CreatedDateTime);
@@ -226,7 +226,7 @@ namespace ApiSdk.Models.Microsoft.Graph {
             writer.WriteStringValue("displayName", DisplayName);
             writer.WriteObjectValue<ApiSdk.Models.Microsoft.Graph.Drive>("drive", Drive);
             writer.WriteCollectionOfObjectValues<ApiSdk.Models.Microsoft.Graph.Drive>("drives", Drives);
-            writer.WriteCollectionOfObjectValues<@Event>("events", Events);
+            writer.WriteCollectionOfObjectValues<Event>("events", Events);
             writer.WriteDateTimeOffsetValue("expirationDateTime", ExpirationDateTime);
             writer.WriteCollectionOfObjectValues<Extension>("extensions", Extensions);
             writer.WriteCollectionOfObjectValues<GroupLifecyclePolicy>("groupLifecyclePolicies", GroupLifecyclePolicies);

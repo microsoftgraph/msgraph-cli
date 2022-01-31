@@ -1,12 +1,13 @@
 using ApiSdk.Models.Microsoft.Graph;
+using Microsoft.Graph.Cli.Core.IO;
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
 using System;
 using System.Collections.Generic;
 using System.CommandLine;
-using System.CommandLine.Invocation;
 using System.IO;
 using System.Linq;
+using System.Net.Http;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
@@ -20,31 +21,32 @@ namespace ApiSdk.IdentityProtection.RiskDetections.Item {
         /// <summary>Url template to use to build the URL for the current request builder</summary>
         private string UrlTemplate { get; set; }
         /// <summary>
-        /// Delete navigation property riskDetections for identityProtection
+        /// Risk detection in Azure AD Identity Protection and the associated information about the detection.
         /// </summary>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
-            command.Description = "Delete navigation property riskDetections for identityProtection";
+            command.Description = "Risk detection in Azure AD Identity Protection and the associated information about the detection.";
             // Create options for all the parameters
             var riskDetectionIdOption = new Option<string>("--riskdetection-id", description: "key: id of riskDetection") {
             };
             riskDetectionIdOption.IsRequired = true;
             command.AddOption(riskDetectionIdOption);
-            command.SetHandler(async (string riskDetectionId) => {
+            command.SetHandler(async (string riskDetectionId, IConsole console) => {
+                var responseHandler = new NativeResponseHandler();
                 var requestInfo = CreateDeleteRequestInformation(q => {
                 });
-                await RequestAdapter.SendNoContentAsync(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo, responseHandler);
                 // Print request output. What if the request has no return?
-                Console.WriteLine("Success");
+                console.WriteLine("Success");
             }, riskDetectionIdOption);
             return command;
         }
         /// <summary>
-        /// Get riskDetections from identityProtection
+        /// Risk detection in Azure AD Identity Protection and the associated information about the detection.
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "Get riskDetections from identityProtection";
+            command.Description = "Risk detection in Azure AD Identity Protection and the associated information about the detection.";
             // Create options for all the parameters
             var riskDetectionIdOption = new Option<string>("--riskdetection-id", description: "key: id of riskDetection") {
             };
@@ -60,28 +62,37 @@ namespace ApiSdk.IdentityProtection.RiskDetections.Item {
             };
             expandOption.IsRequired = false;
             command.AddOption(expandOption);
-            command.SetHandler(async (string riskDetectionId, string[] select, string[] expand) => {
+            var outputOption = new Option<FormatterType>("--output", () => FormatterType.JSON){
+                IsRequired = true
+            };
+            command.AddOption(outputOption);
+            command.SetHandler(async (string riskDetectionId, string[] select, string[] expand, FormatterType output, IConsole console) => {
+                var responseHandler = new NativeResponseHandler();
                 var requestInfo = CreateGetRequestInformation(q => {
                     q.Select = select;
                     q.Expand = expand;
                 });
-                var result = await RequestAdapter.SendAsync<RiskDetection>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo, responseHandler);
                 // Print request output. What if the request has no return?
-                using var serializer = RequestAdapter.SerializationWriterFactory.GetSerializationWriter("application/json");
-                serializer.WriteObjectValue(null, result);
-                using var content = serializer.GetSerializedContent();
-                using var reader = new StreamReader(content);
-                var strContent = await reader.ReadToEndAsync();
-                Console.Write(strContent + "\n");
-            }, riskDetectionIdOption, selectOption, expandOption);
+                var response = responseHandler.Value as HttpResponseMessage;
+                var formatter = OutputFormatterFactory.Instance.GetFormatter(output);
+                if (response.IsSuccessStatusCode) {
+                    var content = await response.Content.ReadAsStringAsync();
+                    formatter.WriteOutput(content, console);
+                }
+                else {
+                    var content = await response.Content.ReadAsStringAsync();
+                    console.WriteLine(content);
+                }
+            }, riskDetectionIdOption, selectOption, expandOption, outputOption);
             return command;
         }
         /// <summary>
-        /// Update the navigation property riskDetections in identityProtection
+        /// Risk detection in Azure AD Identity Protection and the associated information about the detection.
         /// </summary>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
-            command.Description = "Update the navigation property riskDetections in identityProtection";
+            command.Description = "Risk detection in Azure AD Identity Protection and the associated information about the detection.";
             // Create options for all the parameters
             var riskDetectionIdOption = new Option<string>("--riskdetection-id", description: "key: id of riskDetection") {
             };
@@ -91,15 +102,16 @@ namespace ApiSdk.IdentityProtection.RiskDetections.Item {
             };
             bodyOption.IsRequired = true;
             command.AddOption(bodyOption);
-            command.SetHandler(async (string riskDetectionId, string body) => {
+            command.SetHandler(async (string riskDetectionId, string body, IConsole console) => {
+                var responseHandler = new NativeResponseHandler();
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<RiskDetection>();
                 var requestInfo = CreatePatchRequestInformation(model, q => {
                 });
-                await RequestAdapter.SendNoContentAsync(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo, responseHandler);
                 // Print request output. What if the request has no return?
-                Console.WriteLine("Success");
+                console.WriteLine("Success");
             }, riskDetectionIdOption, bodyOption);
             return command;
         }
@@ -117,7 +129,21 @@ namespace ApiSdk.IdentityProtection.RiskDetections.Item {
             RequestAdapter = requestAdapter;
         }
         /// <summary>
-        /// Delete navigation property riskDetections for identityProtection
+        /// Instantiates a new RiskDetectionRequestBuilder and sets the default values.
+        /// <param name="rawUrl">The raw URL to use for the request builder.</param>
+        /// <param name="requestAdapter">The request adapter to use to execute the requests.</param>
+        /// </summary>
+        public RiskDetectionRequestBuilder(string rawUrl, IRequestAdapter requestAdapter) {
+            if(string.IsNullOrEmpty(rawUrl)) throw new ArgumentNullException(nameof(rawUrl));
+            _ = requestAdapter ?? throw new ArgumentNullException(nameof(requestAdapter));
+            UrlTemplate = "{+baseurl}/identityProtection/riskDetections/{riskDetection_id}{?select,expand}";
+            var urlTplParams = new Dictionary<string, object>();
+            urlTplParams.Add("request-raw-url", rawUrl);
+            PathParameters = urlTplParams;
+            RequestAdapter = requestAdapter;
+        }
+        /// <summary>
+        /// Risk detection in Azure AD Identity Protection and the associated information about the detection.
         /// <param name="h">Request headers</param>
         /// <param name="o">Request options</param>
         /// </summary>
@@ -132,7 +158,7 @@ namespace ApiSdk.IdentityProtection.RiskDetections.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Get riskDetections from identityProtection
+        /// Risk detection in Azure AD Identity Protection and the associated information about the detection.
         /// <param name="h">Request headers</param>
         /// <param name="o">Request options</param>
         /// <param name="q">Request query parameters</param>
@@ -153,7 +179,7 @@ namespace ApiSdk.IdentityProtection.RiskDetections.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Update the navigation property riskDetections in identityProtection
+        /// Risk detection in Azure AD Identity Protection and the associated information about the detection.
         /// <param name="body"></param>
         /// <param name="h">Request headers</param>
         /// <param name="o">Request options</param>
@@ -171,7 +197,7 @@ namespace ApiSdk.IdentityProtection.RiskDetections.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Delete navigation property riskDetections for identityProtection
+        /// Risk detection in Azure AD Identity Protection and the associated information about the detection.
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="h">Request headers</param>
         /// <param name="o">Request options</param>
@@ -182,7 +208,7 @@ namespace ApiSdk.IdentityProtection.RiskDetections.Item {
             await RequestAdapter.SendNoContentAsync(requestInfo, responseHandler, cancellationToken);
         }
         /// <summary>
-        /// Get riskDetections from identityProtection
+        /// Risk detection in Azure AD Identity Protection and the associated information about the detection.
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="h">Request headers</param>
         /// <param name="o">Request options</param>
@@ -194,7 +220,7 @@ namespace ApiSdk.IdentityProtection.RiskDetections.Item {
             return await RequestAdapter.SendAsync<RiskDetection>(requestInfo, responseHandler, cancellationToken);
         }
         /// <summary>
-        /// Update the navigation property riskDetections in identityProtection
+        /// Risk detection in Azure AD Identity Protection and the associated information about the detection.
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="h">Request headers</param>
         /// <param name="model"></param>
@@ -206,7 +232,7 @@ namespace ApiSdk.IdentityProtection.RiskDetections.Item {
             var requestInfo = CreatePatchRequestInformation(model, h, o);
             await RequestAdapter.SendNoContentAsync(requestInfo, responseHandler, cancellationToken);
         }
-        /// <summary>Get riskDetections from identityProtection</summary>
+        /// <summary>Risk detection in Azure AD Identity Protection and the associated information about the detection.</summary>
         public class GetQueryParameters : QueryParametersBase {
             /// <summary>Expand related entities</summary>
             public string[] Expand { get; set; }

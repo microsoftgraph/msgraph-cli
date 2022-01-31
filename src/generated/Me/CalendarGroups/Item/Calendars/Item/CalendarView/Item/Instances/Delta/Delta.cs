@@ -30,7 +30,7 @@ namespace ApiSdk.Me.CalendarGroups.Item.Calendars.Item.CalendarView.Item.Instanc
         public string ICalUId { get; set; }
         public Importance? Importance { get; set; }
         /// <summary>The occurrences of a recurring series, if the event is a series master. This property includes occurrences that are part of the recurrence pattern, and exceptions that have been modified, but does not include occurrences that have been cancelled from the series. Navigation property. Read-only. Nullable.</summary>
-        public List<@Event> Instances { get; set; }
+        public List<Event> Instances { get; set; }
         public bool? IsAllDay { get; set; }
         public bool? IsCancelled { get; set; }
         public bool? IsDraft { get; set; }
@@ -79,7 +79,7 @@ namespace ApiSdk.Me.CalendarGroups.Item.Calendars.Item.CalendarView.Item.Instanc
                 {"hideAttendees", (o,n) => { (o as Delta).HideAttendees = n.GetBoolValue(); } },
                 {"iCalUId", (o,n) => { (o as Delta).ICalUId = n.GetStringValue(); } },
                 {"importance", (o,n) => { (o as Delta).Importance = n.GetEnumValue<Importance>(); } },
-                {"instances", (o,n) => { (o as Delta).Instances = n.GetCollectionOfObjectValues<@Event>().ToList(); } },
+                {"instances", (o,n) => { (o as Delta).Instances = n.GetCollectionOfObjectValues<Event>().ToList(); } },
                 {"isAllDay", (o,n) => { (o as Delta).IsAllDay = n.GetBoolValue(); } },
                 {"isCancelled", (o,n) => { (o as Delta).IsCancelled = n.GetBoolValue(); } },
                 {"isDraft", (o,n) => { (o as Delta).IsDraft = n.GetBoolValue(); } },
@@ -130,7 +130,7 @@ namespace ApiSdk.Me.CalendarGroups.Item.Calendars.Item.CalendarView.Item.Instanc
             writer.WriteBoolValue("hideAttendees", HideAttendees);
             writer.WriteStringValue("iCalUId", ICalUId);
             writer.WriteEnumValue<Importance>("importance", Importance);
-            writer.WriteCollectionOfObjectValues<@Event>("instances", Instances);
+            writer.WriteCollectionOfObjectValues<Event>("instances", Instances);
             writer.WriteBoolValue("isAllDay", IsAllDay);
             writer.WriteBoolValue("isCancelled", IsCancelled);
             writer.WriteBoolValue("isDraft", IsDraft);

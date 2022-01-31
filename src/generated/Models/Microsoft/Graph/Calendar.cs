@@ -10,7 +10,7 @@ namespace ApiSdk.Models.Microsoft.Graph {
         /// <summary>The permissions of the users with whom the calendar is shared.</summary>
         public List<CalendarPermission> CalendarPermissions { get; set; }
         /// <summary>The calendar view for the calendar. Navigation property. Read-only.</summary>
-        public List<@Event> CalendarView { get; set; }
+        public List<Event> CalendarView { get; set; }
         /// <summary>true if the user can write to the calendar, false otherwise. This property is true for the user who created the calendar. This property is also true for a user who has been shared a calendar and granted write access, through an Outlook client or the corresponding calendarPermission resource. Read-only.</summary>
         public bool? CanEdit { get; set; }
         /// <summary>true if the user has the permission to share the calendar, false otherwise. Only the user who created the calendar can share it. Read-only.</summary>
@@ -24,7 +24,7 @@ namespace ApiSdk.Models.Microsoft.Graph {
         /// <summary>The default online meeting provider for meetings sent from this calendar. Possible values are: unknown, skypeForBusiness, skypeForConsumer, teamsForBusiness.</summary>
         public OnlineMeetingProviderType? DefaultOnlineMeetingProvider { get; set; }
         /// <summary>The events in the calendar. Navigation property. Read-only.</summary>
-        public List<@Event> Events { get; set; }
+        public List<Event> Events { get; set; }
         /// <summary>The calendar color, expressed in a hex color code of three hexadecimal values, each ranging from 00 to FF and representing the red, green, or blue components of the color in the RGB color space. If the user has never explicitly set a color for the calendar, this property is  empty.</summary>
         public string HexColor { get; set; }
         /// <summary>true if this is the default calendar where new events are created by default, false otherwise.</summary>
@@ -48,14 +48,14 @@ namespace ApiSdk.Models.Microsoft.Graph {
             return new Dictionary<string, Action<T, IParseNode>>(base.GetFieldDeserializers<T>()) {
                 {"allowedOnlineMeetingProviders", (o,n) => { (o as Calendar).AllowedOnlineMeetingProviders = n.GetCollectionOfEnumValues<OnlineMeetingProviderType>().ToList(); } },
                 {"calendarPermissions", (o,n) => { (o as Calendar).CalendarPermissions = n.GetCollectionOfObjectValues<CalendarPermission>().ToList(); } },
-                {"calendarView", (o,n) => { (o as Calendar).CalendarView = n.GetCollectionOfObjectValues<@Event>().ToList(); } },
+                {"calendarView", (o,n) => { (o as Calendar).CalendarView = n.GetCollectionOfObjectValues<Event>().ToList(); } },
                 {"canEdit", (o,n) => { (o as Calendar).CanEdit = n.GetBoolValue(); } },
                 {"canShare", (o,n) => { (o as Calendar).CanShare = n.GetBoolValue(); } },
                 {"canViewPrivateItems", (o,n) => { (o as Calendar).CanViewPrivateItems = n.GetBoolValue(); } },
                 {"changeKey", (o,n) => { (o as Calendar).ChangeKey = n.GetStringValue(); } },
                 {"color", (o,n) => { (o as Calendar).Color = n.GetEnumValue<CalendarColor>(); } },
                 {"defaultOnlineMeetingProvider", (o,n) => { (o as Calendar).DefaultOnlineMeetingProvider = n.GetEnumValue<OnlineMeetingProviderType>(); } },
-                {"events", (o,n) => { (o as Calendar).Events = n.GetCollectionOfObjectValues<@Event>().ToList(); } },
+                {"events", (o,n) => { (o as Calendar).Events = n.GetCollectionOfObjectValues<Event>().ToList(); } },
                 {"hexColor", (o,n) => { (o as Calendar).HexColor = n.GetStringValue(); } },
                 {"isDefaultCalendar", (o,n) => { (o as Calendar).IsDefaultCalendar = n.GetBoolValue(); } },
                 {"isRemovable", (o,n) => { (o as Calendar).IsRemovable = n.GetBoolValue(); } },
@@ -75,14 +75,14 @@ namespace ApiSdk.Models.Microsoft.Graph {
             base.Serialize(writer);
             writer.WriteCollectionOfEnumValues<OnlineMeetingProviderType>("allowedOnlineMeetingProviders", AllowedOnlineMeetingProviders);
             writer.WriteCollectionOfObjectValues<CalendarPermission>("calendarPermissions", CalendarPermissions);
-            writer.WriteCollectionOfObjectValues<@Event>("calendarView", CalendarView);
+            writer.WriteCollectionOfObjectValues<Event>("calendarView", CalendarView);
             writer.WriteBoolValue("canEdit", CanEdit);
             writer.WriteBoolValue("canShare", CanShare);
             writer.WriteBoolValue("canViewPrivateItems", CanViewPrivateItems);
             writer.WriteStringValue("changeKey", ChangeKey);
             writer.WriteEnumValue<CalendarColor>("color", Color);
             writer.WriteEnumValue<OnlineMeetingProviderType>("defaultOnlineMeetingProvider", DefaultOnlineMeetingProvider);
-            writer.WriteCollectionOfObjectValues<@Event>("events", Events);
+            writer.WriteCollectionOfObjectValues<Event>("events", Events);
             writer.WriteStringValue("hexColor", HexColor);
             writer.WriteBoolValue("isDefaultCalendar", IsDefaultCalendar);
             writer.WriteBoolValue("isRemovable", IsRemovable);

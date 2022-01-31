@@ -1,17 +1,18 @@
 using ApiSdk.Models.Microsoft.Graph;
+using Microsoft.Graph.Cli.Core.IO;
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
 using System;
 using System.Collections.Generic;
 using System.CommandLine;
-using System.CommandLine.Invocation;
 using System.IO;
 using System.Linq;
+using System.Net.Http;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 namespace ApiSdk.Organization.Item.Extensions.Item {
-    /// <summary>Builds and executes requests for operations under \organization\{organization-id}\extensions\{extension-id}</summary>
+    /// <summary>Builds and executes requests for operations under \organization\{organizationItem-Id}\extensions\{extension-id}</summary>
     public class ExtensionRequestBuilder {
         /// <summary>Path parameters for the request</summary>
         private Dictionary<string, object> PathParameters { get; set; }
@@ -26,21 +27,22 @@ namespace ApiSdk.Organization.Item.Extensions.Item {
             var command = new Command("delete");
             command.Description = "The collection of open extensions defined for the organization resource. Nullable.";
             // Create options for all the parameters
-            var organizationIdOption = new Option<string>("--organization-id", description: "key: id of organization") {
+            var organizationItemIdOption = new Option<string>("--organizationitem-id", description: "key: id of organization") {
             };
-            organizationIdOption.IsRequired = true;
-            command.AddOption(organizationIdOption);
+            organizationItemIdOption.IsRequired = true;
+            command.AddOption(organizationItemIdOption);
             var extensionIdOption = new Option<string>("--extension-id", description: "key: id of extension") {
             };
             extensionIdOption.IsRequired = true;
             command.AddOption(extensionIdOption);
-            command.SetHandler(async (string organizationId, string extensionId) => {
+            command.SetHandler(async (string organizationItemId, string extensionId, IConsole console) => {
+                var responseHandler = new NativeResponseHandler();
                 var requestInfo = CreateDeleteRequestInformation(q => {
                 });
-                await RequestAdapter.SendNoContentAsync(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo, responseHandler);
                 // Print request output. What if the request has no return?
-                Console.WriteLine("Success");
-            }, organizationIdOption, extensionIdOption);
+                console.WriteLine("Success");
+            }, organizationItemIdOption, extensionIdOption);
             return command;
         }
         /// <summary>
@@ -50,10 +52,10 @@ namespace ApiSdk.Organization.Item.Extensions.Item {
             var command = new Command("get");
             command.Description = "The collection of open extensions defined for the organization resource. Nullable.";
             // Create options for all the parameters
-            var organizationIdOption = new Option<string>("--organization-id", description: "key: id of organization") {
+            var organizationItemIdOption = new Option<string>("--organizationitem-id", description: "key: id of organization") {
             };
-            organizationIdOption.IsRequired = true;
-            command.AddOption(organizationIdOption);
+            organizationItemIdOption.IsRequired = true;
+            command.AddOption(organizationItemIdOption);
             var extensionIdOption = new Option<string>("--extension-id", description: "key: id of extension") {
             };
             extensionIdOption.IsRequired = true;
@@ -68,20 +70,29 @@ namespace ApiSdk.Organization.Item.Extensions.Item {
             };
             expandOption.IsRequired = false;
             command.AddOption(expandOption);
-            command.SetHandler(async (string organizationId, string extensionId, string[] select, string[] expand) => {
+            var outputOption = new Option<FormatterType>("--output", () => FormatterType.JSON){
+                IsRequired = true
+            };
+            command.AddOption(outputOption);
+            command.SetHandler(async (string organizationItemId, string extensionId, string[] select, string[] expand, FormatterType output, IConsole console) => {
+                var responseHandler = new NativeResponseHandler();
                 var requestInfo = CreateGetRequestInformation(q => {
                     q.Select = select;
                     q.Expand = expand;
                 });
-                var result = await RequestAdapter.SendAsync<Extension>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo, responseHandler);
                 // Print request output. What if the request has no return?
-                using var serializer = RequestAdapter.SerializationWriterFactory.GetSerializationWriter("application/json");
-                serializer.WriteObjectValue(null, result);
-                using var content = serializer.GetSerializedContent();
-                using var reader = new StreamReader(content);
-                var strContent = await reader.ReadToEndAsync();
-                Console.Write(strContent + "\n");
-            }, organizationIdOption, extensionIdOption, selectOption, expandOption);
+                var response = responseHandler.Value as HttpResponseMessage;
+                var formatter = OutputFormatterFactory.Instance.GetFormatter(output);
+                if (response.IsSuccessStatusCode) {
+                    var content = await response.Content.ReadAsStringAsync();
+                    formatter.WriteOutput(content, console);
+                }
+                else {
+                    var content = await response.Content.ReadAsStringAsync();
+                    console.WriteLine(content);
+                }
+            }, organizationItemIdOption, extensionIdOption, selectOption, expandOption, outputOption);
             return command;
         }
         /// <summary>
@@ -91,10 +102,10 @@ namespace ApiSdk.Organization.Item.Extensions.Item {
             var command = new Command("patch");
             command.Description = "The collection of open extensions defined for the organization resource. Nullable.";
             // Create options for all the parameters
-            var organizationIdOption = new Option<string>("--organization-id", description: "key: id of organization") {
+            var organizationItemIdOption = new Option<string>("--organizationitem-id", description: "key: id of organization") {
             };
-            organizationIdOption.IsRequired = true;
-            command.AddOption(organizationIdOption);
+            organizationItemIdOption.IsRequired = true;
+            command.AddOption(organizationItemIdOption);
             var extensionIdOption = new Option<string>("--extension-id", description: "key: id of extension") {
             };
             extensionIdOption.IsRequired = true;
@@ -103,16 +114,17 @@ namespace ApiSdk.Organization.Item.Extensions.Item {
             };
             bodyOption.IsRequired = true;
             command.AddOption(bodyOption);
-            command.SetHandler(async (string organizationId, string extensionId, string body) => {
+            command.SetHandler(async (string organizationItemId, string extensionId, string body, IConsole console) => {
+                var responseHandler = new NativeResponseHandler();
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<Extension>();
                 var requestInfo = CreatePatchRequestInformation(model, q => {
                 });
-                await RequestAdapter.SendNoContentAsync(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo, responseHandler);
                 // Print request output. What if the request has no return?
-                Console.WriteLine("Success");
-            }, organizationIdOption, extensionIdOption, bodyOption);
+                console.WriteLine("Success");
+            }, organizationItemIdOption, extensionIdOption, bodyOption);
             return command;
         }
         /// <summary>
@@ -123,8 +135,22 @@ namespace ApiSdk.Organization.Item.Extensions.Item {
         public ExtensionRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) {
             _ = pathParameters ?? throw new ArgumentNullException(nameof(pathParameters));
             _ = requestAdapter ?? throw new ArgumentNullException(nameof(requestAdapter));
-            UrlTemplate = "{+baseurl}/organization/{organization_id}/extensions/{extension_id}{?select,expand}";
+            UrlTemplate = "{+baseurl}/organization/{organizationItem_Id}/extensions/{extension_id}{?select,expand}";
             var urlTplParams = new Dictionary<string, object>(pathParameters);
+            PathParameters = urlTplParams;
+            RequestAdapter = requestAdapter;
+        }
+        /// <summary>
+        /// Instantiates a new ExtensionRequestBuilder and sets the default values.
+        /// <param name="rawUrl">The raw URL to use for the request builder.</param>
+        /// <param name="requestAdapter">The request adapter to use to execute the requests.</param>
+        /// </summary>
+        public ExtensionRequestBuilder(string rawUrl, IRequestAdapter requestAdapter) {
+            if(string.IsNullOrEmpty(rawUrl)) throw new ArgumentNullException(nameof(rawUrl));
+            _ = requestAdapter ?? throw new ArgumentNullException(nameof(requestAdapter));
+            UrlTemplate = "{+baseurl}/organization/{organizationItem_Id}/extensions/{extension_id}{?select,expand}";
+            var urlTplParams = new Dictionary<string, object>();
+            urlTplParams.Add("request-raw-url", rawUrl);
             PathParameters = urlTplParams;
             RequestAdapter = requestAdapter;
         }

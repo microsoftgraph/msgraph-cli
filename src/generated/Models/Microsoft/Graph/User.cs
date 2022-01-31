@@ -33,7 +33,7 @@ namespace ApiSdk.Models.Microsoft.Graph {
         /// <summary>The user's calendars. Read-only. Nullable.</summary>
         public List<ApiSdk.Models.Microsoft.Graph.Calendar> Calendars { get; set; }
         /// <summary>The calendar view for the calendar. Read-only. Nullable.</summary>
-        public List<@Event> CalendarView { get; set; }
+        public List<Event> CalendarView { get; set; }
         public List<ApiSdk.Models.Microsoft.Graph.Chat> Chats { get; set; }
         /// <summary>The city in which the user is located. Maximum length is 128 characters. Supports $filter (eq, ne, not, ge, le, in, startsWith, and eq on null values).</summary>
         public string City { get; set; }
@@ -76,7 +76,7 @@ namespace ApiSdk.Models.Microsoft.Graph {
         /// <summary>Captures enterprise worker type. For example, Employee, Contractor, Consultant, or Vendor. Supports $filter (eq, ne, not , ge, le, in, startsWith).</summary>
         public string EmployeeType { get; set; }
         /// <summary>The user's events. Default is to show events under the Default Calendar. Read-only. Nullable.</summary>
-        public List<@Event> Events { get; set; }
+        public List<Event> Events { get; set; }
         /// <summary>The collection of open extensions defined for the user. Nullable.</summary>
         public List<Extension> Extensions { get; set; }
         /// <summary>For an external user invited to the tenant using the invitation API, this property represents the invited user's invitation status. For invited users, the state can be PendingAcceptance or Accepted, or null for all other users. Supports $filter (eq, ne, not , in).</summary>
@@ -247,7 +247,7 @@ namespace ApiSdk.Models.Microsoft.Graph {
                 {"calendar", (o,n) => { (o as User).Calendar = n.GetObjectValue<ApiSdk.Models.Microsoft.Graph.Calendar>(); } },
                 {"calendarGroups", (o,n) => { (o as User).CalendarGroups = n.GetCollectionOfObjectValues<CalendarGroup>().ToList(); } },
                 {"calendars", (o,n) => { (o as User).Calendars = n.GetCollectionOfObjectValues<ApiSdk.Models.Microsoft.Graph.Calendar>().ToList(); } },
-                {"calendarView", (o,n) => { (o as User).CalendarView = n.GetCollectionOfObjectValues<@Event>().ToList(); } },
+                {"calendarView", (o,n) => { (o as User).CalendarView = n.GetCollectionOfObjectValues<Event>().ToList(); } },
                 {"chats", (o,n) => { (o as User).Chats = n.GetCollectionOfObjectValues<ApiSdk.Models.Microsoft.Graph.Chat>().ToList(); } },
                 {"city", (o,n) => { (o as User).City = n.GetStringValue(); } },
                 {"companyName", (o,n) => { (o as User).CompanyName = n.GetStringValue(); } },
@@ -269,7 +269,7 @@ namespace ApiSdk.Models.Microsoft.Graph {
                 {"employeeId", (o,n) => { (o as User).EmployeeId = n.GetStringValue(); } },
                 {"employeeOrgData", (o,n) => { (o as User).EmployeeOrgData = n.GetObjectValue<EmployeeOrgData>(); } },
                 {"employeeType", (o,n) => { (o as User).EmployeeType = n.GetStringValue(); } },
-                {"events", (o,n) => { (o as User).Events = n.GetCollectionOfObjectValues<@Event>().ToList(); } },
+                {"events", (o,n) => { (o as User).Events = n.GetCollectionOfObjectValues<Event>().ToList(); } },
                 {"extensions", (o,n) => { (o as User).Extensions = n.GetCollectionOfObjectValues<Extension>().ToList(); } },
                 {"externalUserState", (o,n) => { (o as User).ExternalUserState = n.GetStringValue(); } },
                 {"externalUserStateChangeDateTime", (o,n) => { (o as User).ExternalUserStateChangeDateTime = n.GetDateTimeOffsetValue(); } },
@@ -371,7 +371,7 @@ namespace ApiSdk.Models.Microsoft.Graph {
             writer.WriteObjectValue<ApiSdk.Models.Microsoft.Graph.Calendar>("calendar", Calendar);
             writer.WriteCollectionOfObjectValues<CalendarGroup>("calendarGroups", CalendarGroups);
             writer.WriteCollectionOfObjectValues<ApiSdk.Models.Microsoft.Graph.Calendar>("calendars", Calendars);
-            writer.WriteCollectionOfObjectValues<@Event>("calendarView", CalendarView);
+            writer.WriteCollectionOfObjectValues<Event>("calendarView", CalendarView);
             writer.WriteCollectionOfObjectValues<ApiSdk.Models.Microsoft.Graph.Chat>("chats", Chats);
             writer.WriteStringValue("city", City);
             writer.WriteStringValue("companyName", CompanyName);
@@ -393,7 +393,7 @@ namespace ApiSdk.Models.Microsoft.Graph {
             writer.WriteStringValue("employeeId", EmployeeId);
             writer.WriteObjectValue<EmployeeOrgData>("employeeOrgData", EmployeeOrgData);
             writer.WriteStringValue("employeeType", EmployeeType);
-            writer.WriteCollectionOfObjectValues<@Event>("events", Events);
+            writer.WriteCollectionOfObjectValues<Event>("events", Events);
             writer.WriteCollectionOfObjectValues<Extension>("extensions", Extensions);
             writer.WriteStringValue("externalUserState", ExternalUserState);
             writer.WriteDateTimeOffsetValue("externalUserStateChangeDateTime", ExternalUserStateChangeDateTime);

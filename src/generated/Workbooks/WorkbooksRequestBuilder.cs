@@ -1,13 +1,14 @@
 using ApiSdk.Models.Microsoft.Graph;
 using ApiSdk.Workbooks.Item;
+using Microsoft.Graph.Cli.Core.IO;
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
 using System;
 using System.Collections.Generic;
 using System.CommandLine;
-using System.CommandLine.Invocation;
 using System.IO;
 using System.Linq;
+using System.Net.Http;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
@@ -22,31 +23,30 @@ namespace ApiSdk.Workbooks {
         private string UrlTemplate { get; set; }
         public List<Command> BuildCommand() {
             var builder = new DriveItemRequestBuilder(PathParameters, RequestAdapter);
-            var commands = new List<Command> { 
-                builder.BuildAnalyticsCommand(),
-                builder.BuildCheckinCommand(),
-                builder.BuildCheckoutCommand(),
-                builder.BuildChildrenCommand(),
-                builder.BuildContentCommand(),
-                builder.BuildCopyCommand(),
-                builder.BuildCreateLinkCommand(),
-                builder.BuildCreateUploadSessionCommand(),
-                builder.BuildDeleteCommand(),
-                builder.BuildFollowCommand(),
-                builder.BuildGetCommand(),
-                builder.BuildInviteCommand(),
-                builder.BuildListItemCommand(),
-                builder.BuildPatchCommand(),
-                builder.BuildPermissionsCommand(),
-                builder.BuildPreviewCommand(),
-                builder.BuildRestoreCommand(),
-                builder.BuildSubscriptionsCommand(),
-                builder.BuildThumbnailsCommand(),
-                builder.BuildUnfollowCommand(),
-                builder.BuildValidatePermissionCommand(),
-                builder.BuildVersionsCommand(),
-                builder.BuildWorkbookCommand(),
-            };
+            var commands = new List<Command>();
+            commands.Add(builder.BuildAnalyticsCommand());
+            commands.Add(builder.BuildCheckinCommand());
+            commands.Add(builder.BuildCheckoutCommand());
+            commands.Add(builder.BuildChildrenCommand());
+            commands.Add(builder.BuildContentCommand());
+            commands.Add(builder.BuildCopyCommand());
+            commands.Add(builder.BuildCreateLinkCommand());
+            commands.Add(builder.BuildCreateUploadSessionCommand());
+            commands.Add(builder.BuildDeleteCommand());
+            commands.Add(builder.BuildFollowCommand());
+            commands.Add(builder.BuildGetCommand());
+            commands.Add(builder.BuildInviteCommand());
+            commands.Add(builder.BuildListItemCommand());
+            commands.Add(builder.BuildPatchCommand());
+            commands.Add(builder.BuildPermissionsCommand());
+            commands.Add(builder.BuildPreviewCommand());
+            commands.Add(builder.BuildRestoreCommand());
+            commands.Add(builder.BuildSubscriptionsCommand());
+            commands.Add(builder.BuildThumbnailsCommand());
+            commands.Add(builder.BuildUnfollowCommand());
+            commands.Add(builder.BuildValidatePermissionCommand());
+            commands.Add(builder.BuildVersionsCommand());
+            commands.Add(builder.BuildWorkbookCommand());
             return commands;
         }
         /// <summary>
@@ -60,21 +60,30 @@ namespace ApiSdk.Workbooks {
             };
             bodyOption.IsRequired = true;
             command.AddOption(bodyOption);
-            command.SetHandler(async (string body) => {
+            var outputOption = new Option<FormatterType>("--output", () => FormatterType.JSON){
+                IsRequired = true
+            };
+            command.AddOption(outputOption);
+            command.SetHandler(async (string body, FormatterType output, IConsole console) => {
+                var responseHandler = new NativeResponseHandler();
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<ApiSdk.Models.Microsoft.Graph.DriveItem>();
                 var requestInfo = CreatePostRequestInformation(model, q => {
                 });
-                var result = await RequestAdapter.SendAsync<ApiSdk.Models.Microsoft.Graph.DriveItem>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo, responseHandler);
                 // Print request output. What if the request has no return?
-                using var serializer = RequestAdapter.SerializationWriterFactory.GetSerializationWriter("application/json");
-                serializer.WriteObjectValue(null, result);
-                using var content = serializer.GetSerializedContent();
-                using var reader = new StreamReader(content);
-                var strContent = await reader.ReadToEndAsync();
-                Console.Write(strContent + "\n");
-            }, bodyOption);
+                var response = responseHandler.Value as HttpResponseMessage;
+                var formatter = OutputFormatterFactory.Instance.GetFormatter(output);
+                if (response.IsSuccessStatusCode) {
+                    var content = await response.Content.ReadAsStringAsync();
+                    formatter.WriteOutput(content, console);
+                }
+                else {
+                    var content = await response.Content.ReadAsStringAsync();
+                    console.WriteLine(content);
+                }
+            }, bodyOption, outputOption);
             return command;
         }
         /// <summary>
@@ -119,7 +128,12 @@ namespace ApiSdk.Workbooks {
             };
             expandOption.IsRequired = false;
             command.AddOption(expandOption);
-            command.SetHandler(async (int? top, int? skip, string search, string filter, bool? count, string[] orderby, string[] select, string[] expand) => {
+            var outputOption = new Option<FormatterType>("--output", () => FormatterType.JSON){
+                IsRequired = true
+            };
+            command.AddOption(outputOption);
+            command.SetHandler(async (int? top, int? skip, string search, string filter, bool? count, string[] orderby, string[] select, string[] expand, FormatterType output, IConsole console) => {
+                var responseHandler = new NativeResponseHandler();
                 var requestInfo = CreateGetRequestInformation(q => {
                     q.Top = top;
                     q.Skip = skip;
@@ -130,15 +144,19 @@ namespace ApiSdk.Workbooks {
                     q.Select = select;
                     q.Expand = expand;
                 });
-                var result = await RequestAdapter.SendAsync<WorkbooksResponse>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo, responseHandler);
                 // Print request output. What if the request has no return?
-                using var serializer = RequestAdapter.SerializationWriterFactory.GetSerializationWriter("application/json");
-                serializer.WriteObjectValue(null, result);
-                using var content = serializer.GetSerializedContent();
-                using var reader = new StreamReader(content);
-                var strContent = await reader.ReadToEndAsync();
-                Console.Write(strContent + "\n");
-            }, topOption, skipOption, searchOption, filterOption, countOption, orderbyOption, selectOption, expandOption);
+                var response = responseHandler.Value as HttpResponseMessage;
+                var formatter = OutputFormatterFactory.Instance.GetFormatter(output);
+                if (response.IsSuccessStatusCode) {
+                    var content = await response.Content.ReadAsStringAsync();
+                    formatter.WriteOutput(content, console);
+                }
+                else {
+                    var content = await response.Content.ReadAsStringAsync();
+                    console.WriteLine(content);
+                }
+            }, topOption, skipOption, searchOption, filterOption, countOption, orderbyOption, selectOption, expandOption, outputOption);
             return command;
         }
         /// <summary>
@@ -151,6 +169,20 @@ namespace ApiSdk.Workbooks {
             _ = requestAdapter ?? throw new ArgumentNullException(nameof(requestAdapter));
             UrlTemplate = "{+baseurl}/workbooks{?top,skip,search,filter,count,orderby,select,expand}";
             var urlTplParams = new Dictionary<string, object>(pathParameters);
+            PathParameters = urlTplParams;
+            RequestAdapter = requestAdapter;
+        }
+        /// <summary>
+        /// Instantiates a new WorkbooksRequestBuilder and sets the default values.
+        /// <param name="rawUrl">The raw URL to use for the request builder.</param>
+        /// <param name="requestAdapter">The request adapter to use to execute the requests.</param>
+        /// </summary>
+        public WorkbooksRequestBuilder(string rawUrl, IRequestAdapter requestAdapter) {
+            if(string.IsNullOrEmpty(rawUrl)) throw new ArgumentNullException(nameof(rawUrl));
+            _ = requestAdapter ?? throw new ArgumentNullException(nameof(requestAdapter));
+            UrlTemplate = "{+baseurl}/workbooks{?top,skip,search,filter,count,orderby,select,expand}";
+            var urlTplParams = new Dictionary<string, object>();
+            urlTplParams.Add("request-raw-url", rawUrl);
             PathParameters = urlTplParams;
             RequestAdapter = requestAdapter;
         }

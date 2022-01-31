@@ -10,6 +10,7 @@ namespace ApiSdk.Workbooks.Item.CreateLink {
         public DateTimeOffset? ExpirationDateTime { get; set; }
         public string Message { get; set; }
         public string Password { get; set; }
+        public bool? RetainInheritedPermissions { get; set; }
         public string Scope { get; set; }
         public string Type { get; set; }
         /// <summary>
@@ -26,6 +27,7 @@ namespace ApiSdk.Workbooks.Item.CreateLink {
                 {"expirationDateTime", (o,n) => { (o as CreateLinkRequestBody).ExpirationDateTime = n.GetDateTimeOffsetValue(); } },
                 {"message", (o,n) => { (o as CreateLinkRequestBody).Message = n.GetStringValue(); } },
                 {"password", (o,n) => { (o as CreateLinkRequestBody).Password = n.GetStringValue(); } },
+                {"retainInheritedPermissions", (o,n) => { (o as CreateLinkRequestBody).RetainInheritedPermissions = n.GetBoolValue(); } },
                 {"scope", (o,n) => { (o as CreateLinkRequestBody).Scope = n.GetStringValue(); } },
                 {"type", (o,n) => { (o as CreateLinkRequestBody).Type = n.GetStringValue(); } },
             };
@@ -39,6 +41,7 @@ namespace ApiSdk.Workbooks.Item.CreateLink {
             writer.WriteDateTimeOffsetValue("expirationDateTime", ExpirationDateTime);
             writer.WriteStringValue("message", Message);
             writer.WriteStringValue("password", Password);
+            writer.WriteBoolValue("retainInheritedPermissions", RetainInheritedPermissions);
             writer.WriteStringValue("scope", Scope);
             writer.WriteStringValue("type", Type);
             writer.WriteAdditionalData(AdditionalData);
