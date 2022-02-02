@@ -1,6 +1,7 @@
 using ApiSdk.Me.Todo.Lists.Item.Tasks.Item.Extensions;
 using ApiSdk.Me.Todo.Lists.Item.Tasks.Item.LinkedResources;
 using ApiSdk.Models.Microsoft.Graph;
+using Microsoft.Graph.Cli.Core.Binding;
 using Microsoft.Graph.Cli.Core.IO;
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
@@ -9,7 +10,6 @@ using System.Collections.Generic;
 using System.CommandLine;
 using System.IO;
 using System.Linq;
-using System.Net.Http;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
@@ -37,14 +37,14 @@ namespace ApiSdk.Me.Todo.Lists.Item.Tasks.Item {
             };
             todoTaskIdOption.IsRequired = true;
             command.AddOption(todoTaskIdOption);
-            command.SetHandler(async (string todoTaskListId, string todoTaskId, IConsole console) => {
-                var responseHandler = new NativeResponseHandler();
+            command.SetHandler(async (string todoTaskListId, string todoTaskId, IServiceProvider serviceProvider, IConsole console) => {
+                var responseHandler = serviceProvider.GetService(typeof(IResponseHandler)) as IResponseHandler;
                 var requestInfo = CreateDeleteRequestInformation(q => {
                 });
                 await RequestAdapter.SendNoContentAsync(requestInfo, responseHandler);
                 // Print request output. What if the request has no return?
                 console.WriteLine("Success");
-            }, todoTaskListIdOption, todoTaskIdOption);
+            }, todoTaskListIdOption, todoTaskIdOption, new ServiceProviderBinder());
             return command;
         }
         public Command BuildExtensionsCommand() {
@@ -86,25 +86,26 @@ namespace ApiSdk.Me.Todo.Lists.Item.Tasks.Item {
                 IsRequired = true
             };
             command.AddOption(outputOption);
-            command.SetHandler(async (string todoTaskListId, string todoTaskId, string[] select, string[] expand, FormatterType output, IConsole console) => {
-                var responseHandler = new NativeResponseHandler();
+            command.SetHandler(async (string todoTaskListId, string todoTaskId, string[] select, string[] expand, FormatterType output, IServiceProvider serviceProvider, IConsole console) => {
+                var responseHandler = serviceProvider.GetService(typeof(IResponseHandler)) as IResponseHandler;
                 var requestInfo = CreateGetRequestInformation(q => {
                     q.Select = select;
                     q.Expand = expand;
                 });
                 await RequestAdapter.SendNoContentAsync(requestInfo, responseHandler);
                 // Print request output. What if the request has no return?
-                var response = responseHandler.Value as HttpResponseMessage;
-                var formatter = OutputFormatterFactory.Instance.GetFormatter(output);
-                if (response.IsSuccessStatusCode) {
-                    var content = await response.Content.ReadAsStringAsync();
+                var responseProcessor = serviceProvider.GetService(typeof(IResponseProcessor)) as IResponseProcessor;
+                var factory = serviceProvider.GetService(typeof(IOutputFormatterFactory)) as IOutputFormatterFactory;
+                var formatter = factory.GetFormatter(output);
+                if (responseProcessor.IsResponseSuccessful(responseHandler)) {
+                    var content = await responseProcessor.ExtractStringResponseAsync(responseHandler);
                     formatter.WriteOutput(content, console);
                 }
                 else {
-                    var content = await response.Content.ReadAsStringAsync();
+                    var content = await responseProcessor.ExtractStringResponseAsync(responseHandler);
                     console.WriteLine(content);
                 }
-            }, todoTaskListIdOption, todoTaskIdOption, selectOption, expandOption, outputOption);
+            }, todoTaskListIdOption, todoTaskIdOption, selectOption, expandOption, outputOption, new ServiceProviderBinder());
             return command;
         }
         public Command BuildLinkedResourcesCommand() {
@@ -136,8 +137,8 @@ namespace ApiSdk.Me.Todo.Lists.Item.Tasks.Item {
             };
             bodyOption.IsRequired = true;
             command.AddOption(bodyOption);
-            command.SetHandler(async (string todoTaskListId, string todoTaskId, string body, IConsole console) => {
-                var responseHandler = new NativeResponseHandler();
+            command.SetHandler(async (string todoTaskListId, string todoTaskId, string body, IServiceProvider serviceProvider, IConsole console) => {
+                var responseHandler = serviceProvider.GetService(typeof(IResponseHandler)) as IResponseHandler;
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<TodoTask>();
@@ -146,7 +147,7 @@ namespace ApiSdk.Me.Todo.Lists.Item.Tasks.Item {
                 await RequestAdapter.SendNoContentAsync(requestInfo, responseHandler);
                 // Print request output. What if the request has no return?
                 console.WriteLine("Success");
-            }, todoTaskListIdOption, todoTaskIdOption, bodyOption);
+            }, todoTaskListIdOption, todoTaskIdOption, bodyOption, new ServiceProviderBinder());
             return command;
         }
         /// <summary>

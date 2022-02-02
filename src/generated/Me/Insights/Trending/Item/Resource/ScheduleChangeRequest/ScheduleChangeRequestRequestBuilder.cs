@@ -1,5 +1,6 @@
 using ApiSdk.Me.Insights.Trending.Item.Resource.ScheduleChangeRequest.Approve;
 using ApiSdk.Me.Insights.Trending.Item.Resource.ScheduleChangeRequest.Decline;
+using Microsoft.Graph.Cli.Core.Binding;
 using Microsoft.Graph.Cli.Core.IO;
 using Microsoft.Kiota.Abstractions;
 using System;
@@ -7,7 +8,6 @@ using System.Collections.Generic;
 using System.CommandLine;
 using System.IO;
 using System.Linq;
-using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 namespace ApiSdk.Me.Insights.Trending.Item.Resource.ScheduleChangeRequest {

@@ -3,6 +3,7 @@ using ApiSdk.Identity.B2xUserFlows.Item.Languages;
 using ApiSdk.Identity.B2xUserFlows.Item.UserAttributeAssignments;
 using ApiSdk.Identity.B2xUserFlows.Item.UserFlowIdentityProviders;
 using ApiSdk.Models.Microsoft.Graph;
+using Microsoft.Graph.Cli.Core.Binding;
 using Microsoft.Graph.Cli.Core.IO;
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
@@ -11,7 +12,6 @@ using System.Collections.Generic;
 using System.CommandLine;
 using System.IO;
 using System.Linq;
-using System.Net.Http;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
@@ -35,14 +35,14 @@ namespace ApiSdk.Identity.B2xUserFlows.Item {
             };
             b2xIdentityUserFlowIdOption.IsRequired = true;
             command.AddOption(b2xIdentityUserFlowIdOption);
-            command.SetHandler(async (string b2xIdentityUserFlowId, IConsole console) => {
-                var responseHandler = new NativeResponseHandler();
+            command.SetHandler(async (string b2xIdentityUserFlowId, IServiceProvider serviceProvider, IConsole console) => {
+                var responseHandler = serviceProvider.GetService(typeof(IResponseHandler)) as IResponseHandler;
                 var requestInfo = CreateDeleteRequestInformation(q => {
                 });
                 await RequestAdapter.SendNoContentAsync(requestInfo, responseHandler);
                 // Print request output. What if the request has no return?
                 console.WriteLine("Success");
-            }, b2xIdentityUserFlowIdOption);
+            }, b2xIdentityUserFlowIdOption, new ServiceProviderBinder());
             return command;
         }
         /// <summary>
@@ -70,25 +70,26 @@ namespace ApiSdk.Identity.B2xUserFlows.Item {
                 IsRequired = true
             };
             command.AddOption(outputOption);
-            command.SetHandler(async (string b2xIdentityUserFlowId, string[] select, string[] expand, FormatterType output, IConsole console) => {
-                var responseHandler = new NativeResponseHandler();
+            command.SetHandler(async (string b2xIdentityUserFlowId, string[] select, string[] expand, FormatterType output, IServiceProvider serviceProvider, IConsole console) => {
+                var responseHandler = serviceProvider.GetService(typeof(IResponseHandler)) as IResponseHandler;
                 var requestInfo = CreateGetRequestInformation(q => {
                     q.Select = select;
                     q.Expand = expand;
                 });
                 await RequestAdapter.SendNoContentAsync(requestInfo, responseHandler);
                 // Print request output. What if the request has no return?
-                var response = responseHandler.Value as HttpResponseMessage;
-                var formatter = OutputFormatterFactory.Instance.GetFormatter(output);
-                if (response.IsSuccessStatusCode) {
-                    var content = await response.Content.ReadAsStringAsync();
+                var responseProcessor = serviceProvider.GetService(typeof(IResponseProcessor)) as IResponseProcessor;
+                var factory = serviceProvider.GetService(typeof(IOutputFormatterFactory)) as IOutputFormatterFactory;
+                var formatter = factory.GetFormatter(output);
+                if (responseProcessor.IsResponseSuccessful(responseHandler)) {
+                    var content = await responseProcessor.ExtractStringResponseAsync(responseHandler);
                     formatter.WriteOutput(content, console);
                 }
                 else {
-                    var content = await response.Content.ReadAsStringAsync();
+                    var content = await responseProcessor.ExtractStringResponseAsync(responseHandler);
                     console.WriteLine(content);
                 }
-            }, b2xIdentityUserFlowIdOption, selectOption, expandOption, outputOption);
+            }, b2xIdentityUserFlowIdOption, selectOption, expandOption, outputOption, new ServiceProviderBinder());
             return command;
         }
         public Command BuildIdentityProvidersCommand() {
@@ -123,8 +124,8 @@ namespace ApiSdk.Identity.B2xUserFlows.Item {
             };
             bodyOption.IsRequired = true;
             command.AddOption(bodyOption);
-            command.SetHandler(async (string b2xIdentityUserFlowId, string body, IConsole console) => {
-                var responseHandler = new NativeResponseHandler();
+            command.SetHandler(async (string b2xIdentityUserFlowId, string body, IServiceProvider serviceProvider, IConsole console) => {
+                var responseHandler = serviceProvider.GetService(typeof(IResponseHandler)) as IResponseHandler;
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<B2xIdentityUserFlow>();
@@ -133,7 +134,7 @@ namespace ApiSdk.Identity.B2xUserFlows.Item {
                 await RequestAdapter.SendNoContentAsync(requestInfo, responseHandler);
                 // Print request output. What if the request has no return?
                 console.WriteLine("Success");
-            }, b2xIdentityUserFlowIdOption, bodyOption);
+            }, b2xIdentityUserFlowIdOption, bodyOption, new ServiceProviderBinder());
             return command;
         }
         public Command BuildUserAttributeAssignmentsCommand() {

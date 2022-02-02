@@ -1,3 +1,4 @@
+using Microsoft.Graph.Cli.Core.Binding;
 using Microsoft.Graph.Cli.Core.IO;
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
@@ -6,7 +7,6 @@ using System.Collections.Generic;
 using System.CommandLine;
 using System.IO;
 using System.Linq;
-using System.Net.Http;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
@@ -34,14 +34,14 @@ namespace ApiSdk.IdentityGovernance.AccessReviews.Definitions.Item.Instances.Ite
             };
             accessReviewInstanceIdOption.IsRequired = true;
             command.AddOption(accessReviewInstanceIdOption);
-            command.SetHandler(async (string accessReviewScheduleDefinitionId, string accessReviewInstanceId, IConsole console) => {
-                var responseHandler = new NativeResponseHandler();
+            command.SetHandler(async (string accessReviewScheduleDefinitionId, string accessReviewInstanceId, IServiceProvider serviceProvider, IConsole console) => {
+                var responseHandler = serviceProvider.GetService(typeof(IResponseHandler)) as IResponseHandler;
                 var requestInfo = CreatePostRequestInformation(q => {
                 });
                 await RequestAdapter.SendNoContentAsync(requestInfo, responseHandler);
                 // Print request output. What if the request has no return?
                 console.WriteLine("Success");
-            }, accessReviewScheduleDefinitionIdOption, accessReviewInstanceIdOption);
+            }, accessReviewScheduleDefinitionIdOption, accessReviewInstanceIdOption, new ServiceProviderBinder());
             return command;
         }
         /// <summary>

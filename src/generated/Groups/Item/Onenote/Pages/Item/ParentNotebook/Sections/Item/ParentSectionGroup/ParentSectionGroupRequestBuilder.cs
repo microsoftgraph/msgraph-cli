@@ -2,6 +2,7 @@ using ApiSdk.Groups.Item.Onenote.Pages.Item.ParentNotebook.Sections.Item.ParentS
 using ApiSdk.Groups.Item.Onenote.Pages.Item.ParentNotebook.Sections.Item.ParentSectionGroup.SectionGroups;
 using ApiSdk.Groups.Item.Onenote.Pages.Item.ParentNotebook.Sections.Item.ParentSectionGroup.Sections;
 using ApiSdk.Models.Microsoft.Graph;
+using Microsoft.Graph.Cli.Core.Binding;
 using Microsoft.Graph.Cli.Core.IO;
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
@@ -10,7 +11,6 @@ using System.Collections.Generic;
 using System.CommandLine;
 using System.IO;
 using System.Linq;
-using System.Net.Http;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
@@ -42,14 +42,14 @@ namespace ApiSdk.Groups.Item.Onenote.Pages.Item.ParentNotebook.Sections.Item.Par
             };
             onenoteSectionIdOption.IsRequired = true;
             command.AddOption(onenoteSectionIdOption);
-            command.SetHandler(async (string groupId, string onenotePageId, string onenoteSectionId, IConsole console) => {
-                var responseHandler = new NativeResponseHandler();
+            command.SetHandler(async (string groupId, string onenotePageId, string onenoteSectionId, IServiceProvider serviceProvider, IConsole console) => {
+                var responseHandler = serviceProvider.GetService(typeof(IResponseHandler)) as IResponseHandler;
                 var requestInfo = CreateDeleteRequestInformation(q => {
                 });
                 await RequestAdapter.SendNoContentAsync(requestInfo, responseHandler);
                 // Print request output. What if the request has no return?
                 console.WriteLine("Success");
-            }, groupIdOption, onenotePageIdOption, onenoteSectionIdOption);
+            }, groupIdOption, onenotePageIdOption, onenoteSectionIdOption, new ServiceProviderBinder());
             return command;
         }
         /// <summary>
@@ -85,25 +85,26 @@ namespace ApiSdk.Groups.Item.Onenote.Pages.Item.ParentNotebook.Sections.Item.Par
                 IsRequired = true
             };
             command.AddOption(outputOption);
-            command.SetHandler(async (string groupId, string onenotePageId, string onenoteSectionId, string[] select, string[] expand, FormatterType output, IConsole console) => {
-                var responseHandler = new NativeResponseHandler();
+            command.SetHandler(async (string groupId, string onenotePageId, string onenoteSectionId, string[] select, string[] expand, FormatterType output, IServiceProvider serviceProvider, IConsole console) => {
+                var responseHandler = serviceProvider.GetService(typeof(IResponseHandler)) as IResponseHandler;
                 var requestInfo = CreateGetRequestInformation(q => {
                     q.Select = select;
                     q.Expand = expand;
                 });
                 await RequestAdapter.SendNoContentAsync(requestInfo, responseHandler);
                 // Print request output. What if the request has no return?
-                var response = responseHandler.Value as HttpResponseMessage;
-                var formatter = OutputFormatterFactory.Instance.GetFormatter(output);
-                if (response.IsSuccessStatusCode) {
-                    var content = await response.Content.ReadAsStringAsync();
+                var responseProcessor = serviceProvider.GetService(typeof(IResponseProcessor)) as IResponseProcessor;
+                var factory = serviceProvider.GetService(typeof(IOutputFormatterFactory)) as IOutputFormatterFactory;
+                var formatter = factory.GetFormatter(output);
+                if (responseProcessor.IsResponseSuccessful(responseHandler)) {
+                    var content = await responseProcessor.ExtractStringResponseAsync(responseHandler);
                     formatter.WriteOutput(content, console);
                 }
                 else {
-                    var content = await response.Content.ReadAsStringAsync();
+                    var content = await responseProcessor.ExtractStringResponseAsync(responseHandler);
                     console.WriteLine(content);
                 }
-            }, groupIdOption, onenotePageIdOption, onenoteSectionIdOption, selectOption, expandOption, outputOption);
+            }, groupIdOption, onenotePageIdOption, onenoteSectionIdOption, selectOption, expandOption, outputOption, new ServiceProviderBinder());
             return command;
         }
         public Command BuildParentNotebookCommand() {
@@ -138,8 +139,8 @@ namespace ApiSdk.Groups.Item.Onenote.Pages.Item.ParentNotebook.Sections.Item.Par
             };
             bodyOption.IsRequired = true;
             command.AddOption(bodyOption);
-            command.SetHandler(async (string groupId, string onenotePageId, string onenoteSectionId, string body, IConsole console) => {
-                var responseHandler = new NativeResponseHandler();
+            command.SetHandler(async (string groupId, string onenotePageId, string onenoteSectionId, string body, IServiceProvider serviceProvider, IConsole console) => {
+                var responseHandler = serviceProvider.GetService(typeof(IResponseHandler)) as IResponseHandler;
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<SectionGroup>();
@@ -148,7 +149,7 @@ namespace ApiSdk.Groups.Item.Onenote.Pages.Item.ParentNotebook.Sections.Item.Par
                 await RequestAdapter.SendNoContentAsync(requestInfo, responseHandler);
                 // Print request output. What if the request has no return?
                 console.WriteLine("Success");
-            }, groupIdOption, onenotePageIdOption, onenoteSectionIdOption, bodyOption);
+            }, groupIdOption, onenotePageIdOption, onenoteSectionIdOption, bodyOption, new ServiceProviderBinder());
             return command;
         }
         public Command BuildSectionGroupsCommand() {

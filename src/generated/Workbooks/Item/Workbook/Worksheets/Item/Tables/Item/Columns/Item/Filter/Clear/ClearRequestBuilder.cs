@@ -1,3 +1,4 @@
+using Microsoft.Graph.Cli.Core.Binding;
 using Microsoft.Graph.Cli.Core.IO;
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
@@ -6,7 +7,6 @@ using System.Collections.Generic;
 using System.CommandLine;
 using System.IO;
 using System.Linq;
-using System.Net.Http;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
@@ -42,14 +42,14 @@ namespace ApiSdk.Workbooks.Item.Workbook.Worksheets.Item.Tables.Item.Columns.Ite
             };
             workbookTableColumnIdOption.IsRequired = true;
             command.AddOption(workbookTableColumnIdOption);
-            command.SetHandler(async (string driveItemId, string workbookWorksheetId, string workbookTableId, string workbookTableColumnId, IConsole console) => {
-                var responseHandler = new NativeResponseHandler();
+            command.SetHandler(async (string driveItemId, string workbookWorksheetId, string workbookTableId, string workbookTableColumnId, IServiceProvider serviceProvider, IConsole console) => {
+                var responseHandler = serviceProvider.GetService(typeof(IResponseHandler)) as IResponseHandler;
                 var requestInfo = CreatePostRequestInformation(q => {
                 });
                 await RequestAdapter.SendNoContentAsync(requestInfo, responseHandler);
                 // Print request output. What if the request has no return?
                 console.WriteLine("Success");
-            }, driveItemIdOption, workbookWorksheetIdOption, workbookTableIdOption, workbookTableColumnIdOption);
+            }, driveItemIdOption, workbookWorksheetIdOption, workbookTableIdOption, workbookTableColumnIdOption, new ServiceProviderBinder());
             return command;
         }
         /// <summary>

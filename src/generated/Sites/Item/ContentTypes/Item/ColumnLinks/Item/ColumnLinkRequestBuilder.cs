@@ -1,4 +1,5 @@
 using ApiSdk.Models.Microsoft.Graph;
+using Microsoft.Graph.Cli.Core.Binding;
 using Microsoft.Graph.Cli.Core.IO;
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
@@ -7,7 +8,6 @@ using System.Collections.Generic;
 using System.CommandLine;
 using System.IO;
 using System.Linq;
-using System.Net.Http;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
@@ -39,14 +39,14 @@ namespace ApiSdk.Sites.Item.ContentTypes.Item.ColumnLinks.Item {
             };
             columnLinkIdOption.IsRequired = true;
             command.AddOption(columnLinkIdOption);
-            command.SetHandler(async (string siteId, string contentTypeId, string columnLinkId, IConsole console) => {
-                var responseHandler = new NativeResponseHandler();
+            command.SetHandler(async (string siteId, string contentTypeId, string columnLinkId, IServiceProvider serviceProvider, IConsole console) => {
+                var responseHandler = serviceProvider.GetService(typeof(IResponseHandler)) as IResponseHandler;
                 var requestInfo = CreateDeleteRequestInformation(q => {
                 });
                 await RequestAdapter.SendNoContentAsync(requestInfo, responseHandler);
                 // Print request output. What if the request has no return?
                 console.WriteLine("Success");
-            }, siteIdOption, contentTypeIdOption, columnLinkIdOption);
+            }, siteIdOption, contentTypeIdOption, columnLinkIdOption, new ServiceProviderBinder());
             return command;
         }
         /// <summary>
@@ -82,25 +82,26 @@ namespace ApiSdk.Sites.Item.ContentTypes.Item.ColumnLinks.Item {
                 IsRequired = true
             };
             command.AddOption(outputOption);
-            command.SetHandler(async (string siteId, string contentTypeId, string columnLinkId, string[] select, string[] expand, FormatterType output, IConsole console) => {
-                var responseHandler = new NativeResponseHandler();
+            command.SetHandler(async (string siteId, string contentTypeId, string columnLinkId, string[] select, string[] expand, FormatterType output, IServiceProvider serviceProvider, IConsole console) => {
+                var responseHandler = serviceProvider.GetService(typeof(IResponseHandler)) as IResponseHandler;
                 var requestInfo = CreateGetRequestInformation(q => {
                     q.Select = select;
                     q.Expand = expand;
                 });
                 await RequestAdapter.SendNoContentAsync(requestInfo, responseHandler);
                 // Print request output. What if the request has no return?
-                var response = responseHandler.Value as HttpResponseMessage;
-                var formatter = OutputFormatterFactory.Instance.GetFormatter(output);
-                if (response.IsSuccessStatusCode) {
-                    var content = await response.Content.ReadAsStringAsync();
+                var responseProcessor = serviceProvider.GetService(typeof(IResponseProcessor)) as IResponseProcessor;
+                var factory = serviceProvider.GetService(typeof(IOutputFormatterFactory)) as IOutputFormatterFactory;
+                var formatter = factory.GetFormatter(output);
+                if (responseProcessor.IsResponseSuccessful(responseHandler)) {
+                    var content = await responseProcessor.ExtractStringResponseAsync(responseHandler);
                     formatter.WriteOutput(content, console);
                 }
                 else {
-                    var content = await response.Content.ReadAsStringAsync();
+                    var content = await responseProcessor.ExtractStringResponseAsync(responseHandler);
                     console.WriteLine(content);
                 }
-            }, siteIdOption, contentTypeIdOption, columnLinkIdOption, selectOption, expandOption, outputOption);
+            }, siteIdOption, contentTypeIdOption, columnLinkIdOption, selectOption, expandOption, outputOption, new ServiceProviderBinder());
             return command;
         }
         /// <summary>
@@ -126,8 +127,8 @@ namespace ApiSdk.Sites.Item.ContentTypes.Item.ColumnLinks.Item {
             };
             bodyOption.IsRequired = true;
             command.AddOption(bodyOption);
-            command.SetHandler(async (string siteId, string contentTypeId, string columnLinkId, string body, IConsole console) => {
-                var responseHandler = new NativeResponseHandler();
+            command.SetHandler(async (string siteId, string contentTypeId, string columnLinkId, string body, IServiceProvider serviceProvider, IConsole console) => {
+                var responseHandler = serviceProvider.GetService(typeof(IResponseHandler)) as IResponseHandler;
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<ColumnLink>();
@@ -136,7 +137,7 @@ namespace ApiSdk.Sites.Item.ContentTypes.Item.ColumnLinks.Item {
                 await RequestAdapter.SendNoContentAsync(requestInfo, responseHandler);
                 // Print request output. What if the request has no return?
                 console.WriteLine("Success");
-            }, siteIdOption, contentTypeIdOption, columnLinkIdOption, bodyOption);
+            }, siteIdOption, contentTypeIdOption, columnLinkIdOption, bodyOption, new ServiceProviderBinder());
             return command;
         }
         /// <summary>

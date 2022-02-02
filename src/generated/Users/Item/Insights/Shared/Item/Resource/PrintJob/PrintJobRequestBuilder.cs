@@ -2,6 +2,7 @@ using ApiSdk.Users.Item.Insights.Shared.Item.Resource.PrintJob.Abort;
 using ApiSdk.Users.Item.Insights.Shared.Item.Resource.PrintJob.Cancel;
 using ApiSdk.Users.Item.Insights.Shared.Item.Resource.PrintJob.Redirect;
 using ApiSdk.Users.Item.Insights.Shared.Item.Resource.PrintJob.Start;
+using Microsoft.Graph.Cli.Core.Binding;
 using Microsoft.Graph.Cli.Core.IO;
 using Microsoft.Kiota.Abstractions;
 using System;
@@ -9,7 +10,6 @@ using System.Collections.Generic;
 using System.CommandLine;
 using System.IO;
 using System.Linq;
-using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 namespace ApiSdk.Users.Item.Insights.Shared.Item.Resource.PrintJob {

@@ -3,6 +3,7 @@ using ApiSdk.Sites.Item.Onenote.Pages.Item.ParentNotebook.Sections.Item.Pages.It
 using ApiSdk.Sites.Item.Onenote.Pages.Item.ParentNotebook.Sections.Item.Pages.Item.CopyToSection;
 using ApiSdk.Sites.Item.Onenote.Pages.Item.ParentNotebook.Sections.Item.Pages.Item.OnenotePatchContent;
 using ApiSdk.Sites.Item.Onenote.Pages.Item.ParentNotebook.Sections.Item.Pages.Item.Preview;
+using Microsoft.Graph.Cli.Core.Binding;
 using Microsoft.Graph.Cli.Core.IO;
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
@@ -11,7 +12,6 @@ using System.Collections.Generic;
 using System.CommandLine;
 using System.IO;
 using System.Linq;
-using System.Net.Http;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
@@ -60,14 +60,14 @@ namespace ApiSdk.Sites.Item.Onenote.Pages.Item.ParentNotebook.Sections.Item.Page
             };
             onenotePageId1Option.IsRequired = true;
             command.AddOption(onenotePageId1Option);
-            command.SetHandler(async (string siteId, string onenotePageId, string onenoteSectionId, string onenotePageId1, IConsole console) => {
-                var responseHandler = new NativeResponseHandler();
+            command.SetHandler(async (string siteId, string onenotePageId, string onenoteSectionId, string onenotePageId1, IServiceProvider serviceProvider, IConsole console) => {
+                var responseHandler = serviceProvider.GetService(typeof(IResponseHandler)) as IResponseHandler;
                 var requestInfo = CreateDeleteRequestInformation(q => {
                 });
                 await RequestAdapter.SendNoContentAsync(requestInfo, responseHandler);
                 // Print request output. What if the request has no return?
                 console.WriteLine("Success");
-            }, siteIdOption, onenotePageIdOption, onenoteSectionIdOption, onenotePageId1Option);
+            }, siteIdOption, onenotePageIdOption, onenoteSectionIdOption, onenotePageId1Option, new ServiceProviderBinder());
             return command;
         }
         /// <summary>
@@ -107,25 +107,26 @@ namespace ApiSdk.Sites.Item.Onenote.Pages.Item.ParentNotebook.Sections.Item.Page
                 IsRequired = true
             };
             command.AddOption(outputOption);
-            command.SetHandler(async (string siteId, string onenotePageId, string onenoteSectionId, string onenotePageId1, string[] select, string[] expand, FormatterType output, IConsole console) => {
-                var responseHandler = new NativeResponseHandler();
+            command.SetHandler(async (string siteId, string onenotePageId, string onenoteSectionId, string onenotePageId1, string[] select, string[] expand, FormatterType output, IServiceProvider serviceProvider, IConsole console) => {
+                var responseHandler = serviceProvider.GetService(typeof(IResponseHandler)) as IResponseHandler;
                 var requestInfo = CreateGetRequestInformation(q => {
                     q.Select = select;
                     q.Expand = expand;
                 });
                 await RequestAdapter.SendNoContentAsync(requestInfo, responseHandler);
                 // Print request output. What if the request has no return?
-                var response = responseHandler.Value as HttpResponseMessage;
-                var formatter = OutputFormatterFactory.Instance.GetFormatter(output);
-                if (response.IsSuccessStatusCode) {
-                    var content = await response.Content.ReadAsStringAsync();
+                var responseProcessor = serviceProvider.GetService(typeof(IResponseProcessor)) as IResponseProcessor;
+                var factory = serviceProvider.GetService(typeof(IOutputFormatterFactory)) as IOutputFormatterFactory;
+                var formatter = factory.GetFormatter(output);
+                if (responseProcessor.IsResponseSuccessful(responseHandler)) {
+                    var content = await responseProcessor.ExtractStringResponseAsync(responseHandler);
                     formatter.WriteOutput(content, console);
                 }
                 else {
-                    var content = await response.Content.ReadAsStringAsync();
+                    var content = await responseProcessor.ExtractStringResponseAsync(responseHandler);
                     console.WriteLine(content);
                 }
-            }, siteIdOption, onenotePageIdOption, onenoteSectionIdOption, onenotePageId1Option, selectOption, expandOption, outputOption);
+            }, siteIdOption, onenotePageIdOption, onenoteSectionIdOption, onenotePageId1Option, selectOption, expandOption, outputOption, new ServiceProviderBinder());
             return command;
         }
         public Command BuildOnenotePatchContentCommand() {
@@ -161,8 +162,8 @@ namespace ApiSdk.Sites.Item.Onenote.Pages.Item.ParentNotebook.Sections.Item.Page
             };
             bodyOption.IsRequired = true;
             command.AddOption(bodyOption);
-            command.SetHandler(async (string siteId, string onenotePageId, string onenoteSectionId, string onenotePageId1, string body, IConsole console) => {
-                var responseHandler = new NativeResponseHandler();
+            command.SetHandler(async (string siteId, string onenotePageId, string onenoteSectionId, string onenotePageId1, string body, IServiceProvider serviceProvider, IConsole console) => {
+                var responseHandler = serviceProvider.GetService(typeof(IResponseHandler)) as IResponseHandler;
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<OnenotePage>();
@@ -171,7 +172,7 @@ namespace ApiSdk.Sites.Item.Onenote.Pages.Item.ParentNotebook.Sections.Item.Page
                 await RequestAdapter.SendNoContentAsync(requestInfo, responseHandler);
                 // Print request output. What if the request has no return?
                 console.WriteLine("Success");
-            }, siteIdOption, onenotePageIdOption, onenoteSectionIdOption, onenotePageId1Option, bodyOption);
+            }, siteIdOption, onenotePageIdOption, onenoteSectionIdOption, onenotePageId1Option, bodyOption, new ServiceProviderBinder());
             return command;
         }
         /// <summary>

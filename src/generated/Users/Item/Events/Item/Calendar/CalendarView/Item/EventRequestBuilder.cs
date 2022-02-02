@@ -6,6 +6,7 @@ using ApiSdk.Users.Item.Events.Item.Calendar.CalendarView.Item.DismissReminder;
 using ApiSdk.Users.Item.Events.Item.Calendar.CalendarView.Item.Forward;
 using ApiSdk.Users.Item.Events.Item.Calendar.CalendarView.Item.SnoozeReminder;
 using ApiSdk.Users.Item.Events.Item.Calendar.CalendarView.Item.TentativelyAccept;
+using Microsoft.Graph.Cli.Core.Binding;
 using Microsoft.Graph.Cli.Core.IO;
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
@@ -14,7 +15,6 @@ using System.Collections.Generic;
 using System.CommandLine;
 using System.IO;
 using System.Linq;
-using System.Net.Http;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
@@ -64,14 +64,14 @@ namespace ApiSdk.Users.Item.Events.Item.Calendar.CalendarView.Item {
             };
             eventId1Option.IsRequired = true;
             command.AddOption(eventId1Option);
-            command.SetHandler(async (string userId, string eventId, string eventId1, IConsole console) => {
-                var responseHandler = new NativeResponseHandler();
+            command.SetHandler(async (string userId, string eventId, string eventId1, IServiceProvider serviceProvider, IConsole console) => {
+                var responseHandler = serviceProvider.GetService(typeof(IResponseHandler)) as IResponseHandler;
                 var requestInfo = CreateDeleteRequestInformation(q => {
                 });
                 await RequestAdapter.SendNoContentAsync(requestInfo, responseHandler);
                 // Print request output. What if the request has no return?
                 console.WriteLine("Success");
-            }, userIdOption, eventIdOption, eventId1Option);
+            }, userIdOption, eventIdOption, eventId1Option, new ServiceProviderBinder());
             return command;
         }
         public Command BuildDismissReminderCommand() {
@@ -114,24 +114,25 @@ namespace ApiSdk.Users.Item.Events.Item.Calendar.CalendarView.Item {
                 IsRequired = true
             };
             command.AddOption(outputOption);
-            command.SetHandler(async (string userId, string eventId, string eventId1, string[] select, FormatterType output, IConsole console) => {
-                var responseHandler = new NativeResponseHandler();
+            command.SetHandler(async (string userId, string eventId, string eventId1, string[] select, FormatterType output, IServiceProvider serviceProvider, IConsole console) => {
+                var responseHandler = serviceProvider.GetService(typeof(IResponseHandler)) as IResponseHandler;
                 var requestInfo = CreateGetRequestInformation(q => {
                     q.Select = select;
                 });
                 await RequestAdapter.SendNoContentAsync(requestInfo, responseHandler);
                 // Print request output. What if the request has no return?
-                var response = responseHandler.Value as HttpResponseMessage;
-                var formatter = OutputFormatterFactory.Instance.GetFormatter(output);
-                if (response.IsSuccessStatusCode) {
-                    var content = await response.Content.ReadAsStringAsync();
+                var responseProcessor = serviceProvider.GetService(typeof(IResponseProcessor)) as IResponseProcessor;
+                var factory = serviceProvider.GetService(typeof(IOutputFormatterFactory)) as IOutputFormatterFactory;
+                var formatter = factory.GetFormatter(output);
+                if (responseProcessor.IsResponseSuccessful(responseHandler)) {
+                    var content = await responseProcessor.ExtractStringResponseAsync(responseHandler);
                     formatter.WriteOutput(content, console);
                 }
                 else {
-                    var content = await response.Content.ReadAsStringAsync();
+                    var content = await responseProcessor.ExtractStringResponseAsync(responseHandler);
                     console.WriteLine(content);
                 }
-            }, userIdOption, eventIdOption, eventId1Option, selectOption, outputOption);
+            }, userIdOption, eventIdOption, eventId1Option, selectOption, outputOption, new ServiceProviderBinder());
             return command;
         }
         /// <summary>
@@ -157,8 +158,8 @@ namespace ApiSdk.Users.Item.Events.Item.Calendar.CalendarView.Item {
             };
             bodyOption.IsRequired = true;
             command.AddOption(bodyOption);
-            command.SetHandler(async (string userId, string eventId, string eventId1, string body, IConsole console) => {
-                var responseHandler = new NativeResponseHandler();
+            command.SetHandler(async (string userId, string eventId, string eventId1, string body, IServiceProvider serviceProvider, IConsole console) => {
+                var responseHandler = serviceProvider.GetService(typeof(IResponseHandler)) as IResponseHandler;
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<Event>();
@@ -167,7 +168,7 @@ namespace ApiSdk.Users.Item.Events.Item.Calendar.CalendarView.Item {
                 await RequestAdapter.SendNoContentAsync(requestInfo, responseHandler);
                 // Print request output. What if the request has no return?
                 console.WriteLine("Success");
-            }, userIdOption, eventIdOption, eventId1Option, bodyOption);
+            }, userIdOption, eventIdOption, eventId1Option, bodyOption, new ServiceProviderBinder());
             return command;
         }
         public Command BuildSnoozeReminderCommand() {

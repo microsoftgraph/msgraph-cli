@@ -1,6 +1,7 @@
 using ApiSdk.Me.Calendar.CalendarView.Item.Calendar.AllowedCalendarSharingRolesWithUser;
 using ApiSdk.Me.Calendar.CalendarView.Item.Calendar.GetSchedule;
 using ApiSdk.Models.Microsoft.Graph;
+using Microsoft.Graph.Cli.Core.Binding;
 using Microsoft.Graph.Cli.Core.IO;
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
@@ -9,7 +10,6 @@ using System.Collections.Generic;
 using System.CommandLine;
 using System.IO;
 using System.Linq;
-using System.Net.Http;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
@@ -41,14 +41,14 @@ namespace ApiSdk.Me.Calendar.CalendarView.Item.Calendar {
             };
             eventIdOption.IsRequired = true;
             command.AddOption(eventIdOption);
-            command.SetHandler(async (string eventId, IConsole console) => {
-                var responseHandler = new NativeResponseHandler();
+            command.SetHandler(async (string eventId, IServiceProvider serviceProvider, IConsole console) => {
+                var responseHandler = serviceProvider.GetService(typeof(IResponseHandler)) as IResponseHandler;
                 var requestInfo = CreateDeleteRequestInformation(q => {
                 });
                 await RequestAdapter.SendNoContentAsync(requestInfo, responseHandler);
                 // Print request output. What if the request has no return?
                 console.WriteLine("Success");
-            }, eventIdOption);
+            }, eventIdOption, new ServiceProviderBinder());
             return command;
         }
         /// <summary>
@@ -71,24 +71,25 @@ namespace ApiSdk.Me.Calendar.CalendarView.Item.Calendar {
                 IsRequired = true
             };
             command.AddOption(outputOption);
-            command.SetHandler(async (string eventId, string[] select, FormatterType output, IConsole console) => {
-                var responseHandler = new NativeResponseHandler();
+            command.SetHandler(async (string eventId, string[] select, FormatterType output, IServiceProvider serviceProvider, IConsole console) => {
+                var responseHandler = serviceProvider.GetService(typeof(IResponseHandler)) as IResponseHandler;
                 var requestInfo = CreateGetRequestInformation(q => {
                     q.Select = select;
                 });
                 await RequestAdapter.SendNoContentAsync(requestInfo, responseHandler);
                 // Print request output. What if the request has no return?
-                var response = responseHandler.Value as HttpResponseMessage;
-                var formatter = OutputFormatterFactory.Instance.GetFormatter(output);
-                if (response.IsSuccessStatusCode) {
-                    var content = await response.Content.ReadAsStringAsync();
+                var responseProcessor = serviceProvider.GetService(typeof(IResponseProcessor)) as IResponseProcessor;
+                var factory = serviceProvider.GetService(typeof(IOutputFormatterFactory)) as IOutputFormatterFactory;
+                var formatter = factory.GetFormatter(output);
+                if (responseProcessor.IsResponseSuccessful(responseHandler)) {
+                    var content = await responseProcessor.ExtractStringResponseAsync(responseHandler);
                     formatter.WriteOutput(content, console);
                 }
                 else {
-                    var content = await response.Content.ReadAsStringAsync();
+                    var content = await responseProcessor.ExtractStringResponseAsync(responseHandler);
                     console.WriteLine(content);
                 }
-            }, eventIdOption, selectOption, outputOption);
+            }, eventIdOption, selectOption, outputOption, new ServiceProviderBinder());
             return command;
         }
         public Command BuildGetScheduleCommand() {
@@ -112,8 +113,8 @@ namespace ApiSdk.Me.Calendar.CalendarView.Item.Calendar {
             };
             bodyOption.IsRequired = true;
             command.AddOption(bodyOption);
-            command.SetHandler(async (string eventId, string body, IConsole console) => {
-                var responseHandler = new NativeResponseHandler();
+            command.SetHandler(async (string eventId, string body, IServiceProvider serviceProvider, IConsole console) => {
+                var responseHandler = serviceProvider.GetService(typeof(IResponseHandler)) as IResponseHandler;
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<ApiSdk.Models.Microsoft.Graph.Calendar>();
@@ -122,7 +123,7 @@ namespace ApiSdk.Me.Calendar.CalendarView.Item.Calendar {
                 await RequestAdapter.SendNoContentAsync(requestInfo, responseHandler);
                 // Print request output. What if the request has no return?
                 console.WriteLine("Success");
-            }, eventIdOption, bodyOption);
+            }, eventIdOption, bodyOption, new ServiceProviderBinder());
             return command;
         }
         /// <summary>

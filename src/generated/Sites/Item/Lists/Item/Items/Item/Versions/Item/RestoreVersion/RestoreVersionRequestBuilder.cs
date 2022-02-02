@@ -1,3 +1,4 @@
+using Microsoft.Graph.Cli.Core.Binding;
 using Microsoft.Graph.Cli.Core.IO;
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
@@ -6,7 +7,6 @@ using System.Collections.Generic;
 using System.CommandLine;
 using System.IO;
 using System.Linq;
-using System.Net.Http;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
@@ -42,14 +42,14 @@ namespace ApiSdk.Sites.Item.Lists.Item.Items.Item.Versions.Item.RestoreVersion {
             };
             listItemVersionIdOption.IsRequired = true;
             command.AddOption(listItemVersionIdOption);
-            command.SetHandler(async (string siteId, string listId, string listItemId, string listItemVersionId, IConsole console) => {
-                var responseHandler = new NativeResponseHandler();
+            command.SetHandler(async (string siteId, string listId, string listItemId, string listItemVersionId, IServiceProvider serviceProvider, IConsole console) => {
+                var responseHandler = serviceProvider.GetService(typeof(IResponseHandler)) as IResponseHandler;
                 var requestInfo = CreatePostRequestInformation(q => {
                 });
                 await RequestAdapter.SendNoContentAsync(requestInfo, responseHandler);
                 // Print request output. What if the request has no return?
                 console.WriteLine("Success");
-            }, siteIdOption, listIdOption, listItemIdOption, listItemVersionIdOption);
+            }, siteIdOption, listIdOption, listItemIdOption, listItemVersionIdOption, new ServiceProviderBinder());
             return command;
         }
         /// <summary>

@@ -1,5 +1,6 @@
 using ApiSdk.Models.Microsoft.Graph;
 using ApiSdk.Shares.Item.Items.Item;
+using Microsoft.Graph.Cli.Core.Binding;
 using Microsoft.Graph.Cli.Core.IO;
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
@@ -8,7 +9,6 @@ using System.Collections.Generic;
 using System.CommandLine;
 using System.IO;
 using System.Linq;
-using System.Net.Http;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
@@ -49,8 +49,8 @@ namespace ApiSdk.Shares.Item.Items {
                 IsRequired = true
             };
             command.AddOption(outputOption);
-            command.SetHandler(async (string sharedDriveItemId, string body, FormatterType output, IConsole console) => {
-                var responseHandler = new NativeResponseHandler();
+            command.SetHandler(async (string sharedDriveItemId, string body, FormatterType output, IServiceProvider serviceProvider, IConsole console) => {
+                var responseHandler = serviceProvider.GetService(typeof(IResponseHandler)) as IResponseHandler;
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<ApiSdk.Models.Microsoft.Graph.DriveItem>();
@@ -58,17 +58,18 @@ namespace ApiSdk.Shares.Item.Items {
                 });
                 await RequestAdapter.SendNoContentAsync(requestInfo, responseHandler);
                 // Print request output. What if the request has no return?
-                var response = responseHandler.Value as HttpResponseMessage;
-                var formatter = OutputFormatterFactory.Instance.GetFormatter(output);
-                if (response.IsSuccessStatusCode) {
-                    var content = await response.Content.ReadAsStringAsync();
+                var responseProcessor = serviceProvider.GetService(typeof(IResponseProcessor)) as IResponseProcessor;
+                var factory = serviceProvider.GetService(typeof(IOutputFormatterFactory)) as IOutputFormatterFactory;
+                var formatter = factory.GetFormatter(output);
+                if (responseProcessor.IsResponseSuccessful(responseHandler)) {
+                    var content = await responseProcessor.ExtractStringResponseAsync(responseHandler);
                     formatter.WriteOutput(content, console);
                 }
                 else {
-                    var content = await response.Content.ReadAsStringAsync();
+                    var content = await responseProcessor.ExtractStringResponseAsync(responseHandler);
                     console.WriteLine(content);
                 }
-            }, sharedDriveItemIdOption, bodyOption, outputOption);
+            }, sharedDriveItemIdOption, bodyOption, outputOption, new ServiceProviderBinder());
             return command;
         }
         /// <summary>
@@ -121,8 +122,8 @@ namespace ApiSdk.Shares.Item.Items {
                 IsRequired = true
             };
             command.AddOption(outputOption);
-            command.SetHandler(async (string sharedDriveItemId, int? top, int? skip, string search, string filter, bool? count, string[] orderby, string[] select, string[] expand, FormatterType output, IConsole console) => {
-                var responseHandler = new NativeResponseHandler();
+            command.SetHandler(async (string sharedDriveItemId, int? top, int? skip, string search, string filter, bool? count, string[] orderby, string[] select, string[] expand, FormatterType output, IServiceProvider serviceProvider, IConsole console) => {
+                var responseHandler = serviceProvider.GetService(typeof(IResponseHandler)) as IResponseHandler;
                 var requestInfo = CreateGetRequestInformation(q => {
                     q.Top = top;
                     q.Skip = skip;
@@ -135,17 +136,18 @@ namespace ApiSdk.Shares.Item.Items {
                 });
                 await RequestAdapter.SendNoContentAsync(requestInfo, responseHandler);
                 // Print request output. What if the request has no return?
-                var response = responseHandler.Value as HttpResponseMessage;
-                var formatter = OutputFormatterFactory.Instance.GetFormatter(output);
-                if (response.IsSuccessStatusCode) {
-                    var content = await response.Content.ReadAsStringAsync();
+                var responseProcessor = serviceProvider.GetService(typeof(IResponseProcessor)) as IResponseProcessor;
+                var factory = serviceProvider.GetService(typeof(IOutputFormatterFactory)) as IOutputFormatterFactory;
+                var formatter = factory.GetFormatter(output);
+                if (responseProcessor.IsResponseSuccessful(responseHandler)) {
+                    var content = await responseProcessor.ExtractStringResponseAsync(responseHandler);
                     formatter.WriteOutput(content, console);
                 }
                 else {
-                    var content = await response.Content.ReadAsStringAsync();
+                    var content = await responseProcessor.ExtractStringResponseAsync(responseHandler);
                     console.WriteLine(content);
                 }
-            }, sharedDriveItemIdOption, topOption, skipOption, searchOption, filterOption, countOption, orderbyOption, selectOption, expandOption, outputOption);
+            }, sharedDriveItemIdOption, topOption, skipOption, searchOption, filterOption, countOption, orderbyOption, selectOption, expandOption, outputOption, new ServiceProviderBinder());
             return command;
         }
         /// <summary>

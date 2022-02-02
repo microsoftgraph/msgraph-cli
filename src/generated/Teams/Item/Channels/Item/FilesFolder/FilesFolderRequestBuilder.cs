@@ -1,5 +1,6 @@
 using ApiSdk.Models.Microsoft.Graph;
 using ApiSdk.Teams.Item.Channels.Item.FilesFolder.Content;
+using Microsoft.Graph.Cli.Core.Binding;
 using Microsoft.Graph.Cli.Core.IO;
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
@@ -8,7 +9,6 @@ using System.Collections.Generic;
 using System.CommandLine;
 using System.IO;
 using System.Linq;
-using System.Net.Http;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
@@ -43,14 +43,14 @@ namespace ApiSdk.Teams.Item.Channels.Item.FilesFolder {
             };
             channelIdOption.IsRequired = true;
             command.AddOption(channelIdOption);
-            command.SetHandler(async (string teamId, string channelId, IConsole console) => {
-                var responseHandler = new NativeResponseHandler();
+            command.SetHandler(async (string teamId, string channelId, IServiceProvider serviceProvider, IConsole console) => {
+                var responseHandler = serviceProvider.GetService(typeof(IResponseHandler)) as IResponseHandler;
                 var requestInfo = CreateDeleteRequestInformation(q => {
                 });
                 await RequestAdapter.SendNoContentAsync(requestInfo, responseHandler);
                 // Print request output. What if the request has no return?
                 console.WriteLine("Success");
-            }, teamIdOption, channelIdOption);
+            }, teamIdOption, channelIdOption, new ServiceProviderBinder());
             return command;
         }
         /// <summary>
@@ -82,25 +82,26 @@ namespace ApiSdk.Teams.Item.Channels.Item.FilesFolder {
                 IsRequired = true
             };
             command.AddOption(outputOption);
-            command.SetHandler(async (string teamId, string channelId, string[] select, string[] expand, FormatterType output, IConsole console) => {
-                var responseHandler = new NativeResponseHandler();
+            command.SetHandler(async (string teamId, string channelId, string[] select, string[] expand, FormatterType output, IServiceProvider serviceProvider, IConsole console) => {
+                var responseHandler = serviceProvider.GetService(typeof(IResponseHandler)) as IResponseHandler;
                 var requestInfo = CreateGetRequestInformation(q => {
                     q.Select = select;
                     q.Expand = expand;
                 });
                 await RequestAdapter.SendNoContentAsync(requestInfo, responseHandler);
                 // Print request output. What if the request has no return?
-                var response = responseHandler.Value as HttpResponseMessage;
-                var formatter = OutputFormatterFactory.Instance.GetFormatter(output);
-                if (response.IsSuccessStatusCode) {
-                    var content = await response.Content.ReadAsStringAsync();
+                var responseProcessor = serviceProvider.GetService(typeof(IResponseProcessor)) as IResponseProcessor;
+                var factory = serviceProvider.GetService(typeof(IOutputFormatterFactory)) as IOutputFormatterFactory;
+                var formatter = factory.GetFormatter(output);
+                if (responseProcessor.IsResponseSuccessful(responseHandler)) {
+                    var content = await responseProcessor.ExtractStringResponseAsync(responseHandler);
                     formatter.WriteOutput(content, console);
                 }
                 else {
-                    var content = await response.Content.ReadAsStringAsync();
+                    var content = await responseProcessor.ExtractStringResponseAsync(responseHandler);
                     console.WriteLine(content);
                 }
-            }, teamIdOption, channelIdOption, selectOption, expandOption, outputOption);
+            }, teamIdOption, channelIdOption, selectOption, expandOption, outputOption, new ServiceProviderBinder());
             return command;
         }
         /// <summary>
@@ -122,8 +123,8 @@ namespace ApiSdk.Teams.Item.Channels.Item.FilesFolder {
             };
             bodyOption.IsRequired = true;
             command.AddOption(bodyOption);
-            command.SetHandler(async (string teamId, string channelId, string body, IConsole console) => {
-                var responseHandler = new NativeResponseHandler();
+            command.SetHandler(async (string teamId, string channelId, string body, IServiceProvider serviceProvider, IConsole console) => {
+                var responseHandler = serviceProvider.GetService(typeof(IResponseHandler)) as IResponseHandler;
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<ApiSdk.Models.Microsoft.Graph.DriveItem>();
@@ -132,7 +133,7 @@ namespace ApiSdk.Teams.Item.Channels.Item.FilesFolder {
                 await RequestAdapter.SendNoContentAsync(requestInfo, responseHandler);
                 // Print request output. What if the request has no return?
                 console.WriteLine("Success");
-            }, teamIdOption, channelIdOption, bodyOption);
+            }, teamIdOption, channelIdOption, bodyOption, new ServiceProviderBinder());
             return command;
         }
         /// <summary>

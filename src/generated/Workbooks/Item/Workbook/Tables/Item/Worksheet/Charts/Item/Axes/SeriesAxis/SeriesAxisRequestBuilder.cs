@@ -3,6 +3,7 @@ using ApiSdk.Workbooks.Item.Workbook.Tables.Item.Worksheet.Charts.Item.Axes.Seri
 using ApiSdk.Workbooks.Item.Workbook.Tables.Item.Worksheet.Charts.Item.Axes.SeriesAxis.MajorGridlines;
 using ApiSdk.Workbooks.Item.Workbook.Tables.Item.Worksheet.Charts.Item.Axes.SeriesAxis.MinorGridlines;
 using ApiSdk.Workbooks.Item.Workbook.Tables.Item.Worksheet.Charts.Item.Axes.SeriesAxis.Title;
+using Microsoft.Graph.Cli.Core.Binding;
 using Microsoft.Graph.Cli.Core.IO;
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
@@ -11,7 +12,6 @@ using System.Collections.Generic;
 using System.CommandLine;
 using System.IO;
 using System.Linq;
-using System.Net.Http;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
@@ -43,14 +43,14 @@ namespace ApiSdk.Workbooks.Item.Workbook.Tables.Item.Worksheet.Charts.Item.Axes.
             };
             workbookChartIdOption.IsRequired = true;
             command.AddOption(workbookChartIdOption);
-            command.SetHandler(async (string driveItemId, string workbookTableId, string workbookChartId, IConsole console) => {
-                var responseHandler = new NativeResponseHandler();
+            command.SetHandler(async (string driveItemId, string workbookTableId, string workbookChartId, IServiceProvider serviceProvider, IConsole console) => {
+                var responseHandler = serviceProvider.GetService(typeof(IResponseHandler)) as IResponseHandler;
                 var requestInfo = CreateDeleteRequestInformation(q => {
                 });
                 await RequestAdapter.SendNoContentAsync(requestInfo, responseHandler);
                 // Print request output. What if the request has no return?
                 console.WriteLine("Success");
-            }, driveItemIdOption, workbookTableIdOption, workbookChartIdOption);
+            }, driveItemIdOption, workbookTableIdOption, workbookChartIdOption, new ServiceProviderBinder());
             return command;
         }
         public Command BuildFormatCommand() {
@@ -96,25 +96,26 @@ namespace ApiSdk.Workbooks.Item.Workbook.Tables.Item.Worksheet.Charts.Item.Axes.
                 IsRequired = true
             };
             command.AddOption(outputOption);
-            command.SetHandler(async (string driveItemId, string workbookTableId, string workbookChartId, string[] select, string[] expand, FormatterType output, IConsole console) => {
-                var responseHandler = new NativeResponseHandler();
+            command.SetHandler(async (string driveItemId, string workbookTableId, string workbookChartId, string[] select, string[] expand, FormatterType output, IServiceProvider serviceProvider, IConsole console) => {
+                var responseHandler = serviceProvider.GetService(typeof(IResponseHandler)) as IResponseHandler;
                 var requestInfo = CreateGetRequestInformation(q => {
                     q.Select = select;
                     q.Expand = expand;
                 });
                 await RequestAdapter.SendNoContentAsync(requestInfo, responseHandler);
                 // Print request output. What if the request has no return?
-                var response = responseHandler.Value as HttpResponseMessage;
-                var formatter = OutputFormatterFactory.Instance.GetFormatter(output);
-                if (response.IsSuccessStatusCode) {
-                    var content = await response.Content.ReadAsStringAsync();
+                var responseProcessor = serviceProvider.GetService(typeof(IResponseProcessor)) as IResponseProcessor;
+                var factory = serviceProvider.GetService(typeof(IOutputFormatterFactory)) as IOutputFormatterFactory;
+                var formatter = factory.GetFormatter(output);
+                if (responseProcessor.IsResponseSuccessful(responseHandler)) {
+                    var content = await responseProcessor.ExtractStringResponseAsync(responseHandler);
                     formatter.WriteOutput(content, console);
                 }
                 else {
-                    var content = await response.Content.ReadAsStringAsync();
+                    var content = await responseProcessor.ExtractStringResponseAsync(responseHandler);
                     console.WriteLine(content);
                 }
-            }, driveItemIdOption, workbookTableIdOption, workbookChartIdOption, selectOption, expandOption, outputOption);
+            }, driveItemIdOption, workbookTableIdOption, workbookChartIdOption, selectOption, expandOption, outputOption, new ServiceProviderBinder());
             return command;
         }
         public Command BuildMajorGridlinesCommand() {
@@ -158,8 +159,8 @@ namespace ApiSdk.Workbooks.Item.Workbook.Tables.Item.Worksheet.Charts.Item.Axes.
             };
             bodyOption.IsRequired = true;
             command.AddOption(bodyOption);
-            command.SetHandler(async (string driveItemId, string workbookTableId, string workbookChartId, string body, IConsole console) => {
-                var responseHandler = new NativeResponseHandler();
+            command.SetHandler(async (string driveItemId, string workbookTableId, string workbookChartId, string body, IServiceProvider serviceProvider, IConsole console) => {
+                var responseHandler = serviceProvider.GetService(typeof(IResponseHandler)) as IResponseHandler;
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<WorkbookChartAxis>();
@@ -168,7 +169,7 @@ namespace ApiSdk.Workbooks.Item.Workbook.Tables.Item.Worksheet.Charts.Item.Axes.
                 await RequestAdapter.SendNoContentAsync(requestInfo, responseHandler);
                 // Print request output. What if the request has no return?
                 console.WriteLine("Success");
-            }, driveItemIdOption, workbookTableIdOption, workbookChartIdOption, bodyOption);
+            }, driveItemIdOption, workbookTableIdOption, workbookChartIdOption, bodyOption, new ServiceProviderBinder());
             return command;
         }
         public Command BuildTitleCommand() {

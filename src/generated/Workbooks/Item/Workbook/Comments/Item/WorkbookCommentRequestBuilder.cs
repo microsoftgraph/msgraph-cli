@@ -1,5 +1,6 @@
 using ApiSdk.Models.Microsoft.Graph;
 using ApiSdk.Workbooks.Item.Workbook.Comments.Item.Replies;
+using Microsoft.Graph.Cli.Core.Binding;
 using Microsoft.Graph.Cli.Core.IO;
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
@@ -8,7 +9,6 @@ using System.Collections.Generic;
 using System.CommandLine;
 using System.IO;
 using System.Linq;
-using System.Net.Http;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
@@ -36,14 +36,14 @@ namespace ApiSdk.Workbooks.Item.Workbook.Comments.Item {
             };
             workbookCommentIdOption.IsRequired = true;
             command.AddOption(workbookCommentIdOption);
-            command.SetHandler(async (string driveItemId, string workbookCommentId, IConsole console) => {
-                var responseHandler = new NativeResponseHandler();
+            command.SetHandler(async (string driveItemId, string workbookCommentId, IServiceProvider serviceProvider, IConsole console) => {
+                var responseHandler = serviceProvider.GetService(typeof(IResponseHandler)) as IResponseHandler;
                 var requestInfo = CreateDeleteRequestInformation(q => {
                 });
                 await RequestAdapter.SendNoContentAsync(requestInfo, responseHandler);
                 // Print request output. What if the request has no return?
                 console.WriteLine("Success");
-            }, driveItemIdOption, workbookCommentIdOption);
+            }, driveItemIdOption, workbookCommentIdOption, new ServiceProviderBinder());
             return command;
         }
         /// <summary>
@@ -75,25 +75,26 @@ namespace ApiSdk.Workbooks.Item.Workbook.Comments.Item {
                 IsRequired = true
             };
             command.AddOption(outputOption);
-            command.SetHandler(async (string driveItemId, string workbookCommentId, string[] select, string[] expand, FormatterType output, IConsole console) => {
-                var responseHandler = new NativeResponseHandler();
+            command.SetHandler(async (string driveItemId, string workbookCommentId, string[] select, string[] expand, FormatterType output, IServiceProvider serviceProvider, IConsole console) => {
+                var responseHandler = serviceProvider.GetService(typeof(IResponseHandler)) as IResponseHandler;
                 var requestInfo = CreateGetRequestInformation(q => {
                     q.Select = select;
                     q.Expand = expand;
                 });
                 await RequestAdapter.SendNoContentAsync(requestInfo, responseHandler);
                 // Print request output. What if the request has no return?
-                var response = responseHandler.Value as HttpResponseMessage;
-                var formatter = OutputFormatterFactory.Instance.GetFormatter(output);
-                if (response.IsSuccessStatusCode) {
-                    var content = await response.Content.ReadAsStringAsync();
+                var responseProcessor = serviceProvider.GetService(typeof(IResponseProcessor)) as IResponseProcessor;
+                var factory = serviceProvider.GetService(typeof(IOutputFormatterFactory)) as IOutputFormatterFactory;
+                var formatter = factory.GetFormatter(output);
+                if (responseProcessor.IsResponseSuccessful(responseHandler)) {
+                    var content = await responseProcessor.ExtractStringResponseAsync(responseHandler);
                     formatter.WriteOutput(content, console);
                 }
                 else {
-                    var content = await response.Content.ReadAsStringAsync();
+                    var content = await responseProcessor.ExtractStringResponseAsync(responseHandler);
                     console.WriteLine(content);
                 }
-            }, driveItemIdOption, workbookCommentIdOption, selectOption, expandOption, outputOption);
+            }, driveItemIdOption, workbookCommentIdOption, selectOption, expandOption, outputOption, new ServiceProviderBinder());
             return command;
         }
         /// <summary>
@@ -115,8 +116,8 @@ namespace ApiSdk.Workbooks.Item.Workbook.Comments.Item {
             };
             bodyOption.IsRequired = true;
             command.AddOption(bodyOption);
-            command.SetHandler(async (string driveItemId, string workbookCommentId, string body, IConsole console) => {
-                var responseHandler = new NativeResponseHandler();
+            command.SetHandler(async (string driveItemId, string workbookCommentId, string body, IServiceProvider serviceProvider, IConsole console) => {
+                var responseHandler = serviceProvider.GetService(typeof(IResponseHandler)) as IResponseHandler;
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<WorkbookComment>();
@@ -125,7 +126,7 @@ namespace ApiSdk.Workbooks.Item.Workbook.Comments.Item {
                 await RequestAdapter.SendNoContentAsync(requestInfo, responseHandler);
                 // Print request output. What if the request has no return?
                 console.WriteLine("Success");
-            }, driveItemIdOption, workbookCommentIdOption, bodyOption);
+            }, driveItemIdOption, workbookCommentIdOption, bodyOption, new ServiceProviderBinder());
             return command;
         }
         public Command BuildRepliesCommand() {

@@ -1,3 +1,4 @@
+using Microsoft.Graph.Cli.Core.Binding;
 using Microsoft.Graph.Cli.Core.IO;
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
@@ -6,7 +7,6 @@ using System.Collections.Generic;
 using System.CommandLine;
 using System.IO;
 using System.Linq;
-using System.Net.Http;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
@@ -38,14 +38,14 @@ namespace ApiSdk.Users.Item.Calendars.Item.Events.Item.DismissReminder {
             };
             eventIdOption.IsRequired = true;
             command.AddOption(eventIdOption);
-            command.SetHandler(async (string userId, string calendarId, string eventId, IConsole console) => {
-                var responseHandler = new NativeResponseHandler();
+            command.SetHandler(async (string userId, string calendarId, string eventId, IServiceProvider serviceProvider, IConsole console) => {
+                var responseHandler = serviceProvider.GetService(typeof(IResponseHandler)) as IResponseHandler;
                 var requestInfo = CreatePostRequestInformation(q => {
                 });
                 await RequestAdapter.SendNoContentAsync(requestInfo, responseHandler);
                 // Print request output. What if the request has no return?
                 console.WriteLine("Success");
-            }, userIdOption, calendarIdOption, eventIdOption);
+            }, userIdOption, calendarIdOption, eventIdOption, new ServiceProviderBinder());
             return command;
         }
         /// <summary>

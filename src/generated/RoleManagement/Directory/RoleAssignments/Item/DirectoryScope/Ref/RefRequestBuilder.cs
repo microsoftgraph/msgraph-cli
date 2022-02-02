@@ -1,3 +1,4 @@
+using Microsoft.Graph.Cli.Core.Binding;
 using Microsoft.Graph.Cli.Core.IO;
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
@@ -6,7 +7,6 @@ using System.Collections.Generic;
 using System.CommandLine;
 using System.IO;
 using System.Linq;
-using System.Net.Http;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
@@ -30,14 +30,14 @@ namespace ApiSdk.RoleManagement.Directory.RoleAssignments.Item.DirectoryScope.Re
             };
             unifiedRoleAssignmentIdOption.IsRequired = true;
             command.AddOption(unifiedRoleAssignmentIdOption);
-            command.SetHandler(async (string unifiedRoleAssignmentId, IConsole console) => {
-                var responseHandler = new NativeResponseHandler();
+            command.SetHandler(async (string unifiedRoleAssignmentId, IServiceProvider serviceProvider, IConsole console) => {
+                var responseHandler = serviceProvider.GetService(typeof(IResponseHandler)) as IResponseHandler;
                 var requestInfo = CreateDeleteRequestInformation(q => {
                 });
                 await RequestAdapter.SendNoContentAsync(requestInfo, responseHandler);
                 // Print request output. What if the request has no return?
                 console.WriteLine("Success");
-            }, unifiedRoleAssignmentIdOption);
+            }, unifiedRoleAssignmentIdOption, new ServiceProviderBinder());
             return command;
         }
         /// <summary>
@@ -55,23 +55,24 @@ namespace ApiSdk.RoleManagement.Directory.RoleAssignments.Item.DirectoryScope.Re
                 IsRequired = true
             };
             command.AddOption(outputOption);
-            command.SetHandler(async (string unifiedRoleAssignmentId, FormatterType output, IConsole console) => {
-                var responseHandler = new NativeResponseHandler();
+            command.SetHandler(async (string unifiedRoleAssignmentId, FormatterType output, IServiceProvider serviceProvider, IConsole console) => {
+                var responseHandler = serviceProvider.GetService(typeof(IResponseHandler)) as IResponseHandler;
                 var requestInfo = CreateGetRequestInformation(q => {
                 });
                 await RequestAdapter.SendNoContentAsync(requestInfo, responseHandler);
                 // Print request output. What if the request has no return?
-                var response = responseHandler.Value as HttpResponseMessage;
-                var formatter = OutputFormatterFactory.Instance.GetFormatter(output);
-                if (response.IsSuccessStatusCode) {
-                    var content = await response.Content.ReadAsStringAsync();
+                var responseProcessor = serviceProvider.GetService(typeof(IResponseProcessor)) as IResponseProcessor;
+                var factory = serviceProvider.GetService(typeof(IOutputFormatterFactory)) as IOutputFormatterFactory;
+                var formatter = factory.GetFormatter(output);
+                if (responseProcessor.IsResponseSuccessful(responseHandler)) {
+                    var content = await responseProcessor.ExtractStringResponseAsync(responseHandler);
                     formatter.WriteOutput(content, console);
                 }
                 else {
-                    var content = await response.Content.ReadAsStringAsync();
+                    var content = await responseProcessor.ExtractStringResponseAsync(responseHandler);
                     console.WriteLine(content);
                 }
-            }, unifiedRoleAssignmentIdOption, outputOption);
+            }, unifiedRoleAssignmentIdOption, outputOption, new ServiceProviderBinder());
             return command;
         }
         /// <summary>
@@ -89,8 +90,8 @@ namespace ApiSdk.RoleManagement.Directory.RoleAssignments.Item.DirectoryScope.Re
             };
             bodyOption.IsRequired = true;
             command.AddOption(bodyOption);
-            command.SetHandler(async (string unifiedRoleAssignmentId, string body, IConsole console) => {
-                var responseHandler = new NativeResponseHandler();
+            command.SetHandler(async (string unifiedRoleAssignmentId, string body, IServiceProvider serviceProvider, IConsole console) => {
+                var responseHandler = serviceProvider.GetService(typeof(IResponseHandler)) as IResponseHandler;
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<ApiSdk.RoleManagement.Directory.RoleAssignments.Item.DirectoryScope.Ref.Ref>();
@@ -99,7 +100,7 @@ namespace ApiSdk.RoleManagement.Directory.RoleAssignments.Item.DirectoryScope.Re
                 await RequestAdapter.SendNoContentAsync(requestInfo, responseHandler);
                 // Print request output. What if the request has no return?
                 console.WriteLine("Success");
-            }, unifiedRoleAssignmentIdOption, bodyOption);
+            }, unifiedRoleAssignmentIdOption, bodyOption, new ServiceProviderBinder());
             return command;
         }
         /// <summary>

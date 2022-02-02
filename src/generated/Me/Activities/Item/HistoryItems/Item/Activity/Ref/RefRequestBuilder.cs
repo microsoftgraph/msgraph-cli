@@ -1,3 +1,4 @@
+using Microsoft.Graph.Cli.Core.Binding;
 using Microsoft.Graph.Cli.Core.IO;
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
@@ -6,7 +7,6 @@ using System.Collections.Generic;
 using System.CommandLine;
 using System.IO;
 using System.Linq;
-using System.Net.Http;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
@@ -34,14 +34,14 @@ namespace ApiSdk.Me.Activities.Item.HistoryItems.Item.Activity.Ref {
             };
             activityHistoryItemIdOption.IsRequired = true;
             command.AddOption(activityHistoryItemIdOption);
-            command.SetHandler(async (string userActivityId, string activityHistoryItemId, IConsole console) => {
-                var responseHandler = new NativeResponseHandler();
+            command.SetHandler(async (string userActivityId, string activityHistoryItemId, IServiceProvider serviceProvider, IConsole console) => {
+                var responseHandler = serviceProvider.GetService(typeof(IResponseHandler)) as IResponseHandler;
                 var requestInfo = CreateDeleteRequestInformation(q => {
                 });
                 await RequestAdapter.SendNoContentAsync(requestInfo, responseHandler);
                 // Print request output. What if the request has no return?
                 console.WriteLine("Success");
-            }, userActivityIdOption, activityHistoryItemIdOption);
+            }, userActivityIdOption, activityHistoryItemIdOption, new ServiceProviderBinder());
             return command;
         }
         /// <summary>
@@ -63,23 +63,24 @@ namespace ApiSdk.Me.Activities.Item.HistoryItems.Item.Activity.Ref {
                 IsRequired = true
             };
             command.AddOption(outputOption);
-            command.SetHandler(async (string userActivityId, string activityHistoryItemId, FormatterType output, IConsole console) => {
-                var responseHandler = new NativeResponseHandler();
+            command.SetHandler(async (string userActivityId, string activityHistoryItemId, FormatterType output, IServiceProvider serviceProvider, IConsole console) => {
+                var responseHandler = serviceProvider.GetService(typeof(IResponseHandler)) as IResponseHandler;
                 var requestInfo = CreateGetRequestInformation(q => {
                 });
                 await RequestAdapter.SendNoContentAsync(requestInfo, responseHandler);
                 // Print request output. What if the request has no return?
-                var response = responseHandler.Value as HttpResponseMessage;
-                var formatter = OutputFormatterFactory.Instance.GetFormatter(output);
-                if (response.IsSuccessStatusCode) {
-                    var content = await response.Content.ReadAsStringAsync();
+                var responseProcessor = serviceProvider.GetService(typeof(IResponseProcessor)) as IResponseProcessor;
+                var factory = serviceProvider.GetService(typeof(IOutputFormatterFactory)) as IOutputFormatterFactory;
+                var formatter = factory.GetFormatter(output);
+                if (responseProcessor.IsResponseSuccessful(responseHandler)) {
+                    var content = await responseProcessor.ExtractStringResponseAsync(responseHandler);
                     formatter.WriteOutput(content, console);
                 }
                 else {
-                    var content = await response.Content.ReadAsStringAsync();
+                    var content = await responseProcessor.ExtractStringResponseAsync(responseHandler);
                     console.WriteLine(content);
                 }
-            }, userActivityIdOption, activityHistoryItemIdOption, outputOption);
+            }, userActivityIdOption, activityHistoryItemIdOption, outputOption, new ServiceProviderBinder());
             return command;
         }
         /// <summary>
@@ -101,8 +102,8 @@ namespace ApiSdk.Me.Activities.Item.HistoryItems.Item.Activity.Ref {
             };
             bodyOption.IsRequired = true;
             command.AddOption(bodyOption);
-            command.SetHandler(async (string userActivityId, string activityHistoryItemId, string body, IConsole console) => {
-                var responseHandler = new NativeResponseHandler();
+            command.SetHandler(async (string userActivityId, string activityHistoryItemId, string body, IServiceProvider serviceProvider, IConsole console) => {
+                var responseHandler = serviceProvider.GetService(typeof(IResponseHandler)) as IResponseHandler;
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<ApiSdk.Me.Activities.Item.HistoryItems.Item.Activity.Ref.Ref>();
@@ -111,7 +112,7 @@ namespace ApiSdk.Me.Activities.Item.HistoryItems.Item.Activity.Ref {
                 await RequestAdapter.SendNoContentAsync(requestInfo, responseHandler);
                 // Print request output. What if the request has no return?
                 console.WriteLine("Success");
-            }, userActivityIdOption, activityHistoryItemIdOption, bodyOption);
+            }, userActivityIdOption, activityHistoryItemIdOption, bodyOption, new ServiceProviderBinder());
             return command;
         }
         /// <summary>

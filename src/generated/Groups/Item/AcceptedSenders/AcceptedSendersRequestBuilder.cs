@@ -1,4 +1,5 @@
 using ApiSdk.Groups.Item.AcceptedSenders.Ref;
+using Microsoft.Graph.Cli.Core.Binding;
 using Microsoft.Graph.Cli.Core.IO;
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
@@ -7,7 +8,6 @@ using System.Collections.Generic;
 using System.CommandLine;
 using System.IO;
 using System.Linq;
-using System.Net.Http;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
@@ -61,8 +61,8 @@ namespace ApiSdk.Groups.Item.AcceptedSenders {
                 IsRequired = true
             };
             command.AddOption(outputOption);
-            command.SetHandler(async (string groupId, int? top, int? skip, string filter, bool? count, string[] orderby, string[] select, FormatterType output, IConsole console) => {
-                var responseHandler = new NativeResponseHandler();
+            command.SetHandler(async (string groupId, int? top, int? skip, string filter, bool? count, string[] orderby, string[] select, FormatterType output, IServiceProvider serviceProvider, IConsole console) => {
+                var responseHandler = serviceProvider.GetService(typeof(IResponseHandler)) as IResponseHandler;
                 var requestInfo = CreateGetRequestInformation(q => {
                     q.Top = top;
                     q.Skip = skip;
@@ -73,17 +73,18 @@ namespace ApiSdk.Groups.Item.AcceptedSenders {
                 });
                 await RequestAdapter.SendNoContentAsync(requestInfo, responseHandler);
                 // Print request output. What if the request has no return?
-                var response = responseHandler.Value as HttpResponseMessage;
-                var formatter = OutputFormatterFactory.Instance.GetFormatter(output);
-                if (response.IsSuccessStatusCode) {
-                    var content = await response.Content.ReadAsStringAsync();
+                var responseProcessor = serviceProvider.GetService(typeof(IResponseProcessor)) as IResponseProcessor;
+                var factory = serviceProvider.GetService(typeof(IOutputFormatterFactory)) as IOutputFormatterFactory;
+                var formatter = factory.GetFormatter(output);
+                if (responseProcessor.IsResponseSuccessful(responseHandler)) {
+                    var content = await responseProcessor.ExtractStringResponseAsync(responseHandler);
                     formatter.WriteOutput(content, console);
                 }
                 else {
-                    var content = await response.Content.ReadAsStringAsync();
+                    var content = await responseProcessor.ExtractStringResponseAsync(responseHandler);
                     console.WriteLine(content);
                 }
-            }, groupIdOption, topOption, skipOption, filterOption, countOption, orderbyOption, selectOption, outputOption);
+            }, groupIdOption, topOption, skipOption, filterOption, countOption, orderbyOption, selectOption, outputOption, new ServiceProviderBinder());
             return command;
         }
         public Command BuildRefCommand() {

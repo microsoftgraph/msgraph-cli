@@ -1,3 +1,4 @@
+using Microsoft.Graph.Cli.Core.Binding;
 using Microsoft.Graph.Cli.Core.IO;
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
@@ -6,7 +7,6 @@ using System.Collections.Generic;
 using System.CommandLine;
 using System.IO;
 using System.Linq;
-using System.Net.Http;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
@@ -46,8 +46,8 @@ namespace ApiSdk.Groups.Item.Conversations.Item.Threads.Item.Posts.Item.InReplyT
             };
             bodyOption.IsRequired = true;
             command.AddOption(bodyOption);
-            command.SetHandler(async (string groupId, string conversationId, string conversationThreadId, string postId, string body, IConsole console) => {
-                var responseHandler = new NativeResponseHandler();
+            command.SetHandler(async (string groupId, string conversationId, string conversationThreadId, string postId, string body, IServiceProvider serviceProvider, IConsole console) => {
+                var responseHandler = serviceProvider.GetService(typeof(IResponseHandler)) as IResponseHandler;
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<ForwardRequestBody>();
@@ -56,7 +56,7 @@ namespace ApiSdk.Groups.Item.Conversations.Item.Threads.Item.Posts.Item.InReplyT
                 await RequestAdapter.SendNoContentAsync(requestInfo, responseHandler);
                 // Print request output. What if the request has no return?
                 console.WriteLine("Success");
-            }, groupIdOption, conversationIdOption, conversationThreadIdOption, postIdOption, bodyOption);
+            }, groupIdOption, conversationIdOption, conversationThreadIdOption, postIdOption, bodyOption, new ServiceProviderBinder());
             return command;
         }
         /// <summary>

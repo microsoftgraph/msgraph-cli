@@ -66,6 +66,7 @@ using ApiSdk.TeamsTemplates;
 using ApiSdk.Teamwork;
 using ApiSdk.Users;
 using ApiSdk.Workbooks;
+using Microsoft.Graph.Cli.Core.Binding;
 using Microsoft.Graph.Cli.Core.IO;
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
@@ -75,7 +76,6 @@ using System.Collections.Generic;
 using System.CommandLine;
 using System.IO;
 using System.Linq;
-using System.Net.Http;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
@@ -529,14 +529,14 @@ namespace ApiSdk {
         public Command BuildGetCommand() {
             var command = new Command("get");
             // Create options for all the parameters
-            command.SetHandler(async (IConsole console) => {
-                var responseHandler = new NativeResponseHandler();
+            command.SetHandler(async (IServiceProvider serviceProvider, IConsole console) => {
+                var responseHandler = serviceProvider.GetService(typeof(IResponseHandler)) as IResponseHandler;
                 var requestInfo = CreateGetRequestInformation(q => {
                 });
                 await RequestAdapter.SendNoContentAsync(requestInfo, responseHandler);
                 // Print request output. What if the request has no return?
                 console.WriteLine("Success");
-            });
+            }, new ServiceProviderBinder());
             return command;
         }
         public Command BuildGroupLifecyclePoliciesCommand() {

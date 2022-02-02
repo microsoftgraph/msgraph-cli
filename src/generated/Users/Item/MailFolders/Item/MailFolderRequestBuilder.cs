@@ -6,6 +6,7 @@ using ApiSdk.Users.Item.MailFolders.Item.Messages;
 using ApiSdk.Users.Item.MailFolders.Item.Move;
 using ApiSdk.Users.Item.MailFolders.Item.MultiValueExtendedProperties;
 using ApiSdk.Users.Item.MailFolders.Item.SingleValueExtendedProperties;
+using Microsoft.Graph.Cli.Core.Binding;
 using Microsoft.Graph.Cli.Core.IO;
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
@@ -14,7 +15,6 @@ using System.Collections.Generic;
 using System.CommandLine;
 using System.IO;
 using System.Linq;
-using System.Net.Http;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
@@ -58,14 +58,14 @@ namespace ApiSdk.Users.Item.MailFolders.Item {
             };
             mailFolderIdOption.IsRequired = true;
             command.AddOption(mailFolderIdOption);
-            command.SetHandler(async (string userId, string mailFolderId, IConsole console) => {
-                var responseHandler = new NativeResponseHandler();
+            command.SetHandler(async (string userId, string mailFolderId, IServiceProvider serviceProvider, IConsole console) => {
+                var responseHandler = serviceProvider.GetService(typeof(IResponseHandler)) as IResponseHandler;
                 var requestInfo = CreateDeleteRequestInformation(q => {
                 });
                 await RequestAdapter.SendNoContentAsync(requestInfo, responseHandler);
                 // Print request output. What if the request has no return?
                 console.WriteLine("Success");
-            }, userIdOption, mailFolderIdOption);
+            }, userIdOption, mailFolderIdOption, new ServiceProviderBinder());
             return command;
         }
         /// <summary>
@@ -92,24 +92,25 @@ namespace ApiSdk.Users.Item.MailFolders.Item {
                 IsRequired = true
             };
             command.AddOption(outputOption);
-            command.SetHandler(async (string userId, string mailFolderId, string[] select, FormatterType output, IConsole console) => {
-                var responseHandler = new NativeResponseHandler();
+            command.SetHandler(async (string userId, string mailFolderId, string[] select, FormatterType output, IServiceProvider serviceProvider, IConsole console) => {
+                var responseHandler = serviceProvider.GetService(typeof(IResponseHandler)) as IResponseHandler;
                 var requestInfo = CreateGetRequestInformation(q => {
                     q.Select = select;
                 });
                 await RequestAdapter.SendNoContentAsync(requestInfo, responseHandler);
                 // Print request output. What if the request has no return?
-                var response = responseHandler.Value as HttpResponseMessage;
-                var formatter = OutputFormatterFactory.Instance.GetFormatter(output);
-                if (response.IsSuccessStatusCode) {
-                    var content = await response.Content.ReadAsStringAsync();
+                var responseProcessor = serviceProvider.GetService(typeof(IResponseProcessor)) as IResponseProcessor;
+                var factory = serviceProvider.GetService(typeof(IOutputFormatterFactory)) as IOutputFormatterFactory;
+                var formatter = factory.GetFormatter(output);
+                if (responseProcessor.IsResponseSuccessful(responseHandler)) {
+                    var content = await responseProcessor.ExtractStringResponseAsync(responseHandler);
                     formatter.WriteOutput(content, console);
                 }
                 else {
-                    var content = await response.Content.ReadAsStringAsync();
+                    var content = await responseProcessor.ExtractStringResponseAsync(responseHandler);
                     console.WriteLine(content);
                 }
-            }, userIdOption, mailFolderIdOption, selectOption, outputOption);
+            }, userIdOption, mailFolderIdOption, selectOption, outputOption, new ServiceProviderBinder());
             return command;
         }
         public Command BuildMessageRulesCommand() {
@@ -167,8 +168,8 @@ namespace ApiSdk.Users.Item.MailFolders.Item {
             };
             bodyOption.IsRequired = true;
             command.AddOption(bodyOption);
-            command.SetHandler(async (string userId, string mailFolderId, string body, IConsole console) => {
-                var responseHandler = new NativeResponseHandler();
+            command.SetHandler(async (string userId, string mailFolderId, string body, IServiceProvider serviceProvider, IConsole console) => {
+                var responseHandler = serviceProvider.GetService(typeof(IResponseHandler)) as IResponseHandler;
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<MailFolder>();
@@ -177,7 +178,7 @@ namespace ApiSdk.Users.Item.MailFolders.Item {
                 await RequestAdapter.SendNoContentAsync(requestInfo, responseHandler);
                 // Print request output. What if the request has no return?
                 console.WriteLine("Success");
-            }, userIdOption, mailFolderIdOption, bodyOption);
+            }, userIdOption, mailFolderIdOption, bodyOption, new ServiceProviderBinder());
             return command;
         }
         public Command BuildSingleValueExtendedPropertiesCommand() {
