@@ -34,7 +34,7 @@
             "request": "launch",
             "preLaunchTask": "build",
             "program": "${workspaceFolder}/src/bin/Debug/net6.0/mgc.dll",
-            "args": ["me", "get"],
+            "args": ["me", "get", "--output", "TABLE"],
             "cwd": "${workspaceFolder}/src",
             "envFile": "${workspaceFolder}/src/.env",
             "console": "internalConsole",
