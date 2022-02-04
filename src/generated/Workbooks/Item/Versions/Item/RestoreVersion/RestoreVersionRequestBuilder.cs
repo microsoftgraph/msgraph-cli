@@ -34,14 +34,12 @@ namespace ApiSdk.Workbooks.Item.Versions.Item.RestoreVersion {
             };
             driveItemVersionIdOption.IsRequired = true;
             command.AddOption(driveItemVersionIdOption);
-            command.SetHandler(async (string driveItemId, string driveItemVersionId, IServiceProvider serviceProvider, IConsole console) => {
-                var responseHandler = serviceProvider.GetService(typeof(IResponseHandler)) as IResponseHandler;
+            command.SetHandler(async (string driveItemId, string driveItemVersionId, IOutputFormatterFactory outputFormatterFactory, IConsole console) => {
                 var requestInfo = CreatePostRequestInformation(q => {
                 });
-                await RequestAdapter.SendNoContentAsync(requestInfo, responseHandler);
-                // Print request output. What if the request has no return?
+                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 console.WriteLine("Success");
-            }, driveItemIdOption, driveItemVersionIdOption, new ServiceProviderBinder());
+            }, driveItemIdOption, driveItemVersionIdOption, new OutputFormatterFactoryBinder());
             return command;
         }
         /// <summary>

@@ -30,14 +30,12 @@ namespace ApiSdk.Solutions.BookingBusinesses.Item.Unpublish {
             };
             bookingBusinessIdOption.IsRequired = true;
             command.AddOption(bookingBusinessIdOption);
-            command.SetHandler(async (string bookingBusinessId, IServiceProvider serviceProvider, IConsole console) => {
-                var responseHandler = serviceProvider.GetService(typeof(IResponseHandler)) as IResponseHandler;
+            command.SetHandler(async (string bookingBusinessId, IOutputFormatterFactory outputFormatterFactory, IConsole console) => {
                 var requestInfo = CreatePostRequestInformation(q => {
                 });
-                await RequestAdapter.SendNoContentAsync(requestInfo, responseHandler);
-                // Print request output. What if the request has no return?
+                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 console.WriteLine("Success");
-            }, bookingBusinessIdOption, new ServiceProviderBinder());
+            }, bookingBusinessIdOption, new OutputFormatterFactoryBinder());
             return command;
         }
         /// <summary>

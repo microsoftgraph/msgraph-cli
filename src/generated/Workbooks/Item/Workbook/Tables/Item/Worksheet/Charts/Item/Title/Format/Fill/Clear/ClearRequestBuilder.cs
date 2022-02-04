@@ -38,14 +38,12 @@ namespace ApiSdk.Workbooks.Item.Workbook.Tables.Item.Worksheet.Charts.Item.Title
             };
             workbookChartIdOption.IsRequired = true;
             command.AddOption(workbookChartIdOption);
-            command.SetHandler(async (string driveItemId, string workbookTableId, string workbookChartId, IServiceProvider serviceProvider, IConsole console) => {
-                var responseHandler = serviceProvider.GetService(typeof(IResponseHandler)) as IResponseHandler;
+            command.SetHandler(async (string driveItemId, string workbookTableId, string workbookChartId, IOutputFormatterFactory outputFormatterFactory, IConsole console) => {
                 var requestInfo = CreatePostRequestInformation(q => {
                 });
-                await RequestAdapter.SendNoContentAsync(requestInfo, responseHandler);
-                // Print request output. What if the request has no return?
+                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 console.WriteLine("Success");
-            }, driveItemIdOption, workbookTableIdOption, workbookChartIdOption, new ServiceProviderBinder());
+            }, driveItemIdOption, workbookTableIdOption, workbookChartIdOption, new OutputFormatterFactoryBinder());
             return command;
         }
         /// <summary>

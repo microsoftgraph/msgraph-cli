@@ -34,14 +34,12 @@ namespace ApiSdk.Workbooks.Item.Workbook.Names.Item.Worksheet.Protection.Unprote
             };
             workbookNamedItemIdOption.IsRequired = true;
             command.AddOption(workbookNamedItemIdOption);
-            command.SetHandler(async (string driveItemId, string workbookNamedItemId, IServiceProvider serviceProvider, IConsole console) => {
-                var responseHandler = serviceProvider.GetService(typeof(IResponseHandler)) as IResponseHandler;
+            command.SetHandler(async (string driveItemId, string workbookNamedItemId, IOutputFormatterFactory outputFormatterFactory, IConsole console) => {
                 var requestInfo = CreatePostRequestInformation(q => {
                 });
-                await RequestAdapter.SendNoContentAsync(requestInfo, responseHandler);
-                // Print request output. What if the request has no return?
+                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 console.WriteLine("Success");
-            }, driveItemIdOption, workbookNamedItemIdOption, new ServiceProviderBinder());
+            }, driveItemIdOption, workbookNamedItemIdOption, new OutputFormatterFactoryBinder());
             return command;
         }
         /// <summary>

@@ -50,14 +50,12 @@ namespace ApiSdk.Workbooks.Item.Workbook.Names.Item.Worksheet.Charts.Item.Series
             };
             workbookChartSeriesIdOption.IsRequired = true;
             command.AddOption(workbookChartSeriesIdOption);
-            command.SetHandler(async (string driveItemId, string workbookNamedItemId, string workbookChartId, string workbookChartSeriesId, IServiceProvider serviceProvider, IConsole console) => {
-                var responseHandler = serviceProvider.GetService(typeof(IResponseHandler)) as IResponseHandler;
+            command.SetHandler(async (string driveItemId, string workbookNamedItemId, string workbookChartId, string workbookChartSeriesId, IOutputFormatterFactory outputFormatterFactory, IConsole console) => {
                 var requestInfo = CreateDeleteRequestInformation(q => {
                 });
-                await RequestAdapter.SendNoContentAsync(requestInfo, responseHandler);
-                // Print request output. What if the request has no return?
+                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 console.WriteLine("Success");
-            }, driveItemIdOption, workbookNamedItemIdOption, workbookChartIdOption, workbookChartSeriesIdOption, new ServiceProviderBinder());
+            }, driveItemIdOption, workbookNamedItemIdOption, workbookChartIdOption, workbookChartSeriesIdOption, new OutputFormatterFactoryBinder());
             return command;
         }
         /// <summary>
@@ -97,26 +95,15 @@ namespace ApiSdk.Workbooks.Item.Workbook.Names.Item.Worksheet.Charts.Item.Series
                 IsRequired = true
             };
             command.AddOption(outputOption);
-            command.SetHandler(async (string driveItemId, string workbookNamedItemId, string workbookChartId, string workbookChartSeriesId, string[] select, string[] expand, FormatterType output, IServiceProvider serviceProvider, IConsole console) => {
-                var responseHandler = serviceProvider.GetService(typeof(IResponseHandler)) as IResponseHandler;
+            command.SetHandler(async (string driveItemId, string workbookNamedItemId, string workbookChartId, string workbookChartSeriesId, string[] select, string[] expand, FormatterType output, IOutputFormatterFactory outputFormatterFactory, IConsole console) => {
                 var requestInfo = CreateGetRequestInformation(q => {
                     q.Select = select;
                     q.Expand = expand;
                 });
-                await RequestAdapter.SendNoContentAsync(requestInfo, responseHandler);
-                // Print request output. What if the request has no return?
-                var responseProcessor = serviceProvider.GetService(typeof(IResponseProcessor)) as IResponseProcessor;
-                var factory = serviceProvider.GetService(typeof(IOutputFormatterFactory)) as IOutputFormatterFactory;
-                var formatter = factory.GetFormatter(output);
-                if (responseProcessor.IsResponseSuccessful(responseHandler)) {
-                    var content = await responseProcessor.ExtractStringResponseAsync(responseHandler);
-                    formatter.WriteOutput(content, console);
-                }
-                else {
-                    var content = await responseProcessor.ExtractStringResponseAsync(responseHandler);
-                    console.WriteLine(content);
-                }
-            }, driveItemIdOption, workbookNamedItemIdOption, workbookChartIdOption, workbookChartSeriesIdOption, selectOption, expandOption, outputOption, new ServiceProviderBinder());
+                var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                var formatter = outputFormatterFactory.GetFormatter(output);
+                formatter.WriteOutput(response, console);
+            }, driveItemIdOption, workbookNamedItemIdOption, workbookChartIdOption, workbookChartSeriesIdOption, selectOption, expandOption, outputOption, new OutputFormatterFactoryBinder());
             return command;
         }
         /// <summary>
@@ -146,17 +133,15 @@ namespace ApiSdk.Workbooks.Item.Workbook.Names.Item.Worksheet.Charts.Item.Series
             };
             bodyOption.IsRequired = true;
             command.AddOption(bodyOption);
-            command.SetHandler(async (string driveItemId, string workbookNamedItemId, string workbookChartId, string workbookChartSeriesId, string body, IServiceProvider serviceProvider, IConsole console) => {
-                var responseHandler = serviceProvider.GetService(typeof(IResponseHandler)) as IResponseHandler;
+            command.SetHandler(async (string driveItemId, string workbookNamedItemId, string workbookChartId, string workbookChartSeriesId, string body, IOutputFormatterFactory outputFormatterFactory, IConsole console) => {
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<WorkbookChartLineFormat>();
                 var requestInfo = CreatePatchRequestInformation(model, q => {
                 });
-                await RequestAdapter.SendNoContentAsync(requestInfo, responseHandler);
-                // Print request output. What if the request has no return?
+                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 console.WriteLine("Success");
-            }, driveItemIdOption, workbookNamedItemIdOption, workbookChartIdOption, workbookChartSeriesIdOption, bodyOption, new ServiceProviderBinder());
+            }, driveItemIdOption, workbookNamedItemIdOption, workbookChartIdOption, workbookChartSeriesIdOption, bodyOption, new OutputFormatterFactoryBinder());
             return command;
         }
         /// <summary>

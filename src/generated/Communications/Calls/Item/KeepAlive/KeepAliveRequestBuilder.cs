@@ -30,14 +30,12 @@ namespace ApiSdk.Communications.Calls.Item.KeepAlive {
             };
             callIdOption.IsRequired = true;
             command.AddOption(callIdOption);
-            command.SetHandler(async (string callId, IServiceProvider serviceProvider, IConsole console) => {
-                var responseHandler = serviceProvider.GetService(typeof(IResponseHandler)) as IResponseHandler;
+            command.SetHandler(async (string callId, IOutputFormatterFactory outputFormatterFactory, IConsole console) => {
                 var requestInfo = CreatePostRequestInformation(q => {
                 });
-                await RequestAdapter.SendNoContentAsync(requestInfo, responseHandler);
-                // Print request output. What if the request has no return?
+                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 console.WriteLine("Success");
-            }, callIdOption, new ServiceProviderBinder());
+            }, callIdOption, new OutputFormatterFactoryBinder());
             return command;
         }
         /// <summary>

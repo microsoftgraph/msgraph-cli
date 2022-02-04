@@ -42,24 +42,13 @@ namespace ApiSdk.Me.Calendars.Item.CalendarView.Item.Calendar.AllowedCalendarSha
                 IsRequired = true
             };
             command.AddOption(outputOption);
-            command.SetHandler(async (string calendarId, string eventId, string User, FormatterType output, IServiceProvider serviceProvider, IConsole console) => {
-                var responseHandler = serviceProvider.GetService(typeof(IResponseHandler)) as IResponseHandler;
+            command.SetHandler(async (string calendarId, string eventId, string User, FormatterType output, IOutputFormatterFactory outputFormatterFactory, IConsole console) => {
                 var requestInfo = CreateGetRequestInformation(q => {
                 });
-                await RequestAdapter.SendNoContentAsync(requestInfo, responseHandler);
-                // Print request output. What if the request has no return?
-                var responseProcessor = serviceProvider.GetService(typeof(IResponseProcessor)) as IResponseProcessor;
-                var factory = serviceProvider.GetService(typeof(IOutputFormatterFactory)) as IOutputFormatterFactory;
-                var formatter = factory.GetFormatter(output);
-                if (responseProcessor.IsResponseSuccessful(responseHandler)) {
-                    var content = await responseProcessor.ExtractStringResponseAsync(responseHandler);
-                    formatter.WriteOutput(content, console);
-                }
-                else {
-                    var content = await responseProcessor.ExtractStringResponseAsync(responseHandler);
-                    console.WriteLine(content);
-                }
-            }, calendarIdOption, eventIdOption, UserOption, outputOption, new ServiceProviderBinder());
+                var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                var formatter = outputFormatterFactory.GetFormatter(output);
+                formatter.WriteOutput(response, console);
+            }, calendarIdOption, eventIdOption, UserOption, outputOption, new OutputFormatterFactoryBinder());
             return command;
         }
         /// <summary>

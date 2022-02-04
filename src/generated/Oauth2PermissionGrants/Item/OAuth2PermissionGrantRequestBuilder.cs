@@ -31,14 +31,12 @@ namespace ApiSdk.Oauth2PermissionGrants.Item {
             };
             oAuth2PermissionGrantIdOption.IsRequired = true;
             command.AddOption(oAuth2PermissionGrantIdOption);
-            command.SetHandler(async (string oAuth2PermissionGrantId, IServiceProvider serviceProvider, IConsole console) => {
-                var responseHandler = serviceProvider.GetService(typeof(IResponseHandler)) as IResponseHandler;
+            command.SetHandler(async (string oAuth2PermissionGrantId, IOutputFormatterFactory outputFormatterFactory, IConsole console) => {
                 var requestInfo = CreateDeleteRequestInformation(q => {
                 });
-                await RequestAdapter.SendNoContentAsync(requestInfo, responseHandler);
-                // Print request output. What if the request has no return?
+                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 console.WriteLine("Success");
-            }, oAuth2PermissionGrantIdOption, new ServiceProviderBinder());
+            }, oAuth2PermissionGrantIdOption, new OutputFormatterFactoryBinder());
             return command;
         }
         /// <summary>
@@ -66,26 +64,15 @@ namespace ApiSdk.Oauth2PermissionGrants.Item {
                 IsRequired = true
             };
             command.AddOption(outputOption);
-            command.SetHandler(async (string oAuth2PermissionGrantId, string[] select, string[] expand, FormatterType output, IServiceProvider serviceProvider, IConsole console) => {
-                var responseHandler = serviceProvider.GetService(typeof(IResponseHandler)) as IResponseHandler;
+            command.SetHandler(async (string oAuth2PermissionGrantId, string[] select, string[] expand, FormatterType output, IOutputFormatterFactory outputFormatterFactory, IConsole console) => {
                 var requestInfo = CreateGetRequestInformation(q => {
                     q.Select = select;
                     q.Expand = expand;
                 });
-                await RequestAdapter.SendNoContentAsync(requestInfo, responseHandler);
-                // Print request output. What if the request has no return?
-                var responseProcessor = serviceProvider.GetService(typeof(IResponseProcessor)) as IResponseProcessor;
-                var factory = serviceProvider.GetService(typeof(IOutputFormatterFactory)) as IOutputFormatterFactory;
-                var formatter = factory.GetFormatter(output);
-                if (responseProcessor.IsResponseSuccessful(responseHandler)) {
-                    var content = await responseProcessor.ExtractStringResponseAsync(responseHandler);
-                    formatter.WriteOutput(content, console);
-                }
-                else {
-                    var content = await responseProcessor.ExtractStringResponseAsync(responseHandler);
-                    console.WriteLine(content);
-                }
-            }, oAuth2PermissionGrantIdOption, selectOption, expandOption, outputOption, new ServiceProviderBinder());
+                var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                var formatter = outputFormatterFactory.GetFormatter(output);
+                formatter.WriteOutput(response, console);
+            }, oAuth2PermissionGrantIdOption, selectOption, expandOption, outputOption, new OutputFormatterFactoryBinder());
             return command;
         }
         /// <summary>
@@ -103,17 +90,15 @@ namespace ApiSdk.Oauth2PermissionGrants.Item {
             };
             bodyOption.IsRequired = true;
             command.AddOption(bodyOption);
-            command.SetHandler(async (string oAuth2PermissionGrantId, string body, IServiceProvider serviceProvider, IConsole console) => {
-                var responseHandler = serviceProvider.GetService(typeof(IResponseHandler)) as IResponseHandler;
+            command.SetHandler(async (string oAuth2PermissionGrantId, string body, IOutputFormatterFactory outputFormatterFactory, IConsole console) => {
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<OAuth2PermissionGrant>();
                 var requestInfo = CreatePatchRequestInformation(model, q => {
                 });
-                await RequestAdapter.SendNoContentAsync(requestInfo, responseHandler);
-                // Print request output. What if the request has no return?
+                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 console.WriteLine("Success");
-            }, oAuth2PermissionGrantIdOption, bodyOption, new ServiceProviderBinder());
+            }, oAuth2PermissionGrantIdOption, bodyOption, new OutputFormatterFactoryBinder());
             return command;
         }
         /// <summary>

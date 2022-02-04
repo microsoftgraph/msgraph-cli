@@ -61,27 +61,16 @@ namespace ApiSdk.Users.Item.CalendarGroups.Item.Calendars.Item.CalendarView.Item
                 IsRequired = true
             };
             command.AddOption(outputOption);
-            command.SetHandler(async (string userId, string calendarGroupId, string calendarId, string eventId, string body, FormatterType output, IServiceProvider serviceProvider, IConsole console) => {
-                var responseHandler = serviceProvider.GetService(typeof(IResponseHandler)) as IResponseHandler;
+            command.SetHandler(async (string userId, string calendarGroupId, string calendarId, string eventId, string body, FormatterType output, IOutputFormatterFactory outputFormatterFactory, IConsole console) => {
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<Attachment>();
                 var requestInfo = CreatePostRequestInformation(model, q => {
                 });
-                await RequestAdapter.SendNoContentAsync(requestInfo, responseHandler);
-                // Print request output. What if the request has no return?
-                var responseProcessor = serviceProvider.GetService(typeof(IResponseProcessor)) as IResponseProcessor;
-                var factory = serviceProvider.GetService(typeof(IOutputFormatterFactory)) as IOutputFormatterFactory;
-                var formatter = factory.GetFormatter(output);
-                if (responseProcessor.IsResponseSuccessful(responseHandler)) {
-                    var content = await responseProcessor.ExtractStringResponseAsync(responseHandler);
-                    formatter.WriteOutput(content, console);
-                }
-                else {
-                    var content = await responseProcessor.ExtractStringResponseAsync(responseHandler);
-                    console.WriteLine(content);
-                }
-            }, userIdOption, calendarGroupIdOption, calendarIdOption, eventIdOption, bodyOption, outputOption, new ServiceProviderBinder());
+                var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                var formatter = outputFormatterFactory.GetFormatter(output);
+                formatter.WriteOutput(response, console);
+            }, userIdOption, calendarGroupIdOption, calendarIdOption, eventIdOption, bodyOption, outputOption, new OutputFormatterFactoryBinder());
             return command;
         }
         public Command BuildCreateUploadSessionCommand() {
@@ -148,8 +137,7 @@ namespace ApiSdk.Users.Item.CalendarGroups.Item.Calendars.Item.CalendarView.Item
                 IsRequired = true
             };
             command.AddOption(outputOption);
-            command.SetHandler(async (string userId, string calendarGroupId, string calendarId, string eventId, int? top, int? skip, string filter, bool? count, string[] orderby, string[] select, string[] expand, FormatterType output, IServiceProvider serviceProvider, IConsole console) => {
-                var responseHandler = serviceProvider.GetService(typeof(IResponseHandler)) as IResponseHandler;
+            command.SetHandler(async (string userId, string calendarGroupId, string calendarId, string eventId, int? top, int? skip, string filter, bool? count, string[] orderby, string[] select, string[] expand, FormatterType output, IOutputFormatterFactory outputFormatterFactory, IConsole console) => {
                 var requestInfo = CreateGetRequestInformation(q => {
                     q.Top = top;
                     q.Skip = skip;
@@ -159,20 +147,10 @@ namespace ApiSdk.Users.Item.CalendarGroups.Item.Calendars.Item.CalendarView.Item
                     q.Select = select;
                     q.Expand = expand;
                 });
-                await RequestAdapter.SendNoContentAsync(requestInfo, responseHandler);
-                // Print request output. What if the request has no return?
-                var responseProcessor = serviceProvider.GetService(typeof(IResponseProcessor)) as IResponseProcessor;
-                var factory = serviceProvider.GetService(typeof(IOutputFormatterFactory)) as IOutputFormatterFactory;
-                var formatter = factory.GetFormatter(output);
-                if (responseProcessor.IsResponseSuccessful(responseHandler)) {
-                    var content = await responseProcessor.ExtractStringResponseAsync(responseHandler);
-                    formatter.WriteOutput(content, console);
-                }
-                else {
-                    var content = await responseProcessor.ExtractStringResponseAsync(responseHandler);
-                    console.WriteLine(content);
-                }
-            }, userIdOption, calendarGroupIdOption, calendarIdOption, eventIdOption, topOption, skipOption, filterOption, countOption, orderbyOption, selectOption, expandOption, outputOption, new ServiceProviderBinder());
+                var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                var formatter = outputFormatterFactory.GetFormatter(output);
+                formatter.WriteOutput(response, console);
+            }, userIdOption, calendarGroupIdOption, calendarIdOption, eventIdOption, topOption, skipOption, filterOption, countOption, orderbyOption, selectOption, expandOption, outputOption, new OutputFormatterFactoryBinder());
             return command;
         }
         /// <summary>

@@ -42,14 +42,12 @@ namespace ApiSdk.Sites.Item.Lists.Item.Items.Item.Versions.Item.RestoreVersion {
             };
             listItemVersionIdOption.IsRequired = true;
             command.AddOption(listItemVersionIdOption);
-            command.SetHandler(async (string siteId, string listId, string listItemId, string listItemVersionId, IServiceProvider serviceProvider, IConsole console) => {
-                var responseHandler = serviceProvider.GetService(typeof(IResponseHandler)) as IResponseHandler;
+            command.SetHandler(async (string siteId, string listId, string listItemId, string listItemVersionId, IOutputFormatterFactory outputFormatterFactory, IConsole console) => {
                 var requestInfo = CreatePostRequestInformation(q => {
                 });
-                await RequestAdapter.SendNoContentAsync(requestInfo, responseHandler);
-                // Print request output. What if the request has no return?
+                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 console.WriteLine("Success");
-            }, siteIdOption, listIdOption, listItemIdOption, listItemVersionIdOption, new ServiceProviderBinder());
+            }, siteIdOption, listIdOption, listItemIdOption, listItemVersionIdOption, new OutputFormatterFactoryBinder());
             return command;
         }
         /// <summary>

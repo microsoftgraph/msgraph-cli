@@ -36,14 +36,12 @@ namespace ApiSdk.DeviceManagement.RoleDefinitions.Item.RoleAssignments.Item {
             };
             roleAssignmentIdOption.IsRequired = true;
             command.AddOption(roleAssignmentIdOption);
-            command.SetHandler(async (string roleDefinitionId, string roleAssignmentId, IServiceProvider serviceProvider, IConsole console) => {
-                var responseHandler = serviceProvider.GetService(typeof(IResponseHandler)) as IResponseHandler;
+            command.SetHandler(async (string roleDefinitionId, string roleAssignmentId, IOutputFormatterFactory outputFormatterFactory, IConsole console) => {
                 var requestInfo = CreateDeleteRequestInformation(q => {
                 });
-                await RequestAdapter.SendNoContentAsync(requestInfo, responseHandler);
-                // Print request output. What if the request has no return?
+                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 console.WriteLine("Success");
-            }, roleDefinitionIdOption, roleAssignmentIdOption, new ServiceProviderBinder());
+            }, roleDefinitionIdOption, roleAssignmentIdOption, new OutputFormatterFactoryBinder());
             return command;
         }
         /// <summary>
@@ -75,26 +73,15 @@ namespace ApiSdk.DeviceManagement.RoleDefinitions.Item.RoleAssignments.Item {
                 IsRequired = true
             };
             command.AddOption(outputOption);
-            command.SetHandler(async (string roleDefinitionId, string roleAssignmentId, string[] select, string[] expand, FormatterType output, IServiceProvider serviceProvider, IConsole console) => {
-                var responseHandler = serviceProvider.GetService(typeof(IResponseHandler)) as IResponseHandler;
+            command.SetHandler(async (string roleDefinitionId, string roleAssignmentId, string[] select, string[] expand, FormatterType output, IOutputFormatterFactory outputFormatterFactory, IConsole console) => {
                 var requestInfo = CreateGetRequestInformation(q => {
                     q.Select = select;
                     q.Expand = expand;
                 });
-                await RequestAdapter.SendNoContentAsync(requestInfo, responseHandler);
-                // Print request output. What if the request has no return?
-                var responseProcessor = serviceProvider.GetService(typeof(IResponseProcessor)) as IResponseProcessor;
-                var factory = serviceProvider.GetService(typeof(IOutputFormatterFactory)) as IOutputFormatterFactory;
-                var formatter = factory.GetFormatter(output);
-                if (responseProcessor.IsResponseSuccessful(responseHandler)) {
-                    var content = await responseProcessor.ExtractStringResponseAsync(responseHandler);
-                    formatter.WriteOutput(content, console);
-                }
-                else {
-                    var content = await responseProcessor.ExtractStringResponseAsync(responseHandler);
-                    console.WriteLine(content);
-                }
-            }, roleDefinitionIdOption, roleAssignmentIdOption, selectOption, expandOption, outputOption, new ServiceProviderBinder());
+                var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                var formatter = outputFormatterFactory.GetFormatter(output);
+                formatter.WriteOutput(response, console);
+            }, roleDefinitionIdOption, roleAssignmentIdOption, selectOption, expandOption, outputOption, new OutputFormatterFactoryBinder());
             return command;
         }
         /// <summary>
@@ -116,17 +103,15 @@ namespace ApiSdk.DeviceManagement.RoleDefinitions.Item.RoleAssignments.Item {
             };
             bodyOption.IsRequired = true;
             command.AddOption(bodyOption);
-            command.SetHandler(async (string roleDefinitionId, string roleAssignmentId, string body, IServiceProvider serviceProvider, IConsole console) => {
-                var responseHandler = serviceProvider.GetService(typeof(IResponseHandler)) as IResponseHandler;
+            command.SetHandler(async (string roleDefinitionId, string roleAssignmentId, string body, IOutputFormatterFactory outputFormatterFactory, IConsole console) => {
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<RoleAssignment>();
                 var requestInfo = CreatePatchRequestInformation(model, q => {
                 });
-                await RequestAdapter.SendNoContentAsync(requestInfo, responseHandler);
-                // Print request output. What if the request has no return?
+                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 console.WriteLine("Success");
-            }, roleDefinitionIdOption, roleAssignmentIdOption, bodyOption, new ServiceProviderBinder());
+            }, roleDefinitionIdOption, roleAssignmentIdOption, bodyOption, new OutputFormatterFactoryBinder());
             return command;
         }
         public Command BuildRoleDefinitionCommand() {

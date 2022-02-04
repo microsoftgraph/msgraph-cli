@@ -31,14 +31,12 @@ namespace ApiSdk.Me.Authentication.MicrosoftAuthenticatorMethods.Item.Device {
             };
             microsoftAuthenticatorAuthenticationMethodIdOption.IsRequired = true;
             command.AddOption(microsoftAuthenticatorAuthenticationMethodIdOption);
-            command.SetHandler(async (string microsoftAuthenticatorAuthenticationMethodId, IServiceProvider serviceProvider, IConsole console) => {
-                var responseHandler = serviceProvider.GetService(typeof(IResponseHandler)) as IResponseHandler;
+            command.SetHandler(async (string microsoftAuthenticatorAuthenticationMethodId, IOutputFormatterFactory outputFormatterFactory, IConsole console) => {
                 var requestInfo = CreateDeleteRequestInformation(q => {
                 });
-                await RequestAdapter.SendNoContentAsync(requestInfo, responseHandler);
-                // Print request output. What if the request has no return?
+                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 console.WriteLine("Success");
-            }, microsoftAuthenticatorAuthenticationMethodIdOption, new ServiceProviderBinder());
+            }, microsoftAuthenticatorAuthenticationMethodIdOption, new OutputFormatterFactoryBinder());
             return command;
         }
         /// <summary>
@@ -66,26 +64,15 @@ namespace ApiSdk.Me.Authentication.MicrosoftAuthenticatorMethods.Item.Device {
                 IsRequired = true
             };
             command.AddOption(outputOption);
-            command.SetHandler(async (string microsoftAuthenticatorAuthenticationMethodId, string[] select, string[] expand, FormatterType output, IServiceProvider serviceProvider, IConsole console) => {
-                var responseHandler = serviceProvider.GetService(typeof(IResponseHandler)) as IResponseHandler;
+            command.SetHandler(async (string microsoftAuthenticatorAuthenticationMethodId, string[] select, string[] expand, FormatterType output, IOutputFormatterFactory outputFormatterFactory, IConsole console) => {
                 var requestInfo = CreateGetRequestInformation(q => {
                     q.Select = select;
                     q.Expand = expand;
                 });
-                await RequestAdapter.SendNoContentAsync(requestInfo, responseHandler);
-                // Print request output. What if the request has no return?
-                var responseProcessor = serviceProvider.GetService(typeof(IResponseProcessor)) as IResponseProcessor;
-                var factory = serviceProvider.GetService(typeof(IOutputFormatterFactory)) as IOutputFormatterFactory;
-                var formatter = factory.GetFormatter(output);
-                if (responseProcessor.IsResponseSuccessful(responseHandler)) {
-                    var content = await responseProcessor.ExtractStringResponseAsync(responseHandler);
-                    formatter.WriteOutput(content, console);
-                }
-                else {
-                    var content = await responseProcessor.ExtractStringResponseAsync(responseHandler);
-                    console.WriteLine(content);
-                }
-            }, microsoftAuthenticatorAuthenticationMethodIdOption, selectOption, expandOption, outputOption, new ServiceProviderBinder());
+                var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                var formatter = outputFormatterFactory.GetFormatter(output);
+                formatter.WriteOutput(response, console);
+            }, microsoftAuthenticatorAuthenticationMethodIdOption, selectOption, expandOption, outputOption, new OutputFormatterFactoryBinder());
             return command;
         }
         /// <summary>
@@ -103,17 +90,15 @@ namespace ApiSdk.Me.Authentication.MicrosoftAuthenticatorMethods.Item.Device {
             };
             bodyOption.IsRequired = true;
             command.AddOption(bodyOption);
-            command.SetHandler(async (string microsoftAuthenticatorAuthenticationMethodId, string body, IServiceProvider serviceProvider, IConsole console) => {
-                var responseHandler = serviceProvider.GetService(typeof(IResponseHandler)) as IResponseHandler;
+            command.SetHandler(async (string microsoftAuthenticatorAuthenticationMethodId, string body, IOutputFormatterFactory outputFormatterFactory, IConsole console) => {
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<ApiSdk.Models.Microsoft.Graph.Device>();
                 var requestInfo = CreatePatchRequestInformation(model, q => {
                 });
-                await RequestAdapter.SendNoContentAsync(requestInfo, responseHandler);
-                // Print request output. What if the request has no return?
+                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 console.WriteLine("Success");
-            }, microsoftAuthenticatorAuthenticationMethodIdOption, bodyOption, new ServiceProviderBinder());
+            }, microsoftAuthenticatorAuthenticationMethodIdOption, bodyOption, new OutputFormatterFactoryBinder());
             return command;
         }
         /// <summary>

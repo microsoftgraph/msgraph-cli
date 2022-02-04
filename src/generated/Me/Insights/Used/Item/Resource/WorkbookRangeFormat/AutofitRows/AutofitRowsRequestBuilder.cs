@@ -30,14 +30,12 @@ namespace ApiSdk.Me.Insights.Used.Item.Resource.WorkbookRangeFormat.AutofitRows 
             };
             usedInsightIdOption.IsRequired = true;
             command.AddOption(usedInsightIdOption);
-            command.SetHandler(async (string usedInsightId, IServiceProvider serviceProvider, IConsole console) => {
-                var responseHandler = serviceProvider.GetService(typeof(IResponseHandler)) as IResponseHandler;
+            command.SetHandler(async (string usedInsightId, IOutputFormatterFactory outputFormatterFactory, IConsole console) => {
                 var requestInfo = CreatePostRequestInformation(q => {
                 });
-                await RequestAdapter.SendNoContentAsync(requestInfo, responseHandler);
-                // Print request output. What if the request has no return?
+                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 console.WriteLine("Success");
-            }, usedInsightIdOption, new ServiceProviderBinder());
+            }, usedInsightIdOption, new OutputFormatterFactoryBinder());
             return command;
         }
         /// <summary>

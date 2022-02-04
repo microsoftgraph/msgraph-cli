@@ -30,14 +30,12 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.Assignments.Item.Acces
             };
             accessPackageAssignmentIdOption.IsRequired = true;
             command.AddOption(accessPackageAssignmentIdOption);
-            command.SetHandler(async (string accessPackageAssignmentId, IServiceProvider serviceProvider, IConsole console) => {
-                var responseHandler = serviceProvider.GetService(typeof(IResponseHandler)) as IResponseHandler;
+            command.SetHandler(async (string accessPackageAssignmentId, IOutputFormatterFactory outputFormatterFactory, IConsole console) => {
                 var requestInfo = CreateDeleteRequestInformation(q => {
                 });
-                await RequestAdapter.SendNoContentAsync(requestInfo, responseHandler);
-                // Print request output. What if the request has no return?
+                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 console.WriteLine("Success");
-            }, accessPackageAssignmentIdOption, new ServiceProviderBinder());
+            }, accessPackageAssignmentIdOption, new OutputFormatterFactoryBinder());
             return command;
         }
         /// <summary>
@@ -55,24 +53,13 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.Assignments.Item.Acces
                 IsRequired = true
             };
             command.AddOption(outputOption);
-            command.SetHandler(async (string accessPackageAssignmentId, FormatterType output, IServiceProvider serviceProvider, IConsole console) => {
-                var responseHandler = serviceProvider.GetService(typeof(IResponseHandler)) as IResponseHandler;
+            command.SetHandler(async (string accessPackageAssignmentId, FormatterType output, IOutputFormatterFactory outputFormatterFactory, IConsole console) => {
                 var requestInfo = CreateGetRequestInformation(q => {
                 });
-                await RequestAdapter.SendNoContentAsync(requestInfo, responseHandler);
-                // Print request output. What if the request has no return?
-                var responseProcessor = serviceProvider.GetService(typeof(IResponseProcessor)) as IResponseProcessor;
-                var factory = serviceProvider.GetService(typeof(IOutputFormatterFactory)) as IOutputFormatterFactory;
-                var formatter = factory.GetFormatter(output);
-                if (responseProcessor.IsResponseSuccessful(responseHandler)) {
-                    var content = await responseProcessor.ExtractStringResponseAsync(responseHandler);
-                    formatter.WriteOutput(content, console);
-                }
-                else {
-                    var content = await responseProcessor.ExtractStringResponseAsync(responseHandler);
-                    console.WriteLine(content);
-                }
-            }, accessPackageAssignmentIdOption, outputOption, new ServiceProviderBinder());
+                var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                var formatter = outputFormatterFactory.GetFormatter(output);
+                formatter.WriteOutput(response, console);
+            }, accessPackageAssignmentIdOption, outputOption, new OutputFormatterFactoryBinder());
             return command;
         }
         /// <summary>
@@ -90,17 +77,15 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.Assignments.Item.Acces
             };
             bodyOption.IsRequired = true;
             command.AddOption(bodyOption);
-            command.SetHandler(async (string accessPackageAssignmentId, string body, IServiceProvider serviceProvider, IConsole console) => {
-                var responseHandler = serviceProvider.GetService(typeof(IResponseHandler)) as IResponseHandler;
+            command.SetHandler(async (string accessPackageAssignmentId, string body, IOutputFormatterFactory outputFormatterFactory, IConsole console) => {
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<ApiSdk.IdentityGovernance.EntitlementManagement.Assignments.Item.AccessPackage.Ref.Ref>();
                 var requestInfo = CreatePutRequestInformation(model, q => {
                 });
-                await RequestAdapter.SendNoContentAsync(requestInfo, responseHandler);
-                // Print request output. What if the request has no return?
+                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 console.WriteLine("Success");
-            }, accessPackageAssignmentIdOption, bodyOption, new ServiceProviderBinder());
+            }, accessPackageAssignmentIdOption, bodyOption, new OutputFormatterFactoryBinder());
             return command;
         }
         /// <summary>

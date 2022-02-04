@@ -34,14 +34,12 @@ namespace ApiSdk.Sites.Item.ContentTypes.Item.Publish {
             };
             contentTypeIdOption.IsRequired = true;
             command.AddOption(contentTypeIdOption);
-            command.SetHandler(async (string siteId, string contentTypeId, IServiceProvider serviceProvider, IConsole console) => {
-                var responseHandler = serviceProvider.GetService(typeof(IResponseHandler)) as IResponseHandler;
+            command.SetHandler(async (string siteId, string contentTypeId, IOutputFormatterFactory outputFormatterFactory, IConsole console) => {
                 var requestInfo = CreatePostRequestInformation(q => {
                 });
-                await RequestAdapter.SendNoContentAsync(requestInfo, responseHandler);
-                // Print request output. What if the request has no return?
+                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 console.WriteLine("Success");
-            }, siteIdOption, contentTypeIdOption, new ServiceProviderBinder());
+            }, siteIdOption, contentTypeIdOption, new OutputFormatterFactoryBinder());
             return command;
         }
         /// <summary>

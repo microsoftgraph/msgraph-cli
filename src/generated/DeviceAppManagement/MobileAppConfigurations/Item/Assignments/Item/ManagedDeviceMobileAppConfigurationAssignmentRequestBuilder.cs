@@ -35,14 +35,12 @@ namespace ApiSdk.DeviceAppManagement.MobileAppConfigurations.Item.Assignments.It
             };
             managedDeviceMobileAppConfigurationAssignmentIdOption.IsRequired = true;
             command.AddOption(managedDeviceMobileAppConfigurationAssignmentIdOption);
-            command.SetHandler(async (string managedDeviceMobileAppConfigurationId, string managedDeviceMobileAppConfigurationAssignmentId, IServiceProvider serviceProvider, IConsole console) => {
-                var responseHandler = serviceProvider.GetService(typeof(IResponseHandler)) as IResponseHandler;
+            command.SetHandler(async (string managedDeviceMobileAppConfigurationId, string managedDeviceMobileAppConfigurationAssignmentId, IOutputFormatterFactory outputFormatterFactory, IConsole console) => {
                 var requestInfo = CreateDeleteRequestInformation(q => {
                 });
-                await RequestAdapter.SendNoContentAsync(requestInfo, responseHandler);
-                // Print request output. What if the request has no return?
+                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 console.WriteLine("Success");
-            }, managedDeviceMobileAppConfigurationIdOption, managedDeviceMobileAppConfigurationAssignmentIdOption, new ServiceProviderBinder());
+            }, managedDeviceMobileAppConfigurationIdOption, managedDeviceMobileAppConfigurationAssignmentIdOption, new OutputFormatterFactoryBinder());
             return command;
         }
         /// <summary>
@@ -74,26 +72,15 @@ namespace ApiSdk.DeviceAppManagement.MobileAppConfigurations.Item.Assignments.It
                 IsRequired = true
             };
             command.AddOption(outputOption);
-            command.SetHandler(async (string managedDeviceMobileAppConfigurationId, string managedDeviceMobileAppConfigurationAssignmentId, string[] select, string[] expand, FormatterType output, IServiceProvider serviceProvider, IConsole console) => {
-                var responseHandler = serviceProvider.GetService(typeof(IResponseHandler)) as IResponseHandler;
+            command.SetHandler(async (string managedDeviceMobileAppConfigurationId, string managedDeviceMobileAppConfigurationAssignmentId, string[] select, string[] expand, FormatterType output, IOutputFormatterFactory outputFormatterFactory, IConsole console) => {
                 var requestInfo = CreateGetRequestInformation(q => {
                     q.Select = select;
                     q.Expand = expand;
                 });
-                await RequestAdapter.SendNoContentAsync(requestInfo, responseHandler);
-                // Print request output. What if the request has no return?
-                var responseProcessor = serviceProvider.GetService(typeof(IResponseProcessor)) as IResponseProcessor;
-                var factory = serviceProvider.GetService(typeof(IOutputFormatterFactory)) as IOutputFormatterFactory;
-                var formatter = factory.GetFormatter(output);
-                if (responseProcessor.IsResponseSuccessful(responseHandler)) {
-                    var content = await responseProcessor.ExtractStringResponseAsync(responseHandler);
-                    formatter.WriteOutput(content, console);
-                }
-                else {
-                    var content = await responseProcessor.ExtractStringResponseAsync(responseHandler);
-                    console.WriteLine(content);
-                }
-            }, managedDeviceMobileAppConfigurationIdOption, managedDeviceMobileAppConfigurationAssignmentIdOption, selectOption, expandOption, outputOption, new ServiceProviderBinder());
+                var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                var formatter = outputFormatterFactory.GetFormatter(output);
+                formatter.WriteOutput(response, console);
+            }, managedDeviceMobileAppConfigurationIdOption, managedDeviceMobileAppConfigurationAssignmentIdOption, selectOption, expandOption, outputOption, new OutputFormatterFactoryBinder());
             return command;
         }
         /// <summary>
@@ -115,17 +102,15 @@ namespace ApiSdk.DeviceAppManagement.MobileAppConfigurations.Item.Assignments.It
             };
             bodyOption.IsRequired = true;
             command.AddOption(bodyOption);
-            command.SetHandler(async (string managedDeviceMobileAppConfigurationId, string managedDeviceMobileAppConfigurationAssignmentId, string body, IServiceProvider serviceProvider, IConsole console) => {
-                var responseHandler = serviceProvider.GetService(typeof(IResponseHandler)) as IResponseHandler;
+            command.SetHandler(async (string managedDeviceMobileAppConfigurationId, string managedDeviceMobileAppConfigurationAssignmentId, string body, IOutputFormatterFactory outputFormatterFactory, IConsole console) => {
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<ManagedDeviceMobileAppConfigurationAssignment>();
                 var requestInfo = CreatePatchRequestInformation(model, q => {
                 });
-                await RequestAdapter.SendNoContentAsync(requestInfo, responseHandler);
-                // Print request output. What if the request has no return?
+                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 console.WriteLine("Success");
-            }, managedDeviceMobileAppConfigurationIdOption, managedDeviceMobileAppConfigurationAssignmentIdOption, bodyOption, new ServiceProviderBinder());
+            }, managedDeviceMobileAppConfigurationIdOption, managedDeviceMobileAppConfigurationAssignmentIdOption, bodyOption, new OutputFormatterFactoryBinder());
             return command;
         }
         /// <summary>

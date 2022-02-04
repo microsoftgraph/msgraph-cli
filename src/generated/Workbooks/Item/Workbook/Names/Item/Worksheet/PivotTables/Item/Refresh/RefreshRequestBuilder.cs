@@ -38,14 +38,12 @@ namespace ApiSdk.Workbooks.Item.Workbook.Names.Item.Worksheet.PivotTables.Item.R
             };
             workbookPivotTableIdOption.IsRequired = true;
             command.AddOption(workbookPivotTableIdOption);
-            command.SetHandler(async (string driveItemId, string workbookNamedItemId, string workbookPivotTableId, IServiceProvider serviceProvider, IConsole console) => {
-                var responseHandler = serviceProvider.GetService(typeof(IResponseHandler)) as IResponseHandler;
+            command.SetHandler(async (string driveItemId, string workbookNamedItemId, string workbookPivotTableId, IOutputFormatterFactory outputFormatterFactory, IConsole console) => {
                 var requestInfo = CreatePostRequestInformation(q => {
                 });
-                await RequestAdapter.SendNoContentAsync(requestInfo, responseHandler);
-                // Print request output. What if the request has no return?
+                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 console.WriteLine("Success");
-            }, driveItemIdOption, workbookNamedItemIdOption, workbookPivotTableIdOption, new ServiceProviderBinder());
+            }, driveItemIdOption, workbookNamedItemIdOption, workbookPivotTableIdOption, new OutputFormatterFactoryBinder());
             return command;
         }
         /// <summary>

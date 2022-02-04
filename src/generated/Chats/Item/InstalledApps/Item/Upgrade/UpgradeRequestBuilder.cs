@@ -34,14 +34,12 @@ namespace ApiSdk.Chats.Item.InstalledApps.Item.Upgrade {
             };
             teamsAppInstallationIdOption.IsRequired = true;
             command.AddOption(teamsAppInstallationIdOption);
-            command.SetHandler(async (string chatId, string teamsAppInstallationId, IServiceProvider serviceProvider, IConsole console) => {
-                var responseHandler = serviceProvider.GetService(typeof(IResponseHandler)) as IResponseHandler;
+            command.SetHandler(async (string chatId, string teamsAppInstallationId, IOutputFormatterFactory outputFormatterFactory, IConsole console) => {
                 var requestInfo = CreatePostRequestInformation(q => {
                 });
-                await RequestAdapter.SendNoContentAsync(requestInfo, responseHandler);
-                // Print request output. What if the request has no return?
+                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 console.WriteLine("Success");
-            }, chatIdOption, teamsAppInstallationIdOption, new ServiceProviderBinder());
+            }, chatIdOption, teamsAppInstallationIdOption, new OutputFormatterFactoryBinder());
             return command;
         }
         /// <summary>

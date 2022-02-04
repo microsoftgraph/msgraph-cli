@@ -34,14 +34,12 @@ namespace ApiSdk.Users.Item.Insights.Trending.Item.Resource.WorkbookRange.Unmerg
             };
             trendingItemIdOption.IsRequired = true;
             command.AddOption(trendingItemIdOption);
-            command.SetHandler(async (string userId, string trendingItemId, IServiceProvider serviceProvider, IConsole console) => {
-                var responseHandler = serviceProvider.GetService(typeof(IResponseHandler)) as IResponseHandler;
+            command.SetHandler(async (string userId, string trendingItemId, IOutputFormatterFactory outputFormatterFactory, IConsole console) => {
                 var requestInfo = CreatePostRequestInformation(q => {
                 });
-                await RequestAdapter.SendNoContentAsync(requestInfo, responseHandler);
-                // Print request output. What if the request has no return?
+                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 console.WriteLine("Success");
-            }, userIdOption, trendingItemIdOption, new ServiceProviderBinder());
+            }, userIdOption, trendingItemIdOption, new OutputFormatterFactoryBinder());
             return command;
         }
         /// <summary>

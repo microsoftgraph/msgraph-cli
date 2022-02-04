@@ -38,14 +38,12 @@ namespace ApiSdk.Workbooks.Item.Workbook.Tables.Item.Worksheet.Tables.Item.Clear
             };
             workbookTableId1Option.IsRequired = true;
             command.AddOption(workbookTableId1Option);
-            command.SetHandler(async (string driveItemId, string workbookTableId, string workbookTableId1, IServiceProvider serviceProvider, IConsole console) => {
-                var responseHandler = serviceProvider.GetService(typeof(IResponseHandler)) as IResponseHandler;
+            command.SetHandler(async (string driveItemId, string workbookTableId, string workbookTableId1, IOutputFormatterFactory outputFormatterFactory, IConsole console) => {
                 var requestInfo = CreatePostRequestInformation(q => {
                 });
-                await RequestAdapter.SendNoContentAsync(requestInfo, responseHandler);
-                // Print request output. What if the request has no return?
+                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 console.WriteLine("Success");
-            }, driveItemIdOption, workbookTableIdOption, workbookTableId1Option, new ServiceProviderBinder());
+            }, driveItemIdOption, workbookTableIdOption, workbookTableId1Option, new OutputFormatterFactoryBinder());
             return command;
         }
         /// <summary>

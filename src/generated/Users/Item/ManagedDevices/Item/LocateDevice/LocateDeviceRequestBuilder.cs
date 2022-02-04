@@ -34,14 +34,12 @@ namespace ApiSdk.Users.Item.ManagedDevices.Item.LocateDevice {
             };
             managedDeviceIdOption.IsRequired = true;
             command.AddOption(managedDeviceIdOption);
-            command.SetHandler(async (string userId, string managedDeviceId, IServiceProvider serviceProvider, IConsole console) => {
-                var responseHandler = serviceProvider.GetService(typeof(IResponseHandler)) as IResponseHandler;
+            command.SetHandler(async (string userId, string managedDeviceId, IOutputFormatterFactory outputFormatterFactory, IConsole console) => {
                 var requestInfo = CreatePostRequestInformation(q => {
                 });
-                await RequestAdapter.SendNoContentAsync(requestInfo, responseHandler);
-                // Print request output. What if the request has no return?
+                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 console.WriteLine("Success");
-            }, userIdOption, managedDeviceIdOption, new ServiceProviderBinder());
+            }, userIdOption, managedDeviceIdOption, new OutputFormatterFactoryBinder());
             return command;
         }
         /// <summary>

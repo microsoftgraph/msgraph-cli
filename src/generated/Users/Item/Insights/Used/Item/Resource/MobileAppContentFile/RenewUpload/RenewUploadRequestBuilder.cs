@@ -34,14 +34,12 @@ namespace ApiSdk.Users.Item.Insights.Used.Item.Resource.MobileAppContentFile.Ren
             };
             usedInsightIdOption.IsRequired = true;
             command.AddOption(usedInsightIdOption);
-            command.SetHandler(async (string userId, string usedInsightId, IServiceProvider serviceProvider, IConsole console) => {
-                var responseHandler = serviceProvider.GetService(typeof(IResponseHandler)) as IResponseHandler;
+            command.SetHandler(async (string userId, string usedInsightId, IOutputFormatterFactory outputFormatterFactory, IConsole console) => {
                 var requestInfo = CreatePostRequestInformation(q => {
                 });
-                await RequestAdapter.SendNoContentAsync(requestInfo, responseHandler);
-                // Print request output. What if the request has no return?
+                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 console.WriteLine("Success");
-            }, userIdOption, usedInsightIdOption, new ServiceProviderBinder());
+            }, userIdOption, usedInsightIdOption, new OutputFormatterFactoryBinder());
             return command;
         }
         /// <summary>

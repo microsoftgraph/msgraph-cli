@@ -30,14 +30,12 @@ namespace ApiSdk.Me.Insights.Trending.Item.Resource.WorkbookRangeFill.Clear {
             };
             trendingItemIdOption.IsRequired = true;
             command.AddOption(trendingItemIdOption);
-            command.SetHandler(async (string trendingItemId, IServiceProvider serviceProvider, IConsole console) => {
-                var responseHandler = serviceProvider.GetService(typeof(IResponseHandler)) as IResponseHandler;
+            command.SetHandler(async (string trendingItemId, IOutputFormatterFactory outputFormatterFactory, IConsole console) => {
                 var requestInfo = CreatePostRequestInformation(q => {
                 });
-                await RequestAdapter.SendNoContentAsync(requestInfo, responseHandler);
-                // Print request output. What if the request has no return?
+                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 console.WriteLine("Success");
-            }, trendingItemIdOption, new ServiceProviderBinder());
+            }, trendingItemIdOption, new OutputFormatterFactoryBinder());
             return command;
         }
         /// <summary>

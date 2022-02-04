@@ -30,14 +30,12 @@ namespace ApiSdk.Users.Item.RemoveAllDevicesFromManagement {
             };
             userIdOption.IsRequired = true;
             command.AddOption(userIdOption);
-            command.SetHandler(async (string userId, IServiceProvider serviceProvider, IConsole console) => {
-                var responseHandler = serviceProvider.GetService(typeof(IResponseHandler)) as IResponseHandler;
+            command.SetHandler(async (string userId, IOutputFormatterFactory outputFormatterFactory, IConsole console) => {
                 var requestInfo = CreatePostRequestInformation(q => {
                 });
-                await RequestAdapter.SendNoContentAsync(requestInfo, responseHandler);
-                // Print request output. What if the request has no return?
+                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 console.WriteLine("Success");
-            }, userIdOption, new ServiceProviderBinder());
+            }, userIdOption, new OutputFormatterFactoryBinder());
             return command;
         }
         /// <summary>

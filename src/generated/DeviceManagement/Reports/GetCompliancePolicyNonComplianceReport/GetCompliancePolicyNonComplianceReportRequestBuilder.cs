@@ -36,34 +36,23 @@ namespace ApiSdk.DeviceManagement.Reports.GetCompliancePolicyNonComplianceReport
                 IsRequired = true
             };
             command.AddOption(outputOption);
-            command.SetHandler(async (string body, FileInfo file, FormatterType output, IServiceProvider serviceProvider, IConsole console) => {
-                var responseHandler = serviceProvider.GetService(typeof(IResponseHandler)) as IResponseHandler;
+            command.SetHandler(async (string body, FileInfo file, FormatterType output, IOutputFormatterFactory outputFormatterFactory, IConsole console) => {
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<GetCompliancePolicyNonComplianceReportRequestBody>();
                 var requestInfo = CreatePostRequestInformation(model, q => {
                 });
-                await RequestAdapter.SendNoContentAsync(requestInfo, responseHandler);
-                // Print request output. What if the request has no return?
-                var responseProcessor = serviceProvider.GetService(typeof(IResponseProcessor)) as IResponseProcessor;
-                var factory = serviceProvider.GetService(typeof(IOutputFormatterFactory)) as IOutputFormatterFactory;
-                var formatter = factory.GetFormatter(output);
-                if (responseProcessor.IsResponseSuccessful(responseHandler)) {
-                    var content = await responseProcessor.ExtractStreamResponseAsync(responseHandler);
-                    if (file == null) {
-                        formatter.WriteOutput(content, console);
-                    }
-                    else {
-                        using var writeStream = file.OpenWrite();
-                        await content.CopyToAsync(writeStream);
-                        console.WriteLine($"Content written to {file.FullName}.");
-                    }
+                var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                var formatter = outputFormatterFactory.GetFormatter(output);
+                if (file == null) {
+                    formatter.WriteOutput(response, console);
                 }
                 else {
-                    var content = await responseProcessor.ExtractStringResponseAsync(responseHandler);
-                    console.WriteLine(content);
+                    using var writeStream = file.OpenWrite();
+                    await response.CopyToAsync(writeStream);
+                    console.WriteLine($"Content written to {file.FullName}.");
                 }
-            }, bodyOption, fileOption, outputOption, new ServiceProviderBinder());
+            }, bodyOption, fileOption, outputOption, new OutputFormatterFactoryBinder());
             return command;
         }
         /// <summary>

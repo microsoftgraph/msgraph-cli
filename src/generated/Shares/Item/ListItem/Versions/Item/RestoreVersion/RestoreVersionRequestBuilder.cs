@@ -34,14 +34,12 @@ namespace ApiSdk.Shares.Item.ListItem.Versions.Item.RestoreVersion {
             };
             listItemVersionIdOption.IsRequired = true;
             command.AddOption(listItemVersionIdOption);
-            command.SetHandler(async (string sharedDriveItemId, string listItemVersionId, IServiceProvider serviceProvider, IConsole console) => {
-                var responseHandler = serviceProvider.GetService(typeof(IResponseHandler)) as IResponseHandler;
+            command.SetHandler(async (string sharedDriveItemId, string listItemVersionId, IOutputFormatterFactory outputFormatterFactory, IConsole console) => {
                 var requestInfo = CreatePostRequestInformation(q => {
                 });
-                await RequestAdapter.SendNoContentAsync(requestInfo, responseHandler);
-                // Print request output. What if the request has no return?
+                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 console.WriteLine("Success");
-            }, sharedDriveItemIdOption, listItemVersionIdOption, new ServiceProviderBinder());
+            }, sharedDriveItemIdOption, listItemVersionIdOption, new OutputFormatterFactoryBinder());
             return command;
         }
         /// <summary>

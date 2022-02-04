@@ -30,14 +30,12 @@ namespace ApiSdk.Teams.Item.PrimaryChannel.CompleteMigration {
             };
             teamIdOption.IsRequired = true;
             command.AddOption(teamIdOption);
-            command.SetHandler(async (string teamId, IServiceProvider serviceProvider, IConsole console) => {
-                var responseHandler = serviceProvider.GetService(typeof(IResponseHandler)) as IResponseHandler;
+            command.SetHandler(async (string teamId, IOutputFormatterFactory outputFormatterFactory, IConsole console) => {
                 var requestInfo = CreatePostRequestInformation(q => {
                 });
-                await RequestAdapter.SendNoContentAsync(requestInfo, responseHandler);
-                // Print request output. What if the request has no return?
+                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 console.WriteLine("Success");
-            }, teamIdOption, new ServiceProviderBinder());
+            }, teamIdOption, new OutputFormatterFactoryBinder());
             return command;
         }
         /// <summary>

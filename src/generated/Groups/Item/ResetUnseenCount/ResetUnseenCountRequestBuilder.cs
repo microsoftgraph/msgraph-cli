@@ -30,14 +30,12 @@ namespace ApiSdk.Groups.Item.ResetUnseenCount {
             };
             groupIdOption.IsRequired = true;
             command.AddOption(groupIdOption);
-            command.SetHandler(async (string groupId, IServiceProvider serviceProvider, IConsole console) => {
-                var responseHandler = serviceProvider.GetService(typeof(IResponseHandler)) as IResponseHandler;
+            command.SetHandler(async (string groupId, IOutputFormatterFactory outputFormatterFactory, IConsole console) => {
                 var requestInfo = CreatePostRequestInformation(q => {
                 });
-                await RequestAdapter.SendNoContentAsync(requestInfo, responseHandler);
-                // Print request output. What if the request has no return?
+                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 console.WriteLine("Success");
-            }, groupIdOption, new ServiceProviderBinder());
+            }, groupIdOption, new OutputFormatterFactoryBinder());
             return command;
         }
         /// <summary>

@@ -34,14 +34,12 @@ namespace ApiSdk.Users.Item.Insights.Shared.Item.Resource.WorkbookRangeFill.Clea
             };
             sharedInsightIdOption.IsRequired = true;
             command.AddOption(sharedInsightIdOption);
-            command.SetHandler(async (string userId, string sharedInsightId, IServiceProvider serviceProvider, IConsole console) => {
-                var responseHandler = serviceProvider.GetService(typeof(IResponseHandler)) as IResponseHandler;
+            command.SetHandler(async (string userId, string sharedInsightId, IOutputFormatterFactory outputFormatterFactory, IConsole console) => {
                 var requestInfo = CreatePostRequestInformation(q => {
                 });
-                await RequestAdapter.SendNoContentAsync(requestInfo, responseHandler);
-                // Print request output. What if the request has no return?
+                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 console.WriteLine("Success");
-            }, userIdOption, sharedInsightIdOption, new ServiceProviderBinder());
+            }, userIdOption, sharedInsightIdOption, new OutputFormatterFactoryBinder());
             return command;
         }
         /// <summary>

@@ -34,14 +34,12 @@ namespace ApiSdk.Print.TaskDefinitions.Item.Tasks.Item.Trigger.Ref {
             };
             printTaskIdOption.IsRequired = true;
             command.AddOption(printTaskIdOption);
-            command.SetHandler(async (string printTaskDefinitionId, string printTaskId, IServiceProvider serviceProvider, IConsole console) => {
-                var responseHandler = serviceProvider.GetService(typeof(IResponseHandler)) as IResponseHandler;
+            command.SetHandler(async (string printTaskDefinitionId, string printTaskId, IOutputFormatterFactory outputFormatterFactory, IConsole console) => {
                 var requestInfo = CreateDeleteRequestInformation(q => {
                 });
-                await RequestAdapter.SendNoContentAsync(requestInfo, responseHandler);
-                // Print request output. What if the request has no return?
+                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 console.WriteLine("Success");
-            }, printTaskDefinitionIdOption, printTaskIdOption, new ServiceProviderBinder());
+            }, printTaskDefinitionIdOption, printTaskIdOption, new OutputFormatterFactoryBinder());
             return command;
         }
         /// <summary>
@@ -63,24 +61,13 @@ namespace ApiSdk.Print.TaskDefinitions.Item.Tasks.Item.Trigger.Ref {
                 IsRequired = true
             };
             command.AddOption(outputOption);
-            command.SetHandler(async (string printTaskDefinitionId, string printTaskId, FormatterType output, IServiceProvider serviceProvider, IConsole console) => {
-                var responseHandler = serviceProvider.GetService(typeof(IResponseHandler)) as IResponseHandler;
+            command.SetHandler(async (string printTaskDefinitionId, string printTaskId, FormatterType output, IOutputFormatterFactory outputFormatterFactory, IConsole console) => {
                 var requestInfo = CreateGetRequestInformation(q => {
                 });
-                await RequestAdapter.SendNoContentAsync(requestInfo, responseHandler);
-                // Print request output. What if the request has no return?
-                var responseProcessor = serviceProvider.GetService(typeof(IResponseProcessor)) as IResponseProcessor;
-                var factory = serviceProvider.GetService(typeof(IOutputFormatterFactory)) as IOutputFormatterFactory;
-                var formatter = factory.GetFormatter(output);
-                if (responseProcessor.IsResponseSuccessful(responseHandler)) {
-                    var content = await responseProcessor.ExtractStringResponseAsync(responseHandler);
-                    formatter.WriteOutput(content, console);
-                }
-                else {
-                    var content = await responseProcessor.ExtractStringResponseAsync(responseHandler);
-                    console.WriteLine(content);
-                }
-            }, printTaskDefinitionIdOption, printTaskIdOption, outputOption, new ServiceProviderBinder());
+                var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                var formatter = outputFormatterFactory.GetFormatter(output);
+                formatter.WriteOutput(response, console);
+            }, printTaskDefinitionIdOption, printTaskIdOption, outputOption, new OutputFormatterFactoryBinder());
             return command;
         }
         /// <summary>
@@ -102,17 +89,15 @@ namespace ApiSdk.Print.TaskDefinitions.Item.Tasks.Item.Trigger.Ref {
             };
             bodyOption.IsRequired = true;
             command.AddOption(bodyOption);
-            command.SetHandler(async (string printTaskDefinitionId, string printTaskId, string body, IServiceProvider serviceProvider, IConsole console) => {
-                var responseHandler = serviceProvider.GetService(typeof(IResponseHandler)) as IResponseHandler;
+            command.SetHandler(async (string printTaskDefinitionId, string printTaskId, string body, IOutputFormatterFactory outputFormatterFactory, IConsole console) => {
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<ApiSdk.Print.TaskDefinitions.Item.Tasks.Item.Trigger.Ref.Ref>();
                 var requestInfo = CreatePutRequestInformation(model, q => {
                 });
-                await RequestAdapter.SendNoContentAsync(requestInfo, responseHandler);
-                // Print request output. What if the request has no return?
+                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 console.WriteLine("Success");
-            }, printTaskDefinitionIdOption, printTaskIdOption, bodyOption, new ServiceProviderBinder());
+            }, printTaskDefinitionIdOption, printTaskIdOption, bodyOption, new OutputFormatterFactoryBinder());
             return command;
         }
         /// <summary>

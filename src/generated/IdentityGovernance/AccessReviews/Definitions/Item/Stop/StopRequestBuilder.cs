@@ -30,14 +30,12 @@ namespace ApiSdk.IdentityGovernance.AccessReviews.Definitions.Item.Stop {
             };
             accessReviewScheduleDefinitionIdOption.IsRequired = true;
             command.AddOption(accessReviewScheduleDefinitionIdOption);
-            command.SetHandler(async (string accessReviewScheduleDefinitionId, IServiceProvider serviceProvider, IConsole console) => {
-                var responseHandler = serviceProvider.GetService(typeof(IResponseHandler)) as IResponseHandler;
+            command.SetHandler(async (string accessReviewScheduleDefinitionId, IOutputFormatterFactory outputFormatterFactory, IConsole console) => {
                 var requestInfo = CreatePostRequestInformation(q => {
                 });
-                await RequestAdapter.SendNoContentAsync(requestInfo, responseHandler);
-                // Print request output. What if the request has no return?
+                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 console.WriteLine("Success");
-            }, accessReviewScheduleDefinitionIdOption, new ServiceProviderBinder());
+            }, accessReviewScheduleDefinitionIdOption, new OutputFormatterFactoryBinder());
             return command;
         }
         /// <summary>

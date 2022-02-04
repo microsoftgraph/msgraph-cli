@@ -30,14 +30,12 @@ namespace ApiSdk.Me.Messages.Item.Send {
             };
             messageIdOption.IsRequired = true;
             command.AddOption(messageIdOption);
-            command.SetHandler(async (string messageId, IServiceProvider serviceProvider, IConsole console) => {
-                var responseHandler = serviceProvider.GetService(typeof(IResponseHandler)) as IResponseHandler;
+            command.SetHandler(async (string messageId, IOutputFormatterFactory outputFormatterFactory, IConsole console) => {
                 var requestInfo = CreatePostRequestInformation(q => {
                 });
-                await RequestAdapter.SendNoContentAsync(requestInfo, responseHandler);
-                // Print request output. What if the request has no return?
+                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 console.WriteLine("Success");
-            }, messageIdOption, new ServiceProviderBinder());
+            }, messageIdOption, new OutputFormatterFactoryBinder());
             return command;
         }
         /// <summary>

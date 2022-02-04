@@ -38,14 +38,12 @@ namespace ApiSdk.Me.CalendarGroups.Item.Calendars.Item.Events.Item.DismissRemind
             };
             eventIdOption.IsRequired = true;
             command.AddOption(eventIdOption);
-            command.SetHandler(async (string calendarGroupId, string calendarId, string eventId, IServiceProvider serviceProvider, IConsole console) => {
-                var responseHandler = serviceProvider.GetService(typeof(IResponseHandler)) as IResponseHandler;
+            command.SetHandler(async (string calendarGroupId, string calendarId, string eventId, IOutputFormatterFactory outputFormatterFactory, IConsole console) => {
                 var requestInfo = CreatePostRequestInformation(q => {
                 });
-                await RequestAdapter.SendNoContentAsync(requestInfo, responseHandler);
-                // Print request output. What if the request has no return?
+                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 console.WriteLine("Success");
-            }, calendarGroupIdOption, calendarIdOption, eventIdOption, new ServiceProviderBinder());
+            }, calendarGroupIdOption, calendarIdOption, eventIdOption, new OutputFormatterFactoryBinder());
             return command;
         }
         /// <summary>

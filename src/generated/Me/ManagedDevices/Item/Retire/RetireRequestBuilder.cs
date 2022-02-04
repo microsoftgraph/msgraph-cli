@@ -30,14 +30,12 @@ namespace ApiSdk.Me.ManagedDevices.Item.Retire {
             };
             managedDeviceIdOption.IsRequired = true;
             command.AddOption(managedDeviceIdOption);
-            command.SetHandler(async (string managedDeviceId, IServiceProvider serviceProvider, IConsole console) => {
-                var responseHandler = serviceProvider.GetService(typeof(IResponseHandler)) as IResponseHandler;
+            command.SetHandler(async (string managedDeviceId, IOutputFormatterFactory outputFormatterFactory, IConsole console) => {
                 var requestInfo = CreatePostRequestInformation(q => {
                 });
-                await RequestAdapter.SendNoContentAsync(requestInfo, responseHandler);
-                // Print request output. What if the request has no return?
+                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 console.WriteLine("Success");
-            }, managedDeviceIdOption, new ServiceProviderBinder());
+            }, managedDeviceIdOption, new OutputFormatterFactoryBinder());
             return command;
         }
         /// <summary>

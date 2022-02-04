@@ -30,14 +30,12 @@ namespace ApiSdk.DeviceManagement.WindowsAutopilotDeviceIdentities.Item.Unassign
             };
             windowsAutopilotDeviceIdentityIdOption.IsRequired = true;
             command.AddOption(windowsAutopilotDeviceIdentityIdOption);
-            command.SetHandler(async (string windowsAutopilotDeviceIdentityId, IServiceProvider serviceProvider, IConsole console) => {
-                var responseHandler = serviceProvider.GetService(typeof(IResponseHandler)) as IResponseHandler;
+            command.SetHandler(async (string windowsAutopilotDeviceIdentityId, IOutputFormatterFactory outputFormatterFactory, IConsole console) => {
                 var requestInfo = CreatePostRequestInformation(q => {
                 });
-                await RequestAdapter.SendNoContentAsync(requestInfo, responseHandler);
-                // Print request output. What if the request has no return?
+                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 console.WriteLine("Success");
-            }, windowsAutopilotDeviceIdentityIdOption, new ServiceProviderBinder());
+            }, windowsAutopilotDeviceIdentityIdOption, new OutputFormatterFactoryBinder());
             return command;
         }
         /// <summary>

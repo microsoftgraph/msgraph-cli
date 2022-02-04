@@ -34,14 +34,12 @@ namespace ApiSdk.Workbooks.Item.Workbook.Worksheets.Item.PivotTables.RefreshAll 
             };
             workbookWorksheetIdOption.IsRequired = true;
             command.AddOption(workbookWorksheetIdOption);
-            command.SetHandler(async (string driveItemId, string workbookWorksheetId, IServiceProvider serviceProvider, IConsole console) => {
-                var responseHandler = serviceProvider.GetService(typeof(IResponseHandler)) as IResponseHandler;
+            command.SetHandler(async (string driveItemId, string workbookWorksheetId, IOutputFormatterFactory outputFormatterFactory, IConsole console) => {
                 var requestInfo = CreatePostRequestInformation(q => {
                 });
-                await RequestAdapter.SendNoContentAsync(requestInfo, responseHandler);
-                // Print request output. What if the request has no return?
+                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 console.WriteLine("Success");
-            }, driveItemIdOption, workbookWorksheetIdOption, new ServiceProviderBinder());
+            }, driveItemIdOption, workbookWorksheetIdOption, new OutputFormatterFactoryBinder());
             return command;
         }
         /// <summary>

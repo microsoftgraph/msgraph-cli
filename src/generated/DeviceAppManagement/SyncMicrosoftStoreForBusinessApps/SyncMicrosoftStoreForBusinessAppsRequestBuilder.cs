@@ -26,14 +26,12 @@ namespace ApiSdk.DeviceAppManagement.SyncMicrosoftStoreForBusinessApps {
             var command = new Command("post");
             command.Description = "Syncs Intune account with Microsoft Store For Business";
             // Create options for all the parameters
-            command.SetHandler(async (IServiceProvider serviceProvider, IConsole console) => {
-                var responseHandler = serviceProvider.GetService(typeof(IResponseHandler)) as IResponseHandler;
+            command.SetHandler(async (IOutputFormatterFactory outputFormatterFactory, IConsole console) => {
                 var requestInfo = CreatePostRequestInformation(q => {
                 });
-                await RequestAdapter.SendNoContentAsync(requestInfo, responseHandler);
-                // Print request output. What if the request has no return?
+                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 console.WriteLine("Success");
-            }, new ServiceProviderBinder());
+            }, new OutputFormatterFactoryBinder());
             return command;
         }
         /// <summary>

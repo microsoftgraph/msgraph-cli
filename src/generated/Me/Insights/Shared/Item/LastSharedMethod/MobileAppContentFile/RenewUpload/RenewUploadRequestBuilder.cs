@@ -30,14 +30,12 @@ namespace ApiSdk.Me.Insights.Shared.Item.LastSharedMethod.MobileAppContentFile.R
             };
             sharedInsightIdOption.IsRequired = true;
             command.AddOption(sharedInsightIdOption);
-            command.SetHandler(async (string sharedInsightId, IServiceProvider serviceProvider, IConsole console) => {
-                var responseHandler = serviceProvider.GetService(typeof(IResponseHandler)) as IResponseHandler;
+            command.SetHandler(async (string sharedInsightId, IOutputFormatterFactory outputFormatterFactory, IConsole console) => {
                 var requestInfo = CreatePostRequestInformation(q => {
                 });
-                await RequestAdapter.SendNoContentAsync(requestInfo, responseHandler);
-                // Print request output. What if the request has no return?
+                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 console.WriteLine("Success");
-            }, sharedInsightIdOption, new ServiceProviderBinder());
+            }, sharedInsightIdOption, new OutputFormatterFactoryBinder());
             return command;
         }
         /// <summary>

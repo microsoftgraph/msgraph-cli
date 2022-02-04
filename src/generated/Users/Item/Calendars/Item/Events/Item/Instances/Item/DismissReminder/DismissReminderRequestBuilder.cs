@@ -42,14 +42,12 @@ namespace ApiSdk.Users.Item.Calendars.Item.Events.Item.Instances.Item.DismissRem
             };
             eventId1Option.IsRequired = true;
             command.AddOption(eventId1Option);
-            command.SetHandler(async (string userId, string calendarId, string eventId, string eventId1, IServiceProvider serviceProvider, IConsole console) => {
-                var responseHandler = serviceProvider.GetService(typeof(IResponseHandler)) as IResponseHandler;
+            command.SetHandler(async (string userId, string calendarId, string eventId, string eventId1, IOutputFormatterFactory outputFormatterFactory, IConsole console) => {
                 var requestInfo = CreatePostRequestInformation(q => {
                 });
-                await RequestAdapter.SendNoContentAsync(requestInfo, responseHandler);
-                // Print request output. What if the request has no return?
+                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 console.WriteLine("Success");
-            }, userIdOption, calendarIdOption, eventIdOption, eventId1Option, new ServiceProviderBinder());
+            }, userIdOption, calendarIdOption, eventIdOption, eventId1Option, new OutputFormatterFactoryBinder());
             return command;
         }
         /// <summary>

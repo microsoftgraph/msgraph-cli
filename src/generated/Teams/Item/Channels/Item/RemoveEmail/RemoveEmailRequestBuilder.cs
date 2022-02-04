@@ -34,14 +34,12 @@ namespace ApiSdk.Teams.Item.Channels.Item.RemoveEmail {
             };
             channelIdOption.IsRequired = true;
             command.AddOption(channelIdOption);
-            command.SetHandler(async (string teamId, string channelId, IServiceProvider serviceProvider, IConsole console) => {
-                var responseHandler = serviceProvider.GetService(typeof(IResponseHandler)) as IResponseHandler;
+            command.SetHandler(async (string teamId, string channelId, IOutputFormatterFactory outputFormatterFactory, IConsole console) => {
                 var requestInfo = CreatePostRequestInformation(q => {
                 });
-                await RequestAdapter.SendNoContentAsync(requestInfo, responseHandler);
-                // Print request output. What if the request has no return?
+                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 console.WriteLine("Success");
-            }, teamIdOption, channelIdOption, new ServiceProviderBinder());
+            }, teamIdOption, channelIdOption, new OutputFormatterFactoryBinder());
             return command;
         }
         /// <summary>

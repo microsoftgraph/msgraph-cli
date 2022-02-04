@@ -30,14 +30,12 @@ namespace ApiSdk.DeviceManagement.NotificationMessageTemplates.Item.SendTestMess
             };
             notificationMessageTemplateIdOption.IsRequired = true;
             command.AddOption(notificationMessageTemplateIdOption);
-            command.SetHandler(async (string notificationMessageTemplateId, IServiceProvider serviceProvider, IConsole console) => {
-                var responseHandler = serviceProvider.GetService(typeof(IResponseHandler)) as IResponseHandler;
+            command.SetHandler(async (string notificationMessageTemplateId, IOutputFormatterFactory outputFormatterFactory, IConsole console) => {
                 var requestInfo = CreatePostRequestInformation(q => {
                 });
-                await RequestAdapter.SendNoContentAsync(requestInfo, responseHandler);
-                // Print request output. What if the request has no return?
+                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 console.WriteLine("Success");
-            }, notificationMessageTemplateIdOption, new ServiceProviderBinder());
+            }, notificationMessageTemplateIdOption, new OutputFormatterFactoryBinder());
             return command;
         }
         /// <summary>

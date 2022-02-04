@@ -42,14 +42,12 @@ namespace ApiSdk.Workbooks.Item.Workbook.Names.Item.Worksheet.Tables.Item.Column
             };
             workbookTableColumnIdOption.IsRequired = true;
             command.AddOption(workbookTableColumnIdOption);
-            command.SetHandler(async (string driveItemId, string workbookNamedItemId, string workbookTableId, string workbookTableColumnId, IServiceProvider serviceProvider, IConsole console) => {
-                var responseHandler = serviceProvider.GetService(typeof(IResponseHandler)) as IResponseHandler;
+            command.SetHandler(async (string driveItemId, string workbookNamedItemId, string workbookTableId, string workbookTableColumnId, IOutputFormatterFactory outputFormatterFactory, IConsole console) => {
                 var requestInfo = CreatePostRequestInformation(q => {
                 });
-                await RequestAdapter.SendNoContentAsync(requestInfo, responseHandler);
-                // Print request output. What if the request has no return?
+                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 console.WriteLine("Success");
-            }, driveItemIdOption, workbookNamedItemIdOption, workbookTableIdOption, workbookTableColumnIdOption, new ServiceProviderBinder());
+            }, driveItemIdOption, workbookNamedItemIdOption, workbookTableIdOption, workbookTableColumnIdOption, new OutputFormatterFactoryBinder());
             return command;
         }
         /// <summary>

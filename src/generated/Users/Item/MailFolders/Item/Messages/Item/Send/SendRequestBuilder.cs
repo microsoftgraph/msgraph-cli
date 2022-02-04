@@ -38,14 +38,12 @@ namespace ApiSdk.Users.Item.MailFolders.Item.Messages.Item.Send {
             };
             messageIdOption.IsRequired = true;
             command.AddOption(messageIdOption);
-            command.SetHandler(async (string userId, string mailFolderId, string messageId, IServiceProvider serviceProvider, IConsole console) => {
-                var responseHandler = serviceProvider.GetService(typeof(IResponseHandler)) as IResponseHandler;
+            command.SetHandler(async (string userId, string mailFolderId, string messageId, IOutputFormatterFactory outputFormatterFactory, IConsole console) => {
                 var requestInfo = CreatePostRequestInformation(q => {
                 });
-                await RequestAdapter.SendNoContentAsync(requestInfo, responseHandler);
-                // Print request output. What if the request has no return?
+                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 console.WriteLine("Success");
-            }, userIdOption, mailFolderIdOption, messageIdOption, new ServiceProviderBinder());
+            }, userIdOption, mailFolderIdOption, messageIdOption, new OutputFormatterFactoryBinder());
             return command;
         }
         /// <summary>

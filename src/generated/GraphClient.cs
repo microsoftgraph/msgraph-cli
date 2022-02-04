@@ -529,14 +529,12 @@ namespace ApiSdk {
         public Command BuildGetCommand() {
             var command = new Command("get");
             // Create options for all the parameters
-            command.SetHandler(async (IServiceProvider serviceProvider, IConsole console) => {
-                var responseHandler = serviceProvider.GetService(typeof(IResponseHandler)) as IResponseHandler;
+            command.SetHandler(async (IOutputFormatterFactory outputFormatterFactory, IConsole console) => {
                 var requestInfo = CreateGetRequestInformation(q => {
                 });
-                await RequestAdapter.SendNoContentAsync(requestInfo, responseHandler);
-                // Print request output. What if the request has no return?
+                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 console.WriteLine("Success");
-            }, new ServiceProviderBinder());
+            }, new OutputFormatterFactoryBinder());
             return command;
         }
         public Command BuildGroupLifecyclePoliciesCommand() {

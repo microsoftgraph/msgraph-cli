@@ -38,14 +38,12 @@ namespace ApiSdk.Workbooks.Item.Workbook.Worksheets.Item.PivotTables.Item.Refres
             };
             workbookPivotTableIdOption.IsRequired = true;
             command.AddOption(workbookPivotTableIdOption);
-            command.SetHandler(async (string driveItemId, string workbookWorksheetId, string workbookPivotTableId, IServiceProvider serviceProvider, IConsole console) => {
-                var responseHandler = serviceProvider.GetService(typeof(IResponseHandler)) as IResponseHandler;
+            command.SetHandler(async (string driveItemId, string workbookWorksheetId, string workbookPivotTableId, IOutputFormatterFactory outputFormatterFactory, IConsole console) => {
                 var requestInfo = CreatePostRequestInformation(q => {
                 });
-                await RequestAdapter.SendNoContentAsync(requestInfo, responseHandler);
-                // Print request output. What if the request has no return?
+                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 console.WriteLine("Success");
-            }, driveItemIdOption, workbookWorksheetIdOption, workbookPivotTableIdOption, new ServiceProviderBinder());
+            }, driveItemIdOption, workbookWorksheetIdOption, workbookPivotTableIdOption, new OutputFormatterFactoryBinder());
             return command;
         }
         /// <summary>

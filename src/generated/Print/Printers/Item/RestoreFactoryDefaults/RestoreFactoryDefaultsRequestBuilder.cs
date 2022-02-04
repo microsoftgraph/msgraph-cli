@@ -30,14 +30,12 @@ namespace ApiSdk.Print.Printers.Item.RestoreFactoryDefaults {
             };
             printerIdOption.IsRequired = true;
             command.AddOption(printerIdOption);
-            command.SetHandler(async (string printerId, IServiceProvider serviceProvider, IConsole console) => {
-                var responseHandler = serviceProvider.GetService(typeof(IResponseHandler)) as IResponseHandler;
+            command.SetHandler(async (string printerId, IOutputFormatterFactory outputFormatterFactory, IConsole console) => {
                 var requestInfo = CreatePostRequestInformation(q => {
                 });
-                await RequestAdapter.SendNoContentAsync(requestInfo, responseHandler);
-                // Print request output. What if the request has no return?
+                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 console.WriteLine("Success");
-            }, printerIdOption, new ServiceProviderBinder());
+            }, printerIdOption, new OutputFormatterFactoryBinder());
             return command;
         }
         /// <summary>

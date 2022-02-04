@@ -26,14 +26,12 @@ namespace ApiSdk.Me.RemoveAllDevicesFromManagement {
             var command = new Command("post");
             command.Description = "Retire all devices from management for this user";
             // Create options for all the parameters
-            command.SetHandler(async (IServiceProvider serviceProvider, IConsole console) => {
-                var responseHandler = serviceProvider.GetService(typeof(IResponseHandler)) as IResponseHandler;
+            command.SetHandler(async (IOutputFormatterFactory outputFormatterFactory, IConsole console) => {
                 var requestInfo = CreatePostRequestInformation(q => {
                 });
-                await RequestAdapter.SendNoContentAsync(requestInfo, responseHandler);
-                // Print request output. What if the request has no return?
+                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 console.WriteLine("Success");
-            }, new ServiceProviderBinder());
+            }, new OutputFormatterFactoryBinder());
             return command;
         }
         /// <summary>

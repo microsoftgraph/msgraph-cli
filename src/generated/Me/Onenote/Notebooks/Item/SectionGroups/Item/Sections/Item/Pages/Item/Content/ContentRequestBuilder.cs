@@ -48,31 +48,20 @@ namespace ApiSdk.Me.Onenote.Notebooks.Item.SectionGroups.Item.Sections.Item.Page
                 IsRequired = true
             };
             command.AddOption(outputOption);
-            command.SetHandler(async (string notebookId, string sectionGroupId, string onenoteSectionId, string onenotePageId, FileInfo file, FormatterType output, IServiceProvider serviceProvider, IConsole console) => {
-                var responseHandler = serviceProvider.GetService(typeof(IResponseHandler)) as IResponseHandler;
+            command.SetHandler(async (string notebookId, string sectionGroupId, string onenoteSectionId, string onenotePageId, FileInfo file, FormatterType output, IOutputFormatterFactory outputFormatterFactory, IConsole console) => {
                 var requestInfo = CreateGetRequestInformation(q => {
                 });
-                await RequestAdapter.SendNoContentAsync(requestInfo, responseHandler);
-                // Print request output. What if the request has no return?
-                var responseProcessor = serviceProvider.GetService(typeof(IResponseProcessor)) as IResponseProcessor;
-                var factory = serviceProvider.GetService(typeof(IOutputFormatterFactory)) as IOutputFormatterFactory;
-                var formatter = factory.GetFormatter(output);
-                if (responseProcessor.IsResponseSuccessful(responseHandler)) {
-                    var content = await responseProcessor.ExtractStreamResponseAsync(responseHandler);
-                    if (file == null) {
-                        formatter.WriteOutput(content, console);
-                    }
-                    else {
-                        using var writeStream = file.OpenWrite();
-                        await content.CopyToAsync(writeStream);
-                        console.WriteLine($"Content written to {file.FullName}.");
-                    }
+                var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                var formatter = outputFormatterFactory.GetFormatter(output);
+                if (file == null) {
+                    formatter.WriteOutput(response, console);
                 }
                 else {
-                    var content = await responseProcessor.ExtractStringResponseAsync(responseHandler);
-                    console.WriteLine(content);
+                    using var writeStream = file.OpenWrite();
+                    await response.CopyToAsync(writeStream);
+                    console.WriteLine($"Content written to {file.FullName}.");
                 }
-            }, notebookIdOption, sectionGroupIdOption, onenoteSectionIdOption, onenotePageIdOption, fileOption, outputOption, new ServiceProviderBinder());
+            }, notebookIdOption, sectionGroupIdOption, onenoteSectionIdOption, onenotePageIdOption, fileOption, outputOption, new OutputFormatterFactoryBinder());
             return command;
         }
         /// <summary>
@@ -102,15 +91,13 @@ namespace ApiSdk.Me.Onenote.Notebooks.Item.SectionGroups.Item.Sections.Item.Page
             };
             bodyOption.IsRequired = true;
             command.AddOption(bodyOption);
-            command.SetHandler(async (string notebookId, string sectionGroupId, string onenoteSectionId, string onenotePageId, FileInfo file, IServiceProvider serviceProvider, IConsole console) => {
-                var responseHandler = serviceProvider.GetService(typeof(IResponseHandler)) as IResponseHandler;
+            command.SetHandler(async (string notebookId, string sectionGroupId, string onenoteSectionId, string onenotePageId, FileInfo file, IOutputFormatterFactory outputFormatterFactory, IConsole console) => {
                 using var stream = file.OpenRead();
                 var requestInfo = CreatePutRequestInformation(stream, q => {
                 });
-                await RequestAdapter.SendNoContentAsync(requestInfo, responseHandler);
-                // Print request output. What if the request has no return?
+                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 console.WriteLine("Success");
-            }, notebookIdOption, sectionGroupIdOption, onenoteSectionIdOption, onenotePageIdOption, bodyOption, new ServiceProviderBinder());
+            }, notebookIdOption, sectionGroupIdOption, onenoteSectionIdOption, onenotePageIdOption, bodyOption, new OutputFormatterFactoryBinder());
             return command;
         }
         /// <summary>

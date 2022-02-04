@@ -8,6 +8,7 @@ using Microsoft.Graph.Cli.Core.Commands.Authentication;
 using Microsoft.Graph.Cli.Core.Configuration;
 using Microsoft.Graph.Cli.Core.IO;
 using Microsoft.Graph.Cli.Core.Utils;
+using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Authentication.Azure;
 using Microsoft.Kiota.Http.HttpClientLibrary;
 using Microsoft.Kiota.Http.HttpClientLibrary.Middleware;
@@ -113,6 +114,7 @@ namespace Microsoft.Graph.Cli
                 var authSection = ctx.Configuration.GetSection(Constants.AuthenticationSection);
                 services.Configure<AuthenticationOptions>(authSection);
                 services.AddSingleton<IPathUtility, PathUtility>();
+                services.AddSingleton<IOutputFormatterFactory, OutputFormatterFactory>();
             });
         
         static void ConfigureAppConfiguration(IConfigurationBuilder builder) {

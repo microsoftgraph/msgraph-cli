@@ -42,17 +42,15 @@ namespace ApiSdk.Groups.Item.Onenote.Pages.Item.ParentSection.Pages.Item.Onenote
             };
             bodyOption.IsRequired = true;
             command.AddOption(bodyOption);
-            command.SetHandler(async (string groupId, string onenotePageId, string onenotePageId1, string body, IServiceProvider serviceProvider, IConsole console) => {
-                var responseHandler = serviceProvider.GetService(typeof(IResponseHandler)) as IResponseHandler;
+            command.SetHandler(async (string groupId, string onenotePageId, string onenotePageId1, string body, IOutputFormatterFactory outputFormatterFactory, IConsole console) => {
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<OnenotePatchContentRequestBody>();
                 var requestInfo = CreatePostRequestInformation(model, q => {
                 });
-                await RequestAdapter.SendNoContentAsync(requestInfo, responseHandler);
-                // Print request output. What if the request has no return?
+                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 console.WriteLine("Success");
-            }, groupIdOption, onenotePageIdOption, onenotePageId1Option, bodyOption, new ServiceProviderBinder());
+            }, groupIdOption, onenotePageIdOption, onenotePageId1Option, bodyOption, new OutputFormatterFactoryBinder());
             return command;
         }
         /// <summary>

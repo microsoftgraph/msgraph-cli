@@ -38,14 +38,12 @@ namespace ApiSdk.Groups.Item.Events.Item.Calendar.Events.Item.DismissReminder {
             };
             eventId1Option.IsRequired = true;
             command.AddOption(eventId1Option);
-            command.SetHandler(async (string groupId, string eventId, string eventId1, IServiceProvider serviceProvider, IConsole console) => {
-                var responseHandler = serviceProvider.GetService(typeof(IResponseHandler)) as IResponseHandler;
+            command.SetHandler(async (string groupId, string eventId, string eventId1, IOutputFormatterFactory outputFormatterFactory, IConsole console) => {
                 var requestInfo = CreatePostRequestInformation(q => {
                 });
-                await RequestAdapter.SendNoContentAsync(requestInfo, responseHandler);
-                // Print request output. What if the request has no return?
+                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 console.WriteLine("Success");
-            }, groupIdOption, eventIdOption, eventId1Option, new ServiceProviderBinder());
+            }, groupIdOption, eventIdOption, eventId1Option, new OutputFormatterFactoryBinder());
             return command;
         }
         /// <summary>

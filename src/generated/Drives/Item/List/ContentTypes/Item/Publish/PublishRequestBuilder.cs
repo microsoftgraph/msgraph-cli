@@ -34,14 +34,12 @@ namespace ApiSdk.Drives.Item.List.ContentTypes.Item.Publish {
             };
             contentTypeIdOption.IsRequired = true;
             command.AddOption(contentTypeIdOption);
-            command.SetHandler(async (string driveId, string contentTypeId, IServiceProvider serviceProvider, IConsole console) => {
-                var responseHandler = serviceProvider.GetService(typeof(IResponseHandler)) as IResponseHandler;
+            command.SetHandler(async (string driveId, string contentTypeId, IOutputFormatterFactory outputFormatterFactory, IConsole console) => {
                 var requestInfo = CreatePostRequestInformation(q => {
                 });
-                await RequestAdapter.SendNoContentAsync(requestInfo, responseHandler);
-                // Print request output. What if the request has no return?
+                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 console.WriteLine("Success");
-            }, driveIdOption, contentTypeIdOption, new ServiceProviderBinder());
+            }, driveIdOption, contentTypeIdOption, new OutputFormatterFactoryBinder());
             return command;
         }
         /// <summary>

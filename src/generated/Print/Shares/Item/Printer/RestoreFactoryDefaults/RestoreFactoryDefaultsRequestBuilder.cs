@@ -30,14 +30,12 @@ namespace ApiSdk.Print.Shares.Item.Printer.RestoreFactoryDefaults {
             };
             printerShareIdOption.IsRequired = true;
             command.AddOption(printerShareIdOption);
-            command.SetHandler(async (string printerShareId, IServiceProvider serviceProvider, IConsole console) => {
-                var responseHandler = serviceProvider.GetService(typeof(IResponseHandler)) as IResponseHandler;
+            command.SetHandler(async (string printerShareId, IOutputFormatterFactory outputFormatterFactory, IConsole console) => {
                 var requestInfo = CreatePostRequestInformation(q => {
                 });
-                await RequestAdapter.SendNoContentAsync(requestInfo, responseHandler);
-                // Print request output. What if the request has no return?
+                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 console.WriteLine("Success");
-            }, printerShareIdOption, new ServiceProviderBinder());
+            }, printerShareIdOption, new OutputFormatterFactoryBinder());
             return command;
         }
         /// <summary>
