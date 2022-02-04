@@ -11,7 +11,6 @@ using ApiSdk.Workbooks.Item.Workbook.Tables.Item.Columns.Item.Filter.ApplyTopIte
 using ApiSdk.Workbooks.Item.Workbook.Tables.Item.Columns.Item.Filter.ApplyTopPercentFilter;
 using ApiSdk.Workbooks.Item.Workbook.Tables.Item.Columns.Item.Filter.ApplyValuesFilter;
 using ApiSdk.Workbooks.Item.Workbook.Tables.Item.Columns.Item.Filter.Clear;
-using Microsoft.Graph.Cli.Core.Binding;
 using Microsoft.Graph.Cli.Core.IO;
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
@@ -128,7 +127,7 @@ namespace ApiSdk.Workbooks.Item.Workbook.Tables.Item.Columns.Item.Filter {
                 });
                 await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 console.WriteLine("Success");
-            }, driveItemIdOption, workbookTableIdOption, workbookTableColumnIdOption, new OutputFormatterFactoryBinder());
+            }, driveItemIdOption, workbookTableIdOption, workbookTableColumnIdOption);
             return command;
         }
         /// <summary>
@@ -172,7 +171,7 @@ namespace ApiSdk.Workbooks.Item.Workbook.Tables.Item.Columns.Item.Filter {
                 var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 formatter.WriteOutput(response, console);
-            }, driveItemIdOption, workbookTableIdOption, workbookTableColumnIdOption, selectOption, expandOption, outputOption, new OutputFormatterFactoryBinder());
+            }, driveItemIdOption, workbookTableIdOption, workbookTableColumnIdOption, selectOption, expandOption, outputOption);
             return command;
         }
         /// <summary>
@@ -206,7 +205,7 @@ namespace ApiSdk.Workbooks.Item.Workbook.Tables.Item.Columns.Item.Filter {
                 });
                 await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 console.WriteLine("Success");
-            }, driveItemIdOption, workbookTableIdOption, workbookTableColumnIdOption, bodyOption, new OutputFormatterFactoryBinder());
+            }, driveItemIdOption, workbookTableIdOption, workbookTableColumnIdOption, bodyOption);
             return command;
         }
         /// <summary>

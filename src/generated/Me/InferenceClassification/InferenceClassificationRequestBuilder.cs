@@ -1,6 +1,5 @@
 using ApiSdk.Me.InferenceClassification.Overrides;
 using ApiSdk.Models.Microsoft.Graph;
-using Microsoft.Graph.Cli.Core.Binding;
 using Microsoft.Graph.Cli.Core.IO;
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
@@ -33,7 +32,7 @@ namespace ApiSdk.Me.InferenceClassification {
                 });
                 await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 console.WriteLine("Success");
-            }, new OutputFormatterFactoryBinder());
+            });
             return command;
         }
         /// <summary>
@@ -59,7 +58,7 @@ namespace ApiSdk.Me.InferenceClassification {
                 var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 formatter.WriteOutput(response, console);
-            }, selectOption, outputOption, new OutputFormatterFactoryBinder());
+            }, selectOption, outputOption);
             return command;
         }
         public Command BuildOverridesCommand() {
@@ -91,7 +90,7 @@ namespace ApiSdk.Me.InferenceClassification {
                 });
                 await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 console.WriteLine("Success");
-            }, bodyOption, new OutputFormatterFactoryBinder());
+            }, bodyOption);
             return command;
         }
         /// <summary>

@@ -1,5 +1,4 @@
 using ApiSdk.Models.Microsoft.Graph;
-using Microsoft.Graph.Cli.Core.Binding;
 using Microsoft.Graph.Cli.Core.IO;
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
@@ -44,7 +43,7 @@ namespace ApiSdk.Education.Users.Item.Assignments.Item.Resources.Item {
                 });
                 await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 console.WriteLine("Success");
-            }, educationUserIdOption, educationAssignmentIdOption, educationAssignmentResourceIdOption, new OutputFormatterFactoryBinder());
+            }, educationUserIdOption, educationAssignmentIdOption, educationAssignmentResourceIdOption);
             return command;
         }
         /// <summary>
@@ -88,7 +87,7 @@ namespace ApiSdk.Education.Users.Item.Assignments.Item.Resources.Item {
                 var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 formatter.WriteOutput(response, console);
-            }, educationUserIdOption, educationAssignmentIdOption, educationAssignmentResourceIdOption, selectOption, expandOption, outputOption, new OutputFormatterFactoryBinder());
+            }, educationUserIdOption, educationAssignmentIdOption, educationAssignmentResourceIdOption, selectOption, expandOption, outputOption);
             return command;
         }
         /// <summary>
@@ -122,7 +121,7 @@ namespace ApiSdk.Education.Users.Item.Assignments.Item.Resources.Item {
                 });
                 await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 console.WriteLine("Success");
-            }, educationUserIdOption, educationAssignmentIdOption, educationAssignmentResourceIdOption, bodyOption, new OutputFormatterFactoryBinder());
+            }, educationUserIdOption, educationAssignmentIdOption, educationAssignmentResourceIdOption, bodyOption);
             return command;
         }
         /// <summary>

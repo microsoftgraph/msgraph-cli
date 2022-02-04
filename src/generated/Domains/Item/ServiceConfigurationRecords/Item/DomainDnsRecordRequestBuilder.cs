@@ -1,5 +1,4 @@
 using ApiSdk.Models.Microsoft.Graph;
-using Microsoft.Graph.Cli.Core.Binding;
 using Microsoft.Graph.Cli.Core.IO;
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
@@ -40,7 +39,7 @@ namespace ApiSdk.Domains.Item.ServiceConfigurationRecords.Item {
                 });
                 await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 console.WriteLine("Success");
-            }, domainIdOption, domainDnsRecordIdOption, new OutputFormatterFactoryBinder());
+            }, domainIdOption, domainDnsRecordIdOption);
             return command;
         }
         /// <summary>
@@ -80,7 +79,7 @@ namespace ApiSdk.Domains.Item.ServiceConfigurationRecords.Item {
                 var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 formatter.WriteOutput(response, console);
-            }, domainIdOption, domainDnsRecordIdOption, selectOption, expandOption, outputOption, new OutputFormatterFactoryBinder());
+            }, domainIdOption, domainDnsRecordIdOption, selectOption, expandOption, outputOption);
             return command;
         }
         /// <summary>
@@ -110,7 +109,7 @@ namespace ApiSdk.Domains.Item.ServiceConfigurationRecords.Item {
                 });
                 await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 console.WriteLine("Success");
-            }, domainIdOption, domainDnsRecordIdOption, bodyOption, new OutputFormatterFactoryBinder());
+            }, domainIdOption, domainDnsRecordIdOption, bodyOption);
             return command;
         }
         /// <summary>

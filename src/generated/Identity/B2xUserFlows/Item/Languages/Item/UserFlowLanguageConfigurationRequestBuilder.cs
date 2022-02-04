@@ -1,7 +1,6 @@
 using ApiSdk.Identity.B2xUserFlows.Item.Languages.Item.DefaultPages;
 using ApiSdk.Identity.B2xUserFlows.Item.Languages.Item.OverridesPages;
 using ApiSdk.Models.Microsoft.Graph;
-using Microsoft.Graph.Cli.Core.Binding;
 using Microsoft.Graph.Cli.Core.IO;
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
@@ -52,7 +51,7 @@ namespace ApiSdk.Identity.B2xUserFlows.Item.Languages.Item {
                 });
                 await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 console.WriteLine("Success");
-            }, b2xIdentityUserFlowIdOption, userFlowLanguageConfigurationIdOption, new OutputFormatterFactoryBinder());
+            }, b2xIdentityUserFlowIdOption, userFlowLanguageConfigurationIdOption);
             return command;
         }
         /// <summary>
@@ -92,7 +91,7 @@ namespace ApiSdk.Identity.B2xUserFlows.Item.Languages.Item {
                 var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 formatter.WriteOutput(response, console);
-            }, b2xIdentityUserFlowIdOption, userFlowLanguageConfigurationIdOption, selectOption, expandOption, outputOption, new OutputFormatterFactoryBinder());
+            }, b2xIdentityUserFlowIdOption, userFlowLanguageConfigurationIdOption, selectOption, expandOption, outputOption);
             return command;
         }
         public Command BuildOverridesPagesCommand() {
@@ -132,7 +131,7 @@ namespace ApiSdk.Identity.B2xUserFlows.Item.Languages.Item {
                 });
                 await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 console.WriteLine("Success");
-            }, b2xIdentityUserFlowIdOption, userFlowLanguageConfigurationIdOption, bodyOption, new OutputFormatterFactoryBinder());
+            }, b2xIdentityUserFlowIdOption, userFlowLanguageConfigurationIdOption, bodyOption);
             return command;
         }
         /// <summary>

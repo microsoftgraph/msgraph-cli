@@ -1,5 +1,4 @@
 using ApiSdk.Models.Microsoft.Graph;
-using Microsoft.Graph.Cli.Core.Binding;
 using Microsoft.Graph.Cli.Core.IO;
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
@@ -40,7 +39,7 @@ namespace ApiSdk.DeviceAppManagement.MobileAppConfigurations.Item.UserStatuses.I
                 });
                 await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 console.WriteLine("Success");
-            }, managedDeviceMobileAppConfigurationIdOption, managedDeviceMobileAppConfigurationUserStatusIdOption, new OutputFormatterFactoryBinder());
+            }, managedDeviceMobileAppConfigurationIdOption, managedDeviceMobileAppConfigurationUserStatusIdOption);
             return command;
         }
         /// <summary>
@@ -80,7 +79,7 @@ namespace ApiSdk.DeviceAppManagement.MobileAppConfigurations.Item.UserStatuses.I
                 var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 formatter.WriteOutput(response, console);
-            }, managedDeviceMobileAppConfigurationIdOption, managedDeviceMobileAppConfigurationUserStatusIdOption, selectOption, expandOption, outputOption, new OutputFormatterFactoryBinder());
+            }, managedDeviceMobileAppConfigurationIdOption, managedDeviceMobileAppConfigurationUserStatusIdOption, selectOption, expandOption, outputOption);
             return command;
         }
         /// <summary>
@@ -110,7 +109,7 @@ namespace ApiSdk.DeviceAppManagement.MobileAppConfigurations.Item.UserStatuses.I
                 });
                 await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 console.WriteLine("Success");
-            }, managedDeviceMobileAppConfigurationIdOption, managedDeviceMobileAppConfigurationUserStatusIdOption, bodyOption, new OutputFormatterFactoryBinder());
+            }, managedDeviceMobileAppConfigurationIdOption, managedDeviceMobileAppConfigurationUserStatusIdOption, bodyOption);
             return command;
         }
         /// <summary>

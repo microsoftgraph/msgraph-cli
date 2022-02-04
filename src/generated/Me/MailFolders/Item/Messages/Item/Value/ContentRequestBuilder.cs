@@ -1,4 +1,3 @@
-using Microsoft.Graph.Cli.Core.Binding;
 using Microsoft.Graph.Cli.Core.IO;
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
@@ -53,7 +52,7 @@ namespace ApiSdk.Me.MailFolders.Item.Messages.Item.Value {
                     await response.CopyToAsync(writeStream);
                     console.WriteLine($"Content written to {file.FullName}.");
                 }
-            }, mailFolderIdOption, messageIdOption, fileOption, outputOption, new OutputFormatterFactoryBinder());
+            }, mailFolderIdOption, messageIdOption, fileOption, outputOption);
             return command;
         }
         /// <summary>
@@ -81,7 +80,7 @@ namespace ApiSdk.Me.MailFolders.Item.Messages.Item.Value {
                 });
                 await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 console.WriteLine("Success");
-            }, mailFolderIdOption, messageIdOption, bodyOption, new OutputFormatterFactoryBinder());
+            }, mailFolderIdOption, messageIdOption, bodyOption);
             return command;
         }
         /// <summary>

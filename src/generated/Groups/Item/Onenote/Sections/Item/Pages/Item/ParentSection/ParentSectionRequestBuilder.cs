@@ -1,7 +1,6 @@
 using ApiSdk.Groups.Item.Onenote.Sections.Item.Pages.Item.ParentSection.CopyToNotebook;
 using ApiSdk.Groups.Item.Onenote.Sections.Item.Pages.Item.ParentSection.CopyToSectionGroup;
 using ApiSdk.Models.Microsoft.Graph;
-using Microsoft.Graph.Cli.Core.Binding;
 using Microsoft.Graph.Cli.Core.IO;
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
@@ -58,7 +57,7 @@ namespace ApiSdk.Groups.Item.Onenote.Sections.Item.Pages.Item.ParentSection {
                 });
                 await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 console.WriteLine("Success");
-            }, groupIdOption, onenoteSectionIdOption, onenotePageIdOption, new OutputFormatterFactoryBinder());
+            }, groupIdOption, onenoteSectionIdOption, onenotePageIdOption);
             return command;
         }
         /// <summary>
@@ -102,7 +101,7 @@ namespace ApiSdk.Groups.Item.Onenote.Sections.Item.Pages.Item.ParentSection {
                 var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 formatter.WriteOutput(response, console);
-            }, groupIdOption, onenoteSectionIdOption, onenotePageIdOption, selectOption, expandOption, outputOption, new OutputFormatterFactoryBinder());
+            }, groupIdOption, onenoteSectionIdOption, onenotePageIdOption, selectOption, expandOption, outputOption);
             return command;
         }
         /// <summary>
@@ -136,7 +135,7 @@ namespace ApiSdk.Groups.Item.Onenote.Sections.Item.Pages.Item.ParentSection {
                 });
                 await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 console.WriteLine("Success");
-            }, groupIdOption, onenoteSectionIdOption, onenotePageIdOption, bodyOption, new OutputFormatterFactoryBinder());
+            }, groupIdOption, onenoteSectionIdOption, onenotePageIdOption, bodyOption);
             return command;
         }
         /// <summary>

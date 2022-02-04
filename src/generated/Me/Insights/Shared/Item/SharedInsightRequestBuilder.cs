@@ -1,7 +1,6 @@
 using ApiSdk.Me.Insights.Shared.Item.LastSharedMethod;
 using ApiSdk.Me.Insights.Shared.Item.Resource;
 using ApiSdk.Models.Microsoft.Graph;
-using Microsoft.Graph.Cli.Core.Binding;
 using Microsoft.Graph.Cli.Core.IO;
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
@@ -38,7 +37,7 @@ namespace ApiSdk.Me.Insights.Shared.Item {
                 });
                 await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 console.WriteLine("Success");
-            }, sharedInsightIdOption, new OutputFormatterFactoryBinder());
+            }, sharedInsightIdOption);
             return command;
         }
         /// <summary>
@@ -74,7 +73,7 @@ namespace ApiSdk.Me.Insights.Shared.Item {
                 var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 formatter.WriteOutput(response, console);
-            }, sharedInsightIdOption, selectOption, expandOption, outputOption, new OutputFormatterFactoryBinder());
+            }, sharedInsightIdOption, selectOption, expandOption, outputOption);
             return command;
         }
         public Command BuildLastSharedMethodCommand() {
@@ -120,7 +119,7 @@ namespace ApiSdk.Me.Insights.Shared.Item {
                 });
                 await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 console.WriteLine("Success");
-            }, sharedInsightIdOption, bodyOption, new OutputFormatterFactoryBinder());
+            }, sharedInsightIdOption, bodyOption);
             return command;
         }
         public Command BuildResourceCommand() {

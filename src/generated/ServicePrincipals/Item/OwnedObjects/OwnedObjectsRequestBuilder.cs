@@ -1,5 +1,4 @@
 using ApiSdk.ServicePrincipals.Item.OwnedObjects.Ref;
-using Microsoft.Graph.Cli.Core.Binding;
 using Microsoft.Graph.Cli.Core.IO;
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
@@ -84,7 +83,7 @@ namespace ApiSdk.ServicePrincipals.Item.OwnedObjects {
                 var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 formatter.WriteOutput(response, console);
-            }, servicePrincipalIdOption, topOption, skipOption, searchOption, filterOption, countOption, orderbyOption, selectOption, expandOption, outputOption, new OutputFormatterFactoryBinder());
+            }, servicePrincipalIdOption, topOption, skipOption, searchOption, filterOption, countOption, orderbyOption, selectOption, expandOption, outputOption);
             return command;
         }
         public Command BuildRefCommand() {

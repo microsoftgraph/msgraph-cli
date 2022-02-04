@@ -66,7 +66,6 @@ using ApiSdk.TeamsTemplates;
 using ApiSdk.Teamwork;
 using ApiSdk.Users;
 using ApiSdk.Workbooks;
-using Microsoft.Graph.Cli.Core.Binding;
 using Microsoft.Graph.Cli.Core.IO;
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
@@ -534,7 +533,7 @@ namespace ApiSdk {
                 });
                 await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 console.WriteLine("Success");
-            }, new OutputFormatterFactoryBinder());
+            });
             return command;
         }
         public Command BuildGroupLifecyclePoliciesCommand() {

@@ -4,7 +4,6 @@ using ApiSdk.DirectoryRoleTemplates.Item.GetMemberGroups;
 using ApiSdk.DirectoryRoleTemplates.Item.GetMemberObjects;
 using ApiSdk.DirectoryRoleTemplates.Item.Restore;
 using ApiSdk.Models.Microsoft.Graph;
-using Microsoft.Graph.Cli.Core.Binding;
 using Microsoft.Graph.Cli.Core.IO;
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
@@ -53,7 +52,7 @@ namespace ApiSdk.DirectoryRoleTemplates.Item {
                 });
                 await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 console.WriteLine("Success");
-            }, directoryRoleTemplateIdOption, new OutputFormatterFactoryBinder());
+            }, directoryRoleTemplateIdOption);
             return command;
         }
         /// <summary>
@@ -89,7 +88,7 @@ namespace ApiSdk.DirectoryRoleTemplates.Item {
                 var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 formatter.WriteOutput(response, console);
-            }, directoryRoleTemplateIdOption, selectOption, expandOption, outputOption, new OutputFormatterFactoryBinder());
+            }, directoryRoleTemplateIdOption, selectOption, expandOption, outputOption);
             return command;
         }
         public Command BuildGetMemberGroupsCommand() {
@@ -127,7 +126,7 @@ namespace ApiSdk.DirectoryRoleTemplates.Item {
                 });
                 await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 console.WriteLine("Success");
-            }, directoryRoleTemplateIdOption, bodyOption, new OutputFormatterFactoryBinder());
+            }, directoryRoleTemplateIdOption, bodyOption);
             return command;
         }
         public Command BuildRestoreCommand() {

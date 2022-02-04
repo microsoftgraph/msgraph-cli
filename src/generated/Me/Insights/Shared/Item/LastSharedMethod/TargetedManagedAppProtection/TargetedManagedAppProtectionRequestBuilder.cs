@@ -1,6 +1,5 @@
 using ApiSdk.Me.Insights.Shared.Item.LastSharedMethod.TargetedManagedAppProtection.Assign;
 using ApiSdk.Me.Insights.Shared.Item.LastSharedMethod.TargetedManagedAppProtection.TargetApps;
-using Microsoft.Graph.Cli.Core.Binding;
 using Microsoft.Graph.Cli.Core.IO;
 using Microsoft.Kiota.Abstractions;
 using System;

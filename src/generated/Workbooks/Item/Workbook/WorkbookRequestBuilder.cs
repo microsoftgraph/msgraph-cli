@@ -11,7 +11,6 @@ using ApiSdk.Workbooks.Item.Workbook.SessionInfoResourceWithKey;
 using ApiSdk.Workbooks.Item.Workbook.TableRowOperationResultWithKey;
 using ApiSdk.Workbooks.Item.Workbook.Tables;
 using ApiSdk.Workbooks.Item.Workbook.Worksheets;
-using Microsoft.Graph.Cli.Core.Binding;
 using Microsoft.Graph.Cli.Core.IO;
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
@@ -79,7 +78,7 @@ namespace ApiSdk.Workbooks.Item.Workbook {
                 });
                 await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 console.WriteLine("Success");
-            }, driveItemIdOption, new OutputFormatterFactoryBinder());
+            }, driveItemIdOption);
             return command;
         }
         public Command BuildFunctionsCommand() {
@@ -483,7 +482,7 @@ namespace ApiSdk.Workbooks.Item.Workbook {
                 var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 formatter.WriteOutput(response, console);
-            }, driveItemIdOption, expandOption, outputOption, new OutputFormatterFactoryBinder());
+            }, driveItemIdOption, expandOption, outputOption);
             return command;
         }
         public Command BuildNamesCommand() {
@@ -531,7 +530,7 @@ namespace ApiSdk.Workbooks.Item.Workbook {
                 });
                 await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 console.WriteLine("Success");
-            }, driveItemIdOption, bodyOption, new OutputFormatterFactoryBinder());
+            }, driveItemIdOption, bodyOption);
             return command;
         }
         public Command BuildRefreshSessionCommand() {

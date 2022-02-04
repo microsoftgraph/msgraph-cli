@@ -1,5 +1,4 @@
 using ApiSdk.Models.Microsoft.Graph;
-using Microsoft.Graph.Cli.Core.Binding;
 using Microsoft.Graph.Cli.Core.IO;
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
@@ -36,7 +35,7 @@ namespace ApiSdk.Security.SecureScoreControlProfiles.Item {
                 });
                 await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 console.WriteLine("Success");
-            }, secureScoreControlProfileIdOption, new OutputFormatterFactoryBinder());
+            }, secureScoreControlProfileIdOption);
             return command;
         }
         /// <summary>
@@ -72,7 +71,7 @@ namespace ApiSdk.Security.SecureScoreControlProfiles.Item {
                 var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 formatter.WriteOutput(response, console);
-            }, secureScoreControlProfileIdOption, selectOption, expandOption, outputOption, new OutputFormatterFactoryBinder());
+            }, secureScoreControlProfileIdOption, selectOption, expandOption, outputOption);
             return command;
         }
         /// <summary>
@@ -98,7 +97,7 @@ namespace ApiSdk.Security.SecureScoreControlProfiles.Item {
                 });
                 await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 console.WriteLine("Success");
-            }, secureScoreControlProfileIdOption, bodyOption, new OutputFormatterFactoryBinder());
+            }, secureScoreControlProfileIdOption, bodyOption);
             return command;
         }
         /// <summary>

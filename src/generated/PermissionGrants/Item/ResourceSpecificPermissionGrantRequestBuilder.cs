@@ -4,7 +4,6 @@ using ApiSdk.PermissionGrants.Item.CheckMemberObjects;
 using ApiSdk.PermissionGrants.Item.GetMemberGroups;
 using ApiSdk.PermissionGrants.Item.GetMemberObjects;
 using ApiSdk.PermissionGrants.Item.Restore;
-using Microsoft.Graph.Cli.Core.Binding;
 using Microsoft.Graph.Cli.Core.IO;
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
@@ -53,7 +52,7 @@ namespace ApiSdk.PermissionGrants.Item {
                 });
                 await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 console.WriteLine("Success");
-            }, resourceSpecificPermissionGrantIdOption, new OutputFormatterFactoryBinder());
+            }, resourceSpecificPermissionGrantIdOption);
             return command;
         }
         /// <summary>
@@ -89,7 +88,7 @@ namespace ApiSdk.PermissionGrants.Item {
                 var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 formatter.WriteOutput(response, console);
-            }, resourceSpecificPermissionGrantIdOption, selectOption, expandOption, outputOption, new OutputFormatterFactoryBinder());
+            }, resourceSpecificPermissionGrantIdOption, selectOption, expandOption, outputOption);
             return command;
         }
         public Command BuildGetMemberGroupsCommand() {
@@ -127,7 +126,7 @@ namespace ApiSdk.PermissionGrants.Item {
                 });
                 await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 console.WriteLine("Success");
-            }, resourceSpecificPermissionGrantIdOption, bodyOption, new OutputFormatterFactoryBinder());
+            }, resourceSpecificPermissionGrantIdOption, bodyOption);
             return command;
         }
         public Command BuildRestoreCommand() {

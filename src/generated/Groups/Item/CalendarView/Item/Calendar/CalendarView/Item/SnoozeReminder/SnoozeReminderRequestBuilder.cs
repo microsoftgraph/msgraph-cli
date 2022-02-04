@@ -1,4 +1,3 @@
-using Microsoft.Graph.Cli.Core.Binding;
 using Microsoft.Graph.Cli.Core.IO;
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
@@ -50,7 +49,7 @@ namespace ApiSdk.Groups.Item.CalendarView.Item.Calendar.CalendarView.Item.Snooze
                 });
                 await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 console.WriteLine("Success");
-            }, groupIdOption, eventIdOption, eventId1Option, bodyOption, new OutputFormatterFactoryBinder());
+            }, groupIdOption, eventIdOption, eventId1Option, bodyOption);
             return command;
         }
         /// <summary>

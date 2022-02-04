@@ -2,7 +2,6 @@ using ApiSdk.Models.Microsoft.Graph;
 using ApiSdk.Users.Item.Onenote.Sections.Item.ParentSectionGroup.ParentNotebook;
 using ApiSdk.Users.Item.Onenote.Sections.Item.ParentSectionGroup.SectionGroups;
 using ApiSdk.Users.Item.Onenote.Sections.Item.ParentSectionGroup.Sections;
-using Microsoft.Graph.Cli.Core.Binding;
 using Microsoft.Graph.Cli.Core.IO;
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
@@ -43,7 +42,7 @@ namespace ApiSdk.Users.Item.Onenote.Sections.Item.ParentSectionGroup {
                 });
                 await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 console.WriteLine("Success");
-            }, userIdOption, onenoteSectionIdOption, new OutputFormatterFactoryBinder());
+            }, userIdOption, onenoteSectionIdOption);
             return command;
         }
         /// <summary>
@@ -83,7 +82,7 @@ namespace ApiSdk.Users.Item.Onenote.Sections.Item.ParentSectionGroup {
                 var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 formatter.WriteOutput(response, console);
-            }, userIdOption, onenoteSectionIdOption, selectOption, expandOption, outputOption, new OutputFormatterFactoryBinder());
+            }, userIdOption, onenoteSectionIdOption, selectOption, expandOption, outputOption);
             return command;
         }
         public Command BuildParentNotebookCommand() {
@@ -124,7 +123,7 @@ namespace ApiSdk.Users.Item.Onenote.Sections.Item.ParentSectionGroup {
                 });
                 await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 console.WriteLine("Success");
-            }, userIdOption, onenoteSectionIdOption, bodyOption, new OutputFormatterFactoryBinder());
+            }, userIdOption, onenoteSectionIdOption, bodyOption);
             return command;
         }
         public Command BuildSectionGroupsCommand() {

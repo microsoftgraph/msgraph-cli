@@ -1,5 +1,4 @@
 using ApiSdk.Models.Microsoft.Graph;
-using Microsoft.Graph.Cli.Core.Binding;
 using Microsoft.Graph.Cli.Core.IO;
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
@@ -40,7 +39,7 @@ namespace ApiSdk.Teams.Item.Schedule.Shifts.Item {
                 });
                 await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 console.WriteLine("Success");
-            }, teamIdOption, shiftIdOption, new OutputFormatterFactoryBinder());
+            }, teamIdOption, shiftIdOption);
             return command;
         }
         /// <summary>
@@ -74,7 +73,7 @@ namespace ApiSdk.Teams.Item.Schedule.Shifts.Item {
                 var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 formatter.WriteOutput(response, console);
-            }, teamIdOption, shiftIdOption, selectOption, outputOption, new OutputFormatterFactoryBinder());
+            }, teamIdOption, shiftIdOption, selectOption, outputOption);
             return command;
         }
         /// <summary>
@@ -104,7 +103,7 @@ namespace ApiSdk.Teams.Item.Schedule.Shifts.Item {
                 });
                 await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 console.WriteLine("Success");
-            }, teamIdOption, shiftIdOption, bodyOption, new OutputFormatterFactoryBinder());
+            }, teamIdOption, shiftIdOption, bodyOption);
             return command;
         }
         /// <summary>

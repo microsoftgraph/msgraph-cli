@@ -1,6 +1,5 @@
 using ApiSdk.DeviceManagement.DetectedApps.Item.ManagedDevices;
 using ApiSdk.Models.Microsoft.Graph;
-using Microsoft.Graph.Cli.Core.Binding;
 using Microsoft.Graph.Cli.Core.IO;
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
@@ -37,7 +36,7 @@ namespace ApiSdk.DeviceManagement.DetectedApps.Item {
                 });
                 await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 console.WriteLine("Success");
-            }, detectedAppIdOption, new OutputFormatterFactoryBinder());
+            }, detectedAppIdOption);
             return command;
         }
         /// <summary>
@@ -73,7 +72,7 @@ namespace ApiSdk.DeviceManagement.DetectedApps.Item {
                 var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 formatter.WriteOutput(response, console);
-            }, detectedAppIdOption, selectOption, expandOption, outputOption, new OutputFormatterFactoryBinder());
+            }, detectedAppIdOption, selectOption, expandOption, outputOption);
             return command;
         }
         public Command BuildManagedDevicesCommand() {
@@ -106,7 +105,7 @@ namespace ApiSdk.DeviceManagement.DetectedApps.Item {
                 });
                 await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 console.WriteLine("Success");
-            }, detectedAppIdOption, bodyOption, new OutputFormatterFactoryBinder());
+            }, detectedAppIdOption, bodyOption);
             return command;
         }
         /// <summary>

@@ -1,4 +1,3 @@
-using Microsoft.Graph.Cli.Core.Binding;
 using Microsoft.Graph.Cli.Core.IO;
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
@@ -44,7 +43,7 @@ namespace ApiSdk.IdentityGovernance.AppConsent.AppConsentRequests.Item.UserConse
                 var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 formatter.WriteOutput(response, console);
-            }, appConsentRequestIdOption, onOption, outputOption, new OutputFormatterFactoryBinder());
+            }, appConsentRequestIdOption, onOption, outputOption);
             return command;
         }
         /// <summary>

@@ -2,7 +2,6 @@ using ApiSdk.Models.Microsoft.Graph;
 using ApiSdk.Users.Item.Insights.Shared;
 using ApiSdk.Users.Item.Insights.Trending;
 using ApiSdk.Users.Item.Insights.Used;
-using Microsoft.Graph.Cli.Core.Binding;
 using Microsoft.Graph.Cli.Core.IO;
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
@@ -39,7 +38,7 @@ namespace ApiSdk.Users.Item.Insights {
                 });
                 await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 console.WriteLine("Success");
-            }, userIdOption, new OutputFormatterFactoryBinder());
+            }, userIdOption);
             return command;
         }
         /// <summary>
@@ -75,7 +74,7 @@ namespace ApiSdk.Users.Item.Insights {
                 var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 formatter.WriteOutput(response, console);
-            }, userIdOption, selectOption, expandOption, outputOption, new OutputFormatterFactoryBinder());
+            }, userIdOption, selectOption, expandOption, outputOption);
             return command;
         }
         /// <summary>
@@ -101,7 +100,7 @@ namespace ApiSdk.Users.Item.Insights {
                 });
                 await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 console.WriteLine("Success");
-            }, userIdOption, bodyOption, new OutputFormatterFactoryBinder());
+            }, userIdOption, bodyOption);
             return command;
         }
         public Command BuildSharedCommand() {

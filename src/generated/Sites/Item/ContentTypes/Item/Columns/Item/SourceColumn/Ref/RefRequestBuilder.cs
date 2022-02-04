@@ -1,4 +1,3 @@
-using Microsoft.Graph.Cli.Core.Binding;
 using Microsoft.Graph.Cli.Core.IO;
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
@@ -43,7 +42,7 @@ namespace ApiSdk.Sites.Item.ContentTypes.Item.Columns.Item.SourceColumn.Ref {
                 });
                 await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 console.WriteLine("Success");
-            }, siteIdOption, contentTypeIdOption, columnDefinitionIdOption, new OutputFormatterFactoryBinder());
+            }, siteIdOption, contentTypeIdOption, columnDefinitionIdOption);
             return command;
         }
         /// <summary>
@@ -75,7 +74,7 @@ namespace ApiSdk.Sites.Item.ContentTypes.Item.Columns.Item.SourceColumn.Ref {
                 var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 formatter.WriteOutput(response, console);
-            }, siteIdOption, contentTypeIdOption, columnDefinitionIdOption, outputOption, new OutputFormatterFactoryBinder());
+            }, siteIdOption, contentTypeIdOption, columnDefinitionIdOption, outputOption);
             return command;
         }
         /// <summary>
@@ -109,7 +108,7 @@ namespace ApiSdk.Sites.Item.ContentTypes.Item.Columns.Item.SourceColumn.Ref {
                 });
                 await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 console.WriteLine("Success");
-            }, siteIdOption, contentTypeIdOption, columnDefinitionIdOption, bodyOption, new OutputFormatterFactoryBinder());
+            }, siteIdOption, contentTypeIdOption, columnDefinitionIdOption, bodyOption);
             return command;
         }
         /// <summary>

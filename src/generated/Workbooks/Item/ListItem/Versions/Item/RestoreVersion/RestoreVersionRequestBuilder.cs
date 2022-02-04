@@ -1,4 +1,3 @@
-using Microsoft.Graph.Cli.Core.Binding;
 using Microsoft.Graph.Cli.Core.IO;
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
@@ -39,7 +38,7 @@ namespace ApiSdk.Workbooks.Item.ListItem.Versions.Item.RestoreVersion {
                 });
                 await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 console.WriteLine("Success");
-            }, driveItemIdOption, listItemVersionIdOption, new OutputFormatterFactoryBinder());
+            }, driveItemIdOption, listItemVersionIdOption);
             return command;
         }
         /// <summary>

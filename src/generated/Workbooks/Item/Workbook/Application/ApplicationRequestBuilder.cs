@@ -1,6 +1,5 @@
 using ApiSdk.Models.Microsoft.Graph;
 using ApiSdk.Workbooks.Item.Workbook.Application.Calculate;
-using Microsoft.Graph.Cli.Core.Binding;
 using Microsoft.Graph.Cli.Core.IO;
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
@@ -43,7 +42,7 @@ namespace ApiSdk.Workbooks.Item.Workbook.Application {
                 });
                 await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 console.WriteLine("Success");
-            }, driveItemIdOption, new OutputFormatterFactoryBinder());
+            }, driveItemIdOption);
             return command;
         }
         /// <summary>
@@ -79,7 +78,7 @@ namespace ApiSdk.Workbooks.Item.Workbook.Application {
                 var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 formatter.WriteOutput(response, console);
-            }, driveItemIdOption, selectOption, expandOption, outputOption, new OutputFormatterFactoryBinder());
+            }, driveItemIdOption, selectOption, expandOption, outputOption);
             return command;
         }
         /// <summary>
@@ -105,7 +104,7 @@ namespace ApiSdk.Workbooks.Item.Workbook.Application {
                 });
                 await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 console.WriteLine("Success");
-            }, driveItemIdOption, bodyOption, new OutputFormatterFactoryBinder());
+            }, driveItemIdOption, bodyOption);
             return command;
         }
         /// <summary>

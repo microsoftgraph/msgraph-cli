@@ -1,4 +1,3 @@
-using Microsoft.Graph.Cli.Core.Binding;
 using Microsoft.Graph.Cli.Core.IO;
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
@@ -35,7 +34,7 @@ namespace ApiSdk.Me.Teamwork.InstalledApps.Item.Chat.Ref {
                 });
                 await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 console.WriteLine("Success");
-            }, userScopeTeamsAppInstallationIdOption, new OutputFormatterFactoryBinder());
+            }, userScopeTeamsAppInstallationIdOption);
             return command;
         }
         /// <summary>
@@ -59,7 +58,7 @@ namespace ApiSdk.Me.Teamwork.InstalledApps.Item.Chat.Ref {
                 var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 formatter.WriteOutput(response, console);
-            }, userScopeTeamsAppInstallationIdOption, outputOption, new OutputFormatterFactoryBinder());
+            }, userScopeTeamsAppInstallationIdOption, outputOption);
             return command;
         }
         /// <summary>
@@ -85,7 +84,7 @@ namespace ApiSdk.Me.Teamwork.InstalledApps.Item.Chat.Ref {
                 });
                 await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 console.WriteLine("Success");
-            }, userScopeTeamsAppInstallationIdOption, bodyOption, new OutputFormatterFactoryBinder());
+            }, userScopeTeamsAppInstallationIdOption, bodyOption);
             return command;
         }
         /// <summary>

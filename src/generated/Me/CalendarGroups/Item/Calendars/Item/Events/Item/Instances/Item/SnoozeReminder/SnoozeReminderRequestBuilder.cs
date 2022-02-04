@@ -1,4 +1,3 @@
-using Microsoft.Graph.Cli.Core.Binding;
 using Microsoft.Graph.Cli.Core.IO;
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
@@ -54,7 +53,7 @@ namespace ApiSdk.Me.CalendarGroups.Item.Calendars.Item.Events.Item.Instances.Ite
                 });
                 await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 console.WriteLine("Success");
-            }, calendarGroupIdOption, calendarIdOption, eventIdOption, eventId1Option, bodyOption, new OutputFormatterFactoryBinder());
+            }, calendarGroupIdOption, calendarIdOption, eventIdOption, eventId1Option, bodyOption);
             return command;
         }
         /// <summary>

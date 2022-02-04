@@ -4,7 +4,6 @@ using ApiSdk.Drives.Item.List.Drive;
 using ApiSdk.Drives.Item.List.Items;
 using ApiSdk.Drives.Item.List.Subscriptions;
 using ApiSdk.Models.Microsoft.Graph;
-using Microsoft.Graph.Cli.Core.Binding;
 using Microsoft.Graph.Cli.Core.IO;
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
@@ -62,7 +61,7 @@ namespace ApiSdk.Drives.Item.List {
                 });
                 await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 console.WriteLine("Success");
-            }, driveIdOption, new OutputFormatterFactoryBinder());
+            }, driveIdOption);
             return command;
         }
         public Command BuildDriveCommand() {
@@ -106,7 +105,7 @@ namespace ApiSdk.Drives.Item.List {
                 var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 formatter.WriteOutput(response, console);
-            }, driveIdOption, selectOption, expandOption, outputOption, new OutputFormatterFactoryBinder());
+            }, driveIdOption, selectOption, expandOption, outputOption);
             return command;
         }
         public Command BuildItemsCommand() {
@@ -142,7 +141,7 @@ namespace ApiSdk.Drives.Item.List {
                 });
                 await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 console.WriteLine("Success");
-            }, driveIdOption, bodyOption, new OutputFormatterFactoryBinder());
+            }, driveIdOption, bodyOption);
             return command;
         }
         public Command BuildSubscriptionsCommand() {

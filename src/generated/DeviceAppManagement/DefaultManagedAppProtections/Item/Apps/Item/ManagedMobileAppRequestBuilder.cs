@@ -1,5 +1,4 @@
 using ApiSdk.Models.Microsoft.Graph;
-using Microsoft.Graph.Cli.Core.Binding;
 using Microsoft.Graph.Cli.Core.IO;
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
@@ -40,7 +39,7 @@ namespace ApiSdk.DeviceAppManagement.DefaultManagedAppProtections.Item.Apps.Item
                 });
                 await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 console.WriteLine("Success");
-            }, defaultManagedAppProtectionIdOption, managedMobileAppIdOption, new OutputFormatterFactoryBinder());
+            }, defaultManagedAppProtectionIdOption, managedMobileAppIdOption);
             return command;
         }
         /// <summary>
@@ -80,7 +79,7 @@ namespace ApiSdk.DeviceAppManagement.DefaultManagedAppProtections.Item.Apps.Item
                 var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 formatter.WriteOutput(response, console);
-            }, defaultManagedAppProtectionIdOption, managedMobileAppIdOption, selectOption, expandOption, outputOption, new OutputFormatterFactoryBinder());
+            }, defaultManagedAppProtectionIdOption, managedMobileAppIdOption, selectOption, expandOption, outputOption);
             return command;
         }
         /// <summary>
@@ -110,7 +109,7 @@ namespace ApiSdk.DeviceAppManagement.DefaultManagedAppProtections.Item.Apps.Item
                 });
                 await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 console.WriteLine("Success");
-            }, defaultManagedAppProtectionIdOption, managedMobileAppIdOption, bodyOption, new OutputFormatterFactoryBinder());
+            }, defaultManagedAppProtectionIdOption, managedMobileAppIdOption, bodyOption);
             return command;
         }
         /// <summary>

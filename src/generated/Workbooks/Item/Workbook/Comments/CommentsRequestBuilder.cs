@@ -1,6 +1,5 @@
 using ApiSdk.Models.Microsoft.Graph;
 using ApiSdk.Workbooks.Item.Workbook.Comments.Item;
-using Microsoft.Graph.Cli.Core.Binding;
 using Microsoft.Graph.Cli.Core.IO;
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
@@ -58,7 +57,7 @@ namespace ApiSdk.Workbooks.Item.Workbook.Comments {
                 var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 formatter.WriteOutput(response, console);
-            }, driveItemIdOption, bodyOption, outputOption, new OutputFormatterFactoryBinder());
+            }, driveItemIdOption, bodyOption, outputOption);
             return command;
         }
         /// <summary>
@@ -125,7 +124,7 @@ namespace ApiSdk.Workbooks.Item.Workbook.Comments {
                 var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 formatter.WriteOutput(response, console);
-            }, driveItemIdOption, topOption, skipOption, searchOption, filterOption, countOption, orderbyOption, selectOption, expandOption, outputOption, new OutputFormatterFactoryBinder());
+            }, driveItemIdOption, topOption, skipOption, searchOption, filterOption, countOption, orderbyOption, selectOption, expandOption, outputOption);
             return command;
         }
         /// <summary>

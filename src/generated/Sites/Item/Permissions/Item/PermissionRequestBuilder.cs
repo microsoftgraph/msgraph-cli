@@ -1,6 +1,5 @@
 using ApiSdk.Models.Microsoft.Graph;
 using ApiSdk.Sites.Item.Permissions.Item.Grant;
-using Microsoft.Graph.Cli.Core.Binding;
 using Microsoft.Graph.Cli.Core.IO;
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
@@ -41,7 +40,7 @@ namespace ApiSdk.Sites.Item.Permissions.Item {
                 });
                 await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 console.WriteLine("Success");
-            }, siteIdOption, permissionIdOption, new OutputFormatterFactoryBinder());
+            }, siteIdOption, permissionIdOption);
             return command;
         }
         /// <summary>
@@ -81,7 +80,7 @@ namespace ApiSdk.Sites.Item.Permissions.Item {
                 var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 formatter.WriteOutput(response, console);
-            }, siteIdOption, permissionIdOption, selectOption, expandOption, outputOption, new OutputFormatterFactoryBinder());
+            }, siteIdOption, permissionIdOption, selectOption, expandOption, outputOption);
             return command;
         }
         public Command BuildGrantCommand() {
@@ -117,7 +116,7 @@ namespace ApiSdk.Sites.Item.Permissions.Item {
                 });
                 await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 console.WriteLine("Success");
-            }, siteIdOption, permissionIdOption, bodyOption, new OutputFormatterFactoryBinder());
+            }, siteIdOption, permissionIdOption, bodyOption);
             return command;
         }
         /// <summary>

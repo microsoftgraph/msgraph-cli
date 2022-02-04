@@ -24,7 +24,6 @@ using ApiSdk.Workbooks.Item.Unfollow;
 using ApiSdk.Workbooks.Item.ValidatePermission;
 using ApiSdk.Workbooks.Item.Versions;
 using ApiSdk.Workbooks.Item.Workbook;
-using Microsoft.Graph.Cli.Core.Binding;
 using Microsoft.Graph.Cli.Core.IO;
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
@@ -115,7 +114,7 @@ namespace ApiSdk.Workbooks.Item {
                 });
                 await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 console.WriteLine("Success");
-            }, driveItemIdOption, new OutputFormatterFactoryBinder());
+            }, driveItemIdOption);
             return command;
         }
         public Command BuildFollowCommand() {
@@ -157,7 +156,7 @@ namespace ApiSdk.Workbooks.Item {
                 var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 formatter.WriteOutput(response, console);
-            }, driveItemIdOption, selectOption, expandOption, outputOption, new OutputFormatterFactoryBinder());
+            }, driveItemIdOption, selectOption, expandOption, outputOption);
             return command;
         }
         public Command BuildInviteCommand() {
@@ -201,7 +200,7 @@ namespace ApiSdk.Workbooks.Item {
                 });
                 await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 console.WriteLine("Success");
-            }, driveItemIdOption, bodyOption, new OutputFormatterFactoryBinder());
+            }, driveItemIdOption, bodyOption);
             return command;
         }
         public Command BuildPermissionsCommand() {

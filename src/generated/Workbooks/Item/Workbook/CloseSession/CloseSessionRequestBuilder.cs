@@ -1,4 +1,3 @@
-using Microsoft.Graph.Cli.Core.Binding;
 using Microsoft.Graph.Cli.Core.IO;
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
@@ -35,7 +34,7 @@ namespace ApiSdk.Workbooks.Item.Workbook.CloseSession {
                 });
                 await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 console.WriteLine("Success");
-            }, driveItemIdOption, new OutputFormatterFactoryBinder());
+            }, driveItemIdOption);
             return command;
         }
         /// <summary>

@@ -1,5 +1,4 @@
 using ApiSdk.Models.Microsoft.Graph;
-using Microsoft.Graph.Cli.Core.Binding;
 using Microsoft.Graph.Cli.Core.IO;
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
@@ -40,7 +39,7 @@ namespace ApiSdk.Me.Messages.Item.Extensions.Item {
                 });
                 await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 console.WriteLine("Success");
-            }, messageIdOption, extensionIdOption, new OutputFormatterFactoryBinder());
+            }, messageIdOption, extensionIdOption);
             return command;
         }
         /// <summary>
@@ -80,7 +79,7 @@ namespace ApiSdk.Me.Messages.Item.Extensions.Item {
                 var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 formatter.WriteOutput(response, console);
-            }, messageIdOption, extensionIdOption, selectOption, expandOption, outputOption, new OutputFormatterFactoryBinder());
+            }, messageIdOption, extensionIdOption, selectOption, expandOption, outputOption);
             return command;
         }
         /// <summary>
@@ -110,7 +109,7 @@ namespace ApiSdk.Me.Messages.Item.Extensions.Item {
                 });
                 await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 console.WriteLine("Success");
-            }, messageIdOption, extensionIdOption, bodyOption, new OutputFormatterFactoryBinder());
+            }, messageIdOption, extensionIdOption, bodyOption);
             return command;
         }
         /// <summary>

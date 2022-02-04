@@ -1,7 +1,6 @@
 using ApiSdk.Models.Microsoft.Graph;
 using ApiSdk.Workbooks.Item.Workbook.Names.Item.Worksheet.Charts.Item.Series.Item.Points.Item.Format.Fill.Clear;
 using ApiSdk.Workbooks.Item.Workbook.Names.Item.Worksheet.Charts.Item.Series.Item.Points.Item.Format.Fill.SetSolidColor;
-using Microsoft.Graph.Cli.Core.Binding;
 using Microsoft.Graph.Cli.Core.IO;
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
@@ -60,7 +59,7 @@ namespace ApiSdk.Workbooks.Item.Workbook.Names.Item.Worksheet.Charts.Item.Series
                 });
                 await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 console.WriteLine("Success");
-            }, driveItemIdOption, workbookNamedItemIdOption, workbookChartIdOption, workbookChartSeriesIdOption, workbookChartPointIdOption, new OutputFormatterFactoryBinder());
+            }, driveItemIdOption, workbookNamedItemIdOption, workbookChartIdOption, workbookChartSeriesIdOption, workbookChartPointIdOption);
             return command;
         }
         /// <summary>
@@ -112,7 +111,7 @@ namespace ApiSdk.Workbooks.Item.Workbook.Names.Item.Worksheet.Charts.Item.Series
                 var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 formatter.WriteOutput(response, console);
-            }, driveItemIdOption, workbookNamedItemIdOption, workbookChartIdOption, workbookChartSeriesIdOption, workbookChartPointIdOption, selectOption, expandOption, outputOption, new OutputFormatterFactoryBinder());
+            }, driveItemIdOption, workbookNamedItemIdOption, workbookChartIdOption, workbookChartSeriesIdOption, workbookChartPointIdOption, selectOption, expandOption, outputOption);
             return command;
         }
         /// <summary>
@@ -154,7 +153,7 @@ namespace ApiSdk.Workbooks.Item.Workbook.Names.Item.Worksheet.Charts.Item.Series
                 });
                 await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 console.WriteLine("Success");
-            }, driveItemIdOption, workbookNamedItemIdOption, workbookChartIdOption, workbookChartSeriesIdOption, workbookChartPointIdOption, bodyOption, new OutputFormatterFactoryBinder());
+            }, driveItemIdOption, workbookNamedItemIdOption, workbookChartIdOption, workbookChartSeriesIdOption, workbookChartPointIdOption, bodyOption);
             return command;
         }
         public Command BuildSetSolidColorCommand() {

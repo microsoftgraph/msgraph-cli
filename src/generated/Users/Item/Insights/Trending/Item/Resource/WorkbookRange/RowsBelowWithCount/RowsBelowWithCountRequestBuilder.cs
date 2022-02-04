@@ -1,5 +1,4 @@
 using ApiSdk.Models.Microsoft.Graph;
-using Microsoft.Graph.Cli.Core.Binding;
 using Microsoft.Graph.Cli.Core.IO;
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
@@ -49,7 +48,7 @@ namespace ApiSdk.Users.Item.Insights.Trending.Item.Resource.WorkbookRange.RowsBe
                 var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 formatter.WriteOutput(response, console);
-            }, userIdOption, trendingItemIdOption, countOption, outputOption, new OutputFormatterFactoryBinder());
+            }, userIdOption, trendingItemIdOption, countOption, outputOption);
             return command;
         }
         /// <summary>

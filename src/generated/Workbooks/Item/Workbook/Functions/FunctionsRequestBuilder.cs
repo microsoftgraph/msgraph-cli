@@ -365,7 +365,6 @@ using ApiSdk.Workbooks.Item.Workbook.Functions.Yield;
 using ApiSdk.Workbooks.Item.Workbook.Functions.YieldDisc;
 using ApiSdk.Workbooks.Item.Workbook.Functions.YieldMat;
 using ApiSdk.Workbooks.Item.Workbook.Functions.Z_Test;
-using Microsoft.Graph.Cli.Core.Binding;
 using Microsoft.Graph.Cli.Core.IO;
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
@@ -972,7 +971,7 @@ namespace ApiSdk.Workbooks.Item.Workbook.Functions {
                 });
                 await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 console.WriteLine("Success");
-            }, driveItemIdOption, new OutputFormatterFactoryBinder());
+            }, driveItemIdOption);
             return command;
         }
         public Command BuildDeltaCommand() {
@@ -1332,7 +1331,7 @@ namespace ApiSdk.Workbooks.Item.Workbook.Functions {
                 var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 formatter.WriteOutput(response, console);
-            }, driveItemIdOption, selectOption, expandOption, outputOption, new OutputFormatterFactoryBinder());
+            }, driveItemIdOption, selectOption, expandOption, outputOption);
             return command;
         }
         public Command BuildHarMeanCommand() {
@@ -1988,7 +1987,7 @@ namespace ApiSdk.Workbooks.Item.Workbook.Functions {
                 });
                 await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 console.WriteLine("Success");
-            }, driveItemIdOption, bodyOption, new OutputFormatterFactoryBinder());
+            }, driveItemIdOption, bodyOption);
             return command;
         }
         public Command BuildPdurationCommand() {

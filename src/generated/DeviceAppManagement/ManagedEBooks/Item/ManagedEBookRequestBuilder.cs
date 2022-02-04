@@ -4,7 +4,6 @@ using ApiSdk.DeviceAppManagement.ManagedEBooks.Item.DeviceStates;
 using ApiSdk.DeviceAppManagement.ManagedEBooks.Item.InstallSummary;
 using ApiSdk.DeviceAppManagement.ManagedEBooks.Item.UserStateSummary;
 using ApiSdk.Models.Microsoft.Graph;
-using Microsoft.Graph.Cli.Core.Binding;
 using Microsoft.Graph.Cli.Core.IO;
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
@@ -57,7 +56,7 @@ namespace ApiSdk.DeviceAppManagement.ManagedEBooks.Item {
                 });
                 await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 console.WriteLine("Success");
-            }, managedEBookIdOption, new OutputFormatterFactoryBinder());
+            }, managedEBookIdOption);
             return command;
         }
         public Command BuildDeviceStatesCommand() {
@@ -103,7 +102,7 @@ namespace ApiSdk.DeviceAppManagement.ManagedEBooks.Item {
                 var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 formatter.WriteOutput(response, console);
-            }, managedEBookIdOption, selectOption, expandOption, outputOption, new OutputFormatterFactoryBinder());
+            }, managedEBookIdOption, selectOption, expandOption, outputOption);
             return command;
         }
         public Command BuildInstallSummaryCommand() {
@@ -137,7 +136,7 @@ namespace ApiSdk.DeviceAppManagement.ManagedEBooks.Item {
                 });
                 await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 console.WriteLine("Success");
-            }, managedEBookIdOption, bodyOption, new OutputFormatterFactoryBinder());
+            }, managedEBookIdOption, bodyOption);
             return command;
         }
         public Command BuildUserStateSummaryCommand() {

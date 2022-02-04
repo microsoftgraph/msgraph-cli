@@ -1,7 +1,6 @@
 using ApiSdk.Drives.Item.List.Items.Item.Versions.Item.Fields;
 using ApiSdk.Drives.Item.List.Items.Item.Versions.Item.RestoreVersion;
 using ApiSdk.Models.Microsoft.Graph;
-using Microsoft.Graph.Cli.Core.Binding;
 using Microsoft.Graph.Cli.Core.IO;
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
@@ -46,7 +45,7 @@ namespace ApiSdk.Drives.Item.List.Items.Item.Versions.Item {
                 });
                 await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 console.WriteLine("Success");
-            }, driveIdOption, listItemIdOption, listItemVersionIdOption, new OutputFormatterFactoryBinder());
+            }, driveIdOption, listItemIdOption, listItemVersionIdOption);
             return command;
         }
         public Command BuildFieldsCommand() {
@@ -98,7 +97,7 @@ namespace ApiSdk.Drives.Item.List.Items.Item.Versions.Item {
                 var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 formatter.WriteOutput(response, console);
-            }, driveIdOption, listItemIdOption, listItemVersionIdOption, selectOption, expandOption, outputOption, new OutputFormatterFactoryBinder());
+            }, driveIdOption, listItemIdOption, listItemVersionIdOption, selectOption, expandOption, outputOption);
             return command;
         }
         /// <summary>
@@ -132,7 +131,7 @@ namespace ApiSdk.Drives.Item.List.Items.Item.Versions.Item {
                 });
                 await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 console.WriteLine("Success");
-            }, driveIdOption, listItemIdOption, listItemVersionIdOption, bodyOption, new OutputFormatterFactoryBinder());
+            }, driveIdOption, listItemIdOption, listItemVersionIdOption, bodyOption);
             return command;
         }
         public Command BuildRestoreVersionCommand() {

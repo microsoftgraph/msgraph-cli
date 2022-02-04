@@ -1,7 +1,6 @@
 using ApiSdk.DeviceManagement.NotificationMessageTemplates.Item.LocalizedNotificationMessages;
 using ApiSdk.DeviceManagement.NotificationMessageTemplates.Item.SendTestMessage;
 using ApiSdk.Models.Microsoft.Graph;
-using Microsoft.Graph.Cli.Core.Binding;
 using Microsoft.Graph.Cli.Core.IO;
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
@@ -38,7 +37,7 @@ namespace ApiSdk.DeviceManagement.NotificationMessageTemplates.Item {
                 });
                 await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 console.WriteLine("Success");
-            }, notificationMessageTemplateIdOption, new OutputFormatterFactoryBinder());
+            }, notificationMessageTemplateIdOption);
             return command;
         }
         /// <summary>
@@ -74,7 +73,7 @@ namespace ApiSdk.DeviceManagement.NotificationMessageTemplates.Item {
                 var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 formatter.WriteOutput(response, console);
-            }, notificationMessageTemplateIdOption, selectOption, expandOption, outputOption, new OutputFormatterFactoryBinder());
+            }, notificationMessageTemplateIdOption, selectOption, expandOption, outputOption);
             return command;
         }
         public Command BuildLocalizedNotificationMessagesCommand() {
@@ -110,7 +109,7 @@ namespace ApiSdk.DeviceManagement.NotificationMessageTemplates.Item {
                 });
                 await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 console.WriteLine("Success");
-            }, notificationMessageTemplateIdOption, bodyOption, new OutputFormatterFactoryBinder());
+            }, notificationMessageTemplateIdOption, bodyOption);
             return command;
         }
         public Command BuildSendTestMessageCommand() {

@@ -1,7 +1,6 @@
 using ApiSdk.Groups.Item.Conversations.Item.Threads.Item.Posts.Item.InReplyTo.Forward;
 using ApiSdk.Groups.Item.Conversations.Item.Threads.Item.Posts.Item.InReplyTo.Reply;
 using ApiSdk.Models.Microsoft.Graph;
-using Microsoft.Graph.Cli.Core.Binding;
 using Microsoft.Graph.Cli.Core.IO;
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
@@ -50,7 +49,7 @@ namespace ApiSdk.Groups.Item.Conversations.Item.Threads.Item.Posts.Item.InReplyT
                 });
                 await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 console.WriteLine("Success");
-            }, groupIdOption, conversationIdOption, conversationThreadIdOption, postIdOption, new OutputFormatterFactoryBinder());
+            }, groupIdOption, conversationIdOption, conversationThreadIdOption, postIdOption);
             return command;
         }
         public Command BuildForwardCommand() {
@@ -104,7 +103,7 @@ namespace ApiSdk.Groups.Item.Conversations.Item.Threads.Item.Posts.Item.InReplyT
                 var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 formatter.WriteOutput(response, console);
-            }, groupIdOption, conversationIdOption, conversationThreadIdOption, postIdOption, selectOption, expandOption, outputOption, new OutputFormatterFactoryBinder());
+            }, groupIdOption, conversationIdOption, conversationThreadIdOption, postIdOption, selectOption, expandOption, outputOption);
             return command;
         }
         /// <summary>
@@ -142,7 +141,7 @@ namespace ApiSdk.Groups.Item.Conversations.Item.Threads.Item.Posts.Item.InReplyT
                 });
                 await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 console.WriteLine("Success");
-            }, groupIdOption, conversationIdOption, conversationThreadIdOption, postIdOption, bodyOption, new OutputFormatterFactoryBinder());
+            }, groupIdOption, conversationIdOption, conversationThreadIdOption, postIdOption, bodyOption);
             return command;
         }
         public Command BuildReplyCommand() {

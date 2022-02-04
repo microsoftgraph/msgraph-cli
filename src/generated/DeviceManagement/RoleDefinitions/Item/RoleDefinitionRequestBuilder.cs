@@ -1,6 +1,5 @@
 using ApiSdk.DeviceManagement.RoleDefinitions.Item.RoleAssignments;
 using ApiSdk.Models.Microsoft.Graph;
-using Microsoft.Graph.Cli.Core.Binding;
 using Microsoft.Graph.Cli.Core.IO;
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
@@ -37,7 +36,7 @@ namespace ApiSdk.DeviceManagement.RoleDefinitions.Item {
                 });
                 await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 console.WriteLine("Success");
-            }, roleDefinitionIdOption, new OutputFormatterFactoryBinder());
+            }, roleDefinitionIdOption);
             return command;
         }
         /// <summary>
@@ -73,7 +72,7 @@ namespace ApiSdk.DeviceManagement.RoleDefinitions.Item {
                 var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 formatter.WriteOutput(response, console);
-            }, roleDefinitionIdOption, selectOption, expandOption, outputOption, new OutputFormatterFactoryBinder());
+            }, roleDefinitionIdOption, selectOption, expandOption, outputOption);
             return command;
         }
         /// <summary>
@@ -99,7 +98,7 @@ namespace ApiSdk.DeviceManagement.RoleDefinitions.Item {
                 });
                 await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 console.WriteLine("Success");
-            }, roleDefinitionIdOption, bodyOption, new OutputFormatterFactoryBinder());
+            }, roleDefinitionIdOption, bodyOption);
             return command;
         }
         public Command BuildRoleAssignmentsCommand() {

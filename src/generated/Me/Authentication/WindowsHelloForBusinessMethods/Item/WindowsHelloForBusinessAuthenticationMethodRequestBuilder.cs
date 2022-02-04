@@ -1,6 +1,5 @@
 using ApiSdk.Me.Authentication.WindowsHelloForBusinessMethods.Item.Device;
 using ApiSdk.Models.Microsoft.Graph;
-using Microsoft.Graph.Cli.Core.Binding;
 using Microsoft.Graph.Cli.Core.IO;
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
@@ -37,7 +36,7 @@ namespace ApiSdk.Me.Authentication.WindowsHelloForBusinessMethods.Item {
                 });
                 await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 console.WriteLine("Success");
-            }, windowsHelloForBusinessAuthenticationMethodIdOption, new OutputFormatterFactoryBinder());
+            }, windowsHelloForBusinessAuthenticationMethodIdOption);
             return command;
         }
         public Command BuildDeviceCommand() {
@@ -81,7 +80,7 @@ namespace ApiSdk.Me.Authentication.WindowsHelloForBusinessMethods.Item {
                 var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 formatter.WriteOutput(response, console);
-            }, windowsHelloForBusinessAuthenticationMethodIdOption, selectOption, expandOption, outputOption, new OutputFormatterFactoryBinder());
+            }, windowsHelloForBusinessAuthenticationMethodIdOption, selectOption, expandOption, outputOption);
             return command;
         }
         /// <summary>
@@ -107,7 +106,7 @@ namespace ApiSdk.Me.Authentication.WindowsHelloForBusinessMethods.Item {
                 });
                 await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 console.WriteLine("Success");
-            }, windowsHelloForBusinessAuthenticationMethodIdOption, bodyOption, new OutputFormatterFactoryBinder());
+            }, windowsHelloForBusinessAuthenticationMethodIdOption, bodyOption);
             return command;
         }
         /// <summary>

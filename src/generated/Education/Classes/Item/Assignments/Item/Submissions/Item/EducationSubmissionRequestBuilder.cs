@@ -7,7 +7,6 @@ using ApiSdk.Education.Classes.Item.Assignments.Item.Submissions.Item.Submit;
 using ApiSdk.Education.Classes.Item.Assignments.Item.Submissions.Item.SubmittedResources;
 using ApiSdk.Education.Classes.Item.Assignments.Item.Submissions.Item.Unsubmit;
 using ApiSdk.Models.Microsoft.Graph;
-using Microsoft.Graph.Cli.Core.Binding;
 using Microsoft.Graph.Cli.Core.IO;
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
@@ -52,7 +51,7 @@ namespace ApiSdk.Education.Classes.Item.Assignments.Item.Submissions.Item {
                 });
                 await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 console.WriteLine("Success");
-            }, educationClassIdOption, educationAssignmentIdOption, educationSubmissionIdOption, new OutputFormatterFactoryBinder());
+            }, educationClassIdOption, educationAssignmentIdOption, educationSubmissionIdOption);
             return command;
         }
         /// <summary>
@@ -96,7 +95,7 @@ namespace ApiSdk.Education.Classes.Item.Assignments.Item.Submissions.Item {
                 var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 formatter.WriteOutput(response, console);
-            }, educationClassIdOption, educationAssignmentIdOption, educationSubmissionIdOption, selectOption, expandOption, outputOption, new OutputFormatterFactoryBinder());
+            }, educationClassIdOption, educationAssignmentIdOption, educationSubmissionIdOption, selectOption, expandOption, outputOption);
             return command;
         }
         public Command BuildOutcomesCommand() {
@@ -140,7 +139,7 @@ namespace ApiSdk.Education.Classes.Item.Assignments.Item.Submissions.Item {
                 });
                 await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 console.WriteLine("Success");
-            }, educationClassIdOption, educationAssignmentIdOption, educationSubmissionIdOption, bodyOption, new OutputFormatterFactoryBinder());
+            }, educationClassIdOption, educationAssignmentIdOption, educationSubmissionIdOption, bodyOption);
             return command;
         }
         public Command BuildReassignCommand() {

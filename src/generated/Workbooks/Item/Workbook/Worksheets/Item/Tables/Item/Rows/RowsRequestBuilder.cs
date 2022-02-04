@@ -3,7 +3,6 @@ using ApiSdk.Workbooks.Item.Workbook.Worksheets.Item.Tables.Item.Rows.Add;
 using ApiSdk.Workbooks.Item.Workbook.Worksheets.Item.Tables.Item.Rows.Count;
 using ApiSdk.Workbooks.Item.Workbook.Worksheets.Item.Tables.Item.Rows.Item;
 using ApiSdk.Workbooks.Item.Workbook.Worksheets.Item.Tables.Item.Rows.ItemAtWithIndex;
-using Microsoft.Graph.Cli.Core.Binding;
 using Microsoft.Graph.Cli.Core.IO;
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
@@ -74,7 +73,7 @@ namespace ApiSdk.Workbooks.Item.Workbook.Worksheets.Item.Tables.Item.Rows {
                 var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 formatter.WriteOutput(response, console);
-            }, driveItemIdOption, workbookWorksheetIdOption, workbookTableIdOption, bodyOption, outputOption, new OutputFormatterFactoryBinder());
+            }, driveItemIdOption, workbookWorksheetIdOption, workbookTableIdOption, bodyOption, outputOption);
             return command;
         }
         /// <summary>
@@ -149,7 +148,7 @@ namespace ApiSdk.Workbooks.Item.Workbook.Worksheets.Item.Tables.Item.Rows {
                 var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 formatter.WriteOutput(response, console);
-            }, driveItemIdOption, workbookWorksheetIdOption, workbookTableIdOption, topOption, skipOption, searchOption, filterOption, countOption, orderbyOption, selectOption, expandOption, outputOption, new OutputFormatterFactoryBinder());
+            }, driveItemIdOption, workbookWorksheetIdOption, workbookTableIdOption, topOption, skipOption, searchOption, filterOption, countOption, orderbyOption, selectOption, expandOption, outputOption);
             return command;
         }
         /// <summary>

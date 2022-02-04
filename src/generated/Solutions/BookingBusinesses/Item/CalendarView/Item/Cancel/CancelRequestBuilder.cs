@@ -1,4 +1,3 @@
-using Microsoft.Graph.Cli.Core.Binding;
 using Microsoft.Graph.Cli.Core.IO;
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
@@ -46,7 +45,7 @@ namespace ApiSdk.Solutions.BookingBusinesses.Item.CalendarView.Item.Cancel {
                 });
                 await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 console.WriteLine("Success");
-            }, bookingBusinessIdOption, bookingAppointmentIdOption, bodyOption, new OutputFormatterFactoryBinder());
+            }, bookingBusinessIdOption, bookingAppointmentIdOption, bodyOption);
             return command;
         }
         /// <summary>

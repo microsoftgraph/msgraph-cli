@@ -6,7 +6,6 @@ using ApiSdk.Users.Item.MailFolders.Item.Messages;
 using ApiSdk.Users.Item.MailFolders.Item.Move;
 using ApiSdk.Users.Item.MailFolders.Item.MultiValueExtendedProperties;
 using ApiSdk.Users.Item.MailFolders.Item.SingleValueExtendedProperties;
-using Microsoft.Graph.Cli.Core.Binding;
 using Microsoft.Graph.Cli.Core.IO;
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
@@ -63,7 +62,7 @@ namespace ApiSdk.Users.Item.MailFolders.Item {
                 });
                 await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 console.WriteLine("Success");
-            }, userIdOption, mailFolderIdOption, new OutputFormatterFactoryBinder());
+            }, userIdOption, mailFolderIdOption);
             return command;
         }
         /// <summary>
@@ -97,7 +96,7 @@ namespace ApiSdk.Users.Item.MailFolders.Item {
                 var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 formatter.WriteOutput(response, console);
-            }, userIdOption, mailFolderIdOption, selectOption, outputOption, new OutputFormatterFactoryBinder());
+            }, userIdOption, mailFolderIdOption, selectOption, outputOption);
             return command;
         }
         public Command BuildMessageRulesCommand() {
@@ -163,7 +162,7 @@ namespace ApiSdk.Users.Item.MailFolders.Item {
                 });
                 await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 console.WriteLine("Success");
-            }, userIdOption, mailFolderIdOption, bodyOption, new OutputFormatterFactoryBinder());
+            }, userIdOption, mailFolderIdOption, bodyOption);
             return command;
         }
         public Command BuildSingleValueExtendedPropertiesCommand() {

@@ -1,6 +1,5 @@
 using ApiSdk.Me.ContactFolders.Item.Contacts.Item.Extensions.Item;
 using ApiSdk.Models.Microsoft.Graph;
-using Microsoft.Graph.Cli.Core.Binding;
 using Microsoft.Graph.Cli.Core.IO;
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
@@ -61,7 +60,7 @@ namespace ApiSdk.Me.ContactFolders.Item.Contacts.Item.Extensions {
                 var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 formatter.WriteOutput(response, console);
-            }, contactFolderIdOption, contactIdOption, bodyOption, outputOption, new OutputFormatterFactoryBinder());
+            }, contactFolderIdOption, contactIdOption, bodyOption, outputOption);
             return command;
         }
         /// <summary>
@@ -127,7 +126,7 @@ namespace ApiSdk.Me.ContactFolders.Item.Contacts.Item.Extensions {
                 var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 formatter.WriteOutput(response, console);
-            }, contactFolderIdOption, contactIdOption, topOption, skipOption, filterOption, countOption, orderbyOption, selectOption, expandOption, outputOption, new OutputFormatterFactoryBinder());
+            }, contactFolderIdOption, contactIdOption, topOption, skipOption, filterOption, countOption, orderbyOption, selectOption, expandOption, outputOption);
             return command;
         }
         /// <summary>

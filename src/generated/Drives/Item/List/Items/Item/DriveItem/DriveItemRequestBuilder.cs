@@ -1,6 +1,5 @@
 using ApiSdk.Drives.Item.List.Items.Item.DriveItem.Content;
 using ApiSdk.Models.Microsoft.Graph;
-using Microsoft.Graph.Cli.Core.Binding;
 using Microsoft.Graph.Cli.Core.IO;
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
@@ -48,7 +47,7 @@ namespace ApiSdk.Drives.Item.List.Items.Item.DriveItem {
                 });
                 await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 console.WriteLine("Success");
-            }, driveIdOption, listItemIdOption, new OutputFormatterFactoryBinder());
+            }, driveIdOption, listItemIdOption);
             return command;
         }
         /// <summary>
@@ -88,7 +87,7 @@ namespace ApiSdk.Drives.Item.List.Items.Item.DriveItem {
                 var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 formatter.WriteOutput(response, console);
-            }, driveIdOption, listItemIdOption, selectOption, expandOption, outputOption, new OutputFormatterFactoryBinder());
+            }, driveIdOption, listItemIdOption, selectOption, expandOption, outputOption);
             return command;
         }
         /// <summary>
@@ -118,7 +117,7 @@ namespace ApiSdk.Drives.Item.List.Items.Item.DriveItem {
                 });
                 await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 console.WriteLine("Success");
-            }, driveIdOption, listItemIdOption, bodyOption, new OutputFormatterFactoryBinder());
+            }, driveIdOption, listItemIdOption, bodyOption);
             return command;
         }
         /// <summary>

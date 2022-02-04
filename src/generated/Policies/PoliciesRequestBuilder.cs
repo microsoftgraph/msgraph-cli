@@ -12,7 +12,6 @@ using ApiSdk.Policies.IdentitySecurityDefaultsEnforcementPolicy;
 using ApiSdk.Policies.PermissionGrantPolicies;
 using ApiSdk.Policies.TokenIssuancePolicies;
 using ApiSdk.Policies.TokenLifetimePolicies;
-using Microsoft.Graph.Cli.Core.Binding;
 using Microsoft.Graph.Cli.Core.IO;
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
@@ -134,7 +133,7 @@ namespace ApiSdk.Policies {
                 var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 formatter.WriteOutput(response, console);
-            }, selectOption, expandOption, outputOption, new OutputFormatterFactoryBinder());
+            }, selectOption, expandOption, outputOption);
             return command;
         }
         public Command BuildHomeRealmDiscoveryPoliciesCommand() {
@@ -174,7 +173,7 @@ namespace ApiSdk.Policies {
                 });
                 await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 console.WriteLine("Success");
-            }, bodyOption, new OutputFormatterFactoryBinder());
+            }, bodyOption);
             return command;
         }
         public Command BuildPermissionGrantPoliciesCommand() {

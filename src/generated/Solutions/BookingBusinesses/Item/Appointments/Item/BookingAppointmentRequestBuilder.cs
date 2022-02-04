@@ -1,6 +1,5 @@
 using ApiSdk.Models.Microsoft.Graph;
 using ApiSdk.Solutions.BookingBusinesses.Item.Appointments.Item.Cancel;
-using Microsoft.Graph.Cli.Core.Binding;
 using Microsoft.Graph.Cli.Core.IO;
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
@@ -47,7 +46,7 @@ namespace ApiSdk.Solutions.BookingBusinesses.Item.Appointments.Item {
                 });
                 await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 console.WriteLine("Success");
-            }, bookingBusinessIdOption, bookingAppointmentIdOption, new OutputFormatterFactoryBinder());
+            }, bookingBusinessIdOption, bookingAppointmentIdOption);
             return command;
         }
         /// <summary>
@@ -87,7 +86,7 @@ namespace ApiSdk.Solutions.BookingBusinesses.Item.Appointments.Item {
                 var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 formatter.WriteOutput(response, console);
-            }, bookingBusinessIdOption, bookingAppointmentIdOption, selectOption, expandOption, outputOption, new OutputFormatterFactoryBinder());
+            }, bookingBusinessIdOption, bookingAppointmentIdOption, selectOption, expandOption, outputOption);
             return command;
         }
         /// <summary>
@@ -117,7 +116,7 @@ namespace ApiSdk.Solutions.BookingBusinesses.Item.Appointments.Item {
                 });
                 await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 console.WriteLine("Success");
-            }, bookingBusinessIdOption, bookingAppointmentIdOption, bodyOption, new OutputFormatterFactoryBinder());
+            }, bookingBusinessIdOption, bookingAppointmentIdOption, bodyOption);
             return command;
         }
         /// <summary>

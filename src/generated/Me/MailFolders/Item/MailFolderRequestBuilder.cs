@@ -6,7 +6,6 @@ using ApiSdk.Me.MailFolders.Item.Move;
 using ApiSdk.Me.MailFolders.Item.MultiValueExtendedProperties;
 using ApiSdk.Me.MailFolders.Item.SingleValueExtendedProperties;
 using ApiSdk.Models.Microsoft.Graph;
-using Microsoft.Graph.Cli.Core.Binding;
 using Microsoft.Graph.Cli.Core.IO;
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
@@ -59,7 +58,7 @@ namespace ApiSdk.Me.MailFolders.Item {
                 });
                 await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 console.WriteLine("Success");
-            }, mailFolderIdOption, new OutputFormatterFactoryBinder());
+            }, mailFolderIdOption);
             return command;
         }
         /// <summary>
@@ -89,7 +88,7 @@ namespace ApiSdk.Me.MailFolders.Item {
                 var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 formatter.WriteOutput(response, console);
-            }, mailFolderIdOption, selectOption, outputOption, new OutputFormatterFactoryBinder());
+            }, mailFolderIdOption, selectOption, outputOption);
             return command;
         }
         public Command BuildMessageRulesCommand() {
@@ -151,7 +150,7 @@ namespace ApiSdk.Me.MailFolders.Item {
                 });
                 await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 console.WriteLine("Success");
-            }, mailFolderIdOption, bodyOption, new OutputFormatterFactoryBinder());
+            }, mailFolderIdOption, bodyOption);
             return command;
         }
         public Command BuildSingleValueExtendedPropertiesCommand() {

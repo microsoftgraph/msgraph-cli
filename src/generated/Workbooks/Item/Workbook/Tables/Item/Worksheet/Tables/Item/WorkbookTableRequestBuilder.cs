@@ -6,7 +6,6 @@ using ApiSdk.Workbooks.Item.Workbook.Tables.Item.Worksheet.Tables.Item.HeaderRow
 using ApiSdk.Workbooks.Item.Workbook.Tables.Item.Worksheet.Tables.Item.Range;
 using ApiSdk.Workbooks.Item.Workbook.Tables.Item.Worksheet.Tables.Item.ReapplyFilters;
 using ApiSdk.Workbooks.Item.Workbook.Tables.Item.Worksheet.Tables.Item.TotalRowRange;
-using Microsoft.Graph.Cli.Core.Binding;
 using Microsoft.Graph.Cli.Core.IO;
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
@@ -63,7 +62,7 @@ namespace ApiSdk.Workbooks.Item.Workbook.Tables.Item.Worksheet.Tables.Item {
                 });
                 await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 console.WriteLine("Success");
-            }, driveItemIdOption, workbookTableIdOption, workbookTableId1Option, new OutputFormatterFactoryBinder());
+            }, driveItemIdOption, workbookTableIdOption, workbookTableId1Option);
             return command;
         }
         /// <summary>
@@ -107,7 +106,7 @@ namespace ApiSdk.Workbooks.Item.Workbook.Tables.Item.Worksheet.Tables.Item {
                 var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 formatter.WriteOutput(response, console);
-            }, driveItemIdOption, workbookTableIdOption, workbookTableId1Option, selectOption, expandOption, outputOption, new OutputFormatterFactoryBinder());
+            }, driveItemIdOption, workbookTableIdOption, workbookTableId1Option, selectOption, expandOption, outputOption);
             return command;
         }
         /// <summary>
@@ -141,7 +140,7 @@ namespace ApiSdk.Workbooks.Item.Workbook.Tables.Item.Worksheet.Tables.Item {
                 });
                 await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 console.WriteLine("Success");
-            }, driveItemIdOption, workbookTableIdOption, workbookTableId1Option, bodyOption, new OutputFormatterFactoryBinder());
+            }, driveItemIdOption, workbookTableIdOption, workbookTableId1Option, bodyOption);
             return command;
         }
         public Command BuildReapplyFiltersCommand() {

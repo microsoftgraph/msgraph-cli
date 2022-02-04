@@ -1,6 +1,5 @@
 using ApiSdk.Models.Microsoft.Graph;
 using ApiSdk.Users.Item.Authentication.MicrosoftAuthenticatorMethods.Item.Device;
-using Microsoft.Graph.Cli.Core.Binding;
 using Microsoft.Graph.Cli.Core.IO;
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
@@ -41,7 +40,7 @@ namespace ApiSdk.Users.Item.Authentication.MicrosoftAuthenticatorMethods.Item {
                 });
                 await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 console.WriteLine("Success");
-            }, userIdOption, microsoftAuthenticatorAuthenticationMethodIdOption, new OutputFormatterFactoryBinder());
+            }, userIdOption, microsoftAuthenticatorAuthenticationMethodIdOption);
             return command;
         }
         public Command BuildDeviceCommand() {
@@ -89,7 +88,7 @@ namespace ApiSdk.Users.Item.Authentication.MicrosoftAuthenticatorMethods.Item {
                 var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 formatter.WriteOutput(response, console);
-            }, userIdOption, microsoftAuthenticatorAuthenticationMethodIdOption, selectOption, expandOption, outputOption, new OutputFormatterFactoryBinder());
+            }, userIdOption, microsoftAuthenticatorAuthenticationMethodIdOption, selectOption, expandOption, outputOption);
             return command;
         }
         /// <summary>
@@ -119,7 +118,7 @@ namespace ApiSdk.Users.Item.Authentication.MicrosoftAuthenticatorMethods.Item {
                 });
                 await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 console.WriteLine("Success");
-            }, userIdOption, microsoftAuthenticatorAuthenticationMethodIdOption, bodyOption, new OutputFormatterFactoryBinder());
+            }, userIdOption, microsoftAuthenticatorAuthenticationMethodIdOption, bodyOption);
             return command;
         }
         /// <summary>

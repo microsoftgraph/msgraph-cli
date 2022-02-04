@@ -1,6 +1,5 @@
 using ApiSdk.Models.Microsoft.Graph;
 using ApiSdk.Workbooks.Item.Permissions.Item.Grant;
-using Microsoft.Graph.Cli.Core.Binding;
 using Microsoft.Graph.Cli.Core.IO;
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
@@ -41,7 +40,7 @@ namespace ApiSdk.Workbooks.Item.Permissions.Item {
                 });
                 await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 console.WriteLine("Success");
-            }, driveItemIdOption, permissionIdOption, new OutputFormatterFactoryBinder());
+            }, driveItemIdOption, permissionIdOption);
             return command;
         }
         /// <summary>
@@ -81,7 +80,7 @@ namespace ApiSdk.Workbooks.Item.Permissions.Item {
                 var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 formatter.WriteOutput(response, console);
-            }, driveItemIdOption, permissionIdOption, selectOption, expandOption, outputOption, new OutputFormatterFactoryBinder());
+            }, driveItemIdOption, permissionIdOption, selectOption, expandOption, outputOption);
             return command;
         }
         public Command BuildGrantCommand() {
@@ -117,7 +116,7 @@ namespace ApiSdk.Workbooks.Item.Permissions.Item {
                 });
                 await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 console.WriteLine("Success");
-            }, driveItemIdOption, permissionIdOption, bodyOption, new OutputFormatterFactoryBinder());
+            }, driveItemIdOption, permissionIdOption, bodyOption);
             return command;
         }
         /// <summary>

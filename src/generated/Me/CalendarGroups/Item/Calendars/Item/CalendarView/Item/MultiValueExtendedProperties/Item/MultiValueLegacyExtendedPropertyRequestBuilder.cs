@@ -1,5 +1,4 @@
 using ApiSdk.Models.Microsoft.Graph;
-using Microsoft.Graph.Cli.Core.Binding;
 using Microsoft.Graph.Cli.Core.IO;
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
@@ -48,7 +47,7 @@ namespace ApiSdk.Me.CalendarGroups.Item.Calendars.Item.CalendarView.Item.MultiVa
                 });
                 await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 console.WriteLine("Success");
-            }, calendarGroupIdOption, calendarIdOption, eventIdOption, multiValueLegacyExtendedPropertyIdOption, new OutputFormatterFactoryBinder());
+            }, calendarGroupIdOption, calendarIdOption, eventIdOption, multiValueLegacyExtendedPropertyIdOption);
             return command;
         }
         /// <summary>
@@ -96,7 +95,7 @@ namespace ApiSdk.Me.CalendarGroups.Item.Calendars.Item.CalendarView.Item.MultiVa
                 var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 formatter.WriteOutput(response, console);
-            }, calendarGroupIdOption, calendarIdOption, eventIdOption, multiValueLegacyExtendedPropertyIdOption, selectOption, expandOption, outputOption, new OutputFormatterFactoryBinder());
+            }, calendarGroupIdOption, calendarIdOption, eventIdOption, multiValueLegacyExtendedPropertyIdOption, selectOption, expandOption, outputOption);
             return command;
         }
         /// <summary>
@@ -134,7 +133,7 @@ namespace ApiSdk.Me.CalendarGroups.Item.Calendars.Item.CalendarView.Item.MultiVa
                 });
                 await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 console.WriteLine("Success");
-            }, calendarGroupIdOption, calendarIdOption, eventIdOption, multiValueLegacyExtendedPropertyIdOption, bodyOption, new OutputFormatterFactoryBinder());
+            }, calendarGroupIdOption, calendarIdOption, eventIdOption, multiValueLegacyExtendedPropertyIdOption, bodyOption);
             return command;
         }
         /// <summary>

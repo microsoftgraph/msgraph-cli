@@ -1,6 +1,5 @@
 using ApiSdk.Models.Microsoft.Graph;
 using ApiSdk.RoleManagement.Directory.RoleDefinitions.Item.InheritsPermissionsFrom;
-using Microsoft.Graph.Cli.Core.Binding;
 using Microsoft.Graph.Cli.Core.IO;
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
@@ -37,7 +36,7 @@ namespace ApiSdk.RoleManagement.Directory.RoleDefinitions.Item {
                 });
                 await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 console.WriteLine("Success");
-            }, unifiedRoleDefinitionIdOption, new OutputFormatterFactoryBinder());
+            }, unifiedRoleDefinitionIdOption);
             return command;
         }
         /// <summary>
@@ -73,7 +72,7 @@ namespace ApiSdk.RoleManagement.Directory.RoleDefinitions.Item {
                 var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 formatter.WriteOutput(response, console);
-            }, unifiedRoleDefinitionIdOption, selectOption, expandOption, outputOption, new OutputFormatterFactoryBinder());
+            }, unifiedRoleDefinitionIdOption, selectOption, expandOption, outputOption);
             return command;
         }
         public Command BuildInheritsPermissionsFromCommand() {
@@ -109,7 +108,7 @@ namespace ApiSdk.RoleManagement.Directory.RoleDefinitions.Item {
                 });
                 await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 console.WriteLine("Success");
-            }, unifiedRoleDefinitionIdOption, bodyOption, new OutputFormatterFactoryBinder());
+            }, unifiedRoleDefinitionIdOption, bodyOption);
             return command;
         }
         /// <summary>

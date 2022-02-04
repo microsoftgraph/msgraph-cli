@@ -1,4 +1,3 @@
-using Microsoft.Graph.Cli.Core.Binding;
 using Microsoft.Graph.Cli.Core.IO;
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
@@ -46,7 +45,7 @@ namespace ApiSdk.IdentityGovernance.AccessReviews.Definitions.Item.Instances.Ite
                 });
                 await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 console.WriteLine("Success");
-            }, accessReviewScheduleDefinitionIdOption, accessReviewInstanceIdOption, bodyOption, new OutputFormatterFactoryBinder());
+            }, accessReviewScheduleDefinitionIdOption, accessReviewInstanceIdOption, bodyOption);
             return command;
         }
         /// <summary>

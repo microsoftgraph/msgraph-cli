@@ -1,5 +1,4 @@
 using ApiSdk.Models.Microsoft.Graph;
-using Microsoft.Graph.Cli.Core.Binding;
 using Microsoft.Graph.Cli.Core.IO;
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
@@ -40,7 +39,7 @@ namespace ApiSdk.Policies.PermissionGrantPolicies.Item.Excludes.Item {
                 });
                 await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 console.WriteLine("Success");
-            }, permissionGrantPolicyIdOption, permissionGrantConditionSetIdOption, new OutputFormatterFactoryBinder());
+            }, permissionGrantPolicyIdOption, permissionGrantConditionSetIdOption);
             return command;
         }
         /// <summary>
@@ -80,7 +79,7 @@ namespace ApiSdk.Policies.PermissionGrantPolicies.Item.Excludes.Item {
                 var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 formatter.WriteOutput(response, console);
-            }, permissionGrantPolicyIdOption, permissionGrantConditionSetIdOption, selectOption, expandOption, outputOption, new OutputFormatterFactoryBinder());
+            }, permissionGrantPolicyIdOption, permissionGrantConditionSetIdOption, selectOption, expandOption, outputOption);
             return command;
         }
         /// <summary>
@@ -110,7 +109,7 @@ namespace ApiSdk.Policies.PermissionGrantPolicies.Item.Excludes.Item {
                 });
                 await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 console.WriteLine("Success");
-            }, permissionGrantPolicyIdOption, permissionGrantConditionSetIdOption, bodyOption, new OutputFormatterFactoryBinder());
+            }, permissionGrantPolicyIdOption, permissionGrantConditionSetIdOption, bodyOption);
             return command;
         }
         /// <summary>

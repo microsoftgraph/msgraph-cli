@@ -1,4 +1,3 @@
-using Microsoft.Graph.Cli.Core.Binding;
 using Microsoft.Graph.Cli.Core.IO;
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
@@ -39,7 +38,7 @@ namespace ApiSdk.Shares.Item.List.ContentTypes.Item.Base.Publish {
                 });
                 await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 console.WriteLine("Success");
-            }, sharedDriveItemIdOption, contentTypeIdOption, new OutputFormatterFactoryBinder());
+            }, sharedDriveItemIdOption, contentTypeIdOption);
             return command;
         }
         /// <summary>

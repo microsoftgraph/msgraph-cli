@@ -1,5 +1,4 @@
 using ApiSdk.Models.Microsoft.Graph;
-using Microsoft.Graph.Cli.Core.Binding;
 using Microsoft.Graph.Cli.Core.IO;
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
@@ -36,7 +35,7 @@ namespace ApiSdk.Oauth2PermissionGrants.Item {
                 });
                 await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 console.WriteLine("Success");
-            }, oAuth2PermissionGrantIdOption, new OutputFormatterFactoryBinder());
+            }, oAuth2PermissionGrantIdOption);
             return command;
         }
         /// <summary>
@@ -72,7 +71,7 @@ namespace ApiSdk.Oauth2PermissionGrants.Item {
                 var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 formatter.WriteOutput(response, console);
-            }, oAuth2PermissionGrantIdOption, selectOption, expandOption, outputOption, new OutputFormatterFactoryBinder());
+            }, oAuth2PermissionGrantIdOption, selectOption, expandOption, outputOption);
             return command;
         }
         /// <summary>
@@ -98,7 +97,7 @@ namespace ApiSdk.Oauth2PermissionGrants.Item {
                 });
                 await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 console.WriteLine("Success");
-            }, oAuth2PermissionGrantIdOption, bodyOption, new OutputFormatterFactoryBinder());
+            }, oAuth2PermissionGrantIdOption, bodyOption);
             return command;
         }
         /// <summary>

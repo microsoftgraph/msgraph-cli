@@ -1,5 +1,4 @@
 using ApiSdk.Models.Microsoft.Graph;
-using Microsoft.Graph.Cli.Core.Binding;
 using Microsoft.Graph.Cli.Core.IO;
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
@@ -40,7 +39,7 @@ namespace ApiSdk.Solutions.BookingBusinesses.Item.StaffMembers.Item {
                 });
                 await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 console.WriteLine("Success");
-            }, bookingBusinessIdOption, bookingStaffMemberBaseIdOption, new OutputFormatterFactoryBinder());
+            }, bookingBusinessIdOption, bookingStaffMemberBaseIdOption);
             return command;
         }
         /// <summary>
@@ -80,7 +79,7 @@ namespace ApiSdk.Solutions.BookingBusinesses.Item.StaffMembers.Item {
                 var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 formatter.WriteOutput(response, console);
-            }, bookingBusinessIdOption, bookingStaffMemberBaseIdOption, selectOption, expandOption, outputOption, new OutputFormatterFactoryBinder());
+            }, bookingBusinessIdOption, bookingStaffMemberBaseIdOption, selectOption, expandOption, outputOption);
             return command;
         }
         /// <summary>
@@ -110,7 +109,7 @@ namespace ApiSdk.Solutions.BookingBusinesses.Item.StaffMembers.Item {
                 });
                 await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 console.WriteLine("Success");
-            }, bookingBusinessIdOption, bookingStaffMemberBaseIdOption, bodyOption, new OutputFormatterFactoryBinder());
+            }, bookingBusinessIdOption, bookingStaffMemberBaseIdOption, bodyOption);
             return command;
         }
         /// <summary>

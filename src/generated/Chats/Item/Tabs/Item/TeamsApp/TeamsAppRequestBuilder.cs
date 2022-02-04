@@ -1,6 +1,5 @@
 using ApiSdk.Chats.Item.Tabs.Item.TeamsApp.Ref;
 using ApiSdk.Models.Microsoft.Graph;
-using Microsoft.Graph.Cli.Core.Binding;
 using Microsoft.Graph.Cli.Core.IO;
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
@@ -58,7 +57,7 @@ namespace ApiSdk.Chats.Item.Tabs.Item.TeamsApp {
                 var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 formatter.WriteOutput(response, console);
-            }, chatIdOption, teamsTabIdOption, selectOption, expandOption, outputOption, new OutputFormatterFactoryBinder());
+            }, chatIdOption, teamsTabIdOption, selectOption, expandOption, outputOption);
             return command;
         }
         public Command BuildRefCommand() {

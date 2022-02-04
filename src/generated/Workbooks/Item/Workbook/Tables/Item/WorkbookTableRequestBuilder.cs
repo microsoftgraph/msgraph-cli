@@ -10,7 +10,6 @@ using ApiSdk.Workbooks.Item.Workbook.Tables.Item.Rows;
 using ApiSdk.Workbooks.Item.Workbook.Tables.Item.Sort;
 using ApiSdk.Workbooks.Item.Workbook.Tables.Item.TotalRowRange;
 using ApiSdk.Workbooks.Item.Workbook.Tables.Item.Worksheet;
-using Microsoft.Graph.Cli.Core.Binding;
 using Microsoft.Graph.Cli.Core.IO;
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
@@ -74,7 +73,7 @@ namespace ApiSdk.Workbooks.Item.Workbook.Tables.Item {
                 });
                 await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 console.WriteLine("Success");
-            }, driveItemIdOption, workbookTableIdOption, new OutputFormatterFactoryBinder());
+            }, driveItemIdOption, workbookTableIdOption);
             return command;
         }
         /// <summary>
@@ -114,7 +113,7 @@ namespace ApiSdk.Workbooks.Item.Workbook.Tables.Item {
                 var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 formatter.WriteOutput(response, console);
-            }, driveItemIdOption, workbookTableIdOption, selectOption, expandOption, outputOption, new OutputFormatterFactoryBinder());
+            }, driveItemIdOption, workbookTableIdOption, selectOption, expandOption, outputOption);
             return command;
         }
         /// <summary>
@@ -144,7 +143,7 @@ namespace ApiSdk.Workbooks.Item.Workbook.Tables.Item {
                 });
                 await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 console.WriteLine("Success");
-            }, driveItemIdOption, workbookTableIdOption, bodyOption, new OutputFormatterFactoryBinder());
+            }, driveItemIdOption, workbookTableIdOption, bodyOption);
             return command;
         }
         public Command BuildReapplyFiltersCommand() {

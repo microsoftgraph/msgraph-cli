@@ -1,7 +1,6 @@
 using ApiSdk.Admin.ServiceAnnouncement.Messages.Item.Attachments;
 using ApiSdk.Admin.ServiceAnnouncement.Messages.Item.AttachmentsArchive;
 using ApiSdk.Models.Microsoft.Graph;
-using Microsoft.Graph.Cli.Core.Binding;
 using Microsoft.Graph.Cli.Core.IO;
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
@@ -55,7 +54,7 @@ namespace ApiSdk.Admin.ServiceAnnouncement.Messages.Item {
                 });
                 await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 console.WriteLine("Success");
-            }, serviceUpdateMessageIdOption, new OutputFormatterFactoryBinder());
+            }, serviceUpdateMessageIdOption);
             return command;
         }
         /// <summary>
@@ -91,7 +90,7 @@ namespace ApiSdk.Admin.ServiceAnnouncement.Messages.Item {
                 var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 formatter.WriteOutput(response, console);
-            }, serviceUpdateMessageIdOption, selectOption, expandOption, outputOption, new OutputFormatterFactoryBinder());
+            }, serviceUpdateMessageIdOption, selectOption, expandOption, outputOption);
             return command;
         }
         /// <summary>
@@ -117,7 +116,7 @@ namespace ApiSdk.Admin.ServiceAnnouncement.Messages.Item {
                 });
                 await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 console.WriteLine("Success");
-            }, serviceUpdateMessageIdOption, bodyOption, new OutputFormatterFactoryBinder());
+            }, serviceUpdateMessageIdOption, bodyOption);
             return command;
         }
         /// <summary>

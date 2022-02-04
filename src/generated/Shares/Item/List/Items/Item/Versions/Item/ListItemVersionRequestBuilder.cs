@@ -1,7 +1,6 @@
 using ApiSdk.Models.Microsoft.Graph;
 using ApiSdk.Shares.Item.List.Items.Item.Versions.Item.Fields;
 using ApiSdk.Shares.Item.List.Items.Item.Versions.Item.RestoreVersion;
-using Microsoft.Graph.Cli.Core.Binding;
 using Microsoft.Graph.Cli.Core.IO;
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
@@ -46,7 +45,7 @@ namespace ApiSdk.Shares.Item.List.Items.Item.Versions.Item {
                 });
                 await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 console.WriteLine("Success");
-            }, sharedDriveItemIdOption, listItemIdOption, listItemVersionIdOption, new OutputFormatterFactoryBinder());
+            }, sharedDriveItemIdOption, listItemIdOption, listItemVersionIdOption);
             return command;
         }
         public Command BuildFieldsCommand() {
@@ -98,7 +97,7 @@ namespace ApiSdk.Shares.Item.List.Items.Item.Versions.Item {
                 var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 formatter.WriteOutput(response, console);
-            }, sharedDriveItemIdOption, listItemIdOption, listItemVersionIdOption, selectOption, expandOption, outputOption, new OutputFormatterFactoryBinder());
+            }, sharedDriveItemIdOption, listItemIdOption, listItemVersionIdOption, selectOption, expandOption, outputOption);
             return command;
         }
         /// <summary>
@@ -132,7 +131,7 @@ namespace ApiSdk.Shares.Item.List.Items.Item.Versions.Item {
                 });
                 await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 console.WriteLine("Success");
-            }, sharedDriveItemIdOption, listItemIdOption, listItemVersionIdOption, bodyOption, new OutputFormatterFactoryBinder());
+            }, sharedDriveItemIdOption, listItemIdOption, listItemVersionIdOption, bodyOption);
             return command;
         }
         public Command BuildRestoreVersionCommand() {

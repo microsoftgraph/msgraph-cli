@@ -1,5 +1,4 @@
 using ApiSdk.Models.Microsoft.Graph;
-using Microsoft.Graph.Cli.Core.Binding;
 using Microsoft.Graph.Cli.Core.IO;
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
@@ -44,7 +43,7 @@ namespace ApiSdk.Chats.Item.Messages.Item.Replies.Item {
                 });
                 await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 console.WriteLine("Success");
-            }, chatIdOption, chatMessageIdOption, chatMessageId1Option, new OutputFormatterFactoryBinder());
+            }, chatIdOption, chatMessageIdOption, chatMessageId1Option);
             return command;
         }
         /// <summary>
@@ -88,7 +87,7 @@ namespace ApiSdk.Chats.Item.Messages.Item.Replies.Item {
                 var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 formatter.WriteOutput(response, console);
-            }, chatIdOption, chatMessageIdOption, chatMessageId1Option, selectOption, expandOption, outputOption, new OutputFormatterFactoryBinder());
+            }, chatIdOption, chatMessageIdOption, chatMessageId1Option, selectOption, expandOption, outputOption);
             return command;
         }
         /// <summary>
@@ -122,7 +121,7 @@ namespace ApiSdk.Chats.Item.Messages.Item.Replies.Item {
                 });
                 await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 console.WriteLine("Success");
-            }, chatIdOption, chatMessageIdOption, chatMessageId1Option, bodyOption, new OutputFormatterFactoryBinder());
+            }, chatIdOption, chatMessageIdOption, chatMessageId1Option, bodyOption);
             return command;
         }
         /// <summary>

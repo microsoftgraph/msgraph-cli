@@ -1,5 +1,4 @@
 using ApiSdk.Models.Microsoft.Graph;
-using Microsoft.Graph.Cli.Core.Binding;
 using Microsoft.Graph.Cli.Core.IO;
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
@@ -40,7 +39,7 @@ namespace ApiSdk.Drive.List.ContentTypes.Item.ColumnLinks.Item {
                 });
                 await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 console.WriteLine("Success");
-            }, contentTypeIdOption, columnLinkIdOption, new OutputFormatterFactoryBinder());
+            }, contentTypeIdOption, columnLinkIdOption);
             return command;
         }
         /// <summary>
@@ -80,7 +79,7 @@ namespace ApiSdk.Drive.List.ContentTypes.Item.ColumnLinks.Item {
                 var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 formatter.WriteOutput(response, console);
-            }, contentTypeIdOption, columnLinkIdOption, selectOption, expandOption, outputOption, new OutputFormatterFactoryBinder());
+            }, contentTypeIdOption, columnLinkIdOption, selectOption, expandOption, outputOption);
             return command;
         }
         /// <summary>
@@ -110,7 +109,7 @@ namespace ApiSdk.Drive.List.ContentTypes.Item.ColumnLinks.Item {
                 });
                 await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 console.WriteLine("Success");
-            }, contentTypeIdOption, columnLinkIdOption, bodyOption, new OutputFormatterFactoryBinder());
+            }, contentTypeIdOption, columnLinkIdOption, bodyOption);
             return command;
         }
         /// <summary>

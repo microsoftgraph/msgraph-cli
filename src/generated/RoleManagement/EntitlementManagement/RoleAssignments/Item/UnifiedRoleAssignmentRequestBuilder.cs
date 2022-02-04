@@ -3,7 +3,6 @@ using ApiSdk.RoleManagement.EntitlementManagement.RoleAssignments.Item.AppScope;
 using ApiSdk.RoleManagement.EntitlementManagement.RoleAssignments.Item.DirectoryScope;
 using ApiSdk.RoleManagement.EntitlementManagement.RoleAssignments.Item.Principal;
 using ApiSdk.RoleManagement.EntitlementManagement.RoleAssignments.Item.RoleDefinition;
-using Microsoft.Graph.Cli.Core.Binding;
 using Microsoft.Graph.Cli.Core.IO;
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
@@ -48,7 +47,7 @@ namespace ApiSdk.RoleManagement.EntitlementManagement.RoleAssignments.Item {
                 });
                 await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 console.WriteLine("Success");
-            }, unifiedRoleAssignmentIdOption, new OutputFormatterFactoryBinder());
+            }, unifiedRoleAssignmentIdOption);
             return command;
         }
         public Command BuildDirectoryScopeCommand() {
@@ -91,7 +90,7 @@ namespace ApiSdk.RoleManagement.EntitlementManagement.RoleAssignments.Item {
                 var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 formatter.WriteOutput(response, console);
-            }, unifiedRoleAssignmentIdOption, selectOption, expandOption, outputOption, new OutputFormatterFactoryBinder());
+            }, unifiedRoleAssignmentIdOption, selectOption, expandOption, outputOption);
             return command;
         }
         /// <summary>
@@ -117,7 +116,7 @@ namespace ApiSdk.RoleManagement.EntitlementManagement.RoleAssignments.Item {
                 });
                 await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 console.WriteLine("Success");
-            }, unifiedRoleAssignmentIdOption, bodyOption, new OutputFormatterFactoryBinder());
+            }, unifiedRoleAssignmentIdOption, bodyOption);
             return command;
         }
         public Command BuildPrincipalCommand() {

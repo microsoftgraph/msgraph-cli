@@ -14,7 +14,6 @@ using ApiSdk.Users.Item.MailFolders.Item.Messages.Item.ReplyAll;
 using ApiSdk.Users.Item.MailFolders.Item.Messages.Item.Send;
 using ApiSdk.Users.Item.MailFolders.Item.Messages.Item.SingleValueExtendedProperties;
 using ApiSdk.Users.Item.MailFolders.Item.Messages.Item.Value;
-using Microsoft.Graph.Cli.Core.Binding;
 using Microsoft.Graph.Cli.Core.IO;
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
@@ -107,7 +106,7 @@ namespace ApiSdk.Users.Item.MailFolders.Item.Messages.Item {
                 });
                 await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 console.WriteLine("Success");
-            }, userIdOption, mailFolderIdOption, messageIdOption, new OutputFormatterFactoryBinder());
+            }, userIdOption, mailFolderIdOption, messageIdOption);
             return command;
         }
         public Command BuildExtensionsCommand() {
@@ -167,7 +166,7 @@ namespace ApiSdk.Users.Item.MailFolders.Item.Messages.Item {
                 var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 formatter.WriteOutput(response, console);
-            }, userIdOption, mailFolderIdOption, messageIdOption, selectOption, expandOption, outputOption, new OutputFormatterFactoryBinder());
+            }, userIdOption, mailFolderIdOption, messageIdOption, selectOption, expandOption, outputOption);
             return command;
         }
         public Command BuildMoveCommand() {
@@ -217,7 +216,7 @@ namespace ApiSdk.Users.Item.MailFolders.Item.Messages.Item {
                 });
                 await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 console.WriteLine("Success");
-            }, userIdOption, mailFolderIdOption, messageIdOption, bodyOption, new OutputFormatterFactoryBinder());
+            }, userIdOption, mailFolderIdOption, messageIdOption, bodyOption);
             return command;
         }
         public Command BuildReplyAllCommand() {

@@ -1,6 +1,5 @@
 using ApiSdk.Education.Users.Item.Assignments.Item.Submissions.Item;
 using ApiSdk.Models.Microsoft.Graph;
-using Microsoft.Graph.Cli.Core.Binding;
 using Microsoft.Graph.Cli.Core.IO;
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
@@ -69,7 +68,7 @@ namespace ApiSdk.Education.Users.Item.Assignments.Item.Submissions {
                 var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 formatter.WriteOutput(response, console);
-            }, educationUserIdOption, educationAssignmentIdOption, bodyOption, outputOption, new OutputFormatterFactoryBinder());
+            }, educationUserIdOption, educationAssignmentIdOption, bodyOption, outputOption);
             return command;
         }
         /// <summary>
@@ -140,7 +139,7 @@ namespace ApiSdk.Education.Users.Item.Assignments.Item.Submissions {
                 var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 formatter.WriteOutput(response, console);
-            }, educationUserIdOption, educationAssignmentIdOption, topOption, skipOption, searchOption, filterOption, countOption, orderbyOption, selectOption, expandOption, outputOption, new OutputFormatterFactoryBinder());
+            }, educationUserIdOption, educationAssignmentIdOption, topOption, skipOption, searchOption, filterOption, countOption, orderbyOption, selectOption, expandOption, outputOption);
             return command;
         }
         /// <summary>

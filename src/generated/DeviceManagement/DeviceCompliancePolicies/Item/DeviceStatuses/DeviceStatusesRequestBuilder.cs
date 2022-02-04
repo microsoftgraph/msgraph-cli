@@ -1,6 +1,5 @@
 using ApiSdk.DeviceManagement.DeviceCompliancePolicies.Item.DeviceStatuses.Item;
 using ApiSdk.Models.Microsoft.Graph;
-using Microsoft.Graph.Cli.Core.Binding;
 using Microsoft.Graph.Cli.Core.IO;
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
@@ -57,7 +56,7 @@ namespace ApiSdk.DeviceManagement.DeviceCompliancePolicies.Item.DeviceStatuses {
                 var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 formatter.WriteOutput(response, console);
-            }, deviceCompliancePolicyIdOption, bodyOption, outputOption, new OutputFormatterFactoryBinder());
+            }, deviceCompliancePolicyIdOption, bodyOption, outputOption);
             return command;
         }
         /// <summary>
@@ -124,7 +123,7 @@ namespace ApiSdk.DeviceManagement.DeviceCompliancePolicies.Item.DeviceStatuses {
                 var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 formatter.WriteOutput(response, console);
-            }, deviceCompliancePolicyIdOption, topOption, skipOption, searchOption, filterOption, countOption, orderbyOption, selectOption, expandOption, outputOption, new OutputFormatterFactoryBinder());
+            }, deviceCompliancePolicyIdOption, topOption, skipOption, searchOption, filterOption, countOption, orderbyOption, selectOption, expandOption, outputOption);
             return command;
         }
         /// <summary>

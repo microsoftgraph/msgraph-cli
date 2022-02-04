@@ -12,7 +12,6 @@ using ApiSdk.Users.Item.Calendar.CalendarView.Item.MultiValueExtendedProperties;
 using ApiSdk.Users.Item.Calendar.CalendarView.Item.SingleValueExtendedProperties;
 using ApiSdk.Users.Item.Calendar.CalendarView.Item.SnoozeReminder;
 using ApiSdk.Users.Item.Calendar.CalendarView.Item.TentativelyAccept;
-using Microsoft.Graph.Cli.Core.Binding;
 using Microsoft.Graph.Cli.Core.IO;
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
@@ -91,7 +90,7 @@ namespace ApiSdk.Users.Item.Calendar.CalendarView.Item {
                 });
                 await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 console.WriteLine("Success");
-            }, userIdOption, eventIdOption, new OutputFormatterFactoryBinder());
+            }, userIdOption, eventIdOption);
             return command;
         }
         public Command BuildDismissReminderCommand() {
@@ -157,7 +156,7 @@ namespace ApiSdk.Users.Item.Calendar.CalendarView.Item {
                 var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 formatter.WriteOutput(response, console);
-            }, userIdOption, eventIdOption, startDateTimeOption, endDateTimeOption, selectOption, outputOption, new OutputFormatterFactoryBinder());
+            }, userIdOption, eventIdOption, startDateTimeOption, endDateTimeOption, selectOption, outputOption);
             return command;
         }
         public Command BuildInstancesCommand() {
@@ -207,7 +206,7 @@ namespace ApiSdk.Users.Item.Calendar.CalendarView.Item {
                 });
                 await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 console.WriteLine("Success");
-            }, userIdOption, eventIdOption, bodyOption, new OutputFormatterFactoryBinder());
+            }, userIdOption, eventIdOption, bodyOption);
             return command;
         }
         public Command BuildSingleValueExtendedPropertiesCommand() {

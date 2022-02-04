@@ -1,6 +1,5 @@
 using ApiSdk.Models.Microsoft.Graph;
 using ApiSdk.RoleManagement.EntitlementManagement.RoleAssignments.Item.Principal.Ref;
-using Microsoft.Graph.Cli.Core.Binding;
 using Microsoft.Graph.Cli.Core.IO;
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
@@ -54,7 +53,7 @@ namespace ApiSdk.RoleManagement.EntitlementManagement.RoleAssignments.Item.Princ
                 var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 formatter.WriteOutput(response, console);
-            }, unifiedRoleAssignmentIdOption, selectOption, expandOption, outputOption, new OutputFormatterFactoryBinder());
+            }, unifiedRoleAssignmentIdOption, selectOption, expandOption, outputOption);
             return command;
         }
         public Command BuildRefCommand() {

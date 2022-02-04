@@ -8,7 +8,6 @@ using ApiSdk.Organization.Item.GetMemberGroups;
 using ApiSdk.Organization.Item.GetMemberObjects;
 using ApiSdk.Organization.Item.Restore;
 using ApiSdk.Organization.Item.SetMobileDeviceManagementAuthority;
-using Microsoft.Graph.Cli.Core.Binding;
 using Microsoft.Graph.Cli.Core.IO;
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
@@ -72,7 +71,7 @@ namespace ApiSdk.Organization.Item {
                 });
                 await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 console.WriteLine("Success");
-            }, organizationItemIdOption, new OutputFormatterFactoryBinder());
+            }, organizationItemIdOption);
             return command;
         }
         public Command BuildExtensionsCommand() {
@@ -118,7 +117,7 @@ namespace ApiSdk.Organization.Item {
                 var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 formatter.WriteOutput(response, console);
-            }, organizationItemIdOption, selectOption, expandOption, outputOption, new OutputFormatterFactoryBinder());
+            }, organizationItemIdOption, selectOption, expandOption, outputOption);
             return command;
         }
         public Command BuildGetMemberGroupsCommand() {
@@ -156,7 +155,7 @@ namespace ApiSdk.Organization.Item {
                 });
                 await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 console.WriteLine("Success");
-            }, organizationItemIdOption, bodyOption, new OutputFormatterFactoryBinder());
+            }, organizationItemIdOption, bodyOption);
             return command;
         }
         public Command BuildRestoreCommand() {

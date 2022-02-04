@@ -7,7 +7,6 @@ using ApiSdk.DeviceManagement.DeviceConfigurations.Item.GetOmaSettingPlainTextVa
 using ApiSdk.DeviceManagement.DeviceConfigurations.Item.UserStatuses;
 using ApiSdk.DeviceManagement.DeviceConfigurations.Item.UserStatusOverview;
 using ApiSdk.Models.Microsoft.Graph;
-using Microsoft.Graph.Cli.Core.Binding;
 using Microsoft.Graph.Cli.Core.IO;
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
@@ -60,7 +59,7 @@ namespace ApiSdk.DeviceManagement.DeviceConfigurations.Item {
                 });
                 await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 console.WriteLine("Success");
-            }, deviceConfigurationIdOption, new OutputFormatterFactoryBinder());
+            }, deviceConfigurationIdOption);
             return command;
         }
         public Command BuildDeviceSettingStateSummariesCommand() {
@@ -124,7 +123,7 @@ namespace ApiSdk.DeviceManagement.DeviceConfigurations.Item {
                 var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 formatter.WriteOutput(response, console);
-            }, deviceConfigurationIdOption, selectOption, expandOption, outputOption, new OutputFormatterFactoryBinder());
+            }, deviceConfigurationIdOption, selectOption, expandOption, outputOption);
             return command;
         }
         /// <summary>
@@ -150,7 +149,7 @@ namespace ApiSdk.DeviceManagement.DeviceConfigurations.Item {
                 });
                 await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 console.WriteLine("Success");
-            }, deviceConfigurationIdOption, bodyOption, new OutputFormatterFactoryBinder());
+            }, deviceConfigurationIdOption, bodyOption);
             return command;
         }
         public Command BuildUserStatusesCommand() {

@@ -1,7 +1,6 @@
 using ApiSdk.Models.Microsoft.Graph;
 using ApiSdk.Users.Item.Todo.Lists.Item.Tasks.Delta;
 using ApiSdk.Users.Item.Todo.Lists.Item.Tasks.Item;
-using Microsoft.Graph.Cli.Core.Binding;
 using Microsoft.Graph.Cli.Core.IO;
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
@@ -64,7 +63,7 @@ namespace ApiSdk.Users.Item.Todo.Lists.Item.Tasks {
                 var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 formatter.WriteOutput(response, console);
-            }, userIdOption, todoTaskListIdOption, bodyOption, outputOption, new OutputFormatterFactoryBinder());
+            }, userIdOption, todoTaskListIdOption, bodyOption, outputOption);
             return command;
         }
         /// <summary>
@@ -135,7 +134,7 @@ namespace ApiSdk.Users.Item.Todo.Lists.Item.Tasks {
                 var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 formatter.WriteOutput(response, console);
-            }, userIdOption, todoTaskListIdOption, topOption, skipOption, searchOption, filterOption, countOption, orderbyOption, selectOption, expandOption, outputOption, new OutputFormatterFactoryBinder());
+            }, userIdOption, todoTaskListIdOption, topOption, skipOption, searchOption, filterOption, countOption, orderbyOption, selectOption, expandOption, outputOption);
             return command;
         }
         /// <summary>

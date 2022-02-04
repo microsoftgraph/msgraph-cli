@@ -1,5 +1,4 @@
 using ApiSdk.Models.Microsoft.Graph;
-using Microsoft.Graph.Cli.Core.Binding;
 using Microsoft.Graph.Cli.Core.IO;
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
@@ -36,7 +35,7 @@ namespace ApiSdk.Me.Authentication.Fido2Methods.Item {
                 });
                 await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 console.WriteLine("Success");
-            }, fido2AuthenticationMethodIdOption, new OutputFormatterFactoryBinder());
+            }, fido2AuthenticationMethodIdOption);
             return command;
         }
         /// <summary>
@@ -72,7 +71,7 @@ namespace ApiSdk.Me.Authentication.Fido2Methods.Item {
                 var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 formatter.WriteOutput(response, console);
-            }, fido2AuthenticationMethodIdOption, selectOption, expandOption, outputOption, new OutputFormatterFactoryBinder());
+            }, fido2AuthenticationMethodIdOption, selectOption, expandOption, outputOption);
             return command;
         }
         /// <summary>
@@ -98,7 +97,7 @@ namespace ApiSdk.Me.Authentication.Fido2Methods.Item {
                 });
                 await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 console.WriteLine("Success");
-            }, fido2AuthenticationMethodIdOption, bodyOption, new OutputFormatterFactoryBinder());
+            }, fido2AuthenticationMethodIdOption, bodyOption);
             return command;
         }
         /// <summary>

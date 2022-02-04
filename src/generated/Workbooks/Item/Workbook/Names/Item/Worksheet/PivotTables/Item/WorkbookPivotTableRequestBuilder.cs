@@ -1,7 +1,6 @@
 using ApiSdk.Models.Microsoft.Graph;
 using ApiSdk.Workbooks.Item.Workbook.Names.Item.Worksheet.PivotTables.Item.Refresh;
 using ApiSdk.Workbooks.Item.Workbook.Names.Item.Worksheet.PivotTables.Item.Worksheet;
-using Microsoft.Graph.Cli.Core.Binding;
 using Microsoft.Graph.Cli.Core.IO;
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
@@ -46,7 +45,7 @@ namespace ApiSdk.Workbooks.Item.Workbook.Names.Item.Worksheet.PivotTables.Item {
                 });
                 await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 console.WriteLine("Success");
-            }, driveItemIdOption, workbookNamedItemIdOption, workbookPivotTableIdOption, new OutputFormatterFactoryBinder());
+            }, driveItemIdOption, workbookNamedItemIdOption, workbookPivotTableIdOption);
             return command;
         }
         /// <summary>
@@ -90,7 +89,7 @@ namespace ApiSdk.Workbooks.Item.Workbook.Names.Item.Worksheet.PivotTables.Item {
                 var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 formatter.WriteOutput(response, console);
-            }, driveItemIdOption, workbookNamedItemIdOption, workbookPivotTableIdOption, selectOption, expandOption, outputOption, new OutputFormatterFactoryBinder());
+            }, driveItemIdOption, workbookNamedItemIdOption, workbookPivotTableIdOption, selectOption, expandOption, outputOption);
             return command;
         }
         /// <summary>
@@ -124,7 +123,7 @@ namespace ApiSdk.Workbooks.Item.Workbook.Names.Item.Worksheet.PivotTables.Item {
                 });
                 await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 console.WriteLine("Success");
-            }, driveItemIdOption, workbookNamedItemIdOption, workbookPivotTableIdOption, bodyOption, new OutputFormatterFactoryBinder());
+            }, driveItemIdOption, workbookNamedItemIdOption, workbookPivotTableIdOption, bodyOption);
             return command;
         }
         public Command BuildRefreshCommand() {

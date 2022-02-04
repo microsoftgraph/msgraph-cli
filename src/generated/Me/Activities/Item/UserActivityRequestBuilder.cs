@@ -1,6 +1,5 @@
 using ApiSdk.Me.Activities.Item.HistoryItems;
 using ApiSdk.Models.Microsoft.Graph;
-using Microsoft.Graph.Cli.Core.Binding;
 using Microsoft.Graph.Cli.Core.IO;
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
@@ -37,7 +36,7 @@ namespace ApiSdk.Me.Activities.Item {
                 });
                 await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 console.WriteLine("Success");
-            }, userActivityIdOption, new OutputFormatterFactoryBinder());
+            }, userActivityIdOption);
             return command;
         }
         /// <summary>
@@ -73,7 +72,7 @@ namespace ApiSdk.Me.Activities.Item {
                 var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 formatter.WriteOutput(response, console);
-            }, userActivityIdOption, selectOption, expandOption, outputOption, new OutputFormatterFactoryBinder());
+            }, userActivityIdOption, selectOption, expandOption, outputOption);
             return command;
         }
         public Command BuildHistoryItemsCommand() {
@@ -109,7 +108,7 @@ namespace ApiSdk.Me.Activities.Item {
                 });
                 await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 console.WriteLine("Success");
-            }, userActivityIdOption, bodyOption, new OutputFormatterFactoryBinder());
+            }, userActivityIdOption, bodyOption);
             return command;
         }
         /// <summary>

@@ -1,6 +1,5 @@
 using ApiSdk.Groups.Item.Conversations.Item.Threads;
 using ApiSdk.Models.Microsoft.Graph;
-using Microsoft.Graph.Cli.Core.Binding;
 using Microsoft.Graph.Cli.Core.IO;
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
@@ -41,7 +40,7 @@ namespace ApiSdk.Groups.Item.Conversations.Item {
                 });
                 await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 console.WriteLine("Success");
-            }, groupIdOption, conversationIdOption, new OutputFormatterFactoryBinder());
+            }, groupIdOption, conversationIdOption);
             return command;
         }
         /// <summary>
@@ -75,7 +74,7 @@ namespace ApiSdk.Groups.Item.Conversations.Item {
                 var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 formatter.WriteOutput(response, console);
-            }, groupIdOption, conversationIdOption, selectOption, outputOption, new OutputFormatterFactoryBinder());
+            }, groupIdOption, conversationIdOption, selectOption, outputOption);
             return command;
         }
         /// <summary>
@@ -105,7 +104,7 @@ namespace ApiSdk.Groups.Item.Conversations.Item {
                 });
                 await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 console.WriteLine("Success");
-            }, groupIdOption, conversationIdOption, bodyOption, new OutputFormatterFactoryBinder());
+            }, groupIdOption, conversationIdOption, bodyOption);
             return command;
         }
         public Command BuildThreadsCommand() {

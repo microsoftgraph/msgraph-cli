@@ -1,7 +1,6 @@
 using ApiSdk.Models.Microsoft.Graph;
 using ApiSdk.Workbooks.Item.Versions.Item.Content;
 using ApiSdk.Workbooks.Item.Versions.Item.RestoreVersion;
-using Microsoft.Graph.Cli.Core.Binding;
 using Microsoft.Graph.Cli.Core.IO;
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
@@ -49,7 +48,7 @@ namespace ApiSdk.Workbooks.Item.Versions.Item {
                 });
                 await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 console.WriteLine("Success");
-            }, driveItemIdOption, driveItemVersionIdOption, new OutputFormatterFactoryBinder());
+            }, driveItemIdOption, driveItemVersionIdOption);
             return command;
         }
         /// <summary>
@@ -89,7 +88,7 @@ namespace ApiSdk.Workbooks.Item.Versions.Item {
                 var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 formatter.WriteOutput(response, console);
-            }, driveItemIdOption, driveItemVersionIdOption, selectOption, expandOption, outputOption, new OutputFormatterFactoryBinder());
+            }, driveItemIdOption, driveItemVersionIdOption, selectOption, expandOption, outputOption);
             return command;
         }
         /// <summary>
@@ -119,7 +118,7 @@ namespace ApiSdk.Workbooks.Item.Versions.Item {
                 });
                 await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 console.WriteLine("Success");
-            }, driveItemIdOption, driveItemVersionIdOption, bodyOption, new OutputFormatterFactoryBinder());
+            }, driveItemIdOption, driveItemVersionIdOption, bodyOption);
             return command;
         }
         public Command BuildRestoreVersionCommand() {

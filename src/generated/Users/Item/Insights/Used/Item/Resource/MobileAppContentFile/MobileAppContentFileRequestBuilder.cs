@@ -1,6 +1,5 @@
 using ApiSdk.Users.Item.Insights.Used.Item.Resource.MobileAppContentFile.Commit;
 using ApiSdk.Users.Item.Insights.Used.Item.Resource.MobileAppContentFile.RenewUpload;
-using Microsoft.Graph.Cli.Core.Binding;
 using Microsoft.Graph.Cli.Core.IO;
 using Microsoft.Kiota.Abstractions;
 using System;

@@ -13,7 +13,6 @@ using ApiSdk.Users.Item.Insights.Shared.Item.Resource.WorkbookRangeFill;
 using ApiSdk.Users.Item.Insights.Shared.Item.Resource.WorkbookRangeFormat;
 using ApiSdk.Users.Item.Insights.Shared.Item.Resource.WorkbookRangeSort;
 using ApiSdk.Users.Item.Insights.Shared.Item.Resource.WorkbookRangeView;
-using Microsoft.Graph.Cli.Core.Binding;
 using Microsoft.Graph.Cli.Core.IO;
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
@@ -77,7 +76,7 @@ namespace ApiSdk.Users.Item.Insights.Shared.Item.Resource {
                 var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 formatter.WriteOutput(response, console);
-            }, userIdOption, sharedInsightIdOption, selectOption, expandOption, outputOption, new OutputFormatterFactoryBinder());
+            }, userIdOption, sharedInsightIdOption, selectOption, expandOption, outputOption);
             return command;
         }
         public Command BuildManagedAppProtectionCommand() {

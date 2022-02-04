@@ -1,6 +1,5 @@
 using ApiSdk.Users.Item.Insights.Used.Item.Resource.ScheduleChangeRequest.Approve;
 using ApiSdk.Users.Item.Insights.Used.Item.Resource.ScheduleChangeRequest.Decline;
-using Microsoft.Graph.Cli.Core.Binding;
 using Microsoft.Graph.Cli.Core.IO;
 using Microsoft.Kiota.Abstractions;
 using System;

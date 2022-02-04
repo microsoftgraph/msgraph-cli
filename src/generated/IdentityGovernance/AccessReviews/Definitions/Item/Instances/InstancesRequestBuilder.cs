@@ -1,7 +1,6 @@
 using ApiSdk.IdentityGovernance.AccessReviews.Definitions.Item.Instances.FilterByCurrentUserWithOn;
 using ApiSdk.IdentityGovernance.AccessReviews.Definitions.Item.Instances.Item;
 using ApiSdk.Models.Microsoft.Graph;
-using Microsoft.Graph.Cli.Core.Binding;
 using Microsoft.Graph.Cli.Core.IO;
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
@@ -66,7 +65,7 @@ namespace ApiSdk.IdentityGovernance.AccessReviews.Definitions.Item.Instances {
                 var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 formatter.WriteOutput(response, console);
-            }, accessReviewScheduleDefinitionIdOption, bodyOption, outputOption, new OutputFormatterFactoryBinder());
+            }, accessReviewScheduleDefinitionIdOption, bodyOption, outputOption);
             return command;
         }
         /// <summary>
@@ -133,7 +132,7 @@ namespace ApiSdk.IdentityGovernance.AccessReviews.Definitions.Item.Instances {
                 var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 formatter.WriteOutput(response, console);
-            }, accessReviewScheduleDefinitionIdOption, topOption, skipOption, searchOption, filterOption, countOption, orderbyOption, selectOption, expandOption, outputOption, new OutputFormatterFactoryBinder());
+            }, accessReviewScheduleDefinitionIdOption, topOption, skipOption, searchOption, filterOption, countOption, orderbyOption, selectOption, expandOption, outputOption);
             return command;
         }
         /// <summary>

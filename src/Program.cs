@@ -79,6 +79,11 @@ namespace Microsoft.Graph.Cli
             commands.Add(logoutCommand.Build());
 
             var builder = BuildCommandLine(client, commands).UseDefaults();
+            builder.AddMiddleware((invocation) => {
+                var host = invocation.GetHost();
+                var outputFormatterFactory = host.Services.GetRequiredService<IOutputFormatterFactory>();
+                invocation.BindingContext.AddService<IOutputFormatterFactory>(_ => outputFormatterFactory);
+            });
             builder.UseExceptionHandler((ex, context) => {
                 if (ex is AuthenticationRequiredException) {
                     Console.ResetColor();

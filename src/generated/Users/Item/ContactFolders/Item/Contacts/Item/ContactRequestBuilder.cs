@@ -3,7 +3,6 @@ using ApiSdk.Users.Item.ContactFolders.Item.Contacts.Item.Extensions;
 using ApiSdk.Users.Item.ContactFolders.Item.Contacts.Item.MultiValueExtendedProperties;
 using ApiSdk.Users.Item.ContactFolders.Item.Contacts.Item.Photo;
 using ApiSdk.Users.Item.ContactFolders.Item.Contacts.Item.SingleValueExtendedProperties;
-using Microsoft.Graph.Cli.Core.Binding;
 using Microsoft.Graph.Cli.Core.IO;
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
@@ -48,7 +47,7 @@ namespace ApiSdk.Users.Item.ContactFolders.Item.Contacts.Item {
                 });
                 await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 console.WriteLine("Success");
-            }, userIdOption, contactFolderIdOption, contactIdOption, new OutputFormatterFactoryBinder());
+            }, userIdOption, contactFolderIdOption, contactIdOption);
             return command;
         }
         public Command BuildExtensionsCommand() {
@@ -102,7 +101,7 @@ namespace ApiSdk.Users.Item.ContactFolders.Item.Contacts.Item {
                 var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 formatter.WriteOutput(response, console);
-            }, userIdOption, contactFolderIdOption, contactIdOption, selectOption, expandOption, outputOption, new OutputFormatterFactoryBinder());
+            }, userIdOption, contactFolderIdOption, contactIdOption, selectOption, expandOption, outputOption);
             return command;
         }
         public Command BuildMultiValueExtendedPropertiesCommand() {
@@ -146,7 +145,7 @@ namespace ApiSdk.Users.Item.ContactFolders.Item.Contacts.Item {
                 });
                 await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 console.WriteLine("Success");
-            }, userIdOption, contactFolderIdOption, contactIdOption, bodyOption, new OutputFormatterFactoryBinder());
+            }, userIdOption, contactFolderIdOption, contactIdOption, bodyOption);
             return command;
         }
         public Command BuildPhotoCommand() {

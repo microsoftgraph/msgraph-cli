@@ -1,6 +1,5 @@
 using ApiSdk.Models.Microsoft.Graph;
 using ApiSdk.Users.Item.ContactFolders.Item.Contacts.Item.Photo.Value;
-using Microsoft.Graph.Cli.Core.Binding;
 using Microsoft.Graph.Cli.Core.IO;
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
@@ -52,7 +51,7 @@ namespace ApiSdk.Users.Item.ContactFolders.Item.Contacts.Item.Photo {
                 });
                 await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 console.WriteLine("Success");
-            }, userIdOption, contactFolderIdOption, contactIdOption, new OutputFormatterFactoryBinder());
+            }, userIdOption, contactFolderIdOption, contactIdOption);
             return command;
         }
         /// <summary>
@@ -90,7 +89,7 @@ namespace ApiSdk.Users.Item.ContactFolders.Item.Contacts.Item.Photo {
                 var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 formatter.WriteOutput(response, console);
-            }, userIdOption, contactFolderIdOption, contactIdOption, selectOption, outputOption, new OutputFormatterFactoryBinder());
+            }, userIdOption, contactFolderIdOption, contactIdOption, selectOption, outputOption);
             return command;
         }
         /// <summary>
@@ -124,7 +123,7 @@ namespace ApiSdk.Users.Item.ContactFolders.Item.Contacts.Item.Photo {
                 });
                 await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 console.WriteLine("Success");
-            }, userIdOption, contactFolderIdOption, contactIdOption, bodyOption, new OutputFormatterFactoryBinder());
+            }, userIdOption, contactFolderIdOption, contactIdOption, bodyOption);
             return command;
         }
         /// <summary>

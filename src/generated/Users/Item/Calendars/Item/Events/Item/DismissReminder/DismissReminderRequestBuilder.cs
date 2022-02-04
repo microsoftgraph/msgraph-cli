@@ -1,4 +1,3 @@
-using Microsoft.Graph.Cli.Core.Binding;
 using Microsoft.Graph.Cli.Core.IO;
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
@@ -43,7 +42,7 @@ namespace ApiSdk.Users.Item.Calendars.Item.Events.Item.DismissReminder {
                 });
                 await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 console.WriteLine("Success");
-            }, userIdOption, calendarIdOption, eventIdOption, new OutputFormatterFactoryBinder());
+            }, userIdOption, calendarIdOption, eventIdOption);
             return command;
         }
         /// <summary>

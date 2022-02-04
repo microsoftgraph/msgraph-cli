@@ -1,6 +1,5 @@
 using ApiSdk.DeviceManagement.ExchangeConnectors.Item.Sync;
 using ApiSdk.Models.Microsoft.Graph;
-using Microsoft.Graph.Cli.Core.Binding;
 using Microsoft.Graph.Cli.Core.IO;
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
@@ -37,7 +36,7 @@ namespace ApiSdk.DeviceManagement.ExchangeConnectors.Item {
                 });
                 await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 console.WriteLine("Success");
-            }, deviceManagementExchangeConnectorIdOption, new OutputFormatterFactoryBinder());
+            }, deviceManagementExchangeConnectorIdOption);
             return command;
         }
         /// <summary>
@@ -73,7 +72,7 @@ namespace ApiSdk.DeviceManagement.ExchangeConnectors.Item {
                 var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 formatter.WriteOutput(response, console);
-            }, deviceManagementExchangeConnectorIdOption, selectOption, expandOption, outputOption, new OutputFormatterFactoryBinder());
+            }, deviceManagementExchangeConnectorIdOption, selectOption, expandOption, outputOption);
             return command;
         }
         /// <summary>
@@ -99,7 +98,7 @@ namespace ApiSdk.DeviceManagement.ExchangeConnectors.Item {
                 });
                 await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 console.WriteLine("Success");
-            }, deviceManagementExchangeConnectorIdOption, bodyOption, new OutputFormatterFactoryBinder());
+            }, deviceManagementExchangeConnectorIdOption, bodyOption);
             return command;
         }
         public Command BuildSyncCommand() {

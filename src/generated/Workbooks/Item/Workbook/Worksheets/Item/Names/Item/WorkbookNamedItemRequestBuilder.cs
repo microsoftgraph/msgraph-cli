@@ -1,7 +1,6 @@
 using ApiSdk.Models.Microsoft.Graph;
 using ApiSdk.Workbooks.Item.Workbook.Worksheets.Item.Names.Item.Range;
 using ApiSdk.Workbooks.Item.Workbook.Worksheets.Item.Names.Item.Worksheet;
-using Microsoft.Graph.Cli.Core.Binding;
 using Microsoft.Graph.Cli.Core.IO;
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
@@ -46,7 +45,7 @@ namespace ApiSdk.Workbooks.Item.Workbook.Worksheets.Item.Names.Item {
                 });
                 await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 console.WriteLine("Success");
-            }, driveItemIdOption, workbookWorksheetIdOption, workbookNamedItemIdOption, new OutputFormatterFactoryBinder());
+            }, driveItemIdOption, workbookWorksheetIdOption, workbookNamedItemIdOption);
             return command;
         }
         /// <summary>
@@ -90,7 +89,7 @@ namespace ApiSdk.Workbooks.Item.Workbook.Worksheets.Item.Names.Item {
                 var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 formatter.WriteOutput(response, console);
-            }, driveItemIdOption, workbookWorksheetIdOption, workbookNamedItemIdOption, selectOption, expandOption, outputOption, new OutputFormatterFactoryBinder());
+            }, driveItemIdOption, workbookWorksheetIdOption, workbookNamedItemIdOption, selectOption, expandOption, outputOption);
             return command;
         }
         /// <summary>
@@ -124,7 +123,7 @@ namespace ApiSdk.Workbooks.Item.Workbook.Worksheets.Item.Names.Item {
                 });
                 await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 console.WriteLine("Success");
-            }, driveItemIdOption, workbookWorksheetIdOption, workbookNamedItemIdOption, bodyOption, new OutputFormatterFactoryBinder());
+            }, driveItemIdOption, workbookWorksheetIdOption, workbookNamedItemIdOption, bodyOption);
             return command;
         }
         public Command BuildWorksheetCommand() {

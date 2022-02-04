@@ -6,7 +6,6 @@ using ApiSdk.Groups.Item.Events.Item.Instances.Item.Forward;
 using ApiSdk.Groups.Item.Events.Item.Instances.Item.SnoozeReminder;
 using ApiSdk.Groups.Item.Events.Item.Instances.Item.TentativelyAccept;
 using ApiSdk.Models.Microsoft.Graph;
-using Microsoft.Graph.Cli.Core.Binding;
 using Microsoft.Graph.Cli.Core.IO;
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
@@ -69,7 +68,7 @@ namespace ApiSdk.Groups.Item.Events.Item.Instances.Item {
                 });
                 await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 console.WriteLine("Success");
-            }, groupIdOption, eventIdOption, eventId1Option, new OutputFormatterFactoryBinder());
+            }, groupIdOption, eventIdOption, eventId1Option);
             return command;
         }
         public Command BuildDismissReminderCommand() {
@@ -119,7 +118,7 @@ namespace ApiSdk.Groups.Item.Events.Item.Instances.Item {
                 var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 formatter.WriteOutput(response, console);
-            }, groupIdOption, eventIdOption, eventId1Option, selectOption, outputOption, new OutputFormatterFactoryBinder());
+            }, groupIdOption, eventIdOption, eventId1Option, selectOption, outputOption);
             return command;
         }
         /// <summary>
@@ -153,7 +152,7 @@ namespace ApiSdk.Groups.Item.Events.Item.Instances.Item {
                 });
                 await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 console.WriteLine("Success");
-            }, groupIdOption, eventIdOption, eventId1Option, bodyOption, new OutputFormatterFactoryBinder());
+            }, groupIdOption, eventIdOption, eventId1Option, bodyOption);
             return command;
         }
         public Command BuildSnoozeReminderCommand() {

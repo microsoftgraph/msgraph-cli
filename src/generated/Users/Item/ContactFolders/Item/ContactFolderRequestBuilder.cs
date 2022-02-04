@@ -3,7 +3,6 @@ using ApiSdk.Users.Item.ContactFolders.Item.ChildFolders;
 using ApiSdk.Users.Item.ContactFolders.Item.Contacts;
 using ApiSdk.Users.Item.ContactFolders.Item.MultiValueExtendedProperties;
 using ApiSdk.Users.Item.ContactFolders.Item.SingleValueExtendedProperties;
-using Microsoft.Graph.Cli.Core.Binding;
 using Microsoft.Graph.Cli.Core.IO;
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
@@ -64,7 +63,7 @@ namespace ApiSdk.Users.Item.ContactFolders.Item {
                 });
                 await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 console.WriteLine("Success");
-            }, userIdOption, contactFolderIdOption, new OutputFormatterFactoryBinder());
+            }, userIdOption, contactFolderIdOption);
             return command;
         }
         /// <summary>
@@ -98,7 +97,7 @@ namespace ApiSdk.Users.Item.ContactFolders.Item {
                 var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 formatter.WriteOutput(response, console);
-            }, userIdOption, contactFolderIdOption, selectOption, outputOption, new OutputFormatterFactoryBinder());
+            }, userIdOption, contactFolderIdOption, selectOption, outputOption);
             return command;
         }
         public Command BuildMultiValueExtendedPropertiesCommand() {
@@ -138,7 +137,7 @@ namespace ApiSdk.Users.Item.ContactFolders.Item {
                 });
                 await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 console.WriteLine("Success");
-            }, userIdOption, contactFolderIdOption, bodyOption, new OutputFormatterFactoryBinder());
+            }, userIdOption, contactFolderIdOption, bodyOption);
             return command;
         }
         public Command BuildSingleValueExtendedPropertiesCommand() {

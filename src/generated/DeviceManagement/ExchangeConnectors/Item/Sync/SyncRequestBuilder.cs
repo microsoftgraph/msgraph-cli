@@ -1,4 +1,3 @@
-using Microsoft.Graph.Cli.Core.Binding;
 using Microsoft.Graph.Cli.Core.IO;
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
@@ -42,7 +41,7 @@ namespace ApiSdk.DeviceManagement.ExchangeConnectors.Item.Sync {
                 });
                 await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 console.WriteLine("Success");
-            }, deviceManagementExchangeConnectorIdOption, bodyOption, new OutputFormatterFactoryBinder());
+            }, deviceManagementExchangeConnectorIdOption, bodyOption);
             return command;
         }
         /// <summary>

@@ -1,5 +1,4 @@
 using ApiSdk.Models.Microsoft.Graph;
-using Microsoft.Graph.Cli.Core.Binding;
 using Microsoft.Graph.Cli.Core.IO;
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
@@ -48,7 +47,7 @@ namespace ApiSdk.Users.Item.Calendars.Item.Events.Item.MultiValueExtendedPropert
                 });
                 await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 console.WriteLine("Success");
-            }, userIdOption, calendarIdOption, eventIdOption, multiValueLegacyExtendedPropertyIdOption, new OutputFormatterFactoryBinder());
+            }, userIdOption, calendarIdOption, eventIdOption, multiValueLegacyExtendedPropertyIdOption);
             return command;
         }
         /// <summary>
@@ -96,7 +95,7 @@ namespace ApiSdk.Users.Item.Calendars.Item.Events.Item.MultiValueExtendedPropert
                 var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 formatter.WriteOutput(response, console);
-            }, userIdOption, calendarIdOption, eventIdOption, multiValueLegacyExtendedPropertyIdOption, selectOption, expandOption, outputOption, new OutputFormatterFactoryBinder());
+            }, userIdOption, calendarIdOption, eventIdOption, multiValueLegacyExtendedPropertyIdOption, selectOption, expandOption, outputOption);
             return command;
         }
         /// <summary>
@@ -134,7 +133,7 @@ namespace ApiSdk.Users.Item.Calendars.Item.Events.Item.MultiValueExtendedPropert
                 });
                 await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 console.WriteLine("Success");
-            }, userIdOption, calendarIdOption, eventIdOption, multiValueLegacyExtendedPropertyIdOption, bodyOption, new OutputFormatterFactoryBinder());
+            }, userIdOption, calendarIdOption, eventIdOption, multiValueLegacyExtendedPropertyIdOption, bodyOption);
             return command;
         }
         /// <summary>

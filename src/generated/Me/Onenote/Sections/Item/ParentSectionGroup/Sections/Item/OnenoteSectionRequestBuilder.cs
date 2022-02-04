@@ -1,7 +1,6 @@
 using ApiSdk.Me.Onenote.Sections.Item.ParentSectionGroup.Sections.Item.CopyToNotebook;
 using ApiSdk.Me.Onenote.Sections.Item.ParentSectionGroup.Sections.Item.CopyToSectionGroup;
 using ApiSdk.Models.Microsoft.Graph;
-using Microsoft.Graph.Cli.Core.Binding;
 using Microsoft.Graph.Cli.Core.IO;
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
@@ -54,7 +53,7 @@ namespace ApiSdk.Me.Onenote.Sections.Item.ParentSectionGroup.Sections.Item {
                 });
                 await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 console.WriteLine("Success");
-            }, onenoteSectionIdOption, onenoteSectionId1Option, new OutputFormatterFactoryBinder());
+            }, onenoteSectionIdOption, onenoteSectionId1Option);
             return command;
         }
         /// <summary>
@@ -94,7 +93,7 @@ namespace ApiSdk.Me.Onenote.Sections.Item.ParentSectionGroup.Sections.Item {
                 var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 formatter.WriteOutput(response, console);
-            }, onenoteSectionIdOption, onenoteSectionId1Option, selectOption, expandOption, outputOption, new OutputFormatterFactoryBinder());
+            }, onenoteSectionIdOption, onenoteSectionId1Option, selectOption, expandOption, outputOption);
             return command;
         }
         /// <summary>
@@ -124,7 +123,7 @@ namespace ApiSdk.Me.Onenote.Sections.Item.ParentSectionGroup.Sections.Item {
                 });
                 await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 console.WriteLine("Success");
-            }, onenoteSectionIdOption, onenoteSectionId1Option, bodyOption, new OutputFormatterFactoryBinder());
+            }, onenoteSectionIdOption, onenoteSectionId1Option, bodyOption);
             return command;
         }
         /// <summary>

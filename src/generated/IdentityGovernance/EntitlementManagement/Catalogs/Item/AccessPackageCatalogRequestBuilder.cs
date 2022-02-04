@@ -1,6 +1,5 @@
 using ApiSdk.IdentityGovernance.EntitlementManagement.Catalogs.Item.AccessPackages;
 using ApiSdk.Models.Microsoft.Graph;
-using Microsoft.Graph.Cli.Core.Binding;
 using Microsoft.Graph.Cli.Core.IO;
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
@@ -47,7 +46,7 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.Catalogs.Item {
                 });
                 await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 console.WriteLine("Success");
-            }, accessPackageCatalogIdOption, new OutputFormatterFactoryBinder());
+            }, accessPackageCatalogIdOption);
             return command;
         }
         /// <summary>
@@ -83,7 +82,7 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.Catalogs.Item {
                 var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 formatter.WriteOutput(response, console);
-            }, accessPackageCatalogIdOption, selectOption, expandOption, outputOption, new OutputFormatterFactoryBinder());
+            }, accessPackageCatalogIdOption, selectOption, expandOption, outputOption);
             return command;
         }
         /// <summary>
@@ -109,7 +108,7 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.Catalogs.Item {
                 });
                 await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 console.WriteLine("Success");
-            }, accessPackageCatalogIdOption, bodyOption, new OutputFormatterFactoryBinder());
+            }, accessPackageCatalogIdOption, bodyOption);
             return command;
         }
         /// <summary>

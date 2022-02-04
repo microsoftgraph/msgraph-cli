@@ -1,6 +1,5 @@
 using ApiSdk.Me.Planner.Plans.Item.Buckets.Item.Tasks.Item;
 using ApiSdk.Models.Microsoft.Graph;
-using Microsoft.Graph.Cli.Core.Binding;
 using Microsoft.Graph.Cli.Core.IO;
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
@@ -65,7 +64,7 @@ namespace ApiSdk.Me.Planner.Plans.Item.Buckets.Item.Tasks {
                 var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 formatter.WriteOutput(response, console);
-            }, plannerPlanIdOption, plannerBucketIdOption, bodyOption, outputOption, new OutputFormatterFactoryBinder());
+            }, plannerPlanIdOption, plannerBucketIdOption, bodyOption, outputOption);
             return command;
         }
         /// <summary>
@@ -136,7 +135,7 @@ namespace ApiSdk.Me.Planner.Plans.Item.Buckets.Item.Tasks {
                 var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 formatter.WriteOutput(response, console);
-            }, plannerPlanIdOption, plannerBucketIdOption, topOption, skipOption, searchOption, filterOption, countOption, orderbyOption, selectOption, expandOption, outputOption, new OutputFormatterFactoryBinder());
+            }, plannerPlanIdOption, plannerBucketIdOption, topOption, skipOption, searchOption, filterOption, countOption, orderbyOption, selectOption, expandOption, outputOption);
             return command;
         }
         /// <summary>

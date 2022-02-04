@@ -1,5 +1,4 @@
 using ApiSdk.Models.Microsoft.Graph;
-using Microsoft.Graph.Cli.Core.Binding;
 using Microsoft.Graph.Cli.Core.IO;
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
@@ -52,7 +51,7 @@ namespace ApiSdk.Users.Item.Insights.Trending.Item.Resource.PrintDocument.Create
                 var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 formatter.WriteOutput(response, console);
-            }, userIdOption, trendingItemIdOption, bodyOption, outputOption, new OutputFormatterFactoryBinder());
+            }, userIdOption, trendingItemIdOption, bodyOption, outputOption);
             return command;
         }
         /// <summary>

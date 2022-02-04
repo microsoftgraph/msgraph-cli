@@ -1,5 +1,4 @@
 using ApiSdk.Models.Microsoft.Graph;
-using Microsoft.Graph.Cli.Core.Binding;
 using Microsoft.Graph.Cli.Core.IO;
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
@@ -40,7 +39,7 @@ namespace ApiSdk.DeviceAppManagement.ManagedEBooks.Item.Assignments.Item {
                 });
                 await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 console.WriteLine("Success");
-            }, managedEBookIdOption, managedEBookAssignmentIdOption, new OutputFormatterFactoryBinder());
+            }, managedEBookIdOption, managedEBookAssignmentIdOption);
             return command;
         }
         /// <summary>
@@ -80,7 +79,7 @@ namespace ApiSdk.DeviceAppManagement.ManagedEBooks.Item.Assignments.Item {
                 var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 formatter.WriteOutput(response, console);
-            }, managedEBookIdOption, managedEBookAssignmentIdOption, selectOption, expandOption, outputOption, new OutputFormatterFactoryBinder());
+            }, managedEBookIdOption, managedEBookAssignmentIdOption, selectOption, expandOption, outputOption);
             return command;
         }
         /// <summary>
@@ -110,7 +109,7 @@ namespace ApiSdk.DeviceAppManagement.ManagedEBooks.Item.Assignments.Item {
                 });
                 await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 console.WriteLine("Success");
-            }, managedEBookIdOption, managedEBookAssignmentIdOption, bodyOption, new OutputFormatterFactoryBinder());
+            }, managedEBookIdOption, managedEBookAssignmentIdOption, bodyOption);
             return command;
         }
         /// <summary>

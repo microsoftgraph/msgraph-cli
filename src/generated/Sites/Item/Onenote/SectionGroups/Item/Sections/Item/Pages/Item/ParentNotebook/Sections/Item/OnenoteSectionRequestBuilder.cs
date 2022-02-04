@@ -1,7 +1,6 @@
 using ApiSdk.Models.Microsoft.Graph;
 using ApiSdk.Sites.Item.Onenote.SectionGroups.Item.Sections.Item.Pages.Item.ParentNotebook.Sections.Item.CopyToNotebook;
 using ApiSdk.Sites.Item.Onenote.SectionGroups.Item.Sections.Item.Pages.Item.ParentNotebook.Sections.Item.CopyToSectionGroup;
-using Microsoft.Graph.Cli.Core.Binding;
 using Microsoft.Graph.Cli.Core.IO;
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
@@ -66,7 +65,7 @@ namespace ApiSdk.Sites.Item.Onenote.SectionGroups.Item.Sections.Item.Pages.Item.
                 });
                 await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 console.WriteLine("Success");
-            }, siteIdOption, sectionGroupIdOption, onenoteSectionIdOption, onenotePageIdOption, onenoteSectionId1Option, new OutputFormatterFactoryBinder());
+            }, siteIdOption, sectionGroupIdOption, onenoteSectionIdOption, onenotePageIdOption, onenoteSectionId1Option);
             return command;
         }
         /// <summary>
@@ -118,7 +117,7 @@ namespace ApiSdk.Sites.Item.Onenote.SectionGroups.Item.Sections.Item.Pages.Item.
                 var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 formatter.WriteOutput(response, console);
-            }, siteIdOption, sectionGroupIdOption, onenoteSectionIdOption, onenotePageIdOption, onenoteSectionId1Option, selectOption, expandOption, outputOption, new OutputFormatterFactoryBinder());
+            }, siteIdOption, sectionGroupIdOption, onenoteSectionIdOption, onenotePageIdOption, onenoteSectionId1Option, selectOption, expandOption, outputOption);
             return command;
         }
         /// <summary>
@@ -160,7 +159,7 @@ namespace ApiSdk.Sites.Item.Onenote.SectionGroups.Item.Sections.Item.Pages.Item.
                 });
                 await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 console.WriteLine("Success");
-            }, siteIdOption, sectionGroupIdOption, onenoteSectionIdOption, onenotePageIdOption, onenoteSectionId1Option, bodyOption, new OutputFormatterFactoryBinder());
+            }, siteIdOption, sectionGroupIdOption, onenoteSectionIdOption, onenotePageIdOption, onenoteSectionId1Option, bodyOption);
             return command;
         }
         /// <summary>

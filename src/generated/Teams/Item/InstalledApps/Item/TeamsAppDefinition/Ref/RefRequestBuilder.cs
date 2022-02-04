@@ -1,4 +1,3 @@
-using Microsoft.Graph.Cli.Core.Binding;
 using Microsoft.Graph.Cli.Core.IO;
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
@@ -39,7 +38,7 @@ namespace ApiSdk.Teams.Item.InstalledApps.Item.TeamsAppDefinition.Ref {
                 });
                 await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 console.WriteLine("Success");
-            }, teamIdOption, teamsAppInstallationIdOption, new OutputFormatterFactoryBinder());
+            }, teamIdOption, teamsAppInstallationIdOption);
             return command;
         }
         /// <summary>
@@ -67,7 +66,7 @@ namespace ApiSdk.Teams.Item.InstalledApps.Item.TeamsAppDefinition.Ref {
                 var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 formatter.WriteOutput(response, console);
-            }, teamIdOption, teamsAppInstallationIdOption, outputOption, new OutputFormatterFactoryBinder());
+            }, teamIdOption, teamsAppInstallationIdOption, outputOption);
             return command;
         }
         /// <summary>
@@ -97,7 +96,7 @@ namespace ApiSdk.Teams.Item.InstalledApps.Item.TeamsAppDefinition.Ref {
                 });
                 await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 console.WriteLine("Success");
-            }, teamIdOption, teamsAppInstallationIdOption, bodyOption, new OutputFormatterFactoryBinder());
+            }, teamIdOption, teamsAppInstallationIdOption, bodyOption);
             return command;
         }
         /// <summary>

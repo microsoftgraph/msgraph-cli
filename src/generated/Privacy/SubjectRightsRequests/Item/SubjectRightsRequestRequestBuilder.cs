@@ -3,7 +3,6 @@ using ApiSdk.Privacy.SubjectRightsRequests.Item.GetFinalAttachment;
 using ApiSdk.Privacy.SubjectRightsRequests.Item.GetFinalReport;
 using ApiSdk.Privacy.SubjectRightsRequests.Item.Notes;
 using ApiSdk.Privacy.SubjectRightsRequests.Item.Team;
-using Microsoft.Graph.Cli.Core.Binding;
 using Microsoft.Graph.Cli.Core.IO;
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
@@ -40,7 +39,7 @@ namespace ApiSdk.Privacy.SubjectRightsRequests.Item {
                 });
                 await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 console.WriteLine("Success");
-            }, subjectRightsRequestIdOption, new OutputFormatterFactoryBinder());
+            }, subjectRightsRequestIdOption);
             return command;
         }
         /// <summary>
@@ -76,7 +75,7 @@ namespace ApiSdk.Privacy.SubjectRightsRequests.Item {
                 var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 formatter.WriteOutput(response, console);
-            }, subjectRightsRequestIdOption, selectOption, expandOption, outputOption, new OutputFormatterFactoryBinder());
+            }, subjectRightsRequestIdOption, selectOption, expandOption, outputOption);
             return command;
         }
         public Command BuildNotesCommand() {
@@ -112,7 +111,7 @@ namespace ApiSdk.Privacy.SubjectRightsRequests.Item {
                 });
                 await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 console.WriteLine("Success");
-            }, subjectRightsRequestIdOption, bodyOption, new OutputFormatterFactoryBinder());
+            }, subjectRightsRequestIdOption, bodyOption);
             return command;
         }
         public Command BuildTeamCommand() {

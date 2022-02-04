@@ -7,7 +7,6 @@ using ApiSdk.Education.Classes.Item.Members;
 using ApiSdk.Education.Classes.Item.Schools;
 using ApiSdk.Education.Classes.Item.Teachers;
 using ApiSdk.Models.Microsoft.Graph;
-using Microsoft.Graph.Cli.Core.Binding;
 using Microsoft.Graph.Cli.Core.IO;
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
@@ -80,7 +79,7 @@ namespace ApiSdk.Education.Classes.Item {
                 });
                 await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 console.WriteLine("Success");
-            }, educationClassIdOption, new OutputFormatterFactoryBinder());
+            }, educationClassIdOption);
             return command;
         }
         /// <summary>
@@ -116,7 +115,7 @@ namespace ApiSdk.Education.Classes.Item {
                 var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 formatter.WriteOutput(response, console);
-            }, educationClassIdOption, selectOption, expandOption, outputOption, new OutputFormatterFactoryBinder());
+            }, educationClassIdOption, selectOption, expandOption, outputOption);
             return command;
         }
         public Command BuildGroupCommand() {
@@ -156,7 +155,7 @@ namespace ApiSdk.Education.Classes.Item {
                 });
                 await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 console.WriteLine("Success");
-            }, educationClassIdOption, bodyOption, new OutputFormatterFactoryBinder());
+            }, educationClassIdOption, bodyOption);
             return command;
         }
         public Command BuildSchoolsCommand() {

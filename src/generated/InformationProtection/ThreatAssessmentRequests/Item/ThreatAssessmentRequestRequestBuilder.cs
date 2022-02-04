@@ -1,6 +1,5 @@
 using ApiSdk.InformationProtection.ThreatAssessmentRequests.Item.Results;
 using ApiSdk.Models.Microsoft.Graph;
-using Microsoft.Graph.Cli.Core.Binding;
 using Microsoft.Graph.Cli.Core.IO;
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
@@ -37,7 +36,7 @@ namespace ApiSdk.InformationProtection.ThreatAssessmentRequests.Item {
                 });
                 await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 console.WriteLine("Success");
-            }, threatAssessmentRequestIdOption, new OutputFormatterFactoryBinder());
+            }, threatAssessmentRequestIdOption);
             return command;
         }
         /// <summary>
@@ -73,7 +72,7 @@ namespace ApiSdk.InformationProtection.ThreatAssessmentRequests.Item {
                 var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 formatter.WriteOutput(response, console);
-            }, threatAssessmentRequestIdOption, selectOption, expandOption, outputOption, new OutputFormatterFactoryBinder());
+            }, threatAssessmentRequestIdOption, selectOption, expandOption, outputOption);
             return command;
         }
         /// <summary>
@@ -99,7 +98,7 @@ namespace ApiSdk.InformationProtection.ThreatAssessmentRequests.Item {
                 });
                 await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 console.WriteLine("Success");
-            }, threatAssessmentRequestIdOption, bodyOption, new OutputFormatterFactoryBinder());
+            }, threatAssessmentRequestIdOption, bodyOption);
             return command;
         }
         public Command BuildResultsCommand() {

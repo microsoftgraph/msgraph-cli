@@ -4,7 +4,6 @@ using ApiSdk.Me.Onenote.Notebooks.Item.SectionGroups.Item.Sections.Item.Pages;
 using ApiSdk.Me.Onenote.Notebooks.Item.SectionGroups.Item.Sections.Item.ParentNotebook;
 using ApiSdk.Me.Onenote.Notebooks.Item.SectionGroups.Item.Sections.Item.ParentSectionGroup;
 using ApiSdk.Models.Microsoft.Graph;
-using Microsoft.Graph.Cli.Core.Binding;
 using Microsoft.Graph.Cli.Core.IO;
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
@@ -61,7 +60,7 @@ namespace ApiSdk.Me.Onenote.Notebooks.Item.SectionGroups.Item.Sections.Item {
                 });
                 await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 console.WriteLine("Success");
-            }, notebookIdOption, sectionGroupIdOption, onenoteSectionIdOption, new OutputFormatterFactoryBinder());
+            }, notebookIdOption, sectionGroupIdOption, onenoteSectionIdOption);
             return command;
         }
         /// <summary>
@@ -105,7 +104,7 @@ namespace ApiSdk.Me.Onenote.Notebooks.Item.SectionGroups.Item.Sections.Item {
                 var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 formatter.WriteOutput(response, console);
-            }, notebookIdOption, sectionGroupIdOption, onenoteSectionIdOption, selectOption, expandOption, outputOption, new OutputFormatterFactoryBinder());
+            }, notebookIdOption, sectionGroupIdOption, onenoteSectionIdOption, selectOption, expandOption, outputOption);
             return command;
         }
         public Command BuildPagesCommand() {
@@ -166,7 +165,7 @@ namespace ApiSdk.Me.Onenote.Notebooks.Item.SectionGroups.Item.Sections.Item {
                 });
                 await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 console.WriteLine("Success");
-            }, notebookIdOption, sectionGroupIdOption, onenoteSectionIdOption, bodyOption, new OutputFormatterFactoryBinder());
+            }, notebookIdOption, sectionGroupIdOption, onenoteSectionIdOption, bodyOption);
             return command;
         }
         /// <summary>

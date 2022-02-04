@@ -1,4 +1,3 @@
-using Microsoft.Graph.Cli.Core.Binding;
 using Microsoft.Graph.Cli.Core.IO;
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
@@ -52,7 +51,7 @@ namespace ApiSdk.DeviceManagement.Reports.GetDeviceManagementIntentSettingsRepor
                     await response.CopyToAsync(writeStream);
                     console.WriteLine($"Content written to {file.FullName}.");
                 }
-            }, bodyOption, fileOption, outputOption, new OutputFormatterFactoryBinder());
+            }, bodyOption, fileOption, outputOption);
             return command;
         }
         /// <summary>

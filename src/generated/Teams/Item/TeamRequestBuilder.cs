@@ -12,7 +12,6 @@ using ApiSdk.Teams.Item.Schedule;
 using ApiSdk.Teams.Item.SendActivityNotification;
 using ApiSdk.Teams.Item.Template;
 using ApiSdk.Teams.Item.Unarchive;
-using Microsoft.Graph.Cli.Core.Binding;
 using Microsoft.Graph.Cli.Core.IO;
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
@@ -77,7 +76,7 @@ namespace ApiSdk.Teams.Item {
                 });
                 await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 console.WriteLine("Success");
-            }, teamIdOption, new OutputFormatterFactoryBinder());
+            }, teamIdOption);
             return command;
         }
         /// <summary>
@@ -113,7 +112,7 @@ namespace ApiSdk.Teams.Item {
                 var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 formatter.WriteOutput(response, console);
-            }, teamIdOption, selectOption, expandOption, outputOption, new OutputFormatterFactoryBinder());
+            }, teamIdOption, selectOption, expandOption, outputOption);
             return command;
         }
         public Command BuildGroupCommand() {
@@ -177,7 +176,7 @@ namespace ApiSdk.Teams.Item {
                 });
                 await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 console.WriteLine("Success");
-            }, teamIdOption, bodyOption, new OutputFormatterFactoryBinder());
+            }, teamIdOption, bodyOption);
             return command;
         }
         public Command BuildPrimaryChannelCommand() {

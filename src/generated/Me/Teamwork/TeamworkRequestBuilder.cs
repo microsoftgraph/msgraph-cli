@@ -1,7 +1,6 @@
 using ApiSdk.Me.Teamwork.InstalledApps;
 using ApiSdk.Me.Teamwork.SendActivityNotification;
 using ApiSdk.Models.Microsoft.Graph;
-using Microsoft.Graph.Cli.Core.Binding;
 using Microsoft.Graph.Cli.Core.IO;
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
@@ -34,7 +33,7 @@ namespace ApiSdk.Me.Teamwork {
                 });
                 await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 console.WriteLine("Success");
-            }, new OutputFormatterFactoryBinder());
+            });
             return command;
         }
         /// <summary>
@@ -66,7 +65,7 @@ namespace ApiSdk.Me.Teamwork {
                 var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 formatter.WriteOutput(response, console);
-            }, selectOption, expandOption, outputOption, new OutputFormatterFactoryBinder());
+            }, selectOption, expandOption, outputOption);
             return command;
         }
         public Command BuildInstalledAppsCommand() {
@@ -98,7 +97,7 @@ namespace ApiSdk.Me.Teamwork {
                 });
                 await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 console.WriteLine("Success");
-            }, bodyOption, new OutputFormatterFactoryBinder());
+            }, bodyOption);
             return command;
         }
         public Command BuildSendActivityNotificationCommand() {

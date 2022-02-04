@@ -1,7 +1,6 @@
 using ApiSdk.Me.Calendar.CalendarView.Delta;
 using ApiSdk.Me.Calendar.CalendarView.Item;
 using ApiSdk.Models.Microsoft.Graph;
-using Microsoft.Graph.Cli.Core.Binding;
 using Microsoft.Graph.Cli.Core.IO;
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
@@ -67,7 +66,7 @@ namespace ApiSdk.Me.Calendar.CalendarView {
                 var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 formatter.WriteOutput(response, console);
-            }, bodyOption, outputOption, new OutputFormatterFactoryBinder());
+            }, bodyOption, outputOption);
             return command;
         }
         /// <summary>
@@ -129,7 +128,7 @@ namespace ApiSdk.Me.Calendar.CalendarView {
                 var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 formatter.WriteOutput(response, console);
-            }, startDateTimeOption, endDateTimeOption, topOption, skipOption, filterOption, countOption, orderbyOption, selectOption, outputOption, new OutputFormatterFactoryBinder());
+            }, startDateTimeOption, endDateTimeOption, topOption, skipOption, filterOption, countOption, orderbyOption, selectOption, outputOption);
             return command;
         }
         /// <summary>

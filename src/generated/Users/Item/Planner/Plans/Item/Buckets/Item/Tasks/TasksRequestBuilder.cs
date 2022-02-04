@@ -1,6 +1,5 @@
 using ApiSdk.Models.Microsoft.Graph;
 using ApiSdk.Users.Item.Planner.Plans.Item.Buckets.Item.Tasks.Item;
-using Microsoft.Graph.Cli.Core.Binding;
 using Microsoft.Graph.Cli.Core.IO;
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
@@ -69,7 +68,7 @@ namespace ApiSdk.Users.Item.Planner.Plans.Item.Buckets.Item.Tasks {
                 var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 formatter.WriteOutput(response, console);
-            }, userIdOption, plannerPlanIdOption, plannerBucketIdOption, bodyOption, outputOption, new OutputFormatterFactoryBinder());
+            }, userIdOption, plannerPlanIdOption, plannerBucketIdOption, bodyOption, outputOption);
             return command;
         }
         /// <summary>
@@ -144,7 +143,7 @@ namespace ApiSdk.Users.Item.Planner.Plans.Item.Buckets.Item.Tasks {
                 var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 formatter.WriteOutput(response, console);
-            }, userIdOption, plannerPlanIdOption, plannerBucketIdOption, topOption, skipOption, searchOption, filterOption, countOption, orderbyOption, selectOption, expandOption, outputOption, new OutputFormatterFactoryBinder());
+            }, userIdOption, plannerPlanIdOption, plannerBucketIdOption, topOption, skipOption, searchOption, filterOption, countOption, orderbyOption, selectOption, expandOption, outputOption);
             return command;
         }
         /// <summary>

@@ -1,6 +1,5 @@
 using ApiSdk.Invitations.Item.InvitedUser;
 using ApiSdk.Models.Microsoft.Graph;
-using Microsoft.Graph.Cli.Core.Binding;
 using Microsoft.Graph.Cli.Core.IO;
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
@@ -37,7 +36,7 @@ namespace ApiSdk.Invitations.Item {
                 });
                 await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 console.WriteLine("Success");
-            }, invitationIdOption, new OutputFormatterFactoryBinder());
+            }, invitationIdOption);
             return command;
         }
         /// <summary>
@@ -73,7 +72,7 @@ namespace ApiSdk.Invitations.Item {
                 var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 formatter.WriteOutput(response, console);
-            }, invitationIdOption, selectOption, expandOption, outputOption, new OutputFormatterFactoryBinder());
+            }, invitationIdOption, selectOption, expandOption, outputOption);
             return command;
         }
         public Command BuildInvitedUserCommand() {
@@ -106,7 +105,7 @@ namespace ApiSdk.Invitations.Item {
                 });
                 await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 console.WriteLine("Success");
-            }, invitationIdOption, bodyOption, new OutputFormatterFactoryBinder());
+            }, invitationIdOption, bodyOption);
             return command;
         }
         /// <summary>

@@ -1,6 +1,5 @@
 using ApiSdk.Me.Onenote.Resources.Item.Content;
 using ApiSdk.Models.Microsoft.Graph;
-using Microsoft.Graph.Cli.Core.Binding;
 using Microsoft.Graph.Cli.Core.IO;
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
@@ -44,7 +43,7 @@ namespace ApiSdk.Me.Onenote.Resources.Item {
                 });
                 await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 console.WriteLine("Success");
-            }, onenoteResourceIdOption, new OutputFormatterFactoryBinder());
+            }, onenoteResourceIdOption);
             return command;
         }
         /// <summary>
@@ -80,7 +79,7 @@ namespace ApiSdk.Me.Onenote.Resources.Item {
                 var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 formatter.WriteOutput(response, console);
-            }, onenoteResourceIdOption, selectOption, expandOption, outputOption, new OutputFormatterFactoryBinder());
+            }, onenoteResourceIdOption, selectOption, expandOption, outputOption);
             return command;
         }
         /// <summary>
@@ -106,7 +105,7 @@ namespace ApiSdk.Me.Onenote.Resources.Item {
                 });
                 await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 console.WriteLine("Success");
-            }, onenoteResourceIdOption, bodyOption, new OutputFormatterFactoryBinder());
+            }, onenoteResourceIdOption, bodyOption);
             return command;
         }
         /// <summary>

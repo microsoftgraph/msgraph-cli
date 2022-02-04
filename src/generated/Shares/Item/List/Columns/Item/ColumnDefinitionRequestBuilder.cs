@@ -1,6 +1,5 @@
 using ApiSdk.Models.Microsoft.Graph;
 using ApiSdk.Shares.Item.List.Columns.Item.SourceColumn;
-using Microsoft.Graph.Cli.Core.Binding;
 using Microsoft.Graph.Cli.Core.IO;
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
@@ -41,7 +40,7 @@ namespace ApiSdk.Shares.Item.List.Columns.Item {
                 });
                 await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 console.WriteLine("Success");
-            }, sharedDriveItemIdOption, columnDefinitionIdOption, new OutputFormatterFactoryBinder());
+            }, sharedDriveItemIdOption, columnDefinitionIdOption);
             return command;
         }
         /// <summary>
@@ -81,7 +80,7 @@ namespace ApiSdk.Shares.Item.List.Columns.Item {
                 var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 formatter.WriteOutput(response, console);
-            }, sharedDriveItemIdOption, columnDefinitionIdOption, selectOption, expandOption, outputOption, new OutputFormatterFactoryBinder());
+            }, sharedDriveItemIdOption, columnDefinitionIdOption, selectOption, expandOption, outputOption);
             return command;
         }
         /// <summary>
@@ -111,7 +110,7 @@ namespace ApiSdk.Shares.Item.List.Columns.Item {
                 });
                 await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 console.WriteLine("Success");
-            }, sharedDriveItemIdOption, columnDefinitionIdOption, bodyOption, new OutputFormatterFactoryBinder());
+            }, sharedDriveItemIdOption, columnDefinitionIdOption, bodyOption);
             return command;
         }
         public Command BuildSourceColumnCommand() {

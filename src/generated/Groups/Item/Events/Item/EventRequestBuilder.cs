@@ -12,7 +12,6 @@ using ApiSdk.Groups.Item.Events.Item.SingleValueExtendedProperties;
 using ApiSdk.Groups.Item.Events.Item.SnoozeReminder;
 using ApiSdk.Groups.Item.Events.Item.TentativelyAccept;
 using ApiSdk.Models.Microsoft.Graph;
-using Microsoft.Graph.Cli.Core.Binding;
 using Microsoft.Graph.Cli.Core.IO;
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
@@ -96,7 +95,7 @@ namespace ApiSdk.Groups.Item.Events.Item {
                 });
                 await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 console.WriteLine("Success");
-            }, groupIdOption, eventIdOption, new OutputFormatterFactoryBinder());
+            }, groupIdOption, eventIdOption);
             return command;
         }
         public Command BuildDismissReminderCommand() {
@@ -152,7 +151,7 @@ namespace ApiSdk.Groups.Item.Events.Item {
                 var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 formatter.WriteOutput(response, console);
-            }, groupIdOption, eventIdOption, selectOption, outputOption, new OutputFormatterFactoryBinder());
+            }, groupIdOption, eventIdOption, selectOption, outputOption);
             return command;
         }
         public Command BuildInstancesCommand() {
@@ -202,7 +201,7 @@ namespace ApiSdk.Groups.Item.Events.Item {
                 });
                 await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 console.WriteLine("Success");
-            }, groupIdOption, eventIdOption, bodyOption, new OutputFormatterFactoryBinder());
+            }, groupIdOption, eventIdOption, bodyOption);
             return command;
         }
         public Command BuildSingleValueExtendedPropertiesCommand() {

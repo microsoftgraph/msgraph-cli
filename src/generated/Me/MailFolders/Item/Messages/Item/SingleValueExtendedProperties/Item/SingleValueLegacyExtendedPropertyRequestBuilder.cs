@@ -1,5 +1,4 @@
 using ApiSdk.Models.Microsoft.Graph;
-using Microsoft.Graph.Cli.Core.Binding;
 using Microsoft.Graph.Cli.Core.IO;
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
@@ -44,7 +43,7 @@ namespace ApiSdk.Me.MailFolders.Item.Messages.Item.SingleValueExtendedProperties
                 });
                 await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 console.WriteLine("Success");
-            }, mailFolderIdOption, messageIdOption, singleValueLegacyExtendedPropertyIdOption, new OutputFormatterFactoryBinder());
+            }, mailFolderIdOption, messageIdOption, singleValueLegacyExtendedPropertyIdOption);
             return command;
         }
         /// <summary>
@@ -88,7 +87,7 @@ namespace ApiSdk.Me.MailFolders.Item.Messages.Item.SingleValueExtendedProperties
                 var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 formatter.WriteOutput(response, console);
-            }, mailFolderIdOption, messageIdOption, singleValueLegacyExtendedPropertyIdOption, selectOption, expandOption, outputOption, new OutputFormatterFactoryBinder());
+            }, mailFolderIdOption, messageIdOption, singleValueLegacyExtendedPropertyIdOption, selectOption, expandOption, outputOption);
             return command;
         }
         /// <summary>
@@ -122,7 +121,7 @@ namespace ApiSdk.Me.MailFolders.Item.Messages.Item.SingleValueExtendedProperties
                 });
                 await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 console.WriteLine("Success");
-            }, mailFolderIdOption, messageIdOption, singleValueLegacyExtendedPropertyIdOption, bodyOption, new OutputFormatterFactoryBinder());
+            }, mailFolderIdOption, messageIdOption, singleValueLegacyExtendedPropertyIdOption, bodyOption);
             return command;
         }
         /// <summary>

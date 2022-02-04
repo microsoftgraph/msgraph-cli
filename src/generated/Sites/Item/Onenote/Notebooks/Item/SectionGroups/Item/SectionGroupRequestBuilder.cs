@@ -3,7 +3,6 @@ using ApiSdk.Sites.Item.Onenote.Notebooks.Item.SectionGroups.Item.ParentNotebook
 using ApiSdk.Sites.Item.Onenote.Notebooks.Item.SectionGroups.Item.ParentSectionGroup;
 using ApiSdk.Sites.Item.Onenote.Notebooks.Item.SectionGroups.Item.SectionGroups;
 using ApiSdk.Sites.Item.Onenote.Notebooks.Item.SectionGroups.Item.Sections;
-using Microsoft.Graph.Cli.Core.Binding;
 using Microsoft.Graph.Cli.Core.IO;
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
@@ -48,7 +47,7 @@ namespace ApiSdk.Sites.Item.Onenote.Notebooks.Item.SectionGroups.Item {
                 });
                 await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 console.WriteLine("Success");
-            }, siteIdOption, notebookIdOption, sectionGroupIdOption, new OutputFormatterFactoryBinder());
+            }, siteIdOption, notebookIdOption, sectionGroupIdOption);
             return command;
         }
         /// <summary>
@@ -92,7 +91,7 @@ namespace ApiSdk.Sites.Item.Onenote.Notebooks.Item.SectionGroups.Item {
                 var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 formatter.WriteOutput(response, console);
-            }, siteIdOption, notebookIdOption, sectionGroupIdOption, selectOption, expandOption, outputOption, new OutputFormatterFactoryBinder());
+            }, siteIdOption, notebookIdOption, sectionGroupIdOption, selectOption, expandOption, outputOption);
             return command;
         }
         public Command BuildParentNotebookCommand() {
@@ -143,7 +142,7 @@ namespace ApiSdk.Sites.Item.Onenote.Notebooks.Item.SectionGroups.Item {
                 });
                 await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 console.WriteLine("Success");
-            }, siteIdOption, notebookIdOption, sectionGroupIdOption, bodyOption, new OutputFormatterFactoryBinder());
+            }, siteIdOption, notebookIdOption, sectionGroupIdOption, bodyOption);
             return command;
         }
         public Command BuildSectionGroupsCommand() {

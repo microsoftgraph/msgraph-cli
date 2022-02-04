@@ -3,7 +3,6 @@ using ApiSdk.Identity.B2xUserFlows.Item.Languages;
 using ApiSdk.Identity.B2xUserFlows.Item.UserAttributeAssignments;
 using ApiSdk.Identity.B2xUserFlows.Item.UserFlowIdentityProviders;
 using ApiSdk.Models.Microsoft.Graph;
-using Microsoft.Graph.Cli.Core.Binding;
 using Microsoft.Graph.Cli.Core.IO;
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
@@ -40,7 +39,7 @@ namespace ApiSdk.Identity.B2xUserFlows.Item {
                 });
                 await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 console.WriteLine("Success");
-            }, b2xIdentityUserFlowIdOption, new OutputFormatterFactoryBinder());
+            }, b2xIdentityUserFlowIdOption);
             return command;
         }
         /// <summary>
@@ -76,7 +75,7 @@ namespace ApiSdk.Identity.B2xUserFlows.Item {
                 var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 formatter.WriteOutput(response, console);
-            }, b2xIdentityUserFlowIdOption, selectOption, expandOption, outputOption, new OutputFormatterFactoryBinder());
+            }, b2xIdentityUserFlowIdOption, selectOption, expandOption, outputOption);
             return command;
         }
         public Command BuildIdentityProvidersCommand() {
@@ -119,7 +118,7 @@ namespace ApiSdk.Identity.B2xUserFlows.Item {
                 });
                 await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 console.WriteLine("Success");
-            }, b2xIdentityUserFlowIdOption, bodyOption, new OutputFormatterFactoryBinder());
+            }, b2xIdentityUserFlowIdOption, bodyOption);
             return command;
         }
         public Command BuildUserAttributeAssignmentsCommand() {

@@ -1,7 +1,6 @@
 using ApiSdk.Communications.Presences.Item.ClearPresence;
 using ApiSdk.Communications.Presences.Item.SetPresence;
 using ApiSdk.Models.Microsoft.Graph;
-using Microsoft.Graph.Cli.Core.Binding;
 using Microsoft.Graph.Cli.Core.IO;
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
@@ -44,7 +43,7 @@ namespace ApiSdk.Communications.Presences.Item {
                 });
                 await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 console.WriteLine("Success");
-            }, presenceIdOption, new OutputFormatterFactoryBinder());
+            }, presenceIdOption);
             return command;
         }
         /// <summary>
@@ -80,7 +79,7 @@ namespace ApiSdk.Communications.Presences.Item {
                 var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 formatter.WriteOutput(response, console);
-            }, presenceIdOption, selectOption, expandOption, outputOption, new OutputFormatterFactoryBinder());
+            }, presenceIdOption, selectOption, expandOption, outputOption);
             return command;
         }
         /// <summary>
@@ -106,7 +105,7 @@ namespace ApiSdk.Communications.Presences.Item {
                 });
                 await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 console.WriteLine("Success");
-            }, presenceIdOption, bodyOption, new OutputFormatterFactoryBinder());
+            }, presenceIdOption, bodyOption);
             return command;
         }
         public Command BuildSetPresenceCommand() {

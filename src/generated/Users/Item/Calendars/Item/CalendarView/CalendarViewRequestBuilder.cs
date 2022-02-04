@@ -1,7 +1,6 @@
 using ApiSdk.Models.Microsoft.Graph;
 using ApiSdk.Users.Item.Calendars.Item.CalendarView.Delta;
 using ApiSdk.Users.Item.Calendars.Item.CalendarView.Item;
-using Microsoft.Graph.Cli.Core.Binding;
 using Microsoft.Graph.Cli.Core.IO;
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
@@ -75,7 +74,7 @@ namespace ApiSdk.Users.Item.Calendars.Item.CalendarView {
                 var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 formatter.WriteOutput(response, console);
-            }, userIdOption, calendarIdOption, bodyOption, outputOption, new OutputFormatterFactoryBinder());
+            }, userIdOption, calendarIdOption, bodyOption, outputOption);
             return command;
         }
         /// <summary>
@@ -145,7 +144,7 @@ namespace ApiSdk.Users.Item.Calendars.Item.CalendarView {
                 var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 formatter.WriteOutput(response, console);
-            }, userIdOption, calendarIdOption, startDateTimeOption, endDateTimeOption, topOption, skipOption, filterOption, countOption, orderbyOption, selectOption, outputOption, new OutputFormatterFactoryBinder());
+            }, userIdOption, calendarIdOption, startDateTimeOption, endDateTimeOption, topOption, skipOption, filterOption, countOption, orderbyOption, selectOption, outputOption);
             return command;
         }
         /// <summary>

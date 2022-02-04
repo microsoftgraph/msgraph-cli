@@ -1,7 +1,6 @@
 using ApiSdk.Models.Microsoft.Graph;
 using ApiSdk.Users.Item.Onenote.Pages.Item.ParentSection.ParentSectionGroup.Sections.Item.CopyToNotebook;
 using ApiSdk.Users.Item.Onenote.Pages.Item.ParentSection.ParentSectionGroup.Sections.Item.CopyToSectionGroup;
-using Microsoft.Graph.Cli.Core.Binding;
 using Microsoft.Graph.Cli.Core.IO;
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
@@ -58,7 +57,7 @@ namespace ApiSdk.Users.Item.Onenote.Pages.Item.ParentSection.ParentSectionGroup.
                 });
                 await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 console.WriteLine("Success");
-            }, userIdOption, onenotePageIdOption, onenoteSectionIdOption, new OutputFormatterFactoryBinder());
+            }, userIdOption, onenotePageIdOption, onenoteSectionIdOption);
             return command;
         }
         /// <summary>
@@ -102,7 +101,7 @@ namespace ApiSdk.Users.Item.Onenote.Pages.Item.ParentSection.ParentSectionGroup.
                 var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 formatter.WriteOutput(response, console);
-            }, userIdOption, onenotePageIdOption, onenoteSectionIdOption, selectOption, expandOption, outputOption, new OutputFormatterFactoryBinder());
+            }, userIdOption, onenotePageIdOption, onenoteSectionIdOption, selectOption, expandOption, outputOption);
             return command;
         }
         /// <summary>
@@ -136,7 +135,7 @@ namespace ApiSdk.Users.Item.Onenote.Pages.Item.ParentSection.ParentSectionGroup.
                 });
                 await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 console.WriteLine("Success");
-            }, userIdOption, onenotePageIdOption, onenoteSectionIdOption, bodyOption, new OutputFormatterFactoryBinder());
+            }, userIdOption, onenotePageIdOption, onenoteSectionIdOption, bodyOption);
             return command;
         }
         /// <summary>

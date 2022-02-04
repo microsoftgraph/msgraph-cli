@@ -1,4 +1,3 @@
-using Microsoft.Graph.Cli.Core.Binding;
 using Microsoft.Graph.Cli.Core.IO;
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
@@ -57,7 +56,7 @@ namespace ApiSdk.Identity.B2xUserFlows.Item.Languages.Item.DefaultPages.Item.Val
                     await response.CopyToAsync(writeStream);
                     console.WriteLine($"Content written to {file.FullName}.");
                 }
-            }, b2xIdentityUserFlowIdOption, userFlowLanguageConfigurationIdOption, userFlowLanguagePageIdOption, fileOption, outputOption, new OutputFormatterFactoryBinder());
+            }, b2xIdentityUserFlowIdOption, userFlowLanguageConfigurationIdOption, userFlowLanguagePageIdOption, fileOption, outputOption);
             return command;
         }
         /// <summary>
@@ -89,7 +88,7 @@ namespace ApiSdk.Identity.B2xUserFlows.Item.Languages.Item.DefaultPages.Item.Val
                 });
                 await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 console.WriteLine("Success");
-            }, b2xIdentityUserFlowIdOption, userFlowLanguageConfigurationIdOption, userFlowLanguagePageIdOption, bodyOption, new OutputFormatterFactoryBinder());
+            }, b2xIdentityUserFlowIdOption, userFlowLanguageConfigurationIdOption, userFlowLanguagePageIdOption, bodyOption);
             return command;
         }
         /// <summary>

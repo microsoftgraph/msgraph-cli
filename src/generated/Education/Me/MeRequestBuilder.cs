@@ -5,7 +5,6 @@ using ApiSdk.Education.Me.Schools;
 using ApiSdk.Education.Me.TaughtClasses;
 using ApiSdk.Education.Me.User;
 using ApiSdk.Models.Microsoft.Graph;
-using Microsoft.Graph.Cli.Core.Binding;
 using Microsoft.Graph.Cli.Core.IO;
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
@@ -55,7 +54,7 @@ namespace ApiSdk.Education.Me {
                 });
                 await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 console.WriteLine("Success");
-            }, new OutputFormatterFactoryBinder());
+            });
             return command;
         }
         /// <summary>
@@ -87,7 +86,7 @@ namespace ApiSdk.Education.Me {
                 var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 formatter.WriteOutput(response, console);
-            }, selectOption, expandOption, outputOption, new OutputFormatterFactoryBinder());
+            }, selectOption, expandOption, outputOption);
             return command;
         }
         /// <summary>
@@ -109,7 +108,7 @@ namespace ApiSdk.Education.Me {
                 });
                 await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 console.WriteLine("Success");
-            }, bodyOption, new OutputFormatterFactoryBinder());
+            }, bodyOption);
             return command;
         }
         public Command BuildRubricsCommand() {

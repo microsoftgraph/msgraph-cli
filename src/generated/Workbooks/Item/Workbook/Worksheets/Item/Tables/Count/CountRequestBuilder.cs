@@ -1,4 +1,3 @@
-using Microsoft.Graph.Cli.Core.Binding;
 using Microsoft.Graph.Cli.Core.IO;
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
@@ -44,7 +43,7 @@ namespace ApiSdk.Workbooks.Item.Workbook.Worksheets.Item.Tables.Count {
                 var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 formatter.WriteOutput(response, console);
-            }, driveItemIdOption, workbookWorksheetIdOption, outputOption, new OutputFormatterFactoryBinder());
+            }, driveItemIdOption, workbookWorksheetIdOption, outputOption);
             return command;
         }
         /// <summary>

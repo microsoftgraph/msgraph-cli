@@ -1,4 +1,3 @@
-using Microsoft.Graph.Cli.Core.Binding;
 using Microsoft.Graph.Cli.Core.IO;
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
@@ -47,7 +46,7 @@ namespace ApiSdk.Workbooks.Item.Workbook.Worksheets.Item.Charts.Item.Series.Item
                 });
                 await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 console.WriteLine("Success");
-            }, driveItemIdOption, workbookWorksheetIdOption, workbookChartIdOption, workbookChartSeriesIdOption, new OutputFormatterFactoryBinder());
+            }, driveItemIdOption, workbookWorksheetIdOption, workbookChartIdOption, workbookChartSeriesIdOption);
             return command;
         }
         /// <summary>

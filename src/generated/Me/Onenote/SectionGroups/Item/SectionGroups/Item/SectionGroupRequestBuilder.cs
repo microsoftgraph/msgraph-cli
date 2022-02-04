@@ -1,5 +1,4 @@
 using ApiSdk.Models.Microsoft.Graph;
-using Microsoft.Graph.Cli.Core.Binding;
 using Microsoft.Graph.Cli.Core.IO;
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
@@ -40,7 +39,7 @@ namespace ApiSdk.Me.Onenote.SectionGroups.Item.SectionGroups.Item {
                 });
                 await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 console.WriteLine("Success");
-            }, sectionGroupIdOption, sectionGroupId1Option, new OutputFormatterFactoryBinder());
+            }, sectionGroupIdOption, sectionGroupId1Option);
             return command;
         }
         /// <summary>
@@ -80,7 +79,7 @@ namespace ApiSdk.Me.Onenote.SectionGroups.Item.SectionGroups.Item {
                 var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 formatter.WriteOutput(response, console);
-            }, sectionGroupIdOption, sectionGroupId1Option, selectOption, expandOption, outputOption, new OutputFormatterFactoryBinder());
+            }, sectionGroupIdOption, sectionGroupId1Option, selectOption, expandOption, outputOption);
             return command;
         }
         /// <summary>
@@ -110,7 +109,7 @@ namespace ApiSdk.Me.Onenote.SectionGroups.Item.SectionGroups.Item {
                 });
                 await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 console.WriteLine("Success");
-            }, sectionGroupIdOption, sectionGroupId1Option, bodyOption, new OutputFormatterFactoryBinder());
+            }, sectionGroupIdOption, sectionGroupId1Option, bodyOption);
             return command;
         }
         /// <summary>

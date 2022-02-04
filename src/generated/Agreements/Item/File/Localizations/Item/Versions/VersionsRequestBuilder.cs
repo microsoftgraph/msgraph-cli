@@ -1,6 +1,5 @@
 using ApiSdk.Agreements.Item.File.Localizations.Item.Versions.Item;
 using ApiSdk.Models.Microsoft.Graph;
-using Microsoft.Graph.Cli.Core.Binding;
 using Microsoft.Graph.Cli.Core.IO;
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
@@ -61,7 +60,7 @@ namespace ApiSdk.Agreements.Item.File.Localizations.Item.Versions {
                 var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 formatter.WriteOutput(response, console);
-            }, agreementIdOption, agreementFileLocalizationIdOption, bodyOption, outputOption, new OutputFormatterFactoryBinder());
+            }, agreementIdOption, agreementFileLocalizationIdOption, bodyOption, outputOption);
             return command;
         }
         /// <summary>
@@ -132,7 +131,7 @@ namespace ApiSdk.Agreements.Item.File.Localizations.Item.Versions {
                 var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 formatter.WriteOutput(response, console);
-            }, agreementIdOption, agreementFileLocalizationIdOption, topOption, skipOption, searchOption, filterOption, countOption, orderbyOption, selectOption, expandOption, outputOption, new OutputFormatterFactoryBinder());
+            }, agreementIdOption, agreementFileLocalizationIdOption, topOption, skipOption, searchOption, filterOption, countOption, orderbyOption, selectOption, expandOption, outputOption);
             return command;
         }
         /// <summary>

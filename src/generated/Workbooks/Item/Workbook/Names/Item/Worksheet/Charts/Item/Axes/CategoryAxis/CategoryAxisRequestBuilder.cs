@@ -3,7 +3,6 @@ using ApiSdk.Workbooks.Item.Workbook.Names.Item.Worksheet.Charts.Item.Axes.Categ
 using ApiSdk.Workbooks.Item.Workbook.Names.Item.Worksheet.Charts.Item.Axes.CategoryAxis.MajorGridlines;
 using ApiSdk.Workbooks.Item.Workbook.Names.Item.Worksheet.Charts.Item.Axes.CategoryAxis.MinorGridlines;
 using ApiSdk.Workbooks.Item.Workbook.Names.Item.Worksheet.Charts.Item.Axes.CategoryAxis.Title;
-using Microsoft.Graph.Cli.Core.Binding;
 using Microsoft.Graph.Cli.Core.IO;
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
@@ -48,7 +47,7 @@ namespace ApiSdk.Workbooks.Item.Workbook.Names.Item.Worksheet.Charts.Item.Axes.C
                 });
                 await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 console.WriteLine("Success");
-            }, driveItemIdOption, workbookNamedItemIdOption, workbookChartIdOption, new OutputFormatterFactoryBinder());
+            }, driveItemIdOption, workbookNamedItemIdOption, workbookChartIdOption);
             return command;
         }
         public Command BuildFormatCommand() {
@@ -102,7 +101,7 @@ namespace ApiSdk.Workbooks.Item.Workbook.Names.Item.Worksheet.Charts.Item.Axes.C
                 var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 formatter.WriteOutput(response, console);
-            }, driveItemIdOption, workbookNamedItemIdOption, workbookChartIdOption, selectOption, expandOption, outputOption, new OutputFormatterFactoryBinder());
+            }, driveItemIdOption, workbookNamedItemIdOption, workbookChartIdOption, selectOption, expandOption, outputOption);
             return command;
         }
         public Command BuildMajorGridlinesCommand() {
@@ -154,7 +153,7 @@ namespace ApiSdk.Workbooks.Item.Workbook.Names.Item.Worksheet.Charts.Item.Axes.C
                 });
                 await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 console.WriteLine("Success");
-            }, driveItemIdOption, workbookNamedItemIdOption, workbookChartIdOption, bodyOption, new OutputFormatterFactoryBinder());
+            }, driveItemIdOption, workbookNamedItemIdOption, workbookChartIdOption, bodyOption);
             return command;
         }
         public Command BuildTitleCommand() {

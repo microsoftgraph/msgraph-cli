@@ -1,7 +1,6 @@
 using ApiSdk.Models.Microsoft.Graph;
 using ApiSdk.Workbooks.Item.Workbook.Names.Item.Worksheet.Charts.Item.Series.Item.Format.Fill;
 using ApiSdk.Workbooks.Item.Workbook.Names.Item.Worksheet.Charts.Item.Series.Item.Format.Line;
-using Microsoft.Graph.Cli.Core.Binding;
 using Microsoft.Graph.Cli.Core.IO;
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
@@ -50,7 +49,7 @@ namespace ApiSdk.Workbooks.Item.Workbook.Names.Item.Worksheet.Charts.Item.Series
                 });
                 await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 console.WriteLine("Success");
-            }, driveItemIdOption, workbookNamedItemIdOption, workbookChartIdOption, workbookChartSeriesIdOption, new OutputFormatterFactoryBinder());
+            }, driveItemIdOption, workbookNamedItemIdOption, workbookChartIdOption, workbookChartSeriesIdOption);
             return command;
         }
         public Command BuildFillCommand() {
@@ -108,7 +107,7 @@ namespace ApiSdk.Workbooks.Item.Workbook.Names.Item.Worksheet.Charts.Item.Series
                 var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 formatter.WriteOutput(response, console);
-            }, driveItemIdOption, workbookNamedItemIdOption, workbookChartIdOption, workbookChartSeriesIdOption, selectOption, expandOption, outputOption, new OutputFormatterFactoryBinder());
+            }, driveItemIdOption, workbookNamedItemIdOption, workbookChartIdOption, workbookChartSeriesIdOption, selectOption, expandOption, outputOption);
             return command;
         }
         public Command BuildLineCommand() {
@@ -155,7 +154,7 @@ namespace ApiSdk.Workbooks.Item.Workbook.Names.Item.Worksheet.Charts.Item.Series
                 });
                 await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 console.WriteLine("Success");
-            }, driveItemIdOption, workbookNamedItemIdOption, workbookChartIdOption, workbookChartSeriesIdOption, bodyOption, new OutputFormatterFactoryBinder());
+            }, driveItemIdOption, workbookNamedItemIdOption, workbookChartIdOption, workbookChartSeriesIdOption, bodyOption);
             return command;
         }
         /// <summary>

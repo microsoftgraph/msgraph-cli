@@ -1,5 +1,4 @@
 using ApiSdk.Models.Microsoft.Graph;
-using Microsoft.Graph.Cli.Core.Binding;
 using Microsoft.Graph.Cli.Core.IO;
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
@@ -44,7 +43,7 @@ namespace ApiSdk.Agreements.Item.File.Localizations.Item.Versions.Item {
                 });
                 await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 console.WriteLine("Success");
-            }, agreementIdOption, agreementFileLocalizationIdOption, agreementFileVersionIdOption, new OutputFormatterFactoryBinder());
+            }, agreementIdOption, agreementFileLocalizationIdOption, agreementFileVersionIdOption);
             return command;
         }
         /// <summary>
@@ -88,7 +87,7 @@ namespace ApiSdk.Agreements.Item.File.Localizations.Item.Versions.Item {
                 var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 formatter.WriteOutput(response, console);
-            }, agreementIdOption, agreementFileLocalizationIdOption, agreementFileVersionIdOption, selectOption, expandOption, outputOption, new OutputFormatterFactoryBinder());
+            }, agreementIdOption, agreementFileLocalizationIdOption, agreementFileVersionIdOption, selectOption, expandOption, outputOption);
             return command;
         }
         /// <summary>
@@ -122,7 +121,7 @@ namespace ApiSdk.Agreements.Item.File.Localizations.Item.Versions.Item {
                 });
                 await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 console.WriteLine("Success");
-            }, agreementIdOption, agreementFileLocalizationIdOption, agreementFileVersionIdOption, bodyOption, new OutputFormatterFactoryBinder());
+            }, agreementIdOption, agreementFileLocalizationIdOption, agreementFileVersionIdOption, bodyOption);
             return command;
         }
         /// <summary>

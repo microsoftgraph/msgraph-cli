@@ -1,4 +1,3 @@
-using Microsoft.Graph.Cli.Core.Binding;
 using Microsoft.Graph.Cli.Core.IO;
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
@@ -39,7 +38,7 @@ namespace ApiSdk.Users.Item.Insights.Used.Item.Resource.PrintJob.Cancel {
                 });
                 await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 console.WriteLine("Success");
-            }, userIdOption, usedInsightIdOption, new OutputFormatterFactoryBinder());
+            }, userIdOption, usedInsightIdOption);
             return command;
         }
         /// <summary>

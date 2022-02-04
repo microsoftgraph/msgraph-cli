@@ -1,6 +1,5 @@
 using ApiSdk.Communications.CallRecords.Item.Sessions.Item.Segments.Item;
 using ApiSdk.Models.Microsoft.Graph.CallRecords;
-using Microsoft.Graph.Cli.Core.Binding;
 using Microsoft.Graph.Cli.Core.IO;
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
@@ -61,7 +60,7 @@ namespace ApiSdk.Communications.CallRecords.Item.Sessions.Item.Segments {
                 var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 formatter.WriteOutput(response, console);
-            }, callRecordIdOption, sessionIdOption, bodyOption, outputOption, new OutputFormatterFactoryBinder());
+            }, callRecordIdOption, sessionIdOption, bodyOption, outputOption);
             return command;
         }
         /// <summary>
@@ -132,7 +131,7 @@ namespace ApiSdk.Communications.CallRecords.Item.Sessions.Item.Segments {
                 var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 formatter.WriteOutput(response, console);
-            }, callRecordIdOption, sessionIdOption, topOption, skipOption, searchOption, filterOption, countOption, orderbyOption, selectOption, expandOption, outputOption, new OutputFormatterFactoryBinder());
+            }, callRecordIdOption, sessionIdOption, topOption, skipOption, searchOption, filterOption, countOption, orderbyOption, selectOption, expandOption, outputOption);
             return command;
         }
         /// <summary>

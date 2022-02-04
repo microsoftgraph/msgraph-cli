@@ -1,5 +1,4 @@
 using ApiSdk.Models.Microsoft.Graph;
-using Microsoft.Graph.Cli.Core.Binding;
 using Microsoft.Graph.Cli.Core.IO;
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
@@ -36,7 +35,7 @@ namespace ApiSdk.RoleManagement.Directory.RoleAssignments.Item.AppScope {
                 });
                 await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 console.WriteLine("Success");
-            }, unifiedRoleAssignmentIdOption, new OutputFormatterFactoryBinder());
+            }, unifiedRoleAssignmentIdOption);
             return command;
         }
         /// <summary>
@@ -72,7 +71,7 @@ namespace ApiSdk.RoleManagement.Directory.RoleAssignments.Item.AppScope {
                 var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 formatter.WriteOutput(response, console);
-            }, unifiedRoleAssignmentIdOption, selectOption, expandOption, outputOption, new OutputFormatterFactoryBinder());
+            }, unifiedRoleAssignmentIdOption, selectOption, expandOption, outputOption);
             return command;
         }
         /// <summary>
@@ -98,7 +97,7 @@ namespace ApiSdk.RoleManagement.Directory.RoleAssignments.Item.AppScope {
                 });
                 await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 console.WriteLine("Success");
-            }, unifiedRoleAssignmentIdOption, bodyOption, new OutputFormatterFactoryBinder());
+            }, unifiedRoleAssignmentIdOption, bodyOption);
             return command;
         }
         /// <summary>

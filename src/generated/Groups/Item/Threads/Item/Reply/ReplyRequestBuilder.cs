@@ -1,4 +1,3 @@
-using Microsoft.Graph.Cli.Core.Binding;
 using Microsoft.Graph.Cli.Core.IO;
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
@@ -46,7 +45,7 @@ namespace ApiSdk.Groups.Item.Threads.Item.Reply {
                 });
                 await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 console.WriteLine("Success");
-            }, groupIdOption, conversationThreadIdOption, bodyOption, new OutputFormatterFactoryBinder());
+            }, groupIdOption, conversationThreadIdOption, bodyOption);
             return command;
         }
         /// <summary>

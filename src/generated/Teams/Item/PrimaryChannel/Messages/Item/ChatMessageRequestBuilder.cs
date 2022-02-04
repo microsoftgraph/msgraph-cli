@@ -1,7 +1,6 @@
 using ApiSdk.Models.Microsoft.Graph;
 using ApiSdk.Teams.Item.PrimaryChannel.Messages.Item.HostedContents;
 using ApiSdk.Teams.Item.PrimaryChannel.Messages.Item.Replies;
-using Microsoft.Graph.Cli.Core.Binding;
 using Microsoft.Graph.Cli.Core.IO;
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
@@ -42,7 +41,7 @@ namespace ApiSdk.Teams.Item.PrimaryChannel.Messages.Item {
                 });
                 await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 console.WriteLine("Success");
-            }, teamIdOption, chatMessageIdOption, new OutputFormatterFactoryBinder());
+            }, teamIdOption, chatMessageIdOption);
             return command;
         }
         /// <summary>
@@ -82,7 +81,7 @@ namespace ApiSdk.Teams.Item.PrimaryChannel.Messages.Item {
                 var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 formatter.WriteOutput(response, console);
-            }, teamIdOption, chatMessageIdOption, selectOption, expandOption, outputOption, new OutputFormatterFactoryBinder());
+            }, teamIdOption, chatMessageIdOption, selectOption, expandOption, outputOption);
             return command;
         }
         public Command BuildHostedContentsCommand() {
@@ -122,7 +121,7 @@ namespace ApiSdk.Teams.Item.PrimaryChannel.Messages.Item {
                 });
                 await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 console.WriteLine("Success");
-            }, teamIdOption, chatMessageIdOption, bodyOption, new OutputFormatterFactoryBinder());
+            }, teamIdOption, chatMessageIdOption, bodyOption);
             return command;
         }
         public Command BuildRepliesCommand() {

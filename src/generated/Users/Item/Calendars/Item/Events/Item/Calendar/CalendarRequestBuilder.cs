@@ -1,7 +1,6 @@
 using ApiSdk.Models.Microsoft.Graph;
 using ApiSdk.Users.Item.Calendars.Item.Events.Item.Calendar.AllowedCalendarSharingRolesWithUser;
 using ApiSdk.Users.Item.Calendars.Item.Events.Item.Calendar.GetSchedule;
-using Microsoft.Graph.Cli.Core.Binding;
 using Microsoft.Graph.Cli.Core.IO;
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
@@ -54,7 +53,7 @@ namespace ApiSdk.Users.Item.Calendars.Item.Events.Item.Calendar {
                 });
                 await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 console.WriteLine("Success");
-            }, userIdOption, calendarIdOption, eventIdOption, new OutputFormatterFactoryBinder());
+            }, userIdOption, calendarIdOption, eventIdOption);
             return command;
         }
         /// <summary>
@@ -92,7 +91,7 @@ namespace ApiSdk.Users.Item.Calendars.Item.Events.Item.Calendar {
                 var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 formatter.WriteOutput(response, console);
-            }, userIdOption, calendarIdOption, eventIdOption, selectOption, outputOption, new OutputFormatterFactoryBinder());
+            }, userIdOption, calendarIdOption, eventIdOption, selectOption, outputOption);
             return command;
         }
         public Command BuildGetScheduleCommand() {
@@ -132,7 +131,7 @@ namespace ApiSdk.Users.Item.Calendars.Item.Events.Item.Calendar {
                 });
                 await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 console.WriteLine("Success");
-            }, userIdOption, calendarIdOption, eventIdOption, bodyOption, new OutputFormatterFactoryBinder());
+            }, userIdOption, calendarIdOption, eventIdOption, bodyOption);
             return command;
         }
         /// <summary>

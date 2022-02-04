@@ -9,7 +9,6 @@ using ApiSdk.Shares.Item.List.ContentTypes.Item.CopyToDefaultContentLocation;
 using ApiSdk.Shares.Item.List.ContentTypes.Item.IsPublished;
 using ApiSdk.Shares.Item.List.ContentTypes.Item.Publish;
 using ApiSdk.Shares.Item.List.ContentTypes.Item.Unpublish;
-using Microsoft.Graph.Cli.Core.Binding;
 using Microsoft.Graph.Cli.Core.IO;
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
@@ -108,7 +107,7 @@ namespace ApiSdk.Shares.Item.List.ContentTypes.Item {
                 });
                 await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 console.WriteLine("Success");
-            }, sharedDriveItemIdOption, contentTypeIdOption, new OutputFormatterFactoryBinder());
+            }, sharedDriveItemIdOption, contentTypeIdOption);
             return command;
         }
         /// <summary>
@@ -148,7 +147,7 @@ namespace ApiSdk.Shares.Item.List.ContentTypes.Item {
                 var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 formatter.WriteOutput(response, console);
-            }, sharedDriveItemIdOption, contentTypeIdOption, selectOption, expandOption, outputOption, new OutputFormatterFactoryBinder());
+            }, sharedDriveItemIdOption, contentTypeIdOption, selectOption, expandOption, outputOption);
             return command;
         }
         /// <summary>
@@ -178,7 +177,7 @@ namespace ApiSdk.Shares.Item.List.ContentTypes.Item {
                 });
                 await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 console.WriteLine("Success");
-            }, sharedDriveItemIdOption, contentTypeIdOption, bodyOption, new OutputFormatterFactoryBinder());
+            }, sharedDriveItemIdOption, contentTypeIdOption, bodyOption);
             return command;
         }
         public Command BuildPublishCommand() {

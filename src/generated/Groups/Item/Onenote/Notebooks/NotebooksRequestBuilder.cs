@@ -2,7 +2,6 @@ using ApiSdk.Groups.Item.Onenote.Notebooks.GetNotebookFromWebUrl;
 using ApiSdk.Groups.Item.Onenote.Notebooks.GetRecentNotebooksWithIncludePersonalNotebooks;
 using ApiSdk.Groups.Item.Onenote.Notebooks.Item;
 using ApiSdk.Models.Microsoft.Graph;
-using Microsoft.Graph.Cli.Core.Binding;
 using Microsoft.Graph.Cli.Core.IO;
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
@@ -62,7 +61,7 @@ namespace ApiSdk.Groups.Item.Onenote.Notebooks {
                 var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 formatter.WriteOutput(response, console);
-            }, groupIdOption, bodyOption, outputOption, new OutputFormatterFactoryBinder());
+            }, groupIdOption, bodyOption, outputOption);
             return command;
         }
         public Command BuildGetNotebookFromWebUrlCommand() {
@@ -135,7 +134,7 @@ namespace ApiSdk.Groups.Item.Onenote.Notebooks {
                 var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 formatter.WriteOutput(response, console);
-            }, groupIdOption, topOption, skipOption, searchOption, filterOption, countOption, orderbyOption, selectOption, expandOption, outputOption, new OutputFormatterFactoryBinder());
+            }, groupIdOption, topOption, skipOption, searchOption, filterOption, countOption, orderbyOption, selectOption, expandOption, outputOption);
             return command;
         }
         /// <summary>

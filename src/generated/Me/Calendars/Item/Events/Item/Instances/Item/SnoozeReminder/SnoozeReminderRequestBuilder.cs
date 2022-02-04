@@ -1,4 +1,3 @@
-using Microsoft.Graph.Cli.Core.Binding;
 using Microsoft.Graph.Cli.Core.IO;
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
@@ -50,7 +49,7 @@ namespace ApiSdk.Me.Calendars.Item.Events.Item.Instances.Item.SnoozeReminder {
                 });
                 await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 console.WriteLine("Success");
-            }, calendarIdOption, eventIdOption, eventId1Option, bodyOption, new OutputFormatterFactoryBinder());
+            }, calendarIdOption, eventIdOption, eventId1Option, bodyOption);
             return command;
         }
         /// <summary>

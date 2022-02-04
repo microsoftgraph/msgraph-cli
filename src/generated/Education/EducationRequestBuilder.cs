@@ -3,7 +3,6 @@ using ApiSdk.Education.Me;
 using ApiSdk.Education.Schools;
 using ApiSdk.Education.Users;
 using ApiSdk.Models.Microsoft.Graph;
-using Microsoft.Graph.Cli.Core.Binding;
 using Microsoft.Graph.Cli.Core.IO;
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
@@ -63,7 +62,7 @@ namespace ApiSdk.Education {
                 var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 formatter.WriteOutput(response, console);
-            }, selectOption, expandOption, outputOption, new OutputFormatterFactoryBinder());
+            }, selectOption, expandOption, outputOption);
             return command;
         }
         public Command BuildMeCommand() {
@@ -99,7 +98,7 @@ namespace ApiSdk.Education {
                 });
                 await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 console.WriteLine("Success");
-            }, bodyOption, new OutputFormatterFactoryBinder());
+            }, bodyOption);
             return command;
         }
         public Command BuildSchoolsCommand() {

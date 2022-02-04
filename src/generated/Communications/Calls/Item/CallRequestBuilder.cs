@@ -15,7 +15,6 @@ using ApiSdk.Communications.Calls.Item.Transfer;
 using ApiSdk.Communications.Calls.Item.Unmute;
 using ApiSdk.Communications.Calls.Item.UpdateRecordingStatus;
 using ApiSdk.Models.Microsoft.Graph;
-using Microsoft.Graph.Cli.Core.Binding;
 using Microsoft.Graph.Cli.Core.IO;
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
@@ -80,7 +79,7 @@ namespace ApiSdk.Communications.Calls.Item {
                 });
                 await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 console.WriteLine("Success");
-            }, callIdOption, new OutputFormatterFactoryBinder());
+            }, callIdOption);
             return command;
         }
         /// <summary>
@@ -116,7 +115,7 @@ namespace ApiSdk.Communications.Calls.Item {
                 var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 formatter.WriteOutput(response, console);
-            }, callIdOption, selectOption, expandOption, outputOption, new OutputFormatterFactoryBinder());
+            }, callIdOption, selectOption, expandOption, outputOption);
             return command;
         }
         public Command BuildKeepAliveCommand() {
@@ -175,7 +174,7 @@ namespace ApiSdk.Communications.Calls.Item {
                 });
                 await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 console.WriteLine("Success");
-            }, callIdOption, bodyOption, new OutputFormatterFactoryBinder());
+            }, callIdOption, bodyOption);
             return command;
         }
         public Command BuildPlayPromptCommand() {

@@ -1,5 +1,4 @@
 using ApiSdk.Models.Microsoft.Graph;
-using Microsoft.Graph.Cli.Core.Binding;
 using Microsoft.Graph.Cli.Core.IO;
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
@@ -44,7 +43,7 @@ namespace ApiSdk.DeviceManagement.DeviceCompliancePolicies.Item.ScheduledActions
                 });
                 await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 console.WriteLine("Success");
-            }, deviceCompliancePolicyIdOption, deviceComplianceScheduledActionForRuleIdOption, deviceComplianceActionItemIdOption, new OutputFormatterFactoryBinder());
+            }, deviceCompliancePolicyIdOption, deviceComplianceScheduledActionForRuleIdOption, deviceComplianceActionItemIdOption);
             return command;
         }
         /// <summary>
@@ -88,7 +87,7 @@ namespace ApiSdk.DeviceManagement.DeviceCompliancePolicies.Item.ScheduledActions
                 var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 formatter.WriteOutput(response, console);
-            }, deviceCompliancePolicyIdOption, deviceComplianceScheduledActionForRuleIdOption, deviceComplianceActionItemIdOption, selectOption, expandOption, outputOption, new OutputFormatterFactoryBinder());
+            }, deviceCompliancePolicyIdOption, deviceComplianceScheduledActionForRuleIdOption, deviceComplianceActionItemIdOption, selectOption, expandOption, outputOption);
             return command;
         }
         /// <summary>
@@ -122,7 +121,7 @@ namespace ApiSdk.DeviceManagement.DeviceCompliancePolicies.Item.ScheduledActions
                 });
                 await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 console.WriteLine("Success");
-            }, deviceCompliancePolicyIdOption, deviceComplianceScheduledActionForRuleIdOption, deviceComplianceActionItemIdOption, bodyOption, new OutputFormatterFactoryBinder());
+            }, deviceCompliancePolicyIdOption, deviceComplianceScheduledActionForRuleIdOption, deviceComplianceActionItemIdOption, bodyOption);
             return command;
         }
         /// <summary>

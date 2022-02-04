@@ -1,4 +1,3 @@
-using Microsoft.Graph.Cli.Core.Binding;
 using Microsoft.Graph.Cli.Core.IO;
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
@@ -53,7 +52,7 @@ namespace ApiSdk.Admin.ServiceAnnouncement.HealthOverviews.Item.Issues.Item.Inci
                     await response.CopyToAsync(writeStream);
                     console.WriteLine($"Content written to {file.FullName}.");
                 }
-            }, serviceHealthIdOption, serviceHealthIssueIdOption, fileOption, outputOption, new OutputFormatterFactoryBinder());
+            }, serviceHealthIdOption, serviceHealthIssueIdOption, fileOption, outputOption);
             return command;
         }
         /// <summary>

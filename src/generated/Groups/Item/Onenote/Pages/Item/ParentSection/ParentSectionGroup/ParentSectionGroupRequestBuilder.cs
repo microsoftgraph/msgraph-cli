@@ -2,7 +2,6 @@ using ApiSdk.Groups.Item.Onenote.Pages.Item.ParentSection.ParentSectionGroup.Par
 using ApiSdk.Groups.Item.Onenote.Pages.Item.ParentSection.ParentSectionGroup.SectionGroups;
 using ApiSdk.Groups.Item.Onenote.Pages.Item.ParentSection.ParentSectionGroup.Sections;
 using ApiSdk.Models.Microsoft.Graph;
-using Microsoft.Graph.Cli.Core.Binding;
 using Microsoft.Graph.Cli.Core.IO;
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
@@ -43,7 +42,7 @@ namespace ApiSdk.Groups.Item.Onenote.Pages.Item.ParentSection.ParentSectionGroup
                 });
                 await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 console.WriteLine("Success");
-            }, groupIdOption, onenotePageIdOption, new OutputFormatterFactoryBinder());
+            }, groupIdOption, onenotePageIdOption);
             return command;
         }
         /// <summary>
@@ -83,7 +82,7 @@ namespace ApiSdk.Groups.Item.Onenote.Pages.Item.ParentSection.ParentSectionGroup
                 var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 formatter.WriteOutput(response, console);
-            }, groupIdOption, onenotePageIdOption, selectOption, expandOption, outputOption, new OutputFormatterFactoryBinder());
+            }, groupIdOption, onenotePageIdOption, selectOption, expandOption, outputOption);
             return command;
         }
         public Command BuildParentNotebookCommand() {
@@ -124,7 +123,7 @@ namespace ApiSdk.Groups.Item.Onenote.Pages.Item.ParentSection.ParentSectionGroup
                 });
                 await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 console.WriteLine("Success");
-            }, groupIdOption, onenotePageIdOption, bodyOption, new OutputFormatterFactoryBinder());
+            }, groupIdOption, onenotePageIdOption, bodyOption);
             return command;
         }
         public Command BuildSectionGroupsCommand() {

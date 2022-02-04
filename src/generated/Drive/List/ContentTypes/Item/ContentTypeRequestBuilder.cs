@@ -9,7 +9,6 @@ using ApiSdk.Drive.List.ContentTypes.Item.IsPublished;
 using ApiSdk.Drive.List.ContentTypes.Item.Publish;
 using ApiSdk.Drive.List.ContentTypes.Item.Unpublish;
 using ApiSdk.Models.Microsoft.Graph;
-using Microsoft.Graph.Cli.Core.Binding;
 using Microsoft.Graph.Cli.Core.IO;
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
@@ -104,7 +103,7 @@ namespace ApiSdk.Drive.List.ContentTypes.Item {
                 });
                 await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 console.WriteLine("Success");
-            }, contentTypeIdOption, new OutputFormatterFactoryBinder());
+            }, contentTypeIdOption);
             return command;
         }
         /// <summary>
@@ -140,7 +139,7 @@ namespace ApiSdk.Drive.List.ContentTypes.Item {
                 var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 formatter.WriteOutput(response, console);
-            }, contentTypeIdOption, selectOption, expandOption, outputOption, new OutputFormatterFactoryBinder());
+            }, contentTypeIdOption, selectOption, expandOption, outputOption);
             return command;
         }
         /// <summary>
@@ -166,7 +165,7 @@ namespace ApiSdk.Drive.List.ContentTypes.Item {
                 });
                 await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 console.WriteLine("Success");
-            }, contentTypeIdOption, bodyOption, new OutputFormatterFactoryBinder());
+            }, contentTypeIdOption, bodyOption);
             return command;
         }
         public Command BuildPublishCommand() {

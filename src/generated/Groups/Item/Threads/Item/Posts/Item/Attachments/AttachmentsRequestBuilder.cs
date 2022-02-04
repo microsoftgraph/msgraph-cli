@@ -1,7 +1,6 @@
 using ApiSdk.Groups.Item.Threads.Item.Posts.Item.Attachments.CreateUploadSession;
 using ApiSdk.Groups.Item.Threads.Item.Posts.Item.Attachments.Item;
 using ApiSdk.Models.Microsoft.Graph;
-using Microsoft.Graph.Cli.Core.Binding;
 using Microsoft.Graph.Cli.Core.IO;
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
@@ -66,7 +65,7 @@ namespace ApiSdk.Groups.Item.Threads.Item.Posts.Item.Attachments {
                 var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 formatter.WriteOutput(response, console);
-            }, groupIdOption, conversationThreadIdOption, postIdOption, bodyOption, outputOption, new OutputFormatterFactoryBinder());
+            }, groupIdOption, conversationThreadIdOption, postIdOption, bodyOption, outputOption);
             return command;
         }
         public Command BuildCreateUploadSessionCommand() {
@@ -142,7 +141,7 @@ namespace ApiSdk.Groups.Item.Threads.Item.Posts.Item.Attachments {
                 var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 formatter.WriteOutput(response, console);
-            }, groupIdOption, conversationThreadIdOption, postIdOption, topOption, skipOption, filterOption, countOption, orderbyOption, selectOption, expandOption, outputOption, new OutputFormatterFactoryBinder());
+            }, groupIdOption, conversationThreadIdOption, postIdOption, topOption, skipOption, filterOption, countOption, orderbyOption, selectOption, expandOption, outputOption);
             return command;
         }
         /// <summary>

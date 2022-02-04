@@ -1,4 +1,3 @@
-using Microsoft.Graph.Cli.Core.Binding;
 using Microsoft.Graph.Cli.Core.IO;
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
@@ -71,7 +70,7 @@ namespace ApiSdk.Applications.Item.HomeRealmDiscoveryPolicies.Ref {
                 var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 formatter.WriteOutput(response, console);
-            }, applicationIdOption, topOption, skipOption, searchOption, filterOption, countOption, orderbyOption, outputOption, new OutputFormatterFactoryBinder());
+            }, applicationIdOption, topOption, skipOption, searchOption, filterOption, countOption, orderbyOption, outputOption);
             return command;
         }
         /// <summary>
@@ -102,7 +101,7 @@ namespace ApiSdk.Applications.Item.HomeRealmDiscoveryPolicies.Ref {
                 var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 formatter.WriteOutput(response, console);
-            }, applicationIdOption, bodyOption, outputOption, new OutputFormatterFactoryBinder());
+            }, applicationIdOption, bodyOption, outputOption);
             return command;
         }
         /// <summary>

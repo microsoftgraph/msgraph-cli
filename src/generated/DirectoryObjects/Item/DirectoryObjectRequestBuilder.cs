@@ -4,7 +4,6 @@ using ApiSdk.DirectoryObjects.Item.GetMemberGroups;
 using ApiSdk.DirectoryObjects.Item.GetMemberObjects;
 using ApiSdk.DirectoryObjects.Item.Restore;
 using ApiSdk.Models.Microsoft.Graph;
-using Microsoft.Graph.Cli.Core.Binding;
 using Microsoft.Graph.Cli.Core.IO;
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
@@ -53,7 +52,7 @@ namespace ApiSdk.DirectoryObjects.Item {
                 });
                 await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 console.WriteLine("Success");
-            }, directoryObjectIdOption, new OutputFormatterFactoryBinder());
+            }, directoryObjectIdOption);
             return command;
         }
         /// <summary>
@@ -89,7 +88,7 @@ namespace ApiSdk.DirectoryObjects.Item {
                 var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 formatter.WriteOutput(response, console);
-            }, directoryObjectIdOption, selectOption, expandOption, outputOption, new OutputFormatterFactoryBinder());
+            }, directoryObjectIdOption, selectOption, expandOption, outputOption);
             return command;
         }
         public Command BuildGetMemberGroupsCommand() {
@@ -127,7 +126,7 @@ namespace ApiSdk.DirectoryObjects.Item {
                 });
                 await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 console.WriteLine("Success");
-            }, directoryObjectIdOption, bodyOption, new OutputFormatterFactoryBinder());
+            }, directoryObjectIdOption, bodyOption);
             return command;
         }
         public Command BuildRestoreCommand() {

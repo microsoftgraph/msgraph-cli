@@ -1,5 +1,4 @@
 using ApiSdk.Models.Microsoft.Graph.CallRecords;
-using Microsoft.Graph.Cli.Core.Binding;
 using Microsoft.Graph.Cli.Core.IO;
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
@@ -44,7 +43,7 @@ namespace ApiSdk.Communications.CallRecords.Item.Sessions.Item.Segments.Item {
                 });
                 await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 console.WriteLine("Success");
-            }, callRecordIdOption, sessionIdOption, segmentIdOption, new OutputFormatterFactoryBinder());
+            }, callRecordIdOption, sessionIdOption, segmentIdOption);
             return command;
         }
         /// <summary>
@@ -88,7 +87,7 @@ namespace ApiSdk.Communications.CallRecords.Item.Sessions.Item.Segments.Item {
                 var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 formatter.WriteOutput(response, console);
-            }, callRecordIdOption, sessionIdOption, segmentIdOption, selectOption, expandOption, outputOption, new OutputFormatterFactoryBinder());
+            }, callRecordIdOption, sessionIdOption, segmentIdOption, selectOption, expandOption, outputOption);
             return command;
         }
         /// <summary>
@@ -122,7 +121,7 @@ namespace ApiSdk.Communications.CallRecords.Item.Sessions.Item.Segments.Item {
                 });
                 await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 console.WriteLine("Success");
-            }, callRecordIdOption, sessionIdOption, segmentIdOption, bodyOption, new OutputFormatterFactoryBinder());
+            }, callRecordIdOption, sessionIdOption, segmentIdOption, bodyOption);
             return command;
         }
         /// <summary>

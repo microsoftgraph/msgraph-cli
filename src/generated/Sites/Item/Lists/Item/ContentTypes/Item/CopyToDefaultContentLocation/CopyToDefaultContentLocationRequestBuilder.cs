@@ -1,4 +1,3 @@
-using Microsoft.Graph.Cli.Core.Binding;
 using Microsoft.Graph.Cli.Core.IO;
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
@@ -50,7 +49,7 @@ namespace ApiSdk.Sites.Item.Lists.Item.ContentTypes.Item.CopyToDefaultContentLoc
                 });
                 await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 console.WriteLine("Success");
-            }, siteIdOption, listIdOption, contentTypeIdOption, bodyOption, new OutputFormatterFactoryBinder());
+            }, siteIdOption, listIdOption, contentTypeIdOption, bodyOption);
             return command;
         }
         /// <summary>

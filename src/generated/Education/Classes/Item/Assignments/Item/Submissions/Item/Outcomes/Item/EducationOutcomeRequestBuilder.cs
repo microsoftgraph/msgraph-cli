@@ -1,5 +1,4 @@
 using ApiSdk.Models.Microsoft.Graph;
-using Microsoft.Graph.Cli.Core.Binding;
 using Microsoft.Graph.Cli.Core.IO;
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
@@ -48,7 +47,7 @@ namespace ApiSdk.Education.Classes.Item.Assignments.Item.Submissions.Item.Outcom
                 });
                 await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 console.WriteLine("Success");
-            }, educationClassIdOption, educationAssignmentIdOption, educationSubmissionIdOption, educationOutcomeIdOption, new OutputFormatterFactoryBinder());
+            }, educationClassIdOption, educationAssignmentIdOption, educationSubmissionIdOption, educationOutcomeIdOption);
             return command;
         }
         /// <summary>
@@ -96,7 +95,7 @@ namespace ApiSdk.Education.Classes.Item.Assignments.Item.Submissions.Item.Outcom
                 var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 formatter.WriteOutput(response, console);
-            }, educationClassIdOption, educationAssignmentIdOption, educationSubmissionIdOption, educationOutcomeIdOption, selectOption, expandOption, outputOption, new OutputFormatterFactoryBinder());
+            }, educationClassIdOption, educationAssignmentIdOption, educationSubmissionIdOption, educationOutcomeIdOption, selectOption, expandOption, outputOption);
             return command;
         }
         /// <summary>
@@ -134,7 +133,7 @@ namespace ApiSdk.Education.Classes.Item.Assignments.Item.Submissions.Item.Outcom
                 });
                 await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 console.WriteLine("Success");
-            }, educationClassIdOption, educationAssignmentIdOption, educationSubmissionIdOption, educationOutcomeIdOption, bodyOption, new OutputFormatterFactoryBinder());
+            }, educationClassIdOption, educationAssignmentIdOption, educationSubmissionIdOption, educationOutcomeIdOption, bodyOption);
             return command;
         }
         /// <summary>

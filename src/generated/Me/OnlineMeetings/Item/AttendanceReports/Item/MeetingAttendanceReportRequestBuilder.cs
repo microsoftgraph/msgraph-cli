@@ -1,6 +1,5 @@
 using ApiSdk.Me.OnlineMeetings.Item.AttendanceReports.Item.AttendanceRecords;
 using ApiSdk.Models.Microsoft.Graph;
-using Microsoft.Graph.Cli.Core.Binding;
 using Microsoft.Graph.Cli.Core.IO;
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
@@ -51,7 +50,7 @@ namespace ApiSdk.Me.OnlineMeetings.Item.AttendanceReports.Item {
                 });
                 await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 console.WriteLine("Success");
-            }, onlineMeetingIdOption, meetingAttendanceReportIdOption, new OutputFormatterFactoryBinder());
+            }, onlineMeetingIdOption, meetingAttendanceReportIdOption);
             return command;
         }
         /// <summary>
@@ -91,7 +90,7 @@ namespace ApiSdk.Me.OnlineMeetings.Item.AttendanceReports.Item {
                 var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 formatter.WriteOutput(response, console);
-            }, onlineMeetingIdOption, meetingAttendanceReportIdOption, selectOption, expandOption, outputOption, new OutputFormatterFactoryBinder());
+            }, onlineMeetingIdOption, meetingAttendanceReportIdOption, selectOption, expandOption, outputOption);
             return command;
         }
         /// <summary>
@@ -121,7 +120,7 @@ namespace ApiSdk.Me.OnlineMeetings.Item.AttendanceReports.Item {
                 });
                 await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 console.WriteLine("Success");
-            }, onlineMeetingIdOption, meetingAttendanceReportIdOption, bodyOption, new OutputFormatterFactoryBinder());
+            }, onlineMeetingIdOption, meetingAttendanceReportIdOption, bodyOption);
             return command;
         }
         /// <summary>

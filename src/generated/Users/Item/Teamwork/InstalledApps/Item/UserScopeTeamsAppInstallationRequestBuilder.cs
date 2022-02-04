@@ -1,6 +1,5 @@
 using ApiSdk.Models.Microsoft.Graph;
 using ApiSdk.Users.Item.Teamwork.InstalledApps.Item.Chat;
-using Microsoft.Graph.Cli.Core.Binding;
 using Microsoft.Graph.Cli.Core.IO;
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
@@ -48,7 +47,7 @@ namespace ApiSdk.Users.Item.Teamwork.InstalledApps.Item {
                 });
                 await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 console.WriteLine("Success");
-            }, userIdOption, userScopeTeamsAppInstallationIdOption, new OutputFormatterFactoryBinder());
+            }, userIdOption, userScopeTeamsAppInstallationIdOption);
             return command;
         }
         /// <summary>
@@ -88,7 +87,7 @@ namespace ApiSdk.Users.Item.Teamwork.InstalledApps.Item {
                 var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 formatter.WriteOutput(response, console);
-            }, userIdOption, userScopeTeamsAppInstallationIdOption, selectOption, expandOption, outputOption, new OutputFormatterFactoryBinder());
+            }, userIdOption, userScopeTeamsAppInstallationIdOption, selectOption, expandOption, outputOption);
             return command;
         }
         /// <summary>
@@ -118,7 +117,7 @@ namespace ApiSdk.Users.Item.Teamwork.InstalledApps.Item {
                 });
                 await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 console.WriteLine("Success");
-            }, userIdOption, userScopeTeamsAppInstallationIdOption, bodyOption, new OutputFormatterFactoryBinder());
+            }, userIdOption, userScopeTeamsAppInstallationIdOption, bodyOption);
             return command;
         }
         /// <summary>

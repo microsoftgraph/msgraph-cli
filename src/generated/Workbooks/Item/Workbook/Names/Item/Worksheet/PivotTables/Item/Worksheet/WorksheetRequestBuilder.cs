@@ -4,7 +4,6 @@ using ApiSdk.Workbooks.Item.Workbook.Names.Item.Worksheet.PivotTables.Item.Works
 using ApiSdk.Workbooks.Item.Workbook.Names.Item.Worksheet.PivotTables.Item.Worksheet.RangeWithAddress;
 using ApiSdk.Workbooks.Item.Workbook.Names.Item.Worksheet.PivotTables.Item.Worksheet.UsedRange;
 using ApiSdk.Workbooks.Item.Workbook.Names.Item.Worksheet.PivotTables.Item.Worksheet.UsedRangeWithValuesOnly;
-using Microsoft.Graph.Cli.Core.Binding;
 using Microsoft.Graph.Cli.Core.IO;
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
@@ -49,7 +48,7 @@ namespace ApiSdk.Workbooks.Item.Workbook.Names.Item.Worksheet.PivotTables.Item.W
                 });
                 await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 console.WriteLine("Success");
-            }, driveItemIdOption, workbookNamedItemIdOption, workbookPivotTableIdOption, new OutputFormatterFactoryBinder());
+            }, driveItemIdOption, workbookNamedItemIdOption, workbookPivotTableIdOption);
             return command;
         }
         /// <summary>
@@ -93,7 +92,7 @@ namespace ApiSdk.Workbooks.Item.Workbook.Names.Item.Worksheet.PivotTables.Item.W
                 var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 formatter.WriteOutput(response, console);
-            }, driveItemIdOption, workbookNamedItemIdOption, workbookPivotTableIdOption, selectOption, expandOption, outputOption, new OutputFormatterFactoryBinder());
+            }, driveItemIdOption, workbookNamedItemIdOption, workbookPivotTableIdOption, selectOption, expandOption, outputOption);
             return command;
         }
         /// <summary>
@@ -127,7 +126,7 @@ namespace ApiSdk.Workbooks.Item.Workbook.Names.Item.Worksheet.PivotTables.Item.W
                 });
                 await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 console.WriteLine("Success");
-            }, driveItemIdOption, workbookNamedItemIdOption, workbookPivotTableIdOption, bodyOption, new OutputFormatterFactoryBinder());
+            }, driveItemIdOption, workbookNamedItemIdOption, workbookPivotTableIdOption, bodyOption);
             return command;
         }
         /// <summary>

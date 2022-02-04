@@ -12,7 +12,6 @@ using ApiSdk.Me.Calendar.CalendarView.Item.SingleValueExtendedProperties;
 using ApiSdk.Me.Calendar.CalendarView.Item.SnoozeReminder;
 using ApiSdk.Me.Calendar.CalendarView.Item.TentativelyAccept;
 using ApiSdk.Models.Microsoft.Graph;
-using Microsoft.Graph.Cli.Core.Binding;
 using Microsoft.Graph.Cli.Core.IO;
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
@@ -87,7 +86,7 @@ namespace ApiSdk.Me.Calendar.CalendarView.Item {
                 });
                 await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 console.WriteLine("Success");
-            }, eventIdOption, new OutputFormatterFactoryBinder());
+            }, eventIdOption);
             return command;
         }
         public Command BuildDismissReminderCommand() {
@@ -149,7 +148,7 @@ namespace ApiSdk.Me.Calendar.CalendarView.Item {
                 var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 formatter.WriteOutput(response, console);
-            }, eventIdOption, startDateTimeOption, endDateTimeOption, selectOption, outputOption, new OutputFormatterFactoryBinder());
+            }, eventIdOption, startDateTimeOption, endDateTimeOption, selectOption, outputOption);
             return command;
         }
         public Command BuildInstancesCommand() {
@@ -195,7 +194,7 @@ namespace ApiSdk.Me.Calendar.CalendarView.Item {
                 });
                 await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 console.WriteLine("Success");
-            }, eventIdOption, bodyOption, new OutputFormatterFactoryBinder());
+            }, eventIdOption, bodyOption);
             return command;
         }
         public Command BuildSingleValueExtendedPropertiesCommand() {

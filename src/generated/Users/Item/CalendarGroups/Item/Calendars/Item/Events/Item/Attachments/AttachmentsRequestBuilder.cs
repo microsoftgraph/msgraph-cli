@@ -1,7 +1,6 @@
 using ApiSdk.Models.Microsoft.Graph;
 using ApiSdk.Users.Item.CalendarGroups.Item.Calendars.Item.Events.Item.Attachments.CreateUploadSession;
 using ApiSdk.Users.Item.CalendarGroups.Item.Calendars.Item.Events.Item.Attachments.Item;
-using Microsoft.Graph.Cli.Core.Binding;
 using Microsoft.Graph.Cli.Core.IO;
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
@@ -70,7 +69,7 @@ namespace ApiSdk.Users.Item.CalendarGroups.Item.Calendars.Item.Events.Item.Attac
                 var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 formatter.WriteOutput(response, console);
-            }, userIdOption, calendarGroupIdOption, calendarIdOption, eventIdOption, bodyOption, outputOption, new OutputFormatterFactoryBinder());
+            }, userIdOption, calendarGroupIdOption, calendarIdOption, eventIdOption, bodyOption, outputOption);
             return command;
         }
         public Command BuildCreateUploadSessionCommand() {
@@ -150,7 +149,7 @@ namespace ApiSdk.Users.Item.CalendarGroups.Item.Calendars.Item.Events.Item.Attac
                 var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 formatter.WriteOutput(response, console);
-            }, userIdOption, calendarGroupIdOption, calendarIdOption, eventIdOption, topOption, skipOption, filterOption, countOption, orderbyOption, selectOption, expandOption, outputOption, new OutputFormatterFactoryBinder());
+            }, userIdOption, calendarGroupIdOption, calendarIdOption, eventIdOption, topOption, skipOption, filterOption, countOption, orderbyOption, selectOption, expandOption, outputOption);
             return command;
         }
         /// <summary>

@@ -1,4 +1,3 @@
-using Microsoft.Graph.Cli.Core.Binding;
 using Microsoft.Graph.Cli.Core.IO;
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
@@ -57,7 +56,7 @@ namespace ApiSdk.Sites.Item.Lists.Item.Items.Item.DriveItem.Content {
                     await response.CopyToAsync(writeStream);
                     console.WriteLine($"Content written to {file.FullName}.");
                 }
-            }, siteIdOption, listIdOption, listItemIdOption, fileOption, outputOption, new OutputFormatterFactoryBinder());
+            }, siteIdOption, listIdOption, listItemIdOption, fileOption, outputOption);
             return command;
         }
         /// <summary>
@@ -89,7 +88,7 @@ namespace ApiSdk.Sites.Item.Lists.Item.Items.Item.DriveItem.Content {
                 });
                 await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 console.WriteLine("Success");
-            }, siteIdOption, listIdOption, listItemIdOption, bodyOption, new OutputFormatterFactoryBinder());
+            }, siteIdOption, listIdOption, listItemIdOption, bodyOption);
             return command;
         }
         /// <summary>

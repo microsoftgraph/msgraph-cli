@@ -3,7 +3,6 @@ using ApiSdk.Users.Item.Contacts.Item.Extensions;
 using ApiSdk.Users.Item.Contacts.Item.MultiValueExtendedProperties;
 using ApiSdk.Users.Item.Contacts.Item.Photo;
 using ApiSdk.Users.Item.Contacts.Item.SingleValueExtendedProperties;
-using Microsoft.Graph.Cli.Core.Binding;
 using Microsoft.Graph.Cli.Core.IO;
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
@@ -44,7 +43,7 @@ namespace ApiSdk.Users.Item.Contacts.Item {
                 });
                 await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 console.WriteLine("Success");
-            }, userIdOption, contactIdOption, new OutputFormatterFactoryBinder());
+            }, userIdOption, contactIdOption);
             return command;
         }
         public Command BuildExtensionsCommand() {
@@ -88,7 +87,7 @@ namespace ApiSdk.Users.Item.Contacts.Item {
                 var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 formatter.WriteOutput(response, console);
-            }, userIdOption, contactIdOption, selectOption, outputOption, new OutputFormatterFactoryBinder());
+            }, userIdOption, contactIdOption, selectOption, outputOption);
             return command;
         }
         public Command BuildMultiValueExtendedPropertiesCommand() {
@@ -128,7 +127,7 @@ namespace ApiSdk.Users.Item.Contacts.Item {
                 });
                 await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 console.WriteLine("Success");
-            }, userIdOption, contactIdOption, bodyOption, new OutputFormatterFactoryBinder());
+            }, userIdOption, contactIdOption, bodyOption);
             return command;
         }
         public Command BuildPhotoCommand() {

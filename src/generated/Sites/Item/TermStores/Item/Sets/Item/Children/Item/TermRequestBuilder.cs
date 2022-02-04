@@ -2,7 +2,6 @@ using ApiSdk.Models.Microsoft.Graph.TermStore;
 using ApiSdk.Sites.Item.TermStores.Item.Sets.Item.Children.Item.Children;
 using ApiSdk.Sites.Item.TermStores.Item.Sets.Item.Children.Item.Relations;
 using ApiSdk.Sites.Item.TermStores.Item.Sets.Item.Children.Item.Set;
-using Microsoft.Graph.Cli.Core.Binding;
 using Microsoft.Graph.Cli.Core.IO;
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
@@ -61,7 +60,7 @@ namespace ApiSdk.Sites.Item.TermStores.Item.Sets.Item.Children.Item {
                 });
                 await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 console.WriteLine("Success");
-            }, siteIdOption, storeIdOption, setIdOption, termIdOption, new OutputFormatterFactoryBinder());
+            }, siteIdOption, storeIdOption, setIdOption, termIdOption);
             return command;
         }
         /// <summary>
@@ -109,7 +108,7 @@ namespace ApiSdk.Sites.Item.TermStores.Item.Sets.Item.Children.Item {
                 var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 formatter.WriteOutput(response, console);
-            }, siteIdOption, storeIdOption, setIdOption, termIdOption, selectOption, expandOption, outputOption, new OutputFormatterFactoryBinder());
+            }, siteIdOption, storeIdOption, setIdOption, termIdOption, selectOption, expandOption, outputOption);
             return command;
         }
         /// <summary>
@@ -147,7 +146,7 @@ namespace ApiSdk.Sites.Item.TermStores.Item.Sets.Item.Children.Item {
                 });
                 await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 console.WriteLine("Success");
-            }, siteIdOption, storeIdOption, setIdOption, termIdOption, bodyOption, new OutputFormatterFactoryBinder());
+            }, siteIdOption, storeIdOption, setIdOption, termIdOption, bodyOption);
             return command;
         }
         public Command BuildRelationsCommand() {

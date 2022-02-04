@@ -3,7 +3,6 @@ using ApiSdk.PermissionGrants.GetAvailableExtensionProperties;
 using ApiSdk.PermissionGrants.GetByIds;
 using ApiSdk.PermissionGrants.Item;
 using ApiSdk.PermissionGrants.ValidateProperties;
-using Microsoft.Graph.Cli.Core.Binding;
 using Microsoft.Graph.Cli.Core.IO;
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
@@ -61,7 +60,7 @@ namespace ApiSdk.PermissionGrants {
                 var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 formatter.WriteOutput(response, console);
-            }, bodyOption, outputOption, new OutputFormatterFactoryBinder());
+            }, bodyOption, outputOption);
             return command;
         }
         public Command BuildGetAvailableExtensionPropertiesCommand() {
@@ -121,7 +120,7 @@ namespace ApiSdk.PermissionGrants {
                 var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 formatter.WriteOutput(response, console);
-            }, searchOption, filterOption, orderbyOption, selectOption, expandOption, outputOption, new OutputFormatterFactoryBinder());
+            }, searchOption, filterOption, orderbyOption, selectOption, expandOption, outputOption);
             return command;
         }
         public Command BuildValidatePropertiesCommand() {

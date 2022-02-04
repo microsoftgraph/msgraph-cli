@@ -1,6 +1,5 @@
 using ApiSdk.Applications.Item.CreatedOnBehalfOf.Ref;
 using ApiSdk.Models.Microsoft.Graph;
-using Microsoft.Graph.Cli.Core.Binding;
 using Microsoft.Graph.Cli.Core.IO;
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
@@ -54,7 +53,7 @@ namespace ApiSdk.Applications.Item.CreatedOnBehalfOf {
                 var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 formatter.WriteOutput(response, console);
-            }, applicationIdOption, selectOption, expandOption, outputOption, new OutputFormatterFactoryBinder());
+            }, applicationIdOption, selectOption, expandOption, outputOption);
             return command;
         }
         public Command BuildRefCommand() {

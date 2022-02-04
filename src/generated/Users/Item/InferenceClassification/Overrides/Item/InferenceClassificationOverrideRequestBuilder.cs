@@ -1,5 +1,4 @@
 using ApiSdk.Models.Microsoft.Graph;
-using Microsoft.Graph.Cli.Core.Binding;
 using Microsoft.Graph.Cli.Core.IO;
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
@@ -40,7 +39,7 @@ namespace ApiSdk.Users.Item.InferenceClassification.Overrides.Item {
                 });
                 await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 console.WriteLine("Success");
-            }, userIdOption, inferenceClassificationOverrideIdOption, new OutputFormatterFactoryBinder());
+            }, userIdOption, inferenceClassificationOverrideIdOption);
             return command;
         }
         /// <summary>
@@ -74,7 +73,7 @@ namespace ApiSdk.Users.Item.InferenceClassification.Overrides.Item {
                 var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 formatter.WriteOutput(response, console);
-            }, userIdOption, inferenceClassificationOverrideIdOption, selectOption, outputOption, new OutputFormatterFactoryBinder());
+            }, userIdOption, inferenceClassificationOverrideIdOption, selectOption, outputOption);
             return command;
         }
         /// <summary>
@@ -104,7 +103,7 @@ namespace ApiSdk.Users.Item.InferenceClassification.Overrides.Item {
                 });
                 await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 console.WriteLine("Success");
-            }, userIdOption, inferenceClassificationOverrideIdOption, bodyOption, new OutputFormatterFactoryBinder());
+            }, userIdOption, inferenceClassificationOverrideIdOption, bodyOption);
             return command;
         }
         /// <summary>

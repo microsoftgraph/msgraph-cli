@@ -2,7 +2,6 @@ using ApiSdk.Directory.AdministrativeUnits.Item.Extensions;
 using ApiSdk.Directory.AdministrativeUnits.Item.Members;
 using ApiSdk.Directory.AdministrativeUnits.Item.ScopedRoleMembers;
 using ApiSdk.Models.Microsoft.Graph;
-using Microsoft.Graph.Cli.Core.Binding;
 using Microsoft.Graph.Cli.Core.IO;
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
@@ -39,7 +38,7 @@ namespace ApiSdk.Directory.AdministrativeUnits.Item {
                 });
                 await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 console.WriteLine("Success");
-            }, administrativeUnitIdOption, new OutputFormatterFactoryBinder());
+            }, administrativeUnitIdOption);
             return command;
         }
         public Command BuildExtensionsCommand() {
@@ -85,7 +84,7 @@ namespace ApiSdk.Directory.AdministrativeUnits.Item {
                 var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 formatter.WriteOutput(response, console);
-            }, administrativeUnitIdOption, selectOption, expandOption, outputOption, new OutputFormatterFactoryBinder());
+            }, administrativeUnitIdOption, selectOption, expandOption, outputOption);
             return command;
         }
         public Command BuildMembersCommand() {
@@ -118,7 +117,7 @@ namespace ApiSdk.Directory.AdministrativeUnits.Item {
                 });
                 await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 console.WriteLine("Success");
-            }, administrativeUnitIdOption, bodyOption, new OutputFormatterFactoryBinder());
+            }, administrativeUnitIdOption, bodyOption);
             return command;
         }
         public Command BuildScopedRoleMembersCommand() {

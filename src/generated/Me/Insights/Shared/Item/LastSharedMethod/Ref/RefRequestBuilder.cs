@@ -1,4 +1,3 @@
-using Microsoft.Graph.Cli.Core.Binding;
 using Microsoft.Graph.Cli.Core.IO;
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
@@ -35,7 +34,7 @@ namespace ApiSdk.Me.Insights.Shared.Item.LastSharedMethod.Ref {
                 });
                 await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 console.WriteLine("Success");
-            }, sharedInsightIdOption, new OutputFormatterFactoryBinder());
+            }, sharedInsightIdOption);
             return command;
         }
         /// <summary>
@@ -59,7 +58,7 @@ namespace ApiSdk.Me.Insights.Shared.Item.LastSharedMethod.Ref {
                 var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 formatter.WriteOutput(response, console);
-            }, sharedInsightIdOption, outputOption, new OutputFormatterFactoryBinder());
+            }, sharedInsightIdOption, outputOption);
             return command;
         }
         /// <summary>
@@ -85,7 +84,7 @@ namespace ApiSdk.Me.Insights.Shared.Item.LastSharedMethod.Ref {
                 });
                 await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 console.WriteLine("Success");
-            }, sharedInsightIdOption, bodyOption, new OutputFormatterFactoryBinder());
+            }, sharedInsightIdOption, bodyOption);
             return command;
         }
         /// <summary>

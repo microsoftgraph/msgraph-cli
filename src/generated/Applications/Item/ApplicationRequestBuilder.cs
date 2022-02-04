@@ -17,7 +17,6 @@ using ApiSdk.Applications.Item.TokenIssuancePolicies;
 using ApiSdk.Applications.Item.TokenLifetimePolicies;
 using ApiSdk.Applications.Item.UnsetVerifiedPublisher;
 using ApiSdk.Models.Microsoft.Graph;
-using Microsoft.Graph.Cli.Core.Binding;
 using Microsoft.Graph.Cli.Core.IO;
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
@@ -85,7 +84,7 @@ namespace ApiSdk.Applications.Item {
                 });
                 await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 console.WriteLine("Success");
-            }, applicationIdOption, new OutputFormatterFactoryBinder());
+            }, applicationIdOption);
             return command;
         }
         public Command BuildExtensionPropertiesCommand() {
@@ -131,7 +130,7 @@ namespace ApiSdk.Applications.Item {
                 var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 formatter.WriteOutput(response, console);
-            }, applicationIdOption, selectOption, expandOption, outputOption, new OutputFormatterFactoryBinder());
+            }, applicationIdOption, selectOption, expandOption, outputOption);
             return command;
         }
         public Command BuildGetMemberGroupsCommand() {
@@ -190,7 +189,7 @@ namespace ApiSdk.Applications.Item {
                 });
                 await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 console.WriteLine("Success");
-            }, applicationIdOption, bodyOption, new OutputFormatterFactoryBinder());
+            }, applicationIdOption, bodyOption);
             return command;
         }
         public Command BuildRemoveKeyCommand() {

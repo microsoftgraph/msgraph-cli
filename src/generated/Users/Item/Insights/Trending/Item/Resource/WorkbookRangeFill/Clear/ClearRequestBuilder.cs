@@ -1,4 +1,3 @@
-using Microsoft.Graph.Cli.Core.Binding;
 using Microsoft.Graph.Cli.Core.IO;
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
@@ -39,7 +38,7 @@ namespace ApiSdk.Users.Item.Insights.Trending.Item.Resource.WorkbookRangeFill.Cl
                 });
                 await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 console.WriteLine("Success");
-            }, userIdOption, trendingItemIdOption, new OutputFormatterFactoryBinder());
+            }, userIdOption, trendingItemIdOption);
             return command;
         }
         /// <summary>

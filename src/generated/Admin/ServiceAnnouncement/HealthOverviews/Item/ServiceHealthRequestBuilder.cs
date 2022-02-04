@@ -1,6 +1,5 @@
 using ApiSdk.Admin.ServiceAnnouncement.HealthOverviews.Item.Issues;
 using ApiSdk.Models.Microsoft.Graph;
-using Microsoft.Graph.Cli.Core.Binding;
 using Microsoft.Graph.Cli.Core.IO;
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
@@ -37,7 +36,7 @@ namespace ApiSdk.Admin.ServiceAnnouncement.HealthOverviews.Item {
                 });
                 await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 console.WriteLine("Success");
-            }, serviceHealthIdOption, new OutputFormatterFactoryBinder());
+            }, serviceHealthIdOption);
             return command;
         }
         /// <summary>
@@ -73,7 +72,7 @@ namespace ApiSdk.Admin.ServiceAnnouncement.HealthOverviews.Item {
                 var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 formatter.WriteOutput(response, console);
-            }, serviceHealthIdOption, selectOption, expandOption, outputOption, new OutputFormatterFactoryBinder());
+            }, serviceHealthIdOption, selectOption, expandOption, outputOption);
             return command;
         }
         public Command BuildIssuesCommand() {
@@ -109,7 +108,7 @@ namespace ApiSdk.Admin.ServiceAnnouncement.HealthOverviews.Item {
                 });
                 await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 console.WriteLine("Success");
-            }, serviceHealthIdOption, bodyOption, new OutputFormatterFactoryBinder());
+            }, serviceHealthIdOption, bodyOption);
             return command;
         }
         /// <summary>

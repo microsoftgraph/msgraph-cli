@@ -2,7 +2,6 @@ using ApiSdk.Agreements.Item.Acceptances;
 using ApiSdk.Agreements.Item.File;
 using ApiSdk.Agreements.Item.Files;
 using ApiSdk.Models.Microsoft.Graph;
-using Microsoft.Graph.Cli.Core.Binding;
 using Microsoft.Graph.Cli.Core.IO;
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
@@ -49,7 +48,7 @@ namespace ApiSdk.Agreements.Item {
                 });
                 await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 console.WriteLine("Success");
-            }, agreementIdOption, new OutputFormatterFactoryBinder());
+            }, agreementIdOption);
             return command;
         }
         public Command BuildFileCommand() {
@@ -98,7 +97,7 @@ namespace ApiSdk.Agreements.Item {
                 var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 formatter.WriteOutput(response, console);
-            }, agreementIdOption, selectOption, outputOption, new OutputFormatterFactoryBinder());
+            }, agreementIdOption, selectOption, outputOption);
             return command;
         }
         /// <summary>
@@ -124,7 +123,7 @@ namespace ApiSdk.Agreements.Item {
                 });
                 await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 console.WriteLine("Success");
-            }, agreementIdOption, bodyOption, new OutputFormatterFactoryBinder());
+            }, agreementIdOption, bodyOption);
             return command;
         }
         /// <summary>

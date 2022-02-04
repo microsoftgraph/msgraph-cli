@@ -1,4 +1,3 @@
-using Microsoft.Graph.Cli.Core.Binding;
 using Microsoft.Graph.Cli.Core.IO;
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
@@ -53,7 +52,7 @@ namespace ApiSdk.Teams.Item.Channels.Item.FilesFolder.Content {
                     await response.CopyToAsync(writeStream);
                     console.WriteLine($"Content written to {file.FullName}.");
                 }
-            }, teamIdOption, channelIdOption, fileOption, outputOption, new OutputFormatterFactoryBinder());
+            }, teamIdOption, channelIdOption, fileOption, outputOption);
             return command;
         }
         /// <summary>
@@ -81,7 +80,7 @@ namespace ApiSdk.Teams.Item.Channels.Item.FilesFolder.Content {
                 });
                 await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 console.WriteLine("Success");
-            }, teamIdOption, channelIdOption, bodyOption, new OutputFormatterFactoryBinder());
+            }, teamIdOption, channelIdOption, bodyOption);
             return command;
         }
         /// <summary>

@@ -1,5 +1,4 @@
 using ApiSdk.Models.Microsoft.Graph;
-using Microsoft.Graph.Cli.Core.Binding;
 using Microsoft.Graph.Cli.Core.IO;
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
@@ -53,7 +52,7 @@ namespace ApiSdk.Sites.Item.Onenote.SectionGroups.Item.Sections.Item.Pages.Item.
                 var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 formatter.WriteOutput(response, console);
-            }, siteIdOption, sectionGroupIdOption, onenoteSectionIdOption, onenotePageIdOption, outputOption, new OutputFormatterFactoryBinder());
+            }, siteIdOption, sectionGroupIdOption, onenoteSectionIdOption, onenotePageIdOption, outputOption);
             return command;
         }
         /// <summary>

@@ -1,7 +1,6 @@
 using ApiSdk.Models.Microsoft.Graph;
 using ApiSdk.Teams.Item.Channels.Item.Messages.Item.Replies.Delta;
 using ApiSdk.Teams.Item.Channels.Item.Messages.Item.Replies.Item;
-using Microsoft.Graph.Cli.Core.Binding;
 using Microsoft.Graph.Cli.Core.IO;
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
@@ -66,7 +65,7 @@ namespace ApiSdk.Teams.Item.Channels.Item.Messages.Item.Replies {
                 var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 formatter.WriteOutput(response, console);
-            }, teamIdOption, channelIdOption, chatMessageIdOption, bodyOption, outputOption, new OutputFormatterFactoryBinder());
+            }, teamIdOption, channelIdOption, chatMessageIdOption, bodyOption, outputOption);
             return command;
         }
         /// <summary>
@@ -141,7 +140,7 @@ namespace ApiSdk.Teams.Item.Channels.Item.Messages.Item.Replies {
                 var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 formatter.WriteOutput(response, console);
-            }, teamIdOption, channelIdOption, chatMessageIdOption, topOption, skipOption, searchOption, filterOption, countOption, orderbyOption, selectOption, expandOption, outputOption, new OutputFormatterFactoryBinder());
+            }, teamIdOption, channelIdOption, chatMessageIdOption, topOption, skipOption, searchOption, filterOption, countOption, orderbyOption, selectOption, expandOption, outputOption);
             return command;
         }
         /// <summary>

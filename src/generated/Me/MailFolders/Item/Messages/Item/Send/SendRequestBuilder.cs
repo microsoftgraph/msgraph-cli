@@ -1,4 +1,3 @@
-using Microsoft.Graph.Cli.Core.Binding;
 using Microsoft.Graph.Cli.Core.IO;
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
@@ -39,7 +38,7 @@ namespace ApiSdk.Me.MailFolders.Item.Messages.Item.Send {
                 });
                 await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 console.WriteLine("Success");
-            }, mailFolderIdOption, messageIdOption, new OutputFormatterFactoryBinder());
+            }, mailFolderIdOption, messageIdOption);
             return command;
         }
         /// <summary>

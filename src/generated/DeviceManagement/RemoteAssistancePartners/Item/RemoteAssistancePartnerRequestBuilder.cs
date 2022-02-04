@@ -1,7 +1,6 @@
 using ApiSdk.DeviceManagement.RemoteAssistancePartners.Item.BeginOnboarding;
 using ApiSdk.DeviceManagement.RemoteAssistancePartners.Item.Disconnect;
 using ApiSdk.Models.Microsoft.Graph;
-using Microsoft.Graph.Cli.Core.Binding;
 using Microsoft.Graph.Cli.Core.IO;
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
@@ -44,7 +43,7 @@ namespace ApiSdk.DeviceManagement.RemoteAssistancePartners.Item {
                 });
                 await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 console.WriteLine("Success");
-            }, remoteAssistancePartnerIdOption, new OutputFormatterFactoryBinder());
+            }, remoteAssistancePartnerIdOption);
             return command;
         }
         public Command BuildDisconnectCommand() {
@@ -86,7 +85,7 @@ namespace ApiSdk.DeviceManagement.RemoteAssistancePartners.Item {
                 var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 formatter.WriteOutput(response, console);
-            }, remoteAssistancePartnerIdOption, selectOption, expandOption, outputOption, new OutputFormatterFactoryBinder());
+            }, remoteAssistancePartnerIdOption, selectOption, expandOption, outputOption);
             return command;
         }
         /// <summary>
@@ -112,7 +111,7 @@ namespace ApiSdk.DeviceManagement.RemoteAssistancePartners.Item {
                 });
                 await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 console.WriteLine("Success");
-            }, remoteAssistancePartnerIdOption, bodyOption, new OutputFormatterFactoryBinder());
+            }, remoteAssistancePartnerIdOption, bodyOption);
             return command;
         }
         /// <summary>

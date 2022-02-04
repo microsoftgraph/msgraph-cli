@@ -3,7 +3,6 @@ using ApiSdk.Users.Item.Authentication.Fido2Methods;
 using ApiSdk.Users.Item.Authentication.Methods;
 using ApiSdk.Users.Item.Authentication.MicrosoftAuthenticatorMethods;
 using ApiSdk.Users.Item.Authentication.WindowsHelloForBusinessMethods;
-using Microsoft.Graph.Cli.Core.Binding;
 using Microsoft.Graph.Cli.Core.IO;
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
@@ -40,7 +39,7 @@ namespace ApiSdk.Users.Item.Authentication {
                 });
                 await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 console.WriteLine("Success");
-            }, userIdOption, new OutputFormatterFactoryBinder());
+            }, userIdOption);
             return command;
         }
         public Command BuildFido2MethodsCommand() {
@@ -86,7 +85,7 @@ namespace ApiSdk.Users.Item.Authentication {
                 var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 formatter.WriteOutput(response, console);
-            }, userIdOption, selectOption, expandOption, outputOption, new OutputFormatterFactoryBinder());
+            }, userIdOption, selectOption, expandOption, outputOption);
             return command;
         }
         public Command BuildMethodsCommand() {
@@ -132,7 +131,7 @@ namespace ApiSdk.Users.Item.Authentication {
                 });
                 await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 console.WriteLine("Success");
-            }, userIdOption, bodyOption, new OutputFormatterFactoryBinder());
+            }, userIdOption, bodyOption);
             return command;
         }
         public Command BuildWindowsHelloForBusinessMethodsCommand() {

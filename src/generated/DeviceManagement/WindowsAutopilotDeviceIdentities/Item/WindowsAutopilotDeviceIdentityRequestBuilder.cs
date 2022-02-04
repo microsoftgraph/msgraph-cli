@@ -2,7 +2,6 @@ using ApiSdk.DeviceManagement.WindowsAutopilotDeviceIdentities.Item.AssignUserTo
 using ApiSdk.DeviceManagement.WindowsAutopilotDeviceIdentities.Item.UnassignUserFromDevice;
 using ApiSdk.DeviceManagement.WindowsAutopilotDeviceIdentities.Item.UpdateDeviceProperties;
 using ApiSdk.Models.Microsoft.Graph;
-using Microsoft.Graph.Cli.Core.Binding;
 using Microsoft.Graph.Cli.Core.IO;
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
@@ -45,7 +44,7 @@ namespace ApiSdk.DeviceManagement.WindowsAutopilotDeviceIdentities.Item {
                 });
                 await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 console.WriteLine("Success");
-            }, windowsAutopilotDeviceIdentityIdOption, new OutputFormatterFactoryBinder());
+            }, windowsAutopilotDeviceIdentityIdOption);
             return command;
         }
         /// <summary>
@@ -81,7 +80,7 @@ namespace ApiSdk.DeviceManagement.WindowsAutopilotDeviceIdentities.Item {
                 var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 formatter.WriteOutput(response, console);
-            }, windowsAutopilotDeviceIdentityIdOption, selectOption, expandOption, outputOption, new OutputFormatterFactoryBinder());
+            }, windowsAutopilotDeviceIdentityIdOption, selectOption, expandOption, outputOption);
             return command;
         }
         /// <summary>
@@ -107,7 +106,7 @@ namespace ApiSdk.DeviceManagement.WindowsAutopilotDeviceIdentities.Item {
                 });
                 await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 console.WriteLine("Success");
-            }, windowsAutopilotDeviceIdentityIdOption, bodyOption, new OutputFormatterFactoryBinder());
+            }, windowsAutopilotDeviceIdentityIdOption, bodyOption);
             return command;
         }
         public Command BuildUnassignUserFromDeviceCommand() {

@@ -1,4 +1,3 @@
-using Microsoft.Graph.Cli.Core.Binding;
 using Microsoft.Graph.Cli.Core.IO;
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
@@ -43,7 +42,7 @@ namespace ApiSdk.Shares.Item.List.Items.Item.Versions.Item.RestoreVersion {
                 });
                 await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 console.WriteLine("Success");
-            }, sharedDriveItemIdOption, listItemIdOption, listItemVersionIdOption, new OutputFormatterFactoryBinder());
+            }, sharedDriveItemIdOption, listItemIdOption, listItemVersionIdOption);
             return command;
         }
         /// <summary>

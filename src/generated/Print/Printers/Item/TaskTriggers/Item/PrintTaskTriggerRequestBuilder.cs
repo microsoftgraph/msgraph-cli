@@ -1,6 +1,5 @@
 using ApiSdk.Models.Microsoft.Graph;
 using ApiSdk.Print.Printers.Item.TaskTriggers.Item.Definition;
-using Microsoft.Graph.Cli.Core.Binding;
 using Microsoft.Graph.Cli.Core.IO;
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
@@ -48,7 +47,7 @@ namespace ApiSdk.Print.Printers.Item.TaskTriggers.Item {
                 });
                 await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 console.WriteLine("Success");
-            }, printerIdOption, printTaskTriggerIdOption, new OutputFormatterFactoryBinder());
+            }, printerIdOption, printTaskTriggerIdOption);
             return command;
         }
         /// <summary>
@@ -88,7 +87,7 @@ namespace ApiSdk.Print.Printers.Item.TaskTriggers.Item {
                 var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 formatter.WriteOutput(response, console);
-            }, printerIdOption, printTaskTriggerIdOption, selectOption, expandOption, outputOption, new OutputFormatterFactoryBinder());
+            }, printerIdOption, printTaskTriggerIdOption, selectOption, expandOption, outputOption);
             return command;
         }
         /// <summary>
@@ -118,7 +117,7 @@ namespace ApiSdk.Print.Printers.Item.TaskTriggers.Item {
                 });
                 await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 console.WriteLine("Success");
-            }, printerIdOption, printTaskTriggerIdOption, bodyOption, new OutputFormatterFactoryBinder());
+            }, printerIdOption, printTaskTriggerIdOption, bodyOption);
             return command;
         }
         /// <summary>

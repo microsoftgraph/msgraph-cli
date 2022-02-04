@@ -6,7 +6,6 @@ using ApiSdk.Users.Item.CalendarGroups.Item.Calendars.Item.CalendarView.Item.Ins
 using ApiSdk.Users.Item.CalendarGroups.Item.Calendars.Item.CalendarView.Item.Instances.Item.Forward;
 using ApiSdk.Users.Item.CalendarGroups.Item.Calendars.Item.CalendarView.Item.Instances.Item.SnoozeReminder;
 using ApiSdk.Users.Item.CalendarGroups.Item.Calendars.Item.CalendarView.Item.Instances.Item.TentativelyAccept;
-using Microsoft.Graph.Cli.Core.Binding;
 using Microsoft.Graph.Cli.Core.IO;
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
@@ -77,7 +76,7 @@ namespace ApiSdk.Users.Item.CalendarGroups.Item.Calendars.Item.CalendarView.Item
                 });
                 await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 console.WriteLine("Success");
-            }, userIdOption, calendarGroupIdOption, calendarIdOption, eventIdOption, eventId1Option, new OutputFormatterFactoryBinder());
+            }, userIdOption, calendarGroupIdOption, calendarIdOption, eventIdOption, eventId1Option);
             return command;
         }
         public Command BuildDismissReminderCommand() {
@@ -135,7 +134,7 @@ namespace ApiSdk.Users.Item.CalendarGroups.Item.Calendars.Item.CalendarView.Item
                 var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 formatter.WriteOutput(response, console);
-            }, userIdOption, calendarGroupIdOption, calendarIdOption, eventIdOption, eventId1Option, selectOption, outputOption, new OutputFormatterFactoryBinder());
+            }, userIdOption, calendarGroupIdOption, calendarIdOption, eventIdOption, eventId1Option, selectOption, outputOption);
             return command;
         }
         /// <summary>
@@ -177,7 +176,7 @@ namespace ApiSdk.Users.Item.CalendarGroups.Item.Calendars.Item.CalendarView.Item
                 });
                 await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 console.WriteLine("Success");
-            }, userIdOption, calendarGroupIdOption, calendarIdOption, eventIdOption, eventId1Option, bodyOption, new OutputFormatterFactoryBinder());
+            }, userIdOption, calendarGroupIdOption, calendarIdOption, eventIdOption, eventId1Option, bodyOption);
             return command;
         }
         public Command BuildSnoozeReminderCommand() {

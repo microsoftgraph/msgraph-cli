@@ -1,6 +1,5 @@
 using ApiSdk.Identity.B2xUserFlows.Item.Languages.Item.DefaultPages.Item;
 using ApiSdk.Models.Microsoft.Graph;
-using Microsoft.Graph.Cli.Core.Binding;
 using Microsoft.Graph.Cli.Core.IO;
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
@@ -62,7 +61,7 @@ namespace ApiSdk.Identity.B2xUserFlows.Item.Languages.Item.DefaultPages {
                 var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 formatter.WriteOutput(response, console);
-            }, b2xIdentityUserFlowIdOption, userFlowLanguageConfigurationIdOption, bodyOption, outputOption, new OutputFormatterFactoryBinder());
+            }, b2xIdentityUserFlowIdOption, userFlowLanguageConfigurationIdOption, bodyOption, outputOption);
             return command;
         }
         /// <summary>
@@ -133,7 +132,7 @@ namespace ApiSdk.Identity.B2xUserFlows.Item.Languages.Item.DefaultPages {
                 var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 formatter.WriteOutput(response, console);
-            }, b2xIdentityUserFlowIdOption, userFlowLanguageConfigurationIdOption, topOption, skipOption, searchOption, filterOption, countOption, orderbyOption, selectOption, expandOption, outputOption, new OutputFormatterFactoryBinder());
+            }, b2xIdentityUserFlowIdOption, userFlowLanguageConfigurationIdOption, topOption, skipOption, searchOption, filterOption, countOption, orderbyOption, selectOption, expandOption, outputOption);
             return command;
         }
         /// <summary>

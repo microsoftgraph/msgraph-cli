@@ -1,6 +1,5 @@
 using ApiSdk.Connections.Item.Groups.Item.Members;
 using ApiSdk.Models.Microsoft.Graph.ExternalConnectors;
-using Microsoft.Graph.Cli.Core.Binding;
 using Microsoft.Graph.Cli.Core.IO;
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
@@ -41,7 +40,7 @@ namespace ApiSdk.Connections.Item.Groups.Item {
                 });
                 await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 console.WriteLine("Success");
-            }, externalConnectionIdOption, externalGroupIdOption, new OutputFormatterFactoryBinder());
+            }, externalConnectionIdOption, externalGroupIdOption);
             return command;
         }
         /// <summary>
@@ -81,7 +80,7 @@ namespace ApiSdk.Connections.Item.Groups.Item {
                 var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 formatter.WriteOutput(response, console);
-            }, externalConnectionIdOption, externalGroupIdOption, selectOption, expandOption, outputOption, new OutputFormatterFactoryBinder());
+            }, externalConnectionIdOption, externalGroupIdOption, selectOption, expandOption, outputOption);
             return command;
         }
         public Command BuildMembersCommand() {
@@ -121,7 +120,7 @@ namespace ApiSdk.Connections.Item.Groups.Item {
                 });
                 await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 console.WriteLine("Success");
-            }, externalConnectionIdOption, externalGroupIdOption, bodyOption, new OutputFormatterFactoryBinder());
+            }, externalConnectionIdOption, externalGroupIdOption, bodyOption);
             return command;
         }
         /// <summary>

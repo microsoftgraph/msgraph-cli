@@ -1,6 +1,5 @@
 using ApiSdk.Groups.Item.Conversations.Item.Threads.Item.Posts.Item;
 using ApiSdk.Models.Microsoft.Graph;
-using Microsoft.Graph.Cli.Core.Binding;
 using Microsoft.Graph.Cli.Core.IO;
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
@@ -72,7 +71,7 @@ namespace ApiSdk.Groups.Item.Conversations.Item.Threads.Item.Posts {
                 var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 formatter.WriteOutput(response, console);
-            }, groupIdOption, conversationIdOption, conversationThreadIdOption, bodyOption, outputOption, new OutputFormatterFactoryBinder());
+            }, groupIdOption, conversationIdOption, conversationThreadIdOption, bodyOption, outputOption);
             return command;
         }
         /// <summary>
@@ -142,7 +141,7 @@ namespace ApiSdk.Groups.Item.Conversations.Item.Threads.Item.Posts {
                 var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 formatter.WriteOutput(response, console);
-            }, groupIdOption, conversationIdOption, conversationThreadIdOption, topOption, skipOption, filterOption, countOption, orderbyOption, selectOption, expandOption, outputOption, new OutputFormatterFactoryBinder());
+            }, groupIdOption, conversationIdOption, conversationThreadIdOption, topOption, skipOption, filterOption, countOption, orderbyOption, selectOption, expandOption, outputOption);
             return command;
         }
         /// <summary>

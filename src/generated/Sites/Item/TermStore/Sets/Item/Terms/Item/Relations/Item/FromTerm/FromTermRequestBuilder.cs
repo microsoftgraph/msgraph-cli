@@ -1,6 +1,5 @@
 using ApiSdk.Models.Microsoft.Graph.TermStore;
 using ApiSdk.Sites.Item.TermStore.Sets.Item.Terms.Item.Relations.Item.FromTerm.Ref;
-using Microsoft.Graph.Cli.Core.Binding;
 using Microsoft.Graph.Cli.Core.IO;
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
@@ -66,7 +65,7 @@ namespace ApiSdk.Sites.Item.TermStore.Sets.Item.Terms.Item.Relations.Item.FromTe
                 var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 formatter.WriteOutput(response, console);
-            }, siteIdOption, setIdOption, termIdOption, relationIdOption, selectOption, expandOption, outputOption, new OutputFormatterFactoryBinder());
+            }, siteIdOption, setIdOption, termIdOption, relationIdOption, selectOption, expandOption, outputOption);
             return command;
         }
         public Command BuildRefCommand() {

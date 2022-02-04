@@ -1,5 +1,4 @@
 using ApiSdk.Models.Microsoft.Graph;
-using Microsoft.Graph.Cli.Core.Binding;
 using Microsoft.Graph.Cli.Core.IO;
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
@@ -40,7 +39,7 @@ namespace ApiSdk.DeviceManagement.DeviceCompliancePolicies.Item.UserStatuses.Ite
                 });
                 await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 console.WriteLine("Success");
-            }, deviceCompliancePolicyIdOption, deviceComplianceUserStatusIdOption, new OutputFormatterFactoryBinder());
+            }, deviceCompliancePolicyIdOption, deviceComplianceUserStatusIdOption);
             return command;
         }
         /// <summary>
@@ -80,7 +79,7 @@ namespace ApiSdk.DeviceManagement.DeviceCompliancePolicies.Item.UserStatuses.Ite
                 var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 formatter.WriteOutput(response, console);
-            }, deviceCompliancePolicyIdOption, deviceComplianceUserStatusIdOption, selectOption, expandOption, outputOption, new OutputFormatterFactoryBinder());
+            }, deviceCompliancePolicyIdOption, deviceComplianceUserStatusIdOption, selectOption, expandOption, outputOption);
             return command;
         }
         /// <summary>
@@ -110,7 +109,7 @@ namespace ApiSdk.DeviceManagement.DeviceCompliancePolicies.Item.UserStatuses.Ite
                 });
                 await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 console.WriteLine("Success");
-            }, deviceCompliancePolicyIdOption, deviceComplianceUserStatusIdOption, bodyOption, new OutputFormatterFactoryBinder());
+            }, deviceCompliancePolicyIdOption, deviceComplianceUserStatusIdOption, bodyOption);
             return command;
         }
         /// <summary>

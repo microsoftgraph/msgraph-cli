@@ -1,7 +1,6 @@
 using ApiSdk.Me.Todo.Lists.Item.Extensions;
 using ApiSdk.Me.Todo.Lists.Item.Tasks;
 using ApiSdk.Models.Microsoft.Graph;
-using Microsoft.Graph.Cli.Core.Binding;
 using Microsoft.Graph.Cli.Core.IO;
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
@@ -38,7 +37,7 @@ namespace ApiSdk.Me.Todo.Lists.Item {
                 });
                 await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 console.WriteLine("Success");
-            }, todoTaskListIdOption, new OutputFormatterFactoryBinder());
+            }, todoTaskListIdOption);
             return command;
         }
         public Command BuildExtensionsCommand() {
@@ -84,7 +83,7 @@ namespace ApiSdk.Me.Todo.Lists.Item {
                 var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 formatter.WriteOutput(response, console);
-            }, todoTaskListIdOption, selectOption, expandOption, outputOption, new OutputFormatterFactoryBinder());
+            }, todoTaskListIdOption, selectOption, expandOption, outputOption);
             return command;
         }
         /// <summary>
@@ -110,7 +109,7 @@ namespace ApiSdk.Me.Todo.Lists.Item {
                 });
                 await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 console.WriteLine("Success");
-            }, todoTaskListIdOption, bodyOption, new OutputFormatterFactoryBinder());
+            }, todoTaskListIdOption, bodyOption);
             return command;
         }
         public Command BuildTasksCommand() {

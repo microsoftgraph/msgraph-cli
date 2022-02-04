@@ -1,6 +1,5 @@
 using ApiSdk.Groups.Item.Events.Item.Calendar.CalendarPermissions.Item;
 using ApiSdk.Models.Microsoft.Graph;
-using Microsoft.Graph.Cli.Core.Binding;
 using Microsoft.Graph.Cli.Core.IO;
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
@@ -61,7 +60,7 @@ namespace ApiSdk.Groups.Item.Events.Item.Calendar.CalendarPermissions {
                 var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 formatter.WriteOutput(response, console);
-            }, groupIdOption, eventIdOption, bodyOption, outputOption, new OutputFormatterFactoryBinder());
+            }, groupIdOption, eventIdOption, bodyOption, outputOption);
             return command;
         }
         /// <summary>
@@ -121,7 +120,7 @@ namespace ApiSdk.Groups.Item.Events.Item.Calendar.CalendarPermissions {
                 var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 formatter.WriteOutput(response, console);
-            }, groupIdOption, eventIdOption, topOption, skipOption, filterOption, countOption, orderbyOption, selectOption, outputOption, new OutputFormatterFactoryBinder());
+            }, groupIdOption, eventIdOption, topOption, skipOption, filterOption, countOption, orderbyOption, selectOption, outputOption);
             return command;
         }
         /// <summary>

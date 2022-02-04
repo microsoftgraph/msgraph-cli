@@ -5,7 +5,6 @@ using ApiSdk.Education.Users.Item.Assignments.Item.Rubric;
 using ApiSdk.Education.Users.Item.Assignments.Item.SetUpResourcesFolder;
 using ApiSdk.Education.Users.Item.Assignments.Item.Submissions;
 using ApiSdk.Models.Microsoft.Graph;
-using Microsoft.Graph.Cli.Core.Binding;
 using Microsoft.Graph.Cli.Core.IO;
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
@@ -56,7 +55,7 @@ namespace ApiSdk.Education.Users.Item.Assignments.Item {
                 });
                 await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 console.WriteLine("Success");
-            }, educationUserIdOption, educationAssignmentIdOption, new OutputFormatterFactoryBinder());
+            }, educationUserIdOption, educationAssignmentIdOption);
             return command;
         }
         /// <summary>
@@ -96,7 +95,7 @@ namespace ApiSdk.Education.Users.Item.Assignments.Item {
                 var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 formatter.WriteOutput(response, console);
-            }, educationUserIdOption, educationAssignmentIdOption, selectOption, expandOption, outputOption, new OutputFormatterFactoryBinder());
+            }, educationUserIdOption, educationAssignmentIdOption, selectOption, expandOption, outputOption);
             return command;
         }
         /// <summary>
@@ -126,7 +125,7 @@ namespace ApiSdk.Education.Users.Item.Assignments.Item {
                 });
                 await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 console.WriteLine("Success");
-            }, educationUserIdOption, educationAssignmentIdOption, bodyOption, new OutputFormatterFactoryBinder());
+            }, educationUserIdOption, educationAssignmentIdOption, bodyOption);
             return command;
         }
         public Command BuildPublishCommand() {

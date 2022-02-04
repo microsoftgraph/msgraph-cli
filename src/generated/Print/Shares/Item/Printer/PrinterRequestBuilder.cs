@@ -1,7 +1,6 @@
 using ApiSdk.Models.Microsoft.Graph;
 using ApiSdk.Print.Shares.Item.Printer.Ref;
 using ApiSdk.Print.Shares.Item.Printer.RestoreFactoryDefaults;
-using Microsoft.Graph.Cli.Core.Binding;
 using Microsoft.Graph.Cli.Core.IO;
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
@@ -55,7 +54,7 @@ namespace ApiSdk.Print.Shares.Item.Printer {
                 var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 formatter.WriteOutput(response, console);
-            }, printerShareIdOption, selectOption, expandOption, outputOption, new OutputFormatterFactoryBinder());
+            }, printerShareIdOption, selectOption, expandOption, outputOption);
             return command;
         }
         public Command BuildRefCommand() {

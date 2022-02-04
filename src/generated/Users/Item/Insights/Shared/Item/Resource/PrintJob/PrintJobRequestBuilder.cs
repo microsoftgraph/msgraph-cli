@@ -2,7 +2,6 @@ using ApiSdk.Users.Item.Insights.Shared.Item.Resource.PrintJob.Abort;
 using ApiSdk.Users.Item.Insights.Shared.Item.Resource.PrintJob.Cancel;
 using ApiSdk.Users.Item.Insights.Shared.Item.Resource.PrintJob.Redirect;
 using ApiSdk.Users.Item.Insights.Shared.Item.Resource.PrintJob.Start;
-using Microsoft.Graph.Cli.Core.Binding;
 using Microsoft.Graph.Cli.Core.IO;
 using Microsoft.Kiota.Abstractions;
 using System;

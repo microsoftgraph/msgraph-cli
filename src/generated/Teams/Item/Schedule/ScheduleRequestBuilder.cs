@@ -9,7 +9,6 @@ using ApiSdk.Teams.Item.Schedule.SwapShiftsChangeRequests;
 using ApiSdk.Teams.Item.Schedule.TimeOffReasons;
 using ApiSdk.Teams.Item.Schedule.TimeOffRequests;
 using ApiSdk.Teams.Item.Schedule.TimesOff;
-using Microsoft.Graph.Cli.Core.Binding;
 using Microsoft.Graph.Cli.Core.IO;
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
@@ -46,7 +45,7 @@ namespace ApiSdk.Teams.Item.Schedule {
                 });
                 await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 console.WriteLine("Success");
-            }, teamIdOption, new OutputFormatterFactoryBinder());
+            }, teamIdOption);
             return command;
         }
         /// <summary>
@@ -82,7 +81,7 @@ namespace ApiSdk.Teams.Item.Schedule {
                 var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 formatter.WriteOutput(response, console);
-            }, teamIdOption, selectOption, expandOption, outputOption, new OutputFormatterFactoryBinder());
+            }, teamIdOption, selectOption, expandOption, outputOption);
             return command;
         }
         public Command BuildOfferShiftRequestsCommand() {
@@ -138,7 +137,7 @@ namespace ApiSdk.Teams.Item.Schedule {
                 });
                 await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 console.WriteLine("Success");
-            }, teamIdOption, bodyOption, new OutputFormatterFactoryBinder());
+            }, teamIdOption, bodyOption);
             return command;
         }
         public Command BuildSchedulingGroupsCommand() {

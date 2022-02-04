@@ -1,5 +1,4 @@
 using ApiSdk.Models.Microsoft.Graph;
-using Microsoft.Graph.Cli.Core.Binding;
 using Microsoft.Graph.Cli.Core.IO;
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
@@ -40,7 +39,7 @@ namespace ApiSdk.Communications.Calls.Item.AudioRoutingGroups.Item {
                 });
                 await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 console.WriteLine("Success");
-            }, callIdOption, audioRoutingGroupIdOption, new OutputFormatterFactoryBinder());
+            }, callIdOption, audioRoutingGroupIdOption);
             return command;
         }
         /// <summary>
@@ -80,7 +79,7 @@ namespace ApiSdk.Communications.Calls.Item.AudioRoutingGroups.Item {
                 var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 formatter.WriteOutput(response, console);
-            }, callIdOption, audioRoutingGroupIdOption, selectOption, expandOption, outputOption, new OutputFormatterFactoryBinder());
+            }, callIdOption, audioRoutingGroupIdOption, selectOption, expandOption, outputOption);
             return command;
         }
         /// <summary>
@@ -110,7 +109,7 @@ namespace ApiSdk.Communications.Calls.Item.AudioRoutingGroups.Item {
                 });
                 await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 console.WriteLine("Success");
-            }, callIdOption, audioRoutingGroupIdOption, bodyOption, new OutputFormatterFactoryBinder());
+            }, callIdOption, audioRoutingGroupIdOption, bodyOption);
             return command;
         }
         /// <summary>

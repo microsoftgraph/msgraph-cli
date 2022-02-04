@@ -1,5 +1,4 @@
 using ApiSdk.Models.Microsoft.Graph;
-using Microsoft.Graph.Cli.Core.Binding;
 using Microsoft.Graph.Cli.Core.IO;
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
@@ -44,7 +43,7 @@ namespace ApiSdk.Me.Calendars.Item.CalendarView.Item.Attachments.Item {
                 });
                 await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 console.WriteLine("Success");
-            }, calendarIdOption, eventIdOption, attachmentIdOption, new OutputFormatterFactoryBinder());
+            }, calendarIdOption, eventIdOption, attachmentIdOption);
             return command;
         }
         /// <summary>
@@ -88,7 +87,7 @@ namespace ApiSdk.Me.Calendars.Item.CalendarView.Item.Attachments.Item {
                 var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 formatter.WriteOutput(response, console);
-            }, calendarIdOption, eventIdOption, attachmentIdOption, selectOption, expandOption, outputOption, new OutputFormatterFactoryBinder());
+            }, calendarIdOption, eventIdOption, attachmentIdOption, selectOption, expandOption, outputOption);
             return command;
         }
         /// <summary>
@@ -122,7 +121,7 @@ namespace ApiSdk.Me.Calendars.Item.CalendarView.Item.Attachments.Item {
                 });
                 await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 console.WriteLine("Success");
-            }, calendarIdOption, eventIdOption, attachmentIdOption, bodyOption, new OutputFormatterFactoryBinder());
+            }, calendarIdOption, eventIdOption, attachmentIdOption, bodyOption);
             return command;
         }
         /// <summary>

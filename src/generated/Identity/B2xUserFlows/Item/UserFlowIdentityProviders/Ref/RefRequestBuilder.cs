@@ -1,4 +1,3 @@
-using Microsoft.Graph.Cli.Core.Binding;
 using Microsoft.Graph.Cli.Core.IO;
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
@@ -71,7 +70,7 @@ namespace ApiSdk.Identity.B2xUserFlows.Item.UserFlowIdentityProviders.Ref {
                 var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 formatter.WriteOutput(response, console);
-            }, b2xIdentityUserFlowIdOption, topOption, skipOption, searchOption, filterOption, countOption, orderbyOption, outputOption, new OutputFormatterFactoryBinder());
+            }, b2xIdentityUserFlowIdOption, topOption, skipOption, searchOption, filterOption, countOption, orderbyOption, outputOption);
             return command;
         }
         /// <summary>
@@ -102,7 +101,7 @@ namespace ApiSdk.Identity.B2xUserFlows.Item.UserFlowIdentityProviders.Ref {
                 var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 formatter.WriteOutput(response, console);
-            }, b2xIdentityUserFlowIdOption, bodyOption, outputOption, new OutputFormatterFactoryBinder());
+            }, b2xIdentityUserFlowIdOption, bodyOption, outputOption);
             return command;
         }
         /// <summary>

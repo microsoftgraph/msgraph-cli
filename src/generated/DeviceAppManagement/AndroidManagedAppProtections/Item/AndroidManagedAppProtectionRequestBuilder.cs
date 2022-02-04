@@ -1,7 +1,6 @@
 using ApiSdk.DeviceAppManagement.AndroidManagedAppProtections.Item.Apps;
 using ApiSdk.DeviceAppManagement.AndroidManagedAppProtections.Item.DeploymentSummary;
 using ApiSdk.Models.Microsoft.Graph;
-using Microsoft.Graph.Cli.Core.Binding;
 using Microsoft.Graph.Cli.Core.IO;
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
@@ -48,7 +47,7 @@ namespace ApiSdk.DeviceAppManagement.AndroidManagedAppProtections.Item {
                 });
                 await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 console.WriteLine("Success");
-            }, androidManagedAppProtectionIdOption, new OutputFormatterFactoryBinder());
+            }, androidManagedAppProtectionIdOption);
             return command;
         }
         public Command BuildDeploymentSummaryCommand() {
@@ -92,7 +91,7 @@ namespace ApiSdk.DeviceAppManagement.AndroidManagedAppProtections.Item {
                 var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 formatter.WriteOutput(response, console);
-            }, androidManagedAppProtectionIdOption, selectOption, expandOption, outputOption, new OutputFormatterFactoryBinder());
+            }, androidManagedAppProtectionIdOption, selectOption, expandOption, outputOption);
             return command;
         }
         /// <summary>
@@ -118,7 +117,7 @@ namespace ApiSdk.DeviceAppManagement.AndroidManagedAppProtections.Item {
                 });
                 await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 console.WriteLine("Success");
-            }, androidManagedAppProtectionIdOption, bodyOption, new OutputFormatterFactoryBinder());
+            }, androidManagedAppProtectionIdOption, bodyOption);
             return command;
         }
         /// <summary>

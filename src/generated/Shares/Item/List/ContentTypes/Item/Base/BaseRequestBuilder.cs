@@ -5,7 +5,6 @@ using ApiSdk.Shares.Item.List.ContentTypes.Item.Base.IsPublished;
 using ApiSdk.Shares.Item.List.ContentTypes.Item.Base.Publish;
 using ApiSdk.Shares.Item.List.ContentTypes.Item.Base.Ref;
 using ApiSdk.Shares.Item.List.ContentTypes.Item.Base.Unpublish;
-using Microsoft.Graph.Cli.Core.Binding;
 using Microsoft.Graph.Cli.Core.IO;
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
@@ -75,7 +74,7 @@ namespace ApiSdk.Shares.Item.List.ContentTypes.Item.Base {
                 var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 formatter.WriteOutput(response, console);
-            }, sharedDriveItemIdOption, contentTypeIdOption, selectOption, expandOption, outputOption, new OutputFormatterFactoryBinder());
+            }, sharedDriveItemIdOption, contentTypeIdOption, selectOption, expandOption, outputOption);
             return command;
         }
         public Command BuildPublishCommand() {

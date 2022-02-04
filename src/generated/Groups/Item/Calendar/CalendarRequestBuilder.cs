@@ -6,7 +6,6 @@ using ApiSdk.Groups.Item.Calendar.GetSchedule;
 using ApiSdk.Groups.Item.Calendar.MultiValueExtendedProperties;
 using ApiSdk.Groups.Item.Calendar.SingleValueExtendedProperties;
 using ApiSdk.Models.Microsoft.Graph;
-using Microsoft.Graph.Cli.Core.Binding;
 using Microsoft.Graph.Cli.Core.IO;
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
@@ -71,7 +70,7 @@ namespace ApiSdk.Groups.Item.Calendar {
                 });
                 await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 console.WriteLine("Success");
-            }, groupIdOption, new OutputFormatterFactoryBinder());
+            }, groupIdOption);
             return command;
         }
         public Command BuildEventsCommand() {
@@ -111,7 +110,7 @@ namespace ApiSdk.Groups.Item.Calendar {
                 var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 formatter.WriteOutput(response, console);
-            }, groupIdOption, selectOption, outputOption, new OutputFormatterFactoryBinder());
+            }, groupIdOption, selectOption, outputOption);
             return command;
         }
         public Command BuildGetScheduleCommand() {
@@ -153,7 +152,7 @@ namespace ApiSdk.Groups.Item.Calendar {
                 });
                 await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 console.WriteLine("Success");
-            }, groupIdOption, bodyOption, new OutputFormatterFactoryBinder());
+            }, groupIdOption, bodyOption);
             return command;
         }
         public Command BuildSingleValueExtendedPropertiesCommand() {

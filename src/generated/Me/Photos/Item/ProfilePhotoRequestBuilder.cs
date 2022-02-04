@@ -1,6 +1,5 @@
 using ApiSdk.Me.Photos.Item.Value;
 using ApiSdk.Models.Microsoft.Graph;
-using Microsoft.Graph.Cli.Core.Binding;
 using Microsoft.Graph.Cli.Core.IO;
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
@@ -44,7 +43,7 @@ namespace ApiSdk.Me.Photos.Item {
                 });
                 await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 console.WriteLine("Success");
-            }, profilePhotoIdOption, new OutputFormatterFactoryBinder());
+            }, profilePhotoIdOption);
             return command;
         }
         /// <summary>
@@ -74,7 +73,7 @@ namespace ApiSdk.Me.Photos.Item {
                 var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 formatter.WriteOutput(response, console);
-            }, profilePhotoIdOption, selectOption, outputOption, new OutputFormatterFactoryBinder());
+            }, profilePhotoIdOption, selectOption, outputOption);
             return command;
         }
         /// <summary>
@@ -100,7 +99,7 @@ namespace ApiSdk.Me.Photos.Item {
                 });
                 await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 console.WriteLine("Success");
-            }, profilePhotoIdOption, bodyOption, new OutputFormatterFactoryBinder());
+            }, profilePhotoIdOption, bodyOption);
             return command;
         }
         /// <summary>

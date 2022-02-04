@@ -40,7 +40,6 @@ using ApiSdk.Groups.Item.TransitiveMembers;
 using ApiSdk.Groups.Item.UnsubscribeByMail;
 using ApiSdk.Groups.Item.ValidateProperties;
 using ApiSdk.Models.Microsoft.Graph;
-using Microsoft.Graph.Cli.Core.Binding;
 using Microsoft.Graph.Cli.Core.IO;
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
@@ -165,7 +164,7 @@ namespace ApiSdk.Groups.Item {
                 });
                 await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 console.WriteLine("Success");
-            }, groupIdOption, new OutputFormatterFactoryBinder());
+            }, groupIdOption);
             return command;
         }
         public Command BuildDriveCommand() {
@@ -239,7 +238,7 @@ namespace ApiSdk.Groups.Item {
                 var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 formatter.WriteOutput(response, console);
-            }, groupIdOption, selectOption, expandOption, outputOption, new OutputFormatterFactoryBinder());
+            }, groupIdOption, selectOption, expandOption, outputOption);
             return command;
         }
         public Command BuildGetMemberGroupsCommand() {
@@ -329,7 +328,7 @@ namespace ApiSdk.Groups.Item {
                 });
                 await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 console.WriteLine("Success");
-            }, groupIdOption, bodyOption, new OutputFormatterFactoryBinder());
+            }, groupIdOption, bodyOption);
             return command;
         }
         public Command BuildPermissionGrantsCommand() {

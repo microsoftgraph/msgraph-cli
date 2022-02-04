@@ -1,4 +1,3 @@
-using Microsoft.Graph.Cli.Core.Binding;
 using Microsoft.Graph.Cli.Core.IO;
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
@@ -42,7 +41,7 @@ namespace ApiSdk.DeviceManagement.WindowsAutopilotDeviceIdentities.Item.UpdateDe
                 });
                 await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 console.WriteLine("Success");
-            }, windowsAutopilotDeviceIdentityIdOption, bodyOption, new OutputFormatterFactoryBinder());
+            }, windowsAutopilotDeviceIdentityIdOption, bodyOption);
             return command;
         }
         /// <summary>

@@ -1,7 +1,6 @@
 using ApiSdk.IdentityGovernance.EntitlementManagement.AccessPackages.Item.Catalog;
 using ApiSdk.IdentityGovernance.EntitlementManagement.AccessPackages.Item.GetApplicablePolicyRequirements;
 using ApiSdk.Models.Microsoft.Graph;
-using Microsoft.Graph.Cli.Core.Binding;
 using Microsoft.Graph.Cli.Core.IO;
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
@@ -45,7 +44,7 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.AccessPackages.Item {
                 });
                 await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 console.WriteLine("Success");
-            }, accessPackageIdOption, new OutputFormatterFactoryBinder());
+            }, accessPackageIdOption);
             return command;
         }
         public Command BuildGetApplicablePolicyRequirementsCommand() {
@@ -87,7 +86,7 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.AccessPackages.Item {
                 var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 formatter.WriteOutput(response, console);
-            }, accessPackageIdOption, selectOption, expandOption, outputOption, new OutputFormatterFactoryBinder());
+            }, accessPackageIdOption, selectOption, expandOption, outputOption);
             return command;
         }
         /// <summary>
@@ -113,7 +112,7 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.AccessPackages.Item {
                 });
                 await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 console.WriteLine("Success");
-            }, accessPackageIdOption, bodyOption, new OutputFormatterFactoryBinder());
+            }, accessPackageIdOption, bodyOption);
             return command;
         }
         /// <summary>

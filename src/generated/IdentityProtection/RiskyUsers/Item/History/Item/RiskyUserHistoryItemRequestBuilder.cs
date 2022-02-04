@@ -1,5 +1,4 @@
 using ApiSdk.Models.Microsoft.Graph;
-using Microsoft.Graph.Cli.Core.Binding;
 using Microsoft.Graph.Cli.Core.IO;
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
@@ -40,7 +39,7 @@ namespace ApiSdk.IdentityProtection.RiskyUsers.Item.History.Item {
                 });
                 await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 console.WriteLine("Success");
-            }, riskyUserIdOption, riskyUserHistoryItemIdOption, new OutputFormatterFactoryBinder());
+            }, riskyUserIdOption, riskyUserHistoryItemIdOption);
             return command;
         }
         /// <summary>
@@ -80,7 +79,7 @@ namespace ApiSdk.IdentityProtection.RiskyUsers.Item.History.Item {
                 var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 formatter.WriteOutput(response, console);
-            }, riskyUserIdOption, riskyUserHistoryItemIdOption, selectOption, expandOption, outputOption, new OutputFormatterFactoryBinder());
+            }, riskyUserIdOption, riskyUserHistoryItemIdOption, selectOption, expandOption, outputOption);
             return command;
         }
         /// <summary>
@@ -110,7 +109,7 @@ namespace ApiSdk.IdentityProtection.RiskyUsers.Item.History.Item {
                 });
                 await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 console.WriteLine("Success");
-            }, riskyUserIdOption, riskyUserHistoryItemIdOption, bodyOption, new OutputFormatterFactoryBinder());
+            }, riskyUserIdOption, riskyUserHistoryItemIdOption, bodyOption);
             return command;
         }
         /// <summary>

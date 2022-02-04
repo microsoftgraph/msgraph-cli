@@ -1,5 +1,4 @@
 using ApiSdk.Models.Microsoft.Graph;
-using Microsoft.Graph.Cli.Core.Binding;
 using Microsoft.Graph.Cli.Core.IO;
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
@@ -40,7 +39,7 @@ namespace ApiSdk.Users.Item.Outlook.MasterCategories.Item {
                 });
                 await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 console.WriteLine("Success");
-            }, userIdOption, outlookCategoryIdOption, new OutputFormatterFactoryBinder());
+            }, userIdOption, outlookCategoryIdOption);
             return command;
         }
         /// <summary>
@@ -74,7 +73,7 @@ namespace ApiSdk.Users.Item.Outlook.MasterCategories.Item {
                 var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 formatter.WriteOutput(response, console);
-            }, userIdOption, outlookCategoryIdOption, selectOption, outputOption, new OutputFormatterFactoryBinder());
+            }, userIdOption, outlookCategoryIdOption, selectOption, outputOption);
             return command;
         }
         /// <summary>
@@ -104,7 +103,7 @@ namespace ApiSdk.Users.Item.Outlook.MasterCategories.Item {
                 });
                 await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 console.WriteLine("Success");
-            }, userIdOption, outlookCategoryIdOption, bodyOption, new OutputFormatterFactoryBinder());
+            }, userIdOption, outlookCategoryIdOption, bodyOption);
             return command;
         }
         /// <summary>

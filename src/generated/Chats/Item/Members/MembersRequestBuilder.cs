@@ -1,7 +1,6 @@
 using ApiSdk.Chats.Item.Members.Add;
 using ApiSdk.Chats.Item.Members.Item;
 using ApiSdk.Models.Microsoft.Graph;
-using Microsoft.Graph.Cli.Core.Binding;
 using Microsoft.Graph.Cli.Core.IO;
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
@@ -64,7 +63,7 @@ namespace ApiSdk.Chats.Item.Members {
                 var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 formatter.WriteOutput(response, console);
-            }, chatIdOption, bodyOption, outputOption, new OutputFormatterFactoryBinder());
+            }, chatIdOption, bodyOption, outputOption);
             return command;
         }
         /// <summary>
@@ -131,7 +130,7 @@ namespace ApiSdk.Chats.Item.Members {
                 var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 formatter.WriteOutput(response, console);
-            }, chatIdOption, topOption, skipOption, searchOption, filterOption, countOption, orderbyOption, selectOption, expandOption, outputOption, new OutputFormatterFactoryBinder());
+            }, chatIdOption, topOption, skipOption, searchOption, filterOption, countOption, orderbyOption, selectOption, expandOption, outputOption);
             return command;
         }
         /// <summary>

@@ -1,7 +1,6 @@
 using ApiSdk.IdentityGovernance.AccessReviews.Definitions.Item.Instances;
 using ApiSdk.IdentityGovernance.AccessReviews.Definitions.Item.Stop;
 using ApiSdk.Models.Microsoft.Graph;
-using Microsoft.Graph.Cli.Core.Binding;
 using Microsoft.Graph.Cli.Core.IO;
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
@@ -38,7 +37,7 @@ namespace ApiSdk.IdentityGovernance.AccessReviews.Definitions.Item {
                 });
                 await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 console.WriteLine("Success");
-            }, accessReviewScheduleDefinitionIdOption, new OutputFormatterFactoryBinder());
+            }, accessReviewScheduleDefinitionIdOption);
             return command;
         }
         /// <summary>
@@ -74,7 +73,7 @@ namespace ApiSdk.IdentityGovernance.AccessReviews.Definitions.Item {
                 var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 formatter.WriteOutput(response, console);
-            }, accessReviewScheduleDefinitionIdOption, selectOption, expandOption, outputOption, new OutputFormatterFactoryBinder());
+            }, accessReviewScheduleDefinitionIdOption, selectOption, expandOption, outputOption);
             return command;
         }
         public Command BuildInstancesCommand() {
@@ -110,7 +109,7 @@ namespace ApiSdk.IdentityGovernance.AccessReviews.Definitions.Item {
                 });
                 await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 console.WriteLine("Success");
-            }, accessReviewScheduleDefinitionIdOption, bodyOption, new OutputFormatterFactoryBinder());
+            }, accessReviewScheduleDefinitionIdOption, bodyOption);
             return command;
         }
         public Command BuildStopCommand() {

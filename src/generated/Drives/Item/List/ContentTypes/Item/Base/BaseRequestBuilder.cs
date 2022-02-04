@@ -5,7 +5,6 @@ using ApiSdk.Drives.Item.List.ContentTypes.Item.Base.Publish;
 using ApiSdk.Drives.Item.List.ContentTypes.Item.Base.Ref;
 using ApiSdk.Drives.Item.List.ContentTypes.Item.Base.Unpublish;
 using ApiSdk.Models.Microsoft.Graph;
-using Microsoft.Graph.Cli.Core.Binding;
 using Microsoft.Graph.Cli.Core.IO;
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
@@ -75,7 +74,7 @@ namespace ApiSdk.Drives.Item.List.ContentTypes.Item.Base {
                 var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 formatter.WriteOutput(response, console);
-            }, driveIdOption, contentTypeIdOption, selectOption, expandOption, outputOption, new OutputFormatterFactoryBinder());
+            }, driveIdOption, contentTypeIdOption, selectOption, expandOption, outputOption);
             return command;
         }
         public Command BuildPublishCommand() {

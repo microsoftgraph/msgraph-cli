@@ -1,5 +1,4 @@
 using ApiSdk.Models.Microsoft.Graph;
-using Microsoft.Graph.Cli.Core.Binding;
 using Microsoft.Graph.Cli.Core.IO;
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
@@ -40,7 +39,7 @@ namespace ApiSdk.DeviceAppManagement.MobileAppConfigurations.Item.DeviceStatuses
                 });
                 await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 console.WriteLine("Success");
-            }, managedDeviceMobileAppConfigurationIdOption, managedDeviceMobileAppConfigurationDeviceStatusIdOption, new OutputFormatterFactoryBinder());
+            }, managedDeviceMobileAppConfigurationIdOption, managedDeviceMobileAppConfigurationDeviceStatusIdOption);
             return command;
         }
         /// <summary>
@@ -80,7 +79,7 @@ namespace ApiSdk.DeviceAppManagement.MobileAppConfigurations.Item.DeviceStatuses
                 var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 formatter.WriteOutput(response, console);
-            }, managedDeviceMobileAppConfigurationIdOption, managedDeviceMobileAppConfigurationDeviceStatusIdOption, selectOption, expandOption, outputOption, new OutputFormatterFactoryBinder());
+            }, managedDeviceMobileAppConfigurationIdOption, managedDeviceMobileAppConfigurationDeviceStatusIdOption, selectOption, expandOption, outputOption);
             return command;
         }
         /// <summary>
@@ -110,7 +109,7 @@ namespace ApiSdk.DeviceAppManagement.MobileAppConfigurations.Item.DeviceStatuses
                 });
                 await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 console.WriteLine("Success");
-            }, managedDeviceMobileAppConfigurationIdOption, managedDeviceMobileAppConfigurationDeviceStatusIdOption, bodyOption, new OutputFormatterFactoryBinder());
+            }, managedDeviceMobileAppConfigurationIdOption, managedDeviceMobileAppConfigurationDeviceStatusIdOption, bodyOption);
             return command;
         }
         /// <summary>

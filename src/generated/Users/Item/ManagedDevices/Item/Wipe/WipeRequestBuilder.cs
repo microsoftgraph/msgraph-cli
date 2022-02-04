@@ -1,4 +1,3 @@
-using Microsoft.Graph.Cli.Core.Binding;
 using Microsoft.Graph.Cli.Core.IO;
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
@@ -46,7 +45,7 @@ namespace ApiSdk.Users.Item.ManagedDevices.Item.Wipe {
                 });
                 await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 console.WriteLine("Success");
-            }, userIdOption, managedDeviceIdOption, bodyOption, new OutputFormatterFactoryBinder());
+            }, userIdOption, managedDeviceIdOption, bodyOption);
             return command;
         }
         /// <summary>

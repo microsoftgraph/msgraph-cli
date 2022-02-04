@@ -1,5 +1,4 @@
 using ApiSdk.Models.Microsoft.Graph;
-using Microsoft.Graph.Cli.Core.Binding;
 using Microsoft.Graph.Cli.Core.IO;
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
@@ -44,7 +43,7 @@ namespace ApiSdk.Users.Item.ManagedDevices.Item.DeviceCompliancePolicyStates.Ite
                 });
                 await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 console.WriteLine("Success");
-            }, userIdOption, managedDeviceIdOption, deviceCompliancePolicyStateIdOption, new OutputFormatterFactoryBinder());
+            }, userIdOption, managedDeviceIdOption, deviceCompliancePolicyStateIdOption);
             return command;
         }
         /// <summary>
@@ -88,7 +87,7 @@ namespace ApiSdk.Users.Item.ManagedDevices.Item.DeviceCompliancePolicyStates.Ite
                 var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 formatter.WriteOutput(response, console);
-            }, userIdOption, managedDeviceIdOption, deviceCompliancePolicyStateIdOption, selectOption, expandOption, outputOption, new OutputFormatterFactoryBinder());
+            }, userIdOption, managedDeviceIdOption, deviceCompliancePolicyStateIdOption, selectOption, expandOption, outputOption);
             return command;
         }
         /// <summary>
@@ -122,7 +121,7 @@ namespace ApiSdk.Users.Item.ManagedDevices.Item.DeviceCompliancePolicyStates.Ite
                 });
                 await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 console.WriteLine("Success");
-            }, userIdOption, managedDeviceIdOption, deviceCompliancePolicyStateIdOption, bodyOption, new OutputFormatterFactoryBinder());
+            }, userIdOption, managedDeviceIdOption, deviceCompliancePolicyStateIdOption, bodyOption);
             return command;
         }
         /// <summary>

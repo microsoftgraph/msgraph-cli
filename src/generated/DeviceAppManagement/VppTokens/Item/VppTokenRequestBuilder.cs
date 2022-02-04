@@ -1,6 +1,5 @@
 using ApiSdk.DeviceAppManagement.VppTokens.Item.SyncLicenses;
 using ApiSdk.Models.Microsoft.Graph;
-using Microsoft.Graph.Cli.Core.Binding;
 using Microsoft.Graph.Cli.Core.IO;
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
@@ -37,7 +36,7 @@ namespace ApiSdk.DeviceAppManagement.VppTokens.Item {
                 });
                 await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 console.WriteLine("Success");
-            }, vppTokenIdOption, new OutputFormatterFactoryBinder());
+            }, vppTokenIdOption);
             return command;
         }
         /// <summary>
@@ -73,7 +72,7 @@ namespace ApiSdk.DeviceAppManagement.VppTokens.Item {
                 var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 formatter.WriteOutput(response, console);
-            }, vppTokenIdOption, selectOption, expandOption, outputOption, new OutputFormatterFactoryBinder());
+            }, vppTokenIdOption, selectOption, expandOption, outputOption);
             return command;
         }
         /// <summary>
@@ -99,7 +98,7 @@ namespace ApiSdk.DeviceAppManagement.VppTokens.Item {
                 });
                 await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 console.WriteLine("Success");
-            }, vppTokenIdOption, bodyOption, new OutputFormatterFactoryBinder());
+            }, vppTokenIdOption, bodyOption);
             return command;
         }
         public Command BuildSyncLicensesCommand() {

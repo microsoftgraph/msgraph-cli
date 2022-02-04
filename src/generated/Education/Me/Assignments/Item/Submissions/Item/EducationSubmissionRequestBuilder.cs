@@ -7,7 +7,6 @@ using ApiSdk.Education.Me.Assignments.Item.Submissions.Item.Submit;
 using ApiSdk.Education.Me.Assignments.Item.Submissions.Item.SubmittedResources;
 using ApiSdk.Education.Me.Assignments.Item.Submissions.Item.Unsubmit;
 using ApiSdk.Models.Microsoft.Graph;
-using Microsoft.Graph.Cli.Core.Binding;
 using Microsoft.Graph.Cli.Core.IO;
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
@@ -48,7 +47,7 @@ namespace ApiSdk.Education.Me.Assignments.Item.Submissions.Item {
                 });
                 await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 console.WriteLine("Success");
-            }, educationAssignmentIdOption, educationSubmissionIdOption, new OutputFormatterFactoryBinder());
+            }, educationAssignmentIdOption, educationSubmissionIdOption);
             return command;
         }
         /// <summary>
@@ -88,7 +87,7 @@ namespace ApiSdk.Education.Me.Assignments.Item.Submissions.Item {
                 var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 formatter.WriteOutput(response, console);
-            }, educationAssignmentIdOption, educationSubmissionIdOption, selectOption, expandOption, outputOption, new OutputFormatterFactoryBinder());
+            }, educationAssignmentIdOption, educationSubmissionIdOption, selectOption, expandOption, outputOption);
             return command;
         }
         public Command BuildOutcomesCommand() {
@@ -128,7 +127,7 @@ namespace ApiSdk.Education.Me.Assignments.Item.Submissions.Item {
                 });
                 await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 console.WriteLine("Success");
-            }, educationAssignmentIdOption, educationSubmissionIdOption, bodyOption, new OutputFormatterFactoryBinder());
+            }, educationAssignmentIdOption, educationSubmissionIdOption, bodyOption);
             return command;
         }
         public Command BuildReassignCommand() {

@@ -6,7 +6,6 @@ using ApiSdk.Shares.Item.ListItem;
 using ApiSdk.Shares.Item.Permission;
 using ApiSdk.Shares.Item.Root;
 using ApiSdk.Shares.Item.Site;
-using Microsoft.Graph.Cli.Core.Binding;
 using Microsoft.Graph.Cli.Core.IO;
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
@@ -43,7 +42,7 @@ namespace ApiSdk.Shares.Item {
                 });
                 await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 console.WriteLine("Success");
-            }, sharedDriveItemIdOption, new OutputFormatterFactoryBinder());
+            }, sharedDriveItemIdOption);
             return command;
         }
         public Command BuildDriveItemCommand() {
@@ -88,7 +87,7 @@ namespace ApiSdk.Shares.Item {
                 var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 formatter.WriteOutput(response, console);
-            }, sharedDriveItemIdOption, selectOption, expandOption, outputOption, new OutputFormatterFactoryBinder());
+            }, sharedDriveItemIdOption, selectOption, expandOption, outputOption);
             return command;
         }
         public Command BuildItemsCommand() {
@@ -149,7 +148,7 @@ namespace ApiSdk.Shares.Item {
                 });
                 await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 console.WriteLine("Success");
-            }, sharedDriveItemIdOption, bodyOption, new OutputFormatterFactoryBinder());
+            }, sharedDriveItemIdOption, bodyOption);
             return command;
         }
         public Command BuildPermissionCommand() {

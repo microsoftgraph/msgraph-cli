@@ -3,7 +3,6 @@ using ApiSdk.DeviceAppManagement.ManagedAppRegistrations.Item.AppliedPolicies.It
 using ApiSdk.DeviceAppManagement.ManagedAppRegistrations.Item.AppliedPolicies.Item.TargetedManagedAppProtection;
 using ApiSdk.DeviceAppManagement.ManagedAppRegistrations.Item.AppliedPolicies.Item.WindowsInformationProtection;
 using ApiSdk.Models.Microsoft.Graph;
-using Microsoft.Graph.Cli.Core.Binding;
 using Microsoft.Graph.Cli.Core.IO;
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
@@ -44,7 +43,7 @@ namespace ApiSdk.DeviceAppManagement.ManagedAppRegistrations.Item.AppliedPolicie
                 });
                 await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 console.WriteLine("Success");
-            }, managedAppRegistrationIdOption, managedAppPolicyIdOption, new OutputFormatterFactoryBinder());
+            }, managedAppRegistrationIdOption, managedAppPolicyIdOption);
             return command;
         }
         /// <summary>
@@ -84,7 +83,7 @@ namespace ApiSdk.DeviceAppManagement.ManagedAppRegistrations.Item.AppliedPolicie
                 var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 formatter.WriteOutput(response, console);
-            }, managedAppRegistrationIdOption, managedAppPolicyIdOption, selectOption, expandOption, outputOption, new OutputFormatterFactoryBinder());
+            }, managedAppRegistrationIdOption, managedAppPolicyIdOption, selectOption, expandOption, outputOption);
             return command;
         }
         public Command BuildManagedAppProtectionCommand() {
@@ -120,7 +119,7 @@ namespace ApiSdk.DeviceAppManagement.ManagedAppRegistrations.Item.AppliedPolicie
                 });
                 await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 console.WriteLine("Success");
-            }, managedAppRegistrationIdOption, managedAppPolicyIdOption, bodyOption, new OutputFormatterFactoryBinder());
+            }, managedAppRegistrationIdOption, managedAppPolicyIdOption, bodyOption);
             return command;
         }
         public Command BuildTargetAppsCommand() {

@@ -1,6 +1,5 @@
 using ApiSdk.Me.Teamwork.InstalledApps.Item.Chat.Ref;
 using ApiSdk.Models.Microsoft.Graph;
-using Microsoft.Graph.Cli.Core.Binding;
 using Microsoft.Graph.Cli.Core.IO;
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
@@ -54,7 +53,7 @@ namespace ApiSdk.Me.Teamwork.InstalledApps.Item.Chat {
                 var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 formatter.WriteOutput(response, console);
-            }, userScopeTeamsAppInstallationIdOption, selectOption, expandOption, outputOption, new OutputFormatterFactoryBinder());
+            }, userScopeTeamsAppInstallationIdOption, selectOption, expandOption, outputOption);
             return command;
         }
         public Command BuildRefCommand() {

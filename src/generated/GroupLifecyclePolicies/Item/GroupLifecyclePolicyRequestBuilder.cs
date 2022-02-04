@@ -1,7 +1,6 @@
 using ApiSdk.GroupLifecyclePolicies.Item.AddGroup;
 using ApiSdk.GroupLifecyclePolicies.Item.RemoveGroup;
 using ApiSdk.Models.Microsoft.Graph;
-using Microsoft.Graph.Cli.Core.Binding;
 using Microsoft.Graph.Cli.Core.IO;
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
@@ -44,7 +43,7 @@ namespace ApiSdk.GroupLifecyclePolicies.Item {
                 });
                 await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 console.WriteLine("Success");
-            }, groupLifecyclePolicyIdOption, new OutputFormatterFactoryBinder());
+            }, groupLifecyclePolicyIdOption);
             return command;
         }
         /// <summary>
@@ -80,7 +79,7 @@ namespace ApiSdk.GroupLifecyclePolicies.Item {
                 var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 formatter.WriteOutput(response, console);
-            }, groupLifecyclePolicyIdOption, selectOption, expandOption, outputOption, new OutputFormatterFactoryBinder());
+            }, groupLifecyclePolicyIdOption, selectOption, expandOption, outputOption);
             return command;
         }
         /// <summary>
@@ -106,7 +105,7 @@ namespace ApiSdk.GroupLifecyclePolicies.Item {
                 });
                 await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 console.WriteLine("Success");
-            }, groupLifecyclePolicyIdOption, bodyOption, new OutputFormatterFactoryBinder());
+            }, groupLifecyclePolicyIdOption, bodyOption);
             return command;
         }
         public Command BuildRemoveGroupCommand() {

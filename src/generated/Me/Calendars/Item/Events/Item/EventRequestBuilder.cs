@@ -12,7 +12,6 @@ using ApiSdk.Me.Calendars.Item.Events.Item.SingleValueExtendedProperties;
 using ApiSdk.Me.Calendars.Item.Events.Item.SnoozeReminder;
 using ApiSdk.Me.Calendars.Item.Events.Item.TentativelyAccept;
 using ApiSdk.Models.Microsoft.Graph;
-using Microsoft.Graph.Cli.Core.Binding;
 using Microsoft.Graph.Cli.Core.IO;
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
@@ -91,7 +90,7 @@ namespace ApiSdk.Me.Calendars.Item.Events.Item {
                 });
                 await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 console.WriteLine("Success");
-            }, calendarIdOption, eventIdOption, new OutputFormatterFactoryBinder());
+            }, calendarIdOption, eventIdOption);
             return command;
         }
         public Command BuildDismissReminderCommand() {
@@ -147,7 +146,7 @@ namespace ApiSdk.Me.Calendars.Item.Events.Item {
                 var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 formatter.WriteOutput(response, console);
-            }, calendarIdOption, eventIdOption, selectOption, outputOption, new OutputFormatterFactoryBinder());
+            }, calendarIdOption, eventIdOption, selectOption, outputOption);
             return command;
         }
         public Command BuildInstancesCommand() {
@@ -197,7 +196,7 @@ namespace ApiSdk.Me.Calendars.Item.Events.Item {
                 });
                 await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 console.WriteLine("Success");
-            }, calendarIdOption, eventIdOption, bodyOption, new OutputFormatterFactoryBinder());
+            }, calendarIdOption, eventIdOption, bodyOption);
             return command;
         }
         public Command BuildSingleValueExtendedPropertiesCommand() {

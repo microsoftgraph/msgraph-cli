@@ -5,7 +5,6 @@ using ApiSdk.Groups.Item.Onenote.Resources;
 using ApiSdk.Groups.Item.Onenote.SectionGroups;
 using ApiSdk.Groups.Item.Onenote.Sections;
 using ApiSdk.Models.Microsoft.Graph;
-using Microsoft.Graph.Cli.Core.Binding;
 using Microsoft.Graph.Cli.Core.IO;
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
@@ -42,7 +41,7 @@ namespace ApiSdk.Groups.Item.Onenote {
                 });
                 await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 console.WriteLine("Success");
-            }, groupIdOption, new OutputFormatterFactoryBinder());
+            }, groupIdOption);
             return command;
         }
         /// <summary>
@@ -78,7 +77,7 @@ namespace ApiSdk.Groups.Item.Onenote {
                 var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 formatter.WriteOutput(response, console);
-            }, groupIdOption, selectOption, expandOption, outputOption, new OutputFormatterFactoryBinder());
+            }, groupIdOption, selectOption, expandOption, outputOption);
             return command;
         }
         public Command BuildNotebooksCommand() {
@@ -135,7 +134,7 @@ namespace ApiSdk.Groups.Item.Onenote {
                 });
                 await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 console.WriteLine("Success");
-            }, groupIdOption, bodyOption, new OutputFormatterFactoryBinder());
+            }, groupIdOption, bodyOption);
             return command;
         }
         public Command BuildResourcesCommand() {

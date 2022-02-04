@@ -1,7 +1,6 @@
 using ApiSdk.Models.Microsoft.Graph;
 using ApiSdk.Users.Item.Todo.Lists.Item.Extensions;
 using ApiSdk.Users.Item.Todo.Lists.Item.Tasks;
-using Microsoft.Graph.Cli.Core.Binding;
 using Microsoft.Graph.Cli.Core.IO;
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
@@ -42,7 +41,7 @@ namespace ApiSdk.Users.Item.Todo.Lists.Item {
                 });
                 await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 console.WriteLine("Success");
-            }, userIdOption, todoTaskListIdOption, new OutputFormatterFactoryBinder());
+            }, userIdOption, todoTaskListIdOption);
             return command;
         }
         public Command BuildExtensionsCommand() {
@@ -92,7 +91,7 @@ namespace ApiSdk.Users.Item.Todo.Lists.Item {
                 var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 formatter.WriteOutput(response, console);
-            }, userIdOption, todoTaskListIdOption, selectOption, expandOption, outputOption, new OutputFormatterFactoryBinder());
+            }, userIdOption, todoTaskListIdOption, selectOption, expandOption, outputOption);
             return command;
         }
         /// <summary>
@@ -122,7 +121,7 @@ namespace ApiSdk.Users.Item.Todo.Lists.Item {
                 });
                 await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 console.WriteLine("Success");
-            }, userIdOption, todoTaskListIdOption, bodyOption, new OutputFormatterFactoryBinder());
+            }, userIdOption, todoTaskListIdOption, bodyOption);
             return command;
         }
         public Command BuildTasksCommand() {

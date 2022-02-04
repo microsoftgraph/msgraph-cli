@@ -3,7 +3,6 @@ using ApiSdk.DeviceAppManagement.ManagedAppPolicies.Item.TargetApps;
 using ApiSdk.DeviceAppManagement.ManagedAppPolicies.Item.TargetedManagedAppProtection;
 using ApiSdk.DeviceAppManagement.ManagedAppPolicies.Item.WindowsInformationProtection;
 using ApiSdk.Models.Microsoft.Graph;
-using Microsoft.Graph.Cli.Core.Binding;
 using Microsoft.Graph.Cli.Core.IO;
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
@@ -40,7 +39,7 @@ namespace ApiSdk.DeviceAppManagement.ManagedAppPolicies.Item {
                 });
                 await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 console.WriteLine("Success");
-            }, managedAppPolicyIdOption, new OutputFormatterFactoryBinder());
+            }, managedAppPolicyIdOption);
             return command;
         }
         /// <summary>
@@ -76,7 +75,7 @@ namespace ApiSdk.DeviceAppManagement.ManagedAppPolicies.Item {
                 var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 formatter.WriteOutput(response, console);
-            }, managedAppPolicyIdOption, selectOption, expandOption, outputOption, new OutputFormatterFactoryBinder());
+            }, managedAppPolicyIdOption, selectOption, expandOption, outputOption);
             return command;
         }
         public Command BuildManagedAppProtectionCommand() {
@@ -108,7 +107,7 @@ namespace ApiSdk.DeviceAppManagement.ManagedAppPolicies.Item {
                 });
                 await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 console.WriteLine("Success");
-            }, managedAppPolicyIdOption, bodyOption, new OutputFormatterFactoryBinder());
+            }, managedAppPolicyIdOption, bodyOption);
             return command;
         }
         public Command BuildTargetAppsCommand() {

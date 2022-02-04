@@ -4,7 +4,6 @@ using ApiSdk.GroupSettingTemplates.Item.GetMemberGroups;
 using ApiSdk.GroupSettingTemplates.Item.GetMemberObjects;
 using ApiSdk.GroupSettingTemplates.Item.Restore;
 using ApiSdk.Models.Microsoft.Graph;
-using Microsoft.Graph.Cli.Core.Binding;
 using Microsoft.Graph.Cli.Core.IO;
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
@@ -53,7 +52,7 @@ namespace ApiSdk.GroupSettingTemplates.Item {
                 });
                 await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 console.WriteLine("Success");
-            }, groupSettingTemplateIdOption, new OutputFormatterFactoryBinder());
+            }, groupSettingTemplateIdOption);
             return command;
         }
         /// <summary>
@@ -89,7 +88,7 @@ namespace ApiSdk.GroupSettingTemplates.Item {
                 var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 formatter.WriteOutput(response, console);
-            }, groupSettingTemplateIdOption, selectOption, expandOption, outputOption, new OutputFormatterFactoryBinder());
+            }, groupSettingTemplateIdOption, selectOption, expandOption, outputOption);
             return command;
         }
         public Command BuildGetMemberGroupsCommand() {
@@ -127,7 +126,7 @@ namespace ApiSdk.GroupSettingTemplates.Item {
                 });
                 await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 console.WriteLine("Success");
-            }, groupSettingTemplateIdOption, bodyOption, new OutputFormatterFactoryBinder());
+            }, groupSettingTemplateIdOption, bodyOption);
             return command;
         }
         public Command BuildRestoreCommand() {

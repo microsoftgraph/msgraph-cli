@@ -1,6 +1,5 @@
 using ApiSdk.Drive.List.Items.Item.Versions.Item;
 using ApiSdk.Models.Microsoft.Graph;
-using Microsoft.Graph.Cli.Core.Binding;
 using Microsoft.Graph.Cli.Core.IO;
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
@@ -59,7 +58,7 @@ namespace ApiSdk.Drive.List.Items.Item.Versions {
                 var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 formatter.WriteOutput(response, console);
-            }, listItemIdOption, bodyOption, outputOption, new OutputFormatterFactoryBinder());
+            }, listItemIdOption, bodyOption, outputOption);
             return command;
         }
         /// <summary>
@@ -126,7 +125,7 @@ namespace ApiSdk.Drive.List.Items.Item.Versions {
                 var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 formatter.WriteOutput(response, console);
-            }, listItemIdOption, topOption, skipOption, searchOption, filterOption, countOption, orderbyOption, selectOption, expandOption, outputOption, new OutputFormatterFactoryBinder());
+            }, listItemIdOption, topOption, skipOption, searchOption, filterOption, countOption, orderbyOption, selectOption, expandOption, outputOption);
             return command;
         }
         /// <summary>

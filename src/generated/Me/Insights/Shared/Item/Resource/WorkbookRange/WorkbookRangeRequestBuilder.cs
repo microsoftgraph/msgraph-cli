@@ -26,7 +26,6 @@ using ApiSdk.Me.Insights.Shared.Item.Resource.WorkbookRange.Unmerge;
 using ApiSdk.Me.Insights.Shared.Item.Resource.WorkbookRange.UsedRange;
 using ApiSdk.Me.Insights.Shared.Item.Resource.WorkbookRange.UsedRangeWithValuesOnly;
 using ApiSdk.Me.Insights.Shared.Item.Resource.WorkbookRange.VisibleView;
-using Microsoft.Graph.Cli.Core.Binding;
 using Microsoft.Graph.Cli.Core.IO;
 using Microsoft.Kiota.Abstractions;
 using System;

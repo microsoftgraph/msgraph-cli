@@ -3,7 +3,6 @@ using ApiSdk.Users.Item.Planner.Plans.Item.Buckets.Item.Tasks.Item.AssignedToTas
 using ApiSdk.Users.Item.Planner.Plans.Item.Buckets.Item.Tasks.Item.BucketTaskBoardFormat;
 using ApiSdk.Users.Item.Planner.Plans.Item.Buckets.Item.Tasks.Item.Details;
 using ApiSdk.Users.Item.Planner.Plans.Item.Buckets.Item.Tasks.Item.ProgressTaskBoardFormat;
-using Microsoft.Graph.Cli.Core.Binding;
 using Microsoft.Graph.Cli.Core.IO;
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
@@ -68,7 +67,7 @@ namespace ApiSdk.Users.Item.Planner.Plans.Item.Buckets.Item.Tasks.Item {
                 });
                 await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 console.WriteLine("Success");
-            }, userIdOption, plannerPlanIdOption, plannerBucketIdOption, plannerTaskIdOption, new OutputFormatterFactoryBinder());
+            }, userIdOption, plannerPlanIdOption, plannerBucketIdOption, plannerTaskIdOption);
             return command;
         }
         public Command BuildDetailsCommand() {
@@ -124,7 +123,7 @@ namespace ApiSdk.Users.Item.Planner.Plans.Item.Buckets.Item.Tasks.Item {
                 var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 formatter.WriteOutput(response, console);
-            }, userIdOption, plannerPlanIdOption, plannerBucketIdOption, plannerTaskIdOption, selectOption, expandOption, outputOption, new OutputFormatterFactoryBinder());
+            }, userIdOption, plannerPlanIdOption, plannerBucketIdOption, plannerTaskIdOption, selectOption, expandOption, outputOption);
             return command;
         }
         /// <summary>
@@ -162,7 +161,7 @@ namespace ApiSdk.Users.Item.Planner.Plans.Item.Buckets.Item.Tasks.Item {
                 });
                 await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 console.WriteLine("Success");
-            }, userIdOption, plannerPlanIdOption, plannerBucketIdOption, plannerTaskIdOption, bodyOption, new OutputFormatterFactoryBinder());
+            }, userIdOption, plannerPlanIdOption, plannerBucketIdOption, plannerTaskIdOption, bodyOption);
             return command;
         }
         public Command BuildProgressTaskBoardFormatCommand() {

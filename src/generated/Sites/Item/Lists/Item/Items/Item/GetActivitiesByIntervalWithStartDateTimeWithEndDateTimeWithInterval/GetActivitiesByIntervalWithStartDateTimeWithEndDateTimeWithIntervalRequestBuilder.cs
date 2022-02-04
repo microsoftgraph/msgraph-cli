@@ -1,4 +1,3 @@
-using Microsoft.Graph.Cli.Core.Binding;
 using Microsoft.Graph.Cli.Core.IO;
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
@@ -60,7 +59,7 @@ namespace ApiSdk.Sites.Item.Lists.Item.Items.Item.GetActivitiesByIntervalWithSta
                 var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 formatter.WriteOutput(response, console);
-            }, siteIdOption, listIdOption, listItemIdOption, startDateTimeOption, endDateTimeOption, intervalOption, outputOption, new OutputFormatterFactoryBinder());
+            }, siteIdOption, listIdOption, listItemIdOption, startDateTimeOption, endDateTimeOption, intervalOption, outputOption);
             return command;
         }
         /// <summary>

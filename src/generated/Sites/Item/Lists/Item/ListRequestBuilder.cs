@@ -4,7 +4,6 @@ using ApiSdk.Sites.Item.Lists.Item.ContentTypes;
 using ApiSdk.Sites.Item.Lists.Item.Drive;
 using ApiSdk.Sites.Item.Lists.Item.Items;
 using ApiSdk.Sites.Item.Lists.Item.Subscriptions;
-using Microsoft.Graph.Cli.Core.Binding;
 using Microsoft.Graph.Cli.Core.IO;
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
@@ -66,7 +65,7 @@ namespace ApiSdk.Sites.Item.Lists.Item {
                 });
                 await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 console.WriteLine("Success");
-            }, siteIdOption, listIdOption, new OutputFormatterFactoryBinder());
+            }, siteIdOption, listIdOption);
             return command;
         }
         public Command BuildDriveCommand() {
@@ -114,7 +113,7 @@ namespace ApiSdk.Sites.Item.Lists.Item {
                 var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 formatter.WriteOutput(response, console);
-            }, siteIdOption, listIdOption, selectOption, expandOption, outputOption, new OutputFormatterFactoryBinder());
+            }, siteIdOption, listIdOption, selectOption, expandOption, outputOption);
             return command;
         }
         public Command BuildItemsCommand() {
@@ -154,7 +153,7 @@ namespace ApiSdk.Sites.Item.Lists.Item {
                 });
                 await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 console.WriteLine("Success");
-            }, siteIdOption, listIdOption, bodyOption, new OutputFormatterFactoryBinder());
+            }, siteIdOption, listIdOption, bodyOption);
             return command;
         }
         public Command BuildSubscriptionsCommand() {

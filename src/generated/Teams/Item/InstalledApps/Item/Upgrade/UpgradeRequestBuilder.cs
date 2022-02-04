@@ -1,4 +1,3 @@
-using Microsoft.Graph.Cli.Core.Binding;
 using Microsoft.Graph.Cli.Core.IO;
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
@@ -39,7 +38,7 @@ namespace ApiSdk.Teams.Item.InstalledApps.Item.Upgrade {
                 });
                 await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 console.WriteLine("Success");
-            }, teamIdOption, teamsAppInstallationIdOption, new OutputFormatterFactoryBinder());
+            }, teamIdOption, teamsAppInstallationIdOption);
             return command;
         }
         /// <summary>

@@ -3,7 +3,6 @@ using ApiSdk.Users.Item.Planner.Tasks.Item.AssignedToTaskBoardFormat;
 using ApiSdk.Users.Item.Planner.Tasks.Item.BucketTaskBoardFormat;
 using ApiSdk.Users.Item.Planner.Tasks.Item.Details;
 using ApiSdk.Users.Item.Planner.Tasks.Item.ProgressTaskBoardFormat;
-using Microsoft.Graph.Cli.Core.Binding;
 using Microsoft.Graph.Cli.Core.IO;
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
@@ -60,7 +59,7 @@ namespace ApiSdk.Users.Item.Planner.Tasks.Item {
                 });
                 await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 console.WriteLine("Success");
-            }, userIdOption, plannerTaskIdOption, new OutputFormatterFactoryBinder());
+            }, userIdOption, plannerTaskIdOption);
             return command;
         }
         public Command BuildDetailsCommand() {
@@ -108,7 +107,7 @@ namespace ApiSdk.Users.Item.Planner.Tasks.Item {
                 var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 formatter.WriteOutput(response, console);
-            }, userIdOption, plannerTaskIdOption, selectOption, expandOption, outputOption, new OutputFormatterFactoryBinder());
+            }, userIdOption, plannerTaskIdOption, selectOption, expandOption, outputOption);
             return command;
         }
         /// <summary>
@@ -138,7 +137,7 @@ namespace ApiSdk.Users.Item.Planner.Tasks.Item {
                 });
                 await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 console.WriteLine("Success");
-            }, userIdOption, plannerTaskIdOption, bodyOption, new OutputFormatterFactoryBinder());
+            }, userIdOption, plannerTaskIdOption, bodyOption);
             return command;
         }
         public Command BuildProgressTaskBoardFormatCommand() {

@@ -5,7 +5,6 @@ using ApiSdk.Sites.Item.Lists.Item.ContentTypes.Item.Base.IsPublished;
 using ApiSdk.Sites.Item.Lists.Item.ContentTypes.Item.Base.Publish;
 using ApiSdk.Sites.Item.Lists.Item.ContentTypes.Item.Base.Ref;
 using ApiSdk.Sites.Item.Lists.Item.ContentTypes.Item.Base.Unpublish;
-using Microsoft.Graph.Cli.Core.Binding;
 using Microsoft.Graph.Cli.Core.IO;
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
@@ -79,7 +78,7 @@ namespace ApiSdk.Sites.Item.Lists.Item.ContentTypes.Item.Base {
                 var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 formatter.WriteOutput(response, console);
-            }, siteIdOption, listIdOption, contentTypeIdOption, selectOption, expandOption, outputOption, new OutputFormatterFactoryBinder());
+            }, siteIdOption, listIdOption, contentTypeIdOption, selectOption, expandOption, outputOption);
             return command;
         }
         public Command BuildPublishCommand() {

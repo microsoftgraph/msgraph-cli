@@ -2,7 +2,6 @@ using ApiSdk.Models.Microsoft.Graph;
 using ApiSdk.Sites.Item.Onenote.Pages.Item.ParentSection.ParentSectionGroup.ParentNotebook.CopyNotebook;
 using ApiSdk.Sites.Item.Onenote.Pages.Item.ParentSection.ParentSectionGroup.ParentNotebook.SectionGroups;
 using ApiSdk.Sites.Item.Onenote.Pages.Item.ParentSection.ParentSectionGroup.ParentNotebook.Sections;
-using Microsoft.Graph.Cli.Core.Binding;
 using Microsoft.Graph.Cli.Core.IO;
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
@@ -49,7 +48,7 @@ namespace ApiSdk.Sites.Item.Onenote.Pages.Item.ParentSection.ParentSectionGroup.
                 });
                 await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 console.WriteLine("Success");
-            }, siteIdOption, onenotePageIdOption, new OutputFormatterFactoryBinder());
+            }, siteIdOption, onenotePageIdOption);
             return command;
         }
         /// <summary>
@@ -89,7 +88,7 @@ namespace ApiSdk.Sites.Item.Onenote.Pages.Item.ParentSection.ParentSectionGroup.
                 var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 formatter.WriteOutput(response, console);
-            }, siteIdOption, onenotePageIdOption, selectOption, expandOption, outputOption, new OutputFormatterFactoryBinder());
+            }, siteIdOption, onenotePageIdOption, selectOption, expandOption, outputOption);
             return command;
         }
         /// <summary>
@@ -119,7 +118,7 @@ namespace ApiSdk.Sites.Item.Onenote.Pages.Item.ParentSection.ParentSectionGroup.
                 });
                 await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 console.WriteLine("Success");
-            }, siteIdOption, onenotePageIdOption, bodyOption, new OutputFormatterFactoryBinder());
+            }, siteIdOption, onenotePageIdOption, bodyOption);
             return command;
         }
         public Command BuildSectionGroupsCommand() {

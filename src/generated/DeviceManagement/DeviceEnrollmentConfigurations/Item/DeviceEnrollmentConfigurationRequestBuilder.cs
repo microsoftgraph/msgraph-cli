@@ -2,7 +2,6 @@ using ApiSdk.DeviceManagement.DeviceEnrollmentConfigurations.Item.Assign;
 using ApiSdk.DeviceManagement.DeviceEnrollmentConfigurations.Item.Assignments;
 using ApiSdk.DeviceManagement.DeviceEnrollmentConfigurations.Item.SetPriority;
 using ApiSdk.Models.Microsoft.Graph;
-using Microsoft.Graph.Cli.Core.Binding;
 using Microsoft.Graph.Cli.Core.IO;
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
@@ -55,7 +54,7 @@ namespace ApiSdk.DeviceManagement.DeviceEnrollmentConfigurations.Item {
                 });
                 await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 console.WriteLine("Success");
-            }, deviceEnrollmentConfigurationIdOption, new OutputFormatterFactoryBinder());
+            }, deviceEnrollmentConfigurationIdOption);
             return command;
         }
         /// <summary>
@@ -91,7 +90,7 @@ namespace ApiSdk.DeviceManagement.DeviceEnrollmentConfigurations.Item {
                 var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 formatter.WriteOutput(response, console);
-            }, deviceEnrollmentConfigurationIdOption, selectOption, expandOption, outputOption, new OutputFormatterFactoryBinder());
+            }, deviceEnrollmentConfigurationIdOption, selectOption, expandOption, outputOption);
             return command;
         }
         /// <summary>
@@ -117,7 +116,7 @@ namespace ApiSdk.DeviceManagement.DeviceEnrollmentConfigurations.Item {
                 });
                 await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 console.WriteLine("Success");
-            }, deviceEnrollmentConfigurationIdOption, bodyOption, new OutputFormatterFactoryBinder());
+            }, deviceEnrollmentConfigurationIdOption, bodyOption);
             return command;
         }
         public Command BuildSetPriorityCommand() {

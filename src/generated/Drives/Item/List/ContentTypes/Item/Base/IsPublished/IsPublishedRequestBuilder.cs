@@ -1,4 +1,3 @@
-using Microsoft.Graph.Cli.Core.Binding;
 using Microsoft.Graph.Cli.Core.IO;
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
@@ -44,7 +43,7 @@ namespace ApiSdk.Drives.Item.List.ContentTypes.Item.Base.IsPublished {
                 var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 formatter.WriteOutput(response, console);
-            }, driveIdOption, contentTypeIdOption, outputOption, new OutputFormatterFactoryBinder());
+            }, driveIdOption, contentTypeIdOption, outputOption);
             return command;
         }
         /// <summary>

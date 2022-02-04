@@ -1,6 +1,5 @@
 using ApiSdk.DeviceManagement.TermsAndConditions.Item.AcceptanceStatuses.Item.TermsAndConditions;
 using ApiSdk.Models.Microsoft.Graph;
-using Microsoft.Graph.Cli.Core.Binding;
 using Microsoft.Graph.Cli.Core.IO;
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
@@ -41,7 +40,7 @@ namespace ApiSdk.DeviceManagement.TermsAndConditions.Item.AcceptanceStatuses.Ite
                 });
                 await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 console.WriteLine("Success");
-            }, termsAndConditionsItemIdOption, termsAndConditionsAcceptanceStatusIdOption, new OutputFormatterFactoryBinder());
+            }, termsAndConditionsItemIdOption, termsAndConditionsAcceptanceStatusIdOption);
             return command;
         }
         /// <summary>
@@ -81,7 +80,7 @@ namespace ApiSdk.DeviceManagement.TermsAndConditions.Item.AcceptanceStatuses.Ite
                 var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 formatter.WriteOutput(response, console);
-            }, termsAndConditionsItemIdOption, termsAndConditionsAcceptanceStatusIdOption, selectOption, expandOption, outputOption, new OutputFormatterFactoryBinder());
+            }, termsAndConditionsItemIdOption, termsAndConditionsAcceptanceStatusIdOption, selectOption, expandOption, outputOption);
             return command;
         }
         /// <summary>
@@ -111,7 +110,7 @@ namespace ApiSdk.DeviceManagement.TermsAndConditions.Item.AcceptanceStatuses.Ite
                 });
                 await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 console.WriteLine("Success");
-            }, termsAndConditionsItemIdOption, termsAndConditionsAcceptanceStatusIdOption, bodyOption, new OutputFormatterFactoryBinder());
+            }, termsAndConditionsItemIdOption, termsAndConditionsAcceptanceStatusIdOption, bodyOption);
             return command;
         }
         public Command BuildTermsAndConditionsCommand() {

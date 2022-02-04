@@ -5,7 +5,6 @@ using ApiSdk.Sites.Item.Lists.Item.Items.Item.Fields;
 using ApiSdk.Sites.Item.Lists.Item.Items.Item.GetActivitiesByInterval;
 using ApiSdk.Sites.Item.Lists.Item.Items.Item.GetActivitiesByIntervalWithStartDateTimeWithEndDateTimeWithInterval;
 using ApiSdk.Sites.Item.Lists.Item.Items.Item.Versions;
-using Microsoft.Graph.Cli.Core.Binding;
 using Microsoft.Graph.Cli.Core.IO;
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
@@ -57,7 +56,7 @@ namespace ApiSdk.Sites.Item.Lists.Item.Items.Item {
                 });
                 await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 console.WriteLine("Success");
-            }, siteIdOption, listIdOption, listItemIdOption, new OutputFormatterFactoryBinder());
+            }, siteIdOption, listIdOption, listItemIdOption);
             return command;
         }
         public Command BuildDriveItemCommand() {
@@ -118,7 +117,7 @@ namespace ApiSdk.Sites.Item.Lists.Item.Items.Item {
                 var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 formatter.WriteOutput(response, console);
-            }, siteIdOption, listIdOption, listItemIdOption, selectOption, expandOption, outputOption, new OutputFormatterFactoryBinder());
+            }, siteIdOption, listIdOption, listItemIdOption, selectOption, expandOption, outputOption);
             return command;
         }
         /// <summary>
@@ -152,7 +151,7 @@ namespace ApiSdk.Sites.Item.Lists.Item.Items.Item {
                 });
                 await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 console.WriteLine("Success");
-            }, siteIdOption, listIdOption, listItemIdOption, bodyOption, new OutputFormatterFactoryBinder());
+            }, siteIdOption, listIdOption, listItemIdOption, bodyOption);
             return command;
         }
         public Command BuildVersionsCommand() {

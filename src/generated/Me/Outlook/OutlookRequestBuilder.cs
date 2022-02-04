@@ -3,7 +3,6 @@ using ApiSdk.Me.Outlook.SupportedLanguages;
 using ApiSdk.Me.Outlook.SupportedTimeZones;
 using ApiSdk.Me.Outlook.SupportedTimeZonesWithTimeZoneStandard;
 using ApiSdk.Models.Microsoft.Graph;
-using Microsoft.Graph.Cli.Core.Binding;
 using Microsoft.Graph.Cli.Core.IO;
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
@@ -36,7 +35,7 @@ namespace ApiSdk.Me.Outlook {
                 });
                 await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 console.WriteLine("Success");
-            }, new OutputFormatterFactoryBinder());
+            });
             return command;
         }
         /// <summary>
@@ -62,7 +61,7 @@ namespace ApiSdk.Me.Outlook {
                 var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 formatter.WriteOutput(response, console);
-            }, selectOption, outputOption, new OutputFormatterFactoryBinder());
+            }, selectOption, outputOption);
             return command;
         }
         public Command BuildMasterCategoriesCommand() {
@@ -94,7 +93,7 @@ namespace ApiSdk.Me.Outlook {
                 });
                 await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 console.WriteLine("Success");
-            }, bodyOption, new OutputFormatterFactoryBinder());
+            }, bodyOption);
             return command;
         }
         /// <summary>

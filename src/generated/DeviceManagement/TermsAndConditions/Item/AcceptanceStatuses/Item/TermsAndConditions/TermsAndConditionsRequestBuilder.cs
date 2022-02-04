@@ -1,6 +1,5 @@
 using ApiSdk.DeviceManagement.TermsAndConditions.Item.AcceptanceStatuses.Item.TermsAndConditions.Ref;
 using ApiSdk.Models.Microsoft.Graph;
-using Microsoft.Graph.Cli.Core.Binding;
 using Microsoft.Graph.Cli.Core.IO;
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
@@ -58,7 +57,7 @@ namespace ApiSdk.DeviceManagement.TermsAndConditions.Item.AcceptanceStatuses.Ite
                 var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 formatter.WriteOutput(response, console);
-            }, termsAndConditionsItemIdOption, termsAndConditionsAcceptanceStatusIdOption, selectOption, expandOption, outputOption, new OutputFormatterFactoryBinder());
+            }, termsAndConditionsItemIdOption, termsAndConditionsAcceptanceStatusIdOption, selectOption, expandOption, outputOption);
             return command;
         }
         public Command BuildRefCommand() {

@@ -14,7 +14,6 @@ using ApiSdk.Users.Item.Messages.Item.ReplyAll;
 using ApiSdk.Users.Item.Messages.Item.Send;
 using ApiSdk.Users.Item.Messages.Item.SingleValueExtendedProperties;
 using ApiSdk.Users.Item.Messages.Item.Value;
-using Microsoft.Graph.Cli.Core.Binding;
 using Microsoft.Graph.Cli.Core.IO;
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
@@ -103,7 +102,7 @@ namespace ApiSdk.Users.Item.Messages.Item {
                 });
                 await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 console.WriteLine("Success");
-            }, userIdOption, messageIdOption, new OutputFormatterFactoryBinder());
+            }, userIdOption, messageIdOption);
             return command;
         }
         public Command BuildExtensionsCommand() {
@@ -153,7 +152,7 @@ namespace ApiSdk.Users.Item.Messages.Item {
                 var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 formatter.WriteOutput(response, console);
-            }, userIdOption, messageIdOption, selectOption, outputOption, new OutputFormatterFactoryBinder());
+            }, userIdOption, messageIdOption, selectOption, outputOption);
             return command;
         }
         public Command BuildMoveCommand() {
@@ -199,7 +198,7 @@ namespace ApiSdk.Users.Item.Messages.Item {
                 });
                 await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 console.WriteLine("Success");
-            }, userIdOption, messageIdOption, bodyOption, new OutputFormatterFactoryBinder());
+            }, userIdOption, messageIdOption, bodyOption);
             return command;
         }
         public Command BuildReplyAllCommand() {

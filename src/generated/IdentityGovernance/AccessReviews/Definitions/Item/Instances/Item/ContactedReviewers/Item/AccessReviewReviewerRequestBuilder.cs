@@ -1,5 +1,4 @@
 using ApiSdk.Models.Microsoft.Graph;
-using Microsoft.Graph.Cli.Core.Binding;
 using Microsoft.Graph.Cli.Core.IO;
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
@@ -44,7 +43,7 @@ namespace ApiSdk.IdentityGovernance.AccessReviews.Definitions.Item.Instances.Ite
                 });
                 await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 console.WriteLine("Success");
-            }, accessReviewScheduleDefinitionIdOption, accessReviewInstanceIdOption, accessReviewReviewerIdOption, new OutputFormatterFactoryBinder());
+            }, accessReviewScheduleDefinitionIdOption, accessReviewInstanceIdOption, accessReviewReviewerIdOption);
             return command;
         }
         /// <summary>
@@ -88,7 +87,7 @@ namespace ApiSdk.IdentityGovernance.AccessReviews.Definitions.Item.Instances.Ite
                 var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 formatter.WriteOutput(response, console);
-            }, accessReviewScheduleDefinitionIdOption, accessReviewInstanceIdOption, accessReviewReviewerIdOption, selectOption, expandOption, outputOption, new OutputFormatterFactoryBinder());
+            }, accessReviewScheduleDefinitionIdOption, accessReviewInstanceIdOption, accessReviewReviewerIdOption, selectOption, expandOption, outputOption);
             return command;
         }
         /// <summary>
@@ -122,7 +121,7 @@ namespace ApiSdk.IdentityGovernance.AccessReviews.Definitions.Item.Instances.Ite
                 });
                 await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 console.WriteLine("Success");
-            }, accessReviewScheduleDefinitionIdOption, accessReviewInstanceIdOption, accessReviewReviewerIdOption, bodyOption, new OutputFormatterFactoryBinder());
+            }, accessReviewScheduleDefinitionIdOption, accessReviewInstanceIdOption, accessReviewReviewerIdOption, bodyOption);
             return command;
         }
         /// <summary>

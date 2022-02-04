@@ -8,7 +8,6 @@ using ApiSdk.Contacts.Item.MemberOf;
 using ApiSdk.Contacts.Item.Restore;
 using ApiSdk.Contacts.Item.TransitiveMemberOf;
 using ApiSdk.Models.Microsoft.Graph;
-using Microsoft.Graph.Cli.Core.Binding;
 using Microsoft.Graph.Cli.Core.IO;
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
@@ -57,7 +56,7 @@ namespace ApiSdk.Contacts.Item {
                 });
                 await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 console.WriteLine("Success");
-            }, orgContactIdOption, new OutputFormatterFactoryBinder());
+            }, orgContactIdOption);
             return command;
         }
         public Command BuildDirectReportsCommand() {
@@ -100,7 +99,7 @@ namespace ApiSdk.Contacts.Item {
                 var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 formatter.WriteOutput(response, console);
-            }, orgContactIdOption, selectOption, expandOption, outputOption, new OutputFormatterFactoryBinder());
+            }, orgContactIdOption, selectOption, expandOption, outputOption);
             return command;
         }
         public Command BuildGetMemberGroupsCommand() {
@@ -152,7 +151,7 @@ namespace ApiSdk.Contacts.Item {
                 });
                 await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 console.WriteLine("Success");
-            }, orgContactIdOption, bodyOption, new OutputFormatterFactoryBinder());
+            }, orgContactIdOption, bodyOption);
             return command;
         }
         public Command BuildRestoreCommand() {

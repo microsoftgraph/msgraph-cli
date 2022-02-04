@@ -1,6 +1,5 @@
 using ApiSdk.IdentityGovernance.AppConsent.AppConsentRequests.Item.UserConsentRequests.Item.Approval.Stages;
 using ApiSdk.Models.Microsoft.Graph;
-using Microsoft.Graph.Cli.Core.Binding;
 using Microsoft.Graph.Cli.Core.IO;
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
@@ -41,7 +40,7 @@ namespace ApiSdk.IdentityGovernance.AppConsent.AppConsentRequests.Item.UserConse
                 });
                 await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 console.WriteLine("Success");
-            }, appConsentRequestIdOption, userConsentRequestIdOption, new OutputFormatterFactoryBinder());
+            }, appConsentRequestIdOption, userConsentRequestIdOption);
             return command;
         }
         /// <summary>
@@ -81,7 +80,7 @@ namespace ApiSdk.IdentityGovernance.AppConsent.AppConsentRequests.Item.UserConse
                 var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 formatter.WriteOutput(response, console);
-            }, appConsentRequestIdOption, userConsentRequestIdOption, selectOption, expandOption, outputOption, new OutputFormatterFactoryBinder());
+            }, appConsentRequestIdOption, userConsentRequestIdOption, selectOption, expandOption, outputOption);
             return command;
         }
         /// <summary>
@@ -111,7 +110,7 @@ namespace ApiSdk.IdentityGovernance.AppConsent.AppConsentRequests.Item.UserConse
                 });
                 await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 console.WriteLine("Success");
-            }, appConsentRequestIdOption, userConsentRequestIdOption, bodyOption, new OutputFormatterFactoryBinder());
+            }, appConsentRequestIdOption, userConsentRequestIdOption, bodyOption);
             return command;
         }
         public Command BuildStagesCommand() {

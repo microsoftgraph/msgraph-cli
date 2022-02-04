@@ -4,7 +4,6 @@ using ApiSdk.DirectoryRoles.GetByIds;
 using ApiSdk.DirectoryRoles.Item;
 using ApiSdk.DirectoryRoles.ValidateProperties;
 using ApiSdk.Models.Microsoft.Graph;
-using Microsoft.Graph.Cli.Core.Binding;
 using Microsoft.Graph.Cli.Core.IO;
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
@@ -64,7 +63,7 @@ namespace ApiSdk.DirectoryRoles {
                 var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 formatter.WriteOutput(response, console);
-            }, bodyOption, outputOption, new OutputFormatterFactoryBinder());
+            }, bodyOption, outputOption);
             return command;
         }
         public Command BuildGetAvailableExtensionPropertiesCommand() {
@@ -134,7 +133,7 @@ namespace ApiSdk.DirectoryRoles {
                 var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 formatter.WriteOutput(response, console);
-            }, skipOption, searchOption, filterOption, countOption, orderbyOption, selectOption, expandOption, outputOption, new OutputFormatterFactoryBinder());
+            }, skipOption, searchOption, filterOption, countOption, orderbyOption, selectOption, expandOption, outputOption);
             return command;
         }
         public Command BuildValidatePropertiesCommand() {

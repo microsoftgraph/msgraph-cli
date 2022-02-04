@@ -1,5 +1,4 @@
 using ApiSdk.Users.Item.Insights.Shared.Item.Resource.CalendarSharingMessage.Accept;
-using Microsoft.Graph.Cli.Core.Binding;
 using Microsoft.Graph.Cli.Core.IO;
 using Microsoft.Kiota.Abstractions;
 using System;

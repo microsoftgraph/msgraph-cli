@@ -1,5 +1,4 @@
 using ApiSdk.Models.Microsoft.Graph;
-using Microsoft.Graph.Cli.Core.Binding;
 using Microsoft.Graph.Cli.Core.IO;
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
@@ -45,7 +44,7 @@ namespace ApiSdk.Me.Insights.Used.Item.Resource.WorkbookRange.UsedRangeWithValue
                 var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 formatter.WriteOutput(response, console);
-            }, usedInsightIdOption, valuesOnlyOption, outputOption, new OutputFormatterFactoryBinder());
+            }, usedInsightIdOption, valuesOnlyOption, outputOption);
             return command;
         }
         /// <summary>

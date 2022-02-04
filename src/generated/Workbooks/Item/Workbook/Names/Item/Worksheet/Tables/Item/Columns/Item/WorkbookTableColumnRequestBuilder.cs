@@ -4,7 +4,6 @@ using ApiSdk.Workbooks.Item.Workbook.Names.Item.Worksheet.Tables.Item.Columns.It
 using ApiSdk.Workbooks.Item.Workbook.Names.Item.Worksheet.Tables.Item.Columns.Item.HeaderRowRange;
 using ApiSdk.Workbooks.Item.Workbook.Names.Item.Worksheet.Tables.Item.Columns.Item.Range;
 using ApiSdk.Workbooks.Item.Workbook.Names.Item.Worksheet.Tables.Item.Columns.Item.TotalRowRange;
-using Microsoft.Graph.Cli.Core.Binding;
 using Microsoft.Graph.Cli.Core.IO;
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
@@ -53,7 +52,7 @@ namespace ApiSdk.Workbooks.Item.Workbook.Names.Item.Worksheet.Tables.Item.Column
                 });
                 await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 console.WriteLine("Success");
-            }, driveItemIdOption, workbookNamedItemIdOption, workbookTableIdOption, workbookTableColumnIdOption, new OutputFormatterFactoryBinder());
+            }, driveItemIdOption, workbookNamedItemIdOption, workbookTableIdOption, workbookTableColumnIdOption);
             return command;
         }
         public Command BuildFilterCommand() {
@@ -121,7 +120,7 @@ namespace ApiSdk.Workbooks.Item.Workbook.Names.Item.Worksheet.Tables.Item.Column
                 var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 formatter.WriteOutput(response, console);
-            }, driveItemIdOption, workbookNamedItemIdOption, workbookTableIdOption, workbookTableColumnIdOption, selectOption, expandOption, outputOption, new OutputFormatterFactoryBinder());
+            }, driveItemIdOption, workbookNamedItemIdOption, workbookTableIdOption, workbookTableColumnIdOption, selectOption, expandOption, outputOption);
             return command;
         }
         /// <summary>
@@ -159,7 +158,7 @@ namespace ApiSdk.Workbooks.Item.Workbook.Names.Item.Worksheet.Tables.Item.Column
                 });
                 await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 console.WriteLine("Success");
-            }, driveItemIdOption, workbookNamedItemIdOption, workbookTableIdOption, workbookTableColumnIdOption, bodyOption, new OutputFormatterFactoryBinder());
+            }, driveItemIdOption, workbookNamedItemIdOption, workbookTableIdOption, workbookTableColumnIdOption, bodyOption);
             return command;
         }
         /// <summary>

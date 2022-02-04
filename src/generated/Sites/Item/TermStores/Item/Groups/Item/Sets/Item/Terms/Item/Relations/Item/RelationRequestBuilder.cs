@@ -2,7 +2,6 @@ using ApiSdk.Models.Microsoft.Graph.TermStore;
 using ApiSdk.Sites.Item.TermStores.Item.Groups.Item.Sets.Item.Terms.Item.Relations.Item.FromTerm;
 using ApiSdk.Sites.Item.TermStores.Item.Groups.Item.Sets.Item.Terms.Item.Relations.Item.Set;
 using ApiSdk.Sites.Item.TermStores.Item.Groups.Item.Sets.Item.Terms.Item.Relations.Item.ToTerm;
-using Microsoft.Graph.Cli.Core.Binding;
 using Microsoft.Graph.Cli.Core.IO;
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
@@ -59,7 +58,7 @@ namespace ApiSdk.Sites.Item.TermStores.Item.Groups.Item.Sets.Item.Terms.Item.Rel
                 });
                 await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 console.WriteLine("Success");
-            }, siteIdOption, storeIdOption, groupIdOption, setIdOption, termIdOption, relationIdOption, new OutputFormatterFactoryBinder());
+            }, siteIdOption, storeIdOption, groupIdOption, setIdOption, termIdOption, relationIdOption);
             return command;
         }
         public Command BuildFromTermCommand() {
@@ -122,7 +121,7 @@ namespace ApiSdk.Sites.Item.TermStores.Item.Groups.Item.Sets.Item.Terms.Item.Rel
                 var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 formatter.WriteOutput(response, console);
-            }, siteIdOption, storeIdOption, groupIdOption, setIdOption, termIdOption, relationIdOption, selectOption, expandOption, outputOption, new OutputFormatterFactoryBinder());
+            }, siteIdOption, storeIdOption, groupIdOption, setIdOption, termIdOption, relationIdOption, selectOption, expandOption, outputOption);
             return command;
         }
         /// <summary>
@@ -168,7 +167,7 @@ namespace ApiSdk.Sites.Item.TermStores.Item.Groups.Item.Sets.Item.Terms.Item.Rel
                 });
                 await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 console.WriteLine("Success");
-            }, siteIdOption, storeIdOption, groupIdOption, setIdOption, termIdOption, relationIdOption, bodyOption, new OutputFormatterFactoryBinder());
+            }, siteIdOption, storeIdOption, groupIdOption, setIdOption, termIdOption, relationIdOption, bodyOption);
             return command;
         }
         public Command BuildSetCommand() {

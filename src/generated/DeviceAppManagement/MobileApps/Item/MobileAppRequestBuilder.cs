@@ -2,7 +2,6 @@ using ApiSdk.DeviceAppManagement.MobileApps.Item.Assign;
 using ApiSdk.DeviceAppManagement.MobileApps.Item.Assignments;
 using ApiSdk.DeviceAppManagement.MobileApps.Item.Categories;
 using ApiSdk.Models.Microsoft.Graph;
-using Microsoft.Graph.Cli.Core.Binding;
 using Microsoft.Graph.Cli.Core.IO;
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
@@ -62,7 +61,7 @@ namespace ApiSdk.DeviceAppManagement.MobileApps.Item {
                 });
                 await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 console.WriteLine("Success");
-            }, mobileAppIdOption, new OutputFormatterFactoryBinder());
+            }, mobileAppIdOption);
             return command;
         }
         /// <summary>
@@ -98,7 +97,7 @@ namespace ApiSdk.DeviceAppManagement.MobileApps.Item {
                 var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 formatter.WriteOutput(response, console);
-            }, mobileAppIdOption, selectOption, expandOption, outputOption, new OutputFormatterFactoryBinder());
+            }, mobileAppIdOption, selectOption, expandOption, outputOption);
             return command;
         }
         /// <summary>
@@ -124,7 +123,7 @@ namespace ApiSdk.DeviceAppManagement.MobileApps.Item {
                 });
                 await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 console.WriteLine("Success");
-            }, mobileAppIdOption, bodyOption, new OutputFormatterFactoryBinder());
+            }, mobileAppIdOption, bodyOption);
             return command;
         }
         /// <summary>

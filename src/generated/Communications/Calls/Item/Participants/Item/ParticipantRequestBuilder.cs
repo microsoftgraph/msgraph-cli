@@ -2,7 +2,6 @@ using ApiSdk.Communications.Calls.Item.Participants.Item.Mute;
 using ApiSdk.Communications.Calls.Item.Participants.Item.StartHoldMusic;
 using ApiSdk.Communications.Calls.Item.Participants.Item.StopHoldMusic;
 using ApiSdk.Models.Microsoft.Graph;
-using Microsoft.Graph.Cli.Core.Binding;
 using Microsoft.Graph.Cli.Core.IO;
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
@@ -43,7 +42,7 @@ namespace ApiSdk.Communications.Calls.Item.Participants.Item {
                 });
                 await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 console.WriteLine("Success");
-            }, callIdOption, participantIdOption, new OutputFormatterFactoryBinder());
+            }, callIdOption, participantIdOption);
             return command;
         }
         /// <summary>
@@ -83,7 +82,7 @@ namespace ApiSdk.Communications.Calls.Item.Participants.Item {
                 var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 formatter.WriteOutput(response, console);
-            }, callIdOption, participantIdOption, selectOption, expandOption, outputOption, new OutputFormatterFactoryBinder());
+            }, callIdOption, participantIdOption, selectOption, expandOption, outputOption);
             return command;
         }
         public Command BuildMuteCommand() {
@@ -119,7 +118,7 @@ namespace ApiSdk.Communications.Calls.Item.Participants.Item {
                 });
                 await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 console.WriteLine("Success");
-            }, callIdOption, participantIdOption, bodyOption, new OutputFormatterFactoryBinder());
+            }, callIdOption, participantIdOption, bodyOption);
             return command;
         }
         public Command BuildStartHoldMusicCommand() {

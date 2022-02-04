@@ -4,7 +4,6 @@ using ApiSdk.DeviceAppManagement.TargetedManagedAppConfigurations.Item.Assignmen
 using ApiSdk.DeviceAppManagement.TargetedManagedAppConfigurations.Item.DeploymentSummary;
 using ApiSdk.DeviceAppManagement.TargetedManagedAppConfigurations.Item.TargetApps;
 using ApiSdk.Models.Microsoft.Graph;
-using Microsoft.Graph.Cli.Core.Binding;
 using Microsoft.Graph.Cli.Core.IO;
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
@@ -67,7 +66,7 @@ namespace ApiSdk.DeviceAppManagement.TargetedManagedAppConfigurations.Item {
                 });
                 await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 console.WriteLine("Success");
-            }, targetedManagedAppConfigurationIdOption, new OutputFormatterFactoryBinder());
+            }, targetedManagedAppConfigurationIdOption);
             return command;
         }
         public Command BuildDeploymentSummaryCommand() {
@@ -111,7 +110,7 @@ namespace ApiSdk.DeviceAppManagement.TargetedManagedAppConfigurations.Item {
                 var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 formatter.WriteOutput(response, console);
-            }, targetedManagedAppConfigurationIdOption, selectOption, expandOption, outputOption, new OutputFormatterFactoryBinder());
+            }, targetedManagedAppConfigurationIdOption, selectOption, expandOption, outputOption);
             return command;
         }
         /// <summary>
@@ -137,7 +136,7 @@ namespace ApiSdk.DeviceAppManagement.TargetedManagedAppConfigurations.Item {
                 });
                 await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 console.WriteLine("Success");
-            }, targetedManagedAppConfigurationIdOption, bodyOption, new OutputFormatterFactoryBinder());
+            }, targetedManagedAppConfigurationIdOption, bodyOption);
             return command;
         }
         public Command BuildTargetAppsCommand() {

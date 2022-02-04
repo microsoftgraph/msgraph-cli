@@ -16,7 +16,6 @@ using ApiSdk.Sites.Item.Permissions;
 using ApiSdk.Sites.Item.Sites;
 using ApiSdk.Sites.Item.TermStore;
 using ApiSdk.Sites.Item.TermStores;
-using Microsoft.Graph.Cli.Core.Binding;
 using Microsoft.Graph.Cli.Core.IO;
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
@@ -81,7 +80,7 @@ namespace ApiSdk.Sites.Item {
                 });
                 await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 console.WriteLine("Success");
-            }, siteIdOption, new OutputFormatterFactoryBinder());
+            }, siteIdOption);
             return command;
         }
         public Command BuildDriveCommand() {
@@ -142,7 +141,7 @@ namespace ApiSdk.Sites.Item {
                 var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 formatter.WriteOutput(response, console);
-            }, siteIdOption, selectOption, expandOption, outputOption, new OutputFormatterFactoryBinder());
+            }, siteIdOption, selectOption, expandOption, outputOption);
             return command;
         }
         public Command BuildItemsCommand() {
@@ -202,7 +201,7 @@ namespace ApiSdk.Sites.Item {
                 });
                 await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 console.WriteLine("Success");
-            }, siteIdOption, bodyOption, new OutputFormatterFactoryBinder());
+            }, siteIdOption, bodyOption);
             return command;
         }
         public Command BuildPermissionsCommand() {

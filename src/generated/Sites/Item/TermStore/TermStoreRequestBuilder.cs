@@ -1,7 +1,6 @@
 using ApiSdk.Models.Microsoft.Graph.TermStore;
 using ApiSdk.Sites.Item.TermStore.Groups;
 using ApiSdk.Sites.Item.TermStore.Sets;
-using Microsoft.Graph.Cli.Core.Binding;
 using Microsoft.Graph.Cli.Core.IO;
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
@@ -38,7 +37,7 @@ namespace ApiSdk.Sites.Item.TermStore {
                 });
                 await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 console.WriteLine("Success");
-            }, siteIdOption, new OutputFormatterFactoryBinder());
+            }, siteIdOption);
             return command;
         }
         /// <summary>
@@ -74,7 +73,7 @@ namespace ApiSdk.Sites.Item.TermStore {
                 var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 formatter.WriteOutput(response, console);
-            }, siteIdOption, selectOption, expandOption, outputOption, new OutputFormatterFactoryBinder());
+            }, siteIdOption, selectOption, expandOption, outputOption);
             return command;
         }
         public Command BuildGroupsCommand() {
@@ -110,7 +109,7 @@ namespace ApiSdk.Sites.Item.TermStore {
                 });
                 await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 console.WriteLine("Success");
-            }, siteIdOption, bodyOption, new OutputFormatterFactoryBinder());
+            }, siteIdOption, bodyOption);
             return command;
         }
         public Command BuildSetsCommand() {

@@ -6,7 +6,6 @@ using ApiSdk.Teams.Item.Channels.Item.Messages;
 using ApiSdk.Teams.Item.Channels.Item.ProvisionEmail;
 using ApiSdk.Teams.Item.Channels.Item.RemoveEmail;
 using ApiSdk.Teams.Item.Channels.Item.Tabs;
-using Microsoft.Graph.Cli.Core.Binding;
 using Microsoft.Graph.Cli.Core.IO;
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
@@ -53,7 +52,7 @@ namespace ApiSdk.Teams.Item.Channels.Item {
                 });
                 await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 console.WriteLine("Success");
-            }, teamIdOption, channelIdOption, new OutputFormatterFactoryBinder());
+            }, teamIdOption, channelIdOption);
             return command;
         }
         public Command BuildFilesFolderCommand() {
@@ -102,7 +101,7 @@ namespace ApiSdk.Teams.Item.Channels.Item {
                 var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 formatter.WriteOutput(response, console);
-            }, teamIdOption, channelIdOption, selectOption, expandOption, outputOption, new OutputFormatterFactoryBinder());
+            }, teamIdOption, channelIdOption, selectOption, expandOption, outputOption);
             return command;
         }
         public Command BuildMembersCommand() {
@@ -153,7 +152,7 @@ namespace ApiSdk.Teams.Item.Channels.Item {
                 });
                 await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 console.WriteLine("Success");
-            }, teamIdOption, channelIdOption, bodyOption, new OutputFormatterFactoryBinder());
+            }, teamIdOption, channelIdOption, bodyOption);
             return command;
         }
         public Command BuildProvisionEmailCommand() {

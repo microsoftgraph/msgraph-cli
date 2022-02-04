@@ -1,4 +1,3 @@
-using Microsoft.Graph.Cli.Core.Binding;
 using Microsoft.Graph.Cli.Core.IO;
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
@@ -42,7 +41,7 @@ namespace ApiSdk.Identity.B2xUserFlows.Item.UserAttributeAssignments.SetOrder {
                 });
                 await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 console.WriteLine("Success");
-            }, b2xIdentityUserFlowIdOption, bodyOption, new OutputFormatterFactoryBinder());
+            }, b2xIdentityUserFlowIdOption, bodyOption);
             return command;
         }
         /// <summary>

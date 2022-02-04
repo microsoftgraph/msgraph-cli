@@ -4,7 +4,6 @@ using ApiSdk.Domains.Item.ServiceConfigurationRecords;
 using ApiSdk.Domains.Item.VerificationDnsRecords;
 using ApiSdk.Domains.Item.Verify;
 using ApiSdk.Models.Microsoft.Graph;
-using Microsoft.Graph.Cli.Core.Binding;
 using Microsoft.Graph.Cli.Core.IO;
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
@@ -41,7 +40,7 @@ namespace ApiSdk.Domains.Item {
                 });
                 await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 console.WriteLine("Success");
-            }, domainIdOption, new OutputFormatterFactoryBinder());
+            }, domainIdOption);
             return command;
         }
         public Command BuildDomainNameReferencesCommand() {
@@ -90,7 +89,7 @@ namespace ApiSdk.Domains.Item {
                 var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 formatter.WriteOutput(response, console);
-            }, domainIdOption, selectOption, expandOption, outputOption, new OutputFormatterFactoryBinder());
+            }, domainIdOption, selectOption, expandOption, outputOption);
             return command;
         }
         /// <summary>
@@ -116,7 +115,7 @@ namespace ApiSdk.Domains.Item {
                 });
                 await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 console.WriteLine("Success");
-            }, domainIdOption, bodyOption, new OutputFormatterFactoryBinder());
+            }, domainIdOption, bodyOption);
             return command;
         }
         public Command BuildServiceConfigurationRecordsCommand() {

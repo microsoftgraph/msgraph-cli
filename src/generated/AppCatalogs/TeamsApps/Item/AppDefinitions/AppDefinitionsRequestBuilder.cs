@@ -1,6 +1,5 @@
 using ApiSdk.AppCatalogs.TeamsApps.Item.AppDefinitions.Item;
 using ApiSdk.Models.Microsoft.Graph;
-using Microsoft.Graph.Cli.Core.Binding;
 using Microsoft.Graph.Cli.Core.IO;
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
@@ -58,7 +57,7 @@ namespace ApiSdk.AppCatalogs.TeamsApps.Item.AppDefinitions {
                 var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 formatter.WriteOutput(response, console);
-            }, teamsAppIdOption, bodyOption, outputOption, new OutputFormatterFactoryBinder());
+            }, teamsAppIdOption, bodyOption, outputOption);
             return command;
         }
         /// <summary>
@@ -125,7 +124,7 @@ namespace ApiSdk.AppCatalogs.TeamsApps.Item.AppDefinitions {
                 var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 formatter.WriteOutput(response, console);
-            }, teamsAppIdOption, topOption, skipOption, searchOption, filterOption, countOption, orderbyOption, selectOption, expandOption, outputOption, new OutputFormatterFactoryBinder());
+            }, teamsAppIdOption, topOption, skipOption, searchOption, filterOption, countOption, orderbyOption, selectOption, expandOption, outputOption);
             return command;
         }
         /// <summary>
