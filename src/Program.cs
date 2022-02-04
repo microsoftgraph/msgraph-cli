@@ -78,7 +78,7 @@ namespace Microsoft.Graph.Cli
             var logoutCommand = new LogoutCommand(new LogoutService());
             commands.Add(logoutCommand.Build());
 
-            var builder = BuildCommandLine(client, commands).UseDefaults();
+            var builder = BuildCommandLine(client, commands).UseDefaults().UseHost(CreateHostBuilder);
             builder.AddMiddleware((invocation) => {
                 var host = invocation.GetHost();
                 var outputFormatterFactory = host.Services.GetRequiredService<IOutputFormatterFactory>();
@@ -93,7 +93,7 @@ namespace Microsoft.Graph.Cli
                 }
             });
 
-            var parser = builder.UseHost(CreateHostBuilder).Build();
+            var parser = builder.Build();
 
             return await parser.InvokeAsync(args);
         }
