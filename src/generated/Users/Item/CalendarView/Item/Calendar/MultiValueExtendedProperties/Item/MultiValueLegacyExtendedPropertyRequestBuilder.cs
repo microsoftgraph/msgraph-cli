@@ -41,7 +41,7 @@ namespace ApiSdk.Users.Item.CalendarView.Item.Calendar.MultiValueExtendedPropert
             command.SetHandler(async (string userId, string eventId, string multiValueLegacyExtendedPropertyId, IOutputFormatterFactory outputFormatterFactory, IConsole console) => {
                 var requestInfo = CreateDeleteRequestInformation(q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, userIdOption, eventIdOption, multiValueLegacyExtendedPropertyIdOption);
             return command;
@@ -119,7 +119,7 @@ namespace ApiSdk.Users.Item.CalendarView.Item.Calendar.MultiValueExtendedPropert
                 var model = parseNode.GetObjectValue<MultiValueLegacyExtendedProperty>();
                 var requestInfo = CreatePatchRequestInformation(model, q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, userIdOption, eventIdOption, multiValueLegacyExtendedPropertyIdOption, bodyOption);
             return command;

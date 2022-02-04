@@ -37,7 +37,7 @@ namespace ApiSdk.Me.ContactFolders.Item.ChildFolders.Item {
             command.SetHandler(async (string contactFolderId, string contactFolderId1, IOutputFormatterFactory outputFormatterFactory, IConsole console) => {
                 var requestInfo = CreateDeleteRequestInformation(q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, contactFolderIdOption, contactFolderId1Option);
             return command;
@@ -107,7 +107,7 @@ namespace ApiSdk.Me.ContactFolders.Item.ChildFolders.Item {
                 var model = parseNode.GetObjectValue<ContactFolder>();
                 var requestInfo = CreatePatchRequestInformation(model, q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, contactFolderIdOption, contactFolderId1Option, bodyOption);
             return command;

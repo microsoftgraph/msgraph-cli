@@ -36,7 +36,7 @@ namespace ApiSdk.Users.Item.ManagedDevices.Item.Retire {
             command.SetHandler(async (string userId, string managedDeviceId, IOutputFormatterFactory outputFormatterFactory, IConsole console) => {
                 var requestInfo = CreatePostRequestInformation(q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, userIdOption, managedDeviceIdOption);
             return command;

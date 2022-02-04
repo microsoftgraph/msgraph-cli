@@ -33,7 +33,7 @@ namespace ApiSdk.DeviceAppManagement.MobileAppConfigurations.Item.UserStatusSumm
             command.SetHandler(async (string managedDeviceMobileAppConfigurationId, IOutputFormatterFactory outputFormatterFactory, IConsole console) => {
                 var requestInfo = CreateDeleteRequestInformation(q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, managedDeviceMobileAppConfigurationIdOption);
             return command;
@@ -95,7 +95,7 @@ namespace ApiSdk.DeviceAppManagement.MobileAppConfigurations.Item.UserStatusSumm
                 var model = parseNode.GetObjectValue<ManagedDeviceMobileAppConfigurationUserSummary>();
                 var requestInfo = CreatePatchRequestInformation(model, q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, managedDeviceMobileAppConfigurationIdOption, bodyOption);
             return command;

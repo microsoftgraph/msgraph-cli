@@ -34,7 +34,7 @@ namespace ApiSdk.DeviceManagement.ExchangeConnectors.Item {
             command.SetHandler(async (string deviceManagementExchangeConnectorId, IOutputFormatterFactory outputFormatterFactory, IConsole console) => {
                 var requestInfo = CreateDeleteRequestInformation(q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, deviceManagementExchangeConnectorIdOption);
             return command;
@@ -96,7 +96,7 @@ namespace ApiSdk.DeviceManagement.ExchangeConnectors.Item {
                 var model = parseNode.GetObjectValue<DeviceManagementExchangeConnector>();
                 var requestInfo = CreatePatchRequestInformation(model, q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, deviceManagementExchangeConnectorIdOption, bodyOption);
             return command;

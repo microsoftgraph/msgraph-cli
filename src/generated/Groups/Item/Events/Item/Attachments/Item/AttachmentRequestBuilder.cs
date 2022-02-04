@@ -41,7 +41,7 @@ namespace ApiSdk.Groups.Item.Events.Item.Attachments.Item {
             command.SetHandler(async (string groupId, string eventId, string attachmentId, IOutputFormatterFactory outputFormatterFactory, IConsole console) => {
                 var requestInfo = CreateDeleteRequestInformation(q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, groupIdOption, eventIdOption, attachmentIdOption);
             return command;
@@ -119,7 +119,7 @@ namespace ApiSdk.Groups.Item.Events.Item.Attachments.Item {
                 var model = parseNode.GetObjectValue<Attachment>();
                 var requestInfo = CreatePatchRequestInformation(model, q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, groupIdOption, eventIdOption, attachmentIdOption, bodyOption);
             return command;

@@ -37,7 +37,7 @@ namespace ApiSdk.DeviceManagement.DeviceCompliancePolicies.Item.DeviceStatuses.I
             command.SetHandler(async (string deviceCompliancePolicyId, string deviceComplianceDeviceStatusId, IOutputFormatterFactory outputFormatterFactory, IConsole console) => {
                 var requestInfo = CreateDeleteRequestInformation(q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, deviceCompliancePolicyIdOption, deviceComplianceDeviceStatusIdOption);
             return command;
@@ -107,7 +107,7 @@ namespace ApiSdk.DeviceManagement.DeviceCompliancePolicies.Item.DeviceStatuses.I
                 var model = parseNode.GetObjectValue<DeviceComplianceDeviceStatus>();
                 var requestInfo = CreatePatchRequestInformation(model, q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, deviceCompliancePolicyIdOption, deviceComplianceDeviceStatusIdOption, bodyOption);
             return command;

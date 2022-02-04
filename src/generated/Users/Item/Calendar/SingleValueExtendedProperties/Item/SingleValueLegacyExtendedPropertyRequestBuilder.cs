@@ -37,7 +37,7 @@ namespace ApiSdk.Users.Item.Calendar.SingleValueExtendedProperties.Item {
             command.SetHandler(async (string userId, string singleValueLegacyExtendedPropertyId, IOutputFormatterFactory outputFormatterFactory, IConsole console) => {
                 var requestInfo = CreateDeleteRequestInformation(q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, userIdOption, singleValueLegacyExtendedPropertyIdOption);
             return command;
@@ -107,7 +107,7 @@ namespace ApiSdk.Users.Item.Calendar.SingleValueExtendedProperties.Item {
                 var model = parseNode.GetObjectValue<SingleValueLegacyExtendedProperty>();
                 var requestInfo = CreatePatchRequestInformation(model, q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, userIdOption, singleValueLegacyExtendedPropertyIdOption, bodyOption);
             return command;

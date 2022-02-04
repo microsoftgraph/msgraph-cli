@@ -39,7 +39,7 @@ namespace ApiSdk.Groups.Item.ValidateProperties {
                 var model = parseNode.GetObjectValue<ValidatePropertiesRequestBody>();
                 var requestInfo = CreatePostRequestInformation(model, q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, groupIdOption, bodyOption);
             return command;

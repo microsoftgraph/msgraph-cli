@@ -40,7 +40,7 @@ namespace ApiSdk.Communications.Calls.Item.Participants.Item {
             command.SetHandler(async (string callId, string participantId, IOutputFormatterFactory outputFormatterFactory, IConsole console) => {
                 var requestInfo = CreateDeleteRequestInformation(q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, callIdOption, participantIdOption);
             return command;
@@ -116,7 +116,7 @@ namespace ApiSdk.Communications.Calls.Item.Participants.Item {
                 var model = parseNode.GetObjectValue<Participant>();
                 var requestInfo = CreatePatchRequestInformation(model, q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, callIdOption, participantIdOption, bodyOption);
             return command;

@@ -47,7 +47,7 @@ namespace ApiSdk.Sites.Item.Lists.Item.ContentTypes.Item.CopyToDefaultContentLoc
                 var model = parseNode.GetObjectValue<CopyToDefaultContentLocationRequestBody>();
                 var requestInfo = CreatePostRequestInformation(model, q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, siteIdOption, listIdOption, contentTypeIdOption, bodyOption);
             return command;

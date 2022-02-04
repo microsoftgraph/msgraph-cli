@@ -39,7 +39,7 @@ namespace ApiSdk.Me.Insights.Used.Item.Resource.ScheduleChangeRequest.Approve {
                 var model = parseNode.GetObjectValue<ApproveRequestBody>();
                 var requestInfo = CreatePostRequestInformation(model, q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, usedInsightIdOption, bodyOption);
             return command;

@@ -78,7 +78,7 @@ namespace ApiSdk.Users.Item.Photos.Item.Value {
                 using var stream = file.OpenRead();
                 var requestInfo = CreatePutRequestInformation(stream, q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, userIdOption, profilePhotoIdOption, bodyOption);
             return command;

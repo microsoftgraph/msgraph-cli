@@ -33,7 +33,7 @@ namespace ApiSdk.AuthenticationMethodsPolicy.AuthenticationMethodConfigurations.
             command.SetHandler(async (string authenticationMethodConfigurationId, IOutputFormatterFactory outputFormatterFactory, IConsole console) => {
                 var requestInfo = CreateDeleteRequestInformation(q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, authenticationMethodConfigurationIdOption);
             return command;
@@ -95,7 +95,7 @@ namespace ApiSdk.AuthenticationMethodsPolicy.AuthenticationMethodConfigurations.
                 var model = parseNode.GetObjectValue<AuthenticationMethodConfiguration>();
                 var requestInfo = CreatePatchRequestInformation(model, q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, authenticationMethodConfigurationIdOption, bodyOption);
             return command;

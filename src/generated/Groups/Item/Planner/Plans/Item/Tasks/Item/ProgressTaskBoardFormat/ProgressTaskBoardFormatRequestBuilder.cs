@@ -41,7 +41,7 @@ namespace ApiSdk.Groups.Item.Planner.Plans.Item.Tasks.Item.ProgressTaskBoardForm
             command.SetHandler(async (string groupId, string plannerPlanId, string plannerTaskId, IOutputFormatterFactory outputFormatterFactory, IConsole console) => {
                 var requestInfo = CreateDeleteRequestInformation(q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, groupIdOption, plannerPlanIdOption, plannerTaskIdOption);
             return command;
@@ -119,7 +119,7 @@ namespace ApiSdk.Groups.Item.Planner.Plans.Item.Tasks.Item.ProgressTaskBoardForm
                 var model = parseNode.GetObjectValue<PlannerProgressTaskBoardTaskFormat>();
                 var requestInfo = CreatePatchRequestInformation(model, q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, groupIdOption, plannerPlanIdOption, plannerTaskIdOption, bodyOption);
             return command;

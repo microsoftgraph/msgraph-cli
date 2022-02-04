@@ -33,7 +33,7 @@ namespace ApiSdk.Security.SecureScores.Item {
             command.SetHandler(async (string secureScoreId, IOutputFormatterFactory outputFormatterFactory, IConsole console) => {
                 var requestInfo = CreateDeleteRequestInformation(q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, secureScoreIdOption);
             return command;
@@ -95,7 +95,7 @@ namespace ApiSdk.Security.SecureScores.Item {
                 var model = parseNode.GetObjectValue<SecureScore>();
                 var requestInfo = CreatePatchRequestInformation(model, q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, secureScoreIdOption, bodyOption);
             return command;

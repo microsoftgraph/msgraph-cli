@@ -43,7 +43,7 @@ namespace ApiSdk.Workbooks.Item.Workbook.Worksheets.Item.PivotTables.Item {
             command.SetHandler(async (string driveItemId, string workbookWorksheetId, string workbookPivotTableId, IOutputFormatterFactory outputFormatterFactory, IConsole console) => {
                 var requestInfo = CreateDeleteRequestInformation(q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, driveItemIdOption, workbookWorksheetIdOption, workbookPivotTableIdOption);
             return command;
@@ -121,7 +121,7 @@ namespace ApiSdk.Workbooks.Item.Workbook.Worksheets.Item.PivotTables.Item {
                 var model = parseNode.GetObjectValue<WorkbookPivotTable>();
                 var requestInfo = CreatePatchRequestInformation(model, q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, driveItemIdOption, workbookWorksheetIdOption, workbookPivotTableIdOption, bodyOption);
             return command;

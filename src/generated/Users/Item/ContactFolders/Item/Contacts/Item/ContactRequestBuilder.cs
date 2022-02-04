@@ -45,7 +45,7 @@ namespace ApiSdk.Users.Item.ContactFolders.Item.Contacts.Item {
             command.SetHandler(async (string userId, string contactFolderId, string contactId, IOutputFormatterFactory outputFormatterFactory, IConsole console) => {
                 var requestInfo = CreateDeleteRequestInformation(q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, userIdOption, contactFolderIdOption, contactIdOption);
             return command;
@@ -143,7 +143,7 @@ namespace ApiSdk.Users.Item.ContactFolders.Item.Contacts.Item {
                 var model = parseNode.GetObjectValue<Contact>();
                 var requestInfo = CreatePatchRequestInformation(model, q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, userIdOption, contactFolderIdOption, contactIdOption, bodyOption);
             return command;

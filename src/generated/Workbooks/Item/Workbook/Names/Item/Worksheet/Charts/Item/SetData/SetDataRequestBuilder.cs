@@ -47,7 +47,7 @@ namespace ApiSdk.Workbooks.Item.Workbook.Names.Item.Worksheet.Charts.Item.SetDat
                 var model = parseNode.GetObjectValue<SetDataRequestBody>();
                 var requestInfo = CreatePostRequestInformation(model, q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, driveItemIdOption, workbookNamedItemIdOption, workbookChartIdOption, bodyOption);
             return command;

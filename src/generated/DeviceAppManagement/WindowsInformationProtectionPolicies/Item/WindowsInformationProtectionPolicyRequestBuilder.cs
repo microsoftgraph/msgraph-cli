@@ -33,7 +33,7 @@ namespace ApiSdk.DeviceAppManagement.WindowsInformationProtectionPolicies.Item {
             command.SetHandler(async (string windowsInformationProtectionPolicyId, IOutputFormatterFactory outputFormatterFactory, IConsole console) => {
                 var requestInfo = CreateDeleteRequestInformation(q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, windowsInformationProtectionPolicyIdOption);
             return command;
@@ -95,7 +95,7 @@ namespace ApiSdk.DeviceAppManagement.WindowsInformationProtectionPolicies.Item {
                 var model = parseNode.GetObjectValue<WindowsInformationProtectionPolicy>();
                 var requestInfo = CreatePatchRequestInformation(model, q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, windowsInformationProtectionPolicyIdOption, bodyOption);
             return command;

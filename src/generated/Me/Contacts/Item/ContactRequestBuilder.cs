@@ -37,7 +37,7 @@ namespace ApiSdk.Me.Contacts.Item {
             command.SetHandler(async (string contactId, IOutputFormatterFactory outputFormatterFactory, IConsole console) => {
                 var requestInfo = CreateDeleteRequestInformation(q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, contactIdOption);
             return command;
@@ -113,7 +113,7 @@ namespace ApiSdk.Me.Contacts.Item {
                 var model = parseNode.GetObjectValue<Contact>();
                 var requestInfo = CreatePatchRequestInformation(model, q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, contactIdOption, bodyOption);
             return command;

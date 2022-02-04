@@ -37,7 +37,7 @@ namespace ApiSdk.Connections.Item.Items.Item {
             command.SetHandler(async (string externalConnectionId, string externalItemId, IOutputFormatterFactory outputFormatterFactory, IConsole console) => {
                 var requestInfo = CreateDeleteRequestInformation(q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, externalConnectionIdOption, externalItemIdOption);
             return command;
@@ -107,7 +107,7 @@ namespace ApiSdk.Connections.Item.Items.Item {
                 var model = parseNode.GetObjectValue<ExternalItem>();
                 var requestInfo = CreatePatchRequestInformation(model, q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, externalConnectionIdOption, externalItemIdOption, bodyOption);
             return command;

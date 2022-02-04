@@ -37,7 +37,7 @@ namespace ApiSdk.DeviceManagement.NotificationMessageTemplates.Item.LocalizedNot
             command.SetHandler(async (string notificationMessageTemplateId, string localizedNotificationMessageId, IOutputFormatterFactory outputFormatterFactory, IConsole console) => {
                 var requestInfo = CreateDeleteRequestInformation(q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, notificationMessageTemplateIdOption, localizedNotificationMessageIdOption);
             return command;
@@ -107,7 +107,7 @@ namespace ApiSdk.DeviceManagement.NotificationMessageTemplates.Item.LocalizedNot
                 var model = parseNode.GetObjectValue<LocalizedNotificationMessage>();
                 var requestInfo = CreatePatchRequestInformation(model, q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, notificationMessageTemplateIdOption, localizedNotificationMessageIdOption, bodyOption);
             return command;

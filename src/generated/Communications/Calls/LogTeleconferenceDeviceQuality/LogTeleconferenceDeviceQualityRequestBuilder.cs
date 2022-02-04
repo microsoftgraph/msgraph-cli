@@ -35,7 +35,7 @@ namespace ApiSdk.Communications.Calls.LogTeleconferenceDeviceQuality {
                 var model = parseNode.GetObjectValue<LogTeleconferenceDeviceQualityRequestBody>();
                 var requestInfo = CreatePostRequestInformation(model, q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, bodyOption);
             return command;

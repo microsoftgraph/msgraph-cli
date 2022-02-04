@@ -45,7 +45,7 @@ namespace ApiSdk.Users.Item.Todo.Lists.Item.Tasks.Item.LinkedResources.Item {
             command.SetHandler(async (string userId, string todoTaskListId, string todoTaskId, string linkedResourceId, IOutputFormatterFactory outputFormatterFactory, IConsole console) => {
                 var requestInfo = CreateDeleteRequestInformation(q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, userIdOption, todoTaskListIdOption, todoTaskIdOption, linkedResourceIdOption);
             return command;
@@ -131,7 +131,7 @@ namespace ApiSdk.Users.Item.Todo.Lists.Item.Tasks.Item.LinkedResources.Item {
                 var model = parseNode.GetObjectValue<LinkedResource>();
                 var requestInfo = CreatePatchRequestInformation(model, q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, userIdOption, todoTaskListIdOption, todoTaskIdOption, linkedResourceIdOption, bodyOption);
             return command;

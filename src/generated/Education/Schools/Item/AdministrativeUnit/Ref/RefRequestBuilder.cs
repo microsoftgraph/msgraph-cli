@@ -32,7 +32,7 @@ namespace ApiSdk.Education.Schools.Item.AdministrativeUnit.Ref {
             command.SetHandler(async (string educationSchoolId, IOutputFormatterFactory outputFormatterFactory, IConsole console) => {
                 var requestInfo = CreateDeleteRequestInformation(q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, educationSchoolIdOption);
             return command;
@@ -82,7 +82,7 @@ namespace ApiSdk.Education.Schools.Item.AdministrativeUnit.Ref {
                 var model = parseNode.GetObjectValue<ApiSdk.Education.Schools.Item.AdministrativeUnit.Ref.Ref>();
                 var requestInfo = CreatePutRequestInformation(model, q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, educationSchoolIdOption, bodyOption);
             return command;

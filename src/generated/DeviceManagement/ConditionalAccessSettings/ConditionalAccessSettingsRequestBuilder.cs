@@ -29,7 +29,7 @@ namespace ApiSdk.DeviceManagement.ConditionalAccessSettings {
             command.SetHandler(async (IOutputFormatterFactory outputFormatterFactory, IConsole console) => {
                 var requestInfo = CreateDeleteRequestInformation(q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             });
             return command;
@@ -83,7 +83,7 @@ namespace ApiSdk.DeviceManagement.ConditionalAccessSettings {
                 var model = parseNode.GetObjectValue<OnPremisesConditionalAccessSettings>();
                 var requestInfo = CreatePatchRequestInformation(model, q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, bodyOption);
             return command;

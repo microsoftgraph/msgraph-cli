@@ -36,7 +36,7 @@ namespace ApiSdk.Drive.List.Items.Item.Versions.Item.RestoreVersion {
             command.SetHandler(async (string listItemId, string listItemVersionId, IOutputFormatterFactory outputFormatterFactory, IConsole console) => {
                 var requestInfo = CreatePostRequestInformation(q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, listItemIdOption, listItemVersionIdOption);
             return command;

@@ -70,7 +70,7 @@ namespace ApiSdk.Users.Item.ManagedDevices.Item {
             command.SetHandler(async (string userId, string managedDeviceId, IOutputFormatterFactory outputFormatterFactory, IConsole console) => {
                 var requestInfo = CreateDeleteRequestInformation(q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, userIdOption, managedDeviceIdOption);
             return command;
@@ -192,7 +192,7 @@ namespace ApiSdk.Users.Item.ManagedDevices.Item {
                 var model = parseNode.GetObjectValue<ManagedDevice>();
                 var requestInfo = CreatePatchRequestInformation(model, q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, userIdOption, managedDeviceIdOption, bodyOption);
             return command;

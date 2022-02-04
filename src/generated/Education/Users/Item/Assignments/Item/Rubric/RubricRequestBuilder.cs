@@ -37,7 +37,7 @@ namespace ApiSdk.Education.Users.Item.Assignments.Item.Rubric {
             command.SetHandler(async (string educationUserId, string educationAssignmentId, IOutputFormatterFactory outputFormatterFactory, IConsole console) => {
                 var requestInfo = CreateDeleteRequestInformation(q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, educationUserIdOption, educationAssignmentIdOption);
             return command;
@@ -107,7 +107,7 @@ namespace ApiSdk.Education.Users.Item.Assignments.Item.Rubric {
                 var model = parseNode.GetObjectValue<EducationRubric>();
                 var requestInfo = CreatePatchRequestInformation(model, q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, educationUserIdOption, educationAssignmentIdOption, bodyOption);
             return command;

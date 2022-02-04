@@ -33,7 +33,7 @@ namespace ApiSdk.Security.SecureScoreControlProfiles.Item {
             command.SetHandler(async (string secureScoreControlProfileId, IOutputFormatterFactory outputFormatterFactory, IConsole console) => {
                 var requestInfo = CreateDeleteRequestInformation(q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, secureScoreControlProfileIdOption);
             return command;
@@ -95,7 +95,7 @@ namespace ApiSdk.Security.SecureScoreControlProfiles.Item {
                 var model = parseNode.GetObjectValue<SecureScoreControlProfile>();
                 var requestInfo = CreatePatchRequestInformation(model, q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, secureScoreControlProfileIdOption, bodyOption);
             return command;

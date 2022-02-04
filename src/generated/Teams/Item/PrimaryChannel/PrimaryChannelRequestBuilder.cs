@@ -46,7 +46,7 @@ namespace ApiSdk.Teams.Item.PrimaryChannel {
             command.SetHandler(async (string teamId, IOutputFormatterFactory outputFormatterFactory, IConsole console) => {
                 var requestInfo = CreateDeleteRequestInformation(q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, teamIdOption);
             return command;
@@ -138,7 +138,7 @@ namespace ApiSdk.Teams.Item.PrimaryChannel {
                 var model = parseNode.GetObjectValue<Channel>();
                 var requestInfo = CreatePatchRequestInformation(model, q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, teamIdOption, bodyOption);
             return command;

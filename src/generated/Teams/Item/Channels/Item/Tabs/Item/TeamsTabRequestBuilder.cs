@@ -42,7 +42,7 @@ namespace ApiSdk.Teams.Item.Channels.Item.Tabs.Item {
             command.SetHandler(async (string teamId, string channelId, string teamsTabId, IOutputFormatterFactory outputFormatterFactory, IConsole console) => {
                 var requestInfo = CreateDeleteRequestInformation(q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, teamIdOption, channelIdOption, teamsTabIdOption);
             return command;
@@ -120,7 +120,7 @@ namespace ApiSdk.Teams.Item.Channels.Item.Tabs.Item {
                 var model = parseNode.GetObjectValue<TeamsTab>();
                 var requestInfo = CreatePatchRequestInformation(model, q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, teamIdOption, channelIdOption, teamsTabIdOption, bodyOption);
             return command;

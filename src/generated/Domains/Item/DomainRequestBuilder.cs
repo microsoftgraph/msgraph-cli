@@ -38,7 +38,7 @@ namespace ApiSdk.Domains.Item {
             command.SetHandler(async (string domainId, IOutputFormatterFactory outputFormatterFactory, IConsole console) => {
                 var requestInfo = CreateDeleteRequestInformation(q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, domainIdOption);
             return command;
@@ -113,7 +113,7 @@ namespace ApiSdk.Domains.Item {
                 var model = parseNode.GetObjectValue<Domain>();
                 var requestInfo = CreatePatchRequestInformation(model, q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, domainIdOption, bodyOption);
             return command;

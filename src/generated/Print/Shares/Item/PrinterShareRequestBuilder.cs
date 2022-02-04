@@ -50,7 +50,7 @@ namespace ApiSdk.Print.Shares.Item {
             command.SetHandler(async (string printerShareId, IOutputFormatterFactory outputFormatterFactory, IConsole console) => {
                 var requestInfo = CreateDeleteRequestInformation(q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, printerShareIdOption);
             return command;
@@ -112,7 +112,7 @@ namespace ApiSdk.Print.Shares.Item {
                 var model = parseNode.GetObjectValue<PrinterShare>();
                 var requestInfo = CreatePatchRequestInformation(model, q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, printerShareIdOption, bodyOption);
             return command;

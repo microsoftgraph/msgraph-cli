@@ -45,7 +45,7 @@ namespace ApiSdk.Me.CalendarGroups.Item.Calendars.Item.CalendarView.Item.Attachm
             command.SetHandler(async (string calendarGroupId, string calendarId, string eventId, string attachmentId, IOutputFormatterFactory outputFormatterFactory, IConsole console) => {
                 var requestInfo = CreateDeleteRequestInformation(q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, calendarGroupIdOption, calendarIdOption, eventIdOption, attachmentIdOption);
             return command;
@@ -131,7 +131,7 @@ namespace ApiSdk.Me.CalendarGroups.Item.Calendars.Item.CalendarView.Item.Attachm
                 var model = parseNode.GetObjectValue<Attachment>();
                 var requestInfo = CreatePatchRequestInformation(model, q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, calendarGroupIdOption, calendarIdOption, eventIdOption, attachmentIdOption, bodyOption);
             return command;

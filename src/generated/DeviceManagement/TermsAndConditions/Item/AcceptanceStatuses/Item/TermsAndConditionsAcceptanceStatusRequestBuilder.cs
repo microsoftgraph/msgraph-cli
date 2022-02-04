@@ -38,7 +38,7 @@ namespace ApiSdk.DeviceManagement.TermsAndConditions.Item.AcceptanceStatuses.Ite
             command.SetHandler(async (string termsAndConditionsItemId, string termsAndConditionsAcceptanceStatusId, IOutputFormatterFactory outputFormatterFactory, IConsole console) => {
                 var requestInfo = CreateDeleteRequestInformation(q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, termsAndConditionsItemIdOption, termsAndConditionsAcceptanceStatusIdOption);
             return command;
@@ -108,7 +108,7 @@ namespace ApiSdk.DeviceManagement.TermsAndConditions.Item.AcceptanceStatuses.Ite
                 var model = parseNode.GetObjectValue<TermsAndConditionsAcceptanceStatus>();
                 var requestInfo = CreatePatchRequestInformation(model, q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, termsAndConditionsItemIdOption, termsAndConditionsAcceptanceStatusIdOption, bodyOption);
             return command;

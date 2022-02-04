@@ -37,7 +37,7 @@ namespace ApiSdk.Workbooks.Item.Workbook.Operations.Item {
             command.SetHandler(async (string driveItemId, string workbookOperationId, IOutputFormatterFactory outputFormatterFactory, IConsole console) => {
                 var requestInfo = CreateDeleteRequestInformation(q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, driveItemIdOption, workbookOperationIdOption);
             return command;
@@ -107,7 +107,7 @@ namespace ApiSdk.Workbooks.Item.Workbook.Operations.Item {
                 var model = parseNode.GetObjectValue<WorkbookOperation>();
                 var requestInfo = CreatePatchRequestInformation(model, q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, driveItemIdOption, workbookOperationIdOption, bodyOption);
             return command;

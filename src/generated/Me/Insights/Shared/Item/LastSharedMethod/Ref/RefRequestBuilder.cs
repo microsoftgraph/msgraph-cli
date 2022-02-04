@@ -32,7 +32,7 @@ namespace ApiSdk.Me.Insights.Shared.Item.LastSharedMethod.Ref {
             command.SetHandler(async (string sharedInsightId, IOutputFormatterFactory outputFormatterFactory, IConsole console) => {
                 var requestInfo = CreateDeleteRequestInformation(q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, sharedInsightIdOption);
             return command;
@@ -82,7 +82,7 @@ namespace ApiSdk.Me.Insights.Shared.Item.LastSharedMethod.Ref {
                 var model = parseNode.GetObjectValue<ApiSdk.Me.Insights.Shared.Item.LastSharedMethod.Ref.Ref>();
                 var requestInfo = CreatePutRequestInformation(model, q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, sharedInsightIdOption, bodyOption);
             return command;

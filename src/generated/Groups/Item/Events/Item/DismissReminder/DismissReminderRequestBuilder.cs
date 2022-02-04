@@ -36,7 +36,7 @@ namespace ApiSdk.Groups.Item.Events.Item.DismissReminder {
             command.SetHandler(async (string groupId, string eventId, IOutputFormatterFactory outputFormatterFactory, IConsole console) => {
                 var requestInfo = CreatePostRequestInformation(q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, groupIdOption, eventIdOption);
             return command;

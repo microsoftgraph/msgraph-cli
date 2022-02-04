@@ -93,7 +93,7 @@ namespace ApiSdk.Groups.Item.Events.Item {
             command.SetHandler(async (string groupId, string eventId, IOutputFormatterFactory outputFormatterFactory, IConsole console) => {
                 var requestInfo = CreateDeleteRequestInformation(q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, groupIdOption, eventIdOption);
             return command;
@@ -199,7 +199,7 @@ namespace ApiSdk.Groups.Item.Events.Item {
                 var model = parseNode.GetObjectValue<Event>();
                 var requestInfo = CreatePatchRequestInformation(model, q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, groupIdOption, eventIdOption, bodyOption);
             return command;

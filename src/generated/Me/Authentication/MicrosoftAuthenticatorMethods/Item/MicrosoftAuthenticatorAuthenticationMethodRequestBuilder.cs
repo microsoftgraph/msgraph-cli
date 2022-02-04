@@ -34,7 +34,7 @@ namespace ApiSdk.Me.Authentication.MicrosoftAuthenticatorMethods.Item {
             command.SetHandler(async (string microsoftAuthenticatorAuthenticationMethodId, IOutputFormatterFactory outputFormatterFactory, IConsole console) => {
                 var requestInfo = CreateDeleteRequestInformation(q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, microsoftAuthenticatorAuthenticationMethodIdOption);
             return command;
@@ -104,7 +104,7 @@ namespace ApiSdk.Me.Authentication.MicrosoftAuthenticatorMethods.Item {
                 var model = parseNode.GetObjectValue<MicrosoftAuthenticatorAuthenticationMethod>();
                 var requestInfo = CreatePatchRequestInformation(model, q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, microsoftAuthenticatorAuthenticationMethodIdOption, bodyOption);
             return command;

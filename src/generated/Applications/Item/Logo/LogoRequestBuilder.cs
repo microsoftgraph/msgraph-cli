@@ -70,7 +70,7 @@ namespace ApiSdk.Applications.Item.Logo {
                 using var stream = file.OpenRead();
                 var requestInfo = CreatePutRequestInformation(stream, q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, applicationIdOption, bodyOption);
             return command;

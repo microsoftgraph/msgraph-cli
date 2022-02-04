@@ -33,7 +33,7 @@ namespace ApiSdk.DeviceManagement.TroubleshootingEvents.Item {
             command.SetHandler(async (string deviceManagementTroubleshootingEventId, IOutputFormatterFactory outputFormatterFactory, IConsole console) => {
                 var requestInfo = CreateDeleteRequestInformation(q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, deviceManagementTroubleshootingEventIdOption);
             return command;
@@ -95,7 +95,7 @@ namespace ApiSdk.DeviceManagement.TroubleshootingEvents.Item {
                 var model = parseNode.GetObjectValue<DeviceManagementTroubleshootingEvent>();
                 var requestInfo = CreatePatchRequestInformation(model, q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, deviceManagementTroubleshootingEventIdOption, bodyOption);
             return command;

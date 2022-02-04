@@ -33,7 +33,7 @@ namespace ApiSdk.Places.Item {
             command.SetHandler(async (string placeId, IOutputFormatterFactory outputFormatterFactory, IConsole console) => {
                 var requestInfo = CreateDeleteRequestInformation(q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, placeIdOption);
             return command;
@@ -95,7 +95,7 @@ namespace ApiSdk.Places.Item {
                 var model = parseNode.GetObjectValue<Place>();
                 var requestInfo = CreatePatchRequestInformation(model, q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, placeIdOption, bodyOption);
             return command;

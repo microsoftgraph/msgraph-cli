@@ -78,7 +78,7 @@ namespace ApiSdk.Teams.Item.Channels.Item.FilesFolder.Content {
                 using var stream = file.OpenRead();
                 var requestInfo = CreatePutRequestInformation(stream, q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, teamIdOption, channelIdOption, bodyOption);
             return command;

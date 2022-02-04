@@ -39,7 +39,7 @@ namespace ApiSdk.Users.Item.Todo.Lists.Item {
             command.SetHandler(async (string userId, string todoTaskListId, IOutputFormatterFactory outputFormatterFactory, IConsole console) => {
                 var requestInfo = CreateDeleteRequestInformation(q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, userIdOption, todoTaskListIdOption);
             return command;
@@ -119,7 +119,7 @@ namespace ApiSdk.Users.Item.Todo.Lists.Item {
                 var model = parseNode.GetObjectValue<TodoTaskList>();
                 var requestInfo = CreatePatchRequestInformation(model, q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, userIdOption, todoTaskListIdOption, bodyOption);
             return command;

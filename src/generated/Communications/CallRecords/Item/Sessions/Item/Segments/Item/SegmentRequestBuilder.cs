@@ -41,7 +41,7 @@ namespace ApiSdk.Communications.CallRecords.Item.Sessions.Item.Segments.Item {
             command.SetHandler(async (string callRecordId, string sessionId, string segmentId, IOutputFormatterFactory outputFormatterFactory, IConsole console) => {
                 var requestInfo = CreateDeleteRequestInformation(q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, callRecordIdOption, sessionIdOption, segmentIdOption);
             return command;
@@ -119,7 +119,7 @@ namespace ApiSdk.Communications.CallRecords.Item.Sessions.Item.Segments.Item {
                 var model = parseNode.GetObjectValue<Segment>();
                 var requestInfo = CreatePatchRequestInformation(model, q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, callRecordIdOption, sessionIdOption, segmentIdOption, bodyOption);
             return command;

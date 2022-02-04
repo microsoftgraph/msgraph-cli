@@ -53,7 +53,7 @@ namespace ApiSdk.Planner.Tasks.Item {
             command.SetHandler(async (string plannerTaskId, IOutputFormatterFactory outputFormatterFactory, IConsole console) => {
                 var requestInfo = CreateDeleteRequestInformation(q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, plannerTaskIdOption);
             return command;
@@ -123,7 +123,7 @@ namespace ApiSdk.Planner.Tasks.Item {
                 var model = parseNode.GetObjectValue<PlannerTask>();
                 var requestInfo = CreatePatchRequestInformation(model, q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, plannerTaskIdOption, bodyOption);
             return command;

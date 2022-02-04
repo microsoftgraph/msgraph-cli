@@ -51,7 +51,7 @@ namespace ApiSdk.IdentityGovernance.TermsOfUse {
             command.SetHandler(async (IOutputFormatterFactory outputFormatterFactory, IConsole console) => {
                 var requestInfo = CreateDeleteRequestInformation(q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             });
             return command;
@@ -105,7 +105,7 @@ namespace ApiSdk.IdentityGovernance.TermsOfUse {
                 var model = parseNode.GetObjectValue<TermsOfUseContainer>();
                 var requestInfo = CreatePatchRequestInformation(model, q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, bodyOption);
             return command;

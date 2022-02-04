@@ -41,7 +41,7 @@ namespace ApiSdk.DeviceManagement.RemoteAssistancePartners.Item {
             command.SetHandler(async (string remoteAssistancePartnerId, IOutputFormatterFactory outputFormatterFactory, IConsole console) => {
                 var requestInfo = CreateDeleteRequestInformation(q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, remoteAssistancePartnerIdOption);
             return command;
@@ -109,7 +109,7 @@ namespace ApiSdk.DeviceManagement.RemoteAssistancePartners.Item {
                 var model = parseNode.GetObjectValue<RemoteAssistancePartner>();
                 var requestInfo = CreatePatchRequestInformation(model, q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, remoteAssistancePartnerIdOption, bodyOption);
             return command;

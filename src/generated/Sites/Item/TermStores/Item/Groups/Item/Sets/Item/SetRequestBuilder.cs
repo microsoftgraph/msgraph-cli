@@ -59,7 +59,7 @@ namespace ApiSdk.Sites.Item.TermStores.Item.Groups.Item.Sets.Item {
             command.SetHandler(async (string siteId, string storeId, string groupId, string setId, IOutputFormatterFactory outputFormatterFactory, IConsole console) => {
                 var requestInfo = CreateDeleteRequestInformation(q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, siteIdOption, storeIdOption, groupIdOption, setIdOption);
             return command;
@@ -153,7 +153,7 @@ namespace ApiSdk.Sites.Item.TermStores.Item.Groups.Item.Sets.Item {
                 var model = parseNode.GetObjectValue<ApiSdk.Models.Microsoft.Graph.TermStore.Set>();
                 var requestInfo = CreatePatchRequestInformation(model, q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, siteIdOption, storeIdOption, groupIdOption, setIdOption, bodyOption);
             return command;

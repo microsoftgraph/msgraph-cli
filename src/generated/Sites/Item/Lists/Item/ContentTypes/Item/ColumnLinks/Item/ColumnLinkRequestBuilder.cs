@@ -45,7 +45,7 @@ namespace ApiSdk.Sites.Item.Lists.Item.ContentTypes.Item.ColumnLinks.Item {
             command.SetHandler(async (string siteId, string listId, string contentTypeId, string columnLinkId, IOutputFormatterFactory outputFormatterFactory, IConsole console) => {
                 var requestInfo = CreateDeleteRequestInformation(q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, siteIdOption, listIdOption, contentTypeIdOption, columnLinkIdOption);
             return command;
@@ -131,7 +131,7 @@ namespace ApiSdk.Sites.Item.Lists.Item.ContentTypes.Item.ColumnLinks.Item {
                 var model = parseNode.GetObjectValue<ColumnLink>();
                 var requestInfo = CreatePatchRequestInformation(model, q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, siteIdOption, listIdOption, contentTypeIdOption, columnLinkIdOption, bodyOption);
             return command;

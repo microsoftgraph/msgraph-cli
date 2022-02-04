@@ -37,7 +37,7 @@ namespace ApiSdk.Users.Item.Chats.Item {
             command.SetHandler(async (string userId, string chatId, IOutputFormatterFactory outputFormatterFactory, IConsole console) => {
                 var requestInfo = CreateDeleteRequestInformation(q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, userIdOption, chatIdOption);
             return command;
@@ -107,7 +107,7 @@ namespace ApiSdk.Users.Item.Chats.Item {
                 var model = parseNode.GetObjectValue<ApiSdk.Models.Microsoft.Graph.Chat>();
                 var requestInfo = CreatePatchRequestInformation(model, q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, userIdOption, chatIdOption, bodyOption);
             return command;

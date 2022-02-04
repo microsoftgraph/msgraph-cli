@@ -33,7 +33,7 @@ namespace ApiSdk.DeviceManagement.RoleAssignments.Item {
             command.SetHandler(async (string deviceAndAppManagementRoleAssignmentId, IOutputFormatterFactory outputFormatterFactory, IConsole console) => {
                 var requestInfo = CreateDeleteRequestInformation(q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, deviceAndAppManagementRoleAssignmentIdOption);
             return command;
@@ -95,7 +95,7 @@ namespace ApiSdk.DeviceManagement.RoleAssignments.Item {
                 var model = parseNode.GetObjectValue<DeviceAndAppManagementRoleAssignment>();
                 var requestInfo = CreatePatchRequestInformation(model, q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, deviceAndAppManagementRoleAssignmentIdOption, bodyOption);
             return command;

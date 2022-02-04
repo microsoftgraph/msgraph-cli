@@ -52,7 +52,7 @@ namespace ApiSdk.Me.OnlineMeetings.Item {
             command.SetHandler(async (string onlineMeetingId, IOutputFormatterFactory outputFormatterFactory, IConsole console) => {
                 var requestInfo = CreateDeleteRequestInformation(q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, onlineMeetingIdOption);
             return command;
@@ -114,7 +114,7 @@ namespace ApiSdk.Me.OnlineMeetings.Item {
                 var model = parseNode.GetObjectValue<OnlineMeeting>();
                 var requestInfo = CreatePatchRequestInformation(model, q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, onlineMeetingIdOption, bodyOption);
             return command;

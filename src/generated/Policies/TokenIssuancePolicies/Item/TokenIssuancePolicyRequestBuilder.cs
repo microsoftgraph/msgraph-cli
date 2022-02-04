@@ -33,7 +33,7 @@ namespace ApiSdk.Policies.TokenIssuancePolicies.Item {
             command.SetHandler(async (string tokenIssuancePolicyId, IOutputFormatterFactory outputFormatterFactory, IConsole console) => {
                 var requestInfo = CreateDeleteRequestInformation(q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, tokenIssuancePolicyIdOption);
             return command;
@@ -95,7 +95,7 @@ namespace ApiSdk.Policies.TokenIssuancePolicies.Item {
                 var model = parseNode.GetObjectValue<TokenIssuancePolicy>();
                 var requestInfo = CreatePatchRequestInformation(model, q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, tokenIssuancePolicyIdOption, bodyOption);
             return command;

@@ -40,7 +40,7 @@ namespace ApiSdk.Teams.Item.InstalledApps.Item {
             command.SetHandler(async (string teamId, string teamsAppInstallationId, IOutputFormatterFactory outputFormatterFactory, IConsole console) => {
                 var requestInfo = CreateDeleteRequestInformation(q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, teamIdOption, teamsAppInstallationIdOption);
             return command;
@@ -110,7 +110,7 @@ namespace ApiSdk.Teams.Item.InstalledApps.Item {
                 var model = parseNode.GetObjectValue<TeamsAppInstallation>();
                 var requestInfo = CreatePatchRequestInformation(model, q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, teamIdOption, teamsAppInstallationIdOption, bodyOption);
             return command;

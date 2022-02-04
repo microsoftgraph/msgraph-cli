@@ -39,7 +39,7 @@ namespace ApiSdk.Chats.Item.SendActivityNotification {
                 var model = parseNode.GetObjectValue<SendActivityNotificationRequestBody>();
                 var requestInfo = CreatePostRequestInformation(model, q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, chatIdOption, bodyOption);
             return command;

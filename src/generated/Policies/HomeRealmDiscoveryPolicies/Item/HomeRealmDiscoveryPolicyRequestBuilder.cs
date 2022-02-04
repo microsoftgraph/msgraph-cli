@@ -33,7 +33,7 @@ namespace ApiSdk.Policies.HomeRealmDiscoveryPolicies.Item {
             command.SetHandler(async (string homeRealmDiscoveryPolicyId, IOutputFormatterFactory outputFormatterFactory, IConsole console) => {
                 var requestInfo = CreateDeleteRequestInformation(q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, homeRealmDiscoveryPolicyIdOption);
             return command;
@@ -95,7 +95,7 @@ namespace ApiSdk.Policies.HomeRealmDiscoveryPolicies.Item {
                 var model = parseNode.GetObjectValue<HomeRealmDiscoveryPolicy>();
                 var requestInfo = CreatePatchRequestInformation(model, q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, homeRealmDiscoveryPolicyIdOption, bodyOption);
             return command;

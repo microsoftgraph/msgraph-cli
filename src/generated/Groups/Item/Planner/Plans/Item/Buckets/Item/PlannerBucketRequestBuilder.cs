@@ -42,7 +42,7 @@ namespace ApiSdk.Groups.Item.Planner.Plans.Item.Buckets.Item {
             command.SetHandler(async (string groupId, string plannerPlanId, string plannerBucketId, IOutputFormatterFactory outputFormatterFactory, IConsole console) => {
                 var requestInfo = CreateDeleteRequestInformation(q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, groupIdOption, plannerPlanIdOption, plannerBucketIdOption);
             return command;
@@ -120,7 +120,7 @@ namespace ApiSdk.Groups.Item.Planner.Plans.Item.Buckets.Item {
                 var model = parseNode.GetObjectValue<PlannerBucket>();
                 var requestInfo = CreatePatchRequestInformation(model, q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, groupIdOption, plannerPlanIdOption, plannerBucketIdOption, bodyOption);
             return command;

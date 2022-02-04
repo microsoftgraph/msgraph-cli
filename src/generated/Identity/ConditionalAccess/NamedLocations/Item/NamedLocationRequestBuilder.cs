@@ -33,7 +33,7 @@ namespace ApiSdk.Identity.ConditionalAccess.NamedLocations.Item {
             command.SetHandler(async (string namedLocationId, IOutputFormatterFactory outputFormatterFactory, IConsole console) => {
                 var requestInfo = CreateDeleteRequestInformation(q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, namedLocationIdOption);
             return command;
@@ -95,7 +95,7 @@ namespace ApiSdk.Identity.ConditionalAccess.NamedLocations.Item {
                 var model = parseNode.GetObjectValue<NamedLocation>();
                 var requestInfo = CreatePatchRequestInformation(model, q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, namedLocationIdOption, bodyOption);
             return command;

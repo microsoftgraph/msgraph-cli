@@ -34,7 +34,7 @@ namespace ApiSdk.IdentityProtection.RiskyUsers.Item {
             command.SetHandler(async (string riskyUserId, IOutputFormatterFactory outputFormatterFactory, IConsole console) => {
                 var requestInfo = CreateDeleteRequestInformation(q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, riskyUserIdOption);
             return command;
@@ -106,7 +106,7 @@ namespace ApiSdk.IdentityProtection.RiskyUsers.Item {
                 var model = parseNode.GetObjectValue<RiskyUser>();
                 var requestInfo = CreatePatchRequestInformation(model, q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, riskyUserIdOption, bodyOption);
             return command;

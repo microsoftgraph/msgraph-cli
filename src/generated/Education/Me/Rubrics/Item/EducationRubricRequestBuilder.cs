@@ -33,7 +33,7 @@ namespace ApiSdk.Education.Me.Rubrics.Item {
             command.SetHandler(async (string educationRubricId, IOutputFormatterFactory outputFormatterFactory, IConsole console) => {
                 var requestInfo = CreateDeleteRequestInformation(q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, educationRubricIdOption);
             return command;
@@ -95,7 +95,7 @@ namespace ApiSdk.Education.Me.Rubrics.Item {
                 var model = parseNode.GetObjectValue<EducationRubric>();
                 var requestInfo = CreatePatchRequestInformation(model, q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, educationRubricIdOption, bodyOption);
             return command;

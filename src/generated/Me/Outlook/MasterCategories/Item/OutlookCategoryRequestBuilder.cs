@@ -33,7 +33,7 @@ namespace ApiSdk.Me.Outlook.MasterCategories.Item {
             command.SetHandler(async (string outlookCategoryId, IOutputFormatterFactory outputFormatterFactory, IConsole console) => {
                 var requestInfo = CreateDeleteRequestInformation(q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, outlookCategoryIdOption);
             return command;
@@ -89,7 +89,7 @@ namespace ApiSdk.Me.Outlook.MasterCategories.Item {
                 var model = parseNode.GetObjectValue<OutlookCategory>();
                 var requestInfo = CreatePatchRequestInformation(model, q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, outlookCategoryIdOption, bodyOption);
             return command;

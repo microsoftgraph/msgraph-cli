@@ -37,7 +37,7 @@ namespace ApiSdk.Me.MailFolders.Item.SingleValueExtendedProperties.Item {
             command.SetHandler(async (string mailFolderId, string singleValueLegacyExtendedPropertyId, IOutputFormatterFactory outputFormatterFactory, IConsole console) => {
                 var requestInfo = CreateDeleteRequestInformation(q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, mailFolderIdOption, singleValueLegacyExtendedPropertyIdOption);
             return command;
@@ -107,7 +107,7 @@ namespace ApiSdk.Me.MailFolders.Item.SingleValueExtendedProperties.Item {
                 var model = parseNode.GetObjectValue<SingleValueLegacyExtendedProperty>();
                 var requestInfo = CreatePatchRequestInformation(model, q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, mailFolderIdOption, singleValueLegacyExtendedPropertyIdOption, bodyOption);
             return command;

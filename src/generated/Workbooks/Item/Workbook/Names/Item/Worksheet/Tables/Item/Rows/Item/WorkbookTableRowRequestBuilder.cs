@@ -46,7 +46,7 @@ namespace ApiSdk.Workbooks.Item.Workbook.Names.Item.Worksheet.Tables.Item.Rows.I
             command.SetHandler(async (string driveItemId, string workbookNamedItemId, string workbookTableId, string workbookTableRowId, IOutputFormatterFactory outputFormatterFactory, IConsole console) => {
                 var requestInfo = CreateDeleteRequestInformation(q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, driveItemIdOption, workbookNamedItemIdOption, workbookTableIdOption, workbookTableRowIdOption);
             return command;
@@ -132,7 +132,7 @@ namespace ApiSdk.Workbooks.Item.Workbook.Names.Item.Worksheet.Tables.Item.Rows.I
                 var model = parseNode.GetObjectValue<WorkbookTableRow>();
                 var requestInfo = CreatePatchRequestInformation(model, q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, driveItemIdOption, workbookNamedItemIdOption, workbookTableIdOption, workbookTableRowIdOption, bodyOption);
             return command;

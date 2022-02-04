@@ -43,7 +43,7 @@ namespace ApiSdk.Sites.Item.ContentTypes.Item.AssociateWithHubSites {
                 var model = parseNode.GetObjectValue<AssociateWithHubSitesRequestBody>();
                 var requestInfo = CreatePostRequestInformation(model, q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, siteIdOption, contentTypeIdOption, bodyOption);
             return command;

@@ -51,7 +51,7 @@ namespace ApiSdk.Sites.Item.Onenote.SectionGroups.Item.ParentNotebook.Sections.I
                 var model = parseNode.GetObjectValue<OnenotePatchContentRequestBody>();
                 var requestInfo = CreatePostRequestInformation(model, q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, siteIdOption, sectionGroupIdOption, onenoteSectionIdOption, onenotePageIdOption, bodyOption);
             return command;

@@ -78,7 +78,7 @@ namespace ApiSdk.Workbooks.Item.Versions.Item.Content {
                 using var stream = file.OpenRead();
                 var requestInfo = CreatePutRequestInformation(stream, q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, driveItemIdOption, driveItemVersionIdOption, bodyOption);
             return command;

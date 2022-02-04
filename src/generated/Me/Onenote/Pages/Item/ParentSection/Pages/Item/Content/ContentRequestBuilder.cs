@@ -78,7 +78,7 @@ namespace ApiSdk.Me.Onenote.Pages.Item.ParentSection.Pages.Item.Content {
                 using var stream = file.OpenRead();
                 var requestInfo = CreatePutRequestInformation(stream, q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, onenotePageIdOption, onenotePageId1Option, bodyOption);
             return command;

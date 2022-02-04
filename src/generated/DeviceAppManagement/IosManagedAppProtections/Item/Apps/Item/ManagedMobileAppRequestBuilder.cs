@@ -37,7 +37,7 @@ namespace ApiSdk.DeviceAppManagement.IosManagedAppProtections.Item.Apps.Item {
             command.SetHandler(async (string iosManagedAppProtectionId, string managedMobileAppId, IOutputFormatterFactory outputFormatterFactory, IConsole console) => {
                 var requestInfo = CreateDeleteRequestInformation(q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, iosManagedAppProtectionIdOption, managedMobileAppIdOption);
             return command;
@@ -107,7 +107,7 @@ namespace ApiSdk.DeviceAppManagement.IosManagedAppProtections.Item.Apps.Item {
                 var model = parseNode.GetObjectValue<ManagedMobileApp>();
                 var requestInfo = CreatePatchRequestInformation(model, q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, iosManagedAppProtectionIdOption, managedMobileAppIdOption, bodyOption);
             return command;

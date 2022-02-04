@@ -41,7 +41,7 @@ namespace ApiSdk.GroupLifecyclePolicies.Item {
             command.SetHandler(async (string groupLifecyclePolicyId, IOutputFormatterFactory outputFormatterFactory, IConsole console) => {
                 var requestInfo = CreateDeleteRequestInformation(q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, groupLifecyclePolicyIdOption);
             return command;
@@ -103,7 +103,7 @@ namespace ApiSdk.GroupLifecyclePolicies.Item {
                 var model = parseNode.GetObjectValue<GroupLifecyclePolicy>();
                 var requestInfo = CreatePatchRequestInformation(model, q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, groupLifecyclePolicyIdOption, bodyOption);
             return command;

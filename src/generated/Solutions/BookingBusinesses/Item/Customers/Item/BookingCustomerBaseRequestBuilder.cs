@@ -37,7 +37,7 @@ namespace ApiSdk.Solutions.BookingBusinesses.Item.Customers.Item {
             command.SetHandler(async (string bookingBusinessId, string bookingCustomerBaseId, IOutputFormatterFactory outputFormatterFactory, IConsole console) => {
                 var requestInfo = CreateDeleteRequestInformation(q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, bookingBusinessIdOption, bookingCustomerBaseIdOption);
             return command;
@@ -107,7 +107,7 @@ namespace ApiSdk.Solutions.BookingBusinesses.Item.Customers.Item {
                 var model = parseNode.GetObjectValue<BookingCustomerBase>();
                 var requestInfo = CreatePatchRequestInformation(model, q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, bookingBusinessIdOption, bookingCustomerBaseIdOption, bodyOption);
             return command;

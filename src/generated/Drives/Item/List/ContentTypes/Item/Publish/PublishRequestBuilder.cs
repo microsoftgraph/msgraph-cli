@@ -36,7 +36,7 @@ namespace ApiSdk.Drives.Item.List.ContentTypes.Item.Publish {
             command.SetHandler(async (string driveId, string contentTypeId, IOutputFormatterFactory outputFormatterFactory, IConsole console) => {
                 var requestInfo = CreatePostRequestInformation(q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, driveIdOption, contentTypeIdOption);
             return command;

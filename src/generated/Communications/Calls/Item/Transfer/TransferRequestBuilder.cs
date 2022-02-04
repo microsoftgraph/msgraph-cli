@@ -39,7 +39,7 @@ namespace ApiSdk.Communications.Calls.Item.Transfer {
                 var model = parseNode.GetObjectValue<TransferRequestBody>();
                 var requestInfo = CreatePostRequestInformation(model, q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, callIdOption, bodyOption);
             return command;

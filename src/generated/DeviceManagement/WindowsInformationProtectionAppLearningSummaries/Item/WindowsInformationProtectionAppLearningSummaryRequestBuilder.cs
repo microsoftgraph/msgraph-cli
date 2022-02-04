@@ -33,7 +33,7 @@ namespace ApiSdk.DeviceManagement.WindowsInformationProtectionAppLearningSummari
             command.SetHandler(async (string windowsInformationProtectionAppLearningSummaryId, IOutputFormatterFactory outputFormatterFactory, IConsole console) => {
                 var requestInfo = CreateDeleteRequestInformation(q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, windowsInformationProtectionAppLearningSummaryIdOption);
             return command;
@@ -95,7 +95,7 @@ namespace ApiSdk.DeviceManagement.WindowsInformationProtectionAppLearningSummari
                 var model = parseNode.GetObjectValue<WindowsInformationProtectionAppLearningSummary>();
                 var requestInfo = CreatePatchRequestInformation(model, q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, windowsInformationProtectionAppLearningSummaryIdOption, bodyOption);
             return command;

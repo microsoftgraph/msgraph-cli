@@ -33,7 +33,7 @@ namespace ApiSdk.Me.Authentication.MicrosoftAuthenticatorMethods.Item.Device {
             command.SetHandler(async (string microsoftAuthenticatorAuthenticationMethodId, IOutputFormatterFactory outputFormatterFactory, IConsole console) => {
                 var requestInfo = CreateDeleteRequestInformation(q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, microsoftAuthenticatorAuthenticationMethodIdOption);
             return command;
@@ -95,7 +95,7 @@ namespace ApiSdk.Me.Authentication.MicrosoftAuthenticatorMethods.Item.Device {
                 var model = parseNode.GetObjectValue<ApiSdk.Models.Microsoft.Graph.Device>();
                 var requestInfo = CreatePatchRequestInformation(model, q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, microsoftAuthenticatorAuthenticationMethodIdOption, bodyOption);
             return command;

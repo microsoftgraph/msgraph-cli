@@ -33,7 +33,7 @@ namespace ApiSdk.Me.Onenote.Operations.Item {
             command.SetHandler(async (string onenoteOperationId, IOutputFormatterFactory outputFormatterFactory, IConsole console) => {
                 var requestInfo = CreateDeleteRequestInformation(q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, onenoteOperationIdOption);
             return command;
@@ -95,7 +95,7 @@ namespace ApiSdk.Me.Onenote.Operations.Item {
                 var model = parseNode.GetObjectValue<OnenoteOperation>();
                 var requestInfo = CreatePatchRequestInformation(model, q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, onenoteOperationIdOption, bodyOption);
             return command;

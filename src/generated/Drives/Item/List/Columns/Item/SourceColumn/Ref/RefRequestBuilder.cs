@@ -36,7 +36,7 @@ namespace ApiSdk.Drives.Item.List.Columns.Item.SourceColumn.Ref {
             command.SetHandler(async (string driveId, string columnDefinitionId, IOutputFormatterFactory outputFormatterFactory, IConsole console) => {
                 var requestInfo = CreateDeleteRequestInformation(q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, driveIdOption, columnDefinitionIdOption);
             return command;
@@ -94,7 +94,7 @@ namespace ApiSdk.Drives.Item.List.Columns.Item.SourceColumn.Ref {
                 var model = parseNode.GetObjectValue<ApiSdk.Drives.Item.List.Columns.Item.SourceColumn.Ref.Ref>();
                 var requestInfo = CreatePutRequestInformation(model, q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, driveIdOption, columnDefinitionIdOption, bodyOption);
             return command;

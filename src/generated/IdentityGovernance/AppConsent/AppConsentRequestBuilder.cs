@@ -40,7 +40,7 @@ namespace ApiSdk.IdentityGovernance.AppConsent {
             command.SetHandler(async (IOutputFormatterFactory outputFormatterFactory, IConsole console) => {
                 var requestInfo = CreateDeleteRequestInformation(q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             });
             return command;
@@ -94,7 +94,7 @@ namespace ApiSdk.IdentityGovernance.AppConsent {
                 var model = parseNode.GetObjectValue<AppConsentApprovalRoute>();
                 var requestInfo = CreatePatchRequestInformation(model, q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, bodyOption);
             return command;

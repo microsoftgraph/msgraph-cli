@@ -34,7 +34,7 @@ namespace ApiSdk.Me.Activities.Item {
             command.SetHandler(async (string userActivityId, IOutputFormatterFactory outputFormatterFactory, IConsole console) => {
                 var requestInfo = CreateDeleteRequestInformation(q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, userActivityIdOption);
             return command;
@@ -106,7 +106,7 @@ namespace ApiSdk.Me.Activities.Item {
                 var model = parseNode.GetObjectValue<UserActivity>();
                 var requestInfo = CreatePatchRequestInformation(model, q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, userActivityIdOption, bodyOption);
             return command;

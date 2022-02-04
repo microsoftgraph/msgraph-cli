@@ -41,7 +41,7 @@ namespace ApiSdk.IdentityGovernance.AppConsent.AppConsentRequests.Item.UserConse
             command.SetHandler(async (string appConsentRequestId, string userConsentRequestId, string approvalStageId, IOutputFormatterFactory outputFormatterFactory, IConsole console) => {
                 var requestInfo = CreateDeleteRequestInformation(q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, appConsentRequestIdOption, userConsentRequestIdOption, approvalStageIdOption);
             return command;
@@ -119,7 +119,7 @@ namespace ApiSdk.IdentityGovernance.AppConsent.AppConsentRequests.Item.UserConse
                 var model = parseNode.GetObjectValue<ApprovalStage>();
                 var requestInfo = CreatePatchRequestInformation(model, q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, appConsentRequestIdOption, userConsentRequestIdOption, approvalStageIdOption, bodyOption);
             return command;

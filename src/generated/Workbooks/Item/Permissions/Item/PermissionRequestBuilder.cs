@@ -38,7 +38,7 @@ namespace ApiSdk.Workbooks.Item.Permissions.Item {
             command.SetHandler(async (string driveItemId, string permissionId, IOutputFormatterFactory outputFormatterFactory, IConsole console) => {
                 var requestInfo = CreateDeleteRequestInformation(q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, driveItemIdOption, permissionIdOption);
             return command;
@@ -114,7 +114,7 @@ namespace ApiSdk.Workbooks.Item.Permissions.Item {
                 var model = parseNode.GetObjectValue<ApiSdk.Models.Microsoft.Graph.Permission>();
                 var requestInfo = CreatePatchRequestInformation(model, q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, driveItemIdOption, permissionIdOption, bodyOption);
             return command;

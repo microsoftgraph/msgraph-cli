@@ -36,7 +36,7 @@ namespace ApiSdk.Workbooks.Item.Versions.Item.RestoreVersion {
             command.SetHandler(async (string driveItemId, string driveItemVersionId, IOutputFormatterFactory outputFormatterFactory, IConsole console) => {
                 var requestInfo = CreatePostRequestInformation(q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, driveItemIdOption, driveItemVersionIdOption);
             return command;

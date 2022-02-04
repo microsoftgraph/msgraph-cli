@@ -50,7 +50,7 @@ namespace ApiSdk.DirectoryObjects.Item {
             command.SetHandler(async (string directoryObjectId, IOutputFormatterFactory outputFormatterFactory, IConsole console) => {
                 var requestInfo = CreateDeleteRequestInformation(q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, directoryObjectIdOption);
             return command;
@@ -124,7 +124,7 @@ namespace ApiSdk.DirectoryObjects.Item {
                 var model = parseNode.GetObjectValue<DirectoryObject>();
                 var requestInfo = CreatePatchRequestInformation(model, q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, directoryObjectIdOption, bodyOption);
             return command;

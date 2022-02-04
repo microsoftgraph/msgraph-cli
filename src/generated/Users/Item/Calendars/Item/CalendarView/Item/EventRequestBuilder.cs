@@ -92,7 +92,7 @@ namespace ApiSdk.Users.Item.Calendars.Item.CalendarView.Item {
             command.SetHandler(async (string userId, string calendarId, string eventId, IOutputFormatterFactory outputFormatterFactory, IConsole console) => {
                 var requestInfo = CreateDeleteRequestInformation(q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, userIdOption, calendarIdOption, eventIdOption);
             return command;
@@ -216,7 +216,7 @@ namespace ApiSdk.Users.Item.Calendars.Item.CalendarView.Item {
                 var model = parseNode.GetObjectValue<Event>();
                 var requestInfo = CreatePatchRequestInformation(model, q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, userIdOption, calendarIdOption, eventIdOption, bodyOption);
             return command;

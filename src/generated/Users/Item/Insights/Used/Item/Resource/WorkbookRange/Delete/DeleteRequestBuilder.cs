@@ -43,7 +43,7 @@ namespace ApiSdk.Users.Item.Insights.Used.Item.Resource.WorkbookRange.Delete {
                 var model = parseNode.GetObjectValue<DeleteRequestBody>();
                 var requestInfo = CreatePostRequestInformation(model, q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, userIdOption, usedInsightIdOption, bodyOption);
             return command;

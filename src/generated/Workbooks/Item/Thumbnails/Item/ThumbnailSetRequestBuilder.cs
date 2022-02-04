@@ -37,7 +37,7 @@ namespace ApiSdk.Workbooks.Item.Thumbnails.Item {
             command.SetHandler(async (string driveItemId, string thumbnailSetId, IOutputFormatterFactory outputFormatterFactory, IConsole console) => {
                 var requestInfo = CreateDeleteRequestInformation(q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, driveItemIdOption, thumbnailSetIdOption);
             return command;
@@ -107,7 +107,7 @@ namespace ApiSdk.Workbooks.Item.Thumbnails.Item {
                 var model = parseNode.GetObjectValue<ThumbnailSet>();
                 var requestInfo = CreatePatchRequestInformation(model, q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, driveItemIdOption, thumbnailSetIdOption, bodyOption);
             return command;

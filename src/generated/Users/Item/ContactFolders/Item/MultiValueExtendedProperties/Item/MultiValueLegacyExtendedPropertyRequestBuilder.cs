@@ -41,7 +41,7 @@ namespace ApiSdk.Users.Item.ContactFolders.Item.MultiValueExtendedProperties.Ite
             command.SetHandler(async (string userId, string contactFolderId, string multiValueLegacyExtendedPropertyId, IOutputFormatterFactory outputFormatterFactory, IConsole console) => {
                 var requestInfo = CreateDeleteRequestInformation(q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, userIdOption, contactFolderIdOption, multiValueLegacyExtendedPropertyIdOption);
             return command;
@@ -119,7 +119,7 @@ namespace ApiSdk.Users.Item.ContactFolders.Item.MultiValueExtendedProperties.Ite
                 var model = parseNode.GetObjectValue<MultiValueLegacyExtendedProperty>();
                 var requestInfo = CreatePatchRequestInformation(model, q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, userIdOption, contactFolderIdOption, multiValueLegacyExtendedPropertyIdOption, bodyOption);
             return command;

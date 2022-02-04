@@ -36,7 +36,7 @@ namespace ApiSdk.Chats.Item.InstalledApps.Item.Upgrade {
             command.SetHandler(async (string chatId, string teamsAppInstallationId, IOutputFormatterFactory outputFormatterFactory, IConsole console) => {
                 var requestInfo = CreatePostRequestInformation(q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, chatIdOption, teamsAppInstallationIdOption);
             return command;

@@ -45,7 +45,7 @@ namespace ApiSdk.Teams.Item.Channels.Item.FilesFolder {
             command.SetHandler(async (string teamId, string channelId, IOutputFormatterFactory outputFormatterFactory, IConsole console) => {
                 var requestInfo = CreateDeleteRequestInformation(q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, teamIdOption, channelIdOption);
             return command;
@@ -115,7 +115,7 @@ namespace ApiSdk.Teams.Item.Channels.Item.FilesFolder {
                 var model = parseNode.GetObjectValue<ApiSdk.Models.Microsoft.Graph.DriveItem>();
                 var requestInfo = CreatePatchRequestInformation(model, q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, teamIdOption, channelIdOption, bodyOption);
             return command;

@@ -39,7 +39,7 @@ namespace ApiSdk.Me.Insights.Used.Item.Resource.WorkbookRange.Merge {
                 var model = parseNode.GetObjectValue<MergeRequestBody>();
                 var requestInfo = CreatePostRequestInformation(model, q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, usedInsightIdOption, bodyOption);
             return command;

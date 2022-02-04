@@ -43,7 +43,7 @@ namespace ApiSdk.Users.Item.ManagedDevices.Item.Wipe {
                 var model = parseNode.GetObjectValue<WipeRequestBody>();
                 var requestInfo = CreatePostRequestInformation(model, q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, userIdOption, managedDeviceIdOption, bodyOption);
             return command;

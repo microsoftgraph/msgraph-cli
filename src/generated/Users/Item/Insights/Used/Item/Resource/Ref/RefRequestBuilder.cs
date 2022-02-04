@@ -36,7 +36,7 @@ namespace ApiSdk.Users.Item.Insights.Used.Item.Resource.Ref {
             command.SetHandler(async (string userId, string usedInsightId, IOutputFormatterFactory outputFormatterFactory, IConsole console) => {
                 var requestInfo = CreateDeleteRequestInformation(q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, userIdOption, usedInsightIdOption);
             return command;
@@ -94,7 +94,7 @@ namespace ApiSdk.Users.Item.Insights.Used.Item.Resource.Ref {
                 var model = parseNode.GetObjectValue<ApiSdk.Users.Item.Insights.Used.Item.Resource.Ref.Ref>();
                 var requestInfo = CreatePutRequestInformation(model, q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, userIdOption, usedInsightIdOption, bodyOption);
             return command;

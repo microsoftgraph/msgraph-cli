@@ -61,7 +61,7 @@ namespace ApiSdk.Users.Item.Planner.Plans.Item.Tasks.Item {
             command.SetHandler(async (string userId, string plannerPlanId, string plannerTaskId, IOutputFormatterFactory outputFormatterFactory, IConsole console) => {
                 var requestInfo = CreateDeleteRequestInformation(q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, userIdOption, plannerPlanIdOption, plannerTaskIdOption);
             return command;
@@ -147,7 +147,7 @@ namespace ApiSdk.Users.Item.Planner.Plans.Item.Tasks.Item {
                 var model = parseNode.GetObjectValue<PlannerTask>();
                 var requestInfo = CreatePatchRequestInformation(model, q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, userIdOption, plannerPlanIdOption, plannerTaskIdOption, bodyOption);
             return command;

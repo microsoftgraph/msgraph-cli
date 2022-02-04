@@ -35,7 +35,7 @@ namespace ApiSdk.Devices.ValidateProperties {
                 var model = parseNode.GetObjectValue<ValidatePropertiesRequestBody>();
                 var requestInfo = CreatePostRequestInformation(model, q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, bodyOption);
             return command;

@@ -43,7 +43,7 @@ namespace ApiSdk.Teams.Item.Channels.Item.Messages.Item {
             command.SetHandler(async (string teamId, string channelId, string chatMessageId, IOutputFormatterFactory outputFormatterFactory, IConsole console) => {
                 var requestInfo = CreateDeleteRequestInformation(q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, teamIdOption, channelIdOption, chatMessageIdOption);
             return command;
@@ -131,7 +131,7 @@ namespace ApiSdk.Teams.Item.Channels.Item.Messages.Item {
                 var model = parseNode.GetObjectValue<ChatMessage>();
                 var requestInfo = CreatePatchRequestInformation(model, q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, teamIdOption, channelIdOption, chatMessageIdOption, bodyOption);
             return command;

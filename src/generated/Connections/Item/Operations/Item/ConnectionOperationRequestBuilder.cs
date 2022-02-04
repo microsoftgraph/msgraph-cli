@@ -37,7 +37,7 @@ namespace ApiSdk.Connections.Item.Operations.Item {
             command.SetHandler(async (string externalConnectionId, string connectionOperationId, IOutputFormatterFactory outputFormatterFactory, IConsole console) => {
                 var requestInfo = CreateDeleteRequestInformation(q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, externalConnectionIdOption, connectionOperationIdOption);
             return command;
@@ -107,7 +107,7 @@ namespace ApiSdk.Connections.Item.Operations.Item {
                 var model = parseNode.GetObjectValue<ConnectionOperation>();
                 var requestInfo = CreatePatchRequestInformation(model, q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, externalConnectionIdOption, connectionOperationIdOption, bodyOption);
             return command;

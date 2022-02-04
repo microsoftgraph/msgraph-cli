@@ -43,7 +43,7 @@ namespace ApiSdk.Shares.Item.List.ContentTypes.Item.AssociateWithHubSites {
                 var model = parseNode.GetObjectValue<AssociateWithHubSitesRequestBody>();
                 var requestInfo = CreatePostRequestInformation(model, q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, sharedDriveItemIdOption, contentTypeIdOption, bodyOption);
             return command;

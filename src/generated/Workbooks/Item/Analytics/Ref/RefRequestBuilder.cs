@@ -32,7 +32,7 @@ namespace ApiSdk.Workbooks.Item.Analytics.Ref {
             command.SetHandler(async (string driveItemId, IOutputFormatterFactory outputFormatterFactory, IConsole console) => {
                 var requestInfo = CreateDeleteRequestInformation(q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, driveItemIdOption);
             return command;
@@ -82,7 +82,7 @@ namespace ApiSdk.Workbooks.Item.Analytics.Ref {
                 var model = parseNode.GetObjectValue<ApiSdk.Workbooks.Item.Analytics.Ref.Ref>();
                 var requestInfo = CreatePutRequestInformation(model, q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, driveItemIdOption, bodyOption);
             return command;

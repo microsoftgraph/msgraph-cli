@@ -32,7 +32,7 @@ namespace ApiSdk.Me.Insights.Used.Item.Resource.Ref {
             command.SetHandler(async (string usedInsightId, IOutputFormatterFactory outputFormatterFactory, IConsole console) => {
                 var requestInfo = CreateDeleteRequestInformation(q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, usedInsightIdOption);
             return command;
@@ -82,7 +82,7 @@ namespace ApiSdk.Me.Insights.Used.Item.Resource.Ref {
                 var model = parseNode.GetObjectValue<ApiSdk.Me.Insights.Used.Item.Resource.Ref.Ref>();
                 var requestInfo = CreatePutRequestInformation(model, q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, usedInsightIdOption, bodyOption);
             return command;

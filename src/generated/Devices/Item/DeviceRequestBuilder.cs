@@ -55,7 +55,7 @@ namespace ApiSdk.Devices.Item {
             command.SetHandler(async (string deviceId, IOutputFormatterFactory outputFormatterFactory, IConsole console) => {
                 var requestInfo = CreateDeleteRequestInformation(q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, deviceIdOption);
             return command;
@@ -146,7 +146,7 @@ namespace ApiSdk.Devices.Item {
                 var model = parseNode.GetObjectValue<ApiSdk.Models.Microsoft.Graph.Device>();
                 var requestInfo = CreatePatchRequestInformation(model, q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, deviceIdOption, bodyOption);
             return command;

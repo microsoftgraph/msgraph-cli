@@ -42,7 +42,7 @@ namespace ApiSdk.Me.Onenote.Pages.Item.ParentSection.ParentNotebook {
             command.SetHandler(async (string onenotePageId, IOutputFormatterFactory outputFormatterFactory, IConsole console) => {
                 var requestInfo = CreateDeleteRequestInformation(q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, onenotePageIdOption);
             return command;
@@ -104,7 +104,7 @@ namespace ApiSdk.Me.Onenote.Pages.Item.ParentSection.ParentNotebook {
                 var model = parseNode.GetObjectValue<Notebook>();
                 var requestInfo = CreatePatchRequestInformation(model, q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, onenotePageIdOption, bodyOption);
             return command;

@@ -52,7 +52,7 @@ namespace ApiSdk.DirectoryRoles.Item {
             command.SetHandler(async (string directoryRoleId, IOutputFormatterFactory outputFormatterFactory, IConsole console) => {
                 var requestInfo = CreateDeleteRequestInformation(q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, directoryRoleIdOption);
             return command;
@@ -133,7 +133,7 @@ namespace ApiSdk.DirectoryRoles.Item {
                 var model = parseNode.GetObjectValue<DirectoryRole>();
                 var requestInfo = CreatePatchRequestInformation(model, q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, directoryRoleIdOption, bodyOption);
             return command;

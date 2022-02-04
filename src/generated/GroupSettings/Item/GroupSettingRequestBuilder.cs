@@ -33,7 +33,7 @@ namespace ApiSdk.GroupSettings.Item {
             command.SetHandler(async (string groupSettingId, IOutputFormatterFactory outputFormatterFactory, IConsole console) => {
                 var requestInfo = CreateDeleteRequestInformation(q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, groupSettingIdOption);
             return command;
@@ -95,7 +95,7 @@ namespace ApiSdk.GroupSettings.Item {
                 var model = parseNode.GetObjectValue<GroupSetting>();
                 var requestInfo = CreatePatchRequestInformation(model, q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, groupSettingIdOption, bodyOption);
             return command;

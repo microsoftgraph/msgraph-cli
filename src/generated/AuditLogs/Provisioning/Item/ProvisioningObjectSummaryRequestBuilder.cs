@@ -33,7 +33,7 @@ namespace ApiSdk.AuditLogs.Provisioning.Item {
             command.SetHandler(async (string provisioningObjectSummaryId, IOutputFormatterFactory outputFormatterFactory, IConsole console) => {
                 var requestInfo = CreateDeleteRequestInformation(q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, provisioningObjectSummaryIdOption);
             return command;
@@ -95,7 +95,7 @@ namespace ApiSdk.AuditLogs.Provisioning.Item {
                 var model = parseNode.GetObjectValue<ProvisioningObjectSummary>();
                 var requestInfo = CreatePatchRequestInformation(model, q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, provisioningObjectSummaryIdOption, bodyOption);
             return command;

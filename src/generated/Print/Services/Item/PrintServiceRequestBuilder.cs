@@ -34,7 +34,7 @@ namespace ApiSdk.Print.Services.Item {
             command.SetHandler(async (string printServiceId, IOutputFormatterFactory outputFormatterFactory, IConsole console) => {
                 var requestInfo = CreateDeleteRequestInformation(q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, printServiceIdOption);
             return command;
@@ -106,7 +106,7 @@ namespace ApiSdk.Print.Services.Item {
                 var model = parseNode.GetObjectValue<PrintService>();
                 var requestInfo = CreatePatchRequestInformation(model, q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, printServiceIdOption, bodyOption);
             return command;

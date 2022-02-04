@@ -33,7 +33,7 @@ namespace ApiSdk.AuditLogs.SignIns.Item {
             command.SetHandler(async (string signInId, IOutputFormatterFactory outputFormatterFactory, IConsole console) => {
                 var requestInfo = CreateDeleteRequestInformation(q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, signInIdOption);
             return command;
@@ -95,7 +95,7 @@ namespace ApiSdk.AuditLogs.SignIns.Item {
                 var model = parseNode.GetObjectValue<SignIn>();
                 var requestInfo = CreatePatchRequestInformation(model, q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, signInIdOption, bodyOption);
             return command;

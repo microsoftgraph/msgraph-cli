@@ -41,7 +41,7 @@ namespace ApiSdk.DeviceManagement.DeviceCompliancePolicies.Item.ScheduledActions
             command.SetHandler(async (string deviceCompliancePolicyId, string deviceComplianceScheduledActionForRuleId, string deviceComplianceActionItemId, IOutputFormatterFactory outputFormatterFactory, IConsole console) => {
                 var requestInfo = CreateDeleteRequestInformation(q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, deviceCompliancePolicyIdOption, deviceComplianceScheduledActionForRuleIdOption, deviceComplianceActionItemIdOption);
             return command;
@@ -119,7 +119,7 @@ namespace ApiSdk.DeviceManagement.DeviceCompliancePolicies.Item.ScheduledActions
                 var model = parseNode.GetObjectValue<DeviceComplianceActionItem>();
                 var requestInfo = CreatePatchRequestInformation(model, q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, deviceCompliancePolicyIdOption, deviceComplianceScheduledActionForRuleIdOption, deviceComplianceActionItemIdOption, bodyOption);
             return command;

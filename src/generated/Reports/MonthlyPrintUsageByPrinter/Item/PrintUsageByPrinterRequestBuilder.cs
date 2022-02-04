@@ -33,7 +33,7 @@ namespace ApiSdk.Reports.MonthlyPrintUsageByPrinter.Item {
             command.SetHandler(async (string printUsageByPrinterId, IOutputFormatterFactory outputFormatterFactory, IConsole console) => {
                 var requestInfo = CreateDeleteRequestInformation(q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, printUsageByPrinterIdOption);
             return command;
@@ -95,7 +95,7 @@ namespace ApiSdk.Reports.MonthlyPrintUsageByPrinter.Item {
                 var model = parseNode.GetObjectValue<PrintUsageByPrinter>();
                 var requestInfo = CreatePatchRequestInformation(model, q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, printUsageByPrinterIdOption, bodyOption);
             return command;

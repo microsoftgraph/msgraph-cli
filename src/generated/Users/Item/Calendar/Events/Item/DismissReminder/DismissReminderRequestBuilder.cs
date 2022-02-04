@@ -36,7 +36,7 @@ namespace ApiSdk.Users.Item.Calendar.Events.Item.DismissReminder {
             command.SetHandler(async (string userId, string eventId, IOutputFormatterFactory outputFormatterFactory, IConsole console) => {
                 var requestInfo = CreatePostRequestInformation(q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, userIdOption, eventIdOption);
             return command;

@@ -35,7 +35,7 @@ namespace ApiSdk.Print.Printers.Create {
                 var model = parseNode.GetObjectValue<CreateRequestBody>();
                 var requestInfo = CreatePostRequestInformation(model, q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, bodyOption);
             return command;

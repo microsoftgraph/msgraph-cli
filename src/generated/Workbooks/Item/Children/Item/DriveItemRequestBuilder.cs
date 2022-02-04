@@ -45,7 +45,7 @@ namespace ApiSdk.Workbooks.Item.Children.Item {
             command.SetHandler(async (string driveItemId, string driveItemId1, IOutputFormatterFactory outputFormatterFactory, IConsole console) => {
                 var requestInfo = CreateDeleteRequestInformation(q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, driveItemIdOption, driveItemId1Option);
             return command;
@@ -115,7 +115,7 @@ namespace ApiSdk.Workbooks.Item.Children.Item {
                 var model = parseNode.GetObjectValue<ApiSdk.Models.Microsoft.Graph.DriveItem>();
                 var requestInfo = CreatePatchRequestInformation(model, q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, driveItemIdOption, driveItemId1Option, bodyOption);
             return command;

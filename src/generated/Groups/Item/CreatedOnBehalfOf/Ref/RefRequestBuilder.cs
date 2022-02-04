@@ -32,7 +32,7 @@ namespace ApiSdk.Groups.Item.CreatedOnBehalfOf.Ref {
             command.SetHandler(async (string groupId, IOutputFormatterFactory outputFormatterFactory, IConsole console) => {
                 var requestInfo = CreateDeleteRequestInformation(q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, groupIdOption);
             return command;
@@ -82,7 +82,7 @@ namespace ApiSdk.Groups.Item.CreatedOnBehalfOf.Ref {
                 var model = parseNode.GetObjectValue<ApiSdk.Groups.Item.CreatedOnBehalfOf.Ref.Ref>();
                 var requestInfo = CreatePutRequestInformation(model, q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, groupIdOption, bodyOption);
             return command;

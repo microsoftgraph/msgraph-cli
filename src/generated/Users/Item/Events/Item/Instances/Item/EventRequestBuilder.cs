@@ -66,7 +66,7 @@ namespace ApiSdk.Users.Item.Events.Item.Instances.Item {
             command.SetHandler(async (string userId, string eventId, string eventId1, IOutputFormatterFactory outputFormatterFactory, IConsole console) => {
                 var requestInfo = CreateDeleteRequestInformation(q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, userIdOption, eventIdOption, eventId1Option);
             return command;
@@ -150,7 +150,7 @@ namespace ApiSdk.Users.Item.Events.Item.Instances.Item {
                 var model = parseNode.GetObjectValue<Event>();
                 var requestInfo = CreatePatchRequestInformation(model, q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, userIdOption, eventIdOption, eventId1Option, bodyOption);
             return command;

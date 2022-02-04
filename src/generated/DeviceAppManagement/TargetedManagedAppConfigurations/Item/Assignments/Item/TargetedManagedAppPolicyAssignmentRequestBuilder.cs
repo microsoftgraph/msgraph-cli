@@ -37,7 +37,7 @@ namespace ApiSdk.DeviceAppManagement.TargetedManagedAppConfigurations.Item.Assig
             command.SetHandler(async (string targetedManagedAppConfigurationId, string targetedManagedAppPolicyAssignmentId, IOutputFormatterFactory outputFormatterFactory, IConsole console) => {
                 var requestInfo = CreateDeleteRequestInformation(q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, targetedManagedAppConfigurationIdOption, targetedManagedAppPolicyAssignmentIdOption);
             return command;
@@ -107,7 +107,7 @@ namespace ApiSdk.DeviceAppManagement.TargetedManagedAppConfigurations.Item.Assig
                 var model = parseNode.GetObjectValue<TargetedManagedAppPolicyAssignment>();
                 var requestInfo = CreatePatchRequestInformation(model, q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, targetedManagedAppConfigurationIdOption, targetedManagedAppPolicyAssignmentIdOption, bodyOption);
             return command;

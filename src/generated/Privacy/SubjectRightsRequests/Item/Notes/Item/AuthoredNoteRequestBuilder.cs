@@ -37,7 +37,7 @@ namespace ApiSdk.Privacy.SubjectRightsRequests.Item.Notes.Item {
             command.SetHandler(async (string subjectRightsRequestId, string authoredNoteId, IOutputFormatterFactory outputFormatterFactory, IConsole console) => {
                 var requestInfo = CreateDeleteRequestInformation(q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, subjectRightsRequestIdOption, authoredNoteIdOption);
             return command;
@@ -107,7 +107,7 @@ namespace ApiSdk.Privacy.SubjectRightsRequests.Item.Notes.Item {
                 var model = parseNode.GetObjectValue<AuthoredNote>();
                 var requestInfo = CreatePatchRequestInformation(model, q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, subjectRightsRequestIdOption, authoredNoteIdOption, bodyOption);
             return command;

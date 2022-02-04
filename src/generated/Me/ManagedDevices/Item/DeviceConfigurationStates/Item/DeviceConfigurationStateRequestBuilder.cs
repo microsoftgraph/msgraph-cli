@@ -37,7 +37,7 @@ namespace ApiSdk.Me.ManagedDevices.Item.DeviceConfigurationStates.Item {
             command.SetHandler(async (string managedDeviceId, string deviceConfigurationStateId, IOutputFormatterFactory outputFormatterFactory, IConsole console) => {
                 var requestInfo = CreateDeleteRequestInformation(q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, managedDeviceIdOption, deviceConfigurationStateIdOption);
             return command;
@@ -107,7 +107,7 @@ namespace ApiSdk.Me.ManagedDevices.Item.DeviceConfigurationStates.Item {
                 var model = parseNode.GetObjectValue<DeviceConfigurationState>();
                 var requestInfo = CreatePatchRequestInformation(model, q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, managedDeviceIdOption, deviceConfigurationStateIdOption, bodyOption);
             return command;

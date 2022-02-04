@@ -32,7 +32,7 @@ namespace ApiSdk.Print.Shares.Item.Printer.RestoreFactoryDefaults {
             command.SetHandler(async (string printerShareId, IOutputFormatterFactory outputFormatterFactory, IConsole console) => {
                 var requestInfo = CreatePostRequestInformation(q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, printerShareIdOption);
             return command;

@@ -86,7 +86,7 @@ namespace ApiSdk.Sites.Item.Lists.Item.Items.Item.DriveItem.Content {
                 using var stream = file.OpenRead();
                 var requestInfo = CreatePutRequestInformation(stream, q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, siteIdOption, listIdOption, listItemIdOption, bodyOption);
             return command;

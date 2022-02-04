@@ -33,7 +33,7 @@ namespace ApiSdk.DeviceAppManagement.IosManagedAppProtections.Item.DeploymentSum
             command.SetHandler(async (string iosManagedAppProtectionId, IOutputFormatterFactory outputFormatterFactory, IConsole console) => {
                 var requestInfo = CreateDeleteRequestInformation(q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, iosManagedAppProtectionIdOption);
             return command;
@@ -95,7 +95,7 @@ namespace ApiSdk.DeviceAppManagement.IosManagedAppProtections.Item.DeploymentSum
                 var model = parseNode.GetObjectValue<ManagedAppPolicyDeploymentSummary>();
                 var requestInfo = CreatePatchRequestInformation(model, q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, iosManagedAppProtectionIdOption, bodyOption);
             return command;

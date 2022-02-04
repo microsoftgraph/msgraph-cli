@@ -43,7 +43,7 @@ namespace ApiSdk.Users.Item.Onenote.Pages.Item.OnenotePatchContent {
                 var model = parseNode.GetObjectValue<OnenotePatchContentRequestBody>();
                 var requestInfo = CreatePostRequestInformation(model, q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, userIdOption, onenotePageIdOption, bodyOption);
             return command;

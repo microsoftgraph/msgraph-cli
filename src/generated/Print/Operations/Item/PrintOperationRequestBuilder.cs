@@ -33,7 +33,7 @@ namespace ApiSdk.Print.Operations.Item {
             command.SetHandler(async (string printOperationId, IOutputFormatterFactory outputFormatterFactory, IConsole console) => {
                 var requestInfo = CreateDeleteRequestInformation(q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, printOperationIdOption);
             return command;
@@ -95,7 +95,7 @@ namespace ApiSdk.Print.Operations.Item {
                 var model = parseNode.GetObjectValue<PrintOperation>();
                 var requestInfo = CreatePatchRequestInformation(model, q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, printOperationIdOption, bodyOption);
             return command;

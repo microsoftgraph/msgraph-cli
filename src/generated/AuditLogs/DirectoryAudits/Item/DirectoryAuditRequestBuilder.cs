@@ -33,7 +33,7 @@ namespace ApiSdk.AuditLogs.DirectoryAudits.Item {
             command.SetHandler(async (string directoryAuditId, IOutputFormatterFactory outputFormatterFactory, IConsole console) => {
                 var requestInfo = CreateDeleteRequestInformation(q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, directoryAuditIdOption);
             return command;
@@ -95,7 +95,7 @@ namespace ApiSdk.AuditLogs.DirectoryAudits.Item {
                 var model = parseNode.GetObjectValue<DirectoryAudit>();
                 var requestInfo = CreatePatchRequestInformation(model, q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, directoryAuditIdOption, bodyOption);
             return command;

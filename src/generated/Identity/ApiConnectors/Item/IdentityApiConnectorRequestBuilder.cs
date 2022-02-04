@@ -34,7 +34,7 @@ namespace ApiSdk.Identity.ApiConnectors.Item {
             command.SetHandler(async (string identityApiConnectorId, IOutputFormatterFactory outputFormatterFactory, IConsole console) => {
                 var requestInfo = CreateDeleteRequestInformation(q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, identityApiConnectorIdOption);
             return command;
@@ -96,7 +96,7 @@ namespace ApiSdk.Identity.ApiConnectors.Item {
                 var model = parseNode.GetObjectValue<IdentityApiConnector>();
                 var requestInfo = CreatePatchRequestInformation(model, q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, identityApiConnectorIdOption, bodyOption);
             return command;

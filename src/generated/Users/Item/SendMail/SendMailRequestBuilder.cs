@@ -39,7 +39,7 @@ namespace ApiSdk.Users.Item.SendMail {
                 var model = parseNode.GetObjectValue<SendMailRequestBody>();
                 var requestInfo = CreatePostRequestInformation(model, q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, userIdOption, bodyOption);
             return command;

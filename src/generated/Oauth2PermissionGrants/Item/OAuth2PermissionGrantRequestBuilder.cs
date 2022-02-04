@@ -33,7 +33,7 @@ namespace ApiSdk.Oauth2PermissionGrants.Item {
             command.SetHandler(async (string oAuth2PermissionGrantId, IOutputFormatterFactory outputFormatterFactory, IConsole console) => {
                 var requestInfo = CreateDeleteRequestInformation(q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, oAuth2PermissionGrantIdOption);
             return command;
@@ -95,7 +95,7 @@ namespace ApiSdk.Oauth2PermissionGrants.Item {
                 var model = parseNode.GetObjectValue<OAuth2PermissionGrant>();
                 var requestInfo = CreatePatchRequestInformation(model, q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, oAuth2PermissionGrantIdOption, bodyOption);
             return command;

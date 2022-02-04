@@ -32,7 +32,7 @@ namespace ApiSdk.Teams.Item.Group.Ref {
             command.SetHandler(async (string teamId, IOutputFormatterFactory outputFormatterFactory, IConsole console) => {
                 var requestInfo = CreateDeleteRequestInformation(q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, teamIdOption);
             return command;
@@ -82,7 +82,7 @@ namespace ApiSdk.Teams.Item.Group.Ref {
                 var model = parseNode.GetObjectValue<ApiSdk.Teams.Item.Group.Ref.Ref>();
                 var requestInfo = CreatePutRequestInformation(model, q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, teamIdOption, bodyOption);
             return command;

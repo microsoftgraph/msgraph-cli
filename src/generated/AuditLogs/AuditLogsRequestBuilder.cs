@@ -82,7 +82,7 @@ namespace ApiSdk.AuditLogs {
                 var model = parseNode.GetObjectValue<AuditLogRoot>();
                 var requestInfo = CreatePatchRequestInformation(model, q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, bodyOption);
             return command;

@@ -38,7 +38,7 @@ namespace ApiSdk.Communications.CallRecords.Item.Sessions.Item {
             command.SetHandler(async (string callRecordId, string sessionId, IOutputFormatterFactory outputFormatterFactory, IConsole console) => {
                 var requestInfo = CreateDeleteRequestInformation(q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, callRecordIdOption, sessionIdOption);
             return command;
@@ -108,7 +108,7 @@ namespace ApiSdk.Communications.CallRecords.Item.Sessions.Item {
                 var model = parseNode.GetObjectValue<Session>();
                 var requestInfo = CreatePatchRequestInformation(model, q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, callRecordIdOption, sessionIdOption, bodyOption);
             return command;

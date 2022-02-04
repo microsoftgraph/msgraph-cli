@@ -43,7 +43,7 @@ namespace ApiSdk.Teams.Item.Schedule {
             command.SetHandler(async (string teamId, IOutputFormatterFactory outputFormatterFactory, IConsole console) => {
                 var requestInfo = CreateDeleteRequestInformation(q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, teamIdOption);
             return command;
@@ -135,7 +135,7 @@ namespace ApiSdk.Teams.Item.Schedule {
                 var model = parseNode.GetObjectValue<ApiSdk.Models.Microsoft.Graph.Schedule>();
                 var requestInfo = CreatePatchRequestInformation(model, q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, teamIdOption, bodyOption);
             return command;

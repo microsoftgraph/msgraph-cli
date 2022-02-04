@@ -39,7 +39,7 @@ namespace ApiSdk.Domains.Item.ForceDelete {
                 var model = parseNode.GetObjectValue<ForceDeleteRequestBody>();
                 var requestInfo = CreatePostRequestInformation(model, q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, domainIdOption, bodyOption);
             return command;

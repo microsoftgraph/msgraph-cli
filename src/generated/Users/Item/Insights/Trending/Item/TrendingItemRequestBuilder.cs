@@ -38,7 +38,7 @@ namespace ApiSdk.Users.Item.Insights.Trending.Item {
             command.SetHandler(async (string userId, string trendingItemId, IOutputFormatterFactory outputFormatterFactory, IConsole console) => {
                 var requestInfo = CreateDeleteRequestInformation(q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, userIdOption, trendingItemIdOption);
             return command;
@@ -108,7 +108,7 @@ namespace ApiSdk.Users.Item.Insights.Trending.Item {
                 var model = parseNode.GetObjectValue<ApiSdk.Models.Microsoft.Graph.Trending>();
                 var requestInfo = CreatePatchRequestInformation(model, q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, userIdOption, trendingItemIdOption, bodyOption);
             return command;

@@ -34,7 +34,7 @@ namespace ApiSdk.DeviceAppManagement.VppTokens.Item {
             command.SetHandler(async (string vppTokenId, IOutputFormatterFactory outputFormatterFactory, IConsole console) => {
                 var requestInfo = CreateDeleteRequestInformation(q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, vppTokenIdOption);
             return command;
@@ -96,7 +96,7 @@ namespace ApiSdk.DeviceAppManagement.VppTokens.Item {
                 var model = parseNode.GetObjectValue<VppToken>();
                 var requestInfo = CreatePatchRequestInformation(model, q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, vppTokenIdOption, bodyOption);
             return command;

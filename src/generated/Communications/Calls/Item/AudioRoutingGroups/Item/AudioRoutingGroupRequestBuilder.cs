@@ -37,7 +37,7 @@ namespace ApiSdk.Communications.Calls.Item.AudioRoutingGroups.Item {
             command.SetHandler(async (string callId, string audioRoutingGroupId, IOutputFormatterFactory outputFormatterFactory, IConsole console) => {
                 var requestInfo = CreateDeleteRequestInformation(q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, callIdOption, audioRoutingGroupIdOption);
             return command;
@@ -107,7 +107,7 @@ namespace ApiSdk.Communications.Calls.Item.AudioRoutingGroups.Item {
                 var model = parseNode.GetObjectValue<AudioRoutingGroup>();
                 var requestInfo = CreatePatchRequestInformation(model, q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, callIdOption, audioRoutingGroupIdOption, bodyOption);
             return command;

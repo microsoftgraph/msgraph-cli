@@ -37,7 +37,7 @@ namespace ApiSdk.DeviceAppManagement.ManagedAppPolicies.Item {
             command.SetHandler(async (string managedAppPolicyId, IOutputFormatterFactory outputFormatterFactory, IConsole console) => {
                 var requestInfo = CreateDeleteRequestInformation(q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, managedAppPolicyIdOption);
             return command;
@@ -105,7 +105,7 @@ namespace ApiSdk.DeviceAppManagement.ManagedAppPolicies.Item {
                 var model = parseNode.GetObjectValue<ManagedAppPolicy>();
                 var requestInfo = CreatePatchRequestInformation(model, q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, managedAppPolicyIdOption, bodyOption);
             return command;

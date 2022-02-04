@@ -37,7 +37,7 @@ namespace ApiSdk.Solutions.BookingBusinesses.Item.StaffMembers.Item {
             command.SetHandler(async (string bookingBusinessId, string bookingStaffMemberBaseId, IOutputFormatterFactory outputFormatterFactory, IConsole console) => {
                 var requestInfo = CreateDeleteRequestInformation(q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, bookingBusinessIdOption, bookingStaffMemberBaseIdOption);
             return command;
@@ -107,7 +107,7 @@ namespace ApiSdk.Solutions.BookingBusinesses.Item.StaffMembers.Item {
                 var model = parseNode.GetObjectValue<BookingStaffMemberBase>();
                 var requestInfo = CreatePatchRequestInformation(model, q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, bookingBusinessIdOption, bookingStaffMemberBaseIdOption, bodyOption);
             return command;

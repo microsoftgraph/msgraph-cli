@@ -44,7 +44,7 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.Catalogs.Item {
             command.SetHandler(async (string accessPackageCatalogId, IOutputFormatterFactory outputFormatterFactory, IConsole console) => {
                 var requestInfo = CreateDeleteRequestInformation(q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, accessPackageCatalogIdOption);
             return command;
@@ -106,7 +106,7 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.Catalogs.Item {
                 var model = parseNode.GetObjectValue<AccessPackageCatalog>();
                 var requestInfo = CreatePatchRequestInformation(model, q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, accessPackageCatalogIdOption, bodyOption);
             return command;

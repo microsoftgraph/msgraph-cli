@@ -37,7 +37,7 @@ namespace ApiSdk.Teams.Item.Schedule.TimeOffReasons.Item {
             command.SetHandler(async (string teamId, string timeOffReasonId, IOutputFormatterFactory outputFormatterFactory, IConsole console) => {
                 var requestInfo = CreateDeleteRequestInformation(q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, teamIdOption, timeOffReasonIdOption);
             return command;
@@ -101,7 +101,7 @@ namespace ApiSdk.Teams.Item.Schedule.TimeOffReasons.Item {
                 var model = parseNode.GetObjectValue<TimeOffReason>();
                 var requestInfo = CreatePatchRequestInformation(model, q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, teamIdOption, timeOffReasonIdOption, bodyOption);
             return command;

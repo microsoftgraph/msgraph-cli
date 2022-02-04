@@ -33,7 +33,7 @@ namespace ApiSdk.Print.Connectors.Item {
             command.SetHandler(async (string printConnectorId, IOutputFormatterFactory outputFormatterFactory, IConsole console) => {
                 var requestInfo = CreateDeleteRequestInformation(q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, printConnectorIdOption);
             return command;
@@ -95,7 +95,7 @@ namespace ApiSdk.Print.Connectors.Item {
                 var model = parseNode.GetObjectValue<PrintConnector>();
                 var requestInfo = CreatePatchRequestInformation(model, q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, printConnectorIdOption, bodyOption);
             return command;

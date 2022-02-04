@@ -101,7 +101,7 @@ namespace ApiSdk.Drive.List.ContentTypes.Item {
             command.SetHandler(async (string contentTypeId, IOutputFormatterFactory outputFormatterFactory, IConsole console) => {
                 var requestInfo = CreateDeleteRequestInformation(q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, contentTypeIdOption);
             return command;
@@ -163,7 +163,7 @@ namespace ApiSdk.Drive.List.ContentTypes.Item {
                 var model = parseNode.GetObjectValue<ContentType>();
                 var requestInfo = CreatePatchRequestInformation(model, q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, contentTypeIdOption, bodyOption);
             return command;

@@ -43,7 +43,7 @@ namespace ApiSdk.Me.Calendars.Item.CalendarView.Item.Cancel {
                 var model = parseNode.GetObjectValue<CancelRequestBody>();
                 var requestInfo = CreatePostRequestInformation(model, q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, calendarIdOption, eventIdOption, bodyOption);
             return command;

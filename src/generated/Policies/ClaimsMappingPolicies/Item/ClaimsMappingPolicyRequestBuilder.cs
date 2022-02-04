@@ -33,7 +33,7 @@ namespace ApiSdk.Policies.ClaimsMappingPolicies.Item {
             command.SetHandler(async (string claimsMappingPolicyId, IOutputFormatterFactory outputFormatterFactory, IConsole console) => {
                 var requestInfo = CreateDeleteRequestInformation(q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, claimsMappingPolicyIdOption);
             return command;
@@ -95,7 +95,7 @@ namespace ApiSdk.Policies.ClaimsMappingPolicies.Item {
                 var model = parseNode.GetObjectValue<ClaimsMappingPolicy>();
                 var requestInfo = CreatePatchRequestInformation(model, q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, claimsMappingPolicyIdOption, bodyOption);
             return command;

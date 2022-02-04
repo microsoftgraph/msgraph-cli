@@ -65,7 +65,7 @@ namespace ApiSdk.Groups.Item.Planner.Plans.Item.Buckets.Item.Tasks.Item {
             command.SetHandler(async (string groupId, string plannerPlanId, string plannerBucketId, string plannerTaskId, IOutputFormatterFactory outputFormatterFactory, IConsole console) => {
                 var requestInfo = CreateDeleteRequestInformation(q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, groupIdOption, plannerPlanIdOption, plannerBucketIdOption, plannerTaskIdOption);
             return command;
@@ -159,7 +159,7 @@ namespace ApiSdk.Groups.Item.Planner.Plans.Item.Buckets.Item.Tasks.Item {
                 var model = parseNode.GetObjectValue<PlannerTask>();
                 var requestInfo = CreatePatchRequestInformation(model, q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, groupIdOption, plannerPlanIdOption, plannerBucketIdOption, plannerTaskIdOption, bodyOption);
             return command;

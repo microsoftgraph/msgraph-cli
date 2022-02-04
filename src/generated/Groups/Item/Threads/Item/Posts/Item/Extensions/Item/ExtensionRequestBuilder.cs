@@ -45,7 +45,7 @@ namespace ApiSdk.Groups.Item.Threads.Item.Posts.Item.Extensions.Item {
             command.SetHandler(async (string groupId, string conversationThreadId, string postId, string extensionId, IOutputFormatterFactory outputFormatterFactory, IConsole console) => {
                 var requestInfo = CreateDeleteRequestInformation(q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, groupIdOption, conversationThreadIdOption, postIdOption, extensionIdOption);
             return command;
@@ -131,7 +131,7 @@ namespace ApiSdk.Groups.Item.Threads.Item.Posts.Item.Extensions.Item {
                 var model = parseNode.GetObjectValue<Extension>();
                 var requestInfo = CreatePatchRequestInformation(model, q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, groupIdOption, conversationThreadIdOption, postIdOption, extensionIdOption, bodyOption);
             return command;

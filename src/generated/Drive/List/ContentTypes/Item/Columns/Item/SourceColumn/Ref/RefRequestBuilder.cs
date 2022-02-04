@@ -36,7 +36,7 @@ namespace ApiSdk.Drive.List.ContentTypes.Item.Columns.Item.SourceColumn.Ref {
             command.SetHandler(async (string contentTypeId, string columnDefinitionId, IOutputFormatterFactory outputFormatterFactory, IConsole console) => {
                 var requestInfo = CreateDeleteRequestInformation(q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, contentTypeIdOption, columnDefinitionIdOption);
             return command;
@@ -94,7 +94,7 @@ namespace ApiSdk.Drive.List.ContentTypes.Item.Columns.Item.SourceColumn.Ref {
                 var model = parseNode.GetObjectValue<ApiSdk.Drive.List.ContentTypes.Item.Columns.Item.SourceColumn.Ref.Ref>();
                 var requestInfo = CreatePutRequestInformation(model, q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, contentTypeIdOption, columnDefinitionIdOption, bodyOption);
             return command;

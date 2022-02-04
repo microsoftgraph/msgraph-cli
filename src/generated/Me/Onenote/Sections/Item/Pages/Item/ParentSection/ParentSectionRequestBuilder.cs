@@ -51,7 +51,7 @@ namespace ApiSdk.Me.Onenote.Sections.Item.Pages.Item.ParentSection {
             command.SetHandler(async (string onenoteSectionId, string onenotePageId, IOutputFormatterFactory outputFormatterFactory, IConsole console) => {
                 var requestInfo = CreateDeleteRequestInformation(q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, onenoteSectionIdOption, onenotePageIdOption);
             return command;
@@ -121,7 +121,7 @@ namespace ApiSdk.Me.Onenote.Sections.Item.Pages.Item.ParentSection {
                 var model = parseNode.GetObjectValue<OnenoteSection>();
                 var requestInfo = CreatePatchRequestInformation(model, q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, onenoteSectionIdOption, onenotePageIdOption, bodyOption);
             return command;

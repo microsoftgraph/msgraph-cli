@@ -37,7 +37,7 @@ namespace ApiSdk.Policies.PermissionGrantPolicies.Item.Includes.Item {
             command.SetHandler(async (string permissionGrantPolicyId, string permissionGrantConditionSetId, IOutputFormatterFactory outputFormatterFactory, IConsole console) => {
                 var requestInfo = CreateDeleteRequestInformation(q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, permissionGrantPolicyIdOption, permissionGrantConditionSetIdOption);
             return command;
@@ -107,7 +107,7 @@ namespace ApiSdk.Policies.PermissionGrantPolicies.Item.Includes.Item {
                 var model = parseNode.GetObjectValue<PermissionGrantConditionSet>();
                 var requestInfo = CreatePatchRequestInformation(model, q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, permissionGrantPolicyIdOption, permissionGrantConditionSetIdOption, bodyOption);
             return command;

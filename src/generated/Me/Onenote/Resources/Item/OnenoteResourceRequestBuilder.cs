@@ -41,7 +41,7 @@ namespace ApiSdk.Me.Onenote.Resources.Item {
             command.SetHandler(async (string onenoteResourceId, IOutputFormatterFactory outputFormatterFactory, IConsole console) => {
                 var requestInfo = CreateDeleteRequestInformation(q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, onenoteResourceIdOption);
             return command;
@@ -103,7 +103,7 @@ namespace ApiSdk.Me.Onenote.Resources.Item {
                 var model = parseNode.GetObjectValue<OnenoteResource>();
                 var requestInfo = CreatePatchRequestInformation(model, q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, onenoteResourceIdOption, bodyOption);
             return command;

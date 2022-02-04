@@ -37,7 +37,7 @@ namespace ApiSdk.Shares.Item.List.Subscriptions.Item {
             command.SetHandler(async (string sharedDriveItemId, string subscriptionId, IOutputFormatterFactory outputFormatterFactory, IConsole console) => {
                 var requestInfo = CreateDeleteRequestInformation(q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, sharedDriveItemIdOption, subscriptionIdOption);
             return command;
@@ -107,7 +107,7 @@ namespace ApiSdk.Shares.Item.List.Subscriptions.Item {
                 var model = parseNode.GetObjectValue<Subscription>();
                 var requestInfo = CreatePatchRequestInformation(model, q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, sharedDriveItemIdOption, subscriptionIdOption, bodyOption);
             return command;

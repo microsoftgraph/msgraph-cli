@@ -32,7 +32,7 @@ namespace ApiSdk.DeviceManagement.RemoteAssistancePartners.Item.BeginOnboarding 
             command.SetHandler(async (string remoteAssistancePartnerId, IOutputFormatterFactory outputFormatterFactory, IConsole console) => {
                 var requestInfo = CreatePostRequestInformation(q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, remoteAssistancePartnerIdOption);
             return command;

@@ -38,7 +38,7 @@ namespace ApiSdk.Agreements.Item.File.Localizations.Item {
             command.SetHandler(async (string agreementId, string agreementFileLocalizationId, IOutputFormatterFactory outputFormatterFactory, IConsole console) => {
                 var requestInfo = CreateDeleteRequestInformation(q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, agreementIdOption, agreementFileLocalizationIdOption);
             return command;
@@ -108,7 +108,7 @@ namespace ApiSdk.Agreements.Item.File.Localizations.Item {
                 var model = parseNode.GetObjectValue<AgreementFileLocalization>();
                 var requestInfo = CreatePatchRequestInformation(model, q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, agreementIdOption, agreementFileLocalizationIdOption, bodyOption);
             return command;

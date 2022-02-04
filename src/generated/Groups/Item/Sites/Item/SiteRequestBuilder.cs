@@ -37,7 +37,7 @@ namespace ApiSdk.Groups.Item.Sites.Item {
             command.SetHandler(async (string groupId, string siteId, IOutputFormatterFactory outputFormatterFactory, IConsole console) => {
                 var requestInfo = CreateDeleteRequestInformation(q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, groupIdOption, siteIdOption);
             return command;
@@ -107,7 +107,7 @@ namespace ApiSdk.Groups.Item.Sites.Item {
                 var model = parseNode.GetObjectValue<ApiSdk.Models.Microsoft.Graph.Site>();
                 var requestInfo = CreatePatchRequestInformation(model, q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, groupIdOption, siteIdOption, bodyOption);
             return command;

@@ -39,7 +39,7 @@ namespace ApiSdk.Communications.Presences.Item.SetPresence {
                 var model = parseNode.GetObjectValue<SetPresenceRequestBody>();
                 var requestInfo = CreatePostRequestInformation(model, q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, presenceIdOption, bodyOption);
             return command;

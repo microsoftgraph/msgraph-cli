@@ -37,7 +37,7 @@ namespace ApiSdk.Teams.Item.Schedule.TimeOffRequests.Item {
             command.SetHandler(async (string teamId, string timeOffRequestId, IOutputFormatterFactory outputFormatterFactory, IConsole console) => {
                 var requestInfo = CreateDeleteRequestInformation(q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, teamIdOption, timeOffRequestIdOption);
             return command;
@@ -101,7 +101,7 @@ namespace ApiSdk.Teams.Item.Schedule.TimeOffRequests.Item {
                 var model = parseNode.GetObjectValue<TimeOffRequest>();
                 var requestInfo = CreatePatchRequestInformation(model, q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, teamIdOption, timeOffRequestIdOption, bodyOption);
             return command;

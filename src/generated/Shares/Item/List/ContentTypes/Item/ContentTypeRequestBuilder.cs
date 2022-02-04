@@ -105,7 +105,7 @@ namespace ApiSdk.Shares.Item.List.ContentTypes.Item {
             command.SetHandler(async (string sharedDriveItemId, string contentTypeId, IOutputFormatterFactory outputFormatterFactory, IConsole console) => {
                 var requestInfo = CreateDeleteRequestInformation(q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, sharedDriveItemIdOption, contentTypeIdOption);
             return command;
@@ -175,7 +175,7 @@ namespace ApiSdk.Shares.Item.List.ContentTypes.Item {
                 var model = parseNode.GetObjectValue<ContentType>();
                 var requestInfo = CreatePatchRequestInformation(model, q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, sharedDriveItemIdOption, contentTypeIdOption, bodyOption);
             return command;

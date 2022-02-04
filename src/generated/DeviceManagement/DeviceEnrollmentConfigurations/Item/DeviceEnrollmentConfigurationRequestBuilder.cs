@@ -52,7 +52,7 @@ namespace ApiSdk.DeviceManagement.DeviceEnrollmentConfigurations.Item {
             command.SetHandler(async (string deviceEnrollmentConfigurationId, IOutputFormatterFactory outputFormatterFactory, IConsole console) => {
                 var requestInfo = CreateDeleteRequestInformation(q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, deviceEnrollmentConfigurationIdOption);
             return command;
@@ -114,7 +114,7 @@ namespace ApiSdk.DeviceManagement.DeviceEnrollmentConfigurations.Item {
                 var model = parseNode.GetObjectValue<DeviceEnrollmentConfiguration>();
                 var requestInfo = CreatePatchRequestInformation(model, q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, deviceEnrollmentConfigurationIdOption, bodyOption);
             return command;

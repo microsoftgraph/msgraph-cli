@@ -36,7 +36,7 @@ namespace ApiSdk.Shares.Item.List.ContentTypes.Item.Base.Unpublish {
             command.SetHandler(async (string sharedDriveItemId, string contentTypeId, IOutputFormatterFactory outputFormatterFactory, IConsole console) => {
                 var requestInfo = CreatePostRequestInformation(q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, sharedDriveItemIdOption, contentTypeIdOption);
             return command;

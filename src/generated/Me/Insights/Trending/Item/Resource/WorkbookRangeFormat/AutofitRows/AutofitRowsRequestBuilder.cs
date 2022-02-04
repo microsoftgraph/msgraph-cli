@@ -32,7 +32,7 @@ namespace ApiSdk.Me.Insights.Trending.Item.Resource.WorkbookRangeFormat.AutofitR
             command.SetHandler(async (string trendingItemId, IOutputFormatterFactory outputFormatterFactory, IConsole console) => {
                 var requestInfo = CreatePostRequestInformation(q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, trendingItemIdOption);
             return command;

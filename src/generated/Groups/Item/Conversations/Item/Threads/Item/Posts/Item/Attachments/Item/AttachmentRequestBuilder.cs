@@ -49,7 +49,7 @@ namespace ApiSdk.Groups.Item.Conversations.Item.Threads.Item.Posts.Item.Attachme
             command.SetHandler(async (string groupId, string conversationId, string conversationThreadId, string postId, string attachmentId, IOutputFormatterFactory outputFormatterFactory, IConsole console) => {
                 var requestInfo = CreateDeleteRequestInformation(q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, groupIdOption, conversationIdOption, conversationThreadIdOption, postIdOption, attachmentIdOption);
             return command;
@@ -143,7 +143,7 @@ namespace ApiSdk.Groups.Item.Conversations.Item.Threads.Item.Posts.Item.Attachme
                 var model = parseNode.GetObjectValue<Attachment>();
                 var requestInfo = CreatePatchRequestInformation(model, q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, groupIdOption, conversationIdOption, conversationThreadIdOption, postIdOption, attachmentIdOption, bodyOption);
             return command;

@@ -36,7 +36,7 @@ namespace ApiSdk.Teams.Item.Channels.Item.CompleteMigration {
             command.SetHandler(async (string teamId, string channelId, IOutputFormatterFactory outputFormatterFactory, IConsole console) => {
                 var requestInfo = CreatePostRequestInformation(q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, teamIdOption, channelIdOption);
             return command;

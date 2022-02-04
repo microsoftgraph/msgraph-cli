@@ -45,7 +45,7 @@ namespace ApiSdk.Users.Item.MailFolders.Item.Messages.Item.Attachments.Item {
             command.SetHandler(async (string userId, string mailFolderId, string messageId, string attachmentId, IOutputFormatterFactory outputFormatterFactory, IConsole console) => {
                 var requestInfo = CreateDeleteRequestInformation(q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, userIdOption, mailFolderIdOption, messageIdOption, attachmentIdOption);
             return command;
@@ -131,7 +131,7 @@ namespace ApiSdk.Users.Item.MailFolders.Item.Messages.Item.Attachments.Item {
                 var model = parseNode.GetObjectValue<Attachment>();
                 var requestInfo = CreatePatchRequestInformation(model, q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, userIdOption, mailFolderIdOption, messageIdOption, attachmentIdOption, bodyOption);
             return command;

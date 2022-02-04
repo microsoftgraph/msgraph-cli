@@ -171,7 +171,7 @@ namespace ApiSdk.Policies {
                 var model = parseNode.GetObjectValue<PolicyRoot>();
                 var requestInfo = CreatePatchRequestInformation(model, q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, bodyOption);
             return command;

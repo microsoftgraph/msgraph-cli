@@ -46,7 +46,7 @@ namespace ApiSdk.DeviceAppManagement.ManagedAppRegistrations.Item {
             command.SetHandler(async (string managedAppRegistrationId, IOutputFormatterFactory outputFormatterFactory, IConsole console) => {
                 var requestInfo = CreateDeleteRequestInformation(q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, managedAppRegistrationIdOption);
             return command;
@@ -128,7 +128,7 @@ namespace ApiSdk.DeviceAppManagement.ManagedAppRegistrations.Item {
                 var model = parseNode.GetObjectValue<ManagedAppRegistration>();
                 var requestInfo = CreatePatchRequestInformation(model, q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, managedAppRegistrationIdOption, bodyOption);
             return command;

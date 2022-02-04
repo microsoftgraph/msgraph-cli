@@ -34,7 +34,7 @@ namespace ApiSdk.Groups.Item.Planner {
             command.SetHandler(async (string groupId, IOutputFormatterFactory outputFormatterFactory, IConsole console) => {
                 var requestInfo = CreateDeleteRequestInformation(q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, groupIdOption);
             return command;
@@ -96,7 +96,7 @@ namespace ApiSdk.Groups.Item.Planner {
                 var model = parseNode.GetObjectValue<PlannerGroup>();
                 var requestInfo = CreatePatchRequestInformation(model, q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, groupIdOption, bodyOption);
             return command;

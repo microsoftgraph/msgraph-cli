@@ -37,7 +37,7 @@ namespace ApiSdk.ServicePrincipals.Item.DelegatedPermissionClassifications.Item 
             command.SetHandler(async (string servicePrincipalId, string delegatedPermissionClassificationId, IOutputFormatterFactory outputFormatterFactory, IConsole console) => {
                 var requestInfo = CreateDeleteRequestInformation(q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, servicePrincipalIdOption, delegatedPermissionClassificationIdOption);
             return command;
@@ -107,7 +107,7 @@ namespace ApiSdk.ServicePrincipals.Item.DelegatedPermissionClassifications.Item 
                 var model = parseNode.GetObjectValue<DelegatedPermissionClassification>();
                 var requestInfo = CreatePatchRequestInformation(model, q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, servicePrincipalIdOption, delegatedPermissionClassificationIdOption, bodyOption);
             return command;

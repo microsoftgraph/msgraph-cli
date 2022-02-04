@@ -36,7 +36,7 @@ namespace ApiSdk.Teams.Item.InstalledApps.Item.Upgrade {
             command.SetHandler(async (string teamId, string teamsAppInstallationId, IOutputFormatterFactory outputFormatterFactory, IConsole console) => {
                 var requestInfo = CreatePostRequestInformation(q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, teamIdOption, teamsAppInstallationIdOption);
             return command;

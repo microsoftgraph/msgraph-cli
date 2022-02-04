@@ -33,7 +33,7 @@ namespace ApiSdk.Me.ManagedDevices.Item.DeviceCategory {
             command.SetHandler(async (string managedDeviceId, IOutputFormatterFactory outputFormatterFactory, IConsole console) => {
                 var requestInfo = CreateDeleteRequestInformation(q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, managedDeviceIdOption);
             return command;
@@ -95,7 +95,7 @@ namespace ApiSdk.Me.ManagedDevices.Item.DeviceCategory {
                 var model = parseNode.GetObjectValue<ApiSdk.Models.Microsoft.Graph.DeviceCategory>();
                 var requestInfo = CreatePatchRequestInformation(model, q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, managedDeviceIdOption, bodyOption);
             return command;

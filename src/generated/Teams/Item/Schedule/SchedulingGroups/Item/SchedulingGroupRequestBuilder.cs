@@ -37,7 +37,7 @@ namespace ApiSdk.Teams.Item.Schedule.SchedulingGroups.Item {
             command.SetHandler(async (string teamId, string schedulingGroupId, IOutputFormatterFactory outputFormatterFactory, IConsole console) => {
                 var requestInfo = CreateDeleteRequestInformation(q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, teamIdOption, schedulingGroupIdOption);
             return command;
@@ -101,7 +101,7 @@ namespace ApiSdk.Teams.Item.Schedule.SchedulingGroups.Item {
                 var model = parseNode.GetObjectValue<SchedulingGroup>();
                 var requestInfo = CreatePatchRequestInformation(model, q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, teamIdOption, schedulingGroupIdOption, bodyOption);
             return command;

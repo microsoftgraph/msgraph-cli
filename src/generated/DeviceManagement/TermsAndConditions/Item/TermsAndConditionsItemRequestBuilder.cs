@@ -55,7 +55,7 @@ namespace ApiSdk.DeviceManagement.TermsAndConditions.Item {
             command.SetHandler(async (string termsAndConditionsItemId, IOutputFormatterFactory outputFormatterFactory, IConsole console) => {
                 var requestInfo = CreateDeleteRequestInformation(q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, termsAndConditionsItemIdOption);
             return command;
@@ -117,7 +117,7 @@ namespace ApiSdk.DeviceManagement.TermsAndConditions.Item {
                 var model = parseNode.GetObjectValue<ApiSdk.Models.Microsoft.Graph.TermsAndConditions>();
                 var requestInfo = CreatePatchRequestInformation(model, q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, termsAndConditionsItemIdOption, bodyOption);
             return command;

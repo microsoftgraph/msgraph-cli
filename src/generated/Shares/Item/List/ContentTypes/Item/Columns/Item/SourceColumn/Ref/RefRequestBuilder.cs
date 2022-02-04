@@ -40,7 +40,7 @@ namespace ApiSdk.Shares.Item.List.ContentTypes.Item.Columns.Item.SourceColumn.Re
             command.SetHandler(async (string sharedDriveItemId, string contentTypeId, string columnDefinitionId, IOutputFormatterFactory outputFormatterFactory, IConsole console) => {
                 var requestInfo = CreateDeleteRequestInformation(q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, sharedDriveItemIdOption, contentTypeIdOption, columnDefinitionIdOption);
             return command;
@@ -106,7 +106,7 @@ namespace ApiSdk.Shares.Item.List.ContentTypes.Item.Columns.Item.SourceColumn.Re
                 var model = parseNode.GetObjectValue<ApiSdk.Shares.Item.List.ContentTypes.Item.Columns.Item.SourceColumn.Ref.Ref>();
                 var requestInfo = CreatePutRequestInformation(model, q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, sharedDriveItemIdOption, contentTypeIdOption, columnDefinitionIdOption, bodyOption);
             return command;

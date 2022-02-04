@@ -37,7 +37,7 @@ namespace ApiSdk.Users.Item.Authentication {
             command.SetHandler(async (string userId, IOutputFormatterFactory outputFormatterFactory, IConsole console) => {
                 var requestInfo = CreateDeleteRequestInformation(q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, userIdOption);
             return command;
@@ -129,7 +129,7 @@ namespace ApiSdk.Users.Item.Authentication {
                 var model = parseNode.GetObjectValue<ApiSdk.Models.Microsoft.Graph.Authentication>();
                 var requestInfo = CreatePatchRequestInformation(model, q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, userIdOption, bodyOption);
             return command;

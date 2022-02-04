@@ -38,7 +38,7 @@ namespace ApiSdk.Identity.B2xUserFlows.Item.UserAttributeAssignments.Item {
             command.SetHandler(async (string b2xIdentityUserFlowId, string identityUserFlowAttributeAssignmentId, IOutputFormatterFactory outputFormatterFactory, IConsole console) => {
                 var requestInfo = CreateDeleteRequestInformation(q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, b2xIdentityUserFlowIdOption, identityUserFlowAttributeAssignmentIdOption);
             return command;
@@ -108,7 +108,7 @@ namespace ApiSdk.Identity.B2xUserFlows.Item.UserAttributeAssignments.Item {
                 var model = parseNode.GetObjectValue<IdentityUserFlowAttributeAssignment>();
                 var requestInfo = CreatePatchRequestInformation(model, q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, b2xIdentityUserFlowIdOption, identityUserFlowAttributeAssignmentIdOption, bodyOption);
             return command;

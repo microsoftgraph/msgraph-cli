@@ -37,7 +37,7 @@ namespace ApiSdk.Shares.Item.List.Items.Item.Fields {
             command.SetHandler(async (string sharedDriveItemId, string listItemId, IOutputFormatterFactory outputFormatterFactory, IConsole console) => {
                 var requestInfo = CreateDeleteRequestInformation(q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, sharedDriveItemIdOption, listItemIdOption);
             return command;
@@ -107,7 +107,7 @@ namespace ApiSdk.Shares.Item.List.Items.Item.Fields {
                 var model = parseNode.GetObjectValue<FieldValueSet>();
                 var requestInfo = CreatePatchRequestInformation(model, q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, sharedDriveItemIdOption, listItemIdOption, bodyOption);
             return command;

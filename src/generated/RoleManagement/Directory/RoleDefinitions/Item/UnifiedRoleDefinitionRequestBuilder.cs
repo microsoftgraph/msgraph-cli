@@ -34,7 +34,7 @@ namespace ApiSdk.RoleManagement.Directory.RoleDefinitions.Item {
             command.SetHandler(async (string unifiedRoleDefinitionId, IOutputFormatterFactory outputFormatterFactory, IConsole console) => {
                 var requestInfo = CreateDeleteRequestInformation(q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, unifiedRoleDefinitionIdOption);
             return command;
@@ -106,7 +106,7 @@ namespace ApiSdk.RoleManagement.Directory.RoleDefinitions.Item {
                 var model = parseNode.GetObjectValue<UnifiedRoleDefinition>();
                 var requestInfo = CreatePatchRequestInformation(model, q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, unifiedRoleDefinitionIdOption, bodyOption);
             return command;

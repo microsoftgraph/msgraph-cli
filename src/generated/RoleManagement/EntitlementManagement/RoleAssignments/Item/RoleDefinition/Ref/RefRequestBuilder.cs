@@ -32,7 +32,7 @@ namespace ApiSdk.RoleManagement.EntitlementManagement.RoleAssignments.Item.RoleD
             command.SetHandler(async (string unifiedRoleAssignmentId, IOutputFormatterFactory outputFormatterFactory, IConsole console) => {
                 var requestInfo = CreateDeleteRequestInformation(q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, unifiedRoleAssignmentIdOption);
             return command;
@@ -82,7 +82,7 @@ namespace ApiSdk.RoleManagement.EntitlementManagement.RoleAssignments.Item.RoleD
                 var model = parseNode.GetObjectValue<ApiSdk.RoleManagement.EntitlementManagement.RoleAssignments.Item.RoleDefinition.Ref.Ref>();
                 var requestInfo = CreatePutRequestInformation(model, q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, unifiedRoleAssignmentIdOption, bodyOption);
             return command;

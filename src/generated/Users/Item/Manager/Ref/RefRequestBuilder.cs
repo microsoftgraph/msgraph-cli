@@ -32,7 +32,7 @@ namespace ApiSdk.Users.Item.Manager.Ref {
             command.SetHandler(async (string userId, IOutputFormatterFactory outputFormatterFactory, IConsole console) => {
                 var requestInfo = CreateDeleteRequestInformation(q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, userIdOption);
             return command;
@@ -82,7 +82,7 @@ namespace ApiSdk.Users.Item.Manager.Ref {
                 var model = parseNode.GetObjectValue<ApiSdk.Users.Item.Manager.Ref.Ref>();
                 var requestInfo = CreatePutRequestInformation(model, q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, userIdOption, bodyOption);
             return command;

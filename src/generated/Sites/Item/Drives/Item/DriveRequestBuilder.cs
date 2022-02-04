@@ -37,7 +37,7 @@ namespace ApiSdk.Sites.Item.Drives.Item {
             command.SetHandler(async (string siteId, string driveId, IOutputFormatterFactory outputFormatterFactory, IConsole console) => {
                 var requestInfo = CreateDeleteRequestInformation(q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, siteIdOption, driveIdOption);
             return command;
@@ -107,7 +107,7 @@ namespace ApiSdk.Sites.Item.Drives.Item {
                 var model = parseNode.GetObjectValue<ApiSdk.Models.Microsoft.Graph.Drive>();
                 var requestInfo = CreatePatchRequestInformation(model, q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, siteIdOption, driveIdOption, bodyOption);
             return command;

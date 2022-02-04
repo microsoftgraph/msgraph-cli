@@ -46,7 +46,7 @@ namespace ApiSdk.Agreements.Item {
             command.SetHandler(async (string agreementId, IOutputFormatterFactory outputFormatterFactory, IConsole console) => {
                 var requestInfo = CreateDeleteRequestInformation(q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, agreementIdOption);
             return command;
@@ -121,7 +121,7 @@ namespace ApiSdk.Agreements.Item {
                 var model = parseNode.GetObjectValue<Agreement>();
                 var requestInfo = CreatePatchRequestInformation(model, q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, agreementIdOption, bodyOption);
             return command;

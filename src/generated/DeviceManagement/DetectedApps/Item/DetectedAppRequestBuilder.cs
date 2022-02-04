@@ -34,7 +34,7 @@ namespace ApiSdk.DeviceManagement.DetectedApps.Item {
             command.SetHandler(async (string detectedAppId, IOutputFormatterFactory outputFormatterFactory, IConsole console) => {
                 var requestInfo = CreateDeleteRequestInformation(q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, detectedAppIdOption);
             return command;
@@ -103,7 +103,7 @@ namespace ApiSdk.DeviceManagement.DetectedApps.Item {
                 var model = parseNode.GetObjectValue<DetectedApp>();
                 var requestInfo = CreatePatchRequestInformation(model, q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, detectedAppIdOption, bodyOption);
             return command;

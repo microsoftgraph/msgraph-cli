@@ -33,7 +33,7 @@ namespace ApiSdk.Shares.Item.Site {
             command.SetHandler(async (string sharedDriveItemId, IOutputFormatterFactory outputFormatterFactory, IConsole console) => {
                 var requestInfo = CreateDeleteRequestInformation(q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, sharedDriveItemIdOption);
             return command;
@@ -95,7 +95,7 @@ namespace ApiSdk.Shares.Item.Site {
                 var model = parseNode.GetObjectValue<ApiSdk.Models.Microsoft.Graph.Site>();
                 var requestInfo = CreatePatchRequestInformation(model, q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, sharedDriveItemIdOption, bodyOption);
             return command;

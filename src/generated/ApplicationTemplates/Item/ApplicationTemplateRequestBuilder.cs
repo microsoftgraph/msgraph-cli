@@ -34,7 +34,7 @@ namespace ApiSdk.ApplicationTemplates.Item {
             command.SetHandler(async (string applicationTemplateId, IOutputFormatterFactory outputFormatterFactory, IConsole console) => {
                 var requestInfo = CreateDeleteRequestInformation(q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, applicationTemplateIdOption);
             return command;
@@ -102,7 +102,7 @@ namespace ApiSdk.ApplicationTemplates.Item {
                 var model = parseNode.GetObjectValue<ApplicationTemplate>();
                 var requestInfo = CreatePatchRequestInformation(model, q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, applicationTemplateIdOption, bodyOption);
             return command;

@@ -76,7 +76,7 @@ namespace ApiSdk.Workbooks.Item.Workbook {
             command.SetHandler(async (string driveItemId, IOutputFormatterFactory outputFormatterFactory, IConsole console) => {
                 var requestInfo = CreateDeleteRequestInformation(q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, driveItemIdOption);
             return command;
@@ -528,7 +528,7 @@ namespace ApiSdk.Workbooks.Item.Workbook {
                 var model = parseNode.GetObjectValue<ApiSdk.Models.Microsoft.Graph.Workbook>();
                 var requestInfo = CreatePatchRequestInformation(model, q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, driveItemIdOption, bodyOption);
             return command;

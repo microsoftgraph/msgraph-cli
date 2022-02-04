@@ -39,7 +39,7 @@ namespace ApiSdk.DeviceManagement.DeviceEnrollmentConfigurations.Item.SetPriorit
                 var model = parseNode.GetObjectValue<SetPriorityRequestBody>();
                 var requestInfo = CreatePostRequestInformation(model, q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, deviceEnrollmentConfigurationIdOption, bodyOption);
             return command;

@@ -37,7 +37,7 @@ namespace ApiSdk.Drive.List.ContentTypes.Item.ColumnLinks.Item {
             command.SetHandler(async (string contentTypeId, string columnLinkId, IOutputFormatterFactory outputFormatterFactory, IConsole console) => {
                 var requestInfo = CreateDeleteRequestInformation(q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, contentTypeIdOption, columnLinkIdOption);
             return command;
@@ -107,7 +107,7 @@ namespace ApiSdk.Drive.List.ContentTypes.Item.ColumnLinks.Item {
                 var model = parseNode.GetObjectValue<ColumnLink>();
                 var requestInfo = CreatePatchRequestInformation(model, q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, contentTypeIdOption, columnLinkIdOption, bodyOption);
             return command;

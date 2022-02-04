@@ -38,7 +38,7 @@ namespace ApiSdk.Connections.Item.Groups.Item {
             command.SetHandler(async (string externalConnectionId, string externalGroupId, IOutputFormatterFactory outputFormatterFactory, IConsole console) => {
                 var requestInfo = CreateDeleteRequestInformation(q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, externalConnectionIdOption, externalGroupIdOption);
             return command;
@@ -118,7 +118,7 @@ namespace ApiSdk.Connections.Item.Groups.Item {
                 var model = parseNode.GetObjectValue<ExternalGroup>();
                 var requestInfo = CreatePatchRequestInformation(model, q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, externalConnectionIdOption, externalGroupIdOption, bodyOption);
             return command;

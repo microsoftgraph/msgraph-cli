@@ -34,7 +34,7 @@ namespace ApiSdk.Admin.ServiceAnnouncement.Issues.Item {
             command.SetHandler(async (string serviceHealthIssueId, IOutputFormatterFactory outputFormatterFactory, IConsole console) => {
                 var requestInfo = CreateDeleteRequestInformation(q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, serviceHealthIssueIdOption);
             return command;
@@ -96,7 +96,7 @@ namespace ApiSdk.Admin.ServiceAnnouncement.Issues.Item {
                 var model = parseNode.GetObjectValue<ServiceHealthIssue>();
                 var requestInfo = CreatePatchRequestInformation(model, q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, serviceHealthIssueIdOption, bodyOption);
             return command;

@@ -46,7 +46,7 @@ namespace ApiSdk.Print.TaskDefinitions.Item.Tasks.Item {
             command.SetHandler(async (string printTaskDefinitionId, string printTaskId, IOutputFormatterFactory outputFormatterFactory, IConsole console) => {
                 var requestInfo = CreateDeleteRequestInformation(q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, printTaskDefinitionIdOption, printTaskIdOption);
             return command;
@@ -116,7 +116,7 @@ namespace ApiSdk.Print.TaskDefinitions.Item.Tasks.Item {
                 var model = parseNode.GetObjectValue<PrintTask>();
                 var requestInfo = CreatePatchRequestInformation(model, q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, printTaskDefinitionIdOption, printTaskIdOption, bodyOption);
             return command;

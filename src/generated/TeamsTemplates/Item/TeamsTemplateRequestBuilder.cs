@@ -33,7 +33,7 @@ namespace ApiSdk.TeamsTemplates.Item {
             command.SetHandler(async (string teamsTemplateId, IOutputFormatterFactory outputFormatterFactory, IConsole console) => {
                 var requestInfo = CreateDeleteRequestInformation(q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, teamsTemplateIdOption);
             return command;
@@ -95,7 +95,7 @@ namespace ApiSdk.TeamsTemplates.Item {
                 var model = parseNode.GetObjectValue<TeamsTemplate>();
                 var requestInfo = CreatePatchRequestInformation(model, q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, teamsTemplateIdOption, bodyOption);
             return command;

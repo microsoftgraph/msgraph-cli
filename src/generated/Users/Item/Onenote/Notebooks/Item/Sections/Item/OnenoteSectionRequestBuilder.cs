@@ -58,7 +58,7 @@ namespace ApiSdk.Users.Item.Onenote.Notebooks.Item.Sections.Item {
             command.SetHandler(async (string userId, string notebookId, string onenoteSectionId, IOutputFormatterFactory outputFormatterFactory, IConsole console) => {
                 var requestInfo = CreateDeleteRequestInformation(q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, userIdOption, notebookIdOption, onenoteSectionIdOption);
             return command;
@@ -166,7 +166,7 @@ namespace ApiSdk.Users.Item.Onenote.Notebooks.Item.Sections.Item {
                 var model = parseNode.GetObjectValue<OnenoteSection>();
                 var requestInfo = CreatePatchRequestInformation(model, q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, userIdOption, notebookIdOption, onenoteSectionIdOption, bodyOption);
             return command;

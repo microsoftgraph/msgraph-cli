@@ -37,7 +37,7 @@ namespace ApiSdk.DeviceAppManagement.MobileApps.Item.Assignments.Item {
             command.SetHandler(async (string mobileAppId, string mobileAppAssignmentId, IOutputFormatterFactory outputFormatterFactory, IConsole console) => {
                 var requestInfo = CreateDeleteRequestInformation(q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, mobileAppIdOption, mobileAppAssignmentIdOption);
             return command;
@@ -107,7 +107,7 @@ namespace ApiSdk.DeviceAppManagement.MobileApps.Item.Assignments.Item {
                 var model = parseNode.GetObjectValue<MobileAppAssignment>();
                 var requestInfo = CreatePatchRequestInformation(model, q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, mobileAppIdOption, mobileAppAssignmentIdOption, bodyOption);
             return command;

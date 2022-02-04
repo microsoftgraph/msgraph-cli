@@ -41,7 +41,7 @@ namespace ApiSdk.DeviceAppManagement.ManagedEBooks.Item.UserStateSummary.Item.De
             command.SetHandler(async (string managedEBookId, string userInstallStateSummaryId, string deviceInstallStateId, IOutputFormatterFactory outputFormatterFactory, IConsole console) => {
                 var requestInfo = CreateDeleteRequestInformation(q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, managedEBookIdOption, userInstallStateSummaryIdOption, deviceInstallStateIdOption);
             return command;
@@ -119,7 +119,7 @@ namespace ApiSdk.DeviceAppManagement.ManagedEBooks.Item.UserStateSummary.Item.De
                 var model = parseNode.GetObjectValue<DeviceInstallState>();
                 var requestInfo = CreatePatchRequestInformation(model, q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, managedEBookIdOption, userInstallStateSummaryIdOption, deviceInstallStateIdOption, bodyOption);
             return command;

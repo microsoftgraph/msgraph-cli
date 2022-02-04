@@ -37,7 +37,7 @@ namespace ApiSdk.Me.MailFolders.Item.MultiValueExtendedProperties.Item {
             command.SetHandler(async (string mailFolderId, string multiValueLegacyExtendedPropertyId, IOutputFormatterFactory outputFormatterFactory, IConsole console) => {
                 var requestInfo = CreateDeleteRequestInformation(q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, mailFolderIdOption, multiValueLegacyExtendedPropertyIdOption);
             return command;
@@ -107,7 +107,7 @@ namespace ApiSdk.Me.MailFolders.Item.MultiValueExtendedProperties.Item {
                 var model = parseNode.GetObjectValue<MultiValueLegacyExtendedProperty>();
                 var requestInfo = CreatePatchRequestInformation(model, q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, mailFolderIdOption, multiValueLegacyExtendedPropertyIdOption, bodyOption);
             return command;

@@ -33,7 +33,7 @@ namespace ApiSdk.IdentityProviders.Item {
             command.SetHandler(async (string identityProviderId, IOutputFormatterFactory outputFormatterFactory, IConsole console) => {
                 var requestInfo = CreateDeleteRequestInformation(q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, identityProviderIdOption);
             return command;
@@ -95,7 +95,7 @@ namespace ApiSdk.IdentityProviders.Item {
                 var model = parseNode.GetObjectValue<IdentityProvider>();
                 var requestInfo = CreatePatchRequestInformation(model, q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, identityProviderIdOption, bodyOption);
             return command;

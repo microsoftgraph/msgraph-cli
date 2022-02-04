@@ -33,7 +33,7 @@ namespace ApiSdk.RoleManagement.EntitlementManagement.RoleAssignments.Item.AppSc
             command.SetHandler(async (string unifiedRoleAssignmentId, IOutputFormatterFactory outputFormatterFactory, IConsole console) => {
                 var requestInfo = CreateDeleteRequestInformation(q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, unifiedRoleAssignmentIdOption);
             return command;
@@ -95,7 +95,7 @@ namespace ApiSdk.RoleManagement.EntitlementManagement.RoleAssignments.Item.AppSc
                 var model = parseNode.GetObjectValue<ApiSdk.Models.Microsoft.Graph.AppScope>();
                 var requestInfo = CreatePatchRequestInformation(model, q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, unifiedRoleAssignmentIdOption, bodyOption);
             return command;

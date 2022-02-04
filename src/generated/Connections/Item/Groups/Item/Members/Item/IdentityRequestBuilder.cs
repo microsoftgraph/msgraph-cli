@@ -41,7 +41,7 @@ namespace ApiSdk.Connections.Item.Groups.Item.Members.Item {
             command.SetHandler(async (string externalConnectionId, string externalGroupId, string identityId, IOutputFormatterFactory outputFormatterFactory, IConsole console) => {
                 var requestInfo = CreateDeleteRequestInformation(q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, externalConnectionIdOption, externalGroupIdOption, identityIdOption);
             return command;
@@ -119,7 +119,7 @@ namespace ApiSdk.Connections.Item.Groups.Item.Members.Item {
                 var model = parseNode.GetObjectValue<ApiSdk.Models.Microsoft.Graph.Identity>();
                 var requestInfo = CreatePatchRequestInformation(model, q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, externalConnectionIdOption, externalGroupIdOption, identityIdOption, bodyOption);
             return command;

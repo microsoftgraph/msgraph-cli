@@ -33,7 +33,7 @@ namespace ApiSdk.AuditLogs.RestrictedSignIns.Item {
             command.SetHandler(async (string restrictedSignInId, IOutputFormatterFactory outputFormatterFactory, IConsole console) => {
                 var requestInfo = CreateDeleteRequestInformation(q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, restrictedSignInIdOption);
             return command;
@@ -95,7 +95,7 @@ namespace ApiSdk.AuditLogs.RestrictedSignIns.Item {
                 var model = parseNode.GetObjectValue<RestrictedSignIn>();
                 var requestInfo = CreatePatchRequestInformation(model, q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, restrictedSignInIdOption, bodyOption);
             return command;

@@ -34,7 +34,7 @@ namespace ApiSdk.Me.Authentication.WindowsHelloForBusinessMethods.Item {
             command.SetHandler(async (string windowsHelloForBusinessAuthenticationMethodId, IOutputFormatterFactory outputFormatterFactory, IConsole console) => {
                 var requestInfo = CreateDeleteRequestInformation(q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, windowsHelloForBusinessAuthenticationMethodIdOption);
             return command;
@@ -104,7 +104,7 @@ namespace ApiSdk.Me.Authentication.WindowsHelloForBusinessMethods.Item {
                 var model = parseNode.GetObjectValue<WindowsHelloForBusinessAuthenticationMethod>();
                 var requestInfo = CreatePatchRequestInformation(model, q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, windowsHelloForBusinessAuthenticationMethodIdOption, bodyOption);
             return command;

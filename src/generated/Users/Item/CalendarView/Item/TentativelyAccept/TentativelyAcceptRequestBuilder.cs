@@ -43,7 +43,7 @@ namespace ApiSdk.Users.Item.CalendarView.Item.TentativelyAccept {
                 var model = parseNode.GetObjectValue<TentativelyAcceptRequestBody>();
                 var requestInfo = CreatePostRequestInformation(model, q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, userIdOption, eventIdOption, bodyOption);
             return command;

@@ -33,7 +33,7 @@ namespace ApiSdk.Me.Calendar.MultiValueExtendedProperties.Item {
             command.SetHandler(async (string multiValueLegacyExtendedPropertyId, IOutputFormatterFactory outputFormatterFactory, IConsole console) => {
                 var requestInfo = CreateDeleteRequestInformation(q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, multiValueLegacyExtendedPropertyIdOption);
             return command;
@@ -95,7 +95,7 @@ namespace ApiSdk.Me.Calendar.MultiValueExtendedProperties.Item {
                 var model = parseNode.GetObjectValue<MultiValueLegacyExtendedProperty>();
                 var requestInfo = CreatePatchRequestInformation(model, q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, multiValueLegacyExtendedPropertyIdOption, bodyOption);
             return command;

@@ -46,7 +46,7 @@ namespace ApiSdk.Shares.Item.ListItem {
             command.SetHandler(async (string sharedDriveItemId, IOutputFormatterFactory outputFormatterFactory, IConsole console) => {
                 var requestInfo = CreateDeleteRequestInformation(q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, sharedDriveItemIdOption);
             return command;
@@ -125,7 +125,7 @@ namespace ApiSdk.Shares.Item.ListItem {
                 var model = parseNode.GetObjectValue<ApiSdk.Models.Microsoft.Graph.ListItem>();
                 var requestInfo = CreatePatchRequestInformation(model, q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, sharedDriveItemIdOption, bodyOption);
             return command;

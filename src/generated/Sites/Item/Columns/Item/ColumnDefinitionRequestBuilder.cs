@@ -38,7 +38,7 @@ namespace ApiSdk.Sites.Item.Columns.Item {
             command.SetHandler(async (string siteId, string columnDefinitionId, IOutputFormatterFactory outputFormatterFactory, IConsole console) => {
                 var requestInfo = CreateDeleteRequestInformation(q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, siteIdOption, columnDefinitionIdOption);
             return command;
@@ -108,7 +108,7 @@ namespace ApiSdk.Sites.Item.Columns.Item {
                 var model = parseNode.GetObjectValue<ColumnDefinition>();
                 var requestInfo = CreatePatchRequestInformation(model, q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, siteIdOption, columnDefinitionIdOption, bodyOption);
             return command;

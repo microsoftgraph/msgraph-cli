@@ -42,7 +42,7 @@ namespace ApiSdk.Me.Onenote.Notebooks.Item {
             command.SetHandler(async (string notebookId, IOutputFormatterFactory outputFormatterFactory, IConsole console) => {
                 var requestInfo = CreateDeleteRequestInformation(q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, notebookIdOption);
             return command;
@@ -104,7 +104,7 @@ namespace ApiSdk.Me.Onenote.Notebooks.Item {
                 var model = parseNode.GetObjectValue<Notebook>();
                 var requestInfo = CreatePatchRequestInformation(model, q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, notebookIdOption, bodyOption);
             return command;

@@ -33,7 +33,7 @@ namespace ApiSdk.SubscribedSkus.Item {
             command.SetHandler(async (string subscribedSkuId, IOutputFormatterFactory outputFormatterFactory, IConsole console) => {
                 var requestInfo = CreateDeleteRequestInformation(q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, subscribedSkuIdOption);
             return command;
@@ -89,7 +89,7 @@ namespace ApiSdk.SubscribedSkus.Item {
                 var model = parseNode.GetObjectValue<SubscribedSku>();
                 var requestInfo = CreatePatchRequestInformation(model, q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, subscribedSkuIdOption, bodyOption);
             return command;

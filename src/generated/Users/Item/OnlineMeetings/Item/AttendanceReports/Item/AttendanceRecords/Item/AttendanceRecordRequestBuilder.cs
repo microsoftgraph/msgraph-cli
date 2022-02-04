@@ -45,7 +45,7 @@ namespace ApiSdk.Users.Item.OnlineMeetings.Item.AttendanceReports.Item.Attendanc
             command.SetHandler(async (string userId, string onlineMeetingId, string meetingAttendanceReportId, string attendanceRecordId, IOutputFormatterFactory outputFormatterFactory, IConsole console) => {
                 var requestInfo = CreateDeleteRequestInformation(q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, userIdOption, onlineMeetingIdOption, meetingAttendanceReportIdOption, attendanceRecordIdOption);
             return command;
@@ -131,7 +131,7 @@ namespace ApiSdk.Users.Item.OnlineMeetings.Item.AttendanceReports.Item.Attendanc
                 var model = parseNode.GetObjectValue<AttendanceRecord>();
                 var requestInfo = CreatePatchRequestInformation(model, q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, userIdOption, onlineMeetingIdOption, meetingAttendanceReportIdOption, attendanceRecordIdOption, bodyOption);
             return command;

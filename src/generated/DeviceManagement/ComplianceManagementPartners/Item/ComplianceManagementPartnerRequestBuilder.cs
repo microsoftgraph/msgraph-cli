@@ -33,7 +33,7 @@ namespace ApiSdk.DeviceManagement.ComplianceManagementPartners.Item {
             command.SetHandler(async (string complianceManagementPartnerId, IOutputFormatterFactory outputFormatterFactory, IConsole console) => {
                 var requestInfo = CreateDeleteRequestInformation(q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, complianceManagementPartnerIdOption);
             return command;
@@ -95,7 +95,7 @@ namespace ApiSdk.DeviceManagement.ComplianceManagementPartners.Item {
                 var model = parseNode.GetObjectValue<ComplianceManagementPartner>();
                 var requestInfo = CreatePatchRequestInformation(model, q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, complianceManagementPartnerIdOption, bodyOption);
             return command;

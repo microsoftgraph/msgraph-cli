@@ -45,7 +45,7 @@ namespace ApiSdk.Me.MailFolders.Item.ChildFolders.Item {
             command.SetHandler(async (string mailFolderId, string mailFolderId1, IOutputFormatterFactory outputFormatterFactory, IConsole console) => {
                 var requestInfo = CreateDeleteRequestInformation(q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, mailFolderIdOption, mailFolderId1Option);
             return command;
@@ -121,7 +121,7 @@ namespace ApiSdk.Me.MailFolders.Item.ChildFolders.Item {
                 var model = parseNode.GetObjectValue<MailFolder>();
                 var requestInfo = CreatePatchRequestInformation(model, q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, mailFolderIdOption, mailFolderId1Option, bodyOption);
             return command;

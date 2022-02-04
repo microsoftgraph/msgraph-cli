@@ -39,7 +39,7 @@ namespace ApiSdk.DeviceManagement.ManagedDevices.Item.CleanWindowsDevice {
                 var model = parseNode.GetObjectValue<CleanWindowsDeviceRequestBody>();
                 var requestInfo = CreatePostRequestInformation(model, q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, managedDeviceIdOption, bodyOption);
             return command;

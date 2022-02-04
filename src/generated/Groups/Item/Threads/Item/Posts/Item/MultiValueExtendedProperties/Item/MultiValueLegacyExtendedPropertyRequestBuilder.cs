@@ -45,7 +45,7 @@ namespace ApiSdk.Groups.Item.Threads.Item.Posts.Item.MultiValueExtendedPropertie
             command.SetHandler(async (string groupId, string conversationThreadId, string postId, string multiValueLegacyExtendedPropertyId, IOutputFormatterFactory outputFormatterFactory, IConsole console) => {
                 var requestInfo = CreateDeleteRequestInformation(q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, groupIdOption, conversationThreadIdOption, postIdOption, multiValueLegacyExtendedPropertyIdOption);
             return command;
@@ -131,7 +131,7 @@ namespace ApiSdk.Groups.Item.Threads.Item.Posts.Item.MultiValueExtendedPropertie
                 var model = parseNode.GetObjectValue<MultiValueLegacyExtendedProperty>();
                 var requestInfo = CreatePatchRequestInformation(model, q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, groupIdOption, conversationThreadIdOption, postIdOption, multiValueLegacyExtendedPropertyIdOption, bodyOption);
             return command;

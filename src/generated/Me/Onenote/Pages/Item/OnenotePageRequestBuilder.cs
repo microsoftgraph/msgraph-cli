@@ -52,7 +52,7 @@ namespace ApiSdk.Me.Onenote.Pages.Item {
             command.SetHandler(async (string onenotePageId, IOutputFormatterFactory outputFormatterFactory, IConsole console) => {
                 var requestInfo = CreateDeleteRequestInformation(q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, onenotePageIdOption);
             return command;
@@ -144,7 +144,7 @@ namespace ApiSdk.Me.Onenote.Pages.Item {
                 var model = parseNode.GetObjectValue<OnenotePage>();
                 var requestInfo = CreatePatchRequestInformation(model, q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, onenotePageIdOption, bodyOption);
             return command;

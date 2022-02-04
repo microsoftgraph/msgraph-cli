@@ -96,7 +96,7 @@ namespace ApiSdk.Me.Messages.Item {
             command.SetHandler(async (string messageId, IOutputFormatterFactory outputFormatterFactory, IConsole console) => {
                 var requestInfo = CreateDeleteRequestInformation(q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, messageIdOption);
             return command;
@@ -184,7 +184,7 @@ namespace ApiSdk.Me.Messages.Item {
                 var model = parseNode.GetObjectValue<Message>();
                 var requestInfo = CreatePatchRequestInformation(model, q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, messageIdOption, bodyOption);
             return command;

@@ -54,7 +54,7 @@ namespace ApiSdk.Contacts.Item {
             command.SetHandler(async (string orgContactId, IOutputFormatterFactory outputFormatterFactory, IConsole console) => {
                 var requestInfo = CreateDeleteRequestInformation(q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, orgContactIdOption);
             return command;
@@ -149,7 +149,7 @@ namespace ApiSdk.Contacts.Item {
                 var model = parseNode.GetObjectValue<OrgContact>();
                 var requestInfo = CreatePatchRequestInformation(model, q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, orgContactIdOption, bodyOption);
             return command;

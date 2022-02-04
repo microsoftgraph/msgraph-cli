@@ -41,7 +41,7 @@ namespace ApiSdk.Teams.Item.PrimaryChannel.Messages.Item.HostedContents.Item {
             command.SetHandler(async (string teamId, string chatMessageId, string chatMessageHostedContentId, IOutputFormatterFactory outputFormatterFactory, IConsole console) => {
                 var requestInfo = CreateDeleteRequestInformation(q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, teamIdOption, chatMessageIdOption, chatMessageHostedContentIdOption);
             return command;
@@ -119,7 +119,7 @@ namespace ApiSdk.Teams.Item.PrimaryChannel.Messages.Item.HostedContents.Item {
                 var model = parseNode.GetObjectValue<ChatMessageHostedContent>();
                 var requestInfo = CreatePatchRequestInformation(model, q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, teamIdOption, chatMessageIdOption, chatMessageHostedContentIdOption, bodyOption);
             return command;

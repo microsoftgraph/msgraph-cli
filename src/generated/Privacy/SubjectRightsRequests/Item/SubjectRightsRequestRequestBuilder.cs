@@ -37,7 +37,7 @@ namespace ApiSdk.Privacy.SubjectRightsRequests.Item {
             command.SetHandler(async (string subjectRightsRequestId, IOutputFormatterFactory outputFormatterFactory, IConsole console) => {
                 var requestInfo = CreateDeleteRequestInformation(q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, subjectRightsRequestIdOption);
             return command;
@@ -109,7 +109,7 @@ namespace ApiSdk.Privacy.SubjectRightsRequests.Item {
                 var model = parseNode.GetObjectValue<SubjectRightsRequest>();
                 var requestInfo = CreatePatchRequestInformation(model, q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, subjectRightsRequestIdOption, bodyOption);
             return command;

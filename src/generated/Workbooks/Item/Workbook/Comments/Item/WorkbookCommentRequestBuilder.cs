@@ -38,7 +38,7 @@ namespace ApiSdk.Workbooks.Item.Workbook.Comments.Item {
             command.SetHandler(async (string driveItemId, string workbookCommentId, IOutputFormatterFactory outputFormatterFactory, IConsole console) => {
                 var requestInfo = CreateDeleteRequestInformation(q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, driveItemIdOption, workbookCommentIdOption);
             return command;
@@ -108,7 +108,7 @@ namespace ApiSdk.Workbooks.Item.Workbook.Comments.Item {
                 var model = parseNode.GetObjectValue<WorkbookComment>();
                 var requestInfo = CreatePatchRequestInformation(model, q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, driveItemIdOption, workbookCommentIdOption, bodyOption);
             return command;

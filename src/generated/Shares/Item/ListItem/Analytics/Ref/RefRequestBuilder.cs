@@ -32,7 +32,7 @@ namespace ApiSdk.Shares.Item.ListItem.Analytics.Ref {
             command.SetHandler(async (string sharedDriveItemId, IOutputFormatterFactory outputFormatterFactory, IConsole console) => {
                 var requestInfo = CreateDeleteRequestInformation(q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, sharedDriveItemIdOption);
             return command;
@@ -82,7 +82,7 @@ namespace ApiSdk.Shares.Item.ListItem.Analytics.Ref {
                 var model = parseNode.GetObjectValue<ApiSdk.Shares.Item.ListItem.Analytics.Ref.Ref>();
                 var requestInfo = CreatePutRequestInformation(model, q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, sharedDriveItemIdOption, bodyOption);
             return command;

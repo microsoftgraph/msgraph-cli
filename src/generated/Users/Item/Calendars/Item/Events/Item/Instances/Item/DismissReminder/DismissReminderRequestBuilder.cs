@@ -44,7 +44,7 @@ namespace ApiSdk.Users.Item.Calendars.Item.Events.Item.Instances.Item.DismissRem
             command.SetHandler(async (string userId, string calendarId, string eventId, string eventId1, IOutputFormatterFactory outputFormatterFactory, IConsole console) => {
                 var requestInfo = CreatePostRequestInformation(q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, userIdOption, calendarIdOption, eventIdOption, eventId1Option);
             return command;

@@ -37,7 +37,7 @@ namespace ApiSdk.Communications.Calls.Item.Operations.Item {
             command.SetHandler(async (string callId, string commsOperationId, IOutputFormatterFactory outputFormatterFactory, IConsole console) => {
                 var requestInfo = CreateDeleteRequestInformation(q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, callIdOption, commsOperationIdOption);
             return command;
@@ -107,7 +107,7 @@ namespace ApiSdk.Communications.Calls.Item.Operations.Item {
                 var model = parseNode.GetObjectValue<CommsOperation>();
                 var requestInfo = CreatePatchRequestInformation(model, q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, callIdOption, commsOperationIdOption, bodyOption);
             return command;

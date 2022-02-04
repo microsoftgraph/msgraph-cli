@@ -37,7 +37,7 @@ namespace ApiSdk.Users.Item.Planner.Tasks.Item.BucketTaskBoardFormat {
             command.SetHandler(async (string userId, string plannerTaskId, IOutputFormatterFactory outputFormatterFactory, IConsole console) => {
                 var requestInfo = CreateDeleteRequestInformation(q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, userIdOption, plannerTaskIdOption);
             return command;
@@ -107,7 +107,7 @@ namespace ApiSdk.Users.Item.Planner.Tasks.Item.BucketTaskBoardFormat {
                 var model = parseNode.GetObjectValue<PlannerBucketTaskBoardTaskFormat>();
                 var requestInfo = CreatePatchRequestInformation(model, q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, userIdOption, plannerTaskIdOption, bodyOption);
             return command;

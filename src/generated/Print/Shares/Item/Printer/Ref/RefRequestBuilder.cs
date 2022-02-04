@@ -32,7 +32,7 @@ namespace ApiSdk.Print.Shares.Item.Printer.Ref {
             command.SetHandler(async (string printerShareId, IOutputFormatterFactory outputFormatterFactory, IConsole console) => {
                 var requestInfo = CreateDeleteRequestInformation(q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, printerShareIdOption);
             return command;
@@ -82,7 +82,7 @@ namespace ApiSdk.Print.Shares.Item.Printer.Ref {
                 var model = parseNode.GetObjectValue<ApiSdk.Print.Shares.Item.Printer.Ref.Ref>();
                 var requestInfo = CreatePutRequestInformation(model, q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, printerShareIdOption, bodyOption);
             return command;

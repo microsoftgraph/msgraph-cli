@@ -45,7 +45,7 @@ namespace ApiSdk.Users.Item.Teamwork.InstalledApps.Item {
             command.SetHandler(async (string userId, string userScopeTeamsAppInstallationId, IOutputFormatterFactory outputFormatterFactory, IConsole console) => {
                 var requestInfo = CreateDeleteRequestInformation(q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, userIdOption, userScopeTeamsAppInstallationIdOption);
             return command;
@@ -115,7 +115,7 @@ namespace ApiSdk.Users.Item.Teamwork.InstalledApps.Item {
                 var model = parseNode.GetObjectValue<UserScopeTeamsAppInstallation>();
                 var requestInfo = CreatePatchRequestInformation(model, q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, userIdOption, userScopeTeamsAppInstallationIdOption, bodyOption);
             return command;

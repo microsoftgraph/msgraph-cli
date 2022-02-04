@@ -35,7 +35,7 @@ namespace ApiSdk.Me.Todo.Lists.Item {
             command.SetHandler(async (string todoTaskListId, IOutputFormatterFactory outputFormatterFactory, IConsole console) => {
                 var requestInfo = CreateDeleteRequestInformation(q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, todoTaskListIdOption);
             return command;
@@ -107,7 +107,7 @@ namespace ApiSdk.Me.Todo.Lists.Item {
                 var model = parseNode.GetObjectValue<TodoTaskList>();
                 var requestInfo = CreatePatchRequestInformation(model, q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, todoTaskListIdOption, bodyOption);
             return command;

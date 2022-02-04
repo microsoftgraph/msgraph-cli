@@ -43,7 +43,7 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.Assignments.Item {
             command.SetHandler(async (string accessPackageAssignmentId, IOutputFormatterFactory outputFormatterFactory, IConsole console) => {
                 var requestInfo = CreateDeleteRequestInformation(q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, accessPackageAssignmentIdOption);
             return command;
@@ -105,7 +105,7 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.Assignments.Item {
                 var model = parseNode.GetObjectValue<AccessPackageAssignment>();
                 var requestInfo = CreatePatchRequestInformation(model, q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, accessPackageAssignmentIdOption, bodyOption);
             return command;

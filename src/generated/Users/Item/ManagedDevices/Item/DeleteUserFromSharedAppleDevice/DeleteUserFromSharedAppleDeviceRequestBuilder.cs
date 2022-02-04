@@ -43,7 +43,7 @@ namespace ApiSdk.Users.Item.ManagedDevices.Item.DeleteUserFromSharedAppleDevice 
                 var model = parseNode.GetObjectValue<DeleteUserFromSharedAppleDeviceRequestBody>();
                 var requestInfo = CreatePostRequestInformation(model, q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, userIdOption, managedDeviceIdOption, bodyOption);
             return command;

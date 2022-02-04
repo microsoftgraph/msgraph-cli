@@ -47,7 +47,7 @@ namespace ApiSdk.Users.Item.Calendars.Item.CalendarView.Item.Forward {
                 var model = parseNode.GetObjectValue<ForwardRequestBody>();
                 var requestInfo = CreatePostRequestInformation(model, q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, userIdOption, calendarIdOption, eventIdOption, bodyOption);
             return command;

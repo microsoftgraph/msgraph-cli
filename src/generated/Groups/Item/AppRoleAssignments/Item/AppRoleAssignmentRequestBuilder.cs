@@ -37,7 +37,7 @@ namespace ApiSdk.Groups.Item.AppRoleAssignments.Item {
             command.SetHandler(async (string groupId, string appRoleAssignmentId, IOutputFormatterFactory outputFormatterFactory, IConsole console) => {
                 var requestInfo = CreateDeleteRequestInformation(q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, groupIdOption, appRoleAssignmentIdOption);
             return command;
@@ -107,7 +107,7 @@ namespace ApiSdk.Groups.Item.AppRoleAssignments.Item {
                 var model = parseNode.GetObjectValue<AppRoleAssignment>();
                 var requestInfo = CreatePatchRequestInformation(model, q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, groupIdOption, appRoleAssignmentIdOption, bodyOption);
             return command;

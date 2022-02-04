@@ -28,7 +28,7 @@ namespace ApiSdk.DeviceManagement.SoftwareUpdateStatusSummary.Ref {
             command.SetHandler(async (IOutputFormatterFactory outputFormatterFactory, IConsole console) => {
                 var requestInfo = CreateDeleteRequestInformation(q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             });
             return command;
@@ -70,7 +70,7 @@ namespace ApiSdk.DeviceManagement.SoftwareUpdateStatusSummary.Ref {
                 var model = parseNode.GetObjectValue<ApiSdk.DeviceManagement.SoftwareUpdateStatusSummary.Ref.Ref>();
                 var requestInfo = CreatePutRequestInformation(model, q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, bodyOption);
             return command;

@@ -36,7 +36,7 @@ namespace ApiSdk.Print.Printers.Item.TaskTriggers.Item.Definition.Ref {
             command.SetHandler(async (string printerId, string printTaskTriggerId, IOutputFormatterFactory outputFormatterFactory, IConsole console) => {
                 var requestInfo = CreateDeleteRequestInformation(q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, printerIdOption, printTaskTriggerIdOption);
             return command;
@@ -94,7 +94,7 @@ namespace ApiSdk.Print.Printers.Item.TaskTriggers.Item.Definition.Ref {
                 var model = parseNode.GetObjectValue<ApiSdk.Print.Printers.Item.TaskTriggers.Item.Definition.Ref.Ref>();
                 var requestInfo = CreatePutRequestInformation(model, q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, printerIdOption, printTaskTriggerIdOption, bodyOption);
             return command;

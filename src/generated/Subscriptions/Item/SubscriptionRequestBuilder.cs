@@ -33,7 +33,7 @@ namespace ApiSdk.Subscriptions.Item {
             command.SetHandler(async (string subscriptionId, IOutputFormatterFactory outputFormatterFactory, IConsole console) => {
                 var requestInfo = CreateDeleteRequestInformation(q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, subscriptionIdOption);
             return command;
@@ -89,7 +89,7 @@ namespace ApiSdk.Subscriptions.Item {
                 var model = parseNode.GetObjectValue<Subscription>();
                 var requestInfo = CreatePatchRequestInformation(model, q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, subscriptionIdOption, bodyOption);
             return command;

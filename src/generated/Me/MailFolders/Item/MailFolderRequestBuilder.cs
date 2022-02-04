@@ -56,7 +56,7 @@ namespace ApiSdk.Me.MailFolders.Item {
             command.SetHandler(async (string mailFolderId, IOutputFormatterFactory outputFormatterFactory, IConsole console) => {
                 var requestInfo = CreateDeleteRequestInformation(q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, mailFolderIdOption);
             return command;
@@ -148,7 +148,7 @@ namespace ApiSdk.Me.MailFolders.Item {
                 var model = parseNode.GetObjectValue<MailFolder>();
                 var requestInfo = CreatePatchRequestInformation(model, q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, mailFolderIdOption, bodyOption);
             return command;

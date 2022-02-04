@@ -34,7 +34,7 @@ namespace ApiSdk.Users.Item.InferenceClassification {
             command.SetHandler(async (string userId, IOutputFormatterFactory outputFormatterFactory, IConsole console) => {
                 var requestInfo = CreateDeleteRequestInformation(q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, userIdOption);
             return command;
@@ -100,7 +100,7 @@ namespace ApiSdk.Users.Item.InferenceClassification {
                 var model = parseNode.GetObjectValue<ApiSdk.Models.Microsoft.Graph.InferenceClassification>();
                 var requestInfo = CreatePatchRequestInformation(model, q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, userIdOption, bodyOption);
             return command;

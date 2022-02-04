@@ -33,7 +33,7 @@ namespace ApiSdk.InformationProtection.Bitlocker.RecoveryKeys.Item {
             command.SetHandler(async (string bitlockerRecoveryKeyId, IOutputFormatterFactory outputFormatterFactory, IConsole console) => {
                 var requestInfo = CreateDeleteRequestInformation(q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, bitlockerRecoveryKeyIdOption);
             return command;
@@ -95,7 +95,7 @@ namespace ApiSdk.InformationProtection.Bitlocker.RecoveryKeys.Item {
                 var model = parseNode.GetObjectValue<BitlockerRecoveryKey>();
                 var requestInfo = CreatePatchRequestInformation(model, q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, bitlockerRecoveryKeyIdOption, bodyOption);
             return command;

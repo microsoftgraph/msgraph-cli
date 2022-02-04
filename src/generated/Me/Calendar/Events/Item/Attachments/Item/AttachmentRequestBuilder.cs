@@ -37,7 +37,7 @@ namespace ApiSdk.Me.Calendar.Events.Item.Attachments.Item {
             command.SetHandler(async (string eventId, string attachmentId, IOutputFormatterFactory outputFormatterFactory, IConsole console) => {
                 var requestInfo = CreateDeleteRequestInformation(q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, eventIdOption, attachmentIdOption);
             return command;
@@ -107,7 +107,7 @@ namespace ApiSdk.Me.Calendar.Events.Item.Attachments.Item {
                 var model = parseNode.GetObjectValue<Attachment>();
                 var requestInfo = CreatePatchRequestInformation(model, q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, eventIdOption, attachmentIdOption, bodyOption);
             return command;

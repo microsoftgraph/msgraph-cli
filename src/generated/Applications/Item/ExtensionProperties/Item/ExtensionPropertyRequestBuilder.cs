@@ -37,7 +37,7 @@ namespace ApiSdk.Applications.Item.ExtensionProperties.Item {
             command.SetHandler(async (string applicationId, string extensionPropertyId, IOutputFormatterFactory outputFormatterFactory, IConsole console) => {
                 var requestInfo = CreateDeleteRequestInformation(q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, applicationIdOption, extensionPropertyIdOption);
             return command;
@@ -107,7 +107,7 @@ namespace ApiSdk.Applications.Item.ExtensionProperties.Item {
                 var model = parseNode.GetObjectValue<ExtensionProperty>();
                 var requestInfo = CreatePatchRequestInformation(model, q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, applicationIdOption, extensionPropertyIdOption, bodyOption);
             return command;

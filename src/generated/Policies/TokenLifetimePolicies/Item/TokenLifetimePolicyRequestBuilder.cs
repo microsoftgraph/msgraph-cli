@@ -33,7 +33,7 @@ namespace ApiSdk.Policies.TokenLifetimePolicies.Item {
             command.SetHandler(async (string tokenLifetimePolicyId, IOutputFormatterFactory outputFormatterFactory, IConsole console) => {
                 var requestInfo = CreateDeleteRequestInformation(q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, tokenLifetimePolicyIdOption);
             return command;
@@ -95,7 +95,7 @@ namespace ApiSdk.Policies.TokenLifetimePolicies.Item {
                 var model = parseNode.GetObjectValue<TokenLifetimePolicy>();
                 var requestInfo = CreatePatchRequestInformation(model, q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, tokenLifetimePolicyIdOption, bodyOption);
             return command;

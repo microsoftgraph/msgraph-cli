@@ -90,7 +90,7 @@ namespace ApiSdk.Directory {
                 var model = parseNode.GetObjectValue<ApiSdk.Models.Microsoft.Graph.Directory>();
                 var requestInfo = CreatePatchRequestInformation(model, q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, bodyOption);
             return command;

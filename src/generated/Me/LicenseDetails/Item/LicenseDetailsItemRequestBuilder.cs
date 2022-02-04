@@ -33,7 +33,7 @@ namespace ApiSdk.Me.LicenseDetails.Item {
             command.SetHandler(async (string licenseDetailsItemId, IOutputFormatterFactory outputFormatterFactory, IConsole console) => {
                 var requestInfo = CreateDeleteRequestInformation(q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, licenseDetailsItemIdOption);
             return command;
@@ -95,7 +95,7 @@ namespace ApiSdk.Me.LicenseDetails.Item {
                 var model = parseNode.GetObjectValue<ApiSdk.Models.Microsoft.Graph.LicenseDetails>();
                 var requestInfo = CreatePatchRequestInformation(model, q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, licenseDetailsItemIdOption, bodyOption);
             return command;

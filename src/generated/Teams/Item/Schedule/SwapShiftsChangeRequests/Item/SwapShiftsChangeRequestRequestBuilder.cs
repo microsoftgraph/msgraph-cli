@@ -37,7 +37,7 @@ namespace ApiSdk.Teams.Item.Schedule.SwapShiftsChangeRequests.Item {
             command.SetHandler(async (string teamId, string swapShiftsChangeRequestId, IOutputFormatterFactory outputFormatterFactory, IConsole console) => {
                 var requestInfo = CreateDeleteRequestInformation(q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, teamIdOption, swapShiftsChangeRequestIdOption);
             return command;
@@ -107,7 +107,7 @@ namespace ApiSdk.Teams.Item.Schedule.SwapShiftsChangeRequests.Item {
                 var model = parseNode.GetObjectValue<SwapShiftsChangeRequest>();
                 var requestInfo = CreatePatchRequestInformation(model, q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, teamIdOption, swapShiftsChangeRequestIdOption, bodyOption);
             return command;

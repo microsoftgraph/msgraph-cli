@@ -515,7 +515,7 @@ namespace ApiSdk.Me {
                 var model = parseNode.GetObjectValue<ApiSdk.Models.Microsoft.Graph.User>();
                 var requestInfo = CreatePatchRequestInformation(model, q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, bodyOption);
             return command;

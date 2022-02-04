@@ -40,7 +40,7 @@ namespace ApiSdk.Drives.Item.List.Items.Item.Versions.Item.RestoreVersion {
             command.SetHandler(async (string driveId, string listItemId, string listItemVersionId, IOutputFormatterFactory outputFormatterFactory, IConsole console) => {
                 var requestInfo = CreatePostRequestInformation(q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, driveIdOption, listItemIdOption, listItemVersionIdOption);
             return command;

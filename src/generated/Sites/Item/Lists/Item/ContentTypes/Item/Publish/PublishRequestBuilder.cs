@@ -40,7 +40,7 @@ namespace ApiSdk.Sites.Item.Lists.Item.ContentTypes.Item.Publish {
             command.SetHandler(async (string siteId, string listId, string contentTypeId, IOutputFormatterFactory outputFormatterFactory, IConsole console) => {
                 var requestInfo = CreatePostRequestInformation(q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, siteIdOption, listIdOption, contentTypeIdOption);
             return command;

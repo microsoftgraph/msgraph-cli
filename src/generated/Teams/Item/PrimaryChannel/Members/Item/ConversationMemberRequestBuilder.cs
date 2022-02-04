@@ -37,7 +37,7 @@ namespace ApiSdk.Teams.Item.PrimaryChannel.Members.Item {
             command.SetHandler(async (string teamId, string conversationMemberId, IOutputFormatterFactory outputFormatterFactory, IConsole console) => {
                 var requestInfo = CreateDeleteRequestInformation(q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, teamIdOption, conversationMemberIdOption);
             return command;
@@ -107,7 +107,7 @@ namespace ApiSdk.Teams.Item.PrimaryChannel.Members.Item {
                 var model = parseNode.GetObjectValue<ConversationMember>();
                 var requestInfo = CreatePatchRequestInformation(model, q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, teamIdOption, conversationMemberIdOption, bodyOption);
             return command;

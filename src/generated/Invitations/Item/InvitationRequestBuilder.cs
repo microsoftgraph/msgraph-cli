@@ -34,7 +34,7 @@ namespace ApiSdk.Invitations.Item {
             command.SetHandler(async (string invitationId, IOutputFormatterFactory outputFormatterFactory, IConsole console) => {
                 var requestInfo = CreateDeleteRequestInformation(q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, invitationIdOption);
             return command;
@@ -103,7 +103,7 @@ namespace ApiSdk.Invitations.Item {
                 var model = parseNode.GetObjectValue<Invitation>();
                 var requestInfo = CreatePatchRequestInformation(model, q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, invitationIdOption, bodyOption);
             return command;

@@ -35,7 +35,7 @@ namespace ApiSdk.DeviceManagement.NotificationMessageTemplates.Item {
             command.SetHandler(async (string notificationMessageTemplateId, IOutputFormatterFactory outputFormatterFactory, IConsole console) => {
                 var requestInfo = CreateDeleteRequestInformation(q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, notificationMessageTemplateIdOption);
             return command;
@@ -107,7 +107,7 @@ namespace ApiSdk.DeviceManagement.NotificationMessageTemplates.Item {
                 var model = parseNode.GetObjectValue<NotificationMessageTemplate>();
                 var requestInfo = CreatePatchRequestInformation(model, q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, notificationMessageTemplateIdOption, bodyOption);
             return command;

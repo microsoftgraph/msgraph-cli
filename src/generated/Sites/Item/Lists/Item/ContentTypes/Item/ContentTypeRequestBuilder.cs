@@ -109,7 +109,7 @@ namespace ApiSdk.Sites.Item.Lists.Item.ContentTypes.Item {
             command.SetHandler(async (string siteId, string listId, string contentTypeId, IOutputFormatterFactory outputFormatterFactory, IConsole console) => {
                 var requestInfo = CreateDeleteRequestInformation(q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, siteIdOption, listIdOption, contentTypeIdOption);
             return command;
@@ -187,7 +187,7 @@ namespace ApiSdk.Sites.Item.Lists.Item.ContentTypes.Item {
                 var model = parseNode.GetObjectValue<ContentType>();
                 var requestInfo = CreatePatchRequestInformation(model, q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, siteIdOption, listIdOption, contentTypeIdOption, bodyOption);
             return command;

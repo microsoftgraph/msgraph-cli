@@ -33,7 +33,7 @@ namespace ApiSdk.Identity.UserFlowAttributes.Item {
             command.SetHandler(async (string identityUserFlowAttributeId, IOutputFormatterFactory outputFormatterFactory, IConsole console) => {
                 var requestInfo = CreateDeleteRequestInformation(q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, identityUserFlowAttributeIdOption);
             return command;
@@ -95,7 +95,7 @@ namespace ApiSdk.Identity.UserFlowAttributes.Item {
                 var model = parseNode.GetObjectValue<IdentityUserFlowAttribute>();
                 var requestInfo = CreatePatchRequestInformation(model, q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, identityUserFlowAttributeIdOption, bodyOption);
             return command;

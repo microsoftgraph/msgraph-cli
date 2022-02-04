@@ -45,7 +45,7 @@ namespace ApiSdk.Sites.Item.Lists.Item.Items.Item.Versions.Item.Fields {
             command.SetHandler(async (string siteId, string listId, string listItemId, string listItemVersionId, IOutputFormatterFactory outputFormatterFactory, IConsole console) => {
                 var requestInfo = CreateDeleteRequestInformation(q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, siteIdOption, listIdOption, listItemIdOption, listItemVersionIdOption);
             return command;
@@ -131,7 +131,7 @@ namespace ApiSdk.Sites.Item.Lists.Item.Items.Item.Versions.Item.Fields {
                 var model = parseNode.GetObjectValue<FieldValueSet>();
                 var requestInfo = CreatePatchRequestInformation(model, q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, siteIdOption, listIdOption, listItemIdOption, listItemVersionIdOption, bodyOption);
             return command;

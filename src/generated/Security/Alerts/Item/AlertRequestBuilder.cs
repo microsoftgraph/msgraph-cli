@@ -33,7 +33,7 @@ namespace ApiSdk.Security.Alerts.Item {
             command.SetHandler(async (string alertId, IOutputFormatterFactory outputFormatterFactory, IConsole console) => {
                 var requestInfo = CreateDeleteRequestInformation(q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, alertIdOption);
             return command;
@@ -95,7 +95,7 @@ namespace ApiSdk.Security.Alerts.Item {
                 var model = parseNode.GetObjectValue<Alert>();
                 var requestInfo = CreatePatchRequestInformation(model, q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, alertIdOption, bodyOption);
             return command;

@@ -32,7 +32,7 @@ namespace ApiSdk.Invitations.Item.InvitedUser.Ref {
             command.SetHandler(async (string invitationId, IOutputFormatterFactory outputFormatterFactory, IConsole console) => {
                 var requestInfo = CreateDeleteRequestInformation(q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, invitationIdOption);
             return command;
@@ -82,7 +82,7 @@ namespace ApiSdk.Invitations.Item.InvitedUser.Ref {
                 var model = parseNode.GetObjectValue<ApiSdk.Invitations.Item.InvitedUser.Ref.Ref>();
                 var requestInfo = CreatePutRequestInformation(model, q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, invitationIdOption, bodyOption);
             return command;

@@ -40,7 +40,7 @@ namespace ApiSdk.Groups.Item.CalendarView.Item.Calendar.CalendarView.Item.Dismis
             command.SetHandler(async (string groupId, string eventId, string eventId1, IOutputFormatterFactory outputFormatterFactory, IConsole console) => {
                 var requestInfo = CreatePostRequestInformation(q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, groupIdOption, eventIdOption, eventId1Option);
             return command;

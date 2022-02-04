@@ -36,7 +36,7 @@ namespace ApiSdk.Users.Item.Teamwork.InstalledApps.Item.Chat.Ref {
             command.SetHandler(async (string userId, string userScopeTeamsAppInstallationId, IOutputFormatterFactory outputFormatterFactory, IConsole console) => {
                 var requestInfo = CreateDeleteRequestInformation(q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, userIdOption, userScopeTeamsAppInstallationIdOption);
             return command;
@@ -94,7 +94,7 @@ namespace ApiSdk.Users.Item.Teamwork.InstalledApps.Item.Chat.Ref {
                 var model = parseNode.GetObjectValue<ApiSdk.Users.Item.Teamwork.InstalledApps.Item.Chat.Ref.Ref>();
                 var requestInfo = CreatePutRequestInformation(model, q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, userIdOption, userScopeTeamsAppInstallationIdOption, bodyOption);
             return command;

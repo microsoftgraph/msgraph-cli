@@ -52,7 +52,7 @@ namespace ApiSdk.Users.Item.OnlineMeetings.Item.AttendanceReports.Item {
             command.SetHandler(async (string userId, string onlineMeetingId, string meetingAttendanceReportId, IOutputFormatterFactory outputFormatterFactory, IConsole console) => {
                 var requestInfo = CreateDeleteRequestInformation(q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, userIdOption, onlineMeetingIdOption, meetingAttendanceReportIdOption);
             return command;
@@ -130,7 +130,7 @@ namespace ApiSdk.Users.Item.OnlineMeetings.Item.AttendanceReports.Item {
                 var model = parseNode.GetObjectValue<MeetingAttendanceReport>();
                 var requestInfo = CreatePatchRequestInformation(model, q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, userIdOption, onlineMeetingIdOption, meetingAttendanceReportIdOption, bodyOption);
             return command;

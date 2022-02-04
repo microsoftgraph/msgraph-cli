@@ -41,7 +41,7 @@ namespace ApiSdk.Me.Todo.Lists.Item.Tasks.Item.Extensions.Item {
             command.SetHandler(async (string todoTaskListId, string todoTaskId, string extensionId, IOutputFormatterFactory outputFormatterFactory, IConsole console) => {
                 var requestInfo = CreateDeleteRequestInformation(q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, todoTaskListIdOption, todoTaskIdOption, extensionIdOption);
             return command;
@@ -119,7 +119,7 @@ namespace ApiSdk.Me.Todo.Lists.Item.Tasks.Item.Extensions.Item {
                 var model = parseNode.GetObjectValue<Extension>();
                 var requestInfo = CreatePatchRequestInformation(model, q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, todoTaskListIdOption, todoTaskIdOption, extensionIdOption, bodyOption);
             return command;

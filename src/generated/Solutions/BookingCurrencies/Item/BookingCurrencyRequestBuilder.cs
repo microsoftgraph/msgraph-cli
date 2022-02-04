@@ -33,7 +33,7 @@ namespace ApiSdk.Solutions.BookingCurrencies.Item {
             command.SetHandler(async (string bookingCurrencyId, IOutputFormatterFactory outputFormatterFactory, IConsole console) => {
                 var requestInfo = CreateDeleteRequestInformation(q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, bookingCurrencyIdOption);
             return command;
@@ -95,7 +95,7 @@ namespace ApiSdk.Solutions.BookingCurrencies.Item {
                 var model = parseNode.GetObjectValue<BookingCurrency>();
                 var requestInfo = CreatePatchRequestInformation(model, q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, bookingCurrencyIdOption, bodyOption);
             return command;

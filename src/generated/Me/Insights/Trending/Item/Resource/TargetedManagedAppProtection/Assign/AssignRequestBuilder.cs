@@ -39,7 +39,7 @@ namespace ApiSdk.Me.Insights.Trending.Item.Resource.TargetedManagedAppProtection
                 var model = parseNode.GetObjectValue<AssignRequestBody>();
                 var requestInfo = CreatePostRequestInformation(model, q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, trendingItemIdOption, bodyOption);
             return command;

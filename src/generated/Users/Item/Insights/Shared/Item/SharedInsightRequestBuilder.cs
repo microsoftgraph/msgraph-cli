@@ -39,7 +39,7 @@ namespace ApiSdk.Users.Item.Insights.Shared.Item {
             command.SetHandler(async (string userId, string sharedInsightId, IOutputFormatterFactory outputFormatterFactory, IConsole console) => {
                 var requestInfo = CreateDeleteRequestInformation(q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, userIdOption, sharedInsightIdOption);
             return command;
@@ -129,7 +129,7 @@ namespace ApiSdk.Users.Item.Insights.Shared.Item {
                 var model = parseNode.GetObjectValue<SharedInsight>();
                 var requestInfo = CreatePatchRequestInformation(model, q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, userIdOption, sharedInsightIdOption, bodyOption);
             return command;

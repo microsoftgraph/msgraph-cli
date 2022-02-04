@@ -39,7 +39,7 @@ namespace ApiSdk.Shares.Item.ListItem.Versions.Item {
             command.SetHandler(async (string sharedDriveItemId, string listItemVersionId, IOutputFormatterFactory outputFormatterFactory, IConsole console) => {
                 var requestInfo = CreateDeleteRequestInformation(q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, sharedDriveItemIdOption, listItemVersionIdOption);
             return command;
@@ -117,7 +117,7 @@ namespace ApiSdk.Shares.Item.ListItem.Versions.Item {
                 var model = parseNode.GetObjectValue<ListItemVersion>();
                 var requestInfo = CreatePatchRequestInformation(model, q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, sharedDriveItemIdOption, listItemVersionIdOption, bodyOption);
             return command;

@@ -37,7 +37,7 @@ namespace ApiSdk.Identity.B2xUserFlows.Item {
             command.SetHandler(async (string b2xIdentityUserFlowId, IOutputFormatterFactory outputFormatterFactory, IConsole console) => {
                 var requestInfo = CreateDeleteRequestInformation(q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, b2xIdentityUserFlowIdOption);
             return command;
@@ -116,7 +116,7 @@ namespace ApiSdk.Identity.B2xUserFlows.Item {
                 var model = parseNode.GetObjectValue<B2xIdentityUserFlow>();
                 var requestInfo = CreatePatchRequestInformation(model, q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, b2xIdentityUserFlowIdOption, bodyOption);
             return command;

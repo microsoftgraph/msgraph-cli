@@ -39,7 +39,7 @@ namespace ApiSdk.Me.Insights.Trending.Item.Resource.WorkbookRange.Delete {
                 var model = parseNode.GetObjectValue<DeleteRequestBody>();
                 var requestInfo = CreatePostRequestInformation(model, q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, trendingItemIdOption, bodyOption);
             return command;

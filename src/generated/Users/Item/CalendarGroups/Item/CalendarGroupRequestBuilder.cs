@@ -48,7 +48,7 @@ namespace ApiSdk.Users.Item.CalendarGroups.Item {
             command.SetHandler(async (string userId, string calendarGroupId, IOutputFormatterFactory outputFormatterFactory, IConsole console) => {
                 var requestInfo = CreateDeleteRequestInformation(q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, userIdOption, calendarGroupIdOption);
             return command;
@@ -112,7 +112,7 @@ namespace ApiSdk.Users.Item.CalendarGroups.Item {
                 var model = parseNode.GetObjectValue<CalendarGroup>();
                 var requestInfo = CreatePatchRequestInformation(model, q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, userIdOption, calendarGroupIdOption, bodyOption);
             return command;

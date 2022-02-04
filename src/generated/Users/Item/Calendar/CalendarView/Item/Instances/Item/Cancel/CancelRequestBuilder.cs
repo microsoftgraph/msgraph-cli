@@ -47,7 +47,7 @@ namespace ApiSdk.Users.Item.Calendar.CalendarView.Item.Instances.Item.Cancel {
                 var model = parseNode.GetObjectValue<CancelRequestBody>();
                 var requestInfo = CreatePostRequestInformation(model, q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, userIdOption, eventIdOption, eventId1Option, bodyOption);
             return command;

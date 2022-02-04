@@ -34,7 +34,7 @@ namespace ApiSdk.Print.TaskDefinitions.Item {
             command.SetHandler(async (string printTaskDefinitionId, IOutputFormatterFactory outputFormatterFactory, IConsole console) => {
                 var requestInfo = CreateDeleteRequestInformation(q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, printTaskDefinitionIdOption);
             return command;
@@ -96,7 +96,7 @@ namespace ApiSdk.Print.TaskDefinitions.Item {
                 var model = parseNode.GetObjectValue<PrintTaskDefinition>();
                 var requestInfo = CreatePatchRequestInformation(model, q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, printTaskDefinitionIdOption, bodyOption);
             return command;

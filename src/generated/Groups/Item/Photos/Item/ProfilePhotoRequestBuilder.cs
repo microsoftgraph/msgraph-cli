@@ -45,7 +45,7 @@ namespace ApiSdk.Groups.Item.Photos.Item {
             command.SetHandler(async (string groupId, string profilePhotoId, IOutputFormatterFactory outputFormatterFactory, IConsole console) => {
                 var requestInfo = CreateDeleteRequestInformation(q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, groupIdOption, profilePhotoIdOption);
             return command;
@@ -109,7 +109,7 @@ namespace ApiSdk.Groups.Item.Photos.Item {
                 var model = parseNode.GetObjectValue<ProfilePhoto>();
                 var requestInfo = CreatePatchRequestInformation(model, q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, groupIdOption, profilePhotoIdOption, bodyOption);
             return command;

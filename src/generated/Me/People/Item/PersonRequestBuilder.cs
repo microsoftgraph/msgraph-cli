@@ -33,7 +33,7 @@ namespace ApiSdk.Me.People.Item {
             command.SetHandler(async (string personId, IOutputFormatterFactory outputFormatterFactory, IConsole console) => {
                 var requestInfo = CreateDeleteRequestInformation(q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, personIdOption);
             return command;
@@ -89,7 +89,7 @@ namespace ApiSdk.Me.People.Item {
                 var model = parseNode.GetObjectValue<Person>();
                 var requestInfo = CreatePatchRequestInformation(model, q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, personIdOption, bodyOption);
             return command;

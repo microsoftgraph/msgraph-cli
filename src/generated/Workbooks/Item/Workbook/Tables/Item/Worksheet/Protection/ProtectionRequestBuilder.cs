@@ -39,7 +39,7 @@ namespace ApiSdk.Workbooks.Item.Workbook.Tables.Item.Worksheet.Protection {
             command.SetHandler(async (string driveItemId, string workbookTableId, IOutputFormatterFactory outputFormatterFactory, IConsole console) => {
                 var requestInfo = CreateDeleteRequestInformation(q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, driveItemIdOption, workbookTableIdOption);
             return command;
@@ -109,7 +109,7 @@ namespace ApiSdk.Workbooks.Item.Workbook.Tables.Item.Worksheet.Protection {
                 var model = parseNode.GetObjectValue<WorkbookWorksheetProtection>();
                 var requestInfo = CreatePatchRequestInformation(model, q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, driveItemIdOption, workbookTableIdOption, bodyOption);
             return command;

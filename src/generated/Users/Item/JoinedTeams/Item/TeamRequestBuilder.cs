@@ -37,7 +37,7 @@ namespace ApiSdk.Users.Item.JoinedTeams.Item {
             command.SetHandler(async (string userId, string teamId, IOutputFormatterFactory outputFormatterFactory, IConsole console) => {
                 var requestInfo = CreateDeleteRequestInformation(q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, userIdOption, teamIdOption);
             return command;
@@ -107,7 +107,7 @@ namespace ApiSdk.Users.Item.JoinedTeams.Item {
                 var model = parseNode.GetObjectValue<ApiSdk.Models.Microsoft.Graph.Team>();
                 var requestInfo = CreatePatchRequestInformation(model, q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, userIdOption, teamIdOption, bodyOption);
             return command;

@@ -33,7 +33,7 @@ namespace ApiSdk.DeviceManagement.MobileThreatDefenseConnectors.Item {
             command.SetHandler(async (string mobileThreatDefenseConnectorId, IOutputFormatterFactory outputFormatterFactory, IConsole console) => {
                 var requestInfo = CreateDeleteRequestInformation(q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, mobileThreatDefenseConnectorIdOption);
             return command;
@@ -95,7 +95,7 @@ namespace ApiSdk.DeviceManagement.MobileThreatDefenseConnectors.Item {
                 var model = parseNode.GetObjectValue<MobileThreatDefenseConnector>();
                 var requestInfo = CreatePatchRequestInformation(model, q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, mobileThreatDefenseConnectorIdOption, bodyOption);
             return command;

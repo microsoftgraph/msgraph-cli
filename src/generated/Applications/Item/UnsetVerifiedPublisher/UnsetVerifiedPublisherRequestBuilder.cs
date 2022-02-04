@@ -32,7 +32,7 @@ namespace ApiSdk.Applications.Item.UnsetVerifiedPublisher {
             command.SetHandler(async (string applicationId, IOutputFormatterFactory outputFormatterFactory, IConsole console) => {
                 var requestInfo = CreatePostRequestInformation(q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, applicationIdOption);
             return command;

@@ -37,7 +37,7 @@ namespace ApiSdk.InformationProtection.ThreatAssessmentRequests.Item.Results.Ite
             command.SetHandler(async (string threatAssessmentRequestId, string threatAssessmentResultId, IOutputFormatterFactory outputFormatterFactory, IConsole console) => {
                 var requestInfo = CreateDeleteRequestInformation(q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, threatAssessmentRequestIdOption, threatAssessmentResultIdOption);
             return command;
@@ -107,7 +107,7 @@ namespace ApiSdk.InformationProtection.ThreatAssessmentRequests.Item.Results.Ite
                 var model = parseNode.GetObjectValue<ThreatAssessmentResult>();
                 var requestInfo = CreatePatchRequestInformation(model, q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, threatAssessmentRequestIdOption, threatAssessmentResultIdOption, bodyOption);
             return command;

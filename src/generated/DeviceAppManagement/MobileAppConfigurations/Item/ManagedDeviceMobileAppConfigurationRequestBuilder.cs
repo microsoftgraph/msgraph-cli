@@ -55,7 +55,7 @@ namespace ApiSdk.DeviceAppManagement.MobileAppConfigurations.Item {
             command.SetHandler(async (string managedDeviceMobileAppConfigurationId, IOutputFormatterFactory outputFormatterFactory, IConsole console) => {
                 var requestInfo = CreateDeleteRequestInformation(q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, managedDeviceMobileAppConfigurationIdOption);
             return command;
@@ -135,7 +135,7 @@ namespace ApiSdk.DeviceAppManagement.MobileAppConfigurations.Item {
                 var model = parseNode.GetObjectValue<ManagedDeviceMobileAppConfiguration>();
                 var requestInfo = CreatePatchRequestInformation(model, q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, managedDeviceMobileAppConfigurationIdOption, bodyOption);
             return command;

@@ -39,7 +39,7 @@ namespace ApiSdk.Workbooks.Item.Checkin {
                 var model = parseNode.GetObjectValue<CheckinRequestBody>();
                 var requestInfo = CreatePostRequestInformation(model, q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, driveItemIdOption, bodyOption);
             return command;

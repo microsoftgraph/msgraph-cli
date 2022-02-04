@@ -33,7 +33,7 @@ namespace ApiSdk.Education.Classes.Item.AssignmentSettings {
             command.SetHandler(async (string educationClassId, IOutputFormatterFactory outputFormatterFactory, IConsole console) => {
                 var requestInfo = CreateDeleteRequestInformation(q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, educationClassIdOption);
             return command;
@@ -95,7 +95,7 @@ namespace ApiSdk.Education.Classes.Item.AssignmentSettings {
                 var model = parseNode.GetObjectValue<EducationAssignmentSettings>();
                 var requestInfo = CreatePatchRequestInformation(model, q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, educationClassIdOption, bodyOption);
             return command;

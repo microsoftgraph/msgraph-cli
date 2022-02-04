@@ -39,7 +39,7 @@ namespace ApiSdk.Users.Item.WipeManagedAppRegistrationsByDeviceTag {
                 var model = parseNode.GetObjectValue<WipeManagedAppRegistrationsByDeviceTagRequestBody>();
                 var requestInfo = CreatePostRequestInformation(model, q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, userIdOption, bodyOption);
             return command;

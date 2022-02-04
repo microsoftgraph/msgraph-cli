@@ -69,7 +69,7 @@ namespace ApiSdk.Organization.Item {
             command.SetHandler(async (string organizationItemId, IOutputFormatterFactory outputFormatterFactory, IConsole console) => {
                 var requestInfo = CreateDeleteRequestInformation(q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, organizationItemIdOption);
             return command;
@@ -153,7 +153,7 @@ namespace ApiSdk.Organization.Item {
                 var model = parseNode.GetObjectValue<ApiSdk.Models.Microsoft.Graph.Organization>();
                 var requestInfo = CreatePatchRequestInformation(model, q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, organizationItemIdOption, bodyOption);
             return command;

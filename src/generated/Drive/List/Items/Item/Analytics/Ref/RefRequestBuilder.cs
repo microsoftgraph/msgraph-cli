@@ -32,7 +32,7 @@ namespace ApiSdk.Drive.List.Items.Item.Analytics.Ref {
             command.SetHandler(async (string listItemId, IOutputFormatterFactory outputFormatterFactory, IConsole console) => {
                 var requestInfo = CreateDeleteRequestInformation(q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, listItemIdOption);
             return command;
@@ -82,7 +82,7 @@ namespace ApiSdk.Drive.List.Items.Item.Analytics.Ref {
                 var model = parseNode.GetObjectValue<ApiSdk.Drive.List.Items.Item.Analytics.Ref.Ref>();
                 var requestInfo = CreatePutRequestInformation(model, q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, listItemIdOption, bodyOption);
             return command;

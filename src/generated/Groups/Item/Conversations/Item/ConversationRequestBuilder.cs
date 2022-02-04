@@ -38,7 +38,7 @@ namespace ApiSdk.Groups.Item.Conversations.Item {
             command.SetHandler(async (string groupId, string conversationId, IOutputFormatterFactory outputFormatterFactory, IConsole console) => {
                 var requestInfo = CreateDeleteRequestInformation(q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, groupIdOption, conversationIdOption);
             return command;
@@ -102,7 +102,7 @@ namespace ApiSdk.Groups.Item.Conversations.Item {
                 var model = parseNode.GetObjectValue<Conversation>();
                 var requestInfo = CreatePatchRequestInformation(model, q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, groupIdOption, conversationIdOption, bodyOption);
             return command;

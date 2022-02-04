@@ -39,7 +39,7 @@ namespace ApiSdk.Me.Insights.Shared.Item.LastSharedMethod.ScheduleChangeRequest.
                 var model = parseNode.GetObjectValue<ApproveRequestBody>();
                 var requestInfo = CreatePostRequestInformation(model, q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, sharedInsightIdOption, bodyOption);
             return command;

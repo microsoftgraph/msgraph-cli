@@ -37,7 +37,7 @@ namespace ApiSdk.IdentityProtection.RiskyUsers.Item.History.Item {
             command.SetHandler(async (string riskyUserId, string riskyUserHistoryItemId, IOutputFormatterFactory outputFormatterFactory, IConsole console) => {
                 var requestInfo = CreateDeleteRequestInformation(q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, riskyUserIdOption, riskyUserHistoryItemIdOption);
             return command;
@@ -107,7 +107,7 @@ namespace ApiSdk.IdentityProtection.RiskyUsers.Item.History.Item {
                 var model = parseNode.GetObjectValue<RiskyUserHistoryItem>();
                 var requestInfo = CreatePatchRequestInformation(model, q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, riskyUserIdOption, riskyUserHistoryItemIdOption, bodyOption);
             return command;

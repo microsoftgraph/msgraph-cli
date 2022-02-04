@@ -41,7 +41,7 @@ namespace ApiSdk.Users.Item.Calendar.CalendarView.Item.Attachments.Item {
             command.SetHandler(async (string userId, string eventId, string attachmentId, IOutputFormatterFactory outputFormatterFactory, IConsole console) => {
                 var requestInfo = CreateDeleteRequestInformation(q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, userIdOption, eventIdOption, attachmentIdOption);
             return command;
@@ -119,7 +119,7 @@ namespace ApiSdk.Users.Item.Calendar.CalendarView.Item.Attachments.Item {
                 var model = parseNode.GetObjectValue<Attachment>();
                 var requestInfo = CreatePatchRequestInformation(model, q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, userIdOption, eventIdOption, attachmentIdOption, bodyOption);
             return command;

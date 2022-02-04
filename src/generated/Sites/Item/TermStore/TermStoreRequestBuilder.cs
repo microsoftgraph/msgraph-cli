@@ -35,7 +35,7 @@ namespace ApiSdk.Sites.Item.TermStore {
             command.SetHandler(async (string siteId, IOutputFormatterFactory outputFormatterFactory, IConsole console) => {
                 var requestInfo = CreateDeleteRequestInformation(q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, siteIdOption);
             return command;
@@ -107,7 +107,7 @@ namespace ApiSdk.Sites.Item.TermStore {
                 var model = parseNode.GetObjectValue<Store>();
                 var requestInfo = CreatePatchRequestInformation(model, q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, siteIdOption, bodyOption);
             return command;

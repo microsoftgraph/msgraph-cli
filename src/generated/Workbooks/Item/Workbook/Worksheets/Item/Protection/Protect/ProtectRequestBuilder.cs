@@ -43,7 +43,7 @@ namespace ApiSdk.Workbooks.Item.Workbook.Worksheets.Item.Protection.Protect {
                 var model = parseNode.GetObjectValue<ProtectRequestBody>();
                 var requestInfo = CreatePostRequestInformation(model, q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, driveItemIdOption, workbookWorksheetIdOption, bodyOption);
             return command;

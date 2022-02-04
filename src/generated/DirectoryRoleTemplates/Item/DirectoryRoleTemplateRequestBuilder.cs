@@ -50,7 +50,7 @@ namespace ApiSdk.DirectoryRoleTemplates.Item {
             command.SetHandler(async (string directoryRoleTemplateId, IOutputFormatterFactory outputFormatterFactory, IConsole console) => {
                 var requestInfo = CreateDeleteRequestInformation(q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, directoryRoleTemplateIdOption);
             return command;
@@ -124,7 +124,7 @@ namespace ApiSdk.DirectoryRoleTemplates.Item {
                 var model = parseNode.GetObjectValue<DirectoryRoleTemplate>();
                 var requestInfo = CreatePatchRequestInformation(model, q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, directoryRoleTemplateIdOption, bodyOption);
             return command;

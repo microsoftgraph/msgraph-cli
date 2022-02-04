@@ -45,7 +45,7 @@ namespace ApiSdk.DeviceAppManagement.DefaultManagedAppProtections.Item {
             command.SetHandler(async (string defaultManagedAppProtectionId, IOutputFormatterFactory outputFormatterFactory, IConsole console) => {
                 var requestInfo = CreateDeleteRequestInformation(q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, defaultManagedAppProtectionIdOption);
             return command;
@@ -115,7 +115,7 @@ namespace ApiSdk.DeviceAppManagement.DefaultManagedAppProtections.Item {
                 var model = parseNode.GetObjectValue<DefaultManagedAppProtection>();
                 var requestInfo = CreatePatchRequestInformation(model, q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, defaultManagedAppProtectionIdOption, bodyOption);
             return command;

@@ -50,7 +50,7 @@ namespace ApiSdk.PermissionGrants.Item {
             command.SetHandler(async (string resourceSpecificPermissionGrantId, IOutputFormatterFactory outputFormatterFactory, IConsole console) => {
                 var requestInfo = CreateDeleteRequestInformation(q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, resourceSpecificPermissionGrantIdOption);
             return command;
@@ -124,7 +124,7 @@ namespace ApiSdk.PermissionGrants.Item {
                 var model = parseNode.GetObjectValue<ResourceSpecificPermissionGrant>();
                 var requestInfo = CreatePatchRequestInformation(model, q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, resourceSpecificPermissionGrantIdOption, bodyOption);
             return command;

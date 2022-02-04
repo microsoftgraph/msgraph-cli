@@ -36,7 +36,7 @@ namespace ApiSdk.Sites.Item.ContentTypes.Item.Base.Unpublish {
             command.SetHandler(async (string siteId, string contentTypeId, IOutputFormatterFactory outputFormatterFactory, IConsole console) => {
                 var requestInfo = CreatePostRequestInformation(q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, siteIdOption, contentTypeIdOption);
             return command;

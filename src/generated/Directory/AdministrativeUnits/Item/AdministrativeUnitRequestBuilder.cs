@@ -36,7 +36,7 @@ namespace ApiSdk.Directory.AdministrativeUnits.Item {
             command.SetHandler(async (string administrativeUnitId, IOutputFormatterFactory outputFormatterFactory, IConsole console) => {
                 var requestInfo = CreateDeleteRequestInformation(q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, administrativeUnitIdOption);
             return command;
@@ -115,7 +115,7 @@ namespace ApiSdk.Directory.AdministrativeUnits.Item {
                 var model = parseNode.GetObjectValue<ApiSdk.Models.Microsoft.Graph.AdministrativeUnit>();
                 var requestInfo = CreatePatchRequestInformation(model, q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, administrativeUnitIdOption, bodyOption);
             return command;

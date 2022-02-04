@@ -32,7 +32,7 @@ namespace ApiSdk.Drive.List.ContentTypes.Item.Base.Ref {
             command.SetHandler(async (string contentTypeId, IOutputFormatterFactory outputFormatterFactory, IConsole console) => {
                 var requestInfo = CreateDeleteRequestInformation(q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, contentTypeIdOption);
             return command;
@@ -82,7 +82,7 @@ namespace ApiSdk.Drive.List.ContentTypes.Item.Base.Ref {
                 var model = parseNode.GetObjectValue<ApiSdk.Drive.List.ContentTypes.Item.Base.Ref.Ref>();
                 var requestInfo = CreatePutRequestInformation(model, q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, contentTypeIdOption, bodyOption);
             return command;

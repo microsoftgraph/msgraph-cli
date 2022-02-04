@@ -39,7 +39,7 @@ namespace ApiSdk.Drive.List.Items.Item.Versions.Item {
             command.SetHandler(async (string listItemId, string listItemVersionId, IOutputFormatterFactory outputFormatterFactory, IConsole console) => {
                 var requestInfo = CreateDeleteRequestInformation(q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, listItemIdOption, listItemVersionIdOption);
             return command;
@@ -117,7 +117,7 @@ namespace ApiSdk.Drive.List.Items.Item.Versions.Item {
                 var model = parseNode.GetObjectValue<ListItemVersion>();
                 var requestInfo = CreatePatchRequestInformation(model, q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, listItemIdOption, listItemVersionIdOption, bodyOption);
             return command;

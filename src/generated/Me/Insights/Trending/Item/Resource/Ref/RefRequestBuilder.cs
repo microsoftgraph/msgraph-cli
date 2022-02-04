@@ -32,7 +32,7 @@ namespace ApiSdk.Me.Insights.Trending.Item.Resource.Ref {
             command.SetHandler(async (string trendingItemId, IOutputFormatterFactory outputFormatterFactory, IConsole console) => {
                 var requestInfo = CreateDeleteRequestInformation(q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, trendingItemIdOption);
             return command;
@@ -82,7 +82,7 @@ namespace ApiSdk.Me.Insights.Trending.Item.Resource.Ref {
                 var model = parseNode.GetObjectValue<ApiSdk.Me.Insights.Trending.Item.Resource.Ref.Ref>();
                 var requestInfo = CreatePutRequestInformation(model, q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, trendingItemIdOption, bodyOption);
             return command;

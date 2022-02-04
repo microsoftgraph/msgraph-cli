@@ -49,7 +49,7 @@ namespace ApiSdk.Users.Item.Activities.Item.HistoryItems.Item {
             command.SetHandler(async (string userId, string userActivityId, string activityHistoryItemId, IOutputFormatterFactory outputFormatterFactory, IConsole console) => {
                 var requestInfo = CreateDeleteRequestInformation(q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, userIdOption, userActivityIdOption, activityHistoryItemIdOption);
             return command;
@@ -127,7 +127,7 @@ namespace ApiSdk.Users.Item.Activities.Item.HistoryItems.Item {
                 var model = parseNode.GetObjectValue<ActivityHistoryItem>();
                 var requestInfo = CreatePatchRequestInformation(model, q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, userIdOption, userActivityIdOption, activityHistoryItemIdOption, bodyOption);
             return command;

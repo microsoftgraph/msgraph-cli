@@ -41,7 +41,7 @@ namespace ApiSdk.Sites.Item.Lists.Item.Subscriptions.Item {
             command.SetHandler(async (string siteId, string listId, string subscriptionId, IOutputFormatterFactory outputFormatterFactory, IConsole console) => {
                 var requestInfo = CreateDeleteRequestInformation(q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, siteIdOption, listIdOption, subscriptionIdOption);
             return command;
@@ -119,7 +119,7 @@ namespace ApiSdk.Sites.Item.Lists.Item.Subscriptions.Item {
                 var model = parseNode.GetObjectValue<Subscription>();
                 var requestInfo = CreatePatchRequestInformation(model, q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, siteIdOption, listIdOption, subscriptionIdOption, bodyOption);
             return command;

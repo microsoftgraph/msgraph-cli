@@ -41,7 +41,7 @@ namespace ApiSdk.Workbooks.Item.Workbook.Comments.Item.Replies.Item {
             command.SetHandler(async (string driveItemId, string workbookCommentId, string workbookCommentReplyId, IOutputFormatterFactory outputFormatterFactory, IConsole console) => {
                 var requestInfo = CreateDeleteRequestInformation(q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, driveItemIdOption, workbookCommentIdOption, workbookCommentReplyIdOption);
             return command;
@@ -119,7 +119,7 @@ namespace ApiSdk.Workbooks.Item.Workbook.Comments.Item.Replies.Item {
                 var model = parseNode.GetObjectValue<WorkbookCommentReply>();
                 var requestInfo = CreatePatchRequestInformation(model, q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, driveItemIdOption, workbookCommentIdOption, workbookCommentReplyIdOption, bodyOption);
             return command;

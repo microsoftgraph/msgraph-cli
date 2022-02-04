@@ -41,7 +41,7 @@ namespace ApiSdk.Users.Item.Calendars.Item.CalendarPermissions.Item {
             command.SetHandler(async (string userId, string calendarId, string calendarPermissionId, IOutputFormatterFactory outputFormatterFactory, IConsole console) => {
                 var requestInfo = CreateDeleteRequestInformation(q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, userIdOption, calendarIdOption, calendarPermissionIdOption);
             return command;
@@ -113,7 +113,7 @@ namespace ApiSdk.Users.Item.Calendars.Item.CalendarPermissions.Item {
                 var model = parseNode.GetObjectValue<CalendarPermission>();
                 var requestInfo = CreatePatchRequestInformation(model, q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, userIdOption, calendarIdOption, calendarPermissionIdOption, bodyOption);
             return command;

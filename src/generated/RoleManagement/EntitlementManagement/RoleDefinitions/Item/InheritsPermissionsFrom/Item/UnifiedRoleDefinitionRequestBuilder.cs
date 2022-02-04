@@ -37,7 +37,7 @@ namespace ApiSdk.RoleManagement.EntitlementManagement.RoleDefinitions.Item.Inher
             command.SetHandler(async (string unifiedRoleDefinitionId, string unifiedRoleDefinitionId1, IOutputFormatterFactory outputFormatterFactory, IConsole console) => {
                 var requestInfo = CreateDeleteRequestInformation(q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, unifiedRoleDefinitionIdOption, unifiedRoleDefinitionId1Option);
             return command;
@@ -107,7 +107,7 @@ namespace ApiSdk.RoleManagement.EntitlementManagement.RoleDefinitions.Item.Inher
                 var model = parseNode.GetObjectValue<UnifiedRoleDefinition>();
                 var requestInfo = CreatePatchRequestInformation(model, q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, unifiedRoleDefinitionIdOption, unifiedRoleDefinitionId1Option, bodyOption);
             return command;

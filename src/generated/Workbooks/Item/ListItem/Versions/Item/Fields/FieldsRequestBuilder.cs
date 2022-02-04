@@ -37,7 +37,7 @@ namespace ApiSdk.Workbooks.Item.ListItem.Versions.Item.Fields {
             command.SetHandler(async (string driveItemId, string listItemVersionId, IOutputFormatterFactory outputFormatterFactory, IConsole console) => {
                 var requestInfo = CreateDeleteRequestInformation(q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, driveItemIdOption, listItemVersionIdOption);
             return command;
@@ -107,7 +107,7 @@ namespace ApiSdk.Workbooks.Item.ListItem.Versions.Item.Fields {
                 var model = parseNode.GetObjectValue<FieldValueSet>();
                 var requestInfo = CreatePatchRequestInformation(model, q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, driveItemIdOption, listItemVersionIdOption, bodyOption);
             return command;

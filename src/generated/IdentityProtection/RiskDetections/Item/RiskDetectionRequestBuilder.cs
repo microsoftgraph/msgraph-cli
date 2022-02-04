@@ -33,7 +33,7 @@ namespace ApiSdk.IdentityProtection.RiskDetections.Item {
             command.SetHandler(async (string riskDetectionId, IOutputFormatterFactory outputFormatterFactory, IConsole console) => {
                 var requestInfo = CreateDeleteRequestInformation(q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, riskDetectionIdOption);
             return command;
@@ -95,7 +95,7 @@ namespace ApiSdk.IdentityProtection.RiskDetections.Item {
                 var model = parseNode.GetObjectValue<RiskDetection>();
                 var requestInfo = CreatePatchRequestInformation(model, q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, riskDetectionIdOption, bodyOption);
             return command;

@@ -43,7 +43,7 @@ namespace ApiSdk.Me.CalendarView.Item.Calendar.CalendarView.Item.Decline {
                 var model = parseNode.GetObjectValue<DeclineRequestBody>();
                 var requestInfo = CreatePostRequestInformation(model, q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, eventIdOption, eventId1Option, bodyOption);
             return command;

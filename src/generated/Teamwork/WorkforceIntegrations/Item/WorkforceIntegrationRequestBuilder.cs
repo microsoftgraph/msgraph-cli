@@ -33,7 +33,7 @@ namespace ApiSdk.Teamwork.WorkforceIntegrations.Item {
             command.SetHandler(async (string workforceIntegrationId, IOutputFormatterFactory outputFormatterFactory, IConsole console) => {
                 var requestInfo = CreateDeleteRequestInformation(q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, workforceIntegrationIdOption);
             return command;
@@ -95,7 +95,7 @@ namespace ApiSdk.Teamwork.WorkforceIntegrations.Item {
                 var model = parseNode.GetObjectValue<WorkforceIntegration>();
                 var requestInfo = CreatePatchRequestInformation(model, q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, workforceIntegrationIdOption, bodyOption);
             return command;

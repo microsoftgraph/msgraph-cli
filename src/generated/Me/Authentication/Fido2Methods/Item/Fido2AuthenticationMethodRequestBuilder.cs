@@ -33,7 +33,7 @@ namespace ApiSdk.Me.Authentication.Fido2Methods.Item {
             command.SetHandler(async (string fido2AuthenticationMethodId, IOutputFormatterFactory outputFormatterFactory, IConsole console) => {
                 var requestInfo = CreateDeleteRequestInformation(q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, fido2AuthenticationMethodIdOption);
             return command;
@@ -95,7 +95,7 @@ namespace ApiSdk.Me.Authentication.Fido2Methods.Item {
                 var model = parseNode.GetObjectValue<Fido2AuthenticationMethod>();
                 var requestInfo = CreatePatchRequestInformation(model, q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, fido2AuthenticationMethodIdOption, bodyOption);
             return command;

@@ -36,7 +36,7 @@ namespace ApiSdk.Sites.Item.ContentTypes.Item.Base.Ref {
             command.SetHandler(async (string siteId, string contentTypeId, IOutputFormatterFactory outputFormatterFactory, IConsole console) => {
                 var requestInfo = CreateDeleteRequestInformation(q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, siteIdOption, contentTypeIdOption);
             return command;
@@ -94,7 +94,7 @@ namespace ApiSdk.Sites.Item.ContentTypes.Item.Base.Ref {
                 var model = parseNode.GetObjectValue<ApiSdk.Sites.Item.ContentTypes.Item.Base.Ref.Ref>();
                 var requestInfo = CreatePutRequestInformation(model, q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, siteIdOption, contentTypeIdOption, bodyOption);
             return command;

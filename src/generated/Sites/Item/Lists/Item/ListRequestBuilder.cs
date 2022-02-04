@@ -63,7 +63,7 @@ namespace ApiSdk.Sites.Item.Lists.Item {
             command.SetHandler(async (string siteId, string listId, IOutputFormatterFactory outputFormatterFactory, IConsole console) => {
                 var requestInfo = CreateDeleteRequestInformation(q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, siteIdOption, listIdOption);
             return command;
@@ -151,7 +151,7 @@ namespace ApiSdk.Sites.Item.Lists.Item {
                 var model = parseNode.GetObjectValue<ApiSdk.Models.Microsoft.Graph.List>();
                 var requestInfo = CreatePatchRequestInformation(model, q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, siteIdOption, listIdOption, bodyOption);
             return command;

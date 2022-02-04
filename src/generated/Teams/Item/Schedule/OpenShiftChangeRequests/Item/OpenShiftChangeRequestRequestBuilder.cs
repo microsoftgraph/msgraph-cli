@@ -37,7 +37,7 @@ namespace ApiSdk.Teams.Item.Schedule.OpenShiftChangeRequests.Item {
             command.SetHandler(async (string teamId, string openShiftChangeRequestId, IOutputFormatterFactory outputFormatterFactory, IConsole console) => {
                 var requestInfo = CreateDeleteRequestInformation(q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, teamIdOption, openShiftChangeRequestIdOption);
             return command;
@@ -107,7 +107,7 @@ namespace ApiSdk.Teams.Item.Schedule.OpenShiftChangeRequests.Item {
                 var model = parseNode.GetObjectValue<OpenShiftChangeRequest>();
                 var requestInfo = CreatePatchRequestInformation(model, q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, teamIdOption, openShiftChangeRequestIdOption, bodyOption);
             return command;

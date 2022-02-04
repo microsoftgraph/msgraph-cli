@@ -37,7 +37,7 @@ namespace ApiSdk.Teams.Item.Operations.Item {
             command.SetHandler(async (string teamId, string teamsAsyncOperationId, IOutputFormatterFactory outputFormatterFactory, IConsole console) => {
                 var requestInfo = CreateDeleteRequestInformation(q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, teamIdOption, teamsAsyncOperationIdOption);
             return command;
@@ -107,7 +107,7 @@ namespace ApiSdk.Teams.Item.Operations.Item {
                 var model = parseNode.GetObjectValue<TeamsAsyncOperation>();
                 var requestInfo = CreatePatchRequestInformation(model, q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, teamIdOption, teamsAsyncOperationIdOption, bodyOption);
             return command;

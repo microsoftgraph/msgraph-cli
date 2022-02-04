@@ -33,7 +33,7 @@ namespace ApiSdk.Me.Planner.Tasks.Item.ProgressTaskBoardFormat {
             command.SetHandler(async (string plannerTaskId, IOutputFormatterFactory outputFormatterFactory, IConsole console) => {
                 var requestInfo = CreateDeleteRequestInformation(q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, plannerTaskIdOption);
             return command;
@@ -95,7 +95,7 @@ namespace ApiSdk.Me.Planner.Tasks.Item.ProgressTaskBoardFormat {
                 var model = parseNode.GetObjectValue<PlannerProgressTaskBoardTaskFormat>();
                 var requestInfo = CreatePatchRequestInformation(model, q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, plannerTaskIdOption, bodyOption);
             return command;

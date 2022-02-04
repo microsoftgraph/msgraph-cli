@@ -44,7 +44,7 @@ namespace ApiSdk.Sites.Item.TermStore.Groups.Item.Sets.Item.Relations.Item.FromT
             command.SetHandler(async (string siteId, string groupId, string setId, string relationId, IOutputFormatterFactory outputFormatterFactory, IConsole console) => {
                 var requestInfo = CreateDeleteRequestInformation(q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, siteIdOption, groupIdOption, setIdOption, relationIdOption);
             return command;
@@ -118,7 +118,7 @@ namespace ApiSdk.Sites.Item.TermStore.Groups.Item.Sets.Item.Relations.Item.FromT
                 var model = parseNode.GetObjectValue<ApiSdk.Sites.Item.TermStore.Groups.Item.Sets.Item.Relations.Item.FromTerm.Ref.Ref>();
                 var requestInfo = CreatePutRequestInformation(model, q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, siteIdOption, groupIdOption, setIdOption, relationIdOption, bodyOption);
             return command;

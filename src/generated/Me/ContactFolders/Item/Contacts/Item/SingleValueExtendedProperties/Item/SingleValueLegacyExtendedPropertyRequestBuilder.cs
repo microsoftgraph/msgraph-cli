@@ -41,7 +41,7 @@ namespace ApiSdk.Me.ContactFolders.Item.Contacts.Item.SingleValueExtendedPropert
             command.SetHandler(async (string contactFolderId, string contactId, string singleValueLegacyExtendedPropertyId, IOutputFormatterFactory outputFormatterFactory, IConsole console) => {
                 var requestInfo = CreateDeleteRequestInformation(q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, contactFolderIdOption, contactIdOption, singleValueLegacyExtendedPropertyIdOption);
             return command;
@@ -119,7 +119,7 @@ namespace ApiSdk.Me.ContactFolders.Item.Contacts.Item.SingleValueExtendedPropert
                 var model = parseNode.GetObjectValue<SingleValueLegacyExtendedProperty>();
                 var requestInfo = CreatePatchRequestInformation(model, q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, contactFolderIdOption, contactIdOption, singleValueLegacyExtendedPropertyIdOption, bodyOption);
             return command;

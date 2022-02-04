@@ -39,7 +39,7 @@ namespace ApiSdk.Teams.Item.Archive {
                 var model = parseNode.GetObjectValue<ArchiveRequestBody>();
                 var requestInfo = CreatePostRequestInformation(model, q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, teamIdOption, bodyOption);
             return command;

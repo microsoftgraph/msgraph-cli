@@ -49,7 +49,7 @@ namespace ApiSdk.Identity.B2xUserFlows.Item.Languages.Item {
             command.SetHandler(async (string b2xIdentityUserFlowId, string userFlowLanguageConfigurationId, IOutputFormatterFactory outputFormatterFactory, IConsole console) => {
                 var requestInfo = CreateDeleteRequestInformation(q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, b2xIdentityUserFlowIdOption, userFlowLanguageConfigurationIdOption);
             return command;
@@ -129,7 +129,7 @@ namespace ApiSdk.Identity.B2xUserFlows.Item.Languages.Item {
                 var model = parseNode.GetObjectValue<UserFlowLanguageConfiguration>();
                 var requestInfo = CreatePatchRequestInformation(model, q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, b2xIdentityUserFlowIdOption, userFlowLanguageConfigurationIdOption, bodyOption);
             return command;

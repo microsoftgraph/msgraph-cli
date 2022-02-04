@@ -50,7 +50,7 @@ namespace ApiSdk.Contracts.Item {
             command.SetHandler(async (string contractId, IOutputFormatterFactory outputFormatterFactory, IConsole console) => {
                 var requestInfo = CreateDeleteRequestInformation(q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, contractIdOption);
             return command;
@@ -124,7 +124,7 @@ namespace ApiSdk.Contracts.Item {
                 var model = parseNode.GetObjectValue<Contract>();
                 var requestInfo = CreatePatchRequestInformation(model, q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, contractIdOption, bodyOption);
             return command;

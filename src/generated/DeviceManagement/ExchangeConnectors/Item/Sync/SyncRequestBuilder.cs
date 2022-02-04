@@ -39,7 +39,7 @@ namespace ApiSdk.DeviceManagement.ExchangeConnectors.Item.Sync {
                 var model = parseNode.GetObjectValue<SyncRequestBody>();
                 var requestInfo = CreatePostRequestInformation(model, q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, deviceManagementExchangeConnectorIdOption, bodyOption);
             return command;

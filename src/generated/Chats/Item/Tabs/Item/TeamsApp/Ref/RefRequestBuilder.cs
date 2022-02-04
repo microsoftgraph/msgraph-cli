@@ -36,7 +36,7 @@ namespace ApiSdk.Chats.Item.Tabs.Item.TeamsApp.Ref {
             command.SetHandler(async (string chatId, string teamsTabId, IOutputFormatterFactory outputFormatterFactory, IConsole console) => {
                 var requestInfo = CreateDeleteRequestInformation(q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, chatIdOption, teamsTabIdOption);
             return command;
@@ -94,7 +94,7 @@ namespace ApiSdk.Chats.Item.Tabs.Item.TeamsApp.Ref {
                 var model = parseNode.GetObjectValue<ApiSdk.Chats.Item.Tabs.Item.TeamsApp.Ref.Ref>();
                 var requestInfo = CreatePutRequestInformation(model, q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, chatIdOption, teamsTabIdOption, bodyOption);
             return command;

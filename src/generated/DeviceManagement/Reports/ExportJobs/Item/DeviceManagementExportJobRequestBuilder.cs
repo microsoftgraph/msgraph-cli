@@ -33,7 +33,7 @@ namespace ApiSdk.DeviceManagement.Reports.ExportJobs.Item {
             command.SetHandler(async (string deviceManagementExportJobId, IOutputFormatterFactory outputFormatterFactory, IConsole console) => {
                 var requestInfo = CreateDeleteRequestInformation(q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, deviceManagementExportJobIdOption);
             return command;
@@ -95,7 +95,7 @@ namespace ApiSdk.DeviceManagement.Reports.ExportJobs.Item {
                 var model = parseNode.GetObjectValue<DeviceManagementExportJob>();
                 var requestInfo = CreatePatchRequestInformation(model, q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, deviceManagementExportJobIdOption, bodyOption);
             return command;

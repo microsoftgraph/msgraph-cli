@@ -37,7 +37,7 @@ namespace ApiSdk.Devices.Item.Extensions.Item {
             command.SetHandler(async (string deviceId, string extensionId, IOutputFormatterFactory outputFormatterFactory, IConsole console) => {
                 var requestInfo = CreateDeleteRequestInformation(q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, deviceIdOption, extensionIdOption);
             return command;
@@ -107,7 +107,7 @@ namespace ApiSdk.Devices.Item.Extensions.Item {
                 var model = parseNode.GetObjectValue<Extension>();
                 var requestInfo = CreatePatchRequestInformation(model, q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, deviceIdOption, extensionIdOption, bodyOption);
             return command;

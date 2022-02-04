@@ -36,7 +36,7 @@ namespace ApiSdk.Users.Item.Insights.Used.Item.Resource.PrintJob.Cancel {
             command.SetHandler(async (string userId, string usedInsightId, IOutputFormatterFactory outputFormatterFactory, IConsole console) => {
                 var requestInfo = CreatePostRequestInformation(q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, userIdOption, usedInsightIdOption);
             return command;

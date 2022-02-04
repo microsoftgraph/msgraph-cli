@@ -32,7 +32,7 @@ namespace ApiSdk.Sites.Item.Analytics.Ref {
             command.SetHandler(async (string siteId, IOutputFormatterFactory outputFormatterFactory, IConsole console) => {
                 var requestInfo = CreateDeleteRequestInformation(q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, siteIdOption);
             return command;
@@ -82,7 +82,7 @@ namespace ApiSdk.Sites.Item.Analytics.Ref {
                 var model = parseNode.GetObjectValue<ApiSdk.Sites.Item.Analytics.Ref.Ref>();
                 var requestInfo = CreatePutRequestInformation(model, q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, siteIdOption, bodyOption);
             return command;

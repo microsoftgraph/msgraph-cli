@@ -45,7 +45,7 @@ namespace ApiSdk.Drives.Item.List.Items.Item.DriveItem {
             command.SetHandler(async (string driveId, string listItemId, IOutputFormatterFactory outputFormatterFactory, IConsole console) => {
                 var requestInfo = CreateDeleteRequestInformation(q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, driveIdOption, listItemIdOption);
             return command;
@@ -115,7 +115,7 @@ namespace ApiSdk.Drives.Item.List.Items.Item.DriveItem {
                 var model = parseNode.GetObjectValue<ApiSdk.Models.Microsoft.Graph.DriveItem>();
                 var requestInfo = CreatePatchRequestInformation(model, q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, driveIdOption, listItemIdOption, bodyOption);
             return command;

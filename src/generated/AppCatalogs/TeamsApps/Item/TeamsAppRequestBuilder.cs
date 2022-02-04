@@ -44,7 +44,7 @@ namespace ApiSdk.AppCatalogs.TeamsApps.Item {
             command.SetHandler(async (string teamsAppId, IOutputFormatterFactory outputFormatterFactory, IConsole console) => {
                 var requestInfo = CreateDeleteRequestInformation(q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, teamsAppIdOption);
             return command;
@@ -106,7 +106,7 @@ namespace ApiSdk.AppCatalogs.TeamsApps.Item {
                 var model = parseNode.GetObjectValue<ApiSdk.Models.Microsoft.Graph.TeamsApp>();
                 var requestInfo = CreatePatchRequestInformation(model, q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, teamsAppIdOption, bodyOption);
             return command;

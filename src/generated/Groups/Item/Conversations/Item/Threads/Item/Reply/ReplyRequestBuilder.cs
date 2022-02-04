@@ -47,7 +47,7 @@ namespace ApiSdk.Groups.Item.Conversations.Item.Threads.Item.Reply {
                 var model = parseNode.GetObjectValue<ReplyRequestBody>();
                 var requestInfo = CreatePostRequestInformation(model, q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, groupIdOption, conversationIdOption, conversationThreadIdOption, bodyOption);
             return command;

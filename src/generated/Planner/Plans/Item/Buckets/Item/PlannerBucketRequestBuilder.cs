@@ -38,7 +38,7 @@ namespace ApiSdk.Planner.Plans.Item.Buckets.Item {
             command.SetHandler(async (string plannerPlanId, string plannerBucketId, IOutputFormatterFactory outputFormatterFactory, IConsole console) => {
                 var requestInfo = CreateDeleteRequestInformation(q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, plannerPlanIdOption, plannerBucketIdOption);
             return command;
@@ -108,7 +108,7 @@ namespace ApiSdk.Planner.Plans.Item.Buckets.Item {
                 var model = parseNode.GetObjectValue<PlannerBucket>();
                 var requestInfo = CreatePatchRequestInformation(model, q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, plannerPlanIdOption, plannerBucketIdOption, bodyOption);
             return command;

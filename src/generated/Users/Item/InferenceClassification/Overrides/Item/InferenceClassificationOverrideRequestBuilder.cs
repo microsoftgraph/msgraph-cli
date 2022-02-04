@@ -37,7 +37,7 @@ namespace ApiSdk.Users.Item.InferenceClassification.Overrides.Item {
             command.SetHandler(async (string userId, string inferenceClassificationOverrideId, IOutputFormatterFactory outputFormatterFactory, IConsole console) => {
                 var requestInfo = CreateDeleteRequestInformation(q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, userIdOption, inferenceClassificationOverrideIdOption);
             return command;
@@ -101,7 +101,7 @@ namespace ApiSdk.Users.Item.InferenceClassification.Overrides.Item {
                 var model = parseNode.GetObjectValue<InferenceClassificationOverride>();
                 var requestInfo = CreatePatchRequestInformation(model, q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, userIdOption, inferenceClassificationOverrideIdOption, bodyOption);
             return command;

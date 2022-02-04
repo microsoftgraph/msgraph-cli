@@ -37,7 +37,7 @@ namespace ApiSdk.Workbooks.Item.Subscriptions.Item {
             command.SetHandler(async (string driveItemId, string subscriptionId, IOutputFormatterFactory outputFormatterFactory, IConsole console) => {
                 var requestInfo = CreateDeleteRequestInformation(q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, driveItemIdOption, subscriptionIdOption);
             return command;
@@ -107,7 +107,7 @@ namespace ApiSdk.Workbooks.Item.Subscriptions.Item {
                 var model = parseNode.GetObjectValue<Subscription>();
                 var requestInfo = CreatePatchRequestInformation(model, q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, driveItemIdOption, subscriptionIdOption, bodyOption);
             return command;

@@ -33,7 +33,7 @@ namespace ApiSdk.DeviceAppManagement.MobileAppCategories.Item {
             command.SetHandler(async (string mobileAppCategoryId, IOutputFormatterFactory outputFormatterFactory, IConsole console) => {
                 var requestInfo = CreateDeleteRequestInformation(q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, mobileAppCategoryIdOption);
             return command;
@@ -95,7 +95,7 @@ namespace ApiSdk.DeviceAppManagement.MobileAppCategories.Item {
                 var model = parseNode.GetObjectValue<MobileAppCategory>();
                 var requestInfo = CreatePatchRequestInformation(model, q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, mobileAppCategoryIdOption, bodyOption);
             return command;

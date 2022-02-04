@@ -43,7 +43,7 @@ namespace ApiSdk.Shares.Item.List.ContentTypes.Item.CopyToDefaultContentLocation
                 var model = parseNode.GetObjectValue<CopyToDefaultContentLocationRequestBody>();
                 var requestInfo = CreatePostRequestInformation(model, q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, sharedDriveItemIdOption, contentTypeIdOption, bodyOption);
             return command;

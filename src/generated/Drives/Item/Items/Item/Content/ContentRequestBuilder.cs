@@ -78,7 +78,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Content {
                 using var stream = file.OpenRead();
                 var requestInfo = CreatePutRequestInformation(stream, q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, driveIdOption, driveItemIdOption, bodyOption);
             return command;

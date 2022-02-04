@@ -39,7 +39,7 @@ namespace ApiSdk.Me.Insights.Shared.Item.LastSharedMethod.PrintJob.Abort {
                 var model = parseNode.GetObjectValue<AbortRequestBody>();
                 var requestInfo = CreatePostRequestInformation(model, q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, sharedInsightIdOption, bodyOption);
             return command;

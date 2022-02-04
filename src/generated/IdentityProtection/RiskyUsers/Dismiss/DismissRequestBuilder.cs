@@ -35,7 +35,7 @@ namespace ApiSdk.IdentityProtection.RiskyUsers.Dismiss {
                 var model = parseNode.GetObjectValue<DismissRequestBody>();
                 var requestInfo = CreatePostRequestInformation(model, q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, bodyOption);
             return command;

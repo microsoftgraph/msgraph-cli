@@ -33,7 +33,7 @@ namespace ApiSdk.SchemaExtensions.Item {
             command.SetHandler(async (string schemaExtensionId, IOutputFormatterFactory outputFormatterFactory, IConsole console) => {
                 var requestInfo = CreateDeleteRequestInformation(q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, schemaExtensionIdOption);
             return command;
@@ -95,7 +95,7 @@ namespace ApiSdk.SchemaExtensions.Item {
                 var model = parseNode.GetObjectValue<SchemaExtension>();
                 var requestInfo = CreatePatchRequestInformation(model, q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, schemaExtensionIdOption, bodyOption);
             return command;

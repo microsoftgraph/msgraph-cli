@@ -82,7 +82,7 @@ namespace ApiSdk.Applications.Item {
             command.SetHandler(async (string applicationId, IOutputFormatterFactory outputFormatterFactory, IConsole console) => {
                 var requestInfo = CreateDeleteRequestInformation(q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, applicationIdOption);
             return command;
@@ -187,7 +187,7 @@ namespace ApiSdk.Applications.Item {
                 var model = parseNode.GetObjectValue<ApiSdk.Models.Microsoft.Graph.Application>();
                 var requestInfo = CreatePatchRequestInformation(model, q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, applicationIdOption, bodyOption);
             return command;

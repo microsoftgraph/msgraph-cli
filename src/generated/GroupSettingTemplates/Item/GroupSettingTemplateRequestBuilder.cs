@@ -50,7 +50,7 @@ namespace ApiSdk.GroupSettingTemplates.Item {
             command.SetHandler(async (string groupSettingTemplateId, IOutputFormatterFactory outputFormatterFactory, IConsole console) => {
                 var requestInfo = CreateDeleteRequestInformation(q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, groupSettingTemplateIdOption);
             return command;
@@ -124,7 +124,7 @@ namespace ApiSdk.GroupSettingTemplates.Item {
                 var model = parseNode.GetObjectValue<GroupSettingTemplate>();
                 var requestInfo = CreatePatchRequestInformation(model, q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, groupSettingTemplateIdOption, bodyOption);
             return command;

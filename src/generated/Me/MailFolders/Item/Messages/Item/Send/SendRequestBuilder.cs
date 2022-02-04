@@ -36,7 +36,7 @@ namespace ApiSdk.Me.MailFolders.Item.Messages.Item.Send {
             command.SetHandler(async (string mailFolderId, string messageId, IOutputFormatterFactory outputFormatterFactory, IConsole console) => {
                 var requestInfo = CreatePostRequestInformation(q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, mailFolderIdOption, messageIdOption);
             return command;

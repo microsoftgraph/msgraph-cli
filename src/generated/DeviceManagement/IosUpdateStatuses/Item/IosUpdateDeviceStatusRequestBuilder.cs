@@ -33,7 +33,7 @@ namespace ApiSdk.DeviceManagement.IosUpdateStatuses.Item {
             command.SetHandler(async (string iosUpdateDeviceStatusId, IOutputFormatterFactory outputFormatterFactory, IConsole console) => {
                 var requestInfo = CreateDeleteRequestInformation(q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, iosUpdateDeviceStatusIdOption);
             return command;
@@ -95,7 +95,7 @@ namespace ApiSdk.DeviceManagement.IosUpdateStatuses.Item {
                 var model = parseNode.GetObjectValue<IosUpdateDeviceStatus>();
                 var requestInfo = CreatePatchRequestInformation(model, q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, iosUpdateDeviceStatusIdOption, bodyOption);
             return command;

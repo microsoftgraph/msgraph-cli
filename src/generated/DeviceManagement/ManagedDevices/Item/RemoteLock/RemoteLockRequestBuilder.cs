@@ -32,7 +32,7 @@ namespace ApiSdk.DeviceManagement.ManagedDevices.Item.RemoteLock {
             command.SetHandler(async (string managedDeviceId, IOutputFormatterFactory outputFormatterFactory, IConsole console) => {
                 var requestInfo = CreatePostRequestInformation(q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, managedDeviceIdOption);
             return command;

@@ -47,7 +47,7 @@ namespace ApiSdk.Me.CalendarGroups.Item.Calendars.Item.Events.Item.SnoozeReminde
                 var model = parseNode.GetObjectValue<SnoozeReminderRequestBody>();
                 var requestInfo = CreatePostRequestInformation(model, q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, calendarGroupIdOption, calendarIdOption, eventIdOption, bodyOption);
             return command;

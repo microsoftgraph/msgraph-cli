@@ -33,7 +33,7 @@ namespace ApiSdk.DeviceManagement.TelecomExpenseManagementPartners.Item {
             command.SetHandler(async (string telecomExpenseManagementPartnerId, IOutputFormatterFactory outputFormatterFactory, IConsole console) => {
                 var requestInfo = CreateDeleteRequestInformation(q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, telecomExpenseManagementPartnerIdOption);
             return command;
@@ -95,7 +95,7 @@ namespace ApiSdk.DeviceManagement.TelecomExpenseManagementPartners.Item {
                 var model = parseNode.GetObjectValue<TelecomExpenseManagementPartner>();
                 var requestInfo = CreatePatchRequestInformation(model, q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, telecomExpenseManagementPartnerIdOption, bodyOption);
             return command;

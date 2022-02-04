@@ -32,7 +32,7 @@ namespace ApiSdk.Education.Users.Item.User.Ref {
             command.SetHandler(async (string educationUserId, IOutputFormatterFactory outputFormatterFactory, IConsole console) => {
                 var requestInfo = CreateDeleteRequestInformation(q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, educationUserIdOption);
             return command;
@@ -82,7 +82,7 @@ namespace ApiSdk.Education.Users.Item.User.Ref {
                 var model = parseNode.GetObjectValue<ApiSdk.Education.Users.Item.User.Ref.Ref>();
                 var requestInfo = CreatePutRequestInformation(model, q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, educationUserIdOption, bodyOption);
             return command;

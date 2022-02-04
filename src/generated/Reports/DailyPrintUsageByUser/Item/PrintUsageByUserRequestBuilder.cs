@@ -33,7 +33,7 @@ namespace ApiSdk.Reports.DailyPrintUsageByUser.Item {
             command.SetHandler(async (string printUsageByUserId, IOutputFormatterFactory outputFormatterFactory, IConsole console) => {
                 var requestInfo = CreateDeleteRequestInformation(q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, printUsageByUserIdOption);
             return command;
@@ -95,7 +95,7 @@ namespace ApiSdk.Reports.DailyPrintUsageByUser.Item {
                 var model = parseNode.GetObjectValue<PrintUsageByUser>();
                 var requestInfo = CreatePatchRequestInformation(model, q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, printUsageByUserIdOption, bodyOption);
             return command;

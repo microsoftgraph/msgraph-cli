@@ -32,7 +32,7 @@ namespace ApiSdk.Me.Messages.Item.Send {
             command.SetHandler(async (string messageId, IOutputFormatterFactory outputFormatterFactory, IConsole console) => {
                 var requestInfo = CreatePostRequestInformation(q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, messageIdOption);
             return command;

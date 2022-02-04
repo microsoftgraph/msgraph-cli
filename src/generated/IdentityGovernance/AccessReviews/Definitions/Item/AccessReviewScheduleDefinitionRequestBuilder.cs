@@ -35,7 +35,7 @@ namespace ApiSdk.IdentityGovernance.AccessReviews.Definitions.Item {
             command.SetHandler(async (string accessReviewScheduleDefinitionId, IOutputFormatterFactory outputFormatterFactory, IConsole console) => {
                 var requestInfo = CreateDeleteRequestInformation(q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, accessReviewScheduleDefinitionIdOption);
             return command;
@@ -107,7 +107,7 @@ namespace ApiSdk.IdentityGovernance.AccessReviews.Definitions.Item {
                 var model = parseNode.GetObjectValue<AccessReviewScheduleDefinition>();
                 var requestInfo = CreatePatchRequestInformation(model, q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, accessReviewScheduleDefinitionIdOption, bodyOption);
             return command;

@@ -33,7 +33,7 @@ namespace ApiSdk.AgreementAcceptances.Item {
             command.SetHandler(async (string agreementAcceptanceId, IOutputFormatterFactory outputFormatterFactory, IConsole console) => {
                 var requestInfo = CreateDeleteRequestInformation(q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, agreementAcceptanceIdOption);
             return command;
@@ -89,7 +89,7 @@ namespace ApiSdk.AgreementAcceptances.Item {
                 var model = parseNode.GetObjectValue<AgreementAcceptance>();
                 var requestInfo = CreatePatchRequestInformation(model, q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, agreementAcceptanceIdOption, bodyOption);
             return command;

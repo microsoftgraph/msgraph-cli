@@ -54,7 +54,7 @@ namespace ApiSdk.DeviceAppManagement.ManagedEBooks.Item {
             command.SetHandler(async (string managedEBookId, IOutputFormatterFactory outputFormatterFactory, IConsole console) => {
                 var requestInfo = CreateDeleteRequestInformation(q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, managedEBookIdOption);
             return command;
@@ -134,7 +134,7 @@ namespace ApiSdk.DeviceAppManagement.ManagedEBooks.Item {
                 var model = parseNode.GetObjectValue<ManagedEBook>();
                 var requestInfo = CreatePatchRequestInformation(model, q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, managedEBookIdOption, bodyOption);
             return command;

@@ -33,7 +33,7 @@ namespace ApiSdk.Identity.ConditionalAccess.Policies.Item {
             command.SetHandler(async (string conditionalAccessPolicyId, IOutputFormatterFactory outputFormatterFactory, IConsole console) => {
                 var requestInfo = CreateDeleteRequestInformation(q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, conditionalAccessPolicyIdOption);
             return command;
@@ -95,7 +95,7 @@ namespace ApiSdk.Identity.ConditionalAccess.Policies.Item {
                 var model = parseNode.GetObjectValue<ConditionalAccessPolicy>();
                 var requestInfo = CreatePatchRequestInformation(model, q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, conditionalAccessPolicyIdOption, bodyOption);
             return command;

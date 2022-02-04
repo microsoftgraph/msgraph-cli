@@ -124,7 +124,7 @@ namespace ApiSdk.ServicePrincipals.Item {
             command.SetHandler(async (string servicePrincipalId, IOutputFormatterFactory outputFormatterFactory, IConsole console) => {
                 var requestInfo = CreateDeleteRequestInformation(q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, servicePrincipalIdOption);
             return command;
@@ -243,7 +243,7 @@ namespace ApiSdk.ServicePrincipals.Item {
                 var model = parseNode.GetObjectValue<ServicePrincipal>();
                 var requestInfo = CreatePatchRequestInformation(model, q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, servicePrincipalIdOption, bodyOption);
             return command;

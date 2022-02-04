@@ -37,7 +37,7 @@ namespace ApiSdk.Users.Item.ScopedRoleMemberOf.Item {
             command.SetHandler(async (string userId, string scopedRoleMembershipId, IOutputFormatterFactory outputFormatterFactory, IConsole console) => {
                 var requestInfo = CreateDeleteRequestInformation(q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, userIdOption, scopedRoleMembershipIdOption);
             return command;
@@ -107,7 +107,7 @@ namespace ApiSdk.Users.Item.ScopedRoleMemberOf.Item {
                 var model = parseNode.GetObjectValue<ScopedRoleMembership>();
                 var requestInfo = CreatePatchRequestInformation(model, q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, userIdOption, scopedRoleMembershipIdOption, bodyOption);
             return command;

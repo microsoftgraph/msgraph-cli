@@ -32,7 +32,7 @@ namespace ApiSdk.Me.Calendar.CalendarView.Item.DismissReminder {
             command.SetHandler(async (string eventId, IOutputFormatterFactory outputFormatterFactory, IConsole console) => {
                 var requestInfo = CreatePostRequestInformation(q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, eventIdOption);
             return command;

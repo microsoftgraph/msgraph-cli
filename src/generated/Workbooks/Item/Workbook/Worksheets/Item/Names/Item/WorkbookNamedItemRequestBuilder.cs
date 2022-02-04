@@ -43,7 +43,7 @@ namespace ApiSdk.Workbooks.Item.Workbook.Worksheets.Item.Names.Item {
             command.SetHandler(async (string driveItemId, string workbookWorksheetId, string workbookNamedItemId, IOutputFormatterFactory outputFormatterFactory, IConsole console) => {
                 var requestInfo = CreateDeleteRequestInformation(q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, driveItemIdOption, workbookWorksheetIdOption, workbookNamedItemIdOption);
             return command;
@@ -121,7 +121,7 @@ namespace ApiSdk.Workbooks.Item.Workbook.Worksheets.Item.Names.Item {
                 var model = parseNode.GetObjectValue<WorkbookNamedItem>();
                 var requestInfo = CreatePatchRequestInformation(model, q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, driveItemIdOption, workbookWorksheetIdOption, workbookNamedItemIdOption, bodyOption);
             return command;

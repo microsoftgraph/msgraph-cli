@@ -35,7 +35,7 @@ namespace ApiSdk.Me.Presence.ClearPresence {
                 var model = parseNode.GetObjectValue<ClearPresenceRequestBody>();
                 var requestInfo = CreatePostRequestInformation(model, q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, bodyOption);
             return command;

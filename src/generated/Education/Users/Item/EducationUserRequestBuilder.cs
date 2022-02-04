@@ -56,7 +56,7 @@ namespace ApiSdk.Education.Users.Item {
             command.SetHandler(async (string educationUserId, IOutputFormatterFactory outputFormatterFactory, IConsole console) => {
                 var requestInfo = CreateDeleteRequestInformation(q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, educationUserIdOption);
             return command;
@@ -118,7 +118,7 @@ namespace ApiSdk.Education.Users.Item {
                 var model = parseNode.GetObjectValue<EducationUser>();
                 var requestInfo = CreatePatchRequestInformation(model, q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, educationUserIdOption, bodyOption);
             return command;

@@ -40,7 +40,7 @@ namespace ApiSdk.Chats.Item.InstalledApps.Item {
             command.SetHandler(async (string chatId, string teamsAppInstallationId, IOutputFormatterFactory outputFormatterFactory, IConsole console) => {
                 var requestInfo = CreateDeleteRequestInformation(q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, chatIdOption, teamsAppInstallationIdOption);
             return command;
@@ -110,7 +110,7 @@ namespace ApiSdk.Chats.Item.InstalledApps.Item {
                 var model = parseNode.GetObjectValue<TeamsAppInstallation>();
                 var requestInfo = CreatePatchRequestInformation(model, q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, chatIdOption, teamsAppInstallationIdOption, bodyOption);
             return command;

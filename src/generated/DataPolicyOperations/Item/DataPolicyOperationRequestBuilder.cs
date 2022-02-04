@@ -33,7 +33,7 @@ namespace ApiSdk.DataPolicyOperations.Item {
             command.SetHandler(async (string dataPolicyOperationId, IOutputFormatterFactory outputFormatterFactory, IConsole console) => {
                 var requestInfo = CreateDeleteRequestInformation(q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, dataPolicyOperationIdOption);
             return command;
@@ -95,7 +95,7 @@ namespace ApiSdk.DataPolicyOperations.Item {
                 var model = parseNode.GetObjectValue<DataPolicyOperation>();
                 var requestInfo = CreatePatchRequestInformation(model, q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, dataPolicyOperationIdOption, bodyOption);
             return command;

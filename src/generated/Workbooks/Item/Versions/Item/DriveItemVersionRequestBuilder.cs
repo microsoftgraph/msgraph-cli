@@ -46,7 +46,7 @@ namespace ApiSdk.Workbooks.Item.Versions.Item {
             command.SetHandler(async (string driveItemId, string driveItemVersionId, IOutputFormatterFactory outputFormatterFactory, IConsole console) => {
                 var requestInfo = CreateDeleteRequestInformation(q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, driveItemIdOption, driveItemVersionIdOption);
             return command;
@@ -116,7 +116,7 @@ namespace ApiSdk.Workbooks.Item.Versions.Item {
                 var model = parseNode.GetObjectValue<DriveItemVersion>();
                 var requestInfo = CreatePatchRequestInformation(model, q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, driveItemIdOption, driveItemVersionIdOption, bodyOption);
             return command;

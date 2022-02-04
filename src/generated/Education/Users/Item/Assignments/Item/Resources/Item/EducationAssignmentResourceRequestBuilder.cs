@@ -41,7 +41,7 @@ namespace ApiSdk.Education.Users.Item.Assignments.Item.Resources.Item {
             command.SetHandler(async (string educationUserId, string educationAssignmentId, string educationAssignmentResourceId, IOutputFormatterFactory outputFormatterFactory, IConsole console) => {
                 var requestInfo = CreateDeleteRequestInformation(q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, educationUserIdOption, educationAssignmentIdOption, educationAssignmentResourceIdOption);
             return command;
@@ -119,7 +119,7 @@ namespace ApiSdk.Education.Users.Item.Assignments.Item.Resources.Item {
                 var model = parseNode.GetObjectValue<EducationAssignmentResource>();
                 var requestInfo = CreatePatchRequestInformation(model, q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, educationUserIdOption, educationAssignmentIdOption, educationAssignmentResourceIdOption, bodyOption);
             return command;

@@ -42,7 +42,7 @@ namespace ApiSdk.Sites.Item.Lists.Item.Columns.Item {
             command.SetHandler(async (string siteId, string listId, string columnDefinitionId, IOutputFormatterFactory outputFormatterFactory, IConsole console) => {
                 var requestInfo = CreateDeleteRequestInformation(q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, siteIdOption, listIdOption, columnDefinitionIdOption);
             return command;
@@ -120,7 +120,7 @@ namespace ApiSdk.Sites.Item.Lists.Item.Columns.Item {
                 var model = parseNode.GetObjectValue<ColumnDefinition>();
                 var requestInfo = CreatePatchRequestInformation(model, q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, siteIdOption, listIdOption, columnDefinitionIdOption, bodyOption);
             return command;

@@ -44,7 +44,7 @@ namespace ApiSdk.Policies.FeatureRolloutPolicies.Item {
             command.SetHandler(async (string featureRolloutPolicyId, IOutputFormatterFactory outputFormatterFactory, IConsole console) => {
                 var requestInfo = CreateDeleteRequestInformation(q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, featureRolloutPolicyIdOption);
             return command;
@@ -106,7 +106,7 @@ namespace ApiSdk.Policies.FeatureRolloutPolicies.Item {
                 var model = parseNode.GetObjectValue<FeatureRolloutPolicy>();
                 var requestInfo = CreatePatchRequestInformation(model, q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, featureRolloutPolicyIdOption, bodyOption);
             return command;

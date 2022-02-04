@@ -33,7 +33,7 @@ namespace ApiSdk.Branding.Localizations.Item {
             command.SetHandler(async (string organizationalBrandingLocalizationId, IOutputFormatterFactory outputFormatterFactory, IConsole console) => {
                 var requestInfo = CreateDeleteRequestInformation(q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, organizationalBrandingLocalizationIdOption);
             return command;
@@ -95,7 +95,7 @@ namespace ApiSdk.Branding.Localizations.Item {
                 var model = parseNode.GetObjectValue<OrganizationalBrandingLocalization>();
                 var requestInfo = CreatePatchRequestInformation(model, q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, organizationalBrandingLocalizationIdOption, bodyOption);
             return command;

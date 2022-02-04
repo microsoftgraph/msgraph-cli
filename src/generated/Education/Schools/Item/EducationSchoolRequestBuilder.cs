@@ -50,7 +50,7 @@ namespace ApiSdk.Education.Schools.Item {
             command.SetHandler(async (string educationSchoolId, IOutputFormatterFactory outputFormatterFactory, IConsole console) => {
                 var requestInfo = CreateDeleteRequestInformation(q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, educationSchoolIdOption);
             return command;
@@ -112,7 +112,7 @@ namespace ApiSdk.Education.Schools.Item {
                 var model = parseNode.GetObjectValue<EducationSchool>();
                 var requestInfo = CreatePatchRequestInformation(model, q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, educationSchoolIdOption, bodyOption);
             return command;

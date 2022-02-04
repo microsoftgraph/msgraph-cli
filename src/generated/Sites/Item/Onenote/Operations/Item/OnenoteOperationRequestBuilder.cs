@@ -37,7 +37,7 @@ namespace ApiSdk.Sites.Item.Onenote.Operations.Item {
             command.SetHandler(async (string siteId, string onenoteOperationId, IOutputFormatterFactory outputFormatterFactory, IConsole console) => {
                 var requestInfo = CreateDeleteRequestInformation(q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, siteIdOption, onenoteOperationIdOption);
             return command;
@@ -107,7 +107,7 @@ namespace ApiSdk.Sites.Item.Onenote.Operations.Item {
                 var model = parseNode.GetObjectValue<OnenoteOperation>();
                 var requestInfo = CreatePatchRequestInformation(model, q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, siteIdOption, onenoteOperationIdOption, bodyOption);
             return command;

@@ -37,7 +37,7 @@ namespace ApiSdk.Domains.Item.VerificationDnsRecords.Item {
             command.SetHandler(async (string domainId, string domainDnsRecordId, IOutputFormatterFactory outputFormatterFactory, IConsole console) => {
                 var requestInfo = CreateDeleteRequestInformation(q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, domainIdOption, domainDnsRecordIdOption);
             return command;
@@ -107,7 +107,7 @@ namespace ApiSdk.Domains.Item.VerificationDnsRecords.Item {
                 var model = parseNode.GetObjectValue<DomainDnsRecord>();
                 var requestInfo = CreatePatchRequestInformation(model, q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, domainIdOption, domainDnsRecordIdOption, bodyOption);
             return command;

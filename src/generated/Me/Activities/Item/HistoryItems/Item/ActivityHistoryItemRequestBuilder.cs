@@ -45,7 +45,7 @@ namespace ApiSdk.Me.Activities.Item.HistoryItems.Item {
             command.SetHandler(async (string userActivityId, string activityHistoryItemId, IOutputFormatterFactory outputFormatterFactory, IConsole console) => {
                 var requestInfo = CreateDeleteRequestInformation(q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, userActivityIdOption, activityHistoryItemIdOption);
             return command;
@@ -115,7 +115,7 @@ namespace ApiSdk.Me.Activities.Item.HistoryItems.Item {
                 var model = parseNode.GetObjectValue<ActivityHistoryItem>();
                 var requestInfo = CreatePatchRequestInformation(model, q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, userActivityIdOption, activityHistoryItemIdOption, bodyOption);
             return command;

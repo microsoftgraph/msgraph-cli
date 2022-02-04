@@ -43,7 +43,7 @@ namespace ApiSdk.Users.Item.Messages.Item.ReplyAll {
                 var model = parseNode.GetObjectValue<ReplyAllRequestBody>();
                 var requestInfo = CreatePostRequestInformation(model, q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, userIdOption, messageIdOption, bodyOption);
             return command;

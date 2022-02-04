@@ -36,7 +36,7 @@ namespace ApiSdk.Workbooks.Item.Workbook.Tables.Item.ReapplyFilters {
             command.SetHandler(async (string driveItemId, string workbookTableId, IOutputFormatterFactory outputFormatterFactory, IConsole console) => {
                 var requestInfo = CreatePostRequestInformation(q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, driveItemIdOption, workbookTableIdOption);
             return command;

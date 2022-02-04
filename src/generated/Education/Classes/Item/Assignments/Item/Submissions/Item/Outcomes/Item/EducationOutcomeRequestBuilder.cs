@@ -45,7 +45,7 @@ namespace ApiSdk.Education.Classes.Item.Assignments.Item.Submissions.Item.Outcom
             command.SetHandler(async (string educationClassId, string educationAssignmentId, string educationSubmissionId, string educationOutcomeId, IOutputFormatterFactory outputFormatterFactory, IConsole console) => {
                 var requestInfo = CreateDeleteRequestInformation(q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, educationClassIdOption, educationAssignmentIdOption, educationSubmissionIdOption, educationOutcomeIdOption);
             return command;
@@ -131,7 +131,7 @@ namespace ApiSdk.Education.Classes.Item.Assignments.Item.Submissions.Item.Outcom
                 var model = parseNode.GetObjectValue<EducationOutcome>();
                 var requestInfo = CreatePatchRequestInformation(model, q => {
                 });
-                await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                await RequestAdapter.SendNoContentAsync(requestInfo);
                 console.WriteLine("Success");
             }, educationClassIdOption, educationAssignmentIdOption, educationSubmissionIdOption, educationOutcomeIdOption, bodyOption);
             return command;
