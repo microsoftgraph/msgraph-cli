@@ -16,7 +16,7 @@ jobs:
     steps:
       - id: get-version
         run: |
-          PACKAGE_VERSION=$(echo $PACKAGE_VERSION | tr -d 'v')
+          PACKAGE_VERSION=$(echo $PACKAGE_VERSION | sed s/^v//)
           echo "::set-output name=version::$PACKAGE_VERSION"
       - name: Checkout
         uses: actions/checkout@v2
