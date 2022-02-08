@@ -1,10 +1,18 @@
 name: "Release CLI"
-on: workflow_dispatch  # Run manually. Incomplete workflow
+on:
+  release:
+    types: [published]
 jobs:
-  build-windows:
+  package:
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        rid: ['win-x64', 'osx-x64', 'linux-x64']
     env:
       NUGET_URL: https://nuget.pkg.github.com/microsoft/index.json
+      VERSION: unversioned
+      PACKAGE_TEMPLATE: msgraph-cli-{0}-{1}
+      OUTPUT_DIR: /tmp/publish
     steps:
       - name: Checkout
         uses: actions/checkout@v2
@@ -26,30 +34,10 @@ jobs:
       - name: Install dependencies
         run: dotnet restore
       - name: Build
-        run: dotnet publish --runtime win-x64 --self-contained true --configuration Release --no-restore
-  build-mac:
-    runs-on: ubuntu-latest
-    env:
-      NUGET_URL: https://nuget.pkg.github.com/microsoft/index.json
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v2
-      - name: Setup .NET Core SDK 6
-        uses: actions/setup-dotnet@v1
-        with:
-          dotnet-version: 6.x
-      - name: Add NuGet kiota source
-        # NOTE: Password encryption is not supported for the linux platform (Encryption is only supported on Windows platforms.)
+        run: dotnet publish --runtime ${{matrix.rid}} --self-contained true --configuration Release --no-restore --output ${{env.OUTPUT_DIR}}
+      - name: Package
         run: |
-          dotnet nuget add source ${{env.NUGET_URL}} -n github -u ${{secrets.NUGET_USER}} -p ${{secrets.NUGET_PASSWORD}} --store-password-in-clear-text
-      - uses: actions/cache@v2
-        with:
-          path: ~/.nuget/packages
-          # Look to see if there is a cache hit for the corresponding requirements file
-          key: ${{ runner.os }}-nuget-${{ hashFiles('**/packages.lock.json') }}
-          restore-keys: |
-            ${{ runner.os }}-nuget
-      - name: Install dependencies
-        run: dotnet restore
-      - name: Build
-        run: dotnet publish --runtime osx-x64 --self-contained true --configuration Release --no-restore
+          VERSION=$(echo -e ${{github.ref_name}} | tr -d 'v')
+          zip format('${{env.PACKAGE_TEMPLATE}}.zip', '${{matrix.rid}}', $VERSION) ${{env.OUTPUT_DIR}}/*
+      - name: Add to release
+        run: gh release upload ${{github.ref_name}} format('${{env.PACKAGE_TEMPLATE}}.zip', '${{matrix.rid}}', $VERSION) --clobber
