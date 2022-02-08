@@ -45,7 +45,6 @@ jobs:
           zip ${{format(env.PACKAGE_ZIP_TEMPLATE, matrix.rid, steps.get-version.outputs.version)}} $(ls -a)
       - name: Add to release
         run: |
-          cd ${{env.OUTPUT_DIR}}
-          gh release upload ${{github.ref_name}} ${{format(env.PACKAGE_ZIP_TEMPLATE, matrix.rid, steps.get-version.outputs.version)}} --clobber
+          gh release upload ${{github.ref_name}} ${{env.OUTPUT_DIR}}/${{format(env.PACKAGE_ZIP_TEMPLATE, matrix.rid, steps.get-version.outputs.version)}} --clobber
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
