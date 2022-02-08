@@ -41,7 +41,8 @@ jobs:
         run: dotnet publish --runtime ${{matrix.rid}} --self-contained true --configuration Release --output ${{env.OUTPUT_DIR}}
       - name: Package
         run: |
-          zip ${{format(env.PACKAGE_ZIP_TEMPLATE, matrix.rid, steps.get-version.outputs.version)}} ${{env.OUTPUT_DIR}}/*
+          cd ${{env.OUTPUT_DIR}}
+          zip ${{format(env.PACKAGE_ZIP_TEMPLATE, matrix.rid, steps.get-version.outputs.version)}} $(ls -a)
       - name: Add to release
         run: gh release upload ${{github.ref_name}} ${{format(env.PACKAGE_ZIP_TEMPLATE, matrix.rid, steps.get-version.outputs.version)}} --clobber
         env:
