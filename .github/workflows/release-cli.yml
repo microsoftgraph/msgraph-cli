@@ -10,7 +10,7 @@ jobs:
         rid: ['win-x64', 'osx-x64', 'linux-x64']
     env:
       NUGET_URL: https://nuget.pkg.github.com/microsoft/index.json
-      PACKAGE_VERSION: ${{github.ref_name || 'v1.0.0'}}
+      PACKAGE_VERSION: ${{github.ref_name || 'v0.1.0'}}
       PACKAGE_ZIP_TEMPLATE: "msgraph-cli-{0}-{1}.zip"
       OUTPUT_DIR: /tmp/publish
     steps:
