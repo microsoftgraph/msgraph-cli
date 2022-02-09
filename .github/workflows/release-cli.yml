@@ -10,10 +10,14 @@ jobs:
         rid: ['win-x64', 'osx-x64', 'linux-x64']
     env:
       NUGET_URL: https://nuget.pkg.github.com/microsoft/index.json
-      PACKAGE_VERSION: unversioned
-      PACKAGE_TEMPLATE: msgraph-cli-{0}-{1}
+      PACKAGE_VERSION: ${{github.ref_name || 'v0.1.0'}}
+      PACKAGE_ZIP_TEMPLATE: "msgraph-cli-{0}-{1}.zip"
       OUTPUT_DIR: /tmp/publish
     steps:
+      - id: get-version
+        run: |
+          PACKAGE_VERSION=$(echo $PACKAGE_VERSION | sed s/^v//)
+          echo "::set-output name=version::$PACKAGE_VERSION"
       - name: Checkout
         uses: actions/checkout@v2
         with:
@@ -22,8 +26,6 @@ jobs:
         uses: actions/setup-dotnet@v1
         with:
           dotnet-version: 6.x
-      - name: Set version
-        run: PACKAGE_VERSION=$(echo -e ${{github.ref_name}} | tr -d 'v')
       - name: Add NuGet kiota source
         # NOTE: Password encryption is not supported for the linux platform (Encryption is only supported on Windows platforms.)
         run: |
@@ -39,6 +41,10 @@ jobs:
         run: dotnet publish --runtime ${{matrix.rid}} --self-contained true --configuration Release --output ${{env.OUTPUT_DIR}}
       - name: Package
         run: |
-          zip format('${{env.PACKAGE_TEMPLATE}}.zip', '${{matrix.rid}}', $PACKAGE_VERSION) ${{env.OUTPUT_DIR}}/*
+          cd ${{env.OUTPUT_DIR}}
+          zip ${{format(env.PACKAGE_ZIP_TEMPLATE, matrix.rid, steps.get-version.outputs.version)}} $(ls -a)
       - name: Add to release
-        run: gh release upload ${{github.ref_name}} format('${{env.PACKAGE_TEMPLATE}}.zip', '${{matrix.rid}}', $PACKAGE_VERSION) --clobber
+        run: |
+          gh release upload ${{github.ref_name}} ${{env.OUTPUT_DIR}}/${{format(env.PACKAGE_ZIP_TEMPLATE, matrix.rid, steps.get-version.outputs.version)}} --clobber
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
