@@ -1,6 +1,6 @@
-using Microsoft.Graph.Cli.Core.IO;
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
+using Microsoft.Kiota.Cli.Commons.IO;
 using System;
 using System.Collections.Generic;
 using System.CommandLine;
@@ -33,12 +33,12 @@ namespace ApiSdk.Users.Item.GetManagedAppPolicies {
                 IsRequired = true
             };
             command.AddOption(outputOption);
-            command.SetHandler(async (string userId, FormatterType output, IOutputFormatterFactory outputFormatterFactory, IConsole console) => {
+            command.SetHandler(async (string userId, FormatterType output, IOutputFormatterFactory outputFormatterFactory, CancellationToken cancellationToken) => {
                 var requestInfo = CreateGetRequestInformation(q => {
                 });
-                var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: default, cancellationToken: cancellationToken);
                 var formatter = outputFormatterFactory.GetFormatter(output);
-                formatter.WriteOutput(response, console);
+                formatter.WriteOutput(response);
             }, userIdOption, outputOption);
             return command;
         }
@@ -56,20 +56,6 @@ namespace ApiSdk.Users.Item.GetManagedAppPolicies {
             RequestAdapter = requestAdapter;
         }
         /// <summary>
-        /// Instantiates a new GetManagedAppPoliciesRequestBuilder and sets the default values.
-        /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        /// <param name="requestAdapter">The request adapter to use to execute the requests.</param>
-        /// </summary>
-        public GetManagedAppPoliciesRequestBuilder(string rawUrl, IRequestAdapter requestAdapter) {
-            if(string.IsNullOrEmpty(rawUrl)) throw new ArgumentNullException(nameof(rawUrl));
-            _ = requestAdapter ?? throw new ArgumentNullException(nameof(requestAdapter));
-            UrlTemplate = "{+baseurl}/users/{user_id}/microsoft.graph.getManagedAppPolicies()";
-            var urlTplParams = new Dictionary<string, object>();
-            urlTplParams.Add("request-raw-url", rawUrl);
-            PathParameters = urlTplParams;
-            RequestAdapter = requestAdapter;
-        }
-        /// <summary>
         /// Gets app restrictions for a given user.
         /// <param name="h">Request headers</param>
         /// <param name="o">Request options</param>
@@ -83,17 +69,6 @@ namespace ApiSdk.Users.Item.GetManagedAppPolicies {
             h?.Invoke(requestInfo.Headers);
             requestInfo.AddRequestOptions(o?.ToArray());
             return requestInfo;
-        }
-        /// <summary>
-        /// Gets app restrictions for a given user.
-        /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
-        /// <param name="h">Request headers</param>
-        /// <param name="o">Request options</param>
-        /// <param name="responseHandler">Response handler to use in place of the default response handling provided by the core service</param>
-        /// </summary>
-        public async Task<IEnumerable<ApiSdk.Users.Item.GetManagedAppPolicies.GetManagedAppPolicies>> GetAsync(Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default, CancellationToken cancellationToken = default) {
-            var requestInfo = CreateGetRequestInformation(h, o);
-            return await RequestAdapter.SendCollectionAsync<ApiSdk.Users.Item.GetManagedAppPolicies.GetManagedAppPolicies>(requestInfo, responseHandler, cancellationToken);
         }
     }
 }

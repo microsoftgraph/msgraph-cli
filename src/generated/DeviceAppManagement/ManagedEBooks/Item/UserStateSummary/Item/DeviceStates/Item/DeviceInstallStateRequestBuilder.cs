@@ -1,7 +1,7 @@
 using ApiSdk.Models.Microsoft.Graph;
-using Microsoft.Graph.Cli.Core.IO;
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
+using Microsoft.Kiota.Cli.Commons.IO;
 using System;
 using System.Collections.Generic;
 using System.CommandLine;
@@ -26,23 +26,23 @@ namespace ApiSdk.DeviceAppManagement.ManagedEBooks.Item.UserStateSummary.Item.De
             var command = new Command("delete");
             command.Description = "The install state of the eBook.";
             // Create options for all the parameters
-            var managedEBookIdOption = new Option<string>("--managedebook-id", description: "key: id of managedEBook") {
+            var managedEBookIdOption = new Option<string>("--managed-ebook-id", description: "key: id of managedEBook") {
             };
             managedEBookIdOption.IsRequired = true;
             command.AddOption(managedEBookIdOption);
-            var userInstallStateSummaryIdOption = new Option<string>("--userinstallstatesummary-id", description: "key: id of userInstallStateSummary") {
+            var userInstallStateSummaryIdOption = new Option<string>("--user-install-state-summary-id", description: "key: id of userInstallStateSummary") {
             };
             userInstallStateSummaryIdOption.IsRequired = true;
             command.AddOption(userInstallStateSummaryIdOption);
-            var deviceInstallStateIdOption = new Option<string>("--deviceinstallstate-id", description: "key: id of deviceInstallState") {
+            var deviceInstallStateIdOption = new Option<string>("--device-install-state-id", description: "key: id of deviceInstallState") {
             };
             deviceInstallStateIdOption.IsRequired = true;
             command.AddOption(deviceInstallStateIdOption);
-            command.SetHandler(async (string managedEBookId, string userInstallStateSummaryId, string deviceInstallStateId, IOutputFormatterFactory outputFormatterFactory, IConsole console) => {
+            command.SetHandler(async (string managedEBookId, string userInstallStateSummaryId, string deviceInstallStateId, IOutputFormatterFactory outputFormatterFactory, CancellationToken cancellationToken) => {
                 var requestInfo = CreateDeleteRequestInformation(q => {
                 });
-                await RequestAdapter.SendNoContentAsync(requestInfo);
-                console.WriteLine("Success");
+                await RequestAdapter.SendNoContentAsync(requestInfo, errorMapping: default, cancellationToken: cancellationToken);
+                Console.WriteLine("Success");
             }, managedEBookIdOption, userInstallStateSummaryIdOption, deviceInstallStateIdOption);
             return command;
         }
@@ -53,15 +53,15 @@ namespace ApiSdk.DeviceAppManagement.ManagedEBooks.Item.UserStateSummary.Item.De
             var command = new Command("get");
             command.Description = "The install state of the eBook.";
             // Create options for all the parameters
-            var managedEBookIdOption = new Option<string>("--managedebook-id", description: "key: id of managedEBook") {
+            var managedEBookIdOption = new Option<string>("--managed-ebook-id", description: "key: id of managedEBook") {
             };
             managedEBookIdOption.IsRequired = true;
             command.AddOption(managedEBookIdOption);
-            var userInstallStateSummaryIdOption = new Option<string>("--userinstallstatesummary-id", description: "key: id of userInstallStateSummary") {
+            var userInstallStateSummaryIdOption = new Option<string>("--user-install-state-summary-id", description: "key: id of userInstallStateSummary") {
             };
             userInstallStateSummaryIdOption.IsRequired = true;
             command.AddOption(userInstallStateSummaryIdOption);
-            var deviceInstallStateIdOption = new Option<string>("--deviceinstallstate-id", description: "key: id of deviceInstallState") {
+            var deviceInstallStateIdOption = new Option<string>("--device-install-state-id", description: "key: id of deviceInstallState") {
             };
             deviceInstallStateIdOption.IsRequired = true;
             command.AddOption(deviceInstallStateIdOption);
@@ -79,14 +79,14 @@ namespace ApiSdk.DeviceAppManagement.ManagedEBooks.Item.UserStateSummary.Item.De
                 IsRequired = true
             };
             command.AddOption(outputOption);
-            command.SetHandler(async (string managedEBookId, string userInstallStateSummaryId, string deviceInstallStateId, string[] select, string[] expand, FormatterType output, IOutputFormatterFactory outputFormatterFactory, IConsole console) => {
+            command.SetHandler(async (string managedEBookId, string userInstallStateSummaryId, string deviceInstallStateId, string[] select, string[] expand, FormatterType output, IOutputFormatterFactory outputFormatterFactory, CancellationToken cancellationToken) => {
                 var requestInfo = CreateGetRequestInformation(q => {
                     q.Select = select;
                     q.Expand = expand;
                 });
-                var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: default, cancellationToken: cancellationToken);
                 var formatter = outputFormatterFactory.GetFormatter(output);
-                formatter.WriteOutput(response, console);
+                formatter.WriteOutput(response);
             }, managedEBookIdOption, userInstallStateSummaryIdOption, deviceInstallStateIdOption, selectOption, expandOption, outputOption);
             return command;
         }
@@ -97,15 +97,15 @@ namespace ApiSdk.DeviceAppManagement.ManagedEBooks.Item.UserStateSummary.Item.De
             var command = new Command("patch");
             command.Description = "The install state of the eBook.";
             // Create options for all the parameters
-            var managedEBookIdOption = new Option<string>("--managedebook-id", description: "key: id of managedEBook") {
+            var managedEBookIdOption = new Option<string>("--managed-ebook-id", description: "key: id of managedEBook") {
             };
             managedEBookIdOption.IsRequired = true;
             command.AddOption(managedEBookIdOption);
-            var userInstallStateSummaryIdOption = new Option<string>("--userinstallstatesummary-id", description: "key: id of userInstallStateSummary") {
+            var userInstallStateSummaryIdOption = new Option<string>("--user-install-state-summary-id", description: "key: id of userInstallStateSummary") {
             };
             userInstallStateSummaryIdOption.IsRequired = true;
             command.AddOption(userInstallStateSummaryIdOption);
-            var deviceInstallStateIdOption = new Option<string>("--deviceinstallstate-id", description: "key: id of deviceInstallState") {
+            var deviceInstallStateIdOption = new Option<string>("--device-install-state-id", description: "key: id of deviceInstallState") {
             };
             deviceInstallStateIdOption.IsRequired = true;
             command.AddOption(deviceInstallStateIdOption);
@@ -113,14 +113,14 @@ namespace ApiSdk.DeviceAppManagement.ManagedEBooks.Item.UserStateSummary.Item.De
             };
             bodyOption.IsRequired = true;
             command.AddOption(bodyOption);
-            command.SetHandler(async (string managedEBookId, string userInstallStateSummaryId, string deviceInstallStateId, string body, IOutputFormatterFactory outputFormatterFactory, IConsole console) => {
+            command.SetHandler(async (string managedEBookId, string userInstallStateSummaryId, string deviceInstallStateId, string body, IOutputFormatterFactory outputFormatterFactory, CancellationToken cancellationToken) => {
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<DeviceInstallState>();
                 var requestInfo = CreatePatchRequestInformation(model, q => {
                 });
-                await RequestAdapter.SendNoContentAsync(requestInfo);
-                console.WriteLine("Success");
+                await RequestAdapter.SendNoContentAsync(requestInfo, errorMapping: default, cancellationToken: cancellationToken);
+                Console.WriteLine("Success");
             }, managedEBookIdOption, userInstallStateSummaryIdOption, deviceInstallStateIdOption, bodyOption);
             return command;
         }
@@ -134,20 +134,6 @@ namespace ApiSdk.DeviceAppManagement.ManagedEBooks.Item.UserStateSummary.Item.De
             _ = requestAdapter ?? throw new ArgumentNullException(nameof(requestAdapter));
             UrlTemplate = "{+baseurl}/deviceAppManagement/managedEBooks/{managedEBook_id}/userStateSummary/{userInstallStateSummary_id}/deviceStates/{deviceInstallState_id}{?select,expand}";
             var urlTplParams = new Dictionary<string, object>(pathParameters);
-            PathParameters = urlTplParams;
-            RequestAdapter = requestAdapter;
-        }
-        /// <summary>
-        /// Instantiates a new DeviceInstallStateRequestBuilder and sets the default values.
-        /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        /// <param name="requestAdapter">The request adapter to use to execute the requests.</param>
-        /// </summary>
-        public DeviceInstallStateRequestBuilder(string rawUrl, IRequestAdapter requestAdapter) {
-            if(string.IsNullOrEmpty(rawUrl)) throw new ArgumentNullException(nameof(rawUrl));
-            _ = requestAdapter ?? throw new ArgumentNullException(nameof(requestAdapter));
-            UrlTemplate = "{+baseurl}/deviceAppManagement/managedEBooks/{managedEBook_id}/userStateSummary/{userInstallStateSummary_id}/deviceStates/{deviceInstallState_id}{?select,expand}";
-            var urlTplParams = new Dictionary<string, object>();
-            urlTplParams.Add("request-raw-url", rawUrl);
             PathParameters = urlTplParams;
             RequestAdapter = requestAdapter;
         }
@@ -204,42 +190,6 @@ namespace ApiSdk.DeviceAppManagement.ManagedEBooks.Item.UserStateSummary.Item.De
             h?.Invoke(requestInfo.Headers);
             requestInfo.AddRequestOptions(o?.ToArray());
             return requestInfo;
-        }
-        /// <summary>
-        /// The install state of the eBook.
-        /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
-        /// <param name="h">Request headers</param>
-        /// <param name="o">Request options</param>
-        /// <param name="responseHandler">Response handler to use in place of the default response handling provided by the core service</param>
-        /// </summary>
-        public async Task DeleteAsync(Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default, CancellationToken cancellationToken = default) {
-            var requestInfo = CreateDeleteRequestInformation(h, o);
-            await RequestAdapter.SendNoContentAsync(requestInfo, responseHandler, cancellationToken);
-        }
-        /// <summary>
-        /// The install state of the eBook.
-        /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
-        /// <param name="h">Request headers</param>
-        /// <param name="o">Request options</param>
-        /// <param name="q">Request query parameters</param>
-        /// <param name="responseHandler">Response handler to use in place of the default response handling provided by the core service</param>
-        /// </summary>
-        public async Task<DeviceInstallState> GetAsync(Action<GetQueryParameters> q = default, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default, CancellationToken cancellationToken = default) {
-            var requestInfo = CreateGetRequestInformation(q, h, o);
-            return await RequestAdapter.SendAsync<DeviceInstallState>(requestInfo, responseHandler, cancellationToken);
-        }
-        /// <summary>
-        /// The install state of the eBook.
-        /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
-        /// <param name="h">Request headers</param>
-        /// <param name="model"></param>
-        /// <param name="o">Request options</param>
-        /// <param name="responseHandler">Response handler to use in place of the default response handling provided by the core service</param>
-        /// </summary>
-        public async Task PatchAsync(DeviceInstallState model, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default, CancellationToken cancellationToken = default) {
-            _ = model ?? throw new ArgumentNullException(nameof(model));
-            var requestInfo = CreatePatchRequestInformation(model, h, o);
-            await RequestAdapter.SendNoContentAsync(requestInfo, responseHandler, cancellationToken);
         }
         /// <summary>The install state of the eBook.</summary>
         public class GetQueryParameters : QueryParametersBase {

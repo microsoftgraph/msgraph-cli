@@ -1,6 +1,6 @@
-using Microsoft.Graph.Cli.Core.IO;
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
+using Microsoft.Kiota.Cli.Commons.IO;
 using System;
 using System.Collections.Generic;
 using System.CommandLine;
@@ -25,7 +25,7 @@ namespace ApiSdk.Identity.B2xUserFlows.Item.IdentityProviders.Ref {
             var command = new Command("get");
             command.Description = "The identity providers included in the user flow.";
             // Create options for all the parameters
-            var b2xIdentityUserFlowIdOption = new Option<string>("--b2xidentityuserflow-id", description: "key: id of b2xIdentityUserFlow") {
+            var b2xIdentityUserFlowIdOption = new Option<string>("--b2x-identity-user-flow-id", description: "key: id of b2xIdentityUserFlow") {
             };
             b2xIdentityUserFlowIdOption.IsRequired = true;
             command.AddOption(b2xIdentityUserFlowIdOption);
@@ -58,7 +58,7 @@ namespace ApiSdk.Identity.B2xUserFlows.Item.IdentityProviders.Ref {
                 IsRequired = true
             };
             command.AddOption(outputOption);
-            command.SetHandler(async (string b2xIdentityUserFlowId, int? top, int? skip, string search, string filter, bool? count, string[] orderby, FormatterType output, IOutputFormatterFactory outputFormatterFactory, IConsole console) => {
+            command.SetHandler(async (string b2xIdentityUserFlowId, int? top, int? skip, string search, string filter, bool? count, string[] orderby, FormatterType output, IOutputFormatterFactory outputFormatterFactory, CancellationToken cancellationToken) => {
                 var requestInfo = CreateGetRequestInformation(q => {
                     q.Top = top;
                     q.Skip = skip;
@@ -67,9 +67,9 @@ namespace ApiSdk.Identity.B2xUserFlows.Item.IdentityProviders.Ref {
                     q.Count = count;
                     q.Orderby = orderby;
                 });
-                var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: default, cancellationToken: cancellationToken);
                 var formatter = outputFormatterFactory.GetFormatter(output);
-                formatter.WriteOutput(response, console);
+                formatter.WriteOutput(response);
             }, b2xIdentityUserFlowIdOption, topOption, skipOption, searchOption, filterOption, countOption, orderbyOption, outputOption);
             return command;
         }
@@ -80,7 +80,7 @@ namespace ApiSdk.Identity.B2xUserFlows.Item.IdentityProviders.Ref {
             var command = new Command("post");
             command.Description = "The identity providers included in the user flow.";
             // Create options for all the parameters
-            var b2xIdentityUserFlowIdOption = new Option<string>("--b2xidentityuserflow-id", description: "key: id of b2xIdentityUserFlow") {
+            var b2xIdentityUserFlowIdOption = new Option<string>("--b2x-identity-user-flow-id", description: "key: id of b2xIdentityUserFlow") {
             };
             b2xIdentityUserFlowIdOption.IsRequired = true;
             command.AddOption(b2xIdentityUserFlowIdOption);
@@ -92,15 +92,15 @@ namespace ApiSdk.Identity.B2xUserFlows.Item.IdentityProviders.Ref {
                 IsRequired = true
             };
             command.AddOption(outputOption);
-            command.SetHandler(async (string b2xIdentityUserFlowId, string body, FormatterType output, IOutputFormatterFactory outputFormatterFactory, IConsole console) => {
+            command.SetHandler(async (string b2xIdentityUserFlowId, string body, FormatterType output, IOutputFormatterFactory outputFormatterFactory, CancellationToken cancellationToken) => {
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<ApiSdk.Identity.B2xUserFlows.Item.IdentityProviders.Ref.Ref>();
                 var requestInfo = CreatePostRequestInformation(model, q => {
                 });
-                var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: default, cancellationToken: cancellationToken);
                 var formatter = outputFormatterFactory.GetFormatter(output);
-                formatter.WriteOutput(response, console);
+                formatter.WriteOutput(response);
             }, b2xIdentityUserFlowIdOption, bodyOption, outputOption);
             return command;
         }
@@ -114,20 +114,6 @@ namespace ApiSdk.Identity.B2xUserFlows.Item.IdentityProviders.Ref {
             _ = requestAdapter ?? throw new ArgumentNullException(nameof(requestAdapter));
             UrlTemplate = "{+baseurl}/identity/b2xUserFlows/{b2xIdentityUserFlow_id}/identityProviders/$ref{?top,skip,search,filter,count,orderby}";
             var urlTplParams = new Dictionary<string, object>(pathParameters);
-            PathParameters = urlTplParams;
-            RequestAdapter = requestAdapter;
-        }
-        /// <summary>
-        /// Instantiates a new RefRequestBuilder and sets the default values.
-        /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        /// <param name="requestAdapter">The request adapter to use to execute the requests.</param>
-        /// </summary>
-        public RefRequestBuilder(string rawUrl, IRequestAdapter requestAdapter) {
-            if(string.IsNullOrEmpty(rawUrl)) throw new ArgumentNullException(nameof(rawUrl));
-            _ = requestAdapter ?? throw new ArgumentNullException(nameof(requestAdapter));
-            UrlTemplate = "{+baseurl}/identity/b2xUserFlows/{b2xIdentityUserFlow_id}/identityProviders/$ref{?top,skip,search,filter,count,orderby}";
-            var urlTplParams = new Dictionary<string, object>();
-            urlTplParams.Add("request-raw-url", rawUrl);
             PathParameters = urlTplParams;
             RequestAdapter = requestAdapter;
         }
@@ -169,31 +155,6 @@ namespace ApiSdk.Identity.B2xUserFlows.Item.IdentityProviders.Ref {
             h?.Invoke(requestInfo.Headers);
             requestInfo.AddRequestOptions(o?.ToArray());
             return requestInfo;
-        }
-        /// <summary>
-        /// The identity providers included in the user flow.
-        /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
-        /// <param name="h">Request headers</param>
-        /// <param name="o">Request options</param>
-        /// <param name="q">Request query parameters</param>
-        /// <param name="responseHandler">Response handler to use in place of the default response handling provided by the core service</param>
-        /// </summary>
-        public async Task<RefResponse> GetAsync(Action<GetQueryParameters> q = default, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default, CancellationToken cancellationToken = default) {
-            var requestInfo = CreateGetRequestInformation(q, h, o);
-            return await RequestAdapter.SendAsync<RefResponse>(requestInfo, responseHandler, cancellationToken);
-        }
-        /// <summary>
-        /// The identity providers included in the user flow.
-        /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
-        /// <param name="h">Request headers</param>
-        /// <param name="model"></param>
-        /// <param name="o">Request options</param>
-        /// <param name="responseHandler">Response handler to use in place of the default response handling provided by the core service</param>
-        /// </summary>
-        public async Task<ApiSdk.Identity.B2xUserFlows.Item.IdentityProviders.Ref.Ref> PostAsync(ApiSdk.Identity.B2xUserFlows.Item.IdentityProviders.Ref.Ref model, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default, CancellationToken cancellationToken = default) {
-            _ = model ?? throw new ArgumentNullException(nameof(model));
-            var requestInfo = CreatePostRequestInformation(model, h, o);
-            return await RequestAdapter.SendAsync<ApiSdk.Identity.B2xUserFlows.Item.IdentityProviders.Ref.Ref>(requestInfo, responseHandler, cancellationToken);
         }
         /// <summary>The identity providers included in the user flow.</summary>
         public class GetQueryParameters : QueryParametersBase {

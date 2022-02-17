@@ -1,6 +1,6 @@
-using Microsoft.Graph.Cli.Core.IO;
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
+using Microsoft.Kiota.Cli.Commons.IO;
 using System;
 using System.Collections.Generic;
 using System.CommandLine;
@@ -25,11 +25,11 @@ namespace ApiSdk.Admin.ServiceAnnouncement.Messages.Item.Attachments.Item.Conten
             var command = new Command("get");
             command.Description = "Get media content for the navigation property attachments from admin";
             // Create options for all the parameters
-            var serviceUpdateMessageIdOption = new Option<string>("--serviceupdatemessage-id", description: "key: id of serviceUpdateMessage") {
+            var serviceUpdateMessageIdOption = new Option<string>("--service-update-message-id", description: "key: id of serviceUpdateMessage") {
             };
             serviceUpdateMessageIdOption.IsRequired = true;
             command.AddOption(serviceUpdateMessageIdOption);
-            var serviceAnnouncementAttachmentIdOption = new Option<string>("--serviceannouncementattachment-id", description: "key: id of serviceAnnouncementAttachment") {
+            var serviceAnnouncementAttachmentIdOption = new Option<string>("--service-announcement-attachment-id", description: "key: id of serviceAnnouncementAttachment") {
             };
             serviceAnnouncementAttachmentIdOption.IsRequired = true;
             command.AddOption(serviceAnnouncementAttachmentIdOption);
@@ -39,18 +39,18 @@ namespace ApiSdk.Admin.ServiceAnnouncement.Messages.Item.Attachments.Item.Conten
                 IsRequired = true
             };
             command.AddOption(outputOption);
-            command.SetHandler(async (string serviceUpdateMessageId, string serviceAnnouncementAttachmentId, FileInfo file, FormatterType output, IOutputFormatterFactory outputFormatterFactory, IConsole console) => {
+            command.SetHandler(async (string serviceUpdateMessageId, string serviceAnnouncementAttachmentId, FileInfo file, FormatterType output, IOutputFormatterFactory outputFormatterFactory, CancellationToken cancellationToken) => {
                 var requestInfo = CreateGetRequestInformation(q => {
                 });
-                var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: default, cancellationToken: cancellationToken);
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 if (file == null) {
-                    formatter.WriteOutput(response, console);
+                    formatter.WriteOutput(response);
                 }
                 else {
                     using var writeStream = file.OpenWrite();
                     await response.CopyToAsync(writeStream);
-                    console.WriteLine($"Content written to {file.FullName}.");
+                    Console.WriteLine($"Content written to {file.FullName}.");
                 }
             }, serviceUpdateMessageIdOption, serviceAnnouncementAttachmentIdOption, fileOption, outputOption);
             return command;
@@ -62,11 +62,11 @@ namespace ApiSdk.Admin.ServiceAnnouncement.Messages.Item.Attachments.Item.Conten
             var command = new Command("put");
             command.Description = "Update media content for the navigation property attachments in admin";
             // Create options for all the parameters
-            var serviceUpdateMessageIdOption = new Option<string>("--serviceupdatemessage-id", description: "key: id of serviceUpdateMessage") {
+            var serviceUpdateMessageIdOption = new Option<string>("--service-update-message-id", description: "key: id of serviceUpdateMessage") {
             };
             serviceUpdateMessageIdOption.IsRequired = true;
             command.AddOption(serviceUpdateMessageIdOption);
-            var serviceAnnouncementAttachmentIdOption = new Option<string>("--serviceannouncementattachment-id", description: "key: id of serviceAnnouncementAttachment") {
+            var serviceAnnouncementAttachmentIdOption = new Option<string>("--service-announcement-attachment-id", description: "key: id of serviceAnnouncementAttachment") {
             };
             serviceAnnouncementAttachmentIdOption.IsRequired = true;
             command.AddOption(serviceAnnouncementAttachmentIdOption);
@@ -74,12 +74,12 @@ namespace ApiSdk.Admin.ServiceAnnouncement.Messages.Item.Attachments.Item.Conten
             };
             bodyOption.IsRequired = true;
             command.AddOption(bodyOption);
-            command.SetHandler(async (string serviceUpdateMessageId, string serviceAnnouncementAttachmentId, FileInfo file, IOutputFormatterFactory outputFormatterFactory, IConsole console) => {
+            command.SetHandler(async (string serviceUpdateMessageId, string serviceAnnouncementAttachmentId, FileInfo file, IOutputFormatterFactory outputFormatterFactory, CancellationToken cancellationToken) => {
                 using var stream = file.OpenRead();
                 var requestInfo = CreatePutRequestInformation(stream, q => {
                 });
-                await RequestAdapter.SendNoContentAsync(requestInfo);
-                console.WriteLine("Success");
+                await RequestAdapter.SendNoContentAsync(requestInfo, errorMapping: default, cancellationToken: cancellationToken);
+                Console.WriteLine("Success");
             }, serviceUpdateMessageIdOption, serviceAnnouncementAttachmentIdOption, bodyOption);
             return command;
         }
@@ -93,20 +93,6 @@ namespace ApiSdk.Admin.ServiceAnnouncement.Messages.Item.Attachments.Item.Conten
             _ = requestAdapter ?? throw new ArgumentNullException(nameof(requestAdapter));
             UrlTemplate = "{+baseurl}/admin/serviceAnnouncement/messages/{serviceUpdateMessage_id}/attachments/{serviceAnnouncementAttachment_id}/content";
             var urlTplParams = new Dictionary<string, object>(pathParameters);
-            PathParameters = urlTplParams;
-            RequestAdapter = requestAdapter;
-        }
-        /// <summary>
-        /// Instantiates a new ContentRequestBuilder and sets the default values.
-        /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        /// <param name="requestAdapter">The request adapter to use to execute the requests.</param>
-        /// </summary>
-        public ContentRequestBuilder(string rawUrl, IRequestAdapter requestAdapter) {
-            if(string.IsNullOrEmpty(rawUrl)) throw new ArgumentNullException(nameof(rawUrl));
-            _ = requestAdapter ?? throw new ArgumentNullException(nameof(requestAdapter));
-            UrlTemplate = "{+baseurl}/admin/serviceAnnouncement/messages/{serviceUpdateMessage_id}/attachments/{serviceAnnouncementAttachment_id}/content";
-            var urlTplParams = new Dictionary<string, object>();
-            urlTplParams.Add("request-raw-url", rawUrl);
             PathParameters = urlTplParams;
             RequestAdapter = requestAdapter;
         }
@@ -142,30 +128,6 @@ namespace ApiSdk.Admin.ServiceAnnouncement.Messages.Item.Attachments.Item.Conten
             h?.Invoke(requestInfo.Headers);
             requestInfo.AddRequestOptions(o?.ToArray());
             return requestInfo;
-        }
-        /// <summary>
-        /// Get media content for the navigation property attachments from admin
-        /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
-        /// <param name="h">Request headers</param>
-        /// <param name="o">Request options</param>
-        /// <param name="responseHandler">Response handler to use in place of the default response handling provided by the core service</param>
-        /// </summary>
-        public async Task<Stream> GetAsync(Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default, CancellationToken cancellationToken = default) {
-            var requestInfo = CreateGetRequestInformation(h, o);
-            return await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, responseHandler, cancellationToken);
-        }
-        /// <summary>
-        /// Update media content for the navigation property attachments in admin
-        /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
-        /// <param name="h">Request headers</param>
-        /// <param name="o">Request options</param>
-        /// <param name="responseHandler">Response handler to use in place of the default response handling provided by the core service</param>
-        /// <param name="stream">Binary request body</param>
-        /// </summary>
-        public async Task PutAsync(Stream stream, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default, CancellationToken cancellationToken = default) {
-            _ = stream ?? throw new ArgumentNullException(nameof(stream));
-            var requestInfo = CreatePutRequestInformation(stream, h, o);
-            await RequestAdapter.SendNoContentAsync(requestInfo, responseHandler, cancellationToken);
         }
     }
 }

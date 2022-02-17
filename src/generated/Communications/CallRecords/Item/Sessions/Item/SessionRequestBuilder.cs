@@ -1,8 +1,8 @@
 using ApiSdk.Communications.CallRecords.Item.Sessions.Item.Segments;
 using ApiSdk.Models.Microsoft.Graph.CallRecords;
-using Microsoft.Graph.Cli.Core.IO;
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
+using Microsoft.Kiota.Cli.Commons.IO;
 using System;
 using System.Collections.Generic;
 using System.CommandLine;
@@ -27,7 +27,7 @@ namespace ApiSdk.Communications.CallRecords.Item.Sessions.Item {
             var command = new Command("delete");
             command.Description = "List of sessions involved in the call. Peer-to-peer calls typically only have one session, whereas group calls typically have at least one session per participant. Read-only. Nullable.";
             // Create options for all the parameters
-            var callRecordIdOption = new Option<string>("--callrecord-id", description: "key: id of callRecord") {
+            var callRecordIdOption = new Option<string>("--call-record-id", description: "key: id of callRecord") {
             };
             callRecordIdOption.IsRequired = true;
             command.AddOption(callRecordIdOption);
@@ -35,11 +35,11 @@ namespace ApiSdk.Communications.CallRecords.Item.Sessions.Item {
             };
             sessionIdOption.IsRequired = true;
             command.AddOption(sessionIdOption);
-            command.SetHandler(async (string callRecordId, string sessionId, IOutputFormatterFactory outputFormatterFactory, IConsole console) => {
+            command.SetHandler(async (string callRecordId, string sessionId, IOutputFormatterFactory outputFormatterFactory, CancellationToken cancellationToken) => {
                 var requestInfo = CreateDeleteRequestInformation(q => {
                 });
-                await RequestAdapter.SendNoContentAsync(requestInfo);
-                console.WriteLine("Success");
+                await RequestAdapter.SendNoContentAsync(requestInfo, errorMapping: default, cancellationToken: cancellationToken);
+                Console.WriteLine("Success");
             }, callRecordIdOption, sessionIdOption);
             return command;
         }
@@ -50,7 +50,7 @@ namespace ApiSdk.Communications.CallRecords.Item.Sessions.Item {
             var command = new Command("get");
             command.Description = "List of sessions involved in the call. Peer-to-peer calls typically only have one session, whereas group calls typically have at least one session per participant. Read-only. Nullable.";
             // Create options for all the parameters
-            var callRecordIdOption = new Option<string>("--callrecord-id", description: "key: id of callRecord") {
+            var callRecordIdOption = new Option<string>("--call-record-id", description: "key: id of callRecord") {
             };
             callRecordIdOption.IsRequired = true;
             command.AddOption(callRecordIdOption);
@@ -72,14 +72,14 @@ namespace ApiSdk.Communications.CallRecords.Item.Sessions.Item {
                 IsRequired = true
             };
             command.AddOption(outputOption);
-            command.SetHandler(async (string callRecordId, string sessionId, string[] select, string[] expand, FormatterType output, IOutputFormatterFactory outputFormatterFactory, IConsole console) => {
+            command.SetHandler(async (string callRecordId, string sessionId, string[] select, string[] expand, FormatterType output, IOutputFormatterFactory outputFormatterFactory, CancellationToken cancellationToken) => {
                 var requestInfo = CreateGetRequestInformation(q => {
                     q.Select = select;
                     q.Expand = expand;
                 });
-                var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: default, cancellationToken: cancellationToken);
                 var formatter = outputFormatterFactory.GetFormatter(output);
-                formatter.WriteOutput(response, console);
+                formatter.WriteOutput(response);
             }, callRecordIdOption, sessionIdOption, selectOption, expandOption, outputOption);
             return command;
         }
@@ -90,7 +90,7 @@ namespace ApiSdk.Communications.CallRecords.Item.Sessions.Item {
             var command = new Command("patch");
             command.Description = "List of sessions involved in the call. Peer-to-peer calls typically only have one session, whereas group calls typically have at least one session per participant. Read-only. Nullable.";
             // Create options for all the parameters
-            var callRecordIdOption = new Option<string>("--callrecord-id", description: "key: id of callRecord") {
+            var callRecordIdOption = new Option<string>("--call-record-id", description: "key: id of callRecord") {
             };
             callRecordIdOption.IsRequired = true;
             command.AddOption(callRecordIdOption);
@@ -102,14 +102,14 @@ namespace ApiSdk.Communications.CallRecords.Item.Sessions.Item {
             };
             bodyOption.IsRequired = true;
             command.AddOption(bodyOption);
-            command.SetHandler(async (string callRecordId, string sessionId, string body, IOutputFormatterFactory outputFormatterFactory, IConsole console) => {
+            command.SetHandler(async (string callRecordId, string sessionId, string body, IOutputFormatterFactory outputFormatterFactory, CancellationToken cancellationToken) => {
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<Session>();
                 var requestInfo = CreatePatchRequestInformation(model, q => {
                 });
-                await RequestAdapter.SendNoContentAsync(requestInfo);
-                console.WriteLine("Success");
+                await RequestAdapter.SendNoContentAsync(requestInfo, errorMapping: default, cancellationToken: cancellationToken);
+                Console.WriteLine("Success");
             }, callRecordIdOption, sessionIdOption, bodyOption);
             return command;
         }
@@ -133,20 +133,6 @@ namespace ApiSdk.Communications.CallRecords.Item.Sessions.Item {
             _ = requestAdapter ?? throw new ArgumentNullException(nameof(requestAdapter));
             UrlTemplate = "{+baseurl}/communications/callRecords/{callRecord_id}/sessions/{session_id}{?select,expand}";
             var urlTplParams = new Dictionary<string, object>(pathParameters);
-            PathParameters = urlTplParams;
-            RequestAdapter = requestAdapter;
-        }
-        /// <summary>
-        /// Instantiates a new SessionRequestBuilder and sets the default values.
-        /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        /// <param name="requestAdapter">The request adapter to use to execute the requests.</param>
-        /// </summary>
-        public SessionRequestBuilder(string rawUrl, IRequestAdapter requestAdapter) {
-            if(string.IsNullOrEmpty(rawUrl)) throw new ArgumentNullException(nameof(rawUrl));
-            _ = requestAdapter ?? throw new ArgumentNullException(nameof(requestAdapter));
-            UrlTemplate = "{+baseurl}/communications/callRecords/{callRecord_id}/sessions/{session_id}{?select,expand}";
-            var urlTplParams = new Dictionary<string, object>();
-            urlTplParams.Add("request-raw-url", rawUrl);
             PathParameters = urlTplParams;
             RequestAdapter = requestAdapter;
         }
@@ -203,42 +189,6 @@ namespace ApiSdk.Communications.CallRecords.Item.Sessions.Item {
             h?.Invoke(requestInfo.Headers);
             requestInfo.AddRequestOptions(o?.ToArray());
             return requestInfo;
-        }
-        /// <summary>
-        /// List of sessions involved in the call. Peer-to-peer calls typically only have one session, whereas group calls typically have at least one session per participant. Read-only. Nullable.
-        /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
-        /// <param name="h">Request headers</param>
-        /// <param name="o">Request options</param>
-        /// <param name="responseHandler">Response handler to use in place of the default response handling provided by the core service</param>
-        /// </summary>
-        public async Task DeleteAsync(Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default, CancellationToken cancellationToken = default) {
-            var requestInfo = CreateDeleteRequestInformation(h, o);
-            await RequestAdapter.SendNoContentAsync(requestInfo, responseHandler, cancellationToken);
-        }
-        /// <summary>
-        /// List of sessions involved in the call. Peer-to-peer calls typically only have one session, whereas group calls typically have at least one session per participant. Read-only. Nullable.
-        /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
-        /// <param name="h">Request headers</param>
-        /// <param name="o">Request options</param>
-        /// <param name="q">Request query parameters</param>
-        /// <param name="responseHandler">Response handler to use in place of the default response handling provided by the core service</param>
-        /// </summary>
-        public async Task<Session> GetAsync(Action<GetQueryParameters> q = default, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default, CancellationToken cancellationToken = default) {
-            var requestInfo = CreateGetRequestInformation(q, h, o);
-            return await RequestAdapter.SendAsync<Session>(requestInfo, responseHandler, cancellationToken);
-        }
-        /// <summary>
-        /// List of sessions involved in the call. Peer-to-peer calls typically only have one session, whereas group calls typically have at least one session per participant. Read-only. Nullable.
-        /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
-        /// <param name="h">Request headers</param>
-        /// <param name="model"></param>
-        /// <param name="o">Request options</param>
-        /// <param name="responseHandler">Response handler to use in place of the default response handling provided by the core service</param>
-        /// </summary>
-        public async Task PatchAsync(Session model, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default, CancellationToken cancellationToken = default) {
-            _ = model ?? throw new ArgumentNullException(nameof(model));
-            var requestInfo = CreatePatchRequestInformation(model, h, o);
-            await RequestAdapter.SendNoContentAsync(requestInfo, responseHandler, cancellationToken);
         }
         /// <summary>List of sessions involved in the call. Peer-to-peer calls typically only have one session, whereas group calls typically have at least one session per participant. Read-only. Nullable.</summary>
         public class GetQueryParameters : QueryParametersBase {

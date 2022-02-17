@@ -12,7 +12,7 @@ namespace ApiSdk.Models.Microsoft.Graph {
         /// <summary>The time zone of the customer. For a list of possible values, see dateTimeTimeZone.</summary>
         public string CustomerTimeZone { get; set; }
         /// <summary>The length of the appointment, denoted in ISO8601 format.</summary>
-        public string Duration { get; set; }
+        public TimeSpan? Duration { get; set; }
         public DateTimeTimeZone EndDateTime { get; set; }
         /// <summary>The current number of customers in the appointment.</summary>
         public int? FilledAttendeesCount { get; set; }
@@ -25,9 +25,9 @@ namespace ApiSdk.Models.Microsoft.Graph {
         /// <summary>True indicates that the bookingCustomer for this appointment does not wish to receive a confirmation for this appointment.</summary>
         public bool? OptOutOfCustomerEmail { get; set; }
         /// <summary>The amount of time to reserve after the appointment ends, for cleaning up, as an example. The value is expressed in ISO8601 format.</summary>
-        public string PostBuffer { get; set; }
+        public TimeSpan? PostBuffer { get; set; }
         /// <summary>The amount of time to reserve before the appointment begins, for preparation, as an example. The value is expressed in ISO8601 format.</summary>
-        public string PreBuffer { get; set; }
+        public TimeSpan? PreBuffer { get; set; }
         /// <summary>The regular price for an appointment for the specified bookingService.</summary>
         public double? Price { get; set; }
         /// <summary>A setting to provide flexibility for the pricing structure of services. Possible values are: undefined, fixedPrice, startingAt, hourly, free, priceVaries, callUs, notSet, unknownFutureValue.</summary>
@@ -57,15 +57,15 @@ namespace ApiSdk.Models.Microsoft.Graph {
                 {"additionalInformation", (o,n) => { (o as BookingAppointment).AdditionalInformation = n.GetStringValue(); } },
                 {"customers", (o,n) => { (o as BookingAppointment).Customers = n.GetCollectionOfObjectValues<BookingCustomerInformationBase>().ToList(); } },
                 {"customerTimeZone", (o,n) => { (o as BookingAppointment).CustomerTimeZone = n.GetStringValue(); } },
-                {"duration", (o,n) => { (o as BookingAppointment).Duration = n.GetStringValue(); } },
+                {"duration", (o,n) => { (o as BookingAppointment).Duration = n.GetTimeSpanValue(); } },
                 {"endDateTime", (o,n) => { (o as BookingAppointment).EndDateTime = n.GetObjectValue<DateTimeTimeZone>(); } },
                 {"filledAttendeesCount", (o,n) => { (o as BookingAppointment).FilledAttendeesCount = n.GetIntValue(); } },
                 {"isLocationOnline", (o,n) => { (o as BookingAppointment).IsLocationOnline = n.GetBoolValue(); } },
                 {"joinWebUrl", (o,n) => { (o as BookingAppointment).JoinWebUrl = n.GetStringValue(); } },
                 {"maximumAttendeesCount", (o,n) => { (o as BookingAppointment).MaximumAttendeesCount = n.GetIntValue(); } },
                 {"optOutOfCustomerEmail", (o,n) => { (o as BookingAppointment).OptOutOfCustomerEmail = n.GetBoolValue(); } },
-                {"postBuffer", (o,n) => { (o as BookingAppointment).PostBuffer = n.GetStringValue(); } },
-                {"preBuffer", (o,n) => { (o as BookingAppointment).PreBuffer = n.GetStringValue(); } },
+                {"postBuffer", (o,n) => { (o as BookingAppointment).PostBuffer = n.GetTimeSpanValue(); } },
+                {"preBuffer", (o,n) => { (o as BookingAppointment).PreBuffer = n.GetTimeSpanValue(); } },
                 {"price", (o,n) => { (o as BookingAppointment).Price = n.GetDoubleValue(); } },
                 {"priceType", (o,n) => { (o as BookingAppointment).PriceType = n.GetEnumValue<BookingPriceType>(); } },
                 {"reminders", (o,n) => { (o as BookingAppointment).Reminders = n.GetCollectionOfObjectValues<BookingReminder>().ToList(); } },
@@ -89,15 +89,15 @@ namespace ApiSdk.Models.Microsoft.Graph {
             writer.WriteStringValue("additionalInformation", AdditionalInformation);
             writer.WriteCollectionOfObjectValues<BookingCustomerInformationBase>("customers", Customers);
             writer.WriteStringValue("customerTimeZone", CustomerTimeZone);
-            writer.WriteStringValue("duration", Duration);
+            writer.WriteTimeSpanValue("duration", Duration);
             writer.WriteObjectValue<DateTimeTimeZone>("endDateTime", EndDateTime);
             writer.WriteIntValue("filledAttendeesCount", FilledAttendeesCount);
             writer.WriteBoolValue("isLocationOnline", IsLocationOnline);
             writer.WriteStringValue("joinWebUrl", JoinWebUrl);
             writer.WriteIntValue("maximumAttendeesCount", MaximumAttendeesCount);
             writer.WriteBoolValue("optOutOfCustomerEmail", OptOutOfCustomerEmail);
-            writer.WriteStringValue("postBuffer", PostBuffer);
-            writer.WriteStringValue("preBuffer", PreBuffer);
+            writer.WriteTimeSpanValue("postBuffer", PostBuffer);
+            writer.WriteTimeSpanValue("preBuffer", PreBuffer);
             writer.WriteDoubleValue("price", Price);
             writer.WriteEnumValue<BookingPriceType>("priceType", PriceType);
             writer.WriteCollectionOfObjectValues<BookingReminder>("reminders", Reminders);

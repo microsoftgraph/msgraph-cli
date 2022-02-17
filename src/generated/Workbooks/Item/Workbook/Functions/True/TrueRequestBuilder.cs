@@ -1,7 +1,7 @@
 using ApiSdk.Models.Microsoft.Graph;
-using Microsoft.Graph.Cli.Core.IO;
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
+using Microsoft.Kiota.Cli.Commons.IO;
 using System;
 using System.Collections.Generic;
 using System.CommandLine;
@@ -26,7 +26,7 @@ namespace ApiSdk.Workbooks.Item.Workbook.Functions.True {
             var command = new Command("post");
             command.Description = "Invoke action true";
             // Create options for all the parameters
-            var driveItemIdOption = new Option<string>("--driveitem-id", description: "key: id of driveItem") {
+            var driveItemIdOption = new Option<string>("--drive-item-id", description: "key: id of driveItem") {
             };
             driveItemIdOption.IsRequired = true;
             command.AddOption(driveItemIdOption);
@@ -34,12 +34,12 @@ namespace ApiSdk.Workbooks.Item.Workbook.Functions.True {
                 IsRequired = true
             };
             command.AddOption(outputOption);
-            command.SetHandler(async (string driveItemId, FormatterType output, IOutputFormatterFactory outputFormatterFactory, IConsole console) => {
+            command.SetHandler(async (string driveItemId, FormatterType output, IOutputFormatterFactory outputFormatterFactory, CancellationToken cancellationToken) => {
                 var requestInfo = CreatePostRequestInformation(q => {
                 });
-                var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: default, cancellationToken: cancellationToken);
                 var formatter = outputFormatterFactory.GetFormatter(output);
-                formatter.WriteOutput(response, console);
+                formatter.WriteOutput(response);
             }, driveItemIdOption, outputOption);
             return command;
         }
@@ -57,20 +57,6 @@ namespace ApiSdk.Workbooks.Item.Workbook.Functions.True {
             RequestAdapter = requestAdapter;
         }
         /// <summary>
-        /// Instantiates a new TrueRequestBuilder and sets the default values.
-        /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        /// <param name="requestAdapter">The request adapter to use to execute the requests.</param>
-        /// </summary>
-        public TrueRequestBuilder(string rawUrl, IRequestAdapter requestAdapter) {
-            if(string.IsNullOrEmpty(rawUrl)) throw new ArgumentNullException(nameof(rawUrl));
-            _ = requestAdapter ?? throw new ArgumentNullException(nameof(requestAdapter));
-            UrlTemplate = "{+baseurl}/workbooks/{driveItem_id}/workbook/functions/microsoft.graph.true";
-            var urlTplParams = new Dictionary<string, object>();
-            urlTplParams.Add("request-raw-url", rawUrl);
-            PathParameters = urlTplParams;
-            RequestAdapter = requestAdapter;
-        }
-        /// <summary>
         /// Invoke action true
         /// <param name="h">Request headers</param>
         /// <param name="o">Request options</param>
@@ -84,17 +70,6 @@ namespace ApiSdk.Workbooks.Item.Workbook.Functions.True {
             h?.Invoke(requestInfo.Headers);
             requestInfo.AddRequestOptions(o?.ToArray());
             return requestInfo;
-        }
-        /// <summary>
-        /// Invoke action true
-        /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
-        /// <param name="h">Request headers</param>
-        /// <param name="o">Request options</param>
-        /// <param name="responseHandler">Response handler to use in place of the default response handling provided by the core service</param>
-        /// </summary>
-        public async Task<TrueResponse> PostAsync(Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default, CancellationToken cancellationToken = default) {
-            var requestInfo = CreatePostRequestInformation(h, o);
-            return await RequestAdapter.SendAsync<TrueResponse>(requestInfo, responseHandler, cancellationToken);
         }
         /// <summary>Union type wrapper for classes workbookFunctionResult</summary>
         public class TrueResponse : IParsable {

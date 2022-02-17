@@ -1,6 +1,6 @@
-using Microsoft.Graph.Cli.Core.IO;
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
+using Microsoft.Kiota.Cli.Commons.IO;
 using System;
 using System.Collections.Generic;
 using System.CommandLine;
@@ -25,15 +25,15 @@ namespace ApiSdk.IdentityGovernance.AccessReviews.Definitions.Item.Stop {
             var command = new Command("post");
             command.Description = "Invoke action stop";
             // Create options for all the parameters
-            var accessReviewScheduleDefinitionIdOption = new Option<string>("--accessreviewscheduledefinition-id", description: "key: id of accessReviewScheduleDefinition") {
+            var accessReviewScheduleDefinitionIdOption = new Option<string>("--access-review-schedule-definition-id", description: "key: id of accessReviewScheduleDefinition") {
             };
             accessReviewScheduleDefinitionIdOption.IsRequired = true;
             command.AddOption(accessReviewScheduleDefinitionIdOption);
-            command.SetHandler(async (string accessReviewScheduleDefinitionId, IOutputFormatterFactory outputFormatterFactory, IConsole console) => {
+            command.SetHandler(async (string accessReviewScheduleDefinitionId, IOutputFormatterFactory outputFormatterFactory, CancellationToken cancellationToken) => {
                 var requestInfo = CreatePostRequestInformation(q => {
                 });
-                await RequestAdapter.SendNoContentAsync(requestInfo);
-                console.WriteLine("Success");
+                await RequestAdapter.SendNoContentAsync(requestInfo, errorMapping: default, cancellationToken: cancellationToken);
+                Console.WriteLine("Success");
             }, accessReviewScheduleDefinitionIdOption);
             return command;
         }
@@ -51,20 +51,6 @@ namespace ApiSdk.IdentityGovernance.AccessReviews.Definitions.Item.Stop {
             RequestAdapter = requestAdapter;
         }
         /// <summary>
-        /// Instantiates a new StopRequestBuilder and sets the default values.
-        /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        /// <param name="requestAdapter">The request adapter to use to execute the requests.</param>
-        /// </summary>
-        public StopRequestBuilder(string rawUrl, IRequestAdapter requestAdapter) {
-            if(string.IsNullOrEmpty(rawUrl)) throw new ArgumentNullException(nameof(rawUrl));
-            _ = requestAdapter ?? throw new ArgumentNullException(nameof(requestAdapter));
-            UrlTemplate = "{+baseurl}/identityGovernance/accessReviews/definitions/{accessReviewScheduleDefinition_id}/microsoft.graph.stop";
-            var urlTplParams = new Dictionary<string, object>();
-            urlTplParams.Add("request-raw-url", rawUrl);
-            PathParameters = urlTplParams;
-            RequestAdapter = requestAdapter;
-        }
-        /// <summary>
         /// Invoke action stop
         /// <param name="h">Request headers</param>
         /// <param name="o">Request options</param>
@@ -78,17 +64,6 @@ namespace ApiSdk.IdentityGovernance.AccessReviews.Definitions.Item.Stop {
             h?.Invoke(requestInfo.Headers);
             requestInfo.AddRequestOptions(o?.ToArray());
             return requestInfo;
-        }
-        /// <summary>
-        /// Invoke action stop
-        /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
-        /// <param name="h">Request headers</param>
-        /// <param name="o">Request options</param>
-        /// <param name="responseHandler">Response handler to use in place of the default response handling provided by the core service</param>
-        /// </summary>
-        public async Task PostAsync(Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default, CancellationToken cancellationToken = default) {
-            var requestInfo = CreatePostRequestInformation(h, o);
-            await RequestAdapter.SendNoContentAsync(requestInfo, responseHandler, cancellationToken);
         }
     }
 }

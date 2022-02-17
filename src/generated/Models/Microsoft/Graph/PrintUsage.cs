@@ -1,3 +1,4 @@
+using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
 using System;
 using System.Collections.Generic;
@@ -8,7 +9,7 @@ namespace ApiSdk.Models.Microsoft.Graph {
         public long? CompletedBlackAndWhiteJobCount { get; set; }
         public long? CompletedColorJobCount { get; set; }
         public long? IncompleteJobCount { get; set; }
-        public string UsageDate { get; set; }
+        public Date? UsageDate { get; set; }
         /// <summary>
         /// The deserialization information for the current model
         /// </summary>
@@ -17,7 +18,7 @@ namespace ApiSdk.Models.Microsoft.Graph {
                 {"completedBlackAndWhiteJobCount", (o,n) => { (o as PrintUsage).CompletedBlackAndWhiteJobCount = n.GetLongValue(); } },
                 {"completedColorJobCount", (o,n) => { (o as PrintUsage).CompletedColorJobCount = n.GetLongValue(); } },
                 {"incompleteJobCount", (o,n) => { (o as PrintUsage).IncompleteJobCount = n.GetLongValue(); } },
-                {"usageDate", (o,n) => { (o as PrintUsage).UsageDate = n.GetStringValue(); } },
+                {"usageDate", (o,n) => { (o as PrintUsage).UsageDate = n.GetDateValue(); } },
             };
         }
         /// <summary>
@@ -30,7 +31,7 @@ namespace ApiSdk.Models.Microsoft.Graph {
             writer.WriteLongValue("completedBlackAndWhiteJobCount", CompletedBlackAndWhiteJobCount);
             writer.WriteLongValue("completedColorJobCount", CompletedColorJobCount);
             writer.WriteLongValue("incompleteJobCount", IncompleteJobCount);
-            writer.WriteStringValue("usageDate", UsageDate);
+            writer.WriteDateValue("usageDate", UsageDate);
         }
     }
 }

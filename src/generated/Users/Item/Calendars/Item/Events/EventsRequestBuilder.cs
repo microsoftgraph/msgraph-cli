@@ -1,9 +1,9 @@
 using ApiSdk.Models.Microsoft.Graph;
 using ApiSdk.Users.Item.Calendars.Item.Events.Delta;
 using ApiSdk.Users.Item.Calendars.Item.Events.Item;
-using Microsoft.Graph.Cli.Core.IO;
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
+using Microsoft.Kiota.Cli.Commons.IO;
 using System;
 using System.Collections.Generic;
 using System.CommandLine;
@@ -65,15 +65,15 @@ namespace ApiSdk.Users.Item.Calendars.Item.Events {
                 IsRequired = true
             };
             command.AddOption(outputOption);
-            command.SetHandler(async (string userId, string calendarId, string body, FormatterType output, IOutputFormatterFactory outputFormatterFactory, IConsole console) => {
+            command.SetHandler(async (string userId, string calendarId, string body, FormatterType output, IOutputFormatterFactory outputFormatterFactory, CancellationToken cancellationToken) => {
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<Event>();
                 var requestInfo = CreatePostRequestInformation(model, q => {
                 });
-                var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: default, cancellationToken: cancellationToken);
                 var formatter = outputFormatterFactory.GetFormatter(output);
-                formatter.WriteOutput(response, console);
+                formatter.WriteOutput(response);
             }, userIdOption, calendarIdOption, bodyOption, outputOption);
             return command;
         }
@@ -122,7 +122,7 @@ namespace ApiSdk.Users.Item.Calendars.Item.Events {
                 IsRequired = true
             };
             command.AddOption(outputOption);
-            command.SetHandler(async (string userId, string calendarId, int? top, int? skip, string filter, bool? count, string[] orderby, string[] select, FormatterType output, IOutputFormatterFactory outputFormatterFactory, IConsole console) => {
+            command.SetHandler(async (string userId, string calendarId, int? top, int? skip, string filter, bool? count, string[] orderby, string[] select, FormatterType output, IOutputFormatterFactory outputFormatterFactory, CancellationToken cancellationToken) => {
                 var requestInfo = CreateGetRequestInformation(q => {
                     q.Top = top;
                     q.Skip = skip;
@@ -131,9 +131,9 @@ namespace ApiSdk.Users.Item.Calendars.Item.Events {
                     q.Orderby = orderby;
                     q.Select = select;
                 });
-                var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: default, cancellationToken: cancellationToken);
                 var formatter = outputFormatterFactory.GetFormatter(output);
-                formatter.WriteOutput(response, console);
+                formatter.WriteOutput(response);
             }, userIdOption, calendarIdOption, topOption, skipOption, filterOption, countOption, orderbyOption, selectOption, outputOption);
             return command;
         }
@@ -147,20 +147,6 @@ namespace ApiSdk.Users.Item.Calendars.Item.Events {
             _ = requestAdapter ?? throw new ArgumentNullException(nameof(requestAdapter));
             UrlTemplate = "{+baseurl}/users/{user_id}/calendars/{calendar_id}/events{?top,skip,filter,count,orderby,select}";
             var urlTplParams = new Dictionary<string, object>(pathParameters);
-            PathParameters = urlTplParams;
-            RequestAdapter = requestAdapter;
-        }
-        /// <summary>
-        /// Instantiates a new EventsRequestBuilder and sets the default values.
-        /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        /// <param name="requestAdapter">The request adapter to use to execute the requests.</param>
-        /// </summary>
-        public EventsRequestBuilder(string rawUrl, IRequestAdapter requestAdapter) {
-            if(string.IsNullOrEmpty(rawUrl)) throw new ArgumentNullException(nameof(rawUrl));
-            _ = requestAdapter ?? throw new ArgumentNullException(nameof(requestAdapter));
-            UrlTemplate = "{+baseurl}/users/{user_id}/calendars/{calendar_id}/events{?top,skip,filter,count,orderby,select}";
-            var urlTplParams = new Dictionary<string, object>();
-            urlTplParams.Add("request-raw-url", rawUrl);
             PathParameters = urlTplParams;
             RequestAdapter = requestAdapter;
         }
@@ -208,31 +194,6 @@ namespace ApiSdk.Users.Item.Calendars.Item.Events {
         /// </summary>
         public DeltaRequestBuilder Delta() {
             return new DeltaRequestBuilder(PathParameters, RequestAdapter);
-        }
-        /// <summary>
-        /// The events in the calendar. Navigation property. Read-only.
-        /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
-        /// <param name="h">Request headers</param>
-        /// <param name="o">Request options</param>
-        /// <param name="q">Request query parameters</param>
-        /// <param name="responseHandler">Response handler to use in place of the default response handling provided by the core service</param>
-        /// </summary>
-        public async Task<EventsResponse> GetAsync(Action<GetQueryParameters> q = default, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default, CancellationToken cancellationToken = default) {
-            var requestInfo = CreateGetRequestInformation(q, h, o);
-            return await RequestAdapter.SendAsync<EventsResponse>(requestInfo, responseHandler, cancellationToken);
-        }
-        /// <summary>
-        /// The events in the calendar. Navigation property. Read-only.
-        /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
-        /// <param name="h">Request headers</param>
-        /// <param name="model"></param>
-        /// <param name="o">Request options</param>
-        /// <param name="responseHandler">Response handler to use in place of the default response handling provided by the core service</param>
-        /// </summary>
-        public async Task<Event> PostAsync(Event model, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default, CancellationToken cancellationToken = default) {
-            _ = model ?? throw new ArgumentNullException(nameof(model));
-            var requestInfo = CreatePostRequestInformation(model, h, o);
-            return await RequestAdapter.SendAsync<Event>(requestInfo, responseHandler, cancellationToken);
         }
         /// <summary>The events in the calendar. Navigation property. Read-only.</summary>
         public class GetQueryParameters : QueryParametersBase {

@@ -9,7 +9,7 @@ namespace ApiSdk.Users.Item.Presence.SetPresence {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
         public string Availability { get; set; }
-        public string ExpirationDuration { get; set; }
+        public TimeSpan? ExpirationDuration { get; set; }
         public string SessionId { get; set; }
         /// <summary>
         /// Instantiates a new setPresenceRequestBody and sets the default values.
@@ -24,7 +24,7 @@ namespace ApiSdk.Users.Item.Presence.SetPresence {
             return new Dictionary<string, Action<T, IParseNode>> {
                 {"activity", (o,n) => { (o as SetPresenceRequestBody).Activity = n.GetStringValue(); } },
                 {"availability", (o,n) => { (o as SetPresenceRequestBody).Availability = n.GetStringValue(); } },
-                {"expirationDuration", (o,n) => { (o as SetPresenceRequestBody).ExpirationDuration = n.GetStringValue(); } },
+                {"expirationDuration", (o,n) => { (o as SetPresenceRequestBody).ExpirationDuration = n.GetTimeSpanValue(); } },
                 {"sessionId", (o,n) => { (o as SetPresenceRequestBody).SessionId = n.GetStringValue(); } },
             };
         }
@@ -36,7 +36,7 @@ namespace ApiSdk.Users.Item.Presence.SetPresence {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             writer.WriteStringValue("activity", Activity);
             writer.WriteStringValue("availability", Availability);
-            writer.WriteStringValue("expirationDuration", ExpirationDuration);
+            writer.WriteTimeSpanValue("expirationDuration", ExpirationDuration);
             writer.WriteStringValue("sessionId", SessionId);
             writer.WriteAdditionalData(AdditionalData);
         }

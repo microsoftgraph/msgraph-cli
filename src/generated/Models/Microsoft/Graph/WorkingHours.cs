@@ -1,3 +1,4 @@
+using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
 using System;
 using System.Collections.Generic;
@@ -10,9 +11,9 @@ namespace ApiSdk.Models.Microsoft.Graph {
         /// <summary>The days of the week on which the user works.</summary>
         public List<DayOfWeek?> DaysOfWeek { get; set; }
         /// <summary>The time of the day that the user stops working.</summary>
-        public string EndTime { get; set; }
+        public Time? EndTime { get; set; }
         /// <summary>The time of the day that the user starts working.</summary>
-        public string StartTime { get; set; }
+        public Time? StartTime { get; set; }
         /// <summary>The time zone to which the working hours apply.</summary>
         public TimeZoneBase TimeZone { get; set; }
         /// <summary>
@@ -27,8 +28,8 @@ namespace ApiSdk.Models.Microsoft.Graph {
         public IDictionary<string, Action<T, IParseNode>> GetFieldDeserializers<T>() {
             return new Dictionary<string, Action<T, IParseNode>> {
                 {"daysOfWeek", (o,n) => { (o as WorkingHours).DaysOfWeek = n.GetCollectionOfEnumValues<DayOfWeek>().ToList(); } },
-                {"endTime", (o,n) => { (o as WorkingHours).EndTime = n.GetStringValue(); } },
-                {"startTime", (o,n) => { (o as WorkingHours).StartTime = n.GetStringValue(); } },
+                {"endTime", (o,n) => { (o as WorkingHours).EndTime = n.GetTimeValue(); } },
+                {"startTime", (o,n) => { (o as WorkingHours).StartTime = n.GetTimeValue(); } },
                 {"timeZone", (o,n) => { (o as WorkingHours).TimeZone = n.GetObjectValue<TimeZoneBase>(); } },
             };
         }
@@ -39,8 +40,8 @@ namespace ApiSdk.Models.Microsoft.Graph {
         public void Serialize(ISerializationWriter writer) {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             writer.WriteCollectionOfEnumValues<DayOfWeek>("daysOfWeek", DaysOfWeek);
-            writer.WriteStringValue("endTime", EndTime);
-            writer.WriteStringValue("startTime", StartTime);
+            writer.WriteTimeValue("endTime", EndTime);
+            writer.WriteTimeValue("startTime", StartTime);
             writer.WriteObjectValue<TimeZoneBase>("timeZone", TimeZone);
             writer.WriteAdditionalData(AdditionalData);
         }

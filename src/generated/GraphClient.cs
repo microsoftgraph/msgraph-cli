@@ -66,9 +66,9 @@ using ApiSdk.TeamsTemplates;
 using ApiSdk.Teamwork;
 using ApiSdk.Users;
 using ApiSdk.Workbooks;
-using Microsoft.Graph.Cli.Core.IO;
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
+using Microsoft.Kiota.Cli.Commons.IO;
 using Microsoft.Kiota.Serialization.Json;
 using System;
 using System.Collections.Generic;
@@ -201,80 +201,6 @@ namespace ApiSdk {
             }
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
-            return command;
-        }
-        public Command BuildCommand() {
-            var command = new RootCommand();
-            command.Description = "Instantiates a new GraphClient and sets the default values.";
-            command.AddCommand(BuildAdminCommand());
-            command.AddCommand(BuildAgreementAcceptancesCommand());
-            command.AddCommand(BuildAgreementsCommand());
-            command.AddCommand(BuildAppCatalogsCommand());
-            command.AddCommand(BuildApplicationsCommand());
-            command.AddCommand(BuildApplicationTemplatesCommand());
-            command.AddCommand(BuildAuditLogsCommand());
-            command.AddCommand(BuildAuthenticationMethodConfigurationsCommand());
-            command.AddCommand(BuildAuthenticationMethodsPolicyCommand());
-            command.AddCommand(BuildBrandingCommand());
-            command.AddCommand(BuildCertificateBasedAuthConfigurationCommand());
-            command.AddCommand(BuildChatsCommand());
-            command.AddCommand(BuildCommunicationsCommand());
-            command.AddCommand(BuildComplianceCommand());
-            command.AddCommand(BuildConnectionsCommand());
-            command.AddCommand(BuildContactsCommand());
-            command.AddCommand(BuildContractsCommand());
-            command.AddCommand(BuildDataPolicyOperationsCommand());
-            command.AddCommand(BuildDeviceAppManagementCommand());
-            command.AddCommand(BuildDeviceManagementCommand());
-            command.AddCommand(BuildDevicesCommand());
-            command.AddCommand(BuildDirectoryCommand());
-            command.AddCommand(BuildDirectoryObjectsCommand());
-            command.AddCommand(BuildDirectoryRolesCommand());
-            command.AddCommand(BuildDirectoryRoleTemplatesCommand());
-            command.AddCommand(BuildDomainDnsRecordsCommand());
-            command.AddCommand(BuildDomainsCommand());
-            command.AddCommand(BuildDriveCommand());
-            command.AddCommand(BuildDrivesCommand());
-            command.AddCommand(BuildEducationCommand());
-            command.AddCommand(BuildExternalCommand());
-            command.AddCommand(BuildGetCommand());
-            command.AddCommand(BuildGroupLifecyclePoliciesCommand());
-            command.AddCommand(BuildGroupsCommand());
-            command.AddCommand(BuildGroupSettingsCommand());
-            command.AddCommand(BuildGroupSettingTemplatesCommand());
-            command.AddCommand(BuildIdentityCommand());
-            command.AddCommand(BuildIdentityGovernanceCommand());
-            command.AddCommand(BuildIdentityProtectionCommand());
-            command.AddCommand(BuildIdentityProvidersCommand());
-            command.AddCommand(BuildInformationProtectionCommand());
-            command.AddCommand(BuildInvitationsCommand());
-            command.AddCommand(BuildLocalizationsCommand());
-            command.AddCommand(BuildMeCommand());
-            command.AddCommand(BuildOauth2PermissionGrantsCommand());
-            command.AddCommand(BuildOrganizationCommand());
-            command.AddCommand(BuildPermissionGrantsCommand());
-            command.AddCommand(BuildPlacesCommand());
-            command.AddCommand(BuildPlannerCommand());
-            command.AddCommand(BuildPoliciesCommand());
-            command.AddCommand(BuildPrintCommand());
-            command.AddCommand(BuildPrivacyCommand());
-            command.AddCommand(BuildReportsCommand());
-            command.AddCommand(BuildRoleManagementCommand());
-            command.AddCommand(BuildSchemaExtensionsCommand());
-            command.AddCommand(BuildScopedRoleMembershipsCommand());
-            command.AddCommand(BuildSearchCommand());
-            command.AddCommand(BuildSecurityCommand());
-            command.AddCommand(BuildServicePrincipalsCommand());
-            command.AddCommand(BuildSharesCommand());
-            command.AddCommand(BuildSitesCommand());
-            command.AddCommand(BuildSolutionsCommand());
-            command.AddCommand(BuildSubscribedSkusCommand());
-            command.AddCommand(BuildSubscriptionsCommand());
-            command.AddCommand(BuildTeamsCommand());
-            command.AddCommand(BuildTeamsTemplatesCommand());
-            command.AddCommand(BuildTeamworkCommand());
-            command.AddCommand(BuildUsersCommand());
-            command.AddCommand(BuildWorkbooksCommand());
             return command;
         }
         public Command BuildCommunicationsCommand() {
@@ -528,11 +454,11 @@ namespace ApiSdk {
         public Command BuildGetCommand() {
             var command = new Command("get");
             // Create options for all the parameters
-            command.SetHandler(async (IOutputFormatterFactory outputFormatterFactory, IConsole console) => {
+            command.SetHandler(async (IOutputFormatterFactory outputFormatterFactory, CancellationToken cancellationToken) => {
                 var requestInfo = CreateGetRequestInformation(q => {
                 });
-                await RequestAdapter.SendNoContentAsync(requestInfo);
-                console.WriteLine("Success");
+                await RequestAdapter.SendNoContentAsync(requestInfo, errorMapping: default, cancellationToken: cancellationToken);
+                Console.WriteLine("Success");
             });
             return command;
         }
@@ -839,6 +765,83 @@ namespace ApiSdk {
             command.AddCommand(builder.BuildPatchCommand());
             return command;
         }
+        /// <summary>
+        /// Instantiates a new GraphClient and sets the default values.
+        /// </summary>
+        public Command BuildRootCommand() {
+            var command = new RootCommand();
+            command.Description = "Instantiates a new GraphClient and sets the default values.";
+            command.AddCommand(BuildAdminCommand());
+            command.AddCommand(BuildAgreementAcceptancesCommand());
+            command.AddCommand(BuildAgreementsCommand());
+            command.AddCommand(BuildAppCatalogsCommand());
+            command.AddCommand(BuildApplicationsCommand());
+            command.AddCommand(BuildApplicationTemplatesCommand());
+            command.AddCommand(BuildAuditLogsCommand());
+            command.AddCommand(BuildAuthenticationMethodConfigurationsCommand());
+            command.AddCommand(BuildAuthenticationMethodsPolicyCommand());
+            command.AddCommand(BuildBrandingCommand());
+            command.AddCommand(BuildCertificateBasedAuthConfigurationCommand());
+            command.AddCommand(BuildChatsCommand());
+            command.AddCommand(BuildCommunicationsCommand());
+            command.AddCommand(BuildComplianceCommand());
+            command.AddCommand(BuildConnectionsCommand());
+            command.AddCommand(BuildContactsCommand());
+            command.AddCommand(BuildContractsCommand());
+            command.AddCommand(BuildDataPolicyOperationsCommand());
+            command.AddCommand(BuildDeviceAppManagementCommand());
+            command.AddCommand(BuildDeviceManagementCommand());
+            command.AddCommand(BuildDevicesCommand());
+            command.AddCommand(BuildDirectoryCommand());
+            command.AddCommand(BuildDirectoryObjectsCommand());
+            command.AddCommand(BuildDirectoryRolesCommand());
+            command.AddCommand(BuildDirectoryRoleTemplatesCommand());
+            command.AddCommand(BuildDomainDnsRecordsCommand());
+            command.AddCommand(BuildDomainsCommand());
+            command.AddCommand(BuildDriveCommand());
+            command.AddCommand(BuildDrivesCommand());
+            command.AddCommand(BuildEducationCommand());
+            command.AddCommand(BuildExternalCommand());
+            command.AddCommand(BuildGetCommand());
+            command.AddCommand(BuildGroupLifecyclePoliciesCommand());
+            command.AddCommand(BuildGroupsCommand());
+            command.AddCommand(BuildGroupSettingsCommand());
+            command.AddCommand(BuildGroupSettingTemplatesCommand());
+            command.AddCommand(BuildIdentityCommand());
+            command.AddCommand(BuildIdentityGovernanceCommand());
+            command.AddCommand(BuildIdentityProtectionCommand());
+            command.AddCommand(BuildIdentityProvidersCommand());
+            command.AddCommand(BuildInformationProtectionCommand());
+            command.AddCommand(BuildInvitationsCommand());
+            command.AddCommand(BuildLocalizationsCommand());
+            command.AddCommand(BuildMeCommand());
+            command.AddCommand(BuildOauth2PermissionGrantsCommand());
+            command.AddCommand(BuildOrganizationCommand());
+            command.AddCommand(BuildPermissionGrantsCommand());
+            command.AddCommand(BuildPlacesCommand());
+            command.AddCommand(BuildPlannerCommand());
+            command.AddCommand(BuildPoliciesCommand());
+            command.AddCommand(BuildPrintCommand());
+            command.AddCommand(BuildPrivacyCommand());
+            command.AddCommand(BuildReportsCommand());
+            command.AddCommand(BuildRoleManagementCommand());
+            command.AddCommand(BuildSchemaExtensionsCommand());
+            command.AddCommand(BuildScopedRoleMembershipsCommand());
+            command.AddCommand(BuildSearchCommand());
+            command.AddCommand(BuildSecurityCommand());
+            command.AddCommand(BuildServicePrincipalsCommand());
+            command.AddCommand(BuildSharesCommand());
+            command.AddCommand(BuildSitesCommand());
+            command.AddCommand(BuildSolutionsCommand());
+            command.AddCommand(BuildSubscribedSkusCommand());
+            command.AddCommand(BuildSubscriptionsCommand());
+            command.AddCommand(BuildTeamsCommand());
+            command.AddCommand(BuildTeamsTemplatesCommand());
+            command.AddCommand(BuildTeamworkCommand());
+            command.AddCommand(BuildUsersCommand());
+            command.AddCommand(BuildWorkbooksCommand());
+            return command;
+        }
         public Command BuildSchemaExtensionsCommand() {
             var command = new Command("schema-extensions");
             var builder = new ApiSdk.SchemaExtensions.SchemaExtensionsRequestBuilder(PathParameters, RequestAdapter);
@@ -1014,10 +1017,6 @@ namespace ApiSdk {
             h?.Invoke(requestInfo.Headers);
             requestInfo.AddRequestOptions(o?.ToArray());
             return requestInfo;
-        }
-        public async Task GetAsync(Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default, CancellationToken cancellationToken = default) {
-            var requestInfo = CreateGetRequestInformation(h, o);
-            await RequestAdapter.SendNoContentAsync(requestInfo, responseHandler, cancellationToken);
         }
     }
 }

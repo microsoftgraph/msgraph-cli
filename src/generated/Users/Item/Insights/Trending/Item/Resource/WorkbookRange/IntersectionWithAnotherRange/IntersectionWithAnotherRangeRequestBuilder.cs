@@ -1,7 +1,7 @@
 using ApiSdk.Models.Microsoft.Graph;
-using Microsoft.Graph.Cli.Core.IO;
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
+using Microsoft.Kiota.Cli.Commons.IO;
 using System;
 using System.Collections.Generic;
 using System.CommandLine;
@@ -30,11 +30,11 @@ namespace ApiSdk.Users.Item.Insights.Trending.Item.Resource.WorkbookRange.Inters
             };
             userIdOption.IsRequired = true;
             command.AddOption(userIdOption);
-            var trendingItemIdOption = new Option<string>("--trendingitem-id", description: "key: id of trending") {
+            var trendingItemIdOption = new Option<string>("--trending-item-id", description: "key: id of trending") {
             };
             trendingItemIdOption.IsRequired = true;
             command.AddOption(trendingItemIdOption);
-            var anotherRangeOption = new Option<string>("--anotherrange", description: "Usage: anotherRange={anotherRange}") {
+            var anotherRangeOption = new Option<string>("--another-range", description: "Usage: anotherRange={anotherRange}") {
             };
             anotherRangeOption.IsRequired = true;
             command.AddOption(anotherRangeOption);
@@ -42,12 +42,12 @@ namespace ApiSdk.Users.Item.Insights.Trending.Item.Resource.WorkbookRange.Inters
                 IsRequired = true
             };
             command.AddOption(outputOption);
-            command.SetHandler(async (string userId, string trendingItemId, string anotherRange, FormatterType output, IOutputFormatterFactory outputFormatterFactory, IConsole console) => {
+            command.SetHandler(async (string userId, string trendingItemId, string anotherRange, FormatterType output, IOutputFormatterFactory outputFormatterFactory, CancellationToken cancellationToken) => {
                 var requestInfo = CreateGetRequestInformation(q => {
                 });
-                var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: default, cancellationToken: cancellationToken);
                 var formatter = outputFormatterFactory.GetFormatter(output);
-                formatter.WriteOutput(response, console);
+                formatter.WriteOutput(response);
             }, userIdOption, trendingItemIdOption, anotherRangeOption, outputOption);
             return command;
         }
@@ -67,20 +67,6 @@ namespace ApiSdk.Users.Item.Insights.Trending.Item.Resource.WorkbookRange.Inters
             RequestAdapter = requestAdapter;
         }
         /// <summary>
-        /// Instantiates a new IntersectionWithAnotherRangeRequestBuilder and sets the default values.
-        /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        /// <param name="requestAdapter">The request adapter to use to execute the requests.</param>
-        /// </summary>
-        public IntersectionWithAnotherRangeRequestBuilder(string rawUrl, IRequestAdapter requestAdapter) {
-            if(string.IsNullOrEmpty(rawUrl)) throw new ArgumentNullException(nameof(rawUrl));
-            _ = requestAdapter ?? throw new ArgumentNullException(nameof(requestAdapter));
-            UrlTemplate = "{+baseurl}/users/{user_id}/insights/trending/{trendingItem_Id}/resource/microsoft.graph.workbookRange/microsoft.graph.intersection(anotherRange='{anotherRange}')";
-            var urlTplParams = new Dictionary<string, object>();
-            urlTplParams.Add("request-raw-url", rawUrl);
-            PathParameters = urlTplParams;
-            RequestAdapter = requestAdapter;
-        }
-        /// <summary>
         /// Invoke function intersection
         /// <param name="h">Request headers</param>
         /// <param name="o">Request options</param>
@@ -94,17 +80,6 @@ namespace ApiSdk.Users.Item.Insights.Trending.Item.Resource.WorkbookRange.Inters
             h?.Invoke(requestInfo.Headers);
             requestInfo.AddRequestOptions(o?.ToArray());
             return requestInfo;
-        }
-        /// <summary>
-        /// Invoke function intersection
-        /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
-        /// <param name="h">Request headers</param>
-        /// <param name="o">Request options</param>
-        /// <param name="responseHandler">Response handler to use in place of the default response handling provided by the core service</param>
-        /// </summary>
-        public async Task<IntersectionWithAnotherRangeResponse> GetAsync(Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default, CancellationToken cancellationToken = default) {
-            var requestInfo = CreateGetRequestInformation(h, o);
-            return await RequestAdapter.SendAsync<IntersectionWithAnotherRangeResponse>(requestInfo, responseHandler, cancellationToken);
         }
         /// <summary>Union type wrapper for classes workbookRange</summary>
         public class IntersectionWithAnotherRangeResponse : IParsable {

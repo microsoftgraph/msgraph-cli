@@ -1,7 +1,7 @@
 using ApiSdk.Models.Microsoft.Graph;
-using Microsoft.Graph.Cli.Core.IO;
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
+using Microsoft.Kiota.Cli.Commons.IO;
 using System;
 using System.Collections.Generic;
 using System.CommandLine;
@@ -26,19 +26,19 @@ namespace ApiSdk.Education.Me.Assignments.Item.Resources.Item {
             var command = new Command("delete");
             command.Description = "Learning objects that are associated with this assignment.  Only teachers can modify this list. Nullable.";
             // Create options for all the parameters
-            var educationAssignmentIdOption = new Option<string>("--educationassignment-id", description: "key: id of educationAssignment") {
+            var educationAssignmentIdOption = new Option<string>("--education-assignment-id", description: "key: id of educationAssignment") {
             };
             educationAssignmentIdOption.IsRequired = true;
             command.AddOption(educationAssignmentIdOption);
-            var educationAssignmentResourceIdOption = new Option<string>("--educationassignmentresource-id", description: "key: id of educationAssignmentResource") {
+            var educationAssignmentResourceIdOption = new Option<string>("--education-assignment-resource-id", description: "key: id of educationAssignmentResource") {
             };
             educationAssignmentResourceIdOption.IsRequired = true;
             command.AddOption(educationAssignmentResourceIdOption);
-            command.SetHandler(async (string educationAssignmentId, string educationAssignmentResourceId, IOutputFormatterFactory outputFormatterFactory, IConsole console) => {
+            command.SetHandler(async (string educationAssignmentId, string educationAssignmentResourceId, IOutputFormatterFactory outputFormatterFactory, CancellationToken cancellationToken) => {
                 var requestInfo = CreateDeleteRequestInformation(q => {
                 });
-                await RequestAdapter.SendNoContentAsync(requestInfo);
-                console.WriteLine("Success");
+                await RequestAdapter.SendNoContentAsync(requestInfo, errorMapping: default, cancellationToken: cancellationToken);
+                Console.WriteLine("Success");
             }, educationAssignmentIdOption, educationAssignmentResourceIdOption);
             return command;
         }
@@ -49,11 +49,11 @@ namespace ApiSdk.Education.Me.Assignments.Item.Resources.Item {
             var command = new Command("get");
             command.Description = "Learning objects that are associated with this assignment.  Only teachers can modify this list. Nullable.";
             // Create options for all the parameters
-            var educationAssignmentIdOption = new Option<string>("--educationassignment-id", description: "key: id of educationAssignment") {
+            var educationAssignmentIdOption = new Option<string>("--education-assignment-id", description: "key: id of educationAssignment") {
             };
             educationAssignmentIdOption.IsRequired = true;
             command.AddOption(educationAssignmentIdOption);
-            var educationAssignmentResourceIdOption = new Option<string>("--educationassignmentresource-id", description: "key: id of educationAssignmentResource") {
+            var educationAssignmentResourceIdOption = new Option<string>("--education-assignment-resource-id", description: "key: id of educationAssignmentResource") {
             };
             educationAssignmentResourceIdOption.IsRequired = true;
             command.AddOption(educationAssignmentResourceIdOption);
@@ -71,14 +71,14 @@ namespace ApiSdk.Education.Me.Assignments.Item.Resources.Item {
                 IsRequired = true
             };
             command.AddOption(outputOption);
-            command.SetHandler(async (string educationAssignmentId, string educationAssignmentResourceId, string[] select, string[] expand, FormatterType output, IOutputFormatterFactory outputFormatterFactory, IConsole console) => {
+            command.SetHandler(async (string educationAssignmentId, string educationAssignmentResourceId, string[] select, string[] expand, FormatterType output, IOutputFormatterFactory outputFormatterFactory, CancellationToken cancellationToken) => {
                 var requestInfo = CreateGetRequestInformation(q => {
                     q.Select = select;
                     q.Expand = expand;
                 });
-                var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: default, cancellationToken: cancellationToken);
                 var formatter = outputFormatterFactory.GetFormatter(output);
-                formatter.WriteOutput(response, console);
+                formatter.WriteOutput(response);
             }, educationAssignmentIdOption, educationAssignmentResourceIdOption, selectOption, expandOption, outputOption);
             return command;
         }
@@ -89,11 +89,11 @@ namespace ApiSdk.Education.Me.Assignments.Item.Resources.Item {
             var command = new Command("patch");
             command.Description = "Learning objects that are associated with this assignment.  Only teachers can modify this list. Nullable.";
             // Create options for all the parameters
-            var educationAssignmentIdOption = new Option<string>("--educationassignment-id", description: "key: id of educationAssignment") {
+            var educationAssignmentIdOption = new Option<string>("--education-assignment-id", description: "key: id of educationAssignment") {
             };
             educationAssignmentIdOption.IsRequired = true;
             command.AddOption(educationAssignmentIdOption);
-            var educationAssignmentResourceIdOption = new Option<string>("--educationassignmentresource-id", description: "key: id of educationAssignmentResource") {
+            var educationAssignmentResourceIdOption = new Option<string>("--education-assignment-resource-id", description: "key: id of educationAssignmentResource") {
             };
             educationAssignmentResourceIdOption.IsRequired = true;
             command.AddOption(educationAssignmentResourceIdOption);
@@ -101,14 +101,14 @@ namespace ApiSdk.Education.Me.Assignments.Item.Resources.Item {
             };
             bodyOption.IsRequired = true;
             command.AddOption(bodyOption);
-            command.SetHandler(async (string educationAssignmentId, string educationAssignmentResourceId, string body, IOutputFormatterFactory outputFormatterFactory, IConsole console) => {
+            command.SetHandler(async (string educationAssignmentId, string educationAssignmentResourceId, string body, IOutputFormatterFactory outputFormatterFactory, CancellationToken cancellationToken) => {
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<EducationAssignmentResource>();
                 var requestInfo = CreatePatchRequestInformation(model, q => {
                 });
-                await RequestAdapter.SendNoContentAsync(requestInfo);
-                console.WriteLine("Success");
+                await RequestAdapter.SendNoContentAsync(requestInfo, errorMapping: default, cancellationToken: cancellationToken);
+                Console.WriteLine("Success");
             }, educationAssignmentIdOption, educationAssignmentResourceIdOption, bodyOption);
             return command;
         }
@@ -122,20 +122,6 @@ namespace ApiSdk.Education.Me.Assignments.Item.Resources.Item {
             _ = requestAdapter ?? throw new ArgumentNullException(nameof(requestAdapter));
             UrlTemplate = "{+baseurl}/education/me/assignments/{educationAssignment_id}/resources/{educationAssignmentResource_id}{?select,expand}";
             var urlTplParams = new Dictionary<string, object>(pathParameters);
-            PathParameters = urlTplParams;
-            RequestAdapter = requestAdapter;
-        }
-        /// <summary>
-        /// Instantiates a new EducationAssignmentResourceRequestBuilder and sets the default values.
-        /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        /// <param name="requestAdapter">The request adapter to use to execute the requests.</param>
-        /// </summary>
-        public EducationAssignmentResourceRequestBuilder(string rawUrl, IRequestAdapter requestAdapter) {
-            if(string.IsNullOrEmpty(rawUrl)) throw new ArgumentNullException(nameof(rawUrl));
-            _ = requestAdapter ?? throw new ArgumentNullException(nameof(requestAdapter));
-            UrlTemplate = "{+baseurl}/education/me/assignments/{educationAssignment_id}/resources/{educationAssignmentResource_id}{?select,expand}";
-            var urlTplParams = new Dictionary<string, object>();
-            urlTplParams.Add("request-raw-url", rawUrl);
             PathParameters = urlTplParams;
             RequestAdapter = requestAdapter;
         }
@@ -192,42 +178,6 @@ namespace ApiSdk.Education.Me.Assignments.Item.Resources.Item {
             h?.Invoke(requestInfo.Headers);
             requestInfo.AddRequestOptions(o?.ToArray());
             return requestInfo;
-        }
-        /// <summary>
-        /// Learning objects that are associated with this assignment.  Only teachers can modify this list. Nullable.
-        /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
-        /// <param name="h">Request headers</param>
-        /// <param name="o">Request options</param>
-        /// <param name="responseHandler">Response handler to use in place of the default response handling provided by the core service</param>
-        /// </summary>
-        public async Task DeleteAsync(Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default, CancellationToken cancellationToken = default) {
-            var requestInfo = CreateDeleteRequestInformation(h, o);
-            await RequestAdapter.SendNoContentAsync(requestInfo, responseHandler, cancellationToken);
-        }
-        /// <summary>
-        /// Learning objects that are associated with this assignment.  Only teachers can modify this list. Nullable.
-        /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
-        /// <param name="h">Request headers</param>
-        /// <param name="o">Request options</param>
-        /// <param name="q">Request query parameters</param>
-        /// <param name="responseHandler">Response handler to use in place of the default response handling provided by the core service</param>
-        /// </summary>
-        public async Task<EducationAssignmentResource> GetAsync(Action<GetQueryParameters> q = default, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default, CancellationToken cancellationToken = default) {
-            var requestInfo = CreateGetRequestInformation(q, h, o);
-            return await RequestAdapter.SendAsync<EducationAssignmentResource>(requestInfo, responseHandler, cancellationToken);
-        }
-        /// <summary>
-        /// Learning objects that are associated with this assignment.  Only teachers can modify this list. Nullable.
-        /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
-        /// <param name="h">Request headers</param>
-        /// <param name="model"></param>
-        /// <param name="o">Request options</param>
-        /// <param name="responseHandler">Response handler to use in place of the default response handling provided by the core service</param>
-        /// </summary>
-        public async Task PatchAsync(EducationAssignmentResource model, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default, CancellationToken cancellationToken = default) {
-            _ = model ?? throw new ArgumentNullException(nameof(model));
-            var requestInfo = CreatePatchRequestInformation(model, h, o);
-            await RequestAdapter.SendNoContentAsync(requestInfo, responseHandler, cancellationToken);
         }
         /// <summary>Learning objects that are associated with this assignment.  Only teachers can modify this list. Nullable.</summary>
         public class GetQueryParameters : QueryParametersBase {

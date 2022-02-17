@@ -10,7 +10,7 @@ namespace ApiSdk.Models.Microsoft.Graph {
         /// <summary>Contains the set of custom questions associated with a particular service.</summary>
         public List<BookingQuestionAssignment> CustomQuestions { get; set; }
         /// <summary>The default length of the service, represented in numbers of days, hours, minutes, and seconds. For example, P11D23H59M59.999999999999S.</summary>
-        public string DefaultDuration { get; set; }
+        public TimeSpan? DefaultDuration { get; set; }
         /// <summary>The default physical location for the service.</summary>
         public Location DefaultLocation { get; set; }
         /// <summary>The default monetary price for the service.</summary>
@@ -32,9 +32,9 @@ namespace ApiSdk.Models.Microsoft.Graph {
         /// <summary>Additional information about this service.</summary>
         public string Notes { get; set; }
         /// <summary>The time to buffer after an appointment for this service ends, and before the next customer appointment can be booked.</summary>
-        public string PostBuffer { get; set; }
+        public TimeSpan? PostBuffer { get; set; }
         /// <summary>The time to buffer before an appointment for this service can start.</summary>
-        public string PreBuffer { get; set; }
+        public TimeSpan? PreBuffer { get; set; }
         /// <summary>The set of policies that determine how appointments for this type of service should be created and managed.</summary>
         public BookingSchedulingPolicy SchedulingPolicy { get; set; }
         /// <summary>True indicates SMS notifications can be sent to the customers for the appointment of the service. Default value is false.</summary>
@@ -50,7 +50,7 @@ namespace ApiSdk.Models.Microsoft.Graph {
             return new Dictionary<string, Action<T, IParseNode>>(base.GetFieldDeserializers<T>()) {
                 {"additionalInformation", (o,n) => { (o as BookingService).AdditionalInformation = n.GetStringValue(); } },
                 {"customQuestions", (o,n) => { (o as BookingService).CustomQuestions = n.GetCollectionOfObjectValues<BookingQuestionAssignment>().ToList(); } },
-                {"defaultDuration", (o,n) => { (o as BookingService).DefaultDuration = n.GetStringValue(); } },
+                {"defaultDuration", (o,n) => { (o as BookingService).DefaultDuration = n.GetTimeSpanValue(); } },
                 {"defaultLocation", (o,n) => { (o as BookingService).DefaultLocation = n.GetObjectValue<Location>(); } },
                 {"defaultPrice", (o,n) => { (o as BookingService).DefaultPrice = n.GetDoubleValue(); } },
                 {"defaultPriceType", (o,n) => { (o as BookingService).DefaultPriceType = n.GetEnumValue<BookingPriceType>(); } },
@@ -61,8 +61,8 @@ namespace ApiSdk.Models.Microsoft.Graph {
                 {"isLocationOnline", (o,n) => { (o as BookingService).IsLocationOnline = n.GetBoolValue(); } },
                 {"maximumAttendeesCount", (o,n) => { (o as BookingService).MaximumAttendeesCount = n.GetIntValue(); } },
                 {"notes", (o,n) => { (o as BookingService).Notes = n.GetStringValue(); } },
-                {"postBuffer", (o,n) => { (o as BookingService).PostBuffer = n.GetStringValue(); } },
-                {"preBuffer", (o,n) => { (o as BookingService).PreBuffer = n.GetStringValue(); } },
+                {"postBuffer", (o,n) => { (o as BookingService).PostBuffer = n.GetTimeSpanValue(); } },
+                {"preBuffer", (o,n) => { (o as BookingService).PreBuffer = n.GetTimeSpanValue(); } },
                 {"schedulingPolicy", (o,n) => { (o as BookingService).SchedulingPolicy = n.GetObjectValue<BookingSchedulingPolicy>(); } },
                 {"smsNotificationsEnabled", (o,n) => { (o as BookingService).SmsNotificationsEnabled = n.GetBoolValue(); } },
                 {"staffMemberIds", (o,n) => { (o as BookingService).StaffMemberIds = n.GetCollectionOfPrimitiveValues<string>().ToList(); } },
@@ -78,7 +78,7 @@ namespace ApiSdk.Models.Microsoft.Graph {
             base.Serialize(writer);
             writer.WriteStringValue("additionalInformation", AdditionalInformation);
             writer.WriteCollectionOfObjectValues<BookingQuestionAssignment>("customQuestions", CustomQuestions);
-            writer.WriteStringValue("defaultDuration", DefaultDuration);
+            writer.WriteTimeSpanValue("defaultDuration", DefaultDuration);
             writer.WriteObjectValue<Location>("defaultLocation", DefaultLocation);
             writer.WriteDoubleValue("defaultPrice", DefaultPrice);
             writer.WriteEnumValue<BookingPriceType>("defaultPriceType", DefaultPriceType);
@@ -89,8 +89,8 @@ namespace ApiSdk.Models.Microsoft.Graph {
             writer.WriteBoolValue("isLocationOnline", IsLocationOnline);
             writer.WriteIntValue("maximumAttendeesCount", MaximumAttendeesCount);
             writer.WriteStringValue("notes", Notes);
-            writer.WriteStringValue("postBuffer", PostBuffer);
-            writer.WriteStringValue("preBuffer", PreBuffer);
+            writer.WriteTimeSpanValue("postBuffer", PostBuffer);
+            writer.WriteTimeSpanValue("preBuffer", PreBuffer);
             writer.WriteObjectValue<BookingSchedulingPolicy>("schedulingPolicy", SchedulingPolicy);
             writer.WriteBoolValue("smsNotificationsEnabled", SmsNotificationsEnabled);
             writer.WriteCollectionOfPrimitiveValues<string>("staffMemberIds", StaffMemberIds);

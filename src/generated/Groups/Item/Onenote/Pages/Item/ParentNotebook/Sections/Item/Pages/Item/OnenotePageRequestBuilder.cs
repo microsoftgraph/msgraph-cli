@@ -3,9 +3,9 @@ using ApiSdk.Groups.Item.Onenote.Pages.Item.ParentNotebook.Sections.Item.Pages.I
 using ApiSdk.Groups.Item.Onenote.Pages.Item.ParentNotebook.Sections.Item.Pages.Item.OnenotePatchContent;
 using ApiSdk.Groups.Item.Onenote.Pages.Item.ParentNotebook.Sections.Item.Pages.Item.Preview;
 using ApiSdk.Models.Microsoft.Graph;
-using Microsoft.Graph.Cli.Core.IO;
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
+using Microsoft.Kiota.Cli.Commons.IO;
 using System;
 using System.Collections.Generic;
 using System.CommandLine;
@@ -47,23 +47,23 @@ namespace ApiSdk.Groups.Item.Onenote.Pages.Item.ParentNotebook.Sections.Item.Pag
             };
             groupIdOption.IsRequired = true;
             command.AddOption(groupIdOption);
-            var onenotePageIdOption = new Option<string>("--onenotepage-id", description: "key: id of onenotePage") {
+            var onenotePageIdOption = new Option<string>("--onenote-page-id", description: "key: id of onenotePage") {
             };
             onenotePageIdOption.IsRequired = true;
             command.AddOption(onenotePageIdOption);
-            var onenoteSectionIdOption = new Option<string>("--onenotesection-id", description: "key: id of onenoteSection") {
+            var onenoteSectionIdOption = new Option<string>("--onenote-section-id", description: "key: id of onenoteSection") {
             };
             onenoteSectionIdOption.IsRequired = true;
             command.AddOption(onenoteSectionIdOption);
-            var onenotePageId1Option = new Option<string>("--onenotepage-id1", description: "key: id of onenotePage") {
+            var onenotePageId1Option = new Option<string>("--onenote-page-id1", description: "key: id of onenotePage") {
             };
             onenotePageId1Option.IsRequired = true;
             command.AddOption(onenotePageId1Option);
-            command.SetHandler(async (string groupId, string onenotePageId, string onenoteSectionId, string onenotePageId1, IOutputFormatterFactory outputFormatterFactory, IConsole console) => {
+            command.SetHandler(async (string groupId, string onenotePageId, string onenoteSectionId, string onenotePageId1, IOutputFormatterFactory outputFormatterFactory, CancellationToken cancellationToken) => {
                 var requestInfo = CreateDeleteRequestInformation(q => {
                 });
-                await RequestAdapter.SendNoContentAsync(requestInfo);
-                console.WriteLine("Success");
+                await RequestAdapter.SendNoContentAsync(requestInfo, errorMapping: default, cancellationToken: cancellationToken);
+                Console.WriteLine("Success");
             }, groupIdOption, onenotePageIdOption, onenoteSectionIdOption, onenotePageId1Option);
             return command;
         }
@@ -78,15 +78,15 @@ namespace ApiSdk.Groups.Item.Onenote.Pages.Item.ParentNotebook.Sections.Item.Pag
             };
             groupIdOption.IsRequired = true;
             command.AddOption(groupIdOption);
-            var onenotePageIdOption = new Option<string>("--onenotepage-id", description: "key: id of onenotePage") {
+            var onenotePageIdOption = new Option<string>("--onenote-page-id", description: "key: id of onenotePage") {
             };
             onenotePageIdOption.IsRequired = true;
             command.AddOption(onenotePageIdOption);
-            var onenoteSectionIdOption = new Option<string>("--onenotesection-id", description: "key: id of onenoteSection") {
+            var onenoteSectionIdOption = new Option<string>("--onenote-section-id", description: "key: id of onenoteSection") {
             };
             onenoteSectionIdOption.IsRequired = true;
             command.AddOption(onenoteSectionIdOption);
-            var onenotePageId1Option = new Option<string>("--onenotepage-id1", description: "key: id of onenotePage") {
+            var onenotePageId1Option = new Option<string>("--onenote-page-id1", description: "key: id of onenotePage") {
             };
             onenotePageId1Option.IsRequired = true;
             command.AddOption(onenotePageId1Option);
@@ -104,14 +104,14 @@ namespace ApiSdk.Groups.Item.Onenote.Pages.Item.ParentNotebook.Sections.Item.Pag
                 IsRequired = true
             };
             command.AddOption(outputOption);
-            command.SetHandler(async (string groupId, string onenotePageId, string onenoteSectionId, string onenotePageId1, string[] select, string[] expand, FormatterType output, IOutputFormatterFactory outputFormatterFactory, IConsole console) => {
+            command.SetHandler(async (string groupId, string onenotePageId, string onenoteSectionId, string onenotePageId1, string[] select, string[] expand, FormatterType output, IOutputFormatterFactory outputFormatterFactory, CancellationToken cancellationToken) => {
                 var requestInfo = CreateGetRequestInformation(q => {
                     q.Select = select;
                     q.Expand = expand;
                 });
-                var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: default, cancellationToken: cancellationToken);
                 var formatter = outputFormatterFactory.GetFormatter(output);
-                formatter.WriteOutput(response, console);
+                formatter.WriteOutput(response);
             }, groupIdOption, onenotePageIdOption, onenoteSectionIdOption, onenotePageId1Option, selectOption, expandOption, outputOption);
             return command;
         }
@@ -132,15 +132,15 @@ namespace ApiSdk.Groups.Item.Onenote.Pages.Item.ParentNotebook.Sections.Item.Pag
             };
             groupIdOption.IsRequired = true;
             command.AddOption(groupIdOption);
-            var onenotePageIdOption = new Option<string>("--onenotepage-id", description: "key: id of onenotePage") {
+            var onenotePageIdOption = new Option<string>("--onenote-page-id", description: "key: id of onenotePage") {
             };
             onenotePageIdOption.IsRequired = true;
             command.AddOption(onenotePageIdOption);
-            var onenoteSectionIdOption = new Option<string>("--onenotesection-id", description: "key: id of onenoteSection") {
+            var onenoteSectionIdOption = new Option<string>("--onenote-section-id", description: "key: id of onenoteSection") {
             };
             onenoteSectionIdOption.IsRequired = true;
             command.AddOption(onenoteSectionIdOption);
-            var onenotePageId1Option = new Option<string>("--onenotepage-id1", description: "key: id of onenotePage") {
+            var onenotePageId1Option = new Option<string>("--onenote-page-id1", description: "key: id of onenotePage") {
             };
             onenotePageId1Option.IsRequired = true;
             command.AddOption(onenotePageId1Option);
@@ -148,14 +148,14 @@ namespace ApiSdk.Groups.Item.Onenote.Pages.Item.ParentNotebook.Sections.Item.Pag
             };
             bodyOption.IsRequired = true;
             command.AddOption(bodyOption);
-            command.SetHandler(async (string groupId, string onenotePageId, string onenoteSectionId, string onenotePageId1, string body, IOutputFormatterFactory outputFormatterFactory, IConsole console) => {
+            command.SetHandler(async (string groupId, string onenotePageId, string onenoteSectionId, string onenotePageId1, string body, IOutputFormatterFactory outputFormatterFactory, CancellationToken cancellationToken) => {
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<OnenotePage>();
                 var requestInfo = CreatePatchRequestInformation(model, q => {
                 });
-                await RequestAdapter.SendNoContentAsync(requestInfo);
-                console.WriteLine("Success");
+                await RequestAdapter.SendNoContentAsync(requestInfo, errorMapping: default, cancellationToken: cancellationToken);
+                Console.WriteLine("Success");
             }, groupIdOption, onenotePageIdOption, onenoteSectionIdOption, onenotePageId1Option, bodyOption);
             return command;
         }
@@ -169,20 +169,6 @@ namespace ApiSdk.Groups.Item.Onenote.Pages.Item.ParentNotebook.Sections.Item.Pag
             _ = requestAdapter ?? throw new ArgumentNullException(nameof(requestAdapter));
             UrlTemplate = "{+baseurl}/groups/{group_id}/onenote/pages/{onenotePage_id}/parentNotebook/sections/{onenoteSection_id}/pages/{onenotePage_id1}{?select,expand}";
             var urlTplParams = new Dictionary<string, object>(pathParameters);
-            PathParameters = urlTplParams;
-            RequestAdapter = requestAdapter;
-        }
-        /// <summary>
-        /// Instantiates a new OnenotePageRequestBuilder and sets the default values.
-        /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        /// <param name="requestAdapter">The request adapter to use to execute the requests.</param>
-        /// </summary>
-        public OnenotePageRequestBuilder(string rawUrl, IRequestAdapter requestAdapter) {
-            if(string.IsNullOrEmpty(rawUrl)) throw new ArgumentNullException(nameof(rawUrl));
-            _ = requestAdapter ?? throw new ArgumentNullException(nameof(requestAdapter));
-            UrlTemplate = "{+baseurl}/groups/{group_id}/onenote/pages/{onenotePage_id}/parentNotebook/sections/{onenoteSection_id}/pages/{onenotePage_id1}{?select,expand}";
-            var urlTplParams = new Dictionary<string, object>();
-            urlTplParams.Add("request-raw-url", rawUrl);
             PathParameters = urlTplParams;
             RequestAdapter = requestAdapter;
         }
@@ -239,42 +225,6 @@ namespace ApiSdk.Groups.Item.Onenote.Pages.Item.ParentNotebook.Sections.Item.Pag
             h?.Invoke(requestInfo.Headers);
             requestInfo.AddRequestOptions(o?.ToArray());
             return requestInfo;
-        }
-        /// <summary>
-        /// The collection of pages in the section.  Read-only. Nullable.
-        /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
-        /// <param name="h">Request headers</param>
-        /// <param name="o">Request options</param>
-        /// <param name="responseHandler">Response handler to use in place of the default response handling provided by the core service</param>
-        /// </summary>
-        public async Task DeleteAsync(Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default, CancellationToken cancellationToken = default) {
-            var requestInfo = CreateDeleteRequestInformation(h, o);
-            await RequestAdapter.SendNoContentAsync(requestInfo, responseHandler, cancellationToken);
-        }
-        /// <summary>
-        /// The collection of pages in the section.  Read-only. Nullable.
-        /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
-        /// <param name="h">Request headers</param>
-        /// <param name="o">Request options</param>
-        /// <param name="q">Request query parameters</param>
-        /// <param name="responseHandler">Response handler to use in place of the default response handling provided by the core service</param>
-        /// </summary>
-        public async Task<OnenotePage> GetAsync(Action<GetQueryParameters> q = default, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default, CancellationToken cancellationToken = default) {
-            var requestInfo = CreateGetRequestInformation(q, h, o);
-            return await RequestAdapter.SendAsync<OnenotePage>(requestInfo, responseHandler, cancellationToken);
-        }
-        /// <summary>
-        /// The collection of pages in the section.  Read-only. Nullable.
-        /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
-        /// <param name="h">Request headers</param>
-        /// <param name="model"></param>
-        /// <param name="o">Request options</param>
-        /// <param name="responseHandler">Response handler to use in place of the default response handling provided by the core service</param>
-        /// </summary>
-        public async Task PatchAsync(OnenotePage model, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default, CancellationToken cancellationToken = default) {
-            _ = model ?? throw new ArgumentNullException(nameof(model));
-            var requestInfo = CreatePatchRequestInformation(model, h, o);
-            await RequestAdapter.SendNoContentAsync(requestInfo, responseHandler, cancellationToken);
         }
         /// <summary>
         /// Builds and executes requests for operations under \groups\{group-id}\onenote\pages\{onenotePage-id}\parentNotebook\sections\{onenoteSection-id}\pages\{onenotePage-id1}\microsoft.graph.preview()

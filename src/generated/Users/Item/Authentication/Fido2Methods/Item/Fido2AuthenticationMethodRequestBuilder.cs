@@ -1,7 +1,7 @@
 using ApiSdk.Models.Microsoft.Graph;
-using Microsoft.Graph.Cli.Core.IO;
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
+using Microsoft.Kiota.Cli.Commons.IO;
 using System;
 using System.Collections.Generic;
 using System.CommandLine;
@@ -30,15 +30,15 @@ namespace ApiSdk.Users.Item.Authentication.Fido2Methods.Item {
             };
             userIdOption.IsRequired = true;
             command.AddOption(userIdOption);
-            var fido2AuthenticationMethodIdOption = new Option<string>("--fido2authenticationmethod-id", description: "key: id of fido2AuthenticationMethod") {
+            var fido2AuthenticationMethodIdOption = new Option<string>("--fido2authentication-method-id", description: "key: id of fido2AuthenticationMethod") {
             };
             fido2AuthenticationMethodIdOption.IsRequired = true;
             command.AddOption(fido2AuthenticationMethodIdOption);
-            command.SetHandler(async (string userId, string fido2AuthenticationMethodId, IOutputFormatterFactory outputFormatterFactory, IConsole console) => {
+            command.SetHandler(async (string userId, string fido2AuthenticationMethodId, IOutputFormatterFactory outputFormatterFactory, CancellationToken cancellationToken) => {
                 var requestInfo = CreateDeleteRequestInformation(q => {
                 });
-                await RequestAdapter.SendNoContentAsync(requestInfo);
-                console.WriteLine("Success");
+                await RequestAdapter.SendNoContentAsync(requestInfo, errorMapping: default, cancellationToken: cancellationToken);
+                Console.WriteLine("Success");
             }, userIdOption, fido2AuthenticationMethodIdOption);
             return command;
         }
@@ -53,7 +53,7 @@ namespace ApiSdk.Users.Item.Authentication.Fido2Methods.Item {
             };
             userIdOption.IsRequired = true;
             command.AddOption(userIdOption);
-            var fido2AuthenticationMethodIdOption = new Option<string>("--fido2authenticationmethod-id", description: "key: id of fido2AuthenticationMethod") {
+            var fido2AuthenticationMethodIdOption = new Option<string>("--fido2authentication-method-id", description: "key: id of fido2AuthenticationMethod") {
             };
             fido2AuthenticationMethodIdOption.IsRequired = true;
             command.AddOption(fido2AuthenticationMethodIdOption);
@@ -71,14 +71,14 @@ namespace ApiSdk.Users.Item.Authentication.Fido2Methods.Item {
                 IsRequired = true
             };
             command.AddOption(outputOption);
-            command.SetHandler(async (string userId, string fido2AuthenticationMethodId, string[] select, string[] expand, FormatterType output, IOutputFormatterFactory outputFormatterFactory, IConsole console) => {
+            command.SetHandler(async (string userId, string fido2AuthenticationMethodId, string[] select, string[] expand, FormatterType output, IOutputFormatterFactory outputFormatterFactory, CancellationToken cancellationToken) => {
                 var requestInfo = CreateGetRequestInformation(q => {
                     q.Select = select;
                     q.Expand = expand;
                 });
-                var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: default, cancellationToken: cancellationToken);
                 var formatter = outputFormatterFactory.GetFormatter(output);
-                formatter.WriteOutput(response, console);
+                formatter.WriteOutput(response);
             }, userIdOption, fido2AuthenticationMethodIdOption, selectOption, expandOption, outputOption);
             return command;
         }
@@ -93,7 +93,7 @@ namespace ApiSdk.Users.Item.Authentication.Fido2Methods.Item {
             };
             userIdOption.IsRequired = true;
             command.AddOption(userIdOption);
-            var fido2AuthenticationMethodIdOption = new Option<string>("--fido2authenticationmethod-id", description: "key: id of fido2AuthenticationMethod") {
+            var fido2AuthenticationMethodIdOption = new Option<string>("--fido2authentication-method-id", description: "key: id of fido2AuthenticationMethod") {
             };
             fido2AuthenticationMethodIdOption.IsRequired = true;
             command.AddOption(fido2AuthenticationMethodIdOption);
@@ -101,14 +101,14 @@ namespace ApiSdk.Users.Item.Authentication.Fido2Methods.Item {
             };
             bodyOption.IsRequired = true;
             command.AddOption(bodyOption);
-            command.SetHandler(async (string userId, string fido2AuthenticationMethodId, string body, IOutputFormatterFactory outputFormatterFactory, IConsole console) => {
+            command.SetHandler(async (string userId, string fido2AuthenticationMethodId, string body, IOutputFormatterFactory outputFormatterFactory, CancellationToken cancellationToken) => {
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<Fido2AuthenticationMethod>();
                 var requestInfo = CreatePatchRequestInformation(model, q => {
                 });
-                await RequestAdapter.SendNoContentAsync(requestInfo);
-                console.WriteLine("Success");
+                await RequestAdapter.SendNoContentAsync(requestInfo, errorMapping: default, cancellationToken: cancellationToken);
+                Console.WriteLine("Success");
             }, userIdOption, fido2AuthenticationMethodIdOption, bodyOption);
             return command;
         }
@@ -122,20 +122,6 @@ namespace ApiSdk.Users.Item.Authentication.Fido2Methods.Item {
             _ = requestAdapter ?? throw new ArgumentNullException(nameof(requestAdapter));
             UrlTemplate = "{+baseurl}/users/{user_id}/authentication/fido2Methods/{fido2AuthenticationMethod_id}{?select,expand}";
             var urlTplParams = new Dictionary<string, object>(pathParameters);
-            PathParameters = urlTplParams;
-            RequestAdapter = requestAdapter;
-        }
-        /// <summary>
-        /// Instantiates a new Fido2AuthenticationMethodRequestBuilder and sets the default values.
-        /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        /// <param name="requestAdapter">The request adapter to use to execute the requests.</param>
-        /// </summary>
-        public Fido2AuthenticationMethodRequestBuilder(string rawUrl, IRequestAdapter requestAdapter) {
-            if(string.IsNullOrEmpty(rawUrl)) throw new ArgumentNullException(nameof(rawUrl));
-            _ = requestAdapter ?? throw new ArgumentNullException(nameof(requestAdapter));
-            UrlTemplate = "{+baseurl}/users/{user_id}/authentication/fido2Methods/{fido2AuthenticationMethod_id}{?select,expand}";
-            var urlTplParams = new Dictionary<string, object>();
-            urlTplParams.Add("request-raw-url", rawUrl);
             PathParameters = urlTplParams;
             RequestAdapter = requestAdapter;
         }
@@ -192,42 +178,6 @@ namespace ApiSdk.Users.Item.Authentication.Fido2Methods.Item {
             h?.Invoke(requestInfo.Headers);
             requestInfo.AddRequestOptions(o?.ToArray());
             return requestInfo;
-        }
-        /// <summary>
-        /// Delete navigation property fido2Methods for users
-        /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
-        /// <param name="h">Request headers</param>
-        /// <param name="o">Request options</param>
-        /// <param name="responseHandler">Response handler to use in place of the default response handling provided by the core service</param>
-        /// </summary>
-        public async Task DeleteAsync(Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default, CancellationToken cancellationToken = default) {
-            var requestInfo = CreateDeleteRequestInformation(h, o);
-            await RequestAdapter.SendNoContentAsync(requestInfo, responseHandler, cancellationToken);
-        }
-        /// <summary>
-        /// Get fido2Methods from users
-        /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
-        /// <param name="h">Request headers</param>
-        /// <param name="o">Request options</param>
-        /// <param name="q">Request query parameters</param>
-        /// <param name="responseHandler">Response handler to use in place of the default response handling provided by the core service</param>
-        /// </summary>
-        public async Task<Fido2AuthenticationMethod> GetAsync(Action<GetQueryParameters> q = default, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default, CancellationToken cancellationToken = default) {
-            var requestInfo = CreateGetRequestInformation(q, h, o);
-            return await RequestAdapter.SendAsync<Fido2AuthenticationMethod>(requestInfo, responseHandler, cancellationToken);
-        }
-        /// <summary>
-        /// Update the navigation property fido2Methods in users
-        /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
-        /// <param name="h">Request headers</param>
-        /// <param name="model"></param>
-        /// <param name="o">Request options</param>
-        /// <param name="responseHandler">Response handler to use in place of the default response handling provided by the core service</param>
-        /// </summary>
-        public async Task PatchAsync(Fido2AuthenticationMethod model, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default, CancellationToken cancellationToken = default) {
-            _ = model ?? throw new ArgumentNullException(nameof(model));
-            var requestInfo = CreatePatchRequestInformation(model, h, o);
-            await RequestAdapter.SendNoContentAsync(requestInfo, responseHandler, cancellationToken);
         }
         /// <summary>Get fido2Methods from users</summary>
         public class GetQueryParameters : QueryParametersBase {

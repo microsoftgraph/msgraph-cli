@@ -1,7 +1,7 @@
 using ApiSdk.Models.Microsoft.Graph;
-using Microsoft.Graph.Cli.Core.IO;
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
+using Microsoft.Kiota.Cli.Commons.IO;
 using System;
 using System.Collections.Generic;
 using System.CommandLine;
@@ -30,7 +30,7 @@ namespace ApiSdk.Users.Item.Insights.Trending.Item.Resource.PrintDocument.Create
             };
             userIdOption.IsRequired = true;
             command.AddOption(userIdOption);
-            var trendingItemIdOption = new Option<string>("--trendingitem-id", description: "key: id of trending") {
+            var trendingItemIdOption = new Option<string>("--trending-item-id", description: "key: id of trending") {
             };
             trendingItemIdOption.IsRequired = true;
             command.AddOption(trendingItemIdOption);
@@ -42,15 +42,15 @@ namespace ApiSdk.Users.Item.Insights.Trending.Item.Resource.PrintDocument.Create
                 IsRequired = true
             };
             command.AddOption(outputOption);
-            command.SetHandler(async (string userId, string trendingItemId, string body, FormatterType output, IOutputFormatterFactory outputFormatterFactory, IConsole console) => {
+            command.SetHandler(async (string userId, string trendingItemId, string body, FormatterType output, IOutputFormatterFactory outputFormatterFactory, CancellationToken cancellationToken) => {
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<CreateUploadSessionRequestBody>();
                 var requestInfo = CreatePostRequestInformation(model, q => {
                 });
-                var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: default, cancellationToken: cancellationToken);
                 var formatter = outputFormatterFactory.GetFormatter(output);
-                formatter.WriteOutput(response, console);
+                formatter.WriteOutput(response);
             }, userIdOption, trendingItemIdOption, bodyOption, outputOption);
             return command;
         }
@@ -64,20 +64,6 @@ namespace ApiSdk.Users.Item.Insights.Trending.Item.Resource.PrintDocument.Create
             _ = requestAdapter ?? throw new ArgumentNullException(nameof(requestAdapter));
             UrlTemplate = "{+baseurl}/users/{user_id}/insights/trending/{trendingItem_Id}/resource/microsoft.graph.printDocument/microsoft.graph.createUploadSession";
             var urlTplParams = new Dictionary<string, object>(pathParameters);
-            PathParameters = urlTplParams;
-            RequestAdapter = requestAdapter;
-        }
-        /// <summary>
-        /// Instantiates a new CreateUploadSessionRequestBuilder and sets the default values.
-        /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        /// <param name="requestAdapter">The request adapter to use to execute the requests.</param>
-        /// </summary>
-        public CreateUploadSessionRequestBuilder(string rawUrl, IRequestAdapter requestAdapter) {
-            if(string.IsNullOrEmpty(rawUrl)) throw new ArgumentNullException(nameof(rawUrl));
-            _ = requestAdapter ?? throw new ArgumentNullException(nameof(requestAdapter));
-            UrlTemplate = "{+baseurl}/users/{user_id}/insights/trending/{trendingItem_Id}/resource/microsoft.graph.printDocument/microsoft.graph.createUploadSession";
-            var urlTplParams = new Dictionary<string, object>();
-            urlTplParams.Add("request-raw-url", rawUrl);
             PathParameters = urlTplParams;
             RequestAdapter = requestAdapter;
         }
@@ -98,19 +84,6 @@ namespace ApiSdk.Users.Item.Insights.Trending.Item.Resource.PrintDocument.Create
             h?.Invoke(requestInfo.Headers);
             requestInfo.AddRequestOptions(o?.ToArray());
             return requestInfo;
-        }
-        /// <summary>
-        /// Invoke action createUploadSession
-        /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
-        /// <param name="h">Request headers</param>
-        /// <param name="model"></param>
-        /// <param name="o">Request options</param>
-        /// <param name="responseHandler">Response handler to use in place of the default response handling provided by the core service</param>
-        /// </summary>
-        public async Task<CreateUploadSessionResponse> PostAsync(CreateUploadSessionRequestBody model, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default, CancellationToken cancellationToken = default) {
-            _ = model ?? throw new ArgumentNullException(nameof(model));
-            var requestInfo = CreatePostRequestInformation(model, h, o);
-            return await RequestAdapter.SendAsync<CreateUploadSessionResponse>(requestInfo, responseHandler, cancellationToken);
         }
         /// <summary>Union type wrapper for classes uploadSession</summary>
         public class CreateUploadSessionResponse : IParsable {

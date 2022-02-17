@@ -8,7 +8,7 @@ namespace ApiSdk.Models.Microsoft.Graph {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>Represents the frequency at which the terms will expire, after its first expiration as set in startDateTime. The value is represented in ISO 8601 format for durations. For example, PT1M represents a time period of 1 month.</summary>
-        public string Frequency { get; set; }
+        public TimeSpan? Frequency { get; set; }
         /// <summary>The DateTime when the agreement is set to expire for all users. The Timestamp type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z.</summary>
         public DateTimeOffset? StartDateTime { get; set; }
         /// <summary>
@@ -22,7 +22,7 @@ namespace ApiSdk.Models.Microsoft.Graph {
         /// </summary>
         public IDictionary<string, Action<T, IParseNode>> GetFieldDeserializers<T>() {
             return new Dictionary<string, Action<T, IParseNode>> {
-                {"frequency", (o,n) => { (o as TermsExpiration).Frequency = n.GetStringValue(); } },
+                {"frequency", (o,n) => { (o as TermsExpiration).Frequency = n.GetTimeSpanValue(); } },
                 {"startDateTime", (o,n) => { (o as TermsExpiration).StartDateTime = n.GetDateTimeOffsetValue(); } },
             };
         }
@@ -32,7 +32,7 @@ namespace ApiSdk.Models.Microsoft.Graph {
         /// </summary>
         public void Serialize(ISerializationWriter writer) {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
-            writer.WriteStringValue("frequency", Frequency);
+            writer.WriteTimeSpanValue("frequency", Frequency);
             writer.WriteDateTimeOffsetValue("startDateTime", StartDateTime);
             writer.WriteAdditionalData(AdditionalData);
         }

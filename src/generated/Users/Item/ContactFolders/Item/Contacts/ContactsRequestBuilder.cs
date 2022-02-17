@@ -1,9 +1,9 @@
 using ApiSdk.Models.Microsoft.Graph;
 using ApiSdk.Users.Item.ContactFolders.Item.Contacts.Delta;
 using ApiSdk.Users.Item.ContactFolders.Item.Contacts.Item;
-using Microsoft.Graph.Cli.Core.IO;
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
+using Microsoft.Kiota.Cli.Commons.IO;
 using System;
 using System.Collections.Generic;
 using System.CommandLine;
@@ -44,7 +44,7 @@ namespace ApiSdk.Users.Item.ContactFolders.Item.Contacts {
             };
             userIdOption.IsRequired = true;
             command.AddOption(userIdOption);
-            var contactFolderIdOption = new Option<string>("--contactfolder-id", description: "key: id of contactFolder") {
+            var contactFolderIdOption = new Option<string>("--contact-folder-id", description: "key: id of contactFolder") {
             };
             contactFolderIdOption.IsRequired = true;
             command.AddOption(contactFolderIdOption);
@@ -56,15 +56,15 @@ namespace ApiSdk.Users.Item.ContactFolders.Item.Contacts {
                 IsRequired = true
             };
             command.AddOption(outputOption);
-            command.SetHandler(async (string userId, string contactFolderId, string body, FormatterType output, IOutputFormatterFactory outputFormatterFactory, IConsole console) => {
+            command.SetHandler(async (string userId, string contactFolderId, string body, FormatterType output, IOutputFormatterFactory outputFormatterFactory, CancellationToken cancellationToken) => {
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<Contact>();
                 var requestInfo = CreatePostRequestInformation(model, q => {
                 });
-                var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: default, cancellationToken: cancellationToken);
                 var formatter = outputFormatterFactory.GetFormatter(output);
-                formatter.WriteOutput(response, console);
+                formatter.WriteOutput(response);
             }, userIdOption, contactFolderIdOption, bodyOption, outputOption);
             return command;
         }
@@ -79,7 +79,7 @@ namespace ApiSdk.Users.Item.ContactFolders.Item.Contacts {
             };
             userIdOption.IsRequired = true;
             command.AddOption(userIdOption);
-            var contactFolderIdOption = new Option<string>("--contactfolder-id", description: "key: id of contactFolder") {
+            var contactFolderIdOption = new Option<string>("--contact-folder-id", description: "key: id of contactFolder") {
             };
             contactFolderIdOption.IsRequired = true;
             command.AddOption(contactFolderIdOption);
@@ -118,7 +118,7 @@ namespace ApiSdk.Users.Item.ContactFolders.Item.Contacts {
                 IsRequired = true
             };
             command.AddOption(outputOption);
-            command.SetHandler(async (string userId, string contactFolderId, int? top, int? skip, string filter, bool? count, string[] orderby, string[] select, string[] expand, FormatterType output, IOutputFormatterFactory outputFormatterFactory, IConsole console) => {
+            command.SetHandler(async (string userId, string contactFolderId, int? top, int? skip, string filter, bool? count, string[] orderby, string[] select, string[] expand, FormatterType output, IOutputFormatterFactory outputFormatterFactory, CancellationToken cancellationToken) => {
                 var requestInfo = CreateGetRequestInformation(q => {
                     q.Top = top;
                     q.Skip = skip;
@@ -128,9 +128,9 @@ namespace ApiSdk.Users.Item.ContactFolders.Item.Contacts {
                     q.Select = select;
                     q.Expand = expand;
                 });
-                var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: default, cancellationToken: cancellationToken);
                 var formatter = outputFormatterFactory.GetFormatter(output);
-                formatter.WriteOutput(response, console);
+                formatter.WriteOutput(response);
             }, userIdOption, contactFolderIdOption, topOption, skipOption, filterOption, countOption, orderbyOption, selectOption, expandOption, outputOption);
             return command;
         }
@@ -144,20 +144,6 @@ namespace ApiSdk.Users.Item.ContactFolders.Item.Contacts {
             _ = requestAdapter ?? throw new ArgumentNullException(nameof(requestAdapter));
             UrlTemplate = "{+baseurl}/users/{user_id}/contactFolders/{contactFolder_id}/contacts{?top,skip,filter,count,orderby,select,expand}";
             var urlTplParams = new Dictionary<string, object>(pathParameters);
-            PathParameters = urlTplParams;
-            RequestAdapter = requestAdapter;
-        }
-        /// <summary>
-        /// Instantiates a new ContactsRequestBuilder and sets the default values.
-        /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        /// <param name="requestAdapter">The request adapter to use to execute the requests.</param>
-        /// </summary>
-        public ContactsRequestBuilder(string rawUrl, IRequestAdapter requestAdapter) {
-            if(string.IsNullOrEmpty(rawUrl)) throw new ArgumentNullException(nameof(rawUrl));
-            _ = requestAdapter ?? throw new ArgumentNullException(nameof(requestAdapter));
-            UrlTemplate = "{+baseurl}/users/{user_id}/contactFolders/{contactFolder_id}/contacts{?top,skip,filter,count,orderby,select,expand}";
-            var urlTplParams = new Dictionary<string, object>();
-            urlTplParams.Add("request-raw-url", rawUrl);
             PathParameters = urlTplParams;
             RequestAdapter = requestAdapter;
         }
@@ -205,31 +191,6 @@ namespace ApiSdk.Users.Item.ContactFolders.Item.Contacts {
         /// </summary>
         public DeltaRequestBuilder Delta() {
             return new DeltaRequestBuilder(PathParameters, RequestAdapter);
-        }
-        /// <summary>
-        /// The contacts in the folder. Navigation property. Read-only. Nullable.
-        /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
-        /// <param name="h">Request headers</param>
-        /// <param name="o">Request options</param>
-        /// <param name="q">Request query parameters</param>
-        /// <param name="responseHandler">Response handler to use in place of the default response handling provided by the core service</param>
-        /// </summary>
-        public async Task<ContactsResponse> GetAsync(Action<GetQueryParameters> q = default, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default, CancellationToken cancellationToken = default) {
-            var requestInfo = CreateGetRequestInformation(q, h, o);
-            return await RequestAdapter.SendAsync<ContactsResponse>(requestInfo, responseHandler, cancellationToken);
-        }
-        /// <summary>
-        /// The contacts in the folder. Navigation property. Read-only. Nullable.
-        /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
-        /// <param name="h">Request headers</param>
-        /// <param name="model"></param>
-        /// <param name="o">Request options</param>
-        /// <param name="responseHandler">Response handler to use in place of the default response handling provided by the core service</param>
-        /// </summary>
-        public async Task<Contact> PostAsync(Contact model, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default, CancellationToken cancellationToken = default) {
-            _ = model ?? throw new ArgumentNullException(nameof(model));
-            var requestInfo = CreatePostRequestInformation(model, h, o);
-            return await RequestAdapter.SendAsync<Contact>(requestInfo, responseHandler, cancellationToken);
         }
         /// <summary>The contacts in the folder. Navigation property. Read-only. Nullable.</summary>
         public class GetQueryParameters : QueryParametersBase {

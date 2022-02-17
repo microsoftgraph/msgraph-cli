@@ -1,7 +1,7 @@
 using ApiSdk.Models.Microsoft.Graph;
-using Microsoft.Graph.Cli.Core.IO;
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
+using Microsoft.Kiota.Cli.Commons.IO;
 using System;
 using System.Collections.Generic;
 using System.CommandLine;
@@ -26,19 +26,19 @@ namespace ApiSdk.RoleManagement.EntitlementManagement.RoleDefinitions.Item.Inher
             var command = new Command("delete");
             command.Description = "Read-only collection of role definitions that the given role definition inherits from. Only Azure AD built-in roles support this attribute.";
             // Create options for all the parameters
-            var unifiedRoleDefinitionIdOption = new Option<string>("--unifiedroledefinition-id", description: "key: id of unifiedRoleDefinition") {
+            var unifiedRoleDefinitionIdOption = new Option<string>("--unified-role-definition-id", description: "key: id of unifiedRoleDefinition") {
             };
             unifiedRoleDefinitionIdOption.IsRequired = true;
             command.AddOption(unifiedRoleDefinitionIdOption);
-            var unifiedRoleDefinitionId1Option = new Option<string>("--unifiedroledefinition-id1", description: "key: id of unifiedRoleDefinition") {
+            var unifiedRoleDefinitionId1Option = new Option<string>("--unified-role-definition-id1", description: "key: id of unifiedRoleDefinition") {
             };
             unifiedRoleDefinitionId1Option.IsRequired = true;
             command.AddOption(unifiedRoleDefinitionId1Option);
-            command.SetHandler(async (string unifiedRoleDefinitionId, string unifiedRoleDefinitionId1, IOutputFormatterFactory outputFormatterFactory, IConsole console) => {
+            command.SetHandler(async (string unifiedRoleDefinitionId, string unifiedRoleDefinitionId1, IOutputFormatterFactory outputFormatterFactory, CancellationToken cancellationToken) => {
                 var requestInfo = CreateDeleteRequestInformation(q => {
                 });
-                await RequestAdapter.SendNoContentAsync(requestInfo);
-                console.WriteLine("Success");
+                await RequestAdapter.SendNoContentAsync(requestInfo, errorMapping: default, cancellationToken: cancellationToken);
+                Console.WriteLine("Success");
             }, unifiedRoleDefinitionIdOption, unifiedRoleDefinitionId1Option);
             return command;
         }
@@ -49,11 +49,11 @@ namespace ApiSdk.RoleManagement.EntitlementManagement.RoleDefinitions.Item.Inher
             var command = new Command("get");
             command.Description = "Read-only collection of role definitions that the given role definition inherits from. Only Azure AD built-in roles support this attribute.";
             // Create options for all the parameters
-            var unifiedRoleDefinitionIdOption = new Option<string>("--unifiedroledefinition-id", description: "key: id of unifiedRoleDefinition") {
+            var unifiedRoleDefinitionIdOption = new Option<string>("--unified-role-definition-id", description: "key: id of unifiedRoleDefinition") {
             };
             unifiedRoleDefinitionIdOption.IsRequired = true;
             command.AddOption(unifiedRoleDefinitionIdOption);
-            var unifiedRoleDefinitionId1Option = new Option<string>("--unifiedroledefinition-id1", description: "key: id of unifiedRoleDefinition") {
+            var unifiedRoleDefinitionId1Option = new Option<string>("--unified-role-definition-id1", description: "key: id of unifiedRoleDefinition") {
             };
             unifiedRoleDefinitionId1Option.IsRequired = true;
             command.AddOption(unifiedRoleDefinitionId1Option);
@@ -71,14 +71,14 @@ namespace ApiSdk.RoleManagement.EntitlementManagement.RoleDefinitions.Item.Inher
                 IsRequired = true
             };
             command.AddOption(outputOption);
-            command.SetHandler(async (string unifiedRoleDefinitionId, string unifiedRoleDefinitionId1, string[] select, string[] expand, FormatterType output, IOutputFormatterFactory outputFormatterFactory, IConsole console) => {
+            command.SetHandler(async (string unifiedRoleDefinitionId, string unifiedRoleDefinitionId1, string[] select, string[] expand, FormatterType output, IOutputFormatterFactory outputFormatterFactory, CancellationToken cancellationToken) => {
                 var requestInfo = CreateGetRequestInformation(q => {
                     q.Select = select;
                     q.Expand = expand;
                 });
-                var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: default, cancellationToken: cancellationToken);
                 var formatter = outputFormatterFactory.GetFormatter(output);
-                formatter.WriteOutput(response, console);
+                formatter.WriteOutput(response);
             }, unifiedRoleDefinitionIdOption, unifiedRoleDefinitionId1Option, selectOption, expandOption, outputOption);
             return command;
         }
@@ -89,11 +89,11 @@ namespace ApiSdk.RoleManagement.EntitlementManagement.RoleDefinitions.Item.Inher
             var command = new Command("patch");
             command.Description = "Read-only collection of role definitions that the given role definition inherits from. Only Azure AD built-in roles support this attribute.";
             // Create options for all the parameters
-            var unifiedRoleDefinitionIdOption = new Option<string>("--unifiedroledefinition-id", description: "key: id of unifiedRoleDefinition") {
+            var unifiedRoleDefinitionIdOption = new Option<string>("--unified-role-definition-id", description: "key: id of unifiedRoleDefinition") {
             };
             unifiedRoleDefinitionIdOption.IsRequired = true;
             command.AddOption(unifiedRoleDefinitionIdOption);
-            var unifiedRoleDefinitionId1Option = new Option<string>("--unifiedroledefinition-id1", description: "key: id of unifiedRoleDefinition") {
+            var unifiedRoleDefinitionId1Option = new Option<string>("--unified-role-definition-id1", description: "key: id of unifiedRoleDefinition") {
             };
             unifiedRoleDefinitionId1Option.IsRequired = true;
             command.AddOption(unifiedRoleDefinitionId1Option);
@@ -101,14 +101,14 @@ namespace ApiSdk.RoleManagement.EntitlementManagement.RoleDefinitions.Item.Inher
             };
             bodyOption.IsRequired = true;
             command.AddOption(bodyOption);
-            command.SetHandler(async (string unifiedRoleDefinitionId, string unifiedRoleDefinitionId1, string body, IOutputFormatterFactory outputFormatterFactory, IConsole console) => {
+            command.SetHandler(async (string unifiedRoleDefinitionId, string unifiedRoleDefinitionId1, string body, IOutputFormatterFactory outputFormatterFactory, CancellationToken cancellationToken) => {
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<UnifiedRoleDefinition>();
                 var requestInfo = CreatePatchRequestInformation(model, q => {
                 });
-                await RequestAdapter.SendNoContentAsync(requestInfo);
-                console.WriteLine("Success");
+                await RequestAdapter.SendNoContentAsync(requestInfo, errorMapping: default, cancellationToken: cancellationToken);
+                Console.WriteLine("Success");
             }, unifiedRoleDefinitionIdOption, unifiedRoleDefinitionId1Option, bodyOption);
             return command;
         }
@@ -122,20 +122,6 @@ namespace ApiSdk.RoleManagement.EntitlementManagement.RoleDefinitions.Item.Inher
             _ = requestAdapter ?? throw new ArgumentNullException(nameof(requestAdapter));
             UrlTemplate = "{+baseurl}/roleManagement/entitlementManagement/roleDefinitions/{unifiedRoleDefinition_id}/inheritsPermissionsFrom/{unifiedRoleDefinition_id1}{?select,expand}";
             var urlTplParams = new Dictionary<string, object>(pathParameters);
-            PathParameters = urlTplParams;
-            RequestAdapter = requestAdapter;
-        }
-        /// <summary>
-        /// Instantiates a new UnifiedRoleDefinitionRequestBuilder and sets the default values.
-        /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        /// <param name="requestAdapter">The request adapter to use to execute the requests.</param>
-        /// </summary>
-        public UnifiedRoleDefinitionRequestBuilder(string rawUrl, IRequestAdapter requestAdapter) {
-            if(string.IsNullOrEmpty(rawUrl)) throw new ArgumentNullException(nameof(rawUrl));
-            _ = requestAdapter ?? throw new ArgumentNullException(nameof(requestAdapter));
-            UrlTemplate = "{+baseurl}/roleManagement/entitlementManagement/roleDefinitions/{unifiedRoleDefinition_id}/inheritsPermissionsFrom/{unifiedRoleDefinition_id1}{?select,expand}";
-            var urlTplParams = new Dictionary<string, object>();
-            urlTplParams.Add("request-raw-url", rawUrl);
             PathParameters = urlTplParams;
             RequestAdapter = requestAdapter;
         }
@@ -192,42 +178,6 @@ namespace ApiSdk.RoleManagement.EntitlementManagement.RoleDefinitions.Item.Inher
             h?.Invoke(requestInfo.Headers);
             requestInfo.AddRequestOptions(o?.ToArray());
             return requestInfo;
-        }
-        /// <summary>
-        /// Read-only collection of role definitions that the given role definition inherits from. Only Azure AD built-in roles support this attribute.
-        /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
-        /// <param name="h">Request headers</param>
-        /// <param name="o">Request options</param>
-        /// <param name="responseHandler">Response handler to use in place of the default response handling provided by the core service</param>
-        /// </summary>
-        public async Task DeleteAsync(Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default, CancellationToken cancellationToken = default) {
-            var requestInfo = CreateDeleteRequestInformation(h, o);
-            await RequestAdapter.SendNoContentAsync(requestInfo, responseHandler, cancellationToken);
-        }
-        /// <summary>
-        /// Read-only collection of role definitions that the given role definition inherits from. Only Azure AD built-in roles support this attribute.
-        /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
-        /// <param name="h">Request headers</param>
-        /// <param name="o">Request options</param>
-        /// <param name="q">Request query parameters</param>
-        /// <param name="responseHandler">Response handler to use in place of the default response handling provided by the core service</param>
-        /// </summary>
-        public async Task<UnifiedRoleDefinition> GetAsync(Action<GetQueryParameters> q = default, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default, CancellationToken cancellationToken = default) {
-            var requestInfo = CreateGetRequestInformation(q, h, o);
-            return await RequestAdapter.SendAsync<UnifiedRoleDefinition>(requestInfo, responseHandler, cancellationToken);
-        }
-        /// <summary>
-        /// Read-only collection of role definitions that the given role definition inherits from. Only Azure AD built-in roles support this attribute.
-        /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
-        /// <param name="h">Request headers</param>
-        /// <param name="model"></param>
-        /// <param name="o">Request options</param>
-        /// <param name="responseHandler">Response handler to use in place of the default response handling provided by the core service</param>
-        /// </summary>
-        public async Task PatchAsync(UnifiedRoleDefinition model, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default, CancellationToken cancellationToken = default) {
-            _ = model ?? throw new ArgumentNullException(nameof(model));
-            var requestInfo = CreatePatchRequestInformation(model, h, o);
-            await RequestAdapter.SendNoContentAsync(requestInfo, responseHandler, cancellationToken);
         }
         /// <summary>Read-only collection of role definitions that the given role definition inherits from. Only Azure AD built-in roles support this attribute.</summary>
         public class GetQueryParameters : QueryParametersBase {

@@ -1,6 +1,6 @@
-using Microsoft.Graph.Cli.Core.IO;
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
+using Microsoft.Kiota.Cli.Commons.IO;
 using System;
 using System.Collections.Generic;
 using System.CommandLine;
@@ -25,19 +25,19 @@ namespace ApiSdk.Identity.B2xUserFlows.Item.UserAttributeAssignments.Item.UserAt
             var command = new Command("delete");
             command.Description = "The user attribute that you want to add to your user flow.";
             // Create options for all the parameters
-            var b2xIdentityUserFlowIdOption = new Option<string>("--b2xidentityuserflow-id", description: "key: id of b2xIdentityUserFlow") {
+            var b2xIdentityUserFlowIdOption = new Option<string>("--b2x-identity-user-flow-id", description: "key: id of b2xIdentityUserFlow") {
             };
             b2xIdentityUserFlowIdOption.IsRequired = true;
             command.AddOption(b2xIdentityUserFlowIdOption);
-            var identityUserFlowAttributeAssignmentIdOption = new Option<string>("--identityuserflowattributeassignment-id", description: "key: id of identityUserFlowAttributeAssignment") {
+            var identityUserFlowAttributeAssignmentIdOption = new Option<string>("--identity-user-flow-attribute-assignment-id", description: "key: id of identityUserFlowAttributeAssignment") {
             };
             identityUserFlowAttributeAssignmentIdOption.IsRequired = true;
             command.AddOption(identityUserFlowAttributeAssignmentIdOption);
-            command.SetHandler(async (string b2xIdentityUserFlowId, string identityUserFlowAttributeAssignmentId, IOutputFormatterFactory outputFormatterFactory, IConsole console) => {
+            command.SetHandler(async (string b2xIdentityUserFlowId, string identityUserFlowAttributeAssignmentId, IOutputFormatterFactory outputFormatterFactory, CancellationToken cancellationToken) => {
                 var requestInfo = CreateDeleteRequestInformation(q => {
                 });
-                await RequestAdapter.SendNoContentAsync(requestInfo);
-                console.WriteLine("Success");
+                await RequestAdapter.SendNoContentAsync(requestInfo, errorMapping: default, cancellationToken: cancellationToken);
+                Console.WriteLine("Success");
             }, b2xIdentityUserFlowIdOption, identityUserFlowAttributeAssignmentIdOption);
             return command;
         }
@@ -48,11 +48,11 @@ namespace ApiSdk.Identity.B2xUserFlows.Item.UserAttributeAssignments.Item.UserAt
             var command = new Command("get");
             command.Description = "The user attribute that you want to add to your user flow.";
             // Create options for all the parameters
-            var b2xIdentityUserFlowIdOption = new Option<string>("--b2xidentityuserflow-id", description: "key: id of b2xIdentityUserFlow") {
+            var b2xIdentityUserFlowIdOption = new Option<string>("--b2x-identity-user-flow-id", description: "key: id of b2xIdentityUserFlow") {
             };
             b2xIdentityUserFlowIdOption.IsRequired = true;
             command.AddOption(b2xIdentityUserFlowIdOption);
-            var identityUserFlowAttributeAssignmentIdOption = new Option<string>("--identityuserflowattributeassignment-id", description: "key: id of identityUserFlowAttributeAssignment") {
+            var identityUserFlowAttributeAssignmentIdOption = new Option<string>("--identity-user-flow-attribute-assignment-id", description: "key: id of identityUserFlowAttributeAssignment") {
             };
             identityUserFlowAttributeAssignmentIdOption.IsRequired = true;
             command.AddOption(identityUserFlowAttributeAssignmentIdOption);
@@ -60,12 +60,12 @@ namespace ApiSdk.Identity.B2xUserFlows.Item.UserAttributeAssignments.Item.UserAt
                 IsRequired = true
             };
             command.AddOption(outputOption);
-            command.SetHandler(async (string b2xIdentityUserFlowId, string identityUserFlowAttributeAssignmentId, FormatterType output, IOutputFormatterFactory outputFormatterFactory, IConsole console) => {
+            command.SetHandler(async (string b2xIdentityUserFlowId, string identityUserFlowAttributeAssignmentId, FormatterType output, IOutputFormatterFactory outputFormatterFactory, CancellationToken cancellationToken) => {
                 var requestInfo = CreateGetRequestInformation(q => {
                 });
-                var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: default, cancellationToken: cancellationToken);
                 var formatter = outputFormatterFactory.GetFormatter(output);
-                formatter.WriteOutput(response, console);
+                formatter.WriteOutput(response);
             }, b2xIdentityUserFlowIdOption, identityUserFlowAttributeAssignmentIdOption, outputOption);
             return command;
         }
@@ -76,11 +76,11 @@ namespace ApiSdk.Identity.B2xUserFlows.Item.UserAttributeAssignments.Item.UserAt
             var command = new Command("put");
             command.Description = "The user attribute that you want to add to your user flow.";
             // Create options for all the parameters
-            var b2xIdentityUserFlowIdOption = new Option<string>("--b2xidentityuserflow-id", description: "key: id of b2xIdentityUserFlow") {
+            var b2xIdentityUserFlowIdOption = new Option<string>("--b2x-identity-user-flow-id", description: "key: id of b2xIdentityUserFlow") {
             };
             b2xIdentityUserFlowIdOption.IsRequired = true;
             command.AddOption(b2xIdentityUserFlowIdOption);
-            var identityUserFlowAttributeAssignmentIdOption = new Option<string>("--identityuserflowattributeassignment-id", description: "key: id of identityUserFlowAttributeAssignment") {
+            var identityUserFlowAttributeAssignmentIdOption = new Option<string>("--identity-user-flow-attribute-assignment-id", description: "key: id of identityUserFlowAttributeAssignment") {
             };
             identityUserFlowAttributeAssignmentIdOption.IsRequired = true;
             command.AddOption(identityUserFlowAttributeAssignmentIdOption);
@@ -88,14 +88,14 @@ namespace ApiSdk.Identity.B2xUserFlows.Item.UserAttributeAssignments.Item.UserAt
             };
             bodyOption.IsRequired = true;
             command.AddOption(bodyOption);
-            command.SetHandler(async (string b2xIdentityUserFlowId, string identityUserFlowAttributeAssignmentId, string body, IOutputFormatterFactory outputFormatterFactory, IConsole console) => {
+            command.SetHandler(async (string b2xIdentityUserFlowId, string identityUserFlowAttributeAssignmentId, string body, IOutputFormatterFactory outputFormatterFactory, CancellationToken cancellationToken) => {
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<ApiSdk.Identity.B2xUserFlows.Item.UserAttributeAssignments.Item.UserAttribute.Ref.Ref>();
                 var requestInfo = CreatePutRequestInformation(model, q => {
                 });
-                await RequestAdapter.SendNoContentAsync(requestInfo);
-                console.WriteLine("Success");
+                await RequestAdapter.SendNoContentAsync(requestInfo, errorMapping: default, cancellationToken: cancellationToken);
+                Console.WriteLine("Success");
             }, b2xIdentityUserFlowIdOption, identityUserFlowAttributeAssignmentIdOption, bodyOption);
             return command;
         }
@@ -109,20 +109,6 @@ namespace ApiSdk.Identity.B2xUserFlows.Item.UserAttributeAssignments.Item.UserAt
             _ = requestAdapter ?? throw new ArgumentNullException(nameof(requestAdapter));
             UrlTemplate = "{+baseurl}/identity/b2xUserFlows/{b2xIdentityUserFlow_id}/userAttributeAssignments/{identityUserFlowAttributeAssignment_id}/userAttribute/$ref";
             var urlTplParams = new Dictionary<string, object>(pathParameters);
-            PathParameters = urlTplParams;
-            RequestAdapter = requestAdapter;
-        }
-        /// <summary>
-        /// Instantiates a new RefRequestBuilder and sets the default values.
-        /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        /// <param name="requestAdapter">The request adapter to use to execute the requests.</param>
-        /// </summary>
-        public RefRequestBuilder(string rawUrl, IRequestAdapter requestAdapter) {
-            if(string.IsNullOrEmpty(rawUrl)) throw new ArgumentNullException(nameof(rawUrl));
-            _ = requestAdapter ?? throw new ArgumentNullException(nameof(requestAdapter));
-            UrlTemplate = "{+baseurl}/identity/b2xUserFlows/{b2xIdentityUserFlow_id}/userAttributeAssignments/{identityUserFlowAttributeAssignment_id}/userAttribute/$ref";
-            var urlTplParams = new Dictionary<string, object>();
-            urlTplParams.Add("request-raw-url", rawUrl);
             PathParameters = urlTplParams;
             RequestAdapter = requestAdapter;
         }
@@ -173,41 +159,6 @@ namespace ApiSdk.Identity.B2xUserFlows.Item.UserAttributeAssignments.Item.UserAt
             h?.Invoke(requestInfo.Headers);
             requestInfo.AddRequestOptions(o?.ToArray());
             return requestInfo;
-        }
-        /// <summary>
-        /// The user attribute that you want to add to your user flow.
-        /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
-        /// <param name="h">Request headers</param>
-        /// <param name="o">Request options</param>
-        /// <param name="responseHandler">Response handler to use in place of the default response handling provided by the core service</param>
-        /// </summary>
-        public async Task DeleteAsync(Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default, CancellationToken cancellationToken = default) {
-            var requestInfo = CreateDeleteRequestInformation(h, o);
-            await RequestAdapter.SendNoContentAsync(requestInfo, responseHandler, cancellationToken);
-        }
-        /// <summary>
-        /// The user attribute that you want to add to your user flow.
-        /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
-        /// <param name="h">Request headers</param>
-        /// <param name="o">Request options</param>
-        /// <param name="responseHandler">Response handler to use in place of the default response handling provided by the core service</param>
-        /// </summary>
-        public async Task<string> GetAsync(Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default, CancellationToken cancellationToken = default) {
-            var requestInfo = CreateGetRequestInformation(h, o);
-            return await RequestAdapter.SendPrimitiveAsync<string>(requestInfo, responseHandler, cancellationToken);
-        }
-        /// <summary>
-        /// The user attribute that you want to add to your user flow.
-        /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
-        /// <param name="h">Request headers</param>
-        /// <param name="model"></param>
-        /// <param name="o">Request options</param>
-        /// <param name="responseHandler">Response handler to use in place of the default response handling provided by the core service</param>
-        /// </summary>
-        public async Task PutAsync(ApiSdk.Identity.B2xUserFlows.Item.UserAttributeAssignments.Item.UserAttribute.Ref.Ref model, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default, CancellationToken cancellationToken = default) {
-            _ = model ?? throw new ArgumentNullException(nameof(model));
-            var requestInfo = CreatePutRequestInformation(model, h, o);
-            await RequestAdapter.SendNoContentAsync(requestInfo, responseHandler, cancellationToken);
         }
     }
 }

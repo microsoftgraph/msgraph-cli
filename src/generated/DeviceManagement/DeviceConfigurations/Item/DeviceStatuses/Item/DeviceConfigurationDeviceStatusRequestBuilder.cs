@@ -1,7 +1,7 @@
 using ApiSdk.Models.Microsoft.Graph;
-using Microsoft.Graph.Cli.Core.IO;
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
+using Microsoft.Kiota.Cli.Commons.IO;
 using System;
 using System.Collections.Generic;
 using System.CommandLine;
@@ -26,19 +26,19 @@ namespace ApiSdk.DeviceManagement.DeviceConfigurations.Item.DeviceStatuses.Item 
             var command = new Command("delete");
             command.Description = "Device configuration installation status by device.";
             // Create options for all the parameters
-            var deviceConfigurationIdOption = new Option<string>("--deviceconfiguration-id", description: "key: id of deviceConfiguration") {
+            var deviceConfigurationIdOption = new Option<string>("--device-configuration-id", description: "key: id of deviceConfiguration") {
             };
             deviceConfigurationIdOption.IsRequired = true;
             command.AddOption(deviceConfigurationIdOption);
-            var deviceConfigurationDeviceStatusIdOption = new Option<string>("--deviceconfigurationdevicestatus-id", description: "key: id of deviceConfigurationDeviceStatus") {
+            var deviceConfigurationDeviceStatusIdOption = new Option<string>("--device-configuration-device-status-id", description: "key: id of deviceConfigurationDeviceStatus") {
             };
             deviceConfigurationDeviceStatusIdOption.IsRequired = true;
             command.AddOption(deviceConfigurationDeviceStatusIdOption);
-            command.SetHandler(async (string deviceConfigurationId, string deviceConfigurationDeviceStatusId, IOutputFormatterFactory outputFormatterFactory, IConsole console) => {
+            command.SetHandler(async (string deviceConfigurationId, string deviceConfigurationDeviceStatusId, IOutputFormatterFactory outputFormatterFactory, CancellationToken cancellationToken) => {
                 var requestInfo = CreateDeleteRequestInformation(q => {
                 });
-                await RequestAdapter.SendNoContentAsync(requestInfo);
-                console.WriteLine("Success");
+                await RequestAdapter.SendNoContentAsync(requestInfo, errorMapping: default, cancellationToken: cancellationToken);
+                Console.WriteLine("Success");
             }, deviceConfigurationIdOption, deviceConfigurationDeviceStatusIdOption);
             return command;
         }
@@ -49,11 +49,11 @@ namespace ApiSdk.DeviceManagement.DeviceConfigurations.Item.DeviceStatuses.Item 
             var command = new Command("get");
             command.Description = "Device configuration installation status by device.";
             // Create options for all the parameters
-            var deviceConfigurationIdOption = new Option<string>("--deviceconfiguration-id", description: "key: id of deviceConfiguration") {
+            var deviceConfigurationIdOption = new Option<string>("--device-configuration-id", description: "key: id of deviceConfiguration") {
             };
             deviceConfigurationIdOption.IsRequired = true;
             command.AddOption(deviceConfigurationIdOption);
-            var deviceConfigurationDeviceStatusIdOption = new Option<string>("--deviceconfigurationdevicestatus-id", description: "key: id of deviceConfigurationDeviceStatus") {
+            var deviceConfigurationDeviceStatusIdOption = new Option<string>("--device-configuration-device-status-id", description: "key: id of deviceConfigurationDeviceStatus") {
             };
             deviceConfigurationDeviceStatusIdOption.IsRequired = true;
             command.AddOption(deviceConfigurationDeviceStatusIdOption);
@@ -71,14 +71,14 @@ namespace ApiSdk.DeviceManagement.DeviceConfigurations.Item.DeviceStatuses.Item 
                 IsRequired = true
             };
             command.AddOption(outputOption);
-            command.SetHandler(async (string deviceConfigurationId, string deviceConfigurationDeviceStatusId, string[] select, string[] expand, FormatterType output, IOutputFormatterFactory outputFormatterFactory, IConsole console) => {
+            command.SetHandler(async (string deviceConfigurationId, string deviceConfigurationDeviceStatusId, string[] select, string[] expand, FormatterType output, IOutputFormatterFactory outputFormatterFactory, CancellationToken cancellationToken) => {
                 var requestInfo = CreateGetRequestInformation(q => {
                     q.Select = select;
                     q.Expand = expand;
                 });
-                var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: default, cancellationToken: cancellationToken);
                 var formatter = outputFormatterFactory.GetFormatter(output);
-                formatter.WriteOutput(response, console);
+                formatter.WriteOutput(response);
             }, deviceConfigurationIdOption, deviceConfigurationDeviceStatusIdOption, selectOption, expandOption, outputOption);
             return command;
         }
@@ -89,11 +89,11 @@ namespace ApiSdk.DeviceManagement.DeviceConfigurations.Item.DeviceStatuses.Item 
             var command = new Command("patch");
             command.Description = "Device configuration installation status by device.";
             // Create options for all the parameters
-            var deviceConfigurationIdOption = new Option<string>("--deviceconfiguration-id", description: "key: id of deviceConfiguration") {
+            var deviceConfigurationIdOption = new Option<string>("--device-configuration-id", description: "key: id of deviceConfiguration") {
             };
             deviceConfigurationIdOption.IsRequired = true;
             command.AddOption(deviceConfigurationIdOption);
-            var deviceConfigurationDeviceStatusIdOption = new Option<string>("--deviceconfigurationdevicestatus-id", description: "key: id of deviceConfigurationDeviceStatus") {
+            var deviceConfigurationDeviceStatusIdOption = new Option<string>("--device-configuration-device-status-id", description: "key: id of deviceConfigurationDeviceStatus") {
             };
             deviceConfigurationDeviceStatusIdOption.IsRequired = true;
             command.AddOption(deviceConfigurationDeviceStatusIdOption);
@@ -101,14 +101,14 @@ namespace ApiSdk.DeviceManagement.DeviceConfigurations.Item.DeviceStatuses.Item 
             };
             bodyOption.IsRequired = true;
             command.AddOption(bodyOption);
-            command.SetHandler(async (string deviceConfigurationId, string deviceConfigurationDeviceStatusId, string body, IOutputFormatterFactory outputFormatterFactory, IConsole console) => {
+            command.SetHandler(async (string deviceConfigurationId, string deviceConfigurationDeviceStatusId, string body, IOutputFormatterFactory outputFormatterFactory, CancellationToken cancellationToken) => {
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<DeviceConfigurationDeviceStatus>();
                 var requestInfo = CreatePatchRequestInformation(model, q => {
                 });
-                await RequestAdapter.SendNoContentAsync(requestInfo);
-                console.WriteLine("Success");
+                await RequestAdapter.SendNoContentAsync(requestInfo, errorMapping: default, cancellationToken: cancellationToken);
+                Console.WriteLine("Success");
             }, deviceConfigurationIdOption, deviceConfigurationDeviceStatusIdOption, bodyOption);
             return command;
         }
@@ -122,20 +122,6 @@ namespace ApiSdk.DeviceManagement.DeviceConfigurations.Item.DeviceStatuses.Item 
             _ = requestAdapter ?? throw new ArgumentNullException(nameof(requestAdapter));
             UrlTemplate = "{+baseurl}/deviceManagement/deviceConfigurations/{deviceConfiguration_id}/deviceStatuses/{deviceConfigurationDeviceStatus_id}{?select,expand}";
             var urlTplParams = new Dictionary<string, object>(pathParameters);
-            PathParameters = urlTplParams;
-            RequestAdapter = requestAdapter;
-        }
-        /// <summary>
-        /// Instantiates a new DeviceConfigurationDeviceStatusRequestBuilder and sets the default values.
-        /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        /// <param name="requestAdapter">The request adapter to use to execute the requests.</param>
-        /// </summary>
-        public DeviceConfigurationDeviceStatusRequestBuilder(string rawUrl, IRequestAdapter requestAdapter) {
-            if(string.IsNullOrEmpty(rawUrl)) throw new ArgumentNullException(nameof(rawUrl));
-            _ = requestAdapter ?? throw new ArgumentNullException(nameof(requestAdapter));
-            UrlTemplate = "{+baseurl}/deviceManagement/deviceConfigurations/{deviceConfiguration_id}/deviceStatuses/{deviceConfigurationDeviceStatus_id}{?select,expand}";
-            var urlTplParams = new Dictionary<string, object>();
-            urlTplParams.Add("request-raw-url", rawUrl);
             PathParameters = urlTplParams;
             RequestAdapter = requestAdapter;
         }
@@ -192,42 +178,6 @@ namespace ApiSdk.DeviceManagement.DeviceConfigurations.Item.DeviceStatuses.Item 
             h?.Invoke(requestInfo.Headers);
             requestInfo.AddRequestOptions(o?.ToArray());
             return requestInfo;
-        }
-        /// <summary>
-        /// Device configuration installation status by device.
-        /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
-        /// <param name="h">Request headers</param>
-        /// <param name="o">Request options</param>
-        /// <param name="responseHandler">Response handler to use in place of the default response handling provided by the core service</param>
-        /// </summary>
-        public async Task DeleteAsync(Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default, CancellationToken cancellationToken = default) {
-            var requestInfo = CreateDeleteRequestInformation(h, o);
-            await RequestAdapter.SendNoContentAsync(requestInfo, responseHandler, cancellationToken);
-        }
-        /// <summary>
-        /// Device configuration installation status by device.
-        /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
-        /// <param name="h">Request headers</param>
-        /// <param name="o">Request options</param>
-        /// <param name="q">Request query parameters</param>
-        /// <param name="responseHandler">Response handler to use in place of the default response handling provided by the core service</param>
-        /// </summary>
-        public async Task<DeviceConfigurationDeviceStatus> GetAsync(Action<GetQueryParameters> q = default, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default, CancellationToken cancellationToken = default) {
-            var requestInfo = CreateGetRequestInformation(q, h, o);
-            return await RequestAdapter.SendAsync<DeviceConfigurationDeviceStatus>(requestInfo, responseHandler, cancellationToken);
-        }
-        /// <summary>
-        /// Device configuration installation status by device.
-        /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
-        /// <param name="h">Request headers</param>
-        /// <param name="model"></param>
-        /// <param name="o">Request options</param>
-        /// <param name="responseHandler">Response handler to use in place of the default response handling provided by the core service</param>
-        /// </summary>
-        public async Task PatchAsync(DeviceConfigurationDeviceStatus model, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default, CancellationToken cancellationToken = default) {
-            _ = model ?? throw new ArgumentNullException(nameof(model));
-            var requestInfo = CreatePatchRequestInformation(model, h, o);
-            await RequestAdapter.SendNoContentAsync(requestInfo, responseHandler, cancellationToken);
         }
         /// <summary>Device configuration installation status by device.</summary>
         public class GetQueryParameters : QueryParametersBase {

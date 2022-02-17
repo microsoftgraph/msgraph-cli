@@ -20,7 +20,7 @@ namespace ApiSdk.Models.Microsoft.Graph {
         /// <summary>Expiration schedule and frequency of agreement for all users.</summary>
         public TermsExpiration TermsExpiration { get; set; }
         /// <summary>The duration after which the user must re-accept the terms of use. The value is represented in ISO 8601 format for durations.</summary>
-        public string UserReacceptRequiredFrequency { get; set; }
+        public TimeSpan? UserReacceptRequiredFrequency { get; set; }
         /// <summary>
         /// The deserialization information for the current model
         /// </summary>
@@ -33,7 +33,7 @@ namespace ApiSdk.Models.Microsoft.Graph {
                 {"isPerDeviceAcceptanceRequired", (o,n) => { (o as Agreement).IsPerDeviceAcceptanceRequired = n.GetBoolValue(); } },
                 {"isViewingBeforeAcceptanceRequired", (o,n) => { (o as Agreement).IsViewingBeforeAcceptanceRequired = n.GetBoolValue(); } },
                 {"termsExpiration", (o,n) => { (o as Agreement).TermsExpiration = n.GetObjectValue<TermsExpiration>(); } },
-                {"userReacceptRequiredFrequency", (o,n) => { (o as Agreement).UserReacceptRequiredFrequency = n.GetStringValue(); } },
+                {"userReacceptRequiredFrequency", (o,n) => { (o as Agreement).UserReacceptRequiredFrequency = n.GetTimeSpanValue(); } },
             };
         }
         /// <summary>
@@ -50,7 +50,7 @@ namespace ApiSdk.Models.Microsoft.Graph {
             writer.WriteBoolValue("isPerDeviceAcceptanceRequired", IsPerDeviceAcceptanceRequired);
             writer.WriteBoolValue("isViewingBeforeAcceptanceRequired", IsViewingBeforeAcceptanceRequired);
             writer.WriteObjectValue<TermsExpiration>("termsExpiration", TermsExpiration);
-            writer.WriteStringValue("userReacceptRequiredFrequency", UserReacceptRequiredFrequency);
+            writer.WriteTimeSpanValue("userReacceptRequiredFrequency", UserReacceptRequiredFrequency);
         }
     }
 }

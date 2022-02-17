@@ -1,7 +1,7 @@
 using ApiSdk.Models.Microsoft.Graph;
-using Microsoft.Graph.Cli.Core.IO;
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
+using Microsoft.Kiota.Cli.Commons.IO;
 using System;
 using System.Collections.Generic;
 using System.CommandLine;
@@ -26,15 +26,15 @@ namespace ApiSdk.Education.Users.Item.Assignments.Item.Submissions.Item.Submit {
             var command = new Command("post");
             command.Description = "Invoke action submit";
             // Create options for all the parameters
-            var educationUserIdOption = new Option<string>("--educationuser-id", description: "key: id of educationUser") {
+            var educationUserIdOption = new Option<string>("--education-user-id", description: "key: id of educationUser") {
             };
             educationUserIdOption.IsRequired = true;
             command.AddOption(educationUserIdOption);
-            var educationAssignmentIdOption = new Option<string>("--educationassignment-id", description: "key: id of educationAssignment") {
+            var educationAssignmentIdOption = new Option<string>("--education-assignment-id", description: "key: id of educationAssignment") {
             };
             educationAssignmentIdOption.IsRequired = true;
             command.AddOption(educationAssignmentIdOption);
-            var educationSubmissionIdOption = new Option<string>("--educationsubmission-id", description: "key: id of educationSubmission") {
+            var educationSubmissionIdOption = new Option<string>("--education-submission-id", description: "key: id of educationSubmission") {
             };
             educationSubmissionIdOption.IsRequired = true;
             command.AddOption(educationSubmissionIdOption);
@@ -42,12 +42,12 @@ namespace ApiSdk.Education.Users.Item.Assignments.Item.Submissions.Item.Submit {
                 IsRequired = true
             };
             command.AddOption(outputOption);
-            command.SetHandler(async (string educationUserId, string educationAssignmentId, string educationSubmissionId, FormatterType output, IOutputFormatterFactory outputFormatterFactory, IConsole console) => {
+            command.SetHandler(async (string educationUserId, string educationAssignmentId, string educationSubmissionId, FormatterType output, IOutputFormatterFactory outputFormatterFactory, CancellationToken cancellationToken) => {
                 var requestInfo = CreatePostRequestInformation(q => {
                 });
-                var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: default, cancellationToken: cancellationToken);
                 var formatter = outputFormatterFactory.GetFormatter(output);
-                formatter.WriteOutput(response, console);
+                formatter.WriteOutput(response);
             }, educationUserIdOption, educationAssignmentIdOption, educationSubmissionIdOption, outputOption);
             return command;
         }
@@ -65,20 +65,6 @@ namespace ApiSdk.Education.Users.Item.Assignments.Item.Submissions.Item.Submit {
             RequestAdapter = requestAdapter;
         }
         /// <summary>
-        /// Instantiates a new SubmitRequestBuilder and sets the default values.
-        /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        /// <param name="requestAdapter">The request adapter to use to execute the requests.</param>
-        /// </summary>
-        public SubmitRequestBuilder(string rawUrl, IRequestAdapter requestAdapter) {
-            if(string.IsNullOrEmpty(rawUrl)) throw new ArgumentNullException(nameof(rawUrl));
-            _ = requestAdapter ?? throw new ArgumentNullException(nameof(requestAdapter));
-            UrlTemplate = "{+baseurl}/education/users/{educationUser_id}/assignments/{educationAssignment_id}/submissions/{educationSubmission_id}/microsoft.graph.submit";
-            var urlTplParams = new Dictionary<string, object>();
-            urlTplParams.Add("request-raw-url", rawUrl);
-            PathParameters = urlTplParams;
-            RequestAdapter = requestAdapter;
-        }
-        /// <summary>
         /// Invoke action submit
         /// <param name="h">Request headers</param>
         /// <param name="o">Request options</param>
@@ -92,17 +78,6 @@ namespace ApiSdk.Education.Users.Item.Assignments.Item.Submissions.Item.Submit {
             h?.Invoke(requestInfo.Headers);
             requestInfo.AddRequestOptions(o?.ToArray());
             return requestInfo;
-        }
-        /// <summary>
-        /// Invoke action submit
-        /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
-        /// <param name="h">Request headers</param>
-        /// <param name="o">Request options</param>
-        /// <param name="responseHandler">Response handler to use in place of the default response handling provided by the core service</param>
-        /// </summary>
-        public async Task<SubmitResponse> PostAsync(Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default, CancellationToken cancellationToken = default) {
-            var requestInfo = CreatePostRequestInformation(h, o);
-            return await RequestAdapter.SendAsync<SubmitResponse>(requestInfo, responseHandler, cancellationToken);
         }
         /// <summary>Union type wrapper for classes educationSubmission</summary>
         public class SubmitResponse : IParsable {

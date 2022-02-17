@@ -1,8 +1,8 @@
 using ApiSdk.Me.Activities.Item.HistoryItems.Item.Activity.Ref;
 using ApiSdk.Models.Microsoft.Graph;
-using Microsoft.Graph.Cli.Core.IO;
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
+using Microsoft.Kiota.Cli.Commons.IO;
 using System;
 using System.Collections.Generic;
 using System.CommandLine;
@@ -27,11 +27,11 @@ namespace ApiSdk.Me.Activities.Item.HistoryItems.Item.Activity {
             var command = new Command("get");
             command.Description = "Optional. NavigationProperty/Containment; navigation property to the associated activity.";
             // Create options for all the parameters
-            var userActivityIdOption = new Option<string>("--useractivity-id", description: "key: id of userActivity") {
+            var userActivityIdOption = new Option<string>("--user-activity-id", description: "key: id of userActivity") {
             };
             userActivityIdOption.IsRequired = true;
             command.AddOption(userActivityIdOption);
-            var activityHistoryItemIdOption = new Option<string>("--activityhistoryitem-id", description: "key: id of activityHistoryItem") {
+            var activityHistoryItemIdOption = new Option<string>("--activity-history-item-id", description: "key: id of activityHistoryItem") {
             };
             activityHistoryItemIdOption.IsRequired = true;
             command.AddOption(activityHistoryItemIdOption);
@@ -49,14 +49,14 @@ namespace ApiSdk.Me.Activities.Item.HistoryItems.Item.Activity {
                 IsRequired = true
             };
             command.AddOption(outputOption);
-            command.SetHandler(async (string userActivityId, string activityHistoryItemId, string[] select, string[] expand, FormatterType output, IOutputFormatterFactory outputFormatterFactory, IConsole console) => {
+            command.SetHandler(async (string userActivityId, string activityHistoryItemId, string[] select, string[] expand, FormatterType output, IOutputFormatterFactory outputFormatterFactory, CancellationToken cancellationToken) => {
                 var requestInfo = CreateGetRequestInformation(q => {
                     q.Select = select;
                     q.Expand = expand;
                 });
-                var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: default, cancellationToken: cancellationToken);
                 var formatter = outputFormatterFactory.GetFormatter(output);
-                formatter.WriteOutput(response, console);
+                formatter.WriteOutput(response);
             }, userActivityIdOption, activityHistoryItemIdOption, selectOption, expandOption, outputOption);
             return command;
         }
@@ -82,20 +82,6 @@ namespace ApiSdk.Me.Activities.Item.HistoryItems.Item.Activity {
             RequestAdapter = requestAdapter;
         }
         /// <summary>
-        /// Instantiates a new ActivityRequestBuilder and sets the default values.
-        /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        /// <param name="requestAdapter">The request adapter to use to execute the requests.</param>
-        /// </summary>
-        public ActivityRequestBuilder(string rawUrl, IRequestAdapter requestAdapter) {
-            if(string.IsNullOrEmpty(rawUrl)) throw new ArgumentNullException(nameof(rawUrl));
-            _ = requestAdapter ?? throw new ArgumentNullException(nameof(requestAdapter));
-            UrlTemplate = "{+baseurl}/me/activities/{userActivity_id}/historyItems/{activityHistoryItem_id}/activity{?select,expand}";
-            var urlTplParams = new Dictionary<string, object>();
-            urlTplParams.Add("request-raw-url", rawUrl);
-            PathParameters = urlTplParams;
-            RequestAdapter = requestAdapter;
-        }
-        /// <summary>
         /// Optional. NavigationProperty/Containment; navigation property to the associated activity.
         /// <param name="h">Request headers</param>
         /// <param name="o">Request options</param>
@@ -115,18 +101,6 @@ namespace ApiSdk.Me.Activities.Item.HistoryItems.Item.Activity {
             h?.Invoke(requestInfo.Headers);
             requestInfo.AddRequestOptions(o?.ToArray());
             return requestInfo;
-        }
-        /// <summary>
-        /// Optional. NavigationProperty/Containment; navigation property to the associated activity.
-        /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
-        /// <param name="h">Request headers</param>
-        /// <param name="o">Request options</param>
-        /// <param name="q">Request query parameters</param>
-        /// <param name="responseHandler">Response handler to use in place of the default response handling provided by the core service</param>
-        /// </summary>
-        public async Task<UserActivity> GetAsync(Action<GetQueryParameters> q = default, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default, CancellationToken cancellationToken = default) {
-            var requestInfo = CreateGetRequestInformation(q, h, o);
-            return await RequestAdapter.SendAsync<UserActivity>(requestInfo, responseHandler, cancellationToken);
         }
         /// <summary>Optional. NavigationProperty/Containment; navigation property to the associated activity.</summary>
         public class GetQueryParameters : QueryParametersBase {

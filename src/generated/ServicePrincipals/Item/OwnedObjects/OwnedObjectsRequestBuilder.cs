@@ -1,7 +1,7 @@
 using ApiSdk.ServicePrincipals.Item.OwnedObjects.Ref;
-using Microsoft.Graph.Cli.Core.IO;
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
+using Microsoft.Kiota.Cli.Commons.IO;
 using System;
 using System.Collections.Generic;
 using System.CommandLine;
@@ -26,7 +26,7 @@ namespace ApiSdk.ServicePrincipals.Item.OwnedObjects {
             var command = new Command("get");
             command.Description = "Directory objects that are owned by this service principal. Read-only. Nullable. Supports $expand.";
             // Create options for all the parameters
-            var servicePrincipalIdOption = new Option<string>("--serviceprincipal-id", description: "key: id of servicePrincipal") {
+            var servicePrincipalIdOption = new Option<string>("--service-principal-id", description: "key: id of servicePrincipal") {
             };
             servicePrincipalIdOption.IsRequired = true;
             command.AddOption(servicePrincipalIdOption);
@@ -69,7 +69,7 @@ namespace ApiSdk.ServicePrincipals.Item.OwnedObjects {
                 IsRequired = true
             };
             command.AddOption(outputOption);
-            command.SetHandler(async (string servicePrincipalId, int? top, int? skip, string search, string filter, bool? count, string[] orderby, string[] select, string[] expand, FormatterType output, IOutputFormatterFactory outputFormatterFactory, IConsole console) => {
+            command.SetHandler(async (string servicePrincipalId, int? top, int? skip, string search, string filter, bool? count, string[] orderby, string[] select, string[] expand, FormatterType output, IOutputFormatterFactory outputFormatterFactory, CancellationToken cancellationToken) => {
                 var requestInfo = CreateGetRequestInformation(q => {
                     q.Top = top;
                     q.Skip = skip;
@@ -80,9 +80,9 @@ namespace ApiSdk.ServicePrincipals.Item.OwnedObjects {
                     q.Select = select;
                     q.Expand = expand;
                 });
-                var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: default, cancellationToken: cancellationToken);
                 var formatter = outputFormatterFactory.GetFormatter(output);
-                formatter.WriteOutput(response, console);
+                formatter.WriteOutput(response);
             }, servicePrincipalIdOption, topOption, skipOption, searchOption, filterOption, countOption, orderbyOption, selectOption, expandOption, outputOption);
             return command;
         }
@@ -107,20 +107,6 @@ namespace ApiSdk.ServicePrincipals.Item.OwnedObjects {
             RequestAdapter = requestAdapter;
         }
         /// <summary>
-        /// Instantiates a new OwnedObjectsRequestBuilder and sets the default values.
-        /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        /// <param name="requestAdapter">The request adapter to use to execute the requests.</param>
-        /// </summary>
-        public OwnedObjectsRequestBuilder(string rawUrl, IRequestAdapter requestAdapter) {
-            if(string.IsNullOrEmpty(rawUrl)) throw new ArgumentNullException(nameof(rawUrl));
-            _ = requestAdapter ?? throw new ArgumentNullException(nameof(requestAdapter));
-            UrlTemplate = "{+baseurl}/servicePrincipals/{servicePrincipal_id}/ownedObjects{?top,skip,search,filter,count,orderby,select,expand}";
-            var urlTplParams = new Dictionary<string, object>();
-            urlTplParams.Add("request-raw-url", rawUrl);
-            PathParameters = urlTplParams;
-            RequestAdapter = requestAdapter;
-        }
-        /// <summary>
         /// Directory objects that are owned by this service principal. Read-only. Nullable. Supports $expand.
         /// <param name="h">Request headers</param>
         /// <param name="o">Request options</param>
@@ -140,18 +126,6 @@ namespace ApiSdk.ServicePrincipals.Item.OwnedObjects {
             h?.Invoke(requestInfo.Headers);
             requestInfo.AddRequestOptions(o?.ToArray());
             return requestInfo;
-        }
-        /// <summary>
-        /// Directory objects that are owned by this service principal. Read-only. Nullable. Supports $expand.
-        /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
-        /// <param name="h">Request headers</param>
-        /// <param name="o">Request options</param>
-        /// <param name="q">Request query parameters</param>
-        /// <param name="responseHandler">Response handler to use in place of the default response handling provided by the core service</param>
-        /// </summary>
-        public async Task<OwnedObjectsResponse> GetAsync(Action<GetQueryParameters> q = default, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default, CancellationToken cancellationToken = default) {
-            var requestInfo = CreateGetRequestInformation(q, h, o);
-            return await RequestAdapter.SendAsync<OwnedObjectsResponse>(requestInfo, responseHandler, cancellationToken);
         }
         /// <summary>Directory objects that are owned by this service principal. Read-only. Nullable. Supports $expand.</summary>
         public class GetQueryParameters : QueryParametersBase {

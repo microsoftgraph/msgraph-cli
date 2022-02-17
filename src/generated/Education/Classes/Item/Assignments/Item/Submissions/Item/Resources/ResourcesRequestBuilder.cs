@@ -1,8 +1,8 @@
 using ApiSdk.Education.Classes.Item.Assignments.Item.Submissions.Item.Resources.Item;
 using ApiSdk.Models.Microsoft.Graph;
-using Microsoft.Graph.Cli.Core.IO;
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
+using Microsoft.Kiota.Cli.Commons.IO;
 using System;
 using System.Collections.Generic;
 using System.CommandLine;
@@ -35,15 +35,15 @@ namespace ApiSdk.Education.Classes.Item.Assignments.Item.Submissions.Item.Resour
             var command = new Command("create");
             command.Description = "Nullable.";
             // Create options for all the parameters
-            var educationClassIdOption = new Option<string>("--educationclass-id", description: "key: id of educationClass") {
+            var educationClassIdOption = new Option<string>("--education-class-id", description: "key: id of educationClass") {
             };
             educationClassIdOption.IsRequired = true;
             command.AddOption(educationClassIdOption);
-            var educationAssignmentIdOption = new Option<string>("--educationassignment-id", description: "key: id of educationAssignment") {
+            var educationAssignmentIdOption = new Option<string>("--education-assignment-id", description: "key: id of educationAssignment") {
             };
             educationAssignmentIdOption.IsRequired = true;
             command.AddOption(educationAssignmentIdOption);
-            var educationSubmissionIdOption = new Option<string>("--educationsubmission-id", description: "key: id of educationSubmission") {
+            var educationSubmissionIdOption = new Option<string>("--education-submission-id", description: "key: id of educationSubmission") {
             };
             educationSubmissionIdOption.IsRequired = true;
             command.AddOption(educationSubmissionIdOption);
@@ -55,15 +55,15 @@ namespace ApiSdk.Education.Classes.Item.Assignments.Item.Submissions.Item.Resour
                 IsRequired = true
             };
             command.AddOption(outputOption);
-            command.SetHandler(async (string educationClassId, string educationAssignmentId, string educationSubmissionId, string body, FormatterType output, IOutputFormatterFactory outputFormatterFactory, IConsole console) => {
+            command.SetHandler(async (string educationClassId, string educationAssignmentId, string educationSubmissionId, string body, FormatterType output, IOutputFormatterFactory outputFormatterFactory, CancellationToken cancellationToken) => {
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<EducationSubmissionResource>();
                 var requestInfo = CreatePostRequestInformation(model, q => {
                 });
-                var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: default, cancellationToken: cancellationToken);
                 var formatter = outputFormatterFactory.GetFormatter(output);
-                formatter.WriteOutput(response, console);
+                formatter.WriteOutput(response);
             }, educationClassIdOption, educationAssignmentIdOption, educationSubmissionIdOption, bodyOption, outputOption);
             return command;
         }
@@ -74,15 +74,15 @@ namespace ApiSdk.Education.Classes.Item.Assignments.Item.Submissions.Item.Resour
             var command = new Command("list");
             command.Description = "Nullable.";
             // Create options for all the parameters
-            var educationClassIdOption = new Option<string>("--educationclass-id", description: "key: id of educationClass") {
+            var educationClassIdOption = new Option<string>("--education-class-id", description: "key: id of educationClass") {
             };
             educationClassIdOption.IsRequired = true;
             command.AddOption(educationClassIdOption);
-            var educationAssignmentIdOption = new Option<string>("--educationassignment-id", description: "key: id of educationAssignment") {
+            var educationAssignmentIdOption = new Option<string>("--education-assignment-id", description: "key: id of educationAssignment") {
             };
             educationAssignmentIdOption.IsRequired = true;
             command.AddOption(educationAssignmentIdOption);
-            var educationSubmissionIdOption = new Option<string>("--educationsubmission-id", description: "key: id of educationSubmission") {
+            var educationSubmissionIdOption = new Option<string>("--education-submission-id", description: "key: id of educationSubmission") {
             };
             educationSubmissionIdOption.IsRequired = true;
             command.AddOption(educationSubmissionIdOption);
@@ -125,7 +125,7 @@ namespace ApiSdk.Education.Classes.Item.Assignments.Item.Submissions.Item.Resour
                 IsRequired = true
             };
             command.AddOption(outputOption);
-            command.SetHandler(async (string educationClassId, string educationAssignmentId, string educationSubmissionId, int? top, int? skip, string search, string filter, bool? count, string[] orderby, string[] select, string[] expand, FormatterType output, IOutputFormatterFactory outputFormatterFactory, IConsole console) => {
+            command.SetHandler(async (string educationClassId, string educationAssignmentId, string educationSubmissionId, int? top, int? skip, string search, string filter, bool? count, string[] orderby, string[] select, string[] expand, FormatterType output, IOutputFormatterFactory outputFormatterFactory, CancellationToken cancellationToken) => {
                 var requestInfo = CreateGetRequestInformation(q => {
                     q.Top = top;
                     q.Skip = skip;
@@ -136,9 +136,9 @@ namespace ApiSdk.Education.Classes.Item.Assignments.Item.Submissions.Item.Resour
                     q.Select = select;
                     q.Expand = expand;
                 });
-                var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: default, cancellationToken: cancellationToken);
                 var formatter = outputFormatterFactory.GetFormatter(output);
-                formatter.WriteOutput(response, console);
+                formatter.WriteOutput(response);
             }, educationClassIdOption, educationAssignmentIdOption, educationSubmissionIdOption, topOption, skipOption, searchOption, filterOption, countOption, orderbyOption, selectOption, expandOption, outputOption);
             return command;
         }
@@ -152,20 +152,6 @@ namespace ApiSdk.Education.Classes.Item.Assignments.Item.Submissions.Item.Resour
             _ = requestAdapter ?? throw new ArgumentNullException(nameof(requestAdapter));
             UrlTemplate = "{+baseurl}/education/classes/{educationClass_id}/assignments/{educationAssignment_id}/submissions/{educationSubmission_id}/resources{?top,skip,search,filter,count,orderby,select,expand}";
             var urlTplParams = new Dictionary<string, object>(pathParameters);
-            PathParameters = urlTplParams;
-            RequestAdapter = requestAdapter;
-        }
-        /// <summary>
-        /// Instantiates a new ResourcesRequestBuilder and sets the default values.
-        /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        /// <param name="requestAdapter">The request adapter to use to execute the requests.</param>
-        /// </summary>
-        public ResourcesRequestBuilder(string rawUrl, IRequestAdapter requestAdapter) {
-            if(string.IsNullOrEmpty(rawUrl)) throw new ArgumentNullException(nameof(rawUrl));
-            _ = requestAdapter ?? throw new ArgumentNullException(nameof(requestAdapter));
-            UrlTemplate = "{+baseurl}/education/classes/{educationClass_id}/assignments/{educationAssignment_id}/submissions/{educationSubmission_id}/resources{?top,skip,search,filter,count,orderby,select,expand}";
-            var urlTplParams = new Dictionary<string, object>();
-            urlTplParams.Add("request-raw-url", rawUrl);
             PathParameters = urlTplParams;
             RequestAdapter = requestAdapter;
         }
@@ -207,31 +193,6 @@ namespace ApiSdk.Education.Classes.Item.Assignments.Item.Submissions.Item.Resour
             h?.Invoke(requestInfo.Headers);
             requestInfo.AddRequestOptions(o?.ToArray());
             return requestInfo;
-        }
-        /// <summary>
-        /// Nullable.
-        /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
-        /// <param name="h">Request headers</param>
-        /// <param name="o">Request options</param>
-        /// <param name="q">Request query parameters</param>
-        /// <param name="responseHandler">Response handler to use in place of the default response handling provided by the core service</param>
-        /// </summary>
-        public async Task<ResourcesResponse> GetAsync(Action<GetQueryParameters> q = default, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default, CancellationToken cancellationToken = default) {
-            var requestInfo = CreateGetRequestInformation(q, h, o);
-            return await RequestAdapter.SendAsync<ResourcesResponse>(requestInfo, responseHandler, cancellationToken);
-        }
-        /// <summary>
-        /// Nullable.
-        /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
-        /// <param name="h">Request headers</param>
-        /// <param name="model"></param>
-        /// <param name="o">Request options</param>
-        /// <param name="responseHandler">Response handler to use in place of the default response handling provided by the core service</param>
-        /// </summary>
-        public async Task<EducationSubmissionResource> PostAsync(EducationSubmissionResource model, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default, CancellationToken cancellationToken = default) {
-            _ = model ?? throw new ArgumentNullException(nameof(model));
-            var requestInfo = CreatePostRequestInformation(model, h, o);
-            return await RequestAdapter.SendAsync<EducationSubmissionResource>(requestInfo, responseHandler, cancellationToken);
         }
         /// <summary>Nullable.</summary>
         public class GetQueryParameters : QueryParametersBase {

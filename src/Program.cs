@@ -10,6 +10,7 @@ using Microsoft.Graph.Cli.Core.IO;
 using Microsoft.Graph.Cli.Core.Utils;
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Authentication.Azure;
+using Microsoft.Kiota.Cli.Commons.IO;
 using Microsoft.Kiota.Http.HttpClientLibrary;
 using Microsoft.Kiota.Http.HttpClientLibrary.Middleware;
 using Microsoft.Kiota.Http.HttpClientLibrary.Middleware.Options;
@@ -44,7 +45,7 @@ namespace Microsoft.Graph.Cli
             var authStrategy = AuthenticationStrategy.DeviceCode;
 
             var credential = await authServiceFactory.GetTokenCredentialAsync(authStrategy, authSettings?.TenantId, authSettings?.ClientId);
-            var authProvider = new AzureIdentityAuthenticationProvider(credential);
+            var authProvider = new AzureIdentityAuthenticationProvider(credential, new string[] {"graph.microsoft.com"});
             var defaultHandlers = KiotaClientFactory.CreateDefaultHandlers();
 
             var assemblyVersion = Assembly.GetExecutingAssembly().GetName().Version;
@@ -68,8 +69,6 @@ namespace Microsoft.Graph.Cli
             using var httpClient = KiotaClientFactory.Create(finalHandler);
             var core = new HttpClientRequestAdapter(authProvider, httpClient: httpClient);
             var client = new GraphClient(core);
-            var rootCommand = client.BuildCommand();
-            rootCommand.Description = "Microsoft Graph CLI";
 
             var commands = new List<Command>();
             var loginCommand = new LoginCommand(authServiceFactory);
@@ -100,7 +99,7 @@ namespace Microsoft.Graph.Cli
 
         static CommandLineBuilder BuildCommandLine(GraphClient client, IEnumerable<Command> commands)
         {
-            var rootCommand = client.BuildCommand();
+            var rootCommand = client.BuildRootCommand();
             rootCommand.Description = "Microsoft Graph CLI";
 
             foreach (var command in commands) {

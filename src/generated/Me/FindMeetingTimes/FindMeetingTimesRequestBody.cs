@@ -12,7 +12,7 @@ namespace ApiSdk.Me.FindMeetingTimes {
         public bool? IsOrganizerOptional { get; set; }
         public LocationConstraint LocationConstraint { get; set; }
         public int? MaxCandidates { get; set; }
-        public string MeetingDuration { get; set; }
+        public TimeSpan? MeetingDuration { get; set; }
         public double? MinimumAttendeePercentage { get; set; }
         public bool? ReturnSuggestionReasons { get; set; }
         public TimeConstraint TimeConstraint { get; set; }
@@ -31,7 +31,7 @@ namespace ApiSdk.Me.FindMeetingTimes {
                 {"isOrganizerOptional", (o,n) => { (o as FindMeetingTimesRequestBody).IsOrganizerOptional = n.GetBoolValue(); } },
                 {"locationConstraint", (o,n) => { (o as FindMeetingTimesRequestBody).LocationConstraint = n.GetObjectValue<LocationConstraint>(); } },
                 {"maxCandidates", (o,n) => { (o as FindMeetingTimesRequestBody).MaxCandidates = n.GetIntValue(); } },
-                {"meetingDuration", (o,n) => { (o as FindMeetingTimesRequestBody).MeetingDuration = n.GetStringValue(); } },
+                {"meetingDuration", (o,n) => { (o as FindMeetingTimesRequestBody).MeetingDuration = n.GetTimeSpanValue(); } },
                 {"minimumAttendeePercentage", (o,n) => { (o as FindMeetingTimesRequestBody).MinimumAttendeePercentage = n.GetDoubleValue(); } },
                 {"returnSuggestionReasons", (o,n) => { (o as FindMeetingTimesRequestBody).ReturnSuggestionReasons = n.GetBoolValue(); } },
                 {"timeConstraint", (o,n) => { (o as FindMeetingTimesRequestBody).TimeConstraint = n.GetObjectValue<TimeConstraint>(); } },
@@ -47,7 +47,7 @@ namespace ApiSdk.Me.FindMeetingTimes {
             writer.WriteBoolValue("isOrganizerOptional", IsOrganizerOptional);
             writer.WriteObjectValue<LocationConstraint>("locationConstraint", LocationConstraint);
             writer.WriteIntValue("maxCandidates", MaxCandidates);
-            writer.WriteStringValue("meetingDuration", MeetingDuration);
+            writer.WriteTimeSpanValue("meetingDuration", MeetingDuration);
             writer.WriteDoubleValue("minimumAttendeePercentage", MinimumAttendeePercentage);
             writer.WriteBoolValue("returnSuggestionReasons", ReturnSuggestionReasons);
             writer.WriteObjectValue<TimeConstraint>("timeConstraint", TimeConstraint);

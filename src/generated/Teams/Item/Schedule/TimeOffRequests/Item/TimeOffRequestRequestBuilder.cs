@@ -1,7 +1,7 @@
 using ApiSdk.Models.Microsoft.Graph;
-using Microsoft.Graph.Cli.Core.IO;
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
+using Microsoft.Kiota.Cli.Commons.IO;
 using System;
 using System.Collections.Generic;
 using System.CommandLine;
@@ -30,15 +30,15 @@ namespace ApiSdk.Teams.Item.Schedule.TimeOffRequests.Item {
             };
             teamIdOption.IsRequired = true;
             command.AddOption(teamIdOption);
-            var timeOffRequestIdOption = new Option<string>("--timeoffrequest-id", description: "key: id of timeOffRequest") {
+            var timeOffRequestIdOption = new Option<string>("--time-off-request-id", description: "key: id of timeOffRequest") {
             };
             timeOffRequestIdOption.IsRequired = true;
             command.AddOption(timeOffRequestIdOption);
-            command.SetHandler(async (string teamId, string timeOffRequestId, IOutputFormatterFactory outputFormatterFactory, IConsole console) => {
+            command.SetHandler(async (string teamId, string timeOffRequestId, IOutputFormatterFactory outputFormatterFactory, CancellationToken cancellationToken) => {
                 var requestInfo = CreateDeleteRequestInformation(q => {
                 });
-                await RequestAdapter.SendNoContentAsync(requestInfo);
-                console.WriteLine("Success");
+                await RequestAdapter.SendNoContentAsync(requestInfo, errorMapping: default, cancellationToken: cancellationToken);
+                Console.WriteLine("Success");
             }, teamIdOption, timeOffRequestIdOption);
             return command;
         }
@@ -53,7 +53,7 @@ namespace ApiSdk.Teams.Item.Schedule.TimeOffRequests.Item {
             };
             teamIdOption.IsRequired = true;
             command.AddOption(teamIdOption);
-            var timeOffRequestIdOption = new Option<string>("--timeoffrequest-id", description: "key: id of timeOffRequest") {
+            var timeOffRequestIdOption = new Option<string>("--time-off-request-id", description: "key: id of timeOffRequest") {
             };
             timeOffRequestIdOption.IsRequired = true;
             command.AddOption(timeOffRequestIdOption);
@@ -66,13 +66,13 @@ namespace ApiSdk.Teams.Item.Schedule.TimeOffRequests.Item {
                 IsRequired = true
             };
             command.AddOption(outputOption);
-            command.SetHandler(async (string teamId, string timeOffRequestId, string[] select, FormatterType output, IOutputFormatterFactory outputFormatterFactory, IConsole console) => {
+            command.SetHandler(async (string teamId, string timeOffRequestId, string[] select, FormatterType output, IOutputFormatterFactory outputFormatterFactory, CancellationToken cancellationToken) => {
                 var requestInfo = CreateGetRequestInformation(q => {
                     q.Select = select;
                 });
-                var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: default, cancellationToken: cancellationToken);
                 var formatter = outputFormatterFactory.GetFormatter(output);
-                formatter.WriteOutput(response, console);
+                formatter.WriteOutput(response);
             }, teamIdOption, timeOffRequestIdOption, selectOption, outputOption);
             return command;
         }
@@ -87,7 +87,7 @@ namespace ApiSdk.Teams.Item.Schedule.TimeOffRequests.Item {
             };
             teamIdOption.IsRequired = true;
             command.AddOption(teamIdOption);
-            var timeOffRequestIdOption = new Option<string>("--timeoffrequest-id", description: "key: id of timeOffRequest") {
+            var timeOffRequestIdOption = new Option<string>("--time-off-request-id", description: "key: id of timeOffRequest") {
             };
             timeOffRequestIdOption.IsRequired = true;
             command.AddOption(timeOffRequestIdOption);
@@ -95,14 +95,14 @@ namespace ApiSdk.Teams.Item.Schedule.TimeOffRequests.Item {
             };
             bodyOption.IsRequired = true;
             command.AddOption(bodyOption);
-            command.SetHandler(async (string teamId, string timeOffRequestId, string body, IOutputFormatterFactory outputFormatterFactory, IConsole console) => {
+            command.SetHandler(async (string teamId, string timeOffRequestId, string body, IOutputFormatterFactory outputFormatterFactory, CancellationToken cancellationToken) => {
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<TimeOffRequest>();
                 var requestInfo = CreatePatchRequestInformation(model, q => {
                 });
-                await RequestAdapter.SendNoContentAsync(requestInfo);
-                console.WriteLine("Success");
+                await RequestAdapter.SendNoContentAsync(requestInfo, errorMapping: default, cancellationToken: cancellationToken);
+                Console.WriteLine("Success");
             }, teamIdOption, timeOffRequestIdOption, bodyOption);
             return command;
         }
@@ -116,20 +116,6 @@ namespace ApiSdk.Teams.Item.Schedule.TimeOffRequests.Item {
             _ = requestAdapter ?? throw new ArgumentNullException(nameof(requestAdapter));
             UrlTemplate = "{+baseurl}/teams/{team_id}/schedule/timeOffRequests/{timeOffRequest_id}{?select}";
             var urlTplParams = new Dictionary<string, object>(pathParameters);
-            PathParameters = urlTplParams;
-            RequestAdapter = requestAdapter;
-        }
-        /// <summary>
-        /// Instantiates a new TimeOffRequestRequestBuilder and sets the default values.
-        /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        /// <param name="requestAdapter">The request adapter to use to execute the requests.</param>
-        /// </summary>
-        public TimeOffRequestRequestBuilder(string rawUrl, IRequestAdapter requestAdapter) {
-            if(string.IsNullOrEmpty(rawUrl)) throw new ArgumentNullException(nameof(rawUrl));
-            _ = requestAdapter ?? throw new ArgumentNullException(nameof(requestAdapter));
-            UrlTemplate = "{+baseurl}/teams/{team_id}/schedule/timeOffRequests/{timeOffRequest_id}{?select}";
-            var urlTplParams = new Dictionary<string, object>();
-            urlTplParams.Add("request-raw-url", rawUrl);
             PathParameters = urlTplParams;
             RequestAdapter = requestAdapter;
         }
@@ -186,42 +172,6 @@ namespace ApiSdk.Teams.Item.Schedule.TimeOffRequests.Item {
             h?.Invoke(requestInfo.Headers);
             requestInfo.AddRequestOptions(o?.ToArray());
             return requestInfo;
-        }
-        /// <summary>
-        /// Delete navigation property timeOffRequests for teams
-        /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
-        /// <param name="h">Request headers</param>
-        /// <param name="o">Request options</param>
-        /// <param name="responseHandler">Response handler to use in place of the default response handling provided by the core service</param>
-        /// </summary>
-        public async Task DeleteAsync(Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default, CancellationToken cancellationToken = default) {
-            var requestInfo = CreateDeleteRequestInformation(h, o);
-            await RequestAdapter.SendNoContentAsync(requestInfo, responseHandler, cancellationToken);
-        }
-        /// <summary>
-        /// Get timeOffRequests from teams
-        /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
-        /// <param name="h">Request headers</param>
-        /// <param name="o">Request options</param>
-        /// <param name="q">Request query parameters</param>
-        /// <param name="responseHandler">Response handler to use in place of the default response handling provided by the core service</param>
-        /// </summary>
-        public async Task<TimeOffRequest> GetAsync(Action<GetQueryParameters> q = default, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default, CancellationToken cancellationToken = default) {
-            var requestInfo = CreateGetRequestInformation(q, h, o);
-            return await RequestAdapter.SendAsync<TimeOffRequest>(requestInfo, responseHandler, cancellationToken);
-        }
-        /// <summary>
-        /// Update the navigation property timeOffRequests in teams
-        /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
-        /// <param name="h">Request headers</param>
-        /// <param name="model"></param>
-        /// <param name="o">Request options</param>
-        /// <param name="responseHandler">Response handler to use in place of the default response handling provided by the core service</param>
-        /// </summary>
-        public async Task PatchAsync(TimeOffRequest model, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default, CancellationToken cancellationToken = default) {
-            _ = model ?? throw new ArgumentNullException(nameof(model));
-            var requestInfo = CreatePatchRequestInformation(model, h, o);
-            await RequestAdapter.SendNoContentAsync(requestInfo, responseHandler, cancellationToken);
         }
         /// <summary>Get timeOffRequests from teams</summary>
         public class GetQueryParameters : QueryParametersBase {

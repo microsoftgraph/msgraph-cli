@@ -1,8 +1,8 @@
 using ApiSdk.Models.Microsoft.Graph.TermStore;
 using ApiSdk.Sites.Item.TermStore.Groups.Item.Sets.Item.Terms.Item.Relations.Item.FromTerm.Ref;
-using Microsoft.Graph.Cli.Core.IO;
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
+using Microsoft.Kiota.Cli.Commons.IO;
 using System;
 using System.Collections.Generic;
 using System.CommandLine;
@@ -61,14 +61,14 @@ namespace ApiSdk.Sites.Item.TermStore.Groups.Item.Sets.Item.Terms.Item.Relations
                 IsRequired = true
             };
             command.AddOption(outputOption);
-            command.SetHandler(async (string siteId, string groupId, string setId, string termId, string relationId, string[] select, string[] expand, FormatterType output, IOutputFormatterFactory outputFormatterFactory, IConsole console) => {
+            command.SetHandler(async (string siteId, string groupId, string setId, string termId, string relationId, string[] select, string[] expand, FormatterType output, IOutputFormatterFactory outputFormatterFactory, CancellationToken cancellationToken) => {
                 var requestInfo = CreateGetRequestInformation(q => {
                     q.Select = select;
                     q.Expand = expand;
                 });
-                var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: default, cancellationToken: cancellationToken);
                 var formatter = outputFormatterFactory.GetFormatter(output);
-                formatter.WriteOutput(response, console);
+                formatter.WriteOutput(response);
             }, siteIdOption, groupIdOption, setIdOption, termIdOption, relationIdOption, selectOption, expandOption, outputOption);
             return command;
         }
@@ -94,20 +94,6 @@ namespace ApiSdk.Sites.Item.TermStore.Groups.Item.Sets.Item.Terms.Item.Relations
             RequestAdapter = requestAdapter;
         }
         /// <summary>
-        /// Instantiates a new FromTermRequestBuilder and sets the default values.
-        /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        /// <param name="requestAdapter">The request adapter to use to execute the requests.</param>
-        /// </summary>
-        public FromTermRequestBuilder(string rawUrl, IRequestAdapter requestAdapter) {
-            if(string.IsNullOrEmpty(rawUrl)) throw new ArgumentNullException(nameof(rawUrl));
-            _ = requestAdapter ?? throw new ArgumentNullException(nameof(requestAdapter));
-            UrlTemplate = "{+baseurl}/sites/{site_id}/termStore/groups/{group_id}/sets/{set_id}/terms/{term_id}/relations/{relation_id}/fromTerm{?select,expand}";
-            var urlTplParams = new Dictionary<string, object>();
-            urlTplParams.Add("request-raw-url", rawUrl);
-            PathParameters = urlTplParams;
-            RequestAdapter = requestAdapter;
-        }
-        /// <summary>
         /// The from [term] of the relation. The term from which the relationship is defined. A null value would indicate the relation is directly with the [set].
         /// <param name="h">Request headers</param>
         /// <param name="o">Request options</param>
@@ -127,18 +113,6 @@ namespace ApiSdk.Sites.Item.TermStore.Groups.Item.Sets.Item.Terms.Item.Relations
             h?.Invoke(requestInfo.Headers);
             requestInfo.AddRequestOptions(o?.ToArray());
             return requestInfo;
-        }
-        /// <summary>
-        /// The from [term] of the relation. The term from which the relationship is defined. A null value would indicate the relation is directly with the [set].
-        /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
-        /// <param name="h">Request headers</param>
-        /// <param name="o">Request options</param>
-        /// <param name="q">Request query parameters</param>
-        /// <param name="responseHandler">Response handler to use in place of the default response handling provided by the core service</param>
-        /// </summary>
-        public async Task<Term> GetAsync(Action<GetQueryParameters> q = default, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default, CancellationToken cancellationToken = default) {
-            var requestInfo = CreateGetRequestInformation(q, h, o);
-            return await RequestAdapter.SendAsync<Term>(requestInfo, responseHandler, cancellationToken);
         }
         /// <summary>The from [term] of the relation. The term from which the relationship is defined. A null value would indicate the relation is directly with the [set].</summary>
         public class GetQueryParameters : QueryParametersBase {

@@ -1,7 +1,7 @@
 using ApiSdk.Groups.Item.AcceptedSenders.Ref;
-using Microsoft.Graph.Cli.Core.IO;
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
+using Microsoft.Kiota.Cli.Commons.IO;
 using System;
 using System.Collections.Generic;
 using System.CommandLine;
@@ -60,7 +60,7 @@ namespace ApiSdk.Groups.Item.AcceptedSenders {
                 IsRequired = true
             };
             command.AddOption(outputOption);
-            command.SetHandler(async (string groupId, int? top, int? skip, string filter, bool? count, string[] orderby, string[] select, FormatterType output, IOutputFormatterFactory outputFormatterFactory, IConsole console) => {
+            command.SetHandler(async (string groupId, int? top, int? skip, string filter, bool? count, string[] orderby, string[] select, FormatterType output, IOutputFormatterFactory outputFormatterFactory, CancellationToken cancellationToken) => {
                 var requestInfo = CreateGetRequestInformation(q => {
                     q.Top = top;
                     q.Skip = skip;
@@ -69,9 +69,9 @@ namespace ApiSdk.Groups.Item.AcceptedSenders {
                     q.Orderby = orderby;
                     q.Select = select;
                 });
-                var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: default, cancellationToken: cancellationToken);
                 var formatter = outputFormatterFactory.GetFormatter(output);
-                formatter.WriteOutput(response, console);
+                formatter.WriteOutput(response);
             }, groupIdOption, topOption, skipOption, filterOption, countOption, orderbyOption, selectOption, outputOption);
             return command;
         }
@@ -96,20 +96,6 @@ namespace ApiSdk.Groups.Item.AcceptedSenders {
             RequestAdapter = requestAdapter;
         }
         /// <summary>
-        /// Instantiates a new AcceptedSendersRequestBuilder and sets the default values.
-        /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        /// <param name="requestAdapter">The request adapter to use to execute the requests.</param>
-        /// </summary>
-        public AcceptedSendersRequestBuilder(string rawUrl, IRequestAdapter requestAdapter) {
-            if(string.IsNullOrEmpty(rawUrl)) throw new ArgumentNullException(nameof(rawUrl));
-            _ = requestAdapter ?? throw new ArgumentNullException(nameof(requestAdapter));
-            UrlTemplate = "{+baseurl}/groups/{group_id}/acceptedSenders{?top,skip,filter,count,orderby,select}";
-            var urlTplParams = new Dictionary<string, object>();
-            urlTplParams.Add("request-raw-url", rawUrl);
-            PathParameters = urlTplParams;
-            RequestAdapter = requestAdapter;
-        }
-        /// <summary>
         /// The list of users or groups that are allowed to create post's or calendar events in this group. If this list is non-empty then only users or groups listed here are allowed to post.
         /// <param name="h">Request headers</param>
         /// <param name="o">Request options</param>
@@ -129,18 +115,6 @@ namespace ApiSdk.Groups.Item.AcceptedSenders {
             h?.Invoke(requestInfo.Headers);
             requestInfo.AddRequestOptions(o?.ToArray());
             return requestInfo;
-        }
-        /// <summary>
-        /// The list of users or groups that are allowed to create post's or calendar events in this group. If this list is non-empty then only users or groups listed here are allowed to post.
-        /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
-        /// <param name="h">Request headers</param>
-        /// <param name="o">Request options</param>
-        /// <param name="q">Request query parameters</param>
-        /// <param name="responseHandler">Response handler to use in place of the default response handling provided by the core service</param>
-        /// </summary>
-        public async Task<AcceptedSendersResponse> GetAsync(Action<GetQueryParameters> q = default, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default, CancellationToken cancellationToken = default) {
-            var requestInfo = CreateGetRequestInformation(q, h, o);
-            return await RequestAdapter.SendAsync<AcceptedSendersResponse>(requestInfo, responseHandler, cancellationToken);
         }
         /// <summary>The list of users or groups that are allowed to create post's or calendar events in this group. If this list is non-empty then only users or groups listed here are allowed to post.</summary>
         public class GetQueryParameters : QueryParametersBase {

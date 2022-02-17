@@ -1,7 +1,7 @@
 using ApiSdk.Models.Microsoft.Graph;
-using Microsoft.Graph.Cli.Core.IO;
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
+using Microsoft.Kiota.Cli.Commons.IO;
 using System;
 using System.Collections.Generic;
 using System.CommandLine;
@@ -26,19 +26,19 @@ namespace ApiSdk.InformationProtection.ThreatAssessmentRequests.Item.Results.Ite
             var command = new Command("delete");
             command.Description = "A collection of threat assessment results. Read-only. By default, a GET /threatAssessmentRequests/{id} does not return this property unless you apply $expand on it.";
             // Create options for all the parameters
-            var threatAssessmentRequestIdOption = new Option<string>("--threatassessmentrequest-id", description: "key: id of threatAssessmentRequest") {
+            var threatAssessmentRequestIdOption = new Option<string>("--threat-assessment-request-id", description: "key: id of threatAssessmentRequest") {
             };
             threatAssessmentRequestIdOption.IsRequired = true;
             command.AddOption(threatAssessmentRequestIdOption);
-            var threatAssessmentResultIdOption = new Option<string>("--threatassessmentresult-id", description: "key: id of threatAssessmentResult") {
+            var threatAssessmentResultIdOption = new Option<string>("--threat-assessment-result-id", description: "key: id of threatAssessmentResult") {
             };
             threatAssessmentResultIdOption.IsRequired = true;
             command.AddOption(threatAssessmentResultIdOption);
-            command.SetHandler(async (string threatAssessmentRequestId, string threatAssessmentResultId, IOutputFormatterFactory outputFormatterFactory, IConsole console) => {
+            command.SetHandler(async (string threatAssessmentRequestId, string threatAssessmentResultId, IOutputFormatterFactory outputFormatterFactory, CancellationToken cancellationToken) => {
                 var requestInfo = CreateDeleteRequestInformation(q => {
                 });
-                await RequestAdapter.SendNoContentAsync(requestInfo);
-                console.WriteLine("Success");
+                await RequestAdapter.SendNoContentAsync(requestInfo, errorMapping: default, cancellationToken: cancellationToken);
+                Console.WriteLine("Success");
             }, threatAssessmentRequestIdOption, threatAssessmentResultIdOption);
             return command;
         }
@@ -49,11 +49,11 @@ namespace ApiSdk.InformationProtection.ThreatAssessmentRequests.Item.Results.Ite
             var command = new Command("get");
             command.Description = "A collection of threat assessment results. Read-only. By default, a GET /threatAssessmentRequests/{id} does not return this property unless you apply $expand on it.";
             // Create options for all the parameters
-            var threatAssessmentRequestIdOption = new Option<string>("--threatassessmentrequest-id", description: "key: id of threatAssessmentRequest") {
+            var threatAssessmentRequestIdOption = new Option<string>("--threat-assessment-request-id", description: "key: id of threatAssessmentRequest") {
             };
             threatAssessmentRequestIdOption.IsRequired = true;
             command.AddOption(threatAssessmentRequestIdOption);
-            var threatAssessmentResultIdOption = new Option<string>("--threatassessmentresult-id", description: "key: id of threatAssessmentResult") {
+            var threatAssessmentResultIdOption = new Option<string>("--threat-assessment-result-id", description: "key: id of threatAssessmentResult") {
             };
             threatAssessmentResultIdOption.IsRequired = true;
             command.AddOption(threatAssessmentResultIdOption);
@@ -71,14 +71,14 @@ namespace ApiSdk.InformationProtection.ThreatAssessmentRequests.Item.Results.Ite
                 IsRequired = true
             };
             command.AddOption(outputOption);
-            command.SetHandler(async (string threatAssessmentRequestId, string threatAssessmentResultId, string[] select, string[] expand, FormatterType output, IOutputFormatterFactory outputFormatterFactory, IConsole console) => {
+            command.SetHandler(async (string threatAssessmentRequestId, string threatAssessmentResultId, string[] select, string[] expand, FormatterType output, IOutputFormatterFactory outputFormatterFactory, CancellationToken cancellationToken) => {
                 var requestInfo = CreateGetRequestInformation(q => {
                     q.Select = select;
                     q.Expand = expand;
                 });
-                var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: default, cancellationToken: cancellationToken);
                 var formatter = outputFormatterFactory.GetFormatter(output);
-                formatter.WriteOutput(response, console);
+                formatter.WriteOutput(response);
             }, threatAssessmentRequestIdOption, threatAssessmentResultIdOption, selectOption, expandOption, outputOption);
             return command;
         }
@@ -89,11 +89,11 @@ namespace ApiSdk.InformationProtection.ThreatAssessmentRequests.Item.Results.Ite
             var command = new Command("patch");
             command.Description = "A collection of threat assessment results. Read-only. By default, a GET /threatAssessmentRequests/{id} does not return this property unless you apply $expand on it.";
             // Create options for all the parameters
-            var threatAssessmentRequestIdOption = new Option<string>("--threatassessmentrequest-id", description: "key: id of threatAssessmentRequest") {
+            var threatAssessmentRequestIdOption = new Option<string>("--threat-assessment-request-id", description: "key: id of threatAssessmentRequest") {
             };
             threatAssessmentRequestIdOption.IsRequired = true;
             command.AddOption(threatAssessmentRequestIdOption);
-            var threatAssessmentResultIdOption = new Option<string>("--threatassessmentresult-id", description: "key: id of threatAssessmentResult") {
+            var threatAssessmentResultIdOption = new Option<string>("--threat-assessment-result-id", description: "key: id of threatAssessmentResult") {
             };
             threatAssessmentResultIdOption.IsRequired = true;
             command.AddOption(threatAssessmentResultIdOption);
@@ -101,14 +101,14 @@ namespace ApiSdk.InformationProtection.ThreatAssessmentRequests.Item.Results.Ite
             };
             bodyOption.IsRequired = true;
             command.AddOption(bodyOption);
-            command.SetHandler(async (string threatAssessmentRequestId, string threatAssessmentResultId, string body, IOutputFormatterFactory outputFormatterFactory, IConsole console) => {
+            command.SetHandler(async (string threatAssessmentRequestId, string threatAssessmentResultId, string body, IOutputFormatterFactory outputFormatterFactory, CancellationToken cancellationToken) => {
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<ThreatAssessmentResult>();
                 var requestInfo = CreatePatchRequestInformation(model, q => {
                 });
-                await RequestAdapter.SendNoContentAsync(requestInfo);
-                console.WriteLine("Success");
+                await RequestAdapter.SendNoContentAsync(requestInfo, errorMapping: default, cancellationToken: cancellationToken);
+                Console.WriteLine("Success");
             }, threatAssessmentRequestIdOption, threatAssessmentResultIdOption, bodyOption);
             return command;
         }
@@ -122,20 +122,6 @@ namespace ApiSdk.InformationProtection.ThreatAssessmentRequests.Item.Results.Ite
             _ = requestAdapter ?? throw new ArgumentNullException(nameof(requestAdapter));
             UrlTemplate = "{+baseurl}/informationProtection/threatAssessmentRequests/{threatAssessmentRequest_id}/results/{threatAssessmentResult_id}{?select,expand}";
             var urlTplParams = new Dictionary<string, object>(pathParameters);
-            PathParameters = urlTplParams;
-            RequestAdapter = requestAdapter;
-        }
-        /// <summary>
-        /// Instantiates a new ThreatAssessmentResultRequestBuilder and sets the default values.
-        /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        /// <param name="requestAdapter">The request adapter to use to execute the requests.</param>
-        /// </summary>
-        public ThreatAssessmentResultRequestBuilder(string rawUrl, IRequestAdapter requestAdapter) {
-            if(string.IsNullOrEmpty(rawUrl)) throw new ArgumentNullException(nameof(rawUrl));
-            _ = requestAdapter ?? throw new ArgumentNullException(nameof(requestAdapter));
-            UrlTemplate = "{+baseurl}/informationProtection/threatAssessmentRequests/{threatAssessmentRequest_id}/results/{threatAssessmentResult_id}{?select,expand}";
-            var urlTplParams = new Dictionary<string, object>();
-            urlTplParams.Add("request-raw-url", rawUrl);
             PathParameters = urlTplParams;
             RequestAdapter = requestAdapter;
         }
@@ -192,42 +178,6 @@ namespace ApiSdk.InformationProtection.ThreatAssessmentRequests.Item.Results.Ite
             h?.Invoke(requestInfo.Headers);
             requestInfo.AddRequestOptions(o?.ToArray());
             return requestInfo;
-        }
-        /// <summary>
-        /// A collection of threat assessment results. Read-only. By default, a GET /threatAssessmentRequests/{id} does not return this property unless you apply $expand on it.
-        /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
-        /// <param name="h">Request headers</param>
-        /// <param name="o">Request options</param>
-        /// <param name="responseHandler">Response handler to use in place of the default response handling provided by the core service</param>
-        /// </summary>
-        public async Task DeleteAsync(Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default, CancellationToken cancellationToken = default) {
-            var requestInfo = CreateDeleteRequestInformation(h, o);
-            await RequestAdapter.SendNoContentAsync(requestInfo, responseHandler, cancellationToken);
-        }
-        /// <summary>
-        /// A collection of threat assessment results. Read-only. By default, a GET /threatAssessmentRequests/{id} does not return this property unless you apply $expand on it.
-        /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
-        /// <param name="h">Request headers</param>
-        /// <param name="o">Request options</param>
-        /// <param name="q">Request query parameters</param>
-        /// <param name="responseHandler">Response handler to use in place of the default response handling provided by the core service</param>
-        /// </summary>
-        public async Task<ThreatAssessmentResult> GetAsync(Action<GetQueryParameters> q = default, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default, CancellationToken cancellationToken = default) {
-            var requestInfo = CreateGetRequestInformation(q, h, o);
-            return await RequestAdapter.SendAsync<ThreatAssessmentResult>(requestInfo, responseHandler, cancellationToken);
-        }
-        /// <summary>
-        /// A collection of threat assessment results. Read-only. By default, a GET /threatAssessmentRequests/{id} does not return this property unless you apply $expand on it.
-        /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
-        /// <param name="h">Request headers</param>
-        /// <param name="model"></param>
-        /// <param name="o">Request options</param>
-        /// <param name="responseHandler">Response handler to use in place of the default response handling provided by the core service</param>
-        /// </summary>
-        public async Task PatchAsync(ThreatAssessmentResult model, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default, CancellationToken cancellationToken = default) {
-            _ = model ?? throw new ArgumentNullException(nameof(model));
-            var requestInfo = CreatePatchRequestInformation(model, h, o);
-            await RequestAdapter.SendNoContentAsync(requestInfo, responseHandler, cancellationToken);
         }
         /// <summary>A collection of threat assessment results. Read-only. By default, a GET /threatAssessmentRequests/{id} does not return this property unless you apply $expand on it.</summary>
         public class GetQueryParameters : QueryParametersBase {

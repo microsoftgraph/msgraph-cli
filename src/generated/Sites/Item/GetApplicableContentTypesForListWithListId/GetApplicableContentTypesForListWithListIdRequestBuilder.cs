@@ -1,6 +1,6 @@
-using Microsoft.Graph.Cli.Core.IO;
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
+using Microsoft.Kiota.Cli.Commons.IO;
 using System;
 using System.Collections.Generic;
 using System.CommandLine;
@@ -29,7 +29,7 @@ namespace ApiSdk.Sites.Item.GetApplicableContentTypesForListWithListId {
             };
             siteIdOption.IsRequired = true;
             command.AddOption(siteIdOption);
-            var listIdOption = new Option<string>("--listid", description: "Usage: listId={listId}") {
+            var listIdOption = new Option<string>("--list-id", description: "Usage: listId={listId}") {
             };
             listIdOption.IsRequired = true;
             command.AddOption(listIdOption);
@@ -37,12 +37,12 @@ namespace ApiSdk.Sites.Item.GetApplicableContentTypesForListWithListId {
                 IsRequired = true
             };
             command.AddOption(outputOption);
-            command.SetHandler(async (string siteId, string listId, FormatterType output, IOutputFormatterFactory outputFormatterFactory, IConsole console) => {
+            command.SetHandler(async (string siteId, string listId, FormatterType output, IOutputFormatterFactory outputFormatterFactory, CancellationToken cancellationToken) => {
                 var requestInfo = CreateGetRequestInformation(q => {
                 });
-                var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: default, cancellationToken: cancellationToken);
                 var formatter = outputFormatterFactory.GetFormatter(output);
-                formatter.WriteOutput(response, console);
+                formatter.WriteOutput(response);
             }, siteIdOption, listIdOption, outputOption);
             return command;
         }
@@ -62,20 +62,6 @@ namespace ApiSdk.Sites.Item.GetApplicableContentTypesForListWithListId {
             RequestAdapter = requestAdapter;
         }
         /// <summary>
-        /// Instantiates a new GetApplicableContentTypesForListWithListIdRequestBuilder and sets the default values.
-        /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        /// <param name="requestAdapter">The request adapter to use to execute the requests.</param>
-        /// </summary>
-        public GetApplicableContentTypesForListWithListIdRequestBuilder(string rawUrl, IRequestAdapter requestAdapter) {
-            if(string.IsNullOrEmpty(rawUrl)) throw new ArgumentNullException(nameof(rawUrl));
-            _ = requestAdapter ?? throw new ArgumentNullException(nameof(requestAdapter));
-            UrlTemplate = "{+baseurl}/sites/{site_id}/microsoft.graph.getApplicableContentTypesForList(listId='{listId}')";
-            var urlTplParams = new Dictionary<string, object>();
-            urlTplParams.Add("request-raw-url", rawUrl);
-            PathParameters = urlTplParams;
-            RequestAdapter = requestAdapter;
-        }
-        /// <summary>
         /// Invoke function getApplicableContentTypesForList
         /// <param name="h">Request headers</param>
         /// <param name="o">Request options</param>
@@ -89,17 +75,6 @@ namespace ApiSdk.Sites.Item.GetApplicableContentTypesForListWithListId {
             h?.Invoke(requestInfo.Headers);
             requestInfo.AddRequestOptions(o?.ToArray());
             return requestInfo;
-        }
-        /// <summary>
-        /// Invoke function getApplicableContentTypesForList
-        /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
-        /// <param name="h">Request headers</param>
-        /// <param name="o">Request options</param>
-        /// <param name="responseHandler">Response handler to use in place of the default response handling provided by the core service</param>
-        /// </summary>
-        public async Task<IEnumerable<ApiSdk.Sites.Item.GetApplicableContentTypesForListWithListId.GetApplicableContentTypesForListWithListId>> GetAsync(Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default, CancellationToken cancellationToken = default) {
-            var requestInfo = CreateGetRequestInformation(h, o);
-            return await RequestAdapter.SendCollectionAsync<ApiSdk.Sites.Item.GetApplicableContentTypesForListWithListId.GetApplicableContentTypesForListWithListId>(requestInfo, responseHandler, cancellationToken);
         }
     }
 }

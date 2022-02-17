@@ -1,9 +1,9 @@
 using ApiSdk.Models.Microsoft.Graph;
 using ApiSdk.Teams.Item.Channels.Item.Messages.Item.Replies.Delta;
 using ApiSdk.Teams.Item.Channels.Item.Messages.Item.Replies.Item;
-using Microsoft.Graph.Cli.Core.IO;
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
+using Microsoft.Kiota.Cli.Commons.IO;
 using System;
 using System.Collections.Generic;
 using System.CommandLine;
@@ -44,7 +44,7 @@ namespace ApiSdk.Teams.Item.Channels.Item.Messages.Item.Replies {
             };
             channelIdOption.IsRequired = true;
             command.AddOption(channelIdOption);
-            var chatMessageIdOption = new Option<string>("--chatmessage-id", description: "key: id of chatMessage") {
+            var chatMessageIdOption = new Option<string>("--chat-message-id", description: "key: id of chatMessage") {
             };
             chatMessageIdOption.IsRequired = true;
             command.AddOption(chatMessageIdOption);
@@ -56,15 +56,15 @@ namespace ApiSdk.Teams.Item.Channels.Item.Messages.Item.Replies {
                 IsRequired = true
             };
             command.AddOption(outputOption);
-            command.SetHandler(async (string teamId, string channelId, string chatMessageId, string body, FormatterType output, IOutputFormatterFactory outputFormatterFactory, IConsole console) => {
+            command.SetHandler(async (string teamId, string channelId, string chatMessageId, string body, FormatterType output, IOutputFormatterFactory outputFormatterFactory, CancellationToken cancellationToken) => {
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<ChatMessage>();
                 var requestInfo = CreatePostRequestInformation(model, q => {
                 });
-                var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: default, cancellationToken: cancellationToken);
                 var formatter = outputFormatterFactory.GetFormatter(output);
-                formatter.WriteOutput(response, console);
+                formatter.WriteOutput(response);
             }, teamIdOption, channelIdOption, chatMessageIdOption, bodyOption, outputOption);
             return command;
         }
@@ -83,7 +83,7 @@ namespace ApiSdk.Teams.Item.Channels.Item.Messages.Item.Replies {
             };
             channelIdOption.IsRequired = true;
             command.AddOption(channelIdOption);
-            var chatMessageIdOption = new Option<string>("--chatmessage-id", description: "key: id of chatMessage") {
+            var chatMessageIdOption = new Option<string>("--chat-message-id", description: "key: id of chatMessage") {
             };
             chatMessageIdOption.IsRequired = true;
             command.AddOption(chatMessageIdOption);
@@ -126,7 +126,7 @@ namespace ApiSdk.Teams.Item.Channels.Item.Messages.Item.Replies {
                 IsRequired = true
             };
             command.AddOption(outputOption);
-            command.SetHandler(async (string teamId, string channelId, string chatMessageId, int? top, int? skip, string search, string filter, bool? count, string[] orderby, string[] select, string[] expand, FormatterType output, IOutputFormatterFactory outputFormatterFactory, IConsole console) => {
+            command.SetHandler(async (string teamId, string channelId, string chatMessageId, int? top, int? skip, string search, string filter, bool? count, string[] orderby, string[] select, string[] expand, FormatterType output, IOutputFormatterFactory outputFormatterFactory, CancellationToken cancellationToken) => {
                 var requestInfo = CreateGetRequestInformation(q => {
                     q.Top = top;
                     q.Skip = skip;
@@ -137,9 +137,9 @@ namespace ApiSdk.Teams.Item.Channels.Item.Messages.Item.Replies {
                     q.Select = select;
                     q.Expand = expand;
                 });
-                var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
+                var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: default, cancellationToken: cancellationToken);
                 var formatter = outputFormatterFactory.GetFormatter(output);
-                formatter.WriteOutput(response, console);
+                formatter.WriteOutput(response);
             }, teamIdOption, channelIdOption, chatMessageIdOption, topOption, skipOption, searchOption, filterOption, countOption, orderbyOption, selectOption, expandOption, outputOption);
             return command;
         }
@@ -153,20 +153,6 @@ namespace ApiSdk.Teams.Item.Channels.Item.Messages.Item.Replies {
             _ = requestAdapter ?? throw new ArgumentNullException(nameof(requestAdapter));
             UrlTemplate = "{+baseurl}/teams/{team_id}/channels/{channel_id}/messages/{chatMessage_id}/replies{?top,skip,search,filter,count,orderby,select,expand}";
             var urlTplParams = new Dictionary<string, object>(pathParameters);
-            PathParameters = urlTplParams;
-            RequestAdapter = requestAdapter;
-        }
-        /// <summary>
-        /// Instantiates a new RepliesRequestBuilder and sets the default values.
-        /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        /// <param name="requestAdapter">The request adapter to use to execute the requests.</param>
-        /// </summary>
-        public RepliesRequestBuilder(string rawUrl, IRequestAdapter requestAdapter) {
-            if(string.IsNullOrEmpty(rawUrl)) throw new ArgumentNullException(nameof(rawUrl));
-            _ = requestAdapter ?? throw new ArgumentNullException(nameof(requestAdapter));
-            UrlTemplate = "{+baseurl}/teams/{team_id}/channels/{channel_id}/messages/{chatMessage_id}/replies{?top,skip,search,filter,count,orderby,select,expand}";
-            var urlTplParams = new Dictionary<string, object>();
-            urlTplParams.Add("request-raw-url", rawUrl);
             PathParameters = urlTplParams;
             RequestAdapter = requestAdapter;
         }
@@ -214,31 +200,6 @@ namespace ApiSdk.Teams.Item.Channels.Item.Messages.Item.Replies {
         /// </summary>
         public DeltaRequestBuilder Delta() {
             return new DeltaRequestBuilder(PathParameters, RequestAdapter);
-        }
-        /// <summary>
-        /// Replies for a specified message.
-        /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
-        /// <param name="h">Request headers</param>
-        /// <param name="o">Request options</param>
-        /// <param name="q">Request query parameters</param>
-        /// <param name="responseHandler">Response handler to use in place of the default response handling provided by the core service</param>
-        /// </summary>
-        public async Task<RepliesResponse> GetAsync(Action<GetQueryParameters> q = default, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default, CancellationToken cancellationToken = default) {
-            var requestInfo = CreateGetRequestInformation(q, h, o);
-            return await RequestAdapter.SendAsync<RepliesResponse>(requestInfo, responseHandler, cancellationToken);
-        }
-        /// <summary>
-        /// Replies for a specified message.
-        /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
-        /// <param name="h">Request headers</param>
-        /// <param name="model"></param>
-        /// <param name="o">Request options</param>
-        /// <param name="responseHandler">Response handler to use in place of the default response handling provided by the core service</param>
-        /// </summary>
-        public async Task<ChatMessage> PostAsync(ChatMessage model, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default, CancellationToken cancellationToken = default) {
-            _ = model ?? throw new ArgumentNullException(nameof(model));
-            var requestInfo = CreatePostRequestInformation(model, h, o);
-            return await RequestAdapter.SendAsync<ChatMessage>(requestInfo, responseHandler, cancellationToken);
         }
         /// <summary>Replies for a specified message.</summary>
         public class GetQueryParameters : QueryParametersBase {
