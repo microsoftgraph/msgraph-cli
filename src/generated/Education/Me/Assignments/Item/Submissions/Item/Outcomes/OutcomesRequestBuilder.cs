@@ -2,10 +2,10 @@ using ApiSdk.Education.Me.Assignments.Item.Submissions.Item.Outcomes.Item;
 using ApiSdk.Models.Microsoft.Graph;
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
+using Microsoft.Kiota.Cli.Commons.IO;
 using System;
 using System.Collections.Generic;
 using System.CommandLine;
-using System.CommandLine.Invocation;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -22,11 +22,10 @@ namespace ApiSdk.Education.Me.Assignments.Item.Submissions.Item.Outcomes {
         private string UrlTemplate { get; set; }
         public List<Command> BuildCommand() {
             var builder = new EducationOutcomeRequestBuilder(PathParameters, RequestAdapter);
-            var commands = new List<Command> { 
-                builder.BuildDeleteCommand(),
-                builder.BuildGetCommand(),
-                builder.BuildPatchCommand(),
-            };
+            var commands = new List<Command>();
+            commands.Add(builder.BuildDeleteCommand());
+            commands.Add(builder.BuildGetCommand());
+            commands.Add(builder.BuildPatchCommand());
             return commands;
         }
         /// <summary>
@@ -36,11 +35,11 @@ namespace ApiSdk.Education.Me.Assignments.Item.Submissions.Item.Outcomes {
             var command = new Command("create");
             command.Description = "Read-Write. Nullable.";
             // Create options for all the parameters
-            var educationAssignmentIdOption = new Option<string>("--educationassignment-id", description: "key: id of educationAssignment") {
+            var educationAssignmentIdOption = new Option<string>("--education-assignment-id", description: "key: id of educationAssignment") {
             };
             educationAssignmentIdOption.IsRequired = true;
             command.AddOption(educationAssignmentIdOption);
-            var educationSubmissionIdOption = new Option<string>("--educationsubmission-id", description: "key: id of educationSubmission") {
+            var educationSubmissionIdOption = new Option<string>("--education-submission-id", description: "key: id of educationSubmission") {
             };
             educationSubmissionIdOption.IsRequired = true;
             command.AddOption(educationSubmissionIdOption);
@@ -48,21 +47,20 @@ namespace ApiSdk.Education.Me.Assignments.Item.Submissions.Item.Outcomes {
             };
             bodyOption.IsRequired = true;
             command.AddOption(bodyOption);
-            command.SetHandler(async (string educationAssignmentId, string educationSubmissionId, string body) => {
+            var outputOption = new Option<FormatterType>("--output", () => FormatterType.JSON){
+                IsRequired = true
+            };
+            command.AddOption(outputOption);
+            command.SetHandler(async (string educationAssignmentId, string educationSubmissionId, string body, FormatterType output, IOutputFormatterFactory outputFormatterFactory, CancellationToken cancellationToken) => {
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<EducationOutcome>();
                 var requestInfo = CreatePostRequestInformation(model, q => {
                 });
-                var result = await RequestAdapter.SendAsync<EducationOutcome>(requestInfo);
-                // Print request output. What if the request has no return?
-                using var serializer = RequestAdapter.SerializationWriterFactory.GetSerializationWriter("application/json");
-                serializer.WriteObjectValue(null, result);
-                using var content = serializer.GetSerializedContent();
-                using var reader = new StreamReader(content);
-                var strContent = await reader.ReadToEndAsync();
-                Console.Write(strContent + "\n");
-            }, educationAssignmentIdOption, educationSubmissionIdOption, bodyOption);
+                var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: default, cancellationToken: cancellationToken);
+                var formatter = outputFormatterFactory.GetFormatter(output);
+                formatter.WriteOutput(response);
+            }, educationAssignmentIdOption, educationSubmissionIdOption, bodyOption, outputOption);
             return command;
         }
         /// <summary>
@@ -72,11 +70,11 @@ namespace ApiSdk.Education.Me.Assignments.Item.Submissions.Item.Outcomes {
             var command = new Command("list");
             command.Description = "Read-Write. Nullable.";
             // Create options for all the parameters
-            var educationAssignmentIdOption = new Option<string>("--educationassignment-id", description: "key: id of educationAssignment") {
+            var educationAssignmentIdOption = new Option<string>("--education-assignment-id", description: "key: id of educationAssignment") {
             };
             educationAssignmentIdOption.IsRequired = true;
             command.AddOption(educationAssignmentIdOption);
-            var educationSubmissionIdOption = new Option<string>("--educationsubmission-id", description: "key: id of educationSubmission") {
+            var educationSubmissionIdOption = new Option<string>("--education-submission-id", description: "key: id of educationSubmission") {
             };
             educationSubmissionIdOption.IsRequired = true;
             command.AddOption(educationSubmissionIdOption);
@@ -115,7 +113,11 @@ namespace ApiSdk.Education.Me.Assignments.Item.Submissions.Item.Outcomes {
             };
             expandOption.IsRequired = false;
             command.AddOption(expandOption);
-            command.SetHandler(async (string educationAssignmentId, string educationSubmissionId, int? top, int? skip, string search, string filter, bool? count, string[] orderby, string[] select, string[] expand) => {
+            var outputOption = new Option<FormatterType>("--output", () => FormatterType.JSON){
+                IsRequired = true
+            };
+            command.AddOption(outputOption);
+            command.SetHandler(async (string educationAssignmentId, string educationSubmissionId, int? top, int? skip, string search, string filter, bool? count, string[] orderby, string[] select, string[] expand, FormatterType output, IOutputFormatterFactory outputFormatterFactory, CancellationToken cancellationToken) => {
                 var requestInfo = CreateGetRequestInformation(q => {
                     q.Top = top;
                     q.Skip = skip;
@@ -126,15 +128,10 @@ namespace ApiSdk.Education.Me.Assignments.Item.Submissions.Item.Outcomes {
                     q.Select = select;
                     q.Expand = expand;
                 });
-                var result = await RequestAdapter.SendAsync<OutcomesResponse>(requestInfo);
-                // Print request output. What if the request has no return?
-                using var serializer = RequestAdapter.SerializationWriterFactory.GetSerializationWriter("application/json");
-                serializer.WriteObjectValue(null, result);
-                using var content = serializer.GetSerializedContent();
-                using var reader = new StreamReader(content);
-                var strContent = await reader.ReadToEndAsync();
-                Console.Write(strContent + "\n");
-            }, educationAssignmentIdOption, educationSubmissionIdOption, topOption, skipOption, searchOption, filterOption, countOption, orderbyOption, selectOption, expandOption);
+                var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: default, cancellationToken: cancellationToken);
+                var formatter = outputFormatterFactory.GetFormatter(output);
+                formatter.WriteOutput(response);
+            }, educationAssignmentIdOption, educationSubmissionIdOption, topOption, skipOption, searchOption, filterOption, countOption, orderbyOption, selectOption, expandOption, outputOption);
             return command;
         }
         /// <summary>
@@ -188,31 +185,6 @@ namespace ApiSdk.Education.Me.Assignments.Item.Submissions.Item.Outcomes {
             h?.Invoke(requestInfo.Headers);
             requestInfo.AddRequestOptions(o?.ToArray());
             return requestInfo;
-        }
-        /// <summary>
-        /// Read-Write. Nullable.
-        /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
-        /// <param name="h">Request headers</param>
-        /// <param name="o">Request options</param>
-        /// <param name="q">Request query parameters</param>
-        /// <param name="responseHandler">Response handler to use in place of the default response handling provided by the core service</param>
-        /// </summary>
-        public async Task<OutcomesResponse> GetAsync(Action<GetQueryParameters> q = default, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default, CancellationToken cancellationToken = default) {
-            var requestInfo = CreateGetRequestInformation(q, h, o);
-            return await RequestAdapter.SendAsync<OutcomesResponse>(requestInfo, responseHandler, cancellationToken);
-        }
-        /// <summary>
-        /// Read-Write. Nullable.
-        /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
-        /// <param name="h">Request headers</param>
-        /// <param name="model"></param>
-        /// <param name="o">Request options</param>
-        /// <param name="responseHandler">Response handler to use in place of the default response handling provided by the core service</param>
-        /// </summary>
-        public async Task<EducationOutcome> PostAsync(EducationOutcome model, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default, CancellationToken cancellationToken = default) {
-            _ = model ?? throw new ArgumentNullException(nameof(model));
-            var requestInfo = CreatePostRequestInformation(model, h, o);
-            return await RequestAdapter.SendAsync<EducationOutcome>(requestInfo, responseHandler, cancellationToken);
         }
         /// <summary>Read-Write. Nullable.</summary>
         public class GetQueryParameters : QueryParametersBase {

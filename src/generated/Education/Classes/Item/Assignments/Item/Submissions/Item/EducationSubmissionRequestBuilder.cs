@@ -9,10 +9,10 @@ using ApiSdk.Education.Classes.Item.Assignments.Item.Submissions.Item.Unsubmit;
 using ApiSdk.Models.Microsoft.Graph;
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
+using Microsoft.Kiota.Cli.Commons.IO;
 using System;
 using System.Collections.Generic;
 using System.CommandLine;
-using System.CommandLine.Invocation;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -34,23 +34,22 @@ namespace ApiSdk.Education.Classes.Item.Assignments.Item.Submissions.Item {
             var command = new Command("delete");
             command.Description = "Once published, there is a submission object for each student representing their work and grade.  Read-only. Nullable.";
             // Create options for all the parameters
-            var educationClassIdOption = new Option<string>("--educationclass-id", description: "key: id of educationClass") {
+            var educationClassIdOption = new Option<string>("--education-class-id", description: "key: id of educationClass") {
             };
             educationClassIdOption.IsRequired = true;
             command.AddOption(educationClassIdOption);
-            var educationAssignmentIdOption = new Option<string>("--educationassignment-id", description: "key: id of educationAssignment") {
+            var educationAssignmentIdOption = new Option<string>("--education-assignment-id", description: "key: id of educationAssignment") {
             };
             educationAssignmentIdOption.IsRequired = true;
             command.AddOption(educationAssignmentIdOption);
-            var educationSubmissionIdOption = new Option<string>("--educationsubmission-id", description: "key: id of educationSubmission") {
+            var educationSubmissionIdOption = new Option<string>("--education-submission-id", description: "key: id of educationSubmission") {
             };
             educationSubmissionIdOption.IsRequired = true;
             command.AddOption(educationSubmissionIdOption);
-            command.SetHandler(async (string educationClassId, string educationAssignmentId, string educationSubmissionId) => {
+            command.SetHandler(async (string educationClassId, string educationAssignmentId, string educationSubmissionId, IOutputFormatterFactory outputFormatterFactory, CancellationToken cancellationToken) => {
                 var requestInfo = CreateDeleteRequestInformation(q => {
                 });
-                await RequestAdapter.SendNoContentAsync(requestInfo);
-                // Print request output. What if the request has no return?
+                await RequestAdapter.SendNoContentAsync(requestInfo, errorMapping: default, cancellationToken: cancellationToken);
                 Console.WriteLine("Success");
             }, educationClassIdOption, educationAssignmentIdOption, educationSubmissionIdOption);
             return command;
@@ -62,15 +61,15 @@ namespace ApiSdk.Education.Classes.Item.Assignments.Item.Submissions.Item {
             var command = new Command("get");
             command.Description = "Once published, there is a submission object for each student representing their work and grade.  Read-only. Nullable.";
             // Create options for all the parameters
-            var educationClassIdOption = new Option<string>("--educationclass-id", description: "key: id of educationClass") {
+            var educationClassIdOption = new Option<string>("--education-class-id", description: "key: id of educationClass") {
             };
             educationClassIdOption.IsRequired = true;
             command.AddOption(educationClassIdOption);
-            var educationAssignmentIdOption = new Option<string>("--educationassignment-id", description: "key: id of educationAssignment") {
+            var educationAssignmentIdOption = new Option<string>("--education-assignment-id", description: "key: id of educationAssignment") {
             };
             educationAssignmentIdOption.IsRequired = true;
             command.AddOption(educationAssignmentIdOption);
-            var educationSubmissionIdOption = new Option<string>("--educationsubmission-id", description: "key: id of educationSubmission") {
+            var educationSubmissionIdOption = new Option<string>("--education-submission-id", description: "key: id of educationSubmission") {
             };
             educationSubmissionIdOption.IsRequired = true;
             command.AddOption(educationSubmissionIdOption);
@@ -84,25 +83,27 @@ namespace ApiSdk.Education.Classes.Item.Assignments.Item.Submissions.Item {
             };
             expandOption.IsRequired = false;
             command.AddOption(expandOption);
-            command.SetHandler(async (string educationClassId, string educationAssignmentId, string educationSubmissionId, string[] select, string[] expand) => {
+            var outputOption = new Option<FormatterType>("--output", () => FormatterType.JSON){
+                IsRequired = true
+            };
+            command.AddOption(outputOption);
+            command.SetHandler(async (string educationClassId, string educationAssignmentId, string educationSubmissionId, string[] select, string[] expand, FormatterType output, IOutputFormatterFactory outputFormatterFactory, CancellationToken cancellationToken) => {
                 var requestInfo = CreateGetRequestInformation(q => {
                     q.Select = select;
                     q.Expand = expand;
                 });
-                var result = await RequestAdapter.SendAsync<EducationSubmission>(requestInfo);
-                // Print request output. What if the request has no return?
-                using var serializer = RequestAdapter.SerializationWriterFactory.GetSerializationWriter("application/json");
-                serializer.WriteObjectValue(null, result);
-                using var content = serializer.GetSerializedContent();
-                using var reader = new StreamReader(content);
-                var strContent = await reader.ReadToEndAsync();
-                Console.Write(strContent + "\n");
-            }, educationClassIdOption, educationAssignmentIdOption, educationSubmissionIdOption, selectOption, expandOption);
+                var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: default, cancellationToken: cancellationToken);
+                var formatter = outputFormatterFactory.GetFormatter(output);
+                formatter.WriteOutput(response);
+            }, educationClassIdOption, educationAssignmentIdOption, educationSubmissionIdOption, selectOption, expandOption, outputOption);
             return command;
         }
         public Command BuildOutcomesCommand() {
             var command = new Command("outcomes");
             var builder = new ApiSdk.Education.Classes.Item.Assignments.Item.Submissions.Item.Outcomes.OutcomesRequestBuilder(PathParameters, RequestAdapter);
+            foreach (var cmd in builder.BuildCommand()) {
+                command.AddCommand(cmd);
+            }
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;
@@ -114,15 +115,15 @@ namespace ApiSdk.Education.Classes.Item.Assignments.Item.Submissions.Item {
             var command = new Command("patch");
             command.Description = "Once published, there is a submission object for each student representing their work and grade.  Read-only. Nullable.";
             // Create options for all the parameters
-            var educationClassIdOption = new Option<string>("--educationclass-id", description: "key: id of educationClass") {
+            var educationClassIdOption = new Option<string>("--education-class-id", description: "key: id of educationClass") {
             };
             educationClassIdOption.IsRequired = true;
             command.AddOption(educationClassIdOption);
-            var educationAssignmentIdOption = new Option<string>("--educationassignment-id", description: "key: id of educationAssignment") {
+            var educationAssignmentIdOption = new Option<string>("--education-assignment-id", description: "key: id of educationAssignment") {
             };
             educationAssignmentIdOption.IsRequired = true;
             command.AddOption(educationAssignmentIdOption);
-            var educationSubmissionIdOption = new Option<string>("--educationsubmission-id", description: "key: id of educationSubmission") {
+            var educationSubmissionIdOption = new Option<string>("--education-submission-id", description: "key: id of educationSubmission") {
             };
             educationSubmissionIdOption.IsRequired = true;
             command.AddOption(educationSubmissionIdOption);
@@ -130,14 +131,13 @@ namespace ApiSdk.Education.Classes.Item.Assignments.Item.Submissions.Item {
             };
             bodyOption.IsRequired = true;
             command.AddOption(bodyOption);
-            command.SetHandler(async (string educationClassId, string educationAssignmentId, string educationSubmissionId, string body) => {
+            command.SetHandler(async (string educationClassId, string educationAssignmentId, string educationSubmissionId, string body, IOutputFormatterFactory outputFormatterFactory, CancellationToken cancellationToken) => {
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<EducationSubmission>();
                 var requestInfo = CreatePatchRequestInformation(model, q => {
                 });
-                await RequestAdapter.SendNoContentAsync(requestInfo);
-                // Print request output. What if the request has no return?
+                await RequestAdapter.SendNoContentAsync(requestInfo, errorMapping: default, cancellationToken: cancellationToken);
                 Console.WriteLine("Success");
             }, educationClassIdOption, educationAssignmentIdOption, educationSubmissionIdOption, bodyOption);
             return command;
@@ -151,13 +151,16 @@ namespace ApiSdk.Education.Classes.Item.Assignments.Item.Submissions.Item {
         public Command BuildResourcesCommand() {
             var command = new Command("resources");
             var builder = new ApiSdk.Education.Classes.Item.Assignments.Item.Submissions.Item.Resources.ResourcesRequestBuilder(PathParameters, RequestAdapter);
+            foreach (var cmd in builder.BuildCommand()) {
+                command.AddCommand(cmd);
+            }
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;
         }
         public Command BuildReturnCommand() {
             var command = new Command("return");
-            var builder = new ApiSdk.Education.Classes.Item.Assignments.Item.Submissions.Item.@Return.ReturnRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new ApiSdk.Education.Classes.Item.Assignments.Item.Submissions.Item.Return.ReturnRequestBuilder(PathParameters, RequestAdapter);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
@@ -176,6 +179,9 @@ namespace ApiSdk.Education.Classes.Item.Assignments.Item.Submissions.Item {
         public Command BuildSubmittedResourcesCommand() {
             var command = new Command("submitted-resources");
             var builder = new ApiSdk.Education.Classes.Item.Assignments.Item.Submissions.Item.SubmittedResources.SubmittedResourcesRequestBuilder(PathParameters, RequestAdapter);
+            foreach (var cmd in builder.BuildCommand()) {
+                command.AddCommand(cmd);
+            }
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;
@@ -252,42 +258,6 @@ namespace ApiSdk.Education.Classes.Item.Assignments.Item.Submissions.Item {
             h?.Invoke(requestInfo.Headers);
             requestInfo.AddRequestOptions(o?.ToArray());
             return requestInfo;
-        }
-        /// <summary>
-        /// Once published, there is a submission object for each student representing their work and grade.  Read-only. Nullable.
-        /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
-        /// <param name="h">Request headers</param>
-        /// <param name="o">Request options</param>
-        /// <param name="responseHandler">Response handler to use in place of the default response handling provided by the core service</param>
-        /// </summary>
-        public async Task DeleteAsync(Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default, CancellationToken cancellationToken = default) {
-            var requestInfo = CreateDeleteRequestInformation(h, o);
-            await RequestAdapter.SendNoContentAsync(requestInfo, responseHandler, cancellationToken);
-        }
-        /// <summary>
-        /// Once published, there is a submission object for each student representing their work and grade.  Read-only. Nullable.
-        /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
-        /// <param name="h">Request headers</param>
-        /// <param name="o">Request options</param>
-        /// <param name="q">Request query parameters</param>
-        /// <param name="responseHandler">Response handler to use in place of the default response handling provided by the core service</param>
-        /// </summary>
-        public async Task<EducationSubmission> GetAsync(Action<GetQueryParameters> q = default, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default, CancellationToken cancellationToken = default) {
-            var requestInfo = CreateGetRequestInformation(q, h, o);
-            return await RequestAdapter.SendAsync<EducationSubmission>(requestInfo, responseHandler, cancellationToken);
-        }
-        /// <summary>
-        /// Once published, there is a submission object for each student representing their work and grade.  Read-only. Nullable.
-        /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
-        /// <param name="h">Request headers</param>
-        /// <param name="model"></param>
-        /// <param name="o">Request options</param>
-        /// <param name="responseHandler">Response handler to use in place of the default response handling provided by the core service</param>
-        /// </summary>
-        public async Task PatchAsync(EducationSubmission model, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default, CancellationToken cancellationToken = default) {
-            _ = model ?? throw new ArgumentNullException(nameof(model));
-            var requestInfo = CreatePatchRequestInformation(model, h, o);
-            await RequestAdapter.SendNoContentAsync(requestInfo, responseHandler, cancellationToken);
         }
         /// <summary>Once published, there is a submission object for each student representing their work and grade.  Read-only. Nullable.</summary>
         public class GetQueryParameters : QueryParametersBase {

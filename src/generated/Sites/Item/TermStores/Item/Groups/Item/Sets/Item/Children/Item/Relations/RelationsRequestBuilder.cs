@@ -2,10 +2,10 @@ using ApiSdk.Models.Microsoft.Graph.TermStore;
 using ApiSdk.Sites.Item.TermStores.Item.Groups.Item.Sets.Item.Children.Item.Relations.Item;
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
+using Microsoft.Kiota.Cli.Commons.IO;
 using System;
 using System.Collections.Generic;
 using System.CommandLine;
-using System.CommandLine.Invocation;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -22,14 +22,13 @@ namespace ApiSdk.Sites.Item.TermStores.Item.Groups.Item.Sets.Item.Children.Item.
         private string UrlTemplate { get; set; }
         public List<Command> BuildCommand() {
             var builder = new RelationRequestBuilder(PathParameters, RequestAdapter);
-            var commands = new List<Command> { 
-                builder.BuildDeleteCommand(),
-                builder.BuildFromTermCommand(),
-                builder.BuildGetCommand(),
-                builder.BuildPatchCommand(),
-                builder.BuildSetCommand(),
-                builder.BuildToTermCommand(),
-            };
+            var commands = new List<Command>();
+            commands.Add(builder.BuildDeleteCommand());
+            commands.Add(builder.BuildFromTermCommand());
+            commands.Add(builder.BuildGetCommand());
+            commands.Add(builder.BuildPatchCommand());
+            commands.Add(builder.BuildSetCommand());
+            commands.Add(builder.BuildToTermCommand());
             return commands;
         }
         /// <summary>
@@ -63,21 +62,20 @@ namespace ApiSdk.Sites.Item.TermStores.Item.Groups.Item.Sets.Item.Children.Item.
             };
             bodyOption.IsRequired = true;
             command.AddOption(bodyOption);
-            command.SetHandler(async (string siteId, string storeId, string groupId, string setId, string termId, string body) => {
+            var outputOption = new Option<FormatterType>("--output", () => FormatterType.JSON){
+                IsRequired = true
+            };
+            command.AddOption(outputOption);
+            command.SetHandler(async (string siteId, string storeId, string groupId, string setId, string termId, string body, FormatterType output, IOutputFormatterFactory outputFormatterFactory, CancellationToken cancellationToken) => {
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<Relation>();
                 var requestInfo = CreatePostRequestInformation(model, q => {
                 });
-                var result = await RequestAdapter.SendAsync<Relation>(requestInfo);
-                // Print request output. What if the request has no return?
-                using var serializer = RequestAdapter.SerializationWriterFactory.GetSerializationWriter("application/json");
-                serializer.WriteObjectValue(null, result);
-                using var content = serializer.GetSerializedContent();
-                using var reader = new StreamReader(content);
-                var strContent = await reader.ReadToEndAsync();
-                Console.Write(strContent + "\n");
-            }, siteIdOption, storeIdOption, groupIdOption, setIdOption, termIdOption, bodyOption);
+                var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: default, cancellationToken: cancellationToken);
+                var formatter = outputFormatterFactory.GetFormatter(output);
+                formatter.WriteOutput(response);
+            }, siteIdOption, storeIdOption, groupIdOption, setIdOption, termIdOption, bodyOption, outputOption);
             return command;
         }
         /// <summary>
@@ -142,7 +140,11 @@ namespace ApiSdk.Sites.Item.TermStores.Item.Groups.Item.Sets.Item.Children.Item.
             };
             expandOption.IsRequired = false;
             command.AddOption(expandOption);
-            command.SetHandler(async (string siteId, string storeId, string groupId, string setId, string termId, int? top, int? skip, string search, string filter, bool? count, string[] orderby, string[] select, string[] expand) => {
+            var outputOption = new Option<FormatterType>("--output", () => FormatterType.JSON){
+                IsRequired = true
+            };
+            command.AddOption(outputOption);
+            command.SetHandler(async (string siteId, string storeId, string groupId, string setId, string termId, int? top, int? skip, string search, string filter, bool? count, string[] orderby, string[] select, string[] expand, FormatterType output, IOutputFormatterFactory outputFormatterFactory, CancellationToken cancellationToken) => {
                 var requestInfo = CreateGetRequestInformation(q => {
                     q.Top = top;
                     q.Skip = skip;
@@ -153,15 +155,10 @@ namespace ApiSdk.Sites.Item.TermStores.Item.Groups.Item.Sets.Item.Children.Item.
                     q.Select = select;
                     q.Expand = expand;
                 });
-                var result = await RequestAdapter.SendAsync<RelationsResponse>(requestInfo);
-                // Print request output. What if the request has no return?
-                using var serializer = RequestAdapter.SerializationWriterFactory.GetSerializationWriter("application/json");
-                serializer.WriteObjectValue(null, result);
-                using var content = serializer.GetSerializedContent();
-                using var reader = new StreamReader(content);
-                var strContent = await reader.ReadToEndAsync();
-                Console.Write(strContent + "\n");
-            }, siteIdOption, storeIdOption, groupIdOption, setIdOption, termIdOption, topOption, skipOption, searchOption, filterOption, countOption, orderbyOption, selectOption, expandOption);
+                var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: default, cancellationToken: cancellationToken);
+                var formatter = outputFormatterFactory.GetFormatter(output);
+                formatter.WriteOutput(response);
+            }, siteIdOption, storeIdOption, groupIdOption, setIdOption, termIdOption, topOption, skipOption, searchOption, filterOption, countOption, orderbyOption, selectOption, expandOption, outputOption);
             return command;
         }
         /// <summary>
@@ -215,31 +212,6 @@ namespace ApiSdk.Sites.Item.TermStores.Item.Groups.Item.Sets.Item.Children.Item.
             h?.Invoke(requestInfo.Headers);
             requestInfo.AddRequestOptions(o?.ToArray());
             return requestInfo;
-        }
-        /// <summary>
-        /// To indicate which terms are related to the current term as either pinned or reused.
-        /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
-        /// <param name="h">Request headers</param>
-        /// <param name="o">Request options</param>
-        /// <param name="q">Request query parameters</param>
-        /// <param name="responseHandler">Response handler to use in place of the default response handling provided by the core service</param>
-        /// </summary>
-        public async Task<RelationsResponse> GetAsync(Action<GetQueryParameters> q = default, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default, CancellationToken cancellationToken = default) {
-            var requestInfo = CreateGetRequestInformation(q, h, o);
-            return await RequestAdapter.SendAsync<RelationsResponse>(requestInfo, responseHandler, cancellationToken);
-        }
-        /// <summary>
-        /// To indicate which terms are related to the current term as either pinned or reused.
-        /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
-        /// <param name="h">Request headers</param>
-        /// <param name="model"></param>
-        /// <param name="o">Request options</param>
-        /// <param name="responseHandler">Response handler to use in place of the default response handling provided by the core service</param>
-        /// </summary>
-        public async Task<Relation> PostAsync(Relation model, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default, CancellationToken cancellationToken = default) {
-            _ = model ?? throw new ArgumentNullException(nameof(model));
-            var requestInfo = CreatePostRequestInformation(model, h, o);
-            return await RequestAdapter.SendAsync<Relation>(requestInfo, responseHandler, cancellationToken);
         }
         /// <summary>To indicate which terms are related to the current term as either pinned or reused.</summary>
         public class GetQueryParameters : QueryParametersBase {

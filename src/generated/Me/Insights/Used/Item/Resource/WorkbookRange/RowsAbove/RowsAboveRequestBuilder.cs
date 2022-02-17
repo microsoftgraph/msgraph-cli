@@ -1,10 +1,10 @@
 using ApiSdk.Models.Microsoft.Graph;
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
+using Microsoft.Kiota.Cli.Commons.IO;
 using System;
 using System.Collections.Generic;
 using System.CommandLine;
-using System.CommandLine.Invocation;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -26,22 +26,21 @@ namespace ApiSdk.Me.Insights.Used.Item.Resource.WorkbookRange.RowsAbove {
             var command = new Command("get");
             command.Description = "Invoke function rowsAbove";
             // Create options for all the parameters
-            var usedInsightIdOption = new Option<string>("--usedinsight-id", description: "key: id of usedInsight") {
+            var usedInsightIdOption = new Option<string>("--used-insight-id", description: "key: id of usedInsight") {
             };
             usedInsightIdOption.IsRequired = true;
             command.AddOption(usedInsightIdOption);
-            command.SetHandler(async (string usedInsightId) => {
+            var outputOption = new Option<FormatterType>("--output", () => FormatterType.JSON){
+                IsRequired = true
+            };
+            command.AddOption(outputOption);
+            command.SetHandler(async (string usedInsightId, FormatterType output, IOutputFormatterFactory outputFormatterFactory, CancellationToken cancellationToken) => {
                 var requestInfo = CreateGetRequestInformation(q => {
                 });
-                var result = await RequestAdapter.SendAsync<RowsAboveResponse>(requestInfo);
-                // Print request output. What if the request has no return?
-                using var serializer = RequestAdapter.SerializationWriterFactory.GetSerializationWriter("application/json");
-                serializer.WriteObjectValue(null, result);
-                using var content = serializer.GetSerializedContent();
-                using var reader = new StreamReader(content);
-                var strContent = await reader.ReadToEndAsync();
-                Console.Write(strContent + "\n");
-            }, usedInsightIdOption);
+                var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: default, cancellationToken: cancellationToken);
+                var formatter = outputFormatterFactory.GetFormatter(output);
+                formatter.WriteOutput(response);
+            }, usedInsightIdOption, outputOption);
             return command;
         }
         /// <summary>
@@ -71,17 +70,6 @@ namespace ApiSdk.Me.Insights.Used.Item.Resource.WorkbookRange.RowsAbove {
             h?.Invoke(requestInfo.Headers);
             requestInfo.AddRequestOptions(o?.ToArray());
             return requestInfo;
-        }
-        /// <summary>
-        /// Invoke function rowsAbove
-        /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
-        /// <param name="h">Request headers</param>
-        /// <param name="o">Request options</param>
-        /// <param name="responseHandler">Response handler to use in place of the default response handling provided by the core service</param>
-        /// </summary>
-        public async Task<RowsAboveResponse> GetAsync(Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default, CancellationToken cancellationToken = default) {
-            var requestInfo = CreateGetRequestInformation(h, o);
-            return await RequestAdapter.SendAsync<RowsAboveResponse>(requestInfo, responseHandler, cancellationToken);
         }
         /// <summary>Union type wrapper for classes workbookRange</summary>
         public class RowsAboveResponse : IParsable {

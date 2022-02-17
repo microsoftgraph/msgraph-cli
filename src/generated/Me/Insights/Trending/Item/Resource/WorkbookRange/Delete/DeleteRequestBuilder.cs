@@ -1,16 +1,16 @@
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
+using Microsoft.Kiota.Cli.Commons.IO;
 using System;
 using System.Collections.Generic;
 using System.CommandLine;
-using System.CommandLine.Invocation;
 using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 namespace ApiSdk.Me.Insights.Trending.Item.Resource.WorkbookRange.Delete {
-    /// <summary>Builds and executes requests for operations under \me\insights\trending\{trending-id}\resource\microsoft.graph.workbookRange\microsoft.graph.delete</summary>
+    /// <summary>Builds and executes requests for operations under \me\insights\trending\{trendingItem-Id}\resource\microsoft.graph.workbookRange\microsoft.graph.delete</summary>
     public class DeleteRequestBuilder {
         /// <summary>Path parameters for the request</summary>
         private Dictionary<string, object> PathParameters { get; set; }
@@ -25,24 +25,23 @@ namespace ApiSdk.Me.Insights.Trending.Item.Resource.WorkbookRange.Delete {
             var command = new Command("post");
             command.Description = "Invoke action delete";
             // Create options for all the parameters
-            var trendingIdOption = new Option<string>("--trending-id", description: "key: id of trending") {
+            var trendingItemIdOption = new Option<string>("--trending-item-id", description: "key: id of trending") {
             };
-            trendingIdOption.IsRequired = true;
-            command.AddOption(trendingIdOption);
+            trendingItemIdOption.IsRequired = true;
+            command.AddOption(trendingItemIdOption);
             var bodyOption = new Option<string>("--body") {
             };
             bodyOption.IsRequired = true;
             command.AddOption(bodyOption);
-            command.SetHandler(async (string trendingId, string body) => {
+            command.SetHandler(async (string trendingItemId, string body, IOutputFormatterFactory outputFormatterFactory, CancellationToken cancellationToken) => {
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<DeleteRequestBody>();
                 var requestInfo = CreatePostRequestInformation(model, q => {
                 });
-                await RequestAdapter.SendNoContentAsync(requestInfo);
-                // Print request output. What if the request has no return?
+                await RequestAdapter.SendNoContentAsync(requestInfo, errorMapping: default, cancellationToken: cancellationToken);
                 Console.WriteLine("Success");
-            }, trendingIdOption, bodyOption);
+            }, trendingItemIdOption, bodyOption);
             return command;
         }
         /// <summary>
@@ -53,7 +52,7 @@ namespace ApiSdk.Me.Insights.Trending.Item.Resource.WorkbookRange.Delete {
         public DeleteRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) {
             _ = pathParameters ?? throw new ArgumentNullException(nameof(pathParameters));
             _ = requestAdapter ?? throw new ArgumentNullException(nameof(requestAdapter));
-            UrlTemplate = "{+baseurl}/me/insights/trending/{trending_id}/resource/microsoft.graph.workbookRange/microsoft.graph.delete";
+            UrlTemplate = "{+baseurl}/me/insights/trending/{trendingItem_Id}/resource/microsoft.graph.workbookRange/microsoft.graph.delete";
             var urlTplParams = new Dictionary<string, object>(pathParameters);
             PathParameters = urlTplParams;
             RequestAdapter = requestAdapter;
@@ -75,19 +74,6 @@ namespace ApiSdk.Me.Insights.Trending.Item.Resource.WorkbookRange.Delete {
             h?.Invoke(requestInfo.Headers);
             requestInfo.AddRequestOptions(o?.ToArray());
             return requestInfo;
-        }
-        /// <summary>
-        /// Invoke action delete
-        /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
-        /// <param name="h">Request headers</param>
-        /// <param name="model"></param>
-        /// <param name="o">Request options</param>
-        /// <param name="responseHandler">Response handler to use in place of the default response handling provided by the core service</param>
-        /// </summary>
-        public async Task PostAsync(DeleteRequestBody model, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default, CancellationToken cancellationToken = default) {
-            _ = model ?? throw new ArgumentNullException(nameof(model));
-            var requestInfo = CreatePostRequestInformation(model, h, o);
-            await RequestAdapter.SendNoContentAsync(requestInfo, responseHandler, cancellationToken);
         }
     }
 }

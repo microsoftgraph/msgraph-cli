@@ -5,8 +5,6 @@ using System.IO;
 using System.Linq;
 namespace ApiSdk.Models.Microsoft.Graph {
     public class ColumnDefinition : Entity, IParsable {
-        /// <summary>Specifies whether the column values can be modified.</summary>
-        public bool? @ReadOnly { get; set; }
         /// <summary>This column stores boolean values.</summary>
         public BooleanColumn Boolean { get; set; }
         /// <summary>This column's data is calculated based on other columns.</summary>
@@ -53,6 +51,8 @@ namespace ApiSdk.Models.Microsoft.Graph {
         public PersonOrGroupColumn PersonOrGroup { get; set; }
         /// <summary>If true, changes to this column will be propagated to lists that implement the column.</summary>
         public bool? PropagateChanges { get; set; }
+        /// <summary>Specifies whether the column values can be modified.</summary>
+        public bool? ReadOnly { get; set; }
         /// <summary>Specifies whether the column value isn't optional.</summary>
         public bool? Required { get; set; }
         /// <summary>The source column for content type column.</summary>
@@ -72,7 +72,6 @@ namespace ApiSdk.Models.Microsoft.Graph {
         /// </summary>
         public new IDictionary<string, Action<T, IParseNode>> GetFieldDeserializers<T>() {
             return new Dictionary<string, Action<T, IParseNode>>(base.GetFieldDeserializers<T>()) {
-                {"readOnly", (o,n) => { (o as ColumnDefinition).@ReadOnly = n.GetBoolValue(); } },
                 {"boolean", (o,n) => { (o as ColumnDefinition).Boolean = n.GetObjectValue<BooleanColumn>(); } },
                 {"calculated", (o,n) => { (o as ColumnDefinition).Calculated = n.GetObjectValue<CalculatedColumn>(); } },
                 {"choice", (o,n) => { (o as ColumnDefinition).Choice = n.GetObjectValue<ChoiceColumn>(); } },
@@ -96,6 +95,7 @@ namespace ApiSdk.Models.Microsoft.Graph {
                 {"number", (o,n) => { (o as ColumnDefinition).Number = n.GetObjectValue<NumberColumn>(); } },
                 {"personOrGroup", (o,n) => { (o as ColumnDefinition).PersonOrGroup = n.GetObjectValue<PersonOrGroupColumn>(); } },
                 {"propagateChanges", (o,n) => { (o as ColumnDefinition).PropagateChanges = n.GetBoolValue(); } },
+                {"readOnly", (o,n) => { (o as ColumnDefinition).ReadOnly = n.GetBoolValue(); } },
                 {"required", (o,n) => { (o as ColumnDefinition).Required = n.GetBoolValue(); } },
                 {"sourceColumn", (o,n) => { (o as ColumnDefinition).SourceColumn = n.GetObjectValue<ColumnDefinition>(); } },
                 {"term", (o,n) => { (o as ColumnDefinition).Term = n.GetObjectValue<TermColumn>(); } },
@@ -112,7 +112,6 @@ namespace ApiSdk.Models.Microsoft.Graph {
         public new void Serialize(ISerializationWriter writer) {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             base.Serialize(writer);
-            writer.WriteBoolValue("readOnly", @ReadOnly);
             writer.WriteObjectValue<BooleanColumn>("boolean", Boolean);
             writer.WriteObjectValue<CalculatedColumn>("calculated", Calculated);
             writer.WriteObjectValue<ChoiceColumn>("choice", Choice);
@@ -136,6 +135,7 @@ namespace ApiSdk.Models.Microsoft.Graph {
             writer.WriteObjectValue<NumberColumn>("number", Number);
             writer.WriteObjectValue<PersonOrGroupColumn>("personOrGroup", PersonOrGroup);
             writer.WriteBoolValue("propagateChanges", PropagateChanges);
+            writer.WriteBoolValue("readOnly", ReadOnly);
             writer.WriteBoolValue("required", Required);
             writer.WriteObjectValue<ColumnDefinition>("sourceColumn", SourceColumn);
             writer.WriteObjectValue<TermColumn>("term", Term);

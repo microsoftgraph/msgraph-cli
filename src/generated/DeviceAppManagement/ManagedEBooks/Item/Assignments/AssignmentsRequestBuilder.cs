@@ -2,10 +2,10 @@ using ApiSdk.DeviceAppManagement.ManagedEBooks.Item.Assignments.Item;
 using ApiSdk.Models.Microsoft.Graph;
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
+using Microsoft.Kiota.Cli.Commons.IO;
 using System;
 using System.Collections.Generic;
 using System.CommandLine;
-using System.CommandLine.Invocation;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -22,11 +22,10 @@ namespace ApiSdk.DeviceAppManagement.ManagedEBooks.Item.Assignments {
         private string UrlTemplate { get; set; }
         public List<Command> BuildCommand() {
             var builder = new ManagedEBookAssignmentRequestBuilder(PathParameters, RequestAdapter);
-            var commands = new List<Command> { 
-                builder.BuildDeleteCommand(),
-                builder.BuildGetCommand(),
-                builder.BuildPatchCommand(),
-            };
+            var commands = new List<Command>();
+            commands.Add(builder.BuildDeleteCommand());
+            commands.Add(builder.BuildGetCommand());
+            commands.Add(builder.BuildPatchCommand());
             return commands;
         }
         /// <summary>
@@ -36,7 +35,7 @@ namespace ApiSdk.DeviceAppManagement.ManagedEBooks.Item.Assignments {
             var command = new Command("create");
             command.Description = "The list of assignments for this eBook.";
             // Create options for all the parameters
-            var managedEBookIdOption = new Option<string>("--managedebook-id", description: "key: id of managedEBook") {
+            var managedEBookIdOption = new Option<string>("--managed-ebook-id", description: "key: id of managedEBook") {
             };
             managedEBookIdOption.IsRequired = true;
             command.AddOption(managedEBookIdOption);
@@ -44,21 +43,20 @@ namespace ApiSdk.DeviceAppManagement.ManagedEBooks.Item.Assignments {
             };
             bodyOption.IsRequired = true;
             command.AddOption(bodyOption);
-            command.SetHandler(async (string managedEBookId, string body) => {
+            var outputOption = new Option<FormatterType>("--output", () => FormatterType.JSON){
+                IsRequired = true
+            };
+            command.AddOption(outputOption);
+            command.SetHandler(async (string managedEBookId, string body, FormatterType output, IOutputFormatterFactory outputFormatterFactory, CancellationToken cancellationToken) => {
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<ManagedEBookAssignment>();
                 var requestInfo = CreatePostRequestInformation(model, q => {
                 });
-                var result = await RequestAdapter.SendAsync<ManagedEBookAssignment>(requestInfo);
-                // Print request output. What if the request has no return?
-                using var serializer = RequestAdapter.SerializationWriterFactory.GetSerializationWriter("application/json");
-                serializer.WriteObjectValue(null, result);
-                using var content = serializer.GetSerializedContent();
-                using var reader = new StreamReader(content);
-                var strContent = await reader.ReadToEndAsync();
-                Console.Write(strContent + "\n");
-            }, managedEBookIdOption, bodyOption);
+                var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: default, cancellationToken: cancellationToken);
+                var formatter = outputFormatterFactory.GetFormatter(output);
+                formatter.WriteOutput(response);
+            }, managedEBookIdOption, bodyOption, outputOption);
             return command;
         }
         /// <summary>
@@ -68,7 +66,7 @@ namespace ApiSdk.DeviceAppManagement.ManagedEBooks.Item.Assignments {
             var command = new Command("list");
             command.Description = "The list of assignments for this eBook.";
             // Create options for all the parameters
-            var managedEBookIdOption = new Option<string>("--managedebook-id", description: "key: id of managedEBook") {
+            var managedEBookIdOption = new Option<string>("--managed-ebook-id", description: "key: id of managedEBook") {
             };
             managedEBookIdOption.IsRequired = true;
             command.AddOption(managedEBookIdOption);
@@ -107,7 +105,11 @@ namespace ApiSdk.DeviceAppManagement.ManagedEBooks.Item.Assignments {
             };
             expandOption.IsRequired = false;
             command.AddOption(expandOption);
-            command.SetHandler(async (string managedEBookId, int? top, int? skip, string search, string filter, bool? count, string[] orderby, string[] select, string[] expand) => {
+            var outputOption = new Option<FormatterType>("--output", () => FormatterType.JSON){
+                IsRequired = true
+            };
+            command.AddOption(outputOption);
+            command.SetHandler(async (string managedEBookId, int? top, int? skip, string search, string filter, bool? count, string[] orderby, string[] select, string[] expand, FormatterType output, IOutputFormatterFactory outputFormatterFactory, CancellationToken cancellationToken) => {
                 var requestInfo = CreateGetRequestInformation(q => {
                     q.Top = top;
                     q.Skip = skip;
@@ -118,15 +120,10 @@ namespace ApiSdk.DeviceAppManagement.ManagedEBooks.Item.Assignments {
                     q.Select = select;
                     q.Expand = expand;
                 });
-                var result = await RequestAdapter.SendAsync<AssignmentsResponse>(requestInfo);
-                // Print request output. What if the request has no return?
-                using var serializer = RequestAdapter.SerializationWriterFactory.GetSerializationWriter("application/json");
-                serializer.WriteObjectValue(null, result);
-                using var content = serializer.GetSerializedContent();
-                using var reader = new StreamReader(content);
-                var strContent = await reader.ReadToEndAsync();
-                Console.Write(strContent + "\n");
-            }, managedEBookIdOption, topOption, skipOption, searchOption, filterOption, countOption, orderbyOption, selectOption, expandOption);
+                var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: default, cancellationToken: cancellationToken);
+                var formatter = outputFormatterFactory.GetFormatter(output);
+                formatter.WriteOutput(response);
+            }, managedEBookIdOption, topOption, skipOption, searchOption, filterOption, countOption, orderbyOption, selectOption, expandOption, outputOption);
             return command;
         }
         /// <summary>
@@ -180,31 +177,6 @@ namespace ApiSdk.DeviceAppManagement.ManagedEBooks.Item.Assignments {
             h?.Invoke(requestInfo.Headers);
             requestInfo.AddRequestOptions(o?.ToArray());
             return requestInfo;
-        }
-        /// <summary>
-        /// The list of assignments for this eBook.
-        /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
-        /// <param name="h">Request headers</param>
-        /// <param name="o">Request options</param>
-        /// <param name="q">Request query parameters</param>
-        /// <param name="responseHandler">Response handler to use in place of the default response handling provided by the core service</param>
-        /// </summary>
-        public async Task<AssignmentsResponse> GetAsync(Action<GetQueryParameters> q = default, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default, CancellationToken cancellationToken = default) {
-            var requestInfo = CreateGetRequestInformation(q, h, o);
-            return await RequestAdapter.SendAsync<AssignmentsResponse>(requestInfo, responseHandler, cancellationToken);
-        }
-        /// <summary>
-        /// The list of assignments for this eBook.
-        /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
-        /// <param name="h">Request headers</param>
-        /// <param name="model"></param>
-        /// <param name="o">Request options</param>
-        /// <param name="responseHandler">Response handler to use in place of the default response handling provided by the core service</param>
-        /// </summary>
-        public async Task<ManagedEBookAssignment> PostAsync(ManagedEBookAssignment model, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default, CancellationToken cancellationToken = default) {
-            _ = model ?? throw new ArgumentNullException(nameof(model));
-            var requestInfo = CreatePostRequestInformation(model, h, o);
-            return await RequestAdapter.SendAsync<ManagedEBookAssignment>(requestInfo, responseHandler, cancellationToken);
         }
         /// <summary>The list of assignments for this eBook.</summary>
         public class GetQueryParameters : QueryParametersBase {

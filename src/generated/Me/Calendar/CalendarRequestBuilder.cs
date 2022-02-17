@@ -8,10 +8,10 @@ using ApiSdk.Me.Calendar.SingleValueExtendedProperties;
 using ApiSdk.Models.Microsoft.Graph;
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
+using Microsoft.Kiota.Cli.Commons.IO;
 using System;
 using System.Collections.Generic;
 using System.CommandLine;
-using System.CommandLine.Invocation;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -37,6 +37,9 @@ namespace ApiSdk.Me.Calendar {
         public Command BuildCalendarPermissionsCommand() {
             var command = new Command("calendar-permissions");
             var builder = new ApiSdk.Me.Calendar.CalendarPermissions.CalendarPermissionsRequestBuilder(PathParameters, RequestAdapter);
+            foreach (var cmd in builder.BuildCommand()) {
+                command.AddCommand(cmd);
+            }
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;
@@ -44,6 +47,9 @@ namespace ApiSdk.Me.Calendar {
         public Command BuildCalendarViewCommand() {
             var command = new Command("calendar-view");
             var builder = new ApiSdk.Me.Calendar.CalendarView.CalendarViewRequestBuilder(PathParameters, RequestAdapter);
+            foreach (var cmd in builder.BuildCommand()) {
+                command.AddCommand(cmd);
+            }
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;
@@ -55,11 +61,10 @@ namespace ApiSdk.Me.Calendar {
             var command = new Command("delete");
             command.Description = "The user's primary calendar. Read-only.";
             // Create options for all the parameters
-            command.SetHandler(async () => {
+            command.SetHandler(async (IOutputFormatterFactory outputFormatterFactory, CancellationToken cancellationToken) => {
                 var requestInfo = CreateDeleteRequestInformation(q => {
                 });
-                await RequestAdapter.SendNoContentAsync(requestInfo);
-                // Print request output. What if the request has no return?
+                await RequestAdapter.SendNoContentAsync(requestInfo, errorMapping: default, cancellationToken: cancellationToken);
                 Console.WriteLine("Success");
             });
             return command;
@@ -67,6 +72,9 @@ namespace ApiSdk.Me.Calendar {
         public Command BuildEventsCommand() {
             var command = new Command("events");
             var builder = new ApiSdk.Me.Calendar.Events.EventsRequestBuilder(PathParameters, RequestAdapter);
+            foreach (var cmd in builder.BuildCommand()) {
+                command.AddCommand(cmd);
+            }
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;
@@ -83,19 +91,18 @@ namespace ApiSdk.Me.Calendar {
             };
             selectOption.IsRequired = false;
             command.AddOption(selectOption);
-            command.SetHandler(async (string[] select) => {
+            var outputOption = new Option<FormatterType>("--output", () => FormatterType.JSON){
+                IsRequired = true
+            };
+            command.AddOption(outputOption);
+            command.SetHandler(async (string[] select, FormatterType output, IOutputFormatterFactory outputFormatterFactory, CancellationToken cancellationToken) => {
                 var requestInfo = CreateGetRequestInformation(q => {
                     q.Select = select;
                 });
-                var result = await RequestAdapter.SendAsync<ApiSdk.Models.Microsoft.Graph.Calendar>(requestInfo);
-                // Print request output. What if the request has no return?
-                using var serializer = RequestAdapter.SerializationWriterFactory.GetSerializationWriter("application/json");
-                serializer.WriteObjectValue(null, result);
-                using var content = serializer.GetSerializedContent();
-                using var reader = new StreamReader(content);
-                var strContent = await reader.ReadToEndAsync();
-                Console.Write(strContent + "\n");
-            }, selectOption);
+                var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: default, cancellationToken: cancellationToken);
+                var formatter = outputFormatterFactory.GetFormatter(output);
+                formatter.WriteOutput(response);
+            }, selectOption, outputOption);
             return command;
         }
         public Command BuildGetScheduleCommand() {
@@ -107,6 +114,9 @@ namespace ApiSdk.Me.Calendar {
         public Command BuildMultiValueExtendedPropertiesCommand() {
             var command = new Command("multi-value-extended-properties");
             var builder = new ApiSdk.Me.Calendar.MultiValueExtendedProperties.MultiValueExtendedPropertiesRequestBuilder(PathParameters, RequestAdapter);
+            foreach (var cmd in builder.BuildCommand()) {
+                command.AddCommand(cmd);
+            }
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;
@@ -122,14 +132,13 @@ namespace ApiSdk.Me.Calendar {
             };
             bodyOption.IsRequired = true;
             command.AddOption(bodyOption);
-            command.SetHandler(async (string body) => {
+            command.SetHandler(async (string body, IOutputFormatterFactory outputFormatterFactory, CancellationToken cancellationToken) => {
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<ApiSdk.Models.Microsoft.Graph.Calendar>();
                 var requestInfo = CreatePatchRequestInformation(model, q => {
                 });
-                await RequestAdapter.SendNoContentAsync(requestInfo);
-                // Print request output. What if the request has no return?
+                await RequestAdapter.SendNoContentAsync(requestInfo, errorMapping: default, cancellationToken: cancellationToken);
                 Console.WriteLine("Success");
             }, bodyOption);
             return command;
@@ -137,6 +146,9 @@ namespace ApiSdk.Me.Calendar {
         public Command BuildSingleValueExtendedPropertiesCommand() {
             var command = new Command("single-value-extended-properties");
             var builder = new ApiSdk.Me.Calendar.SingleValueExtendedProperties.SingleValueExtendedPropertiesRequestBuilder(PathParameters, RequestAdapter);
+            foreach (var cmd in builder.BuildCommand()) {
+                command.AddCommand(cmd);
+            }
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;
@@ -207,42 +219,6 @@ namespace ApiSdk.Me.Calendar {
             h?.Invoke(requestInfo.Headers);
             requestInfo.AddRequestOptions(o?.ToArray());
             return requestInfo;
-        }
-        /// <summary>
-        /// The user's primary calendar. Read-only.
-        /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
-        /// <param name="h">Request headers</param>
-        /// <param name="o">Request options</param>
-        /// <param name="responseHandler">Response handler to use in place of the default response handling provided by the core service</param>
-        /// </summary>
-        public async Task DeleteAsync(Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default, CancellationToken cancellationToken = default) {
-            var requestInfo = CreateDeleteRequestInformation(h, o);
-            await RequestAdapter.SendNoContentAsync(requestInfo, responseHandler, cancellationToken);
-        }
-        /// <summary>
-        /// The user's primary calendar. Read-only.
-        /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
-        /// <param name="h">Request headers</param>
-        /// <param name="o">Request options</param>
-        /// <param name="q">Request query parameters</param>
-        /// <param name="responseHandler">Response handler to use in place of the default response handling provided by the core service</param>
-        /// </summary>
-        public async Task<ApiSdk.Models.Microsoft.Graph.Calendar> GetAsync(Action<GetQueryParameters> q = default, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default, CancellationToken cancellationToken = default) {
-            var requestInfo = CreateGetRequestInformation(q, h, o);
-            return await RequestAdapter.SendAsync<ApiSdk.Models.Microsoft.Graph.Calendar>(requestInfo, responseHandler, cancellationToken);
-        }
-        /// <summary>
-        /// The user's primary calendar. Read-only.
-        /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
-        /// <param name="h">Request headers</param>
-        /// <param name="model"></param>
-        /// <param name="o">Request options</param>
-        /// <param name="responseHandler">Response handler to use in place of the default response handling provided by the core service</param>
-        /// </summary>
-        public async Task PatchAsync(ApiSdk.Models.Microsoft.Graph.Calendar model, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default, CancellationToken cancellationToken = default) {
-            _ = model ?? throw new ArgumentNullException(nameof(model));
-            var requestInfo = CreatePatchRequestInformation(model, h, o);
-            await RequestAdapter.SendNoContentAsync(requestInfo, responseHandler, cancellationToken);
         }
         /// <summary>The user's primary calendar. Read-only.</summary>
         public class GetQueryParameters : QueryParametersBase {

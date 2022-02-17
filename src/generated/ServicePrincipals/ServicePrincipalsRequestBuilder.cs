@@ -6,10 +6,10 @@ using ApiSdk.ServicePrincipals.Item;
 using ApiSdk.ServicePrincipals.ValidateProperties;
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
+using Microsoft.Kiota.Cli.Commons.IO;
 using System;
 using System.Collections.Generic;
 using System.CommandLine;
-using System.CommandLine.Invocation;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -26,34 +26,33 @@ namespace ApiSdk.ServicePrincipals {
         private string UrlTemplate { get; set; }
         public List<Command> BuildCommand() {
             var builder = new ServicePrincipalRequestBuilder(PathParameters, RequestAdapter);
-            var commands = new List<Command> { 
-                builder.BuildAddKeyCommand(),
-                builder.BuildAddPasswordCommand(),
-                builder.BuildAppRoleAssignedToCommand(),
-                builder.BuildAppRoleAssignmentsCommand(),
-                builder.BuildCheckMemberGroupsCommand(),
-                builder.BuildCheckMemberObjectsCommand(),
-                builder.BuildClaimsMappingPoliciesCommand(),
-                builder.BuildCreatedObjectsCommand(),
-                builder.BuildDelegatedPermissionClassificationsCommand(),
-                builder.BuildDeleteCommand(),
-                builder.BuildEndpointsCommand(),
-                builder.BuildGetCommand(),
-                builder.BuildGetMemberGroupsCommand(),
-                builder.BuildGetMemberObjectsCommand(),
-                builder.BuildHomeRealmDiscoveryPoliciesCommand(),
-                builder.BuildMemberOfCommand(),
-                builder.BuildOauth2PermissionGrantsCommand(),
-                builder.BuildOwnedObjectsCommand(),
-                builder.BuildOwnersCommand(),
-                builder.BuildPatchCommand(),
-                builder.BuildRemoveKeyCommand(),
-                builder.BuildRemovePasswordCommand(),
-                builder.BuildRestoreCommand(),
-                builder.BuildTokenIssuancePoliciesCommand(),
-                builder.BuildTokenLifetimePoliciesCommand(),
-                builder.BuildTransitiveMemberOfCommand(),
-            };
+            var commands = new List<Command>();
+            commands.Add(builder.BuildAddKeyCommand());
+            commands.Add(builder.BuildAddPasswordCommand());
+            commands.Add(builder.BuildAppRoleAssignedToCommand());
+            commands.Add(builder.BuildAppRoleAssignmentsCommand());
+            commands.Add(builder.BuildCheckMemberGroupsCommand());
+            commands.Add(builder.BuildCheckMemberObjectsCommand());
+            commands.Add(builder.BuildClaimsMappingPoliciesCommand());
+            commands.Add(builder.BuildCreatedObjectsCommand());
+            commands.Add(builder.BuildDelegatedPermissionClassificationsCommand());
+            commands.Add(builder.BuildDeleteCommand());
+            commands.Add(builder.BuildEndpointsCommand());
+            commands.Add(builder.BuildGetCommand());
+            commands.Add(builder.BuildGetMemberGroupsCommand());
+            commands.Add(builder.BuildGetMemberObjectsCommand());
+            commands.Add(builder.BuildHomeRealmDiscoveryPoliciesCommand());
+            commands.Add(builder.BuildMemberOfCommand());
+            commands.Add(builder.BuildOauth2PermissionGrantsCommand());
+            commands.Add(builder.BuildOwnedObjectsCommand());
+            commands.Add(builder.BuildOwnersCommand());
+            commands.Add(builder.BuildPatchCommand());
+            commands.Add(builder.BuildRemoveKeyCommand());
+            commands.Add(builder.BuildRemovePasswordCommand());
+            commands.Add(builder.BuildRestoreCommand());
+            commands.Add(builder.BuildTokenIssuancePoliciesCommand());
+            commands.Add(builder.BuildTokenLifetimePoliciesCommand());
+            commands.Add(builder.BuildTransitiveMemberOfCommand());
             return commands;
         }
         /// <summary>
@@ -67,21 +66,20 @@ namespace ApiSdk.ServicePrincipals {
             };
             bodyOption.IsRequired = true;
             command.AddOption(bodyOption);
-            command.SetHandler(async (string body) => {
+            var outputOption = new Option<FormatterType>("--output", () => FormatterType.JSON){
+                IsRequired = true
+            };
+            command.AddOption(outputOption);
+            command.SetHandler(async (string body, FormatterType output, IOutputFormatterFactory outputFormatterFactory, CancellationToken cancellationToken) => {
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<ServicePrincipal>();
                 var requestInfo = CreatePostRequestInformation(model, q => {
                 });
-                var result = await RequestAdapter.SendAsync<ServicePrincipal>(requestInfo);
-                // Print request output. What if the request has no return?
-                using var serializer = RequestAdapter.SerializationWriterFactory.GetSerializationWriter("application/json");
-                serializer.WriteObjectValue(null, result);
-                using var content = serializer.GetSerializedContent();
-                using var reader = new StreamReader(content);
-                var strContent = await reader.ReadToEndAsync();
-                Console.Write(strContent + "\n");
-            }, bodyOption);
+                var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: default, cancellationToken: cancellationToken);
+                var formatter = outputFormatterFactory.GetFormatter(output);
+                formatter.WriteOutput(response);
+            }, bodyOption, outputOption);
             return command;
         }
         public Command BuildGetAvailableExtensionPropertiesCommand() {
@@ -138,7 +136,11 @@ namespace ApiSdk.ServicePrincipals {
             };
             expandOption.IsRequired = false;
             command.AddOption(expandOption);
-            command.SetHandler(async (int? top, int? skip, string search, string filter, bool? count, string[] orderby, string[] select, string[] expand) => {
+            var outputOption = new Option<FormatterType>("--output", () => FormatterType.JSON){
+                IsRequired = true
+            };
+            command.AddOption(outputOption);
+            command.SetHandler(async (int? top, int? skip, string search, string filter, bool? count, string[] orderby, string[] select, string[] expand, FormatterType output, IOutputFormatterFactory outputFormatterFactory, CancellationToken cancellationToken) => {
                 var requestInfo = CreateGetRequestInformation(q => {
                     q.Top = top;
                     q.Skip = skip;
@@ -149,15 +151,10 @@ namespace ApiSdk.ServicePrincipals {
                     q.Select = select;
                     q.Expand = expand;
                 });
-                var result = await RequestAdapter.SendAsync<ServicePrincipalsResponse>(requestInfo);
-                // Print request output. What if the request has no return?
-                using var serializer = RequestAdapter.SerializationWriterFactory.GetSerializationWriter("application/json");
-                serializer.WriteObjectValue(null, result);
-                using var content = serializer.GetSerializedContent();
-                using var reader = new StreamReader(content);
-                var strContent = await reader.ReadToEndAsync();
-                Console.Write(strContent + "\n");
-            }, topOption, skipOption, searchOption, filterOption, countOption, orderbyOption, selectOption, expandOption);
+                var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: default, cancellationToken: cancellationToken);
+                var formatter = outputFormatterFactory.GetFormatter(output);
+                formatter.WriteOutput(response);
+            }, topOption, skipOption, searchOption, filterOption, countOption, orderbyOption, selectOption, expandOption, outputOption);
             return command;
         }
         public Command BuildValidatePropertiesCommand() {
@@ -223,31 +220,6 @@ namespace ApiSdk.ServicePrincipals {
         /// </summary>
         public DeltaRequestBuilder Delta() {
             return new DeltaRequestBuilder(PathParameters, RequestAdapter);
-        }
-        /// <summary>
-        /// Get entities from servicePrincipals
-        /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
-        /// <param name="h">Request headers</param>
-        /// <param name="o">Request options</param>
-        /// <param name="q">Request query parameters</param>
-        /// <param name="responseHandler">Response handler to use in place of the default response handling provided by the core service</param>
-        /// </summary>
-        public async Task<ServicePrincipalsResponse> GetAsync(Action<GetQueryParameters> q = default, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default, CancellationToken cancellationToken = default) {
-            var requestInfo = CreateGetRequestInformation(q, h, o);
-            return await RequestAdapter.SendAsync<ServicePrincipalsResponse>(requestInfo, responseHandler, cancellationToken);
-        }
-        /// <summary>
-        /// Add new entity to servicePrincipals
-        /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
-        /// <param name="h">Request headers</param>
-        /// <param name="model"></param>
-        /// <param name="o">Request options</param>
-        /// <param name="responseHandler">Response handler to use in place of the default response handling provided by the core service</param>
-        /// </summary>
-        public async Task<ServicePrincipal> PostAsync(ServicePrincipal model, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default, CancellationToken cancellationToken = default) {
-            _ = model ?? throw new ArgumentNullException(nameof(model));
-            var requestInfo = CreatePostRequestInformation(model, h, o);
-            return await RequestAdapter.SendAsync<ServicePrincipal>(requestInfo, responseHandler, cancellationToken);
         }
         /// <summary>Get entities from servicePrincipals</summary>
         public class GetQueryParameters : QueryParametersBase {

@@ -1,9 +1,9 @@
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
+using Microsoft.Kiota.Cli.Commons.IO;
 using System;
 using System.Collections.Generic;
 using System.CommandLine;
-using System.CommandLine.Invocation;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -25,7 +25,7 @@ namespace ApiSdk.DeviceAppManagement.TargetedManagedAppConfigurations.Item.Targe
             var command = new Command("post");
             command.Description = "Invoke action targetApps";
             // Create options for all the parameters
-            var targetedManagedAppConfigurationIdOption = new Option<string>("--targetedmanagedappconfiguration-id", description: "key: id of targetedManagedAppConfiguration") {
+            var targetedManagedAppConfigurationIdOption = new Option<string>("--targeted-managed-app-configuration-id", description: "key: id of targetedManagedAppConfiguration") {
             };
             targetedManagedAppConfigurationIdOption.IsRequired = true;
             command.AddOption(targetedManagedAppConfigurationIdOption);
@@ -33,14 +33,13 @@ namespace ApiSdk.DeviceAppManagement.TargetedManagedAppConfigurations.Item.Targe
             };
             bodyOption.IsRequired = true;
             command.AddOption(bodyOption);
-            command.SetHandler(async (string targetedManagedAppConfigurationId, string body) => {
+            command.SetHandler(async (string targetedManagedAppConfigurationId, string body, IOutputFormatterFactory outputFormatterFactory, CancellationToken cancellationToken) => {
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<TargetAppsRequestBody>();
                 var requestInfo = CreatePostRequestInformation(model, q => {
                 });
-                await RequestAdapter.SendNoContentAsync(requestInfo);
-                // Print request output. What if the request has no return?
+                await RequestAdapter.SendNoContentAsync(requestInfo, errorMapping: default, cancellationToken: cancellationToken);
                 Console.WriteLine("Success");
             }, targetedManagedAppConfigurationIdOption, bodyOption);
             return command;
@@ -75,19 +74,6 @@ namespace ApiSdk.DeviceAppManagement.TargetedManagedAppConfigurations.Item.Targe
             h?.Invoke(requestInfo.Headers);
             requestInfo.AddRequestOptions(o?.ToArray());
             return requestInfo;
-        }
-        /// <summary>
-        /// Invoke action targetApps
-        /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
-        /// <param name="h">Request headers</param>
-        /// <param name="model"></param>
-        /// <param name="o">Request options</param>
-        /// <param name="responseHandler">Response handler to use in place of the default response handling provided by the core service</param>
-        /// </summary>
-        public async Task PostAsync(TargetAppsRequestBody model, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default, CancellationToken cancellationToken = default) {
-            _ = model ?? throw new ArgumentNullException(nameof(model));
-            var requestInfo = CreatePostRequestInformation(model, h, o);
-            await RequestAdapter.SendNoContentAsync(requestInfo, responseHandler, cancellationToken);
         }
     }
 }

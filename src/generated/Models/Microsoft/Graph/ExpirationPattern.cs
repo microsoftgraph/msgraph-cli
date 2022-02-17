@@ -8,7 +8,7 @@ namespace ApiSdk.Models.Microsoft.Graph {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>The requestor's desired duration of access represented in ISO 8601 format for durations. For example, PT3H refers to three hours.  If specified in a request, endDateTime should not be present and the type property should be set to afterDuration.</summary>
-        public string Duration { get; set; }
+        public TimeSpan? Duration { get; set; }
         /// <summary>Timestamp of date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z.</summary>
         public DateTimeOffset? EndDateTime { get; set; }
         /// <summary>The requestor's desired expiration pattern type.</summary>
@@ -24,7 +24,7 @@ namespace ApiSdk.Models.Microsoft.Graph {
         /// </summary>
         public IDictionary<string, Action<T, IParseNode>> GetFieldDeserializers<T>() {
             return new Dictionary<string, Action<T, IParseNode>> {
-                {"duration", (o,n) => { (o as ExpirationPattern).Duration = n.GetStringValue(); } },
+                {"duration", (o,n) => { (o as ExpirationPattern).Duration = n.GetTimeSpanValue(); } },
                 {"endDateTime", (o,n) => { (o as ExpirationPattern).EndDateTime = n.GetDateTimeOffsetValue(); } },
                 {"type", (o,n) => { (o as ExpirationPattern).Type = n.GetEnumValue<ExpirationPatternType>(); } },
             };
@@ -35,7 +35,7 @@ namespace ApiSdk.Models.Microsoft.Graph {
         /// </summary>
         public void Serialize(ISerializationWriter writer) {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
-            writer.WriteStringValue("duration", Duration);
+            writer.WriteTimeSpanValue("duration", Duration);
             writer.WriteDateTimeOffsetValue("endDateTime", EndDateTime);
             writer.WriteEnumValue<ExpirationPatternType>("type", Type);
             writer.WriteAdditionalData(AdditionalData);

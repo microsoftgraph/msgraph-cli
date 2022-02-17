@@ -2,10 +2,10 @@ using ApiSdk.Models.Microsoft.Graph;
 using ApiSdk.Workbooks.Item.Workbook.Names.Item.Worksheet.Names.Item.Range;
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
+using Microsoft.Kiota.Cli.Commons.IO;
 using System;
 using System.Collections.Generic;
 using System.CommandLine;
-using System.CommandLine.Invocation;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -27,23 +27,22 @@ namespace ApiSdk.Workbooks.Item.Workbook.Names.Item.Worksheet.Names.Item {
             var command = new Command("delete");
             command.Description = "Returns collection of names that are associated with the worksheet. Read-only.";
             // Create options for all the parameters
-            var driveItemIdOption = new Option<string>("--driveitem-id", description: "key: id of driveItem") {
+            var driveItemIdOption = new Option<string>("--drive-item-id", description: "key: id of driveItem") {
             };
             driveItemIdOption.IsRequired = true;
             command.AddOption(driveItemIdOption);
-            var workbookNamedItemIdOption = new Option<string>("--workbooknameditem-id", description: "key: id of workbookNamedItem") {
+            var workbookNamedItemIdOption = new Option<string>("--workbook-named-item-id", description: "key: id of workbookNamedItem") {
             };
             workbookNamedItemIdOption.IsRequired = true;
             command.AddOption(workbookNamedItemIdOption);
-            var workbookNamedItemId1Option = new Option<string>("--workbooknameditem-id1", description: "key: id of workbookNamedItem") {
+            var workbookNamedItemId1Option = new Option<string>("--workbook-named-item-id1", description: "key: id of workbookNamedItem") {
             };
             workbookNamedItemId1Option.IsRequired = true;
             command.AddOption(workbookNamedItemId1Option);
-            command.SetHandler(async (string driveItemId, string workbookNamedItemId, string workbookNamedItemId1) => {
+            command.SetHandler(async (string driveItemId, string workbookNamedItemId, string workbookNamedItemId1, IOutputFormatterFactory outputFormatterFactory, CancellationToken cancellationToken) => {
                 var requestInfo = CreateDeleteRequestInformation(q => {
                 });
-                await RequestAdapter.SendNoContentAsync(requestInfo);
-                // Print request output. What if the request has no return?
+                await RequestAdapter.SendNoContentAsync(requestInfo, errorMapping: default, cancellationToken: cancellationToken);
                 Console.WriteLine("Success");
             }, driveItemIdOption, workbookNamedItemIdOption, workbookNamedItemId1Option);
             return command;
@@ -55,15 +54,15 @@ namespace ApiSdk.Workbooks.Item.Workbook.Names.Item.Worksheet.Names.Item {
             var command = new Command("get");
             command.Description = "Returns collection of names that are associated with the worksheet. Read-only.";
             // Create options for all the parameters
-            var driveItemIdOption = new Option<string>("--driveitem-id", description: "key: id of driveItem") {
+            var driveItemIdOption = new Option<string>("--drive-item-id", description: "key: id of driveItem") {
             };
             driveItemIdOption.IsRequired = true;
             command.AddOption(driveItemIdOption);
-            var workbookNamedItemIdOption = new Option<string>("--workbooknameditem-id", description: "key: id of workbookNamedItem") {
+            var workbookNamedItemIdOption = new Option<string>("--workbook-named-item-id", description: "key: id of workbookNamedItem") {
             };
             workbookNamedItemIdOption.IsRequired = true;
             command.AddOption(workbookNamedItemIdOption);
-            var workbookNamedItemId1Option = new Option<string>("--workbooknameditem-id1", description: "key: id of workbookNamedItem") {
+            var workbookNamedItemId1Option = new Option<string>("--workbook-named-item-id1", description: "key: id of workbookNamedItem") {
             };
             workbookNamedItemId1Option.IsRequired = true;
             command.AddOption(workbookNamedItemId1Option);
@@ -77,20 +76,19 @@ namespace ApiSdk.Workbooks.Item.Workbook.Names.Item.Worksheet.Names.Item {
             };
             expandOption.IsRequired = false;
             command.AddOption(expandOption);
-            command.SetHandler(async (string driveItemId, string workbookNamedItemId, string workbookNamedItemId1, string[] select, string[] expand) => {
+            var outputOption = new Option<FormatterType>("--output", () => FormatterType.JSON){
+                IsRequired = true
+            };
+            command.AddOption(outputOption);
+            command.SetHandler(async (string driveItemId, string workbookNamedItemId, string workbookNamedItemId1, string[] select, string[] expand, FormatterType output, IOutputFormatterFactory outputFormatterFactory, CancellationToken cancellationToken) => {
                 var requestInfo = CreateGetRequestInformation(q => {
                     q.Select = select;
                     q.Expand = expand;
                 });
-                var result = await RequestAdapter.SendAsync<WorkbookNamedItem>(requestInfo);
-                // Print request output. What if the request has no return?
-                using var serializer = RequestAdapter.SerializationWriterFactory.GetSerializationWriter("application/json");
-                serializer.WriteObjectValue(null, result);
-                using var content = serializer.GetSerializedContent();
-                using var reader = new StreamReader(content);
-                var strContent = await reader.ReadToEndAsync();
-                Console.Write(strContent + "\n");
-            }, driveItemIdOption, workbookNamedItemIdOption, workbookNamedItemId1Option, selectOption, expandOption);
+                var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: default, cancellationToken: cancellationToken);
+                var formatter = outputFormatterFactory.GetFormatter(output);
+                formatter.WriteOutput(response);
+            }, driveItemIdOption, workbookNamedItemIdOption, workbookNamedItemId1Option, selectOption, expandOption, outputOption);
             return command;
         }
         /// <summary>
@@ -100,15 +98,15 @@ namespace ApiSdk.Workbooks.Item.Workbook.Names.Item.Worksheet.Names.Item {
             var command = new Command("patch");
             command.Description = "Returns collection of names that are associated with the worksheet. Read-only.";
             // Create options for all the parameters
-            var driveItemIdOption = new Option<string>("--driveitem-id", description: "key: id of driveItem") {
+            var driveItemIdOption = new Option<string>("--drive-item-id", description: "key: id of driveItem") {
             };
             driveItemIdOption.IsRequired = true;
             command.AddOption(driveItemIdOption);
-            var workbookNamedItemIdOption = new Option<string>("--workbooknameditem-id", description: "key: id of workbookNamedItem") {
+            var workbookNamedItemIdOption = new Option<string>("--workbook-named-item-id", description: "key: id of workbookNamedItem") {
             };
             workbookNamedItemIdOption.IsRequired = true;
             command.AddOption(workbookNamedItemIdOption);
-            var workbookNamedItemId1Option = new Option<string>("--workbooknameditem-id1", description: "key: id of workbookNamedItem") {
+            var workbookNamedItemId1Option = new Option<string>("--workbook-named-item-id1", description: "key: id of workbookNamedItem") {
             };
             workbookNamedItemId1Option.IsRequired = true;
             command.AddOption(workbookNamedItemId1Option);
@@ -116,14 +114,13 @@ namespace ApiSdk.Workbooks.Item.Workbook.Names.Item.Worksheet.Names.Item {
             };
             bodyOption.IsRequired = true;
             command.AddOption(bodyOption);
-            command.SetHandler(async (string driveItemId, string workbookNamedItemId, string workbookNamedItemId1, string body) => {
+            command.SetHandler(async (string driveItemId, string workbookNamedItemId, string workbookNamedItemId1, string body, IOutputFormatterFactory outputFormatterFactory, CancellationToken cancellationToken) => {
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<WorkbookNamedItem>();
                 var requestInfo = CreatePatchRequestInformation(model, q => {
                 });
-                await RequestAdapter.SendNoContentAsync(requestInfo);
-                // Print request output. What if the request has no return?
+                await RequestAdapter.SendNoContentAsync(requestInfo, errorMapping: default, cancellationToken: cancellationToken);
                 Console.WriteLine("Success");
             }, driveItemIdOption, workbookNamedItemIdOption, workbookNamedItemId1Option, bodyOption);
             return command;
@@ -194,42 +191,6 @@ namespace ApiSdk.Workbooks.Item.Workbook.Names.Item.Worksheet.Names.Item {
             h?.Invoke(requestInfo.Headers);
             requestInfo.AddRequestOptions(o?.ToArray());
             return requestInfo;
-        }
-        /// <summary>
-        /// Returns collection of names that are associated with the worksheet. Read-only.
-        /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
-        /// <param name="h">Request headers</param>
-        /// <param name="o">Request options</param>
-        /// <param name="responseHandler">Response handler to use in place of the default response handling provided by the core service</param>
-        /// </summary>
-        public async Task DeleteAsync(Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default, CancellationToken cancellationToken = default) {
-            var requestInfo = CreateDeleteRequestInformation(h, o);
-            await RequestAdapter.SendNoContentAsync(requestInfo, responseHandler, cancellationToken);
-        }
-        /// <summary>
-        /// Returns collection of names that are associated with the worksheet. Read-only.
-        /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
-        /// <param name="h">Request headers</param>
-        /// <param name="o">Request options</param>
-        /// <param name="q">Request query parameters</param>
-        /// <param name="responseHandler">Response handler to use in place of the default response handling provided by the core service</param>
-        /// </summary>
-        public async Task<WorkbookNamedItem> GetAsync(Action<GetQueryParameters> q = default, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default, CancellationToken cancellationToken = default) {
-            var requestInfo = CreateGetRequestInformation(q, h, o);
-            return await RequestAdapter.SendAsync<WorkbookNamedItem>(requestInfo, responseHandler, cancellationToken);
-        }
-        /// <summary>
-        /// Returns collection of names that are associated with the worksheet. Read-only.
-        /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
-        /// <param name="h">Request headers</param>
-        /// <param name="model"></param>
-        /// <param name="o">Request options</param>
-        /// <param name="responseHandler">Response handler to use in place of the default response handling provided by the core service</param>
-        /// </summary>
-        public async Task PatchAsync(WorkbookNamedItem model, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default, CancellationToken cancellationToken = default) {
-            _ = model ?? throw new ArgumentNullException(nameof(model));
-            var requestInfo = CreatePatchRequestInformation(model, h, o);
-            await RequestAdapter.SendNoContentAsync(requestInfo, responseHandler, cancellationToken);
         }
         /// <summary>
         /// Builds and executes requests for operations under \workbooks\{driveItem-id}\workbook\names\{workbookNamedItem-id}\worksheet\names\{workbookNamedItem-id1}\microsoft.graph.range()

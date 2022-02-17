@@ -97,10 +97,10 @@ using ApiSdk.Reports.MonthlyPrintUsageByPrinter;
 using ApiSdk.Reports.MonthlyPrintUsageByUser;
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
+using Microsoft.Kiota.Cli.Commons.IO;
 using System;
 using System.Collections.Generic;
 using System.CommandLine;
-using System.CommandLine.Invocation;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -118,6 +118,9 @@ namespace ApiSdk.Reports {
         public Command BuildDailyPrintUsageByPrinterCommand() {
             var command = new Command("daily-print-usage-by-printer");
             var builder = new ApiSdk.Reports.DailyPrintUsageByPrinter.DailyPrintUsageByPrinterRequestBuilder(PathParameters, RequestAdapter);
+            foreach (var cmd in builder.BuildCommand()) {
+                command.AddCommand(cmd);
+            }
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;
@@ -125,6 +128,9 @@ namespace ApiSdk.Reports {
         public Command BuildDailyPrintUsageByUserCommand() {
             var command = new Command("daily-print-usage-by-user");
             var builder = new ApiSdk.Reports.DailyPrintUsageByUser.DailyPrintUsageByUserRequestBuilder(PathParameters, RequestAdapter);
+            foreach (var cmd in builder.BuildCommand()) {
+                command.AddCommand(cmd);
+            }
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;
@@ -146,25 +152,27 @@ namespace ApiSdk.Reports {
             };
             expandOption.IsRequired = false;
             command.AddOption(expandOption);
-            command.SetHandler(async (string[] select, string[] expand) => {
+            var outputOption = new Option<FormatterType>("--output", () => FormatterType.JSON){
+                IsRequired = true
+            };
+            command.AddOption(outputOption);
+            command.SetHandler(async (string[] select, string[] expand, FormatterType output, IOutputFormatterFactory outputFormatterFactory, CancellationToken cancellationToken) => {
                 var requestInfo = CreateGetRequestInformation(q => {
                     q.Select = select;
                     q.Expand = expand;
                 });
-                var result = await RequestAdapter.SendAsync<ReportRoot>(requestInfo);
-                // Print request output. What if the request has no return?
-                using var serializer = RequestAdapter.SerializationWriterFactory.GetSerializationWriter("application/json");
-                serializer.WriteObjectValue(null, result);
-                using var content = serializer.GetSerializedContent();
-                using var reader = new StreamReader(content);
-                var strContent = await reader.ReadToEndAsync();
-                Console.Write(strContent + "\n");
-            }, selectOption, expandOption);
+                var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: default, cancellationToken: cancellationToken);
+                var formatter = outputFormatterFactory.GetFormatter(output);
+                formatter.WriteOutput(response);
+            }, selectOption, expandOption, outputOption);
             return command;
         }
         public Command BuildMonthlyPrintUsageByPrinterCommand() {
             var command = new Command("monthly-print-usage-by-printer");
             var builder = new ApiSdk.Reports.MonthlyPrintUsageByPrinter.MonthlyPrintUsageByPrinterRequestBuilder(PathParameters, RequestAdapter);
+            foreach (var cmd in builder.BuildCommand()) {
+                command.AddCommand(cmd);
+            }
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;
@@ -172,6 +180,9 @@ namespace ApiSdk.Reports {
         public Command BuildMonthlyPrintUsageByUserCommand() {
             var command = new Command("monthly-print-usage-by-user");
             var builder = new ApiSdk.Reports.MonthlyPrintUsageByUser.MonthlyPrintUsageByUserRequestBuilder(PathParameters, RequestAdapter);
+            foreach (var cmd in builder.BuildCommand()) {
+                command.AddCommand(cmd);
+            }
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;
@@ -187,14 +198,13 @@ namespace ApiSdk.Reports {
             };
             bodyOption.IsRequired = true;
             command.AddOption(bodyOption);
-            command.SetHandler(async (string body) => {
+            command.SetHandler(async (string body, IOutputFormatterFactory outputFormatterFactory, CancellationToken cancellationToken) => {
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<ReportRoot>();
                 var requestInfo = CreatePatchRequestInformation(model, q => {
                 });
-                await RequestAdapter.SendNoContentAsync(requestInfo);
-                // Print request output. What if the request has no return?
+                await RequestAdapter.SendNoContentAsync(requestInfo, errorMapping: default, cancellationToken: cancellationToken);
                 Console.WriteLine("Success");
             }, bodyOption);
             return command;
@@ -264,18 +274,6 @@ namespace ApiSdk.Reports {
             return new DeviceConfigurationUserActivityRequestBuilder(PathParameters, RequestAdapter);
         }
         /// <summary>
-        /// Get reports
-        /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
-        /// <param name="h">Request headers</param>
-        /// <param name="o">Request options</param>
-        /// <param name="q">Request query parameters</param>
-        /// <param name="responseHandler">Response handler to use in place of the default response handling provided by the core service</param>
-        /// </summary>
-        public async Task<ReportRoot> GetAsync(Action<GetQueryParameters> q = default, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default, CancellationToken cancellationToken = default) {
-            var requestInfo = CreateGetRequestInformation(q, h, o);
-            return await RequestAdapter.SendAsync<ReportRoot>(requestInfo, responseHandler, cancellationToken);
-        }
-        /// <summary>
         /// Builds and executes requests for operations under \reports\microsoft.graph.getEmailActivityCounts(period='{period}')
         /// <param name="period">Usage: period={period}</param>
         /// </summary>
@@ -295,8 +293,8 @@ namespace ApiSdk.Reports {
         /// Builds and executes requests for operations under \reports\microsoft.graph.getEmailActivityUserDetail(date={date})
         /// <param name="date">Usage: date={date}</param>
         /// </summary>
-        public GetEmailActivityUserDetailWithDateRequestBuilder GetEmailActivityUserDetailWithDate(string date) {
-            if(string.IsNullOrEmpty(date)) throw new ArgumentNullException(nameof(date));
+        public GetEmailActivityUserDetailWithDateRequestBuilder GetEmailActivityUserDetailWithDate(Date? date) {
+            _ = date ?? throw new ArgumentNullException(nameof(date));
             return new GetEmailActivityUserDetailWithDateRequestBuilder(PathParameters, RequestAdapter, date);
         }
         /// <summary>
@@ -327,8 +325,8 @@ namespace ApiSdk.Reports {
         /// Builds and executes requests for operations under \reports\microsoft.graph.getEmailAppUsageUserDetail(date={date})
         /// <param name="date">Usage: date={date}</param>
         /// </summary>
-        public GetEmailAppUsageUserDetailWithDateRequestBuilder GetEmailAppUsageUserDetailWithDate(string date) {
-            if(string.IsNullOrEmpty(date)) throw new ArgumentNullException(nameof(date));
+        public GetEmailAppUsageUserDetailWithDateRequestBuilder GetEmailAppUsageUserDetailWithDate(Date? date) {
+            _ = date ?? throw new ArgumentNullException(nameof(date));
             return new GetEmailAppUsageUserDetailWithDateRequestBuilder(PathParameters, RequestAdapter, date);
         }
         /// <summary>
@@ -421,8 +419,8 @@ namespace ApiSdk.Reports {
         /// Builds and executes requests for operations under \reports\microsoft.graph.getOffice365ActiveUserDetail(date={date})
         /// <param name="date">Usage: date={date}</param>
         /// </summary>
-        public GetOffice365ActiveUserDetailWithDateRequestBuilder GetOffice365ActiveUserDetailWithDate(string date) {
-            if(string.IsNullOrEmpty(date)) throw new ArgumentNullException(nameof(date));
+        public GetOffice365ActiveUserDetailWithDateRequestBuilder GetOffice365ActiveUserDetailWithDate(Date? date) {
+            _ = date ?? throw new ArgumentNullException(nameof(date));
             return new GetOffice365ActiveUserDetailWithDateRequestBuilder(PathParameters, RequestAdapter, date);
         }
         /// <summary>
@@ -445,8 +443,8 @@ namespace ApiSdk.Reports {
         /// Builds and executes requests for operations under \reports\microsoft.graph.getOffice365GroupsActivityDetail(date={date})
         /// <param name="date">Usage: date={date}</param>
         /// </summary>
-        public GetOffice365GroupsActivityDetailWithDateRequestBuilder GetOffice365GroupsActivityDetailWithDate(string date) {
-            if(string.IsNullOrEmpty(date)) throw new ArgumentNullException(nameof(date));
+        public GetOffice365GroupsActivityDetailWithDateRequestBuilder GetOffice365GroupsActivityDetailWithDate(Date? date) {
+            _ = date ?? throw new ArgumentNullException(nameof(date));
             return new GetOffice365GroupsActivityDetailWithDateRequestBuilder(PathParameters, RequestAdapter, date);
         }
         /// <summary>
@@ -509,8 +507,8 @@ namespace ApiSdk.Reports {
         /// Builds and executes requests for operations under \reports\microsoft.graph.getOneDriveActivityUserDetail(date={date})
         /// <param name="date">Usage: date={date}</param>
         /// </summary>
-        public GetOneDriveActivityUserDetailWithDateRequestBuilder GetOneDriveActivityUserDetailWithDate(string date) {
-            if(string.IsNullOrEmpty(date)) throw new ArgumentNullException(nameof(date));
+        public GetOneDriveActivityUserDetailWithDateRequestBuilder GetOneDriveActivityUserDetailWithDate(Date? date) {
+            _ = date ?? throw new ArgumentNullException(nameof(date));
             return new GetOneDriveActivityUserDetailWithDateRequestBuilder(PathParameters, RequestAdapter, date);
         }
         /// <summary>
@@ -533,8 +531,8 @@ namespace ApiSdk.Reports {
         /// Builds and executes requests for operations under \reports\microsoft.graph.getOneDriveUsageAccountDetail(date={date})
         /// <param name="date">Usage: date={date}</param>
         /// </summary>
-        public GetOneDriveUsageAccountDetailWithDateRequestBuilder GetOneDriveUsageAccountDetailWithDate(string date) {
-            if(string.IsNullOrEmpty(date)) throw new ArgumentNullException(nameof(date));
+        public GetOneDriveUsageAccountDetailWithDateRequestBuilder GetOneDriveUsageAccountDetailWithDate(Date? date) {
+            _ = date ?? throw new ArgumentNullException(nameof(date));
             return new GetOneDriveUsageAccountDetailWithDateRequestBuilder(PathParameters, RequestAdapter, date);
         }
         /// <summary>
@@ -601,8 +599,8 @@ namespace ApiSdk.Reports {
         /// Builds and executes requests for operations under \reports\microsoft.graph.getSharePointActivityUserDetail(date={date})
         /// <param name="date">Usage: date={date}</param>
         /// </summary>
-        public GetSharePointActivityUserDetailWithDateRequestBuilder GetSharePointActivityUserDetailWithDate(string date) {
-            if(string.IsNullOrEmpty(date)) throw new ArgumentNullException(nameof(date));
+        public GetSharePointActivityUserDetailWithDateRequestBuilder GetSharePointActivityUserDetailWithDate(Date? date) {
+            _ = date ?? throw new ArgumentNullException(nameof(date));
             return new GetSharePointActivityUserDetailWithDateRequestBuilder(PathParameters, RequestAdapter, date);
         }
         /// <summary>
@@ -617,8 +615,8 @@ namespace ApiSdk.Reports {
         /// Builds and executes requests for operations under \reports\microsoft.graph.getSharePointSiteUsageDetail(date={date})
         /// <param name="date">Usage: date={date}</param>
         /// </summary>
-        public GetSharePointSiteUsageDetailWithDateRequestBuilder GetSharePointSiteUsageDetailWithDate(string date) {
-            if(string.IsNullOrEmpty(date)) throw new ArgumentNullException(nameof(date));
+        public GetSharePointSiteUsageDetailWithDateRequestBuilder GetSharePointSiteUsageDetailWithDate(Date? date) {
+            _ = date ?? throw new ArgumentNullException(nameof(date));
             return new GetSharePointSiteUsageDetailWithDateRequestBuilder(PathParameters, RequestAdapter, date);
         }
         /// <summary>
@@ -681,8 +679,8 @@ namespace ApiSdk.Reports {
         /// Builds and executes requests for operations under \reports\microsoft.graph.getSkypeForBusinessActivityUserDetail(date={date})
         /// <param name="date">Usage: date={date}</param>
         /// </summary>
-        public GetSkypeForBusinessActivityUserDetailWithDateRequestBuilder GetSkypeForBusinessActivityUserDetailWithDate(string date) {
-            if(string.IsNullOrEmpty(date)) throw new ArgumentNullException(nameof(date));
+        public GetSkypeForBusinessActivityUserDetailWithDateRequestBuilder GetSkypeForBusinessActivityUserDetailWithDate(Date? date) {
+            _ = date ?? throw new ArgumentNullException(nameof(date));
             return new GetSkypeForBusinessActivityUserDetailWithDateRequestBuilder(PathParameters, RequestAdapter, date);
         }
         /// <summary>
@@ -713,8 +711,8 @@ namespace ApiSdk.Reports {
         /// Builds and executes requests for operations under \reports\microsoft.graph.getSkypeForBusinessDeviceUsageUserDetail(date={date})
         /// <param name="date">Usage: date={date}</param>
         /// </summary>
-        public GetSkypeForBusinessDeviceUsageUserDetailWithDateRequestBuilder GetSkypeForBusinessDeviceUsageUserDetailWithDate(string date) {
-            if(string.IsNullOrEmpty(date)) throw new ArgumentNullException(nameof(date));
+        public GetSkypeForBusinessDeviceUsageUserDetailWithDateRequestBuilder GetSkypeForBusinessDeviceUsageUserDetailWithDate(Date? date) {
+            _ = date ?? throw new ArgumentNullException(nameof(date));
             return new GetSkypeForBusinessDeviceUsageUserDetailWithDateRequestBuilder(PathParameters, RequestAdapter, date);
         }
         /// <summary>
@@ -817,8 +815,8 @@ namespace ApiSdk.Reports {
         /// Builds and executes requests for operations under \reports\microsoft.graph.getTeamsDeviceUsageUserDetail(date={date})
         /// <param name="date">Usage: date={date}</param>
         /// </summary>
-        public GetTeamsDeviceUsageUserDetailWithDateRequestBuilder GetTeamsDeviceUsageUserDetailWithDate(string date) {
-            if(string.IsNullOrEmpty(date)) throw new ArgumentNullException(nameof(date));
+        public GetTeamsDeviceUsageUserDetailWithDateRequestBuilder GetTeamsDeviceUsageUserDetailWithDate(Date? date) {
+            _ = date ?? throw new ArgumentNullException(nameof(date));
             return new GetTeamsDeviceUsageUserDetailWithDateRequestBuilder(PathParameters, RequestAdapter, date);
         }
         /// <summary>
@@ -849,8 +847,8 @@ namespace ApiSdk.Reports {
         /// Builds and executes requests for operations under \reports\microsoft.graph.getTeamsUserActivityUserDetail(date={date})
         /// <param name="date">Usage: date={date}</param>
         /// </summary>
-        public GetTeamsUserActivityUserDetailWithDateRequestBuilder GetTeamsUserActivityUserDetailWithDate(string date) {
-            if(string.IsNullOrEmpty(date)) throw new ArgumentNullException(nameof(date));
+        public GetTeamsUserActivityUserDetailWithDateRequestBuilder GetTeamsUserActivityUserDetailWithDate(Date? date) {
+            _ = date ?? throw new ArgumentNullException(nameof(date));
             return new GetTeamsUserActivityUserDetailWithDateRequestBuilder(PathParameters, RequestAdapter, date);
         }
         /// <summary>
@@ -893,8 +891,8 @@ namespace ApiSdk.Reports {
         /// Builds and executes requests for operations under \reports\microsoft.graph.getYammerActivityUserDetail(date={date})
         /// <param name="date">Usage: date={date}</param>
         /// </summary>
-        public GetYammerActivityUserDetailWithDateRequestBuilder GetYammerActivityUserDetailWithDate(string date) {
-            if(string.IsNullOrEmpty(date)) throw new ArgumentNullException(nameof(date));
+        public GetYammerActivityUserDetailWithDateRequestBuilder GetYammerActivityUserDetailWithDate(Date? date) {
+            _ = date ?? throw new ArgumentNullException(nameof(date));
             return new GetYammerActivityUserDetailWithDateRequestBuilder(PathParameters, RequestAdapter, date);
         }
         /// <summary>
@@ -925,8 +923,8 @@ namespace ApiSdk.Reports {
         /// Builds and executes requests for operations under \reports\microsoft.graph.getYammerDeviceUsageUserDetail(date={date})
         /// <param name="date">Usage: date={date}</param>
         /// </summary>
-        public GetYammerDeviceUsageUserDetailWithDateRequestBuilder GetYammerDeviceUsageUserDetailWithDate(string date) {
-            if(string.IsNullOrEmpty(date)) throw new ArgumentNullException(nameof(date));
+        public GetYammerDeviceUsageUserDetailWithDateRequestBuilder GetYammerDeviceUsageUserDetailWithDate(Date? date) {
+            _ = date ?? throw new ArgumentNullException(nameof(date));
             return new GetYammerDeviceUsageUserDetailWithDateRequestBuilder(PathParameters, RequestAdapter, date);
         }
         /// <summary>
@@ -949,8 +947,8 @@ namespace ApiSdk.Reports {
         /// Builds and executes requests for operations under \reports\microsoft.graph.getYammerGroupsActivityDetail(date={date})
         /// <param name="date">Usage: date={date}</param>
         /// </summary>
-        public GetYammerGroupsActivityDetailWithDateRequestBuilder GetYammerGroupsActivityDetailWithDate(string date) {
-            if(string.IsNullOrEmpty(date)) throw new ArgumentNullException(nameof(date));
+        public GetYammerGroupsActivityDetailWithDateRequestBuilder GetYammerGroupsActivityDetailWithDate(Date? date) {
+            _ = date ?? throw new ArgumentNullException(nameof(date));
             return new GetYammerGroupsActivityDetailWithDateRequestBuilder(PathParameters, RequestAdapter, date);
         }
         /// <summary>
@@ -1002,19 +1000,6 @@ namespace ApiSdk.Reports {
         public ManagedDeviceEnrollmentTopFailuresWithPeriodRequestBuilder ManagedDeviceEnrollmentTopFailuresWithPeriod(string period) {
             if(string.IsNullOrEmpty(period)) throw new ArgumentNullException(nameof(period));
             return new ManagedDeviceEnrollmentTopFailuresWithPeriodRequestBuilder(PathParameters, RequestAdapter, period);
-        }
-        /// <summary>
-        /// Update reports
-        /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
-        /// <param name="h">Request headers</param>
-        /// <param name="model"></param>
-        /// <param name="o">Request options</param>
-        /// <param name="responseHandler">Response handler to use in place of the default response handling provided by the core service</param>
-        /// </summary>
-        public async Task PatchAsync(ReportRoot model, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default, CancellationToken cancellationToken = default) {
-            _ = model ?? throw new ArgumentNullException(nameof(model));
-            var requestInfo = CreatePatchRequestInformation(model, h, o);
-            await RequestAdapter.SendNoContentAsync(requestInfo, responseHandler, cancellationToken);
         }
         /// <summary>Get reports</summary>
         public class GetQueryParameters : QueryParametersBase {

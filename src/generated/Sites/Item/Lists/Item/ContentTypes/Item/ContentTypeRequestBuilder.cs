@@ -11,10 +11,10 @@ using ApiSdk.Sites.Item.Lists.Item.ContentTypes.Item.Publish;
 using ApiSdk.Sites.Item.Lists.Item.ContentTypes.Item.Unpublish;
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
+using Microsoft.Kiota.Cli.Commons.IO;
 using System;
 using System.Collections.Generic;
 using System.CommandLine;
-using System.CommandLine.Invocation;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -37,7 +37,7 @@ namespace ApiSdk.Sites.Item.Lists.Item.ContentTypes.Item {
         }
         public Command BuildBaseCommand() {
             var command = new Command("base");
-            var builder = new ApiSdk.Sites.Item.Lists.Item.ContentTypes.Item.@Base.BaseRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new ApiSdk.Sites.Item.Lists.Item.ContentTypes.Item.Base.BaseRequestBuilder(PathParameters, RequestAdapter);
             command.AddCommand(builder.BuildAssociateWithHubSitesCommand());
             command.AddCommand(builder.BuildCopyToDefaultContentLocationCommand());
             command.AddCommand(builder.BuildGetCommand());
@@ -57,6 +57,9 @@ namespace ApiSdk.Sites.Item.Lists.Item.ContentTypes.Item {
         public Command BuildColumnLinksCommand() {
             var command = new Command("column-links");
             var builder = new ApiSdk.Sites.Item.Lists.Item.ContentTypes.Item.ColumnLinks.ColumnLinksRequestBuilder(PathParameters, RequestAdapter);
+            foreach (var cmd in builder.BuildCommand()) {
+                command.AddCommand(cmd);
+            }
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;
@@ -71,6 +74,9 @@ namespace ApiSdk.Sites.Item.Lists.Item.ContentTypes.Item {
         public Command BuildColumnsCommand() {
             var command = new Command("columns");
             var builder = new ApiSdk.Sites.Item.Lists.Item.ContentTypes.Item.Columns.ColumnsRequestBuilder(PathParameters, RequestAdapter);
+            foreach (var cmd in builder.BuildCommand()) {
+                command.AddCommand(cmd);
+            }
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;
@@ -96,15 +102,14 @@ namespace ApiSdk.Sites.Item.Lists.Item.ContentTypes.Item {
             };
             listIdOption.IsRequired = true;
             command.AddOption(listIdOption);
-            var contentTypeIdOption = new Option<string>("--contenttype-id", description: "key: id of contentType") {
+            var contentTypeIdOption = new Option<string>("--content-type-id", description: "key: id of contentType") {
             };
             contentTypeIdOption.IsRequired = true;
             command.AddOption(contentTypeIdOption);
-            command.SetHandler(async (string siteId, string listId, string contentTypeId) => {
+            command.SetHandler(async (string siteId, string listId, string contentTypeId, IOutputFormatterFactory outputFormatterFactory, CancellationToken cancellationToken) => {
                 var requestInfo = CreateDeleteRequestInformation(q => {
                 });
-                await RequestAdapter.SendNoContentAsync(requestInfo);
-                // Print request output. What if the request has no return?
+                await RequestAdapter.SendNoContentAsync(requestInfo, errorMapping: default, cancellationToken: cancellationToken);
                 Console.WriteLine("Success");
             }, siteIdOption, listIdOption, contentTypeIdOption);
             return command;
@@ -124,7 +129,7 @@ namespace ApiSdk.Sites.Item.Lists.Item.ContentTypes.Item {
             };
             listIdOption.IsRequired = true;
             command.AddOption(listIdOption);
-            var contentTypeIdOption = new Option<string>("--contenttype-id", description: "key: id of contentType") {
+            var contentTypeIdOption = new Option<string>("--content-type-id", description: "key: id of contentType") {
             };
             contentTypeIdOption.IsRequired = true;
             command.AddOption(contentTypeIdOption);
@@ -138,20 +143,19 @@ namespace ApiSdk.Sites.Item.Lists.Item.ContentTypes.Item {
             };
             expandOption.IsRequired = false;
             command.AddOption(expandOption);
-            command.SetHandler(async (string siteId, string listId, string contentTypeId, string[] select, string[] expand) => {
+            var outputOption = new Option<FormatterType>("--output", () => FormatterType.JSON){
+                IsRequired = true
+            };
+            command.AddOption(outputOption);
+            command.SetHandler(async (string siteId, string listId, string contentTypeId, string[] select, string[] expand, FormatterType output, IOutputFormatterFactory outputFormatterFactory, CancellationToken cancellationToken) => {
                 var requestInfo = CreateGetRequestInformation(q => {
                     q.Select = select;
                     q.Expand = expand;
                 });
-                var result = await RequestAdapter.SendAsync<ContentType>(requestInfo);
-                // Print request output. What if the request has no return?
-                using var serializer = RequestAdapter.SerializationWriterFactory.GetSerializationWriter("application/json");
-                serializer.WriteObjectValue(null, result);
-                using var content = serializer.GetSerializedContent();
-                using var reader = new StreamReader(content);
-                var strContent = await reader.ReadToEndAsync();
-                Console.Write(strContent + "\n");
-            }, siteIdOption, listIdOption, contentTypeIdOption, selectOption, expandOption);
+                var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: default, cancellationToken: cancellationToken);
+                var formatter = outputFormatterFactory.GetFormatter(output);
+                formatter.WriteOutput(response);
+            }, siteIdOption, listIdOption, contentTypeIdOption, selectOption, expandOption, outputOption);
             return command;
         }
         /// <summary>
@@ -169,7 +173,7 @@ namespace ApiSdk.Sites.Item.Lists.Item.ContentTypes.Item {
             };
             listIdOption.IsRequired = true;
             command.AddOption(listIdOption);
-            var contentTypeIdOption = new Option<string>("--contenttype-id", description: "key: id of contentType") {
+            var contentTypeIdOption = new Option<string>("--content-type-id", description: "key: id of contentType") {
             };
             contentTypeIdOption.IsRequired = true;
             command.AddOption(contentTypeIdOption);
@@ -177,14 +181,13 @@ namespace ApiSdk.Sites.Item.Lists.Item.ContentTypes.Item {
             };
             bodyOption.IsRequired = true;
             command.AddOption(bodyOption);
-            command.SetHandler(async (string siteId, string listId, string contentTypeId, string body) => {
+            command.SetHandler(async (string siteId, string listId, string contentTypeId, string body, IOutputFormatterFactory outputFormatterFactory, CancellationToken cancellationToken) => {
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<ContentType>();
                 var requestInfo = CreatePatchRequestInformation(model, q => {
                 });
-                await RequestAdapter.SendNoContentAsync(requestInfo);
-                // Print request output. What if the request has no return?
+                await RequestAdapter.SendNoContentAsync(requestInfo, errorMapping: default, cancellationToken: cancellationToken);
                 Console.WriteLine("Success");
             }, siteIdOption, listIdOption, contentTypeIdOption, bodyOption);
             return command;
@@ -269,46 +272,10 @@ namespace ApiSdk.Sites.Item.Lists.Item.ContentTypes.Item {
             return requestInfo;
         }
         /// <summary>
-        /// The collection of content types present in this list.
-        /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
-        /// <param name="h">Request headers</param>
-        /// <param name="o">Request options</param>
-        /// <param name="responseHandler">Response handler to use in place of the default response handling provided by the core service</param>
-        /// </summary>
-        public async Task DeleteAsync(Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default, CancellationToken cancellationToken = default) {
-            var requestInfo = CreateDeleteRequestInformation(h, o);
-            await RequestAdapter.SendNoContentAsync(requestInfo, responseHandler, cancellationToken);
-        }
-        /// <summary>
-        /// The collection of content types present in this list.
-        /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
-        /// <param name="h">Request headers</param>
-        /// <param name="o">Request options</param>
-        /// <param name="q">Request query parameters</param>
-        /// <param name="responseHandler">Response handler to use in place of the default response handling provided by the core service</param>
-        /// </summary>
-        public async Task<ContentType> GetAsync(Action<GetQueryParameters> q = default, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default, CancellationToken cancellationToken = default) {
-            var requestInfo = CreateGetRequestInformation(q, h, o);
-            return await RequestAdapter.SendAsync<ContentType>(requestInfo, responseHandler, cancellationToken);
-        }
-        /// <summary>
         /// Builds and executes requests for operations under \sites\{site-id}\lists\{list-id}\contentTypes\{contentType-id}\microsoft.graph.isPublished()
         /// </summary>
         public IsPublishedRequestBuilder IsPublished() {
             return new IsPublishedRequestBuilder(PathParameters, RequestAdapter);
-        }
-        /// <summary>
-        /// The collection of content types present in this list.
-        /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
-        /// <param name="h">Request headers</param>
-        /// <param name="model"></param>
-        /// <param name="o">Request options</param>
-        /// <param name="responseHandler">Response handler to use in place of the default response handling provided by the core service</param>
-        /// </summary>
-        public async Task PatchAsync(ContentType model, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default, CancellationToken cancellationToken = default) {
-            _ = model ?? throw new ArgumentNullException(nameof(model));
-            var requestInfo = CreatePatchRequestInformation(model, h, o);
-            await RequestAdapter.SendNoContentAsync(requestInfo, responseHandler, cancellationToken);
         }
         /// <summary>The collection of content types present in this list.</summary>
         public class GetQueryParameters : QueryParametersBase {

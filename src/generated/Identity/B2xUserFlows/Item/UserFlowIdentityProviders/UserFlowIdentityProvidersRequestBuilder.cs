@@ -2,10 +2,10 @@ using ApiSdk.Identity.B2xUserFlows.Item.UserFlowIdentityProviders.AvailableProvi
 using ApiSdk.Identity.B2xUserFlows.Item.UserFlowIdentityProviders.Ref;
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
+using Microsoft.Kiota.Cli.Commons.IO;
 using System;
 using System.Collections.Generic;
 using System.CommandLine;
-using System.CommandLine.Invocation;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -33,7 +33,7 @@ namespace ApiSdk.Identity.B2xUserFlows.Item.UserFlowIdentityProviders {
             var command = new Command("get");
             command.Description = "Get userFlowIdentityProviders from identity";
             // Create options for all the parameters
-            var b2xIdentityUserFlowIdOption = new Option<string>("--b2xidentityuserflow-id", description: "key: id of b2xIdentityUserFlow") {
+            var b2xIdentityUserFlowIdOption = new Option<string>("--b2x-identity-user-flow-id", description: "key: id of b2xIdentityUserFlow") {
             };
             b2xIdentityUserFlowIdOption.IsRequired = true;
             command.AddOption(b2xIdentityUserFlowIdOption);
@@ -72,7 +72,11 @@ namespace ApiSdk.Identity.B2xUserFlows.Item.UserFlowIdentityProviders {
             };
             expandOption.IsRequired = false;
             command.AddOption(expandOption);
-            command.SetHandler(async (string b2xIdentityUserFlowId, int? top, int? skip, string search, string filter, bool? count, string[] orderby, string[] select, string[] expand) => {
+            var outputOption = new Option<FormatterType>("--output", () => FormatterType.JSON){
+                IsRequired = true
+            };
+            command.AddOption(outputOption);
+            command.SetHandler(async (string b2xIdentityUserFlowId, int? top, int? skip, string search, string filter, bool? count, string[] orderby, string[] select, string[] expand, FormatterType output, IOutputFormatterFactory outputFormatterFactory, CancellationToken cancellationToken) => {
                 var requestInfo = CreateGetRequestInformation(q => {
                     q.Top = top;
                     q.Skip = skip;
@@ -83,20 +87,15 @@ namespace ApiSdk.Identity.B2xUserFlows.Item.UserFlowIdentityProviders {
                     q.Select = select;
                     q.Expand = expand;
                 });
-                var result = await RequestAdapter.SendAsync<UserFlowIdentityProvidersResponse>(requestInfo);
-                // Print request output. What if the request has no return?
-                using var serializer = RequestAdapter.SerializationWriterFactory.GetSerializationWriter("application/json");
-                serializer.WriteObjectValue(null, result);
-                using var content = serializer.GetSerializedContent();
-                using var reader = new StreamReader(content);
-                var strContent = await reader.ReadToEndAsync();
-                Console.Write(strContent + "\n");
-            }, b2xIdentityUserFlowIdOption, topOption, skipOption, searchOption, filterOption, countOption, orderbyOption, selectOption, expandOption);
+                var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: default, cancellationToken: cancellationToken);
+                var formatter = outputFormatterFactory.GetFormatter(output);
+                formatter.WriteOutput(response);
+            }, b2xIdentityUserFlowIdOption, topOption, skipOption, searchOption, filterOption, countOption, orderbyOption, selectOption, expandOption, outputOption);
             return command;
         }
         public Command BuildRefCommand() {
             var command = new Command("ref");
-            var builder = new ApiSdk.Identity.B2xUserFlows.Item.UserFlowIdentityProviders.@Ref.RefRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new ApiSdk.Identity.B2xUserFlows.Item.UserFlowIdentityProviders.Ref.RefRequestBuilder(PathParameters, RequestAdapter);
             command.AddCommand(builder.BuildGetCommand());
             command.AddCommand(builder.BuildPostCommand());
             return command;
@@ -134,18 +133,6 @@ namespace ApiSdk.Identity.B2xUserFlows.Item.UserFlowIdentityProviders {
             h?.Invoke(requestInfo.Headers);
             requestInfo.AddRequestOptions(o?.ToArray());
             return requestInfo;
-        }
-        /// <summary>
-        /// Get userFlowIdentityProviders from identity
-        /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
-        /// <param name="h">Request headers</param>
-        /// <param name="o">Request options</param>
-        /// <param name="q">Request query parameters</param>
-        /// <param name="responseHandler">Response handler to use in place of the default response handling provided by the core service</param>
-        /// </summary>
-        public async Task<UserFlowIdentityProvidersResponse> GetAsync(Action<GetQueryParameters> q = default, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default, CancellationToken cancellationToken = default) {
-            var requestInfo = CreateGetRequestInformation(q, h, o);
-            return await RequestAdapter.SendAsync<UserFlowIdentityProvidersResponse>(requestInfo, responseHandler, cancellationToken);
         }
         /// <summary>Get userFlowIdentityProviders from identity</summary>
         public class GetQueryParameters : QueryParametersBase {

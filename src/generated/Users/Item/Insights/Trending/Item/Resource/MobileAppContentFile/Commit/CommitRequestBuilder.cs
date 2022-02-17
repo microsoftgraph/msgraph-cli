@@ -1,16 +1,16 @@
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
+using Microsoft.Kiota.Cli.Commons.IO;
 using System;
 using System.Collections.Generic;
 using System.CommandLine;
-using System.CommandLine.Invocation;
 using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 namespace ApiSdk.Users.Item.Insights.Trending.Item.Resource.MobileAppContentFile.Commit {
-    /// <summary>Builds and executes requests for operations under \users\{user-id}\insights\trending\{trending-id}\resource\microsoft.graph.mobileAppContentFile\microsoft.graph.commit</summary>
+    /// <summary>Builds and executes requests for operations under \users\{user-id}\insights\trending\{trendingItem-Id}\resource\microsoft.graph.mobileAppContentFile\microsoft.graph.commit</summary>
     public class CommitRequestBuilder {
         /// <summary>Path parameters for the request</summary>
         private Dictionary<string, object> PathParameters { get; set; }
@@ -29,24 +29,23 @@ namespace ApiSdk.Users.Item.Insights.Trending.Item.Resource.MobileAppContentFile
             };
             userIdOption.IsRequired = true;
             command.AddOption(userIdOption);
-            var trendingIdOption = new Option<string>("--trending-id", description: "key: id of trending") {
+            var trendingItemIdOption = new Option<string>("--trending-item-id", description: "key: id of trending") {
             };
-            trendingIdOption.IsRequired = true;
-            command.AddOption(trendingIdOption);
+            trendingItemIdOption.IsRequired = true;
+            command.AddOption(trendingItemIdOption);
             var bodyOption = new Option<string>("--body") {
             };
             bodyOption.IsRequired = true;
             command.AddOption(bodyOption);
-            command.SetHandler(async (string userId, string trendingId, string body) => {
+            command.SetHandler(async (string userId, string trendingItemId, string body, IOutputFormatterFactory outputFormatterFactory, CancellationToken cancellationToken) => {
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<CommitRequestBody>();
                 var requestInfo = CreatePostRequestInformation(model, q => {
                 });
-                await RequestAdapter.SendNoContentAsync(requestInfo);
-                // Print request output. What if the request has no return?
+                await RequestAdapter.SendNoContentAsync(requestInfo, errorMapping: default, cancellationToken: cancellationToken);
                 Console.WriteLine("Success");
-            }, userIdOption, trendingIdOption, bodyOption);
+            }, userIdOption, trendingItemIdOption, bodyOption);
             return command;
         }
         /// <summary>
@@ -57,7 +56,7 @@ namespace ApiSdk.Users.Item.Insights.Trending.Item.Resource.MobileAppContentFile
         public CommitRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) {
             _ = pathParameters ?? throw new ArgumentNullException(nameof(pathParameters));
             _ = requestAdapter ?? throw new ArgumentNullException(nameof(requestAdapter));
-            UrlTemplate = "{+baseurl}/users/{user_id}/insights/trending/{trending_id}/resource/microsoft.graph.mobileAppContentFile/microsoft.graph.commit";
+            UrlTemplate = "{+baseurl}/users/{user_id}/insights/trending/{trendingItem_Id}/resource/microsoft.graph.mobileAppContentFile/microsoft.graph.commit";
             var urlTplParams = new Dictionary<string, object>(pathParameters);
             PathParameters = urlTplParams;
             RequestAdapter = requestAdapter;
@@ -79,19 +78,6 @@ namespace ApiSdk.Users.Item.Insights.Trending.Item.Resource.MobileAppContentFile
             h?.Invoke(requestInfo.Headers);
             requestInfo.AddRequestOptions(o?.ToArray());
             return requestInfo;
-        }
-        /// <summary>
-        /// Commits a file of a given app.
-        /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
-        /// <param name="h">Request headers</param>
-        /// <param name="model"></param>
-        /// <param name="o">Request options</param>
-        /// <param name="responseHandler">Response handler to use in place of the default response handling provided by the core service</param>
-        /// </summary>
-        public async Task PostAsync(CommitRequestBody model, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default, CancellationToken cancellationToken = default) {
-            _ = model ?? throw new ArgumentNullException(nameof(model));
-            var requestInfo = CreatePostRequestInformation(model, h, o);
-            await RequestAdapter.SendNoContentAsync(requestInfo, responseHandler, cancellationToken);
         }
     }
 }

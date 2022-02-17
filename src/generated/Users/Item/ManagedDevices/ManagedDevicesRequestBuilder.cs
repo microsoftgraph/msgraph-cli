@@ -2,10 +2,10 @@ using ApiSdk.Models.Microsoft.Graph;
 using ApiSdk.Users.Item.ManagedDevices.Item;
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
+using Microsoft.Kiota.Cli.Commons.IO;
 using System;
 using System.Collections.Generic;
 using System.CommandLine;
-using System.CommandLine.Invocation;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -22,32 +22,31 @@ namespace ApiSdk.Users.Item.ManagedDevices {
         private string UrlTemplate { get; set; }
         public List<Command> BuildCommand() {
             var builder = new ManagedDeviceRequestBuilder(PathParameters, RequestAdapter);
-            var commands = new List<Command> { 
-                builder.BuildBypassActivationLockCommand(),
-                builder.BuildCleanWindowsDeviceCommand(),
-                builder.BuildDeleteCommand(),
-                builder.BuildDeleteUserFromSharedAppleDeviceCommand(),
-                builder.BuildDeviceCategoryCommand(),
-                builder.BuildDeviceCompliancePolicyStatesCommand(),
-                builder.BuildDeviceConfigurationStatesCommand(),
-                builder.BuildDisableLostModeCommand(),
-                builder.BuildGetCommand(),
-                builder.BuildLocateDeviceCommand(),
-                builder.BuildLogoutSharedAppleDeviceActiveUserCommand(),
-                builder.BuildPatchCommand(),
-                builder.BuildRebootNowCommand(),
-                builder.BuildRecoverPasscodeCommand(),
-                builder.BuildRemoteLockCommand(),
-                builder.BuildRequestRemoteAssistanceCommand(),
-                builder.BuildResetPasscodeCommand(),
-                builder.BuildRetireCommand(),
-                builder.BuildShutDownCommand(),
-                builder.BuildSyncDeviceCommand(),
-                builder.BuildUpdateWindowsDeviceAccountCommand(),
-                builder.BuildWindowsDefenderScanCommand(),
-                builder.BuildWindowsDefenderUpdateSignaturesCommand(),
-                builder.BuildWipeCommand(),
-            };
+            var commands = new List<Command>();
+            commands.Add(builder.BuildBypassActivationLockCommand());
+            commands.Add(builder.BuildCleanWindowsDeviceCommand());
+            commands.Add(builder.BuildDeleteCommand());
+            commands.Add(builder.BuildDeleteUserFromSharedAppleDeviceCommand());
+            commands.Add(builder.BuildDeviceCategoryCommand());
+            commands.Add(builder.BuildDeviceCompliancePolicyStatesCommand());
+            commands.Add(builder.BuildDeviceConfigurationStatesCommand());
+            commands.Add(builder.BuildDisableLostModeCommand());
+            commands.Add(builder.BuildGetCommand());
+            commands.Add(builder.BuildLocateDeviceCommand());
+            commands.Add(builder.BuildLogoutSharedAppleDeviceActiveUserCommand());
+            commands.Add(builder.BuildPatchCommand());
+            commands.Add(builder.BuildRebootNowCommand());
+            commands.Add(builder.BuildRecoverPasscodeCommand());
+            commands.Add(builder.BuildRemoteLockCommand());
+            commands.Add(builder.BuildRequestRemoteAssistanceCommand());
+            commands.Add(builder.BuildResetPasscodeCommand());
+            commands.Add(builder.BuildRetireCommand());
+            commands.Add(builder.BuildShutDownCommand());
+            commands.Add(builder.BuildSyncDeviceCommand());
+            commands.Add(builder.BuildUpdateWindowsDeviceAccountCommand());
+            commands.Add(builder.BuildWindowsDefenderScanCommand());
+            commands.Add(builder.BuildWindowsDefenderUpdateSignaturesCommand());
+            commands.Add(builder.BuildWipeCommand());
             return commands;
         }
         /// <summary>
@@ -65,21 +64,20 @@ namespace ApiSdk.Users.Item.ManagedDevices {
             };
             bodyOption.IsRequired = true;
             command.AddOption(bodyOption);
-            command.SetHandler(async (string userId, string body) => {
+            var outputOption = new Option<FormatterType>("--output", () => FormatterType.JSON){
+                IsRequired = true
+            };
+            command.AddOption(outputOption);
+            command.SetHandler(async (string userId, string body, FormatterType output, IOutputFormatterFactory outputFormatterFactory, CancellationToken cancellationToken) => {
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<ManagedDevice>();
                 var requestInfo = CreatePostRequestInformation(model, q => {
                 });
-                var result = await RequestAdapter.SendAsync<ManagedDevice>(requestInfo);
-                // Print request output. What if the request has no return?
-                using var serializer = RequestAdapter.SerializationWriterFactory.GetSerializationWriter("application/json");
-                serializer.WriteObjectValue(null, result);
-                using var content = serializer.GetSerializedContent();
-                using var reader = new StreamReader(content);
-                var strContent = await reader.ReadToEndAsync();
-                Console.Write(strContent + "\n");
-            }, userIdOption, bodyOption);
+                var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: default, cancellationToken: cancellationToken);
+                var formatter = outputFormatterFactory.GetFormatter(output);
+                formatter.WriteOutput(response);
+            }, userIdOption, bodyOption, outputOption);
             return command;
         }
         /// <summary>
@@ -128,7 +126,11 @@ namespace ApiSdk.Users.Item.ManagedDevices {
             };
             expandOption.IsRequired = false;
             command.AddOption(expandOption);
-            command.SetHandler(async (string userId, int? top, int? skip, string search, string filter, bool? count, string[] orderby, string[] select, string[] expand) => {
+            var outputOption = new Option<FormatterType>("--output", () => FormatterType.JSON){
+                IsRequired = true
+            };
+            command.AddOption(outputOption);
+            command.SetHandler(async (string userId, int? top, int? skip, string search, string filter, bool? count, string[] orderby, string[] select, string[] expand, FormatterType output, IOutputFormatterFactory outputFormatterFactory, CancellationToken cancellationToken) => {
                 var requestInfo = CreateGetRequestInformation(q => {
                     q.Top = top;
                     q.Skip = skip;
@@ -139,15 +141,10 @@ namespace ApiSdk.Users.Item.ManagedDevices {
                     q.Select = select;
                     q.Expand = expand;
                 });
-                var result = await RequestAdapter.SendAsync<ManagedDevicesResponse>(requestInfo);
-                // Print request output. What if the request has no return?
-                using var serializer = RequestAdapter.SerializationWriterFactory.GetSerializationWriter("application/json");
-                serializer.WriteObjectValue(null, result);
-                using var content = serializer.GetSerializedContent();
-                using var reader = new StreamReader(content);
-                var strContent = await reader.ReadToEndAsync();
-                Console.Write(strContent + "\n");
-            }, userIdOption, topOption, skipOption, searchOption, filterOption, countOption, orderbyOption, selectOption, expandOption);
+                var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: default, cancellationToken: cancellationToken);
+                var formatter = outputFormatterFactory.GetFormatter(output);
+                formatter.WriteOutput(response);
+            }, userIdOption, topOption, skipOption, searchOption, filterOption, countOption, orderbyOption, selectOption, expandOption, outputOption);
             return command;
         }
         /// <summary>
@@ -201,31 +198,6 @@ namespace ApiSdk.Users.Item.ManagedDevices {
             h?.Invoke(requestInfo.Headers);
             requestInfo.AddRequestOptions(o?.ToArray());
             return requestInfo;
-        }
-        /// <summary>
-        /// The managed devices associated with the user.
-        /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
-        /// <param name="h">Request headers</param>
-        /// <param name="o">Request options</param>
-        /// <param name="q">Request query parameters</param>
-        /// <param name="responseHandler">Response handler to use in place of the default response handling provided by the core service</param>
-        /// </summary>
-        public async Task<ManagedDevicesResponse> GetAsync(Action<GetQueryParameters> q = default, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default, CancellationToken cancellationToken = default) {
-            var requestInfo = CreateGetRequestInformation(q, h, o);
-            return await RequestAdapter.SendAsync<ManagedDevicesResponse>(requestInfo, responseHandler, cancellationToken);
-        }
-        /// <summary>
-        /// The managed devices associated with the user.
-        /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
-        /// <param name="h">Request headers</param>
-        /// <param name="model"></param>
-        /// <param name="o">Request options</param>
-        /// <param name="responseHandler">Response handler to use in place of the default response handling provided by the core service</param>
-        /// </summary>
-        public async Task<ManagedDevice> PostAsync(ManagedDevice model, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default, CancellationToken cancellationToken = default) {
-            _ = model ?? throw new ArgumentNullException(nameof(model));
-            var requestInfo = CreatePostRequestInformation(model, h, o);
-            return await RequestAdapter.SendAsync<ManagedDevice>(requestInfo, responseHandler, cancellationToken);
         }
         /// <summary>The managed devices associated with the user.</summary>
         public class GetQueryParameters : QueryParametersBase {

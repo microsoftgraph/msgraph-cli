@@ -6,10 +6,10 @@ using ApiSdk.Users.Item;
 using ApiSdk.Users.ValidateProperties;
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
+using Microsoft.Kiota.Cli.Commons.IO;
 using System;
 using System.Collections.Generic;
 using System.CommandLine;
-using System.CommandLine.Invocation;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -26,73 +26,72 @@ namespace ApiSdk.Users {
         private string UrlTemplate { get; set; }
         public List<Command> BuildCommand() {
             var builder = new UserRequestBuilder(PathParameters, RequestAdapter);
-            var commands = new List<Command> { 
-                builder.BuildActivitiesCommand(),
-                builder.BuildAgreementAcceptancesCommand(),
-                builder.BuildAppRoleAssignmentsCommand(),
-                builder.BuildAssignLicenseCommand(),
-                builder.BuildAuthenticationCommand(),
-                builder.BuildCalendarCommand(),
-                builder.BuildCalendarGroupsCommand(),
-                builder.BuildCalendarsCommand(),
-                builder.BuildCalendarViewCommand(),
-                builder.BuildChangePasswordCommand(),
-                builder.BuildChatsCommand(),
-                builder.BuildCheckMemberGroupsCommand(),
-                builder.BuildCheckMemberObjectsCommand(),
-                builder.BuildContactFoldersCommand(),
-                builder.BuildContactsCommand(),
-                builder.BuildCreatedObjectsCommand(),
-                builder.BuildDeleteCommand(),
-                builder.BuildDeviceManagementTroubleshootingEventsCommand(),
-                builder.BuildDirectReportsCommand(),
-                builder.BuildDriveCommand(),
-                builder.BuildDrivesCommand(),
-                builder.BuildEventsCommand(),
-                builder.BuildExportPersonalDataCommand(),
-                builder.BuildExtensionsCommand(),
-                builder.BuildFindMeetingTimesCommand(),
-                builder.BuildFollowedSitesCommand(),
-                builder.BuildGetCommand(),
-                builder.BuildGetMailTipsCommand(),
-                builder.BuildGetMemberGroupsCommand(),
-                builder.BuildGetMemberObjectsCommand(),
-                builder.BuildInferenceClassificationCommand(),
-                builder.BuildInsightsCommand(),
-                builder.BuildJoinedTeamsCommand(),
-                builder.BuildLicenseDetailsCommand(),
-                builder.BuildMailFoldersCommand(),
-                builder.BuildManagedAppRegistrationsCommand(),
-                builder.BuildManagedDevicesCommand(),
-                builder.BuildManagerCommand(),
-                builder.BuildMemberOfCommand(),
-                builder.BuildMessagesCommand(),
-                builder.BuildOauth2PermissionGrantsCommand(),
-                builder.BuildOnenoteCommand(),
-                builder.BuildOnlineMeetingsCommand(),
-                builder.BuildOutlookCommand(),
-                builder.BuildOwnedDevicesCommand(),
-                builder.BuildOwnedObjectsCommand(),
-                builder.BuildPatchCommand(),
-                builder.BuildPeopleCommand(),
-                builder.BuildPhotoCommand(),
-                builder.BuildPhotosCommand(),
-                builder.BuildPlannerCommand(),
-                builder.BuildPresenceCommand(),
-                builder.BuildRegisteredDevicesCommand(),
-                builder.BuildRemoveAllDevicesFromManagementCommand(),
-                builder.BuildReprocessLicenseAssignmentCommand(),
-                builder.BuildRestoreCommand(),
-                builder.BuildRevokeSignInSessionsCommand(),
-                builder.BuildScopedRoleMemberOfCommand(),
-                builder.BuildSendMailCommand(),
-                builder.BuildSettingsCommand(),
-                builder.BuildTeamworkCommand(),
-                builder.BuildTodoCommand(),
-                builder.BuildTransitiveMemberOfCommand(),
-                builder.BuildTranslateExchangeIdsCommand(),
-                builder.BuildWipeManagedAppRegistrationsByDeviceTagCommand(),
-            };
+            var commands = new List<Command>();
+            commands.Add(builder.BuildActivitiesCommand());
+            commands.Add(builder.BuildAgreementAcceptancesCommand());
+            commands.Add(builder.BuildAppRoleAssignmentsCommand());
+            commands.Add(builder.BuildAssignLicenseCommand());
+            commands.Add(builder.BuildAuthenticationCommand());
+            commands.Add(builder.BuildCalendarCommand());
+            commands.Add(builder.BuildCalendarGroupsCommand());
+            commands.Add(builder.BuildCalendarsCommand());
+            commands.Add(builder.BuildCalendarViewCommand());
+            commands.Add(builder.BuildChangePasswordCommand());
+            commands.Add(builder.BuildChatsCommand());
+            commands.Add(builder.BuildCheckMemberGroupsCommand());
+            commands.Add(builder.BuildCheckMemberObjectsCommand());
+            commands.Add(builder.BuildContactFoldersCommand());
+            commands.Add(builder.BuildContactsCommand());
+            commands.Add(builder.BuildCreatedObjectsCommand());
+            commands.Add(builder.BuildDeleteCommand());
+            commands.Add(builder.BuildDeviceManagementTroubleshootingEventsCommand());
+            commands.Add(builder.BuildDirectReportsCommand());
+            commands.Add(builder.BuildDriveCommand());
+            commands.Add(builder.BuildDrivesCommand());
+            commands.Add(builder.BuildEventsCommand());
+            commands.Add(builder.BuildExportPersonalDataCommand());
+            commands.Add(builder.BuildExtensionsCommand());
+            commands.Add(builder.BuildFindMeetingTimesCommand());
+            commands.Add(builder.BuildFollowedSitesCommand());
+            commands.Add(builder.BuildGetCommand());
+            commands.Add(builder.BuildGetMailTipsCommand());
+            commands.Add(builder.BuildGetMemberGroupsCommand());
+            commands.Add(builder.BuildGetMemberObjectsCommand());
+            commands.Add(builder.BuildInferenceClassificationCommand());
+            commands.Add(builder.BuildInsightsCommand());
+            commands.Add(builder.BuildJoinedTeamsCommand());
+            commands.Add(builder.BuildLicenseDetailsCommand());
+            commands.Add(builder.BuildMailFoldersCommand());
+            commands.Add(builder.BuildManagedAppRegistrationsCommand());
+            commands.Add(builder.BuildManagedDevicesCommand());
+            commands.Add(builder.BuildManagerCommand());
+            commands.Add(builder.BuildMemberOfCommand());
+            commands.Add(builder.BuildMessagesCommand());
+            commands.Add(builder.BuildOauth2PermissionGrantsCommand());
+            commands.Add(builder.BuildOnenoteCommand());
+            commands.Add(builder.BuildOnlineMeetingsCommand());
+            commands.Add(builder.BuildOutlookCommand());
+            commands.Add(builder.BuildOwnedDevicesCommand());
+            commands.Add(builder.BuildOwnedObjectsCommand());
+            commands.Add(builder.BuildPatchCommand());
+            commands.Add(builder.BuildPeopleCommand());
+            commands.Add(builder.BuildPhotoCommand());
+            commands.Add(builder.BuildPhotosCommand());
+            commands.Add(builder.BuildPlannerCommand());
+            commands.Add(builder.BuildPresenceCommand());
+            commands.Add(builder.BuildRegisteredDevicesCommand());
+            commands.Add(builder.BuildRemoveAllDevicesFromManagementCommand());
+            commands.Add(builder.BuildReprocessLicenseAssignmentCommand());
+            commands.Add(builder.BuildRestoreCommand());
+            commands.Add(builder.BuildRevokeSignInSessionsCommand());
+            commands.Add(builder.BuildScopedRoleMemberOfCommand());
+            commands.Add(builder.BuildSendMailCommand());
+            commands.Add(builder.BuildSettingsCommand());
+            commands.Add(builder.BuildTeamworkCommand());
+            commands.Add(builder.BuildTodoCommand());
+            commands.Add(builder.BuildTransitiveMemberOfCommand());
+            commands.Add(builder.BuildTranslateExchangeIdsCommand());
+            commands.Add(builder.BuildWipeManagedAppRegistrationsByDeviceTagCommand());
             return commands;
         }
         /// <summary>
@@ -106,21 +105,20 @@ namespace ApiSdk.Users {
             };
             bodyOption.IsRequired = true;
             command.AddOption(bodyOption);
-            command.SetHandler(async (string body) => {
+            var outputOption = new Option<FormatterType>("--output", () => FormatterType.JSON){
+                IsRequired = true
+            };
+            command.AddOption(outputOption);
+            command.SetHandler(async (string body, FormatterType output, IOutputFormatterFactory outputFormatterFactory, CancellationToken cancellationToken) => {
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<ApiSdk.Models.Microsoft.Graph.User>();
                 var requestInfo = CreatePostRequestInformation(model, q => {
                 });
-                var result = await RequestAdapter.SendAsync<ApiSdk.Models.Microsoft.Graph.User>(requestInfo);
-                // Print request output. What if the request has no return?
-                using var serializer = RequestAdapter.SerializationWriterFactory.GetSerializationWriter("application/json");
-                serializer.WriteObjectValue(null, result);
-                using var content = serializer.GetSerializedContent();
-                using var reader = new StreamReader(content);
-                var strContent = await reader.ReadToEndAsync();
-                Console.Write(strContent + "\n");
-            }, bodyOption);
+                var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: default, cancellationToken: cancellationToken);
+                var formatter = outputFormatterFactory.GetFormatter(output);
+                formatter.WriteOutput(response);
+            }, bodyOption, outputOption);
             return command;
         }
         public Command BuildGetAvailableExtensionPropertiesCommand() {
@@ -177,7 +175,11 @@ namespace ApiSdk.Users {
             };
             expandOption.IsRequired = false;
             command.AddOption(expandOption);
-            command.SetHandler(async (int? top, int? skip, string search, string filter, bool? count, string[] orderby, string[] select, string[] expand) => {
+            var outputOption = new Option<FormatterType>("--output", () => FormatterType.JSON){
+                IsRequired = true
+            };
+            command.AddOption(outputOption);
+            command.SetHandler(async (int? top, int? skip, string search, string filter, bool? count, string[] orderby, string[] select, string[] expand, FormatterType output, IOutputFormatterFactory outputFormatterFactory, CancellationToken cancellationToken) => {
                 var requestInfo = CreateGetRequestInformation(q => {
                     q.Top = top;
                     q.Skip = skip;
@@ -188,15 +190,10 @@ namespace ApiSdk.Users {
                     q.Select = select;
                     q.Expand = expand;
                 });
-                var result = await RequestAdapter.SendAsync<UsersResponse>(requestInfo);
-                // Print request output. What if the request has no return?
-                using var serializer = RequestAdapter.SerializationWriterFactory.GetSerializationWriter("application/json");
-                serializer.WriteObjectValue(null, result);
-                using var content = serializer.GetSerializedContent();
-                using var reader = new StreamReader(content);
-                var strContent = await reader.ReadToEndAsync();
-                Console.Write(strContent + "\n");
-            }, topOption, skipOption, searchOption, filterOption, countOption, orderbyOption, selectOption, expandOption);
+                var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: default, cancellationToken: cancellationToken);
+                var formatter = outputFormatterFactory.GetFormatter(output);
+                formatter.WriteOutput(response);
+            }, topOption, skipOption, searchOption, filterOption, countOption, orderbyOption, selectOption, expandOption, outputOption);
             return command;
         }
         public Command BuildValidatePropertiesCommand() {
@@ -262,31 +259,6 @@ namespace ApiSdk.Users {
         /// </summary>
         public DeltaRequestBuilder Delta() {
             return new DeltaRequestBuilder(PathParameters, RequestAdapter);
-        }
-        /// <summary>
-        /// Get entities from users
-        /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
-        /// <param name="h">Request headers</param>
-        /// <param name="o">Request options</param>
-        /// <param name="q">Request query parameters</param>
-        /// <param name="responseHandler">Response handler to use in place of the default response handling provided by the core service</param>
-        /// </summary>
-        public async Task<UsersResponse> GetAsync(Action<GetQueryParameters> q = default, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default, CancellationToken cancellationToken = default) {
-            var requestInfo = CreateGetRequestInformation(q, h, o);
-            return await RequestAdapter.SendAsync<UsersResponse>(requestInfo, responseHandler, cancellationToken);
-        }
-        /// <summary>
-        /// Add new entity to users
-        /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
-        /// <param name="h">Request headers</param>
-        /// <param name="model"></param>
-        /// <param name="o">Request options</param>
-        /// <param name="responseHandler">Response handler to use in place of the default response handling provided by the core service</param>
-        /// </summary>
-        public async Task<ApiSdk.Models.Microsoft.Graph.User> PostAsync(ApiSdk.Models.Microsoft.Graph.User model, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default, CancellationToken cancellationToken = default) {
-            _ = model ?? throw new ArgumentNullException(nameof(model));
-            var requestInfo = CreatePostRequestInformation(model, h, o);
-            return await RequestAdapter.SendAsync<ApiSdk.Models.Microsoft.Graph.User>(requestInfo, responseHandler, cancellationToken);
         }
         /// <summary>Get entities from users</summary>
         public class GetQueryParameters : QueryParametersBase {

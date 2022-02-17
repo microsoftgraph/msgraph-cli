@@ -1,9 +1,9 @@
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
+using Microsoft.Kiota.Cli.Commons.IO;
 using System;
 using System.Collections.Generic;
 using System.CommandLine;
-using System.CommandLine.Invocation;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -29,22 +29,21 @@ namespace ApiSdk.Groups.Item.Onenote.Notebooks.GetRecentNotebooksWithIncludePers
             };
             groupIdOption.IsRequired = true;
             command.AddOption(groupIdOption);
-            var includePersonalNotebooksOption = new Option<bool?>("--includepersonalnotebooks", description: "Usage: includePersonalNotebooks={includePersonalNotebooks}") {
+            var includePersonalNotebooksOption = new Option<bool?>("--include-personal-notebooks", description: "Usage: includePersonalNotebooks={includePersonalNotebooks}") {
             };
             includePersonalNotebooksOption.IsRequired = true;
             command.AddOption(includePersonalNotebooksOption);
-            command.SetHandler(async (string groupId, bool? includePersonalNotebooks) => {
+            var outputOption = new Option<FormatterType>("--output", () => FormatterType.JSON){
+                IsRequired = true
+            };
+            command.AddOption(outputOption);
+            command.SetHandler(async (string groupId, bool? includePersonalNotebooks, FormatterType output, IOutputFormatterFactory outputFormatterFactory, CancellationToken cancellationToken) => {
                 var requestInfo = CreateGetRequestInformation(q => {
                 });
-                var result = await RequestAdapter.SendCollectionAsync<ApiSdk.Groups.Item.Onenote.Notebooks.GetRecentNotebooksWithIncludePersonalNotebooks.GetRecentNotebooksWithIncludePersonalNotebooks>(requestInfo);
-                // Print request output. What if the request has no return?
-                using var serializer = RequestAdapter.SerializationWriterFactory.GetSerializationWriter("application/json");
-                serializer.WriteCollectionOfObjectValues(null, result);
-                using var content = serializer.GetSerializedContent();
-                using var reader = new StreamReader(content);
-                var strContent = await reader.ReadToEndAsync();
-                Console.Write(strContent + "\n");
-            }, groupIdOption, includePersonalNotebooksOption);
+                var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: default, cancellationToken: cancellationToken);
+                var formatter = outputFormatterFactory.GetFormatter(output);
+                formatter.WriteOutput(response);
+            }, groupIdOption, includePersonalNotebooksOption, outputOption);
             return command;
         }
         /// <summary>
@@ -76,17 +75,6 @@ namespace ApiSdk.Groups.Item.Onenote.Notebooks.GetRecentNotebooksWithIncludePers
             h?.Invoke(requestInfo.Headers);
             requestInfo.AddRequestOptions(o?.ToArray());
             return requestInfo;
-        }
-        /// <summary>
-        /// Invoke function getRecentNotebooks
-        /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
-        /// <param name="h">Request headers</param>
-        /// <param name="o">Request options</param>
-        /// <param name="responseHandler">Response handler to use in place of the default response handling provided by the core service</param>
-        /// </summary>
-        public async Task<IEnumerable<ApiSdk.Groups.Item.Onenote.Notebooks.GetRecentNotebooksWithIncludePersonalNotebooks.GetRecentNotebooksWithIncludePersonalNotebooks>> GetAsync(Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default, CancellationToken cancellationToken = default) {
-            var requestInfo = CreateGetRequestInformation(h, o);
-            return await RequestAdapter.SendCollectionAsync<ApiSdk.Groups.Item.Onenote.Notebooks.GetRecentNotebooksWithIncludePersonalNotebooks.GetRecentNotebooksWithIncludePersonalNotebooks>(requestInfo, responseHandler, cancellationToken);
         }
     }
 }

@@ -3,10 +3,10 @@ using ApiSdk.GroupLifecyclePolicies.Item.RemoveGroup;
 using ApiSdk.Models.Microsoft.Graph;
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
+using Microsoft.Kiota.Cli.Commons.IO;
 using System;
 using System.Collections.Generic;
 using System.CommandLine;
-using System.CommandLine.Invocation;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -34,15 +34,14 @@ namespace ApiSdk.GroupLifecyclePolicies.Item {
             var command = new Command("delete");
             command.Description = "Delete entity from groupLifecyclePolicies";
             // Create options for all the parameters
-            var groupLifecyclePolicyIdOption = new Option<string>("--grouplifecyclepolicy-id", description: "key: id of groupLifecyclePolicy") {
+            var groupLifecyclePolicyIdOption = new Option<string>("--group-lifecycle-policy-id", description: "key: id of groupLifecyclePolicy") {
             };
             groupLifecyclePolicyIdOption.IsRequired = true;
             command.AddOption(groupLifecyclePolicyIdOption);
-            command.SetHandler(async (string groupLifecyclePolicyId) => {
+            command.SetHandler(async (string groupLifecyclePolicyId, IOutputFormatterFactory outputFormatterFactory, CancellationToken cancellationToken) => {
                 var requestInfo = CreateDeleteRequestInformation(q => {
                 });
-                await RequestAdapter.SendNoContentAsync(requestInfo);
-                // Print request output. What if the request has no return?
+                await RequestAdapter.SendNoContentAsync(requestInfo, errorMapping: default, cancellationToken: cancellationToken);
                 Console.WriteLine("Success");
             }, groupLifecyclePolicyIdOption);
             return command;
@@ -54,7 +53,7 @@ namespace ApiSdk.GroupLifecyclePolicies.Item {
             var command = new Command("get");
             command.Description = "Get entity from groupLifecyclePolicies by key";
             // Create options for all the parameters
-            var groupLifecyclePolicyIdOption = new Option<string>("--grouplifecyclepolicy-id", description: "key: id of groupLifecyclePolicy") {
+            var groupLifecyclePolicyIdOption = new Option<string>("--group-lifecycle-policy-id", description: "key: id of groupLifecyclePolicy") {
             };
             groupLifecyclePolicyIdOption.IsRequired = true;
             command.AddOption(groupLifecyclePolicyIdOption);
@@ -68,20 +67,19 @@ namespace ApiSdk.GroupLifecyclePolicies.Item {
             };
             expandOption.IsRequired = false;
             command.AddOption(expandOption);
-            command.SetHandler(async (string groupLifecyclePolicyId, string[] select, string[] expand) => {
+            var outputOption = new Option<FormatterType>("--output", () => FormatterType.JSON){
+                IsRequired = true
+            };
+            command.AddOption(outputOption);
+            command.SetHandler(async (string groupLifecyclePolicyId, string[] select, string[] expand, FormatterType output, IOutputFormatterFactory outputFormatterFactory, CancellationToken cancellationToken) => {
                 var requestInfo = CreateGetRequestInformation(q => {
                     q.Select = select;
                     q.Expand = expand;
                 });
-                var result = await RequestAdapter.SendAsync<GroupLifecyclePolicy>(requestInfo);
-                // Print request output. What if the request has no return?
-                using var serializer = RequestAdapter.SerializationWriterFactory.GetSerializationWriter("application/json");
-                serializer.WriteObjectValue(null, result);
-                using var content = serializer.GetSerializedContent();
-                using var reader = new StreamReader(content);
-                var strContent = await reader.ReadToEndAsync();
-                Console.Write(strContent + "\n");
-            }, groupLifecyclePolicyIdOption, selectOption, expandOption);
+                var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: default, cancellationToken: cancellationToken);
+                var formatter = outputFormatterFactory.GetFormatter(output);
+                formatter.WriteOutput(response);
+            }, groupLifecyclePolicyIdOption, selectOption, expandOption, outputOption);
             return command;
         }
         /// <summary>
@@ -91,7 +89,7 @@ namespace ApiSdk.GroupLifecyclePolicies.Item {
             var command = new Command("patch");
             command.Description = "Update entity in groupLifecyclePolicies";
             // Create options for all the parameters
-            var groupLifecyclePolicyIdOption = new Option<string>("--grouplifecyclepolicy-id", description: "key: id of groupLifecyclePolicy") {
+            var groupLifecyclePolicyIdOption = new Option<string>("--group-lifecycle-policy-id", description: "key: id of groupLifecyclePolicy") {
             };
             groupLifecyclePolicyIdOption.IsRequired = true;
             command.AddOption(groupLifecyclePolicyIdOption);
@@ -99,14 +97,13 @@ namespace ApiSdk.GroupLifecyclePolicies.Item {
             };
             bodyOption.IsRequired = true;
             command.AddOption(bodyOption);
-            command.SetHandler(async (string groupLifecyclePolicyId, string body) => {
+            command.SetHandler(async (string groupLifecyclePolicyId, string body, IOutputFormatterFactory outputFormatterFactory, CancellationToken cancellationToken) => {
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<GroupLifecyclePolicy>();
                 var requestInfo = CreatePatchRequestInformation(model, q => {
                 });
-                await RequestAdapter.SendNoContentAsync(requestInfo);
-                // Print request output. What if the request has no return?
+                await RequestAdapter.SendNoContentAsync(requestInfo, errorMapping: default, cancellationToken: cancellationToken);
                 Console.WriteLine("Success");
             }, groupLifecyclePolicyIdOption, bodyOption);
             return command;
@@ -183,42 +180,6 @@ namespace ApiSdk.GroupLifecyclePolicies.Item {
             h?.Invoke(requestInfo.Headers);
             requestInfo.AddRequestOptions(o?.ToArray());
             return requestInfo;
-        }
-        /// <summary>
-        /// Delete entity from groupLifecyclePolicies
-        /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
-        /// <param name="h">Request headers</param>
-        /// <param name="o">Request options</param>
-        /// <param name="responseHandler">Response handler to use in place of the default response handling provided by the core service</param>
-        /// </summary>
-        public async Task DeleteAsync(Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default, CancellationToken cancellationToken = default) {
-            var requestInfo = CreateDeleteRequestInformation(h, o);
-            await RequestAdapter.SendNoContentAsync(requestInfo, responseHandler, cancellationToken);
-        }
-        /// <summary>
-        /// Get entity from groupLifecyclePolicies by key
-        /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
-        /// <param name="h">Request headers</param>
-        /// <param name="o">Request options</param>
-        /// <param name="q">Request query parameters</param>
-        /// <param name="responseHandler">Response handler to use in place of the default response handling provided by the core service</param>
-        /// </summary>
-        public async Task<GroupLifecyclePolicy> GetAsync(Action<GetQueryParameters> q = default, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default, CancellationToken cancellationToken = default) {
-            var requestInfo = CreateGetRequestInformation(q, h, o);
-            return await RequestAdapter.SendAsync<GroupLifecyclePolicy>(requestInfo, responseHandler, cancellationToken);
-        }
-        /// <summary>
-        /// Update entity in groupLifecyclePolicies
-        /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
-        /// <param name="h">Request headers</param>
-        /// <param name="model"></param>
-        /// <param name="o">Request options</param>
-        /// <param name="responseHandler">Response handler to use in place of the default response handling provided by the core service</param>
-        /// </summary>
-        public async Task PatchAsync(GroupLifecyclePolicy model, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default, CancellationToken cancellationToken = default) {
-            _ = model ?? throw new ArgumentNullException(nameof(model));
-            var requestInfo = CreatePatchRequestInformation(model, h, o);
-            await RequestAdapter.SendNoContentAsync(requestInfo, responseHandler, cancellationToken);
         }
         /// <summary>Get entity from groupLifecyclePolicies by key</summary>
         public class GetQueryParameters : QueryParametersBase {

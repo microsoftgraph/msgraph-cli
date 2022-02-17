@@ -1,10 +1,10 @@
 using ApiSdk.Models.Microsoft.Graph;
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
+using Microsoft.Kiota.Cli.Commons.IO;
 using System;
 using System.Collections.Generic;
 using System.CommandLine;
-using System.CommandLine.Invocation;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -26,22 +26,21 @@ namespace ApiSdk.DeviceAppManagement.VppTokens.Item.SyncLicenses {
             var command = new Command("post");
             command.Description = "Syncs licenses associated with a specific appleVolumePurchaseProgramToken";
             // Create options for all the parameters
-            var vppTokenIdOption = new Option<string>("--vpptoken-id", description: "key: id of vppToken") {
+            var vppTokenIdOption = new Option<string>("--vpp-token-id", description: "key: id of vppToken") {
             };
             vppTokenIdOption.IsRequired = true;
             command.AddOption(vppTokenIdOption);
-            command.SetHandler(async (string vppTokenId) => {
+            var outputOption = new Option<FormatterType>("--output", () => FormatterType.JSON){
+                IsRequired = true
+            };
+            command.AddOption(outputOption);
+            command.SetHandler(async (string vppTokenId, FormatterType output, IOutputFormatterFactory outputFormatterFactory, CancellationToken cancellationToken) => {
                 var requestInfo = CreatePostRequestInformation(q => {
                 });
-                var result = await RequestAdapter.SendAsync<SyncLicensesResponse>(requestInfo);
-                // Print request output. What if the request has no return?
-                using var serializer = RequestAdapter.SerializationWriterFactory.GetSerializationWriter("application/json");
-                serializer.WriteObjectValue(null, result);
-                using var content = serializer.GetSerializedContent();
-                using var reader = new StreamReader(content);
-                var strContent = await reader.ReadToEndAsync();
-                Console.Write(strContent + "\n");
-            }, vppTokenIdOption);
+                var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: default, cancellationToken: cancellationToken);
+                var formatter = outputFormatterFactory.GetFormatter(output);
+                formatter.WriteOutput(response);
+            }, vppTokenIdOption, outputOption);
             return command;
         }
         /// <summary>
@@ -71,17 +70,6 @@ namespace ApiSdk.DeviceAppManagement.VppTokens.Item.SyncLicenses {
             h?.Invoke(requestInfo.Headers);
             requestInfo.AddRequestOptions(o?.ToArray());
             return requestInfo;
-        }
-        /// <summary>
-        /// Syncs licenses associated with a specific appleVolumePurchaseProgramToken
-        /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
-        /// <param name="h">Request headers</param>
-        /// <param name="o">Request options</param>
-        /// <param name="responseHandler">Response handler to use in place of the default response handling provided by the core service</param>
-        /// </summary>
-        public async Task<SyncLicensesResponse> PostAsync(Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default, CancellationToken cancellationToken = default) {
-            var requestInfo = CreatePostRequestInformation(h, o);
-            return await RequestAdapter.SendAsync<SyncLicensesResponse>(requestInfo, responseHandler, cancellationToken);
         }
         /// <summary>Union type wrapper for classes vppToken</summary>
         public class SyncLicensesResponse : IParsable {

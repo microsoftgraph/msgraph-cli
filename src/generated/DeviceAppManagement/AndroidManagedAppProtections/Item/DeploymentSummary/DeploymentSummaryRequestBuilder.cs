@@ -1,10 +1,10 @@
 using ApiSdk.Models.Microsoft.Graph;
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
+using Microsoft.Kiota.Cli.Commons.IO;
 using System;
 using System.Collections.Generic;
 using System.CommandLine;
-using System.CommandLine.Invocation;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -26,15 +26,14 @@ namespace ApiSdk.DeviceAppManagement.AndroidManagedAppProtections.Item.Deploymen
             var command = new Command("delete");
             command.Description = "Navigation property to deployment summary of the configuration.";
             // Create options for all the parameters
-            var androidManagedAppProtectionIdOption = new Option<string>("--androidmanagedappprotection-id", description: "key: id of androidManagedAppProtection") {
+            var androidManagedAppProtectionIdOption = new Option<string>("--android-managed-app-protection-id", description: "key: id of androidManagedAppProtection") {
             };
             androidManagedAppProtectionIdOption.IsRequired = true;
             command.AddOption(androidManagedAppProtectionIdOption);
-            command.SetHandler(async (string androidManagedAppProtectionId) => {
+            command.SetHandler(async (string androidManagedAppProtectionId, IOutputFormatterFactory outputFormatterFactory, CancellationToken cancellationToken) => {
                 var requestInfo = CreateDeleteRequestInformation(q => {
                 });
-                await RequestAdapter.SendNoContentAsync(requestInfo);
-                // Print request output. What if the request has no return?
+                await RequestAdapter.SendNoContentAsync(requestInfo, errorMapping: default, cancellationToken: cancellationToken);
                 Console.WriteLine("Success");
             }, androidManagedAppProtectionIdOption);
             return command;
@@ -46,7 +45,7 @@ namespace ApiSdk.DeviceAppManagement.AndroidManagedAppProtections.Item.Deploymen
             var command = new Command("get");
             command.Description = "Navigation property to deployment summary of the configuration.";
             // Create options for all the parameters
-            var androidManagedAppProtectionIdOption = new Option<string>("--androidmanagedappprotection-id", description: "key: id of androidManagedAppProtection") {
+            var androidManagedAppProtectionIdOption = new Option<string>("--android-managed-app-protection-id", description: "key: id of androidManagedAppProtection") {
             };
             androidManagedAppProtectionIdOption.IsRequired = true;
             command.AddOption(androidManagedAppProtectionIdOption);
@@ -60,20 +59,19 @@ namespace ApiSdk.DeviceAppManagement.AndroidManagedAppProtections.Item.Deploymen
             };
             expandOption.IsRequired = false;
             command.AddOption(expandOption);
-            command.SetHandler(async (string androidManagedAppProtectionId, string[] select, string[] expand) => {
+            var outputOption = new Option<FormatterType>("--output", () => FormatterType.JSON){
+                IsRequired = true
+            };
+            command.AddOption(outputOption);
+            command.SetHandler(async (string androidManagedAppProtectionId, string[] select, string[] expand, FormatterType output, IOutputFormatterFactory outputFormatterFactory, CancellationToken cancellationToken) => {
                 var requestInfo = CreateGetRequestInformation(q => {
                     q.Select = select;
                     q.Expand = expand;
                 });
-                var result = await RequestAdapter.SendAsync<ManagedAppPolicyDeploymentSummary>(requestInfo);
-                // Print request output. What if the request has no return?
-                using var serializer = RequestAdapter.SerializationWriterFactory.GetSerializationWriter("application/json");
-                serializer.WriteObjectValue(null, result);
-                using var content = serializer.GetSerializedContent();
-                using var reader = new StreamReader(content);
-                var strContent = await reader.ReadToEndAsync();
-                Console.Write(strContent + "\n");
-            }, androidManagedAppProtectionIdOption, selectOption, expandOption);
+                var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: default, cancellationToken: cancellationToken);
+                var formatter = outputFormatterFactory.GetFormatter(output);
+                formatter.WriteOutput(response);
+            }, androidManagedAppProtectionIdOption, selectOption, expandOption, outputOption);
             return command;
         }
         /// <summary>
@@ -83,7 +81,7 @@ namespace ApiSdk.DeviceAppManagement.AndroidManagedAppProtections.Item.Deploymen
             var command = new Command("patch");
             command.Description = "Navigation property to deployment summary of the configuration.";
             // Create options for all the parameters
-            var androidManagedAppProtectionIdOption = new Option<string>("--androidmanagedappprotection-id", description: "key: id of androidManagedAppProtection") {
+            var androidManagedAppProtectionIdOption = new Option<string>("--android-managed-app-protection-id", description: "key: id of androidManagedAppProtection") {
             };
             androidManagedAppProtectionIdOption.IsRequired = true;
             command.AddOption(androidManagedAppProtectionIdOption);
@@ -91,14 +89,13 @@ namespace ApiSdk.DeviceAppManagement.AndroidManagedAppProtections.Item.Deploymen
             };
             bodyOption.IsRequired = true;
             command.AddOption(bodyOption);
-            command.SetHandler(async (string androidManagedAppProtectionId, string body) => {
+            command.SetHandler(async (string androidManagedAppProtectionId, string body, IOutputFormatterFactory outputFormatterFactory, CancellationToken cancellationToken) => {
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<ManagedAppPolicyDeploymentSummary>();
                 var requestInfo = CreatePatchRequestInformation(model, q => {
                 });
-                await RequestAdapter.SendNoContentAsync(requestInfo);
-                // Print request output. What if the request has no return?
+                await RequestAdapter.SendNoContentAsync(requestInfo, errorMapping: default, cancellationToken: cancellationToken);
                 Console.WriteLine("Success");
             }, androidManagedAppProtectionIdOption, bodyOption);
             return command;
@@ -169,42 +166,6 @@ namespace ApiSdk.DeviceAppManagement.AndroidManagedAppProtections.Item.Deploymen
             h?.Invoke(requestInfo.Headers);
             requestInfo.AddRequestOptions(o?.ToArray());
             return requestInfo;
-        }
-        /// <summary>
-        /// Navigation property to deployment summary of the configuration.
-        /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
-        /// <param name="h">Request headers</param>
-        /// <param name="o">Request options</param>
-        /// <param name="responseHandler">Response handler to use in place of the default response handling provided by the core service</param>
-        /// </summary>
-        public async Task DeleteAsync(Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default, CancellationToken cancellationToken = default) {
-            var requestInfo = CreateDeleteRequestInformation(h, o);
-            await RequestAdapter.SendNoContentAsync(requestInfo, responseHandler, cancellationToken);
-        }
-        /// <summary>
-        /// Navigation property to deployment summary of the configuration.
-        /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
-        /// <param name="h">Request headers</param>
-        /// <param name="o">Request options</param>
-        /// <param name="q">Request query parameters</param>
-        /// <param name="responseHandler">Response handler to use in place of the default response handling provided by the core service</param>
-        /// </summary>
-        public async Task<ManagedAppPolicyDeploymentSummary> GetAsync(Action<GetQueryParameters> q = default, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default, CancellationToken cancellationToken = default) {
-            var requestInfo = CreateGetRequestInformation(q, h, o);
-            return await RequestAdapter.SendAsync<ManagedAppPolicyDeploymentSummary>(requestInfo, responseHandler, cancellationToken);
-        }
-        /// <summary>
-        /// Navigation property to deployment summary of the configuration.
-        /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
-        /// <param name="h">Request headers</param>
-        /// <param name="model"></param>
-        /// <param name="o">Request options</param>
-        /// <param name="responseHandler">Response handler to use in place of the default response handling provided by the core service</param>
-        /// </summary>
-        public async Task PatchAsync(ManagedAppPolicyDeploymentSummary model, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default, CancellationToken cancellationToken = default) {
-            _ = model ?? throw new ArgumentNullException(nameof(model));
-            var requestInfo = CreatePatchRequestInformation(model, h, o);
-            await RequestAdapter.SendNoContentAsync(requestInfo, responseHandler, cancellationToken);
         }
         /// <summary>Navigation property to deployment summary of the configuration.</summary>
         public class GetQueryParameters : QueryParametersBase {

@@ -2,10 +2,10 @@ using ApiSdk.IdentityGovernance.AppConsent.AppConsentRequests.Item.UserConsentRe
 using ApiSdk.Models.Microsoft.Graph;
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
+using Microsoft.Kiota.Cli.Commons.IO;
 using System;
 using System.Collections.Generic;
 using System.CommandLine;
-using System.CommandLine.Invocation;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -36,19 +36,18 @@ namespace ApiSdk.IdentityGovernance.AppConsent.AppConsentRequests.Item.UserConse
             var command = new Command("delete");
             command.Description = "A list of pending user consent requests.";
             // Create options for all the parameters
-            var appConsentRequestIdOption = new Option<string>("--appconsentrequest-id", description: "key: id of appConsentRequest") {
+            var appConsentRequestIdOption = new Option<string>("--app-consent-request-id", description: "key: id of appConsentRequest") {
             };
             appConsentRequestIdOption.IsRequired = true;
             command.AddOption(appConsentRequestIdOption);
-            var userConsentRequestIdOption = new Option<string>("--userconsentrequest-id", description: "key: id of userConsentRequest") {
+            var userConsentRequestIdOption = new Option<string>("--user-consent-request-id", description: "key: id of userConsentRequest") {
             };
             userConsentRequestIdOption.IsRequired = true;
             command.AddOption(userConsentRequestIdOption);
-            command.SetHandler(async (string appConsentRequestId, string userConsentRequestId) => {
+            command.SetHandler(async (string appConsentRequestId, string userConsentRequestId, IOutputFormatterFactory outputFormatterFactory, CancellationToken cancellationToken) => {
                 var requestInfo = CreateDeleteRequestInformation(q => {
                 });
-                await RequestAdapter.SendNoContentAsync(requestInfo);
-                // Print request output. What if the request has no return?
+                await RequestAdapter.SendNoContentAsync(requestInfo, errorMapping: default, cancellationToken: cancellationToken);
                 Console.WriteLine("Success");
             }, appConsentRequestIdOption, userConsentRequestIdOption);
             return command;
@@ -60,11 +59,11 @@ namespace ApiSdk.IdentityGovernance.AppConsent.AppConsentRequests.Item.UserConse
             var command = new Command("get");
             command.Description = "A list of pending user consent requests.";
             // Create options for all the parameters
-            var appConsentRequestIdOption = new Option<string>("--appconsentrequest-id", description: "key: id of appConsentRequest") {
+            var appConsentRequestIdOption = new Option<string>("--app-consent-request-id", description: "key: id of appConsentRequest") {
             };
             appConsentRequestIdOption.IsRequired = true;
             command.AddOption(appConsentRequestIdOption);
-            var userConsentRequestIdOption = new Option<string>("--userconsentrequest-id", description: "key: id of userConsentRequest") {
+            var userConsentRequestIdOption = new Option<string>("--user-consent-request-id", description: "key: id of userConsentRequest") {
             };
             userConsentRequestIdOption.IsRequired = true;
             command.AddOption(userConsentRequestIdOption);
@@ -78,20 +77,19 @@ namespace ApiSdk.IdentityGovernance.AppConsent.AppConsentRequests.Item.UserConse
             };
             expandOption.IsRequired = false;
             command.AddOption(expandOption);
-            command.SetHandler(async (string appConsentRequestId, string userConsentRequestId, string[] select, string[] expand) => {
+            var outputOption = new Option<FormatterType>("--output", () => FormatterType.JSON){
+                IsRequired = true
+            };
+            command.AddOption(outputOption);
+            command.SetHandler(async (string appConsentRequestId, string userConsentRequestId, string[] select, string[] expand, FormatterType output, IOutputFormatterFactory outputFormatterFactory, CancellationToken cancellationToken) => {
                 var requestInfo = CreateGetRequestInformation(q => {
                     q.Select = select;
                     q.Expand = expand;
                 });
-                var result = await RequestAdapter.SendAsync<UserConsentRequest>(requestInfo);
-                // Print request output. What if the request has no return?
-                using var serializer = RequestAdapter.SerializationWriterFactory.GetSerializationWriter("application/json");
-                serializer.WriteObjectValue(null, result);
-                using var content = serializer.GetSerializedContent();
-                using var reader = new StreamReader(content);
-                var strContent = await reader.ReadToEndAsync();
-                Console.Write(strContent + "\n");
-            }, appConsentRequestIdOption, userConsentRequestIdOption, selectOption, expandOption);
+                var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: default, cancellationToken: cancellationToken);
+                var formatter = outputFormatterFactory.GetFormatter(output);
+                formatter.WriteOutput(response);
+            }, appConsentRequestIdOption, userConsentRequestIdOption, selectOption, expandOption, outputOption);
             return command;
         }
         /// <summary>
@@ -101,11 +99,11 @@ namespace ApiSdk.IdentityGovernance.AppConsent.AppConsentRequests.Item.UserConse
             var command = new Command("patch");
             command.Description = "A list of pending user consent requests.";
             // Create options for all the parameters
-            var appConsentRequestIdOption = new Option<string>("--appconsentrequest-id", description: "key: id of appConsentRequest") {
+            var appConsentRequestIdOption = new Option<string>("--app-consent-request-id", description: "key: id of appConsentRequest") {
             };
             appConsentRequestIdOption.IsRequired = true;
             command.AddOption(appConsentRequestIdOption);
-            var userConsentRequestIdOption = new Option<string>("--userconsentrequest-id", description: "key: id of userConsentRequest") {
+            var userConsentRequestIdOption = new Option<string>("--user-consent-request-id", description: "key: id of userConsentRequest") {
             };
             userConsentRequestIdOption.IsRequired = true;
             command.AddOption(userConsentRequestIdOption);
@@ -113,14 +111,13 @@ namespace ApiSdk.IdentityGovernance.AppConsent.AppConsentRequests.Item.UserConse
             };
             bodyOption.IsRequired = true;
             command.AddOption(bodyOption);
-            command.SetHandler(async (string appConsentRequestId, string userConsentRequestId, string body) => {
+            command.SetHandler(async (string appConsentRequestId, string userConsentRequestId, string body, IOutputFormatterFactory outputFormatterFactory, CancellationToken cancellationToken) => {
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<UserConsentRequest>();
                 var requestInfo = CreatePatchRequestInformation(model, q => {
                 });
-                await RequestAdapter.SendNoContentAsync(requestInfo);
-                // Print request output. What if the request has no return?
+                await RequestAdapter.SendNoContentAsync(requestInfo, errorMapping: default, cancellationToken: cancellationToken);
                 Console.WriteLine("Success");
             }, appConsentRequestIdOption, userConsentRequestIdOption, bodyOption);
             return command;
@@ -191,42 +188,6 @@ namespace ApiSdk.IdentityGovernance.AppConsent.AppConsentRequests.Item.UserConse
             h?.Invoke(requestInfo.Headers);
             requestInfo.AddRequestOptions(o?.ToArray());
             return requestInfo;
-        }
-        /// <summary>
-        /// A list of pending user consent requests.
-        /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
-        /// <param name="h">Request headers</param>
-        /// <param name="o">Request options</param>
-        /// <param name="responseHandler">Response handler to use in place of the default response handling provided by the core service</param>
-        /// </summary>
-        public async Task DeleteAsync(Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default, CancellationToken cancellationToken = default) {
-            var requestInfo = CreateDeleteRequestInformation(h, o);
-            await RequestAdapter.SendNoContentAsync(requestInfo, responseHandler, cancellationToken);
-        }
-        /// <summary>
-        /// A list of pending user consent requests.
-        /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
-        /// <param name="h">Request headers</param>
-        /// <param name="o">Request options</param>
-        /// <param name="q">Request query parameters</param>
-        /// <param name="responseHandler">Response handler to use in place of the default response handling provided by the core service</param>
-        /// </summary>
-        public async Task<UserConsentRequest> GetAsync(Action<GetQueryParameters> q = default, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default, CancellationToken cancellationToken = default) {
-            var requestInfo = CreateGetRequestInformation(q, h, o);
-            return await RequestAdapter.SendAsync<UserConsentRequest>(requestInfo, responseHandler, cancellationToken);
-        }
-        /// <summary>
-        /// A list of pending user consent requests.
-        /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
-        /// <param name="h">Request headers</param>
-        /// <param name="model"></param>
-        /// <param name="o">Request options</param>
-        /// <param name="responseHandler">Response handler to use in place of the default response handling provided by the core service</param>
-        /// </summary>
-        public async Task PatchAsync(UserConsentRequest model, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default, CancellationToken cancellationToken = default) {
-            _ = model ?? throw new ArgumentNullException(nameof(model));
-            var requestInfo = CreatePatchRequestInformation(model, h, o);
-            await RequestAdapter.SendNoContentAsync(requestInfo, responseHandler, cancellationToken);
         }
         /// <summary>A list of pending user consent requests.</summary>
         public class GetQueryParameters : QueryParametersBase {

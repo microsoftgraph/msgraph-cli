@@ -1,9 +1,9 @@
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
+using Microsoft.Kiota.Cli.Commons.IO;
 using System;
 using System.Collections.Generic;
 using System.CommandLine;
-using System.CommandLine.Invocation;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -25,32 +25,34 @@ namespace ApiSdk.Workbooks.Item.Children.Item.Content {
             var command = new Command("get");
             command.Description = "The content stream, if the item represents a file.";
             // Create options for all the parameters
-            var driveItemIdOption = new Option<string>("--driveitem-id", description: "key: id of driveItem") {
+            var driveItemIdOption = new Option<string>("--drive-item-id", description: "key: id of driveItem") {
             };
             driveItemIdOption.IsRequired = true;
             command.AddOption(driveItemIdOption);
-            var driveItemId1Option = new Option<string>("--driveitem-id1", description: "key: id of driveItem") {
+            var driveItemId1Option = new Option<string>("--drive-item-id1", description: "key: id of driveItem") {
             };
             driveItemId1Option.IsRequired = true;
             command.AddOption(driveItemId1Option);
-            var outputOption = new Option<FileInfo>("--output");
+            var fileOption = new Option<FileInfo>("--file");
+            command.AddOption(fileOption);
+            var outputOption = new Option<FormatterType>("--output", () => FormatterType.JSON){
+                IsRequired = true
+            };
             command.AddOption(outputOption);
-            command.SetHandler(async (string driveItemId, string driveItemId1, FileInfo output) => {
+            command.SetHandler(async (string driveItemId, string driveItemId1, FileInfo file, FormatterType output, IOutputFormatterFactory outputFormatterFactory, CancellationToken cancellationToken) => {
                 var requestInfo = CreateGetRequestInformation(q => {
                 });
-                var result = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
-                // Print request output. What if the request has no return?
-                if (output == null) {
-                    using var reader = new StreamReader(result);
-                    var strContent = await reader.ReadToEndAsync();
-                    Console.Write(strContent + "\n");
+                var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: default, cancellationToken: cancellationToken);
+                var formatter = outputFormatterFactory.GetFormatter(output);
+                if (file == null) {
+                    formatter.WriteOutput(response);
                 }
                 else {
-                    using var writeStream = output.OpenWrite();
-                    await result.CopyToAsync(writeStream);
-                    Console.WriteLine($"Content written to {output.FullName}.");
+                    using var writeStream = file.OpenWrite();
+                    await response.CopyToAsync(writeStream);
+                    Console.WriteLine($"Content written to {file.FullName}.");
                 }
-            }, driveItemIdOption, driveItemId1Option, outputOption);
+            }, driveItemIdOption, driveItemId1Option, fileOption, outputOption);
             return command;
         }
         /// <summary>
@@ -60,11 +62,11 @@ namespace ApiSdk.Workbooks.Item.Children.Item.Content {
             var command = new Command("put");
             command.Description = "The content stream, if the item represents a file.";
             // Create options for all the parameters
-            var driveItemIdOption = new Option<string>("--driveitem-id", description: "key: id of driveItem") {
+            var driveItemIdOption = new Option<string>("--drive-item-id", description: "key: id of driveItem") {
             };
             driveItemIdOption.IsRequired = true;
             command.AddOption(driveItemIdOption);
-            var driveItemId1Option = new Option<string>("--driveitem-id1", description: "key: id of driveItem") {
+            var driveItemId1Option = new Option<string>("--drive-item-id1", description: "key: id of driveItem") {
             };
             driveItemId1Option.IsRequired = true;
             command.AddOption(driveItemId1Option);
@@ -72,12 +74,11 @@ namespace ApiSdk.Workbooks.Item.Children.Item.Content {
             };
             bodyOption.IsRequired = true;
             command.AddOption(bodyOption);
-            command.SetHandler(async (string driveItemId, string driveItemId1, FileInfo file) => {
+            command.SetHandler(async (string driveItemId, string driveItemId1, FileInfo file, IOutputFormatterFactory outputFormatterFactory, CancellationToken cancellationToken) => {
                 using var stream = file.OpenRead();
                 var requestInfo = CreatePutRequestInformation(stream, q => {
                 });
-                await RequestAdapter.SendNoContentAsync(requestInfo);
-                // Print request output. What if the request has no return?
+                await RequestAdapter.SendNoContentAsync(requestInfo, errorMapping: default, cancellationToken: cancellationToken);
                 Console.WriteLine("Success");
             }, driveItemIdOption, driveItemId1Option, bodyOption);
             return command;
@@ -127,30 +128,6 @@ namespace ApiSdk.Workbooks.Item.Children.Item.Content {
             h?.Invoke(requestInfo.Headers);
             requestInfo.AddRequestOptions(o?.ToArray());
             return requestInfo;
-        }
-        /// <summary>
-        /// The content stream, if the item represents a file.
-        /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
-        /// <param name="h">Request headers</param>
-        /// <param name="o">Request options</param>
-        /// <param name="responseHandler">Response handler to use in place of the default response handling provided by the core service</param>
-        /// </summary>
-        public async Task<Stream> GetAsync(Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default, CancellationToken cancellationToken = default) {
-            var requestInfo = CreateGetRequestInformation(h, o);
-            return await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, responseHandler, cancellationToken);
-        }
-        /// <summary>
-        /// The content stream, if the item represents a file.
-        /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
-        /// <param name="h">Request headers</param>
-        /// <param name="o">Request options</param>
-        /// <param name="responseHandler">Response handler to use in place of the default response handling provided by the core service</param>
-        /// <param name="stream">Binary request body</param>
-        /// </summary>
-        public async Task PutAsync(Stream stream, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default, CancellationToken cancellationToken = default) {
-            _ = stream ?? throw new ArgumentNullException(nameof(stream));
-            var requestInfo = CreatePutRequestInformation(stream, h, o);
-            await RequestAdapter.SendNoContentAsync(requestInfo, responseHandler, cancellationToken);
         }
     }
 }

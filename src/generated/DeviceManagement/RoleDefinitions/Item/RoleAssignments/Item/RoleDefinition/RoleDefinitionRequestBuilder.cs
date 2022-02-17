@@ -2,10 +2,10 @@ using ApiSdk.DeviceManagement.RoleDefinitions.Item.RoleAssignments.Item.RoleDefi
 using ApiSdk.Models.Microsoft.Graph;
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
+using Microsoft.Kiota.Cli.Commons.IO;
 using System;
 using System.Collections.Generic;
 using System.CommandLine;
-using System.CommandLine.Invocation;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -27,11 +27,11 @@ namespace ApiSdk.DeviceManagement.RoleDefinitions.Item.RoleAssignments.Item.Role
             var command = new Command("get");
             command.Description = "Role definition this assignment is part of.";
             // Create options for all the parameters
-            var roleDefinitionIdOption = new Option<string>("--roledefinition-id", description: "key: id of roleDefinition") {
+            var roleDefinitionIdOption = new Option<string>("--role-definition-id", description: "key: id of roleDefinition") {
             };
             roleDefinitionIdOption.IsRequired = true;
             command.AddOption(roleDefinitionIdOption);
-            var roleAssignmentIdOption = new Option<string>("--roleassignment-id", description: "key: id of roleAssignment") {
+            var roleAssignmentIdOption = new Option<string>("--role-assignment-id", description: "key: id of roleAssignment") {
             };
             roleAssignmentIdOption.IsRequired = true;
             command.AddOption(roleAssignmentIdOption);
@@ -45,25 +45,24 @@ namespace ApiSdk.DeviceManagement.RoleDefinitions.Item.RoleAssignments.Item.Role
             };
             expandOption.IsRequired = false;
             command.AddOption(expandOption);
-            command.SetHandler(async (string roleDefinitionId, string roleAssignmentId, string[] select, string[] expand) => {
+            var outputOption = new Option<FormatterType>("--output", () => FormatterType.JSON){
+                IsRequired = true
+            };
+            command.AddOption(outputOption);
+            command.SetHandler(async (string roleDefinitionId, string roleAssignmentId, string[] select, string[] expand, FormatterType output, IOutputFormatterFactory outputFormatterFactory, CancellationToken cancellationToken) => {
                 var requestInfo = CreateGetRequestInformation(q => {
                     q.Select = select;
                     q.Expand = expand;
                 });
-                var result = await RequestAdapter.SendAsync<ApiSdk.Models.Microsoft.Graph.RoleDefinition>(requestInfo);
-                // Print request output. What if the request has no return?
-                using var serializer = RequestAdapter.SerializationWriterFactory.GetSerializationWriter("application/json");
-                serializer.WriteObjectValue(null, result);
-                using var content = serializer.GetSerializedContent();
-                using var reader = new StreamReader(content);
-                var strContent = await reader.ReadToEndAsync();
-                Console.Write(strContent + "\n");
-            }, roleDefinitionIdOption, roleAssignmentIdOption, selectOption, expandOption);
+                var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: default, cancellationToken: cancellationToken);
+                var formatter = outputFormatterFactory.GetFormatter(output);
+                formatter.WriteOutput(response);
+            }, roleDefinitionIdOption, roleAssignmentIdOption, selectOption, expandOption, outputOption);
             return command;
         }
         public Command BuildRefCommand() {
             var command = new Command("ref");
-            var builder = new ApiSdk.DeviceManagement.RoleDefinitions.Item.RoleAssignments.Item.RoleDefinition.@Ref.RefRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new ApiSdk.DeviceManagement.RoleDefinitions.Item.RoleAssignments.Item.RoleDefinition.Ref.RefRequestBuilder(PathParameters, RequestAdapter);
             command.AddCommand(builder.BuildDeleteCommand());
             command.AddCommand(builder.BuildGetCommand());
             command.AddCommand(builder.BuildPutCommand());
@@ -102,18 +101,6 @@ namespace ApiSdk.DeviceManagement.RoleDefinitions.Item.RoleAssignments.Item.Role
             h?.Invoke(requestInfo.Headers);
             requestInfo.AddRequestOptions(o?.ToArray());
             return requestInfo;
-        }
-        /// <summary>
-        /// Role definition this assignment is part of.
-        /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
-        /// <param name="h">Request headers</param>
-        /// <param name="o">Request options</param>
-        /// <param name="q">Request query parameters</param>
-        /// <param name="responseHandler">Response handler to use in place of the default response handling provided by the core service</param>
-        /// </summary>
-        public async Task<ApiSdk.Models.Microsoft.Graph.RoleDefinition> GetAsync(Action<GetQueryParameters> q = default, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default, CancellationToken cancellationToken = default) {
-            var requestInfo = CreateGetRequestInformation(q, h, o);
-            return await RequestAdapter.SendAsync<ApiSdk.Models.Microsoft.Graph.RoleDefinition>(requestInfo, responseHandler, cancellationToken);
         }
         /// <summary>Role definition this assignment is part of.</summary>
         public class GetQueryParameters : QueryParametersBase {

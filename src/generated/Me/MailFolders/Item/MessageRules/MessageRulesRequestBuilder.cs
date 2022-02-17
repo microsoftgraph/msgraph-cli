@@ -2,10 +2,10 @@ using ApiSdk.Me.MailFolders.Item.MessageRules.Item;
 using ApiSdk.Models.Microsoft.Graph;
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
+using Microsoft.Kiota.Cli.Commons.IO;
 using System;
 using System.Collections.Generic;
 using System.CommandLine;
-using System.CommandLine.Invocation;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -22,11 +22,10 @@ namespace ApiSdk.Me.MailFolders.Item.MessageRules {
         private string UrlTemplate { get; set; }
         public List<Command> BuildCommand() {
             var builder = new MessageRuleRequestBuilder(PathParameters, RequestAdapter);
-            var commands = new List<Command> { 
-                builder.BuildDeleteCommand(),
-                builder.BuildGetCommand(),
-                builder.BuildPatchCommand(),
-            };
+            var commands = new List<Command>();
+            commands.Add(builder.BuildDeleteCommand());
+            commands.Add(builder.BuildGetCommand());
+            commands.Add(builder.BuildPatchCommand());
             return commands;
         }
         /// <summary>
@@ -36,7 +35,7 @@ namespace ApiSdk.Me.MailFolders.Item.MessageRules {
             var command = new Command("create");
             command.Description = "The collection of rules that apply to the user's Inbox folder.";
             // Create options for all the parameters
-            var mailFolderIdOption = new Option<string>("--mailfolder-id", description: "key: id of mailFolder") {
+            var mailFolderIdOption = new Option<string>("--mail-folder-id", description: "key: id of mailFolder") {
             };
             mailFolderIdOption.IsRequired = true;
             command.AddOption(mailFolderIdOption);
@@ -44,21 +43,20 @@ namespace ApiSdk.Me.MailFolders.Item.MessageRules {
             };
             bodyOption.IsRequired = true;
             command.AddOption(bodyOption);
-            command.SetHandler(async (string mailFolderId, string body) => {
+            var outputOption = new Option<FormatterType>("--output", () => FormatterType.JSON){
+                IsRequired = true
+            };
+            command.AddOption(outputOption);
+            command.SetHandler(async (string mailFolderId, string body, FormatterType output, IOutputFormatterFactory outputFormatterFactory, CancellationToken cancellationToken) => {
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<MessageRule>();
                 var requestInfo = CreatePostRequestInformation(model, q => {
                 });
-                var result = await RequestAdapter.SendAsync<MessageRule>(requestInfo);
-                // Print request output. What if the request has no return?
-                using var serializer = RequestAdapter.SerializationWriterFactory.GetSerializationWriter("application/json");
-                serializer.WriteObjectValue(null, result);
-                using var content = serializer.GetSerializedContent();
-                using var reader = new StreamReader(content);
-                var strContent = await reader.ReadToEndAsync();
-                Console.Write(strContent + "\n");
-            }, mailFolderIdOption, bodyOption);
+                var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: default, cancellationToken: cancellationToken);
+                var formatter = outputFormatterFactory.GetFormatter(output);
+                formatter.WriteOutput(response);
+            }, mailFolderIdOption, bodyOption, outputOption);
             return command;
         }
         /// <summary>
@@ -68,7 +66,7 @@ namespace ApiSdk.Me.MailFolders.Item.MessageRules {
             var command = new Command("list");
             command.Description = "The collection of rules that apply to the user's Inbox folder.";
             // Create options for all the parameters
-            var mailFolderIdOption = new Option<string>("--mailfolder-id", description: "key: id of mailFolder") {
+            var mailFolderIdOption = new Option<string>("--mail-folder-id", description: "key: id of mailFolder") {
             };
             mailFolderIdOption.IsRequired = true;
             command.AddOption(mailFolderIdOption);
@@ -98,7 +96,11 @@ namespace ApiSdk.Me.MailFolders.Item.MessageRules {
             };
             selectOption.IsRequired = false;
             command.AddOption(selectOption);
-            command.SetHandler(async (string mailFolderId, int? top, int? skip, string filter, bool? count, string[] orderby, string[] select) => {
+            var outputOption = new Option<FormatterType>("--output", () => FormatterType.JSON){
+                IsRequired = true
+            };
+            command.AddOption(outputOption);
+            command.SetHandler(async (string mailFolderId, int? top, int? skip, string filter, bool? count, string[] orderby, string[] select, FormatterType output, IOutputFormatterFactory outputFormatterFactory, CancellationToken cancellationToken) => {
                 var requestInfo = CreateGetRequestInformation(q => {
                     q.Top = top;
                     q.Skip = skip;
@@ -107,15 +109,10 @@ namespace ApiSdk.Me.MailFolders.Item.MessageRules {
                     q.Orderby = orderby;
                     q.Select = select;
                 });
-                var result = await RequestAdapter.SendAsync<MessageRulesResponse>(requestInfo);
-                // Print request output. What if the request has no return?
-                using var serializer = RequestAdapter.SerializationWriterFactory.GetSerializationWriter("application/json");
-                serializer.WriteObjectValue(null, result);
-                using var content = serializer.GetSerializedContent();
-                using var reader = new StreamReader(content);
-                var strContent = await reader.ReadToEndAsync();
-                Console.Write(strContent + "\n");
-            }, mailFolderIdOption, topOption, skipOption, filterOption, countOption, orderbyOption, selectOption);
+                var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: default, cancellationToken: cancellationToken);
+                var formatter = outputFormatterFactory.GetFormatter(output);
+                formatter.WriteOutput(response);
+            }, mailFolderIdOption, topOption, skipOption, filterOption, countOption, orderbyOption, selectOption, outputOption);
             return command;
         }
         /// <summary>
@@ -169,31 +166,6 @@ namespace ApiSdk.Me.MailFolders.Item.MessageRules {
             h?.Invoke(requestInfo.Headers);
             requestInfo.AddRequestOptions(o?.ToArray());
             return requestInfo;
-        }
-        /// <summary>
-        /// The collection of rules that apply to the user's Inbox folder.
-        /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
-        /// <param name="h">Request headers</param>
-        /// <param name="o">Request options</param>
-        /// <param name="q">Request query parameters</param>
-        /// <param name="responseHandler">Response handler to use in place of the default response handling provided by the core service</param>
-        /// </summary>
-        public async Task<MessageRulesResponse> GetAsync(Action<GetQueryParameters> q = default, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default, CancellationToken cancellationToken = default) {
-            var requestInfo = CreateGetRequestInformation(q, h, o);
-            return await RequestAdapter.SendAsync<MessageRulesResponse>(requestInfo, responseHandler, cancellationToken);
-        }
-        /// <summary>
-        /// The collection of rules that apply to the user's Inbox folder.
-        /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
-        /// <param name="h">Request headers</param>
-        /// <param name="model"></param>
-        /// <param name="o">Request options</param>
-        /// <param name="responseHandler">Response handler to use in place of the default response handling provided by the core service</param>
-        /// </summary>
-        public async Task<MessageRule> PostAsync(MessageRule model, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default, CancellationToken cancellationToken = default) {
-            _ = model ?? throw new ArgumentNullException(nameof(model));
-            var requestInfo = CreatePostRequestInformation(model, h, o);
-            return await RequestAdapter.SendAsync<MessageRule>(requestInfo, responseHandler, cancellationToken);
         }
         /// <summary>The collection of rules that apply to the user's Inbox folder.</summary>
         public class GetQueryParameters : QueryParametersBase {

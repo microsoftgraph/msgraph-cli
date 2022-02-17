@@ -66,10 +66,10 @@ using ApiSdk.Me.WipeManagedAppRegistrationsByDeviceTag;
 using ApiSdk.Models.Microsoft.Graph;
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
+using Microsoft.Kiota.Cli.Commons.IO;
 using System;
 using System.Collections.Generic;
 using System.CommandLine;
-using System.CommandLine.Invocation;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -87,6 +87,9 @@ namespace ApiSdk.Me {
         public Command BuildActivitiesCommand() {
             var command = new Command("activities");
             var builder = new ApiSdk.Me.Activities.ActivitiesRequestBuilder(PathParameters, RequestAdapter);
+            foreach (var cmd in builder.BuildCommand()) {
+                command.AddCommand(cmd);
+            }
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;
@@ -101,6 +104,9 @@ namespace ApiSdk.Me {
         public Command BuildAppRoleAssignmentsCommand() {
             var command = new Command("app-role-assignments");
             var builder = new ApiSdk.Me.AppRoleAssignments.AppRoleAssignmentsRequestBuilder(PathParameters, RequestAdapter);
+            foreach (var cmd in builder.BuildCommand()) {
+                command.AddCommand(cmd);
+            }
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;
@@ -140,6 +146,9 @@ namespace ApiSdk.Me {
         public Command BuildCalendarGroupsCommand() {
             var command = new Command("calendar-groups");
             var builder = new ApiSdk.Me.CalendarGroups.CalendarGroupsRequestBuilder(PathParameters, RequestAdapter);
+            foreach (var cmd in builder.BuildCommand()) {
+                command.AddCommand(cmd);
+            }
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;
@@ -147,6 +156,9 @@ namespace ApiSdk.Me {
         public Command BuildCalendarsCommand() {
             var command = new Command("calendars");
             var builder = new ApiSdk.Me.Calendars.CalendarsRequestBuilder(PathParameters, RequestAdapter);
+            foreach (var cmd in builder.BuildCommand()) {
+                command.AddCommand(cmd);
+            }
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;
@@ -154,6 +166,9 @@ namespace ApiSdk.Me {
         public Command BuildCalendarViewCommand() {
             var command = new Command("calendar-view");
             var builder = new ApiSdk.Me.CalendarView.CalendarViewRequestBuilder(PathParameters, RequestAdapter);
+            foreach (var cmd in builder.BuildCommand()) {
+                command.AddCommand(cmd);
+            }
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;
@@ -167,6 +182,9 @@ namespace ApiSdk.Me {
         public Command BuildChatsCommand() {
             var command = new Command("chats");
             var builder = new ApiSdk.Me.Chats.ChatsRequestBuilder(PathParameters, RequestAdapter);
+            foreach (var cmd in builder.BuildCommand()) {
+                command.AddCommand(cmd);
+            }
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;
@@ -186,6 +204,9 @@ namespace ApiSdk.Me {
         public Command BuildContactFoldersCommand() {
             var command = new Command("contact-folders");
             var builder = new ApiSdk.Me.ContactFolders.ContactFoldersRequestBuilder(PathParameters, RequestAdapter);
+            foreach (var cmd in builder.BuildCommand()) {
+                command.AddCommand(cmd);
+            }
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;
@@ -193,6 +214,9 @@ namespace ApiSdk.Me {
         public Command BuildContactsCommand() {
             var command = new Command("contacts");
             var builder = new ApiSdk.Me.Contacts.ContactsRequestBuilder(PathParameters, RequestAdapter);
+            foreach (var cmd in builder.BuildCommand()) {
+                command.AddCommand(cmd);
+            }
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;
@@ -207,6 +231,9 @@ namespace ApiSdk.Me {
         public Command BuildDeviceManagementTroubleshootingEventsCommand() {
             var command = new Command("device-management-troubleshooting-events");
             var builder = new ApiSdk.Me.DeviceManagementTroubleshootingEvents.DeviceManagementTroubleshootingEventsRequestBuilder(PathParameters, RequestAdapter);
+            foreach (var cmd in builder.BuildCommand()) {
+                command.AddCommand(cmd);
+            }
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;
@@ -229,6 +256,9 @@ namespace ApiSdk.Me {
         public Command BuildDrivesCommand() {
             var command = new Command("drives");
             var builder = new ApiSdk.Me.Drives.DrivesRequestBuilder(PathParameters, RequestAdapter);
+            foreach (var cmd in builder.BuildCommand()) {
+                command.AddCommand(cmd);
+            }
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;
@@ -236,6 +266,9 @@ namespace ApiSdk.Me {
         public Command BuildEventsCommand() {
             var command = new Command("events");
             var builder = new ApiSdk.Me.Events.EventsRequestBuilder(PathParameters, RequestAdapter);
+            foreach (var cmd in builder.BuildCommand()) {
+                command.AddCommand(cmd);
+            }
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;
@@ -249,6 +282,9 @@ namespace ApiSdk.Me {
         public Command BuildExtensionsCommand() {
             var command = new Command("extensions");
             var builder = new ApiSdk.Me.Extensions.ExtensionsRequestBuilder(PathParameters, RequestAdapter);
+            foreach (var cmd in builder.BuildCommand()) {
+                command.AddCommand(cmd);
+            }
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;
@@ -283,20 +319,19 @@ namespace ApiSdk.Me {
             };
             expandOption.IsRequired = false;
             command.AddOption(expandOption);
-            command.SetHandler(async (string[] select, string[] expand) => {
+            var outputOption = new Option<FormatterType>("--output", () => FormatterType.JSON){
+                IsRequired = true
+            };
+            command.AddOption(outputOption);
+            command.SetHandler(async (string[] select, string[] expand, FormatterType output, IOutputFormatterFactory outputFormatterFactory, CancellationToken cancellationToken) => {
                 var requestInfo = CreateGetRequestInformation(q => {
                     q.Select = select;
                     q.Expand = expand;
                 });
-                var result = await RequestAdapter.SendAsync<ApiSdk.Models.Microsoft.Graph.User>(requestInfo);
-                // Print request output. What if the request has no return?
-                using var serializer = RequestAdapter.SerializationWriterFactory.GetSerializationWriter("application/json");
-                serializer.WriteObjectValue(null, result);
-                using var content = serializer.GetSerializedContent();
-                using var reader = new StreamReader(content);
-                var strContent = await reader.ReadToEndAsync();
-                Console.Write(strContent + "\n");
-            }, selectOption, expandOption);
+                var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: default, cancellationToken: cancellationToken);
+                var formatter = outputFormatterFactory.GetFormatter(output);
+                formatter.WriteOutput(response);
+            }, selectOption, expandOption, outputOption);
             return command;
         }
         public Command BuildGetMailTipsCommand() {
@@ -340,6 +375,9 @@ namespace ApiSdk.Me {
         public Command BuildJoinedTeamsCommand() {
             var command = new Command("joined-teams");
             var builder = new ApiSdk.Me.JoinedTeams.JoinedTeamsRequestBuilder(PathParameters, RequestAdapter);
+            foreach (var cmd in builder.BuildCommand()) {
+                command.AddCommand(cmd);
+            }
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;
@@ -347,6 +385,9 @@ namespace ApiSdk.Me {
         public Command BuildLicenseDetailsCommand() {
             var command = new Command("license-details");
             var builder = new ApiSdk.Me.LicenseDetails.LicenseDetailsRequestBuilder(PathParameters, RequestAdapter);
+            foreach (var cmd in builder.BuildCommand()) {
+                command.AddCommand(cmd);
+            }
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;
@@ -354,6 +395,9 @@ namespace ApiSdk.Me {
         public Command BuildMailFoldersCommand() {
             var command = new Command("mail-folders");
             var builder = new ApiSdk.Me.MailFolders.MailFoldersRequestBuilder(PathParameters, RequestAdapter);
+            foreach (var cmd in builder.BuildCommand()) {
+                command.AddCommand(cmd);
+            }
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;
@@ -368,6 +412,9 @@ namespace ApiSdk.Me {
         public Command BuildManagedDevicesCommand() {
             var command = new Command("managed-devices");
             var builder = new ApiSdk.Me.ManagedDevices.ManagedDevicesRequestBuilder(PathParameters, RequestAdapter);
+            foreach (var cmd in builder.BuildCommand()) {
+                command.AddCommand(cmd);
+            }
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;
@@ -389,6 +436,9 @@ namespace ApiSdk.Me {
         public Command BuildMessagesCommand() {
             var command = new Command("messages");
             var builder = new ApiSdk.Me.Messages.MessagesRequestBuilder(PathParameters, RequestAdapter);
+            foreach (var cmd in builder.BuildCommand()) {
+                command.AddCommand(cmd);
+            }
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;
@@ -417,6 +467,9 @@ namespace ApiSdk.Me {
         public Command BuildOnlineMeetingsCommand() {
             var command = new Command("online-meetings");
             var builder = new ApiSdk.Me.OnlineMeetings.OnlineMeetingsRequestBuilder(PathParameters, RequestAdapter);
+            foreach (var cmd in builder.BuildCommand()) {
+                command.AddCommand(cmd);
+            }
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildCreateOrGetCommand());
             command.AddCommand(builder.BuildListCommand());
@@ -456,14 +509,13 @@ namespace ApiSdk.Me {
             };
             bodyOption.IsRequired = true;
             command.AddOption(bodyOption);
-            command.SetHandler(async (string body) => {
+            command.SetHandler(async (string body, IOutputFormatterFactory outputFormatterFactory, CancellationToken cancellationToken) => {
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<ApiSdk.Models.Microsoft.Graph.User>();
                 var requestInfo = CreatePatchRequestInformation(model, q => {
                 });
-                await RequestAdapter.SendNoContentAsync(requestInfo);
-                // Print request output. What if the request has no return?
+                await RequestAdapter.SendNoContentAsync(requestInfo, errorMapping: default, cancellationToken: cancellationToken);
                 Console.WriteLine("Success");
             }, bodyOption);
             return command;
@@ -471,6 +523,9 @@ namespace ApiSdk.Me {
         public Command BuildPeopleCommand() {
             var command = new Command("people");
             var builder = new ApiSdk.Me.People.PeopleRequestBuilder(PathParameters, RequestAdapter);
+            foreach (var cmd in builder.BuildCommand()) {
+                command.AddCommand(cmd);
+            }
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;
@@ -487,6 +542,9 @@ namespace ApiSdk.Me {
         public Command BuildPhotosCommand() {
             var command = new Command("photos");
             var builder = new ApiSdk.Me.Photos.PhotosRequestBuilder(PathParameters, RequestAdapter);
+            foreach (var cmd in builder.BuildCommand()) {
+                command.AddCommand(cmd);
+            }
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;
@@ -545,6 +603,9 @@ namespace ApiSdk.Me {
         public Command BuildScopedRoleMemberOfCommand() {
             var command = new Command("scoped-role-member-of");
             var builder = new ApiSdk.Me.ScopedRoleMemberOf.ScopedRoleMemberOfRequestBuilder(PathParameters, RequestAdapter);
+            foreach (var cmd in builder.BuildCommand()) {
+                command.AddCommand(cmd);
+            }
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;
@@ -655,18 +716,6 @@ namespace ApiSdk.Me {
             return requestInfo;
         }
         /// <summary>
-        /// Get me
-        /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
-        /// <param name="h">Request headers</param>
-        /// <param name="o">Request options</param>
-        /// <param name="q">Request query parameters</param>
-        /// <param name="responseHandler">Response handler to use in place of the default response handling provided by the core service</param>
-        /// </summary>
-        public async Task<ApiSdk.Models.Microsoft.Graph.User> GetAsync(Action<GetQueryParameters> q = default, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default, CancellationToken cancellationToken = default) {
-            var requestInfo = CreateGetRequestInformation(q, h, o);
-            return await RequestAdapter.SendAsync<ApiSdk.Models.Microsoft.Graph.User>(requestInfo, responseHandler, cancellationToken);
-        }
-        /// <summary>
         /// Builds and executes requests for operations under \me\microsoft.graph.getManagedAppDiagnosticStatuses()
         /// </summary>
         public GetManagedAppDiagnosticStatusesRequestBuilder GetManagedAppDiagnosticStatuses() {
@@ -677,19 +726,6 @@ namespace ApiSdk.Me {
         /// </summary>
         public GetManagedAppPoliciesRequestBuilder GetManagedAppPolicies() {
             return new GetManagedAppPoliciesRequestBuilder(PathParameters, RequestAdapter);
-        }
-        /// <summary>
-        /// Update me
-        /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
-        /// <param name="h">Request headers</param>
-        /// <param name="model"></param>
-        /// <param name="o">Request options</param>
-        /// <param name="responseHandler">Response handler to use in place of the default response handling provided by the core service</param>
-        /// </summary>
-        public async Task PatchAsync(ApiSdk.Models.Microsoft.Graph.User model, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default, CancellationToken cancellationToken = default) {
-            _ = model ?? throw new ArgumentNullException(nameof(model));
-            var requestInfo = CreatePatchRequestInformation(model, h, o);
-            await RequestAdapter.SendNoContentAsync(requestInfo, responseHandler, cancellationToken);
         }
         /// <summary>
         /// Builds and executes requests for operations under \me\microsoft.graph.reminderView(StartDateTime='{StartDateTime}',EndDateTime='{EndDateTime}')

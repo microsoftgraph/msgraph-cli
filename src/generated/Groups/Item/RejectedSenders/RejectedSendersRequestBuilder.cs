@@ -1,10 +1,10 @@
 using ApiSdk.Groups.Item.RejectedSenders.Ref;
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
+using Microsoft.Kiota.Cli.Commons.IO;
 using System;
 using System.Collections.Generic;
 using System.CommandLine;
-using System.CommandLine.Invocation;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -56,7 +56,11 @@ namespace ApiSdk.Groups.Item.RejectedSenders {
             };
             selectOption.IsRequired = false;
             command.AddOption(selectOption);
-            command.SetHandler(async (string groupId, int? top, int? skip, string filter, bool? count, string[] orderby, string[] select) => {
+            var outputOption = new Option<FormatterType>("--output", () => FormatterType.JSON){
+                IsRequired = true
+            };
+            command.AddOption(outputOption);
+            command.SetHandler(async (string groupId, int? top, int? skip, string filter, bool? count, string[] orderby, string[] select, FormatterType output, IOutputFormatterFactory outputFormatterFactory, CancellationToken cancellationToken) => {
                 var requestInfo = CreateGetRequestInformation(q => {
                     q.Top = top;
                     q.Skip = skip;
@@ -65,20 +69,15 @@ namespace ApiSdk.Groups.Item.RejectedSenders {
                     q.Orderby = orderby;
                     q.Select = select;
                 });
-                var result = await RequestAdapter.SendAsync<RejectedSendersResponse>(requestInfo);
-                // Print request output. What if the request has no return?
-                using var serializer = RequestAdapter.SerializationWriterFactory.GetSerializationWriter("application/json");
-                serializer.WriteObjectValue(null, result);
-                using var content = serializer.GetSerializedContent();
-                using var reader = new StreamReader(content);
-                var strContent = await reader.ReadToEndAsync();
-                Console.Write(strContent + "\n");
-            }, groupIdOption, topOption, skipOption, filterOption, countOption, orderbyOption, selectOption);
+                var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: default, cancellationToken: cancellationToken);
+                var formatter = outputFormatterFactory.GetFormatter(output);
+                formatter.WriteOutput(response);
+            }, groupIdOption, topOption, skipOption, filterOption, countOption, orderbyOption, selectOption, outputOption);
             return command;
         }
         public Command BuildRefCommand() {
             var command = new Command("ref");
-            var builder = new ApiSdk.Groups.Item.RejectedSenders.@Ref.RefRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new ApiSdk.Groups.Item.RejectedSenders.Ref.RefRequestBuilder(PathParameters, RequestAdapter);
             command.AddCommand(builder.BuildGetCommand());
             command.AddCommand(builder.BuildPostCommand());
             return command;
@@ -116,18 +115,6 @@ namespace ApiSdk.Groups.Item.RejectedSenders {
             h?.Invoke(requestInfo.Headers);
             requestInfo.AddRequestOptions(o?.ToArray());
             return requestInfo;
-        }
-        /// <summary>
-        /// The list of users or groups that are not allowed to create posts or calendar events in this group. Nullable
-        /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
-        /// <param name="h">Request headers</param>
-        /// <param name="o">Request options</param>
-        /// <param name="q">Request query parameters</param>
-        /// <param name="responseHandler">Response handler to use in place of the default response handling provided by the core service</param>
-        /// </summary>
-        public async Task<RejectedSendersResponse> GetAsync(Action<GetQueryParameters> q = default, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default, CancellationToken cancellationToken = default) {
-            var requestInfo = CreateGetRequestInformation(q, h, o);
-            return await RequestAdapter.SendAsync<RejectedSendersResponse>(requestInfo, responseHandler, cancellationToken);
         }
         /// <summary>The list of users or groups that are not allowed to create posts or calendar events in this group. Nullable</summary>
         public class GetQueryParameters : QueryParametersBase {

@@ -1,16 +1,16 @@
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
+using Microsoft.Kiota.Cli.Commons.IO;
 using System;
 using System.Collections.Generic;
 using System.CommandLine;
-using System.CommandLine.Invocation;
 using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 namespace ApiSdk.Me.Insights.Trending.Item.Resource.MobileAppContentFile.RenewUpload {
-    /// <summary>Builds and executes requests for operations under \me\insights\trending\{trending-id}\resource\microsoft.graph.mobileAppContentFile\microsoft.graph.renewUpload</summary>
+    /// <summary>Builds and executes requests for operations under \me\insights\trending\{trendingItem-Id}\resource\microsoft.graph.mobileAppContentFile\microsoft.graph.renewUpload</summary>
     public class RenewUploadRequestBuilder {
         /// <summary>Path parameters for the request</summary>
         private Dictionary<string, object> PathParameters { get; set; }
@@ -25,17 +25,16 @@ namespace ApiSdk.Me.Insights.Trending.Item.Resource.MobileAppContentFile.RenewUp
             var command = new Command("post");
             command.Description = "Renews the SAS URI for an application file upload.";
             // Create options for all the parameters
-            var trendingIdOption = new Option<string>("--trending-id", description: "key: id of trending") {
+            var trendingItemIdOption = new Option<string>("--trending-item-id", description: "key: id of trending") {
             };
-            trendingIdOption.IsRequired = true;
-            command.AddOption(trendingIdOption);
-            command.SetHandler(async (string trendingId) => {
+            trendingItemIdOption.IsRequired = true;
+            command.AddOption(trendingItemIdOption);
+            command.SetHandler(async (string trendingItemId, IOutputFormatterFactory outputFormatterFactory, CancellationToken cancellationToken) => {
                 var requestInfo = CreatePostRequestInformation(q => {
                 });
-                await RequestAdapter.SendNoContentAsync(requestInfo);
-                // Print request output. What if the request has no return?
+                await RequestAdapter.SendNoContentAsync(requestInfo, errorMapping: default, cancellationToken: cancellationToken);
                 Console.WriteLine("Success");
-            }, trendingIdOption);
+            }, trendingItemIdOption);
             return command;
         }
         /// <summary>
@@ -46,7 +45,7 @@ namespace ApiSdk.Me.Insights.Trending.Item.Resource.MobileAppContentFile.RenewUp
         public RenewUploadRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) {
             _ = pathParameters ?? throw new ArgumentNullException(nameof(pathParameters));
             _ = requestAdapter ?? throw new ArgumentNullException(nameof(requestAdapter));
-            UrlTemplate = "{+baseurl}/me/insights/trending/{trending_id}/resource/microsoft.graph.mobileAppContentFile/microsoft.graph.renewUpload";
+            UrlTemplate = "{+baseurl}/me/insights/trending/{trendingItem_Id}/resource/microsoft.graph.mobileAppContentFile/microsoft.graph.renewUpload";
             var urlTplParams = new Dictionary<string, object>(pathParameters);
             PathParameters = urlTplParams;
             RequestAdapter = requestAdapter;
@@ -65,17 +64,6 @@ namespace ApiSdk.Me.Insights.Trending.Item.Resource.MobileAppContentFile.RenewUp
             h?.Invoke(requestInfo.Headers);
             requestInfo.AddRequestOptions(o?.ToArray());
             return requestInfo;
-        }
-        /// <summary>
-        /// Renews the SAS URI for an application file upload.
-        /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
-        /// <param name="h">Request headers</param>
-        /// <param name="o">Request options</param>
-        /// <param name="responseHandler">Response handler to use in place of the default response handling provided by the core service</param>
-        /// </summary>
-        public async Task PostAsync(Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default, CancellationToken cancellationToken = default) {
-            var requestInfo = CreatePostRequestInformation(h, o);
-            await RequestAdapter.SendNoContentAsync(requestInfo, responseHandler, cancellationToken);
         }
     }
 }

@@ -1,10 +1,10 @@
 using ApiSdk.Models.Microsoft.Graph;
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
+using Microsoft.Kiota.Cli.Commons.IO;
 using System;
 using System.Collections.Generic;
 using System.CommandLine;
-using System.CommandLine.Invocation;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -26,19 +26,18 @@ namespace ApiSdk.Education.Classes.Item.AssignmentCategories.Item {
             var command = new Command("delete");
             command.Description = "Delete navigation property assignmentCategories for education";
             // Create options for all the parameters
-            var educationClassIdOption = new Option<string>("--educationclass-id", description: "key: id of educationClass") {
+            var educationClassIdOption = new Option<string>("--education-class-id", description: "key: id of educationClass") {
             };
             educationClassIdOption.IsRequired = true;
             command.AddOption(educationClassIdOption);
-            var educationCategoryIdOption = new Option<string>("--educationcategory-id", description: "key: id of educationCategory") {
+            var educationCategoryIdOption = new Option<string>("--education-category-id", description: "key: id of educationCategory") {
             };
             educationCategoryIdOption.IsRequired = true;
             command.AddOption(educationCategoryIdOption);
-            command.SetHandler(async (string educationClassId, string educationCategoryId) => {
+            command.SetHandler(async (string educationClassId, string educationCategoryId, IOutputFormatterFactory outputFormatterFactory, CancellationToken cancellationToken) => {
                 var requestInfo = CreateDeleteRequestInformation(q => {
                 });
-                await RequestAdapter.SendNoContentAsync(requestInfo);
-                // Print request output. What if the request has no return?
+                await RequestAdapter.SendNoContentAsync(requestInfo, errorMapping: default, cancellationToken: cancellationToken);
                 Console.WriteLine("Success");
             }, educationClassIdOption, educationCategoryIdOption);
             return command;
@@ -50,11 +49,11 @@ namespace ApiSdk.Education.Classes.Item.AssignmentCategories.Item {
             var command = new Command("get");
             command.Description = "Get assignmentCategories from education";
             // Create options for all the parameters
-            var educationClassIdOption = new Option<string>("--educationclass-id", description: "key: id of educationClass") {
+            var educationClassIdOption = new Option<string>("--education-class-id", description: "key: id of educationClass") {
             };
             educationClassIdOption.IsRequired = true;
             command.AddOption(educationClassIdOption);
-            var educationCategoryIdOption = new Option<string>("--educationcategory-id", description: "key: id of educationCategory") {
+            var educationCategoryIdOption = new Option<string>("--education-category-id", description: "key: id of educationCategory") {
             };
             educationCategoryIdOption.IsRequired = true;
             command.AddOption(educationCategoryIdOption);
@@ -68,20 +67,19 @@ namespace ApiSdk.Education.Classes.Item.AssignmentCategories.Item {
             };
             expandOption.IsRequired = false;
             command.AddOption(expandOption);
-            command.SetHandler(async (string educationClassId, string educationCategoryId, string[] select, string[] expand) => {
+            var outputOption = new Option<FormatterType>("--output", () => FormatterType.JSON){
+                IsRequired = true
+            };
+            command.AddOption(outputOption);
+            command.SetHandler(async (string educationClassId, string educationCategoryId, string[] select, string[] expand, FormatterType output, IOutputFormatterFactory outputFormatterFactory, CancellationToken cancellationToken) => {
                 var requestInfo = CreateGetRequestInformation(q => {
                     q.Select = select;
                     q.Expand = expand;
                 });
-                var result = await RequestAdapter.SendAsync<EducationCategory>(requestInfo);
-                // Print request output. What if the request has no return?
-                using var serializer = RequestAdapter.SerializationWriterFactory.GetSerializationWriter("application/json");
-                serializer.WriteObjectValue(null, result);
-                using var content = serializer.GetSerializedContent();
-                using var reader = new StreamReader(content);
-                var strContent = await reader.ReadToEndAsync();
-                Console.Write(strContent + "\n");
-            }, educationClassIdOption, educationCategoryIdOption, selectOption, expandOption);
+                var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: default, cancellationToken: cancellationToken);
+                var formatter = outputFormatterFactory.GetFormatter(output);
+                formatter.WriteOutput(response);
+            }, educationClassIdOption, educationCategoryIdOption, selectOption, expandOption, outputOption);
             return command;
         }
         /// <summary>
@@ -91,11 +89,11 @@ namespace ApiSdk.Education.Classes.Item.AssignmentCategories.Item {
             var command = new Command("patch");
             command.Description = "Update the navigation property assignmentCategories in education";
             // Create options for all the parameters
-            var educationClassIdOption = new Option<string>("--educationclass-id", description: "key: id of educationClass") {
+            var educationClassIdOption = new Option<string>("--education-class-id", description: "key: id of educationClass") {
             };
             educationClassIdOption.IsRequired = true;
             command.AddOption(educationClassIdOption);
-            var educationCategoryIdOption = new Option<string>("--educationcategory-id", description: "key: id of educationCategory") {
+            var educationCategoryIdOption = new Option<string>("--education-category-id", description: "key: id of educationCategory") {
             };
             educationCategoryIdOption.IsRequired = true;
             command.AddOption(educationCategoryIdOption);
@@ -103,14 +101,13 @@ namespace ApiSdk.Education.Classes.Item.AssignmentCategories.Item {
             };
             bodyOption.IsRequired = true;
             command.AddOption(bodyOption);
-            command.SetHandler(async (string educationClassId, string educationCategoryId, string body) => {
+            command.SetHandler(async (string educationClassId, string educationCategoryId, string body, IOutputFormatterFactory outputFormatterFactory, CancellationToken cancellationToken) => {
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<EducationCategory>();
                 var requestInfo = CreatePatchRequestInformation(model, q => {
                 });
-                await RequestAdapter.SendNoContentAsync(requestInfo);
-                // Print request output. What if the request has no return?
+                await RequestAdapter.SendNoContentAsync(requestInfo, errorMapping: default, cancellationToken: cancellationToken);
                 Console.WriteLine("Success");
             }, educationClassIdOption, educationCategoryIdOption, bodyOption);
             return command;
@@ -181,42 +178,6 @@ namespace ApiSdk.Education.Classes.Item.AssignmentCategories.Item {
             h?.Invoke(requestInfo.Headers);
             requestInfo.AddRequestOptions(o?.ToArray());
             return requestInfo;
-        }
-        /// <summary>
-        /// Delete navigation property assignmentCategories for education
-        /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
-        /// <param name="h">Request headers</param>
-        /// <param name="o">Request options</param>
-        /// <param name="responseHandler">Response handler to use in place of the default response handling provided by the core service</param>
-        /// </summary>
-        public async Task DeleteAsync(Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default, CancellationToken cancellationToken = default) {
-            var requestInfo = CreateDeleteRequestInformation(h, o);
-            await RequestAdapter.SendNoContentAsync(requestInfo, responseHandler, cancellationToken);
-        }
-        /// <summary>
-        /// Get assignmentCategories from education
-        /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
-        /// <param name="h">Request headers</param>
-        /// <param name="o">Request options</param>
-        /// <param name="q">Request query parameters</param>
-        /// <param name="responseHandler">Response handler to use in place of the default response handling provided by the core service</param>
-        /// </summary>
-        public async Task<EducationCategory> GetAsync(Action<GetQueryParameters> q = default, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default, CancellationToken cancellationToken = default) {
-            var requestInfo = CreateGetRequestInformation(q, h, o);
-            return await RequestAdapter.SendAsync<EducationCategory>(requestInfo, responseHandler, cancellationToken);
-        }
-        /// <summary>
-        /// Update the navigation property assignmentCategories in education
-        /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
-        /// <param name="h">Request headers</param>
-        /// <param name="model"></param>
-        /// <param name="o">Request options</param>
-        /// <param name="responseHandler">Response handler to use in place of the default response handling provided by the core service</param>
-        /// </summary>
-        public async Task PatchAsync(EducationCategory model, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default, CancellationToken cancellationToken = default) {
-            _ = model ?? throw new ArgumentNullException(nameof(model));
-            var requestInfo = CreatePatchRequestInformation(model, h, o);
-            await RequestAdapter.SendNoContentAsync(requestInfo, responseHandler, cancellationToken);
         }
         /// <summary>Get assignmentCategories from education</summary>
         public class GetQueryParameters : QueryParametersBase {

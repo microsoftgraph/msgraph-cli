@@ -3,10 +3,10 @@ using ApiSdk.Policies.PermissionGrantPolicies.Item.Excludes;
 using ApiSdk.Policies.PermissionGrantPolicies.Item.Includes;
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
+using Microsoft.Kiota.Cli.Commons.IO;
 using System;
 using System.Collections.Generic;
 using System.CommandLine;
-using System.CommandLine.Invocation;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -28,15 +28,14 @@ namespace ApiSdk.Policies.PermissionGrantPolicies.Item {
             var command = new Command("delete");
             command.Description = "The policy that specifies the conditions under which consent can be granted.";
             // Create options for all the parameters
-            var permissionGrantPolicyIdOption = new Option<string>("--permissiongrantpolicy-id", description: "key: id of permissionGrantPolicy") {
+            var permissionGrantPolicyIdOption = new Option<string>("--permission-grant-policy-id", description: "key: id of permissionGrantPolicy") {
             };
             permissionGrantPolicyIdOption.IsRequired = true;
             command.AddOption(permissionGrantPolicyIdOption);
-            command.SetHandler(async (string permissionGrantPolicyId) => {
+            command.SetHandler(async (string permissionGrantPolicyId, IOutputFormatterFactory outputFormatterFactory, CancellationToken cancellationToken) => {
                 var requestInfo = CreateDeleteRequestInformation(q => {
                 });
-                await RequestAdapter.SendNoContentAsync(requestInfo);
-                // Print request output. What if the request has no return?
+                await RequestAdapter.SendNoContentAsync(requestInfo, errorMapping: default, cancellationToken: cancellationToken);
                 Console.WriteLine("Success");
             }, permissionGrantPolicyIdOption);
             return command;
@@ -44,6 +43,9 @@ namespace ApiSdk.Policies.PermissionGrantPolicies.Item {
         public Command BuildExcludesCommand() {
             var command = new Command("excludes");
             var builder = new ApiSdk.Policies.PermissionGrantPolicies.Item.Excludes.ExcludesRequestBuilder(PathParameters, RequestAdapter);
+            foreach (var cmd in builder.BuildCommand()) {
+                command.AddCommand(cmd);
+            }
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;
@@ -55,7 +57,7 @@ namespace ApiSdk.Policies.PermissionGrantPolicies.Item {
             var command = new Command("get");
             command.Description = "The policy that specifies the conditions under which consent can be granted.";
             // Create options for all the parameters
-            var permissionGrantPolicyIdOption = new Option<string>("--permissiongrantpolicy-id", description: "key: id of permissionGrantPolicy") {
+            var permissionGrantPolicyIdOption = new Option<string>("--permission-grant-policy-id", description: "key: id of permissionGrantPolicy") {
             };
             permissionGrantPolicyIdOption.IsRequired = true;
             command.AddOption(permissionGrantPolicyIdOption);
@@ -69,25 +71,27 @@ namespace ApiSdk.Policies.PermissionGrantPolicies.Item {
             };
             expandOption.IsRequired = false;
             command.AddOption(expandOption);
-            command.SetHandler(async (string permissionGrantPolicyId, string[] select, string[] expand) => {
+            var outputOption = new Option<FormatterType>("--output", () => FormatterType.JSON){
+                IsRequired = true
+            };
+            command.AddOption(outputOption);
+            command.SetHandler(async (string permissionGrantPolicyId, string[] select, string[] expand, FormatterType output, IOutputFormatterFactory outputFormatterFactory, CancellationToken cancellationToken) => {
                 var requestInfo = CreateGetRequestInformation(q => {
                     q.Select = select;
                     q.Expand = expand;
                 });
-                var result = await RequestAdapter.SendAsync<PermissionGrantPolicy>(requestInfo);
-                // Print request output. What if the request has no return?
-                using var serializer = RequestAdapter.SerializationWriterFactory.GetSerializationWriter("application/json");
-                serializer.WriteObjectValue(null, result);
-                using var content = serializer.GetSerializedContent();
-                using var reader = new StreamReader(content);
-                var strContent = await reader.ReadToEndAsync();
-                Console.Write(strContent + "\n");
-            }, permissionGrantPolicyIdOption, selectOption, expandOption);
+                var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: default, cancellationToken: cancellationToken);
+                var formatter = outputFormatterFactory.GetFormatter(output);
+                formatter.WriteOutput(response);
+            }, permissionGrantPolicyIdOption, selectOption, expandOption, outputOption);
             return command;
         }
         public Command BuildIncludesCommand() {
             var command = new Command("includes");
             var builder = new ApiSdk.Policies.PermissionGrantPolicies.Item.Includes.IncludesRequestBuilder(PathParameters, RequestAdapter);
+            foreach (var cmd in builder.BuildCommand()) {
+                command.AddCommand(cmd);
+            }
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;
@@ -99,7 +103,7 @@ namespace ApiSdk.Policies.PermissionGrantPolicies.Item {
             var command = new Command("patch");
             command.Description = "The policy that specifies the conditions under which consent can be granted.";
             // Create options for all the parameters
-            var permissionGrantPolicyIdOption = new Option<string>("--permissiongrantpolicy-id", description: "key: id of permissionGrantPolicy") {
+            var permissionGrantPolicyIdOption = new Option<string>("--permission-grant-policy-id", description: "key: id of permissionGrantPolicy") {
             };
             permissionGrantPolicyIdOption.IsRequired = true;
             command.AddOption(permissionGrantPolicyIdOption);
@@ -107,14 +111,13 @@ namespace ApiSdk.Policies.PermissionGrantPolicies.Item {
             };
             bodyOption.IsRequired = true;
             command.AddOption(bodyOption);
-            command.SetHandler(async (string permissionGrantPolicyId, string body) => {
+            command.SetHandler(async (string permissionGrantPolicyId, string body, IOutputFormatterFactory outputFormatterFactory, CancellationToken cancellationToken) => {
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<PermissionGrantPolicy>();
                 var requestInfo = CreatePatchRequestInformation(model, q => {
                 });
-                await RequestAdapter.SendNoContentAsync(requestInfo);
-                // Print request output. What if the request has no return?
+                await RequestAdapter.SendNoContentAsync(requestInfo, errorMapping: default, cancellationToken: cancellationToken);
                 Console.WriteLine("Success");
             }, permissionGrantPolicyIdOption, bodyOption);
             return command;
@@ -185,42 +188,6 @@ namespace ApiSdk.Policies.PermissionGrantPolicies.Item {
             h?.Invoke(requestInfo.Headers);
             requestInfo.AddRequestOptions(o?.ToArray());
             return requestInfo;
-        }
-        /// <summary>
-        /// The policy that specifies the conditions under which consent can be granted.
-        /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
-        /// <param name="h">Request headers</param>
-        /// <param name="o">Request options</param>
-        /// <param name="responseHandler">Response handler to use in place of the default response handling provided by the core service</param>
-        /// </summary>
-        public async Task DeleteAsync(Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default, CancellationToken cancellationToken = default) {
-            var requestInfo = CreateDeleteRequestInformation(h, o);
-            await RequestAdapter.SendNoContentAsync(requestInfo, responseHandler, cancellationToken);
-        }
-        /// <summary>
-        /// The policy that specifies the conditions under which consent can be granted.
-        /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
-        /// <param name="h">Request headers</param>
-        /// <param name="o">Request options</param>
-        /// <param name="q">Request query parameters</param>
-        /// <param name="responseHandler">Response handler to use in place of the default response handling provided by the core service</param>
-        /// </summary>
-        public async Task<PermissionGrantPolicy> GetAsync(Action<GetQueryParameters> q = default, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default, CancellationToken cancellationToken = default) {
-            var requestInfo = CreateGetRequestInformation(q, h, o);
-            return await RequestAdapter.SendAsync<PermissionGrantPolicy>(requestInfo, responseHandler, cancellationToken);
-        }
-        /// <summary>
-        /// The policy that specifies the conditions under which consent can be granted.
-        /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
-        /// <param name="h">Request headers</param>
-        /// <param name="model"></param>
-        /// <param name="o">Request options</param>
-        /// <param name="responseHandler">Response handler to use in place of the default response handling provided by the core service</param>
-        /// </summary>
-        public async Task PatchAsync(PermissionGrantPolicy model, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default, CancellationToken cancellationToken = default) {
-            _ = model ?? throw new ArgumentNullException(nameof(model));
-            var requestInfo = CreatePatchRequestInformation(model, h, o);
-            await RequestAdapter.SendNoContentAsync(requestInfo, responseHandler, cancellationToken);
         }
         /// <summary>The policy that specifies the conditions under which consent can be granted.</summary>
         public class GetQueryParameters : QueryParametersBase {

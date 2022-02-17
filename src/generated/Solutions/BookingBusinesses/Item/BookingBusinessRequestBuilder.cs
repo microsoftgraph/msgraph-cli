@@ -9,10 +9,10 @@ using ApiSdk.Solutions.BookingBusinesses.Item.StaffMembers;
 using ApiSdk.Solutions.BookingBusinesses.Item.Unpublish;
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
+using Microsoft.Kiota.Cli.Commons.IO;
 using System;
 using System.Collections.Generic;
 using System.CommandLine;
-using System.CommandLine.Invocation;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -30,6 +30,9 @@ namespace ApiSdk.Solutions.BookingBusinesses.Item {
         public Command BuildAppointmentsCommand() {
             var command = new Command("appointments");
             var builder = new ApiSdk.Solutions.BookingBusinesses.Item.Appointments.AppointmentsRequestBuilder(PathParameters, RequestAdapter);
+            foreach (var cmd in builder.BuildCommand()) {
+                command.AddCommand(cmd);
+            }
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;
@@ -37,6 +40,9 @@ namespace ApiSdk.Solutions.BookingBusinesses.Item {
         public Command BuildCalendarViewCommand() {
             var command = new Command("calendar-view");
             var builder = new ApiSdk.Solutions.BookingBusinesses.Item.CalendarView.CalendarViewRequestBuilder(PathParameters, RequestAdapter);
+            foreach (var cmd in builder.BuildCommand()) {
+                command.AddCommand(cmd);
+            }
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;
@@ -44,6 +50,9 @@ namespace ApiSdk.Solutions.BookingBusinesses.Item {
         public Command BuildCustomersCommand() {
             var command = new Command("customers");
             var builder = new ApiSdk.Solutions.BookingBusinesses.Item.Customers.CustomersRequestBuilder(PathParameters, RequestAdapter);
+            foreach (var cmd in builder.BuildCommand()) {
+                command.AddCommand(cmd);
+            }
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;
@@ -51,6 +60,9 @@ namespace ApiSdk.Solutions.BookingBusinesses.Item {
         public Command BuildCustomQuestionsCommand() {
             var command = new Command("custom-questions");
             var builder = new ApiSdk.Solutions.BookingBusinesses.Item.CustomQuestions.CustomQuestionsRequestBuilder(PathParameters, RequestAdapter);
+            foreach (var cmd in builder.BuildCommand()) {
+                command.AddCommand(cmd);
+            }
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;
@@ -62,15 +74,14 @@ namespace ApiSdk.Solutions.BookingBusinesses.Item {
             var command = new Command("delete");
             command.Description = "Delete navigation property bookingBusinesses for solutions";
             // Create options for all the parameters
-            var bookingBusinessIdOption = new Option<string>("--bookingbusiness-id", description: "key: id of bookingBusiness") {
+            var bookingBusinessIdOption = new Option<string>("--booking-business-id", description: "key: id of bookingBusiness") {
             };
             bookingBusinessIdOption.IsRequired = true;
             command.AddOption(bookingBusinessIdOption);
-            command.SetHandler(async (string bookingBusinessId) => {
+            command.SetHandler(async (string bookingBusinessId, IOutputFormatterFactory outputFormatterFactory, CancellationToken cancellationToken) => {
                 var requestInfo = CreateDeleteRequestInformation(q => {
                 });
-                await RequestAdapter.SendNoContentAsync(requestInfo);
-                // Print request output. What if the request has no return?
+                await RequestAdapter.SendNoContentAsync(requestInfo, errorMapping: default, cancellationToken: cancellationToken);
                 Console.WriteLine("Success");
             }, bookingBusinessIdOption);
             return command;
@@ -82,7 +93,7 @@ namespace ApiSdk.Solutions.BookingBusinesses.Item {
             var command = new Command("get");
             command.Description = "Get bookingBusinesses from solutions";
             // Create options for all the parameters
-            var bookingBusinessIdOption = new Option<string>("--bookingbusiness-id", description: "key: id of bookingBusiness") {
+            var bookingBusinessIdOption = new Option<string>("--booking-business-id", description: "key: id of bookingBusiness") {
             };
             bookingBusinessIdOption.IsRequired = true;
             command.AddOption(bookingBusinessIdOption);
@@ -96,20 +107,19 @@ namespace ApiSdk.Solutions.BookingBusinesses.Item {
             };
             expandOption.IsRequired = false;
             command.AddOption(expandOption);
-            command.SetHandler(async (string bookingBusinessId, string[] select, string[] expand) => {
+            var outputOption = new Option<FormatterType>("--output", () => FormatterType.JSON){
+                IsRequired = true
+            };
+            command.AddOption(outputOption);
+            command.SetHandler(async (string bookingBusinessId, string[] select, string[] expand, FormatterType output, IOutputFormatterFactory outputFormatterFactory, CancellationToken cancellationToken) => {
                 var requestInfo = CreateGetRequestInformation(q => {
                     q.Select = select;
                     q.Expand = expand;
                 });
-                var result = await RequestAdapter.SendAsync<BookingBusiness>(requestInfo);
-                // Print request output. What if the request has no return?
-                using var serializer = RequestAdapter.SerializationWriterFactory.GetSerializationWriter("application/json");
-                serializer.WriteObjectValue(null, result);
-                using var content = serializer.GetSerializedContent();
-                using var reader = new StreamReader(content);
-                var strContent = await reader.ReadToEndAsync();
-                Console.Write(strContent + "\n");
-            }, bookingBusinessIdOption, selectOption, expandOption);
+                var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: default, cancellationToken: cancellationToken);
+                var formatter = outputFormatterFactory.GetFormatter(output);
+                formatter.WriteOutput(response);
+            }, bookingBusinessIdOption, selectOption, expandOption, outputOption);
             return command;
         }
         /// <summary>
@@ -119,7 +129,7 @@ namespace ApiSdk.Solutions.BookingBusinesses.Item {
             var command = new Command("patch");
             command.Description = "Update the navigation property bookingBusinesses in solutions";
             // Create options for all the parameters
-            var bookingBusinessIdOption = new Option<string>("--bookingbusiness-id", description: "key: id of bookingBusiness") {
+            var bookingBusinessIdOption = new Option<string>("--booking-business-id", description: "key: id of bookingBusiness") {
             };
             bookingBusinessIdOption.IsRequired = true;
             command.AddOption(bookingBusinessIdOption);
@@ -127,14 +137,13 @@ namespace ApiSdk.Solutions.BookingBusinesses.Item {
             };
             bodyOption.IsRequired = true;
             command.AddOption(bodyOption);
-            command.SetHandler(async (string bookingBusinessId, string body) => {
+            command.SetHandler(async (string bookingBusinessId, string body, IOutputFormatterFactory outputFormatterFactory, CancellationToken cancellationToken) => {
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<BookingBusiness>();
                 var requestInfo = CreatePatchRequestInformation(model, q => {
                 });
-                await RequestAdapter.SendNoContentAsync(requestInfo);
-                // Print request output. What if the request has no return?
+                await RequestAdapter.SendNoContentAsync(requestInfo, errorMapping: default, cancellationToken: cancellationToken);
                 Console.WriteLine("Success");
             }, bookingBusinessIdOption, bodyOption);
             return command;
@@ -148,6 +157,9 @@ namespace ApiSdk.Solutions.BookingBusinesses.Item {
         public Command BuildServicesCommand() {
             var command = new Command("services");
             var builder = new ApiSdk.Solutions.BookingBusinesses.Item.Services.ServicesRequestBuilder(PathParameters, RequestAdapter);
+            foreach (var cmd in builder.BuildCommand()) {
+                command.AddCommand(cmd);
+            }
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;
@@ -155,6 +167,9 @@ namespace ApiSdk.Solutions.BookingBusinesses.Item {
         public Command BuildStaffMembersCommand() {
             var command = new Command("staff-members");
             var builder = new ApiSdk.Solutions.BookingBusinesses.Item.StaffMembers.StaffMembersRequestBuilder(PathParameters, RequestAdapter);
+            foreach (var cmd in builder.BuildCommand()) {
+                command.AddCommand(cmd);
+            }
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;
@@ -231,42 +246,6 @@ namespace ApiSdk.Solutions.BookingBusinesses.Item {
             h?.Invoke(requestInfo.Headers);
             requestInfo.AddRequestOptions(o?.ToArray());
             return requestInfo;
-        }
-        /// <summary>
-        /// Delete navigation property bookingBusinesses for solutions
-        /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
-        /// <param name="h">Request headers</param>
-        /// <param name="o">Request options</param>
-        /// <param name="responseHandler">Response handler to use in place of the default response handling provided by the core service</param>
-        /// </summary>
-        public async Task DeleteAsync(Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default, CancellationToken cancellationToken = default) {
-            var requestInfo = CreateDeleteRequestInformation(h, o);
-            await RequestAdapter.SendNoContentAsync(requestInfo, responseHandler, cancellationToken);
-        }
-        /// <summary>
-        /// Get bookingBusinesses from solutions
-        /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
-        /// <param name="h">Request headers</param>
-        /// <param name="o">Request options</param>
-        /// <param name="q">Request query parameters</param>
-        /// <param name="responseHandler">Response handler to use in place of the default response handling provided by the core service</param>
-        /// </summary>
-        public async Task<BookingBusiness> GetAsync(Action<GetQueryParameters> q = default, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default, CancellationToken cancellationToken = default) {
-            var requestInfo = CreateGetRequestInformation(q, h, o);
-            return await RequestAdapter.SendAsync<BookingBusiness>(requestInfo, responseHandler, cancellationToken);
-        }
-        /// <summary>
-        /// Update the navigation property bookingBusinesses in solutions
-        /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
-        /// <param name="h">Request headers</param>
-        /// <param name="model"></param>
-        /// <param name="o">Request options</param>
-        /// <param name="responseHandler">Response handler to use in place of the default response handling provided by the core service</param>
-        /// </summary>
-        public async Task PatchAsync(BookingBusiness model, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default, CancellationToken cancellationToken = default) {
-            _ = model ?? throw new ArgumentNullException(nameof(model));
-            var requestInfo = CreatePatchRequestInformation(model, h, o);
-            await RequestAdapter.SendNoContentAsync(requestInfo, responseHandler, cancellationToken);
         }
         /// <summary>Get bookingBusinesses from solutions</summary>
         public class GetQueryParameters : QueryParametersBase {

@@ -1,9 +1,9 @@
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
+using Microsoft.Kiota.Cli.Commons.IO;
 using System;
 using System.Collections.Generic;
 using System.CommandLine;
-using System.CommandLine.Invocation;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -29,40 +29,42 @@ namespace ApiSdk.Groups.Item.Onenote.Pages.Item.ParentNotebook.SectionGroups.Ite
             };
             groupIdOption.IsRequired = true;
             command.AddOption(groupIdOption);
-            var onenotePageIdOption = new Option<string>("--onenotepage-id", description: "key: id of onenotePage") {
+            var onenotePageIdOption = new Option<string>("--onenote-page-id", description: "key: id of onenotePage") {
             };
             onenotePageIdOption.IsRequired = true;
             command.AddOption(onenotePageIdOption);
-            var sectionGroupIdOption = new Option<string>("--sectiongroup-id", description: "key: id of sectionGroup") {
+            var sectionGroupIdOption = new Option<string>("--section-group-id", description: "key: id of sectionGroup") {
             };
             sectionGroupIdOption.IsRequired = true;
             command.AddOption(sectionGroupIdOption);
-            var onenoteSectionIdOption = new Option<string>("--onenotesection-id", description: "key: id of onenoteSection") {
+            var onenoteSectionIdOption = new Option<string>("--onenote-section-id", description: "key: id of onenoteSection") {
             };
             onenoteSectionIdOption.IsRequired = true;
             command.AddOption(onenoteSectionIdOption);
-            var onenotePageId1Option = new Option<string>("--onenotepage-id1", description: "key: id of onenotePage") {
+            var onenotePageId1Option = new Option<string>("--onenote-page-id1", description: "key: id of onenotePage") {
             };
             onenotePageId1Option.IsRequired = true;
             command.AddOption(onenotePageId1Option);
-            var outputOption = new Option<FileInfo>("--output");
+            var fileOption = new Option<FileInfo>("--file");
+            command.AddOption(fileOption);
+            var outputOption = new Option<FormatterType>("--output", () => FormatterType.JSON){
+                IsRequired = true
+            };
             command.AddOption(outputOption);
-            command.SetHandler(async (string groupId, string onenotePageId, string sectionGroupId, string onenoteSectionId, string onenotePageId1, FileInfo output) => {
+            command.SetHandler(async (string groupId, string onenotePageId, string sectionGroupId, string onenoteSectionId, string onenotePageId1, FileInfo file, FormatterType output, IOutputFormatterFactory outputFormatterFactory, CancellationToken cancellationToken) => {
                 var requestInfo = CreateGetRequestInformation(q => {
                 });
-                var result = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
-                // Print request output. What if the request has no return?
-                if (output == null) {
-                    using var reader = new StreamReader(result);
-                    var strContent = await reader.ReadToEndAsync();
-                    Console.Write(strContent + "\n");
+                var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: default, cancellationToken: cancellationToken);
+                var formatter = outputFormatterFactory.GetFormatter(output);
+                if (file == null) {
+                    formatter.WriteOutput(response);
                 }
                 else {
-                    using var writeStream = output.OpenWrite();
-                    await result.CopyToAsync(writeStream);
-                    Console.WriteLine($"Content written to {output.FullName}.");
+                    using var writeStream = file.OpenWrite();
+                    await response.CopyToAsync(writeStream);
+                    Console.WriteLine($"Content written to {file.FullName}.");
                 }
-            }, groupIdOption, onenotePageIdOption, sectionGroupIdOption, onenoteSectionIdOption, onenotePageId1Option, outputOption);
+            }, groupIdOption, onenotePageIdOption, sectionGroupIdOption, onenoteSectionIdOption, onenotePageId1Option, fileOption, outputOption);
             return command;
         }
         /// <summary>
@@ -76,19 +78,19 @@ namespace ApiSdk.Groups.Item.Onenote.Pages.Item.ParentNotebook.SectionGroups.Ite
             };
             groupIdOption.IsRequired = true;
             command.AddOption(groupIdOption);
-            var onenotePageIdOption = new Option<string>("--onenotepage-id", description: "key: id of onenotePage") {
+            var onenotePageIdOption = new Option<string>("--onenote-page-id", description: "key: id of onenotePage") {
             };
             onenotePageIdOption.IsRequired = true;
             command.AddOption(onenotePageIdOption);
-            var sectionGroupIdOption = new Option<string>("--sectiongroup-id", description: "key: id of sectionGroup") {
+            var sectionGroupIdOption = new Option<string>("--section-group-id", description: "key: id of sectionGroup") {
             };
             sectionGroupIdOption.IsRequired = true;
             command.AddOption(sectionGroupIdOption);
-            var onenoteSectionIdOption = new Option<string>("--onenotesection-id", description: "key: id of onenoteSection") {
+            var onenoteSectionIdOption = new Option<string>("--onenote-section-id", description: "key: id of onenoteSection") {
             };
             onenoteSectionIdOption.IsRequired = true;
             command.AddOption(onenoteSectionIdOption);
-            var onenotePageId1Option = new Option<string>("--onenotepage-id1", description: "key: id of onenotePage") {
+            var onenotePageId1Option = new Option<string>("--onenote-page-id1", description: "key: id of onenotePage") {
             };
             onenotePageId1Option.IsRequired = true;
             command.AddOption(onenotePageId1Option);
@@ -96,12 +98,11 @@ namespace ApiSdk.Groups.Item.Onenote.Pages.Item.ParentNotebook.SectionGroups.Ite
             };
             bodyOption.IsRequired = true;
             command.AddOption(bodyOption);
-            command.SetHandler(async (string groupId, string onenotePageId, string sectionGroupId, string onenoteSectionId, string onenotePageId1, FileInfo file) => {
+            command.SetHandler(async (string groupId, string onenotePageId, string sectionGroupId, string onenoteSectionId, string onenotePageId1, FileInfo file, IOutputFormatterFactory outputFormatterFactory, CancellationToken cancellationToken) => {
                 using var stream = file.OpenRead();
                 var requestInfo = CreatePutRequestInformation(stream, q => {
                 });
-                await RequestAdapter.SendNoContentAsync(requestInfo);
-                // Print request output. What if the request has no return?
+                await RequestAdapter.SendNoContentAsync(requestInfo, errorMapping: default, cancellationToken: cancellationToken);
                 Console.WriteLine("Success");
             }, groupIdOption, onenotePageIdOption, sectionGroupIdOption, onenoteSectionIdOption, onenotePageId1Option, bodyOption);
             return command;
@@ -151,30 +152,6 @@ namespace ApiSdk.Groups.Item.Onenote.Pages.Item.ParentNotebook.SectionGroups.Ite
             h?.Invoke(requestInfo.Headers);
             requestInfo.AddRequestOptions(o?.ToArray());
             return requestInfo;
-        }
-        /// <summary>
-        /// Get media content for the navigation property pages from groups
-        /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
-        /// <param name="h">Request headers</param>
-        /// <param name="o">Request options</param>
-        /// <param name="responseHandler">Response handler to use in place of the default response handling provided by the core service</param>
-        /// </summary>
-        public async Task<Stream> GetAsync(Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default, CancellationToken cancellationToken = default) {
-            var requestInfo = CreateGetRequestInformation(h, o);
-            return await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, responseHandler, cancellationToken);
-        }
-        /// <summary>
-        /// Update media content for the navigation property pages in groups
-        /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
-        /// <param name="h">Request headers</param>
-        /// <param name="o">Request options</param>
-        /// <param name="responseHandler">Response handler to use in place of the default response handling provided by the core service</param>
-        /// <param name="stream">Binary request body</param>
-        /// </summary>
-        public async Task PutAsync(Stream stream, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default, CancellationToken cancellationToken = default) {
-            _ = stream ?? throw new ArgumentNullException(nameof(stream));
-            var requestInfo = CreatePutRequestInformation(stream, h, o);
-            await RequestAdapter.SendNoContentAsync(requestInfo, responseHandler, cancellationToken);
         }
     }
 }

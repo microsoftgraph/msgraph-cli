@@ -5,10 +5,10 @@ using ApiSdk.Privacy.SubjectRightsRequests.Item.Notes;
 using ApiSdk.Privacy.SubjectRightsRequests.Item.Team;
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
+using Microsoft.Kiota.Cli.Commons.IO;
 using System;
 using System.Collections.Generic;
 using System.CommandLine;
-using System.CommandLine.Invocation;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -30,15 +30,14 @@ namespace ApiSdk.Privacy.SubjectRightsRequests.Item {
             var command = new Command("delete");
             command.Description = "Delete navigation property subjectRightsRequests for privacy";
             // Create options for all the parameters
-            var subjectRightsRequestIdOption = new Option<string>("--subjectrightsrequest-id", description: "key: id of subjectRightsRequest") {
+            var subjectRightsRequestIdOption = new Option<string>("--subject-rights-request-id", description: "key: id of subjectRightsRequest") {
             };
             subjectRightsRequestIdOption.IsRequired = true;
             command.AddOption(subjectRightsRequestIdOption);
-            command.SetHandler(async (string subjectRightsRequestId) => {
+            command.SetHandler(async (string subjectRightsRequestId, IOutputFormatterFactory outputFormatterFactory, CancellationToken cancellationToken) => {
                 var requestInfo = CreateDeleteRequestInformation(q => {
                 });
-                await RequestAdapter.SendNoContentAsync(requestInfo);
-                // Print request output. What if the request has no return?
+                await RequestAdapter.SendNoContentAsync(requestInfo, errorMapping: default, cancellationToken: cancellationToken);
                 Console.WriteLine("Success");
             }, subjectRightsRequestIdOption);
             return command;
@@ -50,7 +49,7 @@ namespace ApiSdk.Privacy.SubjectRightsRequests.Item {
             var command = new Command("get");
             command.Description = "Get subjectRightsRequests from privacy";
             // Create options for all the parameters
-            var subjectRightsRequestIdOption = new Option<string>("--subjectrightsrequest-id", description: "key: id of subjectRightsRequest") {
+            var subjectRightsRequestIdOption = new Option<string>("--subject-rights-request-id", description: "key: id of subjectRightsRequest") {
             };
             subjectRightsRequestIdOption.IsRequired = true;
             command.AddOption(subjectRightsRequestIdOption);
@@ -64,25 +63,27 @@ namespace ApiSdk.Privacy.SubjectRightsRequests.Item {
             };
             expandOption.IsRequired = false;
             command.AddOption(expandOption);
-            command.SetHandler(async (string subjectRightsRequestId, string[] select, string[] expand) => {
+            var outputOption = new Option<FormatterType>("--output", () => FormatterType.JSON){
+                IsRequired = true
+            };
+            command.AddOption(outputOption);
+            command.SetHandler(async (string subjectRightsRequestId, string[] select, string[] expand, FormatterType output, IOutputFormatterFactory outputFormatterFactory, CancellationToken cancellationToken) => {
                 var requestInfo = CreateGetRequestInformation(q => {
                     q.Select = select;
                     q.Expand = expand;
                 });
-                var result = await RequestAdapter.SendAsync<SubjectRightsRequest>(requestInfo);
-                // Print request output. What if the request has no return?
-                using var serializer = RequestAdapter.SerializationWriterFactory.GetSerializationWriter("application/json");
-                serializer.WriteObjectValue(null, result);
-                using var content = serializer.GetSerializedContent();
-                using var reader = new StreamReader(content);
-                var strContent = await reader.ReadToEndAsync();
-                Console.Write(strContent + "\n");
-            }, subjectRightsRequestIdOption, selectOption, expandOption);
+                var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: default, cancellationToken: cancellationToken);
+                var formatter = outputFormatterFactory.GetFormatter(output);
+                formatter.WriteOutput(response);
+            }, subjectRightsRequestIdOption, selectOption, expandOption, outputOption);
             return command;
         }
         public Command BuildNotesCommand() {
             var command = new Command("notes");
             var builder = new ApiSdk.Privacy.SubjectRightsRequests.Item.Notes.NotesRequestBuilder(PathParameters, RequestAdapter);
+            foreach (var cmd in builder.BuildCommand()) {
+                command.AddCommand(cmd);
+            }
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;
@@ -94,7 +95,7 @@ namespace ApiSdk.Privacy.SubjectRightsRequests.Item {
             var command = new Command("patch");
             command.Description = "Update the navigation property subjectRightsRequests in privacy";
             // Create options for all the parameters
-            var subjectRightsRequestIdOption = new Option<string>("--subjectrightsrequest-id", description: "key: id of subjectRightsRequest") {
+            var subjectRightsRequestIdOption = new Option<string>("--subject-rights-request-id", description: "key: id of subjectRightsRequest") {
             };
             subjectRightsRequestIdOption.IsRequired = true;
             command.AddOption(subjectRightsRequestIdOption);
@@ -102,14 +103,13 @@ namespace ApiSdk.Privacy.SubjectRightsRequests.Item {
             };
             bodyOption.IsRequired = true;
             command.AddOption(bodyOption);
-            command.SetHandler(async (string subjectRightsRequestId, string body) => {
+            command.SetHandler(async (string subjectRightsRequestId, string body, IOutputFormatterFactory outputFormatterFactory, CancellationToken cancellationToken) => {
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<SubjectRightsRequest>();
                 var requestInfo = CreatePatchRequestInformation(model, q => {
                 });
-                await RequestAdapter.SendNoContentAsync(requestInfo);
-                // Print request output. What if the request has no return?
+                await RequestAdapter.SendNoContentAsync(requestInfo, errorMapping: default, cancellationToken: cancellationToken);
                 Console.WriteLine("Success");
             }, subjectRightsRequestIdOption, bodyOption);
             return command;
@@ -189,29 +189,6 @@ namespace ApiSdk.Privacy.SubjectRightsRequests.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Delete navigation property subjectRightsRequests for privacy
-        /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
-        /// <param name="h">Request headers</param>
-        /// <param name="o">Request options</param>
-        /// <param name="responseHandler">Response handler to use in place of the default response handling provided by the core service</param>
-        /// </summary>
-        public async Task DeleteAsync(Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default, CancellationToken cancellationToken = default) {
-            var requestInfo = CreateDeleteRequestInformation(h, o);
-            await RequestAdapter.SendNoContentAsync(requestInfo, responseHandler, cancellationToken);
-        }
-        /// <summary>
-        /// Get subjectRightsRequests from privacy
-        /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
-        /// <param name="h">Request headers</param>
-        /// <param name="o">Request options</param>
-        /// <param name="q">Request query parameters</param>
-        /// <param name="responseHandler">Response handler to use in place of the default response handling provided by the core service</param>
-        /// </summary>
-        public async Task<SubjectRightsRequest> GetAsync(Action<GetQueryParameters> q = default, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default, CancellationToken cancellationToken = default) {
-            var requestInfo = CreateGetRequestInformation(q, h, o);
-            return await RequestAdapter.SendAsync<SubjectRightsRequest>(requestInfo, responseHandler, cancellationToken);
-        }
-        /// <summary>
         /// Builds and executes requests for operations under \privacy\subjectRightsRequests\{subjectRightsRequest-id}\microsoft.graph.getFinalAttachment()
         /// </summary>
         public GetFinalAttachmentRequestBuilder GetFinalAttachment() {
@@ -222,19 +199,6 @@ namespace ApiSdk.Privacy.SubjectRightsRequests.Item {
         /// </summary>
         public GetFinalReportRequestBuilder GetFinalReport() {
             return new GetFinalReportRequestBuilder(PathParameters, RequestAdapter);
-        }
-        /// <summary>
-        /// Update the navigation property subjectRightsRequests in privacy
-        /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
-        /// <param name="h">Request headers</param>
-        /// <param name="model"></param>
-        /// <param name="o">Request options</param>
-        /// <param name="responseHandler">Response handler to use in place of the default response handling provided by the core service</param>
-        /// </summary>
-        public async Task PatchAsync(SubjectRightsRequest model, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default, CancellationToken cancellationToken = default) {
-            _ = model ?? throw new ArgumentNullException(nameof(model));
-            var requestInfo = CreatePatchRequestInformation(model, h, o);
-            await RequestAdapter.SendNoContentAsync(requestInfo, responseHandler, cancellationToken);
         }
         /// <summary>Get subjectRightsRequests from privacy</summary>
         public class GetQueryParameters : QueryParametersBase {

@@ -42,13 +42,13 @@ namespace ApiSdk.Models.Microsoft.Graph {
         /// <summary>Indicates whether organizational credentials are required for app use.</summary>
         public bool? OrganizationalCredentialsRequired { get; set; }
         /// <summary>TimePeriod before the all-level pin must be reset if PinRequired is set to True.</summary>
-        public string PeriodBeforePinReset { get; set; }
+        public TimeSpan? PeriodBeforePinReset { get; set; }
         /// <summary>The period after which access is checked when the device is not connected to the internet.</summary>
-        public string PeriodOfflineBeforeAccessCheck { get; set; }
+        public TimeSpan? PeriodOfflineBeforeAccessCheck { get; set; }
         /// <summary>The amount of time an app is allowed to remain disconnected from the internet before all managed data it is wiped.</summary>
-        public string PeriodOfflineBeforeWipeIsEnforced { get; set; }
+        public TimeSpan? PeriodOfflineBeforeWipeIsEnforced { get; set; }
         /// <summary>The period after which access is checked when the device is connected to the internet.</summary>
-        public string PeriodOnlineBeforeAccessCheck { get; set; }
+        public TimeSpan? PeriodOnlineBeforeAccessCheck { get; set; }
         /// <summary>Character set which may be used for an app-level pin if PinRequired is set to True. Possible values are: numeric, alphanumericAndSymbol.</summary>
         public ManagedAppPinCharacterSet? PinCharacterSet { get; set; }
         /// <summary>Indicates whether an app-level pin is required.</summary>
@@ -82,10 +82,10 @@ namespace ApiSdk.Models.Microsoft.Graph {
                 {"minimumWarningAppVersion", (o,n) => { (o as ManagedAppProtection).MinimumWarningAppVersion = n.GetStringValue(); } },
                 {"minimumWarningOsVersion", (o,n) => { (o as ManagedAppProtection).MinimumWarningOsVersion = n.GetStringValue(); } },
                 {"organizationalCredentialsRequired", (o,n) => { (o as ManagedAppProtection).OrganizationalCredentialsRequired = n.GetBoolValue(); } },
-                {"periodBeforePinReset", (o,n) => { (o as ManagedAppProtection).PeriodBeforePinReset = n.GetStringValue(); } },
-                {"periodOfflineBeforeAccessCheck", (o,n) => { (o as ManagedAppProtection).PeriodOfflineBeforeAccessCheck = n.GetStringValue(); } },
-                {"periodOfflineBeforeWipeIsEnforced", (o,n) => { (o as ManagedAppProtection).PeriodOfflineBeforeWipeIsEnforced = n.GetStringValue(); } },
-                {"periodOnlineBeforeAccessCheck", (o,n) => { (o as ManagedAppProtection).PeriodOnlineBeforeAccessCheck = n.GetStringValue(); } },
+                {"periodBeforePinReset", (o,n) => { (o as ManagedAppProtection).PeriodBeforePinReset = n.GetTimeSpanValue(); } },
+                {"periodOfflineBeforeAccessCheck", (o,n) => { (o as ManagedAppProtection).PeriodOfflineBeforeAccessCheck = n.GetTimeSpanValue(); } },
+                {"periodOfflineBeforeWipeIsEnforced", (o,n) => { (o as ManagedAppProtection).PeriodOfflineBeforeWipeIsEnforced = n.GetTimeSpanValue(); } },
+                {"periodOnlineBeforeAccessCheck", (o,n) => { (o as ManagedAppProtection).PeriodOnlineBeforeAccessCheck = n.GetTimeSpanValue(); } },
                 {"pinCharacterSet", (o,n) => { (o as ManagedAppProtection).PinCharacterSet = n.GetEnumValue<ManagedAppPinCharacterSet>(); } },
                 {"pinRequired", (o,n) => { (o as ManagedAppProtection).PinRequired = n.GetBoolValue(); } },
                 {"printBlocked", (o,n) => { (o as ManagedAppProtection).PrintBlocked = n.GetBoolValue(); } },
@@ -118,10 +118,10 @@ namespace ApiSdk.Models.Microsoft.Graph {
             writer.WriteStringValue("minimumWarningAppVersion", MinimumWarningAppVersion);
             writer.WriteStringValue("minimumWarningOsVersion", MinimumWarningOsVersion);
             writer.WriteBoolValue("organizationalCredentialsRequired", OrganizationalCredentialsRequired);
-            writer.WriteStringValue("periodBeforePinReset", PeriodBeforePinReset);
-            writer.WriteStringValue("periodOfflineBeforeAccessCheck", PeriodOfflineBeforeAccessCheck);
-            writer.WriteStringValue("periodOfflineBeforeWipeIsEnforced", PeriodOfflineBeforeWipeIsEnforced);
-            writer.WriteStringValue("periodOnlineBeforeAccessCheck", PeriodOnlineBeforeAccessCheck);
+            writer.WriteTimeSpanValue("periodBeforePinReset", PeriodBeforePinReset);
+            writer.WriteTimeSpanValue("periodOfflineBeforeAccessCheck", PeriodOfflineBeforeAccessCheck);
+            writer.WriteTimeSpanValue("periodOfflineBeforeWipeIsEnforced", PeriodOfflineBeforeWipeIsEnforced);
+            writer.WriteTimeSpanValue("periodOnlineBeforeAccessCheck", PeriodOnlineBeforeAccessCheck);
             writer.WriteEnumValue<ManagedAppPinCharacterSet>("pinCharacterSet", PinCharacterSet);
             writer.WriteBoolValue("pinRequired", PinRequired);
             writer.WriteBoolValue("printBlocked", PrintBlocked);

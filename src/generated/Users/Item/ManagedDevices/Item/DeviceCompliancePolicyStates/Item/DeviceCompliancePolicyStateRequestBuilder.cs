@@ -1,10 +1,10 @@
 using ApiSdk.Models.Microsoft.Graph;
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
+using Microsoft.Kiota.Cli.Commons.IO;
 using System;
 using System.Collections.Generic;
 using System.CommandLine;
-using System.CommandLine.Invocation;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -30,19 +30,18 @@ namespace ApiSdk.Users.Item.ManagedDevices.Item.DeviceCompliancePolicyStates.Ite
             };
             userIdOption.IsRequired = true;
             command.AddOption(userIdOption);
-            var managedDeviceIdOption = new Option<string>("--manageddevice-id", description: "key: id of managedDevice") {
+            var managedDeviceIdOption = new Option<string>("--managed-device-id", description: "key: id of managedDevice") {
             };
             managedDeviceIdOption.IsRequired = true;
             command.AddOption(managedDeviceIdOption);
-            var deviceCompliancePolicyStateIdOption = new Option<string>("--devicecompliancepolicystate-id", description: "key: id of deviceCompliancePolicyState") {
+            var deviceCompliancePolicyStateIdOption = new Option<string>("--device-compliance-policy-state-id", description: "key: id of deviceCompliancePolicyState") {
             };
             deviceCompliancePolicyStateIdOption.IsRequired = true;
             command.AddOption(deviceCompliancePolicyStateIdOption);
-            command.SetHandler(async (string userId, string managedDeviceId, string deviceCompliancePolicyStateId) => {
+            command.SetHandler(async (string userId, string managedDeviceId, string deviceCompliancePolicyStateId, IOutputFormatterFactory outputFormatterFactory, CancellationToken cancellationToken) => {
                 var requestInfo = CreateDeleteRequestInformation(q => {
                 });
-                await RequestAdapter.SendNoContentAsync(requestInfo);
-                // Print request output. What if the request has no return?
+                await RequestAdapter.SendNoContentAsync(requestInfo, errorMapping: default, cancellationToken: cancellationToken);
                 Console.WriteLine("Success");
             }, userIdOption, managedDeviceIdOption, deviceCompliancePolicyStateIdOption);
             return command;
@@ -58,11 +57,11 @@ namespace ApiSdk.Users.Item.ManagedDevices.Item.DeviceCompliancePolicyStates.Ite
             };
             userIdOption.IsRequired = true;
             command.AddOption(userIdOption);
-            var managedDeviceIdOption = new Option<string>("--manageddevice-id", description: "key: id of managedDevice") {
+            var managedDeviceIdOption = new Option<string>("--managed-device-id", description: "key: id of managedDevice") {
             };
             managedDeviceIdOption.IsRequired = true;
             command.AddOption(managedDeviceIdOption);
-            var deviceCompliancePolicyStateIdOption = new Option<string>("--devicecompliancepolicystate-id", description: "key: id of deviceCompliancePolicyState") {
+            var deviceCompliancePolicyStateIdOption = new Option<string>("--device-compliance-policy-state-id", description: "key: id of deviceCompliancePolicyState") {
             };
             deviceCompliancePolicyStateIdOption.IsRequired = true;
             command.AddOption(deviceCompliancePolicyStateIdOption);
@@ -76,20 +75,19 @@ namespace ApiSdk.Users.Item.ManagedDevices.Item.DeviceCompliancePolicyStates.Ite
             };
             expandOption.IsRequired = false;
             command.AddOption(expandOption);
-            command.SetHandler(async (string userId, string managedDeviceId, string deviceCompliancePolicyStateId, string[] select, string[] expand) => {
+            var outputOption = new Option<FormatterType>("--output", () => FormatterType.JSON){
+                IsRequired = true
+            };
+            command.AddOption(outputOption);
+            command.SetHandler(async (string userId, string managedDeviceId, string deviceCompliancePolicyStateId, string[] select, string[] expand, FormatterType output, IOutputFormatterFactory outputFormatterFactory, CancellationToken cancellationToken) => {
                 var requestInfo = CreateGetRequestInformation(q => {
                     q.Select = select;
                     q.Expand = expand;
                 });
-                var result = await RequestAdapter.SendAsync<DeviceCompliancePolicyState>(requestInfo);
-                // Print request output. What if the request has no return?
-                using var serializer = RequestAdapter.SerializationWriterFactory.GetSerializationWriter("application/json");
-                serializer.WriteObjectValue(null, result);
-                using var content = serializer.GetSerializedContent();
-                using var reader = new StreamReader(content);
-                var strContent = await reader.ReadToEndAsync();
-                Console.Write(strContent + "\n");
-            }, userIdOption, managedDeviceIdOption, deviceCompliancePolicyStateIdOption, selectOption, expandOption);
+                var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: default, cancellationToken: cancellationToken);
+                var formatter = outputFormatterFactory.GetFormatter(output);
+                formatter.WriteOutput(response);
+            }, userIdOption, managedDeviceIdOption, deviceCompliancePolicyStateIdOption, selectOption, expandOption, outputOption);
             return command;
         }
         /// <summary>
@@ -103,11 +101,11 @@ namespace ApiSdk.Users.Item.ManagedDevices.Item.DeviceCompliancePolicyStates.Ite
             };
             userIdOption.IsRequired = true;
             command.AddOption(userIdOption);
-            var managedDeviceIdOption = new Option<string>("--manageddevice-id", description: "key: id of managedDevice") {
+            var managedDeviceIdOption = new Option<string>("--managed-device-id", description: "key: id of managedDevice") {
             };
             managedDeviceIdOption.IsRequired = true;
             command.AddOption(managedDeviceIdOption);
-            var deviceCompliancePolicyStateIdOption = new Option<string>("--devicecompliancepolicystate-id", description: "key: id of deviceCompliancePolicyState") {
+            var deviceCompliancePolicyStateIdOption = new Option<string>("--device-compliance-policy-state-id", description: "key: id of deviceCompliancePolicyState") {
             };
             deviceCompliancePolicyStateIdOption.IsRequired = true;
             command.AddOption(deviceCompliancePolicyStateIdOption);
@@ -115,14 +113,13 @@ namespace ApiSdk.Users.Item.ManagedDevices.Item.DeviceCompliancePolicyStates.Ite
             };
             bodyOption.IsRequired = true;
             command.AddOption(bodyOption);
-            command.SetHandler(async (string userId, string managedDeviceId, string deviceCompliancePolicyStateId, string body) => {
+            command.SetHandler(async (string userId, string managedDeviceId, string deviceCompliancePolicyStateId, string body, IOutputFormatterFactory outputFormatterFactory, CancellationToken cancellationToken) => {
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<DeviceCompliancePolicyState>();
                 var requestInfo = CreatePatchRequestInformation(model, q => {
                 });
-                await RequestAdapter.SendNoContentAsync(requestInfo);
-                // Print request output. What if the request has no return?
+                await RequestAdapter.SendNoContentAsync(requestInfo, errorMapping: default, cancellationToken: cancellationToken);
                 Console.WriteLine("Success");
             }, userIdOption, managedDeviceIdOption, deviceCompliancePolicyStateIdOption, bodyOption);
             return command;
@@ -193,42 +190,6 @@ namespace ApiSdk.Users.Item.ManagedDevices.Item.DeviceCompliancePolicyStates.Ite
             h?.Invoke(requestInfo.Headers);
             requestInfo.AddRequestOptions(o?.ToArray());
             return requestInfo;
-        }
-        /// <summary>
-        /// Device compliance policy states for this device.
-        /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
-        /// <param name="h">Request headers</param>
-        /// <param name="o">Request options</param>
-        /// <param name="responseHandler">Response handler to use in place of the default response handling provided by the core service</param>
-        /// </summary>
-        public async Task DeleteAsync(Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default, CancellationToken cancellationToken = default) {
-            var requestInfo = CreateDeleteRequestInformation(h, o);
-            await RequestAdapter.SendNoContentAsync(requestInfo, responseHandler, cancellationToken);
-        }
-        /// <summary>
-        /// Device compliance policy states for this device.
-        /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
-        /// <param name="h">Request headers</param>
-        /// <param name="o">Request options</param>
-        /// <param name="q">Request query parameters</param>
-        /// <param name="responseHandler">Response handler to use in place of the default response handling provided by the core service</param>
-        /// </summary>
-        public async Task<DeviceCompliancePolicyState> GetAsync(Action<GetQueryParameters> q = default, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default, CancellationToken cancellationToken = default) {
-            var requestInfo = CreateGetRequestInformation(q, h, o);
-            return await RequestAdapter.SendAsync<DeviceCompliancePolicyState>(requestInfo, responseHandler, cancellationToken);
-        }
-        /// <summary>
-        /// Device compliance policy states for this device.
-        /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
-        /// <param name="h">Request headers</param>
-        /// <param name="model"></param>
-        /// <param name="o">Request options</param>
-        /// <param name="responseHandler">Response handler to use in place of the default response handling provided by the core service</param>
-        /// </summary>
-        public async Task PatchAsync(DeviceCompliancePolicyState model, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default, CancellationToken cancellationToken = default) {
-            _ = model ?? throw new ArgumentNullException(nameof(model));
-            var requestInfo = CreatePatchRequestInformation(model, h, o);
-            await RequestAdapter.SendNoContentAsync(requestInfo, responseHandler, cancellationToken);
         }
         /// <summary>Device compliance policy states for this device.</summary>
         public class GetQueryParameters : QueryParametersBase {

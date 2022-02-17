@@ -1,10 +1,10 @@
 using ApiSdk.Users.Item.Insights.Shared.Item.LastSharedMethod.MobileAppContentFile.Commit;
 using ApiSdk.Users.Item.Insights.Shared.Item.LastSharedMethod.MobileAppContentFile.RenewUpload;
 using Microsoft.Kiota.Abstractions;
+using Microsoft.Kiota.Cli.Commons.IO;
 using System;
 using System.Collections.Generic;
 using System.CommandLine;
-using System.CommandLine.Invocation;
 using System.IO;
 using System.Linq;
 using System.Text;

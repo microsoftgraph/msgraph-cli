@@ -1,3 +1,4 @@
+using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
 using System;
 using System.Collections.Generic;
@@ -10,7 +11,7 @@ namespace ApiSdk.Models.Microsoft.Graph {
         /// <summary>Optional field to control adding assignments to students' and teachers' calendars when the assignment is published. The possible values are: none, studentsAndPublisher, studentsAndTeamOwners, unknownFutureValue, and studentsOnly. Note that you must use the Prefer: include-unknown-enum-members request header to get the following value(s) in this evolvable enum: studentsOnly. The default value is none.</summary>
         public EducationAddToCalendarOptions? AddToCalendarAction { get; set; }
         /// <summary>Class-level default value for due time field. Default value is 23:59:00.</summary>
-        public string DueTime { get; set; }
+        public Time? DueTime { get; set; }
         /// <summary>Default Teams channel to which notifications will be sent. Default value is null.</summary>
         public string NotificationChannelUrl { get; set; }
         /// <summary>
@@ -20,7 +21,7 @@ namespace ApiSdk.Models.Microsoft.Graph {
             return new Dictionary<string, Action<T, IParseNode>>(base.GetFieldDeserializers<T>()) {
                 {"addedStudentAction", (o,n) => { (o as EducationAssignmentDefaults).AddedStudentAction = n.GetEnumValue<EducationAddedStudentAction>(); } },
                 {"addToCalendarAction", (o,n) => { (o as EducationAssignmentDefaults).AddToCalendarAction = n.GetEnumValue<EducationAddToCalendarOptions>(); } },
-                {"dueTime", (o,n) => { (o as EducationAssignmentDefaults).DueTime = n.GetStringValue(); } },
+                {"dueTime", (o,n) => { (o as EducationAssignmentDefaults).DueTime = n.GetTimeValue(); } },
                 {"notificationChannelUrl", (o,n) => { (o as EducationAssignmentDefaults).NotificationChannelUrl = n.GetStringValue(); } },
             };
         }
@@ -33,7 +34,7 @@ namespace ApiSdk.Models.Microsoft.Graph {
             base.Serialize(writer);
             writer.WriteEnumValue<EducationAddedStudentAction>("addedStudentAction", AddedStudentAction);
             writer.WriteEnumValue<EducationAddToCalendarOptions>("addToCalendarAction", AddToCalendarAction);
-            writer.WriteStringValue("dueTime", DueTime);
+            writer.WriteTimeValue("dueTime", DueTime);
             writer.WriteStringValue("notificationChannelUrl", NotificationChannelUrl);
         }
     }

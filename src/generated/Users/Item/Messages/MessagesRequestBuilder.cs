@@ -3,10 +3,10 @@ using ApiSdk.Users.Item.Messages.Delta;
 using ApiSdk.Users.Item.Messages.Item;
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
+using Microsoft.Kiota.Cli.Commons.IO;
 using System;
 using System.Collections.Generic;
 using System.CommandLine;
-using System.CommandLine.Invocation;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -23,26 +23,25 @@ namespace ApiSdk.Users.Item.Messages {
         private string UrlTemplate { get; set; }
         public List<Command> BuildCommand() {
             var builder = new MessageRequestBuilder(PathParameters, RequestAdapter);
-            var commands = new List<Command> { 
-                builder.BuildAttachmentsCommand(),
-                builder.BuildCalendarSharingMessageCommand(),
-                builder.BuildContentCommand(),
-                builder.BuildCopyCommand(),
-                builder.BuildCreateForwardCommand(),
-                builder.BuildCreateReplyAllCommand(),
-                builder.BuildCreateReplyCommand(),
-                builder.BuildDeleteCommand(),
-                builder.BuildExtensionsCommand(),
-                builder.BuildForwardCommand(),
-                builder.BuildGetCommand(),
-                builder.BuildMoveCommand(),
-                builder.BuildMultiValueExtendedPropertiesCommand(),
-                builder.BuildPatchCommand(),
-                builder.BuildReplyAllCommand(),
-                builder.BuildReplyCommand(),
-                builder.BuildSendCommand(),
-                builder.BuildSingleValueExtendedPropertiesCommand(),
-            };
+            var commands = new List<Command>();
+            commands.Add(builder.BuildAttachmentsCommand());
+            commands.Add(builder.BuildCalendarSharingMessageCommand());
+            commands.Add(builder.BuildContentCommand());
+            commands.Add(builder.BuildCopyCommand());
+            commands.Add(builder.BuildCreateForwardCommand());
+            commands.Add(builder.BuildCreateReplyAllCommand());
+            commands.Add(builder.BuildCreateReplyCommand());
+            commands.Add(builder.BuildDeleteCommand());
+            commands.Add(builder.BuildExtensionsCommand());
+            commands.Add(builder.BuildForwardCommand());
+            commands.Add(builder.BuildGetCommand());
+            commands.Add(builder.BuildMoveCommand());
+            commands.Add(builder.BuildMultiValueExtendedPropertiesCommand());
+            commands.Add(builder.BuildPatchCommand());
+            commands.Add(builder.BuildReplyAllCommand());
+            commands.Add(builder.BuildReplyCommand());
+            commands.Add(builder.BuildSendCommand());
+            commands.Add(builder.BuildSingleValueExtendedPropertiesCommand());
             return commands;
         }
         /// <summary>
@@ -60,21 +59,20 @@ namespace ApiSdk.Users.Item.Messages {
             };
             bodyOption.IsRequired = true;
             command.AddOption(bodyOption);
-            command.SetHandler(async (string userId, string body) => {
+            var outputOption = new Option<FormatterType>("--output", () => FormatterType.JSON){
+                IsRequired = true
+            };
+            command.AddOption(outputOption);
+            command.SetHandler(async (string userId, string body, FormatterType output, IOutputFormatterFactory outputFormatterFactory, CancellationToken cancellationToken) => {
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<Message>();
                 var requestInfo = CreatePostRequestInformation(model, q => {
                 });
-                var result = await RequestAdapter.SendAsync<Message>(requestInfo);
-                // Print request output. What if the request has no return?
-                using var serializer = RequestAdapter.SerializationWriterFactory.GetSerializationWriter("application/json");
-                serializer.WriteObjectValue(null, result);
-                using var content = serializer.GetSerializedContent();
-                using var reader = new StreamReader(content);
-                var strContent = await reader.ReadToEndAsync();
-                Console.Write(strContent + "\n");
-            }, userIdOption, bodyOption);
+                var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: default, cancellationToken: cancellationToken);
+                var formatter = outputFormatterFactory.GetFormatter(output);
+                formatter.WriteOutput(response);
+            }, userIdOption, bodyOption, outputOption);
             return command;
         }
         /// <summary>
@@ -118,7 +116,11 @@ namespace ApiSdk.Users.Item.Messages {
             };
             selectOption.IsRequired = false;
             command.AddOption(selectOption);
-            command.SetHandler(async (string userId, int? top, int? skip, string search, string filter, bool? count, string[] orderby, string[] select) => {
+            var outputOption = new Option<FormatterType>("--output", () => FormatterType.JSON){
+                IsRequired = true
+            };
+            command.AddOption(outputOption);
+            command.SetHandler(async (string userId, int? top, int? skip, string search, string filter, bool? count, string[] orderby, string[] select, FormatterType output, IOutputFormatterFactory outputFormatterFactory, CancellationToken cancellationToken) => {
                 var requestInfo = CreateGetRequestInformation(q => {
                     q.Top = top;
                     q.Skip = skip;
@@ -128,15 +130,10 @@ namespace ApiSdk.Users.Item.Messages {
                     q.Orderby = orderby;
                     q.Select = select;
                 });
-                var result = await RequestAdapter.SendAsync<MessagesResponse>(requestInfo);
-                // Print request output. What if the request has no return?
-                using var serializer = RequestAdapter.SerializationWriterFactory.GetSerializationWriter("application/json");
-                serializer.WriteObjectValue(null, result);
-                using var content = serializer.GetSerializedContent();
-                using var reader = new StreamReader(content);
-                var strContent = await reader.ReadToEndAsync();
-                Console.Write(strContent + "\n");
-            }, userIdOption, topOption, skipOption, searchOption, filterOption, countOption, orderbyOption, selectOption);
+                var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: default, cancellationToken: cancellationToken);
+                var formatter = outputFormatterFactory.GetFormatter(output);
+                formatter.WriteOutput(response);
+            }, userIdOption, topOption, skipOption, searchOption, filterOption, countOption, orderbyOption, selectOption, outputOption);
             return command;
         }
         /// <summary>
@@ -196,31 +193,6 @@ namespace ApiSdk.Users.Item.Messages {
         /// </summary>
         public DeltaRequestBuilder Delta() {
             return new DeltaRequestBuilder(PathParameters, RequestAdapter);
-        }
-        /// <summary>
-        /// The messages in a mailbox or folder. Read-only. Nullable.
-        /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
-        /// <param name="h">Request headers</param>
-        /// <param name="o">Request options</param>
-        /// <param name="q">Request query parameters</param>
-        /// <param name="responseHandler">Response handler to use in place of the default response handling provided by the core service</param>
-        /// </summary>
-        public async Task<MessagesResponse> GetAsync(Action<GetQueryParameters> q = default, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default, CancellationToken cancellationToken = default) {
-            var requestInfo = CreateGetRequestInformation(q, h, o);
-            return await RequestAdapter.SendAsync<MessagesResponse>(requestInfo, responseHandler, cancellationToken);
-        }
-        /// <summary>
-        /// The messages in a mailbox or folder. Read-only. Nullable.
-        /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
-        /// <param name="h">Request headers</param>
-        /// <param name="model"></param>
-        /// <param name="o">Request options</param>
-        /// <param name="responseHandler">Response handler to use in place of the default response handling provided by the core service</param>
-        /// </summary>
-        public async Task<Message> PostAsync(Message model, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default, CancellationToken cancellationToken = default) {
-            _ = model ?? throw new ArgumentNullException(nameof(model));
-            var requestInfo = CreatePostRequestInformation(model, h, o);
-            return await RequestAdapter.SendAsync<Message>(requestInfo, responseHandler, cancellationToken);
         }
         /// <summary>The messages in a mailbox or folder. Read-only. Nullable.</summary>
         public class GetQueryParameters : QueryParametersBase {

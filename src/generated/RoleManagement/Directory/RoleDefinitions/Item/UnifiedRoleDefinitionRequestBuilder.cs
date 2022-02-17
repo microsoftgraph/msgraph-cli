@@ -2,10 +2,10 @@ using ApiSdk.Models.Microsoft.Graph;
 using ApiSdk.RoleManagement.Directory.RoleDefinitions.Item.InheritsPermissionsFrom;
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
+using Microsoft.Kiota.Cli.Commons.IO;
 using System;
 using System.Collections.Generic;
 using System.CommandLine;
-using System.CommandLine.Invocation;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -27,15 +27,14 @@ namespace ApiSdk.RoleManagement.Directory.RoleDefinitions.Item {
             var command = new Command("delete");
             command.Description = "Resource representing the roles allowed by RBAC providers and the permissions assigned to the roles.";
             // Create options for all the parameters
-            var unifiedRoleDefinitionIdOption = new Option<string>("--unifiedroledefinition-id", description: "key: id of unifiedRoleDefinition") {
+            var unifiedRoleDefinitionIdOption = new Option<string>("--unified-role-definition-id", description: "key: id of unifiedRoleDefinition") {
             };
             unifiedRoleDefinitionIdOption.IsRequired = true;
             command.AddOption(unifiedRoleDefinitionIdOption);
-            command.SetHandler(async (string unifiedRoleDefinitionId) => {
+            command.SetHandler(async (string unifiedRoleDefinitionId, IOutputFormatterFactory outputFormatterFactory, CancellationToken cancellationToken) => {
                 var requestInfo = CreateDeleteRequestInformation(q => {
                 });
-                await RequestAdapter.SendNoContentAsync(requestInfo);
-                // Print request output. What if the request has no return?
+                await RequestAdapter.SendNoContentAsync(requestInfo, errorMapping: default, cancellationToken: cancellationToken);
                 Console.WriteLine("Success");
             }, unifiedRoleDefinitionIdOption);
             return command;
@@ -47,7 +46,7 @@ namespace ApiSdk.RoleManagement.Directory.RoleDefinitions.Item {
             var command = new Command("get");
             command.Description = "Resource representing the roles allowed by RBAC providers and the permissions assigned to the roles.";
             // Create options for all the parameters
-            var unifiedRoleDefinitionIdOption = new Option<string>("--unifiedroledefinition-id", description: "key: id of unifiedRoleDefinition") {
+            var unifiedRoleDefinitionIdOption = new Option<string>("--unified-role-definition-id", description: "key: id of unifiedRoleDefinition") {
             };
             unifiedRoleDefinitionIdOption.IsRequired = true;
             command.AddOption(unifiedRoleDefinitionIdOption);
@@ -61,25 +60,27 @@ namespace ApiSdk.RoleManagement.Directory.RoleDefinitions.Item {
             };
             expandOption.IsRequired = false;
             command.AddOption(expandOption);
-            command.SetHandler(async (string unifiedRoleDefinitionId, string[] select, string[] expand) => {
+            var outputOption = new Option<FormatterType>("--output", () => FormatterType.JSON){
+                IsRequired = true
+            };
+            command.AddOption(outputOption);
+            command.SetHandler(async (string unifiedRoleDefinitionId, string[] select, string[] expand, FormatterType output, IOutputFormatterFactory outputFormatterFactory, CancellationToken cancellationToken) => {
                 var requestInfo = CreateGetRequestInformation(q => {
                     q.Select = select;
                     q.Expand = expand;
                 });
-                var result = await RequestAdapter.SendAsync<UnifiedRoleDefinition>(requestInfo);
-                // Print request output. What if the request has no return?
-                using var serializer = RequestAdapter.SerializationWriterFactory.GetSerializationWriter("application/json");
-                serializer.WriteObjectValue(null, result);
-                using var content = serializer.GetSerializedContent();
-                using var reader = new StreamReader(content);
-                var strContent = await reader.ReadToEndAsync();
-                Console.Write(strContent + "\n");
-            }, unifiedRoleDefinitionIdOption, selectOption, expandOption);
+                var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: default, cancellationToken: cancellationToken);
+                var formatter = outputFormatterFactory.GetFormatter(output);
+                formatter.WriteOutput(response);
+            }, unifiedRoleDefinitionIdOption, selectOption, expandOption, outputOption);
             return command;
         }
         public Command BuildInheritsPermissionsFromCommand() {
             var command = new Command("inherits-permissions-from");
             var builder = new ApiSdk.RoleManagement.Directory.RoleDefinitions.Item.InheritsPermissionsFrom.InheritsPermissionsFromRequestBuilder(PathParameters, RequestAdapter);
+            foreach (var cmd in builder.BuildCommand()) {
+                command.AddCommand(cmd);
+            }
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;
@@ -91,7 +92,7 @@ namespace ApiSdk.RoleManagement.Directory.RoleDefinitions.Item {
             var command = new Command("patch");
             command.Description = "Resource representing the roles allowed by RBAC providers and the permissions assigned to the roles.";
             // Create options for all the parameters
-            var unifiedRoleDefinitionIdOption = new Option<string>("--unifiedroledefinition-id", description: "key: id of unifiedRoleDefinition") {
+            var unifiedRoleDefinitionIdOption = new Option<string>("--unified-role-definition-id", description: "key: id of unifiedRoleDefinition") {
             };
             unifiedRoleDefinitionIdOption.IsRequired = true;
             command.AddOption(unifiedRoleDefinitionIdOption);
@@ -99,14 +100,13 @@ namespace ApiSdk.RoleManagement.Directory.RoleDefinitions.Item {
             };
             bodyOption.IsRequired = true;
             command.AddOption(bodyOption);
-            command.SetHandler(async (string unifiedRoleDefinitionId, string body) => {
+            command.SetHandler(async (string unifiedRoleDefinitionId, string body, IOutputFormatterFactory outputFormatterFactory, CancellationToken cancellationToken) => {
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<UnifiedRoleDefinition>();
                 var requestInfo = CreatePatchRequestInformation(model, q => {
                 });
-                await RequestAdapter.SendNoContentAsync(requestInfo);
-                // Print request output. What if the request has no return?
+                await RequestAdapter.SendNoContentAsync(requestInfo, errorMapping: default, cancellationToken: cancellationToken);
                 Console.WriteLine("Success");
             }, unifiedRoleDefinitionIdOption, bodyOption);
             return command;
@@ -177,42 +177,6 @@ namespace ApiSdk.RoleManagement.Directory.RoleDefinitions.Item {
             h?.Invoke(requestInfo.Headers);
             requestInfo.AddRequestOptions(o?.ToArray());
             return requestInfo;
-        }
-        /// <summary>
-        /// Resource representing the roles allowed by RBAC providers and the permissions assigned to the roles.
-        /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
-        /// <param name="h">Request headers</param>
-        /// <param name="o">Request options</param>
-        /// <param name="responseHandler">Response handler to use in place of the default response handling provided by the core service</param>
-        /// </summary>
-        public async Task DeleteAsync(Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default, CancellationToken cancellationToken = default) {
-            var requestInfo = CreateDeleteRequestInformation(h, o);
-            await RequestAdapter.SendNoContentAsync(requestInfo, responseHandler, cancellationToken);
-        }
-        /// <summary>
-        /// Resource representing the roles allowed by RBAC providers and the permissions assigned to the roles.
-        /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
-        /// <param name="h">Request headers</param>
-        /// <param name="o">Request options</param>
-        /// <param name="q">Request query parameters</param>
-        /// <param name="responseHandler">Response handler to use in place of the default response handling provided by the core service</param>
-        /// </summary>
-        public async Task<UnifiedRoleDefinition> GetAsync(Action<GetQueryParameters> q = default, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default, CancellationToken cancellationToken = default) {
-            var requestInfo = CreateGetRequestInformation(q, h, o);
-            return await RequestAdapter.SendAsync<UnifiedRoleDefinition>(requestInfo, responseHandler, cancellationToken);
-        }
-        /// <summary>
-        /// Resource representing the roles allowed by RBAC providers and the permissions assigned to the roles.
-        /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
-        /// <param name="h">Request headers</param>
-        /// <param name="model"></param>
-        /// <param name="o">Request options</param>
-        /// <param name="responseHandler">Response handler to use in place of the default response handling provided by the core service</param>
-        /// </summary>
-        public async Task PatchAsync(UnifiedRoleDefinition model, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default, CancellationToken cancellationToken = default) {
-            _ = model ?? throw new ArgumentNullException(nameof(model));
-            var requestInfo = CreatePatchRequestInformation(model, h, o);
-            await RequestAdapter.SendNoContentAsync(requestInfo, responseHandler, cancellationToken);
         }
         /// <summary>Resource representing the roles allowed by RBAC providers and the permissions assigned to the roles.</summary>
         public class GetQueryParameters : QueryParametersBase {

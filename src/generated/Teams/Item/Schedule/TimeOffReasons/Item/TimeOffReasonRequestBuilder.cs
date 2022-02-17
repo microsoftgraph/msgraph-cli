@@ -1,10 +1,10 @@
 using ApiSdk.Models.Microsoft.Graph;
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
+using Microsoft.Kiota.Cli.Commons.IO;
 using System;
 using System.Collections.Generic;
 using System.CommandLine;
-using System.CommandLine.Invocation;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -30,15 +30,14 @@ namespace ApiSdk.Teams.Item.Schedule.TimeOffReasons.Item {
             };
             teamIdOption.IsRequired = true;
             command.AddOption(teamIdOption);
-            var timeOffReasonIdOption = new Option<string>("--timeoffreason-id", description: "key: id of timeOffReason") {
+            var timeOffReasonIdOption = new Option<string>("--time-off-reason-id", description: "key: id of timeOffReason") {
             };
             timeOffReasonIdOption.IsRequired = true;
             command.AddOption(timeOffReasonIdOption);
-            command.SetHandler(async (string teamId, string timeOffReasonId) => {
+            command.SetHandler(async (string teamId, string timeOffReasonId, IOutputFormatterFactory outputFormatterFactory, CancellationToken cancellationToken) => {
                 var requestInfo = CreateDeleteRequestInformation(q => {
                 });
-                await RequestAdapter.SendNoContentAsync(requestInfo);
-                // Print request output. What if the request has no return?
+                await RequestAdapter.SendNoContentAsync(requestInfo, errorMapping: default, cancellationToken: cancellationToken);
                 Console.WriteLine("Success");
             }, teamIdOption, timeOffReasonIdOption);
             return command;
@@ -54,7 +53,7 @@ namespace ApiSdk.Teams.Item.Schedule.TimeOffReasons.Item {
             };
             teamIdOption.IsRequired = true;
             command.AddOption(teamIdOption);
-            var timeOffReasonIdOption = new Option<string>("--timeoffreason-id", description: "key: id of timeOffReason") {
+            var timeOffReasonIdOption = new Option<string>("--time-off-reason-id", description: "key: id of timeOffReason") {
             };
             timeOffReasonIdOption.IsRequired = true;
             command.AddOption(timeOffReasonIdOption);
@@ -63,19 +62,18 @@ namespace ApiSdk.Teams.Item.Schedule.TimeOffReasons.Item {
             };
             selectOption.IsRequired = false;
             command.AddOption(selectOption);
-            command.SetHandler(async (string teamId, string timeOffReasonId, string[] select) => {
+            var outputOption = new Option<FormatterType>("--output", () => FormatterType.JSON){
+                IsRequired = true
+            };
+            command.AddOption(outputOption);
+            command.SetHandler(async (string teamId, string timeOffReasonId, string[] select, FormatterType output, IOutputFormatterFactory outputFormatterFactory, CancellationToken cancellationToken) => {
                 var requestInfo = CreateGetRequestInformation(q => {
                     q.Select = select;
                 });
-                var result = await RequestAdapter.SendAsync<TimeOffReason>(requestInfo);
-                // Print request output. What if the request has no return?
-                using var serializer = RequestAdapter.SerializationWriterFactory.GetSerializationWriter("application/json");
-                serializer.WriteObjectValue(null, result);
-                using var content = serializer.GetSerializedContent();
-                using var reader = new StreamReader(content);
-                var strContent = await reader.ReadToEndAsync();
-                Console.Write(strContent + "\n");
-            }, teamIdOption, timeOffReasonIdOption, selectOption);
+                var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: default, cancellationToken: cancellationToken);
+                var formatter = outputFormatterFactory.GetFormatter(output);
+                formatter.WriteOutput(response);
+            }, teamIdOption, timeOffReasonIdOption, selectOption, outputOption);
             return command;
         }
         /// <summary>
@@ -89,7 +87,7 @@ namespace ApiSdk.Teams.Item.Schedule.TimeOffReasons.Item {
             };
             teamIdOption.IsRequired = true;
             command.AddOption(teamIdOption);
-            var timeOffReasonIdOption = new Option<string>("--timeoffreason-id", description: "key: id of timeOffReason") {
+            var timeOffReasonIdOption = new Option<string>("--time-off-reason-id", description: "key: id of timeOffReason") {
             };
             timeOffReasonIdOption.IsRequired = true;
             command.AddOption(timeOffReasonIdOption);
@@ -97,14 +95,13 @@ namespace ApiSdk.Teams.Item.Schedule.TimeOffReasons.Item {
             };
             bodyOption.IsRequired = true;
             command.AddOption(bodyOption);
-            command.SetHandler(async (string teamId, string timeOffReasonId, string body) => {
+            command.SetHandler(async (string teamId, string timeOffReasonId, string body, IOutputFormatterFactory outputFormatterFactory, CancellationToken cancellationToken) => {
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<TimeOffReason>();
                 var requestInfo = CreatePatchRequestInformation(model, q => {
                 });
-                await RequestAdapter.SendNoContentAsync(requestInfo);
-                // Print request output. What if the request has no return?
+                await RequestAdapter.SendNoContentAsync(requestInfo, errorMapping: default, cancellationToken: cancellationToken);
                 Console.WriteLine("Success");
             }, teamIdOption, timeOffReasonIdOption, bodyOption);
             return command;
@@ -175,42 +172,6 @@ namespace ApiSdk.Teams.Item.Schedule.TimeOffReasons.Item {
             h?.Invoke(requestInfo.Headers);
             requestInfo.AddRequestOptions(o?.ToArray());
             return requestInfo;
-        }
-        /// <summary>
-        /// The set of reasons for a time off in the schedule.
-        /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
-        /// <param name="h">Request headers</param>
-        /// <param name="o">Request options</param>
-        /// <param name="responseHandler">Response handler to use in place of the default response handling provided by the core service</param>
-        /// </summary>
-        public async Task DeleteAsync(Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default, CancellationToken cancellationToken = default) {
-            var requestInfo = CreateDeleteRequestInformation(h, o);
-            await RequestAdapter.SendNoContentAsync(requestInfo, responseHandler, cancellationToken);
-        }
-        /// <summary>
-        /// The set of reasons for a time off in the schedule.
-        /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
-        /// <param name="h">Request headers</param>
-        /// <param name="o">Request options</param>
-        /// <param name="q">Request query parameters</param>
-        /// <param name="responseHandler">Response handler to use in place of the default response handling provided by the core service</param>
-        /// </summary>
-        public async Task<TimeOffReason> GetAsync(Action<GetQueryParameters> q = default, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default, CancellationToken cancellationToken = default) {
-            var requestInfo = CreateGetRequestInformation(q, h, o);
-            return await RequestAdapter.SendAsync<TimeOffReason>(requestInfo, responseHandler, cancellationToken);
-        }
-        /// <summary>
-        /// The set of reasons for a time off in the schedule.
-        /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
-        /// <param name="h">Request headers</param>
-        /// <param name="model"></param>
-        /// <param name="o">Request options</param>
-        /// <param name="responseHandler">Response handler to use in place of the default response handling provided by the core service</param>
-        /// </summary>
-        public async Task PatchAsync(TimeOffReason model, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default, CancellationToken cancellationToken = default) {
-            _ = model ?? throw new ArgumentNullException(nameof(model));
-            var requestInfo = CreatePatchRequestInformation(model, h, o);
-            await RequestAdapter.SendNoContentAsync(requestInfo, responseHandler, cancellationToken);
         }
         /// <summary>The set of reasons for a time off in the schedule.</summary>
         public class GetQueryParameters : QueryParametersBase {

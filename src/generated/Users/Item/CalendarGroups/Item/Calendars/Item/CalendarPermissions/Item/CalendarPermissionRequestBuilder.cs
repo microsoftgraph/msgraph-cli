@@ -1,10 +1,10 @@
 using ApiSdk.Models.Microsoft.Graph;
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
+using Microsoft.Kiota.Cli.Commons.IO;
 using System;
 using System.Collections.Generic;
 using System.CommandLine;
-using System.CommandLine.Invocation;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -30,7 +30,7 @@ namespace ApiSdk.Users.Item.CalendarGroups.Item.Calendars.Item.CalendarPermissio
             };
             userIdOption.IsRequired = true;
             command.AddOption(userIdOption);
-            var calendarGroupIdOption = new Option<string>("--calendargroup-id", description: "key: id of calendarGroup") {
+            var calendarGroupIdOption = new Option<string>("--calendar-group-id", description: "key: id of calendarGroup") {
             };
             calendarGroupIdOption.IsRequired = true;
             command.AddOption(calendarGroupIdOption);
@@ -38,15 +38,14 @@ namespace ApiSdk.Users.Item.CalendarGroups.Item.Calendars.Item.CalendarPermissio
             };
             calendarIdOption.IsRequired = true;
             command.AddOption(calendarIdOption);
-            var calendarPermissionIdOption = new Option<string>("--calendarpermission-id", description: "key: id of calendarPermission") {
+            var calendarPermissionIdOption = new Option<string>("--calendar-permission-id", description: "key: id of calendarPermission") {
             };
             calendarPermissionIdOption.IsRequired = true;
             command.AddOption(calendarPermissionIdOption);
-            command.SetHandler(async (string userId, string calendarGroupId, string calendarId, string calendarPermissionId) => {
+            command.SetHandler(async (string userId, string calendarGroupId, string calendarId, string calendarPermissionId, IOutputFormatterFactory outputFormatterFactory, CancellationToken cancellationToken) => {
                 var requestInfo = CreateDeleteRequestInformation(q => {
                 });
-                await RequestAdapter.SendNoContentAsync(requestInfo);
-                // Print request output. What if the request has no return?
+                await RequestAdapter.SendNoContentAsync(requestInfo, errorMapping: default, cancellationToken: cancellationToken);
                 Console.WriteLine("Success");
             }, userIdOption, calendarGroupIdOption, calendarIdOption, calendarPermissionIdOption);
             return command;
@@ -62,7 +61,7 @@ namespace ApiSdk.Users.Item.CalendarGroups.Item.Calendars.Item.CalendarPermissio
             };
             userIdOption.IsRequired = true;
             command.AddOption(userIdOption);
-            var calendarGroupIdOption = new Option<string>("--calendargroup-id", description: "key: id of calendarGroup") {
+            var calendarGroupIdOption = new Option<string>("--calendar-group-id", description: "key: id of calendarGroup") {
             };
             calendarGroupIdOption.IsRequired = true;
             command.AddOption(calendarGroupIdOption);
@@ -70,7 +69,7 @@ namespace ApiSdk.Users.Item.CalendarGroups.Item.Calendars.Item.CalendarPermissio
             };
             calendarIdOption.IsRequired = true;
             command.AddOption(calendarIdOption);
-            var calendarPermissionIdOption = new Option<string>("--calendarpermission-id", description: "key: id of calendarPermission") {
+            var calendarPermissionIdOption = new Option<string>("--calendar-permission-id", description: "key: id of calendarPermission") {
             };
             calendarPermissionIdOption.IsRequired = true;
             command.AddOption(calendarPermissionIdOption);
@@ -79,19 +78,18 @@ namespace ApiSdk.Users.Item.CalendarGroups.Item.Calendars.Item.CalendarPermissio
             };
             selectOption.IsRequired = false;
             command.AddOption(selectOption);
-            command.SetHandler(async (string userId, string calendarGroupId, string calendarId, string calendarPermissionId, string[] select) => {
+            var outputOption = new Option<FormatterType>("--output", () => FormatterType.JSON){
+                IsRequired = true
+            };
+            command.AddOption(outputOption);
+            command.SetHandler(async (string userId, string calendarGroupId, string calendarId, string calendarPermissionId, string[] select, FormatterType output, IOutputFormatterFactory outputFormatterFactory, CancellationToken cancellationToken) => {
                 var requestInfo = CreateGetRequestInformation(q => {
                     q.Select = select;
                 });
-                var result = await RequestAdapter.SendAsync<CalendarPermission>(requestInfo);
-                // Print request output. What if the request has no return?
-                using var serializer = RequestAdapter.SerializationWriterFactory.GetSerializationWriter("application/json");
-                serializer.WriteObjectValue(null, result);
-                using var content = serializer.GetSerializedContent();
-                using var reader = new StreamReader(content);
-                var strContent = await reader.ReadToEndAsync();
-                Console.Write(strContent + "\n");
-            }, userIdOption, calendarGroupIdOption, calendarIdOption, calendarPermissionIdOption, selectOption);
+                var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: default, cancellationToken: cancellationToken);
+                var formatter = outputFormatterFactory.GetFormatter(output);
+                formatter.WriteOutput(response);
+            }, userIdOption, calendarGroupIdOption, calendarIdOption, calendarPermissionIdOption, selectOption, outputOption);
             return command;
         }
         /// <summary>
@@ -105,7 +103,7 @@ namespace ApiSdk.Users.Item.CalendarGroups.Item.Calendars.Item.CalendarPermissio
             };
             userIdOption.IsRequired = true;
             command.AddOption(userIdOption);
-            var calendarGroupIdOption = new Option<string>("--calendargroup-id", description: "key: id of calendarGroup") {
+            var calendarGroupIdOption = new Option<string>("--calendar-group-id", description: "key: id of calendarGroup") {
             };
             calendarGroupIdOption.IsRequired = true;
             command.AddOption(calendarGroupIdOption);
@@ -113,7 +111,7 @@ namespace ApiSdk.Users.Item.CalendarGroups.Item.Calendars.Item.CalendarPermissio
             };
             calendarIdOption.IsRequired = true;
             command.AddOption(calendarIdOption);
-            var calendarPermissionIdOption = new Option<string>("--calendarpermission-id", description: "key: id of calendarPermission") {
+            var calendarPermissionIdOption = new Option<string>("--calendar-permission-id", description: "key: id of calendarPermission") {
             };
             calendarPermissionIdOption.IsRequired = true;
             command.AddOption(calendarPermissionIdOption);
@@ -121,14 +119,13 @@ namespace ApiSdk.Users.Item.CalendarGroups.Item.Calendars.Item.CalendarPermissio
             };
             bodyOption.IsRequired = true;
             command.AddOption(bodyOption);
-            command.SetHandler(async (string userId, string calendarGroupId, string calendarId, string calendarPermissionId, string body) => {
+            command.SetHandler(async (string userId, string calendarGroupId, string calendarId, string calendarPermissionId, string body, IOutputFormatterFactory outputFormatterFactory, CancellationToken cancellationToken) => {
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<CalendarPermission>();
                 var requestInfo = CreatePatchRequestInformation(model, q => {
                 });
-                await RequestAdapter.SendNoContentAsync(requestInfo);
-                // Print request output. What if the request has no return?
+                await RequestAdapter.SendNoContentAsync(requestInfo, errorMapping: default, cancellationToken: cancellationToken);
                 Console.WriteLine("Success");
             }, userIdOption, calendarGroupIdOption, calendarIdOption, calendarPermissionIdOption, bodyOption);
             return command;
@@ -199,42 +196,6 @@ namespace ApiSdk.Users.Item.CalendarGroups.Item.Calendars.Item.CalendarPermissio
             h?.Invoke(requestInfo.Headers);
             requestInfo.AddRequestOptions(o?.ToArray());
             return requestInfo;
-        }
-        /// <summary>
-        /// The permissions of the users with whom the calendar is shared.
-        /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
-        /// <param name="h">Request headers</param>
-        /// <param name="o">Request options</param>
-        /// <param name="responseHandler">Response handler to use in place of the default response handling provided by the core service</param>
-        /// </summary>
-        public async Task DeleteAsync(Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default, CancellationToken cancellationToken = default) {
-            var requestInfo = CreateDeleteRequestInformation(h, o);
-            await RequestAdapter.SendNoContentAsync(requestInfo, responseHandler, cancellationToken);
-        }
-        /// <summary>
-        /// The permissions of the users with whom the calendar is shared.
-        /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
-        /// <param name="h">Request headers</param>
-        /// <param name="o">Request options</param>
-        /// <param name="q">Request query parameters</param>
-        /// <param name="responseHandler">Response handler to use in place of the default response handling provided by the core service</param>
-        /// </summary>
-        public async Task<CalendarPermission> GetAsync(Action<GetQueryParameters> q = default, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default, CancellationToken cancellationToken = default) {
-            var requestInfo = CreateGetRequestInformation(q, h, o);
-            return await RequestAdapter.SendAsync<CalendarPermission>(requestInfo, responseHandler, cancellationToken);
-        }
-        /// <summary>
-        /// The permissions of the users with whom the calendar is shared.
-        /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
-        /// <param name="h">Request headers</param>
-        /// <param name="model"></param>
-        /// <param name="o">Request options</param>
-        /// <param name="responseHandler">Response handler to use in place of the default response handling provided by the core service</param>
-        /// </summary>
-        public async Task PatchAsync(CalendarPermission model, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default, CancellationToken cancellationToken = default) {
-            _ = model ?? throw new ArgumentNullException(nameof(model));
-            var requestInfo = CreatePatchRequestInformation(model, h, o);
-            await RequestAdapter.SendNoContentAsync(requestInfo, responseHandler, cancellationToken);
         }
         /// <summary>The permissions of the users with whom the calendar is shared.</summary>
         public class GetQueryParameters : QueryParametersBase {

@@ -2,10 +2,10 @@ using ApiSdk.IdentityProtection.RiskyUsers.Item.History;
 using ApiSdk.Models.Microsoft.Graph;
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
+using Microsoft.Kiota.Cli.Commons.IO;
 using System;
 using System.Collections.Generic;
 using System.CommandLine;
-using System.CommandLine.Invocation;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -21,33 +21,32 @@ namespace ApiSdk.IdentityProtection.RiskyUsers.Item {
         /// <summary>Url template to use to build the URL for the current request builder</summary>
         private string UrlTemplate { get; set; }
         /// <summary>
-        /// Delete navigation property riskyUsers for identityProtection
+        /// Users that are flagged as at-risk by Azure AD Identity Protection.
         /// </summary>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
-            command.Description = "Delete navigation property riskyUsers for identityProtection";
+            command.Description = "Users that are flagged as at-risk by Azure AD Identity Protection.";
             // Create options for all the parameters
-            var riskyUserIdOption = new Option<string>("--riskyuser-id", description: "key: id of riskyUser") {
+            var riskyUserIdOption = new Option<string>("--risky-user-id", description: "key: id of riskyUser") {
             };
             riskyUserIdOption.IsRequired = true;
             command.AddOption(riskyUserIdOption);
-            command.SetHandler(async (string riskyUserId) => {
+            command.SetHandler(async (string riskyUserId, IOutputFormatterFactory outputFormatterFactory, CancellationToken cancellationToken) => {
                 var requestInfo = CreateDeleteRequestInformation(q => {
                 });
-                await RequestAdapter.SendNoContentAsync(requestInfo);
-                // Print request output. What if the request has no return?
+                await RequestAdapter.SendNoContentAsync(requestInfo, errorMapping: default, cancellationToken: cancellationToken);
                 Console.WriteLine("Success");
             }, riskyUserIdOption);
             return command;
         }
         /// <summary>
-        /// Get riskyUsers from identityProtection
+        /// Users that are flagged as at-risk by Azure AD Identity Protection.
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "Get riskyUsers from identityProtection";
+            command.Description = "Users that are flagged as at-risk by Azure AD Identity Protection.";
             // Create options for all the parameters
-            var riskyUserIdOption = new Option<string>("--riskyuser-id", description: "key: id of riskyUser") {
+            var riskyUserIdOption = new Option<string>("--risky-user-id", description: "key: id of riskyUser") {
             };
             riskyUserIdOption.IsRequired = true;
             command.AddOption(riskyUserIdOption);
@@ -61,37 +60,39 @@ namespace ApiSdk.IdentityProtection.RiskyUsers.Item {
             };
             expandOption.IsRequired = false;
             command.AddOption(expandOption);
-            command.SetHandler(async (string riskyUserId, string[] select, string[] expand) => {
+            var outputOption = new Option<FormatterType>("--output", () => FormatterType.JSON){
+                IsRequired = true
+            };
+            command.AddOption(outputOption);
+            command.SetHandler(async (string riskyUserId, string[] select, string[] expand, FormatterType output, IOutputFormatterFactory outputFormatterFactory, CancellationToken cancellationToken) => {
                 var requestInfo = CreateGetRequestInformation(q => {
                     q.Select = select;
                     q.Expand = expand;
                 });
-                var result = await RequestAdapter.SendAsync<RiskyUser>(requestInfo);
-                // Print request output. What if the request has no return?
-                using var serializer = RequestAdapter.SerializationWriterFactory.GetSerializationWriter("application/json");
-                serializer.WriteObjectValue(null, result);
-                using var content = serializer.GetSerializedContent();
-                using var reader = new StreamReader(content);
-                var strContent = await reader.ReadToEndAsync();
-                Console.Write(strContent + "\n");
-            }, riskyUserIdOption, selectOption, expandOption);
+                var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: default, cancellationToken: cancellationToken);
+                var formatter = outputFormatterFactory.GetFormatter(output);
+                formatter.WriteOutput(response);
+            }, riskyUserIdOption, selectOption, expandOption, outputOption);
             return command;
         }
         public Command BuildHistoryCommand() {
             var command = new Command("history");
             var builder = new ApiSdk.IdentityProtection.RiskyUsers.Item.History.HistoryRequestBuilder(PathParameters, RequestAdapter);
+            foreach (var cmd in builder.BuildCommand()) {
+                command.AddCommand(cmd);
+            }
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;
         }
         /// <summary>
-        /// Update the navigation property riskyUsers in identityProtection
+        /// Users that are flagged as at-risk by Azure AD Identity Protection.
         /// </summary>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
-            command.Description = "Update the navigation property riskyUsers in identityProtection";
+            command.Description = "Users that are flagged as at-risk by Azure AD Identity Protection.";
             // Create options for all the parameters
-            var riskyUserIdOption = new Option<string>("--riskyuser-id", description: "key: id of riskyUser") {
+            var riskyUserIdOption = new Option<string>("--risky-user-id", description: "key: id of riskyUser") {
             };
             riskyUserIdOption.IsRequired = true;
             command.AddOption(riskyUserIdOption);
@@ -99,14 +100,13 @@ namespace ApiSdk.IdentityProtection.RiskyUsers.Item {
             };
             bodyOption.IsRequired = true;
             command.AddOption(bodyOption);
-            command.SetHandler(async (string riskyUserId, string body) => {
+            command.SetHandler(async (string riskyUserId, string body, IOutputFormatterFactory outputFormatterFactory, CancellationToken cancellationToken) => {
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<RiskyUser>();
                 var requestInfo = CreatePatchRequestInformation(model, q => {
                 });
-                await RequestAdapter.SendNoContentAsync(requestInfo);
-                // Print request output. What if the request has no return?
+                await RequestAdapter.SendNoContentAsync(requestInfo, errorMapping: default, cancellationToken: cancellationToken);
                 Console.WriteLine("Success");
             }, riskyUserIdOption, bodyOption);
             return command;
@@ -125,7 +125,7 @@ namespace ApiSdk.IdentityProtection.RiskyUsers.Item {
             RequestAdapter = requestAdapter;
         }
         /// <summary>
-        /// Delete navigation property riskyUsers for identityProtection
+        /// Users that are flagged as at-risk by Azure AD Identity Protection.
         /// <param name="h">Request headers</param>
         /// <param name="o">Request options</param>
         /// </summary>
@@ -140,7 +140,7 @@ namespace ApiSdk.IdentityProtection.RiskyUsers.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Get riskyUsers from identityProtection
+        /// Users that are flagged as at-risk by Azure AD Identity Protection.
         /// <param name="h">Request headers</param>
         /// <param name="o">Request options</param>
         /// <param name="q">Request query parameters</param>
@@ -161,7 +161,7 @@ namespace ApiSdk.IdentityProtection.RiskyUsers.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Update the navigation property riskyUsers in identityProtection
+        /// Users that are flagged as at-risk by Azure AD Identity Protection.
         /// <param name="body"></param>
         /// <param name="h">Request headers</param>
         /// <param name="o">Request options</param>
@@ -178,43 +178,7 @@ namespace ApiSdk.IdentityProtection.RiskyUsers.Item {
             requestInfo.AddRequestOptions(o?.ToArray());
             return requestInfo;
         }
-        /// <summary>
-        /// Delete navigation property riskyUsers for identityProtection
-        /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
-        /// <param name="h">Request headers</param>
-        /// <param name="o">Request options</param>
-        /// <param name="responseHandler">Response handler to use in place of the default response handling provided by the core service</param>
-        /// </summary>
-        public async Task DeleteAsync(Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default, CancellationToken cancellationToken = default) {
-            var requestInfo = CreateDeleteRequestInformation(h, o);
-            await RequestAdapter.SendNoContentAsync(requestInfo, responseHandler, cancellationToken);
-        }
-        /// <summary>
-        /// Get riskyUsers from identityProtection
-        /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
-        /// <param name="h">Request headers</param>
-        /// <param name="o">Request options</param>
-        /// <param name="q">Request query parameters</param>
-        /// <param name="responseHandler">Response handler to use in place of the default response handling provided by the core service</param>
-        /// </summary>
-        public async Task<RiskyUser> GetAsync(Action<GetQueryParameters> q = default, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default, CancellationToken cancellationToken = default) {
-            var requestInfo = CreateGetRequestInformation(q, h, o);
-            return await RequestAdapter.SendAsync<RiskyUser>(requestInfo, responseHandler, cancellationToken);
-        }
-        /// <summary>
-        /// Update the navigation property riskyUsers in identityProtection
-        /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
-        /// <param name="h">Request headers</param>
-        /// <param name="model"></param>
-        /// <param name="o">Request options</param>
-        /// <param name="responseHandler">Response handler to use in place of the default response handling provided by the core service</param>
-        /// </summary>
-        public async Task PatchAsync(RiskyUser model, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default, CancellationToken cancellationToken = default) {
-            _ = model ?? throw new ArgumentNullException(nameof(model));
-            var requestInfo = CreatePatchRequestInformation(model, h, o);
-            await RequestAdapter.SendNoContentAsync(requestInfo, responseHandler, cancellationToken);
-        }
-        /// <summary>Get riskyUsers from identityProtection</summary>
+        /// <summary>Users that are flagged as at-risk by Azure AD Identity Protection.</summary>
         public class GetQueryParameters : QueryParametersBase {
             /// <summary>Expand related entities</summary>
             public string[] Expand { get; set; }

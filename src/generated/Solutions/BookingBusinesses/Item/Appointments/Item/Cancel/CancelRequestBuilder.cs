@@ -1,9 +1,9 @@
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
+using Microsoft.Kiota.Cli.Commons.IO;
 using System;
 using System.Collections.Generic;
 using System.CommandLine;
-using System.CommandLine.Invocation;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -25,11 +25,11 @@ namespace ApiSdk.Solutions.BookingBusinesses.Item.Appointments.Item.Cancel {
             var command = new Command("post");
             command.Description = "Cancels the giving booking appointment, sending a message to the involved parties.";
             // Create options for all the parameters
-            var bookingBusinessIdOption = new Option<string>("--bookingbusiness-id", description: "key: id of bookingBusiness") {
+            var bookingBusinessIdOption = new Option<string>("--booking-business-id", description: "key: id of bookingBusiness") {
             };
             bookingBusinessIdOption.IsRequired = true;
             command.AddOption(bookingBusinessIdOption);
-            var bookingAppointmentIdOption = new Option<string>("--bookingappointment-id", description: "key: id of bookingAppointment") {
+            var bookingAppointmentIdOption = new Option<string>("--booking-appointment-id", description: "key: id of bookingAppointment") {
             };
             bookingAppointmentIdOption.IsRequired = true;
             command.AddOption(bookingAppointmentIdOption);
@@ -37,14 +37,13 @@ namespace ApiSdk.Solutions.BookingBusinesses.Item.Appointments.Item.Cancel {
             };
             bodyOption.IsRequired = true;
             command.AddOption(bodyOption);
-            command.SetHandler(async (string bookingBusinessId, string bookingAppointmentId, string body) => {
+            command.SetHandler(async (string bookingBusinessId, string bookingAppointmentId, string body, IOutputFormatterFactory outputFormatterFactory, CancellationToken cancellationToken) => {
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<CancelRequestBody>();
                 var requestInfo = CreatePostRequestInformation(model, q => {
                 });
-                await RequestAdapter.SendNoContentAsync(requestInfo);
-                // Print request output. What if the request has no return?
+                await RequestAdapter.SendNoContentAsync(requestInfo, errorMapping: default, cancellationToken: cancellationToken);
                 Console.WriteLine("Success");
             }, bookingBusinessIdOption, bookingAppointmentIdOption, bodyOption);
             return command;
@@ -79,19 +78,6 @@ namespace ApiSdk.Solutions.BookingBusinesses.Item.Appointments.Item.Cancel {
             h?.Invoke(requestInfo.Headers);
             requestInfo.AddRequestOptions(o?.ToArray());
             return requestInfo;
-        }
-        /// <summary>
-        /// Cancels the giving booking appointment, sending a message to the involved parties.
-        /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
-        /// <param name="h">Request headers</param>
-        /// <param name="model"></param>
-        /// <param name="o">Request options</param>
-        /// <param name="responseHandler">Response handler to use in place of the default response handling provided by the core service</param>
-        /// </summary>
-        public async Task PostAsync(CancelRequestBody model, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default, CancellationToken cancellationToken = default) {
-            _ = model ?? throw new ArgumentNullException(nameof(model));
-            var requestInfo = CreatePostRequestInformation(model, h, o);
-            await RequestAdapter.SendNoContentAsync(requestInfo, responseHandler, cancellationToken);
         }
     }
 }

@@ -1,9 +1,9 @@
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
+using Microsoft.Kiota.Cli.Commons.IO;
 using System;
 using System.Collections.Generic;
 using System.CommandLine;
-using System.CommandLine.Invocation;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -29,24 +29,26 @@ namespace ApiSdk.Reports.GetEmailAppUsageUserDetailWithDate {
             };
             dateOption.IsRequired = true;
             command.AddOption(dateOption);
-            var outputOption = new Option<FileInfo>("--output");
+            var fileOption = new Option<FileInfo>("--file");
+            command.AddOption(fileOption);
+            var outputOption = new Option<FormatterType>("--output", () => FormatterType.JSON){
+                IsRequired = true
+            };
             command.AddOption(outputOption);
-            command.SetHandler(async (string date, FileInfo output) => {
+            command.SetHandler(async (string date, FileInfo file, FormatterType output, IOutputFormatterFactory outputFormatterFactory, CancellationToken cancellationToken) => {
                 var requestInfo = CreateGetRequestInformation(q => {
                 });
-                var result = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
-                // Print request output. What if the request has no return?
-                if (output == null) {
-                    using var reader = new StreamReader(result);
-                    var strContent = await reader.ReadToEndAsync();
-                    Console.Write(strContent + "\n");
+                var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: default, cancellationToken: cancellationToken);
+                var formatter = outputFormatterFactory.GetFormatter(output);
+                if (file == null) {
+                    formatter.WriteOutput(response);
                 }
                 else {
-                    using var writeStream = output.OpenWrite();
-                    await result.CopyToAsync(writeStream);
-                    Console.WriteLine($"Content written to {output.FullName}.");
+                    using var writeStream = file.OpenWrite();
+                    await response.CopyToAsync(writeStream);
+                    Console.WriteLine($"Content written to {file.FullName}.");
                 }
-            }, dateOption, outputOption);
+            }, dateOption, fileOption, outputOption);
             return command;
         }
         /// <summary>
@@ -55,7 +57,7 @@ namespace ApiSdk.Reports.GetEmailAppUsageUserDetailWithDate {
         /// <param name="pathParameters">Path parameters for the request</param>
         /// <param name="requestAdapter">The request adapter to use to execute the requests.</param>
         /// </summary>
-        public GetEmailAppUsageUserDetailWithDateRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter, string date = default) {
+        public GetEmailAppUsageUserDetailWithDateRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter, Date? date = default) {
             _ = pathParameters ?? throw new ArgumentNullException(nameof(pathParameters));
             _ = requestAdapter ?? throw new ArgumentNullException(nameof(requestAdapter));
             UrlTemplate = "{+baseurl}/reports/microsoft.graph.getEmailAppUsageUserDetail(date={date})";
@@ -78,17 +80,6 @@ namespace ApiSdk.Reports.GetEmailAppUsageUserDetailWithDate {
             h?.Invoke(requestInfo.Headers);
             requestInfo.AddRequestOptions(o?.ToArray());
             return requestInfo;
-        }
-        /// <summary>
-        /// Invoke function getEmailAppUsageUserDetail
-        /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
-        /// <param name="h">Request headers</param>
-        /// <param name="o">Request options</param>
-        /// <param name="responseHandler">Response handler to use in place of the default response handling provided by the core service</param>
-        /// </summary>
-        public async Task<Stream> GetAsync(Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default, CancellationToken cancellationToken = default) {
-            var requestInfo = CreateGetRequestInformation(h, o);
-            return await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, responseHandler, cancellationToken);
         }
     }
 }

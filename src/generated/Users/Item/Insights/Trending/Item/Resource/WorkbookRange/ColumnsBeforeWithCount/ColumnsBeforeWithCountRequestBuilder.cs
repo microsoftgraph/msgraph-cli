@@ -1,17 +1,17 @@
 using ApiSdk.Models.Microsoft.Graph;
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
+using Microsoft.Kiota.Cli.Commons.IO;
 using System;
 using System.Collections.Generic;
 using System.CommandLine;
-using System.CommandLine.Invocation;
 using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 namespace ApiSdk.Users.Item.Insights.Trending.Item.Resource.WorkbookRange.ColumnsBeforeWithCount {
-    /// <summary>Builds and executes requests for operations under \users\{user-id}\insights\trending\{trending-id}\resource\microsoft.graph.workbookRange\microsoft.graph.columnsBefore(count={count})</summary>
+    /// <summary>Builds and executes requests for operations under \users\{user-id}\insights\trending\{trendingItem-Id}\resource\microsoft.graph.workbookRange\microsoft.graph.columnsBefore(count={count})</summary>
     public class ColumnsBeforeWithCountRequestBuilder {
         /// <summary>Path parameters for the request</summary>
         private Dictionary<string, object> PathParameters { get; set; }
@@ -30,26 +30,25 @@ namespace ApiSdk.Users.Item.Insights.Trending.Item.Resource.WorkbookRange.Column
             };
             userIdOption.IsRequired = true;
             command.AddOption(userIdOption);
-            var trendingIdOption = new Option<string>("--trending-id", description: "key: id of trending") {
+            var trendingItemIdOption = new Option<string>("--trending-item-id", description: "key: id of trending") {
             };
-            trendingIdOption.IsRequired = true;
-            command.AddOption(trendingIdOption);
+            trendingItemIdOption.IsRequired = true;
+            command.AddOption(trendingItemIdOption);
             var countOption = new Option<int?>("--count", description: "Usage: count={count}") {
             };
             countOption.IsRequired = true;
             command.AddOption(countOption);
-            command.SetHandler(async (string userId, string trendingId, int? count) => {
+            var outputOption = new Option<FormatterType>("--output", () => FormatterType.JSON){
+                IsRequired = true
+            };
+            command.AddOption(outputOption);
+            command.SetHandler(async (string userId, string trendingItemId, int? count, FormatterType output, IOutputFormatterFactory outputFormatterFactory, CancellationToken cancellationToken) => {
                 var requestInfo = CreateGetRequestInformation(q => {
                 });
-                var result = await RequestAdapter.SendAsync<ColumnsBeforeWithCountResponse>(requestInfo);
-                // Print request output. What if the request has no return?
-                using var serializer = RequestAdapter.SerializationWriterFactory.GetSerializationWriter("application/json");
-                serializer.WriteObjectValue(null, result);
-                using var content = serializer.GetSerializedContent();
-                using var reader = new StreamReader(content);
-                var strContent = await reader.ReadToEndAsync();
-                Console.Write(strContent + "\n");
-            }, userIdOption, trendingIdOption, countOption);
+                var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: default, cancellationToken: cancellationToken);
+                var formatter = outputFormatterFactory.GetFormatter(output);
+                formatter.WriteOutput(response);
+            }, userIdOption, trendingItemIdOption, countOption, outputOption);
             return command;
         }
         /// <summary>
@@ -61,7 +60,7 @@ namespace ApiSdk.Users.Item.Insights.Trending.Item.Resource.WorkbookRange.Column
         public ColumnsBeforeWithCountRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter, int? count = default) {
             _ = pathParameters ?? throw new ArgumentNullException(nameof(pathParameters));
             _ = requestAdapter ?? throw new ArgumentNullException(nameof(requestAdapter));
-            UrlTemplate = "{+baseurl}/users/{user_id}/insights/trending/{trending_id}/resource/microsoft.graph.workbookRange/microsoft.graph.columnsBefore(count={count})";
+            UrlTemplate = "{+baseurl}/users/{user_id}/insights/trending/{trendingItem_Id}/resource/microsoft.graph.workbookRange/microsoft.graph.columnsBefore(count={count})";
             var urlTplParams = new Dictionary<string, object>(pathParameters);
             urlTplParams.Add("count", count);
             PathParameters = urlTplParams;
@@ -81,17 +80,6 @@ namespace ApiSdk.Users.Item.Insights.Trending.Item.Resource.WorkbookRange.Column
             h?.Invoke(requestInfo.Headers);
             requestInfo.AddRequestOptions(o?.ToArray());
             return requestInfo;
-        }
-        /// <summary>
-        /// Invoke function columnsBefore
-        /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
-        /// <param name="h">Request headers</param>
-        /// <param name="o">Request options</param>
-        /// <param name="responseHandler">Response handler to use in place of the default response handling provided by the core service</param>
-        /// </summary>
-        public async Task<ColumnsBeforeWithCountResponse> GetAsync(Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default, CancellationToken cancellationToken = default) {
-            var requestInfo = CreateGetRequestInformation(h, o);
-            return await RequestAdapter.SendAsync<ColumnsBeforeWithCountResponse>(requestInfo, responseHandler, cancellationToken);
         }
         /// <summary>Union type wrapper for classes workbookRange</summary>
         public class ColumnsBeforeWithCountResponse : IParsable {

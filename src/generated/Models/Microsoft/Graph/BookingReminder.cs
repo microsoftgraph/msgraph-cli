@@ -10,7 +10,7 @@ namespace ApiSdk.Models.Microsoft.Graph {
         /// <summary>The message in the reminder.</summary>
         public string Message { get; set; }
         /// <summary>The amount of time before the start of an appointment that the reminder should be sent. It's denoted in ISO 8601 format.</summary>
-        public string Offset { get; set; }
+        public TimeSpan? Offset { get; set; }
         /// <summary>The persons who should receive the reminder. Possible values are: allAttendees, staff, customer and unknownFutureValue.</summary>
         public BookingReminderRecipients? Recipients { get; set; }
         /// <summary>
@@ -25,7 +25,7 @@ namespace ApiSdk.Models.Microsoft.Graph {
         public IDictionary<string, Action<T, IParseNode>> GetFieldDeserializers<T>() {
             return new Dictionary<string, Action<T, IParseNode>> {
                 {"message", (o,n) => { (o as BookingReminder).Message = n.GetStringValue(); } },
-                {"offset", (o,n) => { (o as BookingReminder).Offset = n.GetStringValue(); } },
+                {"offset", (o,n) => { (o as BookingReminder).Offset = n.GetTimeSpanValue(); } },
                 {"recipients", (o,n) => { (o as BookingReminder).Recipients = n.GetEnumValue<BookingReminderRecipients>(); } },
             };
         }
@@ -36,7 +36,7 @@ namespace ApiSdk.Models.Microsoft.Graph {
         public void Serialize(ISerializationWriter writer) {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             writer.WriteStringValue("message", Message);
-            writer.WriteStringValue("offset", Offset);
+            writer.WriteTimeSpanValue("offset", Offset);
             writer.WriteEnumValue<BookingReminderRecipients>("recipients", Recipients);
             writer.WriteAdditionalData(AdditionalData);
         }

@@ -1,3 +1,4 @@
+using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
 using System;
 using System.Collections.Generic;
@@ -8,7 +9,7 @@ namespace ApiSdk.Models.Microsoft.Graph {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>Birth date of the student.</summary>
-        public string BirthDate { get; set; }
+        public Date? BirthDate { get; set; }
         /// <summary>ID of the student in the source system.</summary>
         public string ExternalId { get; set; }
         /// <summary>Possible values are: female, male, other.</summary>
@@ -30,7 +31,7 @@ namespace ApiSdk.Models.Microsoft.Graph {
         /// </summary>
         public IDictionary<string, Action<T, IParseNode>> GetFieldDeserializers<T>() {
             return new Dictionary<string, Action<T, IParseNode>> {
-                {"birthDate", (o,n) => { (o as EducationStudent).BirthDate = n.GetStringValue(); } },
+                {"birthDate", (o,n) => { (o as EducationStudent).BirthDate = n.GetDateValue(); } },
                 {"externalId", (o,n) => { (o as EducationStudent).ExternalId = n.GetStringValue(); } },
                 {"gender", (o,n) => { (o as EducationStudent).Gender = n.GetEnumValue<EducationGender>(); } },
                 {"grade", (o,n) => { (o as EducationStudent).Grade = n.GetStringValue(); } },
@@ -44,7 +45,7 @@ namespace ApiSdk.Models.Microsoft.Graph {
         /// </summary>
         public void Serialize(ISerializationWriter writer) {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
-            writer.WriteStringValue("birthDate", BirthDate);
+            writer.WriteDateValue("birthDate", BirthDate);
             writer.WriteStringValue("externalId", ExternalId);
             writer.WriteEnumValue<EducationGender>("gender", Gender);
             writer.WriteStringValue("grade", Grade);

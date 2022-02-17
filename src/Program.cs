@@ -8,7 +8,9 @@ using Microsoft.Graph.Cli.Core.Commands.Authentication;
 using Microsoft.Graph.Cli.Core.Configuration;
 using Microsoft.Graph.Cli.Core.IO;
 using Microsoft.Graph.Cli.Core.Utils;
+using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Authentication.Azure;
+using Microsoft.Kiota.Cli.Commons.IO;
 using Microsoft.Kiota.Http.HttpClientLibrary;
 using Microsoft.Kiota.Http.HttpClientLibrary.Middleware;
 using Microsoft.Kiota.Http.HttpClientLibrary.Middleware.Options;
@@ -43,7 +45,7 @@ namespace Microsoft.Graph.Cli
             var authStrategy = AuthenticationStrategy.DeviceCode;
 
             var credential = await authServiceFactory.GetTokenCredentialAsync(authStrategy, authSettings?.TenantId, authSettings?.ClientId);
-            var authProvider = new AzureIdentityAuthenticationProvider(credential);
+            var authProvider = new AzureIdentityAuthenticationProvider(credential, new string[] {"graph.microsoft.com"});
             var defaultHandlers = KiotaClientFactory.CreateDefaultHandlers();
 
             var assemblyVersion = Assembly.GetExecutingAssembly().GetName().Version;
@@ -67,8 +69,6 @@ namespace Microsoft.Graph.Cli
             using var httpClient = KiotaClientFactory.Create(finalHandler);
             var core = new HttpClientRequestAdapter(authProvider, httpClient: httpClient);
             var client = new GraphClient(core);
-            var rootCommand = client.BuildCommand();
-            rootCommand.Description = "Microsoft Graph CLI";
 
             var commands = new List<Command>();
             var loginCommand = new LoginCommand(authServiceFactory);
@@ -77,7 +77,12 @@ namespace Microsoft.Graph.Cli
             var logoutCommand = new LogoutCommand(new LogoutService());
             commands.Add(logoutCommand.Build());
 
-            var builder = BuildCommandLine(client, commands).UseDefaults();
+            var builder = BuildCommandLine(client, commands).UseDefaults().UseHost(CreateHostBuilder);
+            builder.AddMiddleware((invocation) => {
+                var host = invocation.GetHost();
+                var outputFormatterFactory = host.Services.GetRequiredService<IOutputFormatterFactory>();
+                invocation.BindingContext.AddService<IOutputFormatterFactory>(_ => outputFormatterFactory);
+            });
             builder.UseExceptionHandler((ex, context) => {
                 if (ex is AuthenticationRequiredException) {
                     Console.ResetColor();
@@ -87,14 +92,14 @@ namespace Microsoft.Graph.Cli
                 }
             });
 
-            var parser = builder.UseHost(CreateHostBuilder).Build();
+            var parser = builder.Build();
 
             return await parser.InvokeAsync(args);
         }
 
         static CommandLineBuilder BuildCommandLine(GraphClient client, IEnumerable<Command> commands)
         {
-            var rootCommand = client.BuildCommand();
+            var rootCommand = client.BuildRootCommand();
             rootCommand.Description = "Microsoft Graph CLI";
 
             foreach (var command in commands) {
@@ -113,6 +118,7 @@ namespace Microsoft.Graph.Cli
                 var authSection = ctx.Configuration.GetSection(Constants.AuthenticationSection);
                 services.Configure<AuthenticationOptions>(authSection);
                 services.AddSingleton<IPathUtility, PathUtility>();
+                services.AddSingleton<IOutputFormatterFactory, OutputFormatterFactory>();
             });
         
         static void ConfigureAppConfiguration(IConfigurationBuilder builder) {

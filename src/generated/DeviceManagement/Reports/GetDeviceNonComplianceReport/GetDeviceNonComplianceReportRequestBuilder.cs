@@ -1,9 +1,9 @@
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
+using Microsoft.Kiota.Cli.Commons.IO;
 using System;
 using System.Collections.Generic;
 using System.CommandLine;
-using System.CommandLine.Invocation;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -29,27 +29,29 @@ namespace ApiSdk.DeviceManagement.Reports.GetDeviceNonComplianceReport {
             };
             bodyOption.IsRequired = true;
             command.AddOption(bodyOption);
-            var outputOption = new Option<FileInfo>("--output");
+            var fileOption = new Option<FileInfo>("--file");
+            command.AddOption(fileOption);
+            var outputOption = new Option<FormatterType>("--output", () => FormatterType.JSON){
+                IsRequired = true
+            };
             command.AddOption(outputOption);
-            command.SetHandler(async (string body, FileInfo output) => {
+            command.SetHandler(async (string body, FileInfo file, FormatterType output, IOutputFormatterFactory outputFormatterFactory, CancellationToken cancellationToken) => {
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<GetDeviceNonComplianceReportRequestBody>();
                 var requestInfo = CreatePostRequestInformation(model, q => {
                 });
-                var result = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo);
-                // Print request output. What if the request has no return?
-                if (output == null) {
-                    using var reader = new StreamReader(result);
-                    var strContent = await reader.ReadToEndAsync();
-                    Console.Write(strContent + "\n");
+                var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: default, cancellationToken: cancellationToken);
+                var formatter = outputFormatterFactory.GetFormatter(output);
+                if (file == null) {
+                    formatter.WriteOutput(response);
                 }
                 else {
-                    using var writeStream = output.OpenWrite();
-                    await result.CopyToAsync(writeStream);
-                    Console.WriteLine($"Content written to {output.FullName}.");
+                    using var writeStream = file.OpenWrite();
+                    await response.CopyToAsync(writeStream);
+                    Console.WriteLine($"Content written to {file.FullName}.");
                 }
-            }, bodyOption, outputOption);
+            }, bodyOption, fileOption, outputOption);
             return command;
         }
         /// <summary>
@@ -82,19 +84,6 @@ namespace ApiSdk.DeviceManagement.Reports.GetDeviceNonComplianceReport {
             h?.Invoke(requestInfo.Headers);
             requestInfo.AddRequestOptions(o?.ToArray());
             return requestInfo;
-        }
-        /// <summary>
-        /// Invoke action getDeviceNonComplianceReport
-        /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
-        /// <param name="h">Request headers</param>
-        /// <param name="model"></param>
-        /// <param name="o">Request options</param>
-        /// <param name="responseHandler">Response handler to use in place of the default response handling provided by the core service</param>
-        /// </summary>
-        public async Task<Stream> PostAsync(GetDeviceNonComplianceReportRequestBody model, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default, CancellationToken cancellationToken = default) {
-            _ = model ?? throw new ArgumentNullException(nameof(model));
-            var requestInfo = CreatePostRequestInformation(model, h, o);
-            return await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, responseHandler, cancellationToken);
         }
     }
 }

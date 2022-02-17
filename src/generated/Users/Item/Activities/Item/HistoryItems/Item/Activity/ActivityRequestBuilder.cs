@@ -2,10 +2,10 @@ using ApiSdk.Models.Microsoft.Graph;
 using ApiSdk.Users.Item.Activities.Item.HistoryItems.Item.Activity.Ref;
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
+using Microsoft.Kiota.Cli.Commons.IO;
 using System;
 using System.Collections.Generic;
 using System.CommandLine;
-using System.CommandLine.Invocation;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -31,11 +31,11 @@ namespace ApiSdk.Users.Item.Activities.Item.HistoryItems.Item.Activity {
             };
             userIdOption.IsRequired = true;
             command.AddOption(userIdOption);
-            var userActivityIdOption = new Option<string>("--useractivity-id", description: "key: id of userActivity") {
+            var userActivityIdOption = new Option<string>("--user-activity-id", description: "key: id of userActivity") {
             };
             userActivityIdOption.IsRequired = true;
             command.AddOption(userActivityIdOption);
-            var activityHistoryItemIdOption = new Option<string>("--activityhistoryitem-id", description: "key: id of activityHistoryItem") {
+            var activityHistoryItemIdOption = new Option<string>("--activity-history-item-id", description: "key: id of activityHistoryItem") {
             };
             activityHistoryItemIdOption.IsRequired = true;
             command.AddOption(activityHistoryItemIdOption);
@@ -49,25 +49,24 @@ namespace ApiSdk.Users.Item.Activities.Item.HistoryItems.Item.Activity {
             };
             expandOption.IsRequired = false;
             command.AddOption(expandOption);
-            command.SetHandler(async (string userId, string userActivityId, string activityHistoryItemId, string[] select, string[] expand) => {
+            var outputOption = new Option<FormatterType>("--output", () => FormatterType.JSON){
+                IsRequired = true
+            };
+            command.AddOption(outputOption);
+            command.SetHandler(async (string userId, string userActivityId, string activityHistoryItemId, string[] select, string[] expand, FormatterType output, IOutputFormatterFactory outputFormatterFactory, CancellationToken cancellationToken) => {
                 var requestInfo = CreateGetRequestInformation(q => {
                     q.Select = select;
                     q.Expand = expand;
                 });
-                var result = await RequestAdapter.SendAsync<UserActivity>(requestInfo);
-                // Print request output. What if the request has no return?
-                using var serializer = RequestAdapter.SerializationWriterFactory.GetSerializationWriter("application/json");
-                serializer.WriteObjectValue(null, result);
-                using var content = serializer.GetSerializedContent();
-                using var reader = new StreamReader(content);
-                var strContent = await reader.ReadToEndAsync();
-                Console.Write(strContent + "\n");
-            }, userIdOption, userActivityIdOption, activityHistoryItemIdOption, selectOption, expandOption);
+                var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: default, cancellationToken: cancellationToken);
+                var formatter = outputFormatterFactory.GetFormatter(output);
+                formatter.WriteOutput(response);
+            }, userIdOption, userActivityIdOption, activityHistoryItemIdOption, selectOption, expandOption, outputOption);
             return command;
         }
         public Command BuildRefCommand() {
             var command = new Command("ref");
-            var builder = new ApiSdk.Users.Item.Activities.Item.HistoryItems.Item.Activity.@Ref.RefRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new ApiSdk.Users.Item.Activities.Item.HistoryItems.Item.Activity.Ref.RefRequestBuilder(PathParameters, RequestAdapter);
             command.AddCommand(builder.BuildDeleteCommand());
             command.AddCommand(builder.BuildGetCommand());
             command.AddCommand(builder.BuildPutCommand());
@@ -106,18 +105,6 @@ namespace ApiSdk.Users.Item.Activities.Item.HistoryItems.Item.Activity {
             h?.Invoke(requestInfo.Headers);
             requestInfo.AddRequestOptions(o?.ToArray());
             return requestInfo;
-        }
-        /// <summary>
-        /// Optional. NavigationProperty/Containment; navigation property to the associated activity.
-        /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
-        /// <param name="h">Request headers</param>
-        /// <param name="o">Request options</param>
-        /// <param name="q">Request query parameters</param>
-        /// <param name="responseHandler">Response handler to use in place of the default response handling provided by the core service</param>
-        /// </summary>
-        public async Task<UserActivity> GetAsync(Action<GetQueryParameters> q = default, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default, CancellationToken cancellationToken = default) {
-            var requestInfo = CreateGetRequestInformation(q, h, o);
-            return await RequestAdapter.SendAsync<UserActivity>(requestInfo, responseHandler, cancellationToken);
         }
         /// <summary>Optional. NavigationProperty/Containment; navigation property to the associated activity.</summary>
         public class GetQueryParameters : QueryParametersBase {

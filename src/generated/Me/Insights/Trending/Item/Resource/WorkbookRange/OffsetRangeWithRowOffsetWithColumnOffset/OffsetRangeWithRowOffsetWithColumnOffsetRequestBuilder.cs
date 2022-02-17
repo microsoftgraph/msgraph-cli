@@ -1,17 +1,17 @@
 using ApiSdk.Models.Microsoft.Graph;
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
+using Microsoft.Kiota.Cli.Commons.IO;
 using System;
 using System.Collections.Generic;
 using System.CommandLine;
-using System.CommandLine.Invocation;
 using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 namespace ApiSdk.Me.Insights.Trending.Item.Resource.WorkbookRange.OffsetRangeWithRowOffsetWithColumnOffset {
-    /// <summary>Builds and executes requests for operations under \me\insights\trending\{trending-id}\resource\microsoft.graph.workbookRange\microsoft.graph.offsetRange(rowOffset={rowOffset},columnOffset={columnOffset})</summary>
+    /// <summary>Builds and executes requests for operations under \me\insights\trending\{trendingItem-Id}\resource\microsoft.graph.workbookRange\microsoft.graph.offsetRange(rowOffset={rowOffset},columnOffset={columnOffset})</summary>
     public class OffsetRangeWithRowOffsetWithColumnOffsetRequestBuilder {
         /// <summary>Path parameters for the request</summary>
         private Dictionary<string, object> PathParameters { get; set; }
@@ -26,30 +26,29 @@ namespace ApiSdk.Me.Insights.Trending.Item.Resource.WorkbookRange.OffsetRangeWit
             var command = new Command("get");
             command.Description = "Invoke function offsetRange";
             // Create options for all the parameters
-            var trendingIdOption = new Option<string>("--trending-id", description: "key: id of trending") {
+            var trendingItemIdOption = new Option<string>("--trending-item-id", description: "key: id of trending") {
             };
-            trendingIdOption.IsRequired = true;
-            command.AddOption(trendingIdOption);
-            var rowOffsetOption = new Option<int?>("--rowoffset", description: "Usage: rowOffset={rowOffset}") {
+            trendingItemIdOption.IsRequired = true;
+            command.AddOption(trendingItemIdOption);
+            var rowOffsetOption = new Option<int?>("--row-offset", description: "Usage: rowOffset={rowOffset}") {
             };
             rowOffsetOption.IsRequired = true;
             command.AddOption(rowOffsetOption);
-            var columnOffsetOption = new Option<int?>("--columnoffset", description: "Usage: columnOffset={columnOffset}") {
+            var columnOffsetOption = new Option<int?>("--column-offset", description: "Usage: columnOffset={columnOffset}") {
             };
             columnOffsetOption.IsRequired = true;
             command.AddOption(columnOffsetOption);
-            command.SetHandler(async (string trendingId, int? rowOffset, int? columnOffset) => {
+            var outputOption = new Option<FormatterType>("--output", () => FormatterType.JSON){
+                IsRequired = true
+            };
+            command.AddOption(outputOption);
+            command.SetHandler(async (string trendingItemId, int? rowOffset, int? columnOffset, FormatterType output, IOutputFormatterFactory outputFormatterFactory, CancellationToken cancellationToken) => {
                 var requestInfo = CreateGetRequestInformation(q => {
                 });
-                var result = await RequestAdapter.SendAsync<OffsetRangeWithRowOffsetWithColumnOffsetResponse>(requestInfo);
-                // Print request output. What if the request has no return?
-                using var serializer = RequestAdapter.SerializationWriterFactory.GetSerializationWriter("application/json");
-                serializer.WriteObjectValue(null, result);
-                using var content = serializer.GetSerializedContent();
-                using var reader = new StreamReader(content);
-                var strContent = await reader.ReadToEndAsync();
-                Console.Write(strContent + "\n");
-            }, trendingIdOption, rowOffsetOption, columnOffsetOption);
+                var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: default, cancellationToken: cancellationToken);
+                var formatter = outputFormatterFactory.GetFormatter(output);
+                formatter.WriteOutput(response);
+            }, trendingItemIdOption, rowOffsetOption, columnOffsetOption, outputOption);
             return command;
         }
         /// <summary>
@@ -62,7 +61,7 @@ namespace ApiSdk.Me.Insights.Trending.Item.Resource.WorkbookRange.OffsetRangeWit
         public OffsetRangeWithRowOffsetWithColumnOffsetRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter, int? rowOffset = default, int? columnOffset = default) {
             _ = pathParameters ?? throw new ArgumentNullException(nameof(pathParameters));
             _ = requestAdapter ?? throw new ArgumentNullException(nameof(requestAdapter));
-            UrlTemplate = "{+baseurl}/me/insights/trending/{trending_id}/resource/microsoft.graph.workbookRange/microsoft.graph.offsetRange(rowOffset={rowOffset},columnOffset={columnOffset})";
+            UrlTemplate = "{+baseurl}/me/insights/trending/{trendingItem_Id}/resource/microsoft.graph.workbookRange/microsoft.graph.offsetRange(rowOffset={rowOffset},columnOffset={columnOffset})";
             var urlTplParams = new Dictionary<string, object>(pathParameters);
             urlTplParams.Add("rowOffset", rowOffset);
             urlTplParams.Add("columnOffset", columnOffset);
@@ -83,17 +82,6 @@ namespace ApiSdk.Me.Insights.Trending.Item.Resource.WorkbookRange.OffsetRangeWit
             h?.Invoke(requestInfo.Headers);
             requestInfo.AddRequestOptions(o?.ToArray());
             return requestInfo;
-        }
-        /// <summary>
-        /// Invoke function offsetRange
-        /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
-        /// <param name="h">Request headers</param>
-        /// <param name="o">Request options</param>
-        /// <param name="responseHandler">Response handler to use in place of the default response handling provided by the core service</param>
-        /// </summary>
-        public async Task<OffsetRangeWithRowOffsetWithColumnOffsetResponse> GetAsync(Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default, CancellationToken cancellationToken = default) {
-            var requestInfo = CreateGetRequestInformation(h, o);
-            return await RequestAdapter.SendAsync<OffsetRangeWithRowOffsetWithColumnOffsetResponse>(requestInfo, responseHandler, cancellationToken);
         }
         /// <summary>Union type wrapper for classes workbookRange</summary>
         public class OffsetRangeWithRowOffsetWithColumnOffsetResponse : IParsable {

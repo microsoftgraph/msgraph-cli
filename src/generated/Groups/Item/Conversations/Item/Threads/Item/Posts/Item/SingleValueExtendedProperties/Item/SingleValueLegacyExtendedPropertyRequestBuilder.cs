@@ -1,10 +1,10 @@
 using ApiSdk.Models.Microsoft.Graph;
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
+using Microsoft.Kiota.Cli.Commons.IO;
 using System;
 using System.Collections.Generic;
 using System.CommandLine;
-using System.CommandLine.Invocation;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -34,7 +34,7 @@ namespace ApiSdk.Groups.Item.Conversations.Item.Threads.Item.Posts.Item.SingleVa
             };
             conversationIdOption.IsRequired = true;
             command.AddOption(conversationIdOption);
-            var conversationThreadIdOption = new Option<string>("--conversationthread-id", description: "key: id of conversationThread") {
+            var conversationThreadIdOption = new Option<string>("--conversation-thread-id", description: "key: id of conversationThread") {
             };
             conversationThreadIdOption.IsRequired = true;
             command.AddOption(conversationThreadIdOption);
@@ -42,15 +42,14 @@ namespace ApiSdk.Groups.Item.Conversations.Item.Threads.Item.Posts.Item.SingleVa
             };
             postIdOption.IsRequired = true;
             command.AddOption(postIdOption);
-            var singleValueLegacyExtendedPropertyIdOption = new Option<string>("--singlevaluelegacyextendedproperty-id", description: "key: id of singleValueLegacyExtendedProperty") {
+            var singleValueLegacyExtendedPropertyIdOption = new Option<string>("--single-value-legacy-extended-property-id", description: "key: id of singleValueLegacyExtendedProperty") {
             };
             singleValueLegacyExtendedPropertyIdOption.IsRequired = true;
             command.AddOption(singleValueLegacyExtendedPropertyIdOption);
-            command.SetHandler(async (string groupId, string conversationId, string conversationThreadId, string postId, string singleValueLegacyExtendedPropertyId) => {
+            command.SetHandler(async (string groupId, string conversationId, string conversationThreadId, string postId, string singleValueLegacyExtendedPropertyId, IOutputFormatterFactory outputFormatterFactory, CancellationToken cancellationToken) => {
                 var requestInfo = CreateDeleteRequestInformation(q => {
                 });
-                await RequestAdapter.SendNoContentAsync(requestInfo);
-                // Print request output. What if the request has no return?
+                await RequestAdapter.SendNoContentAsync(requestInfo, errorMapping: default, cancellationToken: cancellationToken);
                 Console.WriteLine("Success");
             }, groupIdOption, conversationIdOption, conversationThreadIdOption, postIdOption, singleValueLegacyExtendedPropertyIdOption);
             return command;
@@ -70,7 +69,7 @@ namespace ApiSdk.Groups.Item.Conversations.Item.Threads.Item.Posts.Item.SingleVa
             };
             conversationIdOption.IsRequired = true;
             command.AddOption(conversationIdOption);
-            var conversationThreadIdOption = new Option<string>("--conversationthread-id", description: "key: id of conversationThread") {
+            var conversationThreadIdOption = new Option<string>("--conversation-thread-id", description: "key: id of conversationThread") {
             };
             conversationThreadIdOption.IsRequired = true;
             command.AddOption(conversationThreadIdOption);
@@ -78,7 +77,7 @@ namespace ApiSdk.Groups.Item.Conversations.Item.Threads.Item.Posts.Item.SingleVa
             };
             postIdOption.IsRequired = true;
             command.AddOption(postIdOption);
-            var singleValueLegacyExtendedPropertyIdOption = new Option<string>("--singlevaluelegacyextendedproperty-id", description: "key: id of singleValueLegacyExtendedProperty") {
+            var singleValueLegacyExtendedPropertyIdOption = new Option<string>("--single-value-legacy-extended-property-id", description: "key: id of singleValueLegacyExtendedProperty") {
             };
             singleValueLegacyExtendedPropertyIdOption.IsRequired = true;
             command.AddOption(singleValueLegacyExtendedPropertyIdOption);
@@ -92,20 +91,19 @@ namespace ApiSdk.Groups.Item.Conversations.Item.Threads.Item.Posts.Item.SingleVa
             };
             expandOption.IsRequired = false;
             command.AddOption(expandOption);
-            command.SetHandler(async (string groupId, string conversationId, string conversationThreadId, string postId, string singleValueLegacyExtendedPropertyId, string[] select, string[] expand) => {
+            var outputOption = new Option<FormatterType>("--output", () => FormatterType.JSON){
+                IsRequired = true
+            };
+            command.AddOption(outputOption);
+            command.SetHandler(async (string groupId, string conversationId, string conversationThreadId, string postId, string singleValueLegacyExtendedPropertyId, string[] select, string[] expand, FormatterType output, IOutputFormatterFactory outputFormatterFactory, CancellationToken cancellationToken) => {
                 var requestInfo = CreateGetRequestInformation(q => {
                     q.Select = select;
                     q.Expand = expand;
                 });
-                var result = await RequestAdapter.SendAsync<SingleValueLegacyExtendedProperty>(requestInfo);
-                // Print request output. What if the request has no return?
-                using var serializer = RequestAdapter.SerializationWriterFactory.GetSerializationWriter("application/json");
-                serializer.WriteObjectValue(null, result);
-                using var content = serializer.GetSerializedContent();
-                using var reader = new StreamReader(content);
-                var strContent = await reader.ReadToEndAsync();
-                Console.Write(strContent + "\n");
-            }, groupIdOption, conversationIdOption, conversationThreadIdOption, postIdOption, singleValueLegacyExtendedPropertyIdOption, selectOption, expandOption);
+                var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: default, cancellationToken: cancellationToken);
+                var formatter = outputFormatterFactory.GetFormatter(output);
+                formatter.WriteOutput(response);
+            }, groupIdOption, conversationIdOption, conversationThreadIdOption, postIdOption, singleValueLegacyExtendedPropertyIdOption, selectOption, expandOption, outputOption);
             return command;
         }
         /// <summary>
@@ -123,7 +121,7 @@ namespace ApiSdk.Groups.Item.Conversations.Item.Threads.Item.Posts.Item.SingleVa
             };
             conversationIdOption.IsRequired = true;
             command.AddOption(conversationIdOption);
-            var conversationThreadIdOption = new Option<string>("--conversationthread-id", description: "key: id of conversationThread") {
+            var conversationThreadIdOption = new Option<string>("--conversation-thread-id", description: "key: id of conversationThread") {
             };
             conversationThreadIdOption.IsRequired = true;
             command.AddOption(conversationThreadIdOption);
@@ -131,7 +129,7 @@ namespace ApiSdk.Groups.Item.Conversations.Item.Threads.Item.Posts.Item.SingleVa
             };
             postIdOption.IsRequired = true;
             command.AddOption(postIdOption);
-            var singleValueLegacyExtendedPropertyIdOption = new Option<string>("--singlevaluelegacyextendedproperty-id", description: "key: id of singleValueLegacyExtendedProperty") {
+            var singleValueLegacyExtendedPropertyIdOption = new Option<string>("--single-value-legacy-extended-property-id", description: "key: id of singleValueLegacyExtendedProperty") {
             };
             singleValueLegacyExtendedPropertyIdOption.IsRequired = true;
             command.AddOption(singleValueLegacyExtendedPropertyIdOption);
@@ -139,14 +137,13 @@ namespace ApiSdk.Groups.Item.Conversations.Item.Threads.Item.Posts.Item.SingleVa
             };
             bodyOption.IsRequired = true;
             command.AddOption(bodyOption);
-            command.SetHandler(async (string groupId, string conversationId, string conversationThreadId, string postId, string singleValueLegacyExtendedPropertyId, string body) => {
+            command.SetHandler(async (string groupId, string conversationId, string conversationThreadId, string postId, string singleValueLegacyExtendedPropertyId, string body, IOutputFormatterFactory outputFormatterFactory, CancellationToken cancellationToken) => {
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<SingleValueLegacyExtendedProperty>();
                 var requestInfo = CreatePatchRequestInformation(model, q => {
                 });
-                await RequestAdapter.SendNoContentAsync(requestInfo);
-                // Print request output. What if the request has no return?
+                await RequestAdapter.SendNoContentAsync(requestInfo, errorMapping: default, cancellationToken: cancellationToken);
                 Console.WriteLine("Success");
             }, groupIdOption, conversationIdOption, conversationThreadIdOption, postIdOption, singleValueLegacyExtendedPropertyIdOption, bodyOption);
             return command;
@@ -217,42 +214,6 @@ namespace ApiSdk.Groups.Item.Conversations.Item.Threads.Item.Posts.Item.SingleVa
             h?.Invoke(requestInfo.Headers);
             requestInfo.AddRequestOptions(o?.ToArray());
             return requestInfo;
-        }
-        /// <summary>
-        /// The collection of single-value extended properties defined for the post. Read-only. Nullable.
-        /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
-        /// <param name="h">Request headers</param>
-        /// <param name="o">Request options</param>
-        /// <param name="responseHandler">Response handler to use in place of the default response handling provided by the core service</param>
-        /// </summary>
-        public async Task DeleteAsync(Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default, CancellationToken cancellationToken = default) {
-            var requestInfo = CreateDeleteRequestInformation(h, o);
-            await RequestAdapter.SendNoContentAsync(requestInfo, responseHandler, cancellationToken);
-        }
-        /// <summary>
-        /// The collection of single-value extended properties defined for the post. Read-only. Nullable.
-        /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
-        /// <param name="h">Request headers</param>
-        /// <param name="o">Request options</param>
-        /// <param name="q">Request query parameters</param>
-        /// <param name="responseHandler">Response handler to use in place of the default response handling provided by the core service</param>
-        /// </summary>
-        public async Task<SingleValueLegacyExtendedProperty> GetAsync(Action<GetQueryParameters> q = default, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default, CancellationToken cancellationToken = default) {
-            var requestInfo = CreateGetRequestInformation(q, h, o);
-            return await RequestAdapter.SendAsync<SingleValueLegacyExtendedProperty>(requestInfo, responseHandler, cancellationToken);
-        }
-        /// <summary>
-        /// The collection of single-value extended properties defined for the post. Read-only. Nullable.
-        /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
-        /// <param name="h">Request headers</param>
-        /// <param name="model"></param>
-        /// <param name="o">Request options</param>
-        /// <param name="responseHandler">Response handler to use in place of the default response handling provided by the core service</param>
-        /// </summary>
-        public async Task PatchAsync(SingleValueLegacyExtendedProperty model, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default, CancellationToken cancellationToken = default) {
-            _ = model ?? throw new ArgumentNullException(nameof(model));
-            var requestInfo = CreatePatchRequestInformation(model, h, o);
-            await RequestAdapter.SendNoContentAsync(requestInfo, responseHandler, cancellationToken);
         }
         /// <summary>The collection of single-value extended properties defined for the post. Read-only. Nullable.</summary>
         public class GetQueryParameters : QueryParametersBase {

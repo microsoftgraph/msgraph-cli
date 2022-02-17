@@ -2,10 +2,10 @@ using ApiSdk.Models.Microsoft.Graph;
 using ApiSdk.Users.Item.OnlineMeetings.Item.AttendanceReports.Item.AttendanceRecords.Item;
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
+using Microsoft.Kiota.Cli.Commons.IO;
 using System;
 using System.Collections.Generic;
 using System.CommandLine;
-using System.CommandLine.Invocation;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -22,11 +22,10 @@ namespace ApiSdk.Users.Item.OnlineMeetings.Item.AttendanceReports.Item.Attendanc
         private string UrlTemplate { get; set; }
         public List<Command> BuildCommand() {
             var builder = new AttendanceRecordRequestBuilder(PathParameters, RequestAdapter);
-            var commands = new List<Command> { 
-                builder.BuildDeleteCommand(),
-                builder.BuildGetCommand(),
-                builder.BuildPatchCommand(),
-            };
+            var commands = new List<Command>();
+            commands.Add(builder.BuildDeleteCommand());
+            commands.Add(builder.BuildGetCommand());
+            commands.Add(builder.BuildPatchCommand());
             return commands;
         }
         /// <summary>
@@ -40,11 +39,11 @@ namespace ApiSdk.Users.Item.OnlineMeetings.Item.AttendanceReports.Item.Attendanc
             };
             userIdOption.IsRequired = true;
             command.AddOption(userIdOption);
-            var onlineMeetingIdOption = new Option<string>("--onlinemeeting-id", description: "key: id of onlineMeeting") {
+            var onlineMeetingIdOption = new Option<string>("--online-meeting-id", description: "key: id of onlineMeeting") {
             };
             onlineMeetingIdOption.IsRequired = true;
             command.AddOption(onlineMeetingIdOption);
-            var meetingAttendanceReportIdOption = new Option<string>("--meetingattendancereport-id", description: "key: id of meetingAttendanceReport") {
+            var meetingAttendanceReportIdOption = new Option<string>("--meeting-attendance-report-id", description: "key: id of meetingAttendanceReport") {
             };
             meetingAttendanceReportIdOption.IsRequired = true;
             command.AddOption(meetingAttendanceReportIdOption);
@@ -52,21 +51,20 @@ namespace ApiSdk.Users.Item.OnlineMeetings.Item.AttendanceReports.Item.Attendanc
             };
             bodyOption.IsRequired = true;
             command.AddOption(bodyOption);
-            command.SetHandler(async (string userId, string onlineMeetingId, string meetingAttendanceReportId, string body) => {
+            var outputOption = new Option<FormatterType>("--output", () => FormatterType.JSON){
+                IsRequired = true
+            };
+            command.AddOption(outputOption);
+            command.SetHandler(async (string userId, string onlineMeetingId, string meetingAttendanceReportId, string body, FormatterType output, IOutputFormatterFactory outputFormatterFactory, CancellationToken cancellationToken) => {
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<AttendanceRecord>();
                 var requestInfo = CreatePostRequestInformation(model, q => {
                 });
-                var result = await RequestAdapter.SendAsync<AttendanceRecord>(requestInfo);
-                // Print request output. What if the request has no return?
-                using var serializer = RequestAdapter.SerializationWriterFactory.GetSerializationWriter("application/json");
-                serializer.WriteObjectValue(null, result);
-                using var content = serializer.GetSerializedContent();
-                using var reader = new StreamReader(content);
-                var strContent = await reader.ReadToEndAsync();
-                Console.Write(strContent + "\n");
-            }, userIdOption, onlineMeetingIdOption, meetingAttendanceReportIdOption, bodyOption);
+                var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: default, cancellationToken: cancellationToken);
+                var formatter = outputFormatterFactory.GetFormatter(output);
+                formatter.WriteOutput(response);
+            }, userIdOption, onlineMeetingIdOption, meetingAttendanceReportIdOption, bodyOption, outputOption);
             return command;
         }
         /// <summary>
@@ -80,11 +78,11 @@ namespace ApiSdk.Users.Item.OnlineMeetings.Item.AttendanceReports.Item.Attendanc
             };
             userIdOption.IsRequired = true;
             command.AddOption(userIdOption);
-            var onlineMeetingIdOption = new Option<string>("--onlinemeeting-id", description: "key: id of onlineMeeting") {
+            var onlineMeetingIdOption = new Option<string>("--online-meeting-id", description: "key: id of onlineMeeting") {
             };
             onlineMeetingIdOption.IsRequired = true;
             command.AddOption(onlineMeetingIdOption);
-            var meetingAttendanceReportIdOption = new Option<string>("--meetingattendancereport-id", description: "key: id of meetingAttendanceReport") {
+            var meetingAttendanceReportIdOption = new Option<string>("--meeting-attendance-report-id", description: "key: id of meetingAttendanceReport") {
             };
             meetingAttendanceReportIdOption.IsRequired = true;
             command.AddOption(meetingAttendanceReportIdOption);
@@ -123,7 +121,11 @@ namespace ApiSdk.Users.Item.OnlineMeetings.Item.AttendanceReports.Item.Attendanc
             };
             expandOption.IsRequired = false;
             command.AddOption(expandOption);
-            command.SetHandler(async (string userId, string onlineMeetingId, string meetingAttendanceReportId, int? top, int? skip, string search, string filter, bool? count, string[] orderby, string[] select, string[] expand) => {
+            var outputOption = new Option<FormatterType>("--output", () => FormatterType.JSON){
+                IsRequired = true
+            };
+            command.AddOption(outputOption);
+            command.SetHandler(async (string userId, string onlineMeetingId, string meetingAttendanceReportId, int? top, int? skip, string search, string filter, bool? count, string[] orderby, string[] select, string[] expand, FormatterType output, IOutputFormatterFactory outputFormatterFactory, CancellationToken cancellationToken) => {
                 var requestInfo = CreateGetRequestInformation(q => {
                     q.Top = top;
                     q.Skip = skip;
@@ -134,15 +136,10 @@ namespace ApiSdk.Users.Item.OnlineMeetings.Item.AttendanceReports.Item.Attendanc
                     q.Select = select;
                     q.Expand = expand;
                 });
-                var result = await RequestAdapter.SendAsync<AttendanceRecordsResponse>(requestInfo);
-                // Print request output. What if the request has no return?
-                using var serializer = RequestAdapter.SerializationWriterFactory.GetSerializationWriter("application/json");
-                serializer.WriteObjectValue(null, result);
-                using var content = serializer.GetSerializedContent();
-                using var reader = new StreamReader(content);
-                var strContent = await reader.ReadToEndAsync();
-                Console.Write(strContent + "\n");
-            }, userIdOption, onlineMeetingIdOption, meetingAttendanceReportIdOption, topOption, skipOption, searchOption, filterOption, countOption, orderbyOption, selectOption, expandOption);
+                var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: default, cancellationToken: cancellationToken);
+                var formatter = outputFormatterFactory.GetFormatter(output);
+                formatter.WriteOutput(response);
+            }, userIdOption, onlineMeetingIdOption, meetingAttendanceReportIdOption, topOption, skipOption, searchOption, filterOption, countOption, orderbyOption, selectOption, expandOption, outputOption);
             return command;
         }
         /// <summary>
@@ -196,31 +193,6 @@ namespace ApiSdk.Users.Item.OnlineMeetings.Item.AttendanceReports.Item.Attendanc
             h?.Invoke(requestInfo.Headers);
             requestInfo.AddRequestOptions(o?.ToArray());
             return requestInfo;
-        }
-        /// <summary>
-        /// List of attendance records of an attendance report. Read-only.
-        /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
-        /// <param name="h">Request headers</param>
-        /// <param name="o">Request options</param>
-        /// <param name="q">Request query parameters</param>
-        /// <param name="responseHandler">Response handler to use in place of the default response handling provided by the core service</param>
-        /// </summary>
-        public async Task<AttendanceRecordsResponse> GetAsync(Action<GetQueryParameters> q = default, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default, CancellationToken cancellationToken = default) {
-            var requestInfo = CreateGetRequestInformation(q, h, o);
-            return await RequestAdapter.SendAsync<AttendanceRecordsResponse>(requestInfo, responseHandler, cancellationToken);
-        }
-        /// <summary>
-        /// List of attendance records of an attendance report. Read-only.
-        /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
-        /// <param name="h">Request headers</param>
-        /// <param name="model"></param>
-        /// <param name="o">Request options</param>
-        /// <param name="responseHandler">Response handler to use in place of the default response handling provided by the core service</param>
-        /// </summary>
-        public async Task<AttendanceRecord> PostAsync(AttendanceRecord model, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default, CancellationToken cancellationToken = default) {
-            _ = model ?? throw new ArgumentNullException(nameof(model));
-            var requestInfo = CreatePostRequestInformation(model, h, o);
-            return await RequestAdapter.SendAsync<AttendanceRecord>(requestInfo, responseHandler, cancellationToken);
         }
         /// <summary>List of attendance records of an attendance report. Read-only.</summary>
         public class GetQueryParameters : QueryParametersBase {

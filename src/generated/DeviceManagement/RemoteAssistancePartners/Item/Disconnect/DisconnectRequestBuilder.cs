@@ -1,9 +1,9 @@
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
+using Microsoft.Kiota.Cli.Commons.IO;
 using System;
 using System.Collections.Generic;
 using System.CommandLine;
-using System.CommandLine.Invocation;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -25,15 +25,14 @@ namespace ApiSdk.DeviceManagement.RemoteAssistancePartners.Item.Disconnect {
             var command = new Command("post");
             command.Description = "A request to remove the active TeamViewer connector";
             // Create options for all the parameters
-            var remoteAssistancePartnerIdOption = new Option<string>("--remoteassistancepartner-id", description: "key: id of remoteAssistancePartner") {
+            var remoteAssistancePartnerIdOption = new Option<string>("--remote-assistance-partner-id", description: "key: id of remoteAssistancePartner") {
             };
             remoteAssistancePartnerIdOption.IsRequired = true;
             command.AddOption(remoteAssistancePartnerIdOption);
-            command.SetHandler(async (string remoteAssistancePartnerId) => {
+            command.SetHandler(async (string remoteAssistancePartnerId, IOutputFormatterFactory outputFormatterFactory, CancellationToken cancellationToken) => {
                 var requestInfo = CreatePostRequestInformation(q => {
                 });
-                await RequestAdapter.SendNoContentAsync(requestInfo);
-                // Print request output. What if the request has no return?
+                await RequestAdapter.SendNoContentAsync(requestInfo, errorMapping: default, cancellationToken: cancellationToken);
                 Console.WriteLine("Success");
             }, remoteAssistancePartnerIdOption);
             return command;
@@ -65,17 +64,6 @@ namespace ApiSdk.DeviceManagement.RemoteAssistancePartners.Item.Disconnect {
             h?.Invoke(requestInfo.Headers);
             requestInfo.AddRequestOptions(o?.ToArray());
             return requestInfo;
-        }
-        /// <summary>
-        /// A request to remove the active TeamViewer connector
-        /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
-        /// <param name="h">Request headers</param>
-        /// <param name="o">Request options</param>
-        /// <param name="responseHandler">Response handler to use in place of the default response handling provided by the core service</param>
-        /// </summary>
-        public async Task PostAsync(Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default, CancellationToken cancellationToken = default) {
-            var requestInfo = CreatePostRequestInformation(h, o);
-            await RequestAdapter.SendNoContentAsync(requestInfo, responseHandler, cancellationToken);
         }
     }
 }

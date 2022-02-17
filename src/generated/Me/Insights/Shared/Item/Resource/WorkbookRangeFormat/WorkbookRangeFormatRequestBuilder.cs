@@ -1,10 +1,10 @@
 using ApiSdk.Me.Insights.Shared.Item.Resource.WorkbookRangeFormat.AutofitColumns;
 using ApiSdk.Me.Insights.Shared.Item.Resource.WorkbookRangeFormat.AutofitRows;
 using Microsoft.Kiota.Abstractions;
+using Microsoft.Kiota.Cli.Commons.IO;
 using System;
 using System.Collections.Generic;
 using System.CommandLine;
-using System.CommandLine.Invocation;
 using System.IO;
 using System.Linq;
 using System.Text;

@@ -1,10 +1,10 @@
 using ApiSdk.Models.Microsoft.Graph;
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
+using Microsoft.Kiota.Cli.Commons.IO;
 using System;
 using System.Collections.Generic;
 using System.CommandLine;
-using System.CommandLine.Invocation;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -30,15 +30,14 @@ namespace ApiSdk.Teams.Item.Schedule.OfferShiftRequests.Item {
             };
             teamIdOption.IsRequired = true;
             command.AddOption(teamIdOption);
-            var offerShiftRequestIdOption = new Option<string>("--offershiftrequest-id", description: "key: id of offerShiftRequest") {
+            var offerShiftRequestIdOption = new Option<string>("--offer-shift-request-id", description: "key: id of offerShiftRequest") {
             };
             offerShiftRequestIdOption.IsRequired = true;
             command.AddOption(offerShiftRequestIdOption);
-            command.SetHandler(async (string teamId, string offerShiftRequestId) => {
+            command.SetHandler(async (string teamId, string offerShiftRequestId, IOutputFormatterFactory outputFormatterFactory, CancellationToken cancellationToken) => {
                 var requestInfo = CreateDeleteRequestInformation(q => {
                 });
-                await RequestAdapter.SendNoContentAsync(requestInfo);
-                // Print request output. What if the request has no return?
+                await RequestAdapter.SendNoContentAsync(requestInfo, errorMapping: default, cancellationToken: cancellationToken);
                 Console.WriteLine("Success");
             }, teamIdOption, offerShiftRequestIdOption);
             return command;
@@ -54,7 +53,7 @@ namespace ApiSdk.Teams.Item.Schedule.OfferShiftRequests.Item {
             };
             teamIdOption.IsRequired = true;
             command.AddOption(teamIdOption);
-            var offerShiftRequestIdOption = new Option<string>("--offershiftrequest-id", description: "key: id of offerShiftRequest") {
+            var offerShiftRequestIdOption = new Option<string>("--offer-shift-request-id", description: "key: id of offerShiftRequest") {
             };
             offerShiftRequestIdOption.IsRequired = true;
             command.AddOption(offerShiftRequestIdOption);
@@ -68,20 +67,19 @@ namespace ApiSdk.Teams.Item.Schedule.OfferShiftRequests.Item {
             };
             expandOption.IsRequired = false;
             command.AddOption(expandOption);
-            command.SetHandler(async (string teamId, string offerShiftRequestId, string[] select, string[] expand) => {
+            var outputOption = new Option<FormatterType>("--output", () => FormatterType.JSON){
+                IsRequired = true
+            };
+            command.AddOption(outputOption);
+            command.SetHandler(async (string teamId, string offerShiftRequestId, string[] select, string[] expand, FormatterType output, IOutputFormatterFactory outputFormatterFactory, CancellationToken cancellationToken) => {
                 var requestInfo = CreateGetRequestInformation(q => {
                     q.Select = select;
                     q.Expand = expand;
                 });
-                var result = await RequestAdapter.SendAsync<OfferShiftRequest>(requestInfo);
-                // Print request output. What if the request has no return?
-                using var serializer = RequestAdapter.SerializationWriterFactory.GetSerializationWriter("application/json");
-                serializer.WriteObjectValue(null, result);
-                using var content = serializer.GetSerializedContent();
-                using var reader = new StreamReader(content);
-                var strContent = await reader.ReadToEndAsync();
-                Console.Write(strContent + "\n");
-            }, teamIdOption, offerShiftRequestIdOption, selectOption, expandOption);
+                var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: default, cancellationToken: cancellationToken);
+                var formatter = outputFormatterFactory.GetFormatter(output);
+                formatter.WriteOutput(response);
+            }, teamIdOption, offerShiftRequestIdOption, selectOption, expandOption, outputOption);
             return command;
         }
         /// <summary>
@@ -95,7 +93,7 @@ namespace ApiSdk.Teams.Item.Schedule.OfferShiftRequests.Item {
             };
             teamIdOption.IsRequired = true;
             command.AddOption(teamIdOption);
-            var offerShiftRequestIdOption = new Option<string>("--offershiftrequest-id", description: "key: id of offerShiftRequest") {
+            var offerShiftRequestIdOption = new Option<string>("--offer-shift-request-id", description: "key: id of offerShiftRequest") {
             };
             offerShiftRequestIdOption.IsRequired = true;
             command.AddOption(offerShiftRequestIdOption);
@@ -103,14 +101,13 @@ namespace ApiSdk.Teams.Item.Schedule.OfferShiftRequests.Item {
             };
             bodyOption.IsRequired = true;
             command.AddOption(bodyOption);
-            command.SetHandler(async (string teamId, string offerShiftRequestId, string body) => {
+            command.SetHandler(async (string teamId, string offerShiftRequestId, string body, IOutputFormatterFactory outputFormatterFactory, CancellationToken cancellationToken) => {
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<OfferShiftRequest>();
                 var requestInfo = CreatePatchRequestInformation(model, q => {
                 });
-                await RequestAdapter.SendNoContentAsync(requestInfo);
-                // Print request output. What if the request has no return?
+                await RequestAdapter.SendNoContentAsync(requestInfo, errorMapping: default, cancellationToken: cancellationToken);
                 Console.WriteLine("Success");
             }, teamIdOption, offerShiftRequestIdOption, bodyOption);
             return command;
@@ -181,42 +178,6 @@ namespace ApiSdk.Teams.Item.Schedule.OfferShiftRequests.Item {
             h?.Invoke(requestInfo.Headers);
             requestInfo.AddRequestOptions(o?.ToArray());
             return requestInfo;
-        }
-        /// <summary>
-        /// Delete navigation property offerShiftRequests for teams
-        /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
-        /// <param name="h">Request headers</param>
-        /// <param name="o">Request options</param>
-        /// <param name="responseHandler">Response handler to use in place of the default response handling provided by the core service</param>
-        /// </summary>
-        public async Task DeleteAsync(Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default, CancellationToken cancellationToken = default) {
-            var requestInfo = CreateDeleteRequestInformation(h, o);
-            await RequestAdapter.SendNoContentAsync(requestInfo, responseHandler, cancellationToken);
-        }
-        /// <summary>
-        /// Get offerShiftRequests from teams
-        /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
-        /// <param name="h">Request headers</param>
-        /// <param name="o">Request options</param>
-        /// <param name="q">Request query parameters</param>
-        /// <param name="responseHandler">Response handler to use in place of the default response handling provided by the core service</param>
-        /// </summary>
-        public async Task<OfferShiftRequest> GetAsync(Action<GetQueryParameters> q = default, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default, CancellationToken cancellationToken = default) {
-            var requestInfo = CreateGetRequestInformation(q, h, o);
-            return await RequestAdapter.SendAsync<OfferShiftRequest>(requestInfo, responseHandler, cancellationToken);
-        }
-        /// <summary>
-        /// Update the navigation property offerShiftRequests in teams
-        /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
-        /// <param name="h">Request headers</param>
-        /// <param name="model"></param>
-        /// <param name="o">Request options</param>
-        /// <param name="responseHandler">Response handler to use in place of the default response handling provided by the core service</param>
-        /// </summary>
-        public async Task PatchAsync(OfferShiftRequest model, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default, CancellationToken cancellationToken = default) {
-            _ = model ?? throw new ArgumentNullException(nameof(model));
-            var requestInfo = CreatePatchRequestInformation(model, h, o);
-            await RequestAdapter.SendNoContentAsync(requestInfo, responseHandler, cancellationToken);
         }
         /// <summary>Get offerShiftRequests from teams</summary>
         public class GetQueryParameters : QueryParametersBase {

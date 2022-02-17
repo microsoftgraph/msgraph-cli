@@ -1,15 +1,15 @@
 using ApiSdk.Me.Insights.Trending.Item.Resource.WorkbookRangeView.Range;
 using Microsoft.Kiota.Abstractions;
+using Microsoft.Kiota.Cli.Commons.IO;
 using System;
 using System.Collections.Generic;
 using System.CommandLine;
-using System.CommandLine.Invocation;
 using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 namespace ApiSdk.Me.Insights.Trending.Item.Resource.WorkbookRangeView {
-    /// <summary>Builds and executes requests for operations under \me\insights\trending\{trending-id}\resource\microsoft.graph.workbookRangeView</summary>
+    /// <summary>Builds and executes requests for operations under \me\insights\trending\{trendingItem-Id}\resource\microsoft.graph.workbookRangeView</summary>
     public class WorkbookRangeViewRequestBuilder {
         /// <summary>Path parameters for the request</summary>
         private Dictionary<string, object> PathParameters { get; set; }
@@ -25,13 +25,13 @@ namespace ApiSdk.Me.Insights.Trending.Item.Resource.WorkbookRangeView {
         public WorkbookRangeViewRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) {
             _ = pathParameters ?? throw new ArgumentNullException(nameof(pathParameters));
             _ = requestAdapter ?? throw new ArgumentNullException(nameof(requestAdapter));
-            UrlTemplate = "{+baseurl}/me/insights/trending/{trending_id}/resource/microsoft.graph.workbookRangeView";
+            UrlTemplate = "{+baseurl}/me/insights/trending/{trendingItem_Id}/resource/microsoft.graph.workbookRangeView";
             var urlTplParams = new Dictionary<string, object>(pathParameters);
             PathParameters = urlTplParams;
             RequestAdapter = requestAdapter;
         }
         /// <summary>
-        /// Builds and executes requests for operations under \me\insights\trending\{trending-id}\resource\microsoft.graph.workbookRangeView\microsoft.graph.range()
+        /// Builds and executes requests for operations under \me\insights\trending\{trendingItem-Id}\resource\microsoft.graph.workbookRangeView\microsoft.graph.range()
         /// </summary>
         public RangeRequestBuilder Range() {
             return new RangeRequestBuilder(PathParameters, RequestAdapter);

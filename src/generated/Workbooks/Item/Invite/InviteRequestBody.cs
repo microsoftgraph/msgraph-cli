@@ -13,6 +13,7 @@ namespace ApiSdk.Workbooks.Item.Invite {
         public string Password { get; set; }
         public List<DriveRecipient> Recipients { get; set; }
         public bool? RequireSignIn { get; set; }
+        public bool? RetainInheritedPermissions { get; set; }
         public List<string> Roles { get; set; }
         public bool? SendInvitation { get; set; }
         /// <summary>
@@ -31,6 +32,7 @@ namespace ApiSdk.Workbooks.Item.Invite {
                 {"password", (o,n) => { (o as InviteRequestBody).Password = n.GetStringValue(); } },
                 {"recipients", (o,n) => { (o as InviteRequestBody).Recipients = n.GetCollectionOfObjectValues<DriveRecipient>().ToList(); } },
                 {"requireSignIn", (o,n) => { (o as InviteRequestBody).RequireSignIn = n.GetBoolValue(); } },
+                {"retainInheritedPermissions", (o,n) => { (o as InviteRequestBody).RetainInheritedPermissions = n.GetBoolValue(); } },
                 {"roles", (o,n) => { (o as InviteRequestBody).Roles = n.GetCollectionOfPrimitiveValues<string>().ToList(); } },
                 {"sendInvitation", (o,n) => { (o as InviteRequestBody).SendInvitation = n.GetBoolValue(); } },
             };
@@ -46,6 +48,7 @@ namespace ApiSdk.Workbooks.Item.Invite {
             writer.WriteStringValue("password", Password);
             writer.WriteCollectionOfObjectValues<DriveRecipient>("recipients", Recipients);
             writer.WriteBoolValue("requireSignIn", RequireSignIn);
+            writer.WriteBoolValue("retainInheritedPermissions", RetainInheritedPermissions);
             writer.WriteCollectionOfPrimitiveValues<string>("roles", Roles);
             writer.WriteBoolValue("sendInvitation", SendInvitation);
             writer.WriteAdditionalData(AdditionalData);

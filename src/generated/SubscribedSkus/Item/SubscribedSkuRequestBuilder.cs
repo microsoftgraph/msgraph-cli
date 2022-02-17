@@ -1,10 +1,10 @@
 using ApiSdk.Models.Microsoft.Graph;
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
+using Microsoft.Kiota.Cli.Commons.IO;
 using System;
 using System.Collections.Generic;
 using System.CommandLine;
-using System.CommandLine.Invocation;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -26,15 +26,14 @@ namespace ApiSdk.SubscribedSkus.Item {
             var command = new Command("delete");
             command.Description = "Delete entity from subscribedSkus";
             // Create options for all the parameters
-            var subscribedSkuIdOption = new Option<string>("--subscribedsku-id", description: "key: id of subscribedSku") {
+            var subscribedSkuIdOption = new Option<string>("--subscribed-sku-id", description: "key: id of subscribedSku") {
             };
             subscribedSkuIdOption.IsRequired = true;
             command.AddOption(subscribedSkuIdOption);
-            command.SetHandler(async (string subscribedSkuId) => {
+            command.SetHandler(async (string subscribedSkuId, IOutputFormatterFactory outputFormatterFactory, CancellationToken cancellationToken) => {
                 var requestInfo = CreateDeleteRequestInformation(q => {
                 });
-                await RequestAdapter.SendNoContentAsync(requestInfo);
-                // Print request output. What if the request has no return?
+                await RequestAdapter.SendNoContentAsync(requestInfo, errorMapping: default, cancellationToken: cancellationToken);
                 Console.WriteLine("Success");
             }, subscribedSkuIdOption);
             return command;
@@ -46,7 +45,7 @@ namespace ApiSdk.SubscribedSkus.Item {
             var command = new Command("get");
             command.Description = "Get entity from subscribedSkus by key";
             // Create options for all the parameters
-            var subscribedSkuIdOption = new Option<string>("--subscribedsku-id", description: "key: id of subscribedSku") {
+            var subscribedSkuIdOption = new Option<string>("--subscribed-sku-id", description: "key: id of subscribedSku") {
             };
             subscribedSkuIdOption.IsRequired = true;
             command.AddOption(subscribedSkuIdOption);
@@ -55,19 +54,18 @@ namespace ApiSdk.SubscribedSkus.Item {
             };
             selectOption.IsRequired = false;
             command.AddOption(selectOption);
-            command.SetHandler(async (string subscribedSkuId, string[] select) => {
+            var outputOption = new Option<FormatterType>("--output", () => FormatterType.JSON){
+                IsRequired = true
+            };
+            command.AddOption(outputOption);
+            command.SetHandler(async (string subscribedSkuId, string[] select, FormatterType output, IOutputFormatterFactory outputFormatterFactory, CancellationToken cancellationToken) => {
                 var requestInfo = CreateGetRequestInformation(q => {
                     q.Select = select;
                 });
-                var result = await RequestAdapter.SendAsync<SubscribedSku>(requestInfo);
-                // Print request output. What if the request has no return?
-                using var serializer = RequestAdapter.SerializationWriterFactory.GetSerializationWriter("application/json");
-                serializer.WriteObjectValue(null, result);
-                using var content = serializer.GetSerializedContent();
-                using var reader = new StreamReader(content);
-                var strContent = await reader.ReadToEndAsync();
-                Console.Write(strContent + "\n");
-            }, subscribedSkuIdOption, selectOption);
+                var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: default, cancellationToken: cancellationToken);
+                var formatter = outputFormatterFactory.GetFormatter(output);
+                formatter.WriteOutput(response);
+            }, subscribedSkuIdOption, selectOption, outputOption);
             return command;
         }
         /// <summary>
@@ -77,7 +75,7 @@ namespace ApiSdk.SubscribedSkus.Item {
             var command = new Command("patch");
             command.Description = "Update entity in subscribedSkus";
             // Create options for all the parameters
-            var subscribedSkuIdOption = new Option<string>("--subscribedsku-id", description: "key: id of subscribedSku") {
+            var subscribedSkuIdOption = new Option<string>("--subscribed-sku-id", description: "key: id of subscribedSku") {
             };
             subscribedSkuIdOption.IsRequired = true;
             command.AddOption(subscribedSkuIdOption);
@@ -85,14 +83,13 @@ namespace ApiSdk.SubscribedSkus.Item {
             };
             bodyOption.IsRequired = true;
             command.AddOption(bodyOption);
-            command.SetHandler(async (string subscribedSkuId, string body) => {
+            command.SetHandler(async (string subscribedSkuId, string body, IOutputFormatterFactory outputFormatterFactory, CancellationToken cancellationToken) => {
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<SubscribedSku>();
                 var requestInfo = CreatePatchRequestInformation(model, q => {
                 });
-                await RequestAdapter.SendNoContentAsync(requestInfo);
-                // Print request output. What if the request has no return?
+                await RequestAdapter.SendNoContentAsync(requestInfo, errorMapping: default, cancellationToken: cancellationToken);
                 Console.WriteLine("Success");
             }, subscribedSkuIdOption, bodyOption);
             return command;
@@ -163,42 +160,6 @@ namespace ApiSdk.SubscribedSkus.Item {
             h?.Invoke(requestInfo.Headers);
             requestInfo.AddRequestOptions(o?.ToArray());
             return requestInfo;
-        }
-        /// <summary>
-        /// Delete entity from subscribedSkus
-        /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
-        /// <param name="h">Request headers</param>
-        /// <param name="o">Request options</param>
-        /// <param name="responseHandler">Response handler to use in place of the default response handling provided by the core service</param>
-        /// </summary>
-        public async Task DeleteAsync(Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default, CancellationToken cancellationToken = default) {
-            var requestInfo = CreateDeleteRequestInformation(h, o);
-            await RequestAdapter.SendNoContentAsync(requestInfo, responseHandler, cancellationToken);
-        }
-        /// <summary>
-        /// Get entity from subscribedSkus by key
-        /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
-        /// <param name="h">Request headers</param>
-        /// <param name="o">Request options</param>
-        /// <param name="q">Request query parameters</param>
-        /// <param name="responseHandler">Response handler to use in place of the default response handling provided by the core service</param>
-        /// </summary>
-        public async Task<SubscribedSku> GetAsync(Action<GetQueryParameters> q = default, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default, CancellationToken cancellationToken = default) {
-            var requestInfo = CreateGetRequestInformation(q, h, o);
-            return await RequestAdapter.SendAsync<SubscribedSku>(requestInfo, responseHandler, cancellationToken);
-        }
-        /// <summary>
-        /// Update entity in subscribedSkus
-        /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
-        /// <param name="h">Request headers</param>
-        /// <param name="model"></param>
-        /// <param name="o">Request options</param>
-        /// <param name="responseHandler">Response handler to use in place of the default response handling provided by the core service</param>
-        /// </summary>
-        public async Task PatchAsync(SubscribedSku model, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default, CancellationToken cancellationToken = default) {
-            _ = model ?? throw new ArgumentNullException(nameof(model));
-            var requestInfo = CreatePatchRequestInformation(model, h, o);
-            await RequestAdapter.SendNoContentAsync(requestInfo, responseHandler, cancellationToken);
         }
         /// <summary>Get entity from subscribedSkus by key</summary>
         public class GetQueryParameters : QueryParametersBase {

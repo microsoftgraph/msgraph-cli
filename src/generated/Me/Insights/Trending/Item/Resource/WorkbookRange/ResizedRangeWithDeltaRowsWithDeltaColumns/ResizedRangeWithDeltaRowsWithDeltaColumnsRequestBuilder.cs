@@ -1,17 +1,17 @@
 using ApiSdk.Models.Microsoft.Graph;
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
+using Microsoft.Kiota.Cli.Commons.IO;
 using System;
 using System.Collections.Generic;
 using System.CommandLine;
-using System.CommandLine.Invocation;
 using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 namespace ApiSdk.Me.Insights.Trending.Item.Resource.WorkbookRange.ResizedRangeWithDeltaRowsWithDeltaColumns {
-    /// <summary>Builds and executes requests for operations under \me\insights\trending\{trending-id}\resource\microsoft.graph.workbookRange\microsoft.graph.resizedRange(deltaRows={deltaRows},deltaColumns={deltaColumns})</summary>
+    /// <summary>Builds and executes requests for operations under \me\insights\trending\{trendingItem-Id}\resource\microsoft.graph.workbookRange\microsoft.graph.resizedRange(deltaRows={deltaRows},deltaColumns={deltaColumns})</summary>
     public class ResizedRangeWithDeltaRowsWithDeltaColumnsRequestBuilder {
         /// <summary>Path parameters for the request</summary>
         private Dictionary<string, object> PathParameters { get; set; }
@@ -26,30 +26,29 @@ namespace ApiSdk.Me.Insights.Trending.Item.Resource.WorkbookRange.ResizedRangeWi
             var command = new Command("get");
             command.Description = "Invoke function resizedRange";
             // Create options for all the parameters
-            var trendingIdOption = new Option<string>("--trending-id", description: "key: id of trending") {
+            var trendingItemIdOption = new Option<string>("--trending-item-id", description: "key: id of trending") {
             };
-            trendingIdOption.IsRequired = true;
-            command.AddOption(trendingIdOption);
-            var deltaRowsOption = new Option<int?>("--deltarows", description: "Usage: deltaRows={deltaRows}") {
+            trendingItemIdOption.IsRequired = true;
+            command.AddOption(trendingItemIdOption);
+            var deltaRowsOption = new Option<int?>("--delta-rows", description: "Usage: deltaRows={deltaRows}") {
             };
             deltaRowsOption.IsRequired = true;
             command.AddOption(deltaRowsOption);
-            var deltaColumnsOption = new Option<int?>("--deltacolumns", description: "Usage: deltaColumns={deltaColumns}") {
+            var deltaColumnsOption = new Option<int?>("--delta-columns", description: "Usage: deltaColumns={deltaColumns}") {
             };
             deltaColumnsOption.IsRequired = true;
             command.AddOption(deltaColumnsOption);
-            command.SetHandler(async (string trendingId, int? deltaRows, int? deltaColumns) => {
+            var outputOption = new Option<FormatterType>("--output", () => FormatterType.JSON){
+                IsRequired = true
+            };
+            command.AddOption(outputOption);
+            command.SetHandler(async (string trendingItemId, int? deltaRows, int? deltaColumns, FormatterType output, IOutputFormatterFactory outputFormatterFactory, CancellationToken cancellationToken) => {
                 var requestInfo = CreateGetRequestInformation(q => {
                 });
-                var result = await RequestAdapter.SendAsync<ResizedRangeWithDeltaRowsWithDeltaColumnsResponse>(requestInfo);
-                // Print request output. What if the request has no return?
-                using var serializer = RequestAdapter.SerializationWriterFactory.GetSerializationWriter("application/json");
-                serializer.WriteObjectValue(null, result);
-                using var content = serializer.GetSerializedContent();
-                using var reader = new StreamReader(content);
-                var strContent = await reader.ReadToEndAsync();
-                Console.Write(strContent + "\n");
-            }, trendingIdOption, deltaRowsOption, deltaColumnsOption);
+                var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: default, cancellationToken: cancellationToken);
+                var formatter = outputFormatterFactory.GetFormatter(output);
+                formatter.WriteOutput(response);
+            }, trendingItemIdOption, deltaRowsOption, deltaColumnsOption, outputOption);
             return command;
         }
         /// <summary>
@@ -62,7 +61,7 @@ namespace ApiSdk.Me.Insights.Trending.Item.Resource.WorkbookRange.ResizedRangeWi
         public ResizedRangeWithDeltaRowsWithDeltaColumnsRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter, int? deltaRows = default, int? deltaColumns = default) {
             _ = pathParameters ?? throw new ArgumentNullException(nameof(pathParameters));
             _ = requestAdapter ?? throw new ArgumentNullException(nameof(requestAdapter));
-            UrlTemplate = "{+baseurl}/me/insights/trending/{trending_id}/resource/microsoft.graph.workbookRange/microsoft.graph.resizedRange(deltaRows={deltaRows},deltaColumns={deltaColumns})";
+            UrlTemplate = "{+baseurl}/me/insights/trending/{trendingItem_Id}/resource/microsoft.graph.workbookRange/microsoft.graph.resizedRange(deltaRows={deltaRows},deltaColumns={deltaColumns})";
             var urlTplParams = new Dictionary<string, object>(pathParameters);
             urlTplParams.Add("deltaRows", deltaRows);
             urlTplParams.Add("deltaColumns", deltaColumns);
@@ -83,17 +82,6 @@ namespace ApiSdk.Me.Insights.Trending.Item.Resource.WorkbookRange.ResizedRangeWi
             h?.Invoke(requestInfo.Headers);
             requestInfo.AddRequestOptions(o?.ToArray());
             return requestInfo;
-        }
-        /// <summary>
-        /// Invoke function resizedRange
-        /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
-        /// <param name="h">Request headers</param>
-        /// <param name="o">Request options</param>
-        /// <param name="responseHandler">Response handler to use in place of the default response handling provided by the core service</param>
-        /// </summary>
-        public async Task<ResizedRangeWithDeltaRowsWithDeltaColumnsResponse> GetAsync(Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default, CancellationToken cancellationToken = default) {
-            var requestInfo = CreateGetRequestInformation(h, o);
-            return await RequestAdapter.SendAsync<ResizedRangeWithDeltaRowsWithDeltaColumnsResponse>(requestInfo, responseHandler, cancellationToken);
         }
         /// <summary>Union type wrapper for classes workbookRange</summary>
         public class ResizedRangeWithDeltaRowsWithDeltaColumnsResponse : IParsable {

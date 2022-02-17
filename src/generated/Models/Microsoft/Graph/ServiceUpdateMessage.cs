@@ -7,11 +7,14 @@ namespace ApiSdk.Models.Microsoft.Graph {
     public class ServiceUpdateMessage : ServiceAnnouncementBase, IParsable {
         /// <summary>The expected deadline of the action for the message.</summary>
         public DateTimeOffset? ActionRequiredByDateTime { get; set; }
+        /// <summary>A collection of serviceAnnouncementAttachments.</summary>
         public List<ServiceAnnouncementAttachment> Attachments { get; set; }
+        /// <summary>The zip file of all attachments for a message.</summary>
         public byte[] AttachmentsArchive { get; set; }
         public ItemBody Body { get; set; }
         /// <summary>The service message category. Possible values are: preventOrFixIssue, planForChange, stayInformed, unknownFutureValue.</summary>
         public ServiceUpdateCategory? Category { get; set; }
+        /// <summary>Indicates whether the message has any attachment.</summary>
         public bool? HasAttachments { get; set; }
         /// <summary>Indicates whether the message describes a major update for the service.</summary>
         public bool? IsMajorChange { get; set; }
@@ -19,9 +22,9 @@ namespace ApiSdk.Models.Microsoft.Graph {
         public List<string> Services { get; set; }
         /// <summary>The severity of the service message. Possible values are: normal, high, critical, unknownFutureValue.</summary>
         public ServiceUpdateSeverity? Severity { get; set; }
-        /// <summary>A collection of tags for the service message.</summary>
+        /// <summary>A collection of tags for the service message. Tags are provided by the service team/support team who post the message to tell whether this message contains privacy data, or whether this message is for a service new feature update, and so on.</summary>
         public List<string> Tags { get; set; }
-        /// <summary>Represents user view points data of the service message. This data includes message status such as whether the user has archived, read, or marked the message as favorite. This property is null when accessed with application permissions.</summary>
+        /// <summary>Represents user viewpoints data of the service message. This data includes message status such as whether the user has archived, read, or marked the message as favorite. This property is null when accessed with application permissions.</summary>
         public ServiceUpdateMessageViewpoint ViewPoint { get; set; }
         /// <summary>
         /// The deserialization information for the current model

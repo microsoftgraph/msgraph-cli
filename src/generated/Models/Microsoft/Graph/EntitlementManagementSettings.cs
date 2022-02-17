@@ -6,7 +6,7 @@ using System.Linq;
 namespace ApiSdk.Models.Microsoft.Graph {
     public class EntitlementManagementSettings : Entity, IParsable {
         /// <summary>If externalUserLifecycleAction is blockSignInAndDelete, the duration, typically a number of days, after an external user is blocked from sign in before their account is deleted.</summary>
-        public string DurationUntilExternalUserDeletedAfterBlocked { get; set; }
+        public TimeSpan? DurationUntilExternalUserDeletedAfterBlocked { get; set; }
         /// <summary>One of None, BlockSignIn, or BlockSignInAndDelete.</summary>
         public AccessPackageExternalUserLifecycleAction? ExternalUserLifecycleAction { get; set; }
         /// <summary>
@@ -14,7 +14,7 @@ namespace ApiSdk.Models.Microsoft.Graph {
         /// </summary>
         public new IDictionary<string, Action<T, IParseNode>> GetFieldDeserializers<T>() {
             return new Dictionary<string, Action<T, IParseNode>>(base.GetFieldDeserializers<T>()) {
-                {"durationUntilExternalUserDeletedAfterBlocked", (o,n) => { (o as EntitlementManagementSettings).DurationUntilExternalUserDeletedAfterBlocked = n.GetStringValue(); } },
+                {"durationUntilExternalUserDeletedAfterBlocked", (o,n) => { (o as EntitlementManagementSettings).DurationUntilExternalUserDeletedAfterBlocked = n.GetTimeSpanValue(); } },
                 {"externalUserLifecycleAction", (o,n) => { (o as EntitlementManagementSettings).ExternalUserLifecycleAction = n.GetEnumValue<AccessPackageExternalUserLifecycleAction>(); } },
             };
         }
@@ -25,7 +25,7 @@ namespace ApiSdk.Models.Microsoft.Graph {
         public new void Serialize(ISerializationWriter writer) {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             base.Serialize(writer);
-            writer.WriteStringValue("durationUntilExternalUserDeletedAfterBlocked", DurationUntilExternalUserDeletedAfterBlocked);
+            writer.WriteTimeSpanValue("durationUntilExternalUserDeletedAfterBlocked", DurationUntilExternalUserDeletedAfterBlocked);
             writer.WriteEnumValue<AccessPackageExternalUserLifecycleAction>("externalUserLifecycleAction", ExternalUserLifecycleAction);
         }
     }

@@ -1,17 +1,17 @@
 using ApiSdk.Models.Microsoft.Graph;
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
+using Microsoft.Kiota.Cli.Commons.IO;
 using System;
 using System.Collections.Generic;
 using System.CommandLine;
-using System.CommandLine.Invocation;
 using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 namespace ApiSdk.Users.Item.Insights.Trending.Item.Resource.WorkbookRange.CellWithRowWithColumn {
-    /// <summary>Builds and executes requests for operations under \users\{user-id}\insights\trending\{trending-id}\resource\microsoft.graph.workbookRange\microsoft.graph.cell(row={row},column={column})</summary>
+    /// <summary>Builds and executes requests for operations under \users\{user-id}\insights\trending\{trendingItem-Id}\resource\microsoft.graph.workbookRange\microsoft.graph.cell(row={row},column={column})</summary>
     public class CellWithRowWithColumnRequestBuilder {
         /// <summary>Path parameters for the request</summary>
         private Dictionary<string, object> PathParameters { get; set; }
@@ -30,10 +30,10 @@ namespace ApiSdk.Users.Item.Insights.Trending.Item.Resource.WorkbookRange.CellWi
             };
             userIdOption.IsRequired = true;
             command.AddOption(userIdOption);
-            var trendingIdOption = new Option<string>("--trending-id", description: "key: id of trending") {
+            var trendingItemIdOption = new Option<string>("--trending-item-id", description: "key: id of trending") {
             };
-            trendingIdOption.IsRequired = true;
-            command.AddOption(trendingIdOption);
+            trendingItemIdOption.IsRequired = true;
+            command.AddOption(trendingItemIdOption);
             var rowOption = new Option<int?>("--row", description: "Usage: row={row}") {
             };
             rowOption.IsRequired = true;
@@ -42,18 +42,17 @@ namespace ApiSdk.Users.Item.Insights.Trending.Item.Resource.WorkbookRange.CellWi
             };
             columnOption.IsRequired = true;
             command.AddOption(columnOption);
-            command.SetHandler(async (string userId, string trendingId, int? row, int? column) => {
+            var outputOption = new Option<FormatterType>("--output", () => FormatterType.JSON){
+                IsRequired = true
+            };
+            command.AddOption(outputOption);
+            command.SetHandler(async (string userId, string trendingItemId, int? row, int? column, FormatterType output, IOutputFormatterFactory outputFormatterFactory, CancellationToken cancellationToken) => {
                 var requestInfo = CreateGetRequestInformation(q => {
                 });
-                var result = await RequestAdapter.SendAsync<CellWithRowWithColumnResponse>(requestInfo);
-                // Print request output. What if the request has no return?
-                using var serializer = RequestAdapter.SerializationWriterFactory.GetSerializationWriter("application/json");
-                serializer.WriteObjectValue(null, result);
-                using var content = serializer.GetSerializedContent();
-                using var reader = new StreamReader(content);
-                var strContent = await reader.ReadToEndAsync();
-                Console.Write(strContent + "\n");
-            }, userIdOption, trendingIdOption, rowOption, columnOption);
+                var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: default, cancellationToken: cancellationToken);
+                var formatter = outputFormatterFactory.GetFormatter(output);
+                formatter.WriteOutput(response);
+            }, userIdOption, trendingItemIdOption, rowOption, columnOption, outputOption);
             return command;
         }
         /// <summary>
@@ -66,7 +65,7 @@ namespace ApiSdk.Users.Item.Insights.Trending.Item.Resource.WorkbookRange.CellWi
         public CellWithRowWithColumnRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter, int? row = default, int? column = default) {
             _ = pathParameters ?? throw new ArgumentNullException(nameof(pathParameters));
             _ = requestAdapter ?? throw new ArgumentNullException(nameof(requestAdapter));
-            UrlTemplate = "{+baseurl}/users/{user_id}/insights/trending/{trending_id}/resource/microsoft.graph.workbookRange/microsoft.graph.cell(row={row},column={column})";
+            UrlTemplate = "{+baseurl}/users/{user_id}/insights/trending/{trendingItem_Id}/resource/microsoft.graph.workbookRange/microsoft.graph.cell(row={row},column={column})";
             var urlTplParams = new Dictionary<string, object>(pathParameters);
             urlTplParams.Add("row", row);
             urlTplParams.Add("column", column);
@@ -87,17 +86,6 @@ namespace ApiSdk.Users.Item.Insights.Trending.Item.Resource.WorkbookRange.CellWi
             h?.Invoke(requestInfo.Headers);
             requestInfo.AddRequestOptions(o?.ToArray());
             return requestInfo;
-        }
-        /// <summary>
-        /// Invoke function cell
-        /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
-        /// <param name="h">Request headers</param>
-        /// <param name="o">Request options</param>
-        /// <param name="responseHandler">Response handler to use in place of the default response handling provided by the core service</param>
-        /// </summary>
-        public async Task<CellWithRowWithColumnResponse> GetAsync(Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default, CancellationToken cancellationToken = default) {
-            var requestInfo = CreateGetRequestInformation(h, o);
-            return await RequestAdapter.SendAsync<CellWithRowWithColumnResponse>(requestInfo, responseHandler, cancellationToken);
         }
         /// <summary>Union type wrapper for classes workbookRange</summary>
         public class CellWithRowWithColumnResponse : IParsable {

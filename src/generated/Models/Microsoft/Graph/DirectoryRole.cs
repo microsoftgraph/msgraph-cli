@@ -5,13 +5,13 @@ using System.IO;
 using System.Linq;
 namespace ApiSdk.Models.Microsoft.Graph {
     public class DirectoryRole : DirectoryObject, IParsable {
-        /// <summary>The description for the directory role. Read-only.</summary>
+        /// <summary>The description for the directory role. Read-only. Supports $filter (eq), $search, $select.</summary>
         public string Description { get; set; }
-        /// <summary>The display name for the directory role. Read-only.</summary>
+        /// <summary>The display name for the directory role. Read-only. Supports $filter (eq), $search, $select.</summary>
         public string DisplayName { get; set; }
-        /// <summary>Users that are members of this directory role. HTTP Methods: GET, POST, DELETE. Read-only. Nullable.</summary>
+        /// <summary>Users that are members of this directory role. HTTP Methods: GET, POST, DELETE. Read-only. Nullable. Supports $expand.</summary>
         public List<DirectoryObject> Members { get; set; }
-        /// <summary>The id of the directoryRoleTemplate that this role is based on. The property must be specified when activating a directory role in a tenant with a POST operation. After the directory role has been activated, the property is read only.</summary>
+        /// <summary>The id of the directoryRoleTemplate that this role is based on. The property must be specified when activating a directory role in a tenant with a POST operation. After the directory role has been activated, the property is read only. Supports $filter (eq), $select.</summary>
         public string RoleTemplateId { get; set; }
         /// <summary>Members of this directory role that are scoped to administrative units. Read-only. Nullable.</summary>
         public List<ScopedRoleMembership> ScopedMembers { get; set; }

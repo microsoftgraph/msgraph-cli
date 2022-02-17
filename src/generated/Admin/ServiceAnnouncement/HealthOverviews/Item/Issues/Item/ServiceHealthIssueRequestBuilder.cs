@@ -2,10 +2,10 @@ using ApiSdk.Admin.ServiceAnnouncement.HealthOverviews.Item.Issues.Item.Incident
 using ApiSdk.Models.Microsoft.Graph;
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
+using Microsoft.Kiota.Cli.Commons.IO;
 using System;
 using System.Collections.Generic;
 using System.CommandLine;
-using System.CommandLine.Invocation;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -21,41 +21,40 @@ namespace ApiSdk.Admin.ServiceAnnouncement.HealthOverviews.Item.Issues.Item {
         /// <summary>Url template to use to build the URL for the current request builder</summary>
         private string UrlTemplate { get; set; }
         /// <summary>
-        /// A collection of issues happened on the service, with detailed information for each issue.
+        /// A collection of issues that happened on the service, with detailed information for each issue.
         /// </summary>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
-            command.Description = "A collection of issues happened on the service, with detailed information for each issue.";
+            command.Description = "A collection of issues that happened on the service, with detailed information for each issue.";
             // Create options for all the parameters
-            var serviceHealthIdOption = new Option<string>("--servicehealth-id", description: "key: id of serviceHealth") {
+            var serviceHealthIdOption = new Option<string>("--service-health-id", description: "key: id of serviceHealth") {
             };
             serviceHealthIdOption.IsRequired = true;
             command.AddOption(serviceHealthIdOption);
-            var serviceHealthIssueIdOption = new Option<string>("--servicehealthissue-id", description: "key: id of serviceHealthIssue") {
+            var serviceHealthIssueIdOption = new Option<string>("--service-health-issue-id", description: "key: id of serviceHealthIssue") {
             };
             serviceHealthIssueIdOption.IsRequired = true;
             command.AddOption(serviceHealthIssueIdOption);
-            command.SetHandler(async (string serviceHealthId, string serviceHealthIssueId) => {
+            command.SetHandler(async (string serviceHealthId, string serviceHealthIssueId, IOutputFormatterFactory outputFormatterFactory, CancellationToken cancellationToken) => {
                 var requestInfo = CreateDeleteRequestInformation(q => {
                 });
-                await RequestAdapter.SendNoContentAsync(requestInfo);
-                // Print request output. What if the request has no return?
+                await RequestAdapter.SendNoContentAsync(requestInfo, errorMapping: default, cancellationToken: cancellationToken);
                 Console.WriteLine("Success");
             }, serviceHealthIdOption, serviceHealthIssueIdOption);
             return command;
         }
         /// <summary>
-        /// A collection of issues happened on the service, with detailed information for each issue.
+        /// A collection of issues that happened on the service, with detailed information for each issue.
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "A collection of issues happened on the service, with detailed information for each issue.";
+            command.Description = "A collection of issues that happened on the service, with detailed information for each issue.";
             // Create options for all the parameters
-            var serviceHealthIdOption = new Option<string>("--servicehealth-id", description: "key: id of serviceHealth") {
+            var serviceHealthIdOption = new Option<string>("--service-health-id", description: "key: id of serviceHealth") {
             };
             serviceHealthIdOption.IsRequired = true;
             command.AddOption(serviceHealthIdOption);
-            var serviceHealthIssueIdOption = new Option<string>("--servicehealthissue-id", description: "key: id of serviceHealthIssue") {
+            var serviceHealthIssueIdOption = new Option<string>("--service-health-issue-id", description: "key: id of serviceHealthIssue") {
             };
             serviceHealthIssueIdOption.IsRequired = true;
             command.AddOption(serviceHealthIssueIdOption);
@@ -69,34 +68,33 @@ namespace ApiSdk.Admin.ServiceAnnouncement.HealthOverviews.Item.Issues.Item {
             };
             expandOption.IsRequired = false;
             command.AddOption(expandOption);
-            command.SetHandler(async (string serviceHealthId, string serviceHealthIssueId, string[] select, string[] expand) => {
+            var outputOption = new Option<FormatterType>("--output", () => FormatterType.JSON){
+                IsRequired = true
+            };
+            command.AddOption(outputOption);
+            command.SetHandler(async (string serviceHealthId, string serviceHealthIssueId, string[] select, string[] expand, FormatterType output, IOutputFormatterFactory outputFormatterFactory, CancellationToken cancellationToken) => {
                 var requestInfo = CreateGetRequestInformation(q => {
                     q.Select = select;
                     q.Expand = expand;
                 });
-                var result = await RequestAdapter.SendAsync<ServiceHealthIssue>(requestInfo);
-                // Print request output. What if the request has no return?
-                using var serializer = RequestAdapter.SerializationWriterFactory.GetSerializationWriter("application/json");
-                serializer.WriteObjectValue(null, result);
-                using var content = serializer.GetSerializedContent();
-                using var reader = new StreamReader(content);
-                var strContent = await reader.ReadToEndAsync();
-                Console.Write(strContent + "\n");
-            }, serviceHealthIdOption, serviceHealthIssueIdOption, selectOption, expandOption);
+                var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: default, cancellationToken: cancellationToken);
+                var formatter = outputFormatterFactory.GetFormatter(output);
+                formatter.WriteOutput(response);
+            }, serviceHealthIdOption, serviceHealthIssueIdOption, selectOption, expandOption, outputOption);
             return command;
         }
         /// <summary>
-        /// A collection of issues happened on the service, with detailed information for each issue.
+        /// A collection of issues that happened on the service, with detailed information for each issue.
         /// </summary>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
-            command.Description = "A collection of issues happened on the service, with detailed information for each issue.";
+            command.Description = "A collection of issues that happened on the service, with detailed information for each issue.";
             // Create options for all the parameters
-            var serviceHealthIdOption = new Option<string>("--servicehealth-id", description: "key: id of serviceHealth") {
+            var serviceHealthIdOption = new Option<string>("--service-health-id", description: "key: id of serviceHealth") {
             };
             serviceHealthIdOption.IsRequired = true;
             command.AddOption(serviceHealthIdOption);
-            var serviceHealthIssueIdOption = new Option<string>("--servicehealthissue-id", description: "key: id of serviceHealthIssue") {
+            var serviceHealthIssueIdOption = new Option<string>("--service-health-issue-id", description: "key: id of serviceHealthIssue") {
             };
             serviceHealthIssueIdOption.IsRequired = true;
             command.AddOption(serviceHealthIssueIdOption);
@@ -104,14 +102,13 @@ namespace ApiSdk.Admin.ServiceAnnouncement.HealthOverviews.Item.Issues.Item {
             };
             bodyOption.IsRequired = true;
             command.AddOption(bodyOption);
-            command.SetHandler(async (string serviceHealthId, string serviceHealthIssueId, string body) => {
+            command.SetHandler(async (string serviceHealthId, string serviceHealthIssueId, string body, IOutputFormatterFactory outputFormatterFactory, CancellationToken cancellationToken) => {
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<ServiceHealthIssue>();
                 var requestInfo = CreatePatchRequestInformation(model, q => {
                 });
-                await RequestAdapter.SendNoContentAsync(requestInfo);
-                // Print request output. What if the request has no return?
+                await RequestAdapter.SendNoContentAsync(requestInfo, errorMapping: default, cancellationToken: cancellationToken);
                 Console.WriteLine("Success");
             }, serviceHealthIdOption, serviceHealthIssueIdOption, bodyOption);
             return command;
@@ -130,7 +127,7 @@ namespace ApiSdk.Admin.ServiceAnnouncement.HealthOverviews.Item.Issues.Item {
             RequestAdapter = requestAdapter;
         }
         /// <summary>
-        /// A collection of issues happened on the service, with detailed information for each issue.
+        /// A collection of issues that happened on the service, with detailed information for each issue.
         /// <param name="h">Request headers</param>
         /// <param name="o">Request options</param>
         /// </summary>
@@ -145,7 +142,7 @@ namespace ApiSdk.Admin.ServiceAnnouncement.HealthOverviews.Item.Issues.Item {
             return requestInfo;
         }
         /// <summary>
-        /// A collection of issues happened on the service, with detailed information for each issue.
+        /// A collection of issues that happened on the service, with detailed information for each issue.
         /// <param name="h">Request headers</param>
         /// <param name="o">Request options</param>
         /// <param name="q">Request query parameters</param>
@@ -166,7 +163,7 @@ namespace ApiSdk.Admin.ServiceAnnouncement.HealthOverviews.Item.Issues.Item {
             return requestInfo;
         }
         /// <summary>
-        /// A collection of issues happened on the service, with detailed information for each issue.
+        /// A collection of issues that happened on the service, with detailed information for each issue.
         /// <param name="body"></param>
         /// <param name="h">Request headers</param>
         /// <param name="o">Request options</param>
@@ -184,48 +181,12 @@ namespace ApiSdk.Admin.ServiceAnnouncement.HealthOverviews.Item.Issues.Item {
             return requestInfo;
         }
         /// <summary>
-        /// A collection of issues happened on the service, with detailed information for each issue.
-        /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
-        /// <param name="h">Request headers</param>
-        /// <param name="o">Request options</param>
-        /// <param name="responseHandler">Response handler to use in place of the default response handling provided by the core service</param>
-        /// </summary>
-        public async Task DeleteAsync(Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default, CancellationToken cancellationToken = default) {
-            var requestInfo = CreateDeleteRequestInformation(h, o);
-            await RequestAdapter.SendNoContentAsync(requestInfo, responseHandler, cancellationToken);
-        }
-        /// <summary>
-        /// A collection of issues happened on the service, with detailed information for each issue.
-        /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
-        /// <param name="h">Request headers</param>
-        /// <param name="o">Request options</param>
-        /// <param name="q">Request query parameters</param>
-        /// <param name="responseHandler">Response handler to use in place of the default response handling provided by the core service</param>
-        /// </summary>
-        public async Task<ServiceHealthIssue> GetAsync(Action<GetQueryParameters> q = default, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default, CancellationToken cancellationToken = default) {
-            var requestInfo = CreateGetRequestInformation(q, h, o);
-            return await RequestAdapter.SendAsync<ServiceHealthIssue>(requestInfo, responseHandler, cancellationToken);
-        }
-        /// <summary>
         /// Builds and executes requests for operations under \admin\serviceAnnouncement\healthOverviews\{serviceHealth-id}\issues\{serviceHealthIssue-id}\microsoft.graph.incidentReport()
         /// </summary>
         public IncidentReportRequestBuilder IncidentReport() {
             return new IncidentReportRequestBuilder(PathParameters, RequestAdapter);
         }
-        /// <summary>
-        /// A collection of issues happened on the service, with detailed information for each issue.
-        /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
-        /// <param name="h">Request headers</param>
-        /// <param name="model"></param>
-        /// <param name="o">Request options</param>
-        /// <param name="responseHandler">Response handler to use in place of the default response handling provided by the core service</param>
-        /// </summary>
-        public async Task PatchAsync(ServiceHealthIssue model, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default, IResponseHandler responseHandler = default, CancellationToken cancellationToken = default) {
-            _ = model ?? throw new ArgumentNullException(nameof(model));
-            var requestInfo = CreatePatchRequestInformation(model, h, o);
-            await RequestAdapter.SendNoContentAsync(requestInfo, responseHandler, cancellationToken);
-        }
-        /// <summary>A collection of issues happened on the service, with detailed information for each issue.</summary>
+        /// <summary>A collection of issues that happened on the service, with detailed information for each issue.</summary>
         public class GetQueryParameters : QueryParametersBase {
             /// <summary>Expand related entities</summary>
             public string[] Expand { get; set; }

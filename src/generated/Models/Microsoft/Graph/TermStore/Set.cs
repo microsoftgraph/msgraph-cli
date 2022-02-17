@@ -13,7 +13,7 @@ namespace ApiSdk.Models.Microsoft.Graph.TermStore {
         public string Description { get; set; }
         /// <summary>Name of the set for each languageTag.</summary>
         public List<LocalizedName> LocalizedNames { get; set; }
-        public ApiSdk.Models.Microsoft.Graph.Group ParentGroup { get; set; }
+        public ApiSdk.Models.Microsoft.Graph.TermStore.Group ParentGroup { get; set; }
         /// <summary>Custom properties for the set.</summary>
         public List<KeyValue> Properties { get; set; }
         /// <summary>Indicates which terms have been pinned or reused directly under the set.</summary>
@@ -29,7 +29,7 @@ namespace ApiSdk.Models.Microsoft.Graph.TermStore {
                 {"createdDateTime", (o,n) => { (o as Set).CreatedDateTime = n.GetDateTimeOffsetValue(); } },
                 {"description", (o,n) => { (o as Set).Description = n.GetStringValue(); } },
                 {"localizedNames", (o,n) => { (o as Set).LocalizedNames = n.GetCollectionOfObjectValues<LocalizedName>().ToList(); } },
-                {"parentGroup", (o,n) => { (o as Set).ParentGroup = n.GetObjectValue<ApiSdk.Models.Microsoft.Graph.Group>(); } },
+                {"parentGroup", (o,n) => { (o as Set).ParentGroup = n.GetObjectValue<ApiSdk.Models.Microsoft.Graph.TermStore.Group>(); } },
                 {"properties", (o,n) => { (o as Set).Properties = n.GetCollectionOfObjectValues<KeyValue>().ToList(); } },
                 {"relations", (o,n) => { (o as Set).Relations = n.GetCollectionOfObjectValues<Relation>().ToList(); } },
                 {"terms", (o,n) => { (o as Set).Terms = n.GetCollectionOfObjectValues<Term>().ToList(); } },
@@ -46,7 +46,7 @@ namespace ApiSdk.Models.Microsoft.Graph.TermStore {
             writer.WriteDateTimeOffsetValue("createdDateTime", CreatedDateTime);
             writer.WriteStringValue("description", Description);
             writer.WriteCollectionOfObjectValues<LocalizedName>("localizedNames", LocalizedNames);
-            writer.WriteObjectValue<ApiSdk.Models.Microsoft.Graph.Group>("parentGroup", ParentGroup);
+            writer.WriteObjectValue<ApiSdk.Models.Microsoft.Graph.TermStore.Group>("parentGroup", ParentGroup);
             writer.WriteCollectionOfObjectValues<KeyValue>("properties", Properties);
             writer.WriteCollectionOfObjectValues<Relation>("relations", Relations);
             writer.WriteCollectionOfObjectValues<Term>("terms", Terms);

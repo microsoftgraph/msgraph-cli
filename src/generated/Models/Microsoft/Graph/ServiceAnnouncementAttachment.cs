@@ -5,6 +5,7 @@ using System.IO;
 using System.Linq;
 namespace ApiSdk.Models.Microsoft.Graph {
     public class ServiceAnnouncementAttachment : Entity, IParsable {
+        /// <summary>The attachment content.</summary>
         public byte[] Content { get; set; }
         public string ContentType { get; set; }
         public DateTimeOffset? LastModifiedDateTime { get; set; }
