@@ -48,9 +48,10 @@ namespace ApiSdk.Groups.Item.Photos.Item.Value {
                 var requestInfo = CreateGetRequestInformation(q => {
                 });
                 var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: default, cancellationToken: cancellationToken);
-                var formatter = outputFormatterFactory.GetFormatter(output);
                 if (file == null) {
-                    formatter.WriteOutput(response);
+                    using var reader = new StreamReader(response);
+                    var strContent = reader.ReadToEnd();
+                    Console.WriteLine("strContent");
                 }
                 else {
                     using var writeStream = file.OpenWrite();
