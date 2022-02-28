@@ -1,6 +1,7 @@
 using ApiSdk.Models.Microsoft.Graph;
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
+using Microsoft.Kiota.Cli.Commons.Binding;
 using Microsoft.Kiota.Cli.Commons.IO;
 using System;
 using System.Collections.Generic;
@@ -34,12 +35,19 @@ namespace ApiSdk.Planner.Buckets.Item.Tasks.Item.Details {
             };
             plannerTaskIdOption.IsRequired = true;
             command.AddOption(plannerTaskIdOption);
-            command.SetHandler(async (string plannerBucketId, string plannerTaskId, IOutputFormatterFactory outputFormatterFactory, CancellationToken cancellationToken) => {
+            command.SetHandler(async (object[] parameters) => {
+                var plannerBucketId = (string) parameters[0];
+                var plannerTaskId = (string) parameters[1];
+                var outputFormatterFactory = (IOutputFormatterFactory) parameters[2];
+                var cancellationToken = (CancellationToken) parameters[3];
+                PathParameters.Clear();
+                PathParameters.Add("plannerBucket_id", plannerBucketId);
+                PathParameters.Add("plannerTask_id", plannerTaskId);
                 var requestInfo = CreateDeleteRequestInformation(q => {
                 });
                 await RequestAdapter.SendNoContentAsync(requestInfo, errorMapping: default, cancellationToken: cancellationToken);
                 Console.WriteLine("Success");
-            }, plannerBucketIdOption, plannerTaskIdOption);
+            }, new CollectionBinding(plannerBucketIdOption, plannerTaskIdOption, new TypeBinding(typeof(IOutputFormatterFactory)), new TypeBinding(typeof(CancellationToken))));
             return command;
         }
         /// <summary>
@@ -71,7 +79,17 @@ namespace ApiSdk.Planner.Buckets.Item.Tasks.Item.Details {
                 IsRequired = true
             };
             command.AddOption(outputOption);
-            command.SetHandler(async (string plannerBucketId, string plannerTaskId, string[] select, string[] expand, FormatterType output, IOutputFormatterFactory outputFormatterFactory, CancellationToken cancellationToken) => {
+            command.SetHandler(async (object[] parameters) => {
+                var plannerBucketId = (string) parameters[0];
+                var plannerTaskId = (string) parameters[1];
+                var select = (string[]) parameters[2];
+                var expand = (string[]) parameters[3];
+                var output = (FormatterType) parameters[4];
+                var outputFormatterFactory = (IOutputFormatterFactory) parameters[5];
+                var cancellationToken = (CancellationToken) parameters[6];
+                PathParameters.Clear();
+                PathParameters.Add("plannerBucket_id", plannerBucketId);
+                PathParameters.Add("plannerTask_id", plannerTaskId);
                 var requestInfo = CreateGetRequestInformation(q => {
                     q.Select = select;
                     q.Expand = expand;
@@ -79,7 +97,7 @@ namespace ApiSdk.Planner.Buckets.Item.Tasks.Item.Details {
                 var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: default, cancellationToken: cancellationToken);
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 formatter.WriteOutput(response);
-            }, plannerBucketIdOption, plannerTaskIdOption, selectOption, expandOption, outputOption);
+            }, new CollectionBinding(plannerBucketIdOption, plannerTaskIdOption, selectOption, expandOption, outputOption, new TypeBinding(typeof(IOutputFormatterFactory)), new TypeBinding(typeof(CancellationToken))));
             return command;
         }
         /// <summary>
@@ -101,7 +119,15 @@ namespace ApiSdk.Planner.Buckets.Item.Tasks.Item.Details {
             };
             bodyOption.IsRequired = true;
             command.AddOption(bodyOption);
-            command.SetHandler(async (string plannerBucketId, string plannerTaskId, string body, IOutputFormatterFactory outputFormatterFactory, CancellationToken cancellationToken) => {
+            command.SetHandler(async (object[] parameters) => {
+                var plannerBucketId = (string) parameters[0];
+                var plannerTaskId = (string) parameters[1];
+                var body = (string) parameters[2];
+                var outputFormatterFactory = (IOutputFormatterFactory) parameters[3];
+                var cancellationToken = (CancellationToken) parameters[4];
+                PathParameters.Clear();
+                PathParameters.Add("plannerBucket_id", plannerBucketId);
+                PathParameters.Add("plannerTask_id", plannerTaskId);
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<PlannerTaskDetails>();
@@ -109,7 +135,7 @@ namespace ApiSdk.Planner.Buckets.Item.Tasks.Item.Details {
                 });
                 await RequestAdapter.SendNoContentAsync(requestInfo, errorMapping: default, cancellationToken: cancellationToken);
                 Console.WriteLine("Success");
-            }, plannerBucketIdOption, plannerTaskIdOption, bodyOption);
+            }, new CollectionBinding(plannerBucketIdOption, plannerTaskIdOption, bodyOption, new TypeBinding(typeof(IOutputFormatterFactory)), new TypeBinding(typeof(CancellationToken))));
             return command;
         }
         /// <summary>

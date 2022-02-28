@@ -1,5 +1,6 @@
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
+using Microsoft.Kiota.Cli.Commons.Binding;
 using Microsoft.Kiota.Cli.Commons.IO;
 using System;
 using System.Collections.Generic;
@@ -33,12 +34,19 @@ namespace ApiSdk.Print.TaskDefinitions.Item.Tasks.Item.Definition.Ref {
             };
             printTaskIdOption.IsRequired = true;
             command.AddOption(printTaskIdOption);
-            command.SetHandler(async (string printTaskDefinitionId, string printTaskId, IOutputFormatterFactory outputFormatterFactory, CancellationToken cancellationToken) => {
+            command.SetHandler(async (object[] parameters) => {
+                var printTaskDefinitionId = (string) parameters[0];
+                var printTaskId = (string) parameters[1];
+                var outputFormatterFactory = (IOutputFormatterFactory) parameters[2];
+                var cancellationToken = (CancellationToken) parameters[3];
+                PathParameters.Clear();
+                PathParameters.Add("printTaskDefinition_id", printTaskDefinitionId);
+                PathParameters.Add("printTask_id", printTaskId);
                 var requestInfo = CreateDeleteRequestInformation(q => {
                 });
                 await RequestAdapter.SendNoContentAsync(requestInfo, errorMapping: default, cancellationToken: cancellationToken);
                 Console.WriteLine("Success");
-            }, printTaskDefinitionIdOption, printTaskIdOption);
+            }, new CollectionBinding(printTaskDefinitionIdOption, printTaskIdOption, new TypeBinding(typeof(IOutputFormatterFactory)), new TypeBinding(typeof(CancellationToken))));
             return command;
         }
         /// <summary>
@@ -60,13 +68,21 @@ namespace ApiSdk.Print.TaskDefinitions.Item.Tasks.Item.Definition.Ref {
                 IsRequired = true
             };
             command.AddOption(outputOption);
-            command.SetHandler(async (string printTaskDefinitionId, string printTaskId, FormatterType output, IOutputFormatterFactory outputFormatterFactory, CancellationToken cancellationToken) => {
+            command.SetHandler(async (object[] parameters) => {
+                var printTaskDefinitionId = (string) parameters[0];
+                var printTaskId = (string) parameters[1];
+                var output = (FormatterType) parameters[2];
+                var outputFormatterFactory = (IOutputFormatterFactory) parameters[3];
+                var cancellationToken = (CancellationToken) parameters[4];
+                PathParameters.Clear();
+                PathParameters.Add("printTaskDefinition_id", printTaskDefinitionId);
+                PathParameters.Add("printTask_id", printTaskId);
                 var requestInfo = CreateGetRequestInformation(q => {
                 });
                 var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: default, cancellationToken: cancellationToken);
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 formatter.WriteOutput(response);
-            }, printTaskDefinitionIdOption, printTaskIdOption, outputOption);
+            }, new CollectionBinding(printTaskDefinitionIdOption, printTaskIdOption, outputOption, new TypeBinding(typeof(IOutputFormatterFactory)), new TypeBinding(typeof(CancellationToken))));
             return command;
         }
         /// <summary>
@@ -88,15 +104,23 @@ namespace ApiSdk.Print.TaskDefinitions.Item.Tasks.Item.Definition.Ref {
             };
             bodyOption.IsRequired = true;
             command.AddOption(bodyOption);
-            command.SetHandler(async (string printTaskDefinitionId, string printTaskId, string body, IOutputFormatterFactory outputFormatterFactory, CancellationToken cancellationToken) => {
+            command.SetHandler(async (object[] parameters) => {
+                var printTaskDefinitionId = (string) parameters[0];
+                var printTaskId = (string) parameters[1];
+                var body = (string) parameters[2];
+                var outputFormatterFactory = (IOutputFormatterFactory) parameters[3];
+                var cancellationToken = (CancellationToken) parameters[4];
+                PathParameters.Clear();
+                PathParameters.Add("printTaskDefinition_id", printTaskDefinitionId);
+                PathParameters.Add("printTask_id", printTaskId);
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
-                var model = parseNode.GetObjectValue<ApiSdk.Print.TaskDefinitions.Item.Tasks.Item.Definition.Ref.Ref>();
+                var model = parseNode.GetObjectValue<Ref>();
                 var requestInfo = CreatePutRequestInformation(model, q => {
                 });
                 await RequestAdapter.SendNoContentAsync(requestInfo, errorMapping: default, cancellationToken: cancellationToken);
                 Console.WriteLine("Success");
-            }, printTaskDefinitionIdOption, printTaskIdOption, bodyOption);
+            }, new CollectionBinding(printTaskDefinitionIdOption, printTaskIdOption, bodyOption, new TypeBinding(typeof(IOutputFormatterFactory)), new TypeBinding(typeof(CancellationToken))));
             return command;
         }
         /// <summary>
@@ -148,7 +172,7 @@ namespace ApiSdk.Print.TaskDefinitions.Item.Tasks.Item.Definition.Ref {
         /// <param name="h">Request headers</param>
         /// <param name="o">Request options</param>
         /// </summary>
-        public RequestInformation CreatePutRequestInformation(ApiSdk.Print.TaskDefinitions.Item.Tasks.Item.Definition.Ref.Ref body, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
+        public RequestInformation CreatePutRequestInformation(Ref body, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
             _ = body ?? throw new ArgumentNullException(nameof(body));
             var requestInfo = new RequestInformation {
                 HttpMethod = Method.PUT,

@@ -2,6 +2,7 @@ using ApiSdk.Models.Microsoft.Graph;
 using ApiSdk.Users.Item.Contacts.Item.Photo.Value;
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
+using Microsoft.Kiota.Cli.Commons.Binding;
 using Microsoft.Kiota.Cli.Commons.IO;
 using System;
 using System.Collections.Generic;
@@ -42,12 +43,19 @@ namespace ApiSdk.Users.Item.Contacts.Item.Photo {
             };
             contactIdOption.IsRequired = true;
             command.AddOption(contactIdOption);
-            command.SetHandler(async (string userId, string contactId, IOutputFormatterFactory outputFormatterFactory, CancellationToken cancellationToken) => {
+            command.SetHandler(async (object[] parameters) => {
+                var userId = (string) parameters[0];
+                var contactId = (string) parameters[1];
+                var outputFormatterFactory = (IOutputFormatterFactory) parameters[2];
+                var cancellationToken = (CancellationToken) parameters[3];
+                PathParameters.Clear();
+                PathParameters.Add("user_id", userId);
+                PathParameters.Add("contact_id", contactId);
                 var requestInfo = CreateDeleteRequestInformation(q => {
                 });
                 await RequestAdapter.SendNoContentAsync(requestInfo, errorMapping: default, cancellationToken: cancellationToken);
                 Console.WriteLine("Success");
-            }, userIdOption, contactIdOption);
+            }, new CollectionBinding(userIdOption, contactIdOption, new TypeBinding(typeof(IOutputFormatterFactory)), new TypeBinding(typeof(CancellationToken))));
             return command;
         }
         /// <summary>
@@ -74,14 +82,23 @@ namespace ApiSdk.Users.Item.Contacts.Item.Photo {
                 IsRequired = true
             };
             command.AddOption(outputOption);
-            command.SetHandler(async (string userId, string contactId, string[] select, FormatterType output, IOutputFormatterFactory outputFormatterFactory, CancellationToken cancellationToken) => {
+            command.SetHandler(async (object[] parameters) => {
+                var userId = (string) parameters[0];
+                var contactId = (string) parameters[1];
+                var select = (string[]) parameters[2];
+                var output = (FormatterType) parameters[3];
+                var outputFormatterFactory = (IOutputFormatterFactory) parameters[4];
+                var cancellationToken = (CancellationToken) parameters[5];
+                PathParameters.Clear();
+                PathParameters.Add("user_id", userId);
+                PathParameters.Add("contact_id", contactId);
                 var requestInfo = CreateGetRequestInformation(q => {
                     q.Select = select;
                 });
                 var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: default, cancellationToken: cancellationToken);
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 formatter.WriteOutput(response);
-            }, userIdOption, contactIdOption, selectOption, outputOption);
+            }, new CollectionBinding(userIdOption, contactIdOption, selectOption, outputOption, new TypeBinding(typeof(IOutputFormatterFactory)), new TypeBinding(typeof(CancellationToken))));
             return command;
         }
         /// <summary>
@@ -103,7 +120,15 @@ namespace ApiSdk.Users.Item.Contacts.Item.Photo {
             };
             bodyOption.IsRequired = true;
             command.AddOption(bodyOption);
-            command.SetHandler(async (string userId, string contactId, string body, IOutputFormatterFactory outputFormatterFactory, CancellationToken cancellationToken) => {
+            command.SetHandler(async (object[] parameters) => {
+                var userId = (string) parameters[0];
+                var contactId = (string) parameters[1];
+                var body = (string) parameters[2];
+                var outputFormatterFactory = (IOutputFormatterFactory) parameters[3];
+                var cancellationToken = (CancellationToken) parameters[4];
+                PathParameters.Clear();
+                PathParameters.Add("user_id", userId);
+                PathParameters.Add("contact_id", contactId);
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<ProfilePhoto>();
@@ -111,7 +136,7 @@ namespace ApiSdk.Users.Item.Contacts.Item.Photo {
                 });
                 await RequestAdapter.SendNoContentAsync(requestInfo, errorMapping: default, cancellationToken: cancellationToken);
                 Console.WriteLine("Success");
-            }, userIdOption, contactIdOption, bodyOption);
+            }, new CollectionBinding(userIdOption, contactIdOption, bodyOption, new TypeBinding(typeof(IOutputFormatterFactory)), new TypeBinding(typeof(CancellationToken))));
             return command;
         }
         /// <summary>

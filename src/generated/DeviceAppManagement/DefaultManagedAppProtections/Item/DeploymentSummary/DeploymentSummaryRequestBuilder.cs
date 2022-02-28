@@ -1,6 +1,7 @@
 using ApiSdk.Models.Microsoft.Graph;
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
+using Microsoft.Kiota.Cli.Commons.Binding;
 using Microsoft.Kiota.Cli.Commons.IO;
 using System;
 using System.Collections.Generic;
@@ -30,12 +31,17 @@ namespace ApiSdk.DeviceAppManagement.DefaultManagedAppProtections.Item.Deploymen
             };
             defaultManagedAppProtectionIdOption.IsRequired = true;
             command.AddOption(defaultManagedAppProtectionIdOption);
-            command.SetHandler(async (string defaultManagedAppProtectionId, IOutputFormatterFactory outputFormatterFactory, CancellationToken cancellationToken) => {
+            command.SetHandler(async (object[] parameters) => {
+                var defaultManagedAppProtectionId = (string) parameters[0];
+                var outputFormatterFactory = (IOutputFormatterFactory) parameters[1];
+                var cancellationToken = (CancellationToken) parameters[2];
+                PathParameters.Clear();
+                PathParameters.Add("defaultManagedAppProtection_id", defaultManagedAppProtectionId);
                 var requestInfo = CreateDeleteRequestInformation(q => {
                 });
                 await RequestAdapter.SendNoContentAsync(requestInfo, errorMapping: default, cancellationToken: cancellationToken);
                 Console.WriteLine("Success");
-            }, defaultManagedAppProtectionIdOption);
+            }, new CollectionBinding(defaultManagedAppProtectionIdOption, new TypeBinding(typeof(IOutputFormatterFactory)), new TypeBinding(typeof(CancellationToken))));
             return command;
         }
         /// <summary>
@@ -63,7 +69,15 @@ namespace ApiSdk.DeviceAppManagement.DefaultManagedAppProtections.Item.Deploymen
                 IsRequired = true
             };
             command.AddOption(outputOption);
-            command.SetHandler(async (string defaultManagedAppProtectionId, string[] select, string[] expand, FormatterType output, IOutputFormatterFactory outputFormatterFactory, CancellationToken cancellationToken) => {
+            command.SetHandler(async (object[] parameters) => {
+                var defaultManagedAppProtectionId = (string) parameters[0];
+                var select = (string[]) parameters[1];
+                var expand = (string[]) parameters[2];
+                var output = (FormatterType) parameters[3];
+                var outputFormatterFactory = (IOutputFormatterFactory) parameters[4];
+                var cancellationToken = (CancellationToken) parameters[5];
+                PathParameters.Clear();
+                PathParameters.Add("defaultManagedAppProtection_id", defaultManagedAppProtectionId);
                 var requestInfo = CreateGetRequestInformation(q => {
                     q.Select = select;
                     q.Expand = expand;
@@ -71,7 +85,7 @@ namespace ApiSdk.DeviceAppManagement.DefaultManagedAppProtections.Item.Deploymen
                 var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: default, cancellationToken: cancellationToken);
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 formatter.WriteOutput(response);
-            }, defaultManagedAppProtectionIdOption, selectOption, expandOption, outputOption);
+            }, new CollectionBinding(defaultManagedAppProtectionIdOption, selectOption, expandOption, outputOption, new TypeBinding(typeof(IOutputFormatterFactory)), new TypeBinding(typeof(CancellationToken))));
             return command;
         }
         /// <summary>
@@ -89,7 +103,13 @@ namespace ApiSdk.DeviceAppManagement.DefaultManagedAppProtections.Item.Deploymen
             };
             bodyOption.IsRequired = true;
             command.AddOption(bodyOption);
-            command.SetHandler(async (string defaultManagedAppProtectionId, string body, IOutputFormatterFactory outputFormatterFactory, CancellationToken cancellationToken) => {
+            command.SetHandler(async (object[] parameters) => {
+                var defaultManagedAppProtectionId = (string) parameters[0];
+                var body = (string) parameters[1];
+                var outputFormatterFactory = (IOutputFormatterFactory) parameters[2];
+                var cancellationToken = (CancellationToken) parameters[3];
+                PathParameters.Clear();
+                PathParameters.Add("defaultManagedAppProtection_id", defaultManagedAppProtectionId);
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<ManagedAppPolicyDeploymentSummary>();
@@ -97,7 +117,7 @@ namespace ApiSdk.DeviceAppManagement.DefaultManagedAppProtections.Item.Deploymen
                 });
                 await RequestAdapter.SendNoContentAsync(requestInfo, errorMapping: default, cancellationToken: cancellationToken);
                 Console.WriteLine("Success");
-            }, defaultManagedAppProtectionIdOption, bodyOption);
+            }, new CollectionBinding(defaultManagedAppProtectionIdOption, bodyOption, new TypeBinding(typeof(IOutputFormatterFactory)), new TypeBinding(typeof(CancellationToken))));
             return command;
         }
         /// <summary>

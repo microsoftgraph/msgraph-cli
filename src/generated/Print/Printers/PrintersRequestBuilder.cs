@@ -3,6 +3,7 @@ using ApiSdk.Print.Printers.Create;
 using ApiSdk.Print.Printers.Item;
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
+using Microsoft.Kiota.Cli.Commons.Binding;
 using Microsoft.Kiota.Cli.Commons.IO;
 using System;
 using System.Collections.Generic;
@@ -22,7 +23,7 @@ namespace ApiSdk.Print.Printers {
         /// <summary>Url template to use to build the URL for the current request builder</summary>
         private string UrlTemplate { get; set; }
         public List<Command> BuildCommand() {
-            var builder = new PrinterRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new PrinterItemRequestBuilder(PathParameters, RequestAdapter);
             var commands = new List<Command>();
             commands.Add(builder.BuildConnectorsCommand());
             commands.Add(builder.BuildDeleteCommand());
@@ -85,7 +86,18 @@ namespace ApiSdk.Print.Printers {
                 IsRequired = true
             };
             command.AddOption(outputOption);
-            command.SetHandler(async (int? top, int? skip, string search, string filter, bool? count, string[] orderby, string[] select, string[] expand, FormatterType output, IOutputFormatterFactory outputFormatterFactory, CancellationToken cancellationToken) => {
+            command.SetHandler(async (object[] parameters) => {
+                var top = (int?) parameters[0];
+                var skip = (int?) parameters[1];
+                var search = (string) parameters[2];
+                var filter = (string) parameters[3];
+                var count = (bool?) parameters[4];
+                var orderby = (string[]) parameters[5];
+                var select = (string[]) parameters[6];
+                var expand = (string[]) parameters[7];
+                var output = (FormatterType) parameters[8];
+                var outputFormatterFactory = (IOutputFormatterFactory) parameters[9];
+                var cancellationToken = (CancellationToken) parameters[10];
                 var requestInfo = CreateGetRequestInformation(q => {
                     q.Top = top;
                     q.Skip = skip;
@@ -99,7 +111,7 @@ namespace ApiSdk.Print.Printers {
                 var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: default, cancellationToken: cancellationToken);
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 formatter.WriteOutput(response);
-            }, topOption, skipOption, searchOption, filterOption, countOption, orderbyOption, selectOption, expandOption, outputOption);
+            }, new CollectionBinding(topOption, skipOption, searchOption, filterOption, countOption, orderbyOption, selectOption, expandOption, outputOption, new TypeBinding(typeof(IOutputFormatterFactory)), new TypeBinding(typeof(CancellationToken))));
             return command;
         }
         /// <summary>

@@ -1,5 +1,6 @@
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
+using Microsoft.Kiota.Cli.Commons.Binding;
 using Microsoft.Kiota.Cli.Commons.IO;
 using System;
 using System.Collections.Generic;
@@ -49,13 +50,27 @@ namespace ApiSdk.Drives.Item.List.Items.Item.GetActivitiesByIntervalWithStartDat
                 IsRequired = true
             };
             command.AddOption(outputOption);
-            command.SetHandler(async (string driveId, string listItemId, string startDateTime, string endDateTime, string interval, FormatterType output, IOutputFormatterFactory outputFormatterFactory, CancellationToken cancellationToken) => {
+            command.SetHandler(async (object[] parameters) => {
+                var driveId = (string) parameters[0];
+                var listItemId = (string) parameters[1];
+                var startDateTime = (string) parameters[2];
+                var endDateTime = (string) parameters[3];
+                var interval = (string) parameters[4];
+                var output = (FormatterType) parameters[5];
+                var outputFormatterFactory = (IOutputFormatterFactory) parameters[6];
+                var cancellationToken = (CancellationToken) parameters[7];
+                PathParameters.Clear();
+                PathParameters.Add("drive_id", driveId);
+                PathParameters.Add("listItem_id", listItemId);
+                PathParameters.Add("startDateTime", startDateTime);
+                PathParameters.Add("endDateTime", endDateTime);
+                PathParameters.Add("interval", interval);
                 var requestInfo = CreateGetRequestInformation(q => {
                 });
                 var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: default, cancellationToken: cancellationToken);
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 formatter.WriteOutput(response);
-            }, driveIdOption, listItemIdOption, startDateTimeOption, endDateTimeOption, intervalOption, outputOption);
+            }, new CollectionBinding(driveIdOption, listItemIdOption, startDateTimeOption, endDateTimeOption, intervalOption, outputOption, new TypeBinding(typeof(IOutputFormatterFactory)), new TypeBinding(typeof(CancellationToken))));
             return command;
         }
         /// <summary>

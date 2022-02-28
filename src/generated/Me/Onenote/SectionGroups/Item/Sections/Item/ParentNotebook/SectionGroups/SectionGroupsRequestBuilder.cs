@@ -2,6 +2,7 @@ using ApiSdk.Me.Onenote.SectionGroups.Item.Sections.Item.ParentNotebook.SectionG
 using ApiSdk.Models.Microsoft.Graph;
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
+using Microsoft.Kiota.Cli.Commons.Binding;
 using Microsoft.Kiota.Cli.Commons.IO;
 using System;
 using System.Collections.Generic;
@@ -21,7 +22,7 @@ namespace ApiSdk.Me.Onenote.SectionGroups.Item.Sections.Item.ParentNotebook.Sect
         /// <summary>Url template to use to build the URL for the current request builder</summary>
         private string UrlTemplate { get; set; }
         public List<Command> BuildCommand() {
-            var builder = new SectionGroupRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new SectionGroupItemRequestBuilder(PathParameters, RequestAdapter);
             var commands = new List<Command>();
             commands.Add(builder.BuildDeleteCommand());
             commands.Add(builder.BuildGetCommand());
@@ -51,7 +52,16 @@ namespace ApiSdk.Me.Onenote.SectionGroups.Item.Sections.Item.ParentNotebook.Sect
                 IsRequired = true
             };
             command.AddOption(outputOption);
-            command.SetHandler(async (string sectionGroupId, string onenoteSectionId, string body, FormatterType output, IOutputFormatterFactory outputFormatterFactory, CancellationToken cancellationToken) => {
+            command.SetHandler(async (object[] parameters) => {
+                var sectionGroupId = (string) parameters[0];
+                var onenoteSectionId = (string) parameters[1];
+                var body = (string) parameters[2];
+                var output = (FormatterType) parameters[3];
+                var outputFormatterFactory = (IOutputFormatterFactory) parameters[4];
+                var cancellationToken = (CancellationToken) parameters[5];
+                PathParameters.Clear();
+                PathParameters.Add("sectionGroup_id", sectionGroupId);
+                PathParameters.Add("onenoteSection_id", onenoteSectionId);
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<SectionGroup>();
@@ -60,7 +70,7 @@ namespace ApiSdk.Me.Onenote.SectionGroups.Item.Sections.Item.ParentNotebook.Sect
                 var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: default, cancellationToken: cancellationToken);
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 formatter.WriteOutput(response);
-            }, sectionGroupIdOption, onenoteSectionIdOption, bodyOption, outputOption);
+            }, new CollectionBinding(sectionGroupIdOption, onenoteSectionIdOption, bodyOption, outputOption, new TypeBinding(typeof(IOutputFormatterFactory)), new TypeBinding(typeof(CancellationToken))));
             return command;
         }
         /// <summary>
@@ -117,7 +127,23 @@ namespace ApiSdk.Me.Onenote.SectionGroups.Item.Sections.Item.ParentNotebook.Sect
                 IsRequired = true
             };
             command.AddOption(outputOption);
-            command.SetHandler(async (string sectionGroupId, string onenoteSectionId, int? top, int? skip, string search, string filter, bool? count, string[] orderby, string[] select, string[] expand, FormatterType output, IOutputFormatterFactory outputFormatterFactory, CancellationToken cancellationToken) => {
+            command.SetHandler(async (object[] parameters) => {
+                var sectionGroupId = (string) parameters[0];
+                var onenoteSectionId = (string) parameters[1];
+                var top = (int?) parameters[2];
+                var skip = (int?) parameters[3];
+                var search = (string) parameters[4];
+                var filter = (string) parameters[5];
+                var count = (bool?) parameters[6];
+                var orderby = (string[]) parameters[7];
+                var select = (string[]) parameters[8];
+                var expand = (string[]) parameters[9];
+                var output = (FormatterType) parameters[10];
+                var outputFormatterFactory = (IOutputFormatterFactory) parameters[11];
+                var cancellationToken = (CancellationToken) parameters[12];
+                PathParameters.Clear();
+                PathParameters.Add("sectionGroup_id", sectionGroupId);
+                PathParameters.Add("onenoteSection_id", onenoteSectionId);
                 var requestInfo = CreateGetRequestInformation(q => {
                     q.Top = top;
                     q.Skip = skip;
@@ -131,7 +157,7 @@ namespace ApiSdk.Me.Onenote.SectionGroups.Item.Sections.Item.ParentNotebook.Sect
                 var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: default, cancellationToken: cancellationToken);
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 formatter.WriteOutput(response);
-            }, sectionGroupIdOption, onenoteSectionIdOption, topOption, skipOption, searchOption, filterOption, countOption, orderbyOption, selectOption, expandOption, outputOption);
+            }, new CollectionBinding(sectionGroupIdOption, onenoteSectionIdOption, topOption, skipOption, searchOption, filterOption, countOption, orderbyOption, selectOption, expandOption, outputOption, new TypeBinding(typeof(IOutputFormatterFactory)), new TypeBinding(typeof(CancellationToken))));
             return command;
         }
         /// <summary>

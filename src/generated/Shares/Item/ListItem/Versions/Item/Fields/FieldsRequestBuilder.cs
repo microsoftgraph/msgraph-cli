@@ -1,6 +1,7 @@
 using ApiSdk.Models.Microsoft.Graph;
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
+using Microsoft.Kiota.Cli.Commons.Binding;
 using Microsoft.Kiota.Cli.Commons.IO;
 using System;
 using System.Collections.Generic;
@@ -34,12 +35,19 @@ namespace ApiSdk.Shares.Item.ListItem.Versions.Item.Fields {
             };
             listItemVersionIdOption.IsRequired = true;
             command.AddOption(listItemVersionIdOption);
-            command.SetHandler(async (string sharedDriveItemId, string listItemVersionId, IOutputFormatterFactory outputFormatterFactory, CancellationToken cancellationToken) => {
+            command.SetHandler(async (object[] parameters) => {
+                var sharedDriveItemId = (string) parameters[0];
+                var listItemVersionId = (string) parameters[1];
+                var outputFormatterFactory = (IOutputFormatterFactory) parameters[2];
+                var cancellationToken = (CancellationToken) parameters[3];
+                PathParameters.Clear();
+                PathParameters.Add("sharedDriveItem_id", sharedDriveItemId);
+                PathParameters.Add("listItemVersion_id", listItemVersionId);
                 var requestInfo = CreateDeleteRequestInformation(q => {
                 });
                 await RequestAdapter.SendNoContentAsync(requestInfo, errorMapping: default, cancellationToken: cancellationToken);
                 Console.WriteLine("Success");
-            }, sharedDriveItemIdOption, listItemVersionIdOption);
+            }, new CollectionBinding(sharedDriveItemIdOption, listItemVersionIdOption, new TypeBinding(typeof(IOutputFormatterFactory)), new TypeBinding(typeof(CancellationToken))));
             return command;
         }
         /// <summary>
@@ -71,7 +79,17 @@ namespace ApiSdk.Shares.Item.ListItem.Versions.Item.Fields {
                 IsRequired = true
             };
             command.AddOption(outputOption);
-            command.SetHandler(async (string sharedDriveItemId, string listItemVersionId, string[] select, string[] expand, FormatterType output, IOutputFormatterFactory outputFormatterFactory, CancellationToken cancellationToken) => {
+            command.SetHandler(async (object[] parameters) => {
+                var sharedDriveItemId = (string) parameters[0];
+                var listItemVersionId = (string) parameters[1];
+                var select = (string[]) parameters[2];
+                var expand = (string[]) parameters[3];
+                var output = (FormatterType) parameters[4];
+                var outputFormatterFactory = (IOutputFormatterFactory) parameters[5];
+                var cancellationToken = (CancellationToken) parameters[6];
+                PathParameters.Clear();
+                PathParameters.Add("sharedDriveItem_id", sharedDriveItemId);
+                PathParameters.Add("listItemVersion_id", listItemVersionId);
                 var requestInfo = CreateGetRequestInformation(q => {
                     q.Select = select;
                     q.Expand = expand;
@@ -79,7 +97,7 @@ namespace ApiSdk.Shares.Item.ListItem.Versions.Item.Fields {
                 var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: default, cancellationToken: cancellationToken);
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 formatter.WriteOutput(response);
-            }, sharedDriveItemIdOption, listItemVersionIdOption, selectOption, expandOption, outputOption);
+            }, new CollectionBinding(sharedDriveItemIdOption, listItemVersionIdOption, selectOption, expandOption, outputOption, new TypeBinding(typeof(IOutputFormatterFactory)), new TypeBinding(typeof(CancellationToken))));
             return command;
         }
         /// <summary>
@@ -101,7 +119,15 @@ namespace ApiSdk.Shares.Item.ListItem.Versions.Item.Fields {
             };
             bodyOption.IsRequired = true;
             command.AddOption(bodyOption);
-            command.SetHandler(async (string sharedDriveItemId, string listItemVersionId, string body, IOutputFormatterFactory outputFormatterFactory, CancellationToken cancellationToken) => {
+            command.SetHandler(async (object[] parameters) => {
+                var sharedDriveItemId = (string) parameters[0];
+                var listItemVersionId = (string) parameters[1];
+                var body = (string) parameters[2];
+                var outputFormatterFactory = (IOutputFormatterFactory) parameters[3];
+                var cancellationToken = (CancellationToken) parameters[4];
+                PathParameters.Clear();
+                PathParameters.Add("sharedDriveItem_id", sharedDriveItemId);
+                PathParameters.Add("listItemVersion_id", listItemVersionId);
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<FieldValueSet>();
@@ -109,7 +135,7 @@ namespace ApiSdk.Shares.Item.ListItem.Versions.Item.Fields {
                 });
                 await RequestAdapter.SendNoContentAsync(requestInfo, errorMapping: default, cancellationToken: cancellationToken);
                 Console.WriteLine("Success");
-            }, sharedDriveItemIdOption, listItemVersionIdOption, bodyOption);
+            }, new CollectionBinding(sharedDriveItemIdOption, listItemVersionIdOption, bodyOption, new TypeBinding(typeof(IOutputFormatterFactory)), new TypeBinding(typeof(CancellationToken))));
             return command;
         }
         /// <summary>

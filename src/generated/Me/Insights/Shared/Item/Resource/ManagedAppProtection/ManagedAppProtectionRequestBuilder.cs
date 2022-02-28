@@ -1,5 +1,6 @@
 using ApiSdk.Me.Insights.Shared.Item.Resource.ManagedAppProtection.TargetApps;
 using Microsoft.Kiota.Abstractions;
+using Microsoft.Kiota.Cli.Commons.Binding;
 using Microsoft.Kiota.Cli.Commons.IO;
 using System;
 using System.Collections.Generic;

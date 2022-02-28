@@ -1,5 +1,6 @@
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
+using Microsoft.Kiota.Cli.Commons.Binding;
 using Microsoft.Kiota.Cli.Commons.IO;
 using System;
 using System.Collections.Generic;
@@ -29,12 +30,17 @@ namespace ApiSdk.Me.Insights.Trending.Item.Resource.WorkbookRangeFormat.AutofitR
             };
             trendingItemIdOption.IsRequired = true;
             command.AddOption(trendingItemIdOption);
-            command.SetHandler(async (string trendingItemId, IOutputFormatterFactory outputFormatterFactory, CancellationToken cancellationToken) => {
+            command.SetHandler(async (object[] parameters) => {
+                var trendingItemId = (string) parameters[0];
+                var outputFormatterFactory = (IOutputFormatterFactory) parameters[1];
+                var cancellationToken = (CancellationToken) parameters[2];
+                PathParameters.Clear();
+                PathParameters.Add("trendingItem_Id", trendingItemId);
                 var requestInfo = CreatePostRequestInformation(q => {
                 });
                 await RequestAdapter.SendNoContentAsync(requestInfo, errorMapping: default, cancellationToken: cancellationToken);
                 Console.WriteLine("Success");
-            }, trendingItemIdOption);
+            }, new CollectionBinding(trendingItemIdOption, new TypeBinding(typeof(IOutputFormatterFactory)), new TypeBinding(typeof(CancellationToken))));
             return command;
         }
         /// <summary>

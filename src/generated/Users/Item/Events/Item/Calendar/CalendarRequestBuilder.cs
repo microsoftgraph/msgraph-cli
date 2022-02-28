@@ -8,6 +8,7 @@ using ApiSdk.Users.Item.Events.Item.Calendar.MultiValueExtendedProperties;
 using ApiSdk.Users.Item.Events.Item.Calendar.SingleValueExtendedProperties;
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
+using Microsoft.Kiota.Cli.Commons.Binding;
 using Microsoft.Kiota.Cli.Commons.IO;
 using System;
 using System.Collections.Generic;
@@ -69,12 +70,19 @@ namespace ApiSdk.Users.Item.Events.Item.Calendar {
             };
             eventIdOption.IsRequired = true;
             command.AddOption(eventIdOption);
-            command.SetHandler(async (string userId, string eventId, IOutputFormatterFactory outputFormatterFactory, CancellationToken cancellationToken) => {
+            command.SetHandler(async (object[] parameters) => {
+                var userId = (string) parameters[0];
+                var eventId = (string) parameters[1];
+                var outputFormatterFactory = (IOutputFormatterFactory) parameters[2];
+                var cancellationToken = (CancellationToken) parameters[3];
+                PathParameters.Clear();
+                PathParameters.Add("user_id", userId);
+                PathParameters.Add("event_id", eventId);
                 var requestInfo = CreateDeleteRequestInformation(q => {
                 });
                 await RequestAdapter.SendNoContentAsync(requestInfo, errorMapping: default, cancellationToken: cancellationToken);
                 Console.WriteLine("Success");
-            }, userIdOption, eventIdOption);
+            }, new CollectionBinding(userIdOption, eventIdOption, new TypeBinding(typeof(IOutputFormatterFactory)), new TypeBinding(typeof(CancellationToken))));
             return command;
         }
         public Command BuildEventsCommand() {
@@ -111,14 +119,23 @@ namespace ApiSdk.Users.Item.Events.Item.Calendar {
                 IsRequired = true
             };
             command.AddOption(outputOption);
-            command.SetHandler(async (string userId, string eventId, string[] select, FormatterType output, IOutputFormatterFactory outputFormatterFactory, CancellationToken cancellationToken) => {
+            command.SetHandler(async (object[] parameters) => {
+                var userId = (string) parameters[0];
+                var eventId = (string) parameters[1];
+                var select = (string[]) parameters[2];
+                var output = (FormatterType) parameters[3];
+                var outputFormatterFactory = (IOutputFormatterFactory) parameters[4];
+                var cancellationToken = (CancellationToken) parameters[5];
+                PathParameters.Clear();
+                PathParameters.Add("user_id", userId);
+                PathParameters.Add("event_id", eventId);
                 var requestInfo = CreateGetRequestInformation(q => {
                     q.Select = select;
                 });
                 var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: default, cancellationToken: cancellationToken);
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 formatter.WriteOutput(response);
-            }, userIdOption, eventIdOption, selectOption, outputOption);
+            }, new CollectionBinding(userIdOption, eventIdOption, selectOption, outputOption, new TypeBinding(typeof(IOutputFormatterFactory)), new TypeBinding(typeof(CancellationToken))));
             return command;
         }
         public Command BuildGetScheduleCommand() {
@@ -156,7 +173,15 @@ namespace ApiSdk.Users.Item.Events.Item.Calendar {
             };
             bodyOption.IsRequired = true;
             command.AddOption(bodyOption);
-            command.SetHandler(async (string userId, string eventId, string body, IOutputFormatterFactory outputFormatterFactory, CancellationToken cancellationToken) => {
+            command.SetHandler(async (object[] parameters) => {
+                var userId = (string) parameters[0];
+                var eventId = (string) parameters[1];
+                var body = (string) parameters[2];
+                var outputFormatterFactory = (IOutputFormatterFactory) parameters[3];
+                var cancellationToken = (CancellationToken) parameters[4];
+                PathParameters.Clear();
+                PathParameters.Add("user_id", userId);
+                PathParameters.Add("event_id", eventId);
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<ApiSdk.Models.Microsoft.Graph.Calendar>();
@@ -164,7 +189,7 @@ namespace ApiSdk.Users.Item.Events.Item.Calendar {
                 });
                 await RequestAdapter.SendNoContentAsync(requestInfo, errorMapping: default, cancellationToken: cancellationToken);
                 Console.WriteLine("Success");
-            }, userIdOption, eventIdOption, bodyOption);
+            }, new CollectionBinding(userIdOption, eventIdOption, bodyOption, new TypeBinding(typeof(IOutputFormatterFactory)), new TypeBinding(typeof(CancellationToken))));
             return command;
         }
         public Command BuildSingleValueExtendedPropertiesCommand() {

@@ -2,6 +2,7 @@ using ApiSdk.IdentityGovernance.AppConsent.AppConsentRequests.Item.UserConsentRe
 using ApiSdk.Models.Microsoft.Graph;
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
+using Microsoft.Kiota.Cli.Commons.Binding;
 using Microsoft.Kiota.Cli.Commons.IO;
 using System;
 using System.Collections.Generic;
@@ -35,12 +36,19 @@ namespace ApiSdk.IdentityGovernance.AppConsent.AppConsentRequests.Item.UserConse
             };
             userConsentRequestIdOption.IsRequired = true;
             command.AddOption(userConsentRequestIdOption);
-            command.SetHandler(async (string appConsentRequestId, string userConsentRequestId, IOutputFormatterFactory outputFormatterFactory, CancellationToken cancellationToken) => {
+            command.SetHandler(async (object[] parameters) => {
+                var appConsentRequestId = (string) parameters[0];
+                var userConsentRequestId = (string) parameters[1];
+                var outputFormatterFactory = (IOutputFormatterFactory) parameters[2];
+                var cancellationToken = (CancellationToken) parameters[3];
+                PathParameters.Clear();
+                PathParameters.Add("appConsentRequest_id", appConsentRequestId);
+                PathParameters.Add("userConsentRequest_id", userConsentRequestId);
                 var requestInfo = CreateDeleteRequestInformation(q => {
                 });
                 await RequestAdapter.SendNoContentAsync(requestInfo, errorMapping: default, cancellationToken: cancellationToken);
                 Console.WriteLine("Success");
-            }, appConsentRequestIdOption, userConsentRequestIdOption);
+            }, new CollectionBinding(appConsentRequestIdOption, userConsentRequestIdOption, new TypeBinding(typeof(IOutputFormatterFactory)), new TypeBinding(typeof(CancellationToken))));
             return command;
         }
         /// <summary>
@@ -72,7 +80,17 @@ namespace ApiSdk.IdentityGovernance.AppConsent.AppConsentRequests.Item.UserConse
                 IsRequired = true
             };
             command.AddOption(outputOption);
-            command.SetHandler(async (string appConsentRequestId, string userConsentRequestId, string[] select, string[] expand, FormatterType output, IOutputFormatterFactory outputFormatterFactory, CancellationToken cancellationToken) => {
+            command.SetHandler(async (object[] parameters) => {
+                var appConsentRequestId = (string) parameters[0];
+                var userConsentRequestId = (string) parameters[1];
+                var select = (string[]) parameters[2];
+                var expand = (string[]) parameters[3];
+                var output = (FormatterType) parameters[4];
+                var outputFormatterFactory = (IOutputFormatterFactory) parameters[5];
+                var cancellationToken = (CancellationToken) parameters[6];
+                PathParameters.Clear();
+                PathParameters.Add("appConsentRequest_id", appConsentRequestId);
+                PathParameters.Add("userConsentRequest_id", userConsentRequestId);
                 var requestInfo = CreateGetRequestInformation(q => {
                     q.Select = select;
                     q.Expand = expand;
@@ -80,7 +98,7 @@ namespace ApiSdk.IdentityGovernance.AppConsent.AppConsentRequests.Item.UserConse
                 var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: default, cancellationToken: cancellationToken);
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 formatter.WriteOutput(response);
-            }, appConsentRequestIdOption, userConsentRequestIdOption, selectOption, expandOption, outputOption);
+            }, new CollectionBinding(appConsentRequestIdOption, userConsentRequestIdOption, selectOption, expandOption, outputOption, new TypeBinding(typeof(IOutputFormatterFactory)), new TypeBinding(typeof(CancellationToken))));
             return command;
         }
         /// <summary>
@@ -102,7 +120,15 @@ namespace ApiSdk.IdentityGovernance.AppConsent.AppConsentRequests.Item.UserConse
             };
             bodyOption.IsRequired = true;
             command.AddOption(bodyOption);
-            command.SetHandler(async (string appConsentRequestId, string userConsentRequestId, string body, IOutputFormatterFactory outputFormatterFactory, CancellationToken cancellationToken) => {
+            command.SetHandler(async (object[] parameters) => {
+                var appConsentRequestId = (string) parameters[0];
+                var userConsentRequestId = (string) parameters[1];
+                var body = (string) parameters[2];
+                var outputFormatterFactory = (IOutputFormatterFactory) parameters[3];
+                var cancellationToken = (CancellationToken) parameters[4];
+                PathParameters.Clear();
+                PathParameters.Add("appConsentRequest_id", appConsentRequestId);
+                PathParameters.Add("userConsentRequest_id", userConsentRequestId);
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<ApiSdk.Models.Microsoft.Graph.Approval>();
@@ -110,7 +136,7 @@ namespace ApiSdk.IdentityGovernance.AppConsent.AppConsentRequests.Item.UserConse
                 });
                 await RequestAdapter.SendNoContentAsync(requestInfo, errorMapping: default, cancellationToken: cancellationToken);
                 Console.WriteLine("Success");
-            }, appConsentRequestIdOption, userConsentRequestIdOption, bodyOption);
+            }, new CollectionBinding(appConsentRequestIdOption, userConsentRequestIdOption, bodyOption, new TypeBinding(typeof(IOutputFormatterFactory)), new TypeBinding(typeof(CancellationToken))));
             return command;
         }
         public Command BuildStagesCommand() {

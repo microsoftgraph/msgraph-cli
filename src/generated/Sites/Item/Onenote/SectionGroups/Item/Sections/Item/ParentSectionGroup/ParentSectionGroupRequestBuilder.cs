@@ -1,6 +1,7 @@
 using ApiSdk.Models.Microsoft.Graph;
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
+using Microsoft.Kiota.Cli.Commons.Binding;
 using Microsoft.Kiota.Cli.Commons.IO;
 using System;
 using System.Collections.Generic;
@@ -38,12 +39,21 @@ namespace ApiSdk.Sites.Item.Onenote.SectionGroups.Item.Sections.Item.ParentSecti
             };
             onenoteSectionIdOption.IsRequired = true;
             command.AddOption(onenoteSectionIdOption);
-            command.SetHandler(async (string siteId, string sectionGroupId, string onenoteSectionId, IOutputFormatterFactory outputFormatterFactory, CancellationToken cancellationToken) => {
+            command.SetHandler(async (object[] parameters) => {
+                var siteId = (string) parameters[0];
+                var sectionGroupId = (string) parameters[1];
+                var onenoteSectionId = (string) parameters[2];
+                var outputFormatterFactory = (IOutputFormatterFactory) parameters[3];
+                var cancellationToken = (CancellationToken) parameters[4];
+                PathParameters.Clear();
+                PathParameters.Add("site_id", siteId);
+                PathParameters.Add("sectionGroup_id", sectionGroupId);
+                PathParameters.Add("onenoteSection_id", onenoteSectionId);
                 var requestInfo = CreateDeleteRequestInformation(q => {
                 });
                 await RequestAdapter.SendNoContentAsync(requestInfo, errorMapping: default, cancellationToken: cancellationToken);
                 Console.WriteLine("Success");
-            }, siteIdOption, sectionGroupIdOption, onenoteSectionIdOption);
+            }, new CollectionBinding(siteIdOption, sectionGroupIdOption, onenoteSectionIdOption, new TypeBinding(typeof(IOutputFormatterFactory)), new TypeBinding(typeof(CancellationToken))));
             return command;
         }
         /// <summary>
@@ -79,7 +89,19 @@ namespace ApiSdk.Sites.Item.Onenote.SectionGroups.Item.Sections.Item.ParentSecti
                 IsRequired = true
             };
             command.AddOption(outputOption);
-            command.SetHandler(async (string siteId, string sectionGroupId, string onenoteSectionId, string[] select, string[] expand, FormatterType output, IOutputFormatterFactory outputFormatterFactory, CancellationToken cancellationToken) => {
+            command.SetHandler(async (object[] parameters) => {
+                var siteId = (string) parameters[0];
+                var sectionGroupId = (string) parameters[1];
+                var onenoteSectionId = (string) parameters[2];
+                var select = (string[]) parameters[3];
+                var expand = (string[]) parameters[4];
+                var output = (FormatterType) parameters[5];
+                var outputFormatterFactory = (IOutputFormatterFactory) parameters[6];
+                var cancellationToken = (CancellationToken) parameters[7];
+                PathParameters.Clear();
+                PathParameters.Add("site_id", siteId);
+                PathParameters.Add("sectionGroup_id", sectionGroupId);
+                PathParameters.Add("onenoteSection_id", onenoteSectionId);
                 var requestInfo = CreateGetRequestInformation(q => {
                     q.Select = select;
                     q.Expand = expand;
@@ -87,7 +109,7 @@ namespace ApiSdk.Sites.Item.Onenote.SectionGroups.Item.Sections.Item.ParentSecti
                 var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: default, cancellationToken: cancellationToken);
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 formatter.WriteOutput(response);
-            }, siteIdOption, sectionGroupIdOption, onenoteSectionIdOption, selectOption, expandOption, outputOption);
+            }, new CollectionBinding(siteIdOption, sectionGroupIdOption, onenoteSectionIdOption, selectOption, expandOption, outputOption, new TypeBinding(typeof(IOutputFormatterFactory)), new TypeBinding(typeof(CancellationToken))));
             return command;
         }
         /// <summary>
@@ -113,7 +135,17 @@ namespace ApiSdk.Sites.Item.Onenote.SectionGroups.Item.Sections.Item.ParentSecti
             };
             bodyOption.IsRequired = true;
             command.AddOption(bodyOption);
-            command.SetHandler(async (string siteId, string sectionGroupId, string onenoteSectionId, string body, IOutputFormatterFactory outputFormatterFactory, CancellationToken cancellationToken) => {
+            command.SetHandler(async (object[] parameters) => {
+                var siteId = (string) parameters[0];
+                var sectionGroupId = (string) parameters[1];
+                var onenoteSectionId = (string) parameters[2];
+                var body = (string) parameters[3];
+                var outputFormatterFactory = (IOutputFormatterFactory) parameters[4];
+                var cancellationToken = (CancellationToken) parameters[5];
+                PathParameters.Clear();
+                PathParameters.Add("site_id", siteId);
+                PathParameters.Add("sectionGroup_id", sectionGroupId);
+                PathParameters.Add("onenoteSection_id", onenoteSectionId);
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<SectionGroup>();
@@ -121,7 +153,7 @@ namespace ApiSdk.Sites.Item.Onenote.SectionGroups.Item.Sections.Item.ParentSecti
                 });
                 await RequestAdapter.SendNoContentAsync(requestInfo, errorMapping: default, cancellationToken: cancellationToken);
                 Console.WriteLine("Success");
-            }, siteIdOption, sectionGroupIdOption, onenoteSectionIdOption, bodyOption);
+            }, new CollectionBinding(siteIdOption, sectionGroupIdOption, onenoteSectionIdOption, bodyOption, new TypeBinding(typeof(IOutputFormatterFactory)), new TypeBinding(typeof(CancellationToken))));
             return command;
         }
         /// <summary>

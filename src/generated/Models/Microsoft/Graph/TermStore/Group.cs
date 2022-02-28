@@ -16,7 +16,7 @@ namespace ApiSdk.Models.Microsoft.Graph.TermStore {
         /// <summary>Returns type of group. Possible values are 'global', 'system' and 'siteCollection'.</summary>
         public TermGroupScope? Scope { get; set; }
         /// <summary>All sets under the group in a term [store].</summary>
-        public List<ApiSdk.Models.Microsoft.Graph.TermStore.Set> Sets { get; set; }
+        public List<Set> Sets { get; set; }
         /// <summary>
         /// The deserialization information for the current model
         /// </summary>
@@ -27,7 +27,7 @@ namespace ApiSdk.Models.Microsoft.Graph.TermStore {
                 {"displayName", (o,n) => { (o as Group).DisplayName = n.GetStringValue(); } },
                 {"parentSiteId", (o,n) => { (o as Group).ParentSiteId = n.GetStringValue(); } },
                 {"scope", (o,n) => { (o as Group).Scope = n.GetEnumValue<TermGroupScope>(); } },
-                {"sets", (o,n) => { (o as Group).Sets = n.GetCollectionOfObjectValues<ApiSdk.Models.Microsoft.Graph.TermStore.Set>().ToList(); } },
+                {"sets", (o,n) => { (o as Group).Sets = n.GetCollectionOfObjectValues<Set>().ToList(); } },
             };
         }
         /// <summary>
@@ -42,7 +42,7 @@ namespace ApiSdk.Models.Microsoft.Graph.TermStore {
             writer.WriteStringValue("displayName", DisplayName);
             writer.WriteStringValue("parentSiteId", ParentSiteId);
             writer.WriteEnumValue<TermGroupScope>("scope", Scope);
-            writer.WriteCollectionOfObjectValues<ApiSdk.Models.Microsoft.Graph.TermStore.Set>("sets", Sets);
+            writer.WriteCollectionOfObjectValues<Set>("sets", Sets);
         }
     }
 }

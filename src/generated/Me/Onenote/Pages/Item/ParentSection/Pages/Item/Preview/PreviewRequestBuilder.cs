@@ -1,6 +1,7 @@
 using ApiSdk.Models.Microsoft.Graph;
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
+using Microsoft.Kiota.Cli.Commons.Binding;
 using Microsoft.Kiota.Cli.Commons.IO;
 using System;
 using System.Collections.Generic;
@@ -38,13 +39,21 @@ namespace ApiSdk.Me.Onenote.Pages.Item.ParentSection.Pages.Item.Preview {
                 IsRequired = true
             };
             command.AddOption(outputOption);
-            command.SetHandler(async (string onenotePageId, string onenotePageId1, FormatterType output, IOutputFormatterFactory outputFormatterFactory, CancellationToken cancellationToken) => {
+            command.SetHandler(async (object[] parameters) => {
+                var onenotePageId = (string) parameters[0];
+                var onenotePageId1 = (string) parameters[1];
+                var output = (FormatterType) parameters[2];
+                var outputFormatterFactory = (IOutputFormatterFactory) parameters[3];
+                var cancellationToken = (CancellationToken) parameters[4];
+                PathParameters.Clear();
+                PathParameters.Add("onenotePage_id", onenotePageId);
+                PathParameters.Add("onenotePage_id1", onenotePageId1);
                 var requestInfo = CreateGetRequestInformation(q => {
                 });
                 var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: default, cancellationToken: cancellationToken);
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 formatter.WriteOutput(response);
-            }, onenotePageIdOption, onenotePageId1Option, outputOption);
+            }, new CollectionBinding(onenotePageIdOption, onenotePageId1Option, outputOption, new TypeBinding(typeof(IOutputFormatterFactory)), new TypeBinding(typeof(CancellationToken))));
             return command;
         }
         /// <summary>

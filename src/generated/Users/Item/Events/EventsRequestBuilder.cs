@@ -3,6 +3,7 @@ using ApiSdk.Users.Item.Events.Delta;
 using ApiSdk.Users.Item.Events.Item;
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
+using Microsoft.Kiota.Cli.Commons.Binding;
 using Microsoft.Kiota.Cli.Commons.IO;
 using System;
 using System.Collections.Generic;
@@ -22,7 +23,7 @@ namespace ApiSdk.Users.Item.Events {
         /// <summary>Url template to use to build the URL for the current request builder</summary>
         private string UrlTemplate { get; set; }
         public List<Command> BuildCommand() {
-            var builder = new EventRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new EventItemRequestBuilder(PathParameters, RequestAdapter);
             var commands = new List<Command>();
             commands.Add(builder.BuildAcceptCommand());
             commands.Add(builder.BuildAttachmentsCommand());
@@ -61,7 +62,14 @@ namespace ApiSdk.Users.Item.Events {
                 IsRequired = true
             };
             command.AddOption(outputOption);
-            command.SetHandler(async (string userId, string body, FormatterType output, IOutputFormatterFactory outputFormatterFactory, CancellationToken cancellationToken) => {
+            command.SetHandler(async (object[] parameters) => {
+                var userId = (string) parameters[0];
+                var body = (string) parameters[1];
+                var output = (FormatterType) parameters[2];
+                var outputFormatterFactory = (IOutputFormatterFactory) parameters[3];
+                var cancellationToken = (CancellationToken) parameters[4];
+                PathParameters.Clear();
+                PathParameters.Add("user_id", userId);
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<Event>();
@@ -70,7 +78,7 @@ namespace ApiSdk.Users.Item.Events {
                 var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: default, cancellationToken: cancellationToken);
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 formatter.WriteOutput(response);
-            }, userIdOption, bodyOption, outputOption);
+            }, new CollectionBinding(userIdOption, bodyOption, outputOption, new TypeBinding(typeof(IOutputFormatterFactory)), new TypeBinding(typeof(CancellationToken))));
             return command;
         }
         /// <summary>
@@ -114,7 +122,19 @@ namespace ApiSdk.Users.Item.Events {
                 IsRequired = true
             };
             command.AddOption(outputOption);
-            command.SetHandler(async (string userId, int? top, int? skip, string filter, bool? count, string[] orderby, string[] select, FormatterType output, IOutputFormatterFactory outputFormatterFactory, CancellationToken cancellationToken) => {
+            command.SetHandler(async (object[] parameters) => {
+                var userId = (string) parameters[0];
+                var top = (int?) parameters[1];
+                var skip = (int?) parameters[2];
+                var filter = (string) parameters[3];
+                var count = (bool?) parameters[4];
+                var orderby = (string[]) parameters[5];
+                var select = (string[]) parameters[6];
+                var output = (FormatterType) parameters[7];
+                var outputFormatterFactory = (IOutputFormatterFactory) parameters[8];
+                var cancellationToken = (CancellationToken) parameters[9];
+                PathParameters.Clear();
+                PathParameters.Add("user_id", userId);
                 var requestInfo = CreateGetRequestInformation(q => {
                     q.Top = top;
                     q.Skip = skip;
@@ -126,7 +146,7 @@ namespace ApiSdk.Users.Item.Events {
                 var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: default, cancellationToken: cancellationToken);
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 formatter.WriteOutput(response);
-            }, userIdOption, topOption, skipOption, filterOption, countOption, orderbyOption, selectOption, outputOption);
+            }, new CollectionBinding(userIdOption, topOption, skipOption, filterOption, countOption, orderbyOption, selectOption, outputOption, new TypeBinding(typeof(IOutputFormatterFactory)), new TypeBinding(typeof(CancellationToken))));
             return command;
         }
         /// <summary>

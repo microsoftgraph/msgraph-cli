@@ -1,6 +1,7 @@
 using ApiSdk.Models.Microsoft.Graph;
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
+using Microsoft.Kiota.Cli.Commons.Binding;
 using Microsoft.Kiota.Cli.Commons.IO;
 using System;
 using System.Collections.Generic;
@@ -46,13 +47,25 @@ namespace ApiSdk.Groups.Item.Onenote.Pages.Item.ParentNotebook.Sections.Item.Pag
                 IsRequired = true
             };
             command.AddOption(outputOption);
-            command.SetHandler(async (string groupId, string onenotePageId, string onenoteSectionId, string onenotePageId1, FormatterType output, IOutputFormatterFactory outputFormatterFactory, CancellationToken cancellationToken) => {
+            command.SetHandler(async (object[] parameters) => {
+                var groupId = (string) parameters[0];
+                var onenotePageId = (string) parameters[1];
+                var onenoteSectionId = (string) parameters[2];
+                var onenotePageId1 = (string) parameters[3];
+                var output = (FormatterType) parameters[4];
+                var outputFormatterFactory = (IOutputFormatterFactory) parameters[5];
+                var cancellationToken = (CancellationToken) parameters[6];
+                PathParameters.Clear();
+                PathParameters.Add("group_id", groupId);
+                PathParameters.Add("onenotePage_id", onenotePageId);
+                PathParameters.Add("onenoteSection_id", onenoteSectionId);
+                PathParameters.Add("onenotePage_id1", onenotePageId1);
                 var requestInfo = CreateGetRequestInformation(q => {
                 });
                 var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: default, cancellationToken: cancellationToken);
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 formatter.WriteOutput(response);
-            }, groupIdOption, onenotePageIdOption, onenoteSectionIdOption, onenotePageId1Option, outputOption);
+            }, new CollectionBinding(groupIdOption, onenotePageIdOption, onenoteSectionIdOption, onenotePageId1Option, outputOption, new TypeBinding(typeof(IOutputFormatterFactory)), new TypeBinding(typeof(CancellationToken))));
             return command;
         }
         /// <summary>

@@ -1,5 +1,6 @@
 using ApiSdk.Me.Insights.Trending.Item.Resource.WorkbookRangeSort.Apply;
 using Microsoft.Kiota.Abstractions;
+using Microsoft.Kiota.Cli.Commons.Binding;
 using Microsoft.Kiota.Cli.Commons.IO;
 using System;
 using System.Collections.Generic;

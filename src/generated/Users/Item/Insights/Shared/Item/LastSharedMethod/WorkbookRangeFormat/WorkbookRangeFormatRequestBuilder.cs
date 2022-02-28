@@ -1,6 +1,7 @@
 using ApiSdk.Users.Item.Insights.Shared.Item.LastSharedMethod.WorkbookRangeFormat.AutofitColumns;
 using ApiSdk.Users.Item.Insights.Shared.Item.LastSharedMethod.WorkbookRangeFormat.AutofitRows;
 using Microsoft.Kiota.Abstractions;
+using Microsoft.Kiota.Cli.Commons.Binding;
 using Microsoft.Kiota.Cli.Commons.IO;
 using System;
 using System.Collections.Generic;

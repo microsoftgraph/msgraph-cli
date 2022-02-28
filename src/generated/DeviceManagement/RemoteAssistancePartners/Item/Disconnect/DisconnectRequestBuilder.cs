@@ -1,5 +1,6 @@
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
+using Microsoft.Kiota.Cli.Commons.Binding;
 using Microsoft.Kiota.Cli.Commons.IO;
 using System;
 using System.Collections.Generic;
@@ -29,12 +30,17 @@ namespace ApiSdk.DeviceManagement.RemoteAssistancePartners.Item.Disconnect {
             };
             remoteAssistancePartnerIdOption.IsRequired = true;
             command.AddOption(remoteAssistancePartnerIdOption);
-            command.SetHandler(async (string remoteAssistancePartnerId, IOutputFormatterFactory outputFormatterFactory, CancellationToken cancellationToken) => {
+            command.SetHandler(async (object[] parameters) => {
+                var remoteAssistancePartnerId = (string) parameters[0];
+                var outputFormatterFactory = (IOutputFormatterFactory) parameters[1];
+                var cancellationToken = (CancellationToken) parameters[2];
+                PathParameters.Clear();
+                PathParameters.Add("remoteAssistancePartner_id", remoteAssistancePartnerId);
                 var requestInfo = CreatePostRequestInformation(q => {
                 });
                 await RequestAdapter.SendNoContentAsync(requestInfo, errorMapping: default, cancellationToken: cancellationToken);
                 Console.WriteLine("Success");
-            }, remoteAssistancePartnerIdOption);
+            }, new CollectionBinding(remoteAssistancePartnerIdOption, new TypeBinding(typeof(IOutputFormatterFactory)), new TypeBinding(typeof(CancellationToken))));
             return command;
         }
         /// <summary>

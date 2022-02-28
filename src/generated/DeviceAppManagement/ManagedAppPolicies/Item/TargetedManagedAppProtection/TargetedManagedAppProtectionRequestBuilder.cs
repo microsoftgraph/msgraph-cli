@@ -1,6 +1,7 @@
 using ApiSdk.DeviceAppManagement.ManagedAppPolicies.Item.TargetedManagedAppProtection.Assign;
 using ApiSdk.DeviceAppManagement.ManagedAppPolicies.Item.TargetedManagedAppProtection.TargetApps;
 using Microsoft.Kiota.Abstractions;
+using Microsoft.Kiota.Cli.Commons.Binding;
 using Microsoft.Kiota.Cli.Commons.IO;
 using System;
 using System.Collections.Generic;

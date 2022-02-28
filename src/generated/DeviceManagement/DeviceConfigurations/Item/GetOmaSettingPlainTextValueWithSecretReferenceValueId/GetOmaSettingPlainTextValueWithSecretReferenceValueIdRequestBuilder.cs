@@ -1,5 +1,6 @@
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
+using Microsoft.Kiota.Cli.Commons.Binding;
 using Microsoft.Kiota.Cli.Commons.IO;
 using System;
 using System.Collections.Generic;
@@ -37,13 +38,21 @@ namespace ApiSdk.DeviceManagement.DeviceConfigurations.Item.GetOmaSettingPlainTe
                 IsRequired = true
             };
             command.AddOption(outputOption);
-            command.SetHandler(async (string deviceConfigurationId, string secretReferenceValueId, FormatterType output, IOutputFormatterFactory outputFormatterFactory, CancellationToken cancellationToken) => {
+            command.SetHandler(async (object[] parameters) => {
+                var deviceConfigurationId = (string) parameters[0];
+                var secretReferenceValueId = (string) parameters[1];
+                var output = (FormatterType) parameters[2];
+                var outputFormatterFactory = (IOutputFormatterFactory) parameters[3];
+                var cancellationToken = (CancellationToken) parameters[4];
+                PathParameters.Clear();
+                PathParameters.Add("deviceConfiguration_id", deviceConfigurationId);
+                PathParameters.Add("secretReferenceValueId", secretReferenceValueId);
                 var requestInfo = CreateGetRequestInformation(q => {
                 });
                 var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: default, cancellationToken: cancellationToken);
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 formatter.WriteOutput(response);
-            }, deviceConfigurationIdOption, secretReferenceValueIdOption, outputOption);
+            }, new CollectionBinding(deviceConfigurationIdOption, secretReferenceValueIdOption, outputOption, new TypeBinding(typeof(IOutputFormatterFactory)), new TypeBinding(typeof(CancellationToken))));
             return command;
         }
         /// <summary>

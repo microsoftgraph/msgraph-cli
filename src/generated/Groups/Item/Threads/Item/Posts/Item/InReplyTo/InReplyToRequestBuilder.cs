@@ -3,6 +3,7 @@ using ApiSdk.Groups.Item.Threads.Item.Posts.Item.InReplyTo.Reply;
 using ApiSdk.Models.Microsoft.Graph;
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
+using Microsoft.Kiota.Cli.Commons.Binding;
 using Microsoft.Kiota.Cli.Commons.IO;
 using System;
 using System.Collections.Generic;
@@ -40,12 +41,21 @@ namespace ApiSdk.Groups.Item.Threads.Item.Posts.Item.InReplyTo {
             };
             postIdOption.IsRequired = true;
             command.AddOption(postIdOption);
-            command.SetHandler(async (string groupId, string conversationThreadId, string postId, IOutputFormatterFactory outputFormatterFactory, CancellationToken cancellationToken) => {
+            command.SetHandler(async (object[] parameters) => {
+                var groupId = (string) parameters[0];
+                var conversationThreadId = (string) parameters[1];
+                var postId = (string) parameters[2];
+                var outputFormatterFactory = (IOutputFormatterFactory) parameters[3];
+                var cancellationToken = (CancellationToken) parameters[4];
+                PathParameters.Clear();
+                PathParameters.Add("group_id", groupId);
+                PathParameters.Add("conversationThread_id", conversationThreadId);
+                PathParameters.Add("post_id", postId);
                 var requestInfo = CreateDeleteRequestInformation(q => {
                 });
                 await RequestAdapter.SendNoContentAsync(requestInfo, errorMapping: default, cancellationToken: cancellationToken);
                 Console.WriteLine("Success");
-            }, groupIdOption, conversationThreadIdOption, postIdOption);
+            }, new CollectionBinding(groupIdOption, conversationThreadIdOption, postIdOption, new TypeBinding(typeof(IOutputFormatterFactory)), new TypeBinding(typeof(CancellationToken))));
             return command;
         }
         public Command BuildForwardCommand() {
@@ -87,7 +97,19 @@ namespace ApiSdk.Groups.Item.Threads.Item.Posts.Item.InReplyTo {
                 IsRequired = true
             };
             command.AddOption(outputOption);
-            command.SetHandler(async (string groupId, string conversationThreadId, string postId, string[] select, string[] expand, FormatterType output, IOutputFormatterFactory outputFormatterFactory, CancellationToken cancellationToken) => {
+            command.SetHandler(async (object[] parameters) => {
+                var groupId = (string) parameters[0];
+                var conversationThreadId = (string) parameters[1];
+                var postId = (string) parameters[2];
+                var select = (string[]) parameters[3];
+                var expand = (string[]) parameters[4];
+                var output = (FormatterType) parameters[5];
+                var outputFormatterFactory = (IOutputFormatterFactory) parameters[6];
+                var cancellationToken = (CancellationToken) parameters[7];
+                PathParameters.Clear();
+                PathParameters.Add("group_id", groupId);
+                PathParameters.Add("conversationThread_id", conversationThreadId);
+                PathParameters.Add("post_id", postId);
                 var requestInfo = CreateGetRequestInformation(q => {
                     q.Select = select;
                     q.Expand = expand;
@@ -95,7 +117,7 @@ namespace ApiSdk.Groups.Item.Threads.Item.Posts.Item.InReplyTo {
                 var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: default, cancellationToken: cancellationToken);
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 formatter.WriteOutput(response);
-            }, groupIdOption, conversationThreadIdOption, postIdOption, selectOption, expandOption, outputOption);
+            }, new CollectionBinding(groupIdOption, conversationThreadIdOption, postIdOption, selectOption, expandOption, outputOption, new TypeBinding(typeof(IOutputFormatterFactory)), new TypeBinding(typeof(CancellationToken))));
             return command;
         }
         /// <summary>
@@ -121,7 +143,17 @@ namespace ApiSdk.Groups.Item.Threads.Item.Posts.Item.InReplyTo {
             };
             bodyOption.IsRequired = true;
             command.AddOption(bodyOption);
-            command.SetHandler(async (string groupId, string conversationThreadId, string postId, string body, IOutputFormatterFactory outputFormatterFactory, CancellationToken cancellationToken) => {
+            command.SetHandler(async (object[] parameters) => {
+                var groupId = (string) parameters[0];
+                var conversationThreadId = (string) parameters[1];
+                var postId = (string) parameters[2];
+                var body = (string) parameters[3];
+                var outputFormatterFactory = (IOutputFormatterFactory) parameters[4];
+                var cancellationToken = (CancellationToken) parameters[5];
+                PathParameters.Clear();
+                PathParameters.Add("group_id", groupId);
+                PathParameters.Add("conversationThread_id", conversationThreadId);
+                PathParameters.Add("post_id", postId);
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<Post>();
@@ -129,7 +161,7 @@ namespace ApiSdk.Groups.Item.Threads.Item.Posts.Item.InReplyTo {
                 });
                 await RequestAdapter.SendNoContentAsync(requestInfo, errorMapping: default, cancellationToken: cancellationToken);
                 Console.WriteLine("Success");
-            }, groupIdOption, conversationThreadIdOption, postIdOption, bodyOption);
+            }, new CollectionBinding(groupIdOption, conversationThreadIdOption, postIdOption, bodyOption, new TypeBinding(typeof(IOutputFormatterFactory)), new TypeBinding(typeof(CancellationToken))));
             return command;
         }
         public Command BuildReplyCommand() {

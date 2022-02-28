@@ -1,5 +1,6 @@
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
+using Microsoft.Kiota.Cli.Commons.Binding;
 using Microsoft.Kiota.Cli.Commons.IO;
 using System;
 using System.Collections.Generic;
@@ -37,12 +38,21 @@ namespace ApiSdk.Me.CalendarGroups.Item.Calendars.Item.Events.Item.DismissRemind
             };
             eventIdOption.IsRequired = true;
             command.AddOption(eventIdOption);
-            command.SetHandler(async (string calendarGroupId, string calendarId, string eventId, IOutputFormatterFactory outputFormatterFactory, CancellationToken cancellationToken) => {
+            command.SetHandler(async (object[] parameters) => {
+                var calendarGroupId = (string) parameters[0];
+                var calendarId = (string) parameters[1];
+                var eventId = (string) parameters[2];
+                var outputFormatterFactory = (IOutputFormatterFactory) parameters[3];
+                var cancellationToken = (CancellationToken) parameters[4];
+                PathParameters.Clear();
+                PathParameters.Add("calendarGroup_id", calendarGroupId);
+                PathParameters.Add("calendar_id", calendarId);
+                PathParameters.Add("event_id", eventId);
                 var requestInfo = CreatePostRequestInformation(q => {
                 });
                 await RequestAdapter.SendNoContentAsync(requestInfo, errorMapping: default, cancellationToken: cancellationToken);
                 Console.WriteLine("Success");
-            }, calendarGroupIdOption, calendarIdOption, eventIdOption);
+            }, new CollectionBinding(calendarGroupIdOption, calendarIdOption, eventIdOption, new TypeBinding(typeof(IOutputFormatterFactory)), new TypeBinding(typeof(CancellationToken))));
             return command;
         }
         /// <summary>

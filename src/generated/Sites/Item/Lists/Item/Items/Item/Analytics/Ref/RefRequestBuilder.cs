@@ -1,5 +1,6 @@
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
+using Microsoft.Kiota.Cli.Commons.Binding;
 using Microsoft.Kiota.Cli.Commons.IO;
 using System;
 using System.Collections.Generic;
@@ -37,12 +38,21 @@ namespace ApiSdk.Sites.Item.Lists.Item.Items.Item.Analytics.Ref {
             };
             listItemIdOption.IsRequired = true;
             command.AddOption(listItemIdOption);
-            command.SetHandler(async (string siteId, string listId, string listItemId, IOutputFormatterFactory outputFormatterFactory, CancellationToken cancellationToken) => {
+            command.SetHandler(async (object[] parameters) => {
+                var siteId = (string) parameters[0];
+                var listId = (string) parameters[1];
+                var listItemId = (string) parameters[2];
+                var outputFormatterFactory = (IOutputFormatterFactory) parameters[3];
+                var cancellationToken = (CancellationToken) parameters[4];
+                PathParameters.Clear();
+                PathParameters.Add("site_id", siteId);
+                PathParameters.Add("list_id", listId);
+                PathParameters.Add("listItem_id", listItemId);
                 var requestInfo = CreateDeleteRequestInformation(q => {
                 });
                 await RequestAdapter.SendNoContentAsync(requestInfo, errorMapping: default, cancellationToken: cancellationToken);
                 Console.WriteLine("Success");
-            }, siteIdOption, listIdOption, listItemIdOption);
+            }, new CollectionBinding(siteIdOption, listIdOption, listItemIdOption, new TypeBinding(typeof(IOutputFormatterFactory)), new TypeBinding(typeof(CancellationToken))));
             return command;
         }
         /// <summary>
@@ -68,13 +78,23 @@ namespace ApiSdk.Sites.Item.Lists.Item.Items.Item.Analytics.Ref {
                 IsRequired = true
             };
             command.AddOption(outputOption);
-            command.SetHandler(async (string siteId, string listId, string listItemId, FormatterType output, IOutputFormatterFactory outputFormatterFactory, CancellationToken cancellationToken) => {
+            command.SetHandler(async (object[] parameters) => {
+                var siteId = (string) parameters[0];
+                var listId = (string) parameters[1];
+                var listItemId = (string) parameters[2];
+                var output = (FormatterType) parameters[3];
+                var outputFormatterFactory = (IOutputFormatterFactory) parameters[4];
+                var cancellationToken = (CancellationToken) parameters[5];
+                PathParameters.Clear();
+                PathParameters.Add("site_id", siteId);
+                PathParameters.Add("list_id", listId);
+                PathParameters.Add("listItem_id", listItemId);
                 var requestInfo = CreateGetRequestInformation(q => {
                 });
                 var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: default, cancellationToken: cancellationToken);
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 formatter.WriteOutput(response);
-            }, siteIdOption, listIdOption, listItemIdOption, outputOption);
+            }, new CollectionBinding(siteIdOption, listIdOption, listItemIdOption, outputOption, new TypeBinding(typeof(IOutputFormatterFactory)), new TypeBinding(typeof(CancellationToken))));
             return command;
         }
         /// <summary>
@@ -100,15 +120,25 @@ namespace ApiSdk.Sites.Item.Lists.Item.Items.Item.Analytics.Ref {
             };
             bodyOption.IsRequired = true;
             command.AddOption(bodyOption);
-            command.SetHandler(async (string siteId, string listId, string listItemId, string body, IOutputFormatterFactory outputFormatterFactory, CancellationToken cancellationToken) => {
+            command.SetHandler(async (object[] parameters) => {
+                var siteId = (string) parameters[0];
+                var listId = (string) parameters[1];
+                var listItemId = (string) parameters[2];
+                var body = (string) parameters[3];
+                var outputFormatterFactory = (IOutputFormatterFactory) parameters[4];
+                var cancellationToken = (CancellationToken) parameters[5];
+                PathParameters.Clear();
+                PathParameters.Add("site_id", siteId);
+                PathParameters.Add("list_id", listId);
+                PathParameters.Add("listItem_id", listItemId);
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
-                var model = parseNode.GetObjectValue<ApiSdk.Sites.Item.Lists.Item.Items.Item.Analytics.Ref.Ref>();
+                var model = parseNode.GetObjectValue<Ref>();
                 var requestInfo = CreatePutRequestInformation(model, q => {
                 });
                 await RequestAdapter.SendNoContentAsync(requestInfo, errorMapping: default, cancellationToken: cancellationToken);
                 Console.WriteLine("Success");
-            }, siteIdOption, listIdOption, listItemIdOption, bodyOption);
+            }, new CollectionBinding(siteIdOption, listIdOption, listItemIdOption, bodyOption, new TypeBinding(typeof(IOutputFormatterFactory)), new TypeBinding(typeof(CancellationToken))));
             return command;
         }
         /// <summary>
@@ -160,7 +190,7 @@ namespace ApiSdk.Sites.Item.Lists.Item.Items.Item.Analytics.Ref {
         /// <param name="h">Request headers</param>
         /// <param name="o">Request options</param>
         /// </summary>
-        public RequestInformation CreatePutRequestInformation(ApiSdk.Sites.Item.Lists.Item.Items.Item.Analytics.Ref.Ref body, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
+        public RequestInformation CreatePutRequestInformation(Ref body, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
             _ = body ?? throw new ArgumentNullException(nameof(body));
             var requestInfo = new RequestInformation {
                 HttpMethod = Method.PUT,

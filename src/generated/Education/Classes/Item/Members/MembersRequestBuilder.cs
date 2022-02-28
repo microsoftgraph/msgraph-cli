@@ -2,6 +2,7 @@ using ApiSdk.Education.Classes.Item.Members.Delta;
 using ApiSdk.Education.Classes.Item.Members.Ref;
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
+using Microsoft.Kiota.Cli.Commons.Binding;
 using Microsoft.Kiota.Cli.Commons.IO;
 using System;
 using System.Collections.Generic;
@@ -70,7 +71,21 @@ namespace ApiSdk.Education.Classes.Item.Members {
                 IsRequired = true
             };
             command.AddOption(outputOption);
-            command.SetHandler(async (string educationClassId, int? top, int? skip, string search, string filter, bool? count, string[] orderby, string[] select, string[] expand, FormatterType output, IOutputFormatterFactory outputFormatterFactory, CancellationToken cancellationToken) => {
+            command.SetHandler(async (object[] parameters) => {
+                var educationClassId = (string) parameters[0];
+                var top = (int?) parameters[1];
+                var skip = (int?) parameters[2];
+                var search = (string) parameters[3];
+                var filter = (string) parameters[4];
+                var count = (bool?) parameters[5];
+                var orderby = (string[]) parameters[6];
+                var select = (string[]) parameters[7];
+                var expand = (string[]) parameters[8];
+                var output = (FormatterType) parameters[9];
+                var outputFormatterFactory = (IOutputFormatterFactory) parameters[10];
+                var cancellationToken = (CancellationToken) parameters[11];
+                PathParameters.Clear();
+                PathParameters.Add("educationClass_id", educationClassId);
                 var requestInfo = CreateGetRequestInformation(q => {
                     q.Top = top;
                     q.Skip = skip;
@@ -84,7 +99,7 @@ namespace ApiSdk.Education.Classes.Item.Members {
                 var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: default, cancellationToken: cancellationToken);
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 formatter.WriteOutput(response);
-            }, educationClassIdOption, topOption, skipOption, searchOption, filterOption, countOption, orderbyOption, selectOption, expandOption, outputOption);
+            }, new CollectionBinding(educationClassIdOption, topOption, skipOption, searchOption, filterOption, countOption, orderbyOption, selectOption, expandOption, outputOption, new TypeBinding(typeof(IOutputFormatterFactory)), new TypeBinding(typeof(CancellationToken))));
             return command;
         }
         public Command BuildRefCommand() {

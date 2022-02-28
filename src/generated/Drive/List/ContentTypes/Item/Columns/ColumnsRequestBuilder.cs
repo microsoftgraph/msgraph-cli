@@ -2,6 +2,7 @@ using ApiSdk.Drive.List.ContentTypes.Item.Columns.Item;
 using ApiSdk.Models.Microsoft.Graph;
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
+using Microsoft.Kiota.Cli.Commons.Binding;
 using Microsoft.Kiota.Cli.Commons.IO;
 using System;
 using System.Collections.Generic;
@@ -21,7 +22,7 @@ namespace ApiSdk.Drive.List.ContentTypes.Item.Columns {
         /// <summary>Url template to use to build the URL for the current request builder</summary>
         private string UrlTemplate { get; set; }
         public List<Command> BuildCommand() {
-            var builder = new ColumnDefinitionRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new ColumnDefinitionItemRequestBuilder(PathParameters, RequestAdapter);
             var commands = new List<Command>();
             commands.Add(builder.BuildDeleteCommand());
             commands.Add(builder.BuildGetCommand());
@@ -48,7 +49,14 @@ namespace ApiSdk.Drive.List.ContentTypes.Item.Columns {
                 IsRequired = true
             };
             command.AddOption(outputOption);
-            command.SetHandler(async (string contentTypeId, string body, FormatterType output, IOutputFormatterFactory outputFormatterFactory, CancellationToken cancellationToken) => {
+            command.SetHandler(async (object[] parameters) => {
+                var contentTypeId = (string) parameters[0];
+                var body = (string) parameters[1];
+                var output = (FormatterType) parameters[2];
+                var outputFormatterFactory = (IOutputFormatterFactory) parameters[3];
+                var cancellationToken = (CancellationToken) parameters[4];
+                PathParameters.Clear();
+                PathParameters.Add("contentType_id", contentTypeId);
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<ColumnDefinition>();
@@ -57,7 +65,7 @@ namespace ApiSdk.Drive.List.ContentTypes.Item.Columns {
                 var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: default, cancellationToken: cancellationToken);
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 formatter.WriteOutput(response);
-            }, contentTypeIdOption, bodyOption, outputOption);
+            }, new CollectionBinding(contentTypeIdOption, bodyOption, outputOption, new TypeBinding(typeof(IOutputFormatterFactory)), new TypeBinding(typeof(CancellationToken))));
             return command;
         }
         /// <summary>
@@ -110,7 +118,21 @@ namespace ApiSdk.Drive.List.ContentTypes.Item.Columns {
                 IsRequired = true
             };
             command.AddOption(outputOption);
-            command.SetHandler(async (string contentTypeId, int? top, int? skip, string search, string filter, bool? count, string[] orderby, string[] select, string[] expand, FormatterType output, IOutputFormatterFactory outputFormatterFactory, CancellationToken cancellationToken) => {
+            command.SetHandler(async (object[] parameters) => {
+                var contentTypeId = (string) parameters[0];
+                var top = (int?) parameters[1];
+                var skip = (int?) parameters[2];
+                var search = (string) parameters[3];
+                var filter = (string) parameters[4];
+                var count = (bool?) parameters[5];
+                var orderby = (string[]) parameters[6];
+                var select = (string[]) parameters[7];
+                var expand = (string[]) parameters[8];
+                var output = (FormatterType) parameters[9];
+                var outputFormatterFactory = (IOutputFormatterFactory) parameters[10];
+                var cancellationToken = (CancellationToken) parameters[11];
+                PathParameters.Clear();
+                PathParameters.Add("contentType_id", contentTypeId);
                 var requestInfo = CreateGetRequestInformation(q => {
                     q.Top = top;
                     q.Skip = skip;
@@ -124,7 +146,7 @@ namespace ApiSdk.Drive.List.ContentTypes.Item.Columns {
                 var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: default, cancellationToken: cancellationToken);
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 formatter.WriteOutput(response);
-            }, contentTypeIdOption, topOption, skipOption, searchOption, filterOption, countOption, orderbyOption, selectOption, expandOption, outputOption);
+            }, new CollectionBinding(contentTypeIdOption, topOption, skipOption, searchOption, filterOption, countOption, orderbyOption, selectOption, expandOption, outputOption, new TypeBinding(typeof(IOutputFormatterFactory)), new TypeBinding(typeof(CancellationToken))));
             return command;
         }
         /// <summary>

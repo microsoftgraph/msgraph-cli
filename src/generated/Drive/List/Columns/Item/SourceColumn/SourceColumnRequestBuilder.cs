@@ -2,6 +2,7 @@ using ApiSdk.Drive.List.Columns.Item.SourceColumn.Ref;
 using ApiSdk.Models.Microsoft.Graph;
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
+using Microsoft.Kiota.Cli.Commons.Binding;
 using Microsoft.Kiota.Cli.Commons.IO;
 using System;
 using System.Collections.Generic;
@@ -45,7 +46,15 @@ namespace ApiSdk.Drive.List.Columns.Item.SourceColumn {
                 IsRequired = true
             };
             command.AddOption(outputOption);
-            command.SetHandler(async (string columnDefinitionId, string[] select, string[] expand, FormatterType output, IOutputFormatterFactory outputFormatterFactory, CancellationToken cancellationToken) => {
+            command.SetHandler(async (object[] parameters) => {
+                var columnDefinitionId = (string) parameters[0];
+                var select = (string[]) parameters[1];
+                var expand = (string[]) parameters[2];
+                var output = (FormatterType) parameters[3];
+                var outputFormatterFactory = (IOutputFormatterFactory) parameters[4];
+                var cancellationToken = (CancellationToken) parameters[5];
+                PathParameters.Clear();
+                PathParameters.Add("columnDefinition_id", columnDefinitionId);
                 var requestInfo = CreateGetRequestInformation(q => {
                     q.Select = select;
                     q.Expand = expand;
@@ -53,7 +62,7 @@ namespace ApiSdk.Drive.List.Columns.Item.SourceColumn {
                 var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: default, cancellationToken: cancellationToken);
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 formatter.WriteOutput(response);
-            }, columnDefinitionIdOption, selectOption, expandOption, outputOption);
+            }, new CollectionBinding(columnDefinitionIdOption, selectOption, expandOption, outputOption, new TypeBinding(typeof(IOutputFormatterFactory)), new TypeBinding(typeof(CancellationToken))));
             return command;
         }
         public Command BuildRefCommand() {

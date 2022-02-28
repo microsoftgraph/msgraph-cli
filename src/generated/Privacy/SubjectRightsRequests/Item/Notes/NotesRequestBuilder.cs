@@ -2,6 +2,7 @@ using ApiSdk.Models.Microsoft.Graph;
 using ApiSdk.Privacy.SubjectRightsRequests.Item.Notes.Item;
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
+using Microsoft.Kiota.Cli.Commons.Binding;
 using Microsoft.Kiota.Cli.Commons.IO;
 using System;
 using System.Collections.Generic;
@@ -21,7 +22,7 @@ namespace ApiSdk.Privacy.SubjectRightsRequests.Item.Notes {
         /// <summary>Url template to use to build the URL for the current request builder</summary>
         private string UrlTemplate { get; set; }
         public List<Command> BuildCommand() {
-            var builder = new AuthoredNoteRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new AuthoredNoteItemRequestBuilder(PathParameters, RequestAdapter);
             var commands = new List<Command>();
             commands.Add(builder.BuildDeleteCommand());
             commands.Add(builder.BuildGetCommand());
@@ -47,7 +48,14 @@ namespace ApiSdk.Privacy.SubjectRightsRequests.Item.Notes {
                 IsRequired = true
             };
             command.AddOption(outputOption);
-            command.SetHandler(async (string subjectRightsRequestId, string body, FormatterType output, IOutputFormatterFactory outputFormatterFactory, CancellationToken cancellationToken) => {
+            command.SetHandler(async (object[] parameters) => {
+                var subjectRightsRequestId = (string) parameters[0];
+                var body = (string) parameters[1];
+                var output = (FormatterType) parameters[2];
+                var outputFormatterFactory = (IOutputFormatterFactory) parameters[3];
+                var cancellationToken = (CancellationToken) parameters[4];
+                PathParameters.Clear();
+                PathParameters.Add("subjectRightsRequest_id", subjectRightsRequestId);
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<AuthoredNote>();
@@ -56,7 +64,7 @@ namespace ApiSdk.Privacy.SubjectRightsRequests.Item.Notes {
                 var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: default, cancellationToken: cancellationToken);
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 formatter.WriteOutput(response);
-            }, subjectRightsRequestIdOption, bodyOption, outputOption);
+            }, new CollectionBinding(subjectRightsRequestIdOption, bodyOption, outputOption, new TypeBinding(typeof(IOutputFormatterFactory)), new TypeBinding(typeof(CancellationToken))));
             return command;
         }
         /// <summary>
@@ -109,7 +117,21 @@ namespace ApiSdk.Privacy.SubjectRightsRequests.Item.Notes {
                 IsRequired = true
             };
             command.AddOption(outputOption);
-            command.SetHandler(async (string subjectRightsRequestId, int? top, int? skip, string search, string filter, bool? count, string[] orderby, string[] select, string[] expand, FormatterType output, IOutputFormatterFactory outputFormatterFactory, CancellationToken cancellationToken) => {
+            command.SetHandler(async (object[] parameters) => {
+                var subjectRightsRequestId = (string) parameters[0];
+                var top = (int?) parameters[1];
+                var skip = (int?) parameters[2];
+                var search = (string) parameters[3];
+                var filter = (string) parameters[4];
+                var count = (bool?) parameters[5];
+                var orderby = (string[]) parameters[6];
+                var select = (string[]) parameters[7];
+                var expand = (string[]) parameters[8];
+                var output = (FormatterType) parameters[9];
+                var outputFormatterFactory = (IOutputFormatterFactory) parameters[10];
+                var cancellationToken = (CancellationToken) parameters[11];
+                PathParameters.Clear();
+                PathParameters.Add("subjectRightsRequest_id", subjectRightsRequestId);
                 var requestInfo = CreateGetRequestInformation(q => {
                     q.Top = top;
                     q.Skip = skip;
@@ -123,7 +145,7 @@ namespace ApiSdk.Privacy.SubjectRightsRequests.Item.Notes {
                 var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: default, cancellationToken: cancellationToken);
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 formatter.WriteOutput(response);
-            }, subjectRightsRequestIdOption, topOption, skipOption, searchOption, filterOption, countOption, orderbyOption, selectOption, expandOption, outputOption);
+            }, new CollectionBinding(subjectRightsRequestIdOption, topOption, skipOption, searchOption, filterOption, countOption, orderbyOption, selectOption, expandOption, outputOption, new TypeBinding(typeof(IOutputFormatterFactory)), new TypeBinding(typeof(CancellationToken))));
             return command;
         }
         /// <summary>

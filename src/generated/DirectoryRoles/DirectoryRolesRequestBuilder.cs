@@ -6,6 +6,7 @@ using ApiSdk.DirectoryRoles.ValidateProperties;
 using ApiSdk.Models.Microsoft.Graph;
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
+using Microsoft.Kiota.Cli.Commons.Binding;
 using Microsoft.Kiota.Cli.Commons.IO;
 using System;
 using System.Collections.Generic;
@@ -25,7 +26,7 @@ namespace ApiSdk.DirectoryRoles {
         /// <summary>Url template to use to build the URL for the current request builder</summary>
         private string UrlTemplate { get; set; }
         public List<Command> BuildCommand() {
-            var builder = new DirectoryRoleRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new DirectoryRoleItemRequestBuilder(PathParameters, RequestAdapter);
             var commands = new List<Command>();
             commands.Add(builder.BuildCheckMemberGroupsCommand());
             commands.Add(builder.BuildCheckMemberObjectsCommand());
@@ -54,7 +55,11 @@ namespace ApiSdk.DirectoryRoles {
                 IsRequired = true
             };
             command.AddOption(outputOption);
-            command.SetHandler(async (string body, FormatterType output, IOutputFormatterFactory outputFormatterFactory, CancellationToken cancellationToken) => {
+            command.SetHandler(async (object[] parameters) => {
+                var body = (string) parameters[0];
+                var output = (FormatterType) parameters[1];
+                var outputFormatterFactory = (IOutputFormatterFactory) parameters[2];
+                var cancellationToken = (CancellationToken) parameters[3];
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<DirectoryRole>();
@@ -63,7 +68,7 @@ namespace ApiSdk.DirectoryRoles {
                 var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: default, cancellationToken: cancellationToken);
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 formatter.WriteOutput(response);
-            }, bodyOption, outputOption);
+            }, new CollectionBinding(bodyOption, outputOption, new TypeBinding(typeof(IOutputFormatterFactory)), new TypeBinding(typeof(CancellationToken))));
             return command;
         }
         public Command BuildGetAvailableExtensionPropertiesCommand() {
@@ -120,7 +125,17 @@ namespace ApiSdk.DirectoryRoles {
                 IsRequired = true
             };
             command.AddOption(outputOption);
-            command.SetHandler(async (int? skip, string search, string filter, bool? count, string[] orderby, string[] select, string[] expand, FormatterType output, IOutputFormatterFactory outputFormatterFactory, CancellationToken cancellationToken) => {
+            command.SetHandler(async (object[] parameters) => {
+                var skip = (int?) parameters[0];
+                var search = (string) parameters[1];
+                var filter = (string) parameters[2];
+                var count = (bool?) parameters[3];
+                var orderby = (string[]) parameters[4];
+                var select = (string[]) parameters[5];
+                var expand = (string[]) parameters[6];
+                var output = (FormatterType) parameters[7];
+                var outputFormatterFactory = (IOutputFormatterFactory) parameters[8];
+                var cancellationToken = (CancellationToken) parameters[9];
                 var requestInfo = CreateGetRequestInformation(q => {
                     q.Skip = skip;
                     if (!String.IsNullOrEmpty(search)) q.Search = search;
@@ -133,7 +148,7 @@ namespace ApiSdk.DirectoryRoles {
                 var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: default, cancellationToken: cancellationToken);
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 formatter.WriteOutput(response);
-            }, skipOption, searchOption, filterOption, countOption, orderbyOption, selectOption, expandOption, outputOption);
+            }, new CollectionBinding(skipOption, searchOption, filterOption, countOption, orderbyOption, selectOption, expandOption, outputOption, new TypeBinding(typeof(IOutputFormatterFactory)), new TypeBinding(typeof(CancellationToken))));
             return command;
         }
         public Command BuildValidatePropertiesCommand() {

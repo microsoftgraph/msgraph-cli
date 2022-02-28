@@ -1,5 +1,6 @@
 using ApiSdk.Users.Item.Insights.Used.Item.Resource.WorkbookRangeView.Range;
 using Microsoft.Kiota.Abstractions;
+using Microsoft.Kiota.Cli.Commons.Binding;
 using Microsoft.Kiota.Cli.Commons.IO;
 using System;
 using System.Collections.Generic;

@@ -1,5 +1,6 @@
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
+using Microsoft.Kiota.Cli.Commons.Binding;
 using Microsoft.Kiota.Cli.Commons.IO;
 using System;
 using System.Collections.Generic;
@@ -53,13 +54,29 @@ namespace ApiSdk.Workbooks.Item.Workbook.Worksheets.Item.Charts.Item.ImageWithWi
                 IsRequired = true
             };
             command.AddOption(outputOption);
-            command.SetHandler(async (string driveItemId, string workbookWorksheetId, string workbookChartId, int? width, int? height, string fittingMode, FormatterType output, IOutputFormatterFactory outputFormatterFactory, CancellationToken cancellationToken) => {
+            command.SetHandler(async (object[] parameters) => {
+                var driveItemId = (string) parameters[0];
+                var workbookWorksheetId = (string) parameters[1];
+                var workbookChartId = (string) parameters[2];
+                var width = (int?) parameters[3];
+                var height = (int?) parameters[4];
+                var fittingMode = (string) parameters[5];
+                var output = (FormatterType) parameters[6];
+                var outputFormatterFactory = (IOutputFormatterFactory) parameters[7];
+                var cancellationToken = (CancellationToken) parameters[8];
+                PathParameters.Clear();
+                PathParameters.Add("driveItem_id", driveItemId);
+                PathParameters.Add("workbookWorksheet_id", workbookWorksheetId);
+                PathParameters.Add("workbookChart_id", workbookChartId);
+                PathParameters.Add("width", width);
+                PathParameters.Add("height", height);
+                PathParameters.Add("fittingMode", fittingMode);
                 var requestInfo = CreateGetRequestInformation(q => {
                 });
                 var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: default, cancellationToken: cancellationToken);
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 formatter.WriteOutput(response);
-            }, driveItemIdOption, workbookWorksheetIdOption, workbookChartIdOption, widthOption, heightOption, fittingModeOption, outputOption);
+            }, new CollectionBinding(driveItemIdOption, workbookWorksheetIdOption, workbookChartIdOption, widthOption, heightOption, fittingModeOption, outputOption, new TypeBinding(typeof(IOutputFormatterFactory)), new TypeBinding(typeof(CancellationToken))));
             return command;
         }
         /// <summary>

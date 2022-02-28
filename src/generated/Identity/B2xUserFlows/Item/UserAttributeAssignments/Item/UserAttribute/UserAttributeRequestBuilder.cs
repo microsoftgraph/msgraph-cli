@@ -2,6 +2,7 @@ using ApiSdk.Identity.B2xUserFlows.Item.UserAttributeAssignments.Item.UserAttrib
 using ApiSdk.Models.Microsoft.Graph;
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
+using Microsoft.Kiota.Cli.Commons.Binding;
 using Microsoft.Kiota.Cli.Commons.IO;
 using System;
 using System.Collections.Generic;
@@ -49,7 +50,17 @@ namespace ApiSdk.Identity.B2xUserFlows.Item.UserAttributeAssignments.Item.UserAt
                 IsRequired = true
             };
             command.AddOption(outputOption);
-            command.SetHandler(async (string b2xIdentityUserFlowId, string identityUserFlowAttributeAssignmentId, string[] select, string[] expand, FormatterType output, IOutputFormatterFactory outputFormatterFactory, CancellationToken cancellationToken) => {
+            command.SetHandler(async (object[] parameters) => {
+                var b2xIdentityUserFlowId = (string) parameters[0];
+                var identityUserFlowAttributeAssignmentId = (string) parameters[1];
+                var select = (string[]) parameters[2];
+                var expand = (string[]) parameters[3];
+                var output = (FormatterType) parameters[4];
+                var outputFormatterFactory = (IOutputFormatterFactory) parameters[5];
+                var cancellationToken = (CancellationToken) parameters[6];
+                PathParameters.Clear();
+                PathParameters.Add("b2xIdentityUserFlow_id", b2xIdentityUserFlowId);
+                PathParameters.Add("identityUserFlowAttributeAssignment_id", identityUserFlowAttributeAssignmentId);
                 var requestInfo = CreateGetRequestInformation(q => {
                     q.Select = select;
                     q.Expand = expand;
@@ -57,7 +68,7 @@ namespace ApiSdk.Identity.B2xUserFlows.Item.UserAttributeAssignments.Item.UserAt
                 var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: default, cancellationToken: cancellationToken);
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 formatter.WriteOutput(response);
-            }, b2xIdentityUserFlowIdOption, identityUserFlowAttributeAssignmentIdOption, selectOption, expandOption, outputOption);
+            }, new CollectionBinding(b2xIdentityUserFlowIdOption, identityUserFlowAttributeAssignmentIdOption, selectOption, expandOption, outputOption, new TypeBinding(typeof(IOutputFormatterFactory)), new TypeBinding(typeof(CancellationToken))));
             return command;
         }
         public Command BuildRefCommand() {

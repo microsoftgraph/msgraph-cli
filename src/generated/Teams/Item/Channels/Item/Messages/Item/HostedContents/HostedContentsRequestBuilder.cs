@@ -2,6 +2,7 @@ using ApiSdk.Models.Microsoft.Graph;
 using ApiSdk.Teams.Item.Channels.Item.Messages.Item.HostedContents.Item;
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
+using Microsoft.Kiota.Cli.Commons.Binding;
 using Microsoft.Kiota.Cli.Commons.IO;
 using System;
 using System.Collections.Generic;
@@ -21,7 +22,7 @@ namespace ApiSdk.Teams.Item.Channels.Item.Messages.Item.HostedContents {
         /// <summary>Url template to use to build the URL for the current request builder</summary>
         private string UrlTemplate { get; set; }
         public List<Command> BuildCommand() {
-            var builder = new ChatMessageHostedContentRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new ChatMessageHostedContentItemRequestBuilder(PathParameters, RequestAdapter);
             var commands = new List<Command>();
             commands.Add(builder.BuildDeleteCommand());
             commands.Add(builder.BuildGetCommand());
@@ -55,7 +56,18 @@ namespace ApiSdk.Teams.Item.Channels.Item.Messages.Item.HostedContents {
                 IsRequired = true
             };
             command.AddOption(outputOption);
-            command.SetHandler(async (string teamId, string channelId, string chatMessageId, string body, FormatterType output, IOutputFormatterFactory outputFormatterFactory, CancellationToken cancellationToken) => {
+            command.SetHandler(async (object[] parameters) => {
+                var teamId = (string) parameters[0];
+                var channelId = (string) parameters[1];
+                var chatMessageId = (string) parameters[2];
+                var body = (string) parameters[3];
+                var output = (FormatterType) parameters[4];
+                var outputFormatterFactory = (IOutputFormatterFactory) parameters[5];
+                var cancellationToken = (CancellationToken) parameters[6];
+                PathParameters.Clear();
+                PathParameters.Add("team_id", teamId);
+                PathParameters.Add("channel_id", channelId);
+                PathParameters.Add("chatMessage_id", chatMessageId);
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<ChatMessageHostedContent>();
@@ -64,7 +76,7 @@ namespace ApiSdk.Teams.Item.Channels.Item.Messages.Item.HostedContents {
                 var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: default, cancellationToken: cancellationToken);
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 formatter.WriteOutput(response);
-            }, teamIdOption, channelIdOption, chatMessageIdOption, bodyOption, outputOption);
+            }, new CollectionBinding(teamIdOption, channelIdOption, chatMessageIdOption, bodyOption, outputOption, new TypeBinding(typeof(IOutputFormatterFactory)), new TypeBinding(typeof(CancellationToken))));
             return command;
         }
         /// <summary>
@@ -125,7 +137,25 @@ namespace ApiSdk.Teams.Item.Channels.Item.Messages.Item.HostedContents {
                 IsRequired = true
             };
             command.AddOption(outputOption);
-            command.SetHandler(async (string teamId, string channelId, string chatMessageId, int? top, int? skip, string search, string filter, bool? count, string[] orderby, string[] select, string[] expand, FormatterType output, IOutputFormatterFactory outputFormatterFactory, CancellationToken cancellationToken) => {
+            command.SetHandler(async (object[] parameters) => {
+                var teamId = (string) parameters[0];
+                var channelId = (string) parameters[1];
+                var chatMessageId = (string) parameters[2];
+                var top = (int?) parameters[3];
+                var skip = (int?) parameters[4];
+                var search = (string) parameters[5];
+                var filter = (string) parameters[6];
+                var count = (bool?) parameters[7];
+                var orderby = (string[]) parameters[8];
+                var select = (string[]) parameters[9];
+                var expand = (string[]) parameters[10];
+                var output = (FormatterType) parameters[11];
+                var outputFormatterFactory = (IOutputFormatterFactory) parameters[12];
+                var cancellationToken = (CancellationToken) parameters[13];
+                PathParameters.Clear();
+                PathParameters.Add("team_id", teamId);
+                PathParameters.Add("channel_id", channelId);
+                PathParameters.Add("chatMessage_id", chatMessageId);
                 var requestInfo = CreateGetRequestInformation(q => {
                     q.Top = top;
                     q.Skip = skip;
@@ -139,7 +169,7 @@ namespace ApiSdk.Teams.Item.Channels.Item.Messages.Item.HostedContents {
                 var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: default, cancellationToken: cancellationToken);
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 formatter.WriteOutput(response);
-            }, teamIdOption, channelIdOption, chatMessageIdOption, topOption, skipOption, searchOption, filterOption, countOption, orderbyOption, selectOption, expandOption, outputOption);
+            }, new CollectionBinding(teamIdOption, channelIdOption, chatMessageIdOption, topOption, skipOption, searchOption, filterOption, countOption, orderbyOption, selectOption, expandOption, outputOption, new TypeBinding(typeof(IOutputFormatterFactory)), new TypeBinding(typeof(CancellationToken))));
             return command;
         }
         /// <summary>

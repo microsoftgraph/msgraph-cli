@@ -7,6 +7,7 @@ using ApiSdk.Sites.Item.ContentTypes.Item.Base.Ref;
 using ApiSdk.Sites.Item.ContentTypes.Item.Base.Unpublish;
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
+using Microsoft.Kiota.Cli.Commons.Binding;
 using Microsoft.Kiota.Cli.Commons.IO;
 using System;
 using System.Collections.Generic;
@@ -66,7 +67,17 @@ namespace ApiSdk.Sites.Item.ContentTypes.Item.Base {
                 IsRequired = true
             };
             command.AddOption(outputOption);
-            command.SetHandler(async (string siteId, string contentTypeId, string[] select, string[] expand, FormatterType output, IOutputFormatterFactory outputFormatterFactory, CancellationToken cancellationToken) => {
+            command.SetHandler(async (object[] parameters) => {
+                var siteId = (string) parameters[0];
+                var contentTypeId = (string) parameters[1];
+                var select = (string[]) parameters[2];
+                var expand = (string[]) parameters[3];
+                var output = (FormatterType) parameters[4];
+                var outputFormatterFactory = (IOutputFormatterFactory) parameters[5];
+                var cancellationToken = (CancellationToken) parameters[6];
+                PathParameters.Clear();
+                PathParameters.Add("site_id", siteId);
+                PathParameters.Add("contentType_id", contentTypeId);
                 var requestInfo = CreateGetRequestInformation(q => {
                     q.Select = select;
                     q.Expand = expand;
@@ -74,7 +85,7 @@ namespace ApiSdk.Sites.Item.ContentTypes.Item.Base {
                 var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: default, cancellationToken: cancellationToken);
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 formatter.WriteOutput(response);
-            }, siteIdOption, contentTypeIdOption, selectOption, expandOption, outputOption);
+            }, new CollectionBinding(siteIdOption, contentTypeIdOption, selectOption, expandOption, outputOption, new TypeBinding(typeof(IOutputFormatterFactory)), new TypeBinding(typeof(CancellationToken))));
             return command;
         }
         public Command BuildPublishCommand() {

@@ -1,6 +1,7 @@
 using ApiSdk.Models.Microsoft.Graph;
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
+using Microsoft.Kiota.Cli.Commons.Binding;
 using Microsoft.Kiota.Cli.Commons.IO;
 using System;
 using System.Collections.Generic;
@@ -42,13 +43,23 @@ namespace ApiSdk.Me.Insights.Shared.Item.Resource.WorkbookRange.ResizedRangeWith
                 IsRequired = true
             };
             command.AddOption(outputOption);
-            command.SetHandler(async (string sharedInsightId, int? deltaRows, int? deltaColumns, FormatterType output, IOutputFormatterFactory outputFormatterFactory, CancellationToken cancellationToken) => {
+            command.SetHandler(async (object[] parameters) => {
+                var sharedInsightId = (string) parameters[0];
+                var deltaRows = (int?) parameters[1];
+                var deltaColumns = (int?) parameters[2];
+                var output = (FormatterType) parameters[3];
+                var outputFormatterFactory = (IOutputFormatterFactory) parameters[4];
+                var cancellationToken = (CancellationToken) parameters[5];
+                PathParameters.Clear();
+                PathParameters.Add("sharedInsight_id", sharedInsightId);
+                PathParameters.Add("deltaRows", deltaRows);
+                PathParameters.Add("deltaColumns", deltaColumns);
                 var requestInfo = CreateGetRequestInformation(q => {
                 });
                 var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: default, cancellationToken: cancellationToken);
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 formatter.WriteOutput(response);
-            }, sharedInsightIdOption, deltaRowsOption, deltaColumnsOption, outputOption);
+            }, new CollectionBinding(sharedInsightIdOption, deltaRowsOption, deltaColumnsOption, outputOption, new TypeBinding(typeof(IOutputFormatterFactory)), new TypeBinding(typeof(CancellationToken))));
             return command;
         }
         /// <summary>

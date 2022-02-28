@@ -1,5 +1,6 @@
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
+using Microsoft.Kiota.Cli.Commons.Binding;
 using Microsoft.Kiota.Cli.Commons.IO;
 using System;
 using System.Collections.Generic;
@@ -37,7 +38,15 @@ namespace ApiSdk.Solutions.BookingBusinesses.Item.CalendarView.Item.Cancel {
             };
             bodyOption.IsRequired = true;
             command.AddOption(bodyOption);
-            command.SetHandler(async (string bookingBusinessId, string bookingAppointmentId, string body, IOutputFormatterFactory outputFormatterFactory, CancellationToken cancellationToken) => {
+            command.SetHandler(async (object[] parameters) => {
+                var bookingBusinessId = (string) parameters[0];
+                var bookingAppointmentId = (string) parameters[1];
+                var body = (string) parameters[2];
+                var outputFormatterFactory = (IOutputFormatterFactory) parameters[3];
+                var cancellationToken = (CancellationToken) parameters[4];
+                PathParameters.Clear();
+                PathParameters.Add("bookingBusiness_id", bookingBusinessId);
+                PathParameters.Add("bookingAppointment_id", bookingAppointmentId);
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<CancelRequestBody>();
@@ -45,7 +54,7 @@ namespace ApiSdk.Solutions.BookingBusinesses.Item.CalendarView.Item.Cancel {
                 });
                 await RequestAdapter.SendNoContentAsync(requestInfo, errorMapping: default, cancellationToken: cancellationToken);
                 Console.WriteLine("Success");
-            }, bookingBusinessIdOption, bookingAppointmentIdOption, bodyOption);
+            }, new CollectionBinding(bookingBusinessIdOption, bookingAppointmentIdOption, bodyOption, new TypeBinding(typeof(IOutputFormatterFactory)), new TypeBinding(typeof(CancellationToken))));
             return command;
         }
         /// <summary>

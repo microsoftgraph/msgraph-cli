@@ -2,6 +2,7 @@ using ApiSdk.Models.Microsoft.Graph;
 using ApiSdk.Teams.Item.Channels.Item.Tabs.Item.TeamsApp.Ref;
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
+using Microsoft.Kiota.Cli.Commons.Binding;
 using Microsoft.Kiota.Cli.Commons.IO;
 using System;
 using System.Collections.Generic;
@@ -53,7 +54,19 @@ namespace ApiSdk.Teams.Item.Channels.Item.Tabs.Item.TeamsApp {
                 IsRequired = true
             };
             command.AddOption(outputOption);
-            command.SetHandler(async (string teamId, string channelId, string teamsTabId, string[] select, string[] expand, FormatterType output, IOutputFormatterFactory outputFormatterFactory, CancellationToken cancellationToken) => {
+            command.SetHandler(async (object[] parameters) => {
+                var teamId = (string) parameters[0];
+                var channelId = (string) parameters[1];
+                var teamsTabId = (string) parameters[2];
+                var select = (string[]) parameters[3];
+                var expand = (string[]) parameters[4];
+                var output = (FormatterType) parameters[5];
+                var outputFormatterFactory = (IOutputFormatterFactory) parameters[6];
+                var cancellationToken = (CancellationToken) parameters[7];
+                PathParameters.Clear();
+                PathParameters.Add("team_id", teamId);
+                PathParameters.Add("channel_id", channelId);
+                PathParameters.Add("teamsTab_id", teamsTabId);
                 var requestInfo = CreateGetRequestInformation(q => {
                     q.Select = select;
                     q.Expand = expand;
@@ -61,7 +74,7 @@ namespace ApiSdk.Teams.Item.Channels.Item.Tabs.Item.TeamsApp {
                 var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: default, cancellationToken: cancellationToken);
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 formatter.WriteOutput(response);
-            }, teamIdOption, channelIdOption, teamsTabIdOption, selectOption, expandOption, outputOption);
+            }, new CollectionBinding(teamIdOption, channelIdOption, teamsTabIdOption, selectOption, expandOption, outputOption, new TypeBinding(typeof(IOutputFormatterFactory)), new TypeBinding(typeof(CancellationToken))));
             return command;
         }
         public Command BuildRefCommand() {

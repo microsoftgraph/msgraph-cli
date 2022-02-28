@@ -2,6 +2,7 @@ using ApiSdk.Drives.Item.List.ContentTypes.Item.Columns.Item.SourceColumn.Ref;
 using ApiSdk.Models.Microsoft.Graph;
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
+using Microsoft.Kiota.Cli.Commons.Binding;
 using Microsoft.Kiota.Cli.Commons.IO;
 using System;
 using System.Collections.Generic;
@@ -53,7 +54,19 @@ namespace ApiSdk.Drives.Item.List.ContentTypes.Item.Columns.Item.SourceColumn {
                 IsRequired = true
             };
             command.AddOption(outputOption);
-            command.SetHandler(async (string driveId, string contentTypeId, string columnDefinitionId, string[] select, string[] expand, FormatterType output, IOutputFormatterFactory outputFormatterFactory, CancellationToken cancellationToken) => {
+            command.SetHandler(async (object[] parameters) => {
+                var driveId = (string) parameters[0];
+                var contentTypeId = (string) parameters[1];
+                var columnDefinitionId = (string) parameters[2];
+                var select = (string[]) parameters[3];
+                var expand = (string[]) parameters[4];
+                var output = (FormatterType) parameters[5];
+                var outputFormatterFactory = (IOutputFormatterFactory) parameters[6];
+                var cancellationToken = (CancellationToken) parameters[7];
+                PathParameters.Clear();
+                PathParameters.Add("drive_id", driveId);
+                PathParameters.Add("contentType_id", contentTypeId);
+                PathParameters.Add("columnDefinition_id", columnDefinitionId);
                 var requestInfo = CreateGetRequestInformation(q => {
                     q.Select = select;
                     q.Expand = expand;
@@ -61,7 +74,7 @@ namespace ApiSdk.Drives.Item.List.ContentTypes.Item.Columns.Item.SourceColumn {
                 var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: default, cancellationToken: cancellationToken);
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 formatter.WriteOutput(response);
-            }, driveIdOption, contentTypeIdOption, columnDefinitionIdOption, selectOption, expandOption, outputOption);
+            }, new CollectionBinding(driveIdOption, contentTypeIdOption, columnDefinitionIdOption, selectOption, expandOption, outputOption, new TypeBinding(typeof(IOutputFormatterFactory)), new TypeBinding(typeof(CancellationToken))));
             return command;
         }
         public Command BuildRefCommand() {

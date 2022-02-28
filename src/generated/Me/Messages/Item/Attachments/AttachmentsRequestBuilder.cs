@@ -3,6 +3,7 @@ using ApiSdk.Me.Messages.Item.Attachments.Item;
 using ApiSdk.Models.Microsoft.Graph;
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
+using Microsoft.Kiota.Cli.Commons.Binding;
 using Microsoft.Kiota.Cli.Commons.IO;
 using System;
 using System.Collections.Generic;
@@ -22,7 +23,7 @@ namespace ApiSdk.Me.Messages.Item.Attachments {
         /// <summary>Url template to use to build the URL for the current request builder</summary>
         private string UrlTemplate { get; set; }
         public List<Command> BuildCommand() {
-            var builder = new AttachmentRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new AttachmentItemRequestBuilder(PathParameters, RequestAdapter);
             var commands = new List<Command>();
             commands.Add(builder.BuildDeleteCommand());
             commands.Add(builder.BuildGetCommand());
@@ -48,7 +49,14 @@ namespace ApiSdk.Me.Messages.Item.Attachments {
                 IsRequired = true
             };
             command.AddOption(outputOption);
-            command.SetHandler(async (string messageId, string body, FormatterType output, IOutputFormatterFactory outputFormatterFactory, CancellationToken cancellationToken) => {
+            command.SetHandler(async (object[] parameters) => {
+                var messageId = (string) parameters[0];
+                var body = (string) parameters[1];
+                var output = (FormatterType) parameters[2];
+                var outputFormatterFactory = (IOutputFormatterFactory) parameters[3];
+                var cancellationToken = (CancellationToken) parameters[4];
+                PathParameters.Clear();
+                PathParameters.Add("message_id", messageId);
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<Attachment>();
@@ -57,7 +65,7 @@ namespace ApiSdk.Me.Messages.Item.Attachments {
                 var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: default, cancellationToken: cancellationToken);
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 formatter.WriteOutput(response);
-            }, messageIdOption, bodyOption, outputOption);
+            }, new CollectionBinding(messageIdOption, bodyOption, outputOption, new TypeBinding(typeof(IOutputFormatterFactory)), new TypeBinding(typeof(CancellationToken))));
             return command;
         }
         public Command BuildCreateUploadSessionCommand() {
@@ -112,7 +120,20 @@ namespace ApiSdk.Me.Messages.Item.Attachments {
                 IsRequired = true
             };
             command.AddOption(outputOption);
-            command.SetHandler(async (string messageId, int? top, int? skip, string filter, bool? count, string[] orderby, string[] select, string[] expand, FormatterType output, IOutputFormatterFactory outputFormatterFactory, CancellationToken cancellationToken) => {
+            command.SetHandler(async (object[] parameters) => {
+                var messageId = (string) parameters[0];
+                var top = (int?) parameters[1];
+                var skip = (int?) parameters[2];
+                var filter = (string) parameters[3];
+                var count = (bool?) parameters[4];
+                var orderby = (string[]) parameters[5];
+                var select = (string[]) parameters[6];
+                var expand = (string[]) parameters[7];
+                var output = (FormatterType) parameters[8];
+                var outputFormatterFactory = (IOutputFormatterFactory) parameters[9];
+                var cancellationToken = (CancellationToken) parameters[10];
+                PathParameters.Clear();
+                PathParameters.Add("message_id", messageId);
                 var requestInfo = CreateGetRequestInformation(q => {
                     q.Top = top;
                     q.Skip = skip;
@@ -125,7 +146,7 @@ namespace ApiSdk.Me.Messages.Item.Attachments {
                 var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: default, cancellationToken: cancellationToken);
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 formatter.WriteOutput(response);
-            }, messageIdOption, topOption, skipOption, filterOption, countOption, orderbyOption, selectOption, expandOption, outputOption);
+            }, new CollectionBinding(messageIdOption, topOption, skipOption, filterOption, countOption, orderbyOption, selectOption, expandOption, outputOption, new TypeBinding(typeof(IOutputFormatterFactory)), new TypeBinding(typeof(CancellationToken))));
             return command;
         }
         /// <summary>

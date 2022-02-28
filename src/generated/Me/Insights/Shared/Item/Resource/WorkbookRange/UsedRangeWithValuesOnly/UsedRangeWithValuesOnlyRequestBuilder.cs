@@ -1,6 +1,7 @@
 using ApiSdk.Models.Microsoft.Graph;
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
+using Microsoft.Kiota.Cli.Commons.Binding;
 using Microsoft.Kiota.Cli.Commons.IO;
 using System;
 using System.Collections.Generic;
@@ -38,13 +39,21 @@ namespace ApiSdk.Me.Insights.Shared.Item.Resource.WorkbookRange.UsedRangeWithVal
                 IsRequired = true
             };
             command.AddOption(outputOption);
-            command.SetHandler(async (string sharedInsightId, bool? valuesOnly, FormatterType output, IOutputFormatterFactory outputFormatterFactory, CancellationToken cancellationToken) => {
+            command.SetHandler(async (object[] parameters) => {
+                var sharedInsightId = (string) parameters[0];
+                var valuesOnly = (bool?) parameters[1];
+                var output = (FormatterType) parameters[2];
+                var outputFormatterFactory = (IOutputFormatterFactory) parameters[3];
+                var cancellationToken = (CancellationToken) parameters[4];
+                PathParameters.Clear();
+                PathParameters.Add("sharedInsight_id", sharedInsightId);
+                PathParameters.Add("valuesOnly", valuesOnly);
                 var requestInfo = CreateGetRequestInformation(q => {
                 });
                 var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: default, cancellationToken: cancellationToken);
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 formatter.WriteOutput(response);
-            }, sharedInsightIdOption, valuesOnlyOption, outputOption);
+            }, new CollectionBinding(sharedInsightIdOption, valuesOnlyOption, outputOption, new TypeBinding(typeof(IOutputFormatterFactory)), new TypeBinding(typeof(CancellationToken))));
             return command;
         }
         /// <summary>

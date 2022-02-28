@@ -2,6 +2,7 @@ using ApiSdk.Models.Microsoft.Graph.TermStore;
 using ApiSdk.Sites.Item.TermStore.Sets.Item.Children.Item.Relations.Item.ToTerm.Ref;
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
+using Microsoft.Kiota.Cli.Commons.Binding;
 using Microsoft.Kiota.Cli.Commons.IO;
 using System;
 using System.Collections.Generic;
@@ -57,7 +58,21 @@ namespace ApiSdk.Sites.Item.TermStore.Sets.Item.Children.Item.Relations.Item.ToT
                 IsRequired = true
             };
             command.AddOption(outputOption);
-            command.SetHandler(async (string siteId, string setId, string termId, string relationId, string[] select, string[] expand, FormatterType output, IOutputFormatterFactory outputFormatterFactory, CancellationToken cancellationToken) => {
+            command.SetHandler(async (object[] parameters) => {
+                var siteId = (string) parameters[0];
+                var setId = (string) parameters[1];
+                var termId = (string) parameters[2];
+                var relationId = (string) parameters[3];
+                var select = (string[]) parameters[4];
+                var expand = (string[]) parameters[5];
+                var output = (FormatterType) parameters[6];
+                var outputFormatterFactory = (IOutputFormatterFactory) parameters[7];
+                var cancellationToken = (CancellationToken) parameters[8];
+                PathParameters.Clear();
+                PathParameters.Add("site_id", siteId);
+                PathParameters.Add("set_id", setId);
+                PathParameters.Add("term_id", termId);
+                PathParameters.Add("relation_id", relationId);
                 var requestInfo = CreateGetRequestInformation(q => {
                     q.Select = select;
                     q.Expand = expand;
@@ -65,7 +80,7 @@ namespace ApiSdk.Sites.Item.TermStore.Sets.Item.Children.Item.Relations.Item.ToT
                 var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: default, cancellationToken: cancellationToken);
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 formatter.WriteOutput(response);
-            }, siteIdOption, setIdOption, termIdOption, relationIdOption, selectOption, expandOption, outputOption);
+            }, new CollectionBinding(siteIdOption, setIdOption, termIdOption, relationIdOption, selectOption, expandOption, outputOption, new TypeBinding(typeof(IOutputFormatterFactory)), new TypeBinding(typeof(CancellationToken))));
             return command;
         }
         public Command BuildRefCommand() {

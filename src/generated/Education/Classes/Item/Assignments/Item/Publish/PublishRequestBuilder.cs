@@ -1,6 +1,7 @@
 using ApiSdk.Models.Microsoft.Graph;
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
+using Microsoft.Kiota.Cli.Commons.Binding;
 using Microsoft.Kiota.Cli.Commons.IO;
 using System;
 using System.Collections.Generic;
@@ -38,13 +39,21 @@ namespace ApiSdk.Education.Classes.Item.Assignments.Item.Publish {
                 IsRequired = true
             };
             command.AddOption(outputOption);
-            command.SetHandler(async (string educationClassId, string educationAssignmentId, FormatterType output, IOutputFormatterFactory outputFormatterFactory, CancellationToken cancellationToken) => {
+            command.SetHandler(async (object[] parameters) => {
+                var educationClassId = (string) parameters[0];
+                var educationAssignmentId = (string) parameters[1];
+                var output = (FormatterType) parameters[2];
+                var outputFormatterFactory = (IOutputFormatterFactory) parameters[3];
+                var cancellationToken = (CancellationToken) parameters[4];
+                PathParameters.Clear();
+                PathParameters.Add("educationClass_id", educationClassId);
+                PathParameters.Add("educationAssignment_id", educationAssignmentId);
                 var requestInfo = CreatePostRequestInformation(q => {
                 });
                 var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: default, cancellationToken: cancellationToken);
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 formatter.WriteOutput(response);
-            }, educationClassIdOption, educationAssignmentIdOption, outputOption);
+            }, new CollectionBinding(educationClassIdOption, educationAssignmentIdOption, outputOption, new TypeBinding(typeof(IOutputFormatterFactory)), new TypeBinding(typeof(CancellationToken))));
             return command;
         }
         /// <summary>

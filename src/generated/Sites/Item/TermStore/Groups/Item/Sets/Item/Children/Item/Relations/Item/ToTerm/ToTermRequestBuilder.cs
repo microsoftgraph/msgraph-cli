@@ -2,6 +2,7 @@ using ApiSdk.Models.Microsoft.Graph.TermStore;
 using ApiSdk.Sites.Item.TermStore.Groups.Item.Sets.Item.Children.Item.Relations.Item.ToTerm.Ref;
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
+using Microsoft.Kiota.Cli.Commons.Binding;
 using Microsoft.Kiota.Cli.Commons.IO;
 using System;
 using System.Collections.Generic;
@@ -61,7 +62,23 @@ namespace ApiSdk.Sites.Item.TermStore.Groups.Item.Sets.Item.Children.Item.Relati
                 IsRequired = true
             };
             command.AddOption(outputOption);
-            command.SetHandler(async (string siteId, string groupId, string setId, string termId, string relationId, string[] select, string[] expand, FormatterType output, IOutputFormatterFactory outputFormatterFactory, CancellationToken cancellationToken) => {
+            command.SetHandler(async (object[] parameters) => {
+                var siteId = (string) parameters[0];
+                var groupId = (string) parameters[1];
+                var setId = (string) parameters[2];
+                var termId = (string) parameters[3];
+                var relationId = (string) parameters[4];
+                var select = (string[]) parameters[5];
+                var expand = (string[]) parameters[6];
+                var output = (FormatterType) parameters[7];
+                var outputFormatterFactory = (IOutputFormatterFactory) parameters[8];
+                var cancellationToken = (CancellationToken) parameters[9];
+                PathParameters.Clear();
+                PathParameters.Add("site_id", siteId);
+                PathParameters.Add("group_id", groupId);
+                PathParameters.Add("set_id", setId);
+                PathParameters.Add("term_id", termId);
+                PathParameters.Add("relation_id", relationId);
                 var requestInfo = CreateGetRequestInformation(q => {
                     q.Select = select;
                     q.Expand = expand;
@@ -69,7 +86,7 @@ namespace ApiSdk.Sites.Item.TermStore.Groups.Item.Sets.Item.Children.Item.Relati
                 var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: default, cancellationToken: cancellationToken);
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 formatter.WriteOutput(response);
-            }, siteIdOption, groupIdOption, setIdOption, termIdOption, relationIdOption, selectOption, expandOption, outputOption);
+            }, new CollectionBinding(siteIdOption, groupIdOption, setIdOption, termIdOption, relationIdOption, selectOption, expandOption, outputOption, new TypeBinding(typeof(IOutputFormatterFactory)), new TypeBinding(typeof(CancellationToken))));
             return command;
         }
         public Command BuildRefCommand() {

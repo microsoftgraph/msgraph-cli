@@ -1,6 +1,7 @@
 using ApiSdk.Me.Insights.Trending.Item.Resource.MobileAppContentFile.Commit;
 using ApiSdk.Me.Insights.Trending.Item.Resource.MobileAppContentFile.RenewUpload;
 using Microsoft.Kiota.Abstractions;
+using Microsoft.Kiota.Cli.Commons.Binding;
 using Microsoft.Kiota.Cli.Commons.IO;
 using System;
 using System.Collections.Generic;

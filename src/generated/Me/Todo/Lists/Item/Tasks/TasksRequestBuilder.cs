@@ -3,6 +3,7 @@ using ApiSdk.Me.Todo.Lists.Item.Tasks.Item;
 using ApiSdk.Models.Microsoft.Graph;
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
+using Microsoft.Kiota.Cli.Commons.Binding;
 using Microsoft.Kiota.Cli.Commons.IO;
 using System;
 using System.Collections.Generic;
@@ -22,7 +23,7 @@ namespace ApiSdk.Me.Todo.Lists.Item.Tasks {
         /// <summary>Url template to use to build the URL for the current request builder</summary>
         private string UrlTemplate { get; set; }
         public List<Command> BuildCommand() {
-            var builder = new TodoTaskRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new TodoTaskItemRequestBuilder(PathParameters, RequestAdapter);
             var commands = new List<Command>();
             commands.Add(builder.BuildDeleteCommand());
             commands.Add(builder.BuildExtensionsCommand());
@@ -50,7 +51,14 @@ namespace ApiSdk.Me.Todo.Lists.Item.Tasks {
                 IsRequired = true
             };
             command.AddOption(outputOption);
-            command.SetHandler(async (string todoTaskListId, string body, FormatterType output, IOutputFormatterFactory outputFormatterFactory, CancellationToken cancellationToken) => {
+            command.SetHandler(async (object[] parameters) => {
+                var todoTaskListId = (string) parameters[0];
+                var body = (string) parameters[1];
+                var output = (FormatterType) parameters[2];
+                var outputFormatterFactory = (IOutputFormatterFactory) parameters[3];
+                var cancellationToken = (CancellationToken) parameters[4];
+                PathParameters.Clear();
+                PathParameters.Add("todoTaskList_id", todoTaskListId);
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<TodoTask>();
@@ -59,7 +67,7 @@ namespace ApiSdk.Me.Todo.Lists.Item.Tasks {
                 var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: default, cancellationToken: cancellationToken);
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 formatter.WriteOutput(response);
-            }, todoTaskListIdOption, bodyOption, outputOption);
+            }, new CollectionBinding(todoTaskListIdOption, bodyOption, outputOption, new TypeBinding(typeof(IOutputFormatterFactory)), new TypeBinding(typeof(CancellationToken))));
             return command;
         }
         /// <summary>
@@ -112,7 +120,21 @@ namespace ApiSdk.Me.Todo.Lists.Item.Tasks {
                 IsRequired = true
             };
             command.AddOption(outputOption);
-            command.SetHandler(async (string todoTaskListId, int? top, int? skip, string search, string filter, bool? count, string[] orderby, string[] select, string[] expand, FormatterType output, IOutputFormatterFactory outputFormatterFactory, CancellationToken cancellationToken) => {
+            command.SetHandler(async (object[] parameters) => {
+                var todoTaskListId = (string) parameters[0];
+                var top = (int?) parameters[1];
+                var skip = (int?) parameters[2];
+                var search = (string) parameters[3];
+                var filter = (string) parameters[4];
+                var count = (bool?) parameters[5];
+                var orderby = (string[]) parameters[6];
+                var select = (string[]) parameters[7];
+                var expand = (string[]) parameters[8];
+                var output = (FormatterType) parameters[9];
+                var outputFormatterFactory = (IOutputFormatterFactory) parameters[10];
+                var cancellationToken = (CancellationToken) parameters[11];
+                PathParameters.Clear();
+                PathParameters.Add("todoTaskList_id", todoTaskListId);
                 var requestInfo = CreateGetRequestInformation(q => {
                     q.Top = top;
                     q.Skip = skip;
@@ -126,7 +148,7 @@ namespace ApiSdk.Me.Todo.Lists.Item.Tasks {
                 var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: default, cancellationToken: cancellationToken);
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 formatter.WriteOutput(response);
-            }, todoTaskListIdOption, topOption, skipOption, searchOption, filterOption, countOption, orderbyOption, selectOption, expandOption, outputOption);
+            }, new CollectionBinding(todoTaskListIdOption, topOption, skipOption, searchOption, filterOption, countOption, orderbyOption, selectOption, expandOption, outputOption, new TypeBinding(typeof(IOutputFormatterFactory)), new TypeBinding(typeof(CancellationToken))));
             return command;
         }
         /// <summary>

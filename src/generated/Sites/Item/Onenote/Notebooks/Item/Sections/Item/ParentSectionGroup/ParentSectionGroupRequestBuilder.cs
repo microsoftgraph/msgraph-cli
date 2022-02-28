@@ -4,6 +4,7 @@ using ApiSdk.Sites.Item.Onenote.Notebooks.Item.Sections.Item.ParentSectionGroup.
 using ApiSdk.Sites.Item.Onenote.Notebooks.Item.Sections.Item.ParentSectionGroup.Sections;
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
+using Microsoft.Kiota.Cli.Commons.Binding;
 using Microsoft.Kiota.Cli.Commons.IO;
 using System;
 using System.Collections.Generic;
@@ -41,12 +42,21 @@ namespace ApiSdk.Sites.Item.Onenote.Notebooks.Item.Sections.Item.ParentSectionGr
             };
             onenoteSectionIdOption.IsRequired = true;
             command.AddOption(onenoteSectionIdOption);
-            command.SetHandler(async (string siteId, string notebookId, string onenoteSectionId, IOutputFormatterFactory outputFormatterFactory, CancellationToken cancellationToken) => {
+            command.SetHandler(async (object[] parameters) => {
+                var siteId = (string) parameters[0];
+                var notebookId = (string) parameters[1];
+                var onenoteSectionId = (string) parameters[2];
+                var outputFormatterFactory = (IOutputFormatterFactory) parameters[3];
+                var cancellationToken = (CancellationToken) parameters[4];
+                PathParameters.Clear();
+                PathParameters.Add("site_id", siteId);
+                PathParameters.Add("notebook_id", notebookId);
+                PathParameters.Add("onenoteSection_id", onenoteSectionId);
                 var requestInfo = CreateDeleteRequestInformation(q => {
                 });
                 await RequestAdapter.SendNoContentAsync(requestInfo, errorMapping: default, cancellationToken: cancellationToken);
                 Console.WriteLine("Success");
-            }, siteIdOption, notebookIdOption, onenoteSectionIdOption);
+            }, new CollectionBinding(siteIdOption, notebookIdOption, onenoteSectionIdOption, new TypeBinding(typeof(IOutputFormatterFactory)), new TypeBinding(typeof(CancellationToken))));
             return command;
         }
         /// <summary>
@@ -82,7 +92,19 @@ namespace ApiSdk.Sites.Item.Onenote.Notebooks.Item.Sections.Item.ParentSectionGr
                 IsRequired = true
             };
             command.AddOption(outputOption);
-            command.SetHandler(async (string siteId, string notebookId, string onenoteSectionId, string[] select, string[] expand, FormatterType output, IOutputFormatterFactory outputFormatterFactory, CancellationToken cancellationToken) => {
+            command.SetHandler(async (object[] parameters) => {
+                var siteId = (string) parameters[0];
+                var notebookId = (string) parameters[1];
+                var onenoteSectionId = (string) parameters[2];
+                var select = (string[]) parameters[3];
+                var expand = (string[]) parameters[4];
+                var output = (FormatterType) parameters[5];
+                var outputFormatterFactory = (IOutputFormatterFactory) parameters[6];
+                var cancellationToken = (CancellationToken) parameters[7];
+                PathParameters.Clear();
+                PathParameters.Add("site_id", siteId);
+                PathParameters.Add("notebook_id", notebookId);
+                PathParameters.Add("onenoteSection_id", onenoteSectionId);
                 var requestInfo = CreateGetRequestInformation(q => {
                     q.Select = select;
                     q.Expand = expand;
@@ -90,7 +112,7 @@ namespace ApiSdk.Sites.Item.Onenote.Notebooks.Item.Sections.Item.ParentSectionGr
                 var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: default, cancellationToken: cancellationToken);
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 formatter.WriteOutput(response);
-            }, siteIdOption, notebookIdOption, onenoteSectionIdOption, selectOption, expandOption, outputOption);
+            }, new CollectionBinding(siteIdOption, notebookIdOption, onenoteSectionIdOption, selectOption, expandOption, outputOption, new TypeBinding(typeof(IOutputFormatterFactory)), new TypeBinding(typeof(CancellationToken))));
             return command;
         }
         public Command BuildParentNotebookCommand() {
@@ -125,7 +147,17 @@ namespace ApiSdk.Sites.Item.Onenote.Notebooks.Item.Sections.Item.ParentSectionGr
             };
             bodyOption.IsRequired = true;
             command.AddOption(bodyOption);
-            command.SetHandler(async (string siteId, string notebookId, string onenoteSectionId, string body, IOutputFormatterFactory outputFormatterFactory, CancellationToken cancellationToken) => {
+            command.SetHandler(async (object[] parameters) => {
+                var siteId = (string) parameters[0];
+                var notebookId = (string) parameters[1];
+                var onenoteSectionId = (string) parameters[2];
+                var body = (string) parameters[3];
+                var outputFormatterFactory = (IOutputFormatterFactory) parameters[4];
+                var cancellationToken = (CancellationToken) parameters[5];
+                PathParameters.Clear();
+                PathParameters.Add("site_id", siteId);
+                PathParameters.Add("notebook_id", notebookId);
+                PathParameters.Add("onenoteSection_id", onenoteSectionId);
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<SectionGroup>();
@@ -133,7 +165,7 @@ namespace ApiSdk.Sites.Item.Onenote.Notebooks.Item.Sections.Item.ParentSectionGr
                 });
                 await RequestAdapter.SendNoContentAsync(requestInfo, errorMapping: default, cancellationToken: cancellationToken);
                 Console.WriteLine("Success");
-            }, siteIdOption, notebookIdOption, onenoteSectionIdOption, bodyOption);
+            }, new CollectionBinding(siteIdOption, notebookIdOption, onenoteSectionIdOption, bodyOption, new TypeBinding(typeof(IOutputFormatterFactory)), new TypeBinding(typeof(CancellationToken))));
             return command;
         }
         public Command BuildSectionGroupsCommand() {

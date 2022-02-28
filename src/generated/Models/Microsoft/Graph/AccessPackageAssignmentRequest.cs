@@ -6,7 +6,7 @@ using System.Linq;
 namespace ApiSdk.Models.Microsoft.Graph {
     public class AccessPackageAssignmentRequest : Entity, IParsable {
         /// <summary>The access package associated with the accessPackageAssignmentRequest. An access package defines the collections of resource roles and the policies for how one or more users can get access to those resources. Read-only. Nullable. Supports $expand.</summary>
-        public ApiSdk.Models.Microsoft.Graph.AccessPackage AccessPackage { get; set; }
+        public AccessPackage AccessPackage { get; set; }
         /// <summary>For a requestType of UserAdd or AdminAdd, this is an access package assignment requested to be created.  For a requestType of UserRemove, AdminRemove or SystemRemove, this has the id property of an existing assignment to be removed.   Supports $expand.</summary>
         public AccessPackageAssignment Assignment { get; set; }
         public DateTimeOffset? CompletedDateTime { get; set; }
@@ -27,7 +27,7 @@ namespace ApiSdk.Models.Microsoft.Graph {
         /// </summary>
         public new IDictionary<string, Action<T, IParseNode>> GetFieldDeserializers<T>() {
             return new Dictionary<string, Action<T, IParseNode>>(base.GetFieldDeserializers<T>()) {
-                {"accessPackage", (o,n) => { (o as AccessPackageAssignmentRequest).AccessPackage = n.GetObjectValue<ApiSdk.Models.Microsoft.Graph.AccessPackage>(); } },
+                {"accessPackage", (o,n) => { (o as AccessPackageAssignmentRequest).AccessPackage = n.GetObjectValue<AccessPackage>(); } },
                 {"assignment", (o,n) => { (o as AccessPackageAssignmentRequest).Assignment = n.GetObjectValue<AccessPackageAssignment>(); } },
                 {"completedDateTime", (o,n) => { (o as AccessPackageAssignmentRequest).CompletedDateTime = n.GetDateTimeOffsetValue(); } },
                 {"createdDateTime", (o,n) => { (o as AccessPackageAssignmentRequest).CreatedDateTime = n.GetDateTimeOffsetValue(); } },
@@ -45,7 +45,7 @@ namespace ApiSdk.Models.Microsoft.Graph {
         public new void Serialize(ISerializationWriter writer) {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             base.Serialize(writer);
-            writer.WriteObjectValue<ApiSdk.Models.Microsoft.Graph.AccessPackage>("accessPackage", AccessPackage);
+            writer.WriteObjectValue<AccessPackage>("accessPackage", AccessPackage);
             writer.WriteObjectValue<AccessPackageAssignment>("assignment", Assignment);
             writer.WriteDateTimeOffsetValue("completedDateTime", CompletedDateTime);
             writer.WriteDateTimeOffsetValue("createdDateTime", CreatedDateTime);

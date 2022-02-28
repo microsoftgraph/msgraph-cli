@@ -1,6 +1,7 @@
 using ApiSdk.Models.Microsoft.Graph;
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
+using Microsoft.Kiota.Cli.Commons.Binding;
 using Microsoft.Kiota.Cli.Commons.IO;
 using System;
 using System.Collections.Generic;
@@ -54,7 +55,22 @@ namespace ApiSdk.Groups.Item.Onenote.SectionGroups.Item.Sections.Item.Pages.Item
                 IsRequired = true
             };
             command.AddOption(outputOption);
-            command.SetHandler(async (string groupId, string sectionGroupId, string onenoteSectionId, string onenotePageId, string onenoteSectionId1, string body, FormatterType output, IOutputFormatterFactory outputFormatterFactory, CancellationToken cancellationToken) => {
+            command.SetHandler(async (object[] parameters) => {
+                var groupId = (string) parameters[0];
+                var sectionGroupId = (string) parameters[1];
+                var onenoteSectionId = (string) parameters[2];
+                var onenotePageId = (string) parameters[3];
+                var onenoteSectionId1 = (string) parameters[4];
+                var body = (string) parameters[5];
+                var output = (FormatterType) parameters[6];
+                var outputFormatterFactory = (IOutputFormatterFactory) parameters[7];
+                var cancellationToken = (CancellationToken) parameters[8];
+                PathParameters.Clear();
+                PathParameters.Add("group_id", groupId);
+                PathParameters.Add("sectionGroup_id", sectionGroupId);
+                PathParameters.Add("onenoteSection_id", onenoteSectionId);
+                PathParameters.Add("onenotePage_id", onenotePageId);
+                PathParameters.Add("onenoteSection_id1", onenoteSectionId1);
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<CopyToSectionGroupRequestBody>();
@@ -63,7 +79,7 @@ namespace ApiSdk.Groups.Item.Onenote.SectionGroups.Item.Sections.Item.Pages.Item
                 var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: default, cancellationToken: cancellationToken);
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 formatter.WriteOutput(response);
-            }, groupIdOption, sectionGroupIdOption, onenoteSectionIdOption, onenotePageIdOption, onenoteSectionId1Option, bodyOption, outputOption);
+            }, new CollectionBinding(groupIdOption, sectionGroupIdOption, onenoteSectionIdOption, onenotePageIdOption, onenoteSectionId1Option, bodyOption, outputOption, new TypeBinding(typeof(IOutputFormatterFactory)), new TypeBinding(typeof(CancellationToken))));
             return command;
         }
         /// <summary>

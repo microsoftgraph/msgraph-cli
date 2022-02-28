@@ -1,5 +1,6 @@
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
+using Microsoft.Kiota.Cli.Commons.Binding;
 using Microsoft.Kiota.Cli.Commons.IO;
 using System;
 using System.Collections.Generic;
@@ -35,7 +36,14 @@ namespace ApiSdk.Privacy.SubjectRightsRequests.Item.GetFinalReport {
                 IsRequired = true
             };
             command.AddOption(outputOption);
-            command.SetHandler(async (string subjectRightsRequestId, FileInfo file, FormatterType output, IOutputFormatterFactory outputFormatterFactory, CancellationToken cancellationToken) => {
+            command.SetHandler(async (object[] parameters) => {
+                var subjectRightsRequestId = (string) parameters[0];
+                var file = (FileInfo) parameters[1];
+                var output = (FormatterType) parameters[2];
+                var outputFormatterFactory = (IOutputFormatterFactory) parameters[3];
+                var cancellationToken = (CancellationToken) parameters[4];
+                PathParameters.Clear();
+                PathParameters.Add("subjectRightsRequest_id", subjectRightsRequestId);
                 var requestInfo = CreateGetRequestInformation(q => {
                 });
                 var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: default, cancellationToken: cancellationToken);
@@ -48,7 +56,7 @@ namespace ApiSdk.Privacy.SubjectRightsRequests.Item.GetFinalReport {
                     await response.CopyToAsync(writeStream);
                     Console.WriteLine($"Content written to {file.FullName}.");
                 }
-            }, subjectRightsRequestIdOption, fileOption, outputOption);
+            }, new CollectionBinding(subjectRightsRequestIdOption, fileOption, outputOption, new TypeBinding(typeof(IOutputFormatterFactory)), new TypeBinding(typeof(CancellationToken))));
             return command;
         }
         /// <summary>

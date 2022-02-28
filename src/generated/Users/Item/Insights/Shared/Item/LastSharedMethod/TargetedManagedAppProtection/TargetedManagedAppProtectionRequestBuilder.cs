@@ -1,6 +1,7 @@
 using ApiSdk.Users.Item.Insights.Shared.Item.LastSharedMethod.TargetedManagedAppProtection.Assign;
 using ApiSdk.Users.Item.Insights.Shared.Item.LastSharedMethod.TargetedManagedAppProtection.TargetApps;
 using Microsoft.Kiota.Abstractions;
+using Microsoft.Kiota.Cli.Commons.Binding;
 using Microsoft.Kiota.Cli.Commons.IO;
 using System;
 using System.Collections.Generic;

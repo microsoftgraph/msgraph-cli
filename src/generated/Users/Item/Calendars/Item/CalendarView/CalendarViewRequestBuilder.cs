@@ -3,6 +3,7 @@ using ApiSdk.Users.Item.Calendars.Item.CalendarView.Delta;
 using ApiSdk.Users.Item.Calendars.Item.CalendarView.Item;
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
+using Microsoft.Kiota.Cli.Commons.Binding;
 using Microsoft.Kiota.Cli.Commons.IO;
 using System;
 using System.Collections.Generic;
@@ -22,7 +23,7 @@ namespace ApiSdk.Users.Item.Calendars.Item.CalendarView {
         /// <summary>Url template to use to build the URL for the current request builder</summary>
         private string UrlTemplate { get; set; }
         public List<Command> BuildCommand() {
-            var builder = new EventRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new EventItemRequestBuilder(PathParameters, RequestAdapter);
             var commands = new List<Command>();
             commands.Add(builder.BuildAcceptCommand());
             commands.Add(builder.BuildAttachmentsCommand());
@@ -65,7 +66,16 @@ namespace ApiSdk.Users.Item.Calendars.Item.CalendarView {
                 IsRequired = true
             };
             command.AddOption(outputOption);
-            command.SetHandler(async (string userId, string calendarId, string body, FormatterType output, IOutputFormatterFactory outputFormatterFactory, CancellationToken cancellationToken) => {
+            command.SetHandler(async (object[] parameters) => {
+                var userId = (string) parameters[0];
+                var calendarId = (string) parameters[1];
+                var body = (string) parameters[2];
+                var output = (FormatterType) parameters[3];
+                var outputFormatterFactory = (IOutputFormatterFactory) parameters[4];
+                var cancellationToken = (CancellationToken) parameters[5];
+                PathParameters.Clear();
+                PathParameters.Add("user_id", userId);
+                PathParameters.Add("calendar_id", calendarId);
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<Event>();
@@ -74,7 +84,7 @@ namespace ApiSdk.Users.Item.Calendars.Item.CalendarView {
                 var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: default, cancellationToken: cancellationToken);
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 formatter.WriteOutput(response);
-            }, userIdOption, calendarIdOption, bodyOption, outputOption);
+            }, new CollectionBinding(userIdOption, calendarIdOption, bodyOption, outputOption, new TypeBinding(typeof(IOutputFormatterFactory)), new TypeBinding(typeof(CancellationToken))));
             return command;
         }
         /// <summary>
@@ -130,7 +140,23 @@ namespace ApiSdk.Users.Item.Calendars.Item.CalendarView {
                 IsRequired = true
             };
             command.AddOption(outputOption);
-            command.SetHandler(async (string userId, string calendarId, string startDateTime, string endDateTime, int? top, int? skip, string filter, bool? count, string[] orderby, string[] select, FormatterType output, IOutputFormatterFactory outputFormatterFactory, CancellationToken cancellationToken) => {
+            command.SetHandler(async (object[] parameters) => {
+                var userId = (string) parameters[0];
+                var calendarId = (string) parameters[1];
+                var startDateTime = (string) parameters[2];
+                var endDateTime = (string) parameters[3];
+                var top = (int?) parameters[4];
+                var skip = (int?) parameters[5];
+                var filter = (string) parameters[6];
+                var count = (bool?) parameters[7];
+                var orderby = (string[]) parameters[8];
+                var select = (string[]) parameters[9];
+                var output = (FormatterType) parameters[10];
+                var outputFormatterFactory = (IOutputFormatterFactory) parameters[11];
+                var cancellationToken = (CancellationToken) parameters[12];
+                PathParameters.Clear();
+                PathParameters.Add("user_id", userId);
+                PathParameters.Add("calendar_id", calendarId);
                 var requestInfo = CreateGetRequestInformation(q => {
                     if (!String.IsNullOrEmpty(startDateTime)) q.StartDateTime = startDateTime;
                     if (!String.IsNullOrEmpty(endDateTime)) q.EndDateTime = endDateTime;
@@ -144,7 +170,7 @@ namespace ApiSdk.Users.Item.Calendars.Item.CalendarView {
                 var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: default, cancellationToken: cancellationToken);
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 formatter.WriteOutput(response);
-            }, userIdOption, calendarIdOption, startDateTimeOption, endDateTimeOption, topOption, skipOption, filterOption, countOption, orderbyOption, selectOption, outputOption);
+            }, new CollectionBinding(userIdOption, calendarIdOption, startDateTimeOption, endDateTimeOption, topOption, skipOption, filterOption, countOption, orderbyOption, selectOption, outputOption, new TypeBinding(typeof(IOutputFormatterFactory)), new TypeBinding(typeof(CancellationToken))));
             return command;
         }
         /// <summary>
