@@ -25,6 +25,7 @@ using System.Reflection;
 using System.Threading.Tasks;
 using System.Collections.Generic;
 using System;
+using System.CommandLine.IO;
 
 namespace Microsoft.Graph.Cli
 {
@@ -80,14 +81,22 @@ namespace Microsoft.Graph.Cli
             var builder = BuildCommandLine(client, commands).UseDefaults().UseHost(CreateHostBuilder);
             builder.AddMiddleware((invocation) => {
                 var host = invocation.GetHost();
+                var outputFilter = host.Services.GetRequiredService<IOutputFilter>();
                 var outputFormatterFactory = host.Services.GetRequiredService<IOutputFormatterFactory>();
+                invocation.BindingContext.AddService<IOutputFilter>(_ => outputFilter);
                 invocation.BindingContext.AddService<IOutputFormatterFactory>(_ => outputFormatterFactory);
             });
             builder.UseExceptionHandler((ex, context) => {
                 if (ex is AuthenticationRequiredException) {
                     Console.ResetColor();
                     Console.ForegroundColor = ConsoleColor.Red;
-                    Console.Error.WriteLine("Token acquisition failed. Run mgc login command first to get an access token.");
+                    context.Console.Error.WriteLine("Token acquisition failed. Run mgc login command first to get an access token.");
+                    Console.ResetColor();
+                } else {
+                    Console.ResetColor();
+                    Console.ForegroundColor = ConsoleColor.Red;
+                    context.Console.Error.WriteLine(ex.Message);
+                    context.Console.Error.WriteLine(ex.StackTrace);
                     Console.ResetColor();
                 }
             });
@@ -118,6 +127,7 @@ namespace Microsoft.Graph.Cli
                 var authSection = ctx.Configuration.GetSection(Constants.AuthenticationSection);
                 services.Configure<AuthenticationOptions>(authSection);
                 services.AddSingleton<IPathUtility, PathUtility>();
+                services.AddSingleton<IOutputFilter, JmesPathOutputFilter>();
                 services.AddSingleton<IOutputFormatterFactory, OutputFormatterFactory>();
             });
         
