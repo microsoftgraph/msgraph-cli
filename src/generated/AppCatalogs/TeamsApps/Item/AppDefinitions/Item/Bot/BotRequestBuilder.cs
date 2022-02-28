@@ -38,8 +38,7 @@ namespace ApiSdk.AppCatalogs.TeamsApps.Item.AppDefinitions.Item.Bot {
             command.SetHandler(async (object[] parameters) => {
                 var teamsAppId = (string) parameters[0];
                 var teamsAppDefinitionId = (string) parameters[1];
-                var outputFormatterFactory = (IOutputFormatterFactory) parameters[2];
-                var cancellationToken = (CancellationToken) parameters[3];
+                var cancellationToken = (CancellationToken) parameters[2];
                 PathParameters.Clear();
                 PathParameters.Add("teamsApp_id", teamsAppId);
                 PathParameters.Add("teamsAppDefinition_id", teamsAppDefinitionId);
@@ -47,7 +46,7 @@ namespace ApiSdk.AppCatalogs.TeamsApps.Item.AppDefinitions.Item.Bot {
                 });
                 await RequestAdapter.SendNoContentAsync(requestInfo, errorMapping: default, cancellationToken: cancellationToken);
                 Console.WriteLine("Success");
-            }, new CollectionBinding(teamsAppIdOption, teamsAppDefinitionIdOption, new TypeBinding(typeof(IOutputFormatterFactory)), new TypeBinding(typeof(CancellationToken))));
+            }, new CollectionBinding(teamsAppIdOption, teamsAppDefinitionIdOption, new TypeBinding(typeof(CancellationToken))));
             return command;
         }
         /// <summary>
@@ -79,14 +78,17 @@ namespace ApiSdk.AppCatalogs.TeamsApps.Item.AppDefinitions.Item.Bot {
                 IsRequired = true
             };
             command.AddOption(outputOption);
+            var outputFilterOption = new Option<string>("--query");
+            command.AddOption(outputFilterOption);
             command.SetHandler(async (object[] parameters) => {
                 var teamsAppId = (string) parameters[0];
                 var teamsAppDefinitionId = (string) parameters[1];
                 var select = (string[]) parameters[2];
                 var expand = (string[]) parameters[3];
                 var output = (FormatterType) parameters[4];
-                var outputFormatterFactory = (IOutputFormatterFactory) parameters[5];
-                var cancellationToken = (CancellationToken) parameters[6];
+                var outputFilterOption = (string) parameters[5];
+                var outputFormatterFactory = (IOutputFormatterFactory) parameters[6];
+                var cancellationToken = (CancellationToken) parameters[7];
                 PathParameters.Clear();
                 PathParameters.Add("teamsApp_id", teamsAppId);
                 PathParameters.Add("teamsAppDefinition_id", teamsAppDefinitionId);
@@ -97,7 +99,7 @@ namespace ApiSdk.AppCatalogs.TeamsApps.Item.AppDefinitions.Item.Bot {
                 var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: default, cancellationToken: cancellationToken);
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 formatter.WriteOutput(response);
-            }, new CollectionBinding(teamsAppIdOption, teamsAppDefinitionIdOption, selectOption, expandOption, outputOption, new TypeBinding(typeof(IOutputFormatterFactory)), new TypeBinding(typeof(CancellationToken))));
+            }, new CollectionBinding(teamsAppIdOption, teamsAppDefinitionIdOption, selectOption, expandOption, outputOption, outputFilterOption, new TypeBinding(typeof(IOutputFormatterFactory)), new TypeBinding(typeof(CancellationToken))));
             return command;
         }
         /// <summary>
@@ -123,8 +125,7 @@ namespace ApiSdk.AppCatalogs.TeamsApps.Item.AppDefinitions.Item.Bot {
                 var teamsAppId = (string) parameters[0];
                 var teamsAppDefinitionId = (string) parameters[1];
                 var body = (string) parameters[2];
-                var outputFormatterFactory = (IOutputFormatterFactory) parameters[3];
-                var cancellationToken = (CancellationToken) parameters[4];
+                var cancellationToken = (CancellationToken) parameters[3];
                 PathParameters.Clear();
                 PathParameters.Add("teamsApp_id", teamsAppId);
                 PathParameters.Add("teamsAppDefinition_id", teamsAppDefinitionId);
@@ -135,7 +136,7 @@ namespace ApiSdk.AppCatalogs.TeamsApps.Item.AppDefinitions.Item.Bot {
                 });
                 await RequestAdapter.SendNoContentAsync(requestInfo, errorMapping: default, cancellationToken: cancellationToken);
                 Console.WriteLine("Success");
-            }, new CollectionBinding(teamsAppIdOption, teamsAppDefinitionIdOption, bodyOption, new TypeBinding(typeof(IOutputFormatterFactory)), new TypeBinding(typeof(CancellationToken))));
+            }, new CollectionBinding(teamsAppIdOption, teamsAppDefinitionIdOption, bodyOption, new TypeBinding(typeof(CancellationToken))));
             return command;
         }
         /// <summary>

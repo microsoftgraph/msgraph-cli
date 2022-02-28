@@ -42,13 +42,16 @@ namespace ApiSdk.Teams.Item.Channels.Item.Members.Add {
                 IsRequired = true
             };
             command.AddOption(outputOption);
+            var outputFilterOption = new Option<string>("--query");
+            command.AddOption(outputFilterOption);
             command.SetHandler(async (object[] parameters) => {
                 var teamId = (string) parameters[0];
                 var channelId = (string) parameters[1];
                 var body = (string) parameters[2];
                 var output = (FormatterType) parameters[3];
-                var outputFormatterFactory = (IOutputFormatterFactory) parameters[4];
-                var cancellationToken = (CancellationToken) parameters[5];
+                var outputFilterOption = (string) parameters[4];
+                var outputFormatterFactory = (IOutputFormatterFactory) parameters[5];
+                var cancellationToken = (CancellationToken) parameters[6];
                 PathParameters.Clear();
                 PathParameters.Add("team_id", teamId);
                 PathParameters.Add("channel_id", channelId);
@@ -60,7 +63,7 @@ namespace ApiSdk.Teams.Item.Channels.Item.Members.Add {
                 var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: default, cancellationToken: cancellationToken);
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 formatter.WriteOutput(response);
-            }, new CollectionBinding(teamIdOption, channelIdOption, bodyOption, outputOption, new TypeBinding(typeof(IOutputFormatterFactory)), new TypeBinding(typeof(CancellationToken))));
+            }, new CollectionBinding(teamIdOption, channelIdOption, bodyOption, outputOption, outputFilterOption, new TypeBinding(typeof(IOutputFormatterFactory)), new TypeBinding(typeof(CancellationToken))));
             return command;
         }
         /// <summary>

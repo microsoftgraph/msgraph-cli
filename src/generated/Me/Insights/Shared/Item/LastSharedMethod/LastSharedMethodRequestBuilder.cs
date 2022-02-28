@@ -65,13 +65,16 @@ namespace ApiSdk.Me.Insights.Shared.Item.LastSharedMethod {
                 IsRequired = true
             };
             command.AddOption(outputOption);
+            var outputFilterOption = new Option<string>("--query");
+            command.AddOption(outputFilterOption);
             command.SetHandler(async (object[] parameters) => {
                 var sharedInsightId = (string) parameters[0];
                 var select = (string[]) parameters[1];
                 var expand = (string[]) parameters[2];
                 var output = (FormatterType) parameters[3];
-                var outputFormatterFactory = (IOutputFormatterFactory) parameters[4];
-                var cancellationToken = (CancellationToken) parameters[5];
+                var outputFilterOption = (string) parameters[4];
+                var outputFormatterFactory = (IOutputFormatterFactory) parameters[5];
+                var cancellationToken = (CancellationToken) parameters[6];
                 PathParameters.Clear();
                 PathParameters.Add("sharedInsight_id", sharedInsightId);
                 var requestInfo = CreateGetRequestInformation(q => {
@@ -81,7 +84,7 @@ namespace ApiSdk.Me.Insights.Shared.Item.LastSharedMethod {
                 var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: default, cancellationToken: cancellationToken);
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 formatter.WriteOutput(response);
-            }, new CollectionBinding(sharedInsightIdOption, selectOption, expandOption, outputOption, new TypeBinding(typeof(IOutputFormatterFactory)), new TypeBinding(typeof(CancellationToken))));
+            }, new CollectionBinding(sharedInsightIdOption, selectOption, expandOption, outputOption, outputFilterOption, new TypeBinding(typeof(IOutputFormatterFactory)), new TypeBinding(typeof(CancellationToken))));
             return command;
         }
         public Command BuildManagedAppProtectionCommand() {

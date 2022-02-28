@@ -62,12 +62,15 @@ namespace ApiSdk.Groups.Item.CalendarView {
                 IsRequired = true
             };
             command.AddOption(outputOption);
+            var outputFilterOption = new Option<string>("--query");
+            command.AddOption(outputFilterOption);
             command.SetHandler(async (object[] parameters) => {
                 var groupId = (string) parameters[0];
                 var body = (string) parameters[1];
                 var output = (FormatterType) parameters[2];
-                var outputFormatterFactory = (IOutputFormatterFactory) parameters[3];
-                var cancellationToken = (CancellationToken) parameters[4];
+                var outputFilterOption = (string) parameters[3];
+                var outputFormatterFactory = (IOutputFormatterFactory) parameters[4];
+                var cancellationToken = (CancellationToken) parameters[5];
                 PathParameters.Clear();
                 PathParameters.Add("group_id", groupId);
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
@@ -78,7 +81,7 @@ namespace ApiSdk.Groups.Item.CalendarView {
                 var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: default, cancellationToken: cancellationToken);
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 formatter.WriteOutput(response);
-            }, new CollectionBinding(groupIdOption, bodyOption, outputOption, new TypeBinding(typeof(IOutputFormatterFactory)), new TypeBinding(typeof(CancellationToken))));
+            }, new CollectionBinding(groupIdOption, bodyOption, outputOption, outputFilterOption, new TypeBinding(typeof(IOutputFormatterFactory)), new TypeBinding(typeof(CancellationToken))));
             return command;
         }
         /// <summary>
@@ -130,6 +133,8 @@ namespace ApiSdk.Groups.Item.CalendarView {
                 IsRequired = true
             };
             command.AddOption(outputOption);
+            var outputFilterOption = new Option<string>("--query");
+            command.AddOption(outputFilterOption);
             command.SetHandler(async (object[] parameters) => {
                 var groupId = (string) parameters[0];
                 var startDateTime = (string) parameters[1];
@@ -141,8 +146,9 @@ namespace ApiSdk.Groups.Item.CalendarView {
                 var orderby = (string[]) parameters[7];
                 var select = (string[]) parameters[8];
                 var output = (FormatterType) parameters[9];
-                var outputFormatterFactory = (IOutputFormatterFactory) parameters[10];
-                var cancellationToken = (CancellationToken) parameters[11];
+                var outputFilterOption = (string) parameters[10];
+                var outputFormatterFactory = (IOutputFormatterFactory) parameters[11];
+                var cancellationToken = (CancellationToken) parameters[12];
                 PathParameters.Clear();
                 PathParameters.Add("group_id", groupId);
                 var requestInfo = CreateGetRequestInformation(q => {
@@ -158,7 +164,7 @@ namespace ApiSdk.Groups.Item.CalendarView {
                 var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: default, cancellationToken: cancellationToken);
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 formatter.WriteOutput(response);
-            }, new CollectionBinding(groupIdOption, startDateTimeOption, endDateTimeOption, topOption, skipOption, filterOption, countOption, orderbyOption, selectOption, outputOption, new TypeBinding(typeof(IOutputFormatterFactory)), new TypeBinding(typeof(CancellationToken))));
+            }, new CollectionBinding(groupIdOption, startDateTimeOption, endDateTimeOption, topOption, skipOption, filterOption, countOption, orderbyOption, selectOption, outputOption, outputFilterOption, new TypeBinding(typeof(IOutputFormatterFactory)), new TypeBinding(typeof(CancellationToken))));
             return command;
         }
         /// <summary>

@@ -43,13 +43,16 @@ namespace ApiSdk.Me.Onenote.SectionGroups.Item.ParentNotebook.Sections.Item.Page
                 IsRequired = true
             };
             command.AddOption(outputOption);
+            var outputFilterOption = new Option<string>("--query");
+            command.AddOption(outputFilterOption);
             command.SetHandler(async (object[] parameters) => {
                 var sectionGroupId = (string) parameters[0];
                 var onenoteSectionId = (string) parameters[1];
                 var onenotePageId = (string) parameters[2];
                 var output = (FormatterType) parameters[3];
-                var outputFormatterFactory = (IOutputFormatterFactory) parameters[4];
-                var cancellationToken = (CancellationToken) parameters[5];
+                var outputFilterOption = (string) parameters[4];
+                var outputFormatterFactory = (IOutputFormatterFactory) parameters[5];
+                var cancellationToken = (CancellationToken) parameters[6];
                 PathParameters.Clear();
                 PathParameters.Add("sectionGroup_id", sectionGroupId);
                 PathParameters.Add("onenoteSection_id", onenoteSectionId);
@@ -59,7 +62,7 @@ namespace ApiSdk.Me.Onenote.SectionGroups.Item.ParentNotebook.Sections.Item.Page
                 var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: default, cancellationToken: cancellationToken);
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 formatter.WriteOutput(response);
-            }, new CollectionBinding(sectionGroupIdOption, onenoteSectionIdOption, onenotePageIdOption, outputOption, new TypeBinding(typeof(IOutputFormatterFactory)), new TypeBinding(typeof(CancellationToken))));
+            }, new CollectionBinding(sectionGroupIdOption, onenoteSectionIdOption, onenotePageIdOption, outputOption, outputFilterOption, new TypeBinding(typeof(IOutputFormatterFactory)), new TypeBinding(typeof(CancellationToken))));
             return command;
         }
         /// <summary>

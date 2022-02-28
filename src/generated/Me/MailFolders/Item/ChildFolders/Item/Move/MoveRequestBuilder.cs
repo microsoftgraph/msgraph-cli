@@ -43,13 +43,16 @@ namespace ApiSdk.Me.MailFolders.Item.ChildFolders.Item.Move {
                 IsRequired = true
             };
             command.AddOption(outputOption);
+            var outputFilterOption = new Option<string>("--query");
+            command.AddOption(outputFilterOption);
             command.SetHandler(async (object[] parameters) => {
                 var mailFolderId = (string) parameters[0];
                 var mailFolderId1 = (string) parameters[1];
                 var body = (string) parameters[2];
                 var output = (FormatterType) parameters[3];
-                var outputFormatterFactory = (IOutputFormatterFactory) parameters[4];
-                var cancellationToken = (CancellationToken) parameters[5];
+                var outputFilterOption = (string) parameters[4];
+                var outputFormatterFactory = (IOutputFormatterFactory) parameters[5];
+                var cancellationToken = (CancellationToken) parameters[6];
                 PathParameters.Clear();
                 PathParameters.Add("mailFolder_id", mailFolderId);
                 PathParameters.Add("mailFolder_id1", mailFolderId1);
@@ -61,7 +64,7 @@ namespace ApiSdk.Me.MailFolders.Item.ChildFolders.Item.Move {
                 var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: default, cancellationToken: cancellationToken);
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 formatter.WriteOutput(response);
-            }, new CollectionBinding(mailFolderIdOption, mailFolderId1Option, bodyOption, outputOption, new TypeBinding(typeof(IOutputFormatterFactory)), new TypeBinding(typeof(CancellationToken))));
+            }, new CollectionBinding(mailFolderIdOption, mailFolderId1Option, bodyOption, outputOption, outputFilterOption, new TypeBinding(typeof(IOutputFormatterFactory)), new TypeBinding(typeof(CancellationToken))));
             return command;
         }
         /// <summary>

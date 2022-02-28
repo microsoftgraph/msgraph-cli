@@ -27,13 +27,12 @@ namespace ApiSdk.Me.RemoveAllDevicesFromManagement {
             command.Description = "Retire all devices from management for this user";
             // Create options for all the parameters
             command.SetHandler(async (object[] parameters) => {
-                var outputFormatterFactory = (IOutputFormatterFactory) parameters[0];
-                var cancellationToken = (CancellationToken) parameters[1];
+                var cancellationToken = (CancellationToken) parameters[0];
                 var requestInfo = CreatePostRequestInformation(q => {
                 });
                 await RequestAdapter.SendNoContentAsync(requestInfo, errorMapping: default, cancellationToken: cancellationToken);
                 Console.WriteLine("Success");
-            }, new CollectionBinding(new TypeBinding(typeof(IOutputFormatterFactory)), new TypeBinding(typeof(CancellationToken))));
+            }, new CollectionBinding(new TypeBinding(typeof(CancellationToken))));
             return command;
         }
         /// <summary>

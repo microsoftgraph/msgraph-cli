@@ -42,8 +42,7 @@ namespace ApiSdk.Me.Onenote.Pages.Item.ParentSection.Pages.Item.OnenotePatchCont
                 var onenotePageId = (string) parameters[0];
                 var onenotePageId1 = (string) parameters[1];
                 var body = (string) parameters[2];
-                var outputFormatterFactory = (IOutputFormatterFactory) parameters[3];
-                var cancellationToken = (CancellationToken) parameters[4];
+                var cancellationToken = (CancellationToken) parameters[3];
                 PathParameters.Clear();
                 PathParameters.Add("onenotePage_id", onenotePageId);
                 PathParameters.Add("onenotePage_id1", onenotePageId1);
@@ -54,7 +53,7 @@ namespace ApiSdk.Me.Onenote.Pages.Item.ParentSection.Pages.Item.OnenotePatchCont
                 });
                 await RequestAdapter.SendNoContentAsync(requestInfo, errorMapping: default, cancellationToken: cancellationToken);
                 Console.WriteLine("Success");
-            }, new CollectionBinding(onenotePageIdOption, onenotePageId1Option, bodyOption, new TypeBinding(typeof(IOutputFormatterFactory)), new TypeBinding(typeof(CancellationToken))));
+            }, new CollectionBinding(onenotePageIdOption, onenotePageId1Option, bodyOption, new TypeBinding(typeof(CancellationToken))));
             return command;
         }
         /// <summary>

@@ -37,8 +37,7 @@ namespace ApiSdk.Users.Item.Insights.Trending.Item.Resource.PrintJob.Cancel {
             command.SetHandler(async (object[] parameters) => {
                 var userId = (string) parameters[0];
                 var trendingItemId = (string) parameters[1];
-                var outputFormatterFactory = (IOutputFormatterFactory) parameters[2];
-                var cancellationToken = (CancellationToken) parameters[3];
+                var cancellationToken = (CancellationToken) parameters[2];
                 PathParameters.Clear();
                 PathParameters.Add("user_id", userId);
                 PathParameters.Add("trendingItem_Id", trendingItemId);
@@ -46,7 +45,7 @@ namespace ApiSdk.Users.Item.Insights.Trending.Item.Resource.PrintJob.Cancel {
                 });
                 await RequestAdapter.SendNoContentAsync(requestInfo, errorMapping: default, cancellationToken: cancellationToken);
                 Console.WriteLine("Success");
-            }, new CollectionBinding(userIdOption, trendingItemIdOption, new TypeBinding(typeof(IOutputFormatterFactory)), new TypeBinding(typeof(CancellationToken))));
+            }, new CollectionBinding(userIdOption, trendingItemIdOption, new TypeBinding(typeof(CancellationToken))));
             return command;
         }
         /// <summary>

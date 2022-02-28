@@ -52,8 +52,7 @@ namespace ApiSdk.Users.Item.CalendarGroups.Item.Calendars.Item.CalendarView.Item
                 var calendarId = (string) parameters[2];
                 var eventId = (string) parameters[3];
                 var eventId1 = (string) parameters[4];
-                var outputFormatterFactory = (IOutputFormatterFactory) parameters[5];
-                var cancellationToken = (CancellationToken) parameters[6];
+                var cancellationToken = (CancellationToken) parameters[5];
                 PathParameters.Clear();
                 PathParameters.Add("user_id", userId);
                 PathParameters.Add("calendarGroup_id", calendarGroupId);
@@ -64,7 +63,7 @@ namespace ApiSdk.Users.Item.CalendarGroups.Item.Calendars.Item.CalendarView.Item
                 });
                 await RequestAdapter.SendNoContentAsync(requestInfo, errorMapping: default, cancellationToken: cancellationToken);
                 Console.WriteLine("Success");
-            }, new CollectionBinding(userIdOption, calendarGroupIdOption, calendarIdOption, eventIdOption, eventId1Option, new TypeBinding(typeof(IOutputFormatterFactory)), new TypeBinding(typeof(CancellationToken))));
+            }, new CollectionBinding(userIdOption, calendarGroupIdOption, calendarIdOption, eventIdOption, eventId1Option, new TypeBinding(typeof(CancellationToken))));
             return command;
         }
         /// <summary>

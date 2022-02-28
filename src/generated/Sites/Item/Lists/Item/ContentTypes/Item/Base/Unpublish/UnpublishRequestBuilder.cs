@@ -42,8 +42,7 @@ namespace ApiSdk.Sites.Item.Lists.Item.ContentTypes.Item.Base.Unpublish {
                 var siteId = (string) parameters[0];
                 var listId = (string) parameters[1];
                 var contentTypeId = (string) parameters[2];
-                var outputFormatterFactory = (IOutputFormatterFactory) parameters[3];
-                var cancellationToken = (CancellationToken) parameters[4];
+                var cancellationToken = (CancellationToken) parameters[3];
                 PathParameters.Clear();
                 PathParameters.Add("site_id", siteId);
                 PathParameters.Add("list_id", listId);
@@ -52,7 +51,7 @@ namespace ApiSdk.Sites.Item.Lists.Item.ContentTypes.Item.Base.Unpublish {
                 });
                 await RequestAdapter.SendNoContentAsync(requestInfo, errorMapping: default, cancellationToken: cancellationToken);
                 Console.WriteLine("Success");
-            }, new CollectionBinding(siteIdOption, listIdOption, contentTypeIdOption, new TypeBinding(typeof(IOutputFormatterFactory)), new TypeBinding(typeof(CancellationToken))));
+            }, new CollectionBinding(siteIdOption, listIdOption, contentTypeIdOption, new TypeBinding(typeof(CancellationToken))));
             return command;
         }
         /// <summary>

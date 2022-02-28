@@ -43,8 +43,7 @@ namespace ApiSdk.Users.Item.Events.Item.Calendar.CalendarPermissions.Item {
                 var userId = (string) parameters[0];
                 var eventId = (string) parameters[1];
                 var calendarPermissionId = (string) parameters[2];
-                var outputFormatterFactory = (IOutputFormatterFactory) parameters[3];
-                var cancellationToken = (CancellationToken) parameters[4];
+                var cancellationToken = (CancellationToken) parameters[3];
                 PathParameters.Clear();
                 PathParameters.Add("user_id", userId);
                 PathParameters.Add("event_id", eventId);
@@ -53,7 +52,7 @@ namespace ApiSdk.Users.Item.Events.Item.Calendar.CalendarPermissions.Item {
                 });
                 await RequestAdapter.SendNoContentAsync(requestInfo, errorMapping: default, cancellationToken: cancellationToken);
                 Console.WriteLine("Success");
-            }, new CollectionBinding(userIdOption, eventIdOption, calendarPermissionIdOption, new TypeBinding(typeof(IOutputFormatterFactory)), new TypeBinding(typeof(CancellationToken))));
+            }, new CollectionBinding(userIdOption, eventIdOption, calendarPermissionIdOption, new TypeBinding(typeof(CancellationToken))));
             return command;
         }
         /// <summary>
@@ -84,14 +83,17 @@ namespace ApiSdk.Users.Item.Events.Item.Calendar.CalendarPermissions.Item {
                 IsRequired = true
             };
             command.AddOption(outputOption);
+            var outputFilterOption = new Option<string>("--query");
+            command.AddOption(outputFilterOption);
             command.SetHandler(async (object[] parameters) => {
                 var userId = (string) parameters[0];
                 var eventId = (string) parameters[1];
                 var calendarPermissionId = (string) parameters[2];
                 var select = (string[]) parameters[3];
                 var output = (FormatterType) parameters[4];
-                var outputFormatterFactory = (IOutputFormatterFactory) parameters[5];
-                var cancellationToken = (CancellationToken) parameters[6];
+                var outputFilterOption = (string) parameters[5];
+                var outputFormatterFactory = (IOutputFormatterFactory) parameters[6];
+                var cancellationToken = (CancellationToken) parameters[7];
                 PathParameters.Clear();
                 PathParameters.Add("user_id", userId);
                 PathParameters.Add("event_id", eventId);
@@ -102,7 +104,7 @@ namespace ApiSdk.Users.Item.Events.Item.Calendar.CalendarPermissions.Item {
                 var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: default, cancellationToken: cancellationToken);
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 formatter.WriteOutput(response);
-            }, new CollectionBinding(userIdOption, eventIdOption, calendarPermissionIdOption, selectOption, outputOption, new TypeBinding(typeof(IOutputFormatterFactory)), new TypeBinding(typeof(CancellationToken))));
+            }, new CollectionBinding(userIdOption, eventIdOption, calendarPermissionIdOption, selectOption, outputOption, outputFilterOption, new TypeBinding(typeof(IOutputFormatterFactory)), new TypeBinding(typeof(CancellationToken))));
             return command;
         }
         /// <summary>
@@ -133,8 +135,7 @@ namespace ApiSdk.Users.Item.Events.Item.Calendar.CalendarPermissions.Item {
                 var eventId = (string) parameters[1];
                 var calendarPermissionId = (string) parameters[2];
                 var body = (string) parameters[3];
-                var outputFormatterFactory = (IOutputFormatterFactory) parameters[4];
-                var cancellationToken = (CancellationToken) parameters[5];
+                var cancellationToken = (CancellationToken) parameters[4];
                 PathParameters.Clear();
                 PathParameters.Add("user_id", userId);
                 PathParameters.Add("event_id", eventId);
@@ -146,7 +147,7 @@ namespace ApiSdk.Users.Item.Events.Item.Calendar.CalendarPermissions.Item {
                 });
                 await RequestAdapter.SendNoContentAsync(requestInfo, errorMapping: default, cancellationToken: cancellationToken);
                 Console.WriteLine("Success");
-            }, new CollectionBinding(userIdOption, eventIdOption, calendarPermissionIdOption, bodyOption, new TypeBinding(typeof(IOutputFormatterFactory)), new TypeBinding(typeof(CancellationToken))));
+            }, new CollectionBinding(userIdOption, eventIdOption, calendarPermissionIdOption, bodyOption, new TypeBinding(typeof(CancellationToken))));
             return command;
         }
         /// <summary>

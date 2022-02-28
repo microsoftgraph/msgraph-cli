@@ -28,15 +28,10 @@ namespace ApiSdk.Me.Photo.Value {
             // Create options for all the parameters
             var fileOption = new Option<FileInfo>("--file");
             command.AddOption(fileOption);
-            var outputOption = new Option<FormatterType>("--output", () => FormatterType.JSON){
-                IsRequired = true
-            };
-            command.AddOption(outputOption);
             command.SetHandler(async (object[] parameters) => {
                 var file = (FileInfo) parameters[0];
-                var output = (FormatterType) parameters[1];
-                var outputFormatterFactory = (IOutputFormatterFactory) parameters[2];
-                var cancellationToken = (CancellationToken) parameters[3];
+                var outputFormatterFactory = (IOutputFormatterFactory) parameters[1];
+                var cancellationToken = (CancellationToken) parameters[2];
                 var requestInfo = CreateGetRequestInformation(q => {
                 });
                 var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: default, cancellationToken: cancellationToken);
@@ -49,7 +44,7 @@ namespace ApiSdk.Me.Photo.Value {
                     await response.CopyToAsync(writeStream);
                     Console.WriteLine($"Content written to {file.FullName}.");
                 }
-            }, new CollectionBinding(fileOption, outputOption, new TypeBinding(typeof(IOutputFormatterFactory)), new TypeBinding(typeof(CancellationToken))));
+            }, new CollectionBinding(fileOption, new TypeBinding(typeof(IOutputFormatterFactory)), new TypeBinding(typeof(CancellationToken))));
             return command;
         }
         /// <summary>
@@ -65,14 +60,13 @@ namespace ApiSdk.Me.Photo.Value {
             command.AddOption(bodyOption);
             command.SetHandler(async (object[] parameters) => {
                 var file = (FileInfo) parameters[0];
-                var outputFormatterFactory = (IOutputFormatterFactory) parameters[1];
-                var cancellationToken = (CancellationToken) parameters[2];
+                var cancellationToken = (CancellationToken) parameters[1];
                 using var stream = file.OpenRead();
                 var requestInfo = CreatePutRequestInformation(stream, q => {
                 });
                 await RequestAdapter.SendNoContentAsync(requestInfo, errorMapping: default, cancellationToken: cancellationToken);
                 Console.WriteLine("Success");
-            }, new CollectionBinding(bodyOption, new TypeBinding(typeof(IOutputFormatterFactory)), new TypeBinding(typeof(CancellationToken))));
+            }, new CollectionBinding(bodyOption, new TypeBinding(typeof(CancellationToken))));
             return command;
         }
         /// <summary>

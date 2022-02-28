@@ -34,11 +34,14 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.Assignments.Item.Acces
                 IsRequired = true
             };
             command.AddOption(outputOption);
+            var outputFilterOption = new Option<string>("--query");
+            command.AddOption(outputFilterOption);
             command.SetHandler(async (object[] parameters) => {
                 var accessPackageAssignmentId = (string) parameters[0];
                 var output = (FormatterType) parameters[1];
-                var outputFormatterFactory = (IOutputFormatterFactory) parameters[2];
-                var cancellationToken = (CancellationToken) parameters[3];
+                var outputFilterOption = (string) parameters[2];
+                var outputFormatterFactory = (IOutputFormatterFactory) parameters[3];
+                var cancellationToken = (CancellationToken) parameters[4];
                 PathParameters.Clear();
                 PathParameters.Add("accessPackageAssignment_id", accessPackageAssignmentId);
                 var requestInfo = CreatePostRequestInformation(q => {
@@ -46,7 +49,7 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.Assignments.Item.Acces
                 var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: default, cancellationToken: cancellationToken);
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 formatter.WriteOutput(response);
-            }, new CollectionBinding(accessPackageAssignmentIdOption, outputOption, new TypeBinding(typeof(IOutputFormatterFactory)), new TypeBinding(typeof(CancellationToken))));
+            }, new CollectionBinding(accessPackageAssignmentIdOption, outputOption, outputFilterOption, new TypeBinding(typeof(IOutputFormatterFactory)), new TypeBinding(typeof(CancellationToken))));
             return command;
         }
         /// <summary>

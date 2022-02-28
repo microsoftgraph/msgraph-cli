@@ -37,8 +37,7 @@ namespace ApiSdk.DeviceManagement.RoleDefinitions.Item.RoleAssignments.Item.Role
             command.SetHandler(async (object[] parameters) => {
                 var roleDefinitionId = (string) parameters[0];
                 var roleAssignmentId = (string) parameters[1];
-                var outputFormatterFactory = (IOutputFormatterFactory) parameters[2];
-                var cancellationToken = (CancellationToken) parameters[3];
+                var cancellationToken = (CancellationToken) parameters[2];
                 PathParameters.Clear();
                 PathParameters.Add("roleDefinition_id", roleDefinitionId);
                 PathParameters.Add("roleAssignment_id", roleAssignmentId);
@@ -46,7 +45,7 @@ namespace ApiSdk.DeviceManagement.RoleDefinitions.Item.RoleAssignments.Item.Role
                 });
                 await RequestAdapter.SendNoContentAsync(requestInfo, errorMapping: default, cancellationToken: cancellationToken);
                 Console.WriteLine("Success");
-            }, new CollectionBinding(roleDefinitionIdOption, roleAssignmentIdOption, new TypeBinding(typeof(IOutputFormatterFactory)), new TypeBinding(typeof(CancellationToken))));
+            }, new CollectionBinding(roleDefinitionIdOption, roleAssignmentIdOption, new TypeBinding(typeof(CancellationToken))));
             return command;
         }
         /// <summary>
@@ -68,12 +67,15 @@ namespace ApiSdk.DeviceManagement.RoleDefinitions.Item.RoleAssignments.Item.Role
                 IsRequired = true
             };
             command.AddOption(outputOption);
+            var outputFilterOption = new Option<string>("--query");
+            command.AddOption(outputFilterOption);
             command.SetHandler(async (object[] parameters) => {
                 var roleDefinitionId = (string) parameters[0];
                 var roleAssignmentId = (string) parameters[1];
                 var output = (FormatterType) parameters[2];
-                var outputFormatterFactory = (IOutputFormatterFactory) parameters[3];
-                var cancellationToken = (CancellationToken) parameters[4];
+                var outputFilterOption = (string) parameters[3];
+                var outputFormatterFactory = (IOutputFormatterFactory) parameters[4];
+                var cancellationToken = (CancellationToken) parameters[5];
                 PathParameters.Clear();
                 PathParameters.Add("roleDefinition_id", roleDefinitionId);
                 PathParameters.Add("roleAssignment_id", roleAssignmentId);
@@ -82,7 +84,7 @@ namespace ApiSdk.DeviceManagement.RoleDefinitions.Item.RoleAssignments.Item.Role
                 var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: default, cancellationToken: cancellationToken);
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 formatter.WriteOutput(response);
-            }, new CollectionBinding(roleDefinitionIdOption, roleAssignmentIdOption, outputOption, new TypeBinding(typeof(IOutputFormatterFactory)), new TypeBinding(typeof(CancellationToken))));
+            }, new CollectionBinding(roleDefinitionIdOption, roleAssignmentIdOption, outputOption, outputFilterOption, new TypeBinding(typeof(IOutputFormatterFactory)), new TypeBinding(typeof(CancellationToken))));
             return command;
         }
         /// <summary>
@@ -108,8 +110,7 @@ namespace ApiSdk.DeviceManagement.RoleDefinitions.Item.RoleAssignments.Item.Role
                 var roleDefinitionId = (string) parameters[0];
                 var roleAssignmentId = (string) parameters[1];
                 var body = (string) parameters[2];
-                var outputFormatterFactory = (IOutputFormatterFactory) parameters[3];
-                var cancellationToken = (CancellationToken) parameters[4];
+                var cancellationToken = (CancellationToken) parameters[3];
                 PathParameters.Clear();
                 PathParameters.Add("roleDefinition_id", roleDefinitionId);
                 PathParameters.Add("roleAssignment_id", roleAssignmentId);
@@ -120,7 +121,7 @@ namespace ApiSdk.DeviceManagement.RoleDefinitions.Item.RoleAssignments.Item.Role
                 });
                 await RequestAdapter.SendNoContentAsync(requestInfo, errorMapping: default, cancellationToken: cancellationToken);
                 Console.WriteLine("Success");
-            }, new CollectionBinding(roleDefinitionIdOption, roleAssignmentIdOption, bodyOption, new TypeBinding(typeof(IOutputFormatterFactory)), new TypeBinding(typeof(CancellationToken))));
+            }, new CollectionBinding(roleDefinitionIdOption, roleAssignmentIdOption, bodyOption, new TypeBinding(typeof(CancellationToken))));
             return command;
         }
         /// <summary>

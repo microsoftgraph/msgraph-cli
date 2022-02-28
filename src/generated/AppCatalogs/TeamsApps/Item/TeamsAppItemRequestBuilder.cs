@@ -44,15 +44,14 @@ namespace ApiSdk.AppCatalogs.TeamsApps.Item {
             command.AddOption(teamsAppIdOption);
             command.SetHandler(async (object[] parameters) => {
                 var teamsAppId = (string) parameters[0];
-                var outputFormatterFactory = (IOutputFormatterFactory) parameters[1];
-                var cancellationToken = (CancellationToken) parameters[2];
+                var cancellationToken = (CancellationToken) parameters[1];
                 PathParameters.Clear();
                 PathParameters.Add("teamsApp_id", teamsAppId);
                 var requestInfo = CreateDeleteRequestInformation(q => {
                 });
                 await RequestAdapter.SendNoContentAsync(requestInfo, errorMapping: default, cancellationToken: cancellationToken);
                 Console.WriteLine("Success");
-            }, new CollectionBinding(teamsAppIdOption, new TypeBinding(typeof(IOutputFormatterFactory)), new TypeBinding(typeof(CancellationToken))));
+            }, new CollectionBinding(teamsAppIdOption, new TypeBinding(typeof(CancellationToken))));
             return command;
         }
         /// <summary>
@@ -80,13 +79,16 @@ namespace ApiSdk.AppCatalogs.TeamsApps.Item {
                 IsRequired = true
             };
             command.AddOption(outputOption);
+            var outputFilterOption = new Option<string>("--query");
+            command.AddOption(outputFilterOption);
             command.SetHandler(async (object[] parameters) => {
                 var teamsAppId = (string) parameters[0];
                 var select = (string[]) parameters[1];
                 var expand = (string[]) parameters[2];
                 var output = (FormatterType) parameters[3];
-                var outputFormatterFactory = (IOutputFormatterFactory) parameters[4];
-                var cancellationToken = (CancellationToken) parameters[5];
+                var outputFilterOption = (string) parameters[4];
+                var outputFormatterFactory = (IOutputFormatterFactory) parameters[5];
+                var cancellationToken = (CancellationToken) parameters[6];
                 PathParameters.Clear();
                 PathParameters.Add("teamsApp_id", teamsAppId);
                 var requestInfo = CreateGetRequestInformation(q => {
@@ -96,7 +98,7 @@ namespace ApiSdk.AppCatalogs.TeamsApps.Item {
                 var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: default, cancellationToken: cancellationToken);
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 formatter.WriteOutput(response);
-            }, new CollectionBinding(teamsAppIdOption, selectOption, expandOption, outputOption, new TypeBinding(typeof(IOutputFormatterFactory)), new TypeBinding(typeof(CancellationToken))));
+            }, new CollectionBinding(teamsAppIdOption, selectOption, expandOption, outputOption, outputFilterOption, new TypeBinding(typeof(IOutputFormatterFactory)), new TypeBinding(typeof(CancellationToken))));
             return command;
         }
         /// <summary>
@@ -117,8 +119,7 @@ namespace ApiSdk.AppCatalogs.TeamsApps.Item {
             command.SetHandler(async (object[] parameters) => {
                 var teamsAppId = (string) parameters[0];
                 var body = (string) parameters[1];
-                var outputFormatterFactory = (IOutputFormatterFactory) parameters[2];
-                var cancellationToken = (CancellationToken) parameters[3];
+                var cancellationToken = (CancellationToken) parameters[2];
                 PathParameters.Clear();
                 PathParameters.Add("teamsApp_id", teamsAppId);
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
@@ -128,7 +129,7 @@ namespace ApiSdk.AppCatalogs.TeamsApps.Item {
                 });
                 await RequestAdapter.SendNoContentAsync(requestInfo, errorMapping: default, cancellationToken: cancellationToken);
                 Console.WriteLine("Success");
-            }, new CollectionBinding(teamsAppIdOption, bodyOption, new TypeBinding(typeof(IOutputFormatterFactory)), new TypeBinding(typeof(CancellationToken))));
+            }, new CollectionBinding(teamsAppIdOption, bodyOption, new TypeBinding(typeof(CancellationToken))));
             return command;
         }
         /// <summary>

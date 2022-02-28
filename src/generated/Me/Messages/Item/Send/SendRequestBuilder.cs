@@ -32,15 +32,14 @@ namespace ApiSdk.Me.Messages.Item.Send {
             command.AddOption(messageIdOption);
             command.SetHandler(async (object[] parameters) => {
                 var messageId = (string) parameters[0];
-                var outputFormatterFactory = (IOutputFormatterFactory) parameters[1];
-                var cancellationToken = (CancellationToken) parameters[2];
+                var cancellationToken = (CancellationToken) parameters[1];
                 PathParameters.Clear();
                 PathParameters.Add("message_id", messageId);
                 var requestInfo = CreatePostRequestInformation(q => {
                 });
                 await RequestAdapter.SendNoContentAsync(requestInfo, errorMapping: default, cancellationToken: cancellationToken);
                 Console.WriteLine("Success");
-            }, new CollectionBinding(messageIdOption, new TypeBinding(typeof(IOutputFormatterFactory)), new TypeBinding(typeof(CancellationToken))));
+            }, new CollectionBinding(messageIdOption, new TypeBinding(typeof(CancellationToken))));
             return command;
         }
         /// <summary>

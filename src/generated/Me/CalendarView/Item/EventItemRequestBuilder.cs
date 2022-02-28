@@ -89,15 +89,14 @@ namespace ApiSdk.Me.CalendarView.Item {
             command.AddOption(eventIdOption);
             command.SetHandler(async (object[] parameters) => {
                 var eventId = (string) parameters[0];
-                var outputFormatterFactory = (IOutputFormatterFactory) parameters[1];
-                var cancellationToken = (CancellationToken) parameters[2];
+                var cancellationToken = (CancellationToken) parameters[1];
                 PathParameters.Clear();
                 PathParameters.Add("event_id", eventId);
                 var requestInfo = CreateDeleteRequestInformation(q => {
                 });
                 await RequestAdapter.SendNoContentAsync(requestInfo, errorMapping: default, cancellationToken: cancellationToken);
                 Console.WriteLine("Success");
-            }, new CollectionBinding(eventIdOption, new TypeBinding(typeof(IOutputFormatterFactory)), new TypeBinding(typeof(CancellationToken))));
+            }, new CollectionBinding(eventIdOption, new TypeBinding(typeof(CancellationToken))));
             return command;
         }
         public Command BuildDismissReminderCommand() {
@@ -150,14 +149,17 @@ namespace ApiSdk.Me.CalendarView.Item {
                 IsRequired = true
             };
             command.AddOption(outputOption);
+            var outputFilterOption = new Option<string>("--query");
+            command.AddOption(outputFilterOption);
             command.SetHandler(async (object[] parameters) => {
                 var eventId = (string) parameters[0];
                 var startDateTime = (string) parameters[1];
                 var endDateTime = (string) parameters[2];
                 var select = (string[]) parameters[3];
                 var output = (FormatterType) parameters[4];
-                var outputFormatterFactory = (IOutputFormatterFactory) parameters[5];
-                var cancellationToken = (CancellationToken) parameters[6];
+                var outputFilterOption = (string) parameters[5];
+                var outputFormatterFactory = (IOutputFormatterFactory) parameters[6];
+                var cancellationToken = (CancellationToken) parameters[7];
                 PathParameters.Clear();
                 PathParameters.Add("event_id", eventId);
                 var requestInfo = CreateGetRequestInformation(q => {
@@ -168,7 +170,7 @@ namespace ApiSdk.Me.CalendarView.Item {
                 var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: default, cancellationToken: cancellationToken);
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 formatter.WriteOutput(response);
-            }, new CollectionBinding(eventIdOption, startDateTimeOption, endDateTimeOption, selectOption, outputOption, new TypeBinding(typeof(IOutputFormatterFactory)), new TypeBinding(typeof(CancellationToken))));
+            }, new CollectionBinding(eventIdOption, startDateTimeOption, endDateTimeOption, selectOption, outputOption, outputFilterOption, new TypeBinding(typeof(IOutputFormatterFactory)), new TypeBinding(typeof(CancellationToken))));
             return command;
         }
         public Command BuildInstancesCommand() {
@@ -209,8 +211,7 @@ namespace ApiSdk.Me.CalendarView.Item {
             command.SetHandler(async (object[] parameters) => {
                 var eventId = (string) parameters[0];
                 var body = (string) parameters[1];
-                var outputFormatterFactory = (IOutputFormatterFactory) parameters[2];
-                var cancellationToken = (CancellationToken) parameters[3];
+                var cancellationToken = (CancellationToken) parameters[2];
                 PathParameters.Clear();
                 PathParameters.Add("event_id", eventId);
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
@@ -220,7 +221,7 @@ namespace ApiSdk.Me.CalendarView.Item {
                 });
                 await RequestAdapter.SendNoContentAsync(requestInfo, errorMapping: default, cancellationToken: cancellationToken);
                 Console.WriteLine("Success");
-            }, new CollectionBinding(eventIdOption, bodyOption, new TypeBinding(typeof(IOutputFormatterFactory)), new TypeBinding(typeof(CancellationToken))));
+            }, new CollectionBinding(eventIdOption, bodyOption, new TypeBinding(typeof(CancellationToken))));
             return command;
         }
         public Command BuildSingleValueExtendedPropertiesCommand() {

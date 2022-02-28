@@ -62,8 +62,7 @@ namespace ApiSdk.Users.Item.ContactFolders.Item {
             command.SetHandler(async (object[] parameters) => {
                 var userId = (string) parameters[0];
                 var contactFolderId = (string) parameters[1];
-                var outputFormatterFactory = (IOutputFormatterFactory) parameters[2];
-                var cancellationToken = (CancellationToken) parameters[3];
+                var cancellationToken = (CancellationToken) parameters[2];
                 PathParameters.Clear();
                 PathParameters.Add("user_id", userId);
                 PathParameters.Add("contactFolder_id", contactFolderId);
@@ -71,7 +70,7 @@ namespace ApiSdk.Users.Item.ContactFolders.Item {
                 });
                 await RequestAdapter.SendNoContentAsync(requestInfo, errorMapping: default, cancellationToken: cancellationToken);
                 Console.WriteLine("Success");
-            }, new CollectionBinding(userIdOption, contactFolderIdOption, new TypeBinding(typeof(IOutputFormatterFactory)), new TypeBinding(typeof(CancellationToken))));
+            }, new CollectionBinding(userIdOption, contactFolderIdOption, new TypeBinding(typeof(CancellationToken))));
             return command;
         }
         /// <summary>
@@ -98,13 +97,16 @@ namespace ApiSdk.Users.Item.ContactFolders.Item {
                 IsRequired = true
             };
             command.AddOption(outputOption);
+            var outputFilterOption = new Option<string>("--query");
+            command.AddOption(outputFilterOption);
             command.SetHandler(async (object[] parameters) => {
                 var userId = (string) parameters[0];
                 var contactFolderId = (string) parameters[1];
                 var select = (string[]) parameters[2];
                 var output = (FormatterType) parameters[3];
-                var outputFormatterFactory = (IOutputFormatterFactory) parameters[4];
-                var cancellationToken = (CancellationToken) parameters[5];
+                var outputFilterOption = (string) parameters[4];
+                var outputFormatterFactory = (IOutputFormatterFactory) parameters[5];
+                var cancellationToken = (CancellationToken) parameters[6];
                 PathParameters.Clear();
                 PathParameters.Add("user_id", userId);
                 PathParameters.Add("contactFolder_id", contactFolderId);
@@ -114,7 +116,7 @@ namespace ApiSdk.Users.Item.ContactFolders.Item {
                 var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: default, cancellationToken: cancellationToken);
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 formatter.WriteOutput(response);
-            }, new CollectionBinding(userIdOption, contactFolderIdOption, selectOption, outputOption, new TypeBinding(typeof(IOutputFormatterFactory)), new TypeBinding(typeof(CancellationToken))));
+            }, new CollectionBinding(userIdOption, contactFolderIdOption, selectOption, outputOption, outputFilterOption, new TypeBinding(typeof(IOutputFormatterFactory)), new TypeBinding(typeof(CancellationToken))));
             return command;
         }
         public Command BuildMultiValueExtendedPropertiesCommand() {
@@ -150,8 +152,7 @@ namespace ApiSdk.Users.Item.ContactFolders.Item {
                 var userId = (string) parameters[0];
                 var contactFolderId = (string) parameters[1];
                 var body = (string) parameters[2];
-                var outputFormatterFactory = (IOutputFormatterFactory) parameters[3];
-                var cancellationToken = (CancellationToken) parameters[4];
+                var cancellationToken = (CancellationToken) parameters[3];
                 PathParameters.Clear();
                 PathParameters.Add("user_id", userId);
                 PathParameters.Add("contactFolder_id", contactFolderId);
@@ -162,7 +163,7 @@ namespace ApiSdk.Users.Item.ContactFolders.Item {
                 });
                 await RequestAdapter.SendNoContentAsync(requestInfo, errorMapping: default, cancellationToken: cancellationToken);
                 Console.WriteLine("Success");
-            }, new CollectionBinding(userIdOption, contactFolderIdOption, bodyOption, new TypeBinding(typeof(IOutputFormatterFactory)), new TypeBinding(typeof(CancellationToken))));
+            }, new CollectionBinding(userIdOption, contactFolderIdOption, bodyOption, new TypeBinding(typeof(CancellationToken))));
             return command;
         }
         public Command BuildSingleValueExtendedPropertiesCommand() {

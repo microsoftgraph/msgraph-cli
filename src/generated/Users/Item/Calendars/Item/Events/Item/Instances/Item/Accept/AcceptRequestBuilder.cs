@@ -52,8 +52,7 @@ namespace ApiSdk.Users.Item.Calendars.Item.Events.Item.Instances.Item.Accept {
                 var eventId = (string) parameters[2];
                 var eventId1 = (string) parameters[3];
                 var body = (string) parameters[4];
-                var outputFormatterFactory = (IOutputFormatterFactory) parameters[5];
-                var cancellationToken = (CancellationToken) parameters[6];
+                var cancellationToken = (CancellationToken) parameters[5];
                 PathParameters.Clear();
                 PathParameters.Add("user_id", userId);
                 PathParameters.Add("calendar_id", calendarId);
@@ -66,7 +65,7 @@ namespace ApiSdk.Users.Item.Calendars.Item.Events.Item.Instances.Item.Accept {
                 });
                 await RequestAdapter.SendNoContentAsync(requestInfo, errorMapping: default, cancellationToken: cancellationToken);
                 Console.WriteLine("Success");
-            }, new CollectionBinding(userIdOption, calendarIdOption, eventIdOption, eventId1Option, bodyOption, new TypeBinding(typeof(IOutputFormatterFactory)), new TypeBinding(typeof(CancellationToken))));
+            }, new CollectionBinding(userIdOption, calendarIdOption, eventIdOption, eventId1Option, bodyOption, new TypeBinding(typeof(CancellationToken))));
             return command;
         }
         /// <summary>

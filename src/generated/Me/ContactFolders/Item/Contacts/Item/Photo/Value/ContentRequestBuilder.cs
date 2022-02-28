@@ -36,17 +36,12 @@ namespace ApiSdk.Me.ContactFolders.Item.Contacts.Item.Photo.Value {
             command.AddOption(contactIdOption);
             var fileOption = new Option<FileInfo>("--file");
             command.AddOption(fileOption);
-            var outputOption = new Option<FormatterType>("--output", () => FormatterType.JSON){
-                IsRequired = true
-            };
-            command.AddOption(outputOption);
             command.SetHandler(async (object[] parameters) => {
                 var contactFolderId = (string) parameters[0];
                 var contactId = (string) parameters[1];
                 var file = (FileInfo) parameters[2];
-                var output = (FormatterType) parameters[3];
-                var outputFormatterFactory = (IOutputFormatterFactory) parameters[4];
-                var cancellationToken = (CancellationToken) parameters[5];
+                var outputFormatterFactory = (IOutputFormatterFactory) parameters[3];
+                var cancellationToken = (CancellationToken) parameters[4];
                 PathParameters.Clear();
                 PathParameters.Add("contactFolder_id", contactFolderId);
                 PathParameters.Add("contact_id", contactId);
@@ -62,7 +57,7 @@ namespace ApiSdk.Me.ContactFolders.Item.Contacts.Item.Photo.Value {
                     await response.CopyToAsync(writeStream);
                     Console.WriteLine($"Content written to {file.FullName}.");
                 }
-            }, new CollectionBinding(contactFolderIdOption, contactIdOption, fileOption, outputOption, new TypeBinding(typeof(IOutputFormatterFactory)), new TypeBinding(typeof(CancellationToken))));
+            }, new CollectionBinding(contactFolderIdOption, contactIdOption, fileOption, new TypeBinding(typeof(IOutputFormatterFactory)), new TypeBinding(typeof(CancellationToken))));
             return command;
         }
         /// <summary>
@@ -88,8 +83,7 @@ namespace ApiSdk.Me.ContactFolders.Item.Contacts.Item.Photo.Value {
                 var contactFolderId = (string) parameters[0];
                 var contactId = (string) parameters[1];
                 var file = (FileInfo) parameters[2];
-                var outputFormatterFactory = (IOutputFormatterFactory) parameters[3];
-                var cancellationToken = (CancellationToken) parameters[4];
+                var cancellationToken = (CancellationToken) parameters[3];
                 PathParameters.Clear();
                 PathParameters.Add("contactFolder_id", contactFolderId);
                 PathParameters.Add("contact_id", contactId);
@@ -98,7 +92,7 @@ namespace ApiSdk.Me.ContactFolders.Item.Contacts.Item.Photo.Value {
                 });
                 await RequestAdapter.SendNoContentAsync(requestInfo, errorMapping: default, cancellationToken: cancellationToken);
                 Console.WriteLine("Success");
-            }, new CollectionBinding(contactFolderIdOption, contactIdOption, bodyOption, new TypeBinding(typeof(IOutputFormatterFactory)), new TypeBinding(typeof(CancellationToken))));
+            }, new CollectionBinding(contactFolderIdOption, contactIdOption, bodyOption, new TypeBinding(typeof(CancellationToken))));
             return command;
         }
         /// <summary>

@@ -40,18 +40,13 @@ namespace ApiSdk.Identity.B2xUserFlows.Item.Languages.Item.DefaultPages.Item.Val
             command.AddOption(userFlowLanguagePageIdOption);
             var fileOption = new Option<FileInfo>("--file");
             command.AddOption(fileOption);
-            var outputOption = new Option<FormatterType>("--output", () => FormatterType.JSON){
-                IsRequired = true
-            };
-            command.AddOption(outputOption);
             command.SetHandler(async (object[] parameters) => {
                 var b2xIdentityUserFlowId = (string) parameters[0];
                 var userFlowLanguageConfigurationId = (string) parameters[1];
                 var userFlowLanguagePageId = (string) parameters[2];
                 var file = (FileInfo) parameters[3];
-                var output = (FormatterType) parameters[4];
-                var outputFormatterFactory = (IOutputFormatterFactory) parameters[5];
-                var cancellationToken = (CancellationToken) parameters[6];
+                var outputFormatterFactory = (IOutputFormatterFactory) parameters[4];
+                var cancellationToken = (CancellationToken) parameters[5];
                 PathParameters.Clear();
                 PathParameters.Add("b2xIdentityUserFlow_id", b2xIdentityUserFlowId);
                 PathParameters.Add("userFlowLanguageConfiguration_id", userFlowLanguageConfigurationId);
@@ -68,7 +63,7 @@ namespace ApiSdk.Identity.B2xUserFlows.Item.Languages.Item.DefaultPages.Item.Val
                     await response.CopyToAsync(writeStream);
                     Console.WriteLine($"Content written to {file.FullName}.");
                 }
-            }, new CollectionBinding(b2xIdentityUserFlowIdOption, userFlowLanguageConfigurationIdOption, userFlowLanguagePageIdOption, fileOption, outputOption, new TypeBinding(typeof(IOutputFormatterFactory)), new TypeBinding(typeof(CancellationToken))));
+            }, new CollectionBinding(b2xIdentityUserFlowIdOption, userFlowLanguageConfigurationIdOption, userFlowLanguagePageIdOption, fileOption, new TypeBinding(typeof(IOutputFormatterFactory)), new TypeBinding(typeof(CancellationToken))));
             return command;
         }
         /// <summary>
@@ -99,8 +94,7 @@ namespace ApiSdk.Identity.B2xUserFlows.Item.Languages.Item.DefaultPages.Item.Val
                 var userFlowLanguageConfigurationId = (string) parameters[1];
                 var userFlowLanguagePageId = (string) parameters[2];
                 var file = (FileInfo) parameters[3];
-                var outputFormatterFactory = (IOutputFormatterFactory) parameters[4];
-                var cancellationToken = (CancellationToken) parameters[5];
+                var cancellationToken = (CancellationToken) parameters[4];
                 PathParameters.Clear();
                 PathParameters.Add("b2xIdentityUserFlow_id", b2xIdentityUserFlowId);
                 PathParameters.Add("userFlowLanguageConfiguration_id", userFlowLanguageConfigurationId);
@@ -110,7 +104,7 @@ namespace ApiSdk.Identity.B2xUserFlows.Item.Languages.Item.DefaultPages.Item.Val
                 });
                 await RequestAdapter.SendNoContentAsync(requestInfo, errorMapping: default, cancellationToken: cancellationToken);
                 Console.WriteLine("Success");
-            }, new CollectionBinding(b2xIdentityUserFlowIdOption, userFlowLanguageConfigurationIdOption, userFlowLanguagePageIdOption, bodyOption, new TypeBinding(typeof(IOutputFormatterFactory)), new TypeBinding(typeof(CancellationToken))));
+            }, new CollectionBinding(b2xIdentityUserFlowIdOption, userFlowLanguageConfigurationIdOption, userFlowLanguagePageIdOption, bodyOption, new TypeBinding(typeof(CancellationToken))));
             return command;
         }
         /// <summary>

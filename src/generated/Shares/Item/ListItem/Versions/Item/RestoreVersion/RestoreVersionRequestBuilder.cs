@@ -37,8 +37,7 @@ namespace ApiSdk.Shares.Item.ListItem.Versions.Item.RestoreVersion {
             command.SetHandler(async (object[] parameters) => {
                 var sharedDriveItemId = (string) parameters[0];
                 var listItemVersionId = (string) parameters[1];
-                var outputFormatterFactory = (IOutputFormatterFactory) parameters[2];
-                var cancellationToken = (CancellationToken) parameters[3];
+                var cancellationToken = (CancellationToken) parameters[2];
                 PathParameters.Clear();
                 PathParameters.Add("sharedDriveItem_id", sharedDriveItemId);
                 PathParameters.Add("listItemVersion_id", listItemVersionId);
@@ -46,7 +45,7 @@ namespace ApiSdk.Shares.Item.ListItem.Versions.Item.RestoreVersion {
                 });
                 await RequestAdapter.SendNoContentAsync(requestInfo, errorMapping: default, cancellationToken: cancellationToken);
                 Console.WriteLine("Success");
-            }, new CollectionBinding(sharedDriveItemIdOption, listItemVersionIdOption, new TypeBinding(typeof(IOutputFormatterFactory)), new TypeBinding(typeof(CancellationToken))));
+            }, new CollectionBinding(sharedDriveItemIdOption, listItemVersionIdOption, new TypeBinding(typeof(CancellationToken))));
             return command;
         }
         /// <summary>

@@ -37,8 +37,7 @@ namespace ApiSdk.Communications.Presences.Item.SetPresence {
             command.SetHandler(async (object[] parameters) => {
                 var presenceId = (string) parameters[0];
                 var body = (string) parameters[1];
-                var outputFormatterFactory = (IOutputFormatterFactory) parameters[2];
-                var cancellationToken = (CancellationToken) parameters[3];
+                var cancellationToken = (CancellationToken) parameters[2];
                 PathParameters.Clear();
                 PathParameters.Add("presence_id", presenceId);
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
@@ -48,7 +47,7 @@ namespace ApiSdk.Communications.Presences.Item.SetPresence {
                 });
                 await RequestAdapter.SendNoContentAsync(requestInfo, errorMapping: default, cancellationToken: cancellationToken);
                 Console.WriteLine("Success");
-            }, new CollectionBinding(presenceIdOption, bodyOption, new TypeBinding(typeof(IOutputFormatterFactory)), new TypeBinding(typeof(CancellationToken))));
+            }, new CollectionBinding(presenceIdOption, bodyOption, new TypeBinding(typeof(CancellationToken))));
             return command;
         }
         /// <summary>

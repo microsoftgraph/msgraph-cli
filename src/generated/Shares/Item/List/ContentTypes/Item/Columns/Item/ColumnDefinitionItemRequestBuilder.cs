@@ -44,8 +44,7 @@ namespace ApiSdk.Shares.Item.List.ContentTypes.Item.Columns.Item {
                 var sharedDriveItemId = (string) parameters[0];
                 var contentTypeId = (string) parameters[1];
                 var columnDefinitionId = (string) parameters[2];
-                var outputFormatterFactory = (IOutputFormatterFactory) parameters[3];
-                var cancellationToken = (CancellationToken) parameters[4];
+                var cancellationToken = (CancellationToken) parameters[3];
                 PathParameters.Clear();
                 PathParameters.Add("sharedDriveItem_id", sharedDriveItemId);
                 PathParameters.Add("contentType_id", contentTypeId);
@@ -54,7 +53,7 @@ namespace ApiSdk.Shares.Item.List.ContentTypes.Item.Columns.Item {
                 });
                 await RequestAdapter.SendNoContentAsync(requestInfo, errorMapping: default, cancellationToken: cancellationToken);
                 Console.WriteLine("Success");
-            }, new CollectionBinding(sharedDriveItemIdOption, contentTypeIdOption, columnDefinitionIdOption, new TypeBinding(typeof(IOutputFormatterFactory)), new TypeBinding(typeof(CancellationToken))));
+            }, new CollectionBinding(sharedDriveItemIdOption, contentTypeIdOption, columnDefinitionIdOption, new TypeBinding(typeof(CancellationToken))));
             return command;
         }
         /// <summary>
@@ -90,6 +89,8 @@ namespace ApiSdk.Shares.Item.List.ContentTypes.Item.Columns.Item {
                 IsRequired = true
             };
             command.AddOption(outputOption);
+            var outputFilterOption = new Option<string>("--query");
+            command.AddOption(outputFilterOption);
             command.SetHandler(async (object[] parameters) => {
                 var sharedDriveItemId = (string) parameters[0];
                 var contentTypeId = (string) parameters[1];
@@ -97,8 +98,9 @@ namespace ApiSdk.Shares.Item.List.ContentTypes.Item.Columns.Item {
                 var select = (string[]) parameters[3];
                 var expand = (string[]) parameters[4];
                 var output = (FormatterType) parameters[5];
-                var outputFormatterFactory = (IOutputFormatterFactory) parameters[6];
-                var cancellationToken = (CancellationToken) parameters[7];
+                var outputFilterOption = (string) parameters[6];
+                var outputFormatterFactory = (IOutputFormatterFactory) parameters[7];
+                var cancellationToken = (CancellationToken) parameters[8];
                 PathParameters.Clear();
                 PathParameters.Add("sharedDriveItem_id", sharedDriveItemId);
                 PathParameters.Add("contentType_id", contentTypeId);
@@ -110,7 +112,7 @@ namespace ApiSdk.Shares.Item.List.ContentTypes.Item.Columns.Item {
                 var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: default, cancellationToken: cancellationToken);
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 formatter.WriteOutput(response);
-            }, new CollectionBinding(sharedDriveItemIdOption, contentTypeIdOption, columnDefinitionIdOption, selectOption, expandOption, outputOption, new TypeBinding(typeof(IOutputFormatterFactory)), new TypeBinding(typeof(CancellationToken))));
+            }, new CollectionBinding(sharedDriveItemIdOption, contentTypeIdOption, columnDefinitionIdOption, selectOption, expandOption, outputOption, outputFilterOption, new TypeBinding(typeof(IOutputFormatterFactory)), new TypeBinding(typeof(CancellationToken))));
             return command;
         }
         /// <summary>
@@ -141,8 +143,7 @@ namespace ApiSdk.Shares.Item.List.ContentTypes.Item.Columns.Item {
                 var contentTypeId = (string) parameters[1];
                 var columnDefinitionId = (string) parameters[2];
                 var body = (string) parameters[3];
-                var outputFormatterFactory = (IOutputFormatterFactory) parameters[4];
-                var cancellationToken = (CancellationToken) parameters[5];
+                var cancellationToken = (CancellationToken) parameters[4];
                 PathParameters.Clear();
                 PathParameters.Add("sharedDriveItem_id", sharedDriveItemId);
                 PathParameters.Add("contentType_id", contentTypeId);
@@ -154,7 +155,7 @@ namespace ApiSdk.Shares.Item.List.ContentTypes.Item.Columns.Item {
                 });
                 await RequestAdapter.SendNoContentAsync(requestInfo, errorMapping: default, cancellationToken: cancellationToken);
                 Console.WriteLine("Success");
-            }, new CollectionBinding(sharedDriveItemIdOption, contentTypeIdOption, columnDefinitionIdOption, bodyOption, new TypeBinding(typeof(IOutputFormatterFactory)), new TypeBinding(typeof(CancellationToken))));
+            }, new CollectionBinding(sharedDriveItemIdOption, contentTypeIdOption, columnDefinitionIdOption, bodyOption, new TypeBinding(typeof(CancellationToken))));
             return command;
         }
         public Command BuildSourceColumnCommand() {

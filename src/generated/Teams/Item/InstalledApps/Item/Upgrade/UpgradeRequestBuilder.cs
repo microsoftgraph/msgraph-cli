@@ -37,8 +37,7 @@ namespace ApiSdk.Teams.Item.InstalledApps.Item.Upgrade {
             command.SetHandler(async (object[] parameters) => {
                 var teamId = (string) parameters[0];
                 var teamsAppInstallationId = (string) parameters[1];
-                var outputFormatterFactory = (IOutputFormatterFactory) parameters[2];
-                var cancellationToken = (CancellationToken) parameters[3];
+                var cancellationToken = (CancellationToken) parameters[2];
                 PathParameters.Clear();
                 PathParameters.Add("team_id", teamId);
                 PathParameters.Add("teamsAppInstallation_id", teamsAppInstallationId);
@@ -46,7 +45,7 @@ namespace ApiSdk.Teams.Item.InstalledApps.Item.Upgrade {
                 });
                 await RequestAdapter.SendNoContentAsync(requestInfo, errorMapping: default, cancellationToken: cancellationToken);
                 Console.WriteLine("Success");
-            }, new CollectionBinding(teamIdOption, teamsAppInstallationIdOption, new TypeBinding(typeof(IOutputFormatterFactory)), new TypeBinding(typeof(CancellationToken))));
+            }, new CollectionBinding(teamIdOption, teamsAppInstallationIdOption, new TypeBinding(typeof(CancellationToken))));
             return command;
         }
         /// <summary>

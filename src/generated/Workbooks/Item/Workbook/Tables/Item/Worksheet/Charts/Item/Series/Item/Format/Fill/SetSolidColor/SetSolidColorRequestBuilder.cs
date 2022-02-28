@@ -52,8 +52,7 @@ namespace ApiSdk.Workbooks.Item.Workbook.Tables.Item.Worksheet.Charts.Item.Serie
                 var workbookChartId = (string) parameters[2];
                 var workbookChartSeriesId = (string) parameters[3];
                 var body = (string) parameters[4];
-                var outputFormatterFactory = (IOutputFormatterFactory) parameters[5];
-                var cancellationToken = (CancellationToken) parameters[6];
+                var cancellationToken = (CancellationToken) parameters[5];
                 PathParameters.Clear();
                 PathParameters.Add("driveItem_id", driveItemId);
                 PathParameters.Add("workbookTable_id", workbookTableId);
@@ -66,7 +65,7 @@ namespace ApiSdk.Workbooks.Item.Workbook.Tables.Item.Worksheet.Charts.Item.Serie
                 });
                 await RequestAdapter.SendNoContentAsync(requestInfo, errorMapping: default, cancellationToken: cancellationToken);
                 Console.WriteLine("Success");
-            }, new CollectionBinding(driveItemIdOption, workbookTableIdOption, workbookChartIdOption, workbookChartSeriesIdOption, bodyOption, new TypeBinding(typeof(IOutputFormatterFactory)), new TypeBinding(typeof(CancellationToken))));
+            }, new CollectionBinding(driveItemIdOption, workbookTableIdOption, workbookChartIdOption, workbookChartSeriesIdOption, bodyOption, new TypeBinding(typeof(CancellationToken))));
             return command;
         }
         /// <summary>

@@ -36,17 +36,12 @@ namespace ApiSdk.Teams.Item.Channels.Item.FilesFolder.Content {
             command.AddOption(channelIdOption);
             var fileOption = new Option<FileInfo>("--file");
             command.AddOption(fileOption);
-            var outputOption = new Option<FormatterType>("--output", () => FormatterType.JSON){
-                IsRequired = true
-            };
-            command.AddOption(outputOption);
             command.SetHandler(async (object[] parameters) => {
                 var teamId = (string) parameters[0];
                 var channelId = (string) parameters[1];
                 var file = (FileInfo) parameters[2];
-                var output = (FormatterType) parameters[3];
-                var outputFormatterFactory = (IOutputFormatterFactory) parameters[4];
-                var cancellationToken = (CancellationToken) parameters[5];
+                var outputFormatterFactory = (IOutputFormatterFactory) parameters[3];
+                var cancellationToken = (CancellationToken) parameters[4];
                 PathParameters.Clear();
                 PathParameters.Add("team_id", teamId);
                 PathParameters.Add("channel_id", channelId);
@@ -62,7 +57,7 @@ namespace ApiSdk.Teams.Item.Channels.Item.FilesFolder.Content {
                     await response.CopyToAsync(writeStream);
                     Console.WriteLine($"Content written to {file.FullName}.");
                 }
-            }, new CollectionBinding(teamIdOption, channelIdOption, fileOption, outputOption, new TypeBinding(typeof(IOutputFormatterFactory)), new TypeBinding(typeof(CancellationToken))));
+            }, new CollectionBinding(teamIdOption, channelIdOption, fileOption, new TypeBinding(typeof(IOutputFormatterFactory)), new TypeBinding(typeof(CancellationToken))));
             return command;
         }
         /// <summary>
@@ -88,8 +83,7 @@ namespace ApiSdk.Teams.Item.Channels.Item.FilesFolder.Content {
                 var teamId = (string) parameters[0];
                 var channelId = (string) parameters[1];
                 var file = (FileInfo) parameters[2];
-                var outputFormatterFactory = (IOutputFormatterFactory) parameters[3];
-                var cancellationToken = (CancellationToken) parameters[4];
+                var cancellationToken = (CancellationToken) parameters[3];
                 PathParameters.Clear();
                 PathParameters.Add("team_id", teamId);
                 PathParameters.Add("channel_id", channelId);
@@ -98,7 +92,7 @@ namespace ApiSdk.Teams.Item.Channels.Item.FilesFolder.Content {
                 });
                 await RequestAdapter.SendNoContentAsync(requestInfo, errorMapping: default, cancellationToken: cancellationToken);
                 Console.WriteLine("Success");
-            }, new CollectionBinding(teamIdOption, channelIdOption, bodyOption, new TypeBinding(typeof(IOutputFormatterFactory)), new TypeBinding(typeof(CancellationToken))));
+            }, new CollectionBinding(teamIdOption, channelIdOption, bodyOption, new TypeBinding(typeof(CancellationToken))));
             return command;
         }
         /// <summary>

@@ -33,15 +33,14 @@ namespace ApiSdk.DeviceAppManagement.DefaultManagedAppProtections.Item.Deploymen
             command.AddOption(defaultManagedAppProtectionIdOption);
             command.SetHandler(async (object[] parameters) => {
                 var defaultManagedAppProtectionId = (string) parameters[0];
-                var outputFormatterFactory = (IOutputFormatterFactory) parameters[1];
-                var cancellationToken = (CancellationToken) parameters[2];
+                var cancellationToken = (CancellationToken) parameters[1];
                 PathParameters.Clear();
                 PathParameters.Add("defaultManagedAppProtection_id", defaultManagedAppProtectionId);
                 var requestInfo = CreateDeleteRequestInformation(q => {
                 });
                 await RequestAdapter.SendNoContentAsync(requestInfo, errorMapping: default, cancellationToken: cancellationToken);
                 Console.WriteLine("Success");
-            }, new CollectionBinding(defaultManagedAppProtectionIdOption, new TypeBinding(typeof(IOutputFormatterFactory)), new TypeBinding(typeof(CancellationToken))));
+            }, new CollectionBinding(defaultManagedAppProtectionIdOption, new TypeBinding(typeof(CancellationToken))));
             return command;
         }
         /// <summary>
@@ -69,13 +68,16 @@ namespace ApiSdk.DeviceAppManagement.DefaultManagedAppProtections.Item.Deploymen
                 IsRequired = true
             };
             command.AddOption(outputOption);
+            var outputFilterOption = new Option<string>("--query");
+            command.AddOption(outputFilterOption);
             command.SetHandler(async (object[] parameters) => {
                 var defaultManagedAppProtectionId = (string) parameters[0];
                 var select = (string[]) parameters[1];
                 var expand = (string[]) parameters[2];
                 var output = (FormatterType) parameters[3];
-                var outputFormatterFactory = (IOutputFormatterFactory) parameters[4];
-                var cancellationToken = (CancellationToken) parameters[5];
+                var outputFilterOption = (string) parameters[4];
+                var outputFormatterFactory = (IOutputFormatterFactory) parameters[5];
+                var cancellationToken = (CancellationToken) parameters[6];
                 PathParameters.Clear();
                 PathParameters.Add("defaultManagedAppProtection_id", defaultManagedAppProtectionId);
                 var requestInfo = CreateGetRequestInformation(q => {
@@ -85,7 +87,7 @@ namespace ApiSdk.DeviceAppManagement.DefaultManagedAppProtections.Item.Deploymen
                 var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: default, cancellationToken: cancellationToken);
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 formatter.WriteOutput(response);
-            }, new CollectionBinding(defaultManagedAppProtectionIdOption, selectOption, expandOption, outputOption, new TypeBinding(typeof(IOutputFormatterFactory)), new TypeBinding(typeof(CancellationToken))));
+            }, new CollectionBinding(defaultManagedAppProtectionIdOption, selectOption, expandOption, outputOption, outputFilterOption, new TypeBinding(typeof(IOutputFormatterFactory)), new TypeBinding(typeof(CancellationToken))));
             return command;
         }
         /// <summary>
@@ -106,8 +108,7 @@ namespace ApiSdk.DeviceAppManagement.DefaultManagedAppProtections.Item.Deploymen
             command.SetHandler(async (object[] parameters) => {
                 var defaultManagedAppProtectionId = (string) parameters[0];
                 var body = (string) parameters[1];
-                var outputFormatterFactory = (IOutputFormatterFactory) parameters[2];
-                var cancellationToken = (CancellationToken) parameters[3];
+                var cancellationToken = (CancellationToken) parameters[2];
                 PathParameters.Clear();
                 PathParameters.Add("defaultManagedAppProtection_id", defaultManagedAppProtectionId);
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
@@ -117,7 +118,7 @@ namespace ApiSdk.DeviceAppManagement.DefaultManagedAppProtections.Item.Deploymen
                 });
                 await RequestAdapter.SendNoContentAsync(requestInfo, errorMapping: default, cancellationToken: cancellationToken);
                 Console.WriteLine("Success");
-            }, new CollectionBinding(defaultManagedAppProtectionIdOption, bodyOption, new TypeBinding(typeof(IOutputFormatterFactory)), new TypeBinding(typeof(CancellationToken))));
+            }, new CollectionBinding(defaultManagedAppProtectionIdOption, bodyOption, new TypeBinding(typeof(CancellationToken))));
             return command;
         }
         /// <summary>

@@ -32,15 +32,14 @@ namespace ApiSdk.DeviceManagement.NotificationMessageTemplates.Item.SendTestMess
             command.AddOption(notificationMessageTemplateIdOption);
             command.SetHandler(async (object[] parameters) => {
                 var notificationMessageTemplateId = (string) parameters[0];
-                var outputFormatterFactory = (IOutputFormatterFactory) parameters[1];
-                var cancellationToken = (CancellationToken) parameters[2];
+                var cancellationToken = (CancellationToken) parameters[1];
                 PathParameters.Clear();
                 PathParameters.Add("notificationMessageTemplate_id", notificationMessageTemplateId);
                 var requestInfo = CreatePostRequestInformation(q => {
                 });
                 await RequestAdapter.SendNoContentAsync(requestInfo, errorMapping: default, cancellationToken: cancellationToken);
                 Console.WriteLine("Success");
-            }, new CollectionBinding(notificationMessageTemplateIdOption, new TypeBinding(typeof(IOutputFormatterFactory)), new TypeBinding(typeof(CancellationToken))));
+            }, new CollectionBinding(notificationMessageTemplateIdOption, new TypeBinding(typeof(CancellationToken))));
             return command;
         }
         /// <summary>

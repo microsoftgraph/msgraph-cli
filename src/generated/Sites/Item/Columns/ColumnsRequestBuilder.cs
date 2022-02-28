@@ -49,12 +49,15 @@ namespace ApiSdk.Sites.Item.Columns {
                 IsRequired = true
             };
             command.AddOption(outputOption);
+            var outputFilterOption = new Option<string>("--query");
+            command.AddOption(outputFilterOption);
             command.SetHandler(async (object[] parameters) => {
                 var siteId = (string) parameters[0];
                 var body = (string) parameters[1];
                 var output = (FormatterType) parameters[2];
-                var outputFormatterFactory = (IOutputFormatterFactory) parameters[3];
-                var cancellationToken = (CancellationToken) parameters[4];
+                var outputFilterOption = (string) parameters[3];
+                var outputFormatterFactory = (IOutputFormatterFactory) parameters[4];
+                var cancellationToken = (CancellationToken) parameters[5];
                 PathParameters.Clear();
                 PathParameters.Add("site_id", siteId);
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
@@ -65,7 +68,7 @@ namespace ApiSdk.Sites.Item.Columns {
                 var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: default, cancellationToken: cancellationToken);
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 formatter.WriteOutput(response);
-            }, new CollectionBinding(siteIdOption, bodyOption, outputOption, new TypeBinding(typeof(IOutputFormatterFactory)), new TypeBinding(typeof(CancellationToken))));
+            }, new CollectionBinding(siteIdOption, bodyOption, outputOption, outputFilterOption, new TypeBinding(typeof(IOutputFormatterFactory)), new TypeBinding(typeof(CancellationToken))));
             return command;
         }
         /// <summary>
@@ -118,6 +121,8 @@ namespace ApiSdk.Sites.Item.Columns {
                 IsRequired = true
             };
             command.AddOption(outputOption);
+            var outputFilterOption = new Option<string>("--query");
+            command.AddOption(outputFilterOption);
             command.SetHandler(async (object[] parameters) => {
                 var siteId = (string) parameters[0];
                 var top = (int?) parameters[1];
@@ -129,8 +134,9 @@ namespace ApiSdk.Sites.Item.Columns {
                 var select = (string[]) parameters[7];
                 var expand = (string[]) parameters[8];
                 var output = (FormatterType) parameters[9];
-                var outputFormatterFactory = (IOutputFormatterFactory) parameters[10];
-                var cancellationToken = (CancellationToken) parameters[11];
+                var outputFilterOption = (string) parameters[10];
+                var outputFormatterFactory = (IOutputFormatterFactory) parameters[11];
+                var cancellationToken = (CancellationToken) parameters[12];
                 PathParameters.Clear();
                 PathParameters.Add("site_id", siteId);
                 var requestInfo = CreateGetRequestInformation(q => {
@@ -146,7 +152,7 @@ namespace ApiSdk.Sites.Item.Columns {
                 var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: default, cancellationToken: cancellationToken);
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 formatter.WriteOutput(response);
-            }, new CollectionBinding(siteIdOption, topOption, skipOption, searchOption, filterOption, countOption, orderbyOption, selectOption, expandOption, outputOption, new TypeBinding(typeof(IOutputFormatterFactory)), new TypeBinding(typeof(CancellationToken))));
+            }, new CollectionBinding(siteIdOption, topOption, skipOption, searchOption, filterOption, countOption, orderbyOption, selectOption, expandOption, outputOption, outputFilterOption, new TypeBinding(typeof(IOutputFormatterFactory)), new TypeBinding(typeof(CancellationToken))));
             return command;
         }
         /// <summary>

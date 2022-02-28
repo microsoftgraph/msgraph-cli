@@ -32,15 +32,14 @@ namespace ApiSdk.Groups.Item.UnsubscribeByMail {
             command.AddOption(groupIdOption);
             command.SetHandler(async (object[] parameters) => {
                 var groupId = (string) parameters[0];
-                var outputFormatterFactory = (IOutputFormatterFactory) parameters[1];
-                var cancellationToken = (CancellationToken) parameters[2];
+                var cancellationToken = (CancellationToken) parameters[1];
                 PathParameters.Clear();
                 PathParameters.Add("group_id", groupId);
                 var requestInfo = CreatePostRequestInformation(q => {
                 });
                 await RequestAdapter.SendNoContentAsync(requestInfo, errorMapping: default, cancellationToken: cancellationToken);
                 Console.WriteLine("Success");
-            }, new CollectionBinding(groupIdOption, new TypeBinding(typeof(IOutputFormatterFactory)), new TypeBinding(typeof(CancellationToken))));
+            }, new CollectionBinding(groupIdOption, new TypeBinding(typeof(CancellationToken))));
             return command;
         }
         /// <summary>

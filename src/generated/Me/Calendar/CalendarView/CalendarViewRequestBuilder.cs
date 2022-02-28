@@ -58,11 +58,14 @@ namespace ApiSdk.Me.Calendar.CalendarView {
                 IsRequired = true
             };
             command.AddOption(outputOption);
+            var outputFilterOption = new Option<string>("--query");
+            command.AddOption(outputFilterOption);
             command.SetHandler(async (object[] parameters) => {
                 var body = (string) parameters[0];
                 var output = (FormatterType) parameters[1];
-                var outputFormatterFactory = (IOutputFormatterFactory) parameters[2];
-                var cancellationToken = (CancellationToken) parameters[3];
+                var outputFilterOption = (string) parameters[2];
+                var outputFormatterFactory = (IOutputFormatterFactory) parameters[3];
+                var cancellationToken = (CancellationToken) parameters[4];
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<Event>();
@@ -71,7 +74,7 @@ namespace ApiSdk.Me.Calendar.CalendarView {
                 var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: default, cancellationToken: cancellationToken);
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 formatter.WriteOutput(response);
-            }, new CollectionBinding(bodyOption, outputOption, new TypeBinding(typeof(IOutputFormatterFactory)), new TypeBinding(typeof(CancellationToken))));
+            }, new CollectionBinding(bodyOption, outputOption, outputFilterOption, new TypeBinding(typeof(IOutputFormatterFactory)), new TypeBinding(typeof(CancellationToken))));
             return command;
         }
         /// <summary>
@@ -119,6 +122,8 @@ namespace ApiSdk.Me.Calendar.CalendarView {
                 IsRequired = true
             };
             command.AddOption(outputOption);
+            var outputFilterOption = new Option<string>("--query");
+            command.AddOption(outputFilterOption);
             command.SetHandler(async (object[] parameters) => {
                 var startDateTime = (string) parameters[0];
                 var endDateTime = (string) parameters[1];
@@ -129,8 +134,9 @@ namespace ApiSdk.Me.Calendar.CalendarView {
                 var orderby = (string[]) parameters[6];
                 var select = (string[]) parameters[7];
                 var output = (FormatterType) parameters[8];
-                var outputFormatterFactory = (IOutputFormatterFactory) parameters[9];
-                var cancellationToken = (CancellationToken) parameters[10];
+                var outputFilterOption = (string) parameters[9];
+                var outputFormatterFactory = (IOutputFormatterFactory) parameters[10];
+                var cancellationToken = (CancellationToken) parameters[11];
                 var requestInfo = CreateGetRequestInformation(q => {
                     if (!String.IsNullOrEmpty(startDateTime)) q.StartDateTime = startDateTime;
                     if (!String.IsNullOrEmpty(endDateTime)) q.EndDateTime = endDateTime;
@@ -144,7 +150,7 @@ namespace ApiSdk.Me.Calendar.CalendarView {
                 var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: default, cancellationToken: cancellationToken);
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 formatter.WriteOutput(response);
-            }, new CollectionBinding(startDateTimeOption, endDateTimeOption, topOption, skipOption, filterOption, countOption, orderbyOption, selectOption, outputOption, new TypeBinding(typeof(IOutputFormatterFactory)), new TypeBinding(typeof(CancellationToken))));
+            }, new CollectionBinding(startDateTimeOption, endDateTimeOption, topOption, skipOption, filterOption, countOption, orderbyOption, selectOption, outputOption, outputFilterOption, new TypeBinding(typeof(IOutputFormatterFactory)), new TypeBinding(typeof(CancellationToken))));
             return command;
         }
         /// <summary>

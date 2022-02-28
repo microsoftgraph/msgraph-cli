@@ -48,8 +48,7 @@ namespace ApiSdk.Sites.Item.TermStore.Sets.Item.Children.Item.Children.Item {
                 var setId = (string) parameters[1];
                 var termId = (string) parameters[2];
                 var termId1 = (string) parameters[3];
-                var outputFormatterFactory = (IOutputFormatterFactory) parameters[4];
-                var cancellationToken = (CancellationToken) parameters[5];
+                var cancellationToken = (CancellationToken) parameters[4];
                 PathParameters.Clear();
                 PathParameters.Add("site_id", siteId);
                 PathParameters.Add("set_id", setId);
@@ -59,7 +58,7 @@ namespace ApiSdk.Sites.Item.TermStore.Sets.Item.Children.Item.Children.Item {
                 });
                 await RequestAdapter.SendNoContentAsync(requestInfo, errorMapping: default, cancellationToken: cancellationToken);
                 Console.WriteLine("Success");
-            }, new CollectionBinding(siteIdOption, setIdOption, termIdOption, termId1Option, new TypeBinding(typeof(IOutputFormatterFactory)), new TypeBinding(typeof(CancellationToken))));
+            }, new CollectionBinding(siteIdOption, setIdOption, termIdOption, termId1Option, new TypeBinding(typeof(CancellationToken))));
             return command;
         }
         /// <summary>
@@ -99,6 +98,8 @@ namespace ApiSdk.Sites.Item.TermStore.Sets.Item.Children.Item.Children.Item {
                 IsRequired = true
             };
             command.AddOption(outputOption);
+            var outputFilterOption = new Option<string>("--query");
+            command.AddOption(outputFilterOption);
             command.SetHandler(async (object[] parameters) => {
                 var siteId = (string) parameters[0];
                 var setId = (string) parameters[1];
@@ -107,8 +108,9 @@ namespace ApiSdk.Sites.Item.TermStore.Sets.Item.Children.Item.Children.Item {
                 var select = (string[]) parameters[4];
                 var expand = (string[]) parameters[5];
                 var output = (FormatterType) parameters[6];
-                var outputFormatterFactory = (IOutputFormatterFactory) parameters[7];
-                var cancellationToken = (CancellationToken) parameters[8];
+                var outputFilterOption = (string) parameters[7];
+                var outputFormatterFactory = (IOutputFormatterFactory) parameters[8];
+                var cancellationToken = (CancellationToken) parameters[9];
                 PathParameters.Clear();
                 PathParameters.Add("site_id", siteId);
                 PathParameters.Add("set_id", setId);
@@ -121,7 +123,7 @@ namespace ApiSdk.Sites.Item.TermStore.Sets.Item.Children.Item.Children.Item {
                 var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: default, cancellationToken: cancellationToken);
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 formatter.WriteOutput(response);
-            }, new CollectionBinding(siteIdOption, setIdOption, termIdOption, termId1Option, selectOption, expandOption, outputOption, new TypeBinding(typeof(IOutputFormatterFactory)), new TypeBinding(typeof(CancellationToken))));
+            }, new CollectionBinding(siteIdOption, setIdOption, termIdOption, termId1Option, selectOption, expandOption, outputOption, outputFilterOption, new TypeBinding(typeof(IOutputFormatterFactory)), new TypeBinding(typeof(CancellationToken))));
             return command;
         }
         /// <summary>
@@ -157,8 +159,7 @@ namespace ApiSdk.Sites.Item.TermStore.Sets.Item.Children.Item.Children.Item {
                 var termId = (string) parameters[2];
                 var termId1 = (string) parameters[3];
                 var body = (string) parameters[4];
-                var outputFormatterFactory = (IOutputFormatterFactory) parameters[5];
-                var cancellationToken = (CancellationToken) parameters[6];
+                var cancellationToken = (CancellationToken) parameters[5];
                 PathParameters.Clear();
                 PathParameters.Add("site_id", siteId);
                 PathParameters.Add("set_id", setId);
@@ -171,7 +172,7 @@ namespace ApiSdk.Sites.Item.TermStore.Sets.Item.Children.Item.Children.Item {
                 });
                 await RequestAdapter.SendNoContentAsync(requestInfo, errorMapping: default, cancellationToken: cancellationToken);
                 Console.WriteLine("Success");
-            }, new CollectionBinding(siteIdOption, setIdOption, termIdOption, termId1Option, bodyOption, new TypeBinding(typeof(IOutputFormatterFactory)), new TypeBinding(typeof(CancellationToken))));
+            }, new CollectionBinding(siteIdOption, setIdOption, termIdOption, termId1Option, bodyOption, new TypeBinding(typeof(CancellationToken))));
             return command;
         }
         /// <summary>

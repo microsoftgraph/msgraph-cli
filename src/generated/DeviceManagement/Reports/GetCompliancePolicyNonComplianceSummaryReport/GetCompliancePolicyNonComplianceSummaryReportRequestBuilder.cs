@@ -32,16 +32,11 @@ namespace ApiSdk.DeviceManagement.Reports.GetCompliancePolicyNonComplianceSummar
             command.AddOption(bodyOption);
             var fileOption = new Option<FileInfo>("--file");
             command.AddOption(fileOption);
-            var outputOption = new Option<FormatterType>("--output", () => FormatterType.JSON){
-                IsRequired = true
-            };
-            command.AddOption(outputOption);
             command.SetHandler(async (object[] parameters) => {
                 var body = (string) parameters[0];
                 var file = (FileInfo) parameters[1];
-                var output = (FormatterType) parameters[2];
-                var outputFormatterFactory = (IOutputFormatterFactory) parameters[3];
-                var cancellationToken = (CancellationToken) parameters[4];
+                var outputFormatterFactory = (IOutputFormatterFactory) parameters[2];
+                var cancellationToken = (CancellationToken) parameters[3];
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<GetCompliancePolicyNonComplianceSummaryReportRequestBody>();
@@ -57,7 +52,7 @@ namespace ApiSdk.DeviceManagement.Reports.GetCompliancePolicyNonComplianceSummar
                     await response.CopyToAsync(writeStream);
                     Console.WriteLine($"Content written to {file.FullName}.");
                 }
-            }, new CollectionBinding(bodyOption, fileOption, outputOption, new TypeBinding(typeof(IOutputFormatterFactory)), new TypeBinding(typeof(CancellationToken))));
+            }, new CollectionBinding(bodyOption, fileOption, new TypeBinding(typeof(IOutputFormatterFactory)), new TypeBinding(typeof(CancellationToken))));
             return command;
         }
         /// <summary>

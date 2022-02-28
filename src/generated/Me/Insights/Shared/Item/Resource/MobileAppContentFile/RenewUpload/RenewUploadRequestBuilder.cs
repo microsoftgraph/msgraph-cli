@@ -32,15 +32,14 @@ namespace ApiSdk.Me.Insights.Shared.Item.Resource.MobileAppContentFile.RenewUplo
             command.AddOption(sharedInsightIdOption);
             command.SetHandler(async (object[] parameters) => {
                 var sharedInsightId = (string) parameters[0];
-                var outputFormatterFactory = (IOutputFormatterFactory) parameters[1];
-                var cancellationToken = (CancellationToken) parameters[2];
+                var cancellationToken = (CancellationToken) parameters[1];
                 PathParameters.Clear();
                 PathParameters.Add("sharedInsight_id", sharedInsightId);
                 var requestInfo = CreatePostRequestInformation(q => {
                 });
                 await RequestAdapter.SendNoContentAsync(requestInfo, errorMapping: default, cancellationToken: cancellationToken);
                 Console.WriteLine("Success");
-            }, new CollectionBinding(sharedInsightIdOption, new TypeBinding(typeof(IOutputFormatterFactory)), new TypeBinding(typeof(CancellationToken))));
+            }, new CollectionBinding(sharedInsightIdOption, new TypeBinding(typeof(CancellationToken))));
             return command;
         }
         /// <summary>

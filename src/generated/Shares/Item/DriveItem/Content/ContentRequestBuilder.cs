@@ -32,16 +32,11 @@ namespace ApiSdk.Shares.Item.DriveItem.Content {
             command.AddOption(sharedDriveItemIdOption);
             var fileOption = new Option<FileInfo>("--file");
             command.AddOption(fileOption);
-            var outputOption = new Option<FormatterType>("--output", () => FormatterType.JSON){
-                IsRequired = true
-            };
-            command.AddOption(outputOption);
             command.SetHandler(async (object[] parameters) => {
                 var sharedDriveItemId = (string) parameters[0];
                 var file = (FileInfo) parameters[1];
-                var output = (FormatterType) parameters[2];
-                var outputFormatterFactory = (IOutputFormatterFactory) parameters[3];
-                var cancellationToken = (CancellationToken) parameters[4];
+                var outputFormatterFactory = (IOutputFormatterFactory) parameters[2];
+                var cancellationToken = (CancellationToken) parameters[3];
                 PathParameters.Clear();
                 PathParameters.Add("sharedDriveItem_id", sharedDriveItemId);
                 var requestInfo = CreateGetRequestInformation(q => {
@@ -56,7 +51,7 @@ namespace ApiSdk.Shares.Item.DriveItem.Content {
                     await response.CopyToAsync(writeStream);
                     Console.WriteLine($"Content written to {file.FullName}.");
                 }
-            }, new CollectionBinding(sharedDriveItemIdOption, fileOption, outputOption, new TypeBinding(typeof(IOutputFormatterFactory)), new TypeBinding(typeof(CancellationToken))));
+            }, new CollectionBinding(sharedDriveItemIdOption, fileOption, new TypeBinding(typeof(IOutputFormatterFactory)), new TypeBinding(typeof(CancellationToken))));
             return command;
         }
         /// <summary>
@@ -77,8 +72,7 @@ namespace ApiSdk.Shares.Item.DriveItem.Content {
             command.SetHandler(async (object[] parameters) => {
                 var sharedDriveItemId = (string) parameters[0];
                 var file = (FileInfo) parameters[1];
-                var outputFormatterFactory = (IOutputFormatterFactory) parameters[2];
-                var cancellationToken = (CancellationToken) parameters[3];
+                var cancellationToken = (CancellationToken) parameters[2];
                 PathParameters.Clear();
                 PathParameters.Add("sharedDriveItem_id", sharedDriveItemId);
                 using var stream = file.OpenRead();
@@ -86,7 +80,7 @@ namespace ApiSdk.Shares.Item.DriveItem.Content {
                 });
                 await RequestAdapter.SendNoContentAsync(requestInfo, errorMapping: default, cancellationToken: cancellationToken);
                 Console.WriteLine("Success");
-            }, new CollectionBinding(sharedDriveItemIdOption, bodyOption, new TypeBinding(typeof(IOutputFormatterFactory)), new TypeBinding(typeof(CancellationToken))));
+            }, new CollectionBinding(sharedDriveItemIdOption, bodyOption, new TypeBinding(typeof(CancellationToken))));
             return command;
         }
         /// <summary>

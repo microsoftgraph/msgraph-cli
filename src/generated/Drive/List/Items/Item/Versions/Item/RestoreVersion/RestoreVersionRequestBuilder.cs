@@ -37,8 +37,7 @@ namespace ApiSdk.Drive.List.Items.Item.Versions.Item.RestoreVersion {
             command.SetHandler(async (object[] parameters) => {
                 var listItemId = (string) parameters[0];
                 var listItemVersionId = (string) parameters[1];
-                var outputFormatterFactory = (IOutputFormatterFactory) parameters[2];
-                var cancellationToken = (CancellationToken) parameters[3];
+                var cancellationToken = (CancellationToken) parameters[2];
                 PathParameters.Clear();
                 PathParameters.Add("listItem_id", listItemId);
                 PathParameters.Add("listItemVersion_id", listItemVersionId);
@@ -46,7 +45,7 @@ namespace ApiSdk.Drive.List.Items.Item.Versions.Item.RestoreVersion {
                 });
                 await RequestAdapter.SendNoContentAsync(requestInfo, errorMapping: default, cancellationToken: cancellationToken);
                 Console.WriteLine("Success");
-            }, new CollectionBinding(listItemIdOption, listItemVersionIdOption, new TypeBinding(typeof(IOutputFormatterFactory)), new TypeBinding(typeof(CancellationToken))));
+            }, new CollectionBinding(listItemIdOption, listItemVersionIdOption, new TypeBinding(typeof(CancellationToken))));
             return command;
         }
         /// <summary>

@@ -36,17 +36,12 @@ namespace ApiSdk.Users.Item.OnlineMeetings.Item.AttendeeReport {
             command.AddOption(onlineMeetingIdOption);
             var fileOption = new Option<FileInfo>("--file");
             command.AddOption(fileOption);
-            var outputOption = new Option<FormatterType>("--output", () => FormatterType.JSON){
-                IsRequired = true
-            };
-            command.AddOption(outputOption);
             command.SetHandler(async (object[] parameters) => {
                 var userId = (string) parameters[0];
                 var onlineMeetingId = (string) parameters[1];
                 var file = (FileInfo) parameters[2];
-                var output = (FormatterType) parameters[3];
-                var outputFormatterFactory = (IOutputFormatterFactory) parameters[4];
-                var cancellationToken = (CancellationToken) parameters[5];
+                var outputFormatterFactory = (IOutputFormatterFactory) parameters[3];
+                var cancellationToken = (CancellationToken) parameters[4];
                 PathParameters.Clear();
                 PathParameters.Add("user_id", userId);
                 PathParameters.Add("onlineMeeting_id", onlineMeetingId);
@@ -62,7 +57,7 @@ namespace ApiSdk.Users.Item.OnlineMeetings.Item.AttendeeReport {
                     await response.CopyToAsync(writeStream);
                     Console.WriteLine($"Content written to {file.FullName}.");
                 }
-            }, new CollectionBinding(userIdOption, onlineMeetingIdOption, fileOption, outputOption, new TypeBinding(typeof(IOutputFormatterFactory)), new TypeBinding(typeof(CancellationToken))));
+            }, new CollectionBinding(userIdOption, onlineMeetingIdOption, fileOption, new TypeBinding(typeof(IOutputFormatterFactory)), new TypeBinding(typeof(CancellationToken))));
             return command;
         }
         /// <summary>
@@ -88,8 +83,7 @@ namespace ApiSdk.Users.Item.OnlineMeetings.Item.AttendeeReport {
                 var userId = (string) parameters[0];
                 var onlineMeetingId = (string) parameters[1];
                 var file = (FileInfo) parameters[2];
-                var outputFormatterFactory = (IOutputFormatterFactory) parameters[3];
-                var cancellationToken = (CancellationToken) parameters[4];
+                var cancellationToken = (CancellationToken) parameters[3];
                 PathParameters.Clear();
                 PathParameters.Add("user_id", userId);
                 PathParameters.Add("onlineMeeting_id", onlineMeetingId);
@@ -98,7 +92,7 @@ namespace ApiSdk.Users.Item.OnlineMeetings.Item.AttendeeReport {
                 });
                 await RequestAdapter.SendNoContentAsync(requestInfo, errorMapping: default, cancellationToken: cancellationToken);
                 Console.WriteLine("Success");
-            }, new CollectionBinding(userIdOption, onlineMeetingIdOption, bodyOption, new TypeBinding(typeof(IOutputFormatterFactory)), new TypeBinding(typeof(CancellationToken))));
+            }, new CollectionBinding(userIdOption, onlineMeetingIdOption, bodyOption, new TypeBinding(typeof(CancellationToken))));
             return command;
         }
         /// <summary>

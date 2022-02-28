@@ -32,15 +32,14 @@ namespace ApiSdk.Solutions.BookingBusinesses.Item.Publish {
             command.AddOption(bookingBusinessIdOption);
             command.SetHandler(async (object[] parameters) => {
                 var bookingBusinessId = (string) parameters[0];
-                var outputFormatterFactory = (IOutputFormatterFactory) parameters[1];
-                var cancellationToken = (CancellationToken) parameters[2];
+                var cancellationToken = (CancellationToken) parameters[1];
                 PathParameters.Clear();
                 PathParameters.Add("bookingBusiness_id", bookingBusinessId);
                 var requestInfo = CreatePostRequestInformation(q => {
                 });
                 await RequestAdapter.SendNoContentAsync(requestInfo, errorMapping: default, cancellationToken: cancellationToken);
                 Console.WriteLine("Success");
-            }, new CollectionBinding(bookingBusinessIdOption, new TypeBinding(typeof(IOutputFormatterFactory)), new TypeBinding(typeof(CancellationToken))));
+            }, new CollectionBinding(bookingBusinessIdOption, new TypeBinding(typeof(CancellationToken))));
             return command;
         }
         /// <summary>

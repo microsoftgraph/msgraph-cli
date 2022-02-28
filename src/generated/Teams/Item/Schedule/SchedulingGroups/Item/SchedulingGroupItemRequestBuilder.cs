@@ -38,8 +38,7 @@ namespace ApiSdk.Teams.Item.Schedule.SchedulingGroups.Item {
             command.SetHandler(async (object[] parameters) => {
                 var teamId = (string) parameters[0];
                 var schedulingGroupId = (string) parameters[1];
-                var outputFormatterFactory = (IOutputFormatterFactory) parameters[2];
-                var cancellationToken = (CancellationToken) parameters[3];
+                var cancellationToken = (CancellationToken) parameters[2];
                 PathParameters.Clear();
                 PathParameters.Add("team_id", teamId);
                 PathParameters.Add("schedulingGroup_id", schedulingGroupId);
@@ -47,7 +46,7 @@ namespace ApiSdk.Teams.Item.Schedule.SchedulingGroups.Item {
                 });
                 await RequestAdapter.SendNoContentAsync(requestInfo, errorMapping: default, cancellationToken: cancellationToken);
                 Console.WriteLine("Success");
-            }, new CollectionBinding(teamIdOption, schedulingGroupIdOption, new TypeBinding(typeof(IOutputFormatterFactory)), new TypeBinding(typeof(CancellationToken))));
+            }, new CollectionBinding(teamIdOption, schedulingGroupIdOption, new TypeBinding(typeof(CancellationToken))));
             return command;
         }
         /// <summary>
@@ -74,13 +73,16 @@ namespace ApiSdk.Teams.Item.Schedule.SchedulingGroups.Item {
                 IsRequired = true
             };
             command.AddOption(outputOption);
+            var outputFilterOption = new Option<string>("--query");
+            command.AddOption(outputFilterOption);
             command.SetHandler(async (object[] parameters) => {
                 var teamId = (string) parameters[0];
                 var schedulingGroupId = (string) parameters[1];
                 var select = (string[]) parameters[2];
                 var output = (FormatterType) parameters[3];
-                var outputFormatterFactory = (IOutputFormatterFactory) parameters[4];
-                var cancellationToken = (CancellationToken) parameters[5];
+                var outputFilterOption = (string) parameters[4];
+                var outputFormatterFactory = (IOutputFormatterFactory) parameters[5];
+                var cancellationToken = (CancellationToken) parameters[6];
                 PathParameters.Clear();
                 PathParameters.Add("team_id", teamId);
                 PathParameters.Add("schedulingGroup_id", schedulingGroupId);
@@ -90,7 +92,7 @@ namespace ApiSdk.Teams.Item.Schedule.SchedulingGroups.Item {
                 var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: default, cancellationToken: cancellationToken);
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 formatter.WriteOutput(response);
-            }, new CollectionBinding(teamIdOption, schedulingGroupIdOption, selectOption, outputOption, new TypeBinding(typeof(IOutputFormatterFactory)), new TypeBinding(typeof(CancellationToken))));
+            }, new CollectionBinding(teamIdOption, schedulingGroupIdOption, selectOption, outputOption, outputFilterOption, new TypeBinding(typeof(IOutputFormatterFactory)), new TypeBinding(typeof(CancellationToken))));
             return command;
         }
         /// <summary>
@@ -116,8 +118,7 @@ namespace ApiSdk.Teams.Item.Schedule.SchedulingGroups.Item {
                 var teamId = (string) parameters[0];
                 var schedulingGroupId = (string) parameters[1];
                 var body = (string) parameters[2];
-                var outputFormatterFactory = (IOutputFormatterFactory) parameters[3];
-                var cancellationToken = (CancellationToken) parameters[4];
+                var cancellationToken = (CancellationToken) parameters[3];
                 PathParameters.Clear();
                 PathParameters.Add("team_id", teamId);
                 PathParameters.Add("schedulingGroup_id", schedulingGroupId);
@@ -128,7 +129,7 @@ namespace ApiSdk.Teams.Item.Schedule.SchedulingGroups.Item {
                 });
                 await RequestAdapter.SendNoContentAsync(requestInfo, errorMapping: default, cancellationToken: cancellationToken);
                 Console.WriteLine("Success");
-            }, new CollectionBinding(teamIdOption, schedulingGroupIdOption, bodyOption, new TypeBinding(typeof(IOutputFormatterFactory)), new TypeBinding(typeof(CancellationToken))));
+            }, new CollectionBinding(teamIdOption, schedulingGroupIdOption, bodyOption, new TypeBinding(typeof(CancellationToken))));
             return command;
         }
         /// <summary>

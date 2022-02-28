@@ -45,8 +45,7 @@ namespace ApiSdk.Users.Item.Todo.Lists.Item.Tasks.Item {
                 var userId = (string) parameters[0];
                 var todoTaskListId = (string) parameters[1];
                 var todoTaskId = (string) parameters[2];
-                var outputFormatterFactory = (IOutputFormatterFactory) parameters[3];
-                var cancellationToken = (CancellationToken) parameters[4];
+                var cancellationToken = (CancellationToken) parameters[3];
                 PathParameters.Clear();
                 PathParameters.Add("user_id", userId);
                 PathParameters.Add("todoTaskList_id", todoTaskListId);
@@ -55,7 +54,7 @@ namespace ApiSdk.Users.Item.Todo.Lists.Item.Tasks.Item {
                 });
                 await RequestAdapter.SendNoContentAsync(requestInfo, errorMapping: default, cancellationToken: cancellationToken);
                 Console.WriteLine("Success");
-            }, new CollectionBinding(userIdOption, todoTaskListIdOption, todoTaskIdOption, new TypeBinding(typeof(IOutputFormatterFactory)), new TypeBinding(typeof(CancellationToken))));
+            }, new CollectionBinding(userIdOption, todoTaskListIdOption, todoTaskIdOption, new TypeBinding(typeof(CancellationToken))));
             return command;
         }
         public Command BuildExtensionsCommand() {
@@ -101,6 +100,8 @@ namespace ApiSdk.Users.Item.Todo.Lists.Item.Tasks.Item {
                 IsRequired = true
             };
             command.AddOption(outputOption);
+            var outputFilterOption = new Option<string>("--query");
+            command.AddOption(outputFilterOption);
             command.SetHandler(async (object[] parameters) => {
                 var userId = (string) parameters[0];
                 var todoTaskListId = (string) parameters[1];
@@ -108,8 +109,9 @@ namespace ApiSdk.Users.Item.Todo.Lists.Item.Tasks.Item {
                 var select = (string[]) parameters[3];
                 var expand = (string[]) parameters[4];
                 var output = (FormatterType) parameters[5];
-                var outputFormatterFactory = (IOutputFormatterFactory) parameters[6];
-                var cancellationToken = (CancellationToken) parameters[7];
+                var outputFilterOption = (string) parameters[6];
+                var outputFormatterFactory = (IOutputFormatterFactory) parameters[7];
+                var cancellationToken = (CancellationToken) parameters[8];
                 PathParameters.Clear();
                 PathParameters.Add("user_id", userId);
                 PathParameters.Add("todoTaskList_id", todoTaskListId);
@@ -121,7 +123,7 @@ namespace ApiSdk.Users.Item.Todo.Lists.Item.Tasks.Item {
                 var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: default, cancellationToken: cancellationToken);
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 formatter.WriteOutput(response);
-            }, new CollectionBinding(userIdOption, todoTaskListIdOption, todoTaskIdOption, selectOption, expandOption, outputOption, new TypeBinding(typeof(IOutputFormatterFactory)), new TypeBinding(typeof(CancellationToken))));
+            }, new CollectionBinding(userIdOption, todoTaskListIdOption, todoTaskIdOption, selectOption, expandOption, outputOption, outputFilterOption, new TypeBinding(typeof(IOutputFormatterFactory)), new TypeBinding(typeof(CancellationToken))));
             return command;
         }
         public Command BuildLinkedResourcesCommand() {
@@ -162,8 +164,7 @@ namespace ApiSdk.Users.Item.Todo.Lists.Item.Tasks.Item {
                 var todoTaskListId = (string) parameters[1];
                 var todoTaskId = (string) parameters[2];
                 var body = (string) parameters[3];
-                var outputFormatterFactory = (IOutputFormatterFactory) parameters[4];
-                var cancellationToken = (CancellationToken) parameters[5];
+                var cancellationToken = (CancellationToken) parameters[4];
                 PathParameters.Clear();
                 PathParameters.Add("user_id", userId);
                 PathParameters.Add("todoTaskList_id", todoTaskListId);
@@ -175,7 +176,7 @@ namespace ApiSdk.Users.Item.Todo.Lists.Item.Tasks.Item {
                 });
                 await RequestAdapter.SendNoContentAsync(requestInfo, errorMapping: default, cancellationToken: cancellationToken);
                 Console.WriteLine("Success");
-            }, new CollectionBinding(userIdOption, todoTaskListIdOption, todoTaskIdOption, bodyOption, new TypeBinding(typeof(IOutputFormatterFactory)), new TypeBinding(typeof(CancellationToken))));
+            }, new CollectionBinding(userIdOption, todoTaskListIdOption, todoTaskIdOption, bodyOption, new TypeBinding(typeof(CancellationToken))));
             return command;
         }
         /// <summary>

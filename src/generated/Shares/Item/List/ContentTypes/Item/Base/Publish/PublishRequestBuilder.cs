@@ -37,8 +37,7 @@ namespace ApiSdk.Shares.Item.List.ContentTypes.Item.Base.Publish {
             command.SetHandler(async (object[] parameters) => {
                 var sharedDriveItemId = (string) parameters[0];
                 var contentTypeId = (string) parameters[1];
-                var outputFormatterFactory = (IOutputFormatterFactory) parameters[2];
-                var cancellationToken = (CancellationToken) parameters[3];
+                var cancellationToken = (CancellationToken) parameters[2];
                 PathParameters.Clear();
                 PathParameters.Add("sharedDriveItem_id", sharedDriveItemId);
                 PathParameters.Add("contentType_id", contentTypeId);
@@ -46,7 +45,7 @@ namespace ApiSdk.Shares.Item.List.ContentTypes.Item.Base.Publish {
                 });
                 await RequestAdapter.SendNoContentAsync(requestInfo, errorMapping: default, cancellationToken: cancellationToken);
                 Console.WriteLine("Success");
-            }, new CollectionBinding(sharedDriveItemIdOption, contentTypeIdOption, new TypeBinding(typeof(IOutputFormatterFactory)), new TypeBinding(typeof(CancellationToken))));
+            }, new CollectionBinding(sharedDriveItemIdOption, contentTypeIdOption, new TypeBinding(typeof(CancellationToken))));
             return command;
         }
         /// <summary>

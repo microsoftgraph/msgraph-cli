@@ -61,8 +61,7 @@ namespace ApiSdk.Groups.Item.Threads.Item.Posts.Item {
                 var groupId = (string) parameters[0];
                 var conversationThreadId = (string) parameters[1];
                 var postId = (string) parameters[2];
-                var outputFormatterFactory = (IOutputFormatterFactory) parameters[3];
-                var cancellationToken = (CancellationToken) parameters[4];
+                var cancellationToken = (CancellationToken) parameters[3];
                 PathParameters.Clear();
                 PathParameters.Add("group_id", groupId);
                 PathParameters.Add("conversationThread_id", conversationThreadId);
@@ -71,7 +70,7 @@ namespace ApiSdk.Groups.Item.Threads.Item.Posts.Item {
                 });
                 await RequestAdapter.SendNoContentAsync(requestInfo, errorMapping: default, cancellationToken: cancellationToken);
                 Console.WriteLine("Success");
-            }, new CollectionBinding(groupIdOption, conversationThreadIdOption, postIdOption, new TypeBinding(typeof(IOutputFormatterFactory)), new TypeBinding(typeof(CancellationToken))));
+            }, new CollectionBinding(groupIdOption, conversationThreadIdOption, postIdOption, new TypeBinding(typeof(CancellationToken))));
             return command;
         }
         public Command BuildExtensionsCommand() {
@@ -123,6 +122,8 @@ namespace ApiSdk.Groups.Item.Threads.Item.Posts.Item {
                 IsRequired = true
             };
             command.AddOption(outputOption);
+            var outputFilterOption = new Option<string>("--query");
+            command.AddOption(outputFilterOption);
             command.SetHandler(async (object[] parameters) => {
                 var groupId = (string) parameters[0];
                 var conversationThreadId = (string) parameters[1];
@@ -130,8 +131,9 @@ namespace ApiSdk.Groups.Item.Threads.Item.Posts.Item {
                 var select = (string[]) parameters[3];
                 var expand = (string[]) parameters[4];
                 var output = (FormatterType) parameters[5];
-                var outputFormatterFactory = (IOutputFormatterFactory) parameters[6];
-                var cancellationToken = (CancellationToken) parameters[7];
+                var outputFilterOption = (string) parameters[6];
+                var outputFormatterFactory = (IOutputFormatterFactory) parameters[7];
+                var cancellationToken = (CancellationToken) parameters[8];
                 PathParameters.Clear();
                 PathParameters.Add("group_id", groupId);
                 PathParameters.Add("conversationThread_id", conversationThreadId);
@@ -143,7 +145,7 @@ namespace ApiSdk.Groups.Item.Threads.Item.Posts.Item {
                 var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: default, cancellationToken: cancellationToken);
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 formatter.WriteOutput(response);
-            }, new CollectionBinding(groupIdOption, conversationThreadIdOption, postIdOption, selectOption, expandOption, outputOption, new TypeBinding(typeof(IOutputFormatterFactory)), new TypeBinding(typeof(CancellationToken))));
+            }, new CollectionBinding(groupIdOption, conversationThreadIdOption, postIdOption, selectOption, expandOption, outputOption, outputFilterOption, new TypeBinding(typeof(IOutputFormatterFactory)), new TypeBinding(typeof(CancellationToken))));
             return command;
         }
         public Command BuildInReplyToCommand() {
@@ -194,8 +196,7 @@ namespace ApiSdk.Groups.Item.Threads.Item.Posts.Item {
                 var conversationThreadId = (string) parameters[1];
                 var postId = (string) parameters[2];
                 var body = (string) parameters[3];
-                var outputFormatterFactory = (IOutputFormatterFactory) parameters[4];
-                var cancellationToken = (CancellationToken) parameters[5];
+                var cancellationToken = (CancellationToken) parameters[4];
                 PathParameters.Clear();
                 PathParameters.Add("group_id", groupId);
                 PathParameters.Add("conversationThread_id", conversationThreadId);
@@ -207,7 +208,7 @@ namespace ApiSdk.Groups.Item.Threads.Item.Posts.Item {
                 });
                 await RequestAdapter.SendNoContentAsync(requestInfo, errorMapping: default, cancellationToken: cancellationToken);
                 Console.WriteLine("Success");
-            }, new CollectionBinding(groupIdOption, conversationThreadIdOption, postIdOption, bodyOption, new TypeBinding(typeof(IOutputFormatterFactory)), new TypeBinding(typeof(CancellationToken))));
+            }, new CollectionBinding(groupIdOption, conversationThreadIdOption, postIdOption, bodyOption, new TypeBinding(typeof(CancellationToken))));
             return command;
         }
         public Command BuildReplyCommand() {

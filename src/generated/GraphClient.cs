@@ -456,13 +456,12 @@ namespace ApiSdk {
             var command = new Command("get");
             // Create options for all the parameters
             command.SetHandler(async (object[] parameters) => {
-                var outputFormatterFactory = (IOutputFormatterFactory) parameters[0];
-                var cancellationToken = (CancellationToken) parameters[1];
+                var cancellationToken = (CancellationToken) parameters[0];
                 var requestInfo = CreateGetRequestInformation(q => {
                 });
                 await RequestAdapter.SendNoContentAsync(requestInfo, errorMapping: default, cancellationToken: cancellationToken);
                 Console.WriteLine("Success");
-            }, new CollectionBinding(new TypeBinding(typeof(IOutputFormatterFactory)), new TypeBinding(typeof(CancellationToken))));
+            }, new CollectionBinding(new TypeBinding(typeof(CancellationToken))));
             return command;
         }
         public Command BuildGroupLifecyclePoliciesCommand() {

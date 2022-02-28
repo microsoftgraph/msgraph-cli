@@ -42,8 +42,7 @@ namespace ApiSdk.Me.Events.Item.Calendar.Events.Item.SnoozeReminder {
                 var eventId = (string) parameters[0];
                 var eventId1 = (string) parameters[1];
                 var body = (string) parameters[2];
-                var outputFormatterFactory = (IOutputFormatterFactory) parameters[3];
-                var cancellationToken = (CancellationToken) parameters[4];
+                var cancellationToken = (CancellationToken) parameters[3];
                 PathParameters.Clear();
                 PathParameters.Add("event_id", eventId);
                 PathParameters.Add("event_id1", eventId1);
@@ -54,7 +53,7 @@ namespace ApiSdk.Me.Events.Item.Calendar.Events.Item.SnoozeReminder {
                 });
                 await RequestAdapter.SendNoContentAsync(requestInfo, errorMapping: default, cancellationToken: cancellationToken);
                 Console.WriteLine("Success");
-            }, new CollectionBinding(eventIdOption, eventId1Option, bodyOption, new TypeBinding(typeof(IOutputFormatterFactory)), new TypeBinding(typeof(CancellationToken))));
+            }, new CollectionBinding(eventIdOption, eventId1Option, bodyOption, new TypeBinding(typeof(CancellationToken))));
             return command;
         }
         /// <summary>

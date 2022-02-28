@@ -52,13 +52,16 @@ namespace ApiSdk.Me.Todo.Lists.Item.Tasks.Item.LinkedResources {
                 IsRequired = true
             };
             command.AddOption(outputOption);
+            var outputFilterOption = new Option<string>("--query");
+            command.AddOption(outputFilterOption);
             command.SetHandler(async (object[] parameters) => {
                 var todoTaskListId = (string) parameters[0];
                 var todoTaskId = (string) parameters[1];
                 var body = (string) parameters[2];
                 var output = (FormatterType) parameters[3];
-                var outputFormatterFactory = (IOutputFormatterFactory) parameters[4];
-                var cancellationToken = (CancellationToken) parameters[5];
+                var outputFilterOption = (string) parameters[4];
+                var outputFormatterFactory = (IOutputFormatterFactory) parameters[5];
+                var cancellationToken = (CancellationToken) parameters[6];
                 PathParameters.Clear();
                 PathParameters.Add("todoTaskList_id", todoTaskListId);
                 PathParameters.Add("todoTask_id", todoTaskId);
@@ -70,7 +73,7 @@ namespace ApiSdk.Me.Todo.Lists.Item.Tasks.Item.LinkedResources {
                 var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: default, cancellationToken: cancellationToken);
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 formatter.WriteOutput(response);
-            }, new CollectionBinding(todoTaskListIdOption, todoTaskIdOption, bodyOption, outputOption, new TypeBinding(typeof(IOutputFormatterFactory)), new TypeBinding(typeof(CancellationToken))));
+            }, new CollectionBinding(todoTaskListIdOption, todoTaskIdOption, bodyOption, outputOption, outputFilterOption, new TypeBinding(typeof(IOutputFormatterFactory)), new TypeBinding(typeof(CancellationToken))));
             return command;
         }
         /// <summary>
@@ -127,6 +130,8 @@ namespace ApiSdk.Me.Todo.Lists.Item.Tasks.Item.LinkedResources {
                 IsRequired = true
             };
             command.AddOption(outputOption);
+            var outputFilterOption = new Option<string>("--query");
+            command.AddOption(outputFilterOption);
             command.SetHandler(async (object[] parameters) => {
                 var todoTaskListId = (string) parameters[0];
                 var todoTaskId = (string) parameters[1];
@@ -139,8 +144,9 @@ namespace ApiSdk.Me.Todo.Lists.Item.Tasks.Item.LinkedResources {
                 var select = (string[]) parameters[8];
                 var expand = (string[]) parameters[9];
                 var output = (FormatterType) parameters[10];
-                var outputFormatterFactory = (IOutputFormatterFactory) parameters[11];
-                var cancellationToken = (CancellationToken) parameters[12];
+                var outputFilterOption = (string) parameters[11];
+                var outputFormatterFactory = (IOutputFormatterFactory) parameters[12];
+                var cancellationToken = (CancellationToken) parameters[13];
                 PathParameters.Clear();
                 PathParameters.Add("todoTaskList_id", todoTaskListId);
                 PathParameters.Add("todoTask_id", todoTaskId);
@@ -157,7 +163,7 @@ namespace ApiSdk.Me.Todo.Lists.Item.Tasks.Item.LinkedResources {
                 var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: default, cancellationToken: cancellationToken);
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 formatter.WriteOutput(response);
-            }, new CollectionBinding(todoTaskListIdOption, todoTaskIdOption, topOption, skipOption, searchOption, filterOption, countOption, orderbyOption, selectOption, expandOption, outputOption, new TypeBinding(typeof(IOutputFormatterFactory)), new TypeBinding(typeof(CancellationToken))));
+            }, new CollectionBinding(todoTaskListIdOption, todoTaskIdOption, topOption, skipOption, searchOption, filterOption, countOption, orderbyOption, selectOption, expandOption, outputOption, outputFilterOption, new TypeBinding(typeof(IOutputFormatterFactory)), new TypeBinding(typeof(CancellationToken))));
             return command;
         }
         /// <summary>

@@ -36,17 +36,12 @@ namespace ApiSdk.Drives.Item.List.Items.Item.DriveItem.Content {
             command.AddOption(listItemIdOption);
             var fileOption = new Option<FileInfo>("--file");
             command.AddOption(fileOption);
-            var outputOption = new Option<FormatterType>("--output", () => FormatterType.JSON){
-                IsRequired = true
-            };
-            command.AddOption(outputOption);
             command.SetHandler(async (object[] parameters) => {
                 var driveId = (string) parameters[0];
                 var listItemId = (string) parameters[1];
                 var file = (FileInfo) parameters[2];
-                var output = (FormatterType) parameters[3];
-                var outputFormatterFactory = (IOutputFormatterFactory) parameters[4];
-                var cancellationToken = (CancellationToken) parameters[5];
+                var outputFormatterFactory = (IOutputFormatterFactory) parameters[3];
+                var cancellationToken = (CancellationToken) parameters[4];
                 PathParameters.Clear();
                 PathParameters.Add("drive_id", driveId);
                 PathParameters.Add("listItem_id", listItemId);
@@ -62,7 +57,7 @@ namespace ApiSdk.Drives.Item.List.Items.Item.DriveItem.Content {
                     await response.CopyToAsync(writeStream);
                     Console.WriteLine($"Content written to {file.FullName}.");
                 }
-            }, new CollectionBinding(driveIdOption, listItemIdOption, fileOption, outputOption, new TypeBinding(typeof(IOutputFormatterFactory)), new TypeBinding(typeof(CancellationToken))));
+            }, new CollectionBinding(driveIdOption, listItemIdOption, fileOption, new TypeBinding(typeof(IOutputFormatterFactory)), new TypeBinding(typeof(CancellationToken))));
             return command;
         }
         /// <summary>
@@ -88,8 +83,7 @@ namespace ApiSdk.Drives.Item.List.Items.Item.DriveItem.Content {
                 var driveId = (string) parameters[0];
                 var listItemId = (string) parameters[1];
                 var file = (FileInfo) parameters[2];
-                var outputFormatterFactory = (IOutputFormatterFactory) parameters[3];
-                var cancellationToken = (CancellationToken) parameters[4];
+                var cancellationToken = (CancellationToken) parameters[3];
                 PathParameters.Clear();
                 PathParameters.Add("drive_id", driveId);
                 PathParameters.Add("listItem_id", listItemId);
@@ -98,7 +92,7 @@ namespace ApiSdk.Drives.Item.List.Items.Item.DriveItem.Content {
                 });
                 await RequestAdapter.SendNoContentAsync(requestInfo, errorMapping: default, cancellationToken: cancellationToken);
                 Console.WriteLine("Success");
-            }, new CollectionBinding(driveIdOption, listItemIdOption, bodyOption, new TypeBinding(typeof(IOutputFormatterFactory)), new TypeBinding(typeof(CancellationToken))));
+            }, new CollectionBinding(driveIdOption, listItemIdOption, bodyOption, new TypeBinding(typeof(CancellationToken))));
             return command;
         }
         /// <summary>

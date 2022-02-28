@@ -38,8 +38,7 @@ namespace ApiSdk.DeviceAppManagement.MobileAppConfigurations.Item.Assignments.It
             command.SetHandler(async (object[] parameters) => {
                 var managedDeviceMobileAppConfigurationId = (string) parameters[0];
                 var managedDeviceMobileAppConfigurationAssignmentId = (string) parameters[1];
-                var outputFormatterFactory = (IOutputFormatterFactory) parameters[2];
-                var cancellationToken = (CancellationToken) parameters[3];
+                var cancellationToken = (CancellationToken) parameters[2];
                 PathParameters.Clear();
                 PathParameters.Add("managedDeviceMobileAppConfiguration_id", managedDeviceMobileAppConfigurationId);
                 PathParameters.Add("managedDeviceMobileAppConfigurationAssignment_id", managedDeviceMobileAppConfigurationAssignmentId);
@@ -47,7 +46,7 @@ namespace ApiSdk.DeviceAppManagement.MobileAppConfigurations.Item.Assignments.It
                 });
                 await RequestAdapter.SendNoContentAsync(requestInfo, errorMapping: default, cancellationToken: cancellationToken);
                 Console.WriteLine("Success");
-            }, new CollectionBinding(managedDeviceMobileAppConfigurationIdOption, managedDeviceMobileAppConfigurationAssignmentIdOption, new TypeBinding(typeof(IOutputFormatterFactory)), new TypeBinding(typeof(CancellationToken))));
+            }, new CollectionBinding(managedDeviceMobileAppConfigurationIdOption, managedDeviceMobileAppConfigurationAssignmentIdOption, new TypeBinding(typeof(CancellationToken))));
             return command;
         }
         /// <summary>
@@ -79,14 +78,17 @@ namespace ApiSdk.DeviceAppManagement.MobileAppConfigurations.Item.Assignments.It
                 IsRequired = true
             };
             command.AddOption(outputOption);
+            var outputFilterOption = new Option<string>("--query");
+            command.AddOption(outputFilterOption);
             command.SetHandler(async (object[] parameters) => {
                 var managedDeviceMobileAppConfigurationId = (string) parameters[0];
                 var managedDeviceMobileAppConfigurationAssignmentId = (string) parameters[1];
                 var select = (string[]) parameters[2];
                 var expand = (string[]) parameters[3];
                 var output = (FormatterType) parameters[4];
-                var outputFormatterFactory = (IOutputFormatterFactory) parameters[5];
-                var cancellationToken = (CancellationToken) parameters[6];
+                var outputFilterOption = (string) parameters[5];
+                var outputFormatterFactory = (IOutputFormatterFactory) parameters[6];
+                var cancellationToken = (CancellationToken) parameters[7];
                 PathParameters.Clear();
                 PathParameters.Add("managedDeviceMobileAppConfiguration_id", managedDeviceMobileAppConfigurationId);
                 PathParameters.Add("managedDeviceMobileAppConfigurationAssignment_id", managedDeviceMobileAppConfigurationAssignmentId);
@@ -97,7 +99,7 @@ namespace ApiSdk.DeviceAppManagement.MobileAppConfigurations.Item.Assignments.It
                 var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: default, cancellationToken: cancellationToken);
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 formatter.WriteOutput(response);
-            }, new CollectionBinding(managedDeviceMobileAppConfigurationIdOption, managedDeviceMobileAppConfigurationAssignmentIdOption, selectOption, expandOption, outputOption, new TypeBinding(typeof(IOutputFormatterFactory)), new TypeBinding(typeof(CancellationToken))));
+            }, new CollectionBinding(managedDeviceMobileAppConfigurationIdOption, managedDeviceMobileAppConfigurationAssignmentIdOption, selectOption, expandOption, outputOption, outputFilterOption, new TypeBinding(typeof(IOutputFormatterFactory)), new TypeBinding(typeof(CancellationToken))));
             return command;
         }
         /// <summary>
@@ -123,8 +125,7 @@ namespace ApiSdk.DeviceAppManagement.MobileAppConfigurations.Item.Assignments.It
                 var managedDeviceMobileAppConfigurationId = (string) parameters[0];
                 var managedDeviceMobileAppConfigurationAssignmentId = (string) parameters[1];
                 var body = (string) parameters[2];
-                var outputFormatterFactory = (IOutputFormatterFactory) parameters[3];
-                var cancellationToken = (CancellationToken) parameters[4];
+                var cancellationToken = (CancellationToken) parameters[3];
                 PathParameters.Clear();
                 PathParameters.Add("managedDeviceMobileAppConfiguration_id", managedDeviceMobileAppConfigurationId);
                 PathParameters.Add("managedDeviceMobileAppConfigurationAssignment_id", managedDeviceMobileAppConfigurationAssignmentId);
@@ -135,7 +136,7 @@ namespace ApiSdk.DeviceAppManagement.MobileAppConfigurations.Item.Assignments.It
                 });
                 await RequestAdapter.SendNoContentAsync(requestInfo, errorMapping: default, cancellationToken: cancellationToken);
                 Console.WriteLine("Success");
-            }, new CollectionBinding(managedDeviceMobileAppConfigurationIdOption, managedDeviceMobileAppConfigurationAssignmentIdOption, bodyOption, new TypeBinding(typeof(IOutputFormatterFactory)), new TypeBinding(typeof(CancellationToken))));
+            }, new CollectionBinding(managedDeviceMobileAppConfigurationIdOption, managedDeviceMobileAppConfigurationAssignmentIdOption, bodyOption, new TypeBinding(typeof(CancellationToken))));
             return command;
         }
         /// <summary>

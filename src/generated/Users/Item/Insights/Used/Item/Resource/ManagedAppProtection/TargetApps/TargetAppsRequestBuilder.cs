@@ -42,8 +42,7 @@ namespace ApiSdk.Users.Item.Insights.Used.Item.Resource.ManagedAppProtection.Tar
                 var userId = (string) parameters[0];
                 var usedInsightId = (string) parameters[1];
                 var body = (string) parameters[2];
-                var outputFormatterFactory = (IOutputFormatterFactory) parameters[3];
-                var cancellationToken = (CancellationToken) parameters[4];
+                var cancellationToken = (CancellationToken) parameters[3];
                 PathParameters.Clear();
                 PathParameters.Add("user_id", userId);
                 PathParameters.Add("usedInsight_id", usedInsightId);
@@ -54,7 +53,7 @@ namespace ApiSdk.Users.Item.Insights.Used.Item.Resource.ManagedAppProtection.Tar
                 });
                 await RequestAdapter.SendNoContentAsync(requestInfo, errorMapping: default, cancellationToken: cancellationToken);
                 Console.WriteLine("Success");
-            }, new CollectionBinding(userIdOption, usedInsightIdOption, bodyOption, new TypeBinding(typeof(IOutputFormatterFactory)), new TypeBinding(typeof(CancellationToken))));
+            }, new CollectionBinding(userIdOption, usedInsightIdOption, bodyOption, new TypeBinding(typeof(CancellationToken))));
             return command;
         }
         /// <summary>

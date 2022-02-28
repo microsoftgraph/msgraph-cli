@@ -32,16 +32,11 @@ namespace ApiSdk.Reports.GetEmailAppUsageUserDetailWithDate {
             command.AddOption(dateOption);
             var fileOption = new Option<FileInfo>("--file");
             command.AddOption(fileOption);
-            var outputOption = new Option<FormatterType>("--output", () => FormatterType.JSON){
-                IsRequired = true
-            };
-            command.AddOption(outputOption);
             command.SetHandler(async (object[] parameters) => {
                 var date = (string) parameters[0];
                 var file = (FileInfo) parameters[1];
-                var output = (FormatterType) parameters[2];
-                var outputFormatterFactory = (IOutputFormatterFactory) parameters[3];
-                var cancellationToken = (CancellationToken) parameters[4];
+                var outputFormatterFactory = (IOutputFormatterFactory) parameters[2];
+                var cancellationToken = (CancellationToken) parameters[3];
                 PathParameters.Clear();
                 PathParameters.Add("date", date);
                 var requestInfo = CreateGetRequestInformation(q => {
@@ -56,7 +51,7 @@ namespace ApiSdk.Reports.GetEmailAppUsageUserDetailWithDate {
                     await response.CopyToAsync(writeStream);
                     Console.WriteLine($"Content written to {file.FullName}.");
                 }
-            }, new CollectionBinding(dateOption, fileOption, outputOption, new TypeBinding(typeof(IOutputFormatterFactory)), new TypeBinding(typeof(CancellationToken))));
+            }, new CollectionBinding(dateOption, fileOption, new TypeBinding(typeof(IOutputFormatterFactory)), new TypeBinding(typeof(CancellationToken))));
             return command;
         }
         /// <summary>

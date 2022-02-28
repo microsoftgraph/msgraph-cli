@@ -37,8 +37,7 @@ namespace ApiSdk.Users.Item.Calendar.CalendarView.Item.DismissReminder {
             command.SetHandler(async (object[] parameters) => {
                 var userId = (string) parameters[0];
                 var eventId = (string) parameters[1];
-                var outputFormatterFactory = (IOutputFormatterFactory) parameters[2];
-                var cancellationToken = (CancellationToken) parameters[3];
+                var cancellationToken = (CancellationToken) parameters[2];
                 PathParameters.Clear();
                 PathParameters.Add("user_id", userId);
                 PathParameters.Add("event_id", eventId);
@@ -46,7 +45,7 @@ namespace ApiSdk.Users.Item.Calendar.CalendarView.Item.DismissReminder {
                 });
                 await RequestAdapter.SendNoContentAsync(requestInfo, errorMapping: default, cancellationToken: cancellationToken);
                 Console.WriteLine("Success");
-            }, new CollectionBinding(userIdOption, eventIdOption, new TypeBinding(typeof(IOutputFormatterFactory)), new TypeBinding(typeof(CancellationToken))));
+            }, new CollectionBinding(userIdOption, eventIdOption, new TypeBinding(typeof(CancellationToken))));
             return command;
         }
         /// <summary>

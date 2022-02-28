@@ -43,13 +43,16 @@ namespace ApiSdk.Education.Users.Item.Assignments.Item.Submissions.Item.Reassign
                 IsRequired = true
             };
             command.AddOption(outputOption);
+            var outputFilterOption = new Option<string>("--query");
+            command.AddOption(outputFilterOption);
             command.SetHandler(async (object[] parameters) => {
                 var educationUserId = (string) parameters[0];
                 var educationAssignmentId = (string) parameters[1];
                 var educationSubmissionId = (string) parameters[2];
                 var output = (FormatterType) parameters[3];
-                var outputFormatterFactory = (IOutputFormatterFactory) parameters[4];
-                var cancellationToken = (CancellationToken) parameters[5];
+                var outputFilterOption = (string) parameters[4];
+                var outputFormatterFactory = (IOutputFormatterFactory) parameters[5];
+                var cancellationToken = (CancellationToken) parameters[6];
                 PathParameters.Clear();
                 PathParameters.Add("educationUser_id", educationUserId);
                 PathParameters.Add("educationAssignment_id", educationAssignmentId);
@@ -59,7 +62,7 @@ namespace ApiSdk.Education.Users.Item.Assignments.Item.Submissions.Item.Reassign
                 var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: default, cancellationToken: cancellationToken);
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 formatter.WriteOutput(response);
-            }, new CollectionBinding(educationUserIdOption, educationAssignmentIdOption, educationSubmissionIdOption, outputOption, new TypeBinding(typeof(IOutputFormatterFactory)), new TypeBinding(typeof(CancellationToken))));
+            }, new CollectionBinding(educationUserIdOption, educationAssignmentIdOption, educationSubmissionIdOption, outputOption, outputFilterOption, new TypeBinding(typeof(IOutputFormatterFactory)), new TypeBinding(typeof(CancellationToken))));
             return command;
         }
         /// <summary>

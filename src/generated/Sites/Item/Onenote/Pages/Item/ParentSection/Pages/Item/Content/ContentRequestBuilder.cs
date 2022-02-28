@@ -40,18 +40,13 @@ namespace ApiSdk.Sites.Item.Onenote.Pages.Item.ParentSection.Pages.Item.Content 
             command.AddOption(onenotePageId1Option);
             var fileOption = new Option<FileInfo>("--file");
             command.AddOption(fileOption);
-            var outputOption = new Option<FormatterType>("--output", () => FormatterType.JSON){
-                IsRequired = true
-            };
-            command.AddOption(outputOption);
             command.SetHandler(async (object[] parameters) => {
                 var siteId = (string) parameters[0];
                 var onenotePageId = (string) parameters[1];
                 var onenotePageId1 = (string) parameters[2];
                 var file = (FileInfo) parameters[3];
-                var output = (FormatterType) parameters[4];
-                var outputFormatterFactory = (IOutputFormatterFactory) parameters[5];
-                var cancellationToken = (CancellationToken) parameters[6];
+                var outputFormatterFactory = (IOutputFormatterFactory) parameters[4];
+                var cancellationToken = (CancellationToken) parameters[5];
                 PathParameters.Clear();
                 PathParameters.Add("site_id", siteId);
                 PathParameters.Add("onenotePage_id", onenotePageId);
@@ -68,7 +63,7 @@ namespace ApiSdk.Sites.Item.Onenote.Pages.Item.ParentSection.Pages.Item.Content 
                     await response.CopyToAsync(writeStream);
                     Console.WriteLine($"Content written to {file.FullName}.");
                 }
-            }, new CollectionBinding(siteIdOption, onenotePageIdOption, onenotePageId1Option, fileOption, outputOption, new TypeBinding(typeof(IOutputFormatterFactory)), new TypeBinding(typeof(CancellationToken))));
+            }, new CollectionBinding(siteIdOption, onenotePageIdOption, onenotePageId1Option, fileOption, new TypeBinding(typeof(IOutputFormatterFactory)), new TypeBinding(typeof(CancellationToken))));
             return command;
         }
         /// <summary>
@@ -99,8 +94,7 @@ namespace ApiSdk.Sites.Item.Onenote.Pages.Item.ParentSection.Pages.Item.Content 
                 var onenotePageId = (string) parameters[1];
                 var onenotePageId1 = (string) parameters[2];
                 var file = (FileInfo) parameters[3];
-                var outputFormatterFactory = (IOutputFormatterFactory) parameters[4];
-                var cancellationToken = (CancellationToken) parameters[5];
+                var cancellationToken = (CancellationToken) parameters[4];
                 PathParameters.Clear();
                 PathParameters.Add("site_id", siteId);
                 PathParameters.Add("onenotePage_id", onenotePageId);
@@ -110,7 +104,7 @@ namespace ApiSdk.Sites.Item.Onenote.Pages.Item.ParentSection.Pages.Item.Content 
                 });
                 await RequestAdapter.SendNoContentAsync(requestInfo, errorMapping: default, cancellationToken: cancellationToken);
                 Console.WriteLine("Success");
-            }, new CollectionBinding(siteIdOption, onenotePageIdOption, onenotePageId1Option, bodyOption, new TypeBinding(typeof(IOutputFormatterFactory)), new TypeBinding(typeof(CancellationToken))));
+            }, new CollectionBinding(siteIdOption, onenotePageIdOption, onenotePageId1Option, bodyOption, new TypeBinding(typeof(CancellationToken))));
             return command;
         }
         /// <summary>

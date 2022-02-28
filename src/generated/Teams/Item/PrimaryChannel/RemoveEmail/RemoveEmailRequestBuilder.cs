@@ -32,15 +32,14 @@ namespace ApiSdk.Teams.Item.PrimaryChannel.RemoveEmail {
             command.AddOption(teamIdOption);
             command.SetHandler(async (object[] parameters) => {
                 var teamId = (string) parameters[0];
-                var outputFormatterFactory = (IOutputFormatterFactory) parameters[1];
-                var cancellationToken = (CancellationToken) parameters[2];
+                var cancellationToken = (CancellationToken) parameters[1];
                 PathParameters.Clear();
                 PathParameters.Add("team_id", teamId);
                 var requestInfo = CreatePostRequestInformation(q => {
                 });
                 await RequestAdapter.SendNoContentAsync(requestInfo, errorMapping: default, cancellationToken: cancellationToken);
                 Console.WriteLine("Success");
-            }, new CollectionBinding(teamIdOption, new TypeBinding(typeof(IOutputFormatterFactory)), new TypeBinding(typeof(CancellationToken))));
+            }, new CollectionBinding(teamIdOption, new TypeBinding(typeof(CancellationToken))));
             return command;
         }
         /// <summary>

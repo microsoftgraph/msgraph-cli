@@ -48,8 +48,7 @@ namespace ApiSdk.Users.Item.Calendars.Item.CalendarView.Item.SingleValueExtended
                 var calendarId = (string) parameters[1];
                 var eventId = (string) parameters[2];
                 var singleValueLegacyExtendedPropertyId = (string) parameters[3];
-                var outputFormatterFactory = (IOutputFormatterFactory) parameters[4];
-                var cancellationToken = (CancellationToken) parameters[5];
+                var cancellationToken = (CancellationToken) parameters[4];
                 PathParameters.Clear();
                 PathParameters.Add("user_id", userId);
                 PathParameters.Add("calendar_id", calendarId);
@@ -59,7 +58,7 @@ namespace ApiSdk.Users.Item.Calendars.Item.CalendarView.Item.SingleValueExtended
                 });
                 await RequestAdapter.SendNoContentAsync(requestInfo, errorMapping: default, cancellationToken: cancellationToken);
                 Console.WriteLine("Success");
-            }, new CollectionBinding(userIdOption, calendarIdOption, eventIdOption, singleValueLegacyExtendedPropertyIdOption, new TypeBinding(typeof(IOutputFormatterFactory)), new TypeBinding(typeof(CancellationToken))));
+            }, new CollectionBinding(userIdOption, calendarIdOption, eventIdOption, singleValueLegacyExtendedPropertyIdOption, new TypeBinding(typeof(CancellationToken))));
             return command;
         }
         /// <summary>
@@ -99,6 +98,8 @@ namespace ApiSdk.Users.Item.Calendars.Item.CalendarView.Item.SingleValueExtended
                 IsRequired = true
             };
             command.AddOption(outputOption);
+            var outputFilterOption = new Option<string>("--query");
+            command.AddOption(outputFilterOption);
             command.SetHandler(async (object[] parameters) => {
                 var userId = (string) parameters[0];
                 var calendarId = (string) parameters[1];
@@ -107,8 +108,9 @@ namespace ApiSdk.Users.Item.Calendars.Item.CalendarView.Item.SingleValueExtended
                 var select = (string[]) parameters[4];
                 var expand = (string[]) parameters[5];
                 var output = (FormatterType) parameters[6];
-                var outputFormatterFactory = (IOutputFormatterFactory) parameters[7];
-                var cancellationToken = (CancellationToken) parameters[8];
+                var outputFilterOption = (string) parameters[7];
+                var outputFormatterFactory = (IOutputFormatterFactory) parameters[8];
+                var cancellationToken = (CancellationToken) parameters[9];
                 PathParameters.Clear();
                 PathParameters.Add("user_id", userId);
                 PathParameters.Add("calendar_id", calendarId);
@@ -121,7 +123,7 @@ namespace ApiSdk.Users.Item.Calendars.Item.CalendarView.Item.SingleValueExtended
                 var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: default, cancellationToken: cancellationToken);
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 formatter.WriteOutput(response);
-            }, new CollectionBinding(userIdOption, calendarIdOption, eventIdOption, singleValueLegacyExtendedPropertyIdOption, selectOption, expandOption, outputOption, new TypeBinding(typeof(IOutputFormatterFactory)), new TypeBinding(typeof(CancellationToken))));
+            }, new CollectionBinding(userIdOption, calendarIdOption, eventIdOption, singleValueLegacyExtendedPropertyIdOption, selectOption, expandOption, outputOption, outputFilterOption, new TypeBinding(typeof(IOutputFormatterFactory)), new TypeBinding(typeof(CancellationToken))));
             return command;
         }
         /// <summary>
@@ -157,8 +159,7 @@ namespace ApiSdk.Users.Item.Calendars.Item.CalendarView.Item.SingleValueExtended
                 var eventId = (string) parameters[2];
                 var singleValueLegacyExtendedPropertyId = (string) parameters[3];
                 var body = (string) parameters[4];
-                var outputFormatterFactory = (IOutputFormatterFactory) parameters[5];
-                var cancellationToken = (CancellationToken) parameters[6];
+                var cancellationToken = (CancellationToken) parameters[5];
                 PathParameters.Clear();
                 PathParameters.Add("user_id", userId);
                 PathParameters.Add("calendar_id", calendarId);
@@ -171,7 +172,7 @@ namespace ApiSdk.Users.Item.Calendars.Item.CalendarView.Item.SingleValueExtended
                 });
                 await RequestAdapter.SendNoContentAsync(requestInfo, errorMapping: default, cancellationToken: cancellationToken);
                 Console.WriteLine("Success");
-            }, new CollectionBinding(userIdOption, calendarIdOption, eventIdOption, singleValueLegacyExtendedPropertyIdOption, bodyOption, new TypeBinding(typeof(IOutputFormatterFactory)), new TypeBinding(typeof(CancellationToken))));
+            }, new CollectionBinding(userIdOption, calendarIdOption, eventIdOption, singleValueLegacyExtendedPropertyIdOption, bodyOption, new TypeBinding(typeof(CancellationToken))));
             return command;
         }
         /// <summary>

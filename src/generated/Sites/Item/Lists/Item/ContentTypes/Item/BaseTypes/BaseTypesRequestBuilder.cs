@@ -85,6 +85,8 @@ namespace ApiSdk.Sites.Item.Lists.Item.ContentTypes.Item.BaseTypes {
                 IsRequired = true
             };
             command.AddOption(outputOption);
+            var outputFilterOption = new Option<string>("--query");
+            command.AddOption(outputFilterOption);
             command.SetHandler(async (object[] parameters) => {
                 var siteId = (string) parameters[0];
                 var listId = (string) parameters[1];
@@ -98,8 +100,9 @@ namespace ApiSdk.Sites.Item.Lists.Item.ContentTypes.Item.BaseTypes {
                 var select = (string[]) parameters[9];
                 var expand = (string[]) parameters[10];
                 var output = (FormatterType) parameters[11];
-                var outputFormatterFactory = (IOutputFormatterFactory) parameters[12];
-                var cancellationToken = (CancellationToken) parameters[13];
+                var outputFilterOption = (string) parameters[12];
+                var outputFormatterFactory = (IOutputFormatterFactory) parameters[13];
+                var cancellationToken = (CancellationToken) parameters[14];
                 PathParameters.Clear();
                 PathParameters.Add("site_id", siteId);
                 PathParameters.Add("list_id", listId);
@@ -117,7 +120,7 @@ namespace ApiSdk.Sites.Item.Lists.Item.ContentTypes.Item.BaseTypes {
                 var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: default, cancellationToken: cancellationToken);
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 formatter.WriteOutput(response);
-            }, new CollectionBinding(siteIdOption, listIdOption, contentTypeIdOption, topOption, skipOption, searchOption, filterOption, countOption, orderbyOption, selectOption, expandOption, outputOption, new TypeBinding(typeof(IOutputFormatterFactory)), new TypeBinding(typeof(CancellationToken))));
+            }, new CollectionBinding(siteIdOption, listIdOption, contentTypeIdOption, topOption, skipOption, searchOption, filterOption, countOption, orderbyOption, selectOption, expandOption, outputOption, outputFilterOption, new TypeBinding(typeof(IOutputFormatterFactory)), new TypeBinding(typeof(CancellationToken))));
             return command;
         }
         public Command BuildRefCommand() {

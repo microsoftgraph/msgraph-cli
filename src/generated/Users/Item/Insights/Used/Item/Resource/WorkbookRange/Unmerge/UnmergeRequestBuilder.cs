@@ -37,8 +37,7 @@ namespace ApiSdk.Users.Item.Insights.Used.Item.Resource.WorkbookRange.Unmerge {
             command.SetHandler(async (object[] parameters) => {
                 var userId = (string) parameters[0];
                 var usedInsightId = (string) parameters[1];
-                var outputFormatterFactory = (IOutputFormatterFactory) parameters[2];
-                var cancellationToken = (CancellationToken) parameters[3];
+                var cancellationToken = (CancellationToken) parameters[2];
                 PathParameters.Clear();
                 PathParameters.Add("user_id", userId);
                 PathParameters.Add("usedInsight_id", usedInsightId);
@@ -46,7 +45,7 @@ namespace ApiSdk.Users.Item.Insights.Used.Item.Resource.WorkbookRange.Unmerge {
                 });
                 await RequestAdapter.SendNoContentAsync(requestInfo, errorMapping: default, cancellationToken: cancellationToken);
                 Console.WriteLine("Success");
-            }, new CollectionBinding(userIdOption, usedInsightIdOption, new TypeBinding(typeof(IOutputFormatterFactory)), new TypeBinding(typeof(CancellationToken))));
+            }, new CollectionBinding(userIdOption, usedInsightIdOption, new TypeBinding(typeof(CancellationToken))));
             return command;
         }
         /// <summary>

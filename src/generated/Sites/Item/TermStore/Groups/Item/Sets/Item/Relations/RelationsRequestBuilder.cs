@@ -59,14 +59,17 @@ namespace ApiSdk.Sites.Item.TermStore.Groups.Item.Sets.Item.Relations {
                 IsRequired = true
             };
             command.AddOption(outputOption);
+            var outputFilterOption = new Option<string>("--query");
+            command.AddOption(outputFilterOption);
             command.SetHandler(async (object[] parameters) => {
                 var siteId = (string) parameters[0];
                 var groupId = (string) parameters[1];
                 var setId = (string) parameters[2];
                 var body = (string) parameters[3];
                 var output = (FormatterType) parameters[4];
-                var outputFormatterFactory = (IOutputFormatterFactory) parameters[5];
-                var cancellationToken = (CancellationToken) parameters[6];
+                var outputFilterOption = (string) parameters[5];
+                var outputFormatterFactory = (IOutputFormatterFactory) parameters[6];
+                var cancellationToken = (CancellationToken) parameters[7];
                 PathParameters.Clear();
                 PathParameters.Add("site_id", siteId);
                 PathParameters.Add("group_id", groupId);
@@ -79,7 +82,7 @@ namespace ApiSdk.Sites.Item.TermStore.Groups.Item.Sets.Item.Relations {
                 var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: default, cancellationToken: cancellationToken);
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 formatter.WriteOutput(response);
-            }, new CollectionBinding(siteIdOption, groupIdOption, setIdOption, bodyOption, outputOption, new TypeBinding(typeof(IOutputFormatterFactory)), new TypeBinding(typeof(CancellationToken))));
+            }, new CollectionBinding(siteIdOption, groupIdOption, setIdOption, bodyOption, outputOption, outputFilterOption, new TypeBinding(typeof(IOutputFormatterFactory)), new TypeBinding(typeof(CancellationToken))));
             return command;
         }
         /// <summary>
@@ -140,6 +143,8 @@ namespace ApiSdk.Sites.Item.TermStore.Groups.Item.Sets.Item.Relations {
                 IsRequired = true
             };
             command.AddOption(outputOption);
+            var outputFilterOption = new Option<string>("--query");
+            command.AddOption(outputFilterOption);
             command.SetHandler(async (object[] parameters) => {
                 var siteId = (string) parameters[0];
                 var groupId = (string) parameters[1];
@@ -153,8 +158,9 @@ namespace ApiSdk.Sites.Item.TermStore.Groups.Item.Sets.Item.Relations {
                 var select = (string[]) parameters[9];
                 var expand = (string[]) parameters[10];
                 var output = (FormatterType) parameters[11];
-                var outputFormatterFactory = (IOutputFormatterFactory) parameters[12];
-                var cancellationToken = (CancellationToken) parameters[13];
+                var outputFilterOption = (string) parameters[12];
+                var outputFormatterFactory = (IOutputFormatterFactory) parameters[13];
+                var cancellationToken = (CancellationToken) parameters[14];
                 PathParameters.Clear();
                 PathParameters.Add("site_id", siteId);
                 PathParameters.Add("group_id", groupId);
@@ -172,7 +178,7 @@ namespace ApiSdk.Sites.Item.TermStore.Groups.Item.Sets.Item.Relations {
                 var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: default, cancellationToken: cancellationToken);
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 formatter.WriteOutput(response);
-            }, new CollectionBinding(siteIdOption, groupIdOption, setIdOption, topOption, skipOption, searchOption, filterOption, countOption, orderbyOption, selectOption, expandOption, outputOption, new TypeBinding(typeof(IOutputFormatterFactory)), new TypeBinding(typeof(CancellationToken))));
+            }, new CollectionBinding(siteIdOption, groupIdOption, setIdOption, topOption, skipOption, searchOption, filterOption, countOption, orderbyOption, selectOption, expandOption, outputOption, outputFilterOption, new TypeBinding(typeof(IOutputFormatterFactory)), new TypeBinding(typeof(CancellationToken))));
             return command;
         }
         /// <summary>

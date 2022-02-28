@@ -37,8 +37,7 @@ namespace ApiSdk.Groups.Item.Calendar.Events.Item.DismissReminder {
             command.SetHandler(async (object[] parameters) => {
                 var groupId = (string) parameters[0];
                 var eventId = (string) parameters[1];
-                var outputFormatterFactory = (IOutputFormatterFactory) parameters[2];
-                var cancellationToken = (CancellationToken) parameters[3];
+                var cancellationToken = (CancellationToken) parameters[2];
                 PathParameters.Clear();
                 PathParameters.Add("group_id", groupId);
                 PathParameters.Add("event_id", eventId);
@@ -46,7 +45,7 @@ namespace ApiSdk.Groups.Item.Calendar.Events.Item.DismissReminder {
                 });
                 await RequestAdapter.SendNoContentAsync(requestInfo, errorMapping: default, cancellationToken: cancellationToken);
                 Console.WriteLine("Success");
-            }, new CollectionBinding(groupIdOption, eventIdOption, new TypeBinding(typeof(IOutputFormatterFactory)), new TypeBinding(typeof(CancellationToken))));
+            }, new CollectionBinding(groupIdOption, eventIdOption, new TypeBinding(typeof(CancellationToken))));
             return command;
         }
         /// <summary>

@@ -59,6 +59,8 @@ namespace ApiSdk.Print.Shares.Item.AllowedGroups.Ref {
                 IsRequired = true
             };
             command.AddOption(outputOption);
+            var outputFilterOption = new Option<string>("--query");
+            command.AddOption(outputFilterOption);
             command.SetHandler(async (object[] parameters) => {
                 var printerShareId = (string) parameters[0];
                 var top = (int?) parameters[1];
@@ -68,8 +70,9 @@ namespace ApiSdk.Print.Shares.Item.AllowedGroups.Ref {
                 var count = (bool?) parameters[5];
                 var orderby = (string[]) parameters[6];
                 var output = (FormatterType) parameters[7];
-                var outputFormatterFactory = (IOutputFormatterFactory) parameters[8];
-                var cancellationToken = (CancellationToken) parameters[9];
+                var outputFilterOption = (string) parameters[8];
+                var outputFormatterFactory = (IOutputFormatterFactory) parameters[9];
+                var cancellationToken = (CancellationToken) parameters[10];
                 PathParameters.Clear();
                 PathParameters.Add("printerShare_id", printerShareId);
                 var requestInfo = CreateGetRequestInformation(q => {
@@ -83,7 +86,7 @@ namespace ApiSdk.Print.Shares.Item.AllowedGroups.Ref {
                 var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: default, cancellationToken: cancellationToken);
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 formatter.WriteOutput(response);
-            }, new CollectionBinding(printerShareIdOption, topOption, skipOption, searchOption, filterOption, countOption, orderbyOption, outputOption, new TypeBinding(typeof(IOutputFormatterFactory)), new TypeBinding(typeof(CancellationToken))));
+            }, new CollectionBinding(printerShareIdOption, topOption, skipOption, searchOption, filterOption, countOption, orderbyOption, outputOption, outputFilterOption, new TypeBinding(typeof(IOutputFormatterFactory)), new TypeBinding(typeof(CancellationToken))));
             return command;
         }
         /// <summary>
@@ -105,12 +108,15 @@ namespace ApiSdk.Print.Shares.Item.AllowedGroups.Ref {
                 IsRequired = true
             };
             command.AddOption(outputOption);
+            var outputFilterOption = new Option<string>("--query");
+            command.AddOption(outputFilterOption);
             command.SetHandler(async (object[] parameters) => {
                 var printerShareId = (string) parameters[0];
                 var body = (string) parameters[1];
                 var output = (FormatterType) parameters[2];
-                var outputFormatterFactory = (IOutputFormatterFactory) parameters[3];
-                var cancellationToken = (CancellationToken) parameters[4];
+                var outputFilterOption = (string) parameters[3];
+                var outputFormatterFactory = (IOutputFormatterFactory) parameters[4];
+                var cancellationToken = (CancellationToken) parameters[5];
                 PathParameters.Clear();
                 PathParameters.Add("printerShare_id", printerShareId);
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
@@ -121,7 +127,7 @@ namespace ApiSdk.Print.Shares.Item.AllowedGroups.Ref {
                 var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: default, cancellationToken: cancellationToken);
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 formatter.WriteOutput(response);
-            }, new CollectionBinding(printerShareIdOption, bodyOption, outputOption, new TypeBinding(typeof(IOutputFormatterFactory)), new TypeBinding(typeof(CancellationToken))));
+            }, new CollectionBinding(printerShareIdOption, bodyOption, outputOption, outputFilterOption, new TypeBinding(typeof(IOutputFormatterFactory)), new TypeBinding(typeof(CancellationToken))));
             return command;
         }
         /// <summary>

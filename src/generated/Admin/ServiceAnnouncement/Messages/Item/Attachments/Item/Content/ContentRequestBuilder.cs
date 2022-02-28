@@ -36,17 +36,12 @@ namespace ApiSdk.Admin.ServiceAnnouncement.Messages.Item.Attachments.Item.Conten
             command.AddOption(serviceAnnouncementAttachmentIdOption);
             var fileOption = new Option<FileInfo>("--file");
             command.AddOption(fileOption);
-            var outputOption = new Option<FormatterType>("--output", () => FormatterType.JSON){
-                IsRequired = true
-            };
-            command.AddOption(outputOption);
             command.SetHandler(async (object[] parameters) => {
                 var serviceUpdateMessageId = (string) parameters[0];
                 var serviceAnnouncementAttachmentId = (string) parameters[1];
                 var file = (FileInfo) parameters[2];
-                var output = (FormatterType) parameters[3];
-                var outputFormatterFactory = (IOutputFormatterFactory) parameters[4];
-                var cancellationToken = (CancellationToken) parameters[5];
+                var outputFormatterFactory = (IOutputFormatterFactory) parameters[3];
+                var cancellationToken = (CancellationToken) parameters[4];
                 PathParameters.Clear();
                 PathParameters.Add("serviceUpdateMessage_id", serviceUpdateMessageId);
                 PathParameters.Add("serviceAnnouncementAttachment_id", serviceAnnouncementAttachmentId);
@@ -62,7 +57,7 @@ namespace ApiSdk.Admin.ServiceAnnouncement.Messages.Item.Attachments.Item.Conten
                     await response.CopyToAsync(writeStream);
                     Console.WriteLine($"Content written to {file.FullName}.");
                 }
-            }, new CollectionBinding(serviceUpdateMessageIdOption, serviceAnnouncementAttachmentIdOption, fileOption, outputOption, new TypeBinding(typeof(IOutputFormatterFactory)), new TypeBinding(typeof(CancellationToken))));
+            }, new CollectionBinding(serviceUpdateMessageIdOption, serviceAnnouncementAttachmentIdOption, fileOption, new TypeBinding(typeof(IOutputFormatterFactory)), new TypeBinding(typeof(CancellationToken))));
             return command;
         }
         /// <summary>
@@ -88,8 +83,7 @@ namespace ApiSdk.Admin.ServiceAnnouncement.Messages.Item.Attachments.Item.Conten
                 var serviceUpdateMessageId = (string) parameters[0];
                 var serviceAnnouncementAttachmentId = (string) parameters[1];
                 var file = (FileInfo) parameters[2];
-                var outputFormatterFactory = (IOutputFormatterFactory) parameters[3];
-                var cancellationToken = (CancellationToken) parameters[4];
+                var cancellationToken = (CancellationToken) parameters[3];
                 PathParameters.Clear();
                 PathParameters.Add("serviceUpdateMessage_id", serviceUpdateMessageId);
                 PathParameters.Add("serviceAnnouncementAttachment_id", serviceAnnouncementAttachmentId);
@@ -98,7 +92,7 @@ namespace ApiSdk.Admin.ServiceAnnouncement.Messages.Item.Attachments.Item.Conten
                 });
                 await RequestAdapter.SendNoContentAsync(requestInfo, errorMapping: default, cancellationToken: cancellationToken);
                 Console.WriteLine("Success");
-            }, new CollectionBinding(serviceUpdateMessageIdOption, serviceAnnouncementAttachmentIdOption, bodyOption, new TypeBinding(typeof(IOutputFormatterFactory)), new TypeBinding(typeof(CancellationToken))));
+            }, new CollectionBinding(serviceUpdateMessageIdOption, serviceAnnouncementAttachmentIdOption, bodyOption, new TypeBinding(typeof(CancellationToken))));
             return command;
         }
         /// <summary>

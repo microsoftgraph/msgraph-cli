@@ -42,8 +42,7 @@ namespace ApiSdk.Users.Item.Insights.Shared.Item.LastSharedMethod.TargetedManage
                 var userId = (string) parameters[0];
                 var sharedInsightId = (string) parameters[1];
                 var body = (string) parameters[2];
-                var outputFormatterFactory = (IOutputFormatterFactory) parameters[3];
-                var cancellationToken = (CancellationToken) parameters[4];
+                var cancellationToken = (CancellationToken) parameters[3];
                 PathParameters.Clear();
                 PathParameters.Add("user_id", userId);
                 PathParameters.Add("sharedInsight_id", sharedInsightId);
@@ -54,7 +53,7 @@ namespace ApiSdk.Users.Item.Insights.Shared.Item.LastSharedMethod.TargetedManage
                 });
                 await RequestAdapter.SendNoContentAsync(requestInfo, errorMapping: default, cancellationToken: cancellationToken);
                 Console.WriteLine("Success");
-            }, new CollectionBinding(userIdOption, sharedInsightIdOption, bodyOption, new TypeBinding(typeof(IOutputFormatterFactory)), new TypeBinding(typeof(CancellationToken))));
+            }, new CollectionBinding(userIdOption, sharedInsightIdOption, bodyOption, new TypeBinding(typeof(CancellationToken))));
             return command;
         }
         /// <summary>

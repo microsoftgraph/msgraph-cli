@@ -50,8 +50,7 @@ namespace ApiSdk.Identity.B2xUserFlows.Item.Languages.Item {
             command.SetHandler(async (object[] parameters) => {
                 var b2xIdentityUserFlowId = (string) parameters[0];
                 var userFlowLanguageConfigurationId = (string) parameters[1];
-                var outputFormatterFactory = (IOutputFormatterFactory) parameters[2];
-                var cancellationToken = (CancellationToken) parameters[3];
+                var cancellationToken = (CancellationToken) parameters[2];
                 PathParameters.Clear();
                 PathParameters.Add("b2xIdentityUserFlow_id", b2xIdentityUserFlowId);
                 PathParameters.Add("userFlowLanguageConfiguration_id", userFlowLanguageConfigurationId);
@@ -59,7 +58,7 @@ namespace ApiSdk.Identity.B2xUserFlows.Item.Languages.Item {
                 });
                 await RequestAdapter.SendNoContentAsync(requestInfo, errorMapping: default, cancellationToken: cancellationToken);
                 Console.WriteLine("Success");
-            }, new CollectionBinding(b2xIdentityUserFlowIdOption, userFlowLanguageConfigurationIdOption, new TypeBinding(typeof(IOutputFormatterFactory)), new TypeBinding(typeof(CancellationToken))));
+            }, new CollectionBinding(b2xIdentityUserFlowIdOption, userFlowLanguageConfigurationIdOption, new TypeBinding(typeof(CancellationToken))));
             return command;
         }
         /// <summary>
@@ -91,14 +90,17 @@ namespace ApiSdk.Identity.B2xUserFlows.Item.Languages.Item {
                 IsRequired = true
             };
             command.AddOption(outputOption);
+            var outputFilterOption = new Option<string>("--query");
+            command.AddOption(outputFilterOption);
             command.SetHandler(async (object[] parameters) => {
                 var b2xIdentityUserFlowId = (string) parameters[0];
                 var userFlowLanguageConfigurationId = (string) parameters[1];
                 var select = (string[]) parameters[2];
                 var expand = (string[]) parameters[3];
                 var output = (FormatterType) parameters[4];
-                var outputFormatterFactory = (IOutputFormatterFactory) parameters[5];
-                var cancellationToken = (CancellationToken) parameters[6];
+                var outputFilterOption = (string) parameters[5];
+                var outputFormatterFactory = (IOutputFormatterFactory) parameters[6];
+                var cancellationToken = (CancellationToken) parameters[7];
                 PathParameters.Clear();
                 PathParameters.Add("b2xIdentityUserFlow_id", b2xIdentityUserFlowId);
                 PathParameters.Add("userFlowLanguageConfiguration_id", userFlowLanguageConfigurationId);
@@ -109,7 +111,7 @@ namespace ApiSdk.Identity.B2xUserFlows.Item.Languages.Item {
                 var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: default, cancellationToken: cancellationToken);
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 formatter.WriteOutput(response);
-            }, new CollectionBinding(b2xIdentityUserFlowIdOption, userFlowLanguageConfigurationIdOption, selectOption, expandOption, outputOption, new TypeBinding(typeof(IOutputFormatterFactory)), new TypeBinding(typeof(CancellationToken))));
+            }, new CollectionBinding(b2xIdentityUserFlowIdOption, userFlowLanguageConfigurationIdOption, selectOption, expandOption, outputOption, outputFilterOption, new TypeBinding(typeof(IOutputFormatterFactory)), new TypeBinding(typeof(CancellationToken))));
             return command;
         }
         public Command BuildOverridesPagesCommand() {
@@ -145,8 +147,7 @@ namespace ApiSdk.Identity.B2xUserFlows.Item.Languages.Item {
                 var b2xIdentityUserFlowId = (string) parameters[0];
                 var userFlowLanguageConfigurationId = (string) parameters[1];
                 var body = (string) parameters[2];
-                var outputFormatterFactory = (IOutputFormatterFactory) parameters[3];
-                var cancellationToken = (CancellationToken) parameters[4];
+                var cancellationToken = (CancellationToken) parameters[3];
                 PathParameters.Clear();
                 PathParameters.Add("b2xIdentityUserFlow_id", b2xIdentityUserFlowId);
                 PathParameters.Add("userFlowLanguageConfiguration_id", userFlowLanguageConfigurationId);
@@ -157,7 +158,7 @@ namespace ApiSdk.Identity.B2xUserFlows.Item.Languages.Item {
                 });
                 await RequestAdapter.SendNoContentAsync(requestInfo, errorMapping: default, cancellationToken: cancellationToken);
                 Console.WriteLine("Success");
-            }, new CollectionBinding(b2xIdentityUserFlowIdOption, userFlowLanguageConfigurationIdOption, bodyOption, new TypeBinding(typeof(IOutputFormatterFactory)), new TypeBinding(typeof(CancellationToken))));
+            }, new CollectionBinding(b2xIdentityUserFlowIdOption, userFlowLanguageConfigurationIdOption, bodyOption, new TypeBinding(typeof(CancellationToken))));
             return command;
         }
         /// <summary>

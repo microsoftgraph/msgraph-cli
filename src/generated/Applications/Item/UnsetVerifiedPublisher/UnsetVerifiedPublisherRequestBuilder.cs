@@ -32,15 +32,14 @@ namespace ApiSdk.Applications.Item.UnsetVerifiedPublisher {
             command.AddOption(applicationIdOption);
             command.SetHandler(async (object[] parameters) => {
                 var applicationId = (string) parameters[0];
-                var outputFormatterFactory = (IOutputFormatterFactory) parameters[1];
-                var cancellationToken = (CancellationToken) parameters[2];
+                var cancellationToken = (CancellationToken) parameters[1];
                 PathParameters.Clear();
                 PathParameters.Add("application_id", applicationId);
                 var requestInfo = CreatePostRequestInformation(q => {
                 });
                 await RequestAdapter.SendNoContentAsync(requestInfo, errorMapping: default, cancellationToken: cancellationToken);
                 Console.WriteLine("Success");
-            }, new CollectionBinding(applicationIdOption, new TypeBinding(typeof(IOutputFormatterFactory)), new TypeBinding(typeof(CancellationToken))));
+            }, new CollectionBinding(applicationIdOption, new TypeBinding(typeof(CancellationToken))));
             return command;
         }
         /// <summary>

@@ -43,8 +43,7 @@ namespace ApiSdk.Education.Me.Assignments.Item.Submissions.Item.Outcomes.Item {
                 var educationAssignmentId = (string) parameters[0];
                 var educationSubmissionId = (string) parameters[1];
                 var educationOutcomeId = (string) parameters[2];
-                var outputFormatterFactory = (IOutputFormatterFactory) parameters[3];
-                var cancellationToken = (CancellationToken) parameters[4];
+                var cancellationToken = (CancellationToken) parameters[3];
                 PathParameters.Clear();
                 PathParameters.Add("educationAssignment_id", educationAssignmentId);
                 PathParameters.Add("educationSubmission_id", educationSubmissionId);
@@ -53,7 +52,7 @@ namespace ApiSdk.Education.Me.Assignments.Item.Submissions.Item.Outcomes.Item {
                 });
                 await RequestAdapter.SendNoContentAsync(requestInfo, errorMapping: default, cancellationToken: cancellationToken);
                 Console.WriteLine("Success");
-            }, new CollectionBinding(educationAssignmentIdOption, educationSubmissionIdOption, educationOutcomeIdOption, new TypeBinding(typeof(IOutputFormatterFactory)), new TypeBinding(typeof(CancellationToken))));
+            }, new CollectionBinding(educationAssignmentIdOption, educationSubmissionIdOption, educationOutcomeIdOption, new TypeBinding(typeof(CancellationToken))));
             return command;
         }
         /// <summary>
@@ -89,6 +88,8 @@ namespace ApiSdk.Education.Me.Assignments.Item.Submissions.Item.Outcomes.Item {
                 IsRequired = true
             };
             command.AddOption(outputOption);
+            var outputFilterOption = new Option<string>("--query");
+            command.AddOption(outputFilterOption);
             command.SetHandler(async (object[] parameters) => {
                 var educationAssignmentId = (string) parameters[0];
                 var educationSubmissionId = (string) parameters[1];
@@ -96,8 +97,9 @@ namespace ApiSdk.Education.Me.Assignments.Item.Submissions.Item.Outcomes.Item {
                 var select = (string[]) parameters[3];
                 var expand = (string[]) parameters[4];
                 var output = (FormatterType) parameters[5];
-                var outputFormatterFactory = (IOutputFormatterFactory) parameters[6];
-                var cancellationToken = (CancellationToken) parameters[7];
+                var outputFilterOption = (string) parameters[6];
+                var outputFormatterFactory = (IOutputFormatterFactory) parameters[7];
+                var cancellationToken = (CancellationToken) parameters[8];
                 PathParameters.Clear();
                 PathParameters.Add("educationAssignment_id", educationAssignmentId);
                 PathParameters.Add("educationSubmission_id", educationSubmissionId);
@@ -109,7 +111,7 @@ namespace ApiSdk.Education.Me.Assignments.Item.Submissions.Item.Outcomes.Item {
                 var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: default, cancellationToken: cancellationToken);
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 formatter.WriteOutput(response);
-            }, new CollectionBinding(educationAssignmentIdOption, educationSubmissionIdOption, educationOutcomeIdOption, selectOption, expandOption, outputOption, new TypeBinding(typeof(IOutputFormatterFactory)), new TypeBinding(typeof(CancellationToken))));
+            }, new CollectionBinding(educationAssignmentIdOption, educationSubmissionIdOption, educationOutcomeIdOption, selectOption, expandOption, outputOption, outputFilterOption, new TypeBinding(typeof(IOutputFormatterFactory)), new TypeBinding(typeof(CancellationToken))));
             return command;
         }
         /// <summary>
@@ -140,8 +142,7 @@ namespace ApiSdk.Education.Me.Assignments.Item.Submissions.Item.Outcomes.Item {
                 var educationSubmissionId = (string) parameters[1];
                 var educationOutcomeId = (string) parameters[2];
                 var body = (string) parameters[3];
-                var outputFormatterFactory = (IOutputFormatterFactory) parameters[4];
-                var cancellationToken = (CancellationToken) parameters[5];
+                var cancellationToken = (CancellationToken) parameters[4];
                 PathParameters.Clear();
                 PathParameters.Add("educationAssignment_id", educationAssignmentId);
                 PathParameters.Add("educationSubmission_id", educationSubmissionId);
@@ -153,7 +154,7 @@ namespace ApiSdk.Education.Me.Assignments.Item.Submissions.Item.Outcomes.Item {
                 });
                 await RequestAdapter.SendNoContentAsync(requestInfo, errorMapping: default, cancellationToken: cancellationToken);
                 Console.WriteLine("Success");
-            }, new CollectionBinding(educationAssignmentIdOption, educationSubmissionIdOption, educationOutcomeIdOption, bodyOption, new TypeBinding(typeof(IOutputFormatterFactory)), new TypeBinding(typeof(CancellationToken))));
+            }, new CollectionBinding(educationAssignmentIdOption, educationSubmissionIdOption, educationOutcomeIdOption, bodyOption, new TypeBinding(typeof(CancellationToken))));
             return command;
         }
         /// <summary>

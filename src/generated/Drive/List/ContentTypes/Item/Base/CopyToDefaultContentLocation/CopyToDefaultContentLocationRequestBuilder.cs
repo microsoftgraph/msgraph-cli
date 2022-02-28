@@ -37,8 +37,7 @@ namespace ApiSdk.Drive.List.ContentTypes.Item.Base.CopyToDefaultContentLocation 
             command.SetHandler(async (object[] parameters) => {
                 var contentTypeId = (string) parameters[0];
                 var body = (string) parameters[1];
-                var outputFormatterFactory = (IOutputFormatterFactory) parameters[2];
-                var cancellationToken = (CancellationToken) parameters[3];
+                var cancellationToken = (CancellationToken) parameters[2];
                 PathParameters.Clear();
                 PathParameters.Add("contentType_id", contentTypeId);
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
@@ -48,7 +47,7 @@ namespace ApiSdk.Drive.List.ContentTypes.Item.Base.CopyToDefaultContentLocation 
                 });
                 await RequestAdapter.SendNoContentAsync(requestInfo, errorMapping: default, cancellationToken: cancellationToken);
                 Console.WriteLine("Success");
-            }, new CollectionBinding(contentTypeIdOption, bodyOption, new TypeBinding(typeof(IOutputFormatterFactory)), new TypeBinding(typeof(CancellationToken))));
+            }, new CollectionBinding(contentTypeIdOption, bodyOption, new TypeBinding(typeof(CancellationToken))));
             return command;
         }
         /// <summary>

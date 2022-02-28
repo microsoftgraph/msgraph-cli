@@ -32,15 +32,14 @@ namespace ApiSdk.Print.Shares.Item.Printer.RestoreFactoryDefaults {
             command.AddOption(printerShareIdOption);
             command.SetHandler(async (object[] parameters) => {
                 var printerShareId = (string) parameters[0];
-                var outputFormatterFactory = (IOutputFormatterFactory) parameters[1];
-                var cancellationToken = (CancellationToken) parameters[2];
+                var cancellationToken = (CancellationToken) parameters[1];
                 PathParameters.Clear();
                 PathParameters.Add("printerShare_id", printerShareId);
                 var requestInfo = CreatePostRequestInformation(q => {
                 });
                 await RequestAdapter.SendNoContentAsync(requestInfo, errorMapping: default, cancellationToken: cancellationToken);
                 Console.WriteLine("Success");
-            }, new CollectionBinding(printerShareIdOption, new TypeBinding(typeof(IOutputFormatterFactory)), new TypeBinding(typeof(CancellationToken))));
+            }, new CollectionBinding(printerShareIdOption, new TypeBinding(typeof(CancellationToken))));
             return command;
         }
         /// <summary>

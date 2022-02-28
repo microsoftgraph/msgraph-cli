@@ -37,8 +37,7 @@ namespace ApiSdk.Print.TaskDefinitions.Item.Tasks.Item.Trigger.Ref {
             command.SetHandler(async (object[] parameters) => {
                 var printTaskDefinitionId = (string) parameters[0];
                 var printTaskId = (string) parameters[1];
-                var outputFormatterFactory = (IOutputFormatterFactory) parameters[2];
-                var cancellationToken = (CancellationToken) parameters[3];
+                var cancellationToken = (CancellationToken) parameters[2];
                 PathParameters.Clear();
                 PathParameters.Add("printTaskDefinition_id", printTaskDefinitionId);
                 PathParameters.Add("printTask_id", printTaskId);
@@ -46,7 +45,7 @@ namespace ApiSdk.Print.TaskDefinitions.Item.Tasks.Item.Trigger.Ref {
                 });
                 await RequestAdapter.SendNoContentAsync(requestInfo, errorMapping: default, cancellationToken: cancellationToken);
                 Console.WriteLine("Success");
-            }, new CollectionBinding(printTaskDefinitionIdOption, printTaskIdOption, new TypeBinding(typeof(IOutputFormatterFactory)), new TypeBinding(typeof(CancellationToken))));
+            }, new CollectionBinding(printTaskDefinitionIdOption, printTaskIdOption, new TypeBinding(typeof(CancellationToken))));
             return command;
         }
         /// <summary>
@@ -68,12 +67,15 @@ namespace ApiSdk.Print.TaskDefinitions.Item.Tasks.Item.Trigger.Ref {
                 IsRequired = true
             };
             command.AddOption(outputOption);
+            var outputFilterOption = new Option<string>("--query");
+            command.AddOption(outputFilterOption);
             command.SetHandler(async (object[] parameters) => {
                 var printTaskDefinitionId = (string) parameters[0];
                 var printTaskId = (string) parameters[1];
                 var output = (FormatterType) parameters[2];
-                var outputFormatterFactory = (IOutputFormatterFactory) parameters[3];
-                var cancellationToken = (CancellationToken) parameters[4];
+                var outputFilterOption = (string) parameters[3];
+                var outputFormatterFactory = (IOutputFormatterFactory) parameters[4];
+                var cancellationToken = (CancellationToken) parameters[5];
                 PathParameters.Clear();
                 PathParameters.Add("printTaskDefinition_id", printTaskDefinitionId);
                 PathParameters.Add("printTask_id", printTaskId);
@@ -82,7 +84,7 @@ namespace ApiSdk.Print.TaskDefinitions.Item.Tasks.Item.Trigger.Ref {
                 var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: default, cancellationToken: cancellationToken);
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 formatter.WriteOutput(response);
-            }, new CollectionBinding(printTaskDefinitionIdOption, printTaskIdOption, outputOption, new TypeBinding(typeof(IOutputFormatterFactory)), new TypeBinding(typeof(CancellationToken))));
+            }, new CollectionBinding(printTaskDefinitionIdOption, printTaskIdOption, outputOption, outputFilterOption, new TypeBinding(typeof(IOutputFormatterFactory)), new TypeBinding(typeof(CancellationToken))));
             return command;
         }
         /// <summary>
@@ -108,8 +110,7 @@ namespace ApiSdk.Print.TaskDefinitions.Item.Tasks.Item.Trigger.Ref {
                 var printTaskDefinitionId = (string) parameters[0];
                 var printTaskId = (string) parameters[1];
                 var body = (string) parameters[2];
-                var outputFormatterFactory = (IOutputFormatterFactory) parameters[3];
-                var cancellationToken = (CancellationToken) parameters[4];
+                var cancellationToken = (CancellationToken) parameters[3];
                 PathParameters.Clear();
                 PathParameters.Add("printTaskDefinition_id", printTaskDefinitionId);
                 PathParameters.Add("printTask_id", printTaskId);
@@ -120,7 +121,7 @@ namespace ApiSdk.Print.TaskDefinitions.Item.Tasks.Item.Trigger.Ref {
                 });
                 await RequestAdapter.SendNoContentAsync(requestInfo, errorMapping: default, cancellationToken: cancellationToken);
                 Console.WriteLine("Success");
-            }, new CollectionBinding(printTaskDefinitionIdOption, printTaskIdOption, bodyOption, new TypeBinding(typeof(IOutputFormatterFactory)), new TypeBinding(typeof(CancellationToken))));
+            }, new CollectionBinding(printTaskDefinitionIdOption, printTaskIdOption, bodyOption, new TypeBinding(typeof(CancellationToken))));
             return command;
         }
         /// <summary>

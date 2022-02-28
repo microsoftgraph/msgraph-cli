@@ -32,15 +32,14 @@ namespace ApiSdk.Workbooks.Item.Checkout {
             command.AddOption(driveItemIdOption);
             command.SetHandler(async (object[] parameters) => {
                 var driveItemId = (string) parameters[0];
-                var outputFormatterFactory = (IOutputFormatterFactory) parameters[1];
-                var cancellationToken = (CancellationToken) parameters[2];
+                var cancellationToken = (CancellationToken) parameters[1];
                 PathParameters.Clear();
                 PathParameters.Add("driveItem_id", driveItemId);
                 var requestInfo = CreatePostRequestInformation(q => {
                 });
                 await RequestAdapter.SendNoContentAsync(requestInfo, errorMapping: default, cancellationToken: cancellationToken);
                 Console.WriteLine("Success");
-            }, new CollectionBinding(driveItemIdOption, new TypeBinding(typeof(IOutputFormatterFactory)), new TypeBinding(typeof(CancellationToken))));
+            }, new CollectionBinding(driveItemIdOption, new TypeBinding(typeof(CancellationToken))));
             return command;
         }
         /// <summary>

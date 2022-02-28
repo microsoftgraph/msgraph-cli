@@ -56,14 +56,17 @@ namespace ApiSdk.Education.Users.Item.Assignments.Item.Submissions.Item.Outcomes
                 IsRequired = true
             };
             command.AddOption(outputOption);
+            var outputFilterOption = new Option<string>("--query");
+            command.AddOption(outputFilterOption);
             command.SetHandler(async (object[] parameters) => {
                 var educationUserId = (string) parameters[0];
                 var educationAssignmentId = (string) parameters[1];
                 var educationSubmissionId = (string) parameters[2];
                 var body = (string) parameters[3];
                 var output = (FormatterType) parameters[4];
-                var outputFormatterFactory = (IOutputFormatterFactory) parameters[5];
-                var cancellationToken = (CancellationToken) parameters[6];
+                var outputFilterOption = (string) parameters[5];
+                var outputFormatterFactory = (IOutputFormatterFactory) parameters[6];
+                var cancellationToken = (CancellationToken) parameters[7];
                 PathParameters.Clear();
                 PathParameters.Add("educationUser_id", educationUserId);
                 PathParameters.Add("educationAssignment_id", educationAssignmentId);
@@ -76,7 +79,7 @@ namespace ApiSdk.Education.Users.Item.Assignments.Item.Submissions.Item.Outcomes
                 var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: default, cancellationToken: cancellationToken);
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 formatter.WriteOutput(response);
-            }, new CollectionBinding(educationUserIdOption, educationAssignmentIdOption, educationSubmissionIdOption, bodyOption, outputOption, new TypeBinding(typeof(IOutputFormatterFactory)), new TypeBinding(typeof(CancellationToken))));
+            }, new CollectionBinding(educationUserIdOption, educationAssignmentIdOption, educationSubmissionIdOption, bodyOption, outputOption, outputFilterOption, new TypeBinding(typeof(IOutputFormatterFactory)), new TypeBinding(typeof(CancellationToken))));
             return command;
         }
         /// <summary>
@@ -137,6 +140,8 @@ namespace ApiSdk.Education.Users.Item.Assignments.Item.Submissions.Item.Outcomes
                 IsRequired = true
             };
             command.AddOption(outputOption);
+            var outputFilterOption = new Option<string>("--query");
+            command.AddOption(outputFilterOption);
             command.SetHandler(async (object[] parameters) => {
                 var educationUserId = (string) parameters[0];
                 var educationAssignmentId = (string) parameters[1];
@@ -150,8 +155,9 @@ namespace ApiSdk.Education.Users.Item.Assignments.Item.Submissions.Item.Outcomes
                 var select = (string[]) parameters[9];
                 var expand = (string[]) parameters[10];
                 var output = (FormatterType) parameters[11];
-                var outputFormatterFactory = (IOutputFormatterFactory) parameters[12];
-                var cancellationToken = (CancellationToken) parameters[13];
+                var outputFilterOption = (string) parameters[12];
+                var outputFormatterFactory = (IOutputFormatterFactory) parameters[13];
+                var cancellationToken = (CancellationToken) parameters[14];
                 PathParameters.Clear();
                 PathParameters.Add("educationUser_id", educationUserId);
                 PathParameters.Add("educationAssignment_id", educationAssignmentId);
@@ -169,7 +175,7 @@ namespace ApiSdk.Education.Users.Item.Assignments.Item.Submissions.Item.Outcomes
                 var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: default, cancellationToken: cancellationToken);
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 formatter.WriteOutput(response);
-            }, new CollectionBinding(educationUserIdOption, educationAssignmentIdOption, educationSubmissionIdOption, topOption, skipOption, searchOption, filterOption, countOption, orderbyOption, selectOption, expandOption, outputOption, new TypeBinding(typeof(IOutputFormatterFactory)), new TypeBinding(typeof(CancellationToken))));
+            }, new CollectionBinding(educationUserIdOption, educationAssignmentIdOption, educationSubmissionIdOption, topOption, skipOption, searchOption, filterOption, countOption, orderbyOption, selectOption, expandOption, outputOption, outputFilterOption, new TypeBinding(typeof(IOutputFormatterFactory)), new TypeBinding(typeof(CancellationToken))));
             return command;
         }
         /// <summary>

@@ -32,15 +32,14 @@ namespace ApiSdk.Communications.Calls.Item.KeepAlive {
             command.AddOption(callIdOption);
             command.SetHandler(async (object[] parameters) => {
                 var callId = (string) parameters[0];
-                var outputFormatterFactory = (IOutputFormatterFactory) parameters[1];
-                var cancellationToken = (CancellationToken) parameters[2];
+                var cancellationToken = (CancellationToken) parameters[1];
                 PathParameters.Clear();
                 PathParameters.Add("call_id", callId);
                 var requestInfo = CreatePostRequestInformation(q => {
                 });
                 await RequestAdapter.SendNoContentAsync(requestInfo, errorMapping: default, cancellationToken: cancellationToken);
                 Console.WriteLine("Success");
-            }, new CollectionBinding(callIdOption, new TypeBinding(typeof(IOutputFormatterFactory)), new TypeBinding(typeof(CancellationToken))));
+            }, new CollectionBinding(callIdOption, new TypeBinding(typeof(CancellationToken))));
             return command;
         }
         /// <summary>

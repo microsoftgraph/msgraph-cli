@@ -37,8 +37,7 @@ namespace ApiSdk.Applications.Item.SetVerifiedPublisher {
             command.SetHandler(async (object[] parameters) => {
                 var applicationId = (string) parameters[0];
                 var body = (string) parameters[1];
-                var outputFormatterFactory = (IOutputFormatterFactory) parameters[2];
-                var cancellationToken = (CancellationToken) parameters[3];
+                var cancellationToken = (CancellationToken) parameters[2];
                 PathParameters.Clear();
                 PathParameters.Add("application_id", applicationId);
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
@@ -48,7 +47,7 @@ namespace ApiSdk.Applications.Item.SetVerifiedPublisher {
                 });
                 await RequestAdapter.SendNoContentAsync(requestInfo, errorMapping: default, cancellationToken: cancellationToken);
                 Console.WriteLine("Success");
-            }, new CollectionBinding(applicationIdOption, bodyOption, new TypeBinding(typeof(IOutputFormatterFactory)), new TypeBinding(typeof(CancellationToken))));
+            }, new CollectionBinding(applicationIdOption, bodyOption, new TypeBinding(typeof(CancellationToken))));
             return command;
         }
         /// <summary>

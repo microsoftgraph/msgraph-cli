@@ -32,15 +32,14 @@ namespace ApiSdk.Users.Item.RemoveAllDevicesFromManagement {
             command.AddOption(userIdOption);
             command.SetHandler(async (object[] parameters) => {
                 var userId = (string) parameters[0];
-                var outputFormatterFactory = (IOutputFormatterFactory) parameters[1];
-                var cancellationToken = (CancellationToken) parameters[2];
+                var cancellationToken = (CancellationToken) parameters[1];
                 PathParameters.Clear();
                 PathParameters.Add("user_id", userId);
                 var requestInfo = CreatePostRequestInformation(q => {
                 });
                 await RequestAdapter.SendNoContentAsync(requestInfo, errorMapping: default, cancellationToken: cancellationToken);
                 Console.WriteLine("Success");
-            }, new CollectionBinding(userIdOption, new TypeBinding(typeof(IOutputFormatterFactory)), new TypeBinding(typeof(CancellationToken))));
+            }, new CollectionBinding(userIdOption, new TypeBinding(typeof(CancellationToken))));
             return command;
         }
         /// <summary>

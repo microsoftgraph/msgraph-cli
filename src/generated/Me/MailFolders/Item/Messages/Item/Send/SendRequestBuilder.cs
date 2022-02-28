@@ -37,8 +37,7 @@ namespace ApiSdk.Me.MailFolders.Item.Messages.Item.Send {
             command.SetHandler(async (object[] parameters) => {
                 var mailFolderId = (string) parameters[0];
                 var messageId = (string) parameters[1];
-                var outputFormatterFactory = (IOutputFormatterFactory) parameters[2];
-                var cancellationToken = (CancellationToken) parameters[3];
+                var cancellationToken = (CancellationToken) parameters[2];
                 PathParameters.Clear();
                 PathParameters.Add("mailFolder_id", mailFolderId);
                 PathParameters.Add("message_id", messageId);
@@ -46,7 +45,7 @@ namespace ApiSdk.Me.MailFolders.Item.Messages.Item.Send {
                 });
                 await RequestAdapter.SendNoContentAsync(requestInfo, errorMapping: default, cancellationToken: cancellationToken);
                 Console.WriteLine("Success");
-            }, new CollectionBinding(mailFolderIdOption, messageIdOption, new TypeBinding(typeof(IOutputFormatterFactory)), new TypeBinding(typeof(CancellationToken))));
+            }, new CollectionBinding(mailFolderIdOption, messageIdOption, new TypeBinding(typeof(CancellationToken))));
             return command;
         }
         /// <summary>

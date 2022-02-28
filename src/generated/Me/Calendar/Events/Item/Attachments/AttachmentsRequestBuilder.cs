@@ -49,12 +49,15 @@ namespace ApiSdk.Me.Calendar.Events.Item.Attachments {
                 IsRequired = true
             };
             command.AddOption(outputOption);
+            var outputFilterOption = new Option<string>("--query");
+            command.AddOption(outputFilterOption);
             command.SetHandler(async (object[] parameters) => {
                 var eventId = (string) parameters[0];
                 var body = (string) parameters[1];
                 var output = (FormatterType) parameters[2];
-                var outputFormatterFactory = (IOutputFormatterFactory) parameters[3];
-                var cancellationToken = (CancellationToken) parameters[4];
+                var outputFilterOption = (string) parameters[3];
+                var outputFormatterFactory = (IOutputFormatterFactory) parameters[4];
+                var cancellationToken = (CancellationToken) parameters[5];
                 PathParameters.Clear();
                 PathParameters.Add("event_id", eventId);
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
@@ -65,7 +68,7 @@ namespace ApiSdk.Me.Calendar.Events.Item.Attachments {
                 var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: default, cancellationToken: cancellationToken);
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 formatter.WriteOutput(response);
-            }, new CollectionBinding(eventIdOption, bodyOption, outputOption, new TypeBinding(typeof(IOutputFormatterFactory)), new TypeBinding(typeof(CancellationToken))));
+            }, new CollectionBinding(eventIdOption, bodyOption, outputOption, outputFilterOption, new TypeBinding(typeof(IOutputFormatterFactory)), new TypeBinding(typeof(CancellationToken))));
             return command;
         }
         public Command BuildCreateUploadSessionCommand() {
@@ -120,6 +123,8 @@ namespace ApiSdk.Me.Calendar.Events.Item.Attachments {
                 IsRequired = true
             };
             command.AddOption(outputOption);
+            var outputFilterOption = new Option<string>("--query");
+            command.AddOption(outputFilterOption);
             command.SetHandler(async (object[] parameters) => {
                 var eventId = (string) parameters[0];
                 var top = (int?) parameters[1];
@@ -130,8 +135,9 @@ namespace ApiSdk.Me.Calendar.Events.Item.Attachments {
                 var select = (string[]) parameters[6];
                 var expand = (string[]) parameters[7];
                 var output = (FormatterType) parameters[8];
-                var outputFormatterFactory = (IOutputFormatterFactory) parameters[9];
-                var cancellationToken = (CancellationToken) parameters[10];
+                var outputFilterOption = (string) parameters[9];
+                var outputFormatterFactory = (IOutputFormatterFactory) parameters[10];
+                var cancellationToken = (CancellationToken) parameters[11];
                 PathParameters.Clear();
                 PathParameters.Add("event_id", eventId);
                 var requestInfo = CreateGetRequestInformation(q => {
@@ -146,7 +152,7 @@ namespace ApiSdk.Me.Calendar.Events.Item.Attachments {
                 var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: default, cancellationToken: cancellationToken);
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 formatter.WriteOutput(response);
-            }, new CollectionBinding(eventIdOption, topOption, skipOption, filterOption, countOption, orderbyOption, selectOption, expandOption, outputOption, new TypeBinding(typeof(IOutputFormatterFactory)), new TypeBinding(typeof(CancellationToken))));
+            }, new CollectionBinding(eventIdOption, topOption, skipOption, filterOption, countOption, orderbyOption, selectOption, expandOption, outputOption, outputFilterOption, new TypeBinding(typeof(IOutputFormatterFactory)), new TypeBinding(typeof(CancellationToken))));
             return command;
         }
         /// <summary>

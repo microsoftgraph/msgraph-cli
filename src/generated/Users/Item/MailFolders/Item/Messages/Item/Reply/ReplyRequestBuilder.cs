@@ -47,8 +47,7 @@ namespace ApiSdk.Users.Item.MailFolders.Item.Messages.Item.Reply {
                 var mailFolderId = (string) parameters[1];
                 var messageId = (string) parameters[2];
                 var body = (string) parameters[3];
-                var outputFormatterFactory = (IOutputFormatterFactory) parameters[4];
-                var cancellationToken = (CancellationToken) parameters[5];
+                var cancellationToken = (CancellationToken) parameters[4];
                 PathParameters.Clear();
                 PathParameters.Add("user_id", userId);
                 PathParameters.Add("mailFolder_id", mailFolderId);
@@ -60,7 +59,7 @@ namespace ApiSdk.Users.Item.MailFolders.Item.Messages.Item.Reply {
                 });
                 await RequestAdapter.SendNoContentAsync(requestInfo, errorMapping: default, cancellationToken: cancellationToken);
                 Console.WriteLine("Success");
-            }, new CollectionBinding(userIdOption, mailFolderIdOption, messageIdOption, bodyOption, new TypeBinding(typeof(IOutputFormatterFactory)), new TypeBinding(typeof(CancellationToken))));
+            }, new CollectionBinding(userIdOption, mailFolderIdOption, messageIdOption, bodyOption, new TypeBinding(typeof(CancellationToken))));
             return command;
         }
         /// <summary>

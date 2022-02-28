@@ -42,8 +42,7 @@ namespace ApiSdk.Shares.Item.List.ContentTypes.Item.AssociateWithHubSites {
                 var sharedDriveItemId = (string) parameters[0];
                 var contentTypeId = (string) parameters[1];
                 var body = (string) parameters[2];
-                var outputFormatterFactory = (IOutputFormatterFactory) parameters[3];
-                var cancellationToken = (CancellationToken) parameters[4];
+                var cancellationToken = (CancellationToken) parameters[3];
                 PathParameters.Clear();
                 PathParameters.Add("sharedDriveItem_id", sharedDriveItemId);
                 PathParameters.Add("contentType_id", contentTypeId);
@@ -54,7 +53,7 @@ namespace ApiSdk.Shares.Item.List.ContentTypes.Item.AssociateWithHubSites {
                 });
                 await RequestAdapter.SendNoContentAsync(requestInfo, errorMapping: default, cancellationToken: cancellationToken);
                 Console.WriteLine("Success");
-            }, new CollectionBinding(sharedDriveItemIdOption, contentTypeIdOption, bodyOption, new TypeBinding(typeof(IOutputFormatterFactory)), new TypeBinding(typeof(CancellationToken))));
+            }, new CollectionBinding(sharedDriveItemIdOption, contentTypeIdOption, bodyOption, new TypeBinding(typeof(CancellationToken))));
             return command;
         }
         /// <summary>

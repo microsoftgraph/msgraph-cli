@@ -32,15 +32,14 @@ namespace ApiSdk.DeviceManagement.WindowsAutopilotDeviceIdentities.Item.Unassign
             command.AddOption(windowsAutopilotDeviceIdentityIdOption);
             command.SetHandler(async (object[] parameters) => {
                 var windowsAutopilotDeviceIdentityId = (string) parameters[0];
-                var outputFormatterFactory = (IOutputFormatterFactory) parameters[1];
-                var cancellationToken = (CancellationToken) parameters[2];
+                var cancellationToken = (CancellationToken) parameters[1];
                 PathParameters.Clear();
                 PathParameters.Add("windowsAutopilotDeviceIdentity_id", windowsAutopilotDeviceIdentityId);
                 var requestInfo = CreatePostRequestInformation(q => {
                 });
                 await RequestAdapter.SendNoContentAsync(requestInfo, errorMapping: default, cancellationToken: cancellationToken);
                 Console.WriteLine("Success");
-            }, new CollectionBinding(windowsAutopilotDeviceIdentityIdOption, new TypeBinding(typeof(IOutputFormatterFactory)), new TypeBinding(typeof(CancellationToken))));
+            }, new CollectionBinding(windowsAutopilotDeviceIdentityIdOption, new TypeBinding(typeof(CancellationToken))));
             return command;
         }
         /// <summary>

@@ -42,8 +42,7 @@ namespace ApiSdk.Workbooks.Item.Workbook.Names.Item.Worksheet.Protection.Protect
                 var driveItemId = (string) parameters[0];
                 var workbookNamedItemId = (string) parameters[1];
                 var body = (string) parameters[2];
-                var outputFormatterFactory = (IOutputFormatterFactory) parameters[3];
-                var cancellationToken = (CancellationToken) parameters[4];
+                var cancellationToken = (CancellationToken) parameters[3];
                 PathParameters.Clear();
                 PathParameters.Add("driveItem_id", driveItemId);
                 PathParameters.Add("workbookNamedItem_id", workbookNamedItemId);
@@ -54,7 +53,7 @@ namespace ApiSdk.Workbooks.Item.Workbook.Names.Item.Worksheet.Protection.Protect
                 });
                 await RequestAdapter.SendNoContentAsync(requestInfo, errorMapping: default, cancellationToken: cancellationToken);
                 Console.WriteLine("Success");
-            }, new CollectionBinding(driveItemIdOption, workbookNamedItemIdOption, bodyOption, new TypeBinding(typeof(IOutputFormatterFactory)), new TypeBinding(typeof(CancellationToken))));
+            }, new CollectionBinding(driveItemIdOption, workbookNamedItemIdOption, bodyOption, new TypeBinding(typeof(CancellationToken))));
             return command;
         }
         /// <summary>

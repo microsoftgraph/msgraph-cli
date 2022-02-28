@@ -32,13 +32,12 @@ namespace ApiSdk.Me.Authentication {
             command.Description = "Delete navigation property authentication for me";
             // Create options for all the parameters
             command.SetHandler(async (object[] parameters) => {
-                var outputFormatterFactory = (IOutputFormatterFactory) parameters[0];
-                var cancellationToken = (CancellationToken) parameters[1];
+                var cancellationToken = (CancellationToken) parameters[0];
                 var requestInfo = CreateDeleteRequestInformation(q => {
                 });
                 await RequestAdapter.SendNoContentAsync(requestInfo, errorMapping: default, cancellationToken: cancellationToken);
                 Console.WriteLine("Success");
-            }, new CollectionBinding(new TypeBinding(typeof(IOutputFormatterFactory)), new TypeBinding(typeof(CancellationToken))));
+            }, new CollectionBinding(new TypeBinding(typeof(CancellationToken))));
             return command;
         }
         public Command BuildFido2MethodsCommand() {
@@ -72,12 +71,15 @@ namespace ApiSdk.Me.Authentication {
                 IsRequired = true
             };
             command.AddOption(outputOption);
+            var outputFilterOption = new Option<string>("--query");
+            command.AddOption(outputFilterOption);
             command.SetHandler(async (object[] parameters) => {
                 var select = (string[]) parameters[0];
                 var expand = (string[]) parameters[1];
                 var output = (FormatterType) parameters[2];
-                var outputFormatterFactory = (IOutputFormatterFactory) parameters[3];
-                var cancellationToken = (CancellationToken) parameters[4];
+                var outputFilterOption = (string) parameters[3];
+                var outputFormatterFactory = (IOutputFormatterFactory) parameters[4];
+                var cancellationToken = (CancellationToken) parameters[5];
                 var requestInfo = CreateGetRequestInformation(q => {
                     q.Select = select;
                     q.Expand = expand;
@@ -85,7 +87,7 @@ namespace ApiSdk.Me.Authentication {
                 var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: default, cancellationToken: cancellationToken);
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 formatter.WriteOutput(response);
-            }, new CollectionBinding(selectOption, expandOption, outputOption, new TypeBinding(typeof(IOutputFormatterFactory)), new TypeBinding(typeof(CancellationToken))));
+            }, new CollectionBinding(selectOption, expandOption, outputOption, outputFilterOption, new TypeBinding(typeof(IOutputFormatterFactory)), new TypeBinding(typeof(CancellationToken))));
             return command;
         }
         public Command BuildMethodsCommand() {
@@ -121,8 +123,7 @@ namespace ApiSdk.Me.Authentication {
             command.AddOption(bodyOption);
             command.SetHandler(async (object[] parameters) => {
                 var body = (string) parameters[0];
-                var outputFormatterFactory = (IOutputFormatterFactory) parameters[1];
-                var cancellationToken = (CancellationToken) parameters[2];
+                var cancellationToken = (CancellationToken) parameters[1];
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<ApiSdk.Models.Microsoft.Graph.Authentication>();
@@ -130,7 +131,7 @@ namespace ApiSdk.Me.Authentication {
                 });
                 await RequestAdapter.SendNoContentAsync(requestInfo, errorMapping: default, cancellationToken: cancellationToken);
                 Console.WriteLine("Success");
-            }, new CollectionBinding(bodyOption, new TypeBinding(typeof(IOutputFormatterFactory)), new TypeBinding(typeof(CancellationToken))));
+            }, new CollectionBinding(bodyOption, new TypeBinding(typeof(CancellationToken))));
             return command;
         }
         public Command BuildWindowsHelloForBusinessMethodsCommand() {

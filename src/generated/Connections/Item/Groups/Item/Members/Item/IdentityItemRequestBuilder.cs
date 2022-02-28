@@ -43,8 +43,7 @@ namespace ApiSdk.Connections.Item.Groups.Item.Members.Item {
                 var externalConnectionId = (string) parameters[0];
                 var externalGroupId = (string) parameters[1];
                 var identityId = (string) parameters[2];
-                var outputFormatterFactory = (IOutputFormatterFactory) parameters[3];
-                var cancellationToken = (CancellationToken) parameters[4];
+                var cancellationToken = (CancellationToken) parameters[3];
                 PathParameters.Clear();
                 PathParameters.Add("externalConnection_id", externalConnectionId);
                 PathParameters.Add("externalGroup_id", externalGroupId);
@@ -53,7 +52,7 @@ namespace ApiSdk.Connections.Item.Groups.Item.Members.Item {
                 });
                 await RequestAdapter.SendNoContentAsync(requestInfo, errorMapping: default, cancellationToken: cancellationToken);
                 Console.WriteLine("Success");
-            }, new CollectionBinding(externalConnectionIdOption, externalGroupIdOption, identityIdOption, new TypeBinding(typeof(IOutputFormatterFactory)), new TypeBinding(typeof(CancellationToken))));
+            }, new CollectionBinding(externalConnectionIdOption, externalGroupIdOption, identityIdOption, new TypeBinding(typeof(CancellationToken))));
             return command;
         }
         /// <summary>
@@ -89,6 +88,8 @@ namespace ApiSdk.Connections.Item.Groups.Item.Members.Item {
                 IsRequired = true
             };
             command.AddOption(outputOption);
+            var outputFilterOption = new Option<string>("--query");
+            command.AddOption(outputFilterOption);
             command.SetHandler(async (object[] parameters) => {
                 var externalConnectionId = (string) parameters[0];
                 var externalGroupId = (string) parameters[1];
@@ -96,8 +97,9 @@ namespace ApiSdk.Connections.Item.Groups.Item.Members.Item {
                 var select = (string[]) parameters[3];
                 var expand = (string[]) parameters[4];
                 var output = (FormatterType) parameters[5];
-                var outputFormatterFactory = (IOutputFormatterFactory) parameters[6];
-                var cancellationToken = (CancellationToken) parameters[7];
+                var outputFilterOption = (string) parameters[6];
+                var outputFormatterFactory = (IOutputFormatterFactory) parameters[7];
+                var cancellationToken = (CancellationToken) parameters[8];
                 PathParameters.Clear();
                 PathParameters.Add("externalConnection_id", externalConnectionId);
                 PathParameters.Add("externalGroup_id", externalGroupId);
@@ -109,7 +111,7 @@ namespace ApiSdk.Connections.Item.Groups.Item.Members.Item {
                 var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: default, cancellationToken: cancellationToken);
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 formatter.WriteOutput(response);
-            }, new CollectionBinding(externalConnectionIdOption, externalGroupIdOption, identityIdOption, selectOption, expandOption, outputOption, new TypeBinding(typeof(IOutputFormatterFactory)), new TypeBinding(typeof(CancellationToken))));
+            }, new CollectionBinding(externalConnectionIdOption, externalGroupIdOption, identityIdOption, selectOption, expandOption, outputOption, outputFilterOption, new TypeBinding(typeof(IOutputFormatterFactory)), new TypeBinding(typeof(CancellationToken))));
             return command;
         }
         /// <summary>
@@ -140,8 +142,7 @@ namespace ApiSdk.Connections.Item.Groups.Item.Members.Item {
                 var externalGroupId = (string) parameters[1];
                 var identityId = (string) parameters[2];
                 var body = (string) parameters[3];
-                var outputFormatterFactory = (IOutputFormatterFactory) parameters[4];
-                var cancellationToken = (CancellationToken) parameters[5];
+                var cancellationToken = (CancellationToken) parameters[4];
                 PathParameters.Clear();
                 PathParameters.Add("externalConnection_id", externalConnectionId);
                 PathParameters.Add("externalGroup_id", externalGroupId);
@@ -153,7 +154,7 @@ namespace ApiSdk.Connections.Item.Groups.Item.Members.Item {
                 });
                 await RequestAdapter.SendNoContentAsync(requestInfo, errorMapping: default, cancellationToken: cancellationToken);
                 Console.WriteLine("Success");
-            }, new CollectionBinding(externalConnectionIdOption, externalGroupIdOption, identityIdOption, bodyOption, new TypeBinding(typeof(IOutputFormatterFactory)), new TypeBinding(typeof(CancellationToken))));
+            }, new CollectionBinding(externalConnectionIdOption, externalGroupIdOption, identityIdOption, bodyOption, new TypeBinding(typeof(CancellationToken))));
             return command;
         }
         /// <summary>

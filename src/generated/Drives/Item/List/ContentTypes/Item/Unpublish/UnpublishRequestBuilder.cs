@@ -37,8 +37,7 @@ namespace ApiSdk.Drives.Item.List.ContentTypes.Item.Unpublish {
             command.SetHandler(async (object[] parameters) => {
                 var driveId = (string) parameters[0];
                 var contentTypeId = (string) parameters[1];
-                var outputFormatterFactory = (IOutputFormatterFactory) parameters[2];
-                var cancellationToken = (CancellationToken) parameters[3];
+                var cancellationToken = (CancellationToken) parameters[2];
                 PathParameters.Clear();
                 PathParameters.Add("drive_id", driveId);
                 PathParameters.Add("contentType_id", contentTypeId);
@@ -46,7 +45,7 @@ namespace ApiSdk.Drives.Item.List.ContentTypes.Item.Unpublish {
                 });
                 await RequestAdapter.SendNoContentAsync(requestInfo, errorMapping: default, cancellationToken: cancellationToken);
                 Console.WriteLine("Success");
-            }, new CollectionBinding(driveIdOption, contentTypeIdOption, new TypeBinding(typeof(IOutputFormatterFactory)), new TypeBinding(typeof(CancellationToken))));
+            }, new CollectionBinding(driveIdOption, contentTypeIdOption, new TypeBinding(typeof(CancellationToken))));
             return command;
         }
         /// <summary>

@@ -32,15 +32,14 @@ namespace ApiSdk.Drive.List.ContentTypes.Item.Publish {
             command.AddOption(contentTypeIdOption);
             command.SetHandler(async (object[] parameters) => {
                 var contentTypeId = (string) parameters[0];
-                var outputFormatterFactory = (IOutputFormatterFactory) parameters[1];
-                var cancellationToken = (CancellationToken) parameters[2];
+                var cancellationToken = (CancellationToken) parameters[1];
                 PathParameters.Clear();
                 PathParameters.Add("contentType_id", contentTypeId);
                 var requestInfo = CreatePostRequestInformation(q => {
                 });
                 await RequestAdapter.SendNoContentAsync(requestInfo, errorMapping: default, cancellationToken: cancellationToken);
                 Console.WriteLine("Success");
-            }, new CollectionBinding(contentTypeIdOption, new TypeBinding(typeof(IOutputFormatterFactory)), new TypeBinding(typeof(CancellationToken))));
+            }, new CollectionBinding(contentTypeIdOption, new TypeBinding(typeof(CancellationToken))));
             return command;
         }
         /// <summary>
