@@ -1,5 +1,6 @@
 ﻿using ApiSdk;
 using Azure.Identity;
+using DevLab.JmesPath;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -128,6 +129,7 @@ namespace Microsoft.Graph.Cli
                 services.Configure<AuthenticationOptions>(authSection);
                 services.AddSingleton<IPathUtility, PathUtility>();
                 services.AddSingleton<IOutputFilter, JmesPathOutputFilter>();
+                services.AddSingleton<JmesPath>();
                 services.AddSingleton<IOutputFormatterFactory, OutputFormatterFactory>();
             });
         
