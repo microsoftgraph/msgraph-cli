@@ -1,5 +1,6 @@
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
+using Microsoft.Kiota.Cli.Commons.Binding;
 using Microsoft.Kiota.Cli.Commons.IO;
 using System;
 using System.Collections.Generic;
@@ -37,12 +38,20 @@ namespace ApiSdk.Groups.Item.CalendarView.Item.Calendar.CalendarView.Item.Dismis
             };
             eventId1Option.IsRequired = true;
             command.AddOption(eventId1Option);
-            command.SetHandler(async (string groupId, string eventId, string eventId1, IOutputFormatterFactory outputFormatterFactory, CancellationToken cancellationToken) => {
+            command.SetHandler(async (object[] parameters) => {
+                var groupId = (string) parameters[0];
+                var eventId = (string) parameters[1];
+                var eventId1 = (string) parameters[2];
+                var cancellationToken = (CancellationToken) parameters[3];
+                PathParameters.Clear();
+                PathParameters.Add("group_id", groupId);
+                PathParameters.Add("event_id", eventId);
+                PathParameters.Add("event_id1", eventId1);
                 var requestInfo = CreatePostRequestInformation(q => {
                 });
                 await RequestAdapter.SendNoContentAsync(requestInfo, errorMapping: default, cancellationToken: cancellationToken);
                 Console.WriteLine("Success");
-            }, groupIdOption, eventIdOption, eventId1Option);
+            }, new CollectionBinding(groupIdOption, eventIdOption, eventId1Option, new TypeBinding(typeof(CancellationToken))));
             return command;
         }
         /// <summary>

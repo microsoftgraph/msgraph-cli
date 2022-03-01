@@ -2,6 +2,7 @@ using ApiSdk.Agreements.Item;
 using ApiSdk.Models.Microsoft.Graph;
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
+using Microsoft.Kiota.Cli.Commons.Binding;
 using Microsoft.Kiota.Cli.Commons.IO;
 using System;
 using System.Collections.Generic;
@@ -21,7 +22,7 @@ namespace ApiSdk.Agreements {
         /// <summary>Url template to use to build the URL for the current request builder</summary>
         private string UrlTemplate { get; set; }
         public List<Command> BuildCommand() {
-            var builder = new AgreementRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new AgreementItemRequestBuilder(PathParameters, RequestAdapter);
             var commands = new List<Command>();
             commands.Add(builder.BuildAcceptancesCommand());
             commands.Add(builder.BuildDeleteCommand());
@@ -46,7 +47,14 @@ namespace ApiSdk.Agreements {
                 IsRequired = true
             };
             command.AddOption(outputOption);
-            command.SetHandler(async (string body, FormatterType output, IOutputFormatterFactory outputFormatterFactory, CancellationToken cancellationToken) => {
+            var outputFilterOption = new Option<string>("--query");
+            command.AddOption(outputFilterOption);
+            command.SetHandler(async (object[] parameters) => {
+                var body = (string) parameters[0];
+                var output = (FormatterType) parameters[1];
+                var outputFilterOption = (string) parameters[2];
+                var outputFormatterFactory = (IOutputFormatterFactory) parameters[3];
+                var cancellationToken = (CancellationToken) parameters[4];
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<Agreement>();
@@ -55,7 +63,7 @@ namespace ApiSdk.Agreements {
                 var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: default, cancellationToken: cancellationToken);
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 formatter.WriteOutput(response);
-            }, bodyOption, outputOption);
+            }, new CollectionBinding(bodyOption, outputOption, outputFilterOption, new TypeBinding(typeof(IOutputFormatterFactory)), new TypeBinding(typeof(CancellationToken))));
             return command;
         }
         /// <summary>
@@ -78,7 +86,15 @@ namespace ApiSdk.Agreements {
                 IsRequired = true
             };
             command.AddOption(outputOption);
-            command.SetHandler(async (string search, string[] select, FormatterType output, IOutputFormatterFactory outputFormatterFactory, CancellationToken cancellationToken) => {
+            var outputFilterOption = new Option<string>("--query");
+            command.AddOption(outputFilterOption);
+            command.SetHandler(async (object[] parameters) => {
+                var search = (string) parameters[0];
+                var select = (string[]) parameters[1];
+                var output = (FormatterType) parameters[2];
+                var outputFilterOption = (string) parameters[3];
+                var outputFormatterFactory = (IOutputFormatterFactory) parameters[4];
+                var cancellationToken = (CancellationToken) parameters[5];
                 var requestInfo = CreateGetRequestInformation(q => {
                     if (!String.IsNullOrEmpty(search)) q.Search = search;
                     q.Select = select;
@@ -86,7 +102,7 @@ namespace ApiSdk.Agreements {
                 var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: default, cancellationToken: cancellationToken);
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 formatter.WriteOutput(response);
-            }, searchOption, selectOption, outputOption);
+            }, new CollectionBinding(searchOption, selectOption, outputOption, outputFilterOption, new TypeBinding(typeof(IOutputFormatterFactory)), new TypeBinding(typeof(CancellationToken))));
             return command;
         }
         /// <summary>

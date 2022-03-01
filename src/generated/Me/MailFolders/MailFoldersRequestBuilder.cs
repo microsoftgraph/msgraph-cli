@@ -3,6 +3,7 @@ using ApiSdk.Me.MailFolders.Item;
 using ApiSdk.Models.Microsoft.Graph;
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
+using Microsoft.Kiota.Cli.Commons.Binding;
 using Microsoft.Kiota.Cli.Commons.IO;
 using System;
 using System.Collections.Generic;
@@ -22,7 +23,7 @@ namespace ApiSdk.Me.MailFolders {
         /// <summary>Url template to use to build the URL for the current request builder</summary>
         private string UrlTemplate { get; set; }
         public List<Command> BuildCommand() {
-            var builder = new MailFolderRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new MailFolderItemRequestBuilder(PathParameters, RequestAdapter);
             var commands = new List<Command>();
             commands.Add(builder.BuildChildFoldersCommand());
             commands.Add(builder.BuildCopyCommand());
@@ -51,7 +52,14 @@ namespace ApiSdk.Me.MailFolders {
                 IsRequired = true
             };
             command.AddOption(outputOption);
-            command.SetHandler(async (string body, FormatterType output, IOutputFormatterFactory outputFormatterFactory, CancellationToken cancellationToken) => {
+            var outputFilterOption = new Option<string>("--query");
+            command.AddOption(outputFilterOption);
+            command.SetHandler(async (object[] parameters) => {
+                var body = (string) parameters[0];
+                var output = (FormatterType) parameters[1];
+                var outputFilterOption = (string) parameters[2];
+                var outputFormatterFactory = (IOutputFormatterFactory) parameters[3];
+                var cancellationToken = (CancellationToken) parameters[4];
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<MailFolder>();
@@ -60,7 +68,7 @@ namespace ApiSdk.Me.MailFolders {
                 var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: default, cancellationToken: cancellationToken);
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 formatter.WriteOutput(response);
-            }, bodyOption, outputOption);
+            }, new CollectionBinding(bodyOption, outputOption, outputFilterOption, new TypeBinding(typeof(IOutputFormatterFactory)), new TypeBinding(typeof(CancellationToken))));
             return command;
         }
         /// <summary>
@@ -100,7 +108,19 @@ namespace ApiSdk.Me.MailFolders {
                 IsRequired = true
             };
             command.AddOption(outputOption);
-            command.SetHandler(async (int? top, int? skip, string filter, bool? count, string[] orderby, string[] select, FormatterType output, IOutputFormatterFactory outputFormatterFactory, CancellationToken cancellationToken) => {
+            var outputFilterOption = new Option<string>("--query");
+            command.AddOption(outputFilterOption);
+            command.SetHandler(async (object[] parameters) => {
+                var top = (int?) parameters[0];
+                var skip = (int?) parameters[1];
+                var filter = (string) parameters[2];
+                var count = (bool?) parameters[3];
+                var orderby = (string[]) parameters[4];
+                var select = (string[]) parameters[5];
+                var output = (FormatterType) parameters[6];
+                var outputFilterOption = (string) parameters[7];
+                var outputFormatterFactory = (IOutputFormatterFactory) parameters[8];
+                var cancellationToken = (CancellationToken) parameters[9];
                 var requestInfo = CreateGetRequestInformation(q => {
                     q.Top = top;
                     q.Skip = skip;
@@ -112,7 +132,7 @@ namespace ApiSdk.Me.MailFolders {
                 var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: default, cancellationToken: cancellationToken);
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 formatter.WriteOutput(response);
-            }, topOption, skipOption, filterOption, countOption, orderbyOption, selectOption, outputOption);
+            }, new CollectionBinding(topOption, skipOption, filterOption, countOption, orderbyOption, selectOption, outputOption, outputFilterOption, new TypeBinding(typeof(IOutputFormatterFactory)), new TypeBinding(typeof(CancellationToken))));
             return command;
         }
         /// <summary>

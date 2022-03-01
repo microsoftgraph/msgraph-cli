@@ -1,6 +1,7 @@
 using ApiSdk.Models.Microsoft.Graph;
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
+using Microsoft.Kiota.Cli.Commons.Binding;
 using Microsoft.Kiota.Cli.Commons.IO;
 using System;
 using System.Collections.Generic;
@@ -34,12 +35,18 @@ namespace ApiSdk.Drives.Item.List.Items.Item.Fields {
             };
             listItemIdOption.IsRequired = true;
             command.AddOption(listItemIdOption);
-            command.SetHandler(async (string driveId, string listItemId, IOutputFormatterFactory outputFormatterFactory, CancellationToken cancellationToken) => {
+            command.SetHandler(async (object[] parameters) => {
+                var driveId = (string) parameters[0];
+                var listItemId = (string) parameters[1];
+                var cancellationToken = (CancellationToken) parameters[2];
+                PathParameters.Clear();
+                PathParameters.Add("drive_id", driveId);
+                PathParameters.Add("listItem_id", listItemId);
                 var requestInfo = CreateDeleteRequestInformation(q => {
                 });
                 await RequestAdapter.SendNoContentAsync(requestInfo, errorMapping: default, cancellationToken: cancellationToken);
                 Console.WriteLine("Success");
-            }, driveIdOption, listItemIdOption);
+            }, new CollectionBinding(driveIdOption, listItemIdOption, new TypeBinding(typeof(CancellationToken))));
             return command;
         }
         /// <summary>
@@ -71,7 +78,20 @@ namespace ApiSdk.Drives.Item.List.Items.Item.Fields {
                 IsRequired = true
             };
             command.AddOption(outputOption);
-            command.SetHandler(async (string driveId, string listItemId, string[] select, string[] expand, FormatterType output, IOutputFormatterFactory outputFormatterFactory, CancellationToken cancellationToken) => {
+            var outputFilterOption = new Option<string>("--query");
+            command.AddOption(outputFilterOption);
+            command.SetHandler(async (object[] parameters) => {
+                var driveId = (string) parameters[0];
+                var listItemId = (string) parameters[1];
+                var select = (string[]) parameters[2];
+                var expand = (string[]) parameters[3];
+                var output = (FormatterType) parameters[4];
+                var outputFilterOption = (string) parameters[5];
+                var outputFormatterFactory = (IOutputFormatterFactory) parameters[6];
+                var cancellationToken = (CancellationToken) parameters[7];
+                PathParameters.Clear();
+                PathParameters.Add("drive_id", driveId);
+                PathParameters.Add("listItem_id", listItemId);
                 var requestInfo = CreateGetRequestInformation(q => {
                     q.Select = select;
                     q.Expand = expand;
@@ -79,7 +99,7 @@ namespace ApiSdk.Drives.Item.List.Items.Item.Fields {
                 var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: default, cancellationToken: cancellationToken);
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 formatter.WriteOutput(response);
-            }, driveIdOption, listItemIdOption, selectOption, expandOption, outputOption);
+            }, new CollectionBinding(driveIdOption, listItemIdOption, selectOption, expandOption, outputOption, outputFilterOption, new TypeBinding(typeof(IOutputFormatterFactory)), new TypeBinding(typeof(CancellationToken))));
             return command;
         }
         /// <summary>
@@ -101,7 +121,14 @@ namespace ApiSdk.Drives.Item.List.Items.Item.Fields {
             };
             bodyOption.IsRequired = true;
             command.AddOption(bodyOption);
-            command.SetHandler(async (string driveId, string listItemId, string body, IOutputFormatterFactory outputFormatterFactory, CancellationToken cancellationToken) => {
+            command.SetHandler(async (object[] parameters) => {
+                var driveId = (string) parameters[0];
+                var listItemId = (string) parameters[1];
+                var body = (string) parameters[2];
+                var cancellationToken = (CancellationToken) parameters[3];
+                PathParameters.Clear();
+                PathParameters.Add("drive_id", driveId);
+                PathParameters.Add("listItem_id", listItemId);
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<FieldValueSet>();
@@ -109,7 +136,7 @@ namespace ApiSdk.Drives.Item.List.Items.Item.Fields {
                 });
                 await RequestAdapter.SendNoContentAsync(requestInfo, errorMapping: default, cancellationToken: cancellationToken);
                 Console.WriteLine("Success");
-            }, driveIdOption, listItemIdOption, bodyOption);
+            }, new CollectionBinding(driveIdOption, listItemIdOption, bodyOption, new TypeBinding(typeof(CancellationToken))));
             return command;
         }
         /// <summary>

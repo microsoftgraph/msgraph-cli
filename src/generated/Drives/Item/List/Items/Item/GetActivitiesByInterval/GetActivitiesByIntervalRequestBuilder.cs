@@ -1,5 +1,6 @@
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
+using Microsoft.Kiota.Cli.Commons.Binding;
 using Microsoft.Kiota.Cli.Commons.IO;
 using System;
 using System.Collections.Generic;
@@ -37,13 +38,24 @@ namespace ApiSdk.Drives.Item.List.Items.Item.GetActivitiesByInterval {
                 IsRequired = true
             };
             command.AddOption(outputOption);
-            command.SetHandler(async (string driveId, string listItemId, FormatterType output, IOutputFormatterFactory outputFormatterFactory, CancellationToken cancellationToken) => {
+            var outputFilterOption = new Option<string>("--query");
+            command.AddOption(outputFilterOption);
+            command.SetHandler(async (object[] parameters) => {
+                var driveId = (string) parameters[0];
+                var listItemId = (string) parameters[1];
+                var output = (FormatterType) parameters[2];
+                var outputFilterOption = (string) parameters[3];
+                var outputFormatterFactory = (IOutputFormatterFactory) parameters[4];
+                var cancellationToken = (CancellationToken) parameters[5];
+                PathParameters.Clear();
+                PathParameters.Add("drive_id", driveId);
+                PathParameters.Add("listItem_id", listItemId);
                 var requestInfo = CreateGetRequestInformation(q => {
                 });
                 var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: default, cancellationToken: cancellationToken);
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 formatter.WriteOutput(response);
-            }, driveIdOption, listItemIdOption, outputOption);
+            }, new CollectionBinding(driveIdOption, listItemIdOption, outputOption, outputFilterOption, new TypeBinding(typeof(IOutputFormatterFactory)), new TypeBinding(typeof(CancellationToken))));
             return command;
         }
         /// <summary>

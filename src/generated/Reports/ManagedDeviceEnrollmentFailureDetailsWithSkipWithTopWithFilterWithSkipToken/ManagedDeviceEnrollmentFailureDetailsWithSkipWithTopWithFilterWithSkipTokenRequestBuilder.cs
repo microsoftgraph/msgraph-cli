@@ -1,6 +1,7 @@
 using ApiSdk.Models.Microsoft.Graph;
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
+using Microsoft.Kiota.Cli.Commons.Binding;
 using Microsoft.Kiota.Cli.Commons.IO;
 using System;
 using System.Collections.Generic;
@@ -46,13 +47,28 @@ namespace ApiSdk.Reports.ManagedDeviceEnrollmentFailureDetailsWithSkipWithTopWit
                 IsRequired = true
             };
             command.AddOption(outputOption);
-            command.SetHandler(async (int? skip, int? top, string filter, string skipToken, FormatterType output, IOutputFormatterFactory outputFormatterFactory, CancellationToken cancellationToken) => {
+            var outputFilterOption = new Option<string>("--query");
+            command.AddOption(outputFilterOption);
+            command.SetHandler(async (object[] parameters) => {
+                var skip = (int?) parameters[0];
+                var top = (int?) parameters[1];
+                var filter = (string) parameters[2];
+                var skipToken = (string) parameters[3];
+                var output = (FormatterType) parameters[4];
+                var outputFilterOption = (string) parameters[5];
+                var outputFormatterFactory = (IOutputFormatterFactory) parameters[6];
+                var cancellationToken = (CancellationToken) parameters[7];
+                PathParameters.Clear();
+                PathParameters.Add("skip", skip);
+                PathParameters.Add("top", top);
+                PathParameters.Add("filter", filter);
+                PathParameters.Add("skipToken", skipToken);
                 var requestInfo = CreateGetRequestInformation(q => {
                 });
                 var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: default, cancellationToken: cancellationToken);
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 formatter.WriteOutput(response);
-            }, skipOption, topOption, filterOption, skipTokenOption, outputOption);
+            }, new CollectionBinding(skipOption, topOption, filterOption, skipTokenOption, outputOption, outputFilterOption, new TypeBinding(typeof(IOutputFormatterFactory)), new TypeBinding(typeof(CancellationToken))));
             return command;
         }
         /// <summary>

@@ -2,6 +2,7 @@ using ApiSdk.Models.Microsoft.Graph.TermStore;
 using ApiSdk.Sites.Item.TermStores.Item.Sets.Item.Terms.Item.Relations.Item;
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
+using Microsoft.Kiota.Cli.Commons.Binding;
 using Microsoft.Kiota.Cli.Commons.IO;
 using System;
 using System.Collections.Generic;
@@ -21,7 +22,7 @@ namespace ApiSdk.Sites.Item.TermStores.Item.Sets.Item.Terms.Item.Relations {
         /// <summary>Url template to use to build the URL for the current request builder</summary>
         private string UrlTemplate { get; set; }
         public List<Command> BuildCommand() {
-            var builder = new RelationRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new RelationItemRequestBuilder(PathParameters, RequestAdapter);
             var commands = new List<Command>();
             commands.Add(builder.BuildDeleteCommand());
             commands.Add(builder.BuildFromTermCommand());
@@ -62,7 +63,23 @@ namespace ApiSdk.Sites.Item.TermStores.Item.Sets.Item.Terms.Item.Relations {
                 IsRequired = true
             };
             command.AddOption(outputOption);
-            command.SetHandler(async (string siteId, string storeId, string setId, string termId, string body, FormatterType output, IOutputFormatterFactory outputFormatterFactory, CancellationToken cancellationToken) => {
+            var outputFilterOption = new Option<string>("--query");
+            command.AddOption(outputFilterOption);
+            command.SetHandler(async (object[] parameters) => {
+                var siteId = (string) parameters[0];
+                var storeId = (string) parameters[1];
+                var setId = (string) parameters[2];
+                var termId = (string) parameters[3];
+                var body = (string) parameters[4];
+                var output = (FormatterType) parameters[5];
+                var outputFilterOption = (string) parameters[6];
+                var outputFormatterFactory = (IOutputFormatterFactory) parameters[7];
+                var cancellationToken = (CancellationToken) parameters[8];
+                PathParameters.Clear();
+                PathParameters.Add("site_id", siteId);
+                PathParameters.Add("store_id", storeId);
+                PathParameters.Add("set_id", setId);
+                PathParameters.Add("term_id", termId);
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<Relation>();
@@ -71,7 +88,7 @@ namespace ApiSdk.Sites.Item.TermStores.Item.Sets.Item.Terms.Item.Relations {
                 var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: default, cancellationToken: cancellationToken);
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 formatter.WriteOutput(response);
-            }, siteIdOption, storeIdOption, setIdOption, termIdOption, bodyOption, outputOption);
+            }, new CollectionBinding(siteIdOption, storeIdOption, setIdOption, termIdOption, bodyOption, outputOption, outputFilterOption, new TypeBinding(typeof(IOutputFormatterFactory)), new TypeBinding(typeof(CancellationToken))));
             return command;
         }
         /// <summary>
@@ -136,7 +153,30 @@ namespace ApiSdk.Sites.Item.TermStores.Item.Sets.Item.Terms.Item.Relations {
                 IsRequired = true
             };
             command.AddOption(outputOption);
-            command.SetHandler(async (string siteId, string storeId, string setId, string termId, int? top, int? skip, string search, string filter, bool? count, string[] orderby, string[] select, string[] expand, FormatterType output, IOutputFormatterFactory outputFormatterFactory, CancellationToken cancellationToken) => {
+            var outputFilterOption = new Option<string>("--query");
+            command.AddOption(outputFilterOption);
+            command.SetHandler(async (object[] parameters) => {
+                var siteId = (string) parameters[0];
+                var storeId = (string) parameters[1];
+                var setId = (string) parameters[2];
+                var termId = (string) parameters[3];
+                var top = (int?) parameters[4];
+                var skip = (int?) parameters[5];
+                var search = (string) parameters[6];
+                var filter = (string) parameters[7];
+                var count = (bool?) parameters[8];
+                var orderby = (string[]) parameters[9];
+                var select = (string[]) parameters[10];
+                var expand = (string[]) parameters[11];
+                var output = (FormatterType) parameters[12];
+                var outputFilterOption = (string) parameters[13];
+                var outputFormatterFactory = (IOutputFormatterFactory) parameters[14];
+                var cancellationToken = (CancellationToken) parameters[15];
+                PathParameters.Clear();
+                PathParameters.Add("site_id", siteId);
+                PathParameters.Add("store_id", storeId);
+                PathParameters.Add("set_id", setId);
+                PathParameters.Add("term_id", termId);
                 var requestInfo = CreateGetRequestInformation(q => {
                     q.Top = top;
                     q.Skip = skip;
@@ -150,7 +190,7 @@ namespace ApiSdk.Sites.Item.TermStores.Item.Sets.Item.Terms.Item.Relations {
                 var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: default, cancellationToken: cancellationToken);
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 formatter.WriteOutput(response);
-            }, siteIdOption, storeIdOption, setIdOption, termIdOption, topOption, skipOption, searchOption, filterOption, countOption, orderbyOption, selectOption, expandOption, outputOption);
+            }, new CollectionBinding(siteIdOption, storeIdOption, setIdOption, termIdOption, topOption, skipOption, searchOption, filterOption, countOption, orderbyOption, selectOption, expandOption, outputOption, outputFilterOption, new TypeBinding(typeof(IOutputFormatterFactory)), new TypeBinding(typeof(CancellationToken))));
             return command;
         }
         /// <summary>

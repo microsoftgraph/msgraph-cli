@@ -13,6 +13,7 @@ using ApiSdk.Workbooks.Item.Workbook.Names.Item.Worksheet.Tables.Item.Columns.It
 using ApiSdk.Workbooks.Item.Workbook.Names.Item.Worksheet.Tables.Item.Columns.Item.Filter.Clear;
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
+using Microsoft.Kiota.Cli.Commons.Binding;
 using Microsoft.Kiota.Cli.Commons.IO;
 using System;
 using System.Collections.Generic;
@@ -126,12 +127,22 @@ namespace ApiSdk.Workbooks.Item.Workbook.Names.Item.Worksheet.Tables.Item.Column
             };
             workbookTableColumnIdOption.IsRequired = true;
             command.AddOption(workbookTableColumnIdOption);
-            command.SetHandler(async (string driveItemId, string workbookNamedItemId, string workbookTableId, string workbookTableColumnId, IOutputFormatterFactory outputFormatterFactory, CancellationToken cancellationToken) => {
+            command.SetHandler(async (object[] parameters) => {
+                var driveItemId = (string) parameters[0];
+                var workbookNamedItemId = (string) parameters[1];
+                var workbookTableId = (string) parameters[2];
+                var workbookTableColumnId = (string) parameters[3];
+                var cancellationToken = (CancellationToken) parameters[4];
+                PathParameters.Clear();
+                PathParameters.Add("driveItem_id", driveItemId);
+                PathParameters.Add("workbookNamedItem_id", workbookNamedItemId);
+                PathParameters.Add("workbookTable_id", workbookTableId);
+                PathParameters.Add("workbookTableColumn_id", workbookTableColumnId);
                 var requestInfo = CreateDeleteRequestInformation(q => {
                 });
                 await RequestAdapter.SendNoContentAsync(requestInfo, errorMapping: default, cancellationToken: cancellationToken);
                 Console.WriteLine("Success");
-            }, driveItemIdOption, workbookNamedItemIdOption, workbookTableIdOption, workbookTableColumnIdOption);
+            }, new CollectionBinding(driveItemIdOption, workbookNamedItemIdOption, workbookTableIdOption, workbookTableColumnIdOption, new TypeBinding(typeof(CancellationToken))));
             return command;
         }
         /// <summary>
@@ -171,7 +182,24 @@ namespace ApiSdk.Workbooks.Item.Workbook.Names.Item.Worksheet.Tables.Item.Column
                 IsRequired = true
             };
             command.AddOption(outputOption);
-            command.SetHandler(async (string driveItemId, string workbookNamedItemId, string workbookTableId, string workbookTableColumnId, string[] select, string[] expand, FormatterType output, IOutputFormatterFactory outputFormatterFactory, CancellationToken cancellationToken) => {
+            var outputFilterOption = new Option<string>("--query");
+            command.AddOption(outputFilterOption);
+            command.SetHandler(async (object[] parameters) => {
+                var driveItemId = (string) parameters[0];
+                var workbookNamedItemId = (string) parameters[1];
+                var workbookTableId = (string) parameters[2];
+                var workbookTableColumnId = (string) parameters[3];
+                var select = (string[]) parameters[4];
+                var expand = (string[]) parameters[5];
+                var output = (FormatterType) parameters[6];
+                var outputFilterOption = (string) parameters[7];
+                var outputFormatterFactory = (IOutputFormatterFactory) parameters[8];
+                var cancellationToken = (CancellationToken) parameters[9];
+                PathParameters.Clear();
+                PathParameters.Add("driveItem_id", driveItemId);
+                PathParameters.Add("workbookNamedItem_id", workbookNamedItemId);
+                PathParameters.Add("workbookTable_id", workbookTableId);
+                PathParameters.Add("workbookTableColumn_id", workbookTableColumnId);
                 var requestInfo = CreateGetRequestInformation(q => {
                     q.Select = select;
                     q.Expand = expand;
@@ -179,7 +207,7 @@ namespace ApiSdk.Workbooks.Item.Workbook.Names.Item.Worksheet.Tables.Item.Column
                 var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: default, cancellationToken: cancellationToken);
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 formatter.WriteOutput(response);
-            }, driveItemIdOption, workbookNamedItemIdOption, workbookTableIdOption, workbookTableColumnIdOption, selectOption, expandOption, outputOption);
+            }, new CollectionBinding(driveItemIdOption, workbookNamedItemIdOption, workbookTableIdOption, workbookTableColumnIdOption, selectOption, expandOption, outputOption, outputFilterOption, new TypeBinding(typeof(IOutputFormatterFactory)), new TypeBinding(typeof(CancellationToken))));
             return command;
         }
         /// <summary>
@@ -209,7 +237,18 @@ namespace ApiSdk.Workbooks.Item.Workbook.Names.Item.Worksheet.Tables.Item.Column
             };
             bodyOption.IsRequired = true;
             command.AddOption(bodyOption);
-            command.SetHandler(async (string driveItemId, string workbookNamedItemId, string workbookTableId, string workbookTableColumnId, string body, IOutputFormatterFactory outputFormatterFactory, CancellationToken cancellationToken) => {
+            command.SetHandler(async (object[] parameters) => {
+                var driveItemId = (string) parameters[0];
+                var workbookNamedItemId = (string) parameters[1];
+                var workbookTableId = (string) parameters[2];
+                var workbookTableColumnId = (string) parameters[3];
+                var body = (string) parameters[4];
+                var cancellationToken = (CancellationToken) parameters[5];
+                PathParameters.Clear();
+                PathParameters.Add("driveItem_id", driveItemId);
+                PathParameters.Add("workbookNamedItem_id", workbookNamedItemId);
+                PathParameters.Add("workbookTable_id", workbookTableId);
+                PathParameters.Add("workbookTableColumn_id", workbookTableColumnId);
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<WorkbookFilter>();
@@ -217,7 +256,7 @@ namespace ApiSdk.Workbooks.Item.Workbook.Names.Item.Worksheet.Tables.Item.Column
                 });
                 await RequestAdapter.SendNoContentAsync(requestInfo, errorMapping: default, cancellationToken: cancellationToken);
                 Console.WriteLine("Success");
-            }, driveItemIdOption, workbookNamedItemIdOption, workbookTableIdOption, workbookTableColumnIdOption, bodyOption);
+            }, new CollectionBinding(driveItemIdOption, workbookNamedItemIdOption, workbookTableIdOption, workbookTableColumnIdOption, bodyOption, new TypeBinding(typeof(CancellationToken))));
             return command;
         }
         /// <summary>

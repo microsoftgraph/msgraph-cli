@@ -2,6 +2,7 @@ using ApiSdk.Me.Activities.Item.HistoryItems.Item.Activity.Ref;
 using ApiSdk.Models.Microsoft.Graph;
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
+using Microsoft.Kiota.Cli.Commons.Binding;
 using Microsoft.Kiota.Cli.Commons.IO;
 using System;
 using System.Collections.Generic;
@@ -49,7 +50,20 @@ namespace ApiSdk.Me.Activities.Item.HistoryItems.Item.Activity {
                 IsRequired = true
             };
             command.AddOption(outputOption);
-            command.SetHandler(async (string userActivityId, string activityHistoryItemId, string[] select, string[] expand, FormatterType output, IOutputFormatterFactory outputFormatterFactory, CancellationToken cancellationToken) => {
+            var outputFilterOption = new Option<string>("--query");
+            command.AddOption(outputFilterOption);
+            command.SetHandler(async (object[] parameters) => {
+                var userActivityId = (string) parameters[0];
+                var activityHistoryItemId = (string) parameters[1];
+                var select = (string[]) parameters[2];
+                var expand = (string[]) parameters[3];
+                var output = (FormatterType) parameters[4];
+                var outputFilterOption = (string) parameters[5];
+                var outputFormatterFactory = (IOutputFormatterFactory) parameters[6];
+                var cancellationToken = (CancellationToken) parameters[7];
+                PathParameters.Clear();
+                PathParameters.Add("userActivity_id", userActivityId);
+                PathParameters.Add("activityHistoryItem_id", activityHistoryItemId);
                 var requestInfo = CreateGetRequestInformation(q => {
                     q.Select = select;
                     q.Expand = expand;
@@ -57,7 +71,7 @@ namespace ApiSdk.Me.Activities.Item.HistoryItems.Item.Activity {
                 var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: default, cancellationToken: cancellationToken);
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 formatter.WriteOutput(response);
-            }, userActivityIdOption, activityHistoryItemIdOption, selectOption, expandOption, outputOption);
+            }, new CollectionBinding(userActivityIdOption, activityHistoryItemIdOption, selectOption, expandOption, outputOption, outputFilterOption, new TypeBinding(typeof(IOutputFormatterFactory)), new TypeBinding(typeof(CancellationToken))));
             return command;
         }
         public Command BuildRefCommand() {

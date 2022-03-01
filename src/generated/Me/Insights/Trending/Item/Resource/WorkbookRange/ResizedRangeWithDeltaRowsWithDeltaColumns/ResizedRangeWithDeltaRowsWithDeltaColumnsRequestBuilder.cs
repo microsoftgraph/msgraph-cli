@@ -1,6 +1,7 @@
 using ApiSdk.Models.Microsoft.Graph;
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
+using Microsoft.Kiota.Cli.Commons.Binding;
 using Microsoft.Kiota.Cli.Commons.IO;
 using System;
 using System.Collections.Generic;
@@ -42,13 +43,26 @@ namespace ApiSdk.Me.Insights.Trending.Item.Resource.WorkbookRange.ResizedRangeWi
                 IsRequired = true
             };
             command.AddOption(outputOption);
-            command.SetHandler(async (string trendingItemId, int? deltaRows, int? deltaColumns, FormatterType output, IOutputFormatterFactory outputFormatterFactory, CancellationToken cancellationToken) => {
+            var outputFilterOption = new Option<string>("--query");
+            command.AddOption(outputFilterOption);
+            command.SetHandler(async (object[] parameters) => {
+                var trendingItemId = (string) parameters[0];
+                var deltaRows = (int?) parameters[1];
+                var deltaColumns = (int?) parameters[2];
+                var output = (FormatterType) parameters[3];
+                var outputFilterOption = (string) parameters[4];
+                var outputFormatterFactory = (IOutputFormatterFactory) parameters[5];
+                var cancellationToken = (CancellationToken) parameters[6];
+                PathParameters.Clear();
+                PathParameters.Add("trendingItem_Id", trendingItemId);
+                PathParameters.Add("deltaRows", deltaRows);
+                PathParameters.Add("deltaColumns", deltaColumns);
                 var requestInfo = CreateGetRequestInformation(q => {
                 });
                 var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: default, cancellationToken: cancellationToken);
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 formatter.WriteOutput(response);
-            }, trendingItemIdOption, deltaRowsOption, deltaColumnsOption, outputOption);
+            }, new CollectionBinding(trendingItemIdOption, deltaRowsOption, deltaColumnsOption, outputOption, outputFilterOption, new TypeBinding(typeof(IOutputFormatterFactory)), new TypeBinding(typeof(CancellationToken))));
             return command;
         }
         /// <summary>

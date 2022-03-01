@@ -1,5 +1,6 @@
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
+using Microsoft.Kiota.Cli.Commons.Binding;
 using Microsoft.Kiota.Cli.Commons.IO;
 using System;
 using System.Collections.Generic;
@@ -29,12 +30,16 @@ namespace ApiSdk.Me.Messages.Item.Send {
             };
             messageIdOption.IsRequired = true;
             command.AddOption(messageIdOption);
-            command.SetHandler(async (string messageId, IOutputFormatterFactory outputFormatterFactory, CancellationToken cancellationToken) => {
+            command.SetHandler(async (object[] parameters) => {
+                var messageId = (string) parameters[0];
+                var cancellationToken = (CancellationToken) parameters[1];
+                PathParameters.Clear();
+                PathParameters.Add("message_id", messageId);
                 var requestInfo = CreatePostRequestInformation(q => {
                 });
                 await RequestAdapter.SendNoContentAsync(requestInfo, errorMapping: default, cancellationToken: cancellationToken);
                 Console.WriteLine("Success");
-            }, messageIdOption);
+            }, new CollectionBinding(messageIdOption, new TypeBinding(typeof(CancellationToken))));
             return command;
         }
         /// <summary>

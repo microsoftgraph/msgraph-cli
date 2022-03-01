@@ -3,6 +3,7 @@ using ApiSdk.Users.Item.Insights.Shared.Item.LastSharedMethod.PrintJob.Cancel;
 using ApiSdk.Users.Item.Insights.Shared.Item.LastSharedMethod.PrintJob.Redirect;
 using ApiSdk.Users.Item.Insights.Shared.Item.LastSharedMethod.PrintJob.Start;
 using Microsoft.Kiota.Abstractions;
+using Microsoft.Kiota.Cli.Commons.Binding;
 using Microsoft.Kiota.Cli.Commons.IO;
 using System;
 using System.Collections.Generic;

@@ -1,6 +1,7 @@
 using ApiSdk.Sites.Item.Lists.Item.ContentTypes.Item.ColumnPositions.Ref;
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
+using Microsoft.Kiota.Cli.Commons.Binding;
 using Microsoft.Kiota.Cli.Commons.IO;
 using System;
 using System.Collections.Generic;
@@ -77,7 +78,28 @@ namespace ApiSdk.Sites.Item.Lists.Item.ContentTypes.Item.ColumnPositions {
                 IsRequired = true
             };
             command.AddOption(outputOption);
-            command.SetHandler(async (string siteId, string listId, string contentTypeId, int? top, int? skip, string search, string filter, bool? count, string[] orderby, string[] select, string[] expand, FormatterType output, IOutputFormatterFactory outputFormatterFactory, CancellationToken cancellationToken) => {
+            var outputFilterOption = new Option<string>("--query");
+            command.AddOption(outputFilterOption);
+            command.SetHandler(async (object[] parameters) => {
+                var siteId = (string) parameters[0];
+                var listId = (string) parameters[1];
+                var contentTypeId = (string) parameters[2];
+                var top = (int?) parameters[3];
+                var skip = (int?) parameters[4];
+                var search = (string) parameters[5];
+                var filter = (string) parameters[6];
+                var count = (bool?) parameters[7];
+                var orderby = (string[]) parameters[8];
+                var select = (string[]) parameters[9];
+                var expand = (string[]) parameters[10];
+                var output = (FormatterType) parameters[11];
+                var outputFilterOption = (string) parameters[12];
+                var outputFormatterFactory = (IOutputFormatterFactory) parameters[13];
+                var cancellationToken = (CancellationToken) parameters[14];
+                PathParameters.Clear();
+                PathParameters.Add("site_id", siteId);
+                PathParameters.Add("list_id", listId);
+                PathParameters.Add("contentType_id", contentTypeId);
                 var requestInfo = CreateGetRequestInformation(q => {
                     q.Top = top;
                     q.Skip = skip;
@@ -91,7 +113,7 @@ namespace ApiSdk.Sites.Item.Lists.Item.ContentTypes.Item.ColumnPositions {
                 var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: default, cancellationToken: cancellationToken);
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 formatter.WriteOutput(response);
-            }, siteIdOption, listIdOption, contentTypeIdOption, topOption, skipOption, searchOption, filterOption, countOption, orderbyOption, selectOption, expandOption, outputOption);
+            }, new CollectionBinding(siteIdOption, listIdOption, contentTypeIdOption, topOption, skipOption, searchOption, filterOption, countOption, orderbyOption, selectOption, expandOption, outputOption, outputFilterOption, new TypeBinding(typeof(IOutputFormatterFactory)), new TypeBinding(typeof(CancellationToken))));
             return command;
         }
         public Command BuildRefCommand() {

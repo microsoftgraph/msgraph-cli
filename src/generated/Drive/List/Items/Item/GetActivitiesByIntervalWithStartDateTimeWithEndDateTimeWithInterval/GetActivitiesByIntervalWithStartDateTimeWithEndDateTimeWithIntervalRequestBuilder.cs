@@ -1,5 +1,6 @@
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
+using Microsoft.Kiota.Cli.Commons.Binding;
 using Microsoft.Kiota.Cli.Commons.IO;
 using System;
 using System.Collections.Generic;
@@ -45,13 +46,28 @@ namespace ApiSdk.Drive.List.Items.Item.GetActivitiesByIntervalWithStartDateTimeW
                 IsRequired = true
             };
             command.AddOption(outputOption);
-            command.SetHandler(async (string listItemId, string startDateTime, string endDateTime, string interval, FormatterType output, IOutputFormatterFactory outputFormatterFactory, CancellationToken cancellationToken) => {
+            var outputFilterOption = new Option<string>("--query");
+            command.AddOption(outputFilterOption);
+            command.SetHandler(async (object[] parameters) => {
+                var listItemId = (string) parameters[0];
+                var startDateTime = (string) parameters[1];
+                var endDateTime = (string) parameters[2];
+                var interval = (string) parameters[3];
+                var output = (FormatterType) parameters[4];
+                var outputFilterOption = (string) parameters[5];
+                var outputFormatterFactory = (IOutputFormatterFactory) parameters[6];
+                var cancellationToken = (CancellationToken) parameters[7];
+                PathParameters.Clear();
+                PathParameters.Add("listItem_id", listItemId);
+                PathParameters.Add("startDateTime", startDateTime);
+                PathParameters.Add("endDateTime", endDateTime);
+                PathParameters.Add("interval", interval);
                 var requestInfo = CreateGetRequestInformation(q => {
                 });
                 var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: default, cancellationToken: cancellationToken);
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 formatter.WriteOutput(response);
-            }, listItemIdOption, startDateTimeOption, endDateTimeOption, intervalOption, outputOption);
+            }, new CollectionBinding(listItemIdOption, startDateTimeOption, endDateTimeOption, intervalOption, outputOption, outputFilterOption, new TypeBinding(typeof(IOutputFormatterFactory)), new TypeBinding(typeof(CancellationToken))));
             return command;
         }
         /// <summary>

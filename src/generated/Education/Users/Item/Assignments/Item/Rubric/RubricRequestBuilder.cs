@@ -1,6 +1,7 @@
 using ApiSdk.Models.Microsoft.Graph;
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
+using Microsoft.Kiota.Cli.Commons.Binding;
 using Microsoft.Kiota.Cli.Commons.IO;
 using System;
 using System.Collections.Generic;
@@ -34,12 +35,18 @@ namespace ApiSdk.Education.Users.Item.Assignments.Item.Rubric {
             };
             educationAssignmentIdOption.IsRequired = true;
             command.AddOption(educationAssignmentIdOption);
-            command.SetHandler(async (string educationUserId, string educationAssignmentId, IOutputFormatterFactory outputFormatterFactory, CancellationToken cancellationToken) => {
+            command.SetHandler(async (object[] parameters) => {
+                var educationUserId = (string) parameters[0];
+                var educationAssignmentId = (string) parameters[1];
+                var cancellationToken = (CancellationToken) parameters[2];
+                PathParameters.Clear();
+                PathParameters.Add("educationUser_id", educationUserId);
+                PathParameters.Add("educationAssignment_id", educationAssignmentId);
                 var requestInfo = CreateDeleteRequestInformation(q => {
                 });
                 await RequestAdapter.SendNoContentAsync(requestInfo, errorMapping: default, cancellationToken: cancellationToken);
                 Console.WriteLine("Success");
-            }, educationUserIdOption, educationAssignmentIdOption);
+            }, new CollectionBinding(educationUserIdOption, educationAssignmentIdOption, new TypeBinding(typeof(CancellationToken))));
             return command;
         }
         /// <summary>
@@ -71,7 +78,20 @@ namespace ApiSdk.Education.Users.Item.Assignments.Item.Rubric {
                 IsRequired = true
             };
             command.AddOption(outputOption);
-            command.SetHandler(async (string educationUserId, string educationAssignmentId, string[] select, string[] expand, FormatterType output, IOutputFormatterFactory outputFormatterFactory, CancellationToken cancellationToken) => {
+            var outputFilterOption = new Option<string>("--query");
+            command.AddOption(outputFilterOption);
+            command.SetHandler(async (object[] parameters) => {
+                var educationUserId = (string) parameters[0];
+                var educationAssignmentId = (string) parameters[1];
+                var select = (string[]) parameters[2];
+                var expand = (string[]) parameters[3];
+                var output = (FormatterType) parameters[4];
+                var outputFilterOption = (string) parameters[5];
+                var outputFormatterFactory = (IOutputFormatterFactory) parameters[6];
+                var cancellationToken = (CancellationToken) parameters[7];
+                PathParameters.Clear();
+                PathParameters.Add("educationUser_id", educationUserId);
+                PathParameters.Add("educationAssignment_id", educationAssignmentId);
                 var requestInfo = CreateGetRequestInformation(q => {
                     q.Select = select;
                     q.Expand = expand;
@@ -79,7 +99,7 @@ namespace ApiSdk.Education.Users.Item.Assignments.Item.Rubric {
                 var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: default, cancellationToken: cancellationToken);
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 formatter.WriteOutput(response);
-            }, educationUserIdOption, educationAssignmentIdOption, selectOption, expandOption, outputOption);
+            }, new CollectionBinding(educationUserIdOption, educationAssignmentIdOption, selectOption, expandOption, outputOption, outputFilterOption, new TypeBinding(typeof(IOutputFormatterFactory)), new TypeBinding(typeof(CancellationToken))));
             return command;
         }
         /// <summary>
@@ -101,7 +121,14 @@ namespace ApiSdk.Education.Users.Item.Assignments.Item.Rubric {
             };
             bodyOption.IsRequired = true;
             command.AddOption(bodyOption);
-            command.SetHandler(async (string educationUserId, string educationAssignmentId, string body, IOutputFormatterFactory outputFormatterFactory, CancellationToken cancellationToken) => {
+            command.SetHandler(async (object[] parameters) => {
+                var educationUserId = (string) parameters[0];
+                var educationAssignmentId = (string) parameters[1];
+                var body = (string) parameters[2];
+                var cancellationToken = (CancellationToken) parameters[3];
+                PathParameters.Clear();
+                PathParameters.Add("educationUser_id", educationUserId);
+                PathParameters.Add("educationAssignment_id", educationAssignmentId);
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<EducationRubric>();
@@ -109,7 +136,7 @@ namespace ApiSdk.Education.Users.Item.Assignments.Item.Rubric {
                 });
                 await RequestAdapter.SendNoContentAsync(requestInfo, errorMapping: default, cancellationToken: cancellationToken);
                 Console.WriteLine("Success");
-            }, educationUserIdOption, educationAssignmentIdOption, bodyOption);
+            }, new CollectionBinding(educationUserIdOption, educationAssignmentIdOption, bodyOption, new TypeBinding(typeof(CancellationToken))));
             return command;
         }
         /// <summary>

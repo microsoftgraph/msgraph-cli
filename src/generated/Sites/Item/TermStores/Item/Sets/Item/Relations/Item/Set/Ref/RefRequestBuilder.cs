@@ -1,5 +1,6 @@
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
+using Microsoft.Kiota.Cli.Commons.Binding;
 using Microsoft.Kiota.Cli.Commons.IO;
 using System;
 using System.Collections.Generic;
@@ -41,12 +42,22 @@ namespace ApiSdk.Sites.Item.TermStores.Item.Sets.Item.Relations.Item.Set.Ref {
             };
             relationIdOption.IsRequired = true;
             command.AddOption(relationIdOption);
-            command.SetHandler(async (string siteId, string storeId, string setId, string relationId, IOutputFormatterFactory outputFormatterFactory, CancellationToken cancellationToken) => {
+            command.SetHandler(async (object[] parameters) => {
+                var siteId = (string) parameters[0];
+                var storeId = (string) parameters[1];
+                var setId = (string) parameters[2];
+                var relationId = (string) parameters[3];
+                var cancellationToken = (CancellationToken) parameters[4];
+                PathParameters.Clear();
+                PathParameters.Add("site_id", siteId);
+                PathParameters.Add("store_id", storeId);
+                PathParameters.Add("set_id", setId);
+                PathParameters.Add("relation_id", relationId);
                 var requestInfo = CreateDeleteRequestInformation(q => {
                 });
                 await RequestAdapter.SendNoContentAsync(requestInfo, errorMapping: default, cancellationToken: cancellationToken);
                 Console.WriteLine("Success");
-            }, siteIdOption, storeIdOption, setIdOption, relationIdOption);
+            }, new CollectionBinding(siteIdOption, storeIdOption, setIdOption, relationIdOption, new TypeBinding(typeof(CancellationToken))));
             return command;
         }
         /// <summary>
@@ -76,13 +87,28 @@ namespace ApiSdk.Sites.Item.TermStores.Item.Sets.Item.Relations.Item.Set.Ref {
                 IsRequired = true
             };
             command.AddOption(outputOption);
-            command.SetHandler(async (string siteId, string storeId, string setId, string relationId, FormatterType output, IOutputFormatterFactory outputFormatterFactory, CancellationToken cancellationToken) => {
+            var outputFilterOption = new Option<string>("--query");
+            command.AddOption(outputFilterOption);
+            command.SetHandler(async (object[] parameters) => {
+                var siteId = (string) parameters[0];
+                var storeId = (string) parameters[1];
+                var setId = (string) parameters[2];
+                var relationId = (string) parameters[3];
+                var output = (FormatterType) parameters[4];
+                var outputFilterOption = (string) parameters[5];
+                var outputFormatterFactory = (IOutputFormatterFactory) parameters[6];
+                var cancellationToken = (CancellationToken) parameters[7];
+                PathParameters.Clear();
+                PathParameters.Add("site_id", siteId);
+                PathParameters.Add("store_id", storeId);
+                PathParameters.Add("set_id", setId);
+                PathParameters.Add("relation_id", relationId);
                 var requestInfo = CreateGetRequestInformation(q => {
                 });
                 var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: default, cancellationToken: cancellationToken);
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 formatter.WriteOutput(response);
-            }, siteIdOption, storeIdOption, setIdOption, relationIdOption, outputOption);
+            }, new CollectionBinding(siteIdOption, storeIdOption, setIdOption, relationIdOption, outputOption, outputFilterOption, new TypeBinding(typeof(IOutputFormatterFactory)), new TypeBinding(typeof(CancellationToken))));
             return command;
         }
         /// <summary>
@@ -112,15 +138,26 @@ namespace ApiSdk.Sites.Item.TermStores.Item.Sets.Item.Relations.Item.Set.Ref {
             };
             bodyOption.IsRequired = true;
             command.AddOption(bodyOption);
-            command.SetHandler(async (string siteId, string storeId, string setId, string relationId, string body, IOutputFormatterFactory outputFormatterFactory, CancellationToken cancellationToken) => {
+            command.SetHandler(async (object[] parameters) => {
+                var siteId = (string) parameters[0];
+                var storeId = (string) parameters[1];
+                var setId = (string) parameters[2];
+                var relationId = (string) parameters[3];
+                var body = (string) parameters[4];
+                var cancellationToken = (CancellationToken) parameters[5];
+                PathParameters.Clear();
+                PathParameters.Add("site_id", siteId);
+                PathParameters.Add("store_id", storeId);
+                PathParameters.Add("set_id", setId);
+                PathParameters.Add("relation_id", relationId);
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
-                var model = parseNode.GetObjectValue<ApiSdk.Sites.Item.TermStores.Item.Sets.Item.Relations.Item.Set.Ref.Ref>();
+                var model = parseNode.GetObjectValue<Ref>();
                 var requestInfo = CreatePutRequestInformation(model, q => {
                 });
                 await RequestAdapter.SendNoContentAsync(requestInfo, errorMapping: default, cancellationToken: cancellationToken);
                 Console.WriteLine("Success");
-            }, siteIdOption, storeIdOption, setIdOption, relationIdOption, bodyOption);
+            }, new CollectionBinding(siteIdOption, storeIdOption, setIdOption, relationIdOption, bodyOption, new TypeBinding(typeof(CancellationToken))));
             return command;
         }
         /// <summary>
@@ -172,7 +209,7 @@ namespace ApiSdk.Sites.Item.TermStores.Item.Sets.Item.Relations.Item.Set.Ref {
         /// <param name="h">Request headers</param>
         /// <param name="o">Request options</param>
         /// </summary>
-        public RequestInformation CreatePutRequestInformation(ApiSdk.Sites.Item.TermStores.Item.Sets.Item.Relations.Item.Set.Ref.Ref body, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
+        public RequestInformation CreatePutRequestInformation(Ref body, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
             _ = body ?? throw new ArgumentNullException(nameof(body));
             var requestInfo = new RequestInformation {
                 HttpMethod = Method.PUT,

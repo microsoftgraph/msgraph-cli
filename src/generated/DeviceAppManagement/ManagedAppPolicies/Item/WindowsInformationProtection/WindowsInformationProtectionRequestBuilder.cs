@@ -1,5 +1,6 @@
 using ApiSdk.DeviceAppManagement.ManagedAppPolicies.Item.WindowsInformationProtection.Assign;
 using Microsoft.Kiota.Abstractions;
+using Microsoft.Kiota.Cli.Commons.Binding;
 using Microsoft.Kiota.Cli.Commons.IO;
 using System;
 using System.Collections.Generic;

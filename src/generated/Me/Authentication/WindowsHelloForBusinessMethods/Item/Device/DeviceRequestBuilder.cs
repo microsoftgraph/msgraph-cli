@@ -1,6 +1,7 @@
 using ApiSdk.Models.Microsoft.Graph;
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
+using Microsoft.Kiota.Cli.Commons.Binding;
 using Microsoft.Kiota.Cli.Commons.IO;
 using System;
 using System.Collections.Generic;
@@ -30,12 +31,16 @@ namespace ApiSdk.Me.Authentication.WindowsHelloForBusinessMethods.Item.Device {
             };
             windowsHelloForBusinessAuthenticationMethodIdOption.IsRequired = true;
             command.AddOption(windowsHelloForBusinessAuthenticationMethodIdOption);
-            command.SetHandler(async (string windowsHelloForBusinessAuthenticationMethodId, IOutputFormatterFactory outputFormatterFactory, CancellationToken cancellationToken) => {
+            command.SetHandler(async (object[] parameters) => {
+                var windowsHelloForBusinessAuthenticationMethodId = (string) parameters[0];
+                var cancellationToken = (CancellationToken) parameters[1];
+                PathParameters.Clear();
+                PathParameters.Add("windowsHelloForBusinessAuthenticationMethod_id", windowsHelloForBusinessAuthenticationMethodId);
                 var requestInfo = CreateDeleteRequestInformation(q => {
                 });
                 await RequestAdapter.SendNoContentAsync(requestInfo, errorMapping: default, cancellationToken: cancellationToken);
                 Console.WriteLine("Success");
-            }, windowsHelloForBusinessAuthenticationMethodIdOption);
+            }, new CollectionBinding(windowsHelloForBusinessAuthenticationMethodIdOption, new TypeBinding(typeof(CancellationToken))));
             return command;
         }
         /// <summary>
@@ -63,7 +68,18 @@ namespace ApiSdk.Me.Authentication.WindowsHelloForBusinessMethods.Item.Device {
                 IsRequired = true
             };
             command.AddOption(outputOption);
-            command.SetHandler(async (string windowsHelloForBusinessAuthenticationMethodId, string[] select, string[] expand, FormatterType output, IOutputFormatterFactory outputFormatterFactory, CancellationToken cancellationToken) => {
+            var outputFilterOption = new Option<string>("--query");
+            command.AddOption(outputFilterOption);
+            command.SetHandler(async (object[] parameters) => {
+                var windowsHelloForBusinessAuthenticationMethodId = (string) parameters[0];
+                var select = (string[]) parameters[1];
+                var expand = (string[]) parameters[2];
+                var output = (FormatterType) parameters[3];
+                var outputFilterOption = (string) parameters[4];
+                var outputFormatterFactory = (IOutputFormatterFactory) parameters[5];
+                var cancellationToken = (CancellationToken) parameters[6];
+                PathParameters.Clear();
+                PathParameters.Add("windowsHelloForBusinessAuthenticationMethod_id", windowsHelloForBusinessAuthenticationMethodId);
                 var requestInfo = CreateGetRequestInformation(q => {
                     q.Select = select;
                     q.Expand = expand;
@@ -71,7 +87,7 @@ namespace ApiSdk.Me.Authentication.WindowsHelloForBusinessMethods.Item.Device {
                 var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: default, cancellationToken: cancellationToken);
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 formatter.WriteOutput(response);
-            }, windowsHelloForBusinessAuthenticationMethodIdOption, selectOption, expandOption, outputOption);
+            }, new CollectionBinding(windowsHelloForBusinessAuthenticationMethodIdOption, selectOption, expandOption, outputOption, outputFilterOption, new TypeBinding(typeof(IOutputFormatterFactory)), new TypeBinding(typeof(CancellationToken))));
             return command;
         }
         /// <summary>
@@ -89,7 +105,12 @@ namespace ApiSdk.Me.Authentication.WindowsHelloForBusinessMethods.Item.Device {
             };
             bodyOption.IsRequired = true;
             command.AddOption(bodyOption);
-            command.SetHandler(async (string windowsHelloForBusinessAuthenticationMethodId, string body, IOutputFormatterFactory outputFormatterFactory, CancellationToken cancellationToken) => {
+            command.SetHandler(async (object[] parameters) => {
+                var windowsHelloForBusinessAuthenticationMethodId = (string) parameters[0];
+                var body = (string) parameters[1];
+                var cancellationToken = (CancellationToken) parameters[2];
+                PathParameters.Clear();
+                PathParameters.Add("windowsHelloForBusinessAuthenticationMethod_id", windowsHelloForBusinessAuthenticationMethodId);
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<ApiSdk.Models.Microsoft.Graph.Device>();
@@ -97,7 +118,7 @@ namespace ApiSdk.Me.Authentication.WindowsHelloForBusinessMethods.Item.Device {
                 });
                 await RequestAdapter.SendNoContentAsync(requestInfo, errorMapping: default, cancellationToken: cancellationToken);
                 Console.WriteLine("Success");
-            }, windowsHelloForBusinessAuthenticationMethodIdOption, bodyOption);
+            }, new CollectionBinding(windowsHelloForBusinessAuthenticationMethodIdOption, bodyOption, new TypeBinding(typeof(CancellationToken))));
             return command;
         }
         /// <summary>

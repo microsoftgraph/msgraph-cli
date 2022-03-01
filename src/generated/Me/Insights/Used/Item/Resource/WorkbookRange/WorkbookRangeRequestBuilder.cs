@@ -27,6 +27,7 @@ using ApiSdk.Me.Insights.Used.Item.Resource.WorkbookRange.UsedRange;
 using ApiSdk.Me.Insights.Used.Item.Resource.WorkbookRange.UsedRangeWithValuesOnly;
 using ApiSdk.Me.Insights.Used.Item.Resource.WorkbookRange.VisibleView;
 using Microsoft.Kiota.Abstractions;
+using Microsoft.Kiota.Cli.Commons.Binding;
 using Microsoft.Kiota.Cli.Commons.IO;
 using System;
 using System.Collections.Generic;

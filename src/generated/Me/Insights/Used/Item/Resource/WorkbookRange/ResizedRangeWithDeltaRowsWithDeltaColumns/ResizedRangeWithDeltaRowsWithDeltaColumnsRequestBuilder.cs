@@ -1,6 +1,7 @@
 using ApiSdk.Models.Microsoft.Graph;
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
+using Microsoft.Kiota.Cli.Commons.Binding;
 using Microsoft.Kiota.Cli.Commons.IO;
 using System;
 using System.Collections.Generic;
@@ -42,13 +43,26 @@ namespace ApiSdk.Me.Insights.Used.Item.Resource.WorkbookRange.ResizedRangeWithDe
                 IsRequired = true
             };
             command.AddOption(outputOption);
-            command.SetHandler(async (string usedInsightId, int? deltaRows, int? deltaColumns, FormatterType output, IOutputFormatterFactory outputFormatterFactory, CancellationToken cancellationToken) => {
+            var outputFilterOption = new Option<string>("--query");
+            command.AddOption(outputFilterOption);
+            command.SetHandler(async (object[] parameters) => {
+                var usedInsightId = (string) parameters[0];
+                var deltaRows = (int?) parameters[1];
+                var deltaColumns = (int?) parameters[2];
+                var output = (FormatterType) parameters[3];
+                var outputFilterOption = (string) parameters[4];
+                var outputFormatterFactory = (IOutputFormatterFactory) parameters[5];
+                var cancellationToken = (CancellationToken) parameters[6];
+                PathParameters.Clear();
+                PathParameters.Add("usedInsight_id", usedInsightId);
+                PathParameters.Add("deltaRows", deltaRows);
+                PathParameters.Add("deltaColumns", deltaColumns);
                 var requestInfo = CreateGetRequestInformation(q => {
                 });
                 var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: default, cancellationToken: cancellationToken);
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 formatter.WriteOutput(response);
-            }, usedInsightIdOption, deltaRowsOption, deltaColumnsOption, outputOption);
+            }, new CollectionBinding(usedInsightIdOption, deltaRowsOption, deltaColumnsOption, outputOption, outputFilterOption, new TypeBinding(typeof(IOutputFormatterFactory)), new TypeBinding(typeof(CancellationToken))));
             return command;
         }
         /// <summary>

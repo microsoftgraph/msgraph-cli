@@ -6,7 +6,7 @@ using System.Linq;
 namespace ApiSdk.Models.Microsoft.Graph {
     public class AccessPackageCatalog : Entity, IParsable {
         /// <summary>The access packages in this catalog. Read-only. Nullable. Supports $expand.</summary>
-        public List<ApiSdk.Models.Microsoft.Graph.AccessPackage> AccessPackages { get; set; }
+        public List<AccessPackage> AccessPackages { get; set; }
         /// <summary>One of UserManaged or ServiceDefault.</summary>
         public AccessPackageCatalogType? CatalogType { get; set; }
         /// <summary>The Timestamp type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z. Read-only.</summary>
@@ -26,7 +26,7 @@ namespace ApiSdk.Models.Microsoft.Graph {
         /// </summary>
         public new IDictionary<string, Action<T, IParseNode>> GetFieldDeserializers<T>() {
             return new Dictionary<string, Action<T, IParseNode>>(base.GetFieldDeserializers<T>()) {
-                {"accessPackages", (o,n) => { (o as AccessPackageCatalog).AccessPackages = n.GetCollectionOfObjectValues<ApiSdk.Models.Microsoft.Graph.AccessPackage>().ToList(); } },
+                {"accessPackages", (o,n) => { (o as AccessPackageCatalog).AccessPackages = n.GetCollectionOfObjectValues<AccessPackage>().ToList(); } },
                 {"catalogType", (o,n) => { (o as AccessPackageCatalog).CatalogType = n.GetEnumValue<AccessPackageCatalogType>(); } },
                 {"createdDateTime", (o,n) => { (o as AccessPackageCatalog).CreatedDateTime = n.GetDateTimeOffsetValue(); } },
                 {"description", (o,n) => { (o as AccessPackageCatalog).Description = n.GetStringValue(); } },
@@ -43,7 +43,7 @@ namespace ApiSdk.Models.Microsoft.Graph {
         public new void Serialize(ISerializationWriter writer) {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             base.Serialize(writer);
-            writer.WriteCollectionOfObjectValues<ApiSdk.Models.Microsoft.Graph.AccessPackage>("accessPackages", AccessPackages);
+            writer.WriteCollectionOfObjectValues<AccessPackage>("accessPackages", AccessPackages);
             writer.WriteEnumValue<AccessPackageCatalogType>("catalogType", CatalogType);
             writer.WriteDateTimeOffsetValue("createdDateTime", CreatedDateTime);
             writer.WriteStringValue("description", Description);

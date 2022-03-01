@@ -73,7 +73,7 @@ namespace ApiSdk.Models.Microsoft.Graph {
         /// <summary>A two-letter country code ([ISO 3166 Alpha-2]). Required for users who will be assigned licenses. Not nullable. Supports /$filter.</summary>
         public string UsageLocation { get; set; }
         /// <summary>The directory user corresponding to this user.</summary>
-        public ApiSdk.Models.Microsoft.Graph.User User { get; set; }
+        public User User { get; set; }
         /// <summary>The user principal name (UPN) for the user. Supports $filter and $orderby. See standard [user] resource for additional details.</summary>
         public string UserPrincipalName { get; set; }
         /// <summary>A string value that can be used to classify user types in your directory, such as 'Member' and 'Guest'. Supports /$filter.</summary>
@@ -118,7 +118,7 @@ namespace ApiSdk.Models.Microsoft.Graph {
                 {"taughtClasses", (o,n) => { (o as EducationUser).TaughtClasses = n.GetCollectionOfObjectValues<EducationClass>().ToList(); } },
                 {"teacher", (o,n) => { (o as EducationUser).Teacher = n.GetObjectValue<EducationTeacher>(); } },
                 {"usageLocation", (o,n) => { (o as EducationUser).UsageLocation = n.GetStringValue(); } },
-                {"user", (o,n) => { (o as EducationUser).User = n.GetObjectValue<ApiSdk.Models.Microsoft.Graph.User>(); } },
+                {"user", (o,n) => { (o as EducationUser).User = n.GetObjectValue<User>(); } },
                 {"userPrincipalName", (o,n) => { (o as EducationUser).UserPrincipalName = n.GetStringValue(); } },
                 {"userType", (o,n) => { (o as EducationUser).UserType = n.GetStringValue(); } },
             };
@@ -165,7 +165,7 @@ namespace ApiSdk.Models.Microsoft.Graph {
             writer.WriteCollectionOfObjectValues<EducationClass>("taughtClasses", TaughtClasses);
             writer.WriteObjectValue<EducationTeacher>("teacher", Teacher);
             writer.WriteStringValue("usageLocation", UsageLocation);
-            writer.WriteObjectValue<ApiSdk.Models.Microsoft.Graph.User>("user", User);
+            writer.WriteObjectValue<User>("user", User);
             writer.WriteStringValue("userPrincipalName", UserPrincipalName);
             writer.WriteStringValue("userType", UserType);
         }

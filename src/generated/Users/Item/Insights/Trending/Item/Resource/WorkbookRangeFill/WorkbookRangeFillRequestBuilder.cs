@@ -1,5 +1,6 @@
 using ApiSdk.Users.Item.Insights.Trending.Item.Resource.WorkbookRangeFill.Clear;
 using Microsoft.Kiota.Abstractions;
+using Microsoft.Kiota.Cli.Commons.Binding;
 using Microsoft.Kiota.Cli.Commons.IO;
 using System;
 using System.Collections.Generic;

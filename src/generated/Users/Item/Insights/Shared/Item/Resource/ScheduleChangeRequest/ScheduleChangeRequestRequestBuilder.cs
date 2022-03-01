@@ -1,6 +1,7 @@
 using ApiSdk.Users.Item.Insights.Shared.Item.Resource.ScheduleChangeRequest.Approve;
 using ApiSdk.Users.Item.Insights.Shared.Item.Resource.ScheduleChangeRequest.Decline;
 using Microsoft.Kiota.Abstractions;
+using Microsoft.Kiota.Cli.Commons.Binding;
 using Microsoft.Kiota.Cli.Commons.IO;
 using System;
 using System.Collections.Generic;

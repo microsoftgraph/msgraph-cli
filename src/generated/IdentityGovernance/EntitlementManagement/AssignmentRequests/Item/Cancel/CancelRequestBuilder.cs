@@ -1,5 +1,6 @@
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
+using Microsoft.Kiota.Cli.Commons.Binding;
 using Microsoft.Kiota.Cli.Commons.IO;
 using System;
 using System.Collections.Generic;
@@ -29,12 +30,16 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.AssignmentRequests.Ite
             };
             accessPackageAssignmentRequestIdOption.IsRequired = true;
             command.AddOption(accessPackageAssignmentRequestIdOption);
-            command.SetHandler(async (string accessPackageAssignmentRequestId, IOutputFormatterFactory outputFormatterFactory, CancellationToken cancellationToken) => {
+            command.SetHandler(async (object[] parameters) => {
+                var accessPackageAssignmentRequestId = (string) parameters[0];
+                var cancellationToken = (CancellationToken) parameters[1];
+                PathParameters.Clear();
+                PathParameters.Add("accessPackageAssignmentRequest_id", accessPackageAssignmentRequestId);
                 var requestInfo = CreatePostRequestInformation(q => {
                 });
                 await RequestAdapter.SendNoContentAsync(requestInfo, errorMapping: default, cancellationToken: cancellationToken);
                 Console.WriteLine("Success");
-            }, accessPackageAssignmentRequestIdOption);
+            }, new CollectionBinding(accessPackageAssignmentRequestIdOption, new TypeBinding(typeof(CancellationToken))));
             return command;
         }
         /// <summary>

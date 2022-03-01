@@ -1,6 +1,7 @@
 using ApiSdk.Models.Microsoft.Graph;
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
+using Microsoft.Kiota.Cli.Commons.Binding;
 using Microsoft.Kiota.Cli.Commons.IO;
 using System;
 using System.Collections.Generic;
@@ -42,12 +43,22 @@ namespace ApiSdk.Groups.Item.Planner.Plans.Item.Buckets.Item.Tasks.Item.BucketTa
             };
             plannerTaskIdOption.IsRequired = true;
             command.AddOption(plannerTaskIdOption);
-            command.SetHandler(async (string groupId, string plannerPlanId, string plannerBucketId, string plannerTaskId, IOutputFormatterFactory outputFormatterFactory, CancellationToken cancellationToken) => {
+            command.SetHandler(async (object[] parameters) => {
+                var groupId = (string) parameters[0];
+                var plannerPlanId = (string) parameters[1];
+                var plannerBucketId = (string) parameters[2];
+                var plannerTaskId = (string) parameters[3];
+                var cancellationToken = (CancellationToken) parameters[4];
+                PathParameters.Clear();
+                PathParameters.Add("group_id", groupId);
+                PathParameters.Add("plannerPlan_id", plannerPlanId);
+                PathParameters.Add("plannerBucket_id", plannerBucketId);
+                PathParameters.Add("plannerTask_id", plannerTaskId);
                 var requestInfo = CreateDeleteRequestInformation(q => {
                 });
                 await RequestAdapter.SendNoContentAsync(requestInfo, errorMapping: default, cancellationToken: cancellationToken);
                 Console.WriteLine("Success");
-            }, groupIdOption, plannerPlanIdOption, plannerBucketIdOption, plannerTaskIdOption);
+            }, new CollectionBinding(groupIdOption, plannerPlanIdOption, plannerBucketIdOption, plannerTaskIdOption, new TypeBinding(typeof(CancellationToken))));
             return command;
         }
         /// <summary>
@@ -87,7 +98,24 @@ namespace ApiSdk.Groups.Item.Planner.Plans.Item.Buckets.Item.Tasks.Item.BucketTa
                 IsRequired = true
             };
             command.AddOption(outputOption);
-            command.SetHandler(async (string groupId, string plannerPlanId, string plannerBucketId, string plannerTaskId, string[] select, string[] expand, FormatterType output, IOutputFormatterFactory outputFormatterFactory, CancellationToken cancellationToken) => {
+            var outputFilterOption = new Option<string>("--query");
+            command.AddOption(outputFilterOption);
+            command.SetHandler(async (object[] parameters) => {
+                var groupId = (string) parameters[0];
+                var plannerPlanId = (string) parameters[1];
+                var plannerBucketId = (string) parameters[2];
+                var plannerTaskId = (string) parameters[3];
+                var select = (string[]) parameters[4];
+                var expand = (string[]) parameters[5];
+                var output = (FormatterType) parameters[6];
+                var outputFilterOption = (string) parameters[7];
+                var outputFormatterFactory = (IOutputFormatterFactory) parameters[8];
+                var cancellationToken = (CancellationToken) parameters[9];
+                PathParameters.Clear();
+                PathParameters.Add("group_id", groupId);
+                PathParameters.Add("plannerPlan_id", plannerPlanId);
+                PathParameters.Add("plannerBucket_id", plannerBucketId);
+                PathParameters.Add("plannerTask_id", plannerTaskId);
                 var requestInfo = CreateGetRequestInformation(q => {
                     q.Select = select;
                     q.Expand = expand;
@@ -95,7 +123,7 @@ namespace ApiSdk.Groups.Item.Planner.Plans.Item.Buckets.Item.Tasks.Item.BucketTa
                 var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: default, cancellationToken: cancellationToken);
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 formatter.WriteOutput(response);
-            }, groupIdOption, plannerPlanIdOption, plannerBucketIdOption, plannerTaskIdOption, selectOption, expandOption, outputOption);
+            }, new CollectionBinding(groupIdOption, plannerPlanIdOption, plannerBucketIdOption, plannerTaskIdOption, selectOption, expandOption, outputOption, outputFilterOption, new TypeBinding(typeof(IOutputFormatterFactory)), new TypeBinding(typeof(CancellationToken))));
             return command;
         }
         /// <summary>
@@ -125,7 +153,18 @@ namespace ApiSdk.Groups.Item.Planner.Plans.Item.Buckets.Item.Tasks.Item.BucketTa
             };
             bodyOption.IsRequired = true;
             command.AddOption(bodyOption);
-            command.SetHandler(async (string groupId, string plannerPlanId, string plannerBucketId, string plannerTaskId, string body, IOutputFormatterFactory outputFormatterFactory, CancellationToken cancellationToken) => {
+            command.SetHandler(async (object[] parameters) => {
+                var groupId = (string) parameters[0];
+                var plannerPlanId = (string) parameters[1];
+                var plannerBucketId = (string) parameters[2];
+                var plannerTaskId = (string) parameters[3];
+                var body = (string) parameters[4];
+                var cancellationToken = (CancellationToken) parameters[5];
+                PathParameters.Clear();
+                PathParameters.Add("group_id", groupId);
+                PathParameters.Add("plannerPlan_id", plannerPlanId);
+                PathParameters.Add("plannerBucket_id", plannerBucketId);
+                PathParameters.Add("plannerTask_id", plannerTaskId);
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<PlannerBucketTaskBoardTaskFormat>();
@@ -133,7 +172,7 @@ namespace ApiSdk.Groups.Item.Planner.Plans.Item.Buckets.Item.Tasks.Item.BucketTa
                 });
                 await RequestAdapter.SendNoContentAsync(requestInfo, errorMapping: default, cancellationToken: cancellationToken);
                 Console.WriteLine("Success");
-            }, groupIdOption, plannerPlanIdOption, plannerBucketIdOption, plannerTaskIdOption, bodyOption);
+            }, new CollectionBinding(groupIdOption, plannerPlanIdOption, plannerBucketIdOption, plannerTaskIdOption, bodyOption, new TypeBinding(typeof(CancellationToken))));
             return command;
         }
         /// <summary>
