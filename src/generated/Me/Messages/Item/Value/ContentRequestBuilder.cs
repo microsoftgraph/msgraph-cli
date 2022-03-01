@@ -35,8 +35,7 @@ namespace ApiSdk.Me.Messages.Item.Value {
             command.SetHandler(async (object[] parameters) => {
                 var messageId = (string) parameters[0];
                 var file = (FileInfo) parameters[1];
-                var outputFormatterFactory = (IOutputFormatterFactory) parameters[2];
-                var cancellationToken = (CancellationToken) parameters[3];
+                var cancellationToken = (CancellationToken) parameters[2];
                 PathParameters.Clear();
                 PathParameters.Add("message_id", messageId);
                 var requestInfo = CreateGetRequestInformation(q => {
@@ -52,7 +51,7 @@ namespace ApiSdk.Me.Messages.Item.Value {
                     await response.CopyToAsync(writeStream);
                     Console.WriteLine($"Content written to {file.FullName}.");
                 }
-            }, new CollectionBinding(messageIdOption, fileOption, new TypeBinding(typeof(IOutputFormatterFactory)), new TypeBinding(typeof(CancellationToken))));
+            }, new CollectionBinding(messageIdOption, fileOption, new TypeBinding(typeof(CancellationToken))));
             return command;
         }
         /// <summary>

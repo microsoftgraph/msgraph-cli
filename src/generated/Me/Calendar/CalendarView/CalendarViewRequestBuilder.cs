@@ -58,14 +58,15 @@ namespace ApiSdk.Me.Calendar.CalendarView {
                 IsRequired = true
             };
             command.AddOption(outputOption);
-            var outputFilterOption = new Option<string>("--query");
-            command.AddOption(outputFilterOption);
+            var queryOption = new Option<string>("--query");
+            command.AddOption(queryOption);
             command.SetHandler(async (object[] parameters) => {
                 var body = (string) parameters[0];
                 var output = (FormatterType) parameters[1];
-                var outputFilterOption = (string) parameters[2];
-                var outputFormatterFactory = (IOutputFormatterFactory) parameters[3];
-                var cancellationToken = (CancellationToken) parameters[4];
+                var query = (string) parameters[2];
+                var outputFilter = (IOutputFilter) parameters[3];
+                var outputFormatterFactory = (IOutputFormatterFactory) parameters[4];
+                var cancellationToken = (CancellationToken) parameters[5];
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<Event>();
@@ -73,8 +74,9 @@ namespace ApiSdk.Me.Calendar.CalendarView {
                 });
                 var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: default, cancellationToken: cancellationToken);
                 var formatter = outputFormatterFactory.GetFormatter(output);
+                response = outputFilter?.FilterOutput(response, query) ?? response;
                 formatter.WriteOutput(response);
-            }, new CollectionBinding(bodyOption, outputOption, outputFilterOption, new TypeBinding(typeof(IOutputFormatterFactory)), new TypeBinding(typeof(CancellationToken))));
+            }, new CollectionBinding(bodyOption, outputOption, queryOption, new TypeBinding(typeof(IOutputFilter)), new TypeBinding(typeof(IOutputFormatterFactory)), new TypeBinding(typeof(CancellationToken))));
             return command;
         }
         /// <summary>
@@ -122,8 +124,8 @@ namespace ApiSdk.Me.Calendar.CalendarView {
                 IsRequired = true
             };
             command.AddOption(outputOption);
-            var outputFilterOption = new Option<string>("--query");
-            command.AddOption(outputFilterOption);
+            var queryOption = new Option<string>("--query");
+            command.AddOption(queryOption);
             command.SetHandler(async (object[] parameters) => {
                 var startDateTime = (string) parameters[0];
                 var endDateTime = (string) parameters[1];
@@ -134,9 +136,10 @@ namespace ApiSdk.Me.Calendar.CalendarView {
                 var orderby = (string[]) parameters[6];
                 var select = (string[]) parameters[7];
                 var output = (FormatterType) parameters[8];
-                var outputFilterOption = (string) parameters[9];
-                var outputFormatterFactory = (IOutputFormatterFactory) parameters[10];
-                var cancellationToken = (CancellationToken) parameters[11];
+                var query = (string) parameters[9];
+                var outputFilter = (IOutputFilter) parameters[10];
+                var outputFormatterFactory = (IOutputFormatterFactory) parameters[11];
+                var cancellationToken = (CancellationToken) parameters[12];
                 var requestInfo = CreateGetRequestInformation(q => {
                     if (!String.IsNullOrEmpty(startDateTime)) q.StartDateTime = startDateTime;
                     if (!String.IsNullOrEmpty(endDateTime)) q.EndDateTime = endDateTime;
@@ -149,8 +152,9 @@ namespace ApiSdk.Me.Calendar.CalendarView {
                 });
                 var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: default, cancellationToken: cancellationToken);
                 var formatter = outputFormatterFactory.GetFormatter(output);
+                response = outputFilter?.FilterOutput(response, query) ?? response;
                 formatter.WriteOutput(response);
-            }, new CollectionBinding(startDateTimeOption, endDateTimeOption, topOption, skipOption, filterOption, countOption, orderbyOption, selectOption, outputOption, outputFilterOption, new TypeBinding(typeof(IOutputFormatterFactory)), new TypeBinding(typeof(CancellationToken))));
+            }, new CollectionBinding(startDateTimeOption, endDateTimeOption, topOption, skipOption, filterOption, countOption, orderbyOption, selectOption, outputOption, queryOption, new TypeBinding(typeof(IOutputFilter)), new TypeBinding(typeof(IOutputFormatterFactory)), new TypeBinding(typeof(CancellationToken))));
             return command;
         }
         /// <summary>

@@ -30,8 +30,7 @@ namespace ApiSdk.Me.Photo.Value {
             command.AddOption(fileOption);
             command.SetHandler(async (object[] parameters) => {
                 var file = (FileInfo) parameters[0];
-                var outputFormatterFactory = (IOutputFormatterFactory) parameters[1];
-                var cancellationToken = (CancellationToken) parameters[2];
+                var cancellationToken = (CancellationToken) parameters[1];
                 var requestInfo = CreateGetRequestInformation(q => {
                 });
                 var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: default, cancellationToken: cancellationToken);
@@ -45,7 +44,7 @@ namespace ApiSdk.Me.Photo.Value {
                     await response.CopyToAsync(writeStream);
                     Console.WriteLine($"Content written to {file.FullName}.");
                 }
-            }, new CollectionBinding(fileOption, new TypeBinding(typeof(IOutputFormatterFactory)), new TypeBinding(typeof(CancellationToken))));
+            }, new CollectionBinding(fileOption, new TypeBinding(typeof(CancellationToken))));
             return command;
         }
         /// <summary>

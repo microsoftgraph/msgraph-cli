@@ -45,8 +45,7 @@ namespace ApiSdk.Users.Item.MailFolders.Item.Messages.Item.Value {
                 var mailFolderId = (string) parameters[1];
                 var messageId = (string) parameters[2];
                 var file = (FileInfo) parameters[3];
-                var outputFormatterFactory = (IOutputFormatterFactory) parameters[4];
-                var cancellationToken = (CancellationToken) parameters[5];
+                var cancellationToken = (CancellationToken) parameters[4];
                 PathParameters.Clear();
                 PathParameters.Add("user_id", userId);
                 PathParameters.Add("mailFolder_id", mailFolderId);
@@ -64,7 +63,7 @@ namespace ApiSdk.Users.Item.MailFolders.Item.Messages.Item.Value {
                     await response.CopyToAsync(writeStream);
                     Console.WriteLine($"Content written to {file.FullName}.");
                 }
-            }, new CollectionBinding(userIdOption, mailFolderIdOption, messageIdOption, fileOption, new TypeBinding(typeof(IOutputFormatterFactory)), new TypeBinding(typeof(CancellationToken))));
+            }, new CollectionBinding(userIdOption, mailFolderIdOption, messageIdOption, fileOption, new TypeBinding(typeof(CancellationToken))));
             return command;
         }
         /// <summary>

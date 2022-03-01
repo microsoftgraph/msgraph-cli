@@ -65,16 +65,17 @@ namespace ApiSdk.Me.Insights.Trending.Item.Resource {
                 IsRequired = true
             };
             command.AddOption(outputOption);
-            var outputFilterOption = new Option<string>("--query");
-            command.AddOption(outputFilterOption);
+            var queryOption = new Option<string>("--query");
+            command.AddOption(queryOption);
             command.SetHandler(async (object[] parameters) => {
                 var trendingItemId = (string) parameters[0];
                 var select = (string[]) parameters[1];
                 var expand = (string[]) parameters[2];
                 var output = (FormatterType) parameters[3];
-                var outputFilterOption = (string) parameters[4];
-                var outputFormatterFactory = (IOutputFormatterFactory) parameters[5];
-                var cancellationToken = (CancellationToken) parameters[6];
+                var query = (string) parameters[4];
+                var outputFilter = (IOutputFilter) parameters[5];
+                var outputFormatterFactory = (IOutputFormatterFactory) parameters[6];
+                var cancellationToken = (CancellationToken) parameters[7];
                 PathParameters.Clear();
                 PathParameters.Add("trendingItem_Id", trendingItemId);
                 var requestInfo = CreateGetRequestInformation(q => {
@@ -83,8 +84,9 @@ namespace ApiSdk.Me.Insights.Trending.Item.Resource {
                 });
                 var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: default, cancellationToken: cancellationToken);
                 var formatter = outputFormatterFactory.GetFormatter(output);
+                response = outputFilter?.FilterOutput(response, query) ?? response;
                 formatter.WriteOutput(response);
-            }, new CollectionBinding(trendingItemIdOption, selectOption, expandOption, outputOption, outputFilterOption, new TypeBinding(typeof(IOutputFormatterFactory)), new TypeBinding(typeof(CancellationToken))));
+            }, new CollectionBinding(trendingItemIdOption, selectOption, expandOption, outputOption, queryOption, new TypeBinding(typeof(IOutputFilter)), new TypeBinding(typeof(IOutputFormatterFactory)), new TypeBinding(typeof(CancellationToken))));
             return command;
         }
         public Command BuildManagedAppProtectionCommand() {

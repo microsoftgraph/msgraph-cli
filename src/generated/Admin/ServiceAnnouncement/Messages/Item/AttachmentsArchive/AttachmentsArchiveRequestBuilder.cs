@@ -35,8 +35,7 @@ namespace ApiSdk.Admin.ServiceAnnouncement.Messages.Item.AttachmentsArchive {
             command.SetHandler(async (object[] parameters) => {
                 var serviceUpdateMessageId = (string) parameters[0];
                 var file = (FileInfo) parameters[1];
-                var outputFormatterFactory = (IOutputFormatterFactory) parameters[2];
-                var cancellationToken = (CancellationToken) parameters[3];
+                var cancellationToken = (CancellationToken) parameters[2];
                 PathParameters.Clear();
                 PathParameters.Add("serviceUpdateMessage_id", serviceUpdateMessageId);
                 var requestInfo = CreateGetRequestInformation(q => {
@@ -52,7 +51,7 @@ namespace ApiSdk.Admin.ServiceAnnouncement.Messages.Item.AttachmentsArchive {
                     await response.CopyToAsync(writeStream);
                     Console.WriteLine($"Content written to {file.FullName}.");
                 }
-            }, new CollectionBinding(serviceUpdateMessageIdOption, fileOption, new TypeBinding(typeof(IOutputFormatterFactory)), new TypeBinding(typeof(CancellationToken))));
+            }, new CollectionBinding(serviceUpdateMessageIdOption, fileOption, new TypeBinding(typeof(CancellationToken))));
             return command;
         }
         /// <summary>

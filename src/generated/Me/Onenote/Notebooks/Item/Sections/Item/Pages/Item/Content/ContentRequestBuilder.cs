@@ -45,8 +45,7 @@ namespace ApiSdk.Me.Onenote.Notebooks.Item.Sections.Item.Pages.Item.Content {
                 var onenoteSectionId = (string) parameters[1];
                 var onenotePageId = (string) parameters[2];
                 var file = (FileInfo) parameters[3];
-                var outputFormatterFactory = (IOutputFormatterFactory) parameters[4];
-                var cancellationToken = (CancellationToken) parameters[5];
+                var cancellationToken = (CancellationToken) parameters[4];
                 PathParameters.Clear();
                 PathParameters.Add("notebook_id", notebookId);
                 PathParameters.Add("onenoteSection_id", onenoteSectionId);
@@ -64,7 +63,7 @@ namespace ApiSdk.Me.Onenote.Notebooks.Item.Sections.Item.Pages.Item.Content {
                     await response.CopyToAsync(writeStream);
                     Console.WriteLine($"Content written to {file.FullName}.");
                 }
-            }, new CollectionBinding(notebookIdOption, onenoteSectionIdOption, onenotePageIdOption, fileOption, new TypeBinding(typeof(IOutputFormatterFactory)), new TypeBinding(typeof(CancellationToken))));
+            }, new CollectionBinding(notebookIdOption, onenoteSectionIdOption, onenotePageIdOption, fileOption, new TypeBinding(typeof(CancellationToken))));
             return command;
         }
         /// <summary>

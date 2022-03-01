@@ -40,8 +40,7 @@ namespace ApiSdk.Admin.ServiceAnnouncement.HealthOverviews.Item.Issues.Item.Inci
                 var serviceHealthId = (string) parameters[0];
                 var serviceHealthIssueId = (string) parameters[1];
                 var file = (FileInfo) parameters[2];
-                var outputFormatterFactory = (IOutputFormatterFactory) parameters[3];
-                var cancellationToken = (CancellationToken) parameters[4];
+                var cancellationToken = (CancellationToken) parameters[3];
                 PathParameters.Clear();
                 PathParameters.Add("serviceHealth_id", serviceHealthId);
                 PathParameters.Add("serviceHealthIssue_id", serviceHealthIssueId);
@@ -58,7 +57,7 @@ namespace ApiSdk.Admin.ServiceAnnouncement.HealthOverviews.Item.Issues.Item.Inci
                     await response.CopyToAsync(writeStream);
                     Console.WriteLine($"Content written to {file.FullName}.");
                 }
-            }, new CollectionBinding(serviceHealthIdOption, serviceHealthIssueIdOption, fileOption, new TypeBinding(typeof(IOutputFormatterFactory)), new TypeBinding(typeof(CancellationToken))));
+            }, new CollectionBinding(serviceHealthIdOption, serviceHealthIssueIdOption, fileOption, new TypeBinding(typeof(CancellationToken))));
             return command;
         }
         /// <summary>

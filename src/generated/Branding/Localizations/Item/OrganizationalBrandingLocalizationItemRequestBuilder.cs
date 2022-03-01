@@ -68,16 +68,17 @@ namespace ApiSdk.Branding.Localizations.Item {
                 IsRequired = true
             };
             command.AddOption(outputOption);
-            var outputFilterOption = new Option<string>("--query");
-            command.AddOption(outputFilterOption);
+            var queryOption = new Option<string>("--query");
+            command.AddOption(queryOption);
             command.SetHandler(async (object[] parameters) => {
                 var organizationalBrandingLocalizationId = (string) parameters[0];
                 var select = (string[]) parameters[1];
                 var expand = (string[]) parameters[2];
                 var output = (FormatterType) parameters[3];
-                var outputFilterOption = (string) parameters[4];
-                var outputFormatterFactory = (IOutputFormatterFactory) parameters[5];
-                var cancellationToken = (CancellationToken) parameters[6];
+                var query = (string) parameters[4];
+                var outputFilter = (IOutputFilter) parameters[5];
+                var outputFormatterFactory = (IOutputFormatterFactory) parameters[6];
+                var cancellationToken = (CancellationToken) parameters[7];
                 PathParameters.Clear();
                 PathParameters.Add("organizationalBrandingLocalization_id", organizationalBrandingLocalizationId);
                 var requestInfo = CreateGetRequestInformation(q => {
@@ -86,8 +87,9 @@ namespace ApiSdk.Branding.Localizations.Item {
                 });
                 var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: default, cancellationToken: cancellationToken);
                 var formatter = outputFormatterFactory.GetFormatter(output);
+                response = outputFilter?.FilterOutput(response, query) ?? response;
                 formatter.WriteOutput(response);
-            }, new CollectionBinding(organizationalBrandingLocalizationIdOption, selectOption, expandOption, outputOption, outputFilterOption, new TypeBinding(typeof(IOutputFormatterFactory)), new TypeBinding(typeof(CancellationToken))));
+            }, new CollectionBinding(organizationalBrandingLocalizationIdOption, selectOption, expandOption, outputOption, queryOption, new TypeBinding(typeof(IOutputFilter)), new TypeBinding(typeof(IOutputFormatterFactory)), new TypeBinding(typeof(CancellationToken))));
             return command;
         }
         /// <summary>

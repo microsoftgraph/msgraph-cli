@@ -45,8 +45,7 @@ namespace ApiSdk.Identity.B2xUserFlows.Item.Languages.Item.OverridesPages.Item.V
                 var userFlowLanguageConfigurationId = (string) parameters[1];
                 var userFlowLanguagePageId = (string) parameters[2];
                 var file = (FileInfo) parameters[3];
-                var outputFormatterFactory = (IOutputFormatterFactory) parameters[4];
-                var cancellationToken = (CancellationToken) parameters[5];
+                var cancellationToken = (CancellationToken) parameters[4];
                 PathParameters.Clear();
                 PathParameters.Add("b2xIdentityUserFlow_id", b2xIdentityUserFlowId);
                 PathParameters.Add("userFlowLanguageConfiguration_id", userFlowLanguageConfigurationId);
@@ -64,7 +63,7 @@ namespace ApiSdk.Identity.B2xUserFlows.Item.Languages.Item.OverridesPages.Item.V
                     await response.CopyToAsync(writeStream);
                     Console.WriteLine($"Content written to {file.FullName}.");
                 }
-            }, new CollectionBinding(b2xIdentityUserFlowIdOption, userFlowLanguageConfigurationIdOption, userFlowLanguagePageIdOption, fileOption, new TypeBinding(typeof(IOutputFormatterFactory)), new TypeBinding(typeof(CancellationToken))));
+            }, new CollectionBinding(b2xIdentityUserFlowIdOption, userFlowLanguageConfigurationIdOption, userFlowLanguagePageIdOption, fileOption, new TypeBinding(typeof(CancellationToken))));
             return command;
         }
         /// <summary>

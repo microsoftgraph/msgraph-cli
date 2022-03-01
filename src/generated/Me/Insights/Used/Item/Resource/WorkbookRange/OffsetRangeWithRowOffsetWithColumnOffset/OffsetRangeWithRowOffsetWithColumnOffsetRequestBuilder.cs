@@ -43,16 +43,17 @@ namespace ApiSdk.Me.Insights.Used.Item.Resource.WorkbookRange.OffsetRangeWithRow
                 IsRequired = true
             };
             command.AddOption(outputOption);
-            var outputFilterOption = new Option<string>("--query");
-            command.AddOption(outputFilterOption);
+            var queryOption = new Option<string>("--query");
+            command.AddOption(queryOption);
             command.SetHandler(async (object[] parameters) => {
                 var usedInsightId = (string) parameters[0];
                 var rowOffset = (int?) parameters[1];
                 var columnOffset = (int?) parameters[2];
                 var output = (FormatterType) parameters[3];
-                var outputFilterOption = (string) parameters[4];
-                var outputFormatterFactory = (IOutputFormatterFactory) parameters[5];
-                var cancellationToken = (CancellationToken) parameters[6];
+                var query = (string) parameters[4];
+                var outputFilter = (IOutputFilter) parameters[5];
+                var outputFormatterFactory = (IOutputFormatterFactory) parameters[6];
+                var cancellationToken = (CancellationToken) parameters[7];
                 PathParameters.Clear();
                 PathParameters.Add("usedInsight_id", usedInsightId);
                 PathParameters.Add("rowOffset", rowOffset);
@@ -61,8 +62,9 @@ namespace ApiSdk.Me.Insights.Used.Item.Resource.WorkbookRange.OffsetRangeWithRow
                 });
                 var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: default, cancellationToken: cancellationToken);
                 var formatter = outputFormatterFactory.GetFormatter(output);
+                response = outputFilter?.FilterOutput(response, query) ?? response;
                 formatter.WriteOutput(response);
-            }, new CollectionBinding(usedInsightIdOption, rowOffsetOption, columnOffsetOption, outputOption, outputFilterOption, new TypeBinding(typeof(IOutputFormatterFactory)), new TypeBinding(typeof(CancellationToken))));
+            }, new CollectionBinding(usedInsightIdOption, rowOffsetOption, columnOffsetOption, outputOption, queryOption, new TypeBinding(typeof(IOutputFilter)), new TypeBinding(typeof(IOutputFormatterFactory)), new TypeBinding(typeof(CancellationToken))));
             return command;
         }
         /// <summary>

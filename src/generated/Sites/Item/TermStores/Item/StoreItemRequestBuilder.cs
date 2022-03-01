@@ -80,17 +80,18 @@ namespace ApiSdk.Sites.Item.TermStores.Item {
                 IsRequired = true
             };
             command.AddOption(outputOption);
-            var outputFilterOption = new Option<string>("--query");
-            command.AddOption(outputFilterOption);
+            var queryOption = new Option<string>("--query");
+            command.AddOption(queryOption);
             command.SetHandler(async (object[] parameters) => {
                 var siteId = (string) parameters[0];
                 var storeId = (string) parameters[1];
                 var select = (string[]) parameters[2];
                 var expand = (string[]) parameters[3];
                 var output = (FormatterType) parameters[4];
-                var outputFilterOption = (string) parameters[5];
-                var outputFormatterFactory = (IOutputFormatterFactory) parameters[6];
-                var cancellationToken = (CancellationToken) parameters[7];
+                var query = (string) parameters[5];
+                var outputFilter = (IOutputFilter) parameters[6];
+                var outputFormatterFactory = (IOutputFormatterFactory) parameters[7];
+                var cancellationToken = (CancellationToken) parameters[8];
                 PathParameters.Clear();
                 PathParameters.Add("site_id", siteId);
                 PathParameters.Add("store_id", storeId);
@@ -100,8 +101,9 @@ namespace ApiSdk.Sites.Item.TermStores.Item {
                 });
                 var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: default, cancellationToken: cancellationToken);
                 var formatter = outputFormatterFactory.GetFormatter(output);
+                response = outputFilter?.FilterOutput(response, query) ?? response;
                 formatter.WriteOutput(response);
-            }, new CollectionBinding(siteIdOption, storeIdOption, selectOption, expandOption, outputOption, outputFilterOption, new TypeBinding(typeof(IOutputFormatterFactory)), new TypeBinding(typeof(CancellationToken))));
+            }, new CollectionBinding(siteIdOption, storeIdOption, selectOption, expandOption, outputOption, queryOption, new TypeBinding(typeof(IOutputFilter)), new TypeBinding(typeof(IOutputFormatterFactory)), new TypeBinding(typeof(CancellationToken))));
             return command;
         }
         public Command BuildGroupsCommand() {

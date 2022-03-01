@@ -55,14 +55,15 @@ namespace ApiSdk.DirectoryRoles {
                 IsRequired = true
             };
             command.AddOption(outputOption);
-            var outputFilterOption = new Option<string>("--query");
-            command.AddOption(outputFilterOption);
+            var queryOption = new Option<string>("--query");
+            command.AddOption(queryOption);
             command.SetHandler(async (object[] parameters) => {
                 var body = (string) parameters[0];
                 var output = (FormatterType) parameters[1];
-                var outputFilterOption = (string) parameters[2];
-                var outputFormatterFactory = (IOutputFormatterFactory) parameters[3];
-                var cancellationToken = (CancellationToken) parameters[4];
+                var query = (string) parameters[2];
+                var outputFilter = (IOutputFilter) parameters[3];
+                var outputFormatterFactory = (IOutputFormatterFactory) parameters[4];
+                var cancellationToken = (CancellationToken) parameters[5];
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<DirectoryRole>();
@@ -70,8 +71,9 @@ namespace ApiSdk.DirectoryRoles {
                 });
                 var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: default, cancellationToken: cancellationToken);
                 var formatter = outputFormatterFactory.GetFormatter(output);
+                response = outputFilter?.FilterOutput(response, query) ?? response;
                 formatter.WriteOutput(response);
-            }, new CollectionBinding(bodyOption, outputOption, outputFilterOption, new TypeBinding(typeof(IOutputFormatterFactory)), new TypeBinding(typeof(CancellationToken))));
+            }, new CollectionBinding(bodyOption, outputOption, queryOption, new TypeBinding(typeof(IOutputFilter)), new TypeBinding(typeof(IOutputFormatterFactory)), new TypeBinding(typeof(CancellationToken))));
             return command;
         }
         public Command BuildGetAvailableExtensionPropertiesCommand() {
@@ -128,8 +130,8 @@ namespace ApiSdk.DirectoryRoles {
                 IsRequired = true
             };
             command.AddOption(outputOption);
-            var outputFilterOption = new Option<string>("--query");
-            command.AddOption(outputFilterOption);
+            var queryOption = new Option<string>("--query");
+            command.AddOption(queryOption);
             command.SetHandler(async (object[] parameters) => {
                 var skip = (int?) parameters[0];
                 var search = (string) parameters[1];
@@ -139,9 +141,10 @@ namespace ApiSdk.DirectoryRoles {
                 var select = (string[]) parameters[5];
                 var expand = (string[]) parameters[6];
                 var output = (FormatterType) parameters[7];
-                var outputFilterOption = (string) parameters[8];
-                var outputFormatterFactory = (IOutputFormatterFactory) parameters[9];
-                var cancellationToken = (CancellationToken) parameters[10];
+                var query = (string) parameters[8];
+                var outputFilter = (IOutputFilter) parameters[9];
+                var outputFormatterFactory = (IOutputFormatterFactory) parameters[10];
+                var cancellationToken = (CancellationToken) parameters[11];
                 var requestInfo = CreateGetRequestInformation(q => {
                     q.Skip = skip;
                     if (!String.IsNullOrEmpty(search)) q.Search = search;
@@ -153,8 +156,9 @@ namespace ApiSdk.DirectoryRoles {
                 });
                 var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: default, cancellationToken: cancellationToken);
                 var formatter = outputFormatterFactory.GetFormatter(output);
+                response = outputFilter?.FilterOutput(response, query) ?? response;
                 formatter.WriteOutput(response);
-            }, new CollectionBinding(skipOption, searchOption, filterOption, countOption, orderbyOption, selectOption, expandOption, outputOption, outputFilterOption, new TypeBinding(typeof(IOutputFormatterFactory)), new TypeBinding(typeof(CancellationToken))));
+            }, new CollectionBinding(skipOption, searchOption, filterOption, countOption, orderbyOption, selectOption, expandOption, outputOption, queryOption, new TypeBinding(typeof(IOutputFilter)), new TypeBinding(typeof(IOutputFormatterFactory)), new TypeBinding(typeof(CancellationToken))));
             return command;
         }
         public Command BuildValidatePropertiesCommand() {

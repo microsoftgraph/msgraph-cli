@@ -55,8 +55,8 @@ namespace ApiSdk.Education.Me.TaughtClasses.Ref {
                 IsRequired = true
             };
             command.AddOption(outputOption);
-            var outputFilterOption = new Option<string>("--query");
-            command.AddOption(outputFilterOption);
+            var queryOption = new Option<string>("--query");
+            command.AddOption(queryOption);
             command.SetHandler(async (object[] parameters) => {
                 var top = (int?) parameters[0];
                 var skip = (int?) parameters[1];
@@ -65,9 +65,10 @@ namespace ApiSdk.Education.Me.TaughtClasses.Ref {
                 var count = (bool?) parameters[4];
                 var orderby = (string[]) parameters[5];
                 var output = (FormatterType) parameters[6];
-                var outputFilterOption = (string) parameters[7];
-                var outputFormatterFactory = (IOutputFormatterFactory) parameters[8];
-                var cancellationToken = (CancellationToken) parameters[9];
+                var query = (string) parameters[7];
+                var outputFilter = (IOutputFilter) parameters[8];
+                var outputFormatterFactory = (IOutputFormatterFactory) parameters[9];
+                var cancellationToken = (CancellationToken) parameters[10];
                 var requestInfo = CreateGetRequestInformation(q => {
                     q.Top = top;
                     q.Skip = skip;
@@ -78,8 +79,9 @@ namespace ApiSdk.Education.Me.TaughtClasses.Ref {
                 });
                 var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: default, cancellationToken: cancellationToken);
                 var formatter = outputFormatterFactory.GetFormatter(output);
+                response = outputFilter?.FilterOutput(response, query) ?? response;
                 formatter.WriteOutput(response);
-            }, new CollectionBinding(topOption, skipOption, searchOption, filterOption, countOption, orderbyOption, outputOption, outputFilterOption, new TypeBinding(typeof(IOutputFormatterFactory)), new TypeBinding(typeof(CancellationToken))));
+            }, new CollectionBinding(topOption, skipOption, searchOption, filterOption, countOption, orderbyOption, outputOption, queryOption, new TypeBinding(typeof(IOutputFilter)), new TypeBinding(typeof(IOutputFormatterFactory)), new TypeBinding(typeof(CancellationToken))));
             return command;
         }
         /// <summary>
@@ -97,14 +99,15 @@ namespace ApiSdk.Education.Me.TaughtClasses.Ref {
                 IsRequired = true
             };
             command.AddOption(outputOption);
-            var outputFilterOption = new Option<string>("--query");
-            command.AddOption(outputFilterOption);
+            var queryOption = new Option<string>("--query");
+            command.AddOption(queryOption);
             command.SetHandler(async (object[] parameters) => {
                 var body = (string) parameters[0];
                 var output = (FormatterType) parameters[1];
-                var outputFilterOption = (string) parameters[2];
-                var outputFormatterFactory = (IOutputFormatterFactory) parameters[3];
-                var cancellationToken = (CancellationToken) parameters[4];
+                var query = (string) parameters[2];
+                var outputFilter = (IOutputFilter) parameters[3];
+                var outputFormatterFactory = (IOutputFormatterFactory) parameters[4];
+                var cancellationToken = (CancellationToken) parameters[5];
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<Ref>();
@@ -112,8 +115,9 @@ namespace ApiSdk.Education.Me.TaughtClasses.Ref {
                 });
                 var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: default, cancellationToken: cancellationToken);
                 var formatter = outputFormatterFactory.GetFormatter(output);
+                response = outputFilter?.FilterOutput(response, query) ?? response;
                 formatter.WriteOutput(response);
-            }, new CollectionBinding(bodyOption, outputOption, outputFilterOption, new TypeBinding(typeof(IOutputFormatterFactory)), new TypeBinding(typeof(CancellationToken))));
+            }, new CollectionBinding(bodyOption, outputOption, queryOption, new TypeBinding(typeof(IOutputFilter)), new TypeBinding(typeof(IOutputFormatterFactory)), new TypeBinding(typeof(CancellationToken))));
             return command;
         }
         /// <summary>

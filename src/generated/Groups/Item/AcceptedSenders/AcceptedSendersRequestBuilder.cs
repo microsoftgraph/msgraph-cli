@@ -61,8 +61,8 @@ namespace ApiSdk.Groups.Item.AcceptedSenders {
                 IsRequired = true
             };
             command.AddOption(outputOption);
-            var outputFilterOption = new Option<string>("--query");
-            command.AddOption(outputFilterOption);
+            var queryOption = new Option<string>("--query");
+            command.AddOption(queryOption);
             command.SetHandler(async (object[] parameters) => {
                 var groupId = (string) parameters[0];
                 var top = (int?) parameters[1];
@@ -72,9 +72,10 @@ namespace ApiSdk.Groups.Item.AcceptedSenders {
                 var orderby = (string[]) parameters[5];
                 var select = (string[]) parameters[6];
                 var output = (FormatterType) parameters[7];
-                var outputFilterOption = (string) parameters[8];
-                var outputFormatterFactory = (IOutputFormatterFactory) parameters[9];
-                var cancellationToken = (CancellationToken) parameters[10];
+                var query = (string) parameters[8];
+                var outputFilter = (IOutputFilter) parameters[9];
+                var outputFormatterFactory = (IOutputFormatterFactory) parameters[10];
+                var cancellationToken = (CancellationToken) parameters[11];
                 PathParameters.Clear();
                 PathParameters.Add("group_id", groupId);
                 var requestInfo = CreateGetRequestInformation(q => {
@@ -87,8 +88,9 @@ namespace ApiSdk.Groups.Item.AcceptedSenders {
                 });
                 var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: default, cancellationToken: cancellationToken);
                 var formatter = outputFormatterFactory.GetFormatter(output);
+                response = outputFilter?.FilterOutput(response, query) ?? response;
                 formatter.WriteOutput(response);
-            }, new CollectionBinding(groupIdOption, topOption, skipOption, filterOption, countOption, orderbyOption, selectOption, outputOption, outputFilterOption, new TypeBinding(typeof(IOutputFormatterFactory)), new TypeBinding(typeof(CancellationToken))));
+            }, new CollectionBinding(groupIdOption, topOption, skipOption, filterOption, countOption, orderbyOption, selectOption, outputOption, queryOption, new TypeBinding(typeof(IOutputFilter)), new TypeBinding(typeof(IOutputFormatterFactory)), new TypeBinding(typeof(CancellationToken))));
             return command;
         }
         public Command BuildRefCommand() {

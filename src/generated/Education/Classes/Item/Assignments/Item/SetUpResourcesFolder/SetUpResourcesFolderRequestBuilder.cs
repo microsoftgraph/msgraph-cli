@@ -39,15 +39,16 @@ namespace ApiSdk.Education.Classes.Item.Assignments.Item.SetUpResourcesFolder {
                 IsRequired = true
             };
             command.AddOption(outputOption);
-            var outputFilterOption = new Option<string>("--query");
-            command.AddOption(outputFilterOption);
+            var queryOption = new Option<string>("--query");
+            command.AddOption(queryOption);
             command.SetHandler(async (object[] parameters) => {
                 var educationClassId = (string) parameters[0];
                 var educationAssignmentId = (string) parameters[1];
                 var output = (FormatterType) parameters[2];
-                var outputFilterOption = (string) parameters[3];
-                var outputFormatterFactory = (IOutputFormatterFactory) parameters[4];
-                var cancellationToken = (CancellationToken) parameters[5];
+                var query = (string) parameters[3];
+                var outputFilter = (IOutputFilter) parameters[4];
+                var outputFormatterFactory = (IOutputFormatterFactory) parameters[5];
+                var cancellationToken = (CancellationToken) parameters[6];
                 PathParameters.Clear();
                 PathParameters.Add("educationClass_id", educationClassId);
                 PathParameters.Add("educationAssignment_id", educationAssignmentId);
@@ -55,8 +56,9 @@ namespace ApiSdk.Education.Classes.Item.Assignments.Item.SetUpResourcesFolder {
                 });
                 var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: default, cancellationToken: cancellationToken);
                 var formatter = outputFormatterFactory.GetFormatter(output);
+                response = outputFilter?.FilterOutput(response, query) ?? response;
                 formatter.WriteOutput(response);
-            }, new CollectionBinding(educationClassIdOption, educationAssignmentIdOption, outputOption, outputFilterOption, new TypeBinding(typeof(IOutputFormatterFactory)), new TypeBinding(typeof(CancellationToken))));
+            }, new CollectionBinding(educationClassIdOption, educationAssignmentIdOption, outputOption, queryOption, new TypeBinding(typeof(IOutputFilter)), new TypeBinding(typeof(IOutputFormatterFactory)), new TypeBinding(typeof(CancellationToken))));
             return command;
         }
         /// <summary>

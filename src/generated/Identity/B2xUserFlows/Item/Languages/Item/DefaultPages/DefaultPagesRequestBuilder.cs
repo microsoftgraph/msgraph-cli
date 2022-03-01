@@ -53,16 +53,17 @@ namespace ApiSdk.Identity.B2xUserFlows.Item.Languages.Item.DefaultPages {
                 IsRequired = true
             };
             command.AddOption(outputOption);
-            var outputFilterOption = new Option<string>("--query");
-            command.AddOption(outputFilterOption);
+            var queryOption = new Option<string>("--query");
+            command.AddOption(queryOption);
             command.SetHandler(async (object[] parameters) => {
                 var b2xIdentityUserFlowId = (string) parameters[0];
                 var userFlowLanguageConfigurationId = (string) parameters[1];
                 var body = (string) parameters[2];
                 var output = (FormatterType) parameters[3];
-                var outputFilterOption = (string) parameters[4];
-                var outputFormatterFactory = (IOutputFormatterFactory) parameters[5];
-                var cancellationToken = (CancellationToken) parameters[6];
+                var query = (string) parameters[4];
+                var outputFilter = (IOutputFilter) parameters[5];
+                var outputFormatterFactory = (IOutputFormatterFactory) parameters[6];
+                var cancellationToken = (CancellationToken) parameters[7];
                 PathParameters.Clear();
                 PathParameters.Add("b2xIdentityUserFlow_id", b2xIdentityUserFlowId);
                 PathParameters.Add("userFlowLanguageConfiguration_id", userFlowLanguageConfigurationId);
@@ -73,8 +74,9 @@ namespace ApiSdk.Identity.B2xUserFlows.Item.Languages.Item.DefaultPages {
                 });
                 var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: default, cancellationToken: cancellationToken);
                 var formatter = outputFormatterFactory.GetFormatter(output);
+                response = outputFilter?.FilterOutput(response, query) ?? response;
                 formatter.WriteOutput(response);
-            }, new CollectionBinding(b2xIdentityUserFlowIdOption, userFlowLanguageConfigurationIdOption, bodyOption, outputOption, outputFilterOption, new TypeBinding(typeof(IOutputFormatterFactory)), new TypeBinding(typeof(CancellationToken))));
+            }, new CollectionBinding(b2xIdentityUserFlowIdOption, userFlowLanguageConfigurationIdOption, bodyOption, outputOption, queryOption, new TypeBinding(typeof(IOutputFilter)), new TypeBinding(typeof(IOutputFormatterFactory)), new TypeBinding(typeof(CancellationToken))));
             return command;
         }
         /// <summary>
@@ -131,8 +133,8 @@ namespace ApiSdk.Identity.B2xUserFlows.Item.Languages.Item.DefaultPages {
                 IsRequired = true
             };
             command.AddOption(outputOption);
-            var outputFilterOption = new Option<string>("--query");
-            command.AddOption(outputFilterOption);
+            var queryOption = new Option<string>("--query");
+            command.AddOption(queryOption);
             command.SetHandler(async (object[] parameters) => {
                 var b2xIdentityUserFlowId = (string) parameters[0];
                 var userFlowLanguageConfigurationId = (string) parameters[1];
@@ -145,9 +147,10 @@ namespace ApiSdk.Identity.B2xUserFlows.Item.Languages.Item.DefaultPages {
                 var select = (string[]) parameters[8];
                 var expand = (string[]) parameters[9];
                 var output = (FormatterType) parameters[10];
-                var outputFilterOption = (string) parameters[11];
-                var outputFormatterFactory = (IOutputFormatterFactory) parameters[12];
-                var cancellationToken = (CancellationToken) parameters[13];
+                var query = (string) parameters[11];
+                var outputFilter = (IOutputFilter) parameters[12];
+                var outputFormatterFactory = (IOutputFormatterFactory) parameters[13];
+                var cancellationToken = (CancellationToken) parameters[14];
                 PathParameters.Clear();
                 PathParameters.Add("b2xIdentityUserFlow_id", b2xIdentityUserFlowId);
                 PathParameters.Add("userFlowLanguageConfiguration_id", userFlowLanguageConfigurationId);
@@ -163,8 +166,9 @@ namespace ApiSdk.Identity.B2xUserFlows.Item.Languages.Item.DefaultPages {
                 });
                 var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: default, cancellationToken: cancellationToken);
                 var formatter = outputFormatterFactory.GetFormatter(output);
+                response = outputFilter?.FilterOutput(response, query) ?? response;
                 formatter.WriteOutput(response);
-            }, new CollectionBinding(b2xIdentityUserFlowIdOption, userFlowLanguageConfigurationIdOption, topOption, skipOption, searchOption, filterOption, countOption, orderbyOption, selectOption, expandOption, outputOption, outputFilterOption, new TypeBinding(typeof(IOutputFormatterFactory)), new TypeBinding(typeof(CancellationToken))));
+            }, new CollectionBinding(b2xIdentityUserFlowIdOption, userFlowLanguageConfigurationIdOption, topOption, skipOption, searchOption, filterOption, countOption, orderbyOption, selectOption, expandOption, outputOption, queryOption, new TypeBinding(typeof(IOutputFilter)), new TypeBinding(typeof(IOutputFormatterFactory)), new TypeBinding(typeof(CancellationToken))));
             return command;
         }
         /// <summary>
