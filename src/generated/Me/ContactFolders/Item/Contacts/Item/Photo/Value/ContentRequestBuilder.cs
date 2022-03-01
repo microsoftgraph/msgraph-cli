@@ -40,8 +40,7 @@ namespace ApiSdk.Me.ContactFolders.Item.Contacts.Item.Photo.Value {
                 var contactFolderId = (string) parameters[0];
                 var contactId = (string) parameters[1];
                 var file = (FileInfo) parameters[2];
-                var outputFormatterFactory = (IOutputFormatterFactory) parameters[3];
-                var cancellationToken = (CancellationToken) parameters[4];
+                var cancellationToken = (CancellationToken) parameters[3];
                 PathParameters.Clear();
                 PathParameters.Add("contactFolder_id", contactFolderId);
                 PathParameters.Add("contact_id", contactId);
@@ -58,7 +57,7 @@ namespace ApiSdk.Me.ContactFolders.Item.Contacts.Item.Photo.Value {
                     await response.CopyToAsync(writeStream);
                     Console.WriteLine($"Content written to {file.FullName}.");
                 }
-            }, new CollectionBinding(contactFolderIdOption, contactIdOption, fileOption, new TypeBinding(typeof(IOutputFormatterFactory)), new TypeBinding(typeof(CancellationToken))));
+            }, new CollectionBinding(contactFolderIdOption, contactIdOption, fileOption, new TypeBinding(typeof(CancellationToken))));
             return command;
         }
         /// <summary>

@@ -40,8 +40,7 @@ namespace ApiSdk.Sites.Item.Onenote.Resources.Item.Content {
                 var siteId = (string) parameters[0];
                 var onenoteResourceId = (string) parameters[1];
                 var file = (FileInfo) parameters[2];
-                var outputFormatterFactory = (IOutputFormatterFactory) parameters[3];
-                var cancellationToken = (CancellationToken) parameters[4];
+                var cancellationToken = (CancellationToken) parameters[3];
                 PathParameters.Clear();
                 PathParameters.Add("site_id", siteId);
                 PathParameters.Add("onenoteResource_id", onenoteResourceId);
@@ -58,7 +57,7 @@ namespace ApiSdk.Sites.Item.Onenote.Resources.Item.Content {
                     await response.CopyToAsync(writeStream);
                     Console.WriteLine($"Content written to {file.FullName}.");
                 }
-            }, new CollectionBinding(siteIdOption, onenoteResourceIdOption, fileOption, new TypeBinding(typeof(IOutputFormatterFactory)), new TypeBinding(typeof(CancellationToken))));
+            }, new CollectionBinding(siteIdOption, onenoteResourceIdOption, fileOption, new TypeBinding(typeof(CancellationToken))));
             return command;
         }
         /// <summary>
