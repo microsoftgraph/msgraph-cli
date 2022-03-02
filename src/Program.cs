@@ -42,7 +42,7 @@ namespace Microsoft.Graph.Cli
             ConfigureAppConfiguration(configBuilder);
             var config = configBuilder.Build();
 
-            var authSettings = config.GetSection(Constants.AuthenticationSection).Get<AuthenticationOptions>();
+            var authSettings = config.GetSection(nameof(AuthenticationOptions)).Get<AuthenticationOptions>();
             var authServiceFactory = new AuthenticationServiceFactory(new PathUtility());
             var authStrategy = AuthenticationStrategy.DeviceCode;
 
@@ -125,9 +125,10 @@ namespace Microsoft.Graph.Cli
             }).ConfigureAppConfiguration((ctx, config) => {
                 ConfigureAppConfiguration(config);
             }).ConfigureServices((ctx, services) => {
-                var authSection = ctx.Configuration.GetSection(Constants.AuthenticationSection);
+                var authSection = ctx.Configuration.GetSection(nameof(AuthenticationOptions));
                 services.Configure<AuthenticationOptions>(authSection);
                 services.AddSingleton<IPathUtility, PathUtility>();
+                services.AddSingleton<IAuthenticationCacheUtility, AuthenticationCacheUtility>();
                 services.AddSingleton<IOutputFilter, JmesPathOutputFilter>();
                 services.AddSingleton<JmesPath>();
                 services.AddSingleton<IOutputFormatterFactory, OutputFormatterFactory>();
@@ -136,9 +137,12 @@ namespace Microsoft.Graph.Cli
         static void ConfigureAppConfiguration(IConfigurationBuilder builder) {
             builder.Sources.Clear();
             builder.AddJsonFile("app-settings.json", optional: false);
-            var dataDir = new PathUtility().GetApplicationDataDirectory();
+            var pathUtil = new PathUtility();
+            var authCache = new AuthenticationCacheUtility(pathUtil);
+            var dataDir = pathUtil.GetApplicationDataDirectory();
             var userConfigPath = Path.Combine(dataDir, "settings.json");
             builder.AddJsonFile(userConfigPath, optional: true);
+            builder.AddJsonFile(authCache.GetAuthenticationCacheFilePath(), optional: true, reloadOnChange: true);
             builder.AddEnvironmentVariables(prefix: "MGC_");
         }
     }
