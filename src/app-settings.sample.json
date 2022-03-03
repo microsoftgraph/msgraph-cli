@@ -1,5 +1,5 @@
 {
-    "Authentication": {
+    "AuthenticationOptions": {
         "ClientId": "client id",
         "TenantId": "tenant id"
     }
