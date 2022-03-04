@@ -28,7 +28,7 @@
     <PackageReference Include="Microsoft.Kiota.Authentication.Azure" Version="1.0.8" />
     <PackageReference Include="Microsoft.Kiota.Http.HttpClientLibrary" Version="1.0.20" />
     <PackageReference Include="Microsoft.Kiota.Serialization.Json" Version="1.0.12" />
-    <PackageReference Include="System.CommandLine.Hosting" Version="0.4.0-alpha.21617.1" />
+    <PackageReference Include="System.CommandLine.Hosting" Version="0.4.0-alpha.22114.1" />
   </ItemGroup>
 
   <ItemGroup>
