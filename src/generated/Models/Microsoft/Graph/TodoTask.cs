@@ -18,7 +18,7 @@ namespace ApiSdk.Models.Microsoft.Graph {
         /// <summary>The collection of open extensions defined for the task. Nullable.</summary>
         public List<Extension> Extensions { get; set; }
         /// <summary>The importance of the task. Possible values are: low, normal, high.</summary>
-        public Importance? Importance { get; set; }
+        public ApiSdk.Models.Microsoft.Graph.Importance? Importance { get; set; }
         /// <summary>Set to true if an alert is set to remind the user of the task.</summary>
         public bool? IsReminderOn { get; set; }
         /// <summary>The date and time when the task was last modified. By default, it is in UTC. You can provide a custom time zone in the request header. The property value uses ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2020 would look like this: '2020-01-01T00:00:00Z'.</summary>
@@ -34,22 +34,30 @@ namespace ApiSdk.Models.Microsoft.Graph {
         /// <summary>A brief description of the task.</summary>
         public string Title { get; set; }
         /// <summary>
+        /// Creates a new instance of the appropriate class based on discriminator value
+        /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
+        /// </summary>
+        public static new TodoTask CreateFromDiscriminatorValue(IParseNode parseNode) {
+            _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
+            return new TodoTask();
+        }
+        /// <summary>
         /// The deserialization information for the current model
         /// </summary>
         public new IDictionary<string, Action<T, IParseNode>> GetFieldDeserializers<T>() {
             return new Dictionary<string, Action<T, IParseNode>>(base.GetFieldDeserializers<T>()) {
-                {"body", (o,n) => { (o as TodoTask).Body = n.GetObjectValue<ItemBody>(); } },
+                {"body", (o,n) => { (o as TodoTask).Body = n.GetObjectValue<ItemBody>(ItemBody.CreateFromDiscriminatorValue); } },
                 {"bodyLastModifiedDateTime", (o,n) => { (o as TodoTask).BodyLastModifiedDateTime = n.GetDateTimeOffsetValue(); } },
-                {"completedDateTime", (o,n) => { (o as TodoTask).CompletedDateTime = n.GetObjectValue<DateTimeTimeZone>(); } },
+                {"completedDateTime", (o,n) => { (o as TodoTask).CompletedDateTime = n.GetObjectValue<DateTimeTimeZone>(DateTimeTimeZone.CreateFromDiscriminatorValue); } },
                 {"createdDateTime", (o,n) => { (o as TodoTask).CreatedDateTime = n.GetDateTimeOffsetValue(); } },
-                {"dueDateTime", (o,n) => { (o as TodoTask).DueDateTime = n.GetObjectValue<DateTimeTimeZone>(); } },
-                {"extensions", (o,n) => { (o as TodoTask).Extensions = n.GetCollectionOfObjectValues<Extension>().ToList(); } },
+                {"dueDateTime", (o,n) => { (o as TodoTask).DueDateTime = n.GetObjectValue<DateTimeTimeZone>(DateTimeTimeZone.CreateFromDiscriminatorValue); } },
+                {"extensions", (o,n) => { (o as TodoTask).Extensions = n.GetCollectionOfObjectValues<Extension>(Extension.CreateFromDiscriminatorValue).ToList(); } },
                 {"importance", (o,n) => { (o as TodoTask).Importance = n.GetEnumValue<Importance>(); } },
                 {"isReminderOn", (o,n) => { (o as TodoTask).IsReminderOn = n.GetBoolValue(); } },
                 {"lastModifiedDateTime", (o,n) => { (o as TodoTask).LastModifiedDateTime = n.GetDateTimeOffsetValue(); } },
-                {"linkedResources", (o,n) => { (o as TodoTask).LinkedResources = n.GetCollectionOfObjectValues<LinkedResource>().ToList(); } },
-                {"recurrence", (o,n) => { (o as TodoTask).Recurrence = n.GetObjectValue<PatternedRecurrence>(); } },
-                {"reminderDateTime", (o,n) => { (o as TodoTask).ReminderDateTime = n.GetObjectValue<DateTimeTimeZone>(); } },
+                {"linkedResources", (o,n) => { (o as TodoTask).LinkedResources = n.GetCollectionOfObjectValues<LinkedResource>(LinkedResource.CreateFromDiscriminatorValue).ToList(); } },
+                {"recurrence", (o,n) => { (o as TodoTask).Recurrence = n.GetObjectValue<PatternedRecurrence>(PatternedRecurrence.CreateFromDiscriminatorValue); } },
+                {"reminderDateTime", (o,n) => { (o as TodoTask).ReminderDateTime = n.GetObjectValue<DateTimeTimeZone>(DateTimeTimeZone.CreateFromDiscriminatorValue); } },
                 {"status", (o,n) => { (o as TodoTask).Status = n.GetEnumValue<TaskStatus>(); } },
                 {"title", (o,n) => { (o as TodoTask).Title = n.GetStringValue(); } },
             };

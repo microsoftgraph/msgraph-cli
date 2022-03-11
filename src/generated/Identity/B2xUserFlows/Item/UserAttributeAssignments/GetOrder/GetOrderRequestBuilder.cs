@@ -37,22 +37,31 @@ namespace ApiSdk.Identity.B2xUserFlows.Item.UserAttributeAssignments.GetOrder {
             command.AddOption(outputOption);
             var queryOption = new Option<string>("--query");
             command.AddOption(queryOption);
+            var jsonNoIndentOption = new Option<bool>("--json-no-indent", r => {
+                if (bool.TryParse(r.Tokens.Select(t => t.Value).LastOrDefault(), out var value)) {
+                    return value;
+                }
+                return true;
+            }, description: "Disable indentation for the JSON output formatter.");
+            command.AddOption(jsonNoIndentOption);
             command.SetHandler(async (object[] parameters) => {
                 var b2xIdentityUserFlowId = (string) parameters[0];
                 var output = (FormatterType) parameters[1];
                 var query = (string) parameters[2];
-                var outputFilter = (IOutputFilter) parameters[3];
-                var outputFormatterFactory = (IOutputFormatterFactory) parameters[4];
-                var cancellationToken = (CancellationToken) parameters[5];
+                var jsonNoIndent = (bool) parameters[3];
+                var outputFilter = (IOutputFilter) parameters[4];
+                var outputFormatterFactory = (IOutputFormatterFactory) parameters[5];
+                var cancellationToken = (CancellationToken) parameters[6];
                 PathParameters.Clear();
                 PathParameters.Add("b2xIdentityUserFlow_id", b2xIdentityUserFlowId);
                 var requestInfo = CreateGetRequestInformation(q => {
                 });
                 var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: default, cancellationToken: cancellationToken);
                 var formatter = outputFormatterFactory.GetFormatter(output);
-                response = outputFilter?.FilterOutput(response, query) ?? response;
-                formatter.WriteOutput(response);
-            }, new CollectionBinding(b2xIdentityUserFlowIdOption, outputOption, queryOption, new TypeBinding(typeof(IOutputFilter)), new TypeBinding(typeof(IOutputFormatterFactory)), new TypeBinding(typeof(CancellationToken))));
+                response = await outputFilter?.FilterOutputAsync(response, query, cancellationToken) ?? response;
+                var formatterOptions = output.GetOutputFormatterOptions(new FormatterOptionsModel(!jsonNoIndent));
+                await formatter.WriteOutputAsync(response, formatterOptions, cancellationToken);
+            }, new CollectionBinding(b2xIdentityUserFlowIdOption, outputOption, queryOption, jsonNoIndentOption, new TypeBinding(typeof(IOutputFilter)), new TypeBinding(typeof(IOutputFormatterFactory)), new TypeBinding(typeof(CancellationToken))));
             return command;
         }
         /// <summary>
@@ -84,23 +93,27 @@ namespace ApiSdk.Identity.B2xUserFlows.Item.UserAttributeAssignments.GetOrder {
             return requestInfo;
         }
         /// <summary>Union type wrapper for classes assignmentOrder</summary>
-        public class GetOrderResponse : IParsable {
+        public class GetOrderResponse : IAdditionalDataHolder, IParsable {
             /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
             public IDictionary<string, object> AdditionalData { get; set; }
             /// <summary>Union type representation for type assignmentOrder</summary>
-            public AssignmentOrder AssignmentOrder { get; set; }
+            public ApiSdk.Models.Microsoft.Graph.AssignmentOrder AssignmentOrder { get; set; }
             /// <summary>
             /// Instantiates a new getOrderResponse and sets the default values.
             /// </summary>
             public GetOrderResponse() {
                 AdditionalData = new Dictionary<string, object>();
             }
+            public static GetOrderResponse CreateFromDiscriminatorValue(IParseNode parseNode) {
+                _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
+                return new GetOrderResponse();
+            }
             /// <summary>
             /// The deserialization information for the current model
             /// </summary>
             public IDictionary<string, Action<T, IParseNode>> GetFieldDeserializers<T>() {
                 return new Dictionary<string, Action<T, IParseNode>> {
-                    {"assignmentOrder", (o,n) => { (o as GetOrderResponse).AssignmentOrder = n.GetObjectValue<AssignmentOrder>(); } },
+                    {"assignmentOrder", (o,n) => { (o as GetOrderResponse).AssignmentOrder = n.GetObjectValue<ApiSdk.Models.Microsoft.Graph.AssignmentOrder>(ApiSdk.Models.Microsoft.Graph.AssignmentOrder.CreateFromDiscriminatorValue); } },
                 };
             }
             /// <summary>
@@ -109,7 +122,7 @@ namespace ApiSdk.Identity.B2xUserFlows.Item.UserAttributeAssignments.GetOrder {
             /// </summary>
             public void Serialize(ISerializationWriter writer) {
                 _ = writer ?? throw new ArgumentNullException(nameof(writer));
-                writer.WriteObjectValue<AssignmentOrder>("assignmentOrder", AssignmentOrder);
+                writer.WriteObjectValue<ApiSdk.Models.Microsoft.Graph.AssignmentOrder>("assignmentOrder", AssignmentOrder);
                 writer.WriteAdditionalData(AdditionalData);
             }
         }

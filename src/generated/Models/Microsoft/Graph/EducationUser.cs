@@ -45,7 +45,7 @@ namespace ApiSdk.Models.Microsoft.Graph {
         /// <summary>Specifies password policies for the user. See standard [user] resource for additional details.</summary>
         public string PasswordPolicies { get; set; }
         /// <summary>Specifies the password profile for the user. The profile contains the user's password. This property is required when a user is created. See standard [user] resource for additional details.</summary>
-        public PasswordProfile PasswordProfile { get; set; }
+        public ApiSdk.Models.Microsoft.Graph.PasswordProfile PasswordProfile { get; set; }
         /// <summary>The preferred language for the user. Should follow ISO 639-1 Code; for example, 'en-US'.</summary>
         public string PreferredLanguage { get; set; }
         /// <summary>Default role for a user. The user's role might be different in an individual class. Possible values are: student, teacher, faculty. Supports /$filter.</summary>
@@ -73,52 +73,60 @@ namespace ApiSdk.Models.Microsoft.Graph {
         /// <summary>A two-letter country code ([ISO 3166 Alpha-2]). Required for users who will be assigned licenses. Not nullable. Supports /$filter.</summary>
         public string UsageLocation { get; set; }
         /// <summary>The directory user corresponding to this user.</summary>
-        public User User { get; set; }
+        public ApiSdk.Models.Microsoft.Graph.User User { get; set; }
         /// <summary>The user principal name (UPN) for the user. Supports $filter and $orderby. See standard [user] resource for additional details.</summary>
         public string UserPrincipalName { get; set; }
         /// <summary>A string value that can be used to classify user types in your directory, such as 'Member' and 'Guest'. Supports /$filter.</summary>
         public string UserType { get; set; }
+        /// <summary>
+        /// Creates a new instance of the appropriate class based on discriminator value
+        /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
+        /// </summary>
+        public static new EducationUser CreateFromDiscriminatorValue(IParseNode parseNode) {
+            _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
+            return new EducationUser();
+        }
         /// <summary>
         /// The deserialization information for the current model
         /// </summary>
         public new IDictionary<string, Action<T, IParseNode>> GetFieldDeserializers<T>() {
             return new Dictionary<string, Action<T, IParseNode>>(base.GetFieldDeserializers<T>()) {
                 {"accountEnabled", (o,n) => { (o as EducationUser).AccountEnabled = n.GetBoolValue(); } },
-                {"assignedLicenses", (o,n) => { (o as EducationUser).AssignedLicenses = n.GetCollectionOfObjectValues<AssignedLicense>().ToList(); } },
-                {"assignedPlans", (o,n) => { (o as EducationUser).AssignedPlans = n.GetCollectionOfObjectValues<AssignedPlan>().ToList(); } },
-                {"assignments", (o,n) => { (o as EducationUser).Assignments = n.GetCollectionOfObjectValues<EducationAssignment>().ToList(); } },
+                {"assignedLicenses", (o,n) => { (o as EducationUser).AssignedLicenses = n.GetCollectionOfObjectValues<AssignedLicense>(AssignedLicense.CreateFromDiscriminatorValue).ToList(); } },
+                {"assignedPlans", (o,n) => { (o as EducationUser).AssignedPlans = n.GetCollectionOfObjectValues<AssignedPlan>(AssignedPlan.CreateFromDiscriminatorValue).ToList(); } },
+                {"assignments", (o,n) => { (o as EducationUser).Assignments = n.GetCollectionOfObjectValues<EducationAssignment>(EducationAssignment.CreateFromDiscriminatorValue).ToList(); } },
                 {"businessPhones", (o,n) => { (o as EducationUser).BusinessPhones = n.GetCollectionOfPrimitiveValues<string>().ToList(); } },
-                {"classes", (o,n) => { (o as EducationUser).Classes = n.GetCollectionOfObjectValues<EducationClass>().ToList(); } },
-                {"createdBy", (o,n) => { (o as EducationUser).CreatedBy = n.GetObjectValue<IdentitySet>(); } },
+                {"classes", (o,n) => { (o as EducationUser).Classes = n.GetCollectionOfObjectValues<EducationClass>(EducationClass.CreateFromDiscriminatorValue).ToList(); } },
+                {"createdBy", (o,n) => { (o as EducationUser).CreatedBy = n.GetObjectValue<IdentitySet>(IdentitySet.CreateFromDiscriminatorValue); } },
                 {"department", (o,n) => { (o as EducationUser).Department = n.GetStringValue(); } },
                 {"displayName", (o,n) => { (o as EducationUser).DisplayName = n.GetStringValue(); } },
                 {"externalSource", (o,n) => { (o as EducationUser).ExternalSource = n.GetEnumValue<EducationExternalSource>(); } },
                 {"externalSourceDetail", (o,n) => { (o as EducationUser).ExternalSourceDetail = n.GetStringValue(); } },
                 {"givenName", (o,n) => { (o as EducationUser).GivenName = n.GetStringValue(); } },
                 {"mail", (o,n) => { (o as EducationUser).Mail = n.GetStringValue(); } },
-                {"mailingAddress", (o,n) => { (o as EducationUser).MailingAddress = n.GetObjectValue<PhysicalAddress>(); } },
+                {"mailingAddress", (o,n) => { (o as EducationUser).MailingAddress = n.GetObjectValue<PhysicalAddress>(PhysicalAddress.CreateFromDiscriminatorValue); } },
                 {"mailNickname", (o,n) => { (o as EducationUser).MailNickname = n.GetStringValue(); } },
                 {"middleName", (o,n) => { (o as EducationUser).MiddleName = n.GetStringValue(); } },
                 {"mobilePhone", (o,n) => { (o as EducationUser).MobilePhone = n.GetStringValue(); } },
                 {"officeLocation", (o,n) => { (o as EducationUser).OfficeLocation = n.GetStringValue(); } },
-                {"onPremisesInfo", (o,n) => { (o as EducationUser).OnPremisesInfo = n.GetObjectValue<EducationOnPremisesInfo>(); } },
+                {"onPremisesInfo", (o,n) => { (o as EducationUser).OnPremisesInfo = n.GetObjectValue<EducationOnPremisesInfo>(EducationOnPremisesInfo.CreateFromDiscriminatorValue); } },
                 {"passwordPolicies", (o,n) => { (o as EducationUser).PasswordPolicies = n.GetStringValue(); } },
-                {"passwordProfile", (o,n) => { (o as EducationUser).PasswordProfile = n.GetObjectValue<PasswordProfile>(); } },
+                {"passwordProfile", (o,n) => { (o as EducationUser).PasswordProfile = n.GetObjectValue<ApiSdk.Models.Microsoft.Graph.PasswordProfile>(ApiSdk.Models.Microsoft.Graph.PasswordProfile.CreateFromDiscriminatorValue); } },
                 {"preferredLanguage", (o,n) => { (o as EducationUser).PreferredLanguage = n.GetStringValue(); } },
                 {"primaryRole", (o,n) => { (o as EducationUser).PrimaryRole = n.GetEnumValue<EducationUserRole>(); } },
-                {"provisionedPlans", (o,n) => { (o as EducationUser).ProvisionedPlans = n.GetCollectionOfObjectValues<ProvisionedPlan>().ToList(); } },
+                {"provisionedPlans", (o,n) => { (o as EducationUser).ProvisionedPlans = n.GetCollectionOfObjectValues<ProvisionedPlan>(ProvisionedPlan.CreateFromDiscriminatorValue).ToList(); } },
                 {"refreshTokensValidFromDateTime", (o,n) => { (o as EducationUser).RefreshTokensValidFromDateTime = n.GetDateTimeOffsetValue(); } },
-                {"relatedContacts", (o,n) => { (o as EducationUser).RelatedContacts = n.GetCollectionOfObjectValues<RelatedContact>().ToList(); } },
-                {"residenceAddress", (o,n) => { (o as EducationUser).ResidenceAddress = n.GetObjectValue<PhysicalAddress>(); } },
-                {"rubrics", (o,n) => { (o as EducationUser).Rubrics = n.GetCollectionOfObjectValues<EducationRubric>().ToList(); } },
-                {"schools", (o,n) => { (o as EducationUser).Schools = n.GetCollectionOfObjectValues<EducationSchool>().ToList(); } },
+                {"relatedContacts", (o,n) => { (o as EducationUser).RelatedContacts = n.GetCollectionOfObjectValues<RelatedContact>(RelatedContact.CreateFromDiscriminatorValue).ToList(); } },
+                {"residenceAddress", (o,n) => { (o as EducationUser).ResidenceAddress = n.GetObjectValue<PhysicalAddress>(PhysicalAddress.CreateFromDiscriminatorValue); } },
+                {"rubrics", (o,n) => { (o as EducationUser).Rubrics = n.GetCollectionOfObjectValues<EducationRubric>(EducationRubric.CreateFromDiscriminatorValue).ToList(); } },
+                {"schools", (o,n) => { (o as EducationUser).Schools = n.GetCollectionOfObjectValues<EducationSchool>(EducationSchool.CreateFromDiscriminatorValue).ToList(); } },
                 {"showInAddressList", (o,n) => { (o as EducationUser).ShowInAddressList = n.GetBoolValue(); } },
-                {"student", (o,n) => { (o as EducationUser).Student = n.GetObjectValue<EducationStudent>(); } },
+                {"student", (o,n) => { (o as EducationUser).Student = n.GetObjectValue<EducationStudent>(EducationStudent.CreateFromDiscriminatorValue); } },
                 {"surname", (o,n) => { (o as EducationUser).Surname = n.GetStringValue(); } },
-                {"taughtClasses", (o,n) => { (o as EducationUser).TaughtClasses = n.GetCollectionOfObjectValues<EducationClass>().ToList(); } },
-                {"teacher", (o,n) => { (o as EducationUser).Teacher = n.GetObjectValue<EducationTeacher>(); } },
+                {"taughtClasses", (o,n) => { (o as EducationUser).TaughtClasses = n.GetCollectionOfObjectValues<EducationClass>(EducationClass.CreateFromDiscriminatorValue).ToList(); } },
+                {"teacher", (o,n) => { (o as EducationUser).Teacher = n.GetObjectValue<EducationTeacher>(EducationTeacher.CreateFromDiscriminatorValue); } },
                 {"usageLocation", (o,n) => { (o as EducationUser).UsageLocation = n.GetStringValue(); } },
-                {"user", (o,n) => { (o as EducationUser).User = n.GetObjectValue<User>(); } },
+                {"user", (o,n) => { (o as EducationUser).User = n.GetObjectValue<ApiSdk.Models.Microsoft.Graph.User>(ApiSdk.Models.Microsoft.Graph.User.CreateFromDiscriminatorValue); } },
                 {"userPrincipalName", (o,n) => { (o as EducationUser).UserPrincipalName = n.GetStringValue(); } },
                 {"userType", (o,n) => { (o as EducationUser).UserType = n.GetStringValue(); } },
             };
@@ -150,7 +158,7 @@ namespace ApiSdk.Models.Microsoft.Graph {
             writer.WriteStringValue("officeLocation", OfficeLocation);
             writer.WriteObjectValue<EducationOnPremisesInfo>("onPremisesInfo", OnPremisesInfo);
             writer.WriteStringValue("passwordPolicies", PasswordPolicies);
-            writer.WriteObjectValue<PasswordProfile>("passwordProfile", PasswordProfile);
+            writer.WriteObjectValue<ApiSdk.Models.Microsoft.Graph.PasswordProfile>("passwordProfile", PasswordProfile);
             writer.WriteStringValue("preferredLanguage", PreferredLanguage);
             writer.WriteEnumValue<EducationUserRole>("primaryRole", PrimaryRole);
             writer.WriteCollectionOfObjectValues<ProvisionedPlan>("provisionedPlans", ProvisionedPlans);
@@ -165,7 +173,7 @@ namespace ApiSdk.Models.Microsoft.Graph {
             writer.WriteCollectionOfObjectValues<EducationClass>("taughtClasses", TaughtClasses);
             writer.WriteObjectValue<EducationTeacher>("teacher", Teacher);
             writer.WriteStringValue("usageLocation", UsageLocation);
-            writer.WriteObjectValue<User>("user", User);
+            writer.WriteObjectValue<ApiSdk.Models.Microsoft.Graph.User>("user", User);
             writer.WriteStringValue("userPrincipalName", UserPrincipalName);
             writer.WriteStringValue("userType", UserType);
         }

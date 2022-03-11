@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 namespace ApiSdk.Models.Microsoft.Graph {
-    public class ChatMessagePolicyViolation : IParsable {
+    public class ChatMessagePolicyViolation : IAdditionalDataHolder, IParsable {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>The action taken by the DLP provider on the message with sensitive content. Supported values are: NoneNotifySender -- Inform the sender of the violation but allow readers to read the message.BlockAccess -- Block readers from reading the message.BlockAccessExternal -- Block users outside the organization from reading the message, while allowing users within the organization to read the message.</summary>
@@ -24,13 +24,21 @@ namespace ApiSdk.Models.Microsoft.Graph {
             AdditionalData = new Dictionary<string, object>();
         }
         /// <summary>
+        /// Creates a new instance of the appropriate class based on discriminator value
+        /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
+        /// </summary>
+        public static ChatMessagePolicyViolation CreateFromDiscriminatorValue(IParseNode parseNode) {
+            _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
+            return new ChatMessagePolicyViolation();
+        }
+        /// <summary>
         /// The deserialization information for the current model
         /// </summary>
         public IDictionary<string, Action<T, IParseNode>> GetFieldDeserializers<T>() {
             return new Dictionary<string, Action<T, IParseNode>> {
                 {"dlpAction", (o,n) => { (o as ChatMessagePolicyViolation).DlpAction = n.GetEnumValue<ChatMessagePolicyViolationDlpActionTypes>(); } },
                 {"justificationText", (o,n) => { (o as ChatMessagePolicyViolation).JustificationText = n.GetStringValue(); } },
-                {"policyTip", (o,n) => { (o as ChatMessagePolicyViolation).PolicyTip = n.GetObjectValue<ChatMessagePolicyViolationPolicyTip>(); } },
+                {"policyTip", (o,n) => { (o as ChatMessagePolicyViolation).PolicyTip = n.GetObjectValue<ChatMessagePolicyViolationPolicyTip>(ChatMessagePolicyViolationPolicyTip.CreateFromDiscriminatorValue); } },
                 {"userAction", (o,n) => { (o as ChatMessagePolicyViolation).UserAction = n.GetEnumValue<ChatMessagePolicyViolationUserActionTypes>(); } },
                 {"verdictDetails", (o,n) => { (o as ChatMessagePolicyViolation).VerdictDetails = n.GetEnumValue<ChatMessagePolicyViolationVerdictDetailsTypes>(); } },
             };

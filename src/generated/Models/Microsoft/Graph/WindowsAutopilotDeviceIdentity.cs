@@ -12,7 +12,7 @@ namespace ApiSdk.Models.Microsoft.Graph {
         /// <summary>Display Name</summary>
         public string DisplayName { get; set; }
         /// <summary>Intune enrollment state of the Windows autopilot device. Possible values are: unknown, enrolled, pendingReset, failed, notContacted, blocked.</summary>
-        public EnrollmentState? EnrollmentState { get; set; }
+        public ApiSdk.Models.Microsoft.Graph.EnrollmentState? EnrollmentState { get; set; }
         /// <summary>Group Tag of the Windows autopilot device.</summary>
         public string GroupTag { get; set; }
         /// <summary>Intune Last Contacted Date Time of the Windows autopilot device.</summary>
@@ -37,6 +37,14 @@ namespace ApiSdk.Models.Microsoft.Graph {
         public string SystemFamily { get; set; }
         /// <summary>User Principal Name.</summary>
         public string UserPrincipalName { get; set; }
+        /// <summary>
+        /// Creates a new instance of the appropriate class based on discriminator value
+        /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
+        /// </summary>
+        public static new WindowsAutopilotDeviceIdentity CreateFromDiscriminatorValue(IParseNode parseNode) {
+            _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
+            return new WindowsAutopilotDeviceIdentity();
+        }
         /// <summary>
         /// The deserialization information for the current model
         /// </summary>

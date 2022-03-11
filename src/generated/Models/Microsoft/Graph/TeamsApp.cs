@@ -14,11 +14,19 @@ namespace ApiSdk.Models.Microsoft.Graph {
         /// <summary>The ID of the catalog provided by the app developer in the Microsoft Teams zip app package.</summary>
         public string ExternalId { get; set; }
         /// <summary>
+        /// Creates a new instance of the appropriate class based on discriminator value
+        /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
+        /// </summary>
+        public static new TeamsApp CreateFromDiscriminatorValue(IParseNode parseNode) {
+            _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
+            return new TeamsApp();
+        }
+        /// <summary>
         /// The deserialization information for the current model
         /// </summary>
         public new IDictionary<string, Action<T, IParseNode>> GetFieldDeserializers<T>() {
             return new Dictionary<string, Action<T, IParseNode>>(base.GetFieldDeserializers<T>()) {
-                {"appDefinitions", (o,n) => { (o as TeamsApp).AppDefinitions = n.GetCollectionOfObjectValues<TeamsAppDefinition>().ToList(); } },
+                {"appDefinitions", (o,n) => { (o as TeamsApp).AppDefinitions = n.GetCollectionOfObjectValues<TeamsAppDefinition>(TeamsAppDefinition.CreateFromDiscriminatorValue).ToList(); } },
                 {"displayName", (o,n) => { (o as TeamsApp).DisplayName = n.GetStringValue(); } },
                 {"distributionMethod", (o,n) => { (o as TeamsApp).DistributionMethod = n.GetEnumValue<TeamsAppDistributionMethod>(); } },
                 {"externalId", (o,n) => { (o as TeamsApp).ExternalId = n.GetStringValue(); } },

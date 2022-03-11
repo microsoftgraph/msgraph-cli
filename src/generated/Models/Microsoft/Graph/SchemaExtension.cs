@@ -16,13 +16,21 @@ namespace ApiSdk.Models.Microsoft.Graph {
         /// <summary>Set of Microsoft Graph types (that can support extensions) that the schema extension can be applied to. Select from administrativeUnit, contact, device, event, group, message, organization, post, or user.</summary>
         public List<string> TargetTypes { get; set; }
         /// <summary>
+        /// Creates a new instance of the appropriate class based on discriminator value
+        /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
+        /// </summary>
+        public static new SchemaExtension CreateFromDiscriminatorValue(IParseNode parseNode) {
+            _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
+            return new SchemaExtension();
+        }
+        /// <summary>
         /// The deserialization information for the current model
         /// </summary>
         public new IDictionary<string, Action<T, IParseNode>> GetFieldDeserializers<T>() {
             return new Dictionary<string, Action<T, IParseNode>>(base.GetFieldDeserializers<T>()) {
                 {"description", (o,n) => { (o as SchemaExtension).Description = n.GetStringValue(); } },
                 {"owner", (o,n) => { (o as SchemaExtension).Owner = n.GetStringValue(); } },
-                {"properties", (o,n) => { (o as SchemaExtension).Properties = n.GetCollectionOfObjectValues<ExtensionSchemaProperty>().ToList(); } },
+                {"properties", (o,n) => { (o as SchemaExtension).Properties = n.GetCollectionOfObjectValues<ExtensionSchemaProperty>(ExtensionSchemaProperty.CreateFromDiscriminatorValue).ToList(); } },
                 {"status", (o,n) => { (o as SchemaExtension).Status = n.GetStringValue(); } },
                 {"targetTypes", (o,n) => { (o as SchemaExtension).TargetTypes = n.GetCollectionOfPrimitiveValues<string>().ToList(); } },
             };

@@ -20,9 +20,9 @@ namespace ApiSdk.Models.Microsoft.Graph {
         /// <summary>Details of each property that was modified in this provisioning action on this object.</summary>
         public List<ModifiedProperty> ModifiedProperties { get; set; }
         /// <summary>Indicates the activity name or the operation name. Possible values are: create, update, delete, stageddelete, disable, other and unknownFutureValue. For a list of activities logged, refer to Azure AD activity list.</summary>
-        public ProvisioningAction? ProvisioningAction { get; set; }
+        public ApiSdk.Models.Microsoft.Graph.ProvisioningAction? ProvisioningAction { get; set; }
         /// <summary>Details of provisioning status.</summary>
-        public ProvisioningStatusInfo ProvisioningStatusInfo { get; set; }
+        public ApiSdk.Models.Microsoft.Graph.ProvisioningStatusInfo ProvisioningStatusInfo { get; set; }
         /// <summary>Details of each step in provisioning.</summary>
         public List<ProvisioningStep> ProvisioningSteps { get; set; }
         /// <summary>Represents the service principal used for provisioning.</summary>
@@ -38,6 +38,14 @@ namespace ApiSdk.Models.Microsoft.Graph {
         /// <summary>Unique Azure AD tenant ID.</summary>
         public string TenantId { get; set; }
         /// <summary>
+        /// Creates a new instance of the appropriate class based on discriminator value
+        /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
+        /// </summary>
+        public static new ProvisioningObjectSummary CreateFromDiscriminatorValue(IParseNode parseNode) {
+            _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
+            return new ProvisioningObjectSummary();
+        }
+        /// <summary>
         /// The deserialization information for the current model
         /// </summary>
         public new IDictionary<string, Action<T, IParseNode>> GetFieldDeserializers<T>() {
@@ -46,17 +54,17 @@ namespace ApiSdk.Models.Microsoft.Graph {
                 {"changeId", (o,n) => { (o as ProvisioningObjectSummary).ChangeId = n.GetStringValue(); } },
                 {"cycleId", (o,n) => { (o as ProvisioningObjectSummary).CycleId = n.GetStringValue(); } },
                 {"durationInMilliseconds", (o,n) => { (o as ProvisioningObjectSummary).DurationInMilliseconds = n.GetIntValue(); } },
-                {"initiatedBy", (o,n) => { (o as ProvisioningObjectSummary).InitiatedBy = n.GetObjectValue<Initiator>(); } },
+                {"initiatedBy", (o,n) => { (o as ProvisioningObjectSummary).InitiatedBy = n.GetObjectValue<Initiator>(Initiator.CreateFromDiscriminatorValue); } },
                 {"jobId", (o,n) => { (o as ProvisioningObjectSummary).JobId = n.GetStringValue(); } },
-                {"modifiedProperties", (o,n) => { (o as ProvisioningObjectSummary).ModifiedProperties = n.GetCollectionOfObjectValues<ModifiedProperty>().ToList(); } },
+                {"modifiedProperties", (o,n) => { (o as ProvisioningObjectSummary).ModifiedProperties = n.GetCollectionOfObjectValues<ModifiedProperty>(ModifiedProperty.CreateFromDiscriminatorValue).ToList(); } },
                 {"provisioningAction", (o,n) => { (o as ProvisioningObjectSummary).ProvisioningAction = n.GetEnumValue<ProvisioningAction>(); } },
-                {"provisioningStatusInfo", (o,n) => { (o as ProvisioningObjectSummary).ProvisioningStatusInfo = n.GetObjectValue<ProvisioningStatusInfo>(); } },
-                {"provisioningSteps", (o,n) => { (o as ProvisioningObjectSummary).ProvisioningSteps = n.GetCollectionOfObjectValues<ProvisioningStep>().ToList(); } },
-                {"servicePrincipal", (o,n) => { (o as ProvisioningObjectSummary).ServicePrincipal = n.GetObjectValue<ProvisioningServicePrincipal>(); } },
-                {"sourceIdentity", (o,n) => { (o as ProvisioningObjectSummary).SourceIdentity = n.GetObjectValue<ProvisionedIdentity>(); } },
-                {"sourceSystem", (o,n) => { (o as ProvisioningObjectSummary).SourceSystem = n.GetObjectValue<ProvisioningSystem>(); } },
-                {"targetIdentity", (o,n) => { (o as ProvisioningObjectSummary).TargetIdentity = n.GetObjectValue<ProvisionedIdentity>(); } },
-                {"targetSystem", (o,n) => { (o as ProvisioningObjectSummary).TargetSystem = n.GetObjectValue<ProvisioningSystem>(); } },
+                {"provisioningStatusInfo", (o,n) => { (o as ProvisioningObjectSummary).ProvisioningStatusInfo = n.GetObjectValue<ApiSdk.Models.Microsoft.Graph.ProvisioningStatusInfo>(ApiSdk.Models.Microsoft.Graph.ProvisioningStatusInfo.CreateFromDiscriminatorValue); } },
+                {"provisioningSteps", (o,n) => { (o as ProvisioningObjectSummary).ProvisioningSteps = n.GetCollectionOfObjectValues<ProvisioningStep>(ProvisioningStep.CreateFromDiscriminatorValue).ToList(); } },
+                {"servicePrincipal", (o,n) => { (o as ProvisioningObjectSummary).ServicePrincipal = n.GetObjectValue<ProvisioningServicePrincipal>(ProvisioningServicePrincipal.CreateFromDiscriminatorValue); } },
+                {"sourceIdentity", (o,n) => { (o as ProvisioningObjectSummary).SourceIdentity = n.GetObjectValue<ProvisionedIdentity>(ProvisionedIdentity.CreateFromDiscriminatorValue); } },
+                {"sourceSystem", (o,n) => { (o as ProvisioningObjectSummary).SourceSystem = n.GetObjectValue<ProvisioningSystem>(ProvisioningSystem.CreateFromDiscriminatorValue); } },
+                {"targetIdentity", (o,n) => { (o as ProvisioningObjectSummary).TargetIdentity = n.GetObjectValue<ProvisionedIdentity>(ProvisionedIdentity.CreateFromDiscriminatorValue); } },
+                {"targetSystem", (o,n) => { (o as ProvisioningObjectSummary).TargetSystem = n.GetObjectValue<ProvisioningSystem>(ProvisioningSystem.CreateFromDiscriminatorValue); } },
                 {"tenantId", (o,n) => { (o as ProvisioningObjectSummary).TenantId = n.GetStringValue(); } },
             };
         }
@@ -75,7 +83,7 @@ namespace ApiSdk.Models.Microsoft.Graph {
             writer.WriteStringValue("jobId", JobId);
             writer.WriteCollectionOfObjectValues<ModifiedProperty>("modifiedProperties", ModifiedProperties);
             writer.WriteEnumValue<ProvisioningAction>("provisioningAction", ProvisioningAction);
-            writer.WriteObjectValue<ProvisioningStatusInfo>("provisioningStatusInfo", ProvisioningStatusInfo);
+            writer.WriteObjectValue<ApiSdk.Models.Microsoft.Graph.ProvisioningStatusInfo>("provisioningStatusInfo", ProvisioningStatusInfo);
             writer.WriteCollectionOfObjectValues<ProvisioningStep>("provisioningSteps", ProvisioningSteps);
             writer.WriteObjectValue<ProvisioningServicePrincipal>("servicePrincipal", ServicePrincipal);
             writer.WriteObjectValue<ProvisionedIdentity>("sourceIdentity", SourceIdentity);

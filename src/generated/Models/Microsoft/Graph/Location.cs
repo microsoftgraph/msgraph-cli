@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 namespace ApiSdk.Models.Microsoft.Graph {
-    public class Location : IParsable {
+    public class Location : IAdditionalDataHolder, IParsable {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>The street address of the location.</summary>
@@ -16,7 +16,7 @@ namespace ApiSdk.Models.Microsoft.Graph {
         /// <summary>Optional email address of the location.</summary>
         public string LocationEmailAddress { get; set; }
         /// <summary>The type of location. Possible values are: default, conferenceRoom, homeAddress, businessAddress,geoCoordinates, streetAddress, hotel, restaurant, localBusiness, postalAddress. Read-only.</summary>
-        public LocationType? LocationType { get; set; }
+        public ApiSdk.Models.Microsoft.Graph.LocationType? LocationType { get; set; }
         /// <summary>Optional URI representing the location.</summary>
         public string LocationUri { get; set; }
         /// <summary>For internal use only.</summary>
@@ -30,12 +30,20 @@ namespace ApiSdk.Models.Microsoft.Graph {
             AdditionalData = new Dictionary<string, object>();
         }
         /// <summary>
+        /// Creates a new instance of the appropriate class based on discriminator value
+        /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
+        /// </summary>
+        public static Location CreateFromDiscriminatorValue(IParseNode parseNode) {
+            _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
+            return new Location();
+        }
+        /// <summary>
         /// The deserialization information for the current model
         /// </summary>
         public IDictionary<string, Action<T, IParseNode>> GetFieldDeserializers<T>() {
             return new Dictionary<string, Action<T, IParseNode>> {
-                {"address", (o,n) => { (o as Location).Address = n.GetObjectValue<PhysicalAddress>(); } },
-                {"coordinates", (o,n) => { (o as Location).Coordinates = n.GetObjectValue<OutlookGeoCoordinates>(); } },
+                {"address", (o,n) => { (o as Location).Address = n.GetObjectValue<PhysicalAddress>(PhysicalAddress.CreateFromDiscriminatorValue); } },
+                {"coordinates", (o,n) => { (o as Location).Coordinates = n.GetObjectValue<OutlookGeoCoordinates>(OutlookGeoCoordinates.CreateFromDiscriminatorValue); } },
                 {"displayName", (o,n) => { (o as Location).DisplayName = n.GetStringValue(); } },
                 {"locationEmailAddress", (o,n) => { (o as Location).LocationEmailAddress = n.GetStringValue(); } },
                 {"locationType", (o,n) => { (o as Location).LocationType = n.GetEnumValue<LocationType>(); } },

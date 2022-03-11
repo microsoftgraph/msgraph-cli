@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 namespace ApiSdk.Admin.ServiceAnnouncement.Messages.Unfavorite {
-    public class UnfavoriteRequestBody : IParsable {
+    public class UnfavoriteRequestBody : IAdditionalDataHolder, IParsable {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
         public List<string> MessageIds { get; set; }
@@ -13,6 +13,14 @@ namespace ApiSdk.Admin.ServiceAnnouncement.Messages.Unfavorite {
         /// </summary>
         public UnfavoriteRequestBody() {
             AdditionalData = new Dictionary<string, object>();
+        }
+        /// <summary>
+        /// Creates a new instance of the appropriate class based on discriminator value
+        /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
+        /// </summary>
+        public static UnfavoriteRequestBody CreateFromDiscriminatorValue(IParseNode parseNode) {
+            _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
+            return new UnfavoriteRequestBody();
         }
         /// <summary>
         /// The deserialization information for the current model

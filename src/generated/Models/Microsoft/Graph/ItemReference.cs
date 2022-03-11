@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 namespace ApiSdk.Models.Microsoft.Graph {
-    public class ItemReference : IParsable {
+    public class ItemReference : IAdditionalDataHolder, IParsable {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>Unique identifier of the drive instance that contains the item. Read-only.</summary>
@@ -20,7 +20,7 @@ namespace ApiSdk.Models.Microsoft.Graph {
         /// <summary>A unique identifier for a shared resource that can be accessed via the [Shares][] API.</summary>
         public string ShareId { get; set; }
         /// <summary>Returns identifiers useful for SharePoint REST compatibility. Read-only.</summary>
-        public SharepointIds SharepointIds { get; set; }
+        public ApiSdk.Models.Microsoft.Graph.SharepointIds SharepointIds { get; set; }
         /// <summary>For OneDrive for Business and SharePoint, this property represents the ID of the site that contains the parent document library of the driveItem resource. The value is the same as the id property of that [site][] resource. It is an opaque string that consists of three identifiers of the site. For OneDrive, this property is not populated.</summary>
         public string SiteId { get; set; }
         /// <summary>
@@ -28,6 +28,14 @@ namespace ApiSdk.Models.Microsoft.Graph {
         /// </summary>
         public ItemReference() {
             AdditionalData = new Dictionary<string, object>();
+        }
+        /// <summary>
+        /// Creates a new instance of the appropriate class based on discriminator value
+        /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
+        /// </summary>
+        public static ItemReference CreateFromDiscriminatorValue(IParseNode parseNode) {
+            _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
+            return new ItemReference();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -40,7 +48,7 @@ namespace ApiSdk.Models.Microsoft.Graph {
                 {"name", (o,n) => { (o as ItemReference).Name = n.GetStringValue(); } },
                 {"path", (o,n) => { (o as ItemReference).Path = n.GetStringValue(); } },
                 {"shareId", (o,n) => { (o as ItemReference).ShareId = n.GetStringValue(); } },
-                {"sharepointIds", (o,n) => { (o as ItemReference).SharepointIds = n.GetObjectValue<SharepointIds>(); } },
+                {"sharepointIds", (o,n) => { (o as ItemReference).SharepointIds = n.GetObjectValue<ApiSdk.Models.Microsoft.Graph.SharepointIds>(ApiSdk.Models.Microsoft.Graph.SharepointIds.CreateFromDiscriminatorValue); } },
                 {"siteId", (o,n) => { (o as ItemReference).SiteId = n.GetStringValue(); } },
             };
         }
@@ -56,7 +64,7 @@ namespace ApiSdk.Models.Microsoft.Graph {
             writer.WriteStringValue("name", Name);
             writer.WriteStringValue("path", Path);
             writer.WriteStringValue("shareId", ShareId);
-            writer.WriteObjectValue<SharepointIds>("sharepointIds", SharepointIds);
+            writer.WriteObjectValue<ApiSdk.Models.Microsoft.Graph.SharepointIds>("sharepointIds", SharepointIds);
             writer.WriteStringValue("siteId", SiteId);
             writer.WriteAdditionalData(AdditionalData);
         }

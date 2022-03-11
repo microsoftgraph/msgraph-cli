@@ -48,7 +48,7 @@ namespace ApiSdk.Me.Events.Item.Calendar.Events.Item.TentativelyAccept {
                 PathParameters.Add("event_id1", eventId1);
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
-                var model = parseNode.GetObjectValue<TentativelyAcceptRequestBody>();
+                var model = parseNode.GetObjectValue<TentativelyAcceptRequestBody>(TentativelyAcceptRequestBody.CreateFromDiscriminatorValue);
                 var requestInfo = CreatePostRequestInformation(model, q => {
                 });
                 await RequestAdapter.SendNoContentAsync(requestInfo, errorMapping: default, cancellationToken: cancellationToken);

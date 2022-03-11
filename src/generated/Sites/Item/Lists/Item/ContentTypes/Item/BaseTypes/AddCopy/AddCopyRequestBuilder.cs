@@ -49,6 +49,13 @@ namespace ApiSdk.Sites.Item.Lists.Item.ContentTypes.Item.BaseTypes.AddCopy {
             command.AddOption(outputOption);
             var queryOption = new Option<string>("--query");
             command.AddOption(queryOption);
+            var jsonNoIndentOption = new Option<bool>("--json-no-indent", r => {
+                if (bool.TryParse(r.Tokens.Select(t => t.Value).LastOrDefault(), out var value)) {
+                    return value;
+                }
+                return true;
+            }, description: "Disable indentation for the JSON output formatter.");
+            command.AddOption(jsonNoIndentOption);
             command.SetHandler(async (object[] parameters) => {
                 var siteId = (string) parameters[0];
                 var listId = (string) parameters[1];
@@ -56,23 +63,25 @@ namespace ApiSdk.Sites.Item.Lists.Item.ContentTypes.Item.BaseTypes.AddCopy {
                 var body = (string) parameters[3];
                 var output = (FormatterType) parameters[4];
                 var query = (string) parameters[5];
-                var outputFilter = (IOutputFilter) parameters[6];
-                var outputFormatterFactory = (IOutputFormatterFactory) parameters[7];
-                var cancellationToken = (CancellationToken) parameters[8];
+                var jsonNoIndent = (bool) parameters[6];
+                var outputFilter = (IOutputFilter) parameters[7];
+                var outputFormatterFactory = (IOutputFormatterFactory) parameters[8];
+                var cancellationToken = (CancellationToken) parameters[9];
                 PathParameters.Clear();
                 PathParameters.Add("site_id", siteId);
                 PathParameters.Add("list_id", listId);
                 PathParameters.Add("contentType_id", contentTypeId);
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
-                var model = parseNode.GetObjectValue<AddCopyRequestBody>();
+                var model = parseNode.GetObjectValue<AddCopyRequestBody>(AddCopyRequestBody.CreateFromDiscriminatorValue);
                 var requestInfo = CreatePostRequestInformation(model, q => {
                 });
                 var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: default, cancellationToken: cancellationToken);
                 var formatter = outputFormatterFactory.GetFormatter(output);
-                response = outputFilter?.FilterOutput(response, query) ?? response;
-                formatter.WriteOutput(response);
-            }, new CollectionBinding(siteIdOption, listIdOption, contentTypeIdOption, bodyOption, outputOption, queryOption, new TypeBinding(typeof(IOutputFilter)), new TypeBinding(typeof(IOutputFormatterFactory)), new TypeBinding(typeof(CancellationToken))));
+                response = await outputFilter?.FilterOutputAsync(response, query, cancellationToken) ?? response;
+                var formatterOptions = output.GetOutputFormatterOptions(new FormatterOptionsModel(!jsonNoIndent));
+                await formatter.WriteOutputAsync(response, formatterOptions, cancellationToken);
+            }, new CollectionBinding(siteIdOption, listIdOption, contentTypeIdOption, bodyOption, outputOption, queryOption, jsonNoIndentOption, new TypeBinding(typeof(IOutputFilter)), new TypeBinding(typeof(IOutputFormatterFactory)), new TypeBinding(typeof(CancellationToken))));
             return command;
         }
         /// <summary>
@@ -107,23 +116,27 @@ namespace ApiSdk.Sites.Item.Lists.Item.ContentTypes.Item.BaseTypes.AddCopy {
             return requestInfo;
         }
         /// <summary>Union type wrapper for classes contentType</summary>
-        public class AddCopyResponse : IParsable {
+        public class AddCopyResponse : IAdditionalDataHolder, IParsable {
             /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
             public IDictionary<string, object> AdditionalData { get; set; }
             /// <summary>Union type representation for type contentType</summary>
-            public ContentType ContentType { get; set; }
+            public ApiSdk.Models.Microsoft.Graph.ContentType ContentType { get; set; }
             /// <summary>
             /// Instantiates a new addCopyResponse and sets the default values.
             /// </summary>
             public AddCopyResponse() {
                 AdditionalData = new Dictionary<string, object>();
             }
+            public static AddCopyResponse CreateFromDiscriminatorValue(IParseNode parseNode) {
+                _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
+                return new AddCopyResponse();
+            }
             /// <summary>
             /// The deserialization information for the current model
             /// </summary>
             public IDictionary<string, Action<T, IParseNode>> GetFieldDeserializers<T>() {
                 return new Dictionary<string, Action<T, IParseNode>> {
-                    {"contentType", (o,n) => { (o as AddCopyResponse).ContentType = n.GetObjectValue<ContentType>(); } },
+                    {"contentType", (o,n) => { (o as AddCopyResponse).ContentType = n.GetObjectValue<ApiSdk.Models.Microsoft.Graph.ContentType>(ApiSdk.Models.Microsoft.Graph.ContentType.CreateFromDiscriminatorValue); } },
                 };
             }
             /// <summary>
@@ -132,7 +145,7 @@ namespace ApiSdk.Sites.Item.Lists.Item.ContentTypes.Item.BaseTypes.AddCopy {
             /// </summary>
             public void Serialize(ISerializationWriter writer) {
                 _ = writer ?? throw new ArgumentNullException(nameof(writer));
-                writer.WriteObjectValue<ContentType>("contentType", ContentType);
+                writer.WriteObjectValue<ApiSdk.Models.Microsoft.Graph.ContentType>("contentType", ContentType);
                 writer.WriteAdditionalData(AdditionalData);
             }
         }

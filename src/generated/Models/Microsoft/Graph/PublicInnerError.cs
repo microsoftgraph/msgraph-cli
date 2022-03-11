@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 namespace ApiSdk.Models.Microsoft.Graph {
-    public class PublicInnerError : IParsable {
+    public class PublicInnerError : IAdditionalDataHolder, IParsable {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>The error code.</summary>
@@ -22,12 +22,20 @@ namespace ApiSdk.Models.Microsoft.Graph {
             AdditionalData = new Dictionary<string, object>();
         }
         /// <summary>
+        /// Creates a new instance of the appropriate class based on discriminator value
+        /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
+        /// </summary>
+        public static PublicInnerError CreateFromDiscriminatorValue(IParseNode parseNode) {
+            _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
+            return new PublicInnerError();
+        }
+        /// <summary>
         /// The deserialization information for the current model
         /// </summary>
         public IDictionary<string, Action<T, IParseNode>> GetFieldDeserializers<T>() {
             return new Dictionary<string, Action<T, IParseNode>> {
                 {"code", (o,n) => { (o as PublicInnerError).Code = n.GetStringValue(); } },
-                {"details", (o,n) => { (o as PublicInnerError).Details = n.GetCollectionOfObjectValues<PublicErrorDetail>().ToList(); } },
+                {"details", (o,n) => { (o as PublicInnerError).Details = n.GetCollectionOfObjectValues<PublicErrorDetail>(PublicErrorDetail.CreateFromDiscriminatorValue).ToList(); } },
                 {"message", (o,n) => { (o as PublicInnerError).Message = n.GetStringValue(); } },
                 {"target", (o,n) => { (o as PublicInnerError).Target = n.GetStringValue(); } },
             };

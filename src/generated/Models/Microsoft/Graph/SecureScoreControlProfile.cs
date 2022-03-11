@@ -12,7 +12,7 @@ namespace ApiSdk.Models.Microsoft.Graph {
         /// <summary>GUID string for tenant ID.</summary>
         public string AzureTenantId { get; set; }
         /// <summary>The collection of compliance information associated with secure score control</summary>
-        public List<ComplianceInformation> ComplianceInformation { get; set; }
+        public List<ApiSdk.Models.Microsoft.Graph.ComplianceInformation> ComplianceInformation { get; set; }
         /// <summary>Control action category (Account, Data, Device, Apps, Infrastructure).</summary>
         public string ControlCategory { get; set; }
         /// <summary>Flag to indicate where the tenant has marked a control (ignore, thirdParty, reviewed) (supports update).</summary>
@@ -43,6 +43,14 @@ namespace ApiSdk.Models.Microsoft.Graph {
         public string UserImpact { get; set; }
         public SecurityVendorInformation VendorInformation { get; set; }
         /// <summary>
+        /// Creates a new instance of the appropriate class based on discriminator value
+        /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
+        /// </summary>
+        public static new SecureScoreControlProfile CreateFromDiscriminatorValue(IParseNode parseNode) {
+            _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
+            return new SecureScoreControlProfile();
+        }
+        /// <summary>
         /// The deserialization information for the current model
         /// </summary>
         public new IDictionary<string, Action<T, IParseNode>> GetFieldDeserializers<T>() {
@@ -50,9 +58,9 @@ namespace ApiSdk.Models.Microsoft.Graph {
                 {"actionType", (o,n) => { (o as SecureScoreControlProfile).ActionType = n.GetStringValue(); } },
                 {"actionUrl", (o,n) => { (o as SecureScoreControlProfile).ActionUrl = n.GetStringValue(); } },
                 {"azureTenantId", (o,n) => { (o as SecureScoreControlProfile).AzureTenantId = n.GetStringValue(); } },
-                {"complianceInformation", (o,n) => { (o as SecureScoreControlProfile).ComplianceInformation = n.GetCollectionOfObjectValues<ComplianceInformation>().ToList(); } },
+                {"complianceInformation", (o,n) => { (o as SecureScoreControlProfile).ComplianceInformation = n.GetCollectionOfObjectValues<ApiSdk.Models.Microsoft.Graph.ComplianceInformation>(ApiSdk.Models.Microsoft.Graph.ComplianceInformation.CreateFromDiscriminatorValue).ToList(); } },
                 {"controlCategory", (o,n) => { (o as SecureScoreControlProfile).ControlCategory = n.GetStringValue(); } },
-                {"controlStateUpdates", (o,n) => { (o as SecureScoreControlProfile).ControlStateUpdates = n.GetCollectionOfObjectValues<SecureScoreControlStateUpdate>().ToList(); } },
+                {"controlStateUpdates", (o,n) => { (o as SecureScoreControlProfile).ControlStateUpdates = n.GetCollectionOfObjectValues<SecureScoreControlStateUpdate>(SecureScoreControlStateUpdate.CreateFromDiscriminatorValue).ToList(); } },
                 {"deprecated", (o,n) => { (o as SecureScoreControlProfile).Deprecated = n.GetBoolValue(); } },
                 {"implementationCost", (o,n) => { (o as SecureScoreControlProfile).ImplementationCost = n.GetStringValue(); } },
                 {"lastModifiedDateTime", (o,n) => { (o as SecureScoreControlProfile).LastModifiedDateTime = n.GetDateTimeOffsetValue(); } },
@@ -65,7 +73,7 @@ namespace ApiSdk.Models.Microsoft.Graph {
                 {"tier", (o,n) => { (o as SecureScoreControlProfile).Tier = n.GetStringValue(); } },
                 {"title", (o,n) => { (o as SecureScoreControlProfile).Title = n.GetStringValue(); } },
                 {"userImpact", (o,n) => { (o as SecureScoreControlProfile).UserImpact = n.GetStringValue(); } },
-                {"vendorInformation", (o,n) => { (o as SecureScoreControlProfile).VendorInformation = n.GetObjectValue<SecurityVendorInformation>(); } },
+                {"vendorInformation", (o,n) => { (o as SecureScoreControlProfile).VendorInformation = n.GetObjectValue<SecurityVendorInformation>(SecurityVendorInformation.CreateFromDiscriminatorValue); } },
             };
         }
         /// <summary>
@@ -78,7 +86,7 @@ namespace ApiSdk.Models.Microsoft.Graph {
             writer.WriteStringValue("actionType", ActionType);
             writer.WriteStringValue("actionUrl", ActionUrl);
             writer.WriteStringValue("azureTenantId", AzureTenantId);
-            writer.WriteCollectionOfObjectValues<ComplianceInformation>("complianceInformation", ComplianceInformation);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.Microsoft.Graph.ComplianceInformation>("complianceInformation", ComplianceInformation);
             writer.WriteStringValue("controlCategory", ControlCategory);
             writer.WriteCollectionOfObjectValues<SecureScoreControlStateUpdate>("controlStateUpdates", ControlStateUpdates);
             writer.WriteBoolValue("deprecated", Deprecated);

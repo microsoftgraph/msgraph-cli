@@ -10,13 +10,21 @@ namespace ApiSdk.Models.Microsoft.Graph {
         public List<SecureScoreControlProfile> SecureScoreControlProfiles { get; set; }
         public List<SecureScore> SecureScores { get; set; }
         /// <summary>
+        /// Creates a new instance of the appropriate class based on discriminator value
+        /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
+        /// </summary>
+        public static new Security CreateFromDiscriminatorValue(IParseNode parseNode) {
+            _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
+            return new Security();
+        }
+        /// <summary>
         /// The deserialization information for the current model
         /// </summary>
         public new IDictionary<string, Action<T, IParseNode>> GetFieldDeserializers<T>() {
             return new Dictionary<string, Action<T, IParseNode>>(base.GetFieldDeserializers<T>()) {
-                {"alerts", (o,n) => { (o as Security).Alerts = n.GetCollectionOfObjectValues<Alert>().ToList(); } },
-                {"secureScoreControlProfiles", (o,n) => { (o as Security).SecureScoreControlProfiles = n.GetCollectionOfObjectValues<SecureScoreControlProfile>().ToList(); } },
-                {"secureScores", (o,n) => { (o as Security).SecureScores = n.GetCollectionOfObjectValues<SecureScore>().ToList(); } },
+                {"alerts", (o,n) => { (o as Security).Alerts = n.GetCollectionOfObjectValues<Alert>(Alert.CreateFromDiscriminatorValue).ToList(); } },
+                {"secureScoreControlProfiles", (o,n) => { (o as Security).SecureScoreControlProfiles = n.GetCollectionOfObjectValues<SecureScoreControlProfile>(SecureScoreControlProfile.CreateFromDiscriminatorValue).ToList(); } },
+                {"secureScores", (o,n) => { (o as Security).SecureScores = n.GetCollectionOfObjectValues<SecureScore>(SecureScore.CreateFromDiscriminatorValue).ToList(); } },
             };
         }
         /// <summary>

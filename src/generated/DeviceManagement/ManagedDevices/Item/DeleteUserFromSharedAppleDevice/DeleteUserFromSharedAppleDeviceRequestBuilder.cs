@@ -42,7 +42,7 @@ namespace ApiSdk.DeviceManagement.ManagedDevices.Item.DeleteUserFromSharedAppleD
                 PathParameters.Add("managedDevice_id", managedDeviceId);
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
-                var model = parseNode.GetObjectValue<DeleteUserFromSharedAppleDeviceRequestBody>();
+                var model = parseNode.GetObjectValue<DeleteUserFromSharedAppleDeviceRequestBody>(DeleteUserFromSharedAppleDeviceRequestBody.CreateFromDiscriminatorValue);
                 var requestInfo = CreatePostRequestInformation(model, q => {
                 });
                 await RequestAdapter.SendNoContentAsync(requestInfo, errorMapping: default, cancellationToken: cancellationToken);

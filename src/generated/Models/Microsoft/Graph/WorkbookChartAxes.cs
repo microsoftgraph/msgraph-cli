@@ -12,13 +12,21 @@ namespace ApiSdk.Models.Microsoft.Graph {
         /// <summary>Represents the value axis in an axis. Read-only.</summary>
         public WorkbookChartAxis ValueAxis { get; set; }
         /// <summary>
+        /// Creates a new instance of the appropriate class based on discriminator value
+        /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
+        /// </summary>
+        public static new WorkbookChartAxes CreateFromDiscriminatorValue(IParseNode parseNode) {
+            _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
+            return new WorkbookChartAxes();
+        }
+        /// <summary>
         /// The deserialization information for the current model
         /// </summary>
         public new IDictionary<string, Action<T, IParseNode>> GetFieldDeserializers<T>() {
             return new Dictionary<string, Action<T, IParseNode>>(base.GetFieldDeserializers<T>()) {
-                {"categoryAxis", (o,n) => { (o as WorkbookChartAxes).CategoryAxis = n.GetObjectValue<WorkbookChartAxis>(); } },
-                {"seriesAxis", (o,n) => { (o as WorkbookChartAxes).SeriesAxis = n.GetObjectValue<WorkbookChartAxis>(); } },
-                {"valueAxis", (o,n) => { (o as WorkbookChartAxes).ValueAxis = n.GetObjectValue<WorkbookChartAxis>(); } },
+                {"categoryAxis", (o,n) => { (o as WorkbookChartAxes).CategoryAxis = n.GetObjectValue<WorkbookChartAxis>(WorkbookChartAxis.CreateFromDiscriminatorValue); } },
+                {"seriesAxis", (o,n) => { (o as WorkbookChartAxes).SeriesAxis = n.GetObjectValue<WorkbookChartAxis>(WorkbookChartAxis.CreateFromDiscriminatorValue); } },
+                {"valueAxis", (o,n) => { (o as WorkbookChartAxes).ValueAxis = n.GetObjectValue<WorkbookChartAxis>(WorkbookChartAxis.CreateFromDiscriminatorValue); } },
             };
         }
         /// <summary>

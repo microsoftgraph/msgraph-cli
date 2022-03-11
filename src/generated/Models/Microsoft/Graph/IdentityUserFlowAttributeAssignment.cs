@@ -18,6 +18,14 @@ namespace ApiSdk.Models.Microsoft.Graph {
         /// <summary>The input type of the user flow attribute. Possible values are: textBox, dateTimeDropdown, radioSingleSelect, dropdownSingleSelect, emailBox, checkboxMultiSelect.</summary>
         public IdentityUserFlowAttributeInputType? UserInputType { get; set; }
         /// <summary>
+        /// Creates a new instance of the appropriate class based on discriminator value
+        /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
+        /// </summary>
+        public static new IdentityUserFlowAttributeAssignment CreateFromDiscriminatorValue(IParseNode parseNode) {
+            _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
+            return new IdentityUserFlowAttributeAssignment();
+        }
+        /// <summary>
         /// The deserialization information for the current model
         /// </summary>
         public new IDictionary<string, Action<T, IParseNode>> GetFieldDeserializers<T>() {
@@ -25,8 +33,8 @@ namespace ApiSdk.Models.Microsoft.Graph {
                 {"displayName", (o,n) => { (o as IdentityUserFlowAttributeAssignment).DisplayName = n.GetStringValue(); } },
                 {"isOptional", (o,n) => { (o as IdentityUserFlowAttributeAssignment).IsOptional = n.GetBoolValue(); } },
                 {"requiresVerification", (o,n) => { (o as IdentityUserFlowAttributeAssignment).RequiresVerification = n.GetBoolValue(); } },
-                {"userAttribute", (o,n) => { (o as IdentityUserFlowAttributeAssignment).UserAttribute = n.GetObjectValue<IdentityUserFlowAttribute>(); } },
-                {"userAttributeValues", (o,n) => { (o as IdentityUserFlowAttributeAssignment).UserAttributeValues = n.GetCollectionOfObjectValues<UserAttributeValuesItem>().ToList(); } },
+                {"userAttribute", (o,n) => { (o as IdentityUserFlowAttributeAssignment).UserAttribute = n.GetObjectValue<IdentityUserFlowAttribute>(IdentityUserFlowAttribute.CreateFromDiscriminatorValue); } },
+                {"userAttributeValues", (o,n) => { (o as IdentityUserFlowAttributeAssignment).UserAttributeValues = n.GetCollectionOfObjectValues<UserAttributeValuesItem>(UserAttributeValuesItem.CreateFromDiscriminatorValue).ToList(); } },
                 {"userInputType", (o,n) => { (o as IdentityUserFlowAttributeAssignment).UserInputType = n.GetEnumValue<IdentityUserFlowAttributeInputType>(); } },
             };
         }

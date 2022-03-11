@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 namespace ApiSdk.Models.Microsoft.Graph {
-    public class AuthenticationMethodsRegistrationCampaign : IParsable {
+    public class AuthenticationMethodsRegistrationCampaign : IAdditionalDataHolder, IParsable {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>Users and groups of users that are excluded from being prompted to set up the authentication method.</summary>
@@ -22,12 +22,20 @@ namespace ApiSdk.Models.Microsoft.Graph {
             AdditionalData = new Dictionary<string, object>();
         }
         /// <summary>
+        /// Creates a new instance of the appropriate class based on discriminator value
+        /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
+        /// </summary>
+        public static AuthenticationMethodsRegistrationCampaign CreateFromDiscriminatorValue(IParseNode parseNode) {
+            _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
+            return new AuthenticationMethodsRegistrationCampaign();
+        }
+        /// <summary>
         /// The deserialization information for the current model
         /// </summary>
         public IDictionary<string, Action<T, IParseNode>> GetFieldDeserializers<T>() {
             return new Dictionary<string, Action<T, IParseNode>> {
-                {"excludeTargets", (o,n) => { (o as AuthenticationMethodsRegistrationCampaign).ExcludeTargets = n.GetCollectionOfObjectValues<ExcludeTarget>().ToList(); } },
-                {"includeTargets", (o,n) => { (o as AuthenticationMethodsRegistrationCampaign).IncludeTargets = n.GetCollectionOfObjectValues<AuthenticationMethodsRegistrationCampaignIncludeTarget>().ToList(); } },
+                {"excludeTargets", (o,n) => { (o as AuthenticationMethodsRegistrationCampaign).ExcludeTargets = n.GetCollectionOfObjectValues<ExcludeTarget>(ExcludeTarget.CreateFromDiscriminatorValue).ToList(); } },
+                {"includeTargets", (o,n) => { (o as AuthenticationMethodsRegistrationCampaign).IncludeTargets = n.GetCollectionOfObjectValues<AuthenticationMethodsRegistrationCampaignIncludeTarget>(AuthenticationMethodsRegistrationCampaignIncludeTarget.CreateFromDiscriminatorValue).ToList(); } },
                 {"snoozeDurationInDays", (o,n) => { (o as AuthenticationMethodsRegistrationCampaign).SnoozeDurationInDays = n.GetIntValue(); } },
                 {"state", (o,n) => { (o as AuthenticationMethodsRegistrationCampaign).State = n.GetEnumValue<AdvancedConfigState>(); } },
             };

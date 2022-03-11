@@ -42,7 +42,7 @@ namespace ApiSdk.Me.ManagedDevices.Item.WindowsDefenderScan {
                 PathParameters.Add("managedDevice_id", managedDeviceId);
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
-                var model = parseNode.GetObjectValue<WindowsDefenderScanRequestBody>();
+                var model = parseNode.GetObjectValue<WindowsDefenderScanRequestBody>(WindowsDefenderScanRequestBody.CreateFromDiscriminatorValue);
                 var requestInfo = CreatePostRequestInformation(model, q => {
                 });
                 await RequestAdapter.SendNoContentAsync(requestInfo, errorMapping: default, cancellationToken: cancellationToken);

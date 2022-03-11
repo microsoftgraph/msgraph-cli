@@ -45,28 +45,37 @@ namespace ApiSdk.Me.MailFolders.Item.Messages.Item.Copy {
             command.AddOption(outputOption);
             var queryOption = new Option<string>("--query");
             command.AddOption(queryOption);
+            var jsonNoIndentOption = new Option<bool>("--json-no-indent", r => {
+                if (bool.TryParse(r.Tokens.Select(t => t.Value).LastOrDefault(), out var value)) {
+                    return value;
+                }
+                return true;
+            }, description: "Disable indentation for the JSON output formatter.");
+            command.AddOption(jsonNoIndentOption);
             command.SetHandler(async (object[] parameters) => {
                 var mailFolderId = (string) parameters[0];
                 var messageId = (string) parameters[1];
                 var body = (string) parameters[2];
                 var output = (FormatterType) parameters[3];
                 var query = (string) parameters[4];
-                var outputFilter = (IOutputFilter) parameters[5];
-                var outputFormatterFactory = (IOutputFormatterFactory) parameters[6];
-                var cancellationToken = (CancellationToken) parameters[7];
+                var jsonNoIndent = (bool) parameters[5];
+                var outputFilter = (IOutputFilter) parameters[6];
+                var outputFormatterFactory = (IOutputFormatterFactory) parameters[7];
+                var cancellationToken = (CancellationToken) parameters[8];
                 PathParameters.Clear();
                 PathParameters.Add("mailFolder_id", mailFolderId);
                 PathParameters.Add("message_id", messageId);
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
-                var model = parseNode.GetObjectValue<CopyRequestBody>();
+                var model = parseNode.GetObjectValue<CopyRequestBody>(CopyRequestBody.CreateFromDiscriminatorValue);
                 var requestInfo = CreatePostRequestInformation(model, q => {
                 });
                 var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: default, cancellationToken: cancellationToken);
                 var formatter = outputFormatterFactory.GetFormatter(output);
-                response = outputFilter?.FilterOutput(response, query) ?? response;
-                formatter.WriteOutput(response);
-            }, new CollectionBinding(mailFolderIdOption, messageIdOption, bodyOption, outputOption, queryOption, new TypeBinding(typeof(IOutputFilter)), new TypeBinding(typeof(IOutputFormatterFactory)), new TypeBinding(typeof(CancellationToken))));
+                response = await outputFilter?.FilterOutputAsync(response, query, cancellationToken) ?? response;
+                var formatterOptions = output.GetOutputFormatterOptions(new FormatterOptionsModel(!jsonNoIndent));
+                await formatter.WriteOutputAsync(response, formatterOptions, cancellationToken);
+            }, new CollectionBinding(mailFolderIdOption, messageIdOption, bodyOption, outputOption, queryOption, jsonNoIndentOption, new TypeBinding(typeof(IOutputFilter)), new TypeBinding(typeof(IOutputFormatterFactory)), new TypeBinding(typeof(CancellationToken))));
             return command;
         }
         /// <summary>
@@ -101,23 +110,27 @@ namespace ApiSdk.Me.MailFolders.Item.Messages.Item.Copy {
             return requestInfo;
         }
         /// <summary>Union type wrapper for classes message</summary>
-        public class CopyResponse : IParsable {
+        public class CopyResponse : IAdditionalDataHolder, IParsable {
             /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
             public IDictionary<string, object> AdditionalData { get; set; }
             /// <summary>Union type representation for type message</summary>
-            public Message Message { get; set; }
+            public ApiSdk.Models.Microsoft.Graph.Message Message { get; set; }
             /// <summary>
             /// Instantiates a new copyResponse and sets the default values.
             /// </summary>
             public CopyResponse() {
                 AdditionalData = new Dictionary<string, object>();
             }
+            public static CopyResponse CreateFromDiscriminatorValue(IParseNode parseNode) {
+                _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
+                return new CopyResponse();
+            }
             /// <summary>
             /// The deserialization information for the current model
             /// </summary>
             public IDictionary<string, Action<T, IParseNode>> GetFieldDeserializers<T>() {
                 return new Dictionary<string, Action<T, IParseNode>> {
-                    {"message", (o,n) => { (o as CopyResponse).Message = n.GetObjectValue<Message>(); } },
+                    {"message", (o,n) => { (o as CopyResponse).Message = n.GetObjectValue<ApiSdk.Models.Microsoft.Graph.Message>(ApiSdk.Models.Microsoft.Graph.Message.CreateFromDiscriminatorValue); } },
                 };
             }
             /// <summary>
@@ -126,7 +139,7 @@ namespace ApiSdk.Me.MailFolders.Item.Messages.Item.Copy {
             /// </summary>
             public void Serialize(ISerializationWriter writer) {
                 _ = writer ?? throw new ArgumentNullException(nameof(writer));
-                writer.WriteObjectValue<Message>("message", Message);
+                writer.WriteObjectValue<ApiSdk.Models.Microsoft.Graph.Message>("message", Message);
                 writer.WriteAdditionalData(AdditionalData);
             }
         }

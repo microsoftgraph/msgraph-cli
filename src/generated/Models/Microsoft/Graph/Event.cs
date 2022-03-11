@@ -16,7 +16,7 @@ namespace ApiSdk.Models.Microsoft.Graph {
         /// <summary>The preview of the message associated with the event. It is in text format.</summary>
         public string BodyPreview { get; set; }
         /// <summary>The calendar that contains the event. Navigation property. Read-only.</summary>
-        public Calendar Calendar { get; set; }
+        public ApiSdk.Models.Microsoft.Graph.Calendar Calendar { get; set; }
         /// <summary>The date, time, and time zone that the event ends. By default, the end time is in UTC.</summary>
         public DateTimeTimeZone End { get; set; }
         /// <summary>The collection of open extensions defined for the event. Nullable.</summary>
@@ -27,7 +27,7 @@ namespace ApiSdk.Models.Microsoft.Graph {
         public bool? HideAttendees { get; set; }
         /// <summary>A unique identifier for an event across calendars. This ID is different for each occurrence in a recurring series. Read-only.</summary>
         public string ICalUId { get; set; }
-        public Importance? Importance { get; set; }
+        public ApiSdk.Models.Microsoft.Graph.Importance? Importance { get; set; }
         /// <summary>The occurrences of a recurring series, if the event is a series master. This property includes occurrences that are part of the recurrence pattern, and exceptions that have been modified, but does not include occurrences that have been cancelled from the series. Navigation property. Read-only. Nullable.</summary>
         public List<Event> Instances { get; set; }
         public bool? IsAllDay { get; set; }
@@ -36,8 +36,8 @@ namespace ApiSdk.Models.Microsoft.Graph {
         public bool? IsOnlineMeeting { get; set; }
         public bool? IsOrganizer { get; set; }
         public bool? IsReminderOn { get; set; }
-        public Location Location { get; set; }
-        public List<Location> Locations { get; set; }
+        public ApiSdk.Models.Microsoft.Graph.Location Location { get; set; }
+        public List<ApiSdk.Models.Microsoft.Graph.Location> Locations { get; set; }
         /// <summary>The collection of multi-value extended properties defined for the event. Read-only. Nullable.</summary>
         public List<MultiValueLegacyExtendedProperty> MultiValueExtendedProperties { get; set; }
         public OnlineMeetingInfo OnlineMeeting { get; set; }
@@ -50,8 +50,8 @@ namespace ApiSdk.Models.Microsoft.Graph {
         public PatternedRecurrence Recurrence { get; set; }
         public int? ReminderMinutesBeforeStart { get; set; }
         public bool? ResponseRequested { get; set; }
-        public ResponseStatus ResponseStatus { get; set; }
-        public Sensitivity? Sensitivity { get; set; }
+        public ApiSdk.Models.Microsoft.Graph.ResponseStatus ResponseStatus { get; set; }
+        public ApiSdk.Models.Microsoft.Graph.Sensitivity? Sensitivity { get; set; }
         public string SeriesMasterId { get; set; }
         public FreeBusyStatus? ShowAs { get; set; }
         /// <summary>The collection of single-value extended properties defined for the event. Read-only. Nullable.</summary>
@@ -62,48 +62,56 @@ namespace ApiSdk.Models.Microsoft.Graph {
         public EventType? Type { get; set; }
         public string WebLink { get; set; }
         /// <summary>
+        /// Creates a new instance of the appropriate class based on discriminator value
+        /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
+        /// </summary>
+        public static new Event CreateFromDiscriminatorValue(IParseNode parseNode) {
+            _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
+            return new Event();
+        }
+        /// <summary>
         /// The deserialization information for the current model
         /// </summary>
         public new IDictionary<string, Action<T, IParseNode>> GetFieldDeserializers<T>() {
             return new Dictionary<string, Action<T, IParseNode>>(base.GetFieldDeserializers<T>()) {
                 {"allowNewTimeProposals", (o,n) => { (o as Event).AllowNewTimeProposals = n.GetBoolValue(); } },
-                {"attachments", (o,n) => { (o as Event).Attachments = n.GetCollectionOfObjectValues<Attachment>().ToList(); } },
-                {"attendees", (o,n) => { (o as Event).Attendees = n.GetCollectionOfObjectValues<Attendee>().ToList(); } },
-                {"body", (o,n) => { (o as Event).Body = n.GetObjectValue<ItemBody>(); } },
+                {"attachments", (o,n) => { (o as Event).Attachments = n.GetCollectionOfObjectValues<Attachment>(Attachment.CreateFromDiscriminatorValue).ToList(); } },
+                {"attendees", (o,n) => { (o as Event).Attendees = n.GetCollectionOfObjectValues<Attendee>(Attendee.CreateFromDiscriminatorValue).ToList(); } },
+                {"body", (o,n) => { (o as Event).Body = n.GetObjectValue<ItemBody>(ItemBody.CreateFromDiscriminatorValue); } },
                 {"bodyPreview", (o,n) => { (o as Event).BodyPreview = n.GetStringValue(); } },
-                {"calendar", (o,n) => { (o as Event).Calendar = n.GetObjectValue<Calendar>(); } },
-                {"end", (o,n) => { (o as Event).End = n.GetObjectValue<DateTimeTimeZone>(); } },
-                {"extensions", (o,n) => { (o as Event).Extensions = n.GetCollectionOfObjectValues<Extension>().ToList(); } },
+                {"calendar", (o,n) => { (o as Event).Calendar = n.GetObjectValue<ApiSdk.Models.Microsoft.Graph.Calendar>(ApiSdk.Models.Microsoft.Graph.Calendar.CreateFromDiscriminatorValue); } },
+                {"end", (o,n) => { (o as Event).End = n.GetObjectValue<DateTimeTimeZone>(DateTimeTimeZone.CreateFromDiscriminatorValue); } },
+                {"extensions", (o,n) => { (o as Event).Extensions = n.GetCollectionOfObjectValues<Extension>(Extension.CreateFromDiscriminatorValue).ToList(); } },
                 {"hasAttachments", (o,n) => { (o as Event).HasAttachments = n.GetBoolValue(); } },
                 {"hideAttendees", (o,n) => { (o as Event).HideAttendees = n.GetBoolValue(); } },
                 {"iCalUId", (o,n) => { (o as Event).ICalUId = n.GetStringValue(); } },
                 {"importance", (o,n) => { (o as Event).Importance = n.GetEnumValue<Importance>(); } },
-                {"instances", (o,n) => { (o as Event).Instances = n.GetCollectionOfObjectValues<Event>().ToList(); } },
+                {"instances", (o,n) => { (o as Event).Instances = n.GetCollectionOfObjectValues<Event>(Event.CreateFromDiscriminatorValue).ToList(); } },
                 {"isAllDay", (o,n) => { (o as Event).IsAllDay = n.GetBoolValue(); } },
                 {"isCancelled", (o,n) => { (o as Event).IsCancelled = n.GetBoolValue(); } },
                 {"isDraft", (o,n) => { (o as Event).IsDraft = n.GetBoolValue(); } },
                 {"isOnlineMeeting", (o,n) => { (o as Event).IsOnlineMeeting = n.GetBoolValue(); } },
                 {"isOrganizer", (o,n) => { (o as Event).IsOrganizer = n.GetBoolValue(); } },
                 {"isReminderOn", (o,n) => { (o as Event).IsReminderOn = n.GetBoolValue(); } },
-                {"location", (o,n) => { (o as Event).Location = n.GetObjectValue<Location>(); } },
-                {"locations", (o,n) => { (o as Event).Locations = n.GetCollectionOfObjectValues<Location>().ToList(); } },
-                {"multiValueExtendedProperties", (o,n) => { (o as Event).MultiValueExtendedProperties = n.GetCollectionOfObjectValues<MultiValueLegacyExtendedProperty>().ToList(); } },
-                {"onlineMeeting", (o,n) => { (o as Event).OnlineMeeting = n.GetObjectValue<OnlineMeetingInfo>(); } },
+                {"location", (o,n) => { (o as Event).Location = n.GetObjectValue<ApiSdk.Models.Microsoft.Graph.Location>(ApiSdk.Models.Microsoft.Graph.Location.CreateFromDiscriminatorValue); } },
+                {"locations", (o,n) => { (o as Event).Locations = n.GetCollectionOfObjectValues<ApiSdk.Models.Microsoft.Graph.Location>(ApiSdk.Models.Microsoft.Graph.Location.CreateFromDiscriminatorValue).ToList(); } },
+                {"multiValueExtendedProperties", (o,n) => { (o as Event).MultiValueExtendedProperties = n.GetCollectionOfObjectValues<MultiValueLegacyExtendedProperty>(MultiValueLegacyExtendedProperty.CreateFromDiscriminatorValue).ToList(); } },
+                {"onlineMeeting", (o,n) => { (o as Event).OnlineMeeting = n.GetObjectValue<OnlineMeetingInfo>(OnlineMeetingInfo.CreateFromDiscriminatorValue); } },
                 {"onlineMeetingProvider", (o,n) => { (o as Event).OnlineMeetingProvider = n.GetEnumValue<OnlineMeetingProviderType>(); } },
                 {"onlineMeetingUrl", (o,n) => { (o as Event).OnlineMeetingUrl = n.GetStringValue(); } },
-                {"organizer", (o,n) => { (o as Event).Organizer = n.GetObjectValue<Recipient>(); } },
+                {"organizer", (o,n) => { (o as Event).Organizer = n.GetObjectValue<Recipient>(Recipient.CreateFromDiscriminatorValue); } },
                 {"originalEndTimeZone", (o,n) => { (o as Event).OriginalEndTimeZone = n.GetStringValue(); } },
                 {"originalStart", (o,n) => { (o as Event).OriginalStart = n.GetDateTimeOffsetValue(); } },
                 {"originalStartTimeZone", (o,n) => { (o as Event).OriginalStartTimeZone = n.GetStringValue(); } },
-                {"recurrence", (o,n) => { (o as Event).Recurrence = n.GetObjectValue<PatternedRecurrence>(); } },
+                {"recurrence", (o,n) => { (o as Event).Recurrence = n.GetObjectValue<PatternedRecurrence>(PatternedRecurrence.CreateFromDiscriminatorValue); } },
                 {"reminderMinutesBeforeStart", (o,n) => { (o as Event).ReminderMinutesBeforeStart = n.GetIntValue(); } },
                 {"responseRequested", (o,n) => { (o as Event).ResponseRequested = n.GetBoolValue(); } },
-                {"responseStatus", (o,n) => { (o as Event).ResponseStatus = n.GetObjectValue<ResponseStatus>(); } },
+                {"responseStatus", (o,n) => { (o as Event).ResponseStatus = n.GetObjectValue<ApiSdk.Models.Microsoft.Graph.ResponseStatus>(ApiSdk.Models.Microsoft.Graph.ResponseStatus.CreateFromDiscriminatorValue); } },
                 {"sensitivity", (o,n) => { (o as Event).Sensitivity = n.GetEnumValue<Sensitivity>(); } },
                 {"seriesMasterId", (o,n) => { (o as Event).SeriesMasterId = n.GetStringValue(); } },
                 {"showAs", (o,n) => { (o as Event).ShowAs = n.GetEnumValue<FreeBusyStatus>(); } },
-                {"singleValueExtendedProperties", (o,n) => { (o as Event).SingleValueExtendedProperties = n.GetCollectionOfObjectValues<SingleValueLegacyExtendedProperty>().ToList(); } },
-                {"start", (o,n) => { (o as Event).Start = n.GetObjectValue<DateTimeTimeZone>(); } },
+                {"singleValueExtendedProperties", (o,n) => { (o as Event).SingleValueExtendedProperties = n.GetCollectionOfObjectValues<SingleValueLegacyExtendedProperty>(SingleValueLegacyExtendedProperty.CreateFromDiscriminatorValue).ToList(); } },
+                {"start", (o,n) => { (o as Event).Start = n.GetObjectValue<DateTimeTimeZone>(DateTimeTimeZone.CreateFromDiscriminatorValue); } },
                 {"subject", (o,n) => { (o as Event).Subject = n.GetStringValue(); } },
                 {"transactionId", (o,n) => { (o as Event).TransactionId = n.GetStringValue(); } },
                 {"type", (o,n) => { (o as Event).Type = n.GetEnumValue<EventType>(); } },
@@ -122,7 +130,7 @@ namespace ApiSdk.Models.Microsoft.Graph {
             writer.WriteCollectionOfObjectValues<Attendee>("attendees", Attendees);
             writer.WriteObjectValue<ItemBody>("body", Body);
             writer.WriteStringValue("bodyPreview", BodyPreview);
-            writer.WriteObjectValue<Calendar>("calendar", Calendar);
+            writer.WriteObjectValue<ApiSdk.Models.Microsoft.Graph.Calendar>("calendar", Calendar);
             writer.WriteObjectValue<DateTimeTimeZone>("end", End);
             writer.WriteCollectionOfObjectValues<Extension>("extensions", Extensions);
             writer.WriteBoolValue("hasAttachments", HasAttachments);
@@ -136,8 +144,8 @@ namespace ApiSdk.Models.Microsoft.Graph {
             writer.WriteBoolValue("isOnlineMeeting", IsOnlineMeeting);
             writer.WriteBoolValue("isOrganizer", IsOrganizer);
             writer.WriteBoolValue("isReminderOn", IsReminderOn);
-            writer.WriteObjectValue<Location>("location", Location);
-            writer.WriteCollectionOfObjectValues<Location>("locations", Locations);
+            writer.WriteObjectValue<ApiSdk.Models.Microsoft.Graph.Location>("location", Location);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.Microsoft.Graph.Location>("locations", Locations);
             writer.WriteCollectionOfObjectValues<MultiValueLegacyExtendedProperty>("multiValueExtendedProperties", MultiValueExtendedProperties);
             writer.WriteObjectValue<OnlineMeetingInfo>("onlineMeeting", OnlineMeeting);
             writer.WriteEnumValue<OnlineMeetingProviderType>("onlineMeetingProvider", OnlineMeetingProvider);
@@ -149,7 +157,7 @@ namespace ApiSdk.Models.Microsoft.Graph {
             writer.WriteObjectValue<PatternedRecurrence>("recurrence", Recurrence);
             writer.WriteIntValue("reminderMinutesBeforeStart", ReminderMinutesBeforeStart);
             writer.WriteBoolValue("responseRequested", ResponseRequested);
-            writer.WriteObjectValue<ResponseStatus>("responseStatus", ResponseStatus);
+            writer.WriteObjectValue<ApiSdk.Models.Microsoft.Graph.ResponseStatus>("responseStatus", ResponseStatus);
             writer.WriteEnumValue<Sensitivity>("sensitivity", Sensitivity);
             writer.WriteStringValue("seriesMasterId", SeriesMasterId);
             writer.WriteEnumValue<FreeBusyStatus>("showAs", ShowAs);

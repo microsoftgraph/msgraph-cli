@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 namespace ApiSdk.Workbooks.Item.Workbook.Functions.SumIf {
-    public class SumIfRequestBody : IParsable {
+    public class SumIfRequestBody : IAdditionalDataHolder, IParsable {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
         public Json Criteria { get; set; }
@@ -18,13 +18,21 @@ namespace ApiSdk.Workbooks.Item.Workbook.Functions.SumIf {
             AdditionalData = new Dictionary<string, object>();
         }
         /// <summary>
+        /// Creates a new instance of the appropriate class based on discriminator value
+        /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
+        /// </summary>
+        public static SumIfRequestBody CreateFromDiscriminatorValue(IParseNode parseNode) {
+            _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
+            return new SumIfRequestBody();
+        }
+        /// <summary>
         /// The deserialization information for the current model
         /// </summary>
         public IDictionary<string, Action<T, IParseNode>> GetFieldDeserializers<T>() {
             return new Dictionary<string, Action<T, IParseNode>> {
-                {"criteria", (o,n) => { (o as SumIfRequestBody).Criteria = n.GetObjectValue<Json>(); } },
-                {"range", (o,n) => { (o as SumIfRequestBody).Range = n.GetObjectValue<Json>(); } },
-                {"sumRange", (o,n) => { (o as SumIfRequestBody).SumRange = n.GetObjectValue<Json>(); } },
+                {"criteria", (o,n) => { (o as SumIfRequestBody).Criteria = n.GetObjectValue<Json>(Json.CreateFromDiscriminatorValue); } },
+                {"range", (o,n) => { (o as SumIfRequestBody).Range = n.GetObjectValue<Json>(Json.CreateFromDiscriminatorValue); } },
+                {"sumRange", (o,n) => { (o as SumIfRequestBody).SumRange = n.GetObjectValue<Json>(Json.CreateFromDiscriminatorValue); } },
             };
         }
         /// <summary>

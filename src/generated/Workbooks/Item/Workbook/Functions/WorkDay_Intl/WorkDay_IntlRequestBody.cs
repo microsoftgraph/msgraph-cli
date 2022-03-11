@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 namespace ApiSdk.Workbooks.Item.Workbook.Functions.WorkDay_Intl {
-    public class WorkDay_IntlRequestBody : IParsable {
+    public class WorkDay_IntlRequestBody : IAdditionalDataHolder, IParsable {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
         public Json Days { get; set; }
@@ -19,14 +19,22 @@ namespace ApiSdk.Workbooks.Item.Workbook.Functions.WorkDay_Intl {
             AdditionalData = new Dictionary<string, object>();
         }
         /// <summary>
+        /// Creates a new instance of the appropriate class based on discriminator value
+        /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
+        /// </summary>
+        public static WorkDay_IntlRequestBody CreateFromDiscriminatorValue(IParseNode parseNode) {
+            _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
+            return new WorkDay_IntlRequestBody();
+        }
+        /// <summary>
         /// The deserialization information for the current model
         /// </summary>
         public IDictionary<string, Action<T, IParseNode>> GetFieldDeserializers<T>() {
             return new Dictionary<string, Action<T, IParseNode>> {
-                {"days", (o,n) => { (o as WorkDay_IntlRequestBody).Days = n.GetObjectValue<Json>(); } },
-                {"holidays", (o,n) => { (o as WorkDay_IntlRequestBody).Holidays = n.GetObjectValue<Json>(); } },
-                {"startDate", (o,n) => { (o as WorkDay_IntlRequestBody).StartDate = n.GetObjectValue<Json>(); } },
-                {"weekend", (o,n) => { (o as WorkDay_IntlRequestBody).Weekend = n.GetObjectValue<Json>(); } },
+                {"days", (o,n) => { (o as WorkDay_IntlRequestBody).Days = n.GetObjectValue<Json>(Json.CreateFromDiscriminatorValue); } },
+                {"holidays", (o,n) => { (o as WorkDay_IntlRequestBody).Holidays = n.GetObjectValue<Json>(Json.CreateFromDiscriminatorValue); } },
+                {"startDate", (o,n) => { (o as WorkDay_IntlRequestBody).StartDate = n.GetObjectValue<Json>(Json.CreateFromDiscriminatorValue); } },
+                {"weekend", (o,n) => { (o as WorkDay_IntlRequestBody).Weekend = n.GetObjectValue<Json>(Json.CreateFromDiscriminatorValue); } },
             };
         }
         /// <summary>

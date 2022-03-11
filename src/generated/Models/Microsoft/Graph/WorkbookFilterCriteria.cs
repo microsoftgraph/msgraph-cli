@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 namespace ApiSdk.Models.Microsoft.Graph {
-    public class WorkbookFilterCriteria : IParsable {
+    public class WorkbookFilterCriteria : IAdditionalDataHolder, IParsable {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
         public string Color { get; set; }
@@ -22,6 +22,14 @@ namespace ApiSdk.Models.Microsoft.Graph {
             AdditionalData = new Dictionary<string, object>();
         }
         /// <summary>
+        /// Creates a new instance of the appropriate class based on discriminator value
+        /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
+        /// </summary>
+        public static WorkbookFilterCriteria CreateFromDiscriminatorValue(IParseNode parseNode) {
+            _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
+            return new WorkbookFilterCriteria();
+        }
+        /// <summary>
         /// The deserialization information for the current model
         /// </summary>
         public IDictionary<string, Action<T, IParseNode>> GetFieldDeserializers<T>() {
@@ -31,9 +39,9 @@ namespace ApiSdk.Models.Microsoft.Graph {
                 {"criterion2", (o,n) => { (o as WorkbookFilterCriteria).Criterion2 = n.GetStringValue(); } },
                 {"dynamicCriteria", (o,n) => { (o as WorkbookFilterCriteria).DynamicCriteria = n.GetStringValue(); } },
                 {"filterOn", (o,n) => { (o as WorkbookFilterCriteria).FilterOn = n.GetStringValue(); } },
-                {"icon", (o,n) => { (o as WorkbookFilterCriteria).Icon = n.GetObjectValue<WorkbookIcon>(); } },
+                {"icon", (o,n) => { (o as WorkbookFilterCriteria).Icon = n.GetObjectValue<WorkbookIcon>(WorkbookIcon.CreateFromDiscriminatorValue); } },
                 {"operator", (o,n) => { (o as WorkbookFilterCriteria).Operator = n.GetStringValue(); } },
-                {"values", (o,n) => { (o as WorkbookFilterCriteria).Values = n.GetObjectValue<Json>(); } },
+                {"values", (o,n) => { (o as WorkbookFilterCriteria).Values = n.GetObjectValue<Json>(Json.CreateFromDiscriminatorValue); } },
             };
         }
         /// <summary>

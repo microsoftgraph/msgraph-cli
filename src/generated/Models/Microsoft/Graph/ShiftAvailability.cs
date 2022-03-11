@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 namespace ApiSdk.Models.Microsoft.Graph {
-    public class ShiftAvailability : IParsable {
+    public class ShiftAvailability : IAdditionalDataHolder, IParsable {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>Specifies the pattern for recurrence</summary>
@@ -20,12 +20,20 @@ namespace ApiSdk.Models.Microsoft.Graph {
             AdditionalData = new Dictionary<string, object>();
         }
         /// <summary>
+        /// Creates a new instance of the appropriate class based on discriminator value
+        /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
+        /// </summary>
+        public static ShiftAvailability CreateFromDiscriminatorValue(IParseNode parseNode) {
+            _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
+            return new ShiftAvailability();
+        }
+        /// <summary>
         /// The deserialization information for the current model
         /// </summary>
         public IDictionary<string, Action<T, IParseNode>> GetFieldDeserializers<T>() {
             return new Dictionary<string, Action<T, IParseNode>> {
-                {"recurrence", (o,n) => { (o as ShiftAvailability).Recurrence = n.GetObjectValue<PatternedRecurrence>(); } },
-                {"timeSlots", (o,n) => { (o as ShiftAvailability).TimeSlots = n.GetCollectionOfObjectValues<TimeRange>().ToList(); } },
+                {"recurrence", (o,n) => { (o as ShiftAvailability).Recurrence = n.GetObjectValue<PatternedRecurrence>(PatternedRecurrence.CreateFromDiscriminatorValue); } },
+                {"timeSlots", (o,n) => { (o as ShiftAvailability).TimeSlots = n.GetCollectionOfObjectValues<TimeRange>(TimeRange.CreateFromDiscriminatorValue).ToList(); } },
                 {"timeZone", (o,n) => { (o as ShiftAvailability).TimeZone = n.GetStringValue(); } },
             };
         }

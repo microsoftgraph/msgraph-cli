@@ -28,20 +28,28 @@ namespace ApiSdk.Models.Microsoft.Graph {
         /// <summary>Version of the device configuration.</summary>
         public int? Version { get; set; }
         /// <summary>
+        /// Creates a new instance of the appropriate class based on discriminator value
+        /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
+        /// </summary>
+        public static new ManagedDeviceMobileAppConfiguration CreateFromDiscriminatorValue(IParseNode parseNode) {
+            _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
+            return new ManagedDeviceMobileAppConfiguration();
+        }
+        /// <summary>
         /// The deserialization information for the current model
         /// </summary>
         public new IDictionary<string, Action<T, IParseNode>> GetFieldDeserializers<T>() {
             return new Dictionary<string, Action<T, IParseNode>>(base.GetFieldDeserializers<T>()) {
-                {"assignments", (o,n) => { (o as ManagedDeviceMobileAppConfiguration).Assignments = n.GetCollectionOfObjectValues<ManagedDeviceMobileAppConfigurationAssignment>().ToList(); } },
+                {"assignments", (o,n) => { (o as ManagedDeviceMobileAppConfiguration).Assignments = n.GetCollectionOfObjectValues<ManagedDeviceMobileAppConfigurationAssignment>(ManagedDeviceMobileAppConfigurationAssignment.CreateFromDiscriminatorValue).ToList(); } },
                 {"createdDateTime", (o,n) => { (o as ManagedDeviceMobileAppConfiguration).CreatedDateTime = n.GetDateTimeOffsetValue(); } },
                 {"description", (o,n) => { (o as ManagedDeviceMobileAppConfiguration).Description = n.GetStringValue(); } },
-                {"deviceStatuses", (o,n) => { (o as ManagedDeviceMobileAppConfiguration).DeviceStatuses = n.GetCollectionOfObjectValues<ManagedDeviceMobileAppConfigurationDeviceStatus>().ToList(); } },
-                {"deviceStatusSummary", (o,n) => { (o as ManagedDeviceMobileAppConfiguration).DeviceStatusSummary = n.GetObjectValue<ManagedDeviceMobileAppConfigurationDeviceSummary>(); } },
+                {"deviceStatuses", (o,n) => { (o as ManagedDeviceMobileAppConfiguration).DeviceStatuses = n.GetCollectionOfObjectValues<ManagedDeviceMobileAppConfigurationDeviceStatus>(ManagedDeviceMobileAppConfigurationDeviceStatus.CreateFromDiscriminatorValue).ToList(); } },
+                {"deviceStatusSummary", (o,n) => { (o as ManagedDeviceMobileAppConfiguration).DeviceStatusSummary = n.GetObjectValue<ManagedDeviceMobileAppConfigurationDeviceSummary>(ManagedDeviceMobileAppConfigurationDeviceSummary.CreateFromDiscriminatorValue); } },
                 {"displayName", (o,n) => { (o as ManagedDeviceMobileAppConfiguration).DisplayName = n.GetStringValue(); } },
                 {"lastModifiedDateTime", (o,n) => { (o as ManagedDeviceMobileAppConfiguration).LastModifiedDateTime = n.GetDateTimeOffsetValue(); } },
                 {"targetedMobileApps", (o,n) => { (o as ManagedDeviceMobileAppConfiguration).TargetedMobileApps = n.GetCollectionOfPrimitiveValues<string>().ToList(); } },
-                {"userStatuses", (o,n) => { (o as ManagedDeviceMobileAppConfiguration).UserStatuses = n.GetCollectionOfObjectValues<ManagedDeviceMobileAppConfigurationUserStatus>().ToList(); } },
-                {"userStatusSummary", (o,n) => { (o as ManagedDeviceMobileAppConfiguration).UserStatusSummary = n.GetObjectValue<ManagedDeviceMobileAppConfigurationUserSummary>(); } },
+                {"userStatuses", (o,n) => { (o as ManagedDeviceMobileAppConfiguration).UserStatuses = n.GetCollectionOfObjectValues<ManagedDeviceMobileAppConfigurationUserStatus>(ManagedDeviceMobileAppConfigurationUserStatus.CreateFromDiscriminatorValue).ToList(); } },
+                {"userStatusSummary", (o,n) => { (o as ManagedDeviceMobileAppConfiguration).UserStatusSummary = n.GetObjectValue<ManagedDeviceMobileAppConfigurationUserSummary>(ManagedDeviceMobileAppConfigurationUserSummary.CreateFromDiscriminatorValue); } },
                 {"version", (o,n) => { (o as ManagedDeviceMobileAppConfiguration).Version = n.GetIntValue(); } },
             };
         }

@@ -56,6 +56,14 @@ namespace ApiSdk.Models.Microsoft.Graph {
         /// <summary>The deep link URL for the given assignment.</summary>
         public string WebUrl { get; set; }
         /// <summary>
+        /// Creates a new instance of the appropriate class based on discriminator value
+        /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
+        /// </summary>
+        public static new EducationAssignment CreateFromDiscriminatorValue(IParseNode parseNode) {
+            _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
+            return new EducationAssignment();
+        }
+        /// <summary>
         /// The deserialization information for the current model
         /// </summary>
         public new IDictionary<string, Action<T, IParseNode>> GetFieldDeserializers<T>() {
@@ -66,24 +74,24 @@ namespace ApiSdk.Models.Microsoft.Graph {
                 {"allowStudentsToAddResourcesToSubmission", (o,n) => { (o as EducationAssignment).AllowStudentsToAddResourcesToSubmission = n.GetBoolValue(); } },
                 {"assignDateTime", (o,n) => { (o as EducationAssignment).AssignDateTime = n.GetDateTimeOffsetValue(); } },
                 {"assignedDateTime", (o,n) => { (o as EducationAssignment).AssignedDateTime = n.GetDateTimeOffsetValue(); } },
-                {"assignTo", (o,n) => { (o as EducationAssignment).AssignTo = n.GetObjectValue<EducationAssignmentRecipient>(); } },
-                {"categories", (o,n) => { (o as EducationAssignment).Categories = n.GetCollectionOfObjectValues<EducationCategory>().ToList(); } },
+                {"assignTo", (o,n) => { (o as EducationAssignment).AssignTo = n.GetObjectValue<EducationAssignmentRecipient>(EducationAssignmentRecipient.CreateFromDiscriminatorValue); } },
+                {"categories", (o,n) => { (o as EducationAssignment).Categories = n.GetCollectionOfObjectValues<EducationCategory>(EducationCategory.CreateFromDiscriminatorValue).ToList(); } },
                 {"classId", (o,n) => { (o as EducationAssignment).ClassId = n.GetStringValue(); } },
                 {"closeDateTime", (o,n) => { (o as EducationAssignment).CloseDateTime = n.GetDateTimeOffsetValue(); } },
-                {"createdBy", (o,n) => { (o as EducationAssignment).CreatedBy = n.GetObjectValue<IdentitySet>(); } },
+                {"createdBy", (o,n) => { (o as EducationAssignment).CreatedBy = n.GetObjectValue<IdentitySet>(IdentitySet.CreateFromDiscriminatorValue); } },
                 {"createdDateTime", (o,n) => { (o as EducationAssignment).CreatedDateTime = n.GetDateTimeOffsetValue(); } },
                 {"displayName", (o,n) => { (o as EducationAssignment).DisplayName = n.GetStringValue(); } },
                 {"dueDateTime", (o,n) => { (o as EducationAssignment).DueDateTime = n.GetDateTimeOffsetValue(); } },
-                {"grading", (o,n) => { (o as EducationAssignment).Grading = n.GetObjectValue<EducationAssignmentGradeType>(); } },
-                {"instructions", (o,n) => { (o as EducationAssignment).Instructions = n.GetObjectValue<EducationItemBody>(); } },
-                {"lastModifiedBy", (o,n) => { (o as EducationAssignment).LastModifiedBy = n.GetObjectValue<IdentitySet>(); } },
+                {"grading", (o,n) => { (o as EducationAssignment).Grading = n.GetObjectValue<EducationAssignmentGradeType>(EducationAssignmentGradeType.CreateFromDiscriminatorValue); } },
+                {"instructions", (o,n) => { (o as EducationAssignment).Instructions = n.GetObjectValue<EducationItemBody>(EducationItemBody.CreateFromDiscriminatorValue); } },
+                {"lastModifiedBy", (o,n) => { (o as EducationAssignment).LastModifiedBy = n.GetObjectValue<IdentitySet>(IdentitySet.CreateFromDiscriminatorValue); } },
                 {"lastModifiedDateTime", (o,n) => { (o as EducationAssignment).LastModifiedDateTime = n.GetDateTimeOffsetValue(); } },
                 {"notificationChannelUrl", (o,n) => { (o as EducationAssignment).NotificationChannelUrl = n.GetStringValue(); } },
-                {"resources", (o,n) => { (o as EducationAssignment).Resources = n.GetCollectionOfObjectValues<EducationAssignmentResource>().ToList(); } },
+                {"resources", (o,n) => { (o as EducationAssignment).Resources = n.GetCollectionOfObjectValues<EducationAssignmentResource>(EducationAssignmentResource.CreateFromDiscriminatorValue).ToList(); } },
                 {"resourcesFolderUrl", (o,n) => { (o as EducationAssignment).ResourcesFolderUrl = n.GetStringValue(); } },
-                {"rubric", (o,n) => { (o as EducationAssignment).Rubric = n.GetObjectValue<EducationRubric>(); } },
+                {"rubric", (o,n) => { (o as EducationAssignment).Rubric = n.GetObjectValue<EducationRubric>(EducationRubric.CreateFromDiscriminatorValue); } },
                 {"status", (o,n) => { (o as EducationAssignment).Status = n.GetEnumValue<EducationAssignmentStatus>(); } },
-                {"submissions", (o,n) => { (o as EducationAssignment).Submissions = n.GetCollectionOfObjectValues<EducationSubmission>().ToList(); } },
+                {"submissions", (o,n) => { (o as EducationAssignment).Submissions = n.GetCollectionOfObjectValues<EducationSubmission>(EducationSubmission.CreateFromDiscriminatorValue).ToList(); } },
                 {"webUrl", (o,n) => { (o as EducationAssignment).WebUrl = n.GetStringValue(); } },
             };
         }

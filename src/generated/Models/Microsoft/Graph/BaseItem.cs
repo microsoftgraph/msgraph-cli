@@ -28,20 +28,28 @@ namespace ApiSdk.Models.Microsoft.Graph {
         /// <summary>URL that displays the resource in the browser. Read-only.</summary>
         public string WebUrl { get; set; }
         /// <summary>
+        /// Creates a new instance of the appropriate class based on discriminator value
+        /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
+        /// </summary>
+        public static new BaseItem CreateFromDiscriminatorValue(IParseNode parseNode) {
+            _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
+            return new BaseItem();
+        }
+        /// <summary>
         /// The deserialization information for the current model
         /// </summary>
         public new IDictionary<string, Action<T, IParseNode>> GetFieldDeserializers<T>() {
             return new Dictionary<string, Action<T, IParseNode>>(base.GetFieldDeserializers<T>()) {
-                {"createdBy", (o,n) => { (o as BaseItem).CreatedBy = n.GetObjectValue<IdentitySet>(); } },
-                {"createdByUser", (o,n) => { (o as BaseItem).CreatedByUser = n.GetObjectValue<User>(); } },
+                {"createdBy", (o,n) => { (o as BaseItem).CreatedBy = n.GetObjectValue<IdentitySet>(IdentitySet.CreateFromDiscriminatorValue); } },
+                {"createdByUser", (o,n) => { (o as BaseItem).CreatedByUser = n.GetObjectValue<User>(User.CreateFromDiscriminatorValue); } },
                 {"createdDateTime", (o,n) => { (o as BaseItem).CreatedDateTime = n.GetDateTimeOffsetValue(); } },
                 {"description", (o,n) => { (o as BaseItem).Description = n.GetStringValue(); } },
                 {"eTag", (o,n) => { (o as BaseItem).ETag = n.GetStringValue(); } },
-                {"lastModifiedBy", (o,n) => { (o as BaseItem).LastModifiedBy = n.GetObjectValue<IdentitySet>(); } },
-                {"lastModifiedByUser", (o,n) => { (o as BaseItem).LastModifiedByUser = n.GetObjectValue<User>(); } },
+                {"lastModifiedBy", (o,n) => { (o as BaseItem).LastModifiedBy = n.GetObjectValue<IdentitySet>(IdentitySet.CreateFromDiscriminatorValue); } },
+                {"lastModifiedByUser", (o,n) => { (o as BaseItem).LastModifiedByUser = n.GetObjectValue<User>(User.CreateFromDiscriminatorValue); } },
                 {"lastModifiedDateTime", (o,n) => { (o as BaseItem).LastModifiedDateTime = n.GetDateTimeOffsetValue(); } },
                 {"name", (o,n) => { (o as BaseItem).Name = n.GetStringValue(); } },
-                {"parentReference", (o,n) => { (o as BaseItem).ParentReference = n.GetObjectValue<ItemReference>(); } },
+                {"parentReference", (o,n) => { (o as BaseItem).ParentReference = n.GetObjectValue<ItemReference>(ItemReference.CreateFromDiscriminatorValue); } },
                 {"webUrl", (o,n) => { (o as BaseItem).WebUrl = n.GetStringValue(); } },
             };
         }

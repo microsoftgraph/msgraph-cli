@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 namespace ApiSdk.Models.Microsoft.Graph {
-    public class EntitlementManagementSchedule : IParsable {
+    public class EntitlementManagementSchedule : IAdditionalDataHolder, IParsable {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>When the access should expire.</summary>
@@ -20,12 +20,20 @@ namespace ApiSdk.Models.Microsoft.Graph {
             AdditionalData = new Dictionary<string, object>();
         }
         /// <summary>
+        /// Creates a new instance of the appropriate class based on discriminator value
+        /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
+        /// </summary>
+        public static EntitlementManagementSchedule CreateFromDiscriminatorValue(IParseNode parseNode) {
+            _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
+            return new EntitlementManagementSchedule();
+        }
+        /// <summary>
         /// The deserialization information for the current model
         /// </summary>
         public IDictionary<string, Action<T, IParseNode>> GetFieldDeserializers<T>() {
             return new Dictionary<string, Action<T, IParseNode>> {
-                {"expiration", (o,n) => { (o as EntitlementManagementSchedule).Expiration = n.GetObjectValue<ExpirationPattern>(); } },
-                {"recurrence", (o,n) => { (o as EntitlementManagementSchedule).Recurrence = n.GetObjectValue<PatternedRecurrence>(); } },
+                {"expiration", (o,n) => { (o as EntitlementManagementSchedule).Expiration = n.GetObjectValue<ExpirationPattern>(ExpirationPattern.CreateFromDiscriminatorValue); } },
+                {"recurrence", (o,n) => { (o as EntitlementManagementSchedule).Recurrence = n.GetObjectValue<PatternedRecurrence>(PatternedRecurrence.CreateFromDiscriminatorValue); } },
                 {"startDateTime", (o,n) => { (o as EntitlementManagementSchedule).StartDateTime = n.GetDateTimeOffsetValue(); } },
             };
         }

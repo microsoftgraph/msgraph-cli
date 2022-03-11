@@ -12,7 +12,15 @@ namespace ApiSdk.Models.Microsoft.Graph {
         /// <summary>List of ids of role scope member security groups.  These are IDs from Azure Active Directory.</summary>
         public List<string> ResourceScopes { get; set; }
         /// <summary>Role definition this assignment is part of.</summary>
-        public RoleDefinition RoleDefinition { get; set; }
+        public ApiSdk.Models.Microsoft.Graph.RoleDefinition RoleDefinition { get; set; }
+        /// <summary>
+        /// Creates a new instance of the appropriate class based on discriminator value
+        /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
+        /// </summary>
+        public static new RoleAssignment CreateFromDiscriminatorValue(IParseNode parseNode) {
+            _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
+            return new RoleAssignment();
+        }
         /// <summary>
         /// The deserialization information for the current model
         /// </summary>
@@ -21,7 +29,7 @@ namespace ApiSdk.Models.Microsoft.Graph {
                 {"description", (o,n) => { (o as RoleAssignment).Description = n.GetStringValue(); } },
                 {"displayName", (o,n) => { (o as RoleAssignment).DisplayName = n.GetStringValue(); } },
                 {"resourceScopes", (o,n) => { (o as RoleAssignment).ResourceScopes = n.GetCollectionOfPrimitiveValues<string>().ToList(); } },
-                {"roleDefinition", (o,n) => { (o as RoleAssignment).RoleDefinition = n.GetObjectValue<RoleDefinition>(); } },
+                {"roleDefinition", (o,n) => { (o as RoleAssignment).RoleDefinition = n.GetObjectValue<ApiSdk.Models.Microsoft.Graph.RoleDefinition>(ApiSdk.Models.Microsoft.Graph.RoleDefinition.CreateFromDiscriminatorValue); } },
             };
         }
         /// <summary>
@@ -34,7 +42,7 @@ namespace ApiSdk.Models.Microsoft.Graph {
             writer.WriteStringValue("description", Description);
             writer.WriteStringValue("displayName", DisplayName);
             writer.WriteCollectionOfPrimitiveValues<string>("resourceScopes", ResourceScopes);
-            writer.WriteObjectValue<RoleDefinition>("roleDefinition", RoleDefinition);
+            writer.WriteObjectValue<ApiSdk.Models.Microsoft.Graph.RoleDefinition>("roleDefinition", RoleDefinition);
         }
     }
 }

@@ -28,19 +28,27 @@ namespace ApiSdk.Models.Microsoft.Graph {
         /// <summary>The number of items in the mailFolder marked as unread.</summary>
         public int? UnreadItemCount { get; set; }
         /// <summary>
+        /// Creates a new instance of the appropriate class based on discriminator value
+        /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
+        /// </summary>
+        public static new MailFolder CreateFromDiscriminatorValue(IParseNode parseNode) {
+            _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
+            return new MailFolder();
+        }
+        /// <summary>
         /// The deserialization information for the current model
         /// </summary>
         public new IDictionary<string, Action<T, IParseNode>> GetFieldDeserializers<T>() {
             return new Dictionary<string, Action<T, IParseNode>>(base.GetFieldDeserializers<T>()) {
                 {"childFolderCount", (o,n) => { (o as MailFolder).ChildFolderCount = n.GetIntValue(); } },
-                {"childFolders", (o,n) => { (o as MailFolder).ChildFolders = n.GetCollectionOfObjectValues<MailFolder>().ToList(); } },
+                {"childFolders", (o,n) => { (o as MailFolder).ChildFolders = n.GetCollectionOfObjectValues<MailFolder>(MailFolder.CreateFromDiscriminatorValue).ToList(); } },
                 {"displayName", (o,n) => { (o as MailFolder).DisplayName = n.GetStringValue(); } },
                 {"isHidden", (o,n) => { (o as MailFolder).IsHidden = n.GetBoolValue(); } },
-                {"messageRules", (o,n) => { (o as MailFolder).MessageRules = n.GetCollectionOfObjectValues<MessageRule>().ToList(); } },
-                {"messages", (o,n) => { (o as MailFolder).Messages = n.GetCollectionOfObjectValues<Message>().ToList(); } },
-                {"multiValueExtendedProperties", (o,n) => { (o as MailFolder).MultiValueExtendedProperties = n.GetCollectionOfObjectValues<MultiValueLegacyExtendedProperty>().ToList(); } },
+                {"messageRules", (o,n) => { (o as MailFolder).MessageRules = n.GetCollectionOfObjectValues<MessageRule>(MessageRule.CreateFromDiscriminatorValue).ToList(); } },
+                {"messages", (o,n) => { (o as MailFolder).Messages = n.GetCollectionOfObjectValues<Message>(Message.CreateFromDiscriminatorValue).ToList(); } },
+                {"multiValueExtendedProperties", (o,n) => { (o as MailFolder).MultiValueExtendedProperties = n.GetCollectionOfObjectValues<MultiValueLegacyExtendedProperty>(MultiValueLegacyExtendedProperty.CreateFromDiscriminatorValue).ToList(); } },
                 {"parentFolderId", (o,n) => { (o as MailFolder).ParentFolderId = n.GetStringValue(); } },
-                {"singleValueExtendedProperties", (o,n) => { (o as MailFolder).SingleValueExtendedProperties = n.GetCollectionOfObjectValues<SingleValueLegacyExtendedProperty>().ToList(); } },
+                {"singleValueExtendedProperties", (o,n) => { (o as MailFolder).SingleValueExtendedProperties = n.GetCollectionOfObjectValues<SingleValueLegacyExtendedProperty>(SingleValueLegacyExtendedProperty.CreateFromDiscriminatorValue).ToList(); } },
                 {"totalItemCount", (o,n) => { (o as MailFolder).TotalItemCount = n.GetIntValue(); } },
                 {"unreadItemCount", (o,n) => { (o as MailFolder).UnreadItemCount = n.GetIntValue(); } },
             };

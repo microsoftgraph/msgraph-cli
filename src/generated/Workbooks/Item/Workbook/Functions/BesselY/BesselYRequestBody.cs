@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 namespace ApiSdk.Workbooks.Item.Workbook.Functions.BesselY {
-    public class BesselYRequestBody : IParsable {
+    public class BesselYRequestBody : IAdditionalDataHolder, IParsable {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
         public Json N { get; set; }
@@ -17,12 +17,20 @@ namespace ApiSdk.Workbooks.Item.Workbook.Functions.BesselY {
             AdditionalData = new Dictionary<string, object>();
         }
         /// <summary>
+        /// Creates a new instance of the appropriate class based on discriminator value
+        /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
+        /// </summary>
+        public static BesselYRequestBody CreateFromDiscriminatorValue(IParseNode parseNode) {
+            _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
+            return new BesselYRequestBody();
+        }
+        /// <summary>
         /// The deserialization information for the current model
         /// </summary>
         public IDictionary<string, Action<T, IParseNode>> GetFieldDeserializers<T>() {
             return new Dictionary<string, Action<T, IParseNode>> {
-                {"n", (o,n) => { (o as BesselYRequestBody).N = n.GetObjectValue<Json>(); } },
-                {"x", (o,n) => { (o as BesselYRequestBody).X = n.GetObjectValue<Json>(); } },
+                {"n", (o,n) => { (o as BesselYRequestBody).N = n.GetObjectValue<Json>(Json.CreateFromDiscriminatorValue); } },
+                {"x", (o,n) => { (o as BesselYRequestBody).X = n.GetObjectValue<Json>(Json.CreateFromDiscriminatorValue); } },
             };
         }
         /// <summary>

@@ -42,7 +42,7 @@ namespace ApiSdk.Me.Insights.Trending.Item.Resource.WorkbookRange.Clear {
                 PathParameters.Add("trendingItem_Id", trendingItemId);
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
-                var model = parseNode.GetObjectValue<ClearRequestBody>();
+                var model = parseNode.GetObjectValue<ClearRequestBody>(ClearRequestBody.CreateFromDiscriminatorValue);
                 var requestInfo = CreatePostRequestInformation(model, q => {
                 });
                 await RequestAdapter.SendNoContentAsync(requestInfo, errorMapping: default, cancellationToken: cancellationToken);

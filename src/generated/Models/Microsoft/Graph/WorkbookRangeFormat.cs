@@ -24,16 +24,24 @@ namespace ApiSdk.Models.Microsoft.Graph {
         /// <summary>Indicates if Excel wraps the text in the object. A null value indicates that the entire range doesn't have uniform wrap setting</summary>
         public bool? WrapText { get; set; }
         /// <summary>
+        /// Creates a new instance of the appropriate class based on discriminator value
+        /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
+        /// </summary>
+        public static new WorkbookRangeFormat CreateFromDiscriminatorValue(IParseNode parseNode) {
+            _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
+            return new WorkbookRangeFormat();
+        }
+        /// <summary>
         /// The deserialization information for the current model
         /// </summary>
         public new IDictionary<string, Action<T, IParseNode>> GetFieldDeserializers<T>() {
             return new Dictionary<string, Action<T, IParseNode>>(base.GetFieldDeserializers<T>()) {
-                {"borders", (o,n) => { (o as WorkbookRangeFormat).Borders = n.GetCollectionOfObjectValues<WorkbookRangeBorder>().ToList(); } },
+                {"borders", (o,n) => { (o as WorkbookRangeFormat).Borders = n.GetCollectionOfObjectValues<WorkbookRangeBorder>(WorkbookRangeBorder.CreateFromDiscriminatorValue).ToList(); } },
                 {"columnWidth", (o,n) => { (o as WorkbookRangeFormat).ColumnWidth = n.GetDoubleValue(); } },
-                {"fill", (o,n) => { (o as WorkbookRangeFormat).Fill = n.GetObjectValue<WorkbookRangeFill>(); } },
-                {"font", (o,n) => { (o as WorkbookRangeFormat).Font = n.GetObjectValue<WorkbookRangeFont>(); } },
+                {"fill", (o,n) => { (o as WorkbookRangeFormat).Fill = n.GetObjectValue<WorkbookRangeFill>(WorkbookRangeFill.CreateFromDiscriminatorValue); } },
+                {"font", (o,n) => { (o as WorkbookRangeFormat).Font = n.GetObjectValue<WorkbookRangeFont>(WorkbookRangeFont.CreateFromDiscriminatorValue); } },
                 {"horizontalAlignment", (o,n) => { (o as WorkbookRangeFormat).HorizontalAlignment = n.GetStringValue(); } },
-                {"protection", (o,n) => { (o as WorkbookRangeFormat).Protection = n.GetObjectValue<WorkbookFormatProtection>(); } },
+                {"protection", (o,n) => { (o as WorkbookRangeFormat).Protection = n.GetObjectValue<WorkbookFormatProtection>(WorkbookFormatProtection.CreateFromDiscriminatorValue); } },
                 {"rowHeight", (o,n) => { (o as WorkbookRangeFormat).RowHeight = n.GetDoubleValue(); } },
                 {"verticalAlignment", (o,n) => { (o as WorkbookRangeFormat).VerticalAlignment = n.GetStringValue(); } },
                 {"wrapText", (o,n) => { (o as WorkbookRangeFormat).WrapText = n.GetBoolValue(); } },

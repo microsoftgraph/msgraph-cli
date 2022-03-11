@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 namespace ApiSdk.Workbooks.Item.Workbook.Functions.Vdb {
-    public class VdbRequestBody : IParsable {
+    public class VdbRequestBody : IAdditionalDataHolder, IParsable {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
         public Json Cost { get; set; }
@@ -22,17 +22,25 @@ namespace ApiSdk.Workbooks.Item.Workbook.Functions.Vdb {
             AdditionalData = new Dictionary<string, object>();
         }
         /// <summary>
+        /// Creates a new instance of the appropriate class based on discriminator value
+        /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
+        /// </summary>
+        public static VdbRequestBody CreateFromDiscriminatorValue(IParseNode parseNode) {
+            _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
+            return new VdbRequestBody();
+        }
+        /// <summary>
         /// The deserialization information for the current model
         /// </summary>
         public IDictionary<string, Action<T, IParseNode>> GetFieldDeserializers<T>() {
             return new Dictionary<string, Action<T, IParseNode>> {
-                {"cost", (o,n) => { (o as VdbRequestBody).Cost = n.GetObjectValue<Json>(); } },
-                {"endPeriod", (o,n) => { (o as VdbRequestBody).EndPeriod = n.GetObjectValue<Json>(); } },
-                {"factor", (o,n) => { (o as VdbRequestBody).Factor = n.GetObjectValue<Json>(); } },
-                {"life", (o,n) => { (o as VdbRequestBody).Life = n.GetObjectValue<Json>(); } },
-                {"noSwitch", (o,n) => { (o as VdbRequestBody).NoSwitch = n.GetObjectValue<Json>(); } },
-                {"salvage", (o,n) => { (o as VdbRequestBody).Salvage = n.GetObjectValue<Json>(); } },
-                {"startPeriod", (o,n) => { (o as VdbRequestBody).StartPeriod = n.GetObjectValue<Json>(); } },
+                {"cost", (o,n) => { (o as VdbRequestBody).Cost = n.GetObjectValue<Json>(Json.CreateFromDiscriminatorValue); } },
+                {"endPeriod", (o,n) => { (o as VdbRequestBody).EndPeriod = n.GetObjectValue<Json>(Json.CreateFromDiscriminatorValue); } },
+                {"factor", (o,n) => { (o as VdbRequestBody).Factor = n.GetObjectValue<Json>(Json.CreateFromDiscriminatorValue); } },
+                {"life", (o,n) => { (o as VdbRequestBody).Life = n.GetObjectValue<Json>(Json.CreateFromDiscriminatorValue); } },
+                {"noSwitch", (o,n) => { (o as VdbRequestBody).NoSwitch = n.GetObjectValue<Json>(Json.CreateFromDiscriminatorValue); } },
+                {"salvage", (o,n) => { (o as VdbRequestBody).Salvage = n.GetObjectValue<Json>(Json.CreateFromDiscriminatorValue); } },
+                {"startPeriod", (o,n) => { (o as VdbRequestBody).StartPeriod = n.GetObjectValue<Json>(Json.CreateFromDiscriminatorValue); } },
             };
         }
         /// <summary>

@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 namespace ApiSdk.Models.Microsoft.Graph {
-    public class DeviceConfigurationSettingState : IParsable {
+    public class DeviceConfigurationSettingState : IAdditionalDataHolder, IParsable {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>Current value of setting on device</summary>
@@ -38,6 +38,14 @@ namespace ApiSdk.Models.Microsoft.Graph {
             AdditionalData = new Dictionary<string, object>();
         }
         /// <summary>
+        /// Creates a new instance of the appropriate class based on discriminator value
+        /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
+        /// </summary>
+        public static DeviceConfigurationSettingState CreateFromDiscriminatorValue(IParseNode parseNode) {
+            _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
+            return new DeviceConfigurationSettingState();
+        }
+        /// <summary>
         /// The deserialization information for the current model
         /// </summary>
         public IDictionary<string, Action<T, IParseNode>> GetFieldDeserializers<T>() {
@@ -48,7 +56,7 @@ namespace ApiSdk.Models.Microsoft.Graph {
                 {"instanceDisplayName", (o,n) => { (o as DeviceConfigurationSettingState).InstanceDisplayName = n.GetStringValue(); } },
                 {"setting", (o,n) => { (o as DeviceConfigurationSettingState).Setting = n.GetStringValue(); } },
                 {"settingName", (o,n) => { (o as DeviceConfigurationSettingState).SettingName = n.GetStringValue(); } },
-                {"sources", (o,n) => { (o as DeviceConfigurationSettingState).Sources = n.GetCollectionOfObjectValues<SettingSource>().ToList(); } },
+                {"sources", (o,n) => { (o as DeviceConfigurationSettingState).Sources = n.GetCollectionOfObjectValues<SettingSource>(SettingSource.CreateFromDiscriminatorValue).ToList(); } },
                 {"state", (o,n) => { (o as DeviceConfigurationSettingState).State = n.GetEnumValue<ComplianceStatus>(); } },
                 {"userEmail", (o,n) => { (o as DeviceConfigurationSettingState).UserEmail = n.GetStringValue(); } },
                 {"userId", (o,n) => { (o as DeviceConfigurationSettingState).UserId = n.GetStringValue(); } },

@@ -16,17 +16,25 @@ namespace ApiSdk.Models.Microsoft.Graph {
         /// <summary>The tasks in this task list. Read-only. Nullable.</summary>
         public List<TodoTask> Tasks { get; set; }
         /// <summary>Property indicating the list name if the given list is a well-known list. Possible values are: none, defaultList, flaggedEmails, unknownFutureValue.</summary>
-        public WellknownListName? WellknownListName { get; set; }
+        public ApiSdk.Models.Microsoft.Graph.WellknownListName? WellknownListName { get; set; }
+        /// <summary>
+        /// Creates a new instance of the appropriate class based on discriminator value
+        /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
+        /// </summary>
+        public static new TodoTaskList CreateFromDiscriminatorValue(IParseNode parseNode) {
+            _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
+            return new TodoTaskList();
+        }
         /// <summary>
         /// The deserialization information for the current model
         /// </summary>
         public new IDictionary<string, Action<T, IParseNode>> GetFieldDeserializers<T>() {
             return new Dictionary<string, Action<T, IParseNode>>(base.GetFieldDeserializers<T>()) {
                 {"displayName", (o,n) => { (o as TodoTaskList).DisplayName = n.GetStringValue(); } },
-                {"extensions", (o,n) => { (o as TodoTaskList).Extensions = n.GetCollectionOfObjectValues<Extension>().ToList(); } },
+                {"extensions", (o,n) => { (o as TodoTaskList).Extensions = n.GetCollectionOfObjectValues<Extension>(Extension.CreateFromDiscriminatorValue).ToList(); } },
                 {"isOwner", (o,n) => { (o as TodoTaskList).IsOwner = n.GetBoolValue(); } },
                 {"isShared", (o,n) => { (o as TodoTaskList).IsShared = n.GetBoolValue(); } },
-                {"tasks", (o,n) => { (o as TodoTaskList).Tasks = n.GetCollectionOfObjectValues<TodoTask>().ToList(); } },
+                {"tasks", (o,n) => { (o as TodoTaskList).Tasks = n.GetCollectionOfObjectValues<TodoTask>(TodoTask.CreateFromDiscriminatorValue).ToList(); } },
                 {"wellknownListName", (o,n) => { (o as TodoTaskList).WellknownListName = n.GetEnumValue<WellknownListName>(); } },
             };
         }

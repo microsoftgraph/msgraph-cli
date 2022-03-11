@@ -12,13 +12,21 @@ namespace ApiSdk.Models.Microsoft.Graph {
         /// <summary>Collection of name value pairs. Must contain and set all the settings defined in the template.</summary>
         public List<SettingValue> Values { get; set; }
         /// <summary>
+        /// Creates a new instance of the appropriate class based on discriminator value
+        /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
+        /// </summary>
+        public static new GroupSetting CreateFromDiscriminatorValue(IParseNode parseNode) {
+            _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
+            return new GroupSetting();
+        }
+        /// <summary>
         /// The deserialization information for the current model
         /// </summary>
         public new IDictionary<string, Action<T, IParseNode>> GetFieldDeserializers<T>() {
             return new Dictionary<string, Action<T, IParseNode>>(base.GetFieldDeserializers<T>()) {
                 {"displayName", (o,n) => { (o as GroupSetting).DisplayName = n.GetStringValue(); } },
                 {"templateId", (o,n) => { (o as GroupSetting).TemplateId = n.GetStringValue(); } },
-                {"values", (o,n) => { (o as GroupSetting).Values = n.GetCollectionOfObjectValues<SettingValue>().ToList(); } },
+                {"values", (o,n) => { (o as GroupSetting).Values = n.GetCollectionOfObjectValues<SettingValue>(SettingValue.CreateFromDiscriminatorValue).ToList(); } },
             };
         }
         /// <summary>

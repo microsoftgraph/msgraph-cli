@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 namespace ApiSdk.Models.Microsoft.Graph {
-    public class CopyNotebookModel : IParsable {
+    public class CopyNotebookModel : IAdditionalDataHolder, IParsable {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
         public string CreatedBy { get; set; }
@@ -29,20 +29,28 @@ namespace ApiSdk.Models.Microsoft.Graph {
             AdditionalData = new Dictionary<string, object>();
         }
         /// <summary>
+        /// Creates a new instance of the appropriate class based on discriminator value
+        /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
+        /// </summary>
+        public static CopyNotebookModel CreateFromDiscriminatorValue(IParseNode parseNode) {
+            _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
+            return new CopyNotebookModel();
+        }
+        /// <summary>
         /// The deserialization information for the current model
         /// </summary>
         public IDictionary<string, Action<T, IParseNode>> GetFieldDeserializers<T>() {
             return new Dictionary<string, Action<T, IParseNode>> {
                 {"createdBy", (o,n) => { (o as CopyNotebookModel).CreatedBy = n.GetStringValue(); } },
-                {"createdByIdentity", (o,n) => { (o as CopyNotebookModel).CreatedByIdentity = n.GetObjectValue<IdentitySet>(); } },
+                {"createdByIdentity", (o,n) => { (o as CopyNotebookModel).CreatedByIdentity = n.GetObjectValue<IdentitySet>(IdentitySet.CreateFromDiscriminatorValue); } },
                 {"createdTime", (o,n) => { (o as CopyNotebookModel).CreatedTime = n.GetDateTimeOffsetValue(); } },
                 {"id", (o,n) => { (o as CopyNotebookModel).Id = n.GetStringValue(); } },
                 {"isDefault", (o,n) => { (o as CopyNotebookModel).IsDefault = n.GetBoolValue(); } },
                 {"isShared", (o,n) => { (o as CopyNotebookModel).IsShared = n.GetBoolValue(); } },
                 {"lastModifiedBy", (o,n) => { (o as CopyNotebookModel).LastModifiedBy = n.GetStringValue(); } },
-                {"lastModifiedByIdentity", (o,n) => { (o as CopyNotebookModel).LastModifiedByIdentity = n.GetObjectValue<IdentitySet>(); } },
+                {"lastModifiedByIdentity", (o,n) => { (o as CopyNotebookModel).LastModifiedByIdentity = n.GetObjectValue<IdentitySet>(IdentitySet.CreateFromDiscriminatorValue); } },
                 {"lastModifiedTime", (o,n) => { (o as CopyNotebookModel).LastModifiedTime = n.GetDateTimeOffsetValue(); } },
-                {"links", (o,n) => { (o as CopyNotebookModel).Links = n.GetObjectValue<NotebookLinks>(); } },
+                {"links", (o,n) => { (o as CopyNotebookModel).Links = n.GetObjectValue<NotebookLinks>(NotebookLinks.CreateFromDiscriminatorValue); } },
                 {"name", (o,n) => { (o as CopyNotebookModel).Name = n.GetStringValue(); } },
                 {"sectionGroupsUrl", (o,n) => { (o as CopyNotebookModel).SectionGroupsUrl = n.GetStringValue(); } },
                 {"sectionsUrl", (o,n) => { (o as CopyNotebookModel).SectionsUrl = n.GetStringValue(); } },

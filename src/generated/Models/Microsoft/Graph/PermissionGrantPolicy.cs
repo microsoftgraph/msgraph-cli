@@ -10,12 +10,20 @@ namespace ApiSdk.Models.Microsoft.Graph {
         /// <summary>Condition sets which are included in this permission grant policy. Automatically expanded on GET.</summary>
         public List<PermissionGrantConditionSet> Includes { get; set; }
         /// <summary>
+        /// Creates a new instance of the appropriate class based on discriminator value
+        /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
+        /// </summary>
+        public static new PermissionGrantPolicy CreateFromDiscriminatorValue(IParseNode parseNode) {
+            _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
+            return new PermissionGrantPolicy();
+        }
+        /// <summary>
         /// The deserialization information for the current model
         /// </summary>
         public new IDictionary<string, Action<T, IParseNode>> GetFieldDeserializers<T>() {
             return new Dictionary<string, Action<T, IParseNode>>(base.GetFieldDeserializers<T>()) {
-                {"excludes", (o,n) => { (o as PermissionGrantPolicy).Excludes = n.GetCollectionOfObjectValues<PermissionGrantConditionSet>().ToList(); } },
-                {"includes", (o,n) => { (o as PermissionGrantPolicy).Includes = n.GetCollectionOfObjectValues<PermissionGrantConditionSet>().ToList(); } },
+                {"excludes", (o,n) => { (o as PermissionGrantPolicy).Excludes = n.GetCollectionOfObjectValues<PermissionGrantConditionSet>(PermissionGrantConditionSet.CreateFromDiscriminatorValue).ToList(); } },
+                {"includes", (o,n) => { (o as PermissionGrantPolicy).Includes = n.GetCollectionOfObjectValues<PermissionGrantConditionSet>(PermissionGrantConditionSet.CreateFromDiscriminatorValue).ToList(); } },
             };
         }
         /// <summary>

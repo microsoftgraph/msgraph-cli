@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 namespace ApiSdk.Workbooks.Item.Workbook.Functions.Mirr {
-    public class MirrRequestBody : IParsable {
+    public class MirrRequestBody : IAdditionalDataHolder, IParsable {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
         public Json FinanceRate { get; set; }
@@ -18,13 +18,21 @@ namespace ApiSdk.Workbooks.Item.Workbook.Functions.Mirr {
             AdditionalData = new Dictionary<string, object>();
         }
         /// <summary>
+        /// Creates a new instance of the appropriate class based on discriminator value
+        /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
+        /// </summary>
+        public static MirrRequestBody CreateFromDiscriminatorValue(IParseNode parseNode) {
+            _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
+            return new MirrRequestBody();
+        }
+        /// <summary>
         /// The deserialization information for the current model
         /// </summary>
         public IDictionary<string, Action<T, IParseNode>> GetFieldDeserializers<T>() {
             return new Dictionary<string, Action<T, IParseNode>> {
-                {"financeRate", (o,n) => { (o as MirrRequestBody).FinanceRate = n.GetObjectValue<Json>(); } },
-                {"reinvestRate", (o,n) => { (o as MirrRequestBody).ReinvestRate = n.GetObjectValue<Json>(); } },
-                {"values", (o,n) => { (o as MirrRequestBody).Values = n.GetObjectValue<Json>(); } },
+                {"financeRate", (o,n) => { (o as MirrRequestBody).FinanceRate = n.GetObjectValue<Json>(Json.CreateFromDiscriminatorValue); } },
+                {"reinvestRate", (o,n) => { (o as MirrRequestBody).ReinvestRate = n.GetObjectValue<Json>(Json.CreateFromDiscriminatorValue); } },
+                {"values", (o,n) => { (o as MirrRequestBody).Values = n.GetObjectValue<Json>(Json.CreateFromDiscriminatorValue); } },
             };
         }
         /// <summary>

@@ -12,13 +12,21 @@ namespace ApiSdk.Models.Microsoft.Graph {
         /// <summary>Indicates the publication status of this particular version. Read-only.</summary>
         public PublicationFacet Publication { get; set; }
         /// <summary>
+        /// Creates a new instance of the appropriate class based on discriminator value
+        /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
+        /// </summary>
+        public static new BaseItemVersion CreateFromDiscriminatorValue(IParseNode parseNode) {
+            _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
+            return new BaseItemVersion();
+        }
+        /// <summary>
         /// The deserialization information for the current model
         /// </summary>
         public new IDictionary<string, Action<T, IParseNode>> GetFieldDeserializers<T>() {
             return new Dictionary<string, Action<T, IParseNode>>(base.GetFieldDeserializers<T>()) {
-                {"lastModifiedBy", (o,n) => { (o as BaseItemVersion).LastModifiedBy = n.GetObjectValue<IdentitySet>(); } },
+                {"lastModifiedBy", (o,n) => { (o as BaseItemVersion).LastModifiedBy = n.GetObjectValue<IdentitySet>(IdentitySet.CreateFromDiscriminatorValue); } },
                 {"lastModifiedDateTime", (o,n) => { (o as BaseItemVersion).LastModifiedDateTime = n.GetDateTimeOffsetValue(); } },
-                {"publication", (o,n) => { (o as BaseItemVersion).Publication = n.GetObjectValue<PublicationFacet>(); } },
+                {"publication", (o,n) => { (o as BaseItemVersion).Publication = n.GetObjectValue<PublicationFacet>(PublicationFacet.CreateFromDiscriminatorValue); } },
             };
         }
         /// <summary>

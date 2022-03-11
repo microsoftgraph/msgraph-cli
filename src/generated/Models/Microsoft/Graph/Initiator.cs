@@ -6,7 +6,15 @@ using System.Linq;
 namespace ApiSdk.Models.Microsoft.Graph {
     public class Initiator : Identity, IParsable {
         /// <summary>Type of initiator. Possible values are: user, application, system, unknownFutureValue.</summary>
-        public InitiatorType? InitiatorType { get; set; }
+        public ApiSdk.Models.Microsoft.Graph.InitiatorType? InitiatorType { get; set; }
+        /// <summary>
+        /// Creates a new instance of the appropriate class based on discriminator value
+        /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
+        /// </summary>
+        public static new Initiator CreateFromDiscriminatorValue(IParseNode parseNode) {
+            _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
+            return new Initiator();
+        }
         /// <summary>
         /// The deserialization information for the current model
         /// </summary>

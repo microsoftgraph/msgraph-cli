@@ -10,12 +10,20 @@ namespace ApiSdk.Models.Microsoft.Graph.ExternalConnectors {
         /// <summary>The properties defined for the items in the connection. The minimum number of properties is one, the maximum is 128.</summary>
         public List<Property> Properties { get; set; }
         /// <summary>
+        /// Creates a new instance of the appropriate class based on discriminator value
+        /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
+        /// </summary>
+        public static new Schema CreateFromDiscriminatorValue(IParseNode parseNode) {
+            _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
+            return new Schema();
+        }
+        /// <summary>
         /// The deserialization information for the current model
         /// </summary>
         public new IDictionary<string, Action<T, IParseNode>> GetFieldDeserializers<T>() {
             return new Dictionary<string, Action<T, IParseNode>>(base.GetFieldDeserializers<T>()) {
                 {"baseType", (o,n) => { (o as Schema).BaseType = n.GetStringValue(); } },
-                {"properties", (o,n) => { (o as Schema).Properties = n.GetCollectionOfObjectValues<Property>().ToList(); } },
+                {"properties", (o,n) => { (o as Schema).Properties = n.GetCollectionOfObjectValues<Property>(Property.CreateFromDiscriminatorValue).ToList(); } },
             };
         }
         /// <summary>

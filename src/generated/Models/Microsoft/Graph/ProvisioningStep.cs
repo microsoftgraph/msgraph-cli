@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 namespace ApiSdk.Models.Microsoft.Graph {
-    public class ProvisioningStep : IParsable {
+    public class ProvisioningStep : IAdditionalDataHolder, IParsable {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>Summary of what occurred during the step.</summary>
@@ -14,7 +14,7 @@ namespace ApiSdk.Models.Microsoft.Graph {
         /// <summary>Name of the step.</summary>
         public string Name { get; set; }
         /// <summary>Type of step. Possible values are: import, scoping, matching, processing, referenceResolution, export, unknownFutureValue.</summary>
-        public ProvisioningStepType? ProvisioningStepType { get; set; }
+        public ApiSdk.Models.Microsoft.Graph.ProvisioningStepType? ProvisioningStepType { get; set; }
         /// <summary>Status of the step. Possible values are: success, warning,  failure, skipped, unknownFutureValue.</summary>
         public ProvisioningResult? Status { get; set; }
         /// <summary>
@@ -24,12 +24,20 @@ namespace ApiSdk.Models.Microsoft.Graph {
             AdditionalData = new Dictionary<string, object>();
         }
         /// <summary>
+        /// Creates a new instance of the appropriate class based on discriminator value
+        /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
+        /// </summary>
+        public static ProvisioningStep CreateFromDiscriminatorValue(IParseNode parseNode) {
+            _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
+            return new ProvisioningStep();
+        }
+        /// <summary>
         /// The deserialization information for the current model
         /// </summary>
         public IDictionary<string, Action<T, IParseNode>> GetFieldDeserializers<T>() {
             return new Dictionary<string, Action<T, IParseNode>> {
                 {"description", (o,n) => { (o as ProvisioningStep).Description = n.GetStringValue(); } },
-                {"details", (o,n) => { (o as ProvisioningStep).Details = n.GetObjectValue<DetailsInfo>(); } },
+                {"details", (o,n) => { (o as ProvisioningStep).Details = n.GetObjectValue<DetailsInfo>(DetailsInfo.CreateFromDiscriminatorValue); } },
                 {"name", (o,n) => { (o as ProvisioningStep).Name = n.GetStringValue(); } },
                 {"provisioningStepType", (o,n) => { (o as ProvisioningStep).ProvisioningStepType = n.GetEnumValue<ProvisioningStepType>(); } },
                 {"status", (o,n) => { (o as ProvisioningStep).Status = n.GetEnumValue<ProvisioningResult>(); } },

@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 namespace ApiSdk.Models.Microsoft.Graph {
-    public class Print : IParsable {
+    public class Print : IAdditionalDataHolder, IParsable {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>The list of available print connectors.</summary>
@@ -28,17 +28,25 @@ namespace ApiSdk.Models.Microsoft.Graph {
             AdditionalData = new Dictionary<string, object>();
         }
         /// <summary>
+        /// Creates a new instance of the appropriate class based on discriminator value
+        /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
+        /// </summary>
+        public static Print CreateFromDiscriminatorValue(IParseNode parseNode) {
+            _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
+            return new Print();
+        }
+        /// <summary>
         /// The deserialization information for the current model
         /// </summary>
         public IDictionary<string, Action<T, IParseNode>> GetFieldDeserializers<T>() {
             return new Dictionary<string, Action<T, IParseNode>> {
-                {"connectors", (o,n) => { (o as Print).Connectors = n.GetCollectionOfObjectValues<PrintConnector>().ToList(); } },
-                {"operations", (o,n) => { (o as Print).Operations = n.GetCollectionOfObjectValues<PrintOperation>().ToList(); } },
-                {"printers", (o,n) => { (o as Print).Printers = n.GetCollectionOfObjectValues<Printer>().ToList(); } },
-                {"services", (o,n) => { (o as Print).Services = n.GetCollectionOfObjectValues<PrintService>().ToList(); } },
-                {"settings", (o,n) => { (o as Print).Settings = n.GetObjectValue<PrintSettings>(); } },
-                {"shares", (o,n) => { (o as Print).Shares = n.GetCollectionOfObjectValues<PrinterShare>().ToList(); } },
-                {"taskDefinitions", (o,n) => { (o as Print).TaskDefinitions = n.GetCollectionOfObjectValues<PrintTaskDefinition>().ToList(); } },
+                {"connectors", (o,n) => { (o as Print).Connectors = n.GetCollectionOfObjectValues<PrintConnector>(PrintConnector.CreateFromDiscriminatorValue).ToList(); } },
+                {"operations", (o,n) => { (o as Print).Operations = n.GetCollectionOfObjectValues<PrintOperation>(PrintOperation.CreateFromDiscriminatorValue).ToList(); } },
+                {"printers", (o,n) => { (o as Print).Printers = n.GetCollectionOfObjectValues<Printer>(Printer.CreateFromDiscriminatorValue).ToList(); } },
+                {"services", (o,n) => { (o as Print).Services = n.GetCollectionOfObjectValues<PrintService>(PrintService.CreateFromDiscriminatorValue).ToList(); } },
+                {"settings", (o,n) => { (o as Print).Settings = n.GetObjectValue<PrintSettings>(PrintSettings.CreateFromDiscriminatorValue); } },
+                {"shares", (o,n) => { (o as Print).Shares = n.GetCollectionOfObjectValues<PrinterShare>(PrinterShare.CreateFromDiscriminatorValue).ToList(); } },
+                {"taskDefinitions", (o,n) => { (o as Print).TaskDefinitions = n.GetCollectionOfObjectValues<PrintTaskDefinition>(PrintTaskDefinition.CreateFromDiscriminatorValue).ToList(); } },
             };
         }
         /// <summary>

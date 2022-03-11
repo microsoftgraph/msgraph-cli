@@ -12,13 +12,21 @@ namespace ApiSdk.Models.Microsoft.Graph {
         /// <summary>Represents a collection of all points in the series. Read-only.</summary>
         public List<WorkbookChartPoint> Points { get; set; }
         /// <summary>
+        /// Creates a new instance of the appropriate class based on discriminator value
+        /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
+        /// </summary>
+        public static new WorkbookChartSeries CreateFromDiscriminatorValue(IParseNode parseNode) {
+            _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
+            return new WorkbookChartSeries();
+        }
+        /// <summary>
         /// The deserialization information for the current model
         /// </summary>
         public new IDictionary<string, Action<T, IParseNode>> GetFieldDeserializers<T>() {
             return new Dictionary<string, Action<T, IParseNode>>(base.GetFieldDeserializers<T>()) {
-                {"format", (o,n) => { (o as WorkbookChartSeries).Format = n.GetObjectValue<WorkbookChartSeriesFormat>(); } },
+                {"format", (o,n) => { (o as WorkbookChartSeries).Format = n.GetObjectValue<WorkbookChartSeriesFormat>(WorkbookChartSeriesFormat.CreateFromDiscriminatorValue); } },
                 {"name", (o,n) => { (o as WorkbookChartSeries).Name = n.GetStringValue(); } },
-                {"points", (o,n) => { (o as WorkbookChartSeries).Points = n.GetCollectionOfObjectValues<WorkbookChartPoint>().ToList(); } },
+                {"points", (o,n) => { (o as WorkbookChartSeries).Points = n.GetCollectionOfObjectValues<WorkbookChartPoint>(WorkbookChartPoint.CreateFromDiscriminatorValue).ToList(); } },
             };
         }
         /// <summary>

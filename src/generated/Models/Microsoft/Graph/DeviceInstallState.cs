@@ -12,7 +12,7 @@ namespace ApiSdk.Models.Microsoft.Graph {
         /// <summary>The error code for install failures.</summary>
         public string ErrorCode { get; set; }
         /// <summary>The install state of the eBook. Possible values are: notApplicable, installed, failed, notInstalled, uninstallFailed, unknown.</summary>
-        public InstallState? InstallState { get; set; }
+        public ApiSdk.Models.Microsoft.Graph.InstallState? InstallState { get; set; }
         /// <summary>Last sync date and time.</summary>
         public DateTimeOffset? LastSyncDateTime { get; set; }
         /// <summary>OS Description.</summary>
@@ -21,6 +21,14 @@ namespace ApiSdk.Models.Microsoft.Graph {
         public string OsVersion { get; set; }
         /// <summary>Device User Name.</summary>
         public string UserName { get; set; }
+        /// <summary>
+        /// Creates a new instance of the appropriate class based on discriminator value
+        /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
+        /// </summary>
+        public static new DeviceInstallState CreateFromDiscriminatorValue(IParseNode parseNode) {
+            _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
+            return new DeviceInstallState();
+        }
         /// <summary>
         /// The deserialization information for the current model
         /// </summary>

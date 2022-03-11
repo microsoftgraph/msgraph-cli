@@ -5,11 +5,11 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 namespace ApiSdk.Users.Item.MailFolders.Item.Messages.Item.CreateForward {
-    public class CreateForwardRequestBody : IParsable {
+    public class CreateForwardRequestBody : IAdditionalDataHolder, IParsable {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
         public string Comment { get; set; }
-        public Message Message { get; set; }
+        public ApiSdk.Models.Microsoft.Graph.Message Message { get; set; }
         public List<Recipient> ToRecipients { get; set; }
         /// <summary>
         /// Instantiates a new createForwardRequestBody and sets the default values.
@@ -18,13 +18,21 @@ namespace ApiSdk.Users.Item.MailFolders.Item.Messages.Item.CreateForward {
             AdditionalData = new Dictionary<string, object>();
         }
         /// <summary>
+        /// Creates a new instance of the appropriate class based on discriminator value
+        /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
+        /// </summary>
+        public static CreateForwardRequestBody CreateFromDiscriminatorValue(IParseNode parseNode) {
+            _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
+            return new CreateForwardRequestBody();
+        }
+        /// <summary>
         /// The deserialization information for the current model
         /// </summary>
         public IDictionary<string, Action<T, IParseNode>> GetFieldDeserializers<T>() {
             return new Dictionary<string, Action<T, IParseNode>> {
                 {"comment", (o,n) => { (o as CreateForwardRequestBody).Comment = n.GetStringValue(); } },
-                {"message", (o,n) => { (o as CreateForwardRequestBody).Message = n.GetObjectValue<Message>(); } },
-                {"toRecipients", (o,n) => { (o as CreateForwardRequestBody).ToRecipients = n.GetCollectionOfObjectValues<Recipient>().ToList(); } },
+                {"message", (o,n) => { (o as CreateForwardRequestBody).Message = n.GetObjectValue<ApiSdk.Models.Microsoft.Graph.Message>(ApiSdk.Models.Microsoft.Graph.Message.CreateFromDiscriminatorValue); } },
+                {"toRecipients", (o,n) => { (o as CreateForwardRequestBody).ToRecipients = n.GetCollectionOfObjectValues<Recipient>(Recipient.CreateFromDiscriminatorValue).ToList(); } },
             };
         }
         /// <summary>
@@ -34,7 +42,7 @@ namespace ApiSdk.Users.Item.MailFolders.Item.Messages.Item.CreateForward {
         public void Serialize(ISerializationWriter writer) {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             writer.WriteStringValue("comment", Comment);
-            writer.WriteObjectValue<Message>("message", Message);
+            writer.WriteObjectValue<ApiSdk.Models.Microsoft.Graph.Message>("message", Message);
             writer.WriteCollectionOfObjectValues<Recipient>("toRecipients", ToRecipients);
             writer.WriteAdditionalData(AdditionalData);
         }

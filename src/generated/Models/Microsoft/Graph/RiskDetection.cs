@@ -26,23 +26,31 @@ namespace ApiSdk.Models.Microsoft.Graph {
         /// <summary>Request ID of the sign-in associated with the risk detection. This property is null if the risk detection is not associated with a sign-in.</summary>
         public string RequestId { get; set; }
         /// <summary>Details of the detected risk. The possible values are none, adminGeneratedTemporaryPassword, userPerformedSecuredPasswordChange, userPerformedSecuredPasswordReset, adminConfirmedSigninSafe, aiConfirmedSigninSafe, userPassedMFADrivenByRiskBasedPolicy, adminDismissedAllRiskForUser, adminConfirmedSigninCompromised, hidden, adminConfirmedUserCompromised, unknownFutureValue. Note: Details for this property are only available for Azure AD Premium P2 customers. P1 customers will be returned hidden.</summary>
-        public RiskDetail? RiskDetail { get; set; }
+        public ApiSdk.Models.Microsoft.Graph.RiskDetail? RiskDetail { get; set; }
         /// <summary>The type of risk event detected. The possible values are unlikelyTravel, anonymizedIPAddress, maliciousIPAddress, unfamiliarFeatures, malwareInfectedIPAddress, suspiciousIPAddress, leakedCredentials, investigationsThreatIntelligence, generic,adminConfirmedUserCompromised, mcasImpossibleTravel, mcasSuspiciousInboxManipulationRules, investigationsThreatIntelligenceSigninLinked, maliciousIPAddressValidCredentialsBlockedIP, and unknownFutureValue.</summary>
         public string RiskEventType { get; set; }
         /// <summary>Level of the detected risk. The possible values are low, medium, high, hidden, none, unknownFutureValue. Note: Details for this property are only available for Azure AD Premium P2 customers. P1 customers will be returned hidden.</summary>
-        public RiskLevel? RiskLevel { get; set; }
+        public ApiSdk.Models.Microsoft.Graph.RiskLevel? RiskLevel { get; set; }
         /// <summary>The state of a detected risky user or sign-in. The possible values are none, confirmedSafe, remediated, dismissed, atRisk, confirmedCompromised, and unknownFutureValue.</summary>
-        public RiskState? RiskState { get; set; }
+        public ApiSdk.Models.Microsoft.Graph.RiskState? RiskState { get; set; }
         /// <summary>Source of the risk detection. For example, activeDirectory.</summary>
         public string Source { get; set; }
         /// <summary>Indicates the type of token issuer for the detected sign-in risk. The possible values are AzureAD, ADFederationServices, and unknownFutureValue.</summary>
-        public TokenIssuerType? TokenIssuerType { get; set; }
+        public ApiSdk.Models.Microsoft.Graph.TokenIssuerType? TokenIssuerType { get; set; }
         /// <summary>Name of the user.</summary>
         public string UserDisplayName { get; set; }
         /// <summary>Unique ID of the user.  The DateTimeOffset type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z</summary>
         public string UserId { get; set; }
         /// <summary>The user principal name (UPN) of the user.</summary>
         public string UserPrincipalName { get; set; }
+        /// <summary>
+        /// Creates a new instance of the appropriate class based on discriminator value
+        /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
+        /// </summary>
+        public static new RiskDetection CreateFromDiscriminatorValue(IParseNode parseNode) {
+            _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
+            return new RiskDetection();
+        }
         /// <summary>
         /// The deserialization information for the current model
         /// </summary>
@@ -56,7 +64,7 @@ namespace ApiSdk.Models.Microsoft.Graph {
                 {"detectionTimingType", (o,n) => { (o as RiskDetection).DetectionTimingType = n.GetEnumValue<RiskDetectionTimingType>(); } },
                 {"ipAddress", (o,n) => { (o as RiskDetection).IpAddress = n.GetStringValue(); } },
                 {"lastUpdatedDateTime", (o,n) => { (o as RiskDetection).LastUpdatedDateTime = n.GetDateTimeOffsetValue(); } },
-                {"location", (o,n) => { (o as RiskDetection).Location = n.GetObjectValue<SignInLocation>(); } },
+                {"location", (o,n) => { (o as RiskDetection).Location = n.GetObjectValue<SignInLocation>(SignInLocation.CreateFromDiscriminatorValue); } },
                 {"requestId", (o,n) => { (o as RiskDetection).RequestId = n.GetStringValue(); } },
                 {"riskDetail", (o,n) => { (o as RiskDetection).RiskDetail = n.GetEnumValue<RiskDetail>(); } },
                 {"riskEventType", (o,n) => { (o as RiskDetection).RiskEventType = n.GetStringValue(); } },

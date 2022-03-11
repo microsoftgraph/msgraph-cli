@@ -14,14 +14,22 @@ namespace ApiSdk.Models.Microsoft.Graph {
         /// <summary>The collection of references on the task.</summary>
         public PlannerExternalReferences References { get; set; }
         /// <summary>
+        /// Creates a new instance of the appropriate class based on discriminator value
+        /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
+        /// </summary>
+        public static new PlannerTaskDetails CreateFromDiscriminatorValue(IParseNode parseNode) {
+            _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
+            return new PlannerTaskDetails();
+        }
+        /// <summary>
         /// The deserialization information for the current model
         /// </summary>
         public new IDictionary<string, Action<T, IParseNode>> GetFieldDeserializers<T>() {
             return new Dictionary<string, Action<T, IParseNode>>(base.GetFieldDeserializers<T>()) {
-                {"checklist", (o,n) => { (o as PlannerTaskDetails).Checklist = n.GetObjectValue<PlannerChecklistItems>(); } },
+                {"checklist", (o,n) => { (o as PlannerTaskDetails).Checklist = n.GetObjectValue<PlannerChecklistItems>(PlannerChecklistItems.CreateFromDiscriminatorValue); } },
                 {"description", (o,n) => { (o as PlannerTaskDetails).Description = n.GetStringValue(); } },
                 {"previewType", (o,n) => { (o as PlannerTaskDetails).PreviewType = n.GetEnumValue<PlannerPreviewType>(); } },
-                {"references", (o,n) => { (o as PlannerTaskDetails).References = n.GetObjectValue<PlannerExternalReferences>(); } },
+                {"references", (o,n) => { (o as PlannerTaskDetails).References = n.GetObjectValue<PlannerExternalReferences>(PlannerExternalReferences.CreateFromDiscriminatorValue); } },
             };
         }
         /// <summary>

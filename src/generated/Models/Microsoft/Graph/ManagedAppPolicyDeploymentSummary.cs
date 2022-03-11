@@ -16,12 +16,20 @@ namespace ApiSdk.Models.Microsoft.Graph {
         /// <summary>Version of the entity.</summary>
         public string Version { get; set; }
         /// <summary>
+        /// Creates a new instance of the appropriate class based on discriminator value
+        /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
+        /// </summary>
+        public static new ManagedAppPolicyDeploymentSummary CreateFromDiscriminatorValue(IParseNode parseNode) {
+            _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
+            return new ManagedAppPolicyDeploymentSummary();
+        }
+        /// <summary>
         /// The deserialization information for the current model
         /// </summary>
         public new IDictionary<string, Action<T, IParseNode>> GetFieldDeserializers<T>() {
             return new Dictionary<string, Action<T, IParseNode>>(base.GetFieldDeserializers<T>()) {
                 {"configurationDeployedUserCount", (o,n) => { (o as ManagedAppPolicyDeploymentSummary).ConfigurationDeployedUserCount = n.GetIntValue(); } },
-                {"configurationDeploymentSummaryPerApp", (o,n) => { (o as ManagedAppPolicyDeploymentSummary).ConfigurationDeploymentSummaryPerApp = n.GetCollectionOfObjectValues<ManagedAppPolicyDeploymentSummaryPerApp>().ToList(); } },
+                {"configurationDeploymentSummaryPerApp", (o,n) => { (o as ManagedAppPolicyDeploymentSummary).ConfigurationDeploymentSummaryPerApp = n.GetCollectionOfObjectValues<ManagedAppPolicyDeploymentSummaryPerApp>(ManagedAppPolicyDeploymentSummaryPerApp.CreateFromDiscriminatorValue).ToList(); } },
                 {"displayName", (o,n) => { (o as ManagedAppPolicyDeploymentSummary).DisplayName = n.GetStringValue(); } },
                 {"lastRefreshTime", (o,n) => { (o as ManagedAppPolicyDeploymentSummary).LastRefreshTime = n.GetDateTimeOffsetValue(); } },
                 {"version", (o,n) => { (o as ManagedAppPolicyDeploymentSummary).Version = n.GetStringValue(); } },

@@ -24,18 +24,26 @@ namespace ApiSdk.Models.Microsoft.Graph {
         /// <summary>All the users that sent a message to this thread. Returned by default.</summary>
         public List<string> UniqueSenders { get; set; }
         /// <summary>
+        /// Creates a new instance of the appropriate class based on discriminator value
+        /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
+        /// </summary>
+        public static new ConversationThread CreateFromDiscriminatorValue(IParseNode parseNode) {
+            _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
+            return new ConversationThread();
+        }
+        /// <summary>
         /// The deserialization information for the current model
         /// </summary>
         public new IDictionary<string, Action<T, IParseNode>> GetFieldDeserializers<T>() {
             return new Dictionary<string, Action<T, IParseNode>>(base.GetFieldDeserializers<T>()) {
-                {"ccRecipients", (o,n) => { (o as ConversationThread).CcRecipients = n.GetCollectionOfObjectValues<Recipient>().ToList(); } },
+                {"ccRecipients", (o,n) => { (o as ConversationThread).CcRecipients = n.GetCollectionOfObjectValues<Recipient>(Recipient.CreateFromDiscriminatorValue).ToList(); } },
                 {"hasAttachments", (o,n) => { (o as ConversationThread).HasAttachments = n.GetBoolValue(); } },
                 {"isLocked", (o,n) => { (o as ConversationThread).IsLocked = n.GetBoolValue(); } },
                 {"lastDeliveredDateTime", (o,n) => { (o as ConversationThread).LastDeliveredDateTime = n.GetDateTimeOffsetValue(); } },
-                {"posts", (o,n) => { (o as ConversationThread).Posts = n.GetCollectionOfObjectValues<Post>().ToList(); } },
+                {"posts", (o,n) => { (o as ConversationThread).Posts = n.GetCollectionOfObjectValues<Post>(Post.CreateFromDiscriminatorValue).ToList(); } },
                 {"preview", (o,n) => { (o as ConversationThread).Preview = n.GetStringValue(); } },
                 {"topic", (o,n) => { (o as ConversationThread).Topic = n.GetStringValue(); } },
-                {"toRecipients", (o,n) => { (o as ConversationThread).ToRecipients = n.GetCollectionOfObjectValues<Recipient>().ToList(); } },
+                {"toRecipients", (o,n) => { (o as ConversationThread).ToRecipients = n.GetCollectionOfObjectValues<Recipient>(Recipient.CreateFromDiscriminatorValue).ToList(); } },
                 {"uniqueSenders", (o,n) => { (o as ConversationThread).UniqueSenders = n.GetCollectionOfPrimitiveValues<string>().ToList(); } },
             };
         }

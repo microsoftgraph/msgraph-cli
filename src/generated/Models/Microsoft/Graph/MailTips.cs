@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 namespace ApiSdk.Models.Microsoft.Graph {
-    public class MailTips : IParsable {
+    public class MailTips : IAdditionalDataHolder, IParsable {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>Mail tips for automatic reply if it has been set up by the recipient.</summary>
@@ -14,7 +14,7 @@ namespace ApiSdk.Models.Microsoft.Graph {
         /// <summary>Whether the recipient's mailbox is restricted, for example, accepting messages from only a predefined list of senders, rejecting messages from a predefined list of senders, or accepting messages from only authenticated senders.</summary>
         public bool? DeliveryRestricted { get; set; }
         /// <summary>The email address of the recipient to get mailtips for.</summary>
-        public EmailAddress EmailAddress { get; set; }
+        public ApiSdk.Models.Microsoft.Graph.EmailAddress EmailAddress { get; set; }
         /// <summary>Errors that occur during the getMailTips action.</summary>
         public MailTipsError Error { get; set; }
         /// <summary>The number of external members if the recipient is a distribution list.</summary>
@@ -38,21 +38,29 @@ namespace ApiSdk.Models.Microsoft.Graph {
             AdditionalData = new Dictionary<string, object>();
         }
         /// <summary>
+        /// Creates a new instance of the appropriate class based on discriminator value
+        /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
+        /// </summary>
+        public static MailTips CreateFromDiscriminatorValue(IParseNode parseNode) {
+            _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
+            return new MailTips();
+        }
+        /// <summary>
         /// The deserialization information for the current model
         /// </summary>
         public IDictionary<string, Action<T, IParseNode>> GetFieldDeserializers<T>() {
             return new Dictionary<string, Action<T, IParseNode>> {
-                {"automaticReplies", (o,n) => { (o as MailTips).AutomaticReplies = n.GetObjectValue<AutomaticRepliesMailTips>(); } },
+                {"automaticReplies", (o,n) => { (o as MailTips).AutomaticReplies = n.GetObjectValue<AutomaticRepliesMailTips>(AutomaticRepliesMailTips.CreateFromDiscriminatorValue); } },
                 {"customMailTip", (o,n) => { (o as MailTips).CustomMailTip = n.GetStringValue(); } },
                 {"deliveryRestricted", (o,n) => { (o as MailTips).DeliveryRestricted = n.GetBoolValue(); } },
-                {"emailAddress", (o,n) => { (o as MailTips).EmailAddress = n.GetObjectValue<EmailAddress>(); } },
-                {"error", (o,n) => { (o as MailTips).Error = n.GetObjectValue<MailTipsError>(); } },
+                {"emailAddress", (o,n) => { (o as MailTips).EmailAddress = n.GetObjectValue<ApiSdk.Models.Microsoft.Graph.EmailAddress>(ApiSdk.Models.Microsoft.Graph.EmailAddress.CreateFromDiscriminatorValue); } },
+                {"error", (o,n) => { (o as MailTips).Error = n.GetObjectValue<MailTipsError>(MailTipsError.CreateFromDiscriminatorValue); } },
                 {"externalMemberCount", (o,n) => { (o as MailTips).ExternalMemberCount = n.GetIntValue(); } },
                 {"isModerated", (o,n) => { (o as MailTips).IsModerated = n.GetBoolValue(); } },
                 {"mailboxFull", (o,n) => { (o as MailTips).MailboxFull = n.GetBoolValue(); } },
                 {"maxMessageSize", (o,n) => { (o as MailTips).MaxMessageSize = n.GetIntValue(); } },
                 {"recipientScope", (o,n) => { (o as MailTips).RecipientScope = n.GetEnumValue<RecipientScopeType>(); } },
-                {"recipientSuggestions", (o,n) => { (o as MailTips).RecipientSuggestions = n.GetCollectionOfObjectValues<Recipient>().ToList(); } },
+                {"recipientSuggestions", (o,n) => { (o as MailTips).RecipientSuggestions = n.GetCollectionOfObjectValues<Recipient>(Recipient.CreateFromDiscriminatorValue).ToList(); } },
                 {"totalMemberCount", (o,n) => { (o as MailTips).TotalMemberCount = n.GetIntValue(); } },
             };
         }
@@ -65,7 +73,7 @@ namespace ApiSdk.Models.Microsoft.Graph {
             writer.WriteObjectValue<AutomaticRepliesMailTips>("automaticReplies", AutomaticReplies);
             writer.WriteStringValue("customMailTip", CustomMailTip);
             writer.WriteBoolValue("deliveryRestricted", DeliveryRestricted);
-            writer.WriteObjectValue<EmailAddress>("emailAddress", EmailAddress);
+            writer.WriteObjectValue<ApiSdk.Models.Microsoft.Graph.EmailAddress>("emailAddress", EmailAddress);
             writer.WriteObjectValue<MailTipsError>("error", Error);
             writer.WriteIntValue("externalMemberCount", ExternalMemberCount);
             writer.WriteBoolValue("isModerated", IsModerated);

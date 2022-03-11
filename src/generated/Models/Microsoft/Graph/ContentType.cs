@@ -20,7 +20,7 @@ namespace ApiSdk.Models.Microsoft.Graph {
         /// <summary>The descriptive text for the item.</summary>
         public string Description { get; set; }
         /// <summary>Document Set metadata.</summary>
-        public DocumentSet DocumentSet { get; set; }
+        public ApiSdk.Models.Microsoft.Graph.DocumentSet DocumentSet { get; set; }
         /// <summary>Document template metadata. To make sure that documents have consistent content across a site and its subsites, you can associate a Word, Excel, or PowerPoint template with a site content type.</summary>
         public DocumentSetContent DocumentTemplate { get; set; }
         /// <summary>The name of the group this content type belongs to. Helps organize related content types.</summary>
@@ -44,25 +44,33 @@ namespace ApiSdk.Models.Microsoft.Graph {
         /// <summary>If true, the content type cannot be modified by users or through push-down operations. Only site collection administrators can seal or unseal content types.</summary>
         public bool? Sealed { get; set; }
         /// <summary>
+        /// Creates a new instance of the appropriate class based on discriminator value
+        /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
+        /// </summary>
+        public static new ContentType CreateFromDiscriminatorValue(IParseNode parseNode) {
+            _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
+            return new ContentType();
+        }
+        /// <summary>
         /// The deserialization information for the current model
         /// </summary>
         public new IDictionary<string, Action<T, IParseNode>> GetFieldDeserializers<T>() {
             return new Dictionary<string, Action<T, IParseNode>>(base.GetFieldDeserializers<T>()) {
                 {"associatedHubsUrls", (o,n) => { (o as ContentType).AssociatedHubsUrls = n.GetCollectionOfPrimitiveValues<string>().ToList(); } },
-                {"base", (o,n) => { (o as ContentType).Base = n.GetObjectValue<ContentType>(); } },
-                {"baseTypes", (o,n) => { (o as ContentType).BaseTypes = n.GetCollectionOfObjectValues<ContentType>().ToList(); } },
-                {"columnLinks", (o,n) => { (o as ContentType).ColumnLinks = n.GetCollectionOfObjectValues<ColumnLink>().ToList(); } },
-                {"columnPositions", (o,n) => { (o as ContentType).ColumnPositions = n.GetCollectionOfObjectValues<ColumnDefinition>().ToList(); } },
-                {"columns", (o,n) => { (o as ContentType).Columns = n.GetCollectionOfObjectValues<ColumnDefinition>().ToList(); } },
+                {"base", (o,n) => { (o as ContentType).Base = n.GetObjectValue<ContentType>(ContentType.CreateFromDiscriminatorValue); } },
+                {"baseTypes", (o,n) => { (o as ContentType).BaseTypes = n.GetCollectionOfObjectValues<ContentType>(ContentType.CreateFromDiscriminatorValue).ToList(); } },
+                {"columnLinks", (o,n) => { (o as ContentType).ColumnLinks = n.GetCollectionOfObjectValues<ColumnLink>(ColumnLink.CreateFromDiscriminatorValue).ToList(); } },
+                {"columnPositions", (o,n) => { (o as ContentType).ColumnPositions = n.GetCollectionOfObjectValues<ColumnDefinition>(ColumnDefinition.CreateFromDiscriminatorValue).ToList(); } },
+                {"columns", (o,n) => { (o as ContentType).Columns = n.GetCollectionOfObjectValues<ColumnDefinition>(ColumnDefinition.CreateFromDiscriminatorValue).ToList(); } },
                 {"description", (o,n) => { (o as ContentType).Description = n.GetStringValue(); } },
-                {"documentSet", (o,n) => { (o as ContentType).DocumentSet = n.GetObjectValue<DocumentSet>(); } },
-                {"documentTemplate", (o,n) => { (o as ContentType).DocumentTemplate = n.GetObjectValue<DocumentSetContent>(); } },
+                {"documentSet", (o,n) => { (o as ContentType).DocumentSet = n.GetObjectValue<ApiSdk.Models.Microsoft.Graph.DocumentSet>(ApiSdk.Models.Microsoft.Graph.DocumentSet.CreateFromDiscriminatorValue); } },
+                {"documentTemplate", (o,n) => { (o as ContentType).DocumentTemplate = n.GetObjectValue<DocumentSetContent>(DocumentSetContent.CreateFromDiscriminatorValue); } },
                 {"group", (o,n) => { (o as ContentType).Group = n.GetStringValue(); } },
                 {"hidden", (o,n) => { (o as ContentType).Hidden = n.GetBoolValue(); } },
-                {"inheritedFrom", (o,n) => { (o as ContentType).InheritedFrom = n.GetObjectValue<ItemReference>(); } },
+                {"inheritedFrom", (o,n) => { (o as ContentType).InheritedFrom = n.GetObjectValue<ItemReference>(ItemReference.CreateFromDiscriminatorValue); } },
                 {"isBuiltIn", (o,n) => { (o as ContentType).IsBuiltIn = n.GetBoolValue(); } },
                 {"name", (o,n) => { (o as ContentType).Name = n.GetStringValue(); } },
-                {"order", (o,n) => { (o as ContentType).Order = n.GetObjectValue<ContentTypeOrder>(); } },
+                {"order", (o,n) => { (o as ContentType).Order = n.GetObjectValue<ContentTypeOrder>(ContentTypeOrder.CreateFromDiscriminatorValue); } },
                 {"parentId", (o,n) => { (o as ContentType).ParentId = n.GetStringValue(); } },
                 {"propagateChanges", (o,n) => { (o as ContentType).PropagateChanges = n.GetBoolValue(); } },
                 {"readOnly", (o,n) => { (o as ContentType).ReadOnly = n.GetBoolValue(); } },
@@ -83,7 +91,7 @@ namespace ApiSdk.Models.Microsoft.Graph {
             writer.WriteCollectionOfObjectValues<ColumnDefinition>("columnPositions", ColumnPositions);
             writer.WriteCollectionOfObjectValues<ColumnDefinition>("columns", Columns);
             writer.WriteStringValue("description", Description);
-            writer.WriteObjectValue<DocumentSet>("documentSet", DocumentSet);
+            writer.WriteObjectValue<ApiSdk.Models.Microsoft.Graph.DocumentSet>("documentSet", DocumentSet);
             writer.WriteObjectValue<DocumentSetContent>("documentTemplate", DocumentTemplate);
             writer.WriteStringValue("group", Group);
             writer.WriteBoolValue("hidden", Hidden);

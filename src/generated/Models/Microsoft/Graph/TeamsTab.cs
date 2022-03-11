@@ -10,17 +10,25 @@ namespace ApiSdk.Models.Microsoft.Graph {
         /// <summary>Name of the tab.</summary>
         public string DisplayName { get; set; }
         /// <summary>The application that is linked to the tab.</summary>
-        public TeamsApp TeamsApp { get; set; }
+        public ApiSdk.Models.Microsoft.Graph.TeamsApp TeamsApp { get; set; }
         /// <summary>Deep link URL of the tab instance. Read only.</summary>
         public string WebUrl { get; set; }
+        /// <summary>
+        /// Creates a new instance of the appropriate class based on discriminator value
+        /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
+        /// </summary>
+        public static new TeamsTab CreateFromDiscriminatorValue(IParseNode parseNode) {
+            _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
+            return new TeamsTab();
+        }
         /// <summary>
         /// The deserialization information for the current model
         /// </summary>
         public new IDictionary<string, Action<T, IParseNode>> GetFieldDeserializers<T>() {
             return new Dictionary<string, Action<T, IParseNode>>(base.GetFieldDeserializers<T>()) {
-                {"configuration", (o,n) => { (o as TeamsTab).Configuration = n.GetObjectValue<TeamsTabConfiguration>(); } },
+                {"configuration", (o,n) => { (o as TeamsTab).Configuration = n.GetObjectValue<TeamsTabConfiguration>(TeamsTabConfiguration.CreateFromDiscriminatorValue); } },
                 {"displayName", (o,n) => { (o as TeamsTab).DisplayName = n.GetStringValue(); } },
-                {"teamsApp", (o,n) => { (o as TeamsTab).TeamsApp = n.GetObjectValue<TeamsApp>(); } },
+                {"teamsApp", (o,n) => { (o as TeamsTab).TeamsApp = n.GetObjectValue<ApiSdk.Models.Microsoft.Graph.TeamsApp>(ApiSdk.Models.Microsoft.Graph.TeamsApp.CreateFromDiscriminatorValue); } },
                 {"webUrl", (o,n) => { (o as TeamsTab).WebUrl = n.GetStringValue(); } },
             };
         }
@@ -33,7 +41,7 @@ namespace ApiSdk.Models.Microsoft.Graph {
             base.Serialize(writer);
             writer.WriteObjectValue<TeamsTabConfiguration>("configuration", Configuration);
             writer.WriteStringValue("displayName", DisplayName);
-            writer.WriteObjectValue<TeamsApp>("teamsApp", TeamsApp);
+            writer.WriteObjectValue<ApiSdk.Models.Microsoft.Graph.TeamsApp>("teamsApp", TeamsApp);
             writer.WriteStringValue("webUrl", WebUrl);
         }
     }

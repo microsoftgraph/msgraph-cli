@@ -56,35 +56,43 @@ namespace ApiSdk.Models.Microsoft.Graph {
         /// <summary>Specifies a list of file extensions, so that files with these extensions are encrypted when copying from an SMB share within the corporate boundary</summary>
         public List<WindowsInformationProtectionResourceCollection> SmbAutoEncryptedFileExtensions { get; set; }
         /// <summary>
+        /// Creates a new instance of the appropriate class based on discriminator value
+        /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
+        /// </summary>
+        public static new WindowsInformationProtection CreateFromDiscriminatorValue(IParseNode parseNode) {
+            _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
+            return new WindowsInformationProtection();
+        }
+        /// <summary>
         /// The deserialization information for the current model
         /// </summary>
         public new IDictionary<string, Action<T, IParseNode>> GetFieldDeserializers<T>() {
             return new Dictionary<string, Action<T, IParseNode>>(base.GetFieldDeserializers<T>()) {
-                {"assignments", (o,n) => { (o as WindowsInformationProtection).Assignments = n.GetCollectionOfObjectValues<TargetedManagedAppPolicyAssignment>().ToList(); } },
+                {"assignments", (o,n) => { (o as WindowsInformationProtection).Assignments = n.GetCollectionOfObjectValues<TargetedManagedAppPolicyAssignment>(TargetedManagedAppPolicyAssignment.CreateFromDiscriminatorValue).ToList(); } },
                 {"azureRightsManagementServicesAllowed", (o,n) => { (o as WindowsInformationProtection).AzureRightsManagementServicesAllowed = n.GetBoolValue(); } },
-                {"dataRecoveryCertificate", (o,n) => { (o as WindowsInformationProtection).DataRecoveryCertificate = n.GetObjectValue<WindowsInformationProtectionDataRecoveryCertificate>(); } },
+                {"dataRecoveryCertificate", (o,n) => { (o as WindowsInformationProtection).DataRecoveryCertificate = n.GetObjectValue<WindowsInformationProtectionDataRecoveryCertificate>(WindowsInformationProtectionDataRecoveryCertificate.CreateFromDiscriminatorValue); } },
                 {"enforcementLevel", (o,n) => { (o as WindowsInformationProtection).EnforcementLevel = n.GetEnumValue<WindowsInformationProtectionEnforcementLevel>(); } },
                 {"enterpriseDomain", (o,n) => { (o as WindowsInformationProtection).EnterpriseDomain = n.GetStringValue(); } },
-                {"enterpriseInternalProxyServers", (o,n) => { (o as WindowsInformationProtection).EnterpriseInternalProxyServers = n.GetCollectionOfObjectValues<WindowsInformationProtectionResourceCollection>().ToList(); } },
-                {"enterpriseIPRanges", (o,n) => { (o as WindowsInformationProtection).EnterpriseIPRanges = n.GetCollectionOfObjectValues<WindowsInformationProtectionIPRangeCollection>().ToList(); } },
+                {"enterpriseInternalProxyServers", (o,n) => { (o as WindowsInformationProtection).EnterpriseInternalProxyServers = n.GetCollectionOfObjectValues<WindowsInformationProtectionResourceCollection>(WindowsInformationProtectionResourceCollection.CreateFromDiscriminatorValue).ToList(); } },
+                {"enterpriseIPRanges", (o,n) => { (o as WindowsInformationProtection).EnterpriseIPRanges = n.GetCollectionOfObjectValues<WindowsInformationProtectionIPRangeCollection>(WindowsInformationProtectionIPRangeCollection.CreateFromDiscriminatorValue).ToList(); } },
                 {"enterpriseIPRangesAreAuthoritative", (o,n) => { (o as WindowsInformationProtection).EnterpriseIPRangesAreAuthoritative = n.GetBoolValue(); } },
-                {"enterpriseNetworkDomainNames", (o,n) => { (o as WindowsInformationProtection).EnterpriseNetworkDomainNames = n.GetCollectionOfObjectValues<WindowsInformationProtectionResourceCollection>().ToList(); } },
-                {"enterpriseProtectedDomainNames", (o,n) => { (o as WindowsInformationProtection).EnterpriseProtectedDomainNames = n.GetCollectionOfObjectValues<WindowsInformationProtectionResourceCollection>().ToList(); } },
-                {"enterpriseProxiedDomains", (o,n) => { (o as WindowsInformationProtection).EnterpriseProxiedDomains = n.GetCollectionOfObjectValues<WindowsInformationProtectionProxiedDomainCollection>().ToList(); } },
-                {"enterpriseProxyServers", (o,n) => { (o as WindowsInformationProtection).EnterpriseProxyServers = n.GetCollectionOfObjectValues<WindowsInformationProtectionResourceCollection>().ToList(); } },
+                {"enterpriseNetworkDomainNames", (o,n) => { (o as WindowsInformationProtection).EnterpriseNetworkDomainNames = n.GetCollectionOfObjectValues<WindowsInformationProtectionResourceCollection>(WindowsInformationProtectionResourceCollection.CreateFromDiscriminatorValue).ToList(); } },
+                {"enterpriseProtectedDomainNames", (o,n) => { (o as WindowsInformationProtection).EnterpriseProtectedDomainNames = n.GetCollectionOfObjectValues<WindowsInformationProtectionResourceCollection>(WindowsInformationProtectionResourceCollection.CreateFromDiscriminatorValue).ToList(); } },
+                {"enterpriseProxiedDomains", (o,n) => { (o as WindowsInformationProtection).EnterpriseProxiedDomains = n.GetCollectionOfObjectValues<WindowsInformationProtectionProxiedDomainCollection>(WindowsInformationProtectionProxiedDomainCollection.CreateFromDiscriminatorValue).ToList(); } },
+                {"enterpriseProxyServers", (o,n) => { (o as WindowsInformationProtection).EnterpriseProxyServers = n.GetCollectionOfObjectValues<WindowsInformationProtectionResourceCollection>(WindowsInformationProtectionResourceCollection.CreateFromDiscriminatorValue).ToList(); } },
                 {"enterpriseProxyServersAreAuthoritative", (o,n) => { (o as WindowsInformationProtection).EnterpriseProxyServersAreAuthoritative = n.GetBoolValue(); } },
-                {"exemptAppLockerFiles", (o,n) => { (o as WindowsInformationProtection).ExemptAppLockerFiles = n.GetCollectionOfObjectValues<WindowsInformationProtectionAppLockerFile>().ToList(); } },
-                {"exemptApps", (o,n) => { (o as WindowsInformationProtection).ExemptApps = n.GetCollectionOfObjectValues<WindowsInformationProtectionApp>().ToList(); } },
+                {"exemptAppLockerFiles", (o,n) => { (o as WindowsInformationProtection).ExemptAppLockerFiles = n.GetCollectionOfObjectValues<WindowsInformationProtectionAppLockerFile>(WindowsInformationProtectionAppLockerFile.CreateFromDiscriminatorValue).ToList(); } },
+                {"exemptApps", (o,n) => { (o as WindowsInformationProtection).ExemptApps = n.GetCollectionOfObjectValues<WindowsInformationProtectionApp>(WindowsInformationProtectionApp.CreateFromDiscriminatorValue).ToList(); } },
                 {"iconsVisible", (o,n) => { (o as WindowsInformationProtection).IconsVisible = n.GetBoolValue(); } },
                 {"indexingEncryptedStoresOrItemsBlocked", (o,n) => { (o as WindowsInformationProtection).IndexingEncryptedStoresOrItemsBlocked = n.GetBoolValue(); } },
                 {"isAssigned", (o,n) => { (o as WindowsInformationProtection).IsAssigned = n.GetBoolValue(); } },
-                {"neutralDomainResources", (o,n) => { (o as WindowsInformationProtection).NeutralDomainResources = n.GetCollectionOfObjectValues<WindowsInformationProtectionResourceCollection>().ToList(); } },
-                {"protectedAppLockerFiles", (o,n) => { (o as WindowsInformationProtection).ProtectedAppLockerFiles = n.GetCollectionOfObjectValues<WindowsInformationProtectionAppLockerFile>().ToList(); } },
-                {"protectedApps", (o,n) => { (o as WindowsInformationProtection).ProtectedApps = n.GetCollectionOfObjectValues<WindowsInformationProtectionApp>().ToList(); } },
+                {"neutralDomainResources", (o,n) => { (o as WindowsInformationProtection).NeutralDomainResources = n.GetCollectionOfObjectValues<WindowsInformationProtectionResourceCollection>(WindowsInformationProtectionResourceCollection.CreateFromDiscriminatorValue).ToList(); } },
+                {"protectedAppLockerFiles", (o,n) => { (o as WindowsInformationProtection).ProtectedAppLockerFiles = n.GetCollectionOfObjectValues<WindowsInformationProtectionAppLockerFile>(WindowsInformationProtectionAppLockerFile.CreateFromDiscriminatorValue).ToList(); } },
+                {"protectedApps", (o,n) => { (o as WindowsInformationProtection).ProtectedApps = n.GetCollectionOfObjectValues<WindowsInformationProtectionApp>(WindowsInformationProtectionApp.CreateFromDiscriminatorValue).ToList(); } },
                 {"protectionUnderLockConfigRequired", (o,n) => { (o as WindowsInformationProtection).ProtectionUnderLockConfigRequired = n.GetBoolValue(); } },
                 {"revokeOnUnenrollDisabled", (o,n) => { (o as WindowsInformationProtection).RevokeOnUnenrollDisabled = n.GetBoolValue(); } },
                 {"rightsManagementServicesTemplateId", (o,n) => { (o as WindowsInformationProtection).RightsManagementServicesTemplateId = n.GetStringValue(); } },
-                {"smbAutoEncryptedFileExtensions", (o,n) => { (o as WindowsInformationProtection).SmbAutoEncryptedFileExtensions = n.GetCollectionOfObjectValues<WindowsInformationProtectionResourceCollection>().ToList(); } },
+                {"smbAutoEncryptedFileExtensions", (o,n) => { (o as WindowsInformationProtection).SmbAutoEncryptedFileExtensions = n.GetCollectionOfObjectValues<WindowsInformationProtectionResourceCollection>(WindowsInformationProtectionResourceCollection.CreateFromDiscriminatorValue).ToList(); } },
             };
         }
         /// <summary>

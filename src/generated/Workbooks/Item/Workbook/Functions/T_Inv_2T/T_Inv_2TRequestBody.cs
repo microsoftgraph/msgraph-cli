@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 namespace ApiSdk.Workbooks.Item.Workbook.Functions.T_Inv_2T {
-    public class T_Inv_2TRequestBody : IParsable {
+    public class T_Inv_2TRequestBody : IAdditionalDataHolder, IParsable {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
         public Json DegFreedom { get; set; }
@@ -17,12 +17,20 @@ namespace ApiSdk.Workbooks.Item.Workbook.Functions.T_Inv_2T {
             AdditionalData = new Dictionary<string, object>();
         }
         /// <summary>
+        /// Creates a new instance of the appropriate class based on discriminator value
+        /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
+        /// </summary>
+        public static T_Inv_2TRequestBody CreateFromDiscriminatorValue(IParseNode parseNode) {
+            _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
+            return new T_Inv_2TRequestBody();
+        }
+        /// <summary>
         /// The deserialization information for the current model
         /// </summary>
         public IDictionary<string, Action<T, IParseNode>> GetFieldDeserializers<T>() {
             return new Dictionary<string, Action<T, IParseNode>> {
-                {"degFreedom", (o,n) => { (o as T_Inv_2TRequestBody).DegFreedom = n.GetObjectValue<Json>(); } },
-                {"probability", (o,n) => { (o as T_Inv_2TRequestBody).Probability = n.GetObjectValue<Json>(); } },
+                {"degFreedom", (o,n) => { (o as T_Inv_2TRequestBody).DegFreedom = n.GetObjectValue<Json>(Json.CreateFromDiscriminatorValue); } },
+                {"probability", (o,n) => { (o as T_Inv_2TRequestBody).Probability = n.GetObjectValue<Json>(Json.CreateFromDiscriminatorValue); } },
             };
         }
         /// <summary>

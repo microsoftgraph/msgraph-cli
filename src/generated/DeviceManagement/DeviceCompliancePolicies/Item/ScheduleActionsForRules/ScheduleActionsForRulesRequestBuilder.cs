@@ -42,7 +42,7 @@ namespace ApiSdk.DeviceManagement.DeviceCompliancePolicies.Item.ScheduleActionsF
                 PathParameters.Add("deviceCompliancePolicy_id", deviceCompliancePolicyId);
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
-                var model = parseNode.GetObjectValue<ScheduleActionsForRulesRequestBody>();
+                var model = parseNode.GetObjectValue<ScheduleActionsForRulesRequestBody>(ScheduleActionsForRulesRequestBody.CreateFromDiscriminatorValue);
                 var requestInfo = CreatePostRequestInformation(model, q => {
                 });
                 await RequestAdapter.SendNoContentAsync(requestInfo, errorMapping: default, cancellationToken: cancellationToken);

@@ -20,6 +20,14 @@ namespace ApiSdk.Models.Microsoft.Graph {
         /// <summary>Returns the worksheet on which the named item is scoped to. Available only if the item is scoped to the worksheet. Read-only.</summary>
         public WorkbookWorksheet Worksheet { get; set; }
         /// <summary>
+        /// Creates a new instance of the appropriate class based on discriminator value
+        /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
+        /// </summary>
+        public static new WorkbookNamedItem CreateFromDiscriminatorValue(IParseNode parseNode) {
+            _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
+            return new WorkbookNamedItem();
+        }
+        /// <summary>
         /// The deserialization information for the current model
         /// </summary>
         public new IDictionary<string, Action<T, IParseNode>> GetFieldDeserializers<T>() {
@@ -28,9 +36,9 @@ namespace ApiSdk.Models.Microsoft.Graph {
                 {"name", (o,n) => { (o as WorkbookNamedItem).Name = n.GetStringValue(); } },
                 {"scope", (o,n) => { (o as WorkbookNamedItem).Scope = n.GetStringValue(); } },
                 {"type", (o,n) => { (o as WorkbookNamedItem).Type = n.GetStringValue(); } },
-                {"value", (o,n) => { (o as WorkbookNamedItem).Value = n.GetObjectValue<Json>(); } },
+                {"value", (o,n) => { (o as WorkbookNamedItem).Value = n.GetObjectValue<Json>(Json.CreateFromDiscriminatorValue); } },
                 {"visible", (o,n) => { (o as WorkbookNamedItem).Visible = n.GetBoolValue(); } },
-                {"worksheet", (o,n) => { (o as WorkbookNamedItem).Worksheet = n.GetObjectValue<WorkbookWorksheet>(); } },
+                {"worksheet", (o,n) => { (o as WorkbookNamedItem).Worksheet = n.GetObjectValue<WorkbookWorksheet>(WorkbookWorksheet.CreateFromDiscriminatorValue); } },
             };
         }
         /// <summary>

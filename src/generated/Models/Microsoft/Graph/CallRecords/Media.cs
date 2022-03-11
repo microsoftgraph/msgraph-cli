@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 namespace ApiSdk.Models.Microsoft.Graph.CallRecords {
-    public class Media : IParsable {
+    public class Media : IAdditionalDataHolder, IParsable {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>Device information associated with the callee endpoint of this media.</summary>
@@ -26,16 +26,24 @@ namespace ApiSdk.Models.Microsoft.Graph.CallRecords {
             AdditionalData = new Dictionary<string, object>();
         }
         /// <summary>
+        /// Creates a new instance of the appropriate class based on discriminator value
+        /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
+        /// </summary>
+        public static Media CreateFromDiscriminatorValue(IParseNode parseNode) {
+            _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
+            return new Media();
+        }
+        /// <summary>
         /// The deserialization information for the current model
         /// </summary>
         public IDictionary<string, Action<T, IParseNode>> GetFieldDeserializers<T>() {
             return new Dictionary<string, Action<T, IParseNode>> {
-                {"calleeDevice", (o,n) => { (o as Media).CalleeDevice = n.GetObjectValue<DeviceInfo>(); } },
-                {"calleeNetwork", (o,n) => { (o as Media).CalleeNetwork = n.GetObjectValue<NetworkInfo>(); } },
-                {"callerDevice", (o,n) => { (o as Media).CallerDevice = n.GetObjectValue<DeviceInfo>(); } },
-                {"callerNetwork", (o,n) => { (o as Media).CallerNetwork = n.GetObjectValue<NetworkInfo>(); } },
+                {"calleeDevice", (o,n) => { (o as Media).CalleeDevice = n.GetObjectValue<DeviceInfo>(DeviceInfo.CreateFromDiscriminatorValue); } },
+                {"calleeNetwork", (o,n) => { (o as Media).CalleeNetwork = n.GetObjectValue<NetworkInfo>(NetworkInfo.CreateFromDiscriminatorValue); } },
+                {"callerDevice", (o,n) => { (o as Media).CallerDevice = n.GetObjectValue<DeviceInfo>(DeviceInfo.CreateFromDiscriminatorValue); } },
+                {"callerNetwork", (o,n) => { (o as Media).CallerNetwork = n.GetObjectValue<NetworkInfo>(NetworkInfo.CreateFromDiscriminatorValue); } },
                 {"label", (o,n) => { (o as Media).Label = n.GetStringValue(); } },
-                {"streams", (o,n) => { (o as Media).Streams = n.GetCollectionOfObjectValues<MediaStream>().ToList(); } },
+                {"streams", (o,n) => { (o as Media).Streams = n.GetCollectionOfObjectValues<MediaStream>(MediaStream.CreateFromDiscriminatorValue).ToList(); } },
             };
         }
         /// <summary>

@@ -12,13 +12,21 @@ namespace ApiSdk.Models.Microsoft.Graph {
         /// <summary>Collection of settingTemplateValues that list the set of available settings, defaults and types that make up this template.</summary>
         public List<SettingTemplateValue> Values { get; set; }
         /// <summary>
+        /// Creates a new instance of the appropriate class based on discriminator value
+        /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
+        /// </summary>
+        public static new GroupSettingTemplate CreateFromDiscriminatorValue(IParseNode parseNode) {
+            _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
+            return new GroupSettingTemplate();
+        }
+        /// <summary>
         /// The deserialization information for the current model
         /// </summary>
         public new IDictionary<string, Action<T, IParseNode>> GetFieldDeserializers<T>() {
             return new Dictionary<string, Action<T, IParseNode>>(base.GetFieldDeserializers<T>()) {
                 {"description", (o,n) => { (o as GroupSettingTemplate).Description = n.GetStringValue(); } },
                 {"displayName", (o,n) => { (o as GroupSettingTemplate).DisplayName = n.GetStringValue(); } },
-                {"values", (o,n) => { (o as GroupSettingTemplate).Values = n.GetCollectionOfObjectValues<SettingTemplateValue>().ToList(); } },
+                {"values", (o,n) => { (o as GroupSettingTemplate).Values = n.GetCollectionOfObjectValues<SettingTemplateValue>(SettingTemplateValue.CreateFromDiscriminatorValue).ToList(); } },
             };
         }
         /// <summary>
