@@ -22,13 +22,13 @@
   <ItemGroup>
     <PackageReference Include="Azure.Identity" Version="1.5.0" />
     <PackageReference Include="Microsoft.Extensions.Configuration" Version="6.0.1" />
-    <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="6.0.1" />
+    <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="6.0.0" />
     <PackageReference Include="Microsoft.Extensions.Hosting" Version="6.0.1" />
-    <PackageReference Include="Microsoft.Extensions.Logging.Console" Version="6.0.1" />
+    <PackageReference Include="Microsoft.Extensions.Logging.Console" Version="6.0.0" />
     <PackageReference Include="Microsoft.Kiota.Authentication.Azure" Version="1.0.8" />
     <PackageReference Include="Microsoft.Kiota.Http.HttpClientLibrary" Version="1.0.22" />
     <PackageReference Include="Microsoft.Kiota.Serialization.Json" Version="1.0.15" />
-    <PackageReference Include="System.CommandLine.Hosting" Version="2.0.0-beta3.22114.1" />
+    <PackageReference Include="System.CommandLine.Hosting" Version="0.4.0-alpha.22114.1" />
   </ItemGroup>
 
   <ItemGroup>
