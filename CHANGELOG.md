@@ -16,3 +16,5 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - Fixed bug caused by URL path parameters not being set in the request information object #38
 - Fixed stream output being passed to output formatter when no file path is provided #38
+- Format JSON output by default. A switch has been added to optionally turn off this behavior #55
+- Use async OutputFormatter & OutputFilter APIs #55
