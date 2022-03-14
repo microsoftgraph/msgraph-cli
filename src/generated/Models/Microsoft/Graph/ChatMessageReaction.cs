@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 namespace ApiSdk.Models.Microsoft.Graph {
-    public class ChatMessageReaction : IParsable {
+    public class ChatMessageReaction : IAdditionalDataHolder, IParsable {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>The Timestamp type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z</summary>
@@ -19,13 +19,21 @@ namespace ApiSdk.Models.Microsoft.Graph {
             AdditionalData = new Dictionary<string, object>();
         }
         /// <summary>
+        /// Creates a new instance of the appropriate class based on discriminator value
+        /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
+        /// </summary>
+        public static ChatMessageReaction CreateFromDiscriminatorValue(IParseNode parseNode) {
+            _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
+            return new ChatMessageReaction();
+        }
+        /// <summary>
         /// The deserialization information for the current model
         /// </summary>
         public IDictionary<string, Action<T, IParseNode>> GetFieldDeserializers<T>() {
             return new Dictionary<string, Action<T, IParseNode>> {
                 {"createdDateTime", (o,n) => { (o as ChatMessageReaction).CreatedDateTime = n.GetDateTimeOffsetValue(); } },
                 {"reactionType", (o,n) => { (o as ChatMessageReaction).ReactionType = n.GetStringValue(); } },
-                {"user", (o,n) => { (o as ChatMessageReaction).User = n.GetObjectValue<ChatMessageReactionIdentitySet>(); } },
+                {"user", (o,n) => { (o as ChatMessageReaction).User = n.GetObjectValue<ChatMessageReactionIdentitySet>(ChatMessageReactionIdentitySet.CreateFromDiscriminatorValue); } },
             };
         }
         /// <summary>

@@ -14,11 +14,19 @@ namespace ApiSdk.Models.Microsoft.Graph {
         /// <summary>The resource URI for the object. For example, the resource URI for a copied page or section.</summary>
         public string ResourceLocation { get; set; }
         /// <summary>
+        /// Creates a new instance of the appropriate class based on discriminator value
+        /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
+        /// </summary>
+        public static new OnenoteOperation CreateFromDiscriminatorValue(IParseNode parseNode) {
+            _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
+            return new OnenoteOperation();
+        }
+        /// <summary>
         /// The deserialization information for the current model
         /// </summary>
         public new IDictionary<string, Action<T, IParseNode>> GetFieldDeserializers<T>() {
             return new Dictionary<string, Action<T, IParseNode>>(base.GetFieldDeserializers<T>()) {
-                {"error", (o,n) => { (o as OnenoteOperation).Error = n.GetObjectValue<OnenoteOperationError>(); } },
+                {"error", (o,n) => { (o as OnenoteOperation).Error = n.GetObjectValue<OnenoteOperationError>(OnenoteOperationError.CreateFromDiscriminatorValue); } },
                 {"percentComplete", (o,n) => { (o as OnenoteOperation).PercentComplete = n.GetStringValue(); } },
                 {"resourceId", (o,n) => { (o as OnenoteOperation).ResourceId = n.GetStringValue(); } },
                 {"resourceLocation", (o,n) => { (o as OnenoteOperation).ResourceLocation = n.GetStringValue(); } },

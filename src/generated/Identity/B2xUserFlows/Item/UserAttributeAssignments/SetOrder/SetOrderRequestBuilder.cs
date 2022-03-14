@@ -42,7 +42,7 @@ namespace ApiSdk.Identity.B2xUserFlows.Item.UserAttributeAssignments.SetOrder {
                 PathParameters.Add("b2xIdentityUserFlow_id", b2xIdentityUserFlowId);
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
-                var model = parseNode.GetObjectValue<SetOrderRequestBody>();
+                var model = parseNode.GetObjectValue<SetOrderRequestBody>(SetOrderRequestBody.CreateFromDiscriminatorValue);
                 var requestInfo = CreatePostRequestInformation(model, q => {
                 });
                 await RequestAdapter.SendNoContentAsync(requestInfo, errorMapping: default, cancellationToken: cancellationToken);

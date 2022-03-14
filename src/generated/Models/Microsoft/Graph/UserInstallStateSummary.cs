@@ -16,11 +16,19 @@ namespace ApiSdk.Models.Microsoft.Graph {
         /// <summary>User name.</summary>
         public string UserName { get; set; }
         /// <summary>
+        /// Creates a new instance of the appropriate class based on discriminator value
+        /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
+        /// </summary>
+        public static new UserInstallStateSummary CreateFromDiscriminatorValue(IParseNode parseNode) {
+            _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
+            return new UserInstallStateSummary();
+        }
+        /// <summary>
         /// The deserialization information for the current model
         /// </summary>
         public new IDictionary<string, Action<T, IParseNode>> GetFieldDeserializers<T>() {
             return new Dictionary<string, Action<T, IParseNode>>(base.GetFieldDeserializers<T>()) {
-                {"deviceStates", (o,n) => { (o as UserInstallStateSummary).DeviceStates = n.GetCollectionOfObjectValues<DeviceInstallState>().ToList(); } },
+                {"deviceStates", (o,n) => { (o as UserInstallStateSummary).DeviceStates = n.GetCollectionOfObjectValues<DeviceInstallState>(DeviceInstallState.CreateFromDiscriminatorValue).ToList(); } },
                 {"failedDeviceCount", (o,n) => { (o as UserInstallStateSummary).FailedDeviceCount = n.GetIntValue(); } },
                 {"installedDeviceCount", (o,n) => { (o as UserInstallStateSummary).InstalledDeviceCount = n.GetIntValue(); } },
                 {"notInstalledDeviceCount", (o,n) => { (o as UserInstallStateSummary).NotInstalledDeviceCount = n.GetIntValue(); } },

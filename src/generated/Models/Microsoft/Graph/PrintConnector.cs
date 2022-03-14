@@ -18,6 +18,14 @@ namespace ApiSdk.Models.Microsoft.Graph {
         /// <summary>The DateTimeOffset when the connector was registered.</summary>
         public DateTimeOffset? RegisteredDateTime { get; set; }
         /// <summary>
+        /// Creates a new instance of the appropriate class based on discriminator value
+        /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
+        /// </summary>
+        public static new PrintConnector CreateFromDiscriminatorValue(IParseNode parseNode) {
+            _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
+            return new PrintConnector();
+        }
+        /// <summary>
         /// The deserialization information for the current model
         /// </summary>
         public new IDictionary<string, Action<T, IParseNode>> GetFieldDeserializers<T>() {
@@ -25,7 +33,7 @@ namespace ApiSdk.Models.Microsoft.Graph {
                 {"appVersion", (o,n) => { (o as PrintConnector).AppVersion = n.GetStringValue(); } },
                 {"displayName", (o,n) => { (o as PrintConnector).DisplayName = n.GetStringValue(); } },
                 {"fullyQualifiedDomainName", (o,n) => { (o as PrintConnector).FullyQualifiedDomainName = n.GetStringValue(); } },
-                {"location", (o,n) => { (o as PrintConnector).Location = n.GetObjectValue<PrinterLocation>(); } },
+                {"location", (o,n) => { (o as PrintConnector).Location = n.GetObjectValue<PrinterLocation>(PrinterLocation.CreateFromDiscriminatorValue); } },
                 {"operatingSystem", (o,n) => { (o as PrintConnector).OperatingSystem = n.GetStringValue(); } },
                 {"registeredDateTime", (o,n) => { (o as PrintConnector).RegisteredDateTime = n.GetDateTimeOffsetValue(); } },
             };

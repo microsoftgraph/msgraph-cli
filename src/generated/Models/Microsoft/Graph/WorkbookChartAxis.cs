@@ -22,18 +22,26 @@ namespace ApiSdk.Models.Microsoft.Graph {
         /// <summary>Represents the axis title. Read-only.</summary>
         public WorkbookChartAxisTitle Title { get; set; }
         /// <summary>
+        /// Creates a new instance of the appropriate class based on discriminator value
+        /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
+        /// </summary>
+        public static new WorkbookChartAxis CreateFromDiscriminatorValue(IParseNode parseNode) {
+            _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
+            return new WorkbookChartAxis();
+        }
+        /// <summary>
         /// The deserialization information for the current model
         /// </summary>
         public new IDictionary<string, Action<T, IParseNode>> GetFieldDeserializers<T>() {
             return new Dictionary<string, Action<T, IParseNode>>(base.GetFieldDeserializers<T>()) {
-                {"format", (o,n) => { (o as WorkbookChartAxis).Format = n.GetObjectValue<WorkbookChartAxisFormat>(); } },
-                {"majorGridlines", (o,n) => { (o as WorkbookChartAxis).MajorGridlines = n.GetObjectValue<WorkbookChartGridlines>(); } },
-                {"majorUnit", (o,n) => { (o as WorkbookChartAxis).MajorUnit = n.GetObjectValue<Json>(); } },
-                {"maximum", (o,n) => { (o as WorkbookChartAxis).Maximum = n.GetObjectValue<Json>(); } },
-                {"minimum", (o,n) => { (o as WorkbookChartAxis).Minimum = n.GetObjectValue<Json>(); } },
-                {"minorGridlines", (o,n) => { (o as WorkbookChartAxis).MinorGridlines = n.GetObjectValue<WorkbookChartGridlines>(); } },
-                {"minorUnit", (o,n) => { (o as WorkbookChartAxis).MinorUnit = n.GetObjectValue<Json>(); } },
-                {"title", (o,n) => { (o as WorkbookChartAxis).Title = n.GetObjectValue<WorkbookChartAxisTitle>(); } },
+                {"format", (o,n) => { (o as WorkbookChartAxis).Format = n.GetObjectValue<WorkbookChartAxisFormat>(WorkbookChartAxisFormat.CreateFromDiscriminatorValue); } },
+                {"majorGridlines", (o,n) => { (o as WorkbookChartAxis).MajorGridlines = n.GetObjectValue<WorkbookChartGridlines>(WorkbookChartGridlines.CreateFromDiscriminatorValue); } },
+                {"majorUnit", (o,n) => { (o as WorkbookChartAxis).MajorUnit = n.GetObjectValue<Json>(Json.CreateFromDiscriminatorValue); } },
+                {"maximum", (o,n) => { (o as WorkbookChartAxis).Maximum = n.GetObjectValue<Json>(Json.CreateFromDiscriminatorValue); } },
+                {"minimum", (o,n) => { (o as WorkbookChartAxis).Minimum = n.GetObjectValue<Json>(Json.CreateFromDiscriminatorValue); } },
+                {"minorGridlines", (o,n) => { (o as WorkbookChartAxis).MinorGridlines = n.GetObjectValue<WorkbookChartGridlines>(WorkbookChartGridlines.CreateFromDiscriminatorValue); } },
+                {"minorUnit", (o,n) => { (o as WorkbookChartAxis).MinorUnit = n.GetObjectValue<Json>(Json.CreateFromDiscriminatorValue); } },
+                {"title", (o,n) => { (o as WorkbookChartAxis).Title = n.GetObjectValue<WorkbookChartAxisTitle>(WorkbookChartAxisTitle.CreateFromDiscriminatorValue); } },
             };
         }
         /// <summary>

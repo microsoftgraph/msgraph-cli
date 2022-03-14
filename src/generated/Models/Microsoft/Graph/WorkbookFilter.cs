@@ -8,11 +8,19 @@ namespace ApiSdk.Models.Microsoft.Graph {
         /// <summary>The currently applied filter on the given column. Read-only.</summary>
         public WorkbookFilterCriteria Criteria { get; set; }
         /// <summary>
+        /// Creates a new instance of the appropriate class based on discriminator value
+        /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
+        /// </summary>
+        public static new WorkbookFilter CreateFromDiscriminatorValue(IParseNode parseNode) {
+            _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
+            return new WorkbookFilter();
+        }
+        /// <summary>
         /// The deserialization information for the current model
         /// </summary>
         public new IDictionary<string, Action<T, IParseNode>> GetFieldDeserializers<T>() {
             return new Dictionary<string, Action<T, IParseNode>>(base.GetFieldDeserializers<T>()) {
-                {"criteria", (o,n) => { (o as WorkbookFilter).Criteria = n.GetObjectValue<WorkbookFilterCriteria>(); } },
+                {"criteria", (o,n) => { (o as WorkbookFilter).Criteria = n.GetObjectValue<WorkbookFilterCriteria>(WorkbookFilterCriteria.CreateFromDiscriminatorValue); } },
             };
         }
         /// <summary>

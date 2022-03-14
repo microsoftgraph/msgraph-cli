@@ -10,12 +10,20 @@ namespace ApiSdk.Models.Microsoft.Graph {
         /// <summary>Represents chart line formatting. Read-only.</summary>
         public WorkbookChartLineFormat Line { get; set; }
         /// <summary>
+        /// Creates a new instance of the appropriate class based on discriminator value
+        /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
+        /// </summary>
+        public static new WorkbookChartAxisFormat CreateFromDiscriminatorValue(IParseNode parseNode) {
+            _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
+            return new WorkbookChartAxisFormat();
+        }
+        /// <summary>
         /// The deserialization information for the current model
         /// </summary>
         public new IDictionary<string, Action<T, IParseNode>> GetFieldDeserializers<T>() {
             return new Dictionary<string, Action<T, IParseNode>>(base.GetFieldDeserializers<T>()) {
-                {"font", (o,n) => { (o as WorkbookChartAxisFormat).Font = n.GetObjectValue<WorkbookChartFont>(); } },
-                {"line", (o,n) => { (o as WorkbookChartAxisFormat).Line = n.GetObjectValue<WorkbookChartLineFormat>(); } },
+                {"font", (o,n) => { (o as WorkbookChartAxisFormat).Font = n.GetObjectValue<WorkbookChartFont>(WorkbookChartFont.CreateFromDiscriminatorValue); } },
+                {"line", (o,n) => { (o as WorkbookChartAxisFormat).Line = n.GetObjectValue<WorkbookChartLineFormat>(WorkbookChartLineFormat.CreateFromDiscriminatorValue); } },
             };
         }
         /// <summary>

@@ -26,15 +26,23 @@ namespace ApiSdk.Models.Microsoft.Graph {
         /// <summary>Indicates whether a managed user can take screen captures of managed apps</summary>
         public bool? ScreenCaptureBlocked { get; set; }
         /// <summary>
+        /// Creates a new instance of the appropriate class based on discriminator value
+        /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
+        /// </summary>
+        public static new AndroidManagedAppProtection CreateFromDiscriminatorValue(IParseNode parseNode) {
+            _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
+            return new AndroidManagedAppProtection();
+        }
+        /// <summary>
         /// The deserialization information for the current model
         /// </summary>
         public new IDictionary<string, Action<T, IParseNode>> GetFieldDeserializers<T>() {
             return new Dictionary<string, Action<T, IParseNode>>(base.GetFieldDeserializers<T>()) {
-                {"apps", (o,n) => { (o as AndroidManagedAppProtection).Apps = n.GetCollectionOfObjectValues<ManagedMobileApp>().ToList(); } },
+                {"apps", (o,n) => { (o as AndroidManagedAppProtection).Apps = n.GetCollectionOfObjectValues<ManagedMobileApp>(ManagedMobileApp.CreateFromDiscriminatorValue).ToList(); } },
                 {"customBrowserDisplayName", (o,n) => { (o as AndroidManagedAppProtection).CustomBrowserDisplayName = n.GetStringValue(); } },
                 {"customBrowserPackageId", (o,n) => { (o as AndroidManagedAppProtection).CustomBrowserPackageId = n.GetStringValue(); } },
                 {"deployedAppCount", (o,n) => { (o as AndroidManagedAppProtection).DeployedAppCount = n.GetIntValue(); } },
-                {"deploymentSummary", (o,n) => { (o as AndroidManagedAppProtection).DeploymentSummary = n.GetObjectValue<ManagedAppPolicyDeploymentSummary>(); } },
+                {"deploymentSummary", (o,n) => { (o as AndroidManagedAppProtection).DeploymentSummary = n.GetObjectValue<ManagedAppPolicyDeploymentSummary>(ManagedAppPolicyDeploymentSummary.CreateFromDiscriminatorValue); } },
                 {"disableAppEncryptionIfDeviceEncryptionIsEnabled", (o,n) => { (o as AndroidManagedAppProtection).DisableAppEncryptionIfDeviceEncryptionIsEnabled = n.GetBoolValue(); } },
                 {"encryptAppData", (o,n) => { (o as AndroidManagedAppProtection).EncryptAppData = n.GetBoolValue(); } },
                 {"minimumRequiredPatchVersion", (o,n) => { (o as AndroidManagedAppProtection).MinimumRequiredPatchVersion = n.GetStringValue(); } },

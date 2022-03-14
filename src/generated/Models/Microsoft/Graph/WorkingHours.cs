@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 namespace ApiSdk.Models.Microsoft.Graph {
-    public class WorkingHours : IParsable {
+    public class WorkingHours : IAdditionalDataHolder, IParsable {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>The days of the week on which the user works.</summary>
@@ -23,6 +23,14 @@ namespace ApiSdk.Models.Microsoft.Graph {
             AdditionalData = new Dictionary<string, object>();
         }
         /// <summary>
+        /// Creates a new instance of the appropriate class based on discriminator value
+        /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
+        /// </summary>
+        public static WorkingHours CreateFromDiscriminatorValue(IParseNode parseNode) {
+            _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
+            return new WorkingHours();
+        }
+        /// <summary>
         /// The deserialization information for the current model
         /// </summary>
         public IDictionary<string, Action<T, IParseNode>> GetFieldDeserializers<T>() {
@@ -30,7 +38,7 @@ namespace ApiSdk.Models.Microsoft.Graph {
                 {"daysOfWeek", (o,n) => { (o as WorkingHours).DaysOfWeek = n.GetCollectionOfEnumValues<DayOfWeek>().ToList(); } },
                 {"endTime", (o,n) => { (o as WorkingHours).EndTime = n.GetTimeValue(); } },
                 {"startTime", (o,n) => { (o as WorkingHours).StartTime = n.GetTimeValue(); } },
-                {"timeZone", (o,n) => { (o as WorkingHours).TimeZone = n.GetObjectValue<TimeZoneBase>(); } },
+                {"timeZone", (o,n) => { (o as WorkingHours).TimeZone = n.GetObjectValue<TimeZoneBase>(TimeZoneBase.CreateFromDiscriminatorValue); } },
             };
         }
         /// <summary>

@@ -12,7 +12,7 @@ namespace ApiSdk.Models.Microsoft.Graph {
         /// <summary>The email address of the user being invited. Required. The following special characters are not permitted in the email address:Tilde (~)Exclamation point (!)At sign (@)Number sign (#)Dollar sign ($)Percent (%)Circumflex (^)Ampersand (&)Asterisk (*)Parentheses (( ))Hyphen (-)Plus sign (+)Equal sign (=)Brackets ([ ])Braces ({ })Backslash (/)Slash mark (/)Pipe (`</summary>
         public string InvitedUserEmailAddress { get; set; }
         /// <summary>Additional configuration for the message being sent to the invited user, including customizing message text, language and cc recipient list.</summary>
-        public InvitedUserMessageInfo InvitedUserMessageInfo { get; set; }
+        public ApiSdk.Models.Microsoft.Graph.InvitedUserMessageInfo InvitedUserMessageInfo { get; set; }
         /// <summary>The userType of the user being invited. By default, this is Guest. You can invite as Member if you're are company administrator. The default is false.</summary>
         public string InvitedUserType { get; set; }
         /// <summary>The URL the user can use to redeem their invitation. Read-only.</summary>
@@ -24,14 +24,22 @@ namespace ApiSdk.Models.Microsoft.Graph {
         /// <summary>The status of the invitation. Possible values: PendingAcceptance, Completed, InProgress, and Error</summary>
         public string Status { get; set; }
         /// <summary>
+        /// Creates a new instance of the appropriate class based on discriminator value
+        /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
+        /// </summary>
+        public static new Invitation CreateFromDiscriminatorValue(IParseNode parseNode) {
+            _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
+            return new Invitation();
+        }
+        /// <summary>
         /// The deserialization information for the current model
         /// </summary>
         public new IDictionary<string, Action<T, IParseNode>> GetFieldDeserializers<T>() {
             return new Dictionary<string, Action<T, IParseNode>>(base.GetFieldDeserializers<T>()) {
-                {"invitedUser", (o,n) => { (o as Invitation).InvitedUser = n.GetObjectValue<User>(); } },
+                {"invitedUser", (o,n) => { (o as Invitation).InvitedUser = n.GetObjectValue<User>(User.CreateFromDiscriminatorValue); } },
                 {"invitedUserDisplayName", (o,n) => { (o as Invitation).InvitedUserDisplayName = n.GetStringValue(); } },
                 {"invitedUserEmailAddress", (o,n) => { (o as Invitation).InvitedUserEmailAddress = n.GetStringValue(); } },
-                {"invitedUserMessageInfo", (o,n) => { (o as Invitation).InvitedUserMessageInfo = n.GetObjectValue<InvitedUserMessageInfo>(); } },
+                {"invitedUserMessageInfo", (o,n) => { (o as Invitation).InvitedUserMessageInfo = n.GetObjectValue<ApiSdk.Models.Microsoft.Graph.InvitedUserMessageInfo>(ApiSdk.Models.Microsoft.Graph.InvitedUserMessageInfo.CreateFromDiscriminatorValue); } },
                 {"invitedUserType", (o,n) => { (o as Invitation).InvitedUserType = n.GetStringValue(); } },
                 {"inviteRedeemUrl", (o,n) => { (o as Invitation).InviteRedeemUrl = n.GetStringValue(); } },
                 {"inviteRedirectUrl", (o,n) => { (o as Invitation).InviteRedirectUrl = n.GetStringValue(); } },
@@ -49,7 +57,7 @@ namespace ApiSdk.Models.Microsoft.Graph {
             writer.WriteObjectValue<User>("invitedUser", InvitedUser);
             writer.WriteStringValue("invitedUserDisplayName", InvitedUserDisplayName);
             writer.WriteStringValue("invitedUserEmailAddress", InvitedUserEmailAddress);
-            writer.WriteObjectValue<InvitedUserMessageInfo>("invitedUserMessageInfo", InvitedUserMessageInfo);
+            writer.WriteObjectValue<ApiSdk.Models.Microsoft.Graph.InvitedUserMessageInfo>("invitedUserMessageInfo", InvitedUserMessageInfo);
             writer.WriteStringValue("invitedUserType", InvitedUserType);
             writer.WriteStringValue("inviteRedeemUrl", InviteRedeemUrl);
             writer.WriteStringValue("inviteRedirectUrl", InviteRedirectUrl);

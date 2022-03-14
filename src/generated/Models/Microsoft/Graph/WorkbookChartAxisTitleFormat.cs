@@ -8,11 +8,19 @@ namespace ApiSdk.Models.Microsoft.Graph {
         /// <summary>Represents the font attributes, such as font name, font size, color, etc. of chart axis title object. Read-only.</summary>
         public WorkbookChartFont Font { get; set; }
         /// <summary>
+        /// Creates a new instance of the appropriate class based on discriminator value
+        /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
+        /// </summary>
+        public static new WorkbookChartAxisTitleFormat CreateFromDiscriminatorValue(IParseNode parseNode) {
+            _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
+            return new WorkbookChartAxisTitleFormat();
+        }
+        /// <summary>
         /// The deserialization information for the current model
         /// </summary>
         public new IDictionary<string, Action<T, IParseNode>> GetFieldDeserializers<T>() {
             return new Dictionary<string, Action<T, IParseNode>>(base.GetFieldDeserializers<T>()) {
-                {"font", (o,n) => { (o as WorkbookChartAxisTitleFormat).Font = n.GetObjectValue<WorkbookChartFont>(); } },
+                {"font", (o,n) => { (o as WorkbookChartAxisTitleFormat).Font = n.GetObjectValue<WorkbookChartFont>(WorkbookChartFont.CreateFromDiscriminatorValue); } },
             };
         }
         /// <summary>

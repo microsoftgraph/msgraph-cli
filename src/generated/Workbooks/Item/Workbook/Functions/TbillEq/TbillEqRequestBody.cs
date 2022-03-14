@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 namespace ApiSdk.Workbooks.Item.Workbook.Functions.TbillEq {
-    public class TbillEqRequestBody : IParsable {
+    public class TbillEqRequestBody : IAdditionalDataHolder, IParsable {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
         public Json Discount { get; set; }
@@ -18,13 +18,21 @@ namespace ApiSdk.Workbooks.Item.Workbook.Functions.TbillEq {
             AdditionalData = new Dictionary<string, object>();
         }
         /// <summary>
+        /// Creates a new instance of the appropriate class based on discriminator value
+        /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
+        /// </summary>
+        public static TbillEqRequestBody CreateFromDiscriminatorValue(IParseNode parseNode) {
+            _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
+            return new TbillEqRequestBody();
+        }
+        /// <summary>
         /// The deserialization information for the current model
         /// </summary>
         public IDictionary<string, Action<T, IParseNode>> GetFieldDeserializers<T>() {
             return new Dictionary<string, Action<T, IParseNode>> {
-                {"discount", (o,n) => { (o as TbillEqRequestBody).Discount = n.GetObjectValue<Json>(); } },
-                {"maturity", (o,n) => { (o as TbillEqRequestBody).Maturity = n.GetObjectValue<Json>(); } },
-                {"settlement", (o,n) => { (o as TbillEqRequestBody).Settlement = n.GetObjectValue<Json>(); } },
+                {"discount", (o,n) => { (o as TbillEqRequestBody).Discount = n.GetObjectValue<Json>(Json.CreateFromDiscriminatorValue); } },
+                {"maturity", (o,n) => { (o as TbillEqRequestBody).Maturity = n.GetObjectValue<Json>(Json.CreateFromDiscriminatorValue); } },
+                {"settlement", (o,n) => { (o as TbillEqRequestBody).Settlement = n.GetObjectValue<Json>(Json.CreateFromDiscriminatorValue); } },
             };
         }
         /// <summary>

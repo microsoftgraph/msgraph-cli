@@ -20,11 +20,11 @@ namespace ApiSdk.Models.Microsoft.Graph {
         /// <summary>The content stream of the attendee report of a Teams live event. Read-only.</summary>
         public byte[] AttendeeReport { get; set; }
         /// <summary>The phone access (dial-in) information for an online meeting. Read-only.</summary>
-        public AudioConferencing AudioConferencing { get; set; }
+        public ApiSdk.Models.Microsoft.Graph.AudioConferencing AudioConferencing { get; set; }
         /// <summary>Settings related to a live event.</summary>
         public BroadcastMeetingSettings BroadcastSettings { get; set; }
         /// <summary>The chat information associated with this online meeting.</summary>
-        public ChatInfo ChatInfo { get; set; }
+        public ApiSdk.Models.Microsoft.Graph.ChatInfo ChatInfo { get; set; }
         /// <summary>The meeting creation time in UTC. Read-only.</summary>
         public DateTimeOffset? CreationDateTime { get; set; }
         /// <summary>The meeting end time in UTC.</summary>
@@ -40,7 +40,7 @@ namespace ApiSdk.Models.Microsoft.Graph {
         /// <summary>The join URL of the online meeting. Read-only.</summary>
         public string JoinWebUrl { get; set; }
         /// <summary>Specifies which participants can bypass the meeting lobby.</summary>
-        public LobbyBypassSettings LobbyBypassSettings { get; set; }
+        public ApiSdk.Models.Microsoft.Graph.LobbyBypassSettings LobbyBypassSettings { get; set; }
         /// <summary>The participants associated with the online meeting. This includes the organizer and the attendees.</summary>
         public MeetingParticipants Participants { get; set; }
         /// <summary>Indicates whether to record the meeting automatically.</summary>
@@ -52,6 +52,14 @@ namespace ApiSdk.Models.Microsoft.Graph {
         /// <summary>The video teleconferencing ID. Read-only.</summary>
         public string VideoTeleconferenceId { get; set; }
         /// <summary>
+        /// Creates a new instance of the appropriate class based on discriminator value
+        /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
+        /// </summary>
+        public static new OnlineMeeting CreateFromDiscriminatorValue(IParseNode parseNode) {
+            _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
+            return new OnlineMeeting();
+        }
+        /// <summary>
         /// The deserialization information for the current model
         /// </summary>
         public new IDictionary<string, Action<T, IParseNode>> GetFieldDeserializers<T>() {
@@ -61,20 +69,20 @@ namespace ApiSdk.Models.Microsoft.Graph {
                 {"allowedPresenters", (o,n) => { (o as OnlineMeeting).AllowedPresenters = n.GetEnumValue<OnlineMeetingPresenters>(); } },
                 {"allowMeetingChat", (o,n) => { (o as OnlineMeeting).AllowMeetingChat = n.GetEnumValue<MeetingChatMode>(); } },
                 {"allowTeamworkReactions", (o,n) => { (o as OnlineMeeting).AllowTeamworkReactions = n.GetBoolValue(); } },
-                {"attendanceReports", (o,n) => { (o as OnlineMeeting).AttendanceReports = n.GetCollectionOfObjectValues<MeetingAttendanceReport>().ToList(); } },
+                {"attendanceReports", (o,n) => { (o as OnlineMeeting).AttendanceReports = n.GetCollectionOfObjectValues<MeetingAttendanceReport>(MeetingAttendanceReport.CreateFromDiscriminatorValue).ToList(); } },
                 {"attendeeReport", (o,n) => { (o as OnlineMeeting).AttendeeReport = n.GetByteArrayValue(); } },
-                {"audioConferencing", (o,n) => { (o as OnlineMeeting).AudioConferencing = n.GetObjectValue<AudioConferencing>(); } },
-                {"broadcastSettings", (o,n) => { (o as OnlineMeeting).BroadcastSettings = n.GetObjectValue<BroadcastMeetingSettings>(); } },
-                {"chatInfo", (o,n) => { (o as OnlineMeeting).ChatInfo = n.GetObjectValue<ChatInfo>(); } },
+                {"audioConferencing", (o,n) => { (o as OnlineMeeting).AudioConferencing = n.GetObjectValue<ApiSdk.Models.Microsoft.Graph.AudioConferencing>(ApiSdk.Models.Microsoft.Graph.AudioConferencing.CreateFromDiscriminatorValue); } },
+                {"broadcastSettings", (o,n) => { (o as OnlineMeeting).BroadcastSettings = n.GetObjectValue<BroadcastMeetingSettings>(BroadcastMeetingSettings.CreateFromDiscriminatorValue); } },
+                {"chatInfo", (o,n) => { (o as OnlineMeeting).ChatInfo = n.GetObjectValue<ApiSdk.Models.Microsoft.Graph.ChatInfo>(ApiSdk.Models.Microsoft.Graph.ChatInfo.CreateFromDiscriminatorValue); } },
                 {"creationDateTime", (o,n) => { (o as OnlineMeeting).CreationDateTime = n.GetDateTimeOffsetValue(); } },
                 {"endDateTime", (o,n) => { (o as OnlineMeeting).EndDateTime = n.GetDateTimeOffsetValue(); } },
                 {"externalId", (o,n) => { (o as OnlineMeeting).ExternalId = n.GetStringValue(); } },
                 {"isBroadcast", (o,n) => { (o as OnlineMeeting).IsBroadcast = n.GetBoolValue(); } },
                 {"isEntryExitAnnounced", (o,n) => { (o as OnlineMeeting).IsEntryExitAnnounced = n.GetBoolValue(); } },
-                {"joinInformation", (o,n) => { (o as OnlineMeeting).JoinInformation = n.GetObjectValue<ItemBody>(); } },
+                {"joinInformation", (o,n) => { (o as OnlineMeeting).JoinInformation = n.GetObjectValue<ItemBody>(ItemBody.CreateFromDiscriminatorValue); } },
                 {"joinWebUrl", (o,n) => { (o as OnlineMeeting).JoinWebUrl = n.GetStringValue(); } },
-                {"lobbyBypassSettings", (o,n) => { (o as OnlineMeeting).LobbyBypassSettings = n.GetObjectValue<LobbyBypassSettings>(); } },
-                {"participants", (o,n) => { (o as OnlineMeeting).Participants = n.GetObjectValue<MeetingParticipants>(); } },
+                {"lobbyBypassSettings", (o,n) => { (o as OnlineMeeting).LobbyBypassSettings = n.GetObjectValue<ApiSdk.Models.Microsoft.Graph.LobbyBypassSettings>(ApiSdk.Models.Microsoft.Graph.LobbyBypassSettings.CreateFromDiscriminatorValue); } },
+                {"participants", (o,n) => { (o as OnlineMeeting).Participants = n.GetObjectValue<MeetingParticipants>(MeetingParticipants.CreateFromDiscriminatorValue); } },
                 {"recordAutomatically", (o,n) => { (o as OnlineMeeting).RecordAutomatically = n.GetBoolValue(); } },
                 {"startDateTime", (o,n) => { (o as OnlineMeeting).StartDateTime = n.GetDateTimeOffsetValue(); } },
                 {"subject", (o,n) => { (o as OnlineMeeting).Subject = n.GetStringValue(); } },
@@ -95,9 +103,9 @@ namespace ApiSdk.Models.Microsoft.Graph {
             writer.WriteBoolValue("allowTeamworkReactions", AllowTeamworkReactions);
             writer.WriteCollectionOfObjectValues<MeetingAttendanceReport>("attendanceReports", AttendanceReports);
             writer.WriteByteArrayValue("attendeeReport", AttendeeReport);
-            writer.WriteObjectValue<AudioConferencing>("audioConferencing", AudioConferencing);
+            writer.WriteObjectValue<ApiSdk.Models.Microsoft.Graph.AudioConferencing>("audioConferencing", AudioConferencing);
             writer.WriteObjectValue<BroadcastMeetingSettings>("broadcastSettings", BroadcastSettings);
-            writer.WriteObjectValue<ChatInfo>("chatInfo", ChatInfo);
+            writer.WriteObjectValue<ApiSdk.Models.Microsoft.Graph.ChatInfo>("chatInfo", ChatInfo);
             writer.WriteDateTimeOffsetValue("creationDateTime", CreationDateTime);
             writer.WriteDateTimeOffsetValue("endDateTime", EndDateTime);
             writer.WriteStringValue("externalId", ExternalId);
@@ -105,7 +113,7 @@ namespace ApiSdk.Models.Microsoft.Graph {
             writer.WriteBoolValue("isEntryExitAnnounced", IsEntryExitAnnounced);
             writer.WriteObjectValue<ItemBody>("joinInformation", JoinInformation);
             writer.WriteStringValue("joinWebUrl", JoinWebUrl);
-            writer.WriteObjectValue<LobbyBypassSettings>("lobbyBypassSettings", LobbyBypassSettings);
+            writer.WriteObjectValue<ApiSdk.Models.Microsoft.Graph.LobbyBypassSettings>("lobbyBypassSettings", LobbyBypassSettings);
             writer.WriteObjectValue<MeetingParticipants>("participants", Participants);
             writer.WriteBoolValue("recordAutomatically", RecordAutomatically);
             writer.WriteDateTimeOffsetValue("startDateTime", StartDateTime);

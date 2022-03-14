@@ -16,6 +16,14 @@ namespace ApiSdk.Models.Microsoft.Graph {
         /// <summary>Value to use when configuring the time-to-live (ttl) property of the DNS record at the DNS host. Not nullable</summary>
         public int? Ttl { get; set; }
         /// <summary>
+        /// Creates a new instance of the appropriate class based on discriminator value
+        /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
+        /// </summary>
+        public static new DomainDnsRecord CreateFromDiscriminatorValue(IParseNode parseNode) {
+            _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
+            return new DomainDnsRecord();
+        }
+        /// <summary>
         /// The deserialization information for the current model
         /// </summary>
         public new IDictionary<string, Action<T, IParseNode>> GetFieldDeserializers<T>() {

@@ -8,6 +8,14 @@ namespace ApiSdk.Models.Microsoft.Graph {
         /// <summary>Shift ID for the recipient user with whom the request is to swap.</summary>
         public string RecipientShiftId { get; set; }
         /// <summary>
+        /// Creates a new instance of the appropriate class based on discriminator value
+        /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
+        /// </summary>
+        public static new SwapShiftsChangeRequest CreateFromDiscriminatorValue(IParseNode parseNode) {
+            _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
+            return new SwapShiftsChangeRequest();
+        }
+        /// <summary>
         /// The deserialization information for the current model
         /// </summary>
         public new IDictionary<string, Action<T, IParseNode>> GetFieldDeserializers<T>() {

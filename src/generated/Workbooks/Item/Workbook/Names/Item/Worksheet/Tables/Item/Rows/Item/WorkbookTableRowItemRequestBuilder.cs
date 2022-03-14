@@ -101,6 +101,13 @@ namespace ApiSdk.Workbooks.Item.Workbook.Names.Item.Worksheet.Tables.Item.Rows.I
             command.AddOption(outputOption);
             var queryOption = new Option<string>("--query");
             command.AddOption(queryOption);
+            var jsonNoIndentOption = new Option<bool>("--json-no-indent", r => {
+                if (bool.TryParse(r.Tokens.Select(t => t.Value).LastOrDefault(), out var value)) {
+                    return value;
+                }
+                return true;
+            }, description: "Disable indentation for the JSON output formatter.");
+            command.AddOption(jsonNoIndentOption);
             command.SetHandler(async (object[] parameters) => {
                 var driveItemId = (string) parameters[0];
                 var workbookNamedItemId = (string) parameters[1];
@@ -110,9 +117,10 @@ namespace ApiSdk.Workbooks.Item.Workbook.Names.Item.Worksheet.Tables.Item.Rows.I
                 var expand = (string[]) parameters[5];
                 var output = (FormatterType) parameters[6];
                 var query = (string) parameters[7];
-                var outputFilter = (IOutputFilter) parameters[8];
-                var outputFormatterFactory = (IOutputFormatterFactory) parameters[9];
-                var cancellationToken = (CancellationToken) parameters[10];
+                var jsonNoIndent = (bool) parameters[8];
+                var outputFilter = (IOutputFilter) parameters[9];
+                var outputFormatterFactory = (IOutputFormatterFactory) parameters[10];
+                var cancellationToken = (CancellationToken) parameters[11];
                 PathParameters.Clear();
                 PathParameters.Add("driveItem_id", driveItemId);
                 PathParameters.Add("workbookNamedItem_id", workbookNamedItemId);
@@ -124,9 +132,10 @@ namespace ApiSdk.Workbooks.Item.Workbook.Names.Item.Worksheet.Tables.Item.Rows.I
                 });
                 var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: default, cancellationToken: cancellationToken);
                 var formatter = outputFormatterFactory.GetFormatter(output);
-                response = outputFilter?.FilterOutput(response, query) ?? response;
-                formatter.WriteOutput(response);
-            }, new CollectionBinding(driveItemIdOption, workbookNamedItemIdOption, workbookTableIdOption, workbookTableRowIdOption, selectOption, expandOption, outputOption, queryOption, new TypeBinding(typeof(IOutputFilter)), new TypeBinding(typeof(IOutputFormatterFactory)), new TypeBinding(typeof(CancellationToken))));
+                response = await outputFilter?.FilterOutputAsync(response, query, cancellationToken) ?? response;
+                var formatterOptions = output.GetOutputFormatterOptions(new FormatterOptionsModel(!jsonNoIndent));
+                await formatter.WriteOutputAsync(response, formatterOptions, cancellationToken);
+            }, new CollectionBinding(driveItemIdOption, workbookNamedItemIdOption, workbookTableIdOption, workbookTableRowIdOption, selectOption, expandOption, outputOption, queryOption, jsonNoIndentOption, new TypeBinding(typeof(IOutputFilter)), new TypeBinding(typeof(IOutputFormatterFactory)), new TypeBinding(typeof(CancellationToken))));
             return command;
         }
         /// <summary>
@@ -170,7 +179,7 @@ namespace ApiSdk.Workbooks.Item.Workbook.Names.Item.Worksheet.Tables.Item.Rows.I
                 PathParameters.Add("workbookTableRow_id", workbookTableRowId);
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
-                var model = parseNode.GetObjectValue<WorkbookTableRow>();
+                var model = parseNode.GetObjectValue<WorkbookTableRow>(WorkbookTableRow.CreateFromDiscriminatorValue);
                 var requestInfo = CreatePatchRequestInformation(model, q => {
                 });
                 await RequestAdapter.SendNoContentAsync(requestInfo, errorMapping: default, cancellationToken: cancellationToken);

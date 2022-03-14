@@ -22,16 +22,24 @@ namespace ApiSdk.Models.Microsoft.Graph {
         /// <summary>Possible values are: Owner, Contributor, Reader, None. Owner represents owner-level access to the notebook. Contributor represents read/write access to the notebook. Reader represents read-only access to the notebook. Read-only.</summary>
         public OnenoteUserRole? UserRole { get; set; }
         /// <summary>
+        /// Creates a new instance of the appropriate class based on discriminator value
+        /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
+        /// </summary>
+        public static new Notebook CreateFromDiscriminatorValue(IParseNode parseNode) {
+            _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
+            return new Notebook();
+        }
+        /// <summary>
         /// The deserialization information for the current model
         /// </summary>
         public new IDictionary<string, Action<T, IParseNode>> GetFieldDeserializers<T>() {
             return new Dictionary<string, Action<T, IParseNode>>(base.GetFieldDeserializers<T>()) {
                 {"isDefault", (o,n) => { (o as Notebook).IsDefault = n.GetBoolValue(); } },
                 {"isShared", (o,n) => { (o as Notebook).IsShared = n.GetBoolValue(); } },
-                {"links", (o,n) => { (o as Notebook).Links = n.GetObjectValue<NotebookLinks>(); } },
-                {"sectionGroups", (o,n) => { (o as Notebook).SectionGroups = n.GetCollectionOfObjectValues<SectionGroup>().ToList(); } },
+                {"links", (o,n) => { (o as Notebook).Links = n.GetObjectValue<NotebookLinks>(NotebookLinks.CreateFromDiscriminatorValue); } },
+                {"sectionGroups", (o,n) => { (o as Notebook).SectionGroups = n.GetCollectionOfObjectValues<SectionGroup>(SectionGroup.CreateFromDiscriminatorValue).ToList(); } },
                 {"sectionGroupsUrl", (o,n) => { (o as Notebook).SectionGroupsUrl = n.GetStringValue(); } },
-                {"sections", (o,n) => { (o as Notebook).Sections = n.GetCollectionOfObjectValues<OnenoteSection>().ToList(); } },
+                {"sections", (o,n) => { (o as Notebook).Sections = n.GetCollectionOfObjectValues<OnenoteSection>(OnenoteSection.CreateFromDiscriminatorValue).ToList(); } },
                 {"sectionsUrl", (o,n) => { (o as Notebook).SectionsUrl = n.GetStringValue(); } },
                 {"userRole", (o,n) => { (o as Notebook).UserRole = n.GetEnumValue<OnenoteUserRole>(); } },
             };

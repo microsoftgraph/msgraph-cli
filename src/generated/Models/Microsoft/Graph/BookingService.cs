@@ -44,17 +44,25 @@ namespace ApiSdk.Models.Microsoft.Graph {
         /// <summary>The URL a customer uses to access the service.</summary>
         public string WebUrl { get; set; }
         /// <summary>
+        /// Creates a new instance of the appropriate class based on discriminator value
+        /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
+        /// </summary>
+        public static new BookingService CreateFromDiscriminatorValue(IParseNode parseNode) {
+            _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
+            return new BookingService();
+        }
+        /// <summary>
         /// The deserialization information for the current model
         /// </summary>
         public new IDictionary<string, Action<T, IParseNode>> GetFieldDeserializers<T>() {
             return new Dictionary<string, Action<T, IParseNode>>(base.GetFieldDeserializers<T>()) {
                 {"additionalInformation", (o,n) => { (o as BookingService).AdditionalInformation = n.GetStringValue(); } },
-                {"customQuestions", (o,n) => { (o as BookingService).CustomQuestions = n.GetCollectionOfObjectValues<BookingQuestionAssignment>().ToList(); } },
+                {"customQuestions", (o,n) => { (o as BookingService).CustomQuestions = n.GetCollectionOfObjectValues<BookingQuestionAssignment>(BookingQuestionAssignment.CreateFromDiscriminatorValue).ToList(); } },
                 {"defaultDuration", (o,n) => { (o as BookingService).DefaultDuration = n.GetTimeSpanValue(); } },
-                {"defaultLocation", (o,n) => { (o as BookingService).DefaultLocation = n.GetObjectValue<Location>(); } },
+                {"defaultLocation", (o,n) => { (o as BookingService).DefaultLocation = n.GetObjectValue<Location>(Location.CreateFromDiscriminatorValue); } },
                 {"defaultPrice", (o,n) => { (o as BookingService).DefaultPrice = n.GetDoubleValue(); } },
                 {"defaultPriceType", (o,n) => { (o as BookingService).DefaultPriceType = n.GetEnumValue<BookingPriceType>(); } },
-                {"defaultReminders", (o,n) => { (o as BookingService).DefaultReminders = n.GetCollectionOfObjectValues<BookingReminder>().ToList(); } },
+                {"defaultReminders", (o,n) => { (o as BookingService).DefaultReminders = n.GetCollectionOfObjectValues<BookingReminder>(BookingReminder.CreateFromDiscriminatorValue).ToList(); } },
                 {"description", (o,n) => { (o as BookingService).Description = n.GetStringValue(); } },
                 {"displayName", (o,n) => { (o as BookingService).DisplayName = n.GetStringValue(); } },
                 {"isHiddenFromCustomers", (o,n) => { (o as BookingService).IsHiddenFromCustomers = n.GetBoolValue(); } },
@@ -63,7 +71,7 @@ namespace ApiSdk.Models.Microsoft.Graph {
                 {"notes", (o,n) => { (o as BookingService).Notes = n.GetStringValue(); } },
                 {"postBuffer", (o,n) => { (o as BookingService).PostBuffer = n.GetTimeSpanValue(); } },
                 {"preBuffer", (o,n) => { (o as BookingService).PreBuffer = n.GetTimeSpanValue(); } },
-                {"schedulingPolicy", (o,n) => { (o as BookingService).SchedulingPolicy = n.GetObjectValue<BookingSchedulingPolicy>(); } },
+                {"schedulingPolicy", (o,n) => { (o as BookingService).SchedulingPolicy = n.GetObjectValue<BookingSchedulingPolicy>(BookingSchedulingPolicy.CreateFromDiscriminatorValue); } },
                 {"smsNotificationsEnabled", (o,n) => { (o as BookingService).SmsNotificationsEnabled = n.GetBoolValue(); } },
                 {"staffMemberIds", (o,n) => { (o as BookingService).StaffMemberIds = n.GetCollectionOfPrimitiveValues<string>().ToList(); } },
                 {"webUrl", (o,n) => { (o as BookingService).WebUrl = n.GetStringValue(); } },

@@ -12,11 +12,19 @@ namespace ApiSdk.Models.Microsoft.Graph {
         /// <summary>The shift notes for the shiftItem.</summary>
         public string Notes { get; set; }
         /// <summary>
+        /// Creates a new instance of the appropriate class based on discriminator value
+        /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
+        /// </summary>
+        public static new ShiftItem CreateFromDiscriminatorValue(IParseNode parseNode) {
+            _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
+            return new ShiftItem();
+        }
+        /// <summary>
         /// The deserialization information for the current model
         /// </summary>
         public new IDictionary<string, Action<T, IParseNode>> GetFieldDeserializers<T>() {
             return new Dictionary<string, Action<T, IParseNode>>(base.GetFieldDeserializers<T>()) {
-                {"activities", (o,n) => { (o as ShiftItem).Activities = n.GetCollectionOfObjectValues<ShiftActivity>().ToList(); } },
+                {"activities", (o,n) => { (o as ShiftItem).Activities = n.GetCollectionOfObjectValues<ShiftActivity>(ShiftActivity.CreateFromDiscriminatorValue).ToList(); } },
                 {"displayName", (o,n) => { (o as ShiftItem).DisplayName = n.GetStringValue(); } },
                 {"notes", (o,n) => { (o as ShiftItem).Notes = n.GetStringValue(); } },
             };

@@ -26,21 +26,29 @@ namespace ApiSdk.Models.Microsoft.Graph {
         /// <summary>Information about the resource that changed due to the activity.</summary>
         public List<TargetResource> TargetResources { get; set; }
         /// <summary>
+        /// Creates a new instance of the appropriate class based on discriminator value
+        /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
+        /// </summary>
+        public static new DirectoryAudit CreateFromDiscriminatorValue(IParseNode parseNode) {
+            _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
+            return new DirectoryAudit();
+        }
+        /// <summary>
         /// The deserialization information for the current model
         /// </summary>
         public new IDictionary<string, Action<T, IParseNode>> GetFieldDeserializers<T>() {
             return new Dictionary<string, Action<T, IParseNode>>(base.GetFieldDeserializers<T>()) {
                 {"activityDateTime", (o,n) => { (o as DirectoryAudit).ActivityDateTime = n.GetDateTimeOffsetValue(); } },
                 {"activityDisplayName", (o,n) => { (o as DirectoryAudit).ActivityDisplayName = n.GetStringValue(); } },
-                {"additionalDetails", (o,n) => { (o as DirectoryAudit).AdditionalDetails = n.GetCollectionOfObjectValues<KeyValue>().ToList(); } },
+                {"additionalDetails", (o,n) => { (o as DirectoryAudit).AdditionalDetails = n.GetCollectionOfObjectValues<KeyValue>(KeyValue.CreateFromDiscriminatorValue).ToList(); } },
                 {"category", (o,n) => { (o as DirectoryAudit).Category = n.GetStringValue(); } },
                 {"correlationId", (o,n) => { (o as DirectoryAudit).CorrelationId = n.GetStringValue(); } },
-                {"initiatedBy", (o,n) => { (o as DirectoryAudit).InitiatedBy = n.GetObjectValue<AuditActivityInitiator>(); } },
+                {"initiatedBy", (o,n) => { (o as DirectoryAudit).InitiatedBy = n.GetObjectValue<AuditActivityInitiator>(AuditActivityInitiator.CreateFromDiscriminatorValue); } },
                 {"loggedByService", (o,n) => { (o as DirectoryAudit).LoggedByService = n.GetStringValue(); } },
                 {"operationType", (o,n) => { (o as DirectoryAudit).OperationType = n.GetStringValue(); } },
                 {"result", (o,n) => { (o as DirectoryAudit).Result = n.GetEnumValue<OperationResult>(); } },
                 {"resultReason", (o,n) => { (o as DirectoryAudit).ResultReason = n.GetStringValue(); } },
-                {"targetResources", (o,n) => { (o as DirectoryAudit).TargetResources = n.GetCollectionOfObjectValues<TargetResource>().ToList(); } },
+                {"targetResources", (o,n) => { (o as DirectoryAudit).TargetResources = n.GetCollectionOfObjectValues<TargetResource>(TargetResource.CreateFromDiscriminatorValue).ToList(); } },
             };
         }
         /// <summary>

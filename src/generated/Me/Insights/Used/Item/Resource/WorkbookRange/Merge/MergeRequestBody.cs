@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 namespace ApiSdk.Me.Insights.Used.Item.Resource.WorkbookRange.Merge {
-    public class MergeRequestBody : IParsable {
+    public class MergeRequestBody : IAdditionalDataHolder, IParsable {
         public bool? Across { get; set; }
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
@@ -13,6 +13,14 @@ namespace ApiSdk.Me.Insights.Used.Item.Resource.WorkbookRange.Merge {
         /// </summary>
         public MergeRequestBody() {
             AdditionalData = new Dictionary<string, object>();
+        }
+        /// <summary>
+        /// Creates a new instance of the appropriate class based on discriminator value
+        /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
+        /// </summary>
+        public static MergeRequestBody CreateFromDiscriminatorValue(IParseNode parseNode) {
+            _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
+            return new MergeRequestBody();
         }
         /// <summary>
         /// The deserialization information for the current model

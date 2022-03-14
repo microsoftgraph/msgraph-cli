@@ -38,14 +38,14 @@ namespace ApiSdk.DeviceManagement.Reports.GetCompliancePolicyNonComplianceReport
                 var cancellationToken = (CancellationToken) parameters[2];
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
-                var model = parseNode.GetObjectValue<GetCompliancePolicyNonComplianceReportRequestBody>();
+                var model = parseNode.GetObjectValue<GetCompliancePolicyNonComplianceReportRequestBody>(GetCompliancePolicyNonComplianceReportRequestBody.CreateFromDiscriminatorValue);
                 var requestInfo = CreatePostRequestInformation(model, q => {
                 });
                 var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: default, cancellationToken: cancellationToken);
                 if (file == null) {
                     using var reader = new StreamReader(response);
                     var strContent = reader.ReadToEnd();
-                    Console.WriteLine("strContent");
+                    Console.Write(strContent);
                 }
                 else {
                     using var writeStream = file.OpenWrite();

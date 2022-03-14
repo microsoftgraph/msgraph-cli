@@ -12,6 +12,14 @@ namespace ApiSdk.Models.Microsoft.Graph {
         /// <summary>The list of user IDs that are a member of the schedulingGroup. Required.</summary>
         public List<string> UserIds { get; set; }
         /// <summary>
+        /// Creates a new instance of the appropriate class based on discriminator value
+        /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
+        /// </summary>
+        public static new SchedulingGroup CreateFromDiscriminatorValue(IParseNode parseNode) {
+            _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
+            return new SchedulingGroup();
+        }
+        /// <summary>
         /// The deserialization information for the current model
         /// </summary>
         public new IDictionary<string, Action<T, IParseNode>> GetFieldDeserializers<T>() {

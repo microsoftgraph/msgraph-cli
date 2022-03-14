@@ -10,18 +10,26 @@ namespace ApiSdk.Models.Microsoft.Graph {
         /// <summary>Used for navigating to the item that was used. For file attachments, the type is fileAttachment. For linked attachments, the type is driveItem.</summary>
         public Entity Resource { get; set; }
         /// <summary>Reference properties of the used document, such as the url and type of the document. Read-only</summary>
-        public ResourceReference ResourceReference { get; set; }
+        public ApiSdk.Models.Microsoft.Graph.ResourceReference ResourceReference { get; set; }
         /// <summary>Properties that you can use to visualize the document in your experience. Read-only</summary>
-        public ResourceVisualization ResourceVisualization { get; set; }
+        public ApiSdk.Models.Microsoft.Graph.ResourceVisualization ResourceVisualization { get; set; }
+        /// <summary>
+        /// Creates a new instance of the appropriate class based on discriminator value
+        /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
+        /// </summary>
+        public static new UsedInsight CreateFromDiscriminatorValue(IParseNode parseNode) {
+            _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
+            return new UsedInsight();
+        }
         /// <summary>
         /// The deserialization information for the current model
         /// </summary>
         public new IDictionary<string, Action<T, IParseNode>> GetFieldDeserializers<T>() {
             return new Dictionary<string, Action<T, IParseNode>>(base.GetFieldDeserializers<T>()) {
-                {"lastUsed", (o,n) => { (o as UsedInsight).LastUsed = n.GetObjectValue<UsageDetails>(); } },
-                {"resource", (o,n) => { (o as UsedInsight).Resource = n.GetObjectValue<Entity>(); } },
-                {"resourceReference", (o,n) => { (o as UsedInsight).ResourceReference = n.GetObjectValue<ResourceReference>(); } },
-                {"resourceVisualization", (o,n) => { (o as UsedInsight).ResourceVisualization = n.GetObjectValue<ResourceVisualization>(); } },
+                {"lastUsed", (o,n) => { (o as UsedInsight).LastUsed = n.GetObjectValue<UsageDetails>(UsageDetails.CreateFromDiscriminatorValue); } },
+                {"resource", (o,n) => { (o as UsedInsight).Resource = n.GetObjectValue<Entity>(Entity.CreateFromDiscriminatorValue); } },
+                {"resourceReference", (o,n) => { (o as UsedInsight).ResourceReference = n.GetObjectValue<ApiSdk.Models.Microsoft.Graph.ResourceReference>(ApiSdk.Models.Microsoft.Graph.ResourceReference.CreateFromDiscriminatorValue); } },
+                {"resourceVisualization", (o,n) => { (o as UsedInsight).ResourceVisualization = n.GetObjectValue<ApiSdk.Models.Microsoft.Graph.ResourceVisualization>(ApiSdk.Models.Microsoft.Graph.ResourceVisualization.CreateFromDiscriminatorValue); } },
             };
         }
         /// <summary>
@@ -33,8 +41,8 @@ namespace ApiSdk.Models.Microsoft.Graph {
             base.Serialize(writer);
             writer.WriteObjectValue<UsageDetails>("lastUsed", LastUsed);
             writer.WriteObjectValue<Entity>("resource", Resource);
-            writer.WriteObjectValue<ResourceReference>("resourceReference", ResourceReference);
-            writer.WriteObjectValue<ResourceVisualization>("resourceVisualization", ResourceVisualization);
+            writer.WriteObjectValue<ApiSdk.Models.Microsoft.Graph.ResourceReference>("resourceReference", ResourceReference);
+            writer.WriteObjectValue<ApiSdk.Models.Microsoft.Graph.ResourceVisualization>("resourceVisualization", ResourceVisualization);
         }
     }
 }

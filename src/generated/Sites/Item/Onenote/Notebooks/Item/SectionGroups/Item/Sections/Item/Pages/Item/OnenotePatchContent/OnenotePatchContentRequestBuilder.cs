@@ -66,7 +66,7 @@ namespace ApiSdk.Sites.Item.Onenote.Notebooks.Item.SectionGroups.Item.Sections.I
                 PathParameters.Add("onenotePage_id", onenotePageId);
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
-                var model = parseNode.GetObjectValue<OnenotePatchContentRequestBody>();
+                var model = parseNode.GetObjectValue<OnenotePatchContentRequestBody>(OnenotePatchContentRequestBody.CreateFromDiscriminatorValue);
                 var requestInfo = CreatePostRequestInformation(model, q => {
                 });
                 await RequestAdapter.SendNoContentAsync(requestInfo, errorMapping: default, cancellationToken: cancellationToken);

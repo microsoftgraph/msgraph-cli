@@ -8,11 +8,19 @@ namespace ApiSdk.Models.Microsoft.Graph {
         /// <summary>Details of the system.</summary>
         public DetailsInfo Details { get; set; }
         /// <summary>
+        /// Creates a new instance of the appropriate class based on discriminator value
+        /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
+        /// </summary>
+        public static new ProvisioningSystem CreateFromDiscriminatorValue(IParseNode parseNode) {
+            _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
+            return new ProvisioningSystem();
+        }
+        /// <summary>
         /// The deserialization information for the current model
         /// </summary>
         public new IDictionary<string, Action<T, IParseNode>> GetFieldDeserializers<T>() {
             return new Dictionary<string, Action<T, IParseNode>>(base.GetFieldDeserializers<T>()) {
-                {"details", (o,n) => { (o as ProvisioningSystem).Details = n.GetObjectValue<DetailsInfo>(); } },
+                {"details", (o,n) => { (o as ProvisioningSystem).Details = n.GetObjectValue<DetailsInfo>(DetailsInfo.CreateFromDiscriminatorValue); } },
             };
         }
         /// <summary>

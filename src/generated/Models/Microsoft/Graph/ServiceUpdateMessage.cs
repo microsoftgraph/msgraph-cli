@@ -27,21 +27,29 @@ namespace ApiSdk.Models.Microsoft.Graph {
         /// <summary>Represents user viewpoints data of the service message. This data includes message status such as whether the user has archived, read, or marked the message as favorite. This property is null when accessed with application permissions.</summary>
         public ServiceUpdateMessageViewpoint ViewPoint { get; set; }
         /// <summary>
+        /// Creates a new instance of the appropriate class based on discriminator value
+        /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
+        /// </summary>
+        public static new ServiceUpdateMessage CreateFromDiscriminatorValue(IParseNode parseNode) {
+            _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
+            return new ServiceUpdateMessage();
+        }
+        /// <summary>
         /// The deserialization information for the current model
         /// </summary>
         public new IDictionary<string, Action<T, IParseNode>> GetFieldDeserializers<T>() {
             return new Dictionary<string, Action<T, IParseNode>>(base.GetFieldDeserializers<T>()) {
                 {"actionRequiredByDateTime", (o,n) => { (o as ServiceUpdateMessage).ActionRequiredByDateTime = n.GetDateTimeOffsetValue(); } },
-                {"attachments", (o,n) => { (o as ServiceUpdateMessage).Attachments = n.GetCollectionOfObjectValues<ServiceAnnouncementAttachment>().ToList(); } },
+                {"attachments", (o,n) => { (o as ServiceUpdateMessage).Attachments = n.GetCollectionOfObjectValues<ServiceAnnouncementAttachment>(ServiceAnnouncementAttachment.CreateFromDiscriminatorValue).ToList(); } },
                 {"attachmentsArchive", (o,n) => { (o as ServiceUpdateMessage).AttachmentsArchive = n.GetByteArrayValue(); } },
-                {"body", (o,n) => { (o as ServiceUpdateMessage).Body = n.GetObjectValue<ItemBody>(); } },
+                {"body", (o,n) => { (o as ServiceUpdateMessage).Body = n.GetObjectValue<ItemBody>(ItemBody.CreateFromDiscriminatorValue); } },
                 {"category", (o,n) => { (o as ServiceUpdateMessage).Category = n.GetEnumValue<ServiceUpdateCategory>(); } },
                 {"hasAttachments", (o,n) => { (o as ServiceUpdateMessage).HasAttachments = n.GetBoolValue(); } },
                 {"isMajorChange", (o,n) => { (o as ServiceUpdateMessage).IsMajorChange = n.GetBoolValue(); } },
                 {"services", (o,n) => { (o as ServiceUpdateMessage).Services = n.GetCollectionOfPrimitiveValues<string>().ToList(); } },
                 {"severity", (o,n) => { (o as ServiceUpdateMessage).Severity = n.GetEnumValue<ServiceUpdateSeverity>(); } },
                 {"tags", (o,n) => { (o as ServiceUpdateMessage).Tags = n.GetCollectionOfPrimitiveValues<string>().ToList(); } },
-                {"viewPoint", (o,n) => { (o as ServiceUpdateMessage).ViewPoint = n.GetObjectValue<ServiceUpdateMessageViewpoint>(); } },
+                {"viewPoint", (o,n) => { (o as ServiceUpdateMessage).ViewPoint = n.GetObjectValue<ServiceUpdateMessageViewpoint>(ServiceUpdateMessageViewpoint.CreateFromDiscriminatorValue); } },
             };
         }
         /// <summary>

@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 namespace ApiSdk.Workbooks.Item.Workbook.Functions.Npv {
-    public class NpvRequestBody : IParsable {
+    public class NpvRequestBody : IAdditionalDataHolder, IParsable {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
         public Json Rate { get; set; }
@@ -17,12 +17,20 @@ namespace ApiSdk.Workbooks.Item.Workbook.Functions.Npv {
             AdditionalData = new Dictionary<string, object>();
         }
         /// <summary>
+        /// Creates a new instance of the appropriate class based on discriminator value
+        /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
+        /// </summary>
+        public static NpvRequestBody CreateFromDiscriminatorValue(IParseNode parseNode) {
+            _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
+            return new NpvRequestBody();
+        }
+        /// <summary>
         /// The deserialization information for the current model
         /// </summary>
         public IDictionary<string, Action<T, IParseNode>> GetFieldDeserializers<T>() {
             return new Dictionary<string, Action<T, IParseNode>> {
-                {"rate", (o,n) => { (o as NpvRequestBody).Rate = n.GetObjectValue<Json>(); } },
-                {"values", (o,n) => { (o as NpvRequestBody).Values = n.GetObjectValue<Json>(); } },
+                {"rate", (o,n) => { (o as NpvRequestBody).Rate = n.GetObjectValue<Json>(Json.CreateFromDiscriminatorValue); } },
+                {"values", (o,n) => { (o as NpvRequestBody).Values = n.GetObjectValue<Json>(Json.CreateFromDiscriminatorValue); } },
             };
         }
         /// <summary>

@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 namespace ApiSdk.Models.Microsoft.Graph {
-    public class PermissionScope : IParsable {
+    public class PermissionScope : IAdditionalDataHolder, IParsable {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>A description of the delegated permissions, intended to be read by an administrator granting the permission on behalf of all users. This text appears in tenant-wide admin consent experiences.</summary>
@@ -29,6 +29,14 @@ namespace ApiSdk.Models.Microsoft.Graph {
         /// </summary>
         public PermissionScope() {
             AdditionalData = new Dictionary<string, object>();
+        }
+        /// <summary>
+        /// Creates a new instance of the appropriate class based on discriminator value
+        /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
+        /// </summary>
+        public static PermissionScope CreateFromDiscriminatorValue(IParseNode parseNode) {
+            _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
+            return new PermissionScope();
         }
         /// <summary>
         /// The deserialization information for the current model

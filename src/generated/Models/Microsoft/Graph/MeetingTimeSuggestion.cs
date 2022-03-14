@@ -4,11 +4,11 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 namespace ApiSdk.Models.Microsoft.Graph {
-    public class MeetingTimeSuggestion : IParsable {
+    public class MeetingTimeSuggestion : IAdditionalDataHolder, IParsable {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>An array that shows the availability status of each attendee for this meeting suggestion.</summary>
-        public List<AttendeeAvailability> AttendeeAvailability { get; set; }
+        public List<ApiSdk.Models.Microsoft.Graph.AttendeeAvailability> AttendeeAvailability { get; set; }
         /// <summary>A percentage that represents the likelhood of all the attendees attending.</summary>
         public double? Confidence { get; set; }
         /// <summary>An array that specifies the name and geographic location of each meeting location for this meeting suggestion.</summary>
@@ -28,14 +28,22 @@ namespace ApiSdk.Models.Microsoft.Graph {
             AdditionalData = new Dictionary<string, object>();
         }
         /// <summary>
+        /// Creates a new instance of the appropriate class based on discriminator value
+        /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
+        /// </summary>
+        public static MeetingTimeSuggestion CreateFromDiscriminatorValue(IParseNode parseNode) {
+            _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
+            return new MeetingTimeSuggestion();
+        }
+        /// <summary>
         /// The deserialization information for the current model
         /// </summary>
         public IDictionary<string, Action<T, IParseNode>> GetFieldDeserializers<T>() {
             return new Dictionary<string, Action<T, IParseNode>> {
-                {"attendeeAvailability", (o,n) => { (o as MeetingTimeSuggestion).AttendeeAvailability = n.GetCollectionOfObjectValues<AttendeeAvailability>().ToList(); } },
+                {"attendeeAvailability", (o,n) => { (o as MeetingTimeSuggestion).AttendeeAvailability = n.GetCollectionOfObjectValues<ApiSdk.Models.Microsoft.Graph.AttendeeAvailability>(ApiSdk.Models.Microsoft.Graph.AttendeeAvailability.CreateFromDiscriminatorValue).ToList(); } },
                 {"confidence", (o,n) => { (o as MeetingTimeSuggestion).Confidence = n.GetDoubleValue(); } },
-                {"locations", (o,n) => { (o as MeetingTimeSuggestion).Locations = n.GetCollectionOfObjectValues<Location>().ToList(); } },
-                {"meetingTimeSlot", (o,n) => { (o as MeetingTimeSuggestion).MeetingTimeSlot = n.GetObjectValue<TimeSlot>(); } },
+                {"locations", (o,n) => { (o as MeetingTimeSuggestion).Locations = n.GetCollectionOfObjectValues<Location>(Location.CreateFromDiscriminatorValue).ToList(); } },
+                {"meetingTimeSlot", (o,n) => { (o as MeetingTimeSuggestion).MeetingTimeSlot = n.GetObjectValue<TimeSlot>(TimeSlot.CreateFromDiscriminatorValue); } },
                 {"order", (o,n) => { (o as MeetingTimeSuggestion).Order = n.GetIntValue(); } },
                 {"organizerAvailability", (o,n) => { (o as MeetingTimeSuggestion).OrganizerAvailability = n.GetEnumValue<FreeBusyStatus>(); } },
                 {"suggestionReason", (o,n) => { (o as MeetingTimeSuggestion).SuggestionReason = n.GetStringValue(); } },
@@ -47,7 +55,7 @@ namespace ApiSdk.Models.Microsoft.Graph {
         /// </summary>
         public void Serialize(ISerializationWriter writer) {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
-            writer.WriteCollectionOfObjectValues<AttendeeAvailability>("attendeeAvailability", AttendeeAvailability);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.Microsoft.Graph.AttendeeAvailability>("attendeeAvailability", AttendeeAvailability);
             writer.WriteDoubleValue("confidence", Confidence);
             writer.WriteCollectionOfObjectValues<Location>("locations", Locations);
             writer.WriteObjectValue<TimeSlot>("meetingTimeSlot", MeetingTimeSlot);

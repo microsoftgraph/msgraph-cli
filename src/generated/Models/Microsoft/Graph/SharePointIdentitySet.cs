@@ -12,13 +12,21 @@ namespace ApiSdk.Models.Microsoft.Graph {
         /// <summary>The SharePoint user associated with this action. Optional.</summary>
         public SharePointIdentity SiteUser { get; set; }
         /// <summary>
+        /// Creates a new instance of the appropriate class based on discriminator value
+        /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
+        /// </summary>
+        public static new SharePointIdentitySet CreateFromDiscriminatorValue(IParseNode parseNode) {
+            _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
+            return new SharePointIdentitySet();
+        }
+        /// <summary>
         /// The deserialization information for the current model
         /// </summary>
         public new IDictionary<string, Action<T, IParseNode>> GetFieldDeserializers<T>() {
             return new Dictionary<string, Action<T, IParseNode>>(base.GetFieldDeserializers<T>()) {
-                {"group", (o,n) => { (o as SharePointIdentitySet).Group = n.GetObjectValue<Identity>(); } },
-                {"siteGroup", (o,n) => { (o as SharePointIdentitySet).SiteGroup = n.GetObjectValue<SharePointIdentity>(); } },
-                {"siteUser", (o,n) => { (o as SharePointIdentitySet).SiteUser = n.GetObjectValue<SharePointIdentity>(); } },
+                {"group", (o,n) => { (o as SharePointIdentitySet).Group = n.GetObjectValue<Identity>(Identity.CreateFromDiscriminatorValue); } },
+                {"siteGroup", (o,n) => { (o as SharePointIdentitySet).SiteGroup = n.GetObjectValue<SharePointIdentity>(SharePointIdentity.CreateFromDiscriminatorValue); } },
+                {"siteUser", (o,n) => { (o as SharePointIdentitySet).SiteUser = n.GetObjectValue<SharePointIdentity>(SharePointIdentity.CreateFromDiscriminatorValue); } },
             };
         }
         /// <summary>

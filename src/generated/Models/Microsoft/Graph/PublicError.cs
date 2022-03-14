@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 namespace ApiSdk.Models.Microsoft.Graph {
-    public class PublicError : IParsable {
+    public class PublicError : IAdditionalDataHolder, IParsable {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>Represents the error code.</summary>
@@ -24,13 +24,21 @@ namespace ApiSdk.Models.Microsoft.Graph {
             AdditionalData = new Dictionary<string, object>();
         }
         /// <summary>
+        /// Creates a new instance of the appropriate class based on discriminator value
+        /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
+        /// </summary>
+        public static PublicError CreateFromDiscriminatorValue(IParseNode parseNode) {
+            _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
+            return new PublicError();
+        }
+        /// <summary>
         /// The deserialization information for the current model
         /// </summary>
         public IDictionary<string, Action<T, IParseNode>> GetFieldDeserializers<T>() {
             return new Dictionary<string, Action<T, IParseNode>> {
                 {"code", (o,n) => { (o as PublicError).Code = n.GetStringValue(); } },
-                {"details", (o,n) => { (o as PublicError).Details = n.GetCollectionOfObjectValues<PublicErrorDetail>().ToList(); } },
-                {"innerError", (o,n) => { (o as PublicError).InnerError = n.GetObjectValue<PublicInnerError>(); } },
+                {"details", (o,n) => { (o as PublicError).Details = n.GetCollectionOfObjectValues<PublicErrorDetail>(PublicErrorDetail.CreateFromDiscriminatorValue).ToList(); } },
+                {"innerError", (o,n) => { (o as PublicError).InnerError = n.GetObjectValue<PublicInnerError>(PublicInnerError.CreateFromDiscriminatorValue); } },
                 {"message", (o,n) => { (o as PublicError).Message = n.GetStringValue(); } },
                 {"target", (o,n) => { (o as PublicError).Target = n.GetStringValue(); } },
             };

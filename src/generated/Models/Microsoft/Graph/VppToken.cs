@@ -26,7 +26,15 @@ namespace ApiSdk.Models.Microsoft.Graph {
         /// <summary>The Apple Volume Purchase Program Token string downloaded from the Apple Volume Purchase Program.</summary>
         public string Token { get; set; }
         /// <summary>The type of volume purchase program which the given Apple Volume Purchase Program Token is associated with. Possible values are: business, education. Possible values are: business, education.</summary>
-        public VppTokenAccountType? VppTokenAccountType { get; set; }
+        public ApiSdk.Models.Microsoft.Graph.VppTokenAccountType? VppTokenAccountType { get; set; }
+        /// <summary>
+        /// Creates a new instance of the appropriate class based on discriminator value
+        /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
+        /// </summary>
+        public static new VppToken CreateFromDiscriminatorValue(IParseNode parseNode) {
+            _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
+            return new VppToken();
+        }
         /// <summary>
         /// The deserialization information for the current model
         /// </summary>

@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 namespace ApiSdk.Workbooks.Item.Workbook.Functions.CoupNcd {
-    public class CoupNcdRequestBody : IParsable {
+    public class CoupNcdRequestBody : IAdditionalDataHolder, IParsable {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
         public Json Basis { get; set; }
@@ -19,14 +19,22 @@ namespace ApiSdk.Workbooks.Item.Workbook.Functions.CoupNcd {
             AdditionalData = new Dictionary<string, object>();
         }
         /// <summary>
+        /// Creates a new instance of the appropriate class based on discriminator value
+        /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
+        /// </summary>
+        public static CoupNcdRequestBody CreateFromDiscriminatorValue(IParseNode parseNode) {
+            _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
+            return new CoupNcdRequestBody();
+        }
+        /// <summary>
         /// The deserialization information for the current model
         /// </summary>
         public IDictionary<string, Action<T, IParseNode>> GetFieldDeserializers<T>() {
             return new Dictionary<string, Action<T, IParseNode>> {
-                {"basis", (o,n) => { (o as CoupNcdRequestBody).Basis = n.GetObjectValue<Json>(); } },
-                {"frequency", (o,n) => { (o as CoupNcdRequestBody).Frequency = n.GetObjectValue<Json>(); } },
-                {"maturity", (o,n) => { (o as CoupNcdRequestBody).Maturity = n.GetObjectValue<Json>(); } },
-                {"settlement", (o,n) => { (o as CoupNcdRequestBody).Settlement = n.GetObjectValue<Json>(); } },
+                {"basis", (o,n) => { (o as CoupNcdRequestBody).Basis = n.GetObjectValue<Json>(Json.CreateFromDiscriminatorValue); } },
+                {"frequency", (o,n) => { (o as CoupNcdRequestBody).Frequency = n.GetObjectValue<Json>(Json.CreateFromDiscriminatorValue); } },
+                {"maturity", (o,n) => { (o as CoupNcdRequestBody).Maturity = n.GetObjectValue<Json>(Json.CreateFromDiscriminatorValue); } },
+                {"settlement", (o,n) => { (o as CoupNcdRequestBody).Settlement = n.GetObjectValue<Json>(Json.CreateFromDiscriminatorValue); } },
             };
         }
         /// <summary>

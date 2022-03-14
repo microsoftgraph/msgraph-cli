@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 namespace ApiSdk.Workbooks.Item.Workbook.Functions.AmorDegrc {
-    public class AmorDegrcRequestBody : IParsable {
+    public class AmorDegrcRequestBody : IAdditionalDataHolder, IParsable {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
         public Json Basis { get; set; }
@@ -22,17 +22,25 @@ namespace ApiSdk.Workbooks.Item.Workbook.Functions.AmorDegrc {
             AdditionalData = new Dictionary<string, object>();
         }
         /// <summary>
+        /// Creates a new instance of the appropriate class based on discriminator value
+        /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
+        /// </summary>
+        public static AmorDegrcRequestBody CreateFromDiscriminatorValue(IParseNode parseNode) {
+            _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
+            return new AmorDegrcRequestBody();
+        }
+        /// <summary>
         /// The deserialization information for the current model
         /// </summary>
         public IDictionary<string, Action<T, IParseNode>> GetFieldDeserializers<T>() {
             return new Dictionary<string, Action<T, IParseNode>> {
-                {"basis", (o,n) => { (o as AmorDegrcRequestBody).Basis = n.GetObjectValue<Json>(); } },
-                {"cost", (o,n) => { (o as AmorDegrcRequestBody).Cost = n.GetObjectValue<Json>(); } },
-                {"datePurchased", (o,n) => { (o as AmorDegrcRequestBody).DatePurchased = n.GetObjectValue<Json>(); } },
-                {"firstPeriod", (o,n) => { (o as AmorDegrcRequestBody).FirstPeriod = n.GetObjectValue<Json>(); } },
-                {"period", (o,n) => { (o as AmorDegrcRequestBody).Period = n.GetObjectValue<Json>(); } },
-                {"rate", (o,n) => { (o as AmorDegrcRequestBody).Rate = n.GetObjectValue<Json>(); } },
-                {"salvage", (o,n) => { (o as AmorDegrcRequestBody).Salvage = n.GetObjectValue<Json>(); } },
+                {"basis", (o,n) => { (o as AmorDegrcRequestBody).Basis = n.GetObjectValue<Json>(Json.CreateFromDiscriminatorValue); } },
+                {"cost", (o,n) => { (o as AmorDegrcRequestBody).Cost = n.GetObjectValue<Json>(Json.CreateFromDiscriminatorValue); } },
+                {"datePurchased", (o,n) => { (o as AmorDegrcRequestBody).DatePurchased = n.GetObjectValue<Json>(Json.CreateFromDiscriminatorValue); } },
+                {"firstPeriod", (o,n) => { (o as AmorDegrcRequestBody).FirstPeriod = n.GetObjectValue<Json>(Json.CreateFromDiscriminatorValue); } },
+                {"period", (o,n) => { (o as AmorDegrcRequestBody).Period = n.GetObjectValue<Json>(Json.CreateFromDiscriminatorValue); } },
+                {"rate", (o,n) => { (o as AmorDegrcRequestBody).Rate = n.GetObjectValue<Json>(Json.CreateFromDiscriminatorValue); } },
+                {"salvage", (o,n) => { (o as AmorDegrcRequestBody).Salvage = n.GetObjectValue<Json>(Json.CreateFromDiscriminatorValue); } },
             };
         }
         /// <summary>

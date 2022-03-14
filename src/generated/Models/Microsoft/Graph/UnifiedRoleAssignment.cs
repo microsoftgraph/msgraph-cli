@@ -6,7 +6,7 @@ using System.Linq;
 namespace ApiSdk.Models.Microsoft.Graph {
     public class UnifiedRoleAssignment : Entity, IParsable {
         /// <summary>Details of the app specific scope when the assignment scope is app specific. Containment entity.</summary>
-        public AppScope AppScope { get; set; }
+        public ApiSdk.Models.Microsoft.Graph.AppScope AppScope { get; set; }
         /// <summary>Identifier of the app specific scope when the assignment scope is app specific. The scope of an assignment determines the set of resources for which the principal has been granted access. Directory scopes are shared scopes stored in the directory that are understood by multiple applications. Use / for tenant-wide scope. App scopes are scopes that are defined and understood by this application only.  For the entitlement management provider, use app scopes to specify a catalog, for example /AccessPackageCatalog/beedadfe-01d5-4025-910b-84abb9369997.</summary>
         public string AppScopeId { get; set; }
         public string Condition { get; set; }
@@ -23,18 +23,26 @@ namespace ApiSdk.Models.Microsoft.Graph {
         /// <summary>Identifier of the unifiedRoleDefinition the assignment is for. Read-only. Supports $filter (eq operator only).</summary>
         public string RoleDefinitionId { get; set; }
         /// <summary>
+        /// Creates a new instance of the appropriate class based on discriminator value
+        /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
+        /// </summary>
+        public static new UnifiedRoleAssignment CreateFromDiscriminatorValue(IParseNode parseNode) {
+            _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
+            return new UnifiedRoleAssignment();
+        }
+        /// <summary>
         /// The deserialization information for the current model
         /// </summary>
         public new IDictionary<string, Action<T, IParseNode>> GetFieldDeserializers<T>() {
             return new Dictionary<string, Action<T, IParseNode>>(base.GetFieldDeserializers<T>()) {
-                {"appScope", (o,n) => { (o as UnifiedRoleAssignment).AppScope = n.GetObjectValue<AppScope>(); } },
+                {"appScope", (o,n) => { (o as UnifiedRoleAssignment).AppScope = n.GetObjectValue<ApiSdk.Models.Microsoft.Graph.AppScope>(ApiSdk.Models.Microsoft.Graph.AppScope.CreateFromDiscriminatorValue); } },
                 {"appScopeId", (o,n) => { (o as UnifiedRoleAssignment).AppScopeId = n.GetStringValue(); } },
                 {"condition", (o,n) => { (o as UnifiedRoleAssignment).Condition = n.GetStringValue(); } },
-                {"directoryScope", (o,n) => { (o as UnifiedRoleAssignment).DirectoryScope = n.GetObjectValue<DirectoryObject>(); } },
+                {"directoryScope", (o,n) => { (o as UnifiedRoleAssignment).DirectoryScope = n.GetObjectValue<DirectoryObject>(DirectoryObject.CreateFromDiscriminatorValue); } },
                 {"directoryScopeId", (o,n) => { (o as UnifiedRoleAssignment).DirectoryScopeId = n.GetStringValue(); } },
-                {"principal", (o,n) => { (o as UnifiedRoleAssignment).Principal = n.GetObjectValue<DirectoryObject>(); } },
+                {"principal", (o,n) => { (o as UnifiedRoleAssignment).Principal = n.GetObjectValue<DirectoryObject>(DirectoryObject.CreateFromDiscriminatorValue); } },
                 {"principalId", (o,n) => { (o as UnifiedRoleAssignment).PrincipalId = n.GetStringValue(); } },
-                {"roleDefinition", (o,n) => { (o as UnifiedRoleAssignment).RoleDefinition = n.GetObjectValue<UnifiedRoleDefinition>(); } },
+                {"roleDefinition", (o,n) => { (o as UnifiedRoleAssignment).RoleDefinition = n.GetObjectValue<UnifiedRoleDefinition>(UnifiedRoleDefinition.CreateFromDiscriminatorValue); } },
                 {"roleDefinitionId", (o,n) => { (o as UnifiedRoleAssignment).RoleDefinitionId = n.GetStringValue(); } },
             };
         }
@@ -45,7 +53,7 @@ namespace ApiSdk.Models.Microsoft.Graph {
         public new void Serialize(ISerializationWriter writer) {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             base.Serialize(writer);
-            writer.WriteObjectValue<AppScope>("appScope", AppScope);
+            writer.WriteObjectValue<ApiSdk.Models.Microsoft.Graph.AppScope>("appScope", AppScope);
             writer.WriteStringValue("appScopeId", AppScopeId);
             writer.WriteStringValue("condition", Condition);
             writer.WriteObjectValue<DirectoryObject>("directoryScope", DirectoryScope);

@@ -46,6 +46,14 @@ namespace ApiSdk.Models.Microsoft.Graph {
         /// <summary>The worksheet containing the current range. Read-only.</summary>
         public WorkbookWorksheet Worksheet { get; set; }
         /// <summary>
+        /// Creates a new instance of the appropriate class based on discriminator value
+        /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
+        /// </summary>
+        public static new WorkbookRange CreateFromDiscriminatorValue(IParseNode parseNode) {
+            _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
+            return new WorkbookRange();
+        }
+        /// <summary>
         /// The deserialization information for the current model
         /// </summary>
         public new IDictionary<string, Action<T, IParseNode>> GetFieldDeserializers<T>() {
@@ -56,20 +64,20 @@ namespace ApiSdk.Models.Microsoft.Graph {
                 {"columnCount", (o,n) => { (o as WorkbookRange).ColumnCount = n.GetIntValue(); } },
                 {"columnHidden", (o,n) => { (o as WorkbookRange).ColumnHidden = n.GetBoolValue(); } },
                 {"columnIndex", (o,n) => { (o as WorkbookRange).ColumnIndex = n.GetIntValue(); } },
-                {"format", (o,n) => { (o as WorkbookRange).Format = n.GetObjectValue<WorkbookRangeFormat>(); } },
-                {"formulas", (o,n) => { (o as WorkbookRange).Formulas = n.GetObjectValue<Json>(); } },
-                {"formulasLocal", (o,n) => { (o as WorkbookRange).FormulasLocal = n.GetObjectValue<Json>(); } },
-                {"formulasR1C1", (o,n) => { (o as WorkbookRange).FormulasR1C1 = n.GetObjectValue<Json>(); } },
+                {"format", (o,n) => { (o as WorkbookRange).Format = n.GetObjectValue<WorkbookRangeFormat>(WorkbookRangeFormat.CreateFromDiscriminatorValue); } },
+                {"formulas", (o,n) => { (o as WorkbookRange).Formulas = n.GetObjectValue<Json>(Json.CreateFromDiscriminatorValue); } },
+                {"formulasLocal", (o,n) => { (o as WorkbookRange).FormulasLocal = n.GetObjectValue<Json>(Json.CreateFromDiscriminatorValue); } },
+                {"formulasR1C1", (o,n) => { (o as WorkbookRange).FormulasR1C1 = n.GetObjectValue<Json>(Json.CreateFromDiscriminatorValue); } },
                 {"hidden", (o,n) => { (o as WorkbookRange).Hidden = n.GetBoolValue(); } },
-                {"numberFormat", (o,n) => { (o as WorkbookRange).NumberFormat = n.GetObjectValue<Json>(); } },
+                {"numberFormat", (o,n) => { (o as WorkbookRange).NumberFormat = n.GetObjectValue<Json>(Json.CreateFromDiscriminatorValue); } },
                 {"rowCount", (o,n) => { (o as WorkbookRange).RowCount = n.GetIntValue(); } },
                 {"rowHidden", (o,n) => { (o as WorkbookRange).RowHidden = n.GetBoolValue(); } },
                 {"rowIndex", (o,n) => { (o as WorkbookRange).RowIndex = n.GetIntValue(); } },
-                {"sort", (o,n) => { (o as WorkbookRange).Sort = n.GetObjectValue<WorkbookRangeSort>(); } },
-                {"text", (o,n) => { (o as WorkbookRange).Text = n.GetObjectValue<Json>(); } },
-                {"values", (o,n) => { (o as WorkbookRange).Values = n.GetObjectValue<Json>(); } },
-                {"valueTypes", (o,n) => { (o as WorkbookRange).ValueTypes = n.GetObjectValue<Json>(); } },
-                {"worksheet", (o,n) => { (o as WorkbookRange).Worksheet = n.GetObjectValue<WorkbookWorksheet>(); } },
+                {"sort", (o,n) => { (o as WorkbookRange).Sort = n.GetObjectValue<WorkbookRangeSort>(WorkbookRangeSort.CreateFromDiscriminatorValue); } },
+                {"text", (o,n) => { (o as WorkbookRange).Text = n.GetObjectValue<Json>(Json.CreateFromDiscriminatorValue); } },
+                {"values", (o,n) => { (o as WorkbookRange).Values = n.GetObjectValue<Json>(Json.CreateFromDiscriminatorValue); } },
+                {"valueTypes", (o,n) => { (o as WorkbookRange).ValueTypes = n.GetObjectValue<Json>(Json.CreateFromDiscriminatorValue); } },
+                {"worksheet", (o,n) => { (o as WorkbookRange).Worksheet = n.GetObjectValue<WorkbookWorksheet>(WorkbookWorksheet.CreateFromDiscriminatorValue); } },
             };
         }
         /// <summary>

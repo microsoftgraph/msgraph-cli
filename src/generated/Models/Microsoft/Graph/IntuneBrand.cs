@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 namespace ApiSdk.Models.Microsoft.Graph {
-    public class IntuneBrand : IParsable {
+    public class IntuneBrand : IAdditionalDataHolder, IParsable {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>Email address of the person/organization responsible for IT support.</summary>
@@ -42,6 +42,14 @@ namespace ApiSdk.Models.Microsoft.Graph {
             AdditionalData = new Dictionary<string, object>();
         }
         /// <summary>
+        /// Creates a new instance of the appropriate class based on discriminator value
+        /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
+        /// </summary>
+        public static IntuneBrand CreateFromDiscriminatorValue(IParseNode parseNode) {
+            _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
+            return new IntuneBrand();
+        }
+        /// <summary>
         /// The deserialization information for the current model
         /// </summary>
         public IDictionary<string, Action<T, IParseNode>> GetFieldDeserializers<T>() {
@@ -50,16 +58,16 @@ namespace ApiSdk.Models.Microsoft.Graph {
                 {"contactITName", (o,n) => { (o as IntuneBrand).ContactITName = n.GetStringValue(); } },
                 {"contactITNotes", (o,n) => { (o as IntuneBrand).ContactITNotes = n.GetStringValue(); } },
                 {"contactITPhoneNumber", (o,n) => { (o as IntuneBrand).ContactITPhoneNumber = n.GetStringValue(); } },
-                {"darkBackgroundLogo", (o,n) => { (o as IntuneBrand).DarkBackgroundLogo = n.GetObjectValue<MimeContent>(); } },
+                {"darkBackgroundLogo", (o,n) => { (o as IntuneBrand).DarkBackgroundLogo = n.GetObjectValue<MimeContent>(MimeContent.CreateFromDiscriminatorValue); } },
                 {"displayName", (o,n) => { (o as IntuneBrand).DisplayName = n.GetStringValue(); } },
-                {"lightBackgroundLogo", (o,n) => { (o as IntuneBrand).LightBackgroundLogo = n.GetObjectValue<MimeContent>(); } },
+                {"lightBackgroundLogo", (o,n) => { (o as IntuneBrand).LightBackgroundLogo = n.GetObjectValue<MimeContent>(MimeContent.CreateFromDiscriminatorValue); } },
                 {"onlineSupportSiteName", (o,n) => { (o as IntuneBrand).OnlineSupportSiteName = n.GetStringValue(); } },
                 {"onlineSupportSiteUrl", (o,n) => { (o as IntuneBrand).OnlineSupportSiteUrl = n.GetStringValue(); } },
                 {"privacyUrl", (o,n) => { (o as IntuneBrand).PrivacyUrl = n.GetStringValue(); } },
                 {"showDisplayNameNextToLogo", (o,n) => { (o as IntuneBrand).ShowDisplayNameNextToLogo = n.GetBoolValue(); } },
                 {"showLogo", (o,n) => { (o as IntuneBrand).ShowLogo = n.GetBoolValue(); } },
                 {"showNameNextToLogo", (o,n) => { (o as IntuneBrand).ShowNameNextToLogo = n.GetBoolValue(); } },
-                {"themeColor", (o,n) => { (o as IntuneBrand).ThemeColor = n.GetObjectValue<RgbColor>(); } },
+                {"themeColor", (o,n) => { (o as IntuneBrand).ThemeColor = n.GetObjectValue<RgbColor>(RgbColor.CreateFromDiscriminatorValue); } },
             };
         }
         /// <summary>

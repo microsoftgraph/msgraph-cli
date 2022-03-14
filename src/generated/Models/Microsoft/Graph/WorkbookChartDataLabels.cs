@@ -24,11 +24,19 @@ namespace ApiSdk.Models.Microsoft.Graph {
         /// <summary>Boolean value representing if the data label value is visible or not.</summary>
         public bool? ShowValue { get; set; }
         /// <summary>
+        /// Creates a new instance of the appropriate class based on discriminator value
+        /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
+        /// </summary>
+        public static new WorkbookChartDataLabels CreateFromDiscriminatorValue(IParseNode parseNode) {
+            _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
+            return new WorkbookChartDataLabels();
+        }
+        /// <summary>
         /// The deserialization information for the current model
         /// </summary>
         public new IDictionary<string, Action<T, IParseNode>> GetFieldDeserializers<T>() {
             return new Dictionary<string, Action<T, IParseNode>>(base.GetFieldDeserializers<T>()) {
-                {"format", (o,n) => { (o as WorkbookChartDataLabels).Format = n.GetObjectValue<WorkbookChartDataLabelFormat>(); } },
+                {"format", (o,n) => { (o as WorkbookChartDataLabels).Format = n.GetObjectValue<WorkbookChartDataLabelFormat>(WorkbookChartDataLabelFormat.CreateFromDiscriminatorValue); } },
                 {"position", (o,n) => { (o as WorkbookChartDataLabels).Position = n.GetStringValue(); } },
                 {"separator", (o,n) => { (o as WorkbookChartDataLabels).Separator = n.GetStringValue(); } },
                 {"showBubbleSize", (o,n) => { (o as WorkbookChartDataLabels).ShowBubbleSize = n.GetBoolValue(); } },

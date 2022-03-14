@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 namespace ApiSdk.Models.Microsoft.Graph {
-    public class SubjectRightsRequestHistory : IParsable {
+    public class SubjectRightsRequestHistory : IAdditionalDataHolder, IParsable {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>Identity of the user who changed the  subject rights request.</summary>
@@ -24,11 +24,19 @@ namespace ApiSdk.Models.Microsoft.Graph {
             AdditionalData = new Dictionary<string, object>();
         }
         /// <summary>
+        /// Creates a new instance of the appropriate class based on discriminator value
+        /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
+        /// </summary>
+        public static SubjectRightsRequestHistory CreateFromDiscriminatorValue(IParseNode parseNode) {
+            _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
+            return new SubjectRightsRequestHistory();
+        }
+        /// <summary>
         /// The deserialization information for the current model
         /// </summary>
         public IDictionary<string, Action<T, IParseNode>> GetFieldDeserializers<T>() {
             return new Dictionary<string, Action<T, IParseNode>> {
-                {"changedBy", (o,n) => { (o as SubjectRightsRequestHistory).ChangedBy = n.GetObjectValue<IdentitySet>(); } },
+                {"changedBy", (o,n) => { (o as SubjectRightsRequestHistory).ChangedBy = n.GetObjectValue<IdentitySet>(IdentitySet.CreateFromDiscriminatorValue); } },
                 {"eventDateTime", (o,n) => { (o as SubjectRightsRequestHistory).EventDateTime = n.GetDateTimeOffsetValue(); } },
                 {"stage", (o,n) => { (o as SubjectRightsRequestHistory).Stage = n.GetEnumValue<SubjectRightsRequestStage>(); } },
                 {"stageStatus", (o,n) => { (o as SubjectRightsRequestHistory).StageStatus = n.GetEnumValue<SubjectRightsRequestStageStatus>(); } },

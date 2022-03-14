@@ -14,14 +14,22 @@ namespace ApiSdk.Models.Microsoft.Graph {
         /// <summary>Collection of pages with the overrides messages to display in a user flow for a specified language. This collection only allows to modify the content of the page, any other modification is not allowed (creation or deletion of pages).</summary>
         public List<UserFlowLanguagePage> OverridesPages { get; set; }
         /// <summary>
+        /// Creates a new instance of the appropriate class based on discriminator value
+        /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
+        /// </summary>
+        public static new UserFlowLanguageConfiguration CreateFromDiscriminatorValue(IParseNode parseNode) {
+            _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
+            return new UserFlowLanguageConfiguration();
+        }
+        /// <summary>
         /// The deserialization information for the current model
         /// </summary>
         public new IDictionary<string, Action<T, IParseNode>> GetFieldDeserializers<T>() {
             return new Dictionary<string, Action<T, IParseNode>>(base.GetFieldDeserializers<T>()) {
-                {"defaultPages", (o,n) => { (o as UserFlowLanguageConfiguration).DefaultPages = n.GetCollectionOfObjectValues<UserFlowLanguagePage>().ToList(); } },
+                {"defaultPages", (o,n) => { (o as UserFlowLanguageConfiguration).DefaultPages = n.GetCollectionOfObjectValues<UserFlowLanguagePage>(UserFlowLanguagePage.CreateFromDiscriminatorValue).ToList(); } },
                 {"displayName", (o,n) => { (o as UserFlowLanguageConfiguration).DisplayName = n.GetStringValue(); } },
                 {"isEnabled", (o,n) => { (o as UserFlowLanguageConfiguration).IsEnabled = n.GetBoolValue(); } },
-                {"overridesPages", (o,n) => { (o as UserFlowLanguageConfiguration).OverridesPages = n.GetCollectionOfObjectValues<UserFlowLanguagePage>().ToList(); } },
+                {"overridesPages", (o,n) => { (o as UserFlowLanguageConfiguration).OverridesPages = n.GetCollectionOfObjectValues<UserFlowLanguagePage>(UserFlowLanguagePage.CreateFromDiscriminatorValue).ToList(); } },
             };
         }
         /// <summary>

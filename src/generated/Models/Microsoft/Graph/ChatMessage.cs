@@ -9,7 +9,7 @@ namespace ApiSdk.Models.Microsoft.Graph {
         public List<ChatMessageAttachment> Attachments { get; set; }
         public ItemBody Body { get; set; }
         /// <summary>If the message was sent in a channel, represents identity of the channel.</summary>
-        public ChannelIdentity ChannelIdentity { get; set; }
+        public ApiSdk.Models.Microsoft.Graph.ChannelIdentity ChannelIdentity { get; set; }
         /// <summary>If the message was sent in a chat, represents the identity of the chat.</summary>
         public string ChatId { get; set; }
         /// <summary>Timestamp of when the chat message was created.</summary>
@@ -51,29 +51,37 @@ namespace ApiSdk.Models.Microsoft.Graph {
         /// <summary>Read-only. Link to the message in Microsoft Teams.</summary>
         public string WebUrl { get; set; }
         /// <summary>
+        /// Creates a new instance of the appropriate class based on discriminator value
+        /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
+        /// </summary>
+        public static new ChatMessage CreateFromDiscriminatorValue(IParseNode parseNode) {
+            _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
+            return new ChatMessage();
+        }
+        /// <summary>
         /// The deserialization information for the current model
         /// </summary>
         public new IDictionary<string, Action<T, IParseNode>> GetFieldDeserializers<T>() {
             return new Dictionary<string, Action<T, IParseNode>>(base.GetFieldDeserializers<T>()) {
-                {"attachments", (o,n) => { (o as ChatMessage).Attachments = n.GetCollectionOfObjectValues<ChatMessageAttachment>().ToList(); } },
-                {"body", (o,n) => { (o as ChatMessage).Body = n.GetObjectValue<ItemBody>(); } },
-                {"channelIdentity", (o,n) => { (o as ChatMessage).ChannelIdentity = n.GetObjectValue<ChannelIdentity>(); } },
+                {"attachments", (o,n) => { (o as ChatMessage).Attachments = n.GetCollectionOfObjectValues<ChatMessageAttachment>(ChatMessageAttachment.CreateFromDiscriminatorValue).ToList(); } },
+                {"body", (o,n) => { (o as ChatMessage).Body = n.GetObjectValue<ItemBody>(ItemBody.CreateFromDiscriminatorValue); } },
+                {"channelIdentity", (o,n) => { (o as ChatMessage).ChannelIdentity = n.GetObjectValue<ApiSdk.Models.Microsoft.Graph.ChannelIdentity>(ApiSdk.Models.Microsoft.Graph.ChannelIdentity.CreateFromDiscriminatorValue); } },
                 {"chatId", (o,n) => { (o as ChatMessage).ChatId = n.GetStringValue(); } },
                 {"createdDateTime", (o,n) => { (o as ChatMessage).CreatedDateTime = n.GetDateTimeOffsetValue(); } },
                 {"deletedDateTime", (o,n) => { (o as ChatMessage).DeletedDateTime = n.GetDateTimeOffsetValue(); } },
                 {"etag", (o,n) => { (o as ChatMessage).Etag = n.GetStringValue(); } },
-                {"eventDetail", (o,n) => { (o as ChatMessage).EventDetail = n.GetObjectValue<EventMessageDetail>(); } },
-                {"from", (o,n) => { (o as ChatMessage).From = n.GetObjectValue<ChatMessageFromIdentitySet>(); } },
-                {"hostedContents", (o,n) => { (o as ChatMessage).HostedContents = n.GetCollectionOfObjectValues<ChatMessageHostedContent>().ToList(); } },
+                {"eventDetail", (o,n) => { (o as ChatMessage).EventDetail = n.GetObjectValue<EventMessageDetail>(EventMessageDetail.CreateFromDiscriminatorValue); } },
+                {"from", (o,n) => { (o as ChatMessage).From = n.GetObjectValue<ChatMessageFromIdentitySet>(ChatMessageFromIdentitySet.CreateFromDiscriminatorValue); } },
+                {"hostedContents", (o,n) => { (o as ChatMessage).HostedContents = n.GetCollectionOfObjectValues<ChatMessageHostedContent>(ChatMessageHostedContent.CreateFromDiscriminatorValue).ToList(); } },
                 {"importance", (o,n) => { (o as ChatMessage).Importance = n.GetEnumValue<ChatMessageImportance>(); } },
                 {"lastEditedDateTime", (o,n) => { (o as ChatMessage).LastEditedDateTime = n.GetDateTimeOffsetValue(); } },
                 {"lastModifiedDateTime", (o,n) => { (o as ChatMessage).LastModifiedDateTime = n.GetDateTimeOffsetValue(); } },
                 {"locale", (o,n) => { (o as ChatMessage).Locale = n.GetStringValue(); } },
-                {"mentions", (o,n) => { (o as ChatMessage).Mentions = n.GetCollectionOfObjectValues<ChatMessageMention>().ToList(); } },
+                {"mentions", (o,n) => { (o as ChatMessage).Mentions = n.GetCollectionOfObjectValues<ChatMessageMention>(ChatMessageMention.CreateFromDiscriminatorValue).ToList(); } },
                 {"messageType", (o,n) => { (o as ChatMessage).MessageType = n.GetEnumValue<ChatMessageType>(); } },
-                {"policyViolation", (o,n) => { (o as ChatMessage).PolicyViolation = n.GetObjectValue<ChatMessagePolicyViolation>(); } },
-                {"reactions", (o,n) => { (o as ChatMessage).Reactions = n.GetCollectionOfObjectValues<ChatMessageReaction>().ToList(); } },
-                {"replies", (o,n) => { (o as ChatMessage).Replies = n.GetCollectionOfObjectValues<ChatMessage>().ToList(); } },
+                {"policyViolation", (o,n) => { (o as ChatMessage).PolicyViolation = n.GetObjectValue<ChatMessagePolicyViolation>(ChatMessagePolicyViolation.CreateFromDiscriminatorValue); } },
+                {"reactions", (o,n) => { (o as ChatMessage).Reactions = n.GetCollectionOfObjectValues<ChatMessageReaction>(ChatMessageReaction.CreateFromDiscriminatorValue).ToList(); } },
+                {"replies", (o,n) => { (o as ChatMessage).Replies = n.GetCollectionOfObjectValues<ChatMessage>(ChatMessage.CreateFromDiscriminatorValue).ToList(); } },
                 {"replyToId", (o,n) => { (o as ChatMessage).ReplyToId = n.GetStringValue(); } },
                 {"subject", (o,n) => { (o as ChatMessage).Subject = n.GetStringValue(); } },
                 {"summary", (o,n) => { (o as ChatMessage).Summary = n.GetStringValue(); } },
@@ -89,7 +97,7 @@ namespace ApiSdk.Models.Microsoft.Graph {
             base.Serialize(writer);
             writer.WriteCollectionOfObjectValues<ChatMessageAttachment>("attachments", Attachments);
             writer.WriteObjectValue<ItemBody>("body", Body);
-            writer.WriteObjectValue<ChannelIdentity>("channelIdentity", ChannelIdentity);
+            writer.WriteObjectValue<ApiSdk.Models.Microsoft.Graph.ChannelIdentity>("channelIdentity", ChannelIdentity);
             writer.WriteStringValue("chatId", ChatId);
             writer.WriteDateTimeOffsetValue("createdDateTime", CreatedDateTime);
             writer.WriteDateTimeOffsetValue("deletedDateTime", DeletedDateTime);

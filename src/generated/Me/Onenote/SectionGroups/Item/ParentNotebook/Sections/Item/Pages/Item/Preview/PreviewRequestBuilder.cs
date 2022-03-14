@@ -45,15 +45,23 @@ namespace ApiSdk.Me.Onenote.SectionGroups.Item.ParentNotebook.Sections.Item.Page
             command.AddOption(outputOption);
             var queryOption = new Option<string>("--query");
             command.AddOption(queryOption);
+            var jsonNoIndentOption = new Option<bool>("--json-no-indent", r => {
+                if (bool.TryParse(r.Tokens.Select(t => t.Value).LastOrDefault(), out var value)) {
+                    return value;
+                }
+                return true;
+            }, description: "Disable indentation for the JSON output formatter.");
+            command.AddOption(jsonNoIndentOption);
             command.SetHandler(async (object[] parameters) => {
                 var sectionGroupId = (string) parameters[0];
                 var onenoteSectionId = (string) parameters[1];
                 var onenotePageId = (string) parameters[2];
                 var output = (FormatterType) parameters[3];
                 var query = (string) parameters[4];
-                var outputFilter = (IOutputFilter) parameters[5];
-                var outputFormatterFactory = (IOutputFormatterFactory) parameters[6];
-                var cancellationToken = (CancellationToken) parameters[7];
+                var jsonNoIndent = (bool) parameters[5];
+                var outputFilter = (IOutputFilter) parameters[6];
+                var outputFormatterFactory = (IOutputFormatterFactory) parameters[7];
+                var cancellationToken = (CancellationToken) parameters[8];
                 PathParameters.Clear();
                 PathParameters.Add("sectionGroup_id", sectionGroupId);
                 PathParameters.Add("onenoteSection_id", onenoteSectionId);
@@ -62,9 +70,10 @@ namespace ApiSdk.Me.Onenote.SectionGroups.Item.ParentNotebook.Sections.Item.Page
                 });
                 var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: default, cancellationToken: cancellationToken);
                 var formatter = outputFormatterFactory.GetFormatter(output);
-                response = outputFilter?.FilterOutput(response, query) ?? response;
-                formatter.WriteOutput(response);
-            }, new CollectionBinding(sectionGroupIdOption, onenoteSectionIdOption, onenotePageIdOption, outputOption, queryOption, new TypeBinding(typeof(IOutputFilter)), new TypeBinding(typeof(IOutputFormatterFactory)), new TypeBinding(typeof(CancellationToken))));
+                response = await outputFilter?.FilterOutputAsync(response, query, cancellationToken) ?? response;
+                var formatterOptions = output.GetOutputFormatterOptions(new FormatterOptionsModel(!jsonNoIndent));
+                await formatter.WriteOutputAsync(response, formatterOptions, cancellationToken);
+            }, new CollectionBinding(sectionGroupIdOption, onenoteSectionIdOption, onenotePageIdOption, outputOption, queryOption, jsonNoIndentOption, new TypeBinding(typeof(IOutputFilter)), new TypeBinding(typeof(IOutputFormatterFactory)), new TypeBinding(typeof(CancellationToken))));
             return command;
         }
         /// <summary>
@@ -96,23 +105,27 @@ namespace ApiSdk.Me.Onenote.SectionGroups.Item.ParentNotebook.Sections.Item.Page
             return requestInfo;
         }
         /// <summary>Union type wrapper for classes onenotePagePreview</summary>
-        public class PreviewResponse : IParsable {
+        public class PreviewResponse : IAdditionalDataHolder, IParsable {
             /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
             public IDictionary<string, object> AdditionalData { get; set; }
             /// <summary>Union type representation for type onenotePagePreview</summary>
-            public OnenotePagePreview OnenotePagePreview { get; set; }
+            public ApiSdk.Models.Microsoft.Graph.OnenotePagePreview OnenotePagePreview { get; set; }
             /// <summary>
             /// Instantiates a new previewResponse and sets the default values.
             /// </summary>
             public PreviewResponse() {
                 AdditionalData = new Dictionary<string, object>();
             }
+            public static PreviewResponse CreateFromDiscriminatorValue(IParseNode parseNode) {
+                _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
+                return new PreviewResponse();
+            }
             /// <summary>
             /// The deserialization information for the current model
             /// </summary>
             public IDictionary<string, Action<T, IParseNode>> GetFieldDeserializers<T>() {
                 return new Dictionary<string, Action<T, IParseNode>> {
-                    {"onenotePagePreview", (o,n) => { (o as PreviewResponse).OnenotePagePreview = n.GetObjectValue<OnenotePagePreview>(); } },
+                    {"onenotePagePreview", (o,n) => { (o as PreviewResponse).OnenotePagePreview = n.GetObjectValue<ApiSdk.Models.Microsoft.Graph.OnenotePagePreview>(ApiSdk.Models.Microsoft.Graph.OnenotePagePreview.CreateFromDiscriminatorValue); } },
                 };
             }
             /// <summary>
@@ -121,7 +134,7 @@ namespace ApiSdk.Me.Onenote.SectionGroups.Item.ParentNotebook.Sections.Item.Page
             /// </summary>
             public void Serialize(ISerializationWriter writer) {
                 _ = writer ?? throw new ArgumentNullException(nameof(writer));
-                writer.WriteObjectValue<OnenotePagePreview>("onenotePagePreview", OnenotePagePreview);
+                writer.WriteObjectValue<ApiSdk.Models.Microsoft.Graph.OnenotePagePreview>("onenotePagePreview", OnenotePagePreview);
                 writer.WriteAdditionalData(AdditionalData);
             }
         }

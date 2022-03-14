@@ -85,15 +85,23 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.AccessPackages.Item {
             command.AddOption(outputOption);
             var queryOption = new Option<string>("--query");
             command.AddOption(queryOption);
+            var jsonNoIndentOption = new Option<bool>("--json-no-indent", r => {
+                if (bool.TryParse(r.Tokens.Select(t => t.Value).LastOrDefault(), out var value)) {
+                    return value;
+                }
+                return true;
+            }, description: "Disable indentation for the JSON output formatter.");
+            command.AddOption(jsonNoIndentOption);
             command.SetHandler(async (object[] parameters) => {
                 var accessPackageId = (string) parameters[0];
                 var select = (string[]) parameters[1];
                 var expand = (string[]) parameters[2];
                 var output = (FormatterType) parameters[3];
                 var query = (string) parameters[4];
-                var outputFilter = (IOutputFilter) parameters[5];
-                var outputFormatterFactory = (IOutputFormatterFactory) parameters[6];
-                var cancellationToken = (CancellationToken) parameters[7];
+                var jsonNoIndent = (bool) parameters[5];
+                var outputFilter = (IOutputFilter) parameters[6];
+                var outputFormatterFactory = (IOutputFormatterFactory) parameters[7];
+                var cancellationToken = (CancellationToken) parameters[8];
                 PathParameters.Clear();
                 PathParameters.Add("accessPackage_id", accessPackageId);
                 var requestInfo = CreateGetRequestInformation(q => {
@@ -102,9 +110,10 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.AccessPackages.Item {
                 });
                 var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: default, cancellationToken: cancellationToken);
                 var formatter = outputFormatterFactory.GetFormatter(output);
-                response = outputFilter?.FilterOutput(response, query) ?? response;
-                formatter.WriteOutput(response);
-            }, new CollectionBinding(accessPackageIdOption, selectOption, expandOption, outputOption, queryOption, new TypeBinding(typeof(IOutputFilter)), new TypeBinding(typeof(IOutputFormatterFactory)), new TypeBinding(typeof(CancellationToken))));
+                response = await outputFilter?.FilterOutputAsync(response, query, cancellationToken) ?? response;
+                var formatterOptions = output.GetOutputFormatterOptions(new FormatterOptionsModel(!jsonNoIndent));
+                await formatter.WriteOutputAsync(response, formatterOptions, cancellationToken);
+            }, new CollectionBinding(accessPackageIdOption, selectOption, expandOption, outputOption, queryOption, jsonNoIndentOption, new TypeBinding(typeof(IOutputFilter)), new TypeBinding(typeof(IOutputFormatterFactory)), new TypeBinding(typeof(CancellationToken))));
             return command;
         }
         /// <summary>
@@ -130,7 +139,7 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.AccessPackages.Item {
                 PathParameters.Add("accessPackage_id", accessPackageId);
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
-                var model = parseNode.GetObjectValue<ApiSdk.Models.Microsoft.Graph.AccessPackage>();
+                var model = parseNode.GetObjectValue<ApiSdk.Models.Microsoft.Graph.AccessPackage>(ApiSdk.Models.Microsoft.Graph.AccessPackage.CreateFromDiscriminatorValue);
                 var requestInfo = CreatePatchRequestInformation(model, q => {
                 });
                 await RequestAdapter.SendNoContentAsync(requestInfo, errorMapping: default, cancellationToken: cancellationToken);

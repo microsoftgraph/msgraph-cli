@@ -22,13 +22,21 @@ namespace ApiSdk.Models.Microsoft.Graph {
         /// <summary>The location of the object that's created or modified as result of this async operation. This URL should be treated as an opaque value and not parsed into its component paths.</summary>
         public string TargetResourceLocation { get; set; }
         /// <summary>
+        /// Creates a new instance of the appropriate class based on discriminator value
+        /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
+        /// </summary>
+        public static new TeamsAsyncOperation CreateFromDiscriminatorValue(IParseNode parseNode) {
+            _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
+            return new TeamsAsyncOperation();
+        }
+        /// <summary>
         /// The deserialization information for the current model
         /// </summary>
         public new IDictionary<string, Action<T, IParseNode>> GetFieldDeserializers<T>() {
             return new Dictionary<string, Action<T, IParseNode>>(base.GetFieldDeserializers<T>()) {
                 {"attemptsCount", (o,n) => { (o as TeamsAsyncOperation).AttemptsCount = n.GetIntValue(); } },
                 {"createdDateTime", (o,n) => { (o as TeamsAsyncOperation).CreatedDateTime = n.GetDateTimeOffsetValue(); } },
-                {"error", (o,n) => { (o as TeamsAsyncOperation).Error = n.GetObjectValue<OperationError>(); } },
+                {"error", (o,n) => { (o as TeamsAsyncOperation).Error = n.GetObjectValue<OperationError>(OperationError.CreateFromDiscriminatorValue); } },
                 {"lastActionDateTime", (o,n) => { (o as TeamsAsyncOperation).LastActionDateTime = n.GetDateTimeOffsetValue(); } },
                 {"operationType", (o,n) => { (o as TeamsAsyncOperation).OperationType = n.GetEnumValue<TeamsAsyncOperationType>(); } },
                 {"status", (o,n) => { (o as TeamsAsyncOperation).Status = n.GetEnumValue<TeamsAsyncOperationStatus>(); } },

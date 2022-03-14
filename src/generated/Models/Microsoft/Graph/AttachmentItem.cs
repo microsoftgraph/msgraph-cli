@@ -4,11 +4,11 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 namespace ApiSdk.Models.Microsoft.Graph {
-    public class AttachmentItem : IParsable {
+    public class AttachmentItem : IAdditionalDataHolder, IParsable {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>The type of attachment. Possible values are: file, item, reference. Required.</summary>
-        public AttachmentType? AttachmentType { get; set; }
+        public ApiSdk.Models.Microsoft.Graph.AttachmentType? AttachmentType { get; set; }
         /// <summary>The CID or Content-Id of the attachment for referencing in case of in-line attachments using <img src='cid:contentId'> tag in HTML messages. Optional.</summary>
         public string ContentId { get; set; }
         /// <summary>The nature of the data in the attachment. Optional.</summary>
@@ -24,6 +24,14 @@ namespace ApiSdk.Models.Microsoft.Graph {
         /// </summary>
         public AttachmentItem() {
             AdditionalData = new Dictionary<string, object>();
+        }
+        /// <summary>
+        /// Creates a new instance of the appropriate class based on discriminator value
+        /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
+        /// </summary>
+        public static AttachmentItem CreateFromDiscriminatorValue(IParseNode parseNode) {
+            _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
+            return new AttachmentItem();
         }
         /// <summary>
         /// The deserialization information for the current model

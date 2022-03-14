@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 namespace ApiSdk.Models.Microsoft.Graph {
-    public class AccessReviewNotificationRecipientItem : IParsable {
+    public class AccessReviewNotificationRecipientItem : IAdditionalDataHolder, IParsable {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>Determines the recipient of the notification email.</summary>
@@ -18,11 +18,19 @@ namespace ApiSdk.Models.Microsoft.Graph {
             AdditionalData = new Dictionary<string, object>();
         }
         /// <summary>
+        /// Creates a new instance of the appropriate class based on discriminator value
+        /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
+        /// </summary>
+        public static AccessReviewNotificationRecipientItem CreateFromDiscriminatorValue(IParseNode parseNode) {
+            _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
+            return new AccessReviewNotificationRecipientItem();
+        }
+        /// <summary>
         /// The deserialization information for the current model
         /// </summary>
         public IDictionary<string, Action<T, IParseNode>> GetFieldDeserializers<T>() {
             return new Dictionary<string, Action<T, IParseNode>> {
-                {"notificationRecipientScope", (o,n) => { (o as AccessReviewNotificationRecipientItem).NotificationRecipientScope = n.GetObjectValue<AccessReviewNotificationRecipientScope>(); } },
+                {"notificationRecipientScope", (o,n) => { (o as AccessReviewNotificationRecipientItem).NotificationRecipientScope = n.GetObjectValue<AccessReviewNotificationRecipientScope>(AccessReviewNotificationRecipientScope.CreateFromDiscriminatorValue); } },
                 {"notificationTemplateType", (o,n) => { (o as AccessReviewNotificationRecipientItem).NotificationTemplateType = n.GetStringValue(); } },
             };
         }

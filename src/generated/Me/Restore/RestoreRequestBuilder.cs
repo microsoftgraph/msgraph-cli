@@ -33,19 +33,28 @@ namespace ApiSdk.Me.Restore {
             command.AddOption(outputOption);
             var queryOption = new Option<string>("--query");
             command.AddOption(queryOption);
+            var jsonNoIndentOption = new Option<bool>("--json-no-indent", r => {
+                if (bool.TryParse(r.Tokens.Select(t => t.Value).LastOrDefault(), out var value)) {
+                    return value;
+                }
+                return true;
+            }, description: "Disable indentation for the JSON output formatter.");
+            command.AddOption(jsonNoIndentOption);
             command.SetHandler(async (object[] parameters) => {
                 var output = (FormatterType) parameters[0];
                 var query = (string) parameters[1];
-                var outputFilter = (IOutputFilter) parameters[2];
-                var outputFormatterFactory = (IOutputFormatterFactory) parameters[3];
-                var cancellationToken = (CancellationToken) parameters[4];
+                var jsonNoIndent = (bool) parameters[2];
+                var outputFilter = (IOutputFilter) parameters[3];
+                var outputFormatterFactory = (IOutputFormatterFactory) parameters[4];
+                var cancellationToken = (CancellationToken) parameters[5];
                 var requestInfo = CreatePostRequestInformation(q => {
                 });
                 var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: default, cancellationToken: cancellationToken);
                 var formatter = outputFormatterFactory.GetFormatter(output);
-                response = outputFilter?.FilterOutput(response, query) ?? response;
-                formatter.WriteOutput(response);
-            }, new CollectionBinding(outputOption, queryOption, new TypeBinding(typeof(IOutputFilter)), new TypeBinding(typeof(IOutputFormatterFactory)), new TypeBinding(typeof(CancellationToken))));
+                response = await outputFilter?.FilterOutputAsync(response, query, cancellationToken) ?? response;
+                var formatterOptions = output.GetOutputFormatterOptions(new FormatterOptionsModel(!jsonNoIndent));
+                await formatter.WriteOutputAsync(response, formatterOptions, cancellationToken);
+            }, new CollectionBinding(outputOption, queryOption, jsonNoIndentOption, new TypeBinding(typeof(IOutputFilter)), new TypeBinding(typeof(IOutputFormatterFactory)), new TypeBinding(typeof(CancellationToken))));
             return command;
         }
         /// <summary>
@@ -77,23 +86,27 @@ namespace ApiSdk.Me.Restore {
             return requestInfo;
         }
         /// <summary>Union type wrapper for classes directoryObject</summary>
-        public class RestoreResponse : IParsable {
+        public class RestoreResponse : IAdditionalDataHolder, IParsable {
             /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
             public IDictionary<string, object> AdditionalData { get; set; }
             /// <summary>Union type representation for type directoryObject</summary>
-            public DirectoryObject DirectoryObject { get; set; }
+            public ApiSdk.Models.Microsoft.Graph.DirectoryObject DirectoryObject { get; set; }
             /// <summary>
             /// Instantiates a new restoreResponse and sets the default values.
             /// </summary>
             public RestoreResponse() {
                 AdditionalData = new Dictionary<string, object>();
             }
+            public static RestoreResponse CreateFromDiscriminatorValue(IParseNode parseNode) {
+                _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
+                return new RestoreResponse();
+            }
             /// <summary>
             /// The deserialization information for the current model
             /// </summary>
             public IDictionary<string, Action<T, IParseNode>> GetFieldDeserializers<T>() {
                 return new Dictionary<string, Action<T, IParseNode>> {
-                    {"directoryObject", (o,n) => { (o as RestoreResponse).DirectoryObject = n.GetObjectValue<DirectoryObject>(); } },
+                    {"directoryObject", (o,n) => { (o as RestoreResponse).DirectoryObject = n.GetObjectValue<ApiSdk.Models.Microsoft.Graph.DirectoryObject>(ApiSdk.Models.Microsoft.Graph.DirectoryObject.CreateFromDiscriminatorValue); } },
                 };
             }
             /// <summary>
@@ -102,7 +115,7 @@ namespace ApiSdk.Me.Restore {
             /// </summary>
             public void Serialize(ISerializationWriter writer) {
                 _ = writer ?? throw new ArgumentNullException(nameof(writer));
-                writer.WriteObjectValue<DirectoryObject>("directoryObject", DirectoryObject);
+                writer.WriteObjectValue<ApiSdk.Models.Microsoft.Graph.DirectoryObject>("directoryObject", DirectoryObject);
                 writer.WriteAdditionalData(AdditionalData);
             }
         }

@@ -18,15 +18,23 @@ namespace ApiSdk.Models.Microsoft.Graph {
         /// <summary>Controls whether the administrative unit and its members are hidden or public. Can be set to HiddenMembership or Public. If not set, default behavior is Public. When set to HiddenMembership, only members of the administrative unit can list other members of the administrative unit.</summary>
         public string Visibility { get; set; }
         /// <summary>
+        /// Creates a new instance of the appropriate class based on discriminator value
+        /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
+        /// </summary>
+        public static new AdministrativeUnit CreateFromDiscriminatorValue(IParseNode parseNode) {
+            _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
+            return new AdministrativeUnit();
+        }
+        /// <summary>
         /// The deserialization information for the current model
         /// </summary>
         public new IDictionary<string, Action<T, IParseNode>> GetFieldDeserializers<T>() {
             return new Dictionary<string, Action<T, IParseNode>>(base.GetFieldDeserializers<T>()) {
                 {"description", (o,n) => { (o as AdministrativeUnit).Description = n.GetStringValue(); } },
                 {"displayName", (o,n) => { (o as AdministrativeUnit).DisplayName = n.GetStringValue(); } },
-                {"extensions", (o,n) => { (o as AdministrativeUnit).Extensions = n.GetCollectionOfObjectValues<Extension>().ToList(); } },
-                {"members", (o,n) => { (o as AdministrativeUnit).Members = n.GetCollectionOfObjectValues<DirectoryObject>().ToList(); } },
-                {"scopedRoleMembers", (o,n) => { (o as AdministrativeUnit).ScopedRoleMembers = n.GetCollectionOfObjectValues<ScopedRoleMembership>().ToList(); } },
+                {"extensions", (o,n) => { (o as AdministrativeUnit).Extensions = n.GetCollectionOfObjectValues<Extension>(Extension.CreateFromDiscriminatorValue).ToList(); } },
+                {"members", (o,n) => { (o as AdministrativeUnit).Members = n.GetCollectionOfObjectValues<DirectoryObject>(DirectoryObject.CreateFromDiscriminatorValue).ToList(); } },
+                {"scopedRoleMembers", (o,n) => { (o as AdministrativeUnit).ScopedRoleMembers = n.GetCollectionOfObjectValues<ScopedRoleMembership>(ScopedRoleMembership.CreateFromDiscriminatorValue).ToList(); } },
                 {"visibility", (o,n) => { (o as AdministrativeUnit).Visibility = n.GetStringValue(); } },
             };
         }

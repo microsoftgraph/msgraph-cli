@@ -133,6 +133,13 @@ namespace ApiSdk.Workbooks.Item.Workbook.Worksheets.Item.Charts.Item {
             command.AddOption(outputOption);
             var queryOption = new Option<string>("--query");
             command.AddOption(queryOption);
+            var jsonNoIndentOption = new Option<bool>("--json-no-indent", r => {
+                if (bool.TryParse(r.Tokens.Select(t => t.Value).LastOrDefault(), out var value)) {
+                    return value;
+                }
+                return true;
+            }, description: "Disable indentation for the JSON output formatter.");
+            command.AddOption(jsonNoIndentOption);
             command.SetHandler(async (object[] parameters) => {
                 var driveItemId = (string) parameters[0];
                 var workbookWorksheetId = (string) parameters[1];
@@ -141,9 +148,10 @@ namespace ApiSdk.Workbooks.Item.Workbook.Worksheets.Item.Charts.Item {
                 var expand = (string[]) parameters[4];
                 var output = (FormatterType) parameters[5];
                 var query = (string) parameters[6];
-                var outputFilter = (IOutputFilter) parameters[7];
-                var outputFormatterFactory = (IOutputFormatterFactory) parameters[8];
-                var cancellationToken = (CancellationToken) parameters[9];
+                var jsonNoIndent = (bool) parameters[7];
+                var outputFilter = (IOutputFilter) parameters[8];
+                var outputFormatterFactory = (IOutputFormatterFactory) parameters[9];
+                var cancellationToken = (CancellationToken) parameters[10];
                 PathParameters.Clear();
                 PathParameters.Add("driveItem_id", driveItemId);
                 PathParameters.Add("workbookWorksheet_id", workbookWorksheetId);
@@ -154,9 +162,10 @@ namespace ApiSdk.Workbooks.Item.Workbook.Worksheets.Item.Charts.Item {
                 });
                 var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: default, cancellationToken: cancellationToken);
                 var formatter = outputFormatterFactory.GetFormatter(output);
-                response = outputFilter?.FilterOutput(response, query) ?? response;
-                formatter.WriteOutput(response);
-            }, new CollectionBinding(driveItemIdOption, workbookWorksheetIdOption, workbookChartIdOption, selectOption, expandOption, outputOption, queryOption, new TypeBinding(typeof(IOutputFilter)), new TypeBinding(typeof(IOutputFormatterFactory)), new TypeBinding(typeof(CancellationToken))));
+                response = await outputFilter?.FilterOutputAsync(response, query, cancellationToken) ?? response;
+                var formatterOptions = output.GetOutputFormatterOptions(new FormatterOptionsModel(!jsonNoIndent));
+                await formatter.WriteOutputAsync(response, formatterOptions, cancellationToken);
+            }, new CollectionBinding(driveItemIdOption, workbookWorksheetIdOption, workbookChartIdOption, selectOption, expandOption, outputOption, queryOption, jsonNoIndentOption, new TypeBinding(typeof(IOutputFilter)), new TypeBinding(typeof(IOutputFormatterFactory)), new TypeBinding(typeof(CancellationToken))));
             return command;
         }
         public Command BuildLegendCommand() {
@@ -203,7 +212,7 @@ namespace ApiSdk.Workbooks.Item.Workbook.Worksheets.Item.Charts.Item {
                 PathParameters.Add("workbookChart_id", workbookChartId);
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
-                var model = parseNode.GetObjectValue<WorkbookChart>();
+                var model = parseNode.GetObjectValue<WorkbookChart>(WorkbookChart.CreateFromDiscriminatorValue);
                 var requestInfo = CreatePatchRequestInformation(model, q => {
                 });
                 await RequestAdapter.SendNoContentAsync(requestInfo, errorMapping: default, cancellationToken: cancellationToken);
@@ -336,10 +345,10 @@ namespace ApiSdk.Workbooks.Item.Workbook.Worksheets.Item.Charts.Item {
         /// <param name="height">Usage: height={height}</param>
         /// <param name="width">Usage: width={width}</param>
         /// </summary>
-        public ImageWithWidthWithHeightRequestBuilder ImageWithWidthWithHeight(int? width, int? height) {
+        public ImageWithWidthWithHeightRequestBuilder ImageWithWidthWithHeight(int? height, int? width) {
             _ = height ?? throw new ArgumentNullException(nameof(height));
             _ = width ?? throw new ArgumentNullException(nameof(width));
-            return new ImageWithWidthWithHeightRequestBuilder(PathParameters, RequestAdapter, width, height);
+            return new ImageWithWidthWithHeightRequestBuilder(PathParameters, RequestAdapter, height, width);
         }
         /// <summary>
         /// Builds and executes requests for operations under \workbooks\{driveItem-id}\workbook\worksheets\{workbookWorksheet-id}\charts\{workbookChart-id}\microsoft.graph.image(width={width},height={height},fittingMode='{fittingMode}')
@@ -347,11 +356,11 @@ namespace ApiSdk.Workbooks.Item.Workbook.Worksheets.Item.Charts.Item {
         /// <param name="height">Usage: height={height}</param>
         /// <param name="width">Usage: width={width}</param>
         /// </summary>
-        public ImageWithWidthWithHeightWithFittingModeRequestBuilder ImageWithWidthWithHeightWithFittingMode(int? width, int? height, string fittingMode) {
+        public ImageWithWidthWithHeightWithFittingModeRequestBuilder ImageWithWidthWithHeightWithFittingMode(string fittingMode, int? height, int? width) {
             if(string.IsNullOrEmpty(fittingMode)) throw new ArgumentNullException(nameof(fittingMode));
             _ = height ?? throw new ArgumentNullException(nameof(height));
             _ = width ?? throw new ArgumentNullException(nameof(width));
-            return new ImageWithWidthWithHeightWithFittingModeRequestBuilder(PathParameters, RequestAdapter, width, height, fittingMode);
+            return new ImageWithWidthWithHeightWithFittingModeRequestBuilder(PathParameters, RequestAdapter, fittingMode, height, width);
         }
         /// <summary>Returns collection of charts that are part of the worksheet. Read-only.</summary>
         public class GetQueryParameters : QueryParametersBase {

@@ -42,7 +42,7 @@ namespace ApiSdk.Users.Item.ExportPersonalData {
                 PathParameters.Add("user_id", userId);
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
-                var model = parseNode.GetObjectValue<ExportPersonalDataRequestBody>();
+                var model = parseNode.GetObjectValue<ExportPersonalDataRequestBody>(ExportPersonalDataRequestBody.CreateFromDiscriminatorValue);
                 var requestInfo = CreatePostRequestInformation(model, q => {
                 });
                 await RequestAdapter.SendNoContentAsync(requestInfo, errorMapping: default, cancellationToken: cancellationToken);

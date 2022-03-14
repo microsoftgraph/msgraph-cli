@@ -78,7 +78,7 @@ namespace ApiSdk.Models.Microsoft.Graph {
         /// <summary>The URLs that user tokens are sent to for sign in with the associated application, or the redirect URIs that OAuth 2.0 authorization codes and access tokens are sent to for the associated application. Not nullable.</summary>
         public List<string> ReplyUrls { get; set; }
         /// <summary>The collection for settings related to saml single sign-on.</summary>
-        public SamlSingleSignOnSettings SamlSingleSignOnSettings { get; set; }
+        public ApiSdk.Models.Microsoft.Graph.SamlSingleSignOnSettings SamlSingleSignOnSettings { get; set; }
         /// <summary>Contains the list of identifiersUris, copied over from the associated application. Additional values can be added to hybrid applications. These values can be used to identify the permissions exposed by this app within Azure AD. For example,Client apps can specify a resource URI which is based on the values of this property to acquire an access token, which is the URI returned in the 'aud' claim.The any operator is required for filter expressions on multi-valued properties. Not nullable.  Supports $filter (eq, not, ge, le, startsWith).</summary>
         public List<string> ServicePrincipalNames { get; set; }
         /// <summary>Identifies if the service principal represents an application or a managed identity. This is set by Azure AD internally. For a service principal that represents an application this is set as Application. For a service principal that represent a managed identity this is set as ManagedIdentity. The SocialIdp type is for internal use.</summary>
@@ -95,55 +95,63 @@ namespace ApiSdk.Models.Microsoft.Graph {
         public List<TokenLifetimePolicy> TokenLifetimePolicies { get; set; }
         public List<DirectoryObject> TransitiveMemberOf { get; set; }
         /// <summary>
+        /// Creates a new instance of the appropriate class based on discriminator value
+        /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
+        /// </summary>
+        public static new ServicePrincipal CreateFromDiscriminatorValue(IParseNode parseNode) {
+            _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
+            return new ServicePrincipal();
+        }
+        /// <summary>
         /// The deserialization information for the current model
         /// </summary>
         public new IDictionary<string, Action<T, IParseNode>> GetFieldDeserializers<T>() {
             return new Dictionary<string, Action<T, IParseNode>>(base.GetFieldDeserializers<T>()) {
                 {"accountEnabled", (o,n) => { (o as ServicePrincipal).AccountEnabled = n.GetBoolValue(); } },
-                {"addIns", (o,n) => { (o as ServicePrincipal).AddIns = n.GetCollectionOfObjectValues<AddIn>().ToList(); } },
+                {"addIns", (o,n) => { (o as ServicePrincipal).AddIns = n.GetCollectionOfObjectValues<AddIn>(AddIn.CreateFromDiscriminatorValue).ToList(); } },
                 {"alternativeNames", (o,n) => { (o as ServicePrincipal).AlternativeNames = n.GetCollectionOfPrimitiveValues<string>().ToList(); } },
                 {"appDescription", (o,n) => { (o as ServicePrincipal).AppDescription = n.GetStringValue(); } },
                 {"appDisplayName", (o,n) => { (o as ServicePrincipal).AppDisplayName = n.GetStringValue(); } },
                 {"appId", (o,n) => { (o as ServicePrincipal).AppId = n.GetStringValue(); } },
                 {"applicationTemplateId", (o,n) => { (o as ServicePrincipal).ApplicationTemplateId = n.GetStringValue(); } },
                 {"appOwnerOrganizationId", (o,n) => { (o as ServicePrincipal).AppOwnerOrganizationId = n.GetStringValue(); } },
-                {"appRoleAssignedTo", (o,n) => { (o as ServicePrincipal).AppRoleAssignedTo = n.GetCollectionOfObjectValues<AppRoleAssignment>().ToList(); } },
+                {"appRoleAssignedTo", (o,n) => { (o as ServicePrincipal).AppRoleAssignedTo = n.GetCollectionOfObjectValues<AppRoleAssignment>(AppRoleAssignment.CreateFromDiscriminatorValue).ToList(); } },
                 {"appRoleAssignmentRequired", (o,n) => { (o as ServicePrincipal).AppRoleAssignmentRequired = n.GetBoolValue(); } },
-                {"appRoleAssignments", (o,n) => { (o as ServicePrincipal).AppRoleAssignments = n.GetCollectionOfObjectValues<AppRoleAssignment>().ToList(); } },
-                {"appRoles", (o,n) => { (o as ServicePrincipal).AppRoles = n.GetCollectionOfObjectValues<AppRole>().ToList(); } },
-                {"claimsMappingPolicies", (o,n) => { (o as ServicePrincipal).ClaimsMappingPolicies = n.GetCollectionOfObjectValues<ClaimsMappingPolicy>().ToList(); } },
-                {"createdObjects", (o,n) => { (o as ServicePrincipal).CreatedObjects = n.GetCollectionOfObjectValues<DirectoryObject>().ToList(); } },
-                {"delegatedPermissionClassifications", (o,n) => { (o as ServicePrincipal).DelegatedPermissionClassifications = n.GetCollectionOfObjectValues<DelegatedPermissionClassification>().ToList(); } },
+                {"appRoleAssignments", (o,n) => { (o as ServicePrincipal).AppRoleAssignments = n.GetCollectionOfObjectValues<AppRoleAssignment>(AppRoleAssignment.CreateFromDiscriminatorValue).ToList(); } },
+                {"appRoles", (o,n) => { (o as ServicePrincipal).AppRoles = n.GetCollectionOfObjectValues<AppRole>(AppRole.CreateFromDiscriminatorValue).ToList(); } },
+                {"claimsMappingPolicies", (o,n) => { (o as ServicePrincipal).ClaimsMappingPolicies = n.GetCollectionOfObjectValues<ClaimsMappingPolicy>(ClaimsMappingPolicy.CreateFromDiscriminatorValue).ToList(); } },
+                {"createdObjects", (o,n) => { (o as ServicePrincipal).CreatedObjects = n.GetCollectionOfObjectValues<DirectoryObject>(DirectoryObject.CreateFromDiscriminatorValue).ToList(); } },
+                {"delegatedPermissionClassifications", (o,n) => { (o as ServicePrincipal).DelegatedPermissionClassifications = n.GetCollectionOfObjectValues<DelegatedPermissionClassification>(DelegatedPermissionClassification.CreateFromDiscriminatorValue).ToList(); } },
                 {"description", (o,n) => { (o as ServicePrincipal).Description = n.GetStringValue(); } },
                 {"disabledByMicrosoftStatus", (o,n) => { (o as ServicePrincipal).DisabledByMicrosoftStatus = n.GetStringValue(); } },
                 {"displayName", (o,n) => { (o as ServicePrincipal).DisplayName = n.GetStringValue(); } },
-                {"endpoints", (o,n) => { (o as ServicePrincipal).Endpoints = n.GetCollectionOfObjectValues<Endpoint>().ToList(); } },
+                {"endpoints", (o,n) => { (o as ServicePrincipal).Endpoints = n.GetCollectionOfObjectValues<Endpoint>(Endpoint.CreateFromDiscriminatorValue).ToList(); } },
                 {"homepage", (o,n) => { (o as ServicePrincipal).Homepage = n.GetStringValue(); } },
-                {"homeRealmDiscoveryPolicies", (o,n) => { (o as ServicePrincipal).HomeRealmDiscoveryPolicies = n.GetCollectionOfObjectValues<HomeRealmDiscoveryPolicy>().ToList(); } },
-                {"info", (o,n) => { (o as ServicePrincipal).Info = n.GetObjectValue<InformationalUrl>(); } },
-                {"keyCredentials", (o,n) => { (o as ServicePrincipal).KeyCredentials = n.GetCollectionOfObjectValues<KeyCredential>().ToList(); } },
+                {"homeRealmDiscoveryPolicies", (o,n) => { (o as ServicePrincipal).HomeRealmDiscoveryPolicies = n.GetCollectionOfObjectValues<HomeRealmDiscoveryPolicy>(HomeRealmDiscoveryPolicy.CreateFromDiscriminatorValue).ToList(); } },
+                {"info", (o,n) => { (o as ServicePrincipal).Info = n.GetObjectValue<InformationalUrl>(InformationalUrl.CreateFromDiscriminatorValue); } },
+                {"keyCredentials", (o,n) => { (o as ServicePrincipal).KeyCredentials = n.GetCollectionOfObjectValues<KeyCredential>(KeyCredential.CreateFromDiscriminatorValue).ToList(); } },
                 {"loginUrl", (o,n) => { (o as ServicePrincipal).LoginUrl = n.GetStringValue(); } },
                 {"logoutUrl", (o,n) => { (o as ServicePrincipal).LogoutUrl = n.GetStringValue(); } },
-                {"memberOf", (o,n) => { (o as ServicePrincipal).MemberOf = n.GetCollectionOfObjectValues<DirectoryObject>().ToList(); } },
+                {"memberOf", (o,n) => { (o as ServicePrincipal).MemberOf = n.GetCollectionOfObjectValues<DirectoryObject>(DirectoryObject.CreateFromDiscriminatorValue).ToList(); } },
                 {"notes", (o,n) => { (o as ServicePrincipal).Notes = n.GetStringValue(); } },
                 {"notificationEmailAddresses", (o,n) => { (o as ServicePrincipal).NotificationEmailAddresses = n.GetCollectionOfPrimitiveValues<string>().ToList(); } },
-                {"oauth2PermissionGrants", (o,n) => { (o as ServicePrincipal).Oauth2PermissionGrants = n.GetCollectionOfObjectValues<OAuth2PermissionGrant>().ToList(); } },
-                {"oauth2PermissionScopes", (o,n) => { (o as ServicePrincipal).Oauth2PermissionScopes = n.GetCollectionOfObjectValues<PermissionScope>().ToList(); } },
-                {"ownedObjects", (o,n) => { (o as ServicePrincipal).OwnedObjects = n.GetCollectionOfObjectValues<DirectoryObject>().ToList(); } },
-                {"owners", (o,n) => { (o as ServicePrincipal).Owners = n.GetCollectionOfObjectValues<DirectoryObject>().ToList(); } },
-                {"passwordCredentials", (o,n) => { (o as ServicePrincipal).PasswordCredentials = n.GetCollectionOfObjectValues<PasswordCredential>().ToList(); } },
+                {"oauth2PermissionGrants", (o,n) => { (o as ServicePrincipal).Oauth2PermissionGrants = n.GetCollectionOfObjectValues<OAuth2PermissionGrant>(OAuth2PermissionGrant.CreateFromDiscriminatorValue).ToList(); } },
+                {"oauth2PermissionScopes", (o,n) => { (o as ServicePrincipal).Oauth2PermissionScopes = n.GetCollectionOfObjectValues<PermissionScope>(PermissionScope.CreateFromDiscriminatorValue).ToList(); } },
+                {"ownedObjects", (o,n) => { (o as ServicePrincipal).OwnedObjects = n.GetCollectionOfObjectValues<DirectoryObject>(DirectoryObject.CreateFromDiscriminatorValue).ToList(); } },
+                {"owners", (o,n) => { (o as ServicePrincipal).Owners = n.GetCollectionOfObjectValues<DirectoryObject>(DirectoryObject.CreateFromDiscriminatorValue).ToList(); } },
+                {"passwordCredentials", (o,n) => { (o as ServicePrincipal).PasswordCredentials = n.GetCollectionOfObjectValues<PasswordCredential>(PasswordCredential.CreateFromDiscriminatorValue).ToList(); } },
                 {"preferredSingleSignOnMode", (o,n) => { (o as ServicePrincipal).PreferredSingleSignOnMode = n.GetStringValue(); } },
                 {"preferredTokenSigningKeyThumbprint", (o,n) => { (o as ServicePrincipal).PreferredTokenSigningKeyThumbprint = n.GetStringValue(); } },
                 {"replyUrls", (o,n) => { (o as ServicePrincipal).ReplyUrls = n.GetCollectionOfPrimitiveValues<string>().ToList(); } },
-                {"samlSingleSignOnSettings", (o,n) => { (o as ServicePrincipal).SamlSingleSignOnSettings = n.GetObjectValue<SamlSingleSignOnSettings>(); } },
+                {"samlSingleSignOnSettings", (o,n) => { (o as ServicePrincipal).SamlSingleSignOnSettings = n.GetObjectValue<ApiSdk.Models.Microsoft.Graph.SamlSingleSignOnSettings>(ApiSdk.Models.Microsoft.Graph.SamlSingleSignOnSettings.CreateFromDiscriminatorValue); } },
                 {"servicePrincipalNames", (o,n) => { (o as ServicePrincipal).ServicePrincipalNames = n.GetCollectionOfPrimitiveValues<string>().ToList(); } },
                 {"servicePrincipalType", (o,n) => { (o as ServicePrincipal).ServicePrincipalType = n.GetStringValue(); } },
                 {"signInAudience", (o,n) => { (o as ServicePrincipal).SignInAudience = n.GetStringValue(); } },
                 {"tags", (o,n) => { (o as ServicePrincipal).Tags = n.GetCollectionOfPrimitiveValues<string>().ToList(); } },
                 {"tokenEncryptionKeyId", (o,n) => { (o as ServicePrincipal).TokenEncryptionKeyId = n.GetStringValue(); } },
-                {"tokenIssuancePolicies", (o,n) => { (o as ServicePrincipal).TokenIssuancePolicies = n.GetCollectionOfObjectValues<TokenIssuancePolicy>().ToList(); } },
-                {"tokenLifetimePolicies", (o,n) => { (o as ServicePrincipal).TokenLifetimePolicies = n.GetCollectionOfObjectValues<TokenLifetimePolicy>().ToList(); } },
-                {"transitiveMemberOf", (o,n) => { (o as ServicePrincipal).TransitiveMemberOf = n.GetCollectionOfObjectValues<DirectoryObject>().ToList(); } },
+                {"tokenIssuancePolicies", (o,n) => { (o as ServicePrincipal).TokenIssuancePolicies = n.GetCollectionOfObjectValues<TokenIssuancePolicy>(TokenIssuancePolicy.CreateFromDiscriminatorValue).ToList(); } },
+                {"tokenLifetimePolicies", (o,n) => { (o as ServicePrincipal).TokenLifetimePolicies = n.GetCollectionOfObjectValues<TokenLifetimePolicy>(TokenLifetimePolicy.CreateFromDiscriminatorValue).ToList(); } },
+                {"transitiveMemberOf", (o,n) => { (o as ServicePrincipal).TransitiveMemberOf = n.GetCollectionOfObjectValues<DirectoryObject>(DirectoryObject.CreateFromDiscriminatorValue).ToList(); } },
             };
         }
         /// <summary>
@@ -189,7 +197,7 @@ namespace ApiSdk.Models.Microsoft.Graph {
             writer.WriteStringValue("preferredSingleSignOnMode", PreferredSingleSignOnMode);
             writer.WriteStringValue("preferredTokenSigningKeyThumbprint", PreferredTokenSigningKeyThumbprint);
             writer.WriteCollectionOfPrimitiveValues<string>("replyUrls", ReplyUrls);
-            writer.WriteObjectValue<SamlSingleSignOnSettings>("samlSingleSignOnSettings", SamlSingleSignOnSettings);
+            writer.WriteObjectValue<ApiSdk.Models.Microsoft.Graph.SamlSingleSignOnSettings>("samlSingleSignOnSettings", SamlSingleSignOnSettings);
             writer.WriteCollectionOfPrimitiveValues<string>("servicePrincipalNames", ServicePrincipalNames);
             writer.WriteStringValue("servicePrincipalType", ServicePrincipalType);
             writer.WriteStringValue("signInAudience", SignInAudience);

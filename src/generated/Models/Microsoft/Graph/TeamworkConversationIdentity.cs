@@ -8,6 +8,14 @@ namespace ApiSdk.Models.Microsoft.Graph {
         /// <summary>Type of conversation. Possible values are: team, channel, and chat.</summary>
         public TeamworkConversationIdentityType? ConversationIdentityType { get; set; }
         /// <summary>
+        /// Creates a new instance of the appropriate class based on discriminator value
+        /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
+        /// </summary>
+        public static new TeamworkConversationIdentity CreateFromDiscriminatorValue(IParseNode parseNode) {
+            _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
+            return new TeamworkConversationIdentity();
+        }
+        /// <summary>
         /// The deserialization information for the current model
         /// </summary>
         public new IDictionary<string, Action<T, IParseNode>> GetFieldDeserializers<T>() {

@@ -10,12 +10,20 @@ namespace ApiSdk.Models.Microsoft.Graph {
         /// <summary>The attendee's response (none, accepted, declined, etc.) for the event and date-time that the response was sent.</summary>
         public ResponseStatus Status { get; set; }
         /// <summary>
+        /// Creates a new instance of the appropriate class based on discriminator value
+        /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
+        /// </summary>
+        public static new Attendee CreateFromDiscriminatorValue(IParseNode parseNode) {
+            _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
+            return new Attendee();
+        }
+        /// <summary>
         /// The deserialization information for the current model
         /// </summary>
         public new IDictionary<string, Action<T, IParseNode>> GetFieldDeserializers<T>() {
             return new Dictionary<string, Action<T, IParseNode>>(base.GetFieldDeserializers<T>()) {
-                {"proposedNewTime", (o,n) => { (o as Attendee).ProposedNewTime = n.GetObjectValue<TimeSlot>(); } },
-                {"status", (o,n) => { (o as Attendee).Status = n.GetObjectValue<ResponseStatus>(); } },
+                {"proposedNewTime", (o,n) => { (o as Attendee).ProposedNewTime = n.GetObjectValue<TimeSlot>(TimeSlot.CreateFromDiscriminatorValue); } },
+                {"status", (o,n) => { (o as Attendee).Status = n.GetObjectValue<ResponseStatus>(ResponseStatus.CreateFromDiscriminatorValue); } },
             };
         }
         /// <summary>

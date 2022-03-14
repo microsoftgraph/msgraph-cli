@@ -30,22 +30,30 @@ namespace ApiSdk.Models.Microsoft.Graph {
         /// <summary>The worksheet containing the current chart. Read-only.</summary>
         public WorkbookWorksheet Worksheet { get; set; }
         /// <summary>
+        /// Creates a new instance of the appropriate class based on discriminator value
+        /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
+        /// </summary>
+        public static new WorkbookChart CreateFromDiscriminatorValue(IParseNode parseNode) {
+            _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
+            return new WorkbookChart();
+        }
+        /// <summary>
         /// The deserialization information for the current model
         /// </summary>
         public new IDictionary<string, Action<T, IParseNode>> GetFieldDeserializers<T>() {
             return new Dictionary<string, Action<T, IParseNode>>(base.GetFieldDeserializers<T>()) {
-                {"axes", (o,n) => { (o as WorkbookChart).Axes = n.GetObjectValue<WorkbookChartAxes>(); } },
-                {"dataLabels", (o,n) => { (o as WorkbookChart).DataLabels = n.GetObjectValue<WorkbookChartDataLabels>(); } },
-                {"format", (o,n) => { (o as WorkbookChart).Format = n.GetObjectValue<WorkbookChartAreaFormat>(); } },
+                {"axes", (o,n) => { (o as WorkbookChart).Axes = n.GetObjectValue<WorkbookChartAxes>(WorkbookChartAxes.CreateFromDiscriminatorValue); } },
+                {"dataLabels", (o,n) => { (o as WorkbookChart).DataLabels = n.GetObjectValue<WorkbookChartDataLabels>(WorkbookChartDataLabels.CreateFromDiscriminatorValue); } },
+                {"format", (o,n) => { (o as WorkbookChart).Format = n.GetObjectValue<WorkbookChartAreaFormat>(WorkbookChartAreaFormat.CreateFromDiscriminatorValue); } },
                 {"height", (o,n) => { (o as WorkbookChart).Height = n.GetDoubleValue(); } },
                 {"left", (o,n) => { (o as WorkbookChart).Left = n.GetDoubleValue(); } },
-                {"legend", (o,n) => { (o as WorkbookChart).Legend = n.GetObjectValue<WorkbookChartLegend>(); } },
+                {"legend", (o,n) => { (o as WorkbookChart).Legend = n.GetObjectValue<WorkbookChartLegend>(WorkbookChartLegend.CreateFromDiscriminatorValue); } },
                 {"name", (o,n) => { (o as WorkbookChart).Name = n.GetStringValue(); } },
-                {"series", (o,n) => { (o as WorkbookChart).Series = n.GetCollectionOfObjectValues<WorkbookChartSeries>().ToList(); } },
-                {"title", (o,n) => { (o as WorkbookChart).Title = n.GetObjectValue<WorkbookChartTitle>(); } },
+                {"series", (o,n) => { (o as WorkbookChart).Series = n.GetCollectionOfObjectValues<WorkbookChartSeries>(WorkbookChartSeries.CreateFromDiscriminatorValue).ToList(); } },
+                {"title", (o,n) => { (o as WorkbookChart).Title = n.GetObjectValue<WorkbookChartTitle>(WorkbookChartTitle.CreateFromDiscriminatorValue); } },
                 {"top", (o,n) => { (o as WorkbookChart).Top = n.GetDoubleValue(); } },
                 {"width", (o,n) => { (o as WorkbookChart).Width = n.GetDoubleValue(); } },
-                {"worksheet", (o,n) => { (o as WorkbookChart).Worksheet = n.GetObjectValue<WorkbookWorksheet>(); } },
+                {"worksheet", (o,n) => { (o as WorkbookChart).Worksheet = n.GetObjectValue<WorkbookWorksheet>(WorkbookWorksheet.CreateFromDiscriminatorValue); } },
             };
         }
         /// <summary>

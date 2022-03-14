@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 namespace ApiSdk.Workbooks.Item.Workbook.Functions.Binom_Dist_Range {
-    public class Binom_Dist_RangeRequestBody : IParsable {
+    public class Binom_Dist_RangeRequestBody : IAdditionalDataHolder, IParsable {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
         public Json NumberS { get; set; }
@@ -19,14 +19,22 @@ namespace ApiSdk.Workbooks.Item.Workbook.Functions.Binom_Dist_Range {
             AdditionalData = new Dictionary<string, object>();
         }
         /// <summary>
+        /// Creates a new instance of the appropriate class based on discriminator value
+        /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
+        /// </summary>
+        public static Binom_Dist_RangeRequestBody CreateFromDiscriminatorValue(IParseNode parseNode) {
+            _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
+            return new Binom_Dist_RangeRequestBody();
+        }
+        /// <summary>
         /// The deserialization information for the current model
         /// </summary>
         public IDictionary<string, Action<T, IParseNode>> GetFieldDeserializers<T>() {
             return new Dictionary<string, Action<T, IParseNode>> {
-                {"numberS", (o,n) => { (o as Binom_Dist_RangeRequestBody).NumberS = n.GetObjectValue<Json>(); } },
-                {"numberS2", (o,n) => { (o as Binom_Dist_RangeRequestBody).NumberS2 = n.GetObjectValue<Json>(); } },
-                {"probabilityS", (o,n) => { (o as Binom_Dist_RangeRequestBody).ProbabilityS = n.GetObjectValue<Json>(); } },
-                {"trials", (o,n) => { (o as Binom_Dist_RangeRequestBody).Trials = n.GetObjectValue<Json>(); } },
+                {"numberS", (o,n) => { (o as Binom_Dist_RangeRequestBody).NumberS = n.GetObjectValue<Json>(Json.CreateFromDiscriminatorValue); } },
+                {"numberS2", (o,n) => { (o as Binom_Dist_RangeRequestBody).NumberS2 = n.GetObjectValue<Json>(Json.CreateFromDiscriminatorValue); } },
+                {"probabilityS", (o,n) => { (o as Binom_Dist_RangeRequestBody).ProbabilityS = n.GetObjectValue<Json>(Json.CreateFromDiscriminatorValue); } },
+                {"trials", (o,n) => { (o as Binom_Dist_RangeRequestBody).Trials = n.GetObjectValue<Json>(Json.CreateFromDiscriminatorValue); } },
             };
         }
         /// <summary>

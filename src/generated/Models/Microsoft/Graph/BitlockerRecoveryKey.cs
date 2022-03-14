@@ -12,7 +12,15 @@ namespace ApiSdk.Models.Microsoft.Graph {
         /// <summary>The BitLocker recovery key.</summary>
         public string Key { get; set; }
         /// <summary>Indicates the type of volume the BitLocker key is associated with. Possible values are: operatingSystemVolume, fixedDataVolume, removableDataVolume, unknownFutureValue.</summary>
-        public VolumeType? VolumeType { get; set; }
+        public ApiSdk.Models.Microsoft.Graph.VolumeType? VolumeType { get; set; }
+        /// <summary>
+        /// Creates a new instance of the appropriate class based on discriminator value
+        /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
+        /// </summary>
+        public static new BitlockerRecoveryKey CreateFromDiscriminatorValue(IParseNode parseNode) {
+            _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
+            return new BitlockerRecoveryKey();
+        }
         /// <summary>
         /// The deserialization information for the current model
         /// </summary>

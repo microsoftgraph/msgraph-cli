@@ -41,26 +41,35 @@ namespace ApiSdk.Communications.Calls.Item.PlayPrompt {
             command.AddOption(outputOption);
             var queryOption = new Option<string>("--query");
             command.AddOption(queryOption);
+            var jsonNoIndentOption = new Option<bool>("--json-no-indent", r => {
+                if (bool.TryParse(r.Tokens.Select(t => t.Value).LastOrDefault(), out var value)) {
+                    return value;
+                }
+                return true;
+            }, description: "Disable indentation for the JSON output formatter.");
+            command.AddOption(jsonNoIndentOption);
             command.SetHandler(async (object[] parameters) => {
                 var callId = (string) parameters[0];
                 var body = (string) parameters[1];
                 var output = (FormatterType) parameters[2];
                 var query = (string) parameters[3];
-                var outputFilter = (IOutputFilter) parameters[4];
-                var outputFormatterFactory = (IOutputFormatterFactory) parameters[5];
-                var cancellationToken = (CancellationToken) parameters[6];
+                var jsonNoIndent = (bool) parameters[4];
+                var outputFilter = (IOutputFilter) parameters[5];
+                var outputFormatterFactory = (IOutputFormatterFactory) parameters[6];
+                var cancellationToken = (CancellationToken) parameters[7];
                 PathParameters.Clear();
                 PathParameters.Add("call_id", callId);
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
-                var model = parseNode.GetObjectValue<PlayPromptRequestBody>();
+                var model = parseNode.GetObjectValue<PlayPromptRequestBody>(PlayPromptRequestBody.CreateFromDiscriminatorValue);
                 var requestInfo = CreatePostRequestInformation(model, q => {
                 });
                 var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: default, cancellationToken: cancellationToken);
                 var formatter = outputFormatterFactory.GetFormatter(output);
-                response = outputFilter?.FilterOutput(response, query) ?? response;
-                formatter.WriteOutput(response);
-            }, new CollectionBinding(callIdOption, bodyOption, outputOption, queryOption, new TypeBinding(typeof(IOutputFilter)), new TypeBinding(typeof(IOutputFormatterFactory)), new TypeBinding(typeof(CancellationToken))));
+                response = await outputFilter?.FilterOutputAsync(response, query, cancellationToken) ?? response;
+                var formatterOptions = output.GetOutputFormatterOptions(new FormatterOptionsModel(!jsonNoIndent));
+                await formatter.WriteOutputAsync(response, formatterOptions, cancellationToken);
+            }, new CollectionBinding(callIdOption, bodyOption, outputOption, queryOption, jsonNoIndentOption, new TypeBinding(typeof(IOutputFilter)), new TypeBinding(typeof(IOutputFormatterFactory)), new TypeBinding(typeof(CancellationToken))));
             return command;
         }
         /// <summary>
@@ -95,23 +104,27 @@ namespace ApiSdk.Communications.Calls.Item.PlayPrompt {
             return requestInfo;
         }
         /// <summary>Union type wrapper for classes playPromptOperation</summary>
-        public class PlayPromptResponse : IParsable {
+        public class PlayPromptResponse : IAdditionalDataHolder, IParsable {
             /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
             public IDictionary<string, object> AdditionalData { get; set; }
             /// <summary>Union type representation for type playPromptOperation</summary>
-            public PlayPromptOperation PlayPromptOperation { get; set; }
+            public ApiSdk.Models.Microsoft.Graph.PlayPromptOperation PlayPromptOperation { get; set; }
             /// <summary>
             /// Instantiates a new playPromptResponse and sets the default values.
             /// </summary>
             public PlayPromptResponse() {
                 AdditionalData = new Dictionary<string, object>();
             }
+            public static PlayPromptResponse CreateFromDiscriminatorValue(IParseNode parseNode) {
+                _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
+                return new PlayPromptResponse();
+            }
             /// <summary>
             /// The deserialization information for the current model
             /// </summary>
             public IDictionary<string, Action<T, IParseNode>> GetFieldDeserializers<T>() {
                 return new Dictionary<string, Action<T, IParseNode>> {
-                    {"playPromptOperation", (o,n) => { (o as PlayPromptResponse).PlayPromptOperation = n.GetObjectValue<PlayPromptOperation>(); } },
+                    {"playPromptOperation", (o,n) => { (o as PlayPromptResponse).PlayPromptOperation = n.GetObjectValue<ApiSdk.Models.Microsoft.Graph.PlayPromptOperation>(ApiSdk.Models.Microsoft.Graph.PlayPromptOperation.CreateFromDiscriminatorValue); } },
                 };
             }
             /// <summary>
@@ -120,7 +133,7 @@ namespace ApiSdk.Communications.Calls.Item.PlayPrompt {
             /// </summary>
             public void Serialize(ISerializationWriter writer) {
                 _ = writer ?? throw new ArgumentNullException(nameof(writer));
-                writer.WriteObjectValue<PlayPromptOperation>("playPromptOperation", PlayPromptOperation);
+                writer.WriteObjectValue<ApiSdk.Models.Microsoft.Graph.PlayPromptOperation>("playPromptOperation", PlayPromptOperation);
                 writer.WriteAdditionalData(AdditionalData);
             }
         }

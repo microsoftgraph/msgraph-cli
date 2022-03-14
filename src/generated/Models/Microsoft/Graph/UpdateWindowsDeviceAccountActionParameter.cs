@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 namespace ApiSdk.Models.Microsoft.Graph {
-    public class UpdateWindowsDeviceAccountActionParameter : IParsable {
+    public class UpdateWindowsDeviceAccountActionParameter : IAdditionalDataHolder, IParsable {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>Not yet documented</summary>
@@ -26,12 +26,20 @@ namespace ApiSdk.Models.Microsoft.Graph {
             AdditionalData = new Dictionary<string, object>();
         }
         /// <summary>
+        /// Creates a new instance of the appropriate class based on discriminator value
+        /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
+        /// </summary>
+        public static UpdateWindowsDeviceAccountActionParameter CreateFromDiscriminatorValue(IParseNode parseNode) {
+            _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
+            return new UpdateWindowsDeviceAccountActionParameter();
+        }
+        /// <summary>
         /// The deserialization information for the current model
         /// </summary>
         public IDictionary<string, Action<T, IParseNode>> GetFieldDeserializers<T>() {
             return new Dictionary<string, Action<T, IParseNode>> {
                 {"calendarSyncEnabled", (o,n) => { (o as UpdateWindowsDeviceAccountActionParameter).CalendarSyncEnabled = n.GetBoolValue(); } },
-                {"deviceAccount", (o,n) => { (o as UpdateWindowsDeviceAccountActionParameter).DeviceAccount = n.GetObjectValue<WindowsDeviceAccount>(); } },
+                {"deviceAccount", (o,n) => { (o as UpdateWindowsDeviceAccountActionParameter).DeviceAccount = n.GetObjectValue<WindowsDeviceAccount>(WindowsDeviceAccount.CreateFromDiscriminatorValue); } },
                 {"deviceAccountEmail", (o,n) => { (o as UpdateWindowsDeviceAccountActionParameter).DeviceAccountEmail = n.GetStringValue(); } },
                 {"exchangeServer", (o,n) => { (o as UpdateWindowsDeviceAccountActionParameter).ExchangeServer = n.GetStringValue(); } },
                 {"passwordRotationEnabled", (o,n) => { (o as UpdateWindowsDeviceAccountActionParameter).PasswordRotationEnabled = n.GetBoolValue(); } },

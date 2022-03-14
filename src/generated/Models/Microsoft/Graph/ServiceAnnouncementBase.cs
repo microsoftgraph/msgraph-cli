@@ -16,11 +16,19 @@ namespace ApiSdk.Models.Microsoft.Graph {
         /// <summary>The title of the service event.</summary>
         public string Title { get; set; }
         /// <summary>
+        /// Creates a new instance of the appropriate class based on discriminator value
+        /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
+        /// </summary>
+        public static new ServiceAnnouncementBase CreateFromDiscriminatorValue(IParseNode parseNode) {
+            _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
+            return new ServiceAnnouncementBase();
+        }
+        /// <summary>
         /// The deserialization information for the current model
         /// </summary>
         public new IDictionary<string, Action<T, IParseNode>> GetFieldDeserializers<T>() {
             return new Dictionary<string, Action<T, IParseNode>>(base.GetFieldDeserializers<T>()) {
-                {"details", (o,n) => { (o as ServiceAnnouncementBase).Details = n.GetCollectionOfObjectValues<KeyValuePair>().ToList(); } },
+                {"details", (o,n) => { (o as ServiceAnnouncementBase).Details = n.GetCollectionOfObjectValues<KeyValuePair>(KeyValuePair.CreateFromDiscriminatorValue).ToList(); } },
                 {"endDateTime", (o,n) => { (o as ServiceAnnouncementBase).EndDateTime = n.GetDateTimeOffsetValue(); } },
                 {"lastModifiedDateTime", (o,n) => { (o as ServiceAnnouncementBase).LastModifiedDateTime = n.GetDateTimeOffsetValue(); } },
                 {"startDateTime", (o,n) => { (o as ServiceAnnouncementBase).StartDateTime = n.GetDateTimeOffsetValue(); } },

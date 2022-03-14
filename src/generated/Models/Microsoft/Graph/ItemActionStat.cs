@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 namespace ApiSdk.Models.Microsoft.Graph {
-    public class ItemActionStat : IParsable {
+    public class ItemActionStat : IAdditionalDataHolder, IParsable {
         /// <summary>The number of times the action took place. Read-only.</summary>
         public int? ActionCount { get; set; }
         /// <summary>The number of distinct actors that performed the action. Read-only.</summary>
@@ -16,6 +16,14 @@ namespace ApiSdk.Models.Microsoft.Graph {
         /// </summary>
         public ItemActionStat() {
             AdditionalData = new Dictionary<string, object>();
+        }
+        /// <summary>
+        /// Creates a new instance of the appropriate class based on discriminator value
+        /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
+        /// </summary>
+        public static ItemActionStat CreateFromDiscriminatorValue(IParseNode parseNode) {
+            _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
+            return new ItemActionStat();
         }
         /// <summary>
         /// The deserialization information for the current model

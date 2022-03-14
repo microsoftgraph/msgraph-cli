@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 namespace ApiSdk.Models.Microsoft.Graph.CallRecords {
-    public class NetworkInfo : IParsable {
+    public class NetworkInfo : IAdditionalDataHolder, IParsable {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>Fraction of the call that the media endpoint detected the available bandwidth or bandwidth policy was low enough to cause poor quality of the audio sent.</summary>
@@ -38,7 +38,7 @@ namespace ApiSdk.Models.Microsoft.Graph.CallRecords {
         /// <summary>Subnet used for media stream by the media endpoint.</summary>
         public string Subnet { get; set; }
         /// <summary>WiFi band used by the media endpoint. Possible values are: unknown, frequency24GHz, frequency50GHz, frequency60GHz, unknownFutureValue.</summary>
-        public WifiBand? WifiBand { get; set; }
+        public ApiSdk.Models.Microsoft.Graph.CallRecords.WifiBand? WifiBand { get; set; }
         /// <summary>Estimated remaining battery charge in percentage reported by the media endpoint.</summary>
         public int? WifiBatteryCharge { get; set; }
         /// <summary>WiFi channel used by the media endpoint.</summary>
@@ -48,7 +48,7 @@ namespace ApiSdk.Models.Microsoft.Graph.CallRecords {
         /// <summary>Version of the Microsoft WiFi driver used by the media endpoint.</summary>
         public string WifiMicrosoftDriverVersion { get; set; }
         /// <summary>Type of WiFi radio used by the media endpoint. Possible values are: unknown, wifi80211a, wifi80211b, wifi80211g, wifi80211n, wifi80211ac, wifi80211ax, unknownFutureValue.</summary>
-        public WifiRadioType? WifiRadioType { get; set; }
+        public ApiSdk.Models.Microsoft.Graph.CallRecords.WifiRadioType? WifiRadioType { get; set; }
         /// <summary>WiFi signal strength in percentage reported by the media endpoint.</summary>
         public int? WifiSignalStrength { get; set; }
         /// <summary>Name of the WiFi driver used by the media endpoint. Value may be localized based on the language used by endpoint.</summary>
@@ -60,6 +60,14 @@ namespace ApiSdk.Models.Microsoft.Graph.CallRecords {
         /// </summary>
         public NetworkInfo() {
             AdditionalData = new Dictionary<string, object>();
+        }
+        /// <summary>
+        /// Creates a new instance of the appropriate class based on discriminator value
+        /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
+        /// </summary>
+        public static NetworkInfo CreateFromDiscriminatorValue(IParseNode parseNode) {
+            _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
+            return new NetworkInfo();
         }
         /// <summary>
         /// The deserialization information for the current model

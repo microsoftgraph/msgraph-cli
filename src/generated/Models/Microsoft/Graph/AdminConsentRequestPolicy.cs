@@ -18,6 +18,14 @@ namespace ApiSdk.Models.Microsoft.Graph {
         /// <summary>Specifies the version of this policy. When the policy is updated, this version is updated. Read-only.</summary>
         public int? Version { get; set; }
         /// <summary>
+        /// Creates a new instance of the appropriate class based on discriminator value
+        /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
+        /// </summary>
+        public static new AdminConsentRequestPolicy CreateFromDiscriminatorValue(IParseNode parseNode) {
+            _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
+            return new AdminConsentRequestPolicy();
+        }
+        /// <summary>
         /// The deserialization information for the current model
         /// </summary>
         public new IDictionary<string, Action<T, IParseNode>> GetFieldDeserializers<T>() {
@@ -26,7 +34,7 @@ namespace ApiSdk.Models.Microsoft.Graph {
                 {"notifyReviewers", (o,n) => { (o as AdminConsentRequestPolicy).NotifyReviewers = n.GetBoolValue(); } },
                 {"remindersEnabled", (o,n) => { (o as AdminConsentRequestPolicy).RemindersEnabled = n.GetBoolValue(); } },
                 {"requestDurationInDays", (o,n) => { (o as AdminConsentRequestPolicy).RequestDurationInDays = n.GetIntValue(); } },
-                {"reviewers", (o,n) => { (o as AdminConsentRequestPolicy).Reviewers = n.GetCollectionOfObjectValues<AccessReviewReviewerScope>().ToList(); } },
+                {"reviewers", (o,n) => { (o as AdminConsentRequestPolicy).Reviewers = n.GetCollectionOfObjectValues<AccessReviewReviewerScope>(AccessReviewReviewerScope.CreateFromDiscriminatorValue).ToList(); } },
                 {"version", (o,n) => { (o as AdminConsentRequestPolicy).Version = n.GetIntValue(); } },
             };
         }

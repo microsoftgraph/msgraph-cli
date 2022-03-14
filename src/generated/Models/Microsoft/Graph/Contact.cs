@@ -62,25 +62,33 @@ namespace ApiSdk.Models.Microsoft.Graph {
         public string YomiGivenName { get; set; }
         public string YomiSurname { get; set; }
         /// <summary>
+        /// Creates a new instance of the appropriate class based on discriminator value
+        /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
+        /// </summary>
+        public static new Contact CreateFromDiscriminatorValue(IParseNode parseNode) {
+            _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
+            return new Contact();
+        }
+        /// <summary>
         /// The deserialization information for the current model
         /// </summary>
         public new IDictionary<string, Action<T, IParseNode>> GetFieldDeserializers<T>() {
             return new Dictionary<string, Action<T, IParseNode>>(base.GetFieldDeserializers<T>()) {
                 {"assistantName", (o,n) => { (o as Contact).AssistantName = n.GetStringValue(); } },
                 {"birthday", (o,n) => { (o as Contact).Birthday = n.GetDateTimeOffsetValue(); } },
-                {"businessAddress", (o,n) => { (o as Contact).BusinessAddress = n.GetObjectValue<PhysicalAddress>(); } },
+                {"businessAddress", (o,n) => { (o as Contact).BusinessAddress = n.GetObjectValue<PhysicalAddress>(PhysicalAddress.CreateFromDiscriminatorValue); } },
                 {"businessHomePage", (o,n) => { (o as Contact).BusinessHomePage = n.GetStringValue(); } },
                 {"businessPhones", (o,n) => { (o as Contact).BusinessPhones = n.GetCollectionOfPrimitiveValues<string>().ToList(); } },
                 {"children", (o,n) => { (o as Contact).Children = n.GetCollectionOfPrimitiveValues<string>().ToList(); } },
                 {"companyName", (o,n) => { (o as Contact).CompanyName = n.GetStringValue(); } },
                 {"department", (o,n) => { (o as Contact).Department = n.GetStringValue(); } },
                 {"displayName", (o,n) => { (o as Contact).DisplayName = n.GetStringValue(); } },
-                {"emailAddresses", (o,n) => { (o as Contact).EmailAddresses = n.GetCollectionOfObjectValues<EmailAddress>().ToList(); } },
-                {"extensions", (o,n) => { (o as Contact).Extensions = n.GetCollectionOfObjectValues<Extension>().ToList(); } },
+                {"emailAddresses", (o,n) => { (o as Contact).EmailAddresses = n.GetCollectionOfObjectValues<EmailAddress>(EmailAddress.CreateFromDiscriminatorValue).ToList(); } },
+                {"extensions", (o,n) => { (o as Contact).Extensions = n.GetCollectionOfObjectValues<Extension>(Extension.CreateFromDiscriminatorValue).ToList(); } },
                 {"fileAs", (o,n) => { (o as Contact).FileAs = n.GetStringValue(); } },
                 {"generation", (o,n) => { (o as Contact).Generation = n.GetStringValue(); } },
                 {"givenName", (o,n) => { (o as Contact).GivenName = n.GetStringValue(); } },
-                {"homeAddress", (o,n) => { (o as Contact).HomeAddress = n.GetObjectValue<PhysicalAddress>(); } },
+                {"homeAddress", (o,n) => { (o as Contact).HomeAddress = n.GetObjectValue<PhysicalAddress>(PhysicalAddress.CreateFromDiscriminatorValue); } },
                 {"homePhones", (o,n) => { (o as Contact).HomePhones = n.GetCollectionOfPrimitiveValues<string>().ToList(); } },
                 {"imAddresses", (o,n) => { (o as Contact).ImAddresses = n.GetCollectionOfPrimitiveValues<string>().ToList(); } },
                 {"initials", (o,n) => { (o as Contact).Initials = n.GetStringValue(); } },
@@ -88,15 +96,15 @@ namespace ApiSdk.Models.Microsoft.Graph {
                 {"manager", (o,n) => { (o as Contact).Manager = n.GetStringValue(); } },
                 {"middleName", (o,n) => { (o as Contact).MiddleName = n.GetStringValue(); } },
                 {"mobilePhone", (o,n) => { (o as Contact).MobilePhone = n.GetStringValue(); } },
-                {"multiValueExtendedProperties", (o,n) => { (o as Contact).MultiValueExtendedProperties = n.GetCollectionOfObjectValues<MultiValueLegacyExtendedProperty>().ToList(); } },
+                {"multiValueExtendedProperties", (o,n) => { (o as Contact).MultiValueExtendedProperties = n.GetCollectionOfObjectValues<MultiValueLegacyExtendedProperty>(MultiValueLegacyExtendedProperty.CreateFromDiscriminatorValue).ToList(); } },
                 {"nickName", (o,n) => { (o as Contact).NickName = n.GetStringValue(); } },
                 {"officeLocation", (o,n) => { (o as Contact).OfficeLocation = n.GetStringValue(); } },
-                {"otherAddress", (o,n) => { (o as Contact).OtherAddress = n.GetObjectValue<PhysicalAddress>(); } },
+                {"otherAddress", (o,n) => { (o as Contact).OtherAddress = n.GetObjectValue<PhysicalAddress>(PhysicalAddress.CreateFromDiscriminatorValue); } },
                 {"parentFolderId", (o,n) => { (o as Contact).ParentFolderId = n.GetStringValue(); } },
                 {"personalNotes", (o,n) => { (o as Contact).PersonalNotes = n.GetStringValue(); } },
-                {"photo", (o,n) => { (o as Contact).Photo = n.GetObjectValue<ProfilePhoto>(); } },
+                {"photo", (o,n) => { (o as Contact).Photo = n.GetObjectValue<ProfilePhoto>(ProfilePhoto.CreateFromDiscriminatorValue); } },
                 {"profession", (o,n) => { (o as Contact).Profession = n.GetStringValue(); } },
-                {"singleValueExtendedProperties", (o,n) => { (o as Contact).SingleValueExtendedProperties = n.GetCollectionOfObjectValues<SingleValueLegacyExtendedProperty>().ToList(); } },
+                {"singleValueExtendedProperties", (o,n) => { (o as Contact).SingleValueExtendedProperties = n.GetCollectionOfObjectValues<SingleValueLegacyExtendedProperty>(SingleValueLegacyExtendedProperty.CreateFromDiscriminatorValue).ToList(); } },
                 {"spouseName", (o,n) => { (o as Contact).SpouseName = n.GetStringValue(); } },
                 {"surname", (o,n) => { (o as Contact).Surname = n.GetStringValue(); } },
                 {"title", (o,n) => { (o as Contact).Title = n.GetStringValue(); } },

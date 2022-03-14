@@ -12,11 +12,19 @@ namespace ApiSdk.Models.Microsoft.Graph {
         /// <summary>The current status of the operation. Possible values are: notStarted, running, succeeded, failed.</summary>
         public WorkbookOperationStatus? Status { get; set; }
         /// <summary>
+        /// Creates a new instance of the appropriate class based on discriminator value
+        /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
+        /// </summary>
+        public static new WorkbookOperation CreateFromDiscriminatorValue(IParseNode parseNode) {
+            _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
+            return new WorkbookOperation();
+        }
+        /// <summary>
         /// The deserialization information for the current model
         /// </summary>
         public new IDictionary<string, Action<T, IParseNode>> GetFieldDeserializers<T>() {
             return new Dictionary<string, Action<T, IParseNode>>(base.GetFieldDeserializers<T>()) {
-                {"error", (o,n) => { (o as WorkbookOperation).Error = n.GetObjectValue<WorkbookOperationError>(); } },
+                {"error", (o,n) => { (o as WorkbookOperation).Error = n.GetObjectValue<WorkbookOperationError>(WorkbookOperationError.CreateFromDiscriminatorValue); } },
                 {"resourceLocation", (o,n) => { (o as WorkbookOperation).ResourceLocation = n.GetStringValue(); } },
                 {"status", (o,n) => { (o as WorkbookOperation).Status = n.GetEnumValue<WorkbookOperationStatus>(); } },
             };

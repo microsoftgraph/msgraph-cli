@@ -12,11 +12,19 @@ namespace ApiSdk.Models.Microsoft.Graph {
         /// <summary>A boolean that specifies the visibility of an axis title.</summary>
         public bool? Visible { get; set; }
         /// <summary>
+        /// Creates a new instance of the appropriate class based on discriminator value
+        /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
+        /// </summary>
+        public static new WorkbookChartAxisTitle CreateFromDiscriminatorValue(IParseNode parseNode) {
+            _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
+            return new WorkbookChartAxisTitle();
+        }
+        /// <summary>
         /// The deserialization information for the current model
         /// </summary>
         public new IDictionary<string, Action<T, IParseNode>> GetFieldDeserializers<T>() {
             return new Dictionary<string, Action<T, IParseNode>>(base.GetFieldDeserializers<T>()) {
-                {"format", (o,n) => { (o as WorkbookChartAxisTitle).Format = n.GetObjectValue<WorkbookChartAxisTitleFormat>(); } },
+                {"format", (o,n) => { (o as WorkbookChartAxisTitle).Format = n.GetObjectValue<WorkbookChartAxisTitleFormat>(WorkbookChartAxisTitleFormat.CreateFromDiscriminatorValue); } },
                 {"text", (o,n) => { (o as WorkbookChartAxisTitle).Text = n.GetStringValue(); } },
                 {"visible", (o,n) => { (o as WorkbookChartAxisTitle).Visible = n.GetBoolValue(); } },
             };

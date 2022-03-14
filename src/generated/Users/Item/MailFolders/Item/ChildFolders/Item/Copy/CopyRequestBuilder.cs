@@ -49,6 +49,13 @@ namespace ApiSdk.Users.Item.MailFolders.Item.ChildFolders.Item.Copy {
             command.AddOption(outputOption);
             var queryOption = new Option<string>("--query");
             command.AddOption(queryOption);
+            var jsonNoIndentOption = new Option<bool>("--json-no-indent", r => {
+                if (bool.TryParse(r.Tokens.Select(t => t.Value).LastOrDefault(), out var value)) {
+                    return value;
+                }
+                return true;
+            }, description: "Disable indentation for the JSON output formatter.");
+            command.AddOption(jsonNoIndentOption);
             command.SetHandler(async (object[] parameters) => {
                 var userId = (string) parameters[0];
                 var mailFolderId = (string) parameters[1];
@@ -56,23 +63,25 @@ namespace ApiSdk.Users.Item.MailFolders.Item.ChildFolders.Item.Copy {
                 var body = (string) parameters[3];
                 var output = (FormatterType) parameters[4];
                 var query = (string) parameters[5];
-                var outputFilter = (IOutputFilter) parameters[6];
-                var outputFormatterFactory = (IOutputFormatterFactory) parameters[7];
-                var cancellationToken = (CancellationToken) parameters[8];
+                var jsonNoIndent = (bool) parameters[6];
+                var outputFilter = (IOutputFilter) parameters[7];
+                var outputFormatterFactory = (IOutputFormatterFactory) parameters[8];
+                var cancellationToken = (CancellationToken) parameters[9];
                 PathParameters.Clear();
                 PathParameters.Add("user_id", userId);
                 PathParameters.Add("mailFolder_id", mailFolderId);
                 PathParameters.Add("mailFolder_id1", mailFolderId1);
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
-                var model = parseNode.GetObjectValue<CopyRequestBody>();
+                var model = parseNode.GetObjectValue<CopyRequestBody>(CopyRequestBody.CreateFromDiscriminatorValue);
                 var requestInfo = CreatePostRequestInformation(model, q => {
                 });
                 var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: default, cancellationToken: cancellationToken);
                 var formatter = outputFormatterFactory.GetFormatter(output);
-                response = outputFilter?.FilterOutput(response, query) ?? response;
-                formatter.WriteOutput(response);
-            }, new CollectionBinding(userIdOption, mailFolderIdOption, mailFolderId1Option, bodyOption, outputOption, queryOption, new TypeBinding(typeof(IOutputFilter)), new TypeBinding(typeof(IOutputFormatterFactory)), new TypeBinding(typeof(CancellationToken))));
+                response = await outputFilter?.FilterOutputAsync(response, query, cancellationToken) ?? response;
+                var formatterOptions = output.GetOutputFormatterOptions(new FormatterOptionsModel(!jsonNoIndent));
+                await formatter.WriteOutputAsync(response, formatterOptions, cancellationToken);
+            }, new CollectionBinding(userIdOption, mailFolderIdOption, mailFolderId1Option, bodyOption, outputOption, queryOption, jsonNoIndentOption, new TypeBinding(typeof(IOutputFilter)), new TypeBinding(typeof(IOutputFormatterFactory)), new TypeBinding(typeof(CancellationToken))));
             return command;
         }
         /// <summary>
@@ -107,23 +116,27 @@ namespace ApiSdk.Users.Item.MailFolders.Item.ChildFolders.Item.Copy {
             return requestInfo;
         }
         /// <summary>Union type wrapper for classes mailFolder</summary>
-        public class CopyResponse : IParsable {
+        public class CopyResponse : IAdditionalDataHolder, IParsable {
             /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
             public IDictionary<string, object> AdditionalData { get; set; }
             /// <summary>Union type representation for type mailFolder</summary>
-            public MailFolder MailFolder { get; set; }
+            public ApiSdk.Models.Microsoft.Graph.MailFolder MailFolder { get; set; }
             /// <summary>
             /// Instantiates a new copyResponse and sets the default values.
             /// </summary>
             public CopyResponse() {
                 AdditionalData = new Dictionary<string, object>();
             }
+            public static CopyResponse CreateFromDiscriminatorValue(IParseNode parseNode) {
+                _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
+                return new CopyResponse();
+            }
             /// <summary>
             /// The deserialization information for the current model
             /// </summary>
             public IDictionary<string, Action<T, IParseNode>> GetFieldDeserializers<T>() {
                 return new Dictionary<string, Action<T, IParseNode>> {
-                    {"mailFolder", (o,n) => { (o as CopyResponse).MailFolder = n.GetObjectValue<MailFolder>(); } },
+                    {"mailFolder", (o,n) => { (o as CopyResponse).MailFolder = n.GetObjectValue<ApiSdk.Models.Microsoft.Graph.MailFolder>(ApiSdk.Models.Microsoft.Graph.MailFolder.CreateFromDiscriminatorValue); } },
                 };
             }
             /// <summary>
@@ -132,7 +145,7 @@ namespace ApiSdk.Users.Item.MailFolders.Item.ChildFolders.Item.Copy {
             /// </summary>
             public void Serialize(ISerializationWriter writer) {
                 _ = writer ?? throw new ArgumentNullException(nameof(writer));
-                writer.WriteObjectValue<MailFolder>("mailFolder", MailFolder);
+                writer.WriteObjectValue<ApiSdk.Models.Microsoft.Graph.MailFolder>("mailFolder", MailFolder);
                 writer.WriteAdditionalData(AdditionalData);
             }
         }

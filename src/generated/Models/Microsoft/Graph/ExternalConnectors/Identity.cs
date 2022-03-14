@@ -8,6 +8,14 @@ namespace ApiSdk.Models.Microsoft.Graph.ExternalConnectors {
         /// <summary>The type of identity. Possible values are: user or group for Azure AD identities and externalgroup for groups in an external system.</summary>
         public IdentityType? Type { get; set; }
         /// <summary>
+        /// Creates a new instance of the appropriate class based on discriminator value
+        /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
+        /// </summary>
+        public static new Identity CreateFromDiscriminatorValue(IParseNode parseNode) {
+            _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
+            return new Identity();
+        }
+        /// <summary>
         /// The deserialization information for the current model
         /// </summary>
         public new IDictionary<string, Action<T, IParseNode>> GetFieldDeserializers<T>() {

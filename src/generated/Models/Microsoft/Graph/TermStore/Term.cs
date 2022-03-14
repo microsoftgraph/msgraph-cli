@@ -20,20 +20,28 @@ namespace ApiSdk.Models.Microsoft.Graph.TermStore {
         /// <summary>To indicate which terms are related to the current term as either pinned or reused.</summary>
         public List<Relation> Relations { get; set; }
         /// <summary>The [set] in which the term is created.</summary>
-        public Set Set { get; set; }
+        public ApiSdk.Models.Microsoft.Graph.TermStore.Set Set { get; set; }
+        /// <summary>
+        /// Creates a new instance of the appropriate class based on discriminator value
+        /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
+        /// </summary>
+        public static new Term CreateFromDiscriminatorValue(IParseNode parseNode) {
+            _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
+            return new Term();
+        }
         /// <summary>
         /// The deserialization information for the current model
         /// </summary>
         public new IDictionary<string, Action<T, IParseNode>> GetFieldDeserializers<T>() {
             return new Dictionary<string, Action<T, IParseNode>>(base.GetFieldDeserializers<T>()) {
-                {"children", (o,n) => { (o as Term).Children = n.GetCollectionOfObjectValues<Term>().ToList(); } },
+                {"children", (o,n) => { (o as Term).Children = n.GetCollectionOfObjectValues<Term>(Term.CreateFromDiscriminatorValue).ToList(); } },
                 {"createdDateTime", (o,n) => { (o as Term).CreatedDateTime = n.GetDateTimeOffsetValue(); } },
-                {"descriptions", (o,n) => { (o as Term).Descriptions = n.GetCollectionOfObjectValues<LocalizedDescription>().ToList(); } },
-                {"labels", (o,n) => { (o as Term).Labels = n.GetCollectionOfObjectValues<LocalizedLabel>().ToList(); } },
+                {"descriptions", (o,n) => { (o as Term).Descriptions = n.GetCollectionOfObjectValues<LocalizedDescription>(LocalizedDescription.CreateFromDiscriminatorValue).ToList(); } },
+                {"labels", (o,n) => { (o as Term).Labels = n.GetCollectionOfObjectValues<LocalizedLabel>(LocalizedLabel.CreateFromDiscriminatorValue).ToList(); } },
                 {"lastModifiedDateTime", (o,n) => { (o as Term).LastModifiedDateTime = n.GetDateTimeOffsetValue(); } },
-                {"properties", (o,n) => { (o as Term).Properties = n.GetCollectionOfObjectValues<KeyValue>().ToList(); } },
-                {"relations", (o,n) => { (o as Term).Relations = n.GetCollectionOfObjectValues<Relation>().ToList(); } },
-                {"set", (o,n) => { (o as Term).Set = n.GetObjectValue<Set>(); } },
+                {"properties", (o,n) => { (o as Term).Properties = n.GetCollectionOfObjectValues<KeyValue>(KeyValue.CreateFromDiscriminatorValue).ToList(); } },
+                {"relations", (o,n) => { (o as Term).Relations = n.GetCollectionOfObjectValues<Relation>(Relation.CreateFromDiscriminatorValue).ToList(); } },
+                {"set", (o,n) => { (o as Term).Set = n.GetObjectValue<ApiSdk.Models.Microsoft.Graph.TermStore.Set>(ApiSdk.Models.Microsoft.Graph.TermStore.Set.CreateFromDiscriminatorValue); } },
             };
         }
         /// <summary>
@@ -50,7 +58,7 @@ namespace ApiSdk.Models.Microsoft.Graph.TermStore {
             writer.WriteDateTimeOffsetValue("lastModifiedDateTime", LastModifiedDateTime);
             writer.WriteCollectionOfObjectValues<KeyValue>("properties", Properties);
             writer.WriteCollectionOfObjectValues<Relation>("relations", Relations);
-            writer.WriteObjectValue<Set>("set", Set);
+            writer.WriteObjectValue<ApiSdk.Models.Microsoft.Graph.TermStore.Set>("set", Set);
         }
     }
 }

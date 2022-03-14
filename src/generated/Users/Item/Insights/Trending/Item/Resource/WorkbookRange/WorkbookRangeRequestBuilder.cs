@@ -88,10 +88,10 @@ namespace ApiSdk.Users.Item.Insights.Trending.Item.Resource.WorkbookRange {
         /// <param name="column">Usage: column={column}</param>
         /// <param name="row">Usage: row={row}</param>
         /// </summary>
-        public CellWithRowWithColumnRequestBuilder CellWithRowWithColumn(int? row, int? column) {
+        public CellWithRowWithColumnRequestBuilder CellWithRowWithColumn(int? column, int? row) {
             _ = column ?? throw new ArgumentNullException(nameof(column));
             _ = row ?? throw new ArgumentNullException(nameof(row));
-            return new CellWithRowWithColumnRequestBuilder(PathParameters, RequestAdapter, row, column);
+            return new CellWithRowWithColumnRequestBuilder(PathParameters, RequestAdapter, column, row);
         }
         /// <summary>
         /// Builds and executes requests for operations under \users\{user-id}\insights\trending\{trendingItem-Id}\resource\microsoft.graph.workbookRange\microsoft.graph.columnsAfter()
@@ -185,20 +185,20 @@ namespace ApiSdk.Users.Item.Insights.Trending.Item.Resource.WorkbookRange {
         /// <param name="columnOffset">Usage: columnOffset={columnOffset}</param>
         /// <param name="rowOffset">Usage: rowOffset={rowOffset}</param>
         /// </summary>
-        public OffsetRangeWithRowOffsetWithColumnOffsetRequestBuilder OffsetRangeWithRowOffsetWithColumnOffset(int? rowOffset, int? columnOffset) {
+        public OffsetRangeWithRowOffsetWithColumnOffsetRequestBuilder OffsetRangeWithRowOffsetWithColumnOffset(int? columnOffset, int? rowOffset) {
             _ = columnOffset ?? throw new ArgumentNullException(nameof(columnOffset));
             _ = rowOffset ?? throw new ArgumentNullException(nameof(rowOffset));
-            return new OffsetRangeWithRowOffsetWithColumnOffsetRequestBuilder(PathParameters, RequestAdapter, rowOffset, columnOffset);
+            return new OffsetRangeWithRowOffsetWithColumnOffsetRequestBuilder(PathParameters, RequestAdapter, columnOffset, rowOffset);
         }
         /// <summary>
         /// Builds and executes requests for operations under \users\{user-id}\insights\trending\{trendingItem-Id}\resource\microsoft.graph.workbookRange\microsoft.graph.resizedRange(deltaRows={deltaRows},deltaColumns={deltaColumns})
         /// <param name="deltaColumns">Usage: deltaColumns={deltaColumns}</param>
         /// <param name="deltaRows">Usage: deltaRows={deltaRows}</param>
         /// </summary>
-        public ResizedRangeWithDeltaRowsWithDeltaColumnsRequestBuilder ResizedRangeWithDeltaRowsWithDeltaColumns(int? deltaRows, int? deltaColumns) {
+        public ResizedRangeWithDeltaRowsWithDeltaColumnsRequestBuilder ResizedRangeWithDeltaRowsWithDeltaColumns(int? deltaColumns, int? deltaRows) {
             _ = deltaColumns ?? throw new ArgumentNullException(nameof(deltaColumns));
             _ = deltaRows ?? throw new ArgumentNullException(nameof(deltaRows));
-            return new ResizedRangeWithDeltaRowsWithDeltaColumnsRequestBuilder(PathParameters, RequestAdapter, deltaRows, deltaColumns);
+            return new ResizedRangeWithDeltaRowsWithDeltaColumnsRequestBuilder(PathParameters, RequestAdapter, deltaColumns, deltaRows);
         }
         /// <summary>
         /// Builds and executes requests for operations under \users\{user-id}\insights\trending\{trendingItem-Id}\resource\microsoft.graph.workbookRange\microsoft.graph.rowsAbove()

@@ -22,19 +22,27 @@ namespace ApiSdk.Models.Microsoft.Graph {
         /// <summary>A list of printTasks that were triggered by this print job.</summary>
         public List<PrintTask> Tasks { get; set; }
         /// <summary>
+        /// Creates a new instance of the appropriate class based on discriminator value
+        /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
+        /// </summary>
+        public static new PrintJob CreateFromDiscriminatorValue(IParseNode parseNode) {
+            _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
+            return new PrintJob();
+        }
+        /// <summary>
         /// The deserialization information for the current model
         /// </summary>
         public new IDictionary<string, Action<T, IParseNode>> GetFieldDeserializers<T>() {
             return new Dictionary<string, Action<T, IParseNode>>(base.GetFieldDeserializers<T>()) {
-                {"configuration", (o,n) => { (o as PrintJob).Configuration = n.GetObjectValue<PrintJobConfiguration>(); } },
-                {"createdBy", (o,n) => { (o as PrintJob).CreatedBy = n.GetObjectValue<UserIdentity>(); } },
+                {"configuration", (o,n) => { (o as PrintJob).Configuration = n.GetObjectValue<PrintJobConfiguration>(PrintJobConfiguration.CreateFromDiscriminatorValue); } },
+                {"createdBy", (o,n) => { (o as PrintJob).CreatedBy = n.GetObjectValue<UserIdentity>(UserIdentity.CreateFromDiscriminatorValue); } },
                 {"createdDateTime", (o,n) => { (o as PrintJob).CreatedDateTime = n.GetDateTimeOffsetValue(); } },
-                {"documents", (o,n) => { (o as PrintJob).Documents = n.GetCollectionOfObjectValues<PrintDocument>().ToList(); } },
+                {"documents", (o,n) => { (o as PrintJob).Documents = n.GetCollectionOfObjectValues<PrintDocument>(PrintDocument.CreateFromDiscriminatorValue).ToList(); } },
                 {"isFetchable", (o,n) => { (o as PrintJob).IsFetchable = n.GetBoolValue(); } },
                 {"redirectedFrom", (o,n) => { (o as PrintJob).RedirectedFrom = n.GetStringValue(); } },
                 {"redirectedTo", (o,n) => { (o as PrintJob).RedirectedTo = n.GetStringValue(); } },
-                {"status", (o,n) => { (o as PrintJob).Status = n.GetObjectValue<PrintJobStatus>(); } },
-                {"tasks", (o,n) => { (o as PrintJob).Tasks = n.GetCollectionOfObjectValues<PrintTask>().ToList(); } },
+                {"status", (o,n) => { (o as PrintJob).Status = n.GetObjectValue<PrintJobStatus>(PrintJobStatus.CreateFromDiscriminatorValue); } },
+                {"tasks", (o,n) => { (o as PrintJob).Tasks = n.GetCollectionOfObjectValues<PrintTask>(PrintTask.CreateFromDiscriminatorValue).ToList(); } },
             };
         }
         /// <summary>

@@ -54,7 +54,7 @@ namespace ApiSdk.Workbooks.Item.Workbook.Tables.Item.Columns.Item.Filter.ApplyCu
                 PathParameters.Add("workbookTableColumn_id", workbookTableColumnId);
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
-                var model = parseNode.GetObjectValue<ApplyCustomFilterRequestBody>();
+                var model = parseNode.GetObjectValue<ApplyCustomFilterRequestBody>(ApplyCustomFilterRequestBody.CreateFromDiscriminatorValue);
                 var requestInfo = CreatePostRequestInformation(model, q => {
                 });
                 await RequestAdapter.SendNoContentAsync(requestInfo, errorMapping: default, cancellationToken: cancellationToken);

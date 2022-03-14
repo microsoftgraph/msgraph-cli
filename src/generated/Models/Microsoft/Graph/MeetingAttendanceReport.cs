@@ -14,11 +14,19 @@ namespace ApiSdk.Models.Microsoft.Graph {
         /// <summary>Total number of participants. Read-only.</summary>
         public int? TotalParticipantCount { get; set; }
         /// <summary>
+        /// Creates a new instance of the appropriate class based on discriminator value
+        /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
+        /// </summary>
+        public static new MeetingAttendanceReport CreateFromDiscriminatorValue(IParseNode parseNode) {
+            _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
+            return new MeetingAttendanceReport();
+        }
+        /// <summary>
         /// The deserialization information for the current model
         /// </summary>
         public new IDictionary<string, Action<T, IParseNode>> GetFieldDeserializers<T>() {
             return new Dictionary<string, Action<T, IParseNode>>(base.GetFieldDeserializers<T>()) {
-                {"attendanceRecords", (o,n) => { (o as MeetingAttendanceReport).AttendanceRecords = n.GetCollectionOfObjectValues<AttendanceRecord>().ToList(); } },
+                {"attendanceRecords", (o,n) => { (o as MeetingAttendanceReport).AttendanceRecords = n.GetCollectionOfObjectValues<AttendanceRecord>(AttendanceRecord.CreateFromDiscriminatorValue).ToList(); } },
                 {"meetingEndDateTime", (o,n) => { (o as MeetingAttendanceReport).MeetingEndDateTime = n.GetDateTimeOffsetValue(); } },
                 {"meetingStartDateTime", (o,n) => { (o as MeetingAttendanceReport).MeetingStartDateTime = n.GetDateTimeOffsetValue(); } },
                 {"totalParticipantCount", (o,n) => { (o as MeetingAttendanceReport).TotalParticipantCount = n.GetIntValue(); } },

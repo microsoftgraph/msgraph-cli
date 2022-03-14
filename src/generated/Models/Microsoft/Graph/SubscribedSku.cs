@@ -20,6 +20,14 @@ namespace ApiSdk.Models.Microsoft.Graph {
         /// <summary>The SKU part number; for example: 'AAD_PREMIUM' or 'RMSBASIC'. To get a list of commercial subscriptions that an organization has acquired, see List subscribedSkus.</summary>
         public string SkuPartNumber { get; set; }
         /// <summary>
+        /// Creates a new instance of the appropriate class based on discriminator value
+        /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
+        /// </summary>
+        public static new SubscribedSku CreateFromDiscriminatorValue(IParseNode parseNode) {
+            _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
+            return new SubscribedSku();
+        }
+        /// <summary>
         /// The deserialization information for the current model
         /// </summary>
         public new IDictionary<string, Action<T, IParseNode>> GetFieldDeserializers<T>() {
@@ -27,8 +35,8 @@ namespace ApiSdk.Models.Microsoft.Graph {
                 {"appliesTo", (o,n) => { (o as SubscribedSku).AppliesTo = n.GetStringValue(); } },
                 {"capabilityStatus", (o,n) => { (o as SubscribedSku).CapabilityStatus = n.GetStringValue(); } },
                 {"consumedUnits", (o,n) => { (o as SubscribedSku).ConsumedUnits = n.GetIntValue(); } },
-                {"prepaidUnits", (o,n) => { (o as SubscribedSku).PrepaidUnits = n.GetObjectValue<LicenseUnitsDetail>(); } },
-                {"servicePlans", (o,n) => { (o as SubscribedSku).ServicePlans = n.GetCollectionOfObjectValues<ServicePlanInfo>().ToList(); } },
+                {"prepaidUnits", (o,n) => { (o as SubscribedSku).PrepaidUnits = n.GetObjectValue<LicenseUnitsDetail>(LicenseUnitsDetail.CreateFromDiscriminatorValue); } },
+                {"servicePlans", (o,n) => { (o as SubscribedSku).ServicePlans = n.GetCollectionOfObjectValues<ServicePlanInfo>(ServicePlanInfo.CreateFromDiscriminatorValue).ToList(); } },
                 {"skuId", (o,n) => { (o as SubscribedSku).SkuId = n.GetStringValue(); } },
                 {"skuPartNumber", (o,n) => { (o as SubscribedSku).SkuPartNumber = n.GetStringValue(); } },
             };

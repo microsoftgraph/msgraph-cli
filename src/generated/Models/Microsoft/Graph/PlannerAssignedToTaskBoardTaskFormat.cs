@@ -10,11 +10,19 @@ namespace ApiSdk.Models.Microsoft.Graph {
         /// <summary>Hint value used to order the task on the AssignedTo view of the Task Board when the task is not assigned to anyone, or if the orderHintsByAssignee dictionary does not provide an order hint for the user the task is assigned to. The format is defined as outlined here.</summary>
         public string UnassignedOrderHint { get; set; }
         /// <summary>
+        /// Creates a new instance of the appropriate class based on discriminator value
+        /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
+        /// </summary>
+        public static new PlannerAssignedToTaskBoardTaskFormat CreateFromDiscriminatorValue(IParseNode parseNode) {
+            _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
+            return new PlannerAssignedToTaskBoardTaskFormat();
+        }
+        /// <summary>
         /// The deserialization information for the current model
         /// </summary>
         public new IDictionary<string, Action<T, IParseNode>> GetFieldDeserializers<T>() {
             return new Dictionary<string, Action<T, IParseNode>>(base.GetFieldDeserializers<T>()) {
-                {"orderHintsByAssignee", (o,n) => { (o as PlannerAssignedToTaskBoardTaskFormat).OrderHintsByAssignee = n.GetObjectValue<PlannerOrderHintsByAssignee>(); } },
+                {"orderHintsByAssignee", (o,n) => { (o as PlannerAssignedToTaskBoardTaskFormat).OrderHintsByAssignee = n.GetObjectValue<PlannerOrderHintsByAssignee>(PlannerOrderHintsByAssignee.CreateFromDiscriminatorValue); } },
                 {"unassignedOrderHint", (o,n) => { (o as PlannerAssignedToTaskBoardTaskFormat).UnassignedOrderHint = n.GetStringValue(); } },
             };
         }

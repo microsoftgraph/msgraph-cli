@@ -20,13 +20,21 @@ namespace ApiSdk.Models.Microsoft.Graph {
         /// <summary>The language of the agreement file in the format 'languagecode2-country/regioncode2'. 'languagecode2' is a lowercase two-letter code derived from ISO 639-1, while 'country/regioncode2' is derived from ISO 3166 and usually consists of two uppercase letters, or a BCP-47 language tag. For example, U.S. English is en-US. Read-only.</summary>
         public string Language { get; set; }
         /// <summary>
+        /// Creates a new instance of the appropriate class based on discriminator value
+        /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
+        /// </summary>
+        public static new AgreementFileProperties CreateFromDiscriminatorValue(IParseNode parseNode) {
+            _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
+            return new AgreementFileProperties();
+        }
+        /// <summary>
         /// The deserialization information for the current model
         /// </summary>
         public new IDictionary<string, Action<T, IParseNode>> GetFieldDeserializers<T>() {
             return new Dictionary<string, Action<T, IParseNode>>(base.GetFieldDeserializers<T>()) {
                 {"createdDateTime", (o,n) => { (o as AgreementFileProperties).CreatedDateTime = n.GetDateTimeOffsetValue(); } },
                 {"displayName", (o,n) => { (o as AgreementFileProperties).DisplayName = n.GetStringValue(); } },
-                {"fileData", (o,n) => { (o as AgreementFileProperties).FileData = n.GetObjectValue<AgreementFileData>(); } },
+                {"fileData", (o,n) => { (o as AgreementFileProperties).FileData = n.GetObjectValue<AgreementFileData>(AgreementFileData.CreateFromDiscriminatorValue); } },
                 {"fileName", (o,n) => { (o as AgreementFileProperties).FileName = n.GetStringValue(); } },
                 {"isDefault", (o,n) => { (o as AgreementFileProperties).IsDefault = n.GetBoolValue(); } },
                 {"isMajorVersion", (o,n) => { (o as AgreementFileProperties).IsMajorVersion = n.GetBoolValue(); } },

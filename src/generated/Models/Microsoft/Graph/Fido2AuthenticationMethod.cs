@@ -10,13 +10,21 @@ namespace ApiSdk.Models.Microsoft.Graph {
         /// <summary>The attestation certificate(s) attached to this security key.</summary>
         public List<string> AttestationCertificates { get; set; }
         /// <summary>The attestation level of this FIDO2 security key. Possible values are: attested, notAttested, unknownFutureValue.</summary>
-        public AttestationLevel? AttestationLevel { get; set; }
+        public ApiSdk.Models.Microsoft.Graph.AttestationLevel? AttestationLevel { get; set; }
         /// <summary>The timestamp when this key was registered to the user.</summary>
         public DateTimeOffset? CreatedDateTime { get; set; }
         /// <summary>The display name of the key as given by the user.</summary>
         public string DisplayName { get; set; }
         /// <summary>The manufacturer-assigned model of the FIDO2 security key.</summary>
         public string Model { get; set; }
+        /// <summary>
+        /// Creates a new instance of the appropriate class based on discriminator value
+        /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
+        /// </summary>
+        public static new Fido2AuthenticationMethod CreateFromDiscriminatorValue(IParseNode parseNode) {
+            _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
+            return new Fido2AuthenticationMethod();
+        }
         /// <summary>
         /// The deserialization information for the current model
         /// </summary>

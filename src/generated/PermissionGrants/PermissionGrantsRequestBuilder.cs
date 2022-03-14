@@ -54,23 +54,32 @@ namespace ApiSdk.PermissionGrants {
             command.AddOption(outputOption);
             var queryOption = new Option<string>("--query");
             command.AddOption(queryOption);
+            var jsonNoIndentOption = new Option<bool>("--json-no-indent", r => {
+                if (bool.TryParse(r.Tokens.Select(t => t.Value).LastOrDefault(), out var value)) {
+                    return value;
+                }
+                return true;
+            }, description: "Disable indentation for the JSON output formatter.");
+            command.AddOption(jsonNoIndentOption);
             command.SetHandler(async (object[] parameters) => {
                 var body = (string) parameters[0];
                 var output = (FormatterType) parameters[1];
                 var query = (string) parameters[2];
-                var outputFilter = (IOutputFilter) parameters[3];
-                var outputFormatterFactory = (IOutputFormatterFactory) parameters[4];
-                var cancellationToken = (CancellationToken) parameters[5];
+                var jsonNoIndent = (bool) parameters[3];
+                var outputFilter = (IOutputFilter) parameters[4];
+                var outputFormatterFactory = (IOutputFormatterFactory) parameters[5];
+                var cancellationToken = (CancellationToken) parameters[6];
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
-                var model = parseNode.GetObjectValue<ResourceSpecificPermissionGrant>();
+                var model = parseNode.GetObjectValue<ResourceSpecificPermissionGrant>(ResourceSpecificPermissionGrant.CreateFromDiscriminatorValue);
                 var requestInfo = CreatePostRequestInformation(model, q => {
                 });
                 var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: default, cancellationToken: cancellationToken);
                 var formatter = outputFormatterFactory.GetFormatter(output);
-                response = outputFilter?.FilterOutput(response, query) ?? response;
-                formatter.WriteOutput(response);
-            }, new CollectionBinding(bodyOption, outputOption, queryOption, new TypeBinding(typeof(IOutputFilter)), new TypeBinding(typeof(IOutputFormatterFactory)), new TypeBinding(typeof(CancellationToken))));
+                response = await outputFilter?.FilterOutputAsync(response, query, cancellationToken) ?? response;
+                var formatterOptions = output.GetOutputFormatterOptions(new FormatterOptionsModel(!jsonNoIndent));
+                await formatter.WriteOutputAsync(response, formatterOptions, cancellationToken);
+            }, new CollectionBinding(bodyOption, outputOption, queryOption, jsonNoIndentOption, new TypeBinding(typeof(IOutputFilter)), new TypeBinding(typeof(IOutputFormatterFactory)), new TypeBinding(typeof(CancellationToken))));
             return command;
         }
         public Command BuildGetAvailableExtensionPropertiesCommand() {
@@ -121,6 +130,13 @@ namespace ApiSdk.PermissionGrants {
             command.AddOption(outputOption);
             var queryOption = new Option<string>("--query");
             command.AddOption(queryOption);
+            var jsonNoIndentOption = new Option<bool>("--json-no-indent", r => {
+                if (bool.TryParse(r.Tokens.Select(t => t.Value).LastOrDefault(), out var value)) {
+                    return value;
+                }
+                return true;
+            }, description: "Disable indentation for the JSON output formatter.");
+            command.AddOption(jsonNoIndentOption);
             command.SetHandler(async (object[] parameters) => {
                 var search = (string) parameters[0];
                 var filter = (string) parameters[1];
@@ -129,9 +145,10 @@ namespace ApiSdk.PermissionGrants {
                 var expand = (string[]) parameters[4];
                 var output = (FormatterType) parameters[5];
                 var query = (string) parameters[6];
-                var outputFilter = (IOutputFilter) parameters[7];
-                var outputFormatterFactory = (IOutputFormatterFactory) parameters[8];
-                var cancellationToken = (CancellationToken) parameters[9];
+                var jsonNoIndent = (bool) parameters[7];
+                var outputFilter = (IOutputFilter) parameters[8];
+                var outputFormatterFactory = (IOutputFormatterFactory) parameters[9];
+                var cancellationToken = (CancellationToken) parameters[10];
                 var requestInfo = CreateGetRequestInformation(q => {
                     if (!String.IsNullOrEmpty(search)) q.Search = search;
                     if (!String.IsNullOrEmpty(filter)) q.Filter = filter;
@@ -141,9 +158,10 @@ namespace ApiSdk.PermissionGrants {
                 });
                 var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: default, cancellationToken: cancellationToken);
                 var formatter = outputFormatterFactory.GetFormatter(output);
-                response = outputFilter?.FilterOutput(response, query) ?? response;
-                formatter.WriteOutput(response);
-            }, new CollectionBinding(searchOption, filterOption, orderbyOption, selectOption, expandOption, outputOption, queryOption, new TypeBinding(typeof(IOutputFilter)), new TypeBinding(typeof(IOutputFormatterFactory)), new TypeBinding(typeof(CancellationToken))));
+                response = await outputFilter?.FilterOutputAsync(response, query, cancellationToken) ?? response;
+                var formatterOptions = output.GetOutputFormatterOptions(new FormatterOptionsModel(!jsonNoIndent));
+                await formatter.WriteOutputAsync(response, formatterOptions, cancellationToken);
+            }, new CollectionBinding(searchOption, filterOption, orderbyOption, selectOption, expandOption, outputOption, queryOption, jsonNoIndentOption, new TypeBinding(typeof(IOutputFilter)), new TypeBinding(typeof(IOutputFormatterFactory)), new TypeBinding(typeof(CancellationToken))));
             return command;
         }
         public Command BuildValidatePropertiesCommand() {

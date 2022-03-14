@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 namespace ApiSdk.Education.Me.TaughtClasses {
-    public class TaughtClassesResponse : IParsable {
+    public class TaughtClassesResponse : IAdditionalDataHolder, IParsable {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
         public string NextLink { get; set; }
@@ -17,12 +17,20 @@ namespace ApiSdk.Education.Me.TaughtClasses {
             AdditionalData = new Dictionary<string, object>();
         }
         /// <summary>
+        /// Creates a new instance of the appropriate class based on discriminator value
+        /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
+        /// </summary>
+        public static TaughtClassesResponse CreateFromDiscriminatorValue(IParseNode parseNode) {
+            _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
+            return new TaughtClassesResponse();
+        }
+        /// <summary>
         /// The deserialization information for the current model
         /// </summary>
         public IDictionary<string, Action<T, IParseNode>> GetFieldDeserializers<T>() {
             return new Dictionary<string, Action<T, IParseNode>> {
                 {"@odata.nextLink", (o,n) => { (o as TaughtClassesResponse).NextLink = n.GetStringValue(); } },
-                {"value", (o,n) => { (o as TaughtClassesResponse).Value = n.GetCollectionOfObjectValues<EducationClass>().ToList(); } },
+                {"value", (o,n) => { (o as TaughtClassesResponse).Value = n.GetCollectionOfObjectValues<EducationClass>(EducationClass.CreateFromDiscriminatorValue).ToList(); } },
             };
         }
         /// <summary>

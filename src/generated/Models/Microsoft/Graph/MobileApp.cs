@@ -36,19 +36,27 @@ namespace ApiSdk.Models.Microsoft.Graph {
         /// <summary>The publishing state for the app. The app cannot be assigned unless the app is published. Possible values are: notPublished, processing, published.</summary>
         public MobileAppPublishingState? PublishingState { get; set; }
         /// <summary>
+        /// Creates a new instance of the appropriate class based on discriminator value
+        /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
+        /// </summary>
+        public static new MobileApp CreateFromDiscriminatorValue(IParseNode parseNode) {
+            _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
+            return new MobileApp();
+        }
+        /// <summary>
         /// The deserialization information for the current model
         /// </summary>
         public new IDictionary<string, Action<T, IParseNode>> GetFieldDeserializers<T>() {
             return new Dictionary<string, Action<T, IParseNode>>(base.GetFieldDeserializers<T>()) {
-                {"assignments", (o,n) => { (o as MobileApp).Assignments = n.GetCollectionOfObjectValues<MobileAppAssignment>().ToList(); } },
-                {"categories", (o,n) => { (o as MobileApp).Categories = n.GetCollectionOfObjectValues<MobileAppCategory>().ToList(); } },
+                {"assignments", (o,n) => { (o as MobileApp).Assignments = n.GetCollectionOfObjectValues<MobileAppAssignment>(MobileAppAssignment.CreateFromDiscriminatorValue).ToList(); } },
+                {"categories", (o,n) => { (o as MobileApp).Categories = n.GetCollectionOfObjectValues<MobileAppCategory>(MobileAppCategory.CreateFromDiscriminatorValue).ToList(); } },
                 {"createdDateTime", (o,n) => { (o as MobileApp).CreatedDateTime = n.GetDateTimeOffsetValue(); } },
                 {"description", (o,n) => { (o as MobileApp).Description = n.GetStringValue(); } },
                 {"developer", (o,n) => { (o as MobileApp).Developer = n.GetStringValue(); } },
                 {"displayName", (o,n) => { (o as MobileApp).DisplayName = n.GetStringValue(); } },
                 {"informationUrl", (o,n) => { (o as MobileApp).InformationUrl = n.GetStringValue(); } },
                 {"isFeatured", (o,n) => { (o as MobileApp).IsFeatured = n.GetBoolValue(); } },
-                {"largeIcon", (o,n) => { (o as MobileApp).LargeIcon = n.GetObjectValue<MimeContent>(); } },
+                {"largeIcon", (o,n) => { (o as MobileApp).LargeIcon = n.GetObjectValue<MimeContent>(MimeContent.CreateFromDiscriminatorValue); } },
                 {"lastModifiedDateTime", (o,n) => { (o as MobileApp).LastModifiedDateTime = n.GetDateTimeOffsetValue(); } },
                 {"notes", (o,n) => { (o as MobileApp).Notes = n.GetStringValue(); } },
                 {"owner", (o,n) => { (o as MobileApp).Owner = n.GetStringValue(); } },

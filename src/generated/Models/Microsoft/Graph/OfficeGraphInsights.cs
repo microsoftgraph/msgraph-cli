@@ -8,17 +8,25 @@ namespace ApiSdk.Models.Microsoft.Graph {
         /// <summary>Access this property from the derived type itemInsights.</summary>
         public List<SharedInsight> Shared { get; set; }
         /// <summary>Access this property from the derived type itemInsights.</summary>
-        public List<Trending> Trending { get; set; }
+        public List<ApiSdk.Models.Microsoft.Graph.Trending> Trending { get; set; }
         /// <summary>Access this property from the derived type itemInsights.</summary>
         public List<UsedInsight> Used { get; set; }
+        /// <summary>
+        /// Creates a new instance of the appropriate class based on discriminator value
+        /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
+        /// </summary>
+        public static new OfficeGraphInsights CreateFromDiscriminatorValue(IParseNode parseNode) {
+            _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
+            return new OfficeGraphInsights();
+        }
         /// <summary>
         /// The deserialization information for the current model
         /// </summary>
         public new IDictionary<string, Action<T, IParseNode>> GetFieldDeserializers<T>() {
             return new Dictionary<string, Action<T, IParseNode>>(base.GetFieldDeserializers<T>()) {
-                {"shared", (o,n) => { (o as OfficeGraphInsights).Shared = n.GetCollectionOfObjectValues<SharedInsight>().ToList(); } },
-                {"trending", (o,n) => { (o as OfficeGraphInsights).Trending = n.GetCollectionOfObjectValues<Trending>().ToList(); } },
-                {"used", (o,n) => { (o as OfficeGraphInsights).Used = n.GetCollectionOfObjectValues<UsedInsight>().ToList(); } },
+                {"shared", (o,n) => { (o as OfficeGraphInsights).Shared = n.GetCollectionOfObjectValues<SharedInsight>(SharedInsight.CreateFromDiscriminatorValue).ToList(); } },
+                {"trending", (o,n) => { (o as OfficeGraphInsights).Trending = n.GetCollectionOfObjectValues<ApiSdk.Models.Microsoft.Graph.Trending>(ApiSdk.Models.Microsoft.Graph.Trending.CreateFromDiscriminatorValue).ToList(); } },
+                {"used", (o,n) => { (o as OfficeGraphInsights).Used = n.GetCollectionOfObjectValues<UsedInsight>(UsedInsight.CreateFromDiscriminatorValue).ToList(); } },
             };
         }
         /// <summary>
@@ -29,7 +37,7 @@ namespace ApiSdk.Models.Microsoft.Graph {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             base.Serialize(writer);
             writer.WriteCollectionOfObjectValues<SharedInsight>("shared", Shared);
-            writer.WriteCollectionOfObjectValues<Trending>("trending", Trending);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.Microsoft.Graph.Trending>("trending", Trending);
             writer.WriteCollectionOfObjectValues<UsedInsight>("used", Used);
         }
     }

@@ -5,15 +5,23 @@ using System.IO;
 using System.Linq;
 namespace ApiSdk.Models.Microsoft.Graph {
     public class InformationProtection : Entity, IParsable {
-        public Bitlocker Bitlocker { get; set; }
+        public ApiSdk.Models.Microsoft.Graph.Bitlocker Bitlocker { get; set; }
         public List<ThreatAssessmentRequest> ThreatAssessmentRequests { get; set; }
+        /// <summary>
+        /// Creates a new instance of the appropriate class based on discriminator value
+        /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
+        /// </summary>
+        public static new InformationProtection CreateFromDiscriminatorValue(IParseNode parseNode) {
+            _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
+            return new InformationProtection();
+        }
         /// <summary>
         /// The deserialization information for the current model
         /// </summary>
         public new IDictionary<string, Action<T, IParseNode>> GetFieldDeserializers<T>() {
             return new Dictionary<string, Action<T, IParseNode>>(base.GetFieldDeserializers<T>()) {
-                {"bitlocker", (o,n) => { (o as InformationProtection).Bitlocker = n.GetObjectValue<Bitlocker>(); } },
-                {"threatAssessmentRequests", (o,n) => { (o as InformationProtection).ThreatAssessmentRequests = n.GetCollectionOfObjectValues<ThreatAssessmentRequest>().ToList(); } },
+                {"bitlocker", (o,n) => { (o as InformationProtection).Bitlocker = n.GetObjectValue<ApiSdk.Models.Microsoft.Graph.Bitlocker>(ApiSdk.Models.Microsoft.Graph.Bitlocker.CreateFromDiscriminatorValue); } },
+                {"threatAssessmentRequests", (o,n) => { (o as InformationProtection).ThreatAssessmentRequests = n.GetCollectionOfObjectValues<ThreatAssessmentRequest>(ThreatAssessmentRequest.CreateFromDiscriminatorValue).ToList(); } },
             };
         }
         /// <summary>
@@ -23,7 +31,7 @@ namespace ApiSdk.Models.Microsoft.Graph {
         public new void Serialize(ISerializationWriter writer) {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             base.Serialize(writer);
-            writer.WriteObjectValue<Bitlocker>("bitlocker", Bitlocker);
+            writer.WriteObjectValue<ApiSdk.Models.Microsoft.Graph.Bitlocker>("bitlocker", Bitlocker);
             writer.WriteCollectionOfObjectValues<ThreatAssessmentRequest>("threatAssessmentRequests", ThreatAssessmentRequests);
         }
     }

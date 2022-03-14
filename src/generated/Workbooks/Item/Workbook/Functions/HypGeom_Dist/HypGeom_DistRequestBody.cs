@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 namespace ApiSdk.Workbooks.Item.Workbook.Functions.HypGeom_Dist {
-    public class HypGeom_DistRequestBody : IParsable {
+    public class HypGeom_DistRequestBody : IAdditionalDataHolder, IParsable {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
         public Json Cumulative { get; set; }
@@ -20,15 +20,23 @@ namespace ApiSdk.Workbooks.Item.Workbook.Functions.HypGeom_Dist {
             AdditionalData = new Dictionary<string, object>();
         }
         /// <summary>
+        /// Creates a new instance of the appropriate class based on discriminator value
+        /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
+        /// </summary>
+        public static HypGeom_DistRequestBody CreateFromDiscriminatorValue(IParseNode parseNode) {
+            _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
+            return new HypGeom_DistRequestBody();
+        }
+        /// <summary>
         /// The deserialization information for the current model
         /// </summary>
         public IDictionary<string, Action<T, IParseNode>> GetFieldDeserializers<T>() {
             return new Dictionary<string, Action<T, IParseNode>> {
-                {"cumulative", (o,n) => { (o as HypGeom_DistRequestBody).Cumulative = n.GetObjectValue<Json>(); } },
-                {"numberPop", (o,n) => { (o as HypGeom_DistRequestBody).NumberPop = n.GetObjectValue<Json>(); } },
-                {"numberSample", (o,n) => { (o as HypGeom_DistRequestBody).NumberSample = n.GetObjectValue<Json>(); } },
-                {"populationS", (o,n) => { (o as HypGeom_DistRequestBody).PopulationS = n.GetObjectValue<Json>(); } },
-                {"sampleS", (o,n) => { (o as HypGeom_DistRequestBody).SampleS = n.GetObjectValue<Json>(); } },
+                {"cumulative", (o,n) => { (o as HypGeom_DistRequestBody).Cumulative = n.GetObjectValue<Json>(Json.CreateFromDiscriminatorValue); } },
+                {"numberPop", (o,n) => { (o as HypGeom_DistRequestBody).NumberPop = n.GetObjectValue<Json>(Json.CreateFromDiscriminatorValue); } },
+                {"numberSample", (o,n) => { (o as HypGeom_DistRequestBody).NumberSample = n.GetObjectValue<Json>(Json.CreateFromDiscriminatorValue); } },
+                {"populationS", (o,n) => { (o as HypGeom_DistRequestBody).PopulationS = n.GetObjectValue<Json>(Json.CreateFromDiscriminatorValue); } },
+                {"sampleS", (o,n) => { (o as HypGeom_DistRequestBody).SampleS = n.GetObjectValue<Json>(Json.CreateFromDiscriminatorValue); } },
             };
         }
         /// <summary>

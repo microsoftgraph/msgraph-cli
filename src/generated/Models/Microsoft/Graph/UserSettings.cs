@@ -10,7 +10,15 @@ namespace ApiSdk.Models.Microsoft.Graph {
         /// <summary>When set to true, documents in the user's Office Delve are disabled. Users can control this setting in Office Delve.</summary>
         public bool? ContributionToContentDiscoveryDisabled { get; set; }
         /// <summary>The shift preferences for the user.</summary>
-        public ShiftPreferences ShiftPreferences { get; set; }
+        public ApiSdk.Models.Microsoft.Graph.ShiftPreferences ShiftPreferences { get; set; }
+        /// <summary>
+        /// Creates a new instance of the appropriate class based on discriminator value
+        /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
+        /// </summary>
+        public static new UserSettings CreateFromDiscriminatorValue(IParseNode parseNode) {
+            _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
+            return new UserSettings();
+        }
         /// <summary>
         /// The deserialization information for the current model
         /// </summary>
@@ -18,7 +26,7 @@ namespace ApiSdk.Models.Microsoft.Graph {
             return new Dictionary<string, Action<T, IParseNode>>(base.GetFieldDeserializers<T>()) {
                 {"contributionToContentDiscoveryAsOrganizationDisabled", (o,n) => { (o as UserSettings).ContributionToContentDiscoveryAsOrganizationDisabled = n.GetBoolValue(); } },
                 {"contributionToContentDiscoveryDisabled", (o,n) => { (o as UserSettings).ContributionToContentDiscoveryDisabled = n.GetBoolValue(); } },
-                {"shiftPreferences", (o,n) => { (o as UserSettings).ShiftPreferences = n.GetObjectValue<ShiftPreferences>(); } },
+                {"shiftPreferences", (o,n) => { (o as UserSettings).ShiftPreferences = n.GetObjectValue<ApiSdk.Models.Microsoft.Graph.ShiftPreferences>(ApiSdk.Models.Microsoft.Graph.ShiftPreferences.CreateFromDiscriminatorValue); } },
             };
         }
         /// <summary>
@@ -30,7 +38,7 @@ namespace ApiSdk.Models.Microsoft.Graph {
             base.Serialize(writer);
             writer.WriteBoolValue("contributionToContentDiscoveryAsOrganizationDisabled", ContributionToContentDiscoveryAsOrganizationDisabled);
             writer.WriteBoolValue("contributionToContentDiscoveryDisabled", ContributionToContentDiscoveryDisabled);
-            writer.WriteObjectValue<ShiftPreferences>("shiftPreferences", ShiftPreferences);
+            writer.WriteObjectValue<ApiSdk.Models.Microsoft.Graph.ShiftPreferences>("shiftPreferences", ShiftPreferences);
         }
     }
 }

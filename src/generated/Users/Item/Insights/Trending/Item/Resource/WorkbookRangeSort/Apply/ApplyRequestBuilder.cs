@@ -48,7 +48,7 @@ namespace ApiSdk.Users.Item.Insights.Trending.Item.Resource.WorkbookRangeSort.Ap
                 PathParameters.Add("trendingItem_Id", trendingItemId);
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
-                var model = parseNode.GetObjectValue<ApplyRequestBody>();
+                var model = parseNode.GetObjectValue<ApplyRequestBody>(ApplyRequestBody.CreateFromDiscriminatorValue);
                 var requestInfo = CreatePostRequestInformation(model, q => {
                 });
                 await RequestAdapter.SendNoContentAsync(requestInfo, errorMapping: default, cancellationToken: cancellationToken);

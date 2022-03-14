@@ -14,11 +14,19 @@ namespace ApiSdk.Models.Microsoft.Graph {
         /// <summary>A boolean value the represents the visibility of a ChartLegend object.</summary>
         public bool? Visible { get; set; }
         /// <summary>
+        /// Creates a new instance of the appropriate class based on discriminator value
+        /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
+        /// </summary>
+        public static new WorkbookChartLegend CreateFromDiscriminatorValue(IParseNode parseNode) {
+            _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
+            return new WorkbookChartLegend();
+        }
+        /// <summary>
         /// The deserialization information for the current model
         /// </summary>
         public new IDictionary<string, Action<T, IParseNode>> GetFieldDeserializers<T>() {
             return new Dictionary<string, Action<T, IParseNode>>(base.GetFieldDeserializers<T>()) {
-                {"format", (o,n) => { (o as WorkbookChartLegend).Format = n.GetObjectValue<WorkbookChartLegendFormat>(); } },
+                {"format", (o,n) => { (o as WorkbookChartLegend).Format = n.GetObjectValue<WorkbookChartLegendFormat>(WorkbookChartLegendFormat.CreateFromDiscriminatorValue); } },
                 {"overlay", (o,n) => { (o as WorkbookChartLegend).Overlay = n.GetBoolValue(); } },
                 {"position", (o,n) => { (o as WorkbookChartLegend).Position = n.GetStringValue(); } },
                 {"visible", (o,n) => { (o as WorkbookChartLegend).Visible = n.GetBoolValue(); } },

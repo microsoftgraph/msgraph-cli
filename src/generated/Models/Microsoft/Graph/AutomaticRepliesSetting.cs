@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 namespace ApiSdk.Models.Microsoft.Graph {
-    public class AutomaticRepliesSetting : IParsable {
+    public class AutomaticRepliesSetting : IAdditionalDataHolder, IParsable {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>The set of audience external to the signed-in user's organization who will receive the ExternalReplyMessage, if Status is AlwaysEnabled or Scheduled. Possible values are: none, contactsOnly, all.</summary>
@@ -26,6 +26,14 @@ namespace ApiSdk.Models.Microsoft.Graph {
             AdditionalData = new Dictionary<string, object>();
         }
         /// <summary>
+        /// Creates a new instance of the appropriate class based on discriminator value
+        /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
+        /// </summary>
+        public static AutomaticRepliesSetting CreateFromDiscriminatorValue(IParseNode parseNode) {
+            _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
+            return new AutomaticRepliesSetting();
+        }
+        /// <summary>
         /// The deserialization information for the current model
         /// </summary>
         public IDictionary<string, Action<T, IParseNode>> GetFieldDeserializers<T>() {
@@ -33,8 +41,8 @@ namespace ApiSdk.Models.Microsoft.Graph {
                 {"externalAudience", (o,n) => { (o as AutomaticRepliesSetting).ExternalAudience = n.GetEnumValue<ExternalAudienceScope>(); } },
                 {"externalReplyMessage", (o,n) => { (o as AutomaticRepliesSetting).ExternalReplyMessage = n.GetStringValue(); } },
                 {"internalReplyMessage", (o,n) => { (o as AutomaticRepliesSetting).InternalReplyMessage = n.GetStringValue(); } },
-                {"scheduledEndDateTime", (o,n) => { (o as AutomaticRepliesSetting).ScheduledEndDateTime = n.GetObjectValue<DateTimeTimeZone>(); } },
-                {"scheduledStartDateTime", (o,n) => { (o as AutomaticRepliesSetting).ScheduledStartDateTime = n.GetObjectValue<DateTimeTimeZone>(); } },
+                {"scheduledEndDateTime", (o,n) => { (o as AutomaticRepliesSetting).ScheduledEndDateTime = n.GetObjectValue<DateTimeTimeZone>(DateTimeTimeZone.CreateFromDiscriminatorValue); } },
+                {"scheduledStartDateTime", (o,n) => { (o as AutomaticRepliesSetting).ScheduledStartDateTime = n.GetObjectValue<DateTimeTimeZone>(DateTimeTimeZone.CreateFromDiscriminatorValue); } },
                 {"status", (o,n) => { (o as AutomaticRepliesSetting).Status = n.GetEnumValue<AutomaticRepliesStatus>(); } },
             };
         }

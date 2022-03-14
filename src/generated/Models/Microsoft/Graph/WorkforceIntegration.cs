@@ -18,13 +18,21 @@ namespace ApiSdk.Models.Microsoft.Graph {
         /// <summary>Workforce Integration URL for callbacks from the Shifts service.</summary>
         public string Url { get; set; }
         /// <summary>
+        /// Creates a new instance of the appropriate class based on discriminator value
+        /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
+        /// </summary>
+        public static new WorkforceIntegration CreateFromDiscriminatorValue(IParseNode parseNode) {
+            _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
+            return new WorkforceIntegration();
+        }
+        /// <summary>
         /// The deserialization information for the current model
         /// </summary>
         public new IDictionary<string, Action<T, IParseNode>> GetFieldDeserializers<T>() {
             return new Dictionary<string, Action<T, IParseNode>>(base.GetFieldDeserializers<T>()) {
                 {"apiVersion", (o,n) => { (o as WorkforceIntegration).ApiVersion = n.GetIntValue(); } },
                 {"displayName", (o,n) => { (o as WorkforceIntegration).DisplayName = n.GetStringValue(); } },
-                {"encryption", (o,n) => { (o as WorkforceIntegration).Encryption = n.GetObjectValue<WorkforceIntegrationEncryption>(); } },
+                {"encryption", (o,n) => { (o as WorkforceIntegration).Encryption = n.GetObjectValue<WorkforceIntegrationEncryption>(WorkforceIntegrationEncryption.CreateFromDiscriminatorValue); } },
                 {"isActive", (o,n) => { (o as WorkforceIntegration).IsActive = n.GetBoolValue(); } },
                 {"supportedEntities", (o,n) => { (o as WorkforceIntegration).SupportedEntities = n.GetEnumValue<WorkforceIntegrationSupportedEntities>(); } },
                 {"url", (o,n) => { (o as WorkforceIntegration).Url = n.GetStringValue(); } },

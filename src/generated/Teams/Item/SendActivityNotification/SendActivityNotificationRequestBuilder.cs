@@ -42,7 +42,7 @@ namespace ApiSdk.Teams.Item.SendActivityNotification {
                 PathParameters.Add("team_id", teamId);
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
-                var model = parseNode.GetObjectValue<SendActivityNotificationRequestBody>();
+                var model = parseNode.GetObjectValue<SendActivityNotificationRequestBody>(SendActivityNotificationRequestBody.CreateFromDiscriminatorValue);
                 var requestInfo = CreatePostRequestInformation(model, q => {
                 });
                 await RequestAdapter.SendNoContentAsync(requestInfo, errorMapping: default, cancellationToken: cancellationToken);

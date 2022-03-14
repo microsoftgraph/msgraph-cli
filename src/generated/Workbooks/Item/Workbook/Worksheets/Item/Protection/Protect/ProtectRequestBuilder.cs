@@ -48,7 +48,7 @@ namespace ApiSdk.Workbooks.Item.Workbook.Worksheets.Item.Protection.Protect {
                 PathParameters.Add("workbookWorksheet_id", workbookWorksheetId);
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
-                var model = parseNode.GetObjectValue<ProtectRequestBody>();
+                var model = parseNode.GetObjectValue<ProtectRequestBody>(ProtectRequestBody.CreateFromDiscriminatorValue);
                 var requestInfo = CreatePostRequestInformation(model, q => {
                 });
                 await RequestAdapter.SendNoContentAsync(requestInfo, errorMapping: default, cancellationToken: cancellationToken);

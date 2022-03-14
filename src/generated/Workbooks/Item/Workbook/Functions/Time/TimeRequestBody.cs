@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 namespace ApiSdk.Workbooks.Item.Workbook.Functions.Time {
-    public class TimeRequestBody : IParsable {
+    public class TimeRequestBody : IAdditionalDataHolder, IParsable {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
         public Json Hour { get; set; }
@@ -18,13 +18,21 @@ namespace ApiSdk.Workbooks.Item.Workbook.Functions.Time {
             AdditionalData = new Dictionary<string, object>();
         }
         /// <summary>
+        /// Creates a new instance of the appropriate class based on discriminator value
+        /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
+        /// </summary>
+        public static TimeRequestBody CreateFromDiscriminatorValue(IParseNode parseNode) {
+            _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
+            return new TimeRequestBody();
+        }
+        /// <summary>
         /// The deserialization information for the current model
         /// </summary>
         public IDictionary<string, Action<T, IParseNode>> GetFieldDeserializers<T>() {
             return new Dictionary<string, Action<T, IParseNode>> {
-                {"hour", (o,n) => { (o as TimeRequestBody).Hour = n.GetObjectValue<Json>(); } },
-                {"minute", (o,n) => { (o as TimeRequestBody).Minute = n.GetObjectValue<Json>(); } },
-                {"second", (o,n) => { (o as TimeRequestBody).Second = n.GetObjectValue<Json>(); } },
+                {"hour", (o,n) => { (o as TimeRequestBody).Hour = n.GetObjectValue<Json>(Json.CreateFromDiscriminatorValue); } },
+                {"minute", (o,n) => { (o as TimeRequestBody).Minute = n.GetObjectValue<Json>(Json.CreateFromDiscriminatorValue); } },
+                {"second", (o,n) => { (o as TimeRequestBody).Second = n.GetObjectValue<Json>(Json.CreateFromDiscriminatorValue); } },
             };
         }
         /// <summary>

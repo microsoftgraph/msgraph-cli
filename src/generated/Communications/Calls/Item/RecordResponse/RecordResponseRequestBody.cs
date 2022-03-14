@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 namespace ApiSdk.Communications.Calls.Item.RecordResponse {
-    public class RecordResponseRequestBody : IParsable {
+    public class RecordResponseRequestBody : IAdditionalDataHolder, IParsable {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
         public bool? BargeInAllowed { get; set; }
@@ -23,6 +23,14 @@ namespace ApiSdk.Communications.Calls.Item.RecordResponse {
             AdditionalData = new Dictionary<string, object>();
         }
         /// <summary>
+        /// Creates a new instance of the appropriate class based on discriminator value
+        /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
+        /// </summary>
+        public static RecordResponseRequestBody CreateFromDiscriminatorValue(IParseNode parseNode) {
+            _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
+            return new RecordResponseRequestBody();
+        }
+        /// <summary>
         /// The deserialization information for the current model
         /// </summary>
         public IDictionary<string, Action<T, IParseNode>> GetFieldDeserializers<T>() {
@@ -33,7 +41,7 @@ namespace ApiSdk.Communications.Calls.Item.RecordResponse {
                 {"maxRecordDurationInSeconds", (o,n) => { (o as RecordResponseRequestBody).MaxRecordDurationInSeconds = n.GetIntValue(); } },
                 {"maxSilenceTimeoutInSeconds", (o,n) => { (o as RecordResponseRequestBody).MaxSilenceTimeoutInSeconds = n.GetIntValue(); } },
                 {"playBeep", (o,n) => { (o as RecordResponseRequestBody).PlayBeep = n.GetBoolValue(); } },
-                {"prompts", (o,n) => { (o as RecordResponseRequestBody).Prompts = n.GetCollectionOfObjectValues<Prompt>().ToList(); } },
+                {"prompts", (o,n) => { (o as RecordResponseRequestBody).Prompts = n.GetCollectionOfObjectValues<Prompt>(Prompt.CreateFromDiscriminatorValue).ToList(); } },
                 {"stopTones", (o,n) => { (o as RecordResponseRequestBody).StopTones = n.GetCollectionOfPrimitiveValues<string>().ToList(); } },
             };
         }

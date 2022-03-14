@@ -8,9 +8,17 @@ namespace ApiSdk.Models.Microsoft.Graph {
         /// <summary>Application Name</summary>
         public string ApplicationName { get; set; }
         /// <summary>Application Type. Possible values are: universal, desktop.</summary>
-        public ApplicationType? ApplicationType { get; set; }
+        public ApiSdk.Models.Microsoft.Graph.ApplicationType? ApplicationType { get; set; }
         /// <summary>Device Count</summary>
         public int? DeviceCount { get; set; }
+        /// <summary>
+        /// Creates a new instance of the appropriate class based on discriminator value
+        /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
+        /// </summary>
+        public static new WindowsInformationProtectionAppLearningSummary CreateFromDiscriminatorValue(IParseNode parseNode) {
+            _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
+            return new WindowsInformationProtectionAppLearningSummary();
+        }
         /// <summary>
         /// The deserialization information for the current model
         /// </summary>

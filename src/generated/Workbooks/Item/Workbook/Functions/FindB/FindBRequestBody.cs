@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 namespace ApiSdk.Workbooks.Item.Workbook.Functions.FindB {
-    public class FindBRequestBody : IParsable {
+    public class FindBRequestBody : IAdditionalDataHolder, IParsable {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
         public Json FindText { get; set; }
@@ -18,13 +18,21 @@ namespace ApiSdk.Workbooks.Item.Workbook.Functions.FindB {
             AdditionalData = new Dictionary<string, object>();
         }
         /// <summary>
+        /// Creates a new instance of the appropriate class based on discriminator value
+        /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
+        /// </summary>
+        public static FindBRequestBody CreateFromDiscriminatorValue(IParseNode parseNode) {
+            _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
+            return new FindBRequestBody();
+        }
+        /// <summary>
         /// The deserialization information for the current model
         /// </summary>
         public IDictionary<string, Action<T, IParseNode>> GetFieldDeserializers<T>() {
             return new Dictionary<string, Action<T, IParseNode>> {
-                {"findText", (o,n) => { (o as FindBRequestBody).FindText = n.GetObjectValue<Json>(); } },
-                {"startNum", (o,n) => { (o as FindBRequestBody).StartNum = n.GetObjectValue<Json>(); } },
-                {"withinText", (o,n) => { (o as FindBRequestBody).WithinText = n.GetObjectValue<Json>(); } },
+                {"findText", (o,n) => { (o as FindBRequestBody).FindText = n.GetObjectValue<Json>(Json.CreateFromDiscriminatorValue); } },
+                {"startNum", (o,n) => { (o as FindBRequestBody).StartNum = n.GetObjectValue<Json>(Json.CreateFromDiscriminatorValue); } },
+                {"withinText", (o,n) => { (o as FindBRequestBody).WithinText = n.GetObjectValue<Json>(Json.CreateFromDiscriminatorValue); } },
             };
         }
         /// <summary>

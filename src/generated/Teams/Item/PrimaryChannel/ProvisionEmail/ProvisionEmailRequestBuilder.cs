@@ -37,22 +37,31 @@ namespace ApiSdk.Teams.Item.PrimaryChannel.ProvisionEmail {
             command.AddOption(outputOption);
             var queryOption = new Option<string>("--query");
             command.AddOption(queryOption);
+            var jsonNoIndentOption = new Option<bool>("--json-no-indent", r => {
+                if (bool.TryParse(r.Tokens.Select(t => t.Value).LastOrDefault(), out var value)) {
+                    return value;
+                }
+                return true;
+            }, description: "Disable indentation for the JSON output formatter.");
+            command.AddOption(jsonNoIndentOption);
             command.SetHandler(async (object[] parameters) => {
                 var teamId = (string) parameters[0];
                 var output = (FormatterType) parameters[1];
                 var query = (string) parameters[2];
-                var outputFilter = (IOutputFilter) parameters[3];
-                var outputFormatterFactory = (IOutputFormatterFactory) parameters[4];
-                var cancellationToken = (CancellationToken) parameters[5];
+                var jsonNoIndent = (bool) parameters[3];
+                var outputFilter = (IOutputFilter) parameters[4];
+                var outputFormatterFactory = (IOutputFormatterFactory) parameters[5];
+                var cancellationToken = (CancellationToken) parameters[6];
                 PathParameters.Clear();
                 PathParameters.Add("team_id", teamId);
                 var requestInfo = CreatePostRequestInformation(q => {
                 });
                 var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: default, cancellationToken: cancellationToken);
                 var formatter = outputFormatterFactory.GetFormatter(output);
-                response = outputFilter?.FilterOutput(response, query) ?? response;
-                formatter.WriteOutput(response);
-            }, new CollectionBinding(teamIdOption, outputOption, queryOption, new TypeBinding(typeof(IOutputFilter)), new TypeBinding(typeof(IOutputFormatterFactory)), new TypeBinding(typeof(CancellationToken))));
+                response = await outputFilter?.FilterOutputAsync(response, query, cancellationToken) ?? response;
+                var formatterOptions = output.GetOutputFormatterOptions(new FormatterOptionsModel(!jsonNoIndent));
+                await formatter.WriteOutputAsync(response, formatterOptions, cancellationToken);
+            }, new CollectionBinding(teamIdOption, outputOption, queryOption, jsonNoIndentOption, new TypeBinding(typeof(IOutputFilter)), new TypeBinding(typeof(IOutputFormatterFactory)), new TypeBinding(typeof(CancellationToken))));
             return command;
         }
         /// <summary>
@@ -84,23 +93,27 @@ namespace ApiSdk.Teams.Item.PrimaryChannel.ProvisionEmail {
             return requestInfo;
         }
         /// <summary>Union type wrapper for classes provisionChannelEmailResult</summary>
-        public class ProvisionEmailResponse : IParsable {
+        public class ProvisionEmailResponse : IAdditionalDataHolder, IParsable {
             /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
             public IDictionary<string, object> AdditionalData { get; set; }
             /// <summary>Union type representation for type provisionChannelEmailResult</summary>
-            public ProvisionChannelEmailResult ProvisionChannelEmailResult { get; set; }
+            public ApiSdk.Models.Microsoft.Graph.ProvisionChannelEmailResult ProvisionChannelEmailResult { get; set; }
             /// <summary>
             /// Instantiates a new provisionEmailResponse and sets the default values.
             /// </summary>
             public ProvisionEmailResponse() {
                 AdditionalData = new Dictionary<string, object>();
             }
+            public static ProvisionEmailResponse CreateFromDiscriminatorValue(IParseNode parseNode) {
+                _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
+                return new ProvisionEmailResponse();
+            }
             /// <summary>
             /// The deserialization information for the current model
             /// </summary>
             public IDictionary<string, Action<T, IParseNode>> GetFieldDeserializers<T>() {
                 return new Dictionary<string, Action<T, IParseNode>> {
-                    {"provisionChannelEmailResult", (o,n) => { (o as ProvisionEmailResponse).ProvisionChannelEmailResult = n.GetObjectValue<ProvisionChannelEmailResult>(); } },
+                    {"provisionChannelEmailResult", (o,n) => { (o as ProvisionEmailResponse).ProvisionChannelEmailResult = n.GetObjectValue<ApiSdk.Models.Microsoft.Graph.ProvisionChannelEmailResult>(ApiSdk.Models.Microsoft.Graph.ProvisionChannelEmailResult.CreateFromDiscriminatorValue); } },
                 };
             }
             /// <summary>
@@ -109,7 +122,7 @@ namespace ApiSdk.Teams.Item.PrimaryChannel.ProvisionEmail {
             /// </summary>
             public void Serialize(ISerializationWriter writer) {
                 _ = writer ?? throw new ArgumentNullException(nameof(writer));
-                writer.WriteObjectValue<ProvisionChannelEmailResult>("provisionChannelEmailResult", ProvisionChannelEmailResult);
+                writer.WriteObjectValue<ApiSdk.Models.Microsoft.Graph.ProvisionChannelEmailResult>("provisionChannelEmailResult", ProvisionChannelEmailResult);
                 writer.WriteAdditionalData(AdditionalData);
             }
         }

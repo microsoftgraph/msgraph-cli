@@ -36,22 +36,30 @@ namespace ApiSdk.Models.Microsoft.Graph {
         /// <summary>Version of the entity.</summary>
         public string Version { get; set; }
         /// <summary>
+        /// Creates a new instance of the appropriate class based on discriminator value
+        /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
+        /// </summary>
+        public static new ManagedAppRegistration CreateFromDiscriminatorValue(IParseNode parseNode) {
+            _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
+            return new ManagedAppRegistration();
+        }
+        /// <summary>
         /// The deserialization information for the current model
         /// </summary>
         public new IDictionary<string, Action<T, IParseNode>> GetFieldDeserializers<T>() {
             return new Dictionary<string, Action<T, IParseNode>>(base.GetFieldDeserializers<T>()) {
-                {"appIdentifier", (o,n) => { (o as ManagedAppRegistration).AppIdentifier = n.GetObjectValue<MobileAppIdentifier>(); } },
+                {"appIdentifier", (o,n) => { (o as ManagedAppRegistration).AppIdentifier = n.GetObjectValue<MobileAppIdentifier>(MobileAppIdentifier.CreateFromDiscriminatorValue); } },
                 {"applicationVersion", (o,n) => { (o as ManagedAppRegistration).ApplicationVersion = n.GetStringValue(); } },
-                {"appliedPolicies", (o,n) => { (o as ManagedAppRegistration).AppliedPolicies = n.GetCollectionOfObjectValues<ManagedAppPolicy>().ToList(); } },
+                {"appliedPolicies", (o,n) => { (o as ManagedAppRegistration).AppliedPolicies = n.GetCollectionOfObjectValues<ManagedAppPolicy>(ManagedAppPolicy.CreateFromDiscriminatorValue).ToList(); } },
                 {"createdDateTime", (o,n) => { (o as ManagedAppRegistration).CreatedDateTime = n.GetDateTimeOffsetValue(); } },
                 {"deviceName", (o,n) => { (o as ManagedAppRegistration).DeviceName = n.GetStringValue(); } },
                 {"deviceTag", (o,n) => { (o as ManagedAppRegistration).DeviceTag = n.GetStringValue(); } },
                 {"deviceType", (o,n) => { (o as ManagedAppRegistration).DeviceType = n.GetStringValue(); } },
                 {"flaggedReasons", (o,n) => { (o as ManagedAppRegistration).FlaggedReasons = n.GetCollectionOfEnumValues<ManagedAppFlaggedReason>().ToList(); } },
-                {"intendedPolicies", (o,n) => { (o as ManagedAppRegistration).IntendedPolicies = n.GetCollectionOfObjectValues<ManagedAppPolicy>().ToList(); } },
+                {"intendedPolicies", (o,n) => { (o as ManagedAppRegistration).IntendedPolicies = n.GetCollectionOfObjectValues<ManagedAppPolicy>(ManagedAppPolicy.CreateFromDiscriminatorValue).ToList(); } },
                 {"lastSyncDateTime", (o,n) => { (o as ManagedAppRegistration).LastSyncDateTime = n.GetDateTimeOffsetValue(); } },
                 {"managementSdkVersion", (o,n) => { (o as ManagedAppRegistration).ManagementSdkVersion = n.GetStringValue(); } },
-                {"operations", (o,n) => { (o as ManagedAppRegistration).Operations = n.GetCollectionOfObjectValues<ManagedAppOperation>().ToList(); } },
+                {"operations", (o,n) => { (o as ManagedAppRegistration).Operations = n.GetCollectionOfObjectValues<ManagedAppOperation>(ManagedAppOperation.CreateFromDiscriminatorValue).ToList(); } },
                 {"platformVersion", (o,n) => { (o as ManagedAppRegistration).PlatformVersion = n.GetStringValue(); } },
                 {"userId", (o,n) => { (o as ManagedAppRegistration).UserId = n.GetStringValue(); } },
                 {"version", (o,n) => { (o as ManagedAppRegistration).Version = n.GetStringValue(); } },

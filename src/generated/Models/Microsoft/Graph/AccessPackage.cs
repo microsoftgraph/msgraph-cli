@@ -18,11 +18,19 @@ namespace ApiSdk.Models.Microsoft.Graph {
         /// <summary>The Timestamp type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z. Read-only.</summary>
         public DateTimeOffset? ModifiedDateTime { get; set; }
         /// <summary>
+        /// Creates a new instance of the appropriate class based on discriminator value
+        /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
+        /// </summary>
+        public static new AccessPackage CreateFromDiscriminatorValue(IParseNode parseNode) {
+            _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
+            return new AccessPackage();
+        }
+        /// <summary>
         /// The deserialization information for the current model
         /// </summary>
         public new IDictionary<string, Action<T, IParseNode>> GetFieldDeserializers<T>() {
             return new Dictionary<string, Action<T, IParseNode>>(base.GetFieldDeserializers<T>()) {
-                {"catalog", (o,n) => { (o as AccessPackage).Catalog = n.GetObjectValue<AccessPackageCatalog>(); } },
+                {"catalog", (o,n) => { (o as AccessPackage).Catalog = n.GetObjectValue<AccessPackageCatalog>(AccessPackageCatalog.CreateFromDiscriminatorValue); } },
                 {"createdDateTime", (o,n) => { (o as AccessPackage).CreatedDateTime = n.GetDateTimeOffsetValue(); } },
                 {"description", (o,n) => { (o as AccessPackage).Description = n.GetStringValue(); } },
                 {"displayName", (o,n) => { (o as AccessPackage).DisplayName = n.GetStringValue(); } },

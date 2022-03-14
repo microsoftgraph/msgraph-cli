@@ -12,6 +12,14 @@ namespace ApiSdk.Models.Microsoft.Graph {
         /// <summary>The threat assessment result type. Possible values are: checkPolicy (only for mail assessment), rescan.</summary>
         public ThreatAssessmentResultType? ResultType { get; set; }
         /// <summary>
+        /// Creates a new instance of the appropriate class based on discriminator value
+        /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
+        /// </summary>
+        public static new ThreatAssessmentResult CreateFromDiscriminatorValue(IParseNode parseNode) {
+            _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
+            return new ThreatAssessmentResult();
+        }
+        /// <summary>
         /// The deserialization information for the current model
         /// </summary>
         public new IDictionary<string, Action<T, IParseNode>> GetFieldDeserializers<T>() {

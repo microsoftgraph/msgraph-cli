@@ -27,6 +27,14 @@ namespace ApiSdk.Models.Microsoft.Graph {
         public string Title { get; set; }
         public List<string> UserTags { get; set; }
         /// <summary>
+        /// Creates a new instance of the appropriate class based on discriminator value
+        /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
+        /// </summary>
+        public static new OnenotePage CreateFromDiscriminatorValue(IParseNode parseNode) {
+            _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
+            return new OnenotePage();
+        }
+        /// <summary>
         /// The deserialization information for the current model
         /// </summary>
         public new IDictionary<string, Action<T, IParseNode>> GetFieldDeserializers<T>() {
@@ -36,10 +44,10 @@ namespace ApiSdk.Models.Microsoft.Graph {
                 {"createdByAppId", (o,n) => { (o as OnenotePage).CreatedByAppId = n.GetStringValue(); } },
                 {"lastModifiedDateTime", (o,n) => { (o as OnenotePage).LastModifiedDateTime = n.GetDateTimeOffsetValue(); } },
                 {"level", (o,n) => { (o as OnenotePage).Level = n.GetIntValue(); } },
-                {"links", (o,n) => { (o as OnenotePage).Links = n.GetObjectValue<PageLinks>(); } },
+                {"links", (o,n) => { (o as OnenotePage).Links = n.GetObjectValue<PageLinks>(PageLinks.CreateFromDiscriminatorValue); } },
                 {"order", (o,n) => { (o as OnenotePage).Order = n.GetIntValue(); } },
-                {"parentNotebook", (o,n) => { (o as OnenotePage).ParentNotebook = n.GetObjectValue<Notebook>(); } },
-                {"parentSection", (o,n) => { (o as OnenotePage).ParentSection = n.GetObjectValue<OnenoteSection>(); } },
+                {"parentNotebook", (o,n) => { (o as OnenotePage).ParentNotebook = n.GetObjectValue<Notebook>(Notebook.CreateFromDiscriminatorValue); } },
+                {"parentSection", (o,n) => { (o as OnenotePage).ParentSection = n.GetObjectValue<OnenoteSection>(OnenoteSection.CreateFromDiscriminatorValue); } },
                 {"title", (o,n) => { (o as OnenotePage).Title = n.GetStringValue(); } },
                 {"userTags", (o,n) => { (o as OnenotePage).UserTags = n.GetCollectionOfPrimitiveValues<string>().ToList(); } },
             };
