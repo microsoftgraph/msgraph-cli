@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 namespace ApiSdk.Models.Microsoft.Graph {
-    public class CalculatedColumn : IParsable {
+    public class CalculatedColumn : IAdditionalDataHolder, IParsable {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>For dateTime output types, the format of the value. Must be one of dateOnly or dateTime.</summary>
@@ -18,6 +18,14 @@ namespace ApiSdk.Models.Microsoft.Graph {
         /// </summary>
         public CalculatedColumn() {
             AdditionalData = new Dictionary<string, object>();
+        }
+        /// <summary>
+        /// Creates a new instance of the appropriate class based on discriminator value
+        /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
+        /// </summary>
+        public static CalculatedColumn CreateFromDiscriminatorValue(IParseNode parseNode) {
+            _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
+            return new CalculatedColumn();
         }
         /// <summary>
         /// The deserialization information for the current model

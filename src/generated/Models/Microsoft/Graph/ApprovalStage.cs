@@ -20,6 +20,14 @@ namespace ApiSdk.Models.Microsoft.Graph {
         /// <summary>The stage status. Possible values: InProgress, Initializing, Completed, Expired. Read-only.</summary>
         public string Status { get; set; }
         /// <summary>
+        /// Creates a new instance of the appropriate class based on discriminator value
+        /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
+        /// </summary>
+        public static new ApprovalStage CreateFromDiscriminatorValue(IParseNode parseNode) {
+            _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
+            return new ApprovalStage();
+        }
+        /// <summary>
         /// The deserialization information for the current model
         /// </summary>
         public new IDictionary<string, Action<T, IParseNode>> GetFieldDeserializers<T>() {
@@ -27,7 +35,7 @@ namespace ApiSdk.Models.Microsoft.Graph {
                 {"assignedToMe", (o,n) => { (o as ApprovalStage).AssignedToMe = n.GetBoolValue(); } },
                 {"displayName", (o,n) => { (o as ApprovalStage).DisplayName = n.GetStringValue(); } },
                 {"justification", (o,n) => { (o as ApprovalStage).Justification = n.GetStringValue(); } },
-                {"reviewedBy", (o,n) => { (o as ApprovalStage).ReviewedBy = n.GetObjectValue<Identity>(); } },
+                {"reviewedBy", (o,n) => { (o as ApprovalStage).ReviewedBy = n.GetObjectValue<Identity>(Identity.CreateFromDiscriminatorValue); } },
                 {"reviewedDateTime", (o,n) => { (o as ApprovalStage).ReviewedDateTime = n.GetDateTimeOffsetValue(); } },
                 {"reviewResult", (o,n) => { (o as ApprovalStage).ReviewResult = n.GetStringValue(); } },
                 {"status", (o,n) => { (o as ApprovalStage).Status = n.GetStringValue(); } },

@@ -24,19 +24,27 @@ namespace ApiSdk.Models.Microsoft.Graph {
         /// <summary>The collection of qualities making up this rubric.</summary>
         public List<RubricQuality> Qualities { get; set; }
         /// <summary>
+        /// Creates a new instance of the appropriate class based on discriminator value
+        /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
+        /// </summary>
+        public static new EducationRubric CreateFromDiscriminatorValue(IParseNode parseNode) {
+            _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
+            return new EducationRubric();
+        }
+        /// <summary>
         /// The deserialization information for the current model
         /// </summary>
         public new IDictionary<string, Action<T, IParseNode>> GetFieldDeserializers<T>() {
             return new Dictionary<string, Action<T, IParseNode>>(base.GetFieldDeserializers<T>()) {
-                {"createdBy", (o,n) => { (o as EducationRubric).CreatedBy = n.GetObjectValue<IdentitySet>(); } },
+                {"createdBy", (o,n) => { (o as EducationRubric).CreatedBy = n.GetObjectValue<IdentitySet>(IdentitySet.CreateFromDiscriminatorValue); } },
                 {"createdDateTime", (o,n) => { (o as EducationRubric).CreatedDateTime = n.GetDateTimeOffsetValue(); } },
-                {"description", (o,n) => { (o as EducationRubric).Description = n.GetObjectValue<EducationItemBody>(); } },
+                {"description", (o,n) => { (o as EducationRubric).Description = n.GetObjectValue<EducationItemBody>(EducationItemBody.CreateFromDiscriminatorValue); } },
                 {"displayName", (o,n) => { (o as EducationRubric).DisplayName = n.GetStringValue(); } },
-                {"grading", (o,n) => { (o as EducationRubric).Grading = n.GetObjectValue<EducationAssignmentGradeType>(); } },
-                {"lastModifiedBy", (o,n) => { (o as EducationRubric).LastModifiedBy = n.GetObjectValue<IdentitySet>(); } },
+                {"grading", (o,n) => { (o as EducationRubric).Grading = n.GetObjectValue<EducationAssignmentGradeType>(EducationAssignmentGradeType.CreateFromDiscriminatorValue); } },
+                {"lastModifiedBy", (o,n) => { (o as EducationRubric).LastModifiedBy = n.GetObjectValue<IdentitySet>(IdentitySet.CreateFromDiscriminatorValue); } },
                 {"lastModifiedDateTime", (o,n) => { (o as EducationRubric).LastModifiedDateTime = n.GetDateTimeOffsetValue(); } },
-                {"levels", (o,n) => { (o as EducationRubric).Levels = n.GetCollectionOfObjectValues<RubricLevel>().ToList(); } },
-                {"qualities", (o,n) => { (o as EducationRubric).Qualities = n.GetCollectionOfObjectValues<RubricQuality>().ToList(); } },
+                {"levels", (o,n) => { (o as EducationRubric).Levels = n.GetCollectionOfObjectValues<RubricLevel>(RubricLevel.CreateFromDiscriminatorValue).ToList(); } },
+                {"qualities", (o,n) => { (o as EducationRubric).Qualities = n.GetCollectionOfObjectValues<RubricQuality>(RubricQuality.CreateFromDiscriminatorValue).ToList(); } },
             };
         }
         /// <summary>

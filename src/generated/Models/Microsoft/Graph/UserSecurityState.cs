@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 namespace ApiSdk.Models.Microsoft.Graph {
-    public class UserSecurityState : IParsable {
+    public class UserSecurityState : IAdditionalDataHolder, IParsable {
         /// <summary>AAD User object identifier (GUID) - represents the physical/multi-account user entity.</summary>
         public string AadUserId { get; set; }
         /// <summary>Account name of user account (without Active Directory domain or DNS domain) - (also called mailNickName).</summary>
@@ -14,7 +14,7 @@ namespace ApiSdk.Models.Microsoft.Graph {
         /// <summary>NetBIOS/Active Directory domain of user account (that is, domain/account format).</summary>
         public string DomainName { get; set; }
         /// <summary>For email-related alerts - user account's email 'role'. Possible values are: unknown, sender, recipient.</summary>
-        public EmailRole? EmailRole { get; set; }
+        public ApiSdk.Models.Microsoft.Graph.EmailRole? EmailRole { get; set; }
         /// <summary>Indicates whether the user logged on through a VPN.</summary>
         public bool? IsVpn { get; set; }
         /// <summary>Time at which the sign-in occurred. The Timestamp type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z.</summary>
@@ -26,7 +26,7 @@ namespace ApiSdk.Models.Microsoft.Graph {
         /// <summary>Location (by IP address mapping) associated with a user sign-in event by this user.</summary>
         public string LogonLocation { get; set; }
         /// <summary>Method of user sign in. Possible values are: unknown, interactive, remoteInteractive, network, batch, service.</summary>
-        public LogonType? LogonType { get; set; }
+        public ApiSdk.Models.Microsoft.Graph.LogonType? LogonType { get; set; }
         /// <summary>Active Directory (on-premises) Security Identifier (SID) of the user.</summary>
         public string OnPremisesSecurityIdentifier { get; set; }
         /// <summary>Provider-generated/calculated risk score of the user account. Recommended value range of 0-1, which equates to a percentage.</summary>
@@ -40,6 +40,14 @@ namespace ApiSdk.Models.Microsoft.Graph {
         /// </summary>
         public UserSecurityState() {
             AdditionalData = new Dictionary<string, object>();
+        }
+        /// <summary>
+        /// Creates a new instance of the appropriate class based on discriminator value
+        /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
+        /// </summary>
+        public static UserSecurityState CreateFromDiscriminatorValue(IParseNode parseNode) {
+            _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
+            return new UserSecurityState();
         }
         /// <summary>
         /// The deserialization information for the current model

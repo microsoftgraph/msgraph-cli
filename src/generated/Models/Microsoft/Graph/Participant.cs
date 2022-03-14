@@ -15,18 +15,26 @@ namespace ApiSdk.Models.Microsoft.Graph {
         /// <summary>A blob of data provided by the participant in the roster.</summary>
         public string Metadata { get; set; }
         /// <summary>Information on whether the participant has recording capability.</summary>
-        public RecordingInfo RecordingInfo { get; set; }
+        public ApiSdk.Models.Microsoft.Graph.RecordingInfo RecordingInfo { get; set; }
+        /// <summary>
+        /// Creates a new instance of the appropriate class based on discriminator value
+        /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
+        /// </summary>
+        public static new Participant CreateFromDiscriminatorValue(IParseNode parseNode) {
+            _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
+            return new Participant();
+        }
         /// <summary>
         /// The deserialization information for the current model
         /// </summary>
         public new IDictionary<string, Action<T, IParseNode>> GetFieldDeserializers<T>() {
             return new Dictionary<string, Action<T, IParseNode>>(base.GetFieldDeserializers<T>()) {
-                {"info", (o,n) => { (o as Participant).Info = n.GetObjectValue<ParticipantInfo>(); } },
+                {"info", (o,n) => { (o as Participant).Info = n.GetObjectValue<ParticipantInfo>(ParticipantInfo.CreateFromDiscriminatorValue); } },
                 {"isInLobby", (o,n) => { (o as Participant).IsInLobby = n.GetBoolValue(); } },
                 {"isMuted", (o,n) => { (o as Participant).IsMuted = n.GetBoolValue(); } },
-                {"mediaStreams", (o,n) => { (o as Participant).MediaStreams = n.GetCollectionOfObjectValues<MediaStream>().ToList(); } },
+                {"mediaStreams", (o,n) => { (o as Participant).MediaStreams = n.GetCollectionOfObjectValues<MediaStream>(MediaStream.CreateFromDiscriminatorValue).ToList(); } },
                 {"metadata", (o,n) => { (o as Participant).Metadata = n.GetStringValue(); } },
-                {"recordingInfo", (o,n) => { (o as Participant).RecordingInfo = n.GetObjectValue<RecordingInfo>(); } },
+                {"recordingInfo", (o,n) => { (o as Participant).RecordingInfo = n.GetObjectValue<ApiSdk.Models.Microsoft.Graph.RecordingInfo>(ApiSdk.Models.Microsoft.Graph.RecordingInfo.CreateFromDiscriminatorValue); } },
             };
         }
         /// <summary>
@@ -41,7 +49,7 @@ namespace ApiSdk.Models.Microsoft.Graph {
             writer.WriteBoolValue("isMuted", IsMuted);
             writer.WriteCollectionOfObjectValues<MediaStream>("mediaStreams", MediaStreams);
             writer.WriteStringValue("metadata", Metadata);
-            writer.WriteObjectValue<RecordingInfo>("recordingInfo", RecordingInfo);
+            writer.WriteObjectValue<ApiSdk.Models.Microsoft.Graph.RecordingInfo>("recordingInfo", RecordingInfo);
         }
     }
 }

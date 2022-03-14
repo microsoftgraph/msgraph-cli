@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 namespace ApiSdk.Me.Insights.Trending.Item.Resource.PrintJob.Redirect {
-    public class RedirectRequestBody : IParsable {
+    public class RedirectRequestBody : IAdditionalDataHolder, IParsable {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
         public PrintJobConfiguration Configuration { get; set; }
@@ -17,11 +17,19 @@ namespace ApiSdk.Me.Insights.Trending.Item.Resource.PrintJob.Redirect {
             AdditionalData = new Dictionary<string, object>();
         }
         /// <summary>
+        /// Creates a new instance of the appropriate class based on discriminator value
+        /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
+        /// </summary>
+        public static RedirectRequestBody CreateFromDiscriminatorValue(IParseNode parseNode) {
+            _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
+            return new RedirectRequestBody();
+        }
+        /// <summary>
         /// The deserialization information for the current model
         /// </summary>
         public IDictionary<string, Action<T, IParseNode>> GetFieldDeserializers<T>() {
             return new Dictionary<string, Action<T, IParseNode>> {
-                {"configuration", (o,n) => { (o as RedirectRequestBody).Configuration = n.GetObjectValue<PrintJobConfiguration>(); } },
+                {"configuration", (o,n) => { (o as RedirectRequestBody).Configuration = n.GetObjectValue<PrintJobConfiguration>(PrintJobConfiguration.CreateFromDiscriminatorValue); } },
                 {"destinationPrinterId", (o,n) => { (o as RedirectRequestBody).DestinationPrinterId = n.GetStringValue(); } },
             };
         }

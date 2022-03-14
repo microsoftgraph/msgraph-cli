@@ -8,16 +8,24 @@ namespace ApiSdk.Models.Microsoft.Graph {
         /// <summary>Unique Client Context string. Max limit is 256 chars.</summary>
         public string ClientContext { get; set; }
         /// <summary>The result information. Read-only.</summary>
-        public ResultInfo ResultInfo { get; set; }
+        public ApiSdk.Models.Microsoft.Graph.ResultInfo ResultInfo { get; set; }
         /// <summary>Possible values are: notStarted, running, completed, failed. Read-only.</summary>
         public OperationStatus? Status { get; set; }
+        /// <summary>
+        /// Creates a new instance of the appropriate class based on discriminator value
+        /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
+        /// </summary>
+        public static new CommsOperation CreateFromDiscriminatorValue(IParseNode parseNode) {
+            _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
+            return new CommsOperation();
+        }
         /// <summary>
         /// The deserialization information for the current model
         /// </summary>
         public new IDictionary<string, Action<T, IParseNode>> GetFieldDeserializers<T>() {
             return new Dictionary<string, Action<T, IParseNode>>(base.GetFieldDeserializers<T>()) {
                 {"clientContext", (o,n) => { (o as CommsOperation).ClientContext = n.GetStringValue(); } },
-                {"resultInfo", (o,n) => { (o as CommsOperation).ResultInfo = n.GetObjectValue<ResultInfo>(); } },
+                {"resultInfo", (o,n) => { (o as CommsOperation).ResultInfo = n.GetObjectValue<ApiSdk.Models.Microsoft.Graph.ResultInfo>(ApiSdk.Models.Microsoft.Graph.ResultInfo.CreateFromDiscriminatorValue); } },
                 {"status", (o,n) => { (o as CommsOperation).Status = n.GetEnumValue<OperationStatus>(); } },
             };
         }
@@ -29,7 +37,7 @@ namespace ApiSdk.Models.Microsoft.Graph {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             base.Serialize(writer);
             writer.WriteStringValue("clientContext", ClientContext);
-            writer.WriteObjectValue<ResultInfo>("resultInfo", ResultInfo);
+            writer.WriteObjectValue<ApiSdk.Models.Microsoft.Graph.ResultInfo>("resultInfo", ResultInfo);
             writer.WriteEnumValue<OperationStatus>("status", Status);
         }
     }

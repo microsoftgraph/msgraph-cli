@@ -6,11 +6,19 @@ using System.Linq;
 namespace ApiSdk.Models.Microsoft.Graph {
     public class BookingCustomQuestion : Entity, IParsable {
         /// <summary>The expected answer type. The possible values are: text, radioButton, unknownFutureValue.</summary>
-        public AnswerInputType? AnswerInputType { get; set; }
+        public ApiSdk.Models.Microsoft.Graph.AnswerInputType? AnswerInputType { get; set; }
         /// <summary>List of possible answer values.</summary>
         public List<string> AnswerOptions { get; set; }
         /// <summary>Display name of this entity.</summary>
         public string DisplayName { get; set; }
+        /// <summary>
+        /// Creates a new instance of the appropriate class based on discriminator value
+        /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
+        /// </summary>
+        public static new BookingCustomQuestion CreateFromDiscriminatorValue(IParseNode parseNode) {
+            _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
+            return new BookingCustomQuestion();
+        }
         /// <summary>
         /// The deserialization information for the current model
         /// </summary>

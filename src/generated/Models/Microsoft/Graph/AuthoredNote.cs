@@ -12,12 +12,20 @@ namespace ApiSdk.Models.Microsoft.Graph {
         /// <summary>The date and time when the entity was created. The Timestamp type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z.</summary>
         public DateTimeOffset? CreatedDateTime { get; set; }
         /// <summary>
+        /// Creates a new instance of the appropriate class based on discriminator value
+        /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
+        /// </summary>
+        public static new AuthoredNote CreateFromDiscriminatorValue(IParseNode parseNode) {
+            _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
+            return new AuthoredNote();
+        }
+        /// <summary>
         /// The deserialization information for the current model
         /// </summary>
         public new IDictionary<string, Action<T, IParseNode>> GetFieldDeserializers<T>() {
             return new Dictionary<string, Action<T, IParseNode>>(base.GetFieldDeserializers<T>()) {
-                {"author", (o,n) => { (o as AuthoredNote).Author = n.GetObjectValue<Identity>(); } },
-                {"content", (o,n) => { (o as AuthoredNote).Content = n.GetObjectValue<ItemBody>(); } },
+                {"author", (o,n) => { (o as AuthoredNote).Author = n.GetObjectValue<Identity>(Identity.CreateFromDiscriminatorValue); } },
+                {"content", (o,n) => { (o as AuthoredNote).Content = n.GetObjectValue<ItemBody>(ItemBody.CreateFromDiscriminatorValue); } },
                 {"createdDateTime", (o,n) => { (o as AuthoredNote).CreatedDateTime = n.GetDateTimeOffsetValue(); } },
             };
         }

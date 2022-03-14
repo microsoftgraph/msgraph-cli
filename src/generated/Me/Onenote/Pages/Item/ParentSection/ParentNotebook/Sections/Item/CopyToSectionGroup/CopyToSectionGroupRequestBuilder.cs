@@ -45,28 +45,37 @@ namespace ApiSdk.Me.Onenote.Pages.Item.ParentSection.ParentNotebook.Sections.Ite
             command.AddOption(outputOption);
             var queryOption = new Option<string>("--query");
             command.AddOption(queryOption);
+            var jsonNoIndentOption = new Option<bool>("--json-no-indent", r => {
+                if (bool.TryParse(r.Tokens.Select(t => t.Value).LastOrDefault(), out var value)) {
+                    return value;
+                }
+                return true;
+            }, description: "Disable indentation for the JSON output formatter.");
+            command.AddOption(jsonNoIndentOption);
             command.SetHandler(async (object[] parameters) => {
                 var onenotePageId = (string) parameters[0];
                 var onenoteSectionId = (string) parameters[1];
                 var body = (string) parameters[2];
                 var output = (FormatterType) parameters[3];
                 var query = (string) parameters[4];
-                var outputFilter = (IOutputFilter) parameters[5];
-                var outputFormatterFactory = (IOutputFormatterFactory) parameters[6];
-                var cancellationToken = (CancellationToken) parameters[7];
+                var jsonNoIndent = (bool) parameters[5];
+                var outputFilter = (IOutputFilter) parameters[6];
+                var outputFormatterFactory = (IOutputFormatterFactory) parameters[7];
+                var cancellationToken = (CancellationToken) parameters[8];
                 PathParameters.Clear();
                 PathParameters.Add("onenotePage_id", onenotePageId);
                 PathParameters.Add("onenoteSection_id", onenoteSectionId);
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
-                var model = parseNode.GetObjectValue<CopyToSectionGroupRequestBody>();
+                var model = parseNode.GetObjectValue<CopyToSectionGroupRequestBody>(CopyToSectionGroupRequestBody.CreateFromDiscriminatorValue);
                 var requestInfo = CreatePostRequestInformation(model, q => {
                 });
                 var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: default, cancellationToken: cancellationToken);
                 var formatter = outputFormatterFactory.GetFormatter(output);
-                response = outputFilter?.FilterOutput(response, query) ?? response;
-                formatter.WriteOutput(response);
-            }, new CollectionBinding(onenotePageIdOption, onenoteSectionIdOption, bodyOption, outputOption, queryOption, new TypeBinding(typeof(IOutputFilter)), new TypeBinding(typeof(IOutputFormatterFactory)), new TypeBinding(typeof(CancellationToken))));
+                response = await outputFilter?.FilterOutputAsync(response, query, cancellationToken) ?? response;
+                var formatterOptions = output.GetOutputFormatterOptions(new FormatterOptionsModel(!jsonNoIndent));
+                await formatter.WriteOutputAsync(response, formatterOptions, cancellationToken);
+            }, new CollectionBinding(onenotePageIdOption, onenoteSectionIdOption, bodyOption, outputOption, queryOption, jsonNoIndentOption, new TypeBinding(typeof(IOutputFilter)), new TypeBinding(typeof(IOutputFormatterFactory)), new TypeBinding(typeof(CancellationToken))));
             return command;
         }
         /// <summary>
@@ -101,23 +110,27 @@ namespace ApiSdk.Me.Onenote.Pages.Item.ParentSection.ParentNotebook.Sections.Ite
             return requestInfo;
         }
         /// <summary>Union type wrapper for classes onenoteOperation</summary>
-        public class CopyToSectionGroupResponse : IParsable {
+        public class CopyToSectionGroupResponse : IAdditionalDataHolder, IParsable {
             /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
             public IDictionary<string, object> AdditionalData { get; set; }
             /// <summary>Union type representation for type onenoteOperation</summary>
-            public OnenoteOperation OnenoteOperation { get; set; }
+            public ApiSdk.Models.Microsoft.Graph.OnenoteOperation OnenoteOperation { get; set; }
             /// <summary>
             /// Instantiates a new copyToSectionGroupResponse and sets the default values.
             /// </summary>
             public CopyToSectionGroupResponse() {
                 AdditionalData = new Dictionary<string, object>();
             }
+            public static CopyToSectionGroupResponse CreateFromDiscriminatorValue(IParseNode parseNode) {
+                _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
+                return new CopyToSectionGroupResponse();
+            }
             /// <summary>
             /// The deserialization information for the current model
             /// </summary>
             public IDictionary<string, Action<T, IParseNode>> GetFieldDeserializers<T>() {
                 return new Dictionary<string, Action<T, IParseNode>> {
-                    {"onenoteOperation", (o,n) => { (o as CopyToSectionGroupResponse).OnenoteOperation = n.GetObjectValue<OnenoteOperation>(); } },
+                    {"onenoteOperation", (o,n) => { (o as CopyToSectionGroupResponse).OnenoteOperation = n.GetObjectValue<ApiSdk.Models.Microsoft.Graph.OnenoteOperation>(ApiSdk.Models.Microsoft.Graph.OnenoteOperation.CreateFromDiscriminatorValue); } },
                 };
             }
             /// <summary>
@@ -126,7 +139,7 @@ namespace ApiSdk.Me.Onenote.Pages.Item.ParentSection.ParentNotebook.Sections.Ite
             /// </summary>
             public void Serialize(ISerializationWriter writer) {
                 _ = writer ?? throw new ArgumentNullException(nameof(writer));
-                writer.WriteObjectValue<OnenoteOperation>("onenoteOperation", OnenoteOperation);
+                writer.WriteObjectValue<ApiSdk.Models.Microsoft.Graph.OnenoteOperation>("onenoteOperation", OnenoteOperation);
                 writer.WriteAdditionalData(AdditionalData);
             }
         }

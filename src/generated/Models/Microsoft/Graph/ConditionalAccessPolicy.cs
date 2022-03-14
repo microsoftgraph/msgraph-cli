@@ -21,17 +21,25 @@ namespace ApiSdk.Models.Microsoft.Graph {
         /// <summary>Specifies the state of the conditionalAccessPolicy object. Possible values are: enabled, disabled, enabledForReportingButNotEnforced. Required.</summary>
         public ConditionalAccessPolicyState? State { get; set; }
         /// <summary>
+        /// Creates a new instance of the appropriate class based on discriminator value
+        /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
+        /// </summary>
+        public static new ConditionalAccessPolicy CreateFromDiscriminatorValue(IParseNode parseNode) {
+            _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
+            return new ConditionalAccessPolicy();
+        }
+        /// <summary>
         /// The deserialization information for the current model
         /// </summary>
         public new IDictionary<string, Action<T, IParseNode>> GetFieldDeserializers<T>() {
             return new Dictionary<string, Action<T, IParseNode>>(base.GetFieldDeserializers<T>()) {
-                {"conditions", (o,n) => { (o as ConditionalAccessPolicy).Conditions = n.GetObjectValue<ConditionalAccessConditionSet>(); } },
+                {"conditions", (o,n) => { (o as ConditionalAccessPolicy).Conditions = n.GetObjectValue<ConditionalAccessConditionSet>(ConditionalAccessConditionSet.CreateFromDiscriminatorValue); } },
                 {"createdDateTime", (o,n) => { (o as ConditionalAccessPolicy).CreatedDateTime = n.GetDateTimeOffsetValue(); } },
                 {"description", (o,n) => { (o as ConditionalAccessPolicy).Description = n.GetStringValue(); } },
                 {"displayName", (o,n) => { (o as ConditionalAccessPolicy).DisplayName = n.GetStringValue(); } },
-                {"grantControls", (o,n) => { (o as ConditionalAccessPolicy).GrantControls = n.GetObjectValue<ConditionalAccessGrantControls>(); } },
+                {"grantControls", (o,n) => { (o as ConditionalAccessPolicy).GrantControls = n.GetObjectValue<ConditionalAccessGrantControls>(ConditionalAccessGrantControls.CreateFromDiscriminatorValue); } },
                 {"modifiedDateTime", (o,n) => { (o as ConditionalAccessPolicy).ModifiedDateTime = n.GetDateTimeOffsetValue(); } },
-                {"sessionControls", (o,n) => { (o as ConditionalAccessPolicy).SessionControls = n.GetObjectValue<ConditionalAccessSessionControls>(); } },
+                {"sessionControls", (o,n) => { (o as ConditionalAccessPolicy).SessionControls = n.GetObjectValue<ConditionalAccessSessionControls>(ConditionalAccessSessionControls.CreateFromDiscriminatorValue); } },
                 {"state", (o,n) => { (o as ConditionalAccessPolicy).State = n.GetEnumValue<ConditionalAccessPolicyState>(); } },
             };
         }

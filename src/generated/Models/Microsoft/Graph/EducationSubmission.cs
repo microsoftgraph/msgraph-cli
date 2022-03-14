@@ -34,23 +34,31 @@ namespace ApiSdk.Models.Microsoft.Graph {
         /// <summary>Moment in time when the submission was moved from submitted into the working state. The Timestamp type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z</summary>
         public DateTimeOffset? UnsubmittedDateTime { get; set; }
         /// <summary>
+        /// Creates a new instance of the appropriate class based on discriminator value
+        /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
+        /// </summary>
+        public static new EducationSubmission CreateFromDiscriminatorValue(IParseNode parseNode) {
+            _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
+            return new EducationSubmission();
+        }
+        /// <summary>
         /// The deserialization information for the current model
         /// </summary>
         public new IDictionary<string, Action<T, IParseNode>> GetFieldDeserializers<T>() {
             return new Dictionary<string, Action<T, IParseNode>>(base.GetFieldDeserializers<T>()) {
-                {"outcomes", (o,n) => { (o as EducationSubmission).Outcomes = n.GetCollectionOfObjectValues<EducationOutcome>().ToList(); } },
-                {"reassignedBy", (o,n) => { (o as EducationSubmission).ReassignedBy = n.GetObjectValue<IdentitySet>(); } },
+                {"outcomes", (o,n) => { (o as EducationSubmission).Outcomes = n.GetCollectionOfObjectValues<EducationOutcome>(EducationOutcome.CreateFromDiscriminatorValue).ToList(); } },
+                {"reassignedBy", (o,n) => { (o as EducationSubmission).ReassignedBy = n.GetObjectValue<IdentitySet>(IdentitySet.CreateFromDiscriminatorValue); } },
                 {"reassignedDateTime", (o,n) => { (o as EducationSubmission).ReassignedDateTime = n.GetDateTimeOffsetValue(); } },
-                {"recipient", (o,n) => { (o as EducationSubmission).Recipient = n.GetObjectValue<EducationSubmissionRecipient>(); } },
-                {"resources", (o,n) => { (o as EducationSubmission).Resources = n.GetCollectionOfObjectValues<EducationSubmissionResource>().ToList(); } },
+                {"recipient", (o,n) => { (o as EducationSubmission).Recipient = n.GetObjectValue<EducationSubmissionRecipient>(EducationSubmissionRecipient.CreateFromDiscriminatorValue); } },
+                {"resources", (o,n) => { (o as EducationSubmission).Resources = n.GetCollectionOfObjectValues<EducationSubmissionResource>(EducationSubmissionResource.CreateFromDiscriminatorValue).ToList(); } },
                 {"resourcesFolderUrl", (o,n) => { (o as EducationSubmission).ResourcesFolderUrl = n.GetStringValue(); } },
-                {"returnedBy", (o,n) => { (o as EducationSubmission).ReturnedBy = n.GetObjectValue<IdentitySet>(); } },
+                {"returnedBy", (o,n) => { (o as EducationSubmission).ReturnedBy = n.GetObjectValue<IdentitySet>(IdentitySet.CreateFromDiscriminatorValue); } },
                 {"returnedDateTime", (o,n) => { (o as EducationSubmission).ReturnedDateTime = n.GetDateTimeOffsetValue(); } },
                 {"status", (o,n) => { (o as EducationSubmission).Status = n.GetEnumValue<EducationSubmissionStatus>(); } },
-                {"submittedBy", (o,n) => { (o as EducationSubmission).SubmittedBy = n.GetObjectValue<IdentitySet>(); } },
+                {"submittedBy", (o,n) => { (o as EducationSubmission).SubmittedBy = n.GetObjectValue<IdentitySet>(IdentitySet.CreateFromDiscriminatorValue); } },
                 {"submittedDateTime", (o,n) => { (o as EducationSubmission).SubmittedDateTime = n.GetDateTimeOffsetValue(); } },
-                {"submittedResources", (o,n) => { (o as EducationSubmission).SubmittedResources = n.GetCollectionOfObjectValues<EducationSubmissionResource>().ToList(); } },
-                {"unsubmittedBy", (o,n) => { (o as EducationSubmission).UnsubmittedBy = n.GetObjectValue<IdentitySet>(); } },
+                {"submittedResources", (o,n) => { (o as EducationSubmission).SubmittedResources = n.GetCollectionOfObjectValues<EducationSubmissionResource>(EducationSubmissionResource.CreateFromDiscriminatorValue).ToList(); } },
+                {"unsubmittedBy", (o,n) => { (o as EducationSubmission).UnsubmittedBy = n.GetObjectValue<IdentitySet>(IdentitySet.CreateFromDiscriminatorValue); } },
                 {"unsubmittedDateTime", (o,n) => { (o as EducationSubmission).UnsubmittedDateTime = n.GetDateTimeOffsetValue(); } },
             };
         }

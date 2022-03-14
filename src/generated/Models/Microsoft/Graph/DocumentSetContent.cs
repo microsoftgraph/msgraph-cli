@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 namespace ApiSdk.Models.Microsoft.Graph {
-    public class DocumentSetContent : IParsable {
+    public class DocumentSetContent : IAdditionalDataHolder, IParsable {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>Content type information of the file.</summary>
@@ -20,11 +20,19 @@ namespace ApiSdk.Models.Microsoft.Graph {
             AdditionalData = new Dictionary<string, object>();
         }
         /// <summary>
+        /// Creates a new instance of the appropriate class based on discriminator value
+        /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
+        /// </summary>
+        public static DocumentSetContent CreateFromDiscriminatorValue(IParseNode parseNode) {
+            _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
+            return new DocumentSetContent();
+        }
+        /// <summary>
         /// The deserialization information for the current model
         /// </summary>
         public IDictionary<string, Action<T, IParseNode>> GetFieldDeserializers<T>() {
             return new Dictionary<string, Action<T, IParseNode>> {
-                {"contentType", (o,n) => { (o as DocumentSetContent).ContentType = n.GetObjectValue<ContentTypeInfo>(); } },
+                {"contentType", (o,n) => { (o as DocumentSetContent).ContentType = n.GetObjectValue<ContentTypeInfo>(ContentTypeInfo.CreateFromDiscriminatorValue); } },
                 {"fileName", (o,n) => { (o as DocumentSetContent).FileName = n.GetStringValue(); } },
                 {"folderName", (o,n) => { (o as DocumentSetContent).FolderName = n.GetStringValue(); } },
             };

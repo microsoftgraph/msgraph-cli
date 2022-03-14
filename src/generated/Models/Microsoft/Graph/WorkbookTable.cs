@@ -34,24 +34,32 @@ namespace ApiSdk.Models.Microsoft.Graph {
         /// <summary>The worksheet containing the current table. Read-only.</summary>
         public WorkbookWorksheet Worksheet { get; set; }
         /// <summary>
+        /// Creates a new instance of the appropriate class based on discriminator value
+        /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
+        /// </summary>
+        public static new WorkbookTable CreateFromDiscriminatorValue(IParseNode parseNode) {
+            _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
+            return new WorkbookTable();
+        }
+        /// <summary>
         /// The deserialization information for the current model
         /// </summary>
         public new IDictionary<string, Action<T, IParseNode>> GetFieldDeserializers<T>() {
             return new Dictionary<string, Action<T, IParseNode>>(base.GetFieldDeserializers<T>()) {
-                {"columns", (o,n) => { (o as WorkbookTable).Columns = n.GetCollectionOfObjectValues<WorkbookTableColumn>().ToList(); } },
+                {"columns", (o,n) => { (o as WorkbookTable).Columns = n.GetCollectionOfObjectValues<WorkbookTableColumn>(WorkbookTableColumn.CreateFromDiscriminatorValue).ToList(); } },
                 {"highlightFirstColumn", (o,n) => { (o as WorkbookTable).HighlightFirstColumn = n.GetBoolValue(); } },
                 {"highlightLastColumn", (o,n) => { (o as WorkbookTable).HighlightLastColumn = n.GetBoolValue(); } },
                 {"legacyId", (o,n) => { (o as WorkbookTable).LegacyId = n.GetStringValue(); } },
                 {"name", (o,n) => { (o as WorkbookTable).Name = n.GetStringValue(); } },
-                {"rows", (o,n) => { (o as WorkbookTable).Rows = n.GetCollectionOfObjectValues<WorkbookTableRow>().ToList(); } },
+                {"rows", (o,n) => { (o as WorkbookTable).Rows = n.GetCollectionOfObjectValues<WorkbookTableRow>(WorkbookTableRow.CreateFromDiscriminatorValue).ToList(); } },
                 {"showBandedColumns", (o,n) => { (o as WorkbookTable).ShowBandedColumns = n.GetBoolValue(); } },
                 {"showBandedRows", (o,n) => { (o as WorkbookTable).ShowBandedRows = n.GetBoolValue(); } },
                 {"showFilterButton", (o,n) => { (o as WorkbookTable).ShowFilterButton = n.GetBoolValue(); } },
                 {"showHeaders", (o,n) => { (o as WorkbookTable).ShowHeaders = n.GetBoolValue(); } },
                 {"showTotals", (o,n) => { (o as WorkbookTable).ShowTotals = n.GetBoolValue(); } },
-                {"sort", (o,n) => { (o as WorkbookTable).Sort = n.GetObjectValue<WorkbookTableSort>(); } },
+                {"sort", (o,n) => { (o as WorkbookTable).Sort = n.GetObjectValue<WorkbookTableSort>(WorkbookTableSort.CreateFromDiscriminatorValue); } },
                 {"style", (o,n) => { (o as WorkbookTable).Style = n.GetStringValue(); } },
-                {"worksheet", (o,n) => { (o as WorkbookTable).Worksheet = n.GetObjectValue<WorkbookWorksheet>(); } },
+                {"worksheet", (o,n) => { (o as WorkbookTable).Worksheet = n.GetObjectValue<WorkbookWorksheet>(WorkbookWorksheet.CreateFromDiscriminatorValue); } },
             };
         }
         /// <summary>

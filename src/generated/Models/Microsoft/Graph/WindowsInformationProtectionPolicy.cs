@@ -30,6 +30,14 @@ namespace ApiSdk.Models.Microsoft.Graph {
         /// <summary>Boolean value that sets Windows Hello for Business as a method for signing into Windows.</summary>
         public bool? WindowsHelloForBusinessBlocked { get; set; }
         /// <summary>
+        /// Creates a new instance of the appropriate class based on discriminator value
+        /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
+        /// </summary>
+        public static new WindowsInformationProtectionPolicy CreateFromDiscriminatorValue(IParseNode parseNode) {
+            _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
+            return new WindowsInformationProtectionPolicy();
+        }
+        /// <summary>
         /// The deserialization information for the current model
         /// </summary>
         public new IDictionary<string, Action<T, IParseNode>> GetFieldDeserializers<T>() {

@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 namespace ApiSdk.Workbooks.Item.Workbook.Functions.NegBinom_Dist {
-    public class NegBinom_DistRequestBody : IParsable {
+    public class NegBinom_DistRequestBody : IAdditionalDataHolder, IParsable {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
         public Json Cumulative { get; set; }
@@ -19,14 +19,22 @@ namespace ApiSdk.Workbooks.Item.Workbook.Functions.NegBinom_Dist {
             AdditionalData = new Dictionary<string, object>();
         }
         /// <summary>
+        /// Creates a new instance of the appropriate class based on discriminator value
+        /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
+        /// </summary>
+        public static NegBinom_DistRequestBody CreateFromDiscriminatorValue(IParseNode parseNode) {
+            _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
+            return new NegBinom_DistRequestBody();
+        }
+        /// <summary>
         /// The deserialization information for the current model
         /// </summary>
         public IDictionary<string, Action<T, IParseNode>> GetFieldDeserializers<T>() {
             return new Dictionary<string, Action<T, IParseNode>> {
-                {"cumulative", (o,n) => { (o as NegBinom_DistRequestBody).Cumulative = n.GetObjectValue<Json>(); } },
-                {"numberF", (o,n) => { (o as NegBinom_DistRequestBody).NumberF = n.GetObjectValue<Json>(); } },
-                {"numberS", (o,n) => { (o as NegBinom_DistRequestBody).NumberS = n.GetObjectValue<Json>(); } },
-                {"probabilityS", (o,n) => { (o as NegBinom_DistRequestBody).ProbabilityS = n.GetObjectValue<Json>(); } },
+                {"cumulative", (o,n) => { (o as NegBinom_DistRequestBody).Cumulative = n.GetObjectValue<Json>(Json.CreateFromDiscriminatorValue); } },
+                {"numberF", (o,n) => { (o as NegBinom_DistRequestBody).NumberF = n.GetObjectValue<Json>(Json.CreateFromDiscriminatorValue); } },
+                {"numberS", (o,n) => { (o as NegBinom_DistRequestBody).NumberS = n.GetObjectValue<Json>(Json.CreateFromDiscriminatorValue); } },
+                {"probabilityS", (o,n) => { (o as NegBinom_DistRequestBody).ProbabilityS = n.GetObjectValue<Json>(Json.CreateFromDiscriminatorValue); } },
             };
         }
         /// <summary>

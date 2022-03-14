@@ -12,16 +12,24 @@ namespace ApiSdk.Models.Microsoft.Graph {
         /// <summary>Identity of who performed the action. Read-only.</summary>
         public IdentitySet Actor { get; set; }
         /// <summary>Exposes the driveItem that was the target of this activity.</summary>
-        public DriveItem DriveItem { get; set; }
+        public ApiSdk.Models.Microsoft.Graph.DriveItem DriveItem { get; set; }
+        /// <summary>
+        /// Creates a new instance of the appropriate class based on discriminator value
+        /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
+        /// </summary>
+        public static new ItemActivity CreateFromDiscriminatorValue(IParseNode parseNode) {
+            _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
+            return new ItemActivity();
+        }
         /// <summary>
         /// The deserialization information for the current model
         /// </summary>
         public new IDictionary<string, Action<T, IParseNode>> GetFieldDeserializers<T>() {
             return new Dictionary<string, Action<T, IParseNode>>(base.GetFieldDeserializers<T>()) {
-                {"access", (o,n) => { (o as ItemActivity).Access = n.GetObjectValue<AccessAction>(); } },
+                {"access", (o,n) => { (o as ItemActivity).Access = n.GetObjectValue<AccessAction>(AccessAction.CreateFromDiscriminatorValue); } },
                 {"activityDateTime", (o,n) => { (o as ItemActivity).ActivityDateTime = n.GetDateTimeOffsetValue(); } },
-                {"actor", (o,n) => { (o as ItemActivity).Actor = n.GetObjectValue<IdentitySet>(); } },
-                {"driveItem", (o,n) => { (o as ItemActivity).DriveItem = n.GetObjectValue<DriveItem>(); } },
+                {"actor", (o,n) => { (o as ItemActivity).Actor = n.GetObjectValue<IdentitySet>(IdentitySet.CreateFromDiscriminatorValue); } },
+                {"driveItem", (o,n) => { (o as ItemActivity).DriveItem = n.GetObjectValue<ApiSdk.Models.Microsoft.Graph.DriveItem>(ApiSdk.Models.Microsoft.Graph.DriveItem.CreateFromDiscriminatorValue); } },
             };
         }
         /// <summary>
@@ -34,7 +42,7 @@ namespace ApiSdk.Models.Microsoft.Graph {
             writer.WriteObjectValue<AccessAction>("access", Access);
             writer.WriteDateTimeOffsetValue("activityDateTime", ActivityDateTime);
             writer.WriteObjectValue<IdentitySet>("actor", Actor);
-            writer.WriteObjectValue<DriveItem>("driveItem", DriveItem);
+            writer.WriteObjectValue<ApiSdk.Models.Microsoft.Graph.DriveItem>("driveItem", DriveItem);
         }
     }
 }

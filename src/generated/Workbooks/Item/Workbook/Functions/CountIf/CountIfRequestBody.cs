@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 namespace ApiSdk.Workbooks.Item.Workbook.Functions.CountIf {
-    public class CountIfRequestBody : IParsable {
+    public class CountIfRequestBody : IAdditionalDataHolder, IParsable {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
         public Json Criteria { get; set; }
@@ -17,12 +17,20 @@ namespace ApiSdk.Workbooks.Item.Workbook.Functions.CountIf {
             AdditionalData = new Dictionary<string, object>();
         }
         /// <summary>
+        /// Creates a new instance of the appropriate class based on discriminator value
+        /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
+        /// </summary>
+        public static CountIfRequestBody CreateFromDiscriminatorValue(IParseNode parseNode) {
+            _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
+            return new CountIfRequestBody();
+        }
+        /// <summary>
         /// The deserialization information for the current model
         /// </summary>
         public IDictionary<string, Action<T, IParseNode>> GetFieldDeserializers<T>() {
             return new Dictionary<string, Action<T, IParseNode>> {
-                {"criteria", (o,n) => { (o as CountIfRequestBody).Criteria = n.GetObjectValue<Json>(); } },
-                {"range", (o,n) => { (o as CountIfRequestBody).Range = n.GetObjectValue<Json>(); } },
+                {"criteria", (o,n) => { (o as CountIfRequestBody).Criteria = n.GetObjectValue<Json>(Json.CreateFromDiscriminatorValue); } },
+                {"range", (o,n) => { (o as CountIfRequestBody).Range = n.GetObjectValue<Json>(Json.CreateFromDiscriminatorValue); } },
             };
         }
         /// <summary>

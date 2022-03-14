@@ -19,16 +19,24 @@ namespace ApiSdk.Models.Microsoft.Graph {
         /// <summary>Required. UTC DateTime when the historyItem (activity session) was started. Required for timeline history.</summary>
         public DateTimeOffset? StartedDateTime { get; set; }
         /// <summary>Set by the server. A status code used to identify valid objects. Values: active, updated, deleted, ignored.</summary>
-        public Status? Status { get; set; }
+        public ApiSdk.Models.Microsoft.Graph.Status? Status { get; set; }
         /// <summary>Optional. The timezone in which the user's device used to generate the activity was located at activity creation time. Values supplied as Olson IDs in order to support cross-platform representation.</summary>
         public string UserTimezone { get; set; }
+        /// <summary>
+        /// Creates a new instance of the appropriate class based on discriminator value
+        /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
+        /// </summary>
+        public static new ActivityHistoryItem CreateFromDiscriminatorValue(IParseNode parseNode) {
+            _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
+            return new ActivityHistoryItem();
+        }
         /// <summary>
         /// The deserialization information for the current model
         /// </summary>
         public new IDictionary<string, Action<T, IParseNode>> GetFieldDeserializers<T>() {
             return new Dictionary<string, Action<T, IParseNode>>(base.GetFieldDeserializers<T>()) {
                 {"activeDurationSeconds", (o,n) => { (o as ActivityHistoryItem).ActiveDurationSeconds = n.GetIntValue(); } },
-                {"activity", (o,n) => { (o as ActivityHistoryItem).Activity = n.GetObjectValue<UserActivity>(); } },
+                {"activity", (o,n) => { (o as ActivityHistoryItem).Activity = n.GetObjectValue<UserActivity>(UserActivity.CreateFromDiscriminatorValue); } },
                 {"createdDateTime", (o,n) => { (o as ActivityHistoryItem).CreatedDateTime = n.GetDateTimeOffsetValue(); } },
                 {"expirationDateTime", (o,n) => { (o as ActivityHistoryItem).ExpirationDateTime = n.GetDateTimeOffsetValue(); } },
                 {"lastActiveDateTime", (o,n) => { (o as ActivityHistoryItem).LastActiveDateTime = n.GetDateTimeOffsetValue(); } },

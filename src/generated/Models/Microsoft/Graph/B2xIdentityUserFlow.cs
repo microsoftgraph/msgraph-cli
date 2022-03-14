@@ -15,15 +15,23 @@ namespace ApiSdk.Models.Microsoft.Graph {
         public List<IdentityUserFlowAttributeAssignment> UserAttributeAssignments { get; set; }
         public List<IdentityProviderBase> UserFlowIdentityProviders { get; set; }
         /// <summary>
+        /// Creates a new instance of the appropriate class based on discriminator value
+        /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
+        /// </summary>
+        public static new B2xIdentityUserFlow CreateFromDiscriminatorValue(IParseNode parseNode) {
+            _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
+            return new B2xIdentityUserFlow();
+        }
+        /// <summary>
         /// The deserialization information for the current model
         /// </summary>
         public new IDictionary<string, Action<T, IParseNode>> GetFieldDeserializers<T>() {
             return new Dictionary<string, Action<T, IParseNode>>(base.GetFieldDeserializers<T>()) {
-                {"apiConnectorConfiguration", (o,n) => { (o as B2xIdentityUserFlow).ApiConnectorConfiguration = n.GetObjectValue<UserFlowApiConnectorConfiguration>(); } },
-                {"identityProviders", (o,n) => { (o as B2xIdentityUserFlow).IdentityProviders = n.GetCollectionOfObjectValues<IdentityProvider>().ToList(); } },
-                {"languages", (o,n) => { (o as B2xIdentityUserFlow).Languages = n.GetCollectionOfObjectValues<UserFlowLanguageConfiguration>().ToList(); } },
-                {"userAttributeAssignments", (o,n) => { (o as B2xIdentityUserFlow).UserAttributeAssignments = n.GetCollectionOfObjectValues<IdentityUserFlowAttributeAssignment>().ToList(); } },
-                {"userFlowIdentityProviders", (o,n) => { (o as B2xIdentityUserFlow).UserFlowIdentityProviders = n.GetCollectionOfObjectValues<IdentityProviderBase>().ToList(); } },
+                {"apiConnectorConfiguration", (o,n) => { (o as B2xIdentityUserFlow).ApiConnectorConfiguration = n.GetObjectValue<UserFlowApiConnectorConfiguration>(UserFlowApiConnectorConfiguration.CreateFromDiscriminatorValue); } },
+                {"identityProviders", (o,n) => { (o as B2xIdentityUserFlow).IdentityProviders = n.GetCollectionOfObjectValues<IdentityProvider>(IdentityProvider.CreateFromDiscriminatorValue).ToList(); } },
+                {"languages", (o,n) => { (o as B2xIdentityUserFlow).Languages = n.GetCollectionOfObjectValues<UserFlowLanguageConfiguration>(UserFlowLanguageConfiguration.CreateFromDiscriminatorValue).ToList(); } },
+                {"userAttributeAssignments", (o,n) => { (o as B2xIdentityUserFlow).UserAttributeAssignments = n.GetCollectionOfObjectValues<IdentityUserFlowAttributeAssignment>(IdentityUserFlowAttributeAssignment.CreateFromDiscriminatorValue).ToList(); } },
+                {"userFlowIdentityProviders", (o,n) => { (o as B2xIdentityUserFlow).UserFlowIdentityProviders = n.GetCollectionOfObjectValues<IdentityProviderBase>(IdentityProviderBase.CreateFromDiscriminatorValue).ToList(); } },
             };
         }
         /// <summary>

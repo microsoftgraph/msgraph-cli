@@ -30,22 +30,30 @@ namespace ApiSdk.Models.Microsoft.Graph {
         /// <summary>Represents the type of data of each cell. Read-only. Possible values are: Unknown, Empty, String, Integer, Double, Boolean, Error.</summary>
         public Json ValueTypes { get; set; }
         /// <summary>
+        /// Creates a new instance of the appropriate class based on discriminator value
+        /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
+        /// </summary>
+        public static new WorkbookRangeView CreateFromDiscriminatorValue(IParseNode parseNode) {
+            _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
+            return new WorkbookRangeView();
+        }
+        /// <summary>
         /// The deserialization information for the current model
         /// </summary>
         public new IDictionary<string, Action<T, IParseNode>> GetFieldDeserializers<T>() {
             return new Dictionary<string, Action<T, IParseNode>>(base.GetFieldDeserializers<T>()) {
-                {"cellAddresses", (o,n) => { (o as WorkbookRangeView).CellAddresses = n.GetObjectValue<Json>(); } },
+                {"cellAddresses", (o,n) => { (o as WorkbookRangeView).CellAddresses = n.GetObjectValue<Json>(Json.CreateFromDiscriminatorValue); } },
                 {"columnCount", (o,n) => { (o as WorkbookRangeView).ColumnCount = n.GetIntValue(); } },
-                {"formulas", (o,n) => { (o as WorkbookRangeView).Formulas = n.GetObjectValue<Json>(); } },
-                {"formulasLocal", (o,n) => { (o as WorkbookRangeView).FormulasLocal = n.GetObjectValue<Json>(); } },
-                {"formulasR1C1", (o,n) => { (o as WorkbookRangeView).FormulasR1C1 = n.GetObjectValue<Json>(); } },
+                {"formulas", (o,n) => { (o as WorkbookRangeView).Formulas = n.GetObjectValue<Json>(Json.CreateFromDiscriminatorValue); } },
+                {"formulasLocal", (o,n) => { (o as WorkbookRangeView).FormulasLocal = n.GetObjectValue<Json>(Json.CreateFromDiscriminatorValue); } },
+                {"formulasR1C1", (o,n) => { (o as WorkbookRangeView).FormulasR1C1 = n.GetObjectValue<Json>(Json.CreateFromDiscriminatorValue); } },
                 {"index", (o,n) => { (o as WorkbookRangeView).Index = n.GetIntValue(); } },
-                {"numberFormat", (o,n) => { (o as WorkbookRangeView).NumberFormat = n.GetObjectValue<Json>(); } },
+                {"numberFormat", (o,n) => { (o as WorkbookRangeView).NumberFormat = n.GetObjectValue<Json>(Json.CreateFromDiscriminatorValue); } },
                 {"rowCount", (o,n) => { (o as WorkbookRangeView).RowCount = n.GetIntValue(); } },
-                {"rows", (o,n) => { (o as WorkbookRangeView).Rows = n.GetCollectionOfObjectValues<WorkbookRangeView>().ToList(); } },
-                {"text", (o,n) => { (o as WorkbookRangeView).Text = n.GetObjectValue<Json>(); } },
-                {"values", (o,n) => { (o as WorkbookRangeView).Values = n.GetObjectValue<Json>(); } },
-                {"valueTypes", (o,n) => { (o as WorkbookRangeView).ValueTypes = n.GetObjectValue<Json>(); } },
+                {"rows", (o,n) => { (o as WorkbookRangeView).Rows = n.GetCollectionOfObjectValues<WorkbookRangeView>(WorkbookRangeView.CreateFromDiscriminatorValue).ToList(); } },
+                {"text", (o,n) => { (o as WorkbookRangeView).Text = n.GetObjectValue<Json>(Json.CreateFromDiscriminatorValue); } },
+                {"values", (o,n) => { (o as WorkbookRangeView).Values = n.GetObjectValue<Json>(Json.CreateFromDiscriminatorValue); } },
+                {"valueTypes", (o,n) => { (o as WorkbookRangeView).ValueTypes = n.GetObjectValue<Json>(Json.CreateFromDiscriminatorValue); } },
             };
         }
         /// <summary>

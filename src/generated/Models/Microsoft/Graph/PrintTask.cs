@@ -11,14 +11,22 @@ namespace ApiSdk.Models.Microsoft.Graph {
         public PrintTaskStatus Status { get; set; }
         public PrintTaskTrigger Trigger { get; set; }
         /// <summary>
+        /// Creates a new instance of the appropriate class based on discriminator value
+        /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
+        /// </summary>
+        public static new PrintTask CreateFromDiscriminatorValue(IParseNode parseNode) {
+            _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
+            return new PrintTask();
+        }
+        /// <summary>
         /// The deserialization information for the current model
         /// </summary>
         public new IDictionary<string, Action<T, IParseNode>> GetFieldDeserializers<T>() {
             return new Dictionary<string, Action<T, IParseNode>>(base.GetFieldDeserializers<T>()) {
-                {"definition", (o,n) => { (o as PrintTask).Definition = n.GetObjectValue<PrintTaskDefinition>(); } },
+                {"definition", (o,n) => { (o as PrintTask).Definition = n.GetObjectValue<PrintTaskDefinition>(PrintTaskDefinition.CreateFromDiscriminatorValue); } },
                 {"parentUrl", (o,n) => { (o as PrintTask).ParentUrl = n.GetStringValue(); } },
-                {"status", (o,n) => { (o as PrintTask).Status = n.GetObjectValue<PrintTaskStatus>(); } },
-                {"trigger", (o,n) => { (o as PrintTask).Trigger = n.GetObjectValue<PrintTaskTrigger>(); } },
+                {"status", (o,n) => { (o as PrintTask).Status = n.GetObjectValue<PrintTaskStatus>(PrintTaskStatus.CreateFromDiscriminatorValue); } },
+                {"trigger", (o,n) => { (o as PrintTask).Trigger = n.GetObjectValue<PrintTaskTrigger>(PrintTaskTrigger.CreateFromDiscriminatorValue); } },
             };
         }
         /// <summary>

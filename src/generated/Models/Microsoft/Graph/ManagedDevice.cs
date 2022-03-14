@@ -16,13 +16,13 @@ namespace ApiSdk.Models.Microsoft.Graph {
         /// <summary>The DateTime when device compliance grace period expires. This property is read-only.</summary>
         public DateTimeOffset? ComplianceGracePeriodExpirationDateTime { get; set; }
         /// <summary>Compliance state of the device. This property is read-only. Possible values are: unknown, compliant, noncompliant, conflict, error, inGracePeriod, configManager.</summary>
-        public ComplianceState? ComplianceState { get; set; }
+        public ApiSdk.Models.Microsoft.Graph.ComplianceState? ComplianceState { get; set; }
         /// <summary>ConfigrMgr client enabled features. This property is read-only.</summary>
-        public ConfigurationManagerClientEnabledFeatures ConfigurationManagerClientEnabledFeatures { get; set; }
+        public ApiSdk.Models.Microsoft.Graph.ConfigurationManagerClientEnabledFeatures ConfigurationManagerClientEnabledFeatures { get; set; }
         /// <summary>List of ComplexType deviceActionResult objects. This property is read-only.</summary>
         public List<DeviceActionResult> DeviceActionResults { get; set; }
         /// <summary>Device category</summary>
-        public DeviceCategory DeviceCategory { get; set; }
+        public ApiSdk.Models.Microsoft.Graph.DeviceCategory DeviceCategory { get; set; }
         /// <summary>Device category display name. This property is read-only.</summary>
         public string DeviceCategoryDisplayName { get; set; }
         /// <summary>Device compliance policy states for this device.</summary>
@@ -30,13 +30,13 @@ namespace ApiSdk.Models.Microsoft.Graph {
         /// <summary>Device configuration states for this device.</summary>
         public List<DeviceConfigurationState> DeviceConfigurationStates { get; set; }
         /// <summary>Enrollment type of the device. This property is read-only. Possible values are: unknown, userEnrollment, deviceEnrollmentManager, appleBulkWithUser, appleBulkWithoutUser, windowsAzureADJoin, windowsBulkUserless, windowsAutoEnrollment, windowsBulkAzureDomainJoin, windowsCoManagement, windowsAzureADJoinUsingDeviceAuth, appleUserEnrollment, appleUserEnrollmentWithServiceAccount, azureAdJoinUsingAzureVmExtension, androidEnterpriseDedicatedDevice, androidEnterpriseFullyManaged, androidEnterpriseCorporateWorkProfile.</summary>
-        public DeviceEnrollmentType? DeviceEnrollmentType { get; set; }
+        public ApiSdk.Models.Microsoft.Graph.DeviceEnrollmentType? DeviceEnrollmentType { get; set; }
         /// <summary>The device health attestation state. This property is read-only.</summary>
-        public DeviceHealthAttestationState DeviceHealthAttestationState { get; set; }
+        public ApiSdk.Models.Microsoft.Graph.DeviceHealthAttestationState DeviceHealthAttestationState { get; set; }
         /// <summary>Name of the device. This property is read-only.</summary>
         public string DeviceName { get; set; }
         /// <summary>Device registration state. This property is read-only. Possible values are: notRegistered, registered, revoked, keyConflict, approvalPending, certificateReset, notRegisteredPendingEnrollment, unknown.</summary>
-        public DeviceRegistrationState? DeviceRegistrationState { get; set; }
+        public ApiSdk.Models.Microsoft.Graph.DeviceRegistrationState? DeviceRegistrationState { get; set; }
         /// <summary>Whether the device is Exchange ActiveSync activated. This property is read-only.</summary>
         public bool? EasActivated { get; set; }
         /// <summary>Exchange ActivationSync activation time of the device. This property is read-only.</summary>
@@ -72,7 +72,7 @@ namespace ApiSdk.Models.Microsoft.Graph {
         /// <summary>Automatically generated name to identify a device. Can be overwritten to a user friendly name.</summary>
         public string ManagedDeviceName { get; set; }
         /// <summary>Ownership of the device. Can be 'company' or 'personal'. Possible values are: unknown, company, personal.</summary>
-        public ManagedDeviceOwnerType? ManagedDeviceOwnerType { get; set; }
+        public ApiSdk.Models.Microsoft.Graph.ManagedDeviceOwnerType? ManagedDeviceOwnerType { get; set; }
         /// <summary>Management channel of the device. Intune, EAS, etc. This property is read-only. Possible values are: eas, mdm, easMdm, intuneClient, easIntuneClient, configurationManagerClient, configurationManagerClientMdm, configurationManagerClientMdmEas, unknown, jamf, googleCloudDevicePolicyController, microsoft365ManagedMdm, msSense, intuneAosp.</summary>
         public ManagementAgentType? ManagementAgent { get; set; }
         /// <summary>Manufacturer of the device. This property is read-only.</summary>
@@ -114,6 +114,14 @@ namespace ApiSdk.Models.Microsoft.Graph {
         /// <summary>Wi-Fi MAC. This property is read-only.</summary>
         public string WiFiMacAddress { get; set; }
         /// <summary>
+        /// Creates a new instance of the appropriate class based on discriminator value
+        /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
+        /// </summary>
+        public static new ManagedDevice CreateFromDiscriminatorValue(IParseNode parseNode) {
+            _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
+            return new ManagedDevice();
+        }
+        /// <summary>
         /// The deserialization information for the current model
         /// </summary>
         public new IDictionary<string, Action<T, IParseNode>> GetFieldDeserializers<T>() {
@@ -124,14 +132,14 @@ namespace ApiSdk.Models.Microsoft.Graph {
                 {"azureADRegistered", (o,n) => { (o as ManagedDevice).AzureADRegistered = n.GetBoolValue(); } },
                 {"complianceGracePeriodExpirationDateTime", (o,n) => { (o as ManagedDevice).ComplianceGracePeriodExpirationDateTime = n.GetDateTimeOffsetValue(); } },
                 {"complianceState", (o,n) => { (o as ManagedDevice).ComplianceState = n.GetEnumValue<ComplianceState>(); } },
-                {"configurationManagerClientEnabledFeatures", (o,n) => { (o as ManagedDevice).ConfigurationManagerClientEnabledFeatures = n.GetObjectValue<ConfigurationManagerClientEnabledFeatures>(); } },
-                {"deviceActionResults", (o,n) => { (o as ManagedDevice).DeviceActionResults = n.GetCollectionOfObjectValues<DeviceActionResult>().ToList(); } },
-                {"deviceCategory", (o,n) => { (o as ManagedDevice).DeviceCategory = n.GetObjectValue<DeviceCategory>(); } },
+                {"configurationManagerClientEnabledFeatures", (o,n) => { (o as ManagedDevice).ConfigurationManagerClientEnabledFeatures = n.GetObjectValue<ApiSdk.Models.Microsoft.Graph.ConfigurationManagerClientEnabledFeatures>(ApiSdk.Models.Microsoft.Graph.ConfigurationManagerClientEnabledFeatures.CreateFromDiscriminatorValue); } },
+                {"deviceActionResults", (o,n) => { (o as ManagedDevice).DeviceActionResults = n.GetCollectionOfObjectValues<DeviceActionResult>(DeviceActionResult.CreateFromDiscriminatorValue).ToList(); } },
+                {"deviceCategory", (o,n) => { (o as ManagedDevice).DeviceCategory = n.GetObjectValue<ApiSdk.Models.Microsoft.Graph.DeviceCategory>(ApiSdk.Models.Microsoft.Graph.DeviceCategory.CreateFromDiscriminatorValue); } },
                 {"deviceCategoryDisplayName", (o,n) => { (o as ManagedDevice).DeviceCategoryDisplayName = n.GetStringValue(); } },
-                {"deviceCompliancePolicyStates", (o,n) => { (o as ManagedDevice).DeviceCompliancePolicyStates = n.GetCollectionOfObjectValues<DeviceCompliancePolicyState>().ToList(); } },
-                {"deviceConfigurationStates", (o,n) => { (o as ManagedDevice).DeviceConfigurationStates = n.GetCollectionOfObjectValues<DeviceConfigurationState>().ToList(); } },
+                {"deviceCompliancePolicyStates", (o,n) => { (o as ManagedDevice).DeviceCompliancePolicyStates = n.GetCollectionOfObjectValues<DeviceCompliancePolicyState>(DeviceCompliancePolicyState.CreateFromDiscriminatorValue).ToList(); } },
+                {"deviceConfigurationStates", (o,n) => { (o as ManagedDevice).DeviceConfigurationStates = n.GetCollectionOfObjectValues<DeviceConfigurationState>(DeviceConfigurationState.CreateFromDiscriminatorValue).ToList(); } },
                 {"deviceEnrollmentType", (o,n) => { (o as ManagedDevice).DeviceEnrollmentType = n.GetEnumValue<DeviceEnrollmentType>(); } },
-                {"deviceHealthAttestationState", (o,n) => { (o as ManagedDevice).DeviceHealthAttestationState = n.GetObjectValue<DeviceHealthAttestationState>(); } },
+                {"deviceHealthAttestationState", (o,n) => { (o as ManagedDevice).DeviceHealthAttestationState = n.GetObjectValue<ApiSdk.Models.Microsoft.Graph.DeviceHealthAttestationState>(ApiSdk.Models.Microsoft.Graph.DeviceHealthAttestationState.CreateFromDiscriminatorValue); } },
                 {"deviceName", (o,n) => { (o as ManagedDevice).DeviceName = n.GetStringValue(); } },
                 {"deviceRegistrationState", (o,n) => { (o as ManagedDevice).DeviceRegistrationState = n.GetEnumValue<DeviceRegistrationState>(); } },
                 {"easActivated", (o,n) => { (o as ManagedDevice).EasActivated = n.GetBoolValue(); } },
@@ -187,14 +195,14 @@ namespace ApiSdk.Models.Microsoft.Graph {
             writer.WriteBoolValue("azureADRegistered", AzureADRegistered);
             writer.WriteDateTimeOffsetValue("complianceGracePeriodExpirationDateTime", ComplianceGracePeriodExpirationDateTime);
             writer.WriteEnumValue<ComplianceState>("complianceState", ComplianceState);
-            writer.WriteObjectValue<ConfigurationManagerClientEnabledFeatures>("configurationManagerClientEnabledFeatures", ConfigurationManagerClientEnabledFeatures);
+            writer.WriteObjectValue<ApiSdk.Models.Microsoft.Graph.ConfigurationManagerClientEnabledFeatures>("configurationManagerClientEnabledFeatures", ConfigurationManagerClientEnabledFeatures);
             writer.WriteCollectionOfObjectValues<DeviceActionResult>("deviceActionResults", DeviceActionResults);
-            writer.WriteObjectValue<DeviceCategory>("deviceCategory", DeviceCategory);
+            writer.WriteObjectValue<ApiSdk.Models.Microsoft.Graph.DeviceCategory>("deviceCategory", DeviceCategory);
             writer.WriteStringValue("deviceCategoryDisplayName", DeviceCategoryDisplayName);
             writer.WriteCollectionOfObjectValues<DeviceCompliancePolicyState>("deviceCompliancePolicyStates", DeviceCompliancePolicyStates);
             writer.WriteCollectionOfObjectValues<DeviceConfigurationState>("deviceConfigurationStates", DeviceConfigurationStates);
             writer.WriteEnumValue<DeviceEnrollmentType>("deviceEnrollmentType", DeviceEnrollmentType);
-            writer.WriteObjectValue<DeviceHealthAttestationState>("deviceHealthAttestationState", DeviceHealthAttestationState);
+            writer.WriteObjectValue<ApiSdk.Models.Microsoft.Graph.DeviceHealthAttestationState>("deviceHealthAttestationState", DeviceHealthAttestationState);
             writer.WriteStringValue("deviceName", DeviceName);
             writer.WriteEnumValue<DeviceRegistrationState>("deviceRegistrationState", DeviceRegistrationState);
             writer.WriteBoolValue("easActivated", EasActivated);

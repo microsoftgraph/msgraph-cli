@@ -9,12 +9,20 @@ namespace ApiSdk.Models.Microsoft.Graph {
         public DateTimeOffset? CreatedDateTime { get; set; }
         public PrintOperationStatus Status { get; set; }
         /// <summary>
+        /// Creates a new instance of the appropriate class based on discriminator value
+        /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
+        /// </summary>
+        public static new PrintOperation CreateFromDiscriminatorValue(IParseNode parseNode) {
+            _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
+            return new PrintOperation();
+        }
+        /// <summary>
         /// The deserialization information for the current model
         /// </summary>
         public new IDictionary<string, Action<T, IParseNode>> GetFieldDeserializers<T>() {
             return new Dictionary<string, Action<T, IParseNode>>(base.GetFieldDeserializers<T>()) {
                 {"createdDateTime", (o,n) => { (o as PrintOperation).CreatedDateTime = n.GetDateTimeOffsetValue(); } },
-                {"status", (o,n) => { (o as PrintOperation).Status = n.GetObjectValue<PrintOperationStatus>(); } },
+                {"status", (o,n) => { (o as PrintOperation).Status = n.GetObjectValue<PrintOperationStatus>(PrintOperationStatus.CreateFromDiscriminatorValue); } },
             };
         }
         /// <summary>

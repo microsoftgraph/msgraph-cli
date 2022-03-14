@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 namespace ApiSdk.Identity.ApiConnectors.Item.UploadClientCertificate {
-    public class UploadClientCertificateRequestBody : IParsable {
+    public class UploadClientCertificateRequestBody : IAdditionalDataHolder, IParsable {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
         public string Password { get; set; }
@@ -14,6 +14,14 @@ namespace ApiSdk.Identity.ApiConnectors.Item.UploadClientCertificate {
         /// </summary>
         public UploadClientCertificateRequestBody() {
             AdditionalData = new Dictionary<string, object>();
+        }
+        /// <summary>
+        /// Creates a new instance of the appropriate class based on discriminator value
+        /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
+        /// </summary>
+        public static UploadClientCertificateRequestBody CreateFromDiscriminatorValue(IParseNode parseNode) {
+            _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
+            return new UploadClientCertificateRequestBody();
         }
         /// <summary>
         /// The deserialization information for the current model

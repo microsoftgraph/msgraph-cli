@@ -42,7 +42,7 @@ namespace ApiSdk.Applications.Item.SetVerifiedPublisher {
                 PathParameters.Add("application_id", applicationId);
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
-                var model = parseNode.GetObjectValue<SetVerifiedPublisherRequestBody>();
+                var model = parseNode.GetObjectValue<SetVerifiedPublisherRequestBody>(SetVerifiedPublisherRequestBody.CreateFromDiscriminatorValue);
                 var requestInfo = CreatePostRequestInformation(model, q => {
                 });
                 await RequestAdapter.SendNoContentAsync(requestInfo, errorMapping: default, cancellationToken: cancellationToken);

@@ -42,7 +42,7 @@ namespace ApiSdk.Domains.Item.ForceDelete {
                 PathParameters.Add("domain_id", domainId);
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
-                var model = parseNode.GetObjectValue<ForceDeleteRequestBody>();
+                var model = parseNode.GetObjectValue<ForceDeleteRequestBody>(ForceDeleteRequestBody.CreateFromDiscriminatorValue);
                 var requestInfo = CreatePostRequestInformation(model, q => {
                 });
                 await RequestAdapter.SendNoContentAsync(requestInfo, errorMapping: default, cancellationToken: cancellationToken);

@@ -107,6 +107,13 @@ namespace ApiSdk.Me.Onenote.Pages.Item.ParentNotebook.Sections.Item.Pages.Item {
             command.AddOption(outputOption);
             var queryOption = new Option<string>("--query");
             command.AddOption(queryOption);
+            var jsonNoIndentOption = new Option<bool>("--json-no-indent", r => {
+                if (bool.TryParse(r.Tokens.Select(t => t.Value).LastOrDefault(), out var value)) {
+                    return value;
+                }
+                return true;
+            }, description: "Disable indentation for the JSON output formatter.");
+            command.AddOption(jsonNoIndentOption);
             command.SetHandler(async (object[] parameters) => {
                 var onenotePageId = (string) parameters[0];
                 var onenoteSectionId = (string) parameters[1];
@@ -115,9 +122,10 @@ namespace ApiSdk.Me.Onenote.Pages.Item.ParentNotebook.Sections.Item.Pages.Item {
                 var expand = (string[]) parameters[4];
                 var output = (FormatterType) parameters[5];
                 var query = (string) parameters[6];
-                var outputFilter = (IOutputFilter) parameters[7];
-                var outputFormatterFactory = (IOutputFormatterFactory) parameters[8];
-                var cancellationToken = (CancellationToken) parameters[9];
+                var jsonNoIndent = (bool) parameters[7];
+                var outputFilter = (IOutputFilter) parameters[8];
+                var outputFormatterFactory = (IOutputFormatterFactory) parameters[9];
+                var cancellationToken = (CancellationToken) parameters[10];
                 PathParameters.Clear();
                 PathParameters.Add("onenotePage_id", onenotePageId);
                 PathParameters.Add("onenoteSection_id", onenoteSectionId);
@@ -128,9 +136,10 @@ namespace ApiSdk.Me.Onenote.Pages.Item.ParentNotebook.Sections.Item.Pages.Item {
                 });
                 var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: default, cancellationToken: cancellationToken);
                 var formatter = outputFormatterFactory.GetFormatter(output);
-                response = outputFilter?.FilterOutput(response, query) ?? response;
-                formatter.WriteOutput(response);
-            }, new CollectionBinding(onenotePageIdOption, onenoteSectionIdOption, onenotePageId1Option, selectOption, expandOption, outputOption, queryOption, new TypeBinding(typeof(IOutputFilter)), new TypeBinding(typeof(IOutputFormatterFactory)), new TypeBinding(typeof(CancellationToken))));
+                response = await outputFilter?.FilterOutputAsync(response, query, cancellationToken) ?? response;
+                var formatterOptions = output.GetOutputFormatterOptions(new FormatterOptionsModel(!jsonNoIndent));
+                await formatter.WriteOutputAsync(response, formatterOptions, cancellationToken);
+            }, new CollectionBinding(onenotePageIdOption, onenoteSectionIdOption, onenotePageId1Option, selectOption, expandOption, outputOption, queryOption, jsonNoIndentOption, new TypeBinding(typeof(IOutputFilter)), new TypeBinding(typeof(IOutputFormatterFactory)), new TypeBinding(typeof(CancellationToken))));
             return command;
         }
         public Command BuildOnenotePatchContentCommand() {
@@ -174,7 +183,7 @@ namespace ApiSdk.Me.Onenote.Pages.Item.ParentNotebook.Sections.Item.Pages.Item {
                 PathParameters.Add("onenotePage_id1", onenotePageId1);
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
-                var model = parseNode.GetObjectValue<OnenotePage>();
+                var model = parseNode.GetObjectValue<OnenotePage>(OnenotePage.CreateFromDiscriminatorValue);
                 var requestInfo = CreatePatchRequestInformation(model, q => {
                 });
                 await RequestAdapter.SendNoContentAsync(requestInfo, errorMapping: default, cancellationToken: cancellationToken);

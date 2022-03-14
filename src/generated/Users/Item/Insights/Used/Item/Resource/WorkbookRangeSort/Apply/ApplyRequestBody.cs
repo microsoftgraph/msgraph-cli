@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 namespace ApiSdk.Users.Item.Insights.Used.Item.Resource.WorkbookRangeSort.Apply {
-    public class ApplyRequestBody : IParsable {
+    public class ApplyRequestBody : IAdditionalDataHolder, IParsable {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
         public List<WorkbookSortField> Fields { get; set; }
@@ -20,11 +20,19 @@ namespace ApiSdk.Users.Item.Insights.Used.Item.Resource.WorkbookRangeSort.Apply 
             AdditionalData = new Dictionary<string, object>();
         }
         /// <summary>
+        /// Creates a new instance of the appropriate class based on discriminator value
+        /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
+        /// </summary>
+        public static ApplyRequestBody CreateFromDiscriminatorValue(IParseNode parseNode) {
+            _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
+            return new ApplyRequestBody();
+        }
+        /// <summary>
         /// The deserialization information for the current model
         /// </summary>
         public IDictionary<string, Action<T, IParseNode>> GetFieldDeserializers<T>() {
             return new Dictionary<string, Action<T, IParseNode>> {
-                {"fields", (o,n) => { (o as ApplyRequestBody).Fields = n.GetCollectionOfObjectValues<WorkbookSortField>().ToList(); } },
+                {"fields", (o,n) => { (o as ApplyRequestBody).Fields = n.GetCollectionOfObjectValues<WorkbookSortField>(WorkbookSortField.CreateFromDiscriminatorValue).ToList(); } },
                 {"hasHeaders", (o,n) => { (o as ApplyRequestBody).HasHeaders = n.GetBoolValue(); } },
                 {"matchCase", (o,n) => { (o as ApplyRequestBody).MatchCase = n.GetBoolValue(); } },
                 {"method", (o,n) => { (o as ApplyRequestBody).Method = n.GetStringValue(); } },

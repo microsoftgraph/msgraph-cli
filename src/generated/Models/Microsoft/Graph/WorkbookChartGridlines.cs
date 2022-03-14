@@ -10,11 +10,19 @@ namespace ApiSdk.Models.Microsoft.Graph {
         /// <summary>Boolean value representing if the axis gridlines are visible or not.</summary>
         public bool? Visible { get; set; }
         /// <summary>
+        /// Creates a new instance of the appropriate class based on discriminator value
+        /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
+        /// </summary>
+        public static new WorkbookChartGridlines CreateFromDiscriminatorValue(IParseNode parseNode) {
+            _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
+            return new WorkbookChartGridlines();
+        }
+        /// <summary>
         /// The deserialization information for the current model
         /// </summary>
         public new IDictionary<string, Action<T, IParseNode>> GetFieldDeserializers<T>() {
             return new Dictionary<string, Action<T, IParseNode>>(base.GetFieldDeserializers<T>()) {
-                {"format", (o,n) => { (o as WorkbookChartGridlines).Format = n.GetObjectValue<WorkbookChartGridlinesFormat>(); } },
+                {"format", (o,n) => { (o as WorkbookChartGridlines).Format = n.GetObjectValue<WorkbookChartGridlinesFormat>(WorkbookChartGridlinesFormat.CreateFromDiscriminatorValue); } },
                 {"visible", (o,n) => { (o as WorkbookChartGridlines).Visible = n.GetBoolValue(); } },
             };
         }

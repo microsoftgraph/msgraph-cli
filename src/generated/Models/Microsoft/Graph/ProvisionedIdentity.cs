@@ -10,11 +10,19 @@ namespace ApiSdk.Models.Microsoft.Graph {
         /// <summary>Type of identity that has been provisioned, such as 'user' or 'group'.</summary>
         public string IdentityType { get; set; }
         /// <summary>
+        /// Creates a new instance of the appropriate class based on discriminator value
+        /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
+        /// </summary>
+        public static new ProvisionedIdentity CreateFromDiscriminatorValue(IParseNode parseNode) {
+            _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
+            return new ProvisionedIdentity();
+        }
+        /// <summary>
         /// The deserialization information for the current model
         /// </summary>
         public new IDictionary<string, Action<T, IParseNode>> GetFieldDeserializers<T>() {
             return new Dictionary<string, Action<T, IParseNode>>(base.GetFieldDeserializers<T>()) {
-                {"details", (o,n) => { (o as ProvisionedIdentity).Details = n.GetObjectValue<DetailsInfo>(); } },
+                {"details", (o,n) => { (o as ProvisionedIdentity).Details = n.GetObjectValue<DetailsInfo>(DetailsInfo.CreateFromDiscriminatorValue); } },
                 {"identityType", (o,n) => { (o as ProvisionedIdentity).IdentityType = n.GetStringValue(); } },
             };
         }

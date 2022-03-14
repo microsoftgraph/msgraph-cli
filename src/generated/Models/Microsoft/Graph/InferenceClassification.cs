@@ -8,11 +8,19 @@ namespace ApiSdk.Models.Microsoft.Graph {
         /// <summary>A set of overrides for a user to always classify messages from specific senders in certain ways: focused, or other. Read-only. Nullable.</summary>
         public List<InferenceClassificationOverride> Overrides { get; set; }
         /// <summary>
+        /// Creates a new instance of the appropriate class based on discriminator value
+        /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
+        /// </summary>
+        public static new InferenceClassification CreateFromDiscriminatorValue(IParseNode parseNode) {
+            _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
+            return new InferenceClassification();
+        }
+        /// <summary>
         /// The deserialization information for the current model
         /// </summary>
         public new IDictionary<string, Action<T, IParseNode>> GetFieldDeserializers<T>() {
             return new Dictionary<string, Action<T, IParseNode>>(base.GetFieldDeserializers<T>()) {
-                {"overrides", (o,n) => { (o as InferenceClassification).Overrides = n.GetCollectionOfObjectValues<InferenceClassificationOverride>().ToList(); } },
+                {"overrides", (o,n) => { (o as InferenceClassification).Overrides = n.GetCollectionOfObjectValues<InferenceClassificationOverride>(InferenceClassificationOverride.CreateFromDiscriminatorValue).ToList(); } },
             };
         }
         /// <summary>

@@ -49,6 +49,13 @@ namespace ApiSdk.Workbooks.Item.Workbook.Names.Item.Worksheet.Tables.Item.Column
             command.AddOption(outputOption);
             var queryOption = new Option<string>("--query");
             command.AddOption(queryOption);
+            var jsonNoIndentOption = new Option<bool>("--json-no-indent", r => {
+                if (bool.TryParse(r.Tokens.Select(t => t.Value).LastOrDefault(), out var value)) {
+                    return value;
+                }
+                return true;
+            }, description: "Disable indentation for the JSON output formatter.");
+            command.AddOption(jsonNoIndentOption);
             command.SetHandler(async (object[] parameters) => {
                 var driveItemId = (string) parameters[0];
                 var workbookNamedItemId = (string) parameters[1];
@@ -56,23 +63,25 @@ namespace ApiSdk.Workbooks.Item.Workbook.Names.Item.Worksheet.Tables.Item.Column
                 var body = (string) parameters[3];
                 var output = (FormatterType) parameters[4];
                 var query = (string) parameters[5];
-                var outputFilter = (IOutputFilter) parameters[6];
-                var outputFormatterFactory = (IOutputFormatterFactory) parameters[7];
-                var cancellationToken = (CancellationToken) parameters[8];
+                var jsonNoIndent = (bool) parameters[6];
+                var outputFilter = (IOutputFilter) parameters[7];
+                var outputFormatterFactory = (IOutputFormatterFactory) parameters[8];
+                var cancellationToken = (CancellationToken) parameters[9];
                 PathParameters.Clear();
                 PathParameters.Add("driveItem_id", driveItemId);
                 PathParameters.Add("workbookNamedItem_id", workbookNamedItemId);
                 PathParameters.Add("workbookTable_id", workbookTableId);
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
-                var model = parseNode.GetObjectValue<AddRequestBody>();
+                var model = parseNode.GetObjectValue<AddRequestBody>(AddRequestBody.CreateFromDiscriminatorValue);
                 var requestInfo = CreatePostRequestInformation(model, q => {
                 });
                 var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: default, cancellationToken: cancellationToken);
                 var formatter = outputFormatterFactory.GetFormatter(output);
-                response = outputFilter?.FilterOutput(response, query) ?? response;
-                formatter.WriteOutput(response);
-            }, new CollectionBinding(driveItemIdOption, workbookNamedItemIdOption, workbookTableIdOption, bodyOption, outputOption, queryOption, new TypeBinding(typeof(IOutputFilter)), new TypeBinding(typeof(IOutputFormatterFactory)), new TypeBinding(typeof(CancellationToken))));
+                response = await outputFilter?.FilterOutputAsync(response, query, cancellationToken) ?? response;
+                var formatterOptions = output.GetOutputFormatterOptions(new FormatterOptionsModel(!jsonNoIndent));
+                await formatter.WriteOutputAsync(response, formatterOptions, cancellationToken);
+            }, new CollectionBinding(driveItemIdOption, workbookNamedItemIdOption, workbookTableIdOption, bodyOption, outputOption, queryOption, jsonNoIndentOption, new TypeBinding(typeof(IOutputFilter)), new TypeBinding(typeof(IOutputFormatterFactory)), new TypeBinding(typeof(CancellationToken))));
             return command;
         }
         /// <summary>
@@ -107,23 +116,27 @@ namespace ApiSdk.Workbooks.Item.Workbook.Names.Item.Worksheet.Tables.Item.Column
             return requestInfo;
         }
         /// <summary>Union type wrapper for classes workbookTableColumn</summary>
-        public class AddResponse : IParsable {
+        public class AddResponse : IAdditionalDataHolder, IParsable {
             /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
             public IDictionary<string, object> AdditionalData { get; set; }
             /// <summary>Union type representation for type workbookTableColumn</summary>
-            public WorkbookTableColumn WorkbookTableColumn { get; set; }
+            public ApiSdk.Models.Microsoft.Graph.WorkbookTableColumn WorkbookTableColumn { get; set; }
             /// <summary>
             /// Instantiates a new addResponse and sets the default values.
             /// </summary>
             public AddResponse() {
                 AdditionalData = new Dictionary<string, object>();
             }
+            public static AddResponse CreateFromDiscriminatorValue(IParseNode parseNode) {
+                _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
+                return new AddResponse();
+            }
             /// <summary>
             /// The deserialization information for the current model
             /// </summary>
             public IDictionary<string, Action<T, IParseNode>> GetFieldDeserializers<T>() {
                 return new Dictionary<string, Action<T, IParseNode>> {
-                    {"workbookTableColumn", (o,n) => { (o as AddResponse).WorkbookTableColumn = n.GetObjectValue<WorkbookTableColumn>(); } },
+                    {"workbookTableColumn", (o,n) => { (o as AddResponse).WorkbookTableColumn = n.GetObjectValue<ApiSdk.Models.Microsoft.Graph.WorkbookTableColumn>(ApiSdk.Models.Microsoft.Graph.WorkbookTableColumn.CreateFromDiscriminatorValue); } },
                 };
             }
             /// <summary>
@@ -132,7 +145,7 @@ namespace ApiSdk.Workbooks.Item.Workbook.Names.Item.Worksheet.Tables.Item.Column
             /// </summary>
             public void Serialize(ISerializationWriter writer) {
                 _ = writer ?? throw new ArgumentNullException(nameof(writer));
-                writer.WriteObjectValue<WorkbookTableColumn>("workbookTableColumn", WorkbookTableColumn);
+                writer.WriteObjectValue<ApiSdk.Models.Microsoft.Graph.WorkbookTableColumn>("workbookTableColumn", WorkbookTableColumn);
                 writer.WriteAdditionalData(AdditionalData);
             }
         }

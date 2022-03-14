@@ -10,12 +10,20 @@ namespace ApiSdk.Models.Microsoft.Graph {
         /// <summary>Resource object.</summary>
         public EducationResource Resource { get; set; }
         /// <summary>
+        /// Creates a new instance of the appropriate class based on discriminator value
+        /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
+        /// </summary>
+        public static new EducationSubmissionResource CreateFromDiscriminatorValue(IParseNode parseNode) {
+            _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
+            return new EducationSubmissionResource();
+        }
+        /// <summary>
         /// The deserialization information for the current model
         /// </summary>
         public new IDictionary<string, Action<T, IParseNode>> GetFieldDeserializers<T>() {
             return new Dictionary<string, Action<T, IParseNode>>(base.GetFieldDeserializers<T>()) {
                 {"assignmentResourceUrl", (o,n) => { (o as EducationSubmissionResource).AssignmentResourceUrl = n.GetStringValue(); } },
-                {"resource", (o,n) => { (o as EducationSubmissionResource).Resource = n.GetObjectValue<EducationResource>(); } },
+                {"resource", (o,n) => { (o as EducationSubmissionResource).Resource = n.GetObjectValue<EducationResource>(EducationResource.CreateFromDiscriminatorValue); } },
             };
         }
         /// <summary>

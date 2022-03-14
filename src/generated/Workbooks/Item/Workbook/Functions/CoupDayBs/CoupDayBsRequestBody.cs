@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 namespace ApiSdk.Workbooks.Item.Workbook.Functions.CoupDayBs {
-    public class CoupDayBsRequestBody : IParsable {
+    public class CoupDayBsRequestBody : IAdditionalDataHolder, IParsable {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
         public Json Basis { get; set; }
@@ -19,14 +19,22 @@ namespace ApiSdk.Workbooks.Item.Workbook.Functions.CoupDayBs {
             AdditionalData = new Dictionary<string, object>();
         }
         /// <summary>
+        /// Creates a new instance of the appropriate class based on discriminator value
+        /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
+        /// </summary>
+        public static CoupDayBsRequestBody CreateFromDiscriminatorValue(IParseNode parseNode) {
+            _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
+            return new CoupDayBsRequestBody();
+        }
+        /// <summary>
         /// The deserialization information for the current model
         /// </summary>
         public IDictionary<string, Action<T, IParseNode>> GetFieldDeserializers<T>() {
             return new Dictionary<string, Action<T, IParseNode>> {
-                {"basis", (o,n) => { (o as CoupDayBsRequestBody).Basis = n.GetObjectValue<Json>(); } },
-                {"frequency", (o,n) => { (o as CoupDayBsRequestBody).Frequency = n.GetObjectValue<Json>(); } },
-                {"maturity", (o,n) => { (o as CoupDayBsRequestBody).Maturity = n.GetObjectValue<Json>(); } },
-                {"settlement", (o,n) => { (o as CoupDayBsRequestBody).Settlement = n.GetObjectValue<Json>(); } },
+                {"basis", (o,n) => { (o as CoupDayBsRequestBody).Basis = n.GetObjectValue<Json>(Json.CreateFromDiscriminatorValue); } },
+                {"frequency", (o,n) => { (o as CoupDayBsRequestBody).Frequency = n.GetObjectValue<Json>(Json.CreateFromDiscriminatorValue); } },
+                {"maturity", (o,n) => { (o as CoupDayBsRequestBody).Maturity = n.GetObjectValue<Json>(Json.CreateFromDiscriminatorValue); } },
+                {"settlement", (o,n) => { (o as CoupDayBsRequestBody).Settlement = n.GetObjectValue<Json>(Json.CreateFromDiscriminatorValue); } },
             };
         }
         /// <summary>

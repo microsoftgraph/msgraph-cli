@@ -42,28 +42,36 @@ namespace ApiSdk.Models.Microsoft.Graph {
         /// <summary>The collection of single-value extended properties defined for the calendar. Read-only. Nullable.</summary>
         public List<SingleValueLegacyExtendedProperty> SingleValueExtendedProperties { get; set; }
         /// <summary>
+        /// Creates a new instance of the appropriate class based on discriminator value
+        /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
+        /// </summary>
+        public static new Calendar CreateFromDiscriminatorValue(IParseNode parseNode) {
+            _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
+            return new Calendar();
+        }
+        /// <summary>
         /// The deserialization information for the current model
         /// </summary>
         public new IDictionary<string, Action<T, IParseNode>> GetFieldDeserializers<T>() {
             return new Dictionary<string, Action<T, IParseNode>>(base.GetFieldDeserializers<T>()) {
                 {"allowedOnlineMeetingProviders", (o,n) => { (o as Calendar).AllowedOnlineMeetingProviders = n.GetCollectionOfEnumValues<OnlineMeetingProviderType>().ToList(); } },
-                {"calendarPermissions", (o,n) => { (o as Calendar).CalendarPermissions = n.GetCollectionOfObjectValues<CalendarPermission>().ToList(); } },
-                {"calendarView", (o,n) => { (o as Calendar).CalendarView = n.GetCollectionOfObjectValues<Event>().ToList(); } },
+                {"calendarPermissions", (o,n) => { (o as Calendar).CalendarPermissions = n.GetCollectionOfObjectValues<CalendarPermission>(CalendarPermission.CreateFromDiscriminatorValue).ToList(); } },
+                {"calendarView", (o,n) => { (o as Calendar).CalendarView = n.GetCollectionOfObjectValues<Event>(Event.CreateFromDiscriminatorValue).ToList(); } },
                 {"canEdit", (o,n) => { (o as Calendar).CanEdit = n.GetBoolValue(); } },
                 {"canShare", (o,n) => { (o as Calendar).CanShare = n.GetBoolValue(); } },
                 {"canViewPrivateItems", (o,n) => { (o as Calendar).CanViewPrivateItems = n.GetBoolValue(); } },
                 {"changeKey", (o,n) => { (o as Calendar).ChangeKey = n.GetStringValue(); } },
                 {"color", (o,n) => { (o as Calendar).Color = n.GetEnumValue<CalendarColor>(); } },
                 {"defaultOnlineMeetingProvider", (o,n) => { (o as Calendar).DefaultOnlineMeetingProvider = n.GetEnumValue<OnlineMeetingProviderType>(); } },
-                {"events", (o,n) => { (o as Calendar).Events = n.GetCollectionOfObjectValues<Event>().ToList(); } },
+                {"events", (o,n) => { (o as Calendar).Events = n.GetCollectionOfObjectValues<Event>(Event.CreateFromDiscriminatorValue).ToList(); } },
                 {"hexColor", (o,n) => { (o as Calendar).HexColor = n.GetStringValue(); } },
                 {"isDefaultCalendar", (o,n) => { (o as Calendar).IsDefaultCalendar = n.GetBoolValue(); } },
                 {"isRemovable", (o,n) => { (o as Calendar).IsRemovable = n.GetBoolValue(); } },
                 {"isTallyingResponses", (o,n) => { (o as Calendar).IsTallyingResponses = n.GetBoolValue(); } },
-                {"multiValueExtendedProperties", (o,n) => { (o as Calendar).MultiValueExtendedProperties = n.GetCollectionOfObjectValues<MultiValueLegacyExtendedProperty>().ToList(); } },
+                {"multiValueExtendedProperties", (o,n) => { (o as Calendar).MultiValueExtendedProperties = n.GetCollectionOfObjectValues<MultiValueLegacyExtendedProperty>(MultiValueLegacyExtendedProperty.CreateFromDiscriminatorValue).ToList(); } },
                 {"name", (o,n) => { (o as Calendar).Name = n.GetStringValue(); } },
-                {"owner", (o,n) => { (o as Calendar).Owner = n.GetObjectValue<EmailAddress>(); } },
-                {"singleValueExtendedProperties", (o,n) => { (o as Calendar).SingleValueExtendedProperties = n.GetCollectionOfObjectValues<SingleValueLegacyExtendedProperty>().ToList(); } },
+                {"owner", (o,n) => { (o as Calendar).Owner = n.GetObjectValue<EmailAddress>(EmailAddress.CreateFromDiscriminatorValue); } },
+                {"singleValueExtendedProperties", (o,n) => { (o as Calendar).SingleValueExtendedProperties = n.GetCollectionOfObjectValues<SingleValueLegacyExtendedProperty>(SingleValueLegacyExtendedProperty.CreateFromDiscriminatorValue).ToList(); } },
             };
         }
         /// <summary>

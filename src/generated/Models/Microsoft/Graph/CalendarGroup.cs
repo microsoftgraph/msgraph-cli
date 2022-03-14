@@ -14,11 +14,19 @@ namespace ApiSdk.Models.Microsoft.Graph {
         /// <summary>The group name.</summary>
         public string Name { get; set; }
         /// <summary>
+        /// Creates a new instance of the appropriate class based on discriminator value
+        /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
+        /// </summary>
+        public static new CalendarGroup CreateFromDiscriminatorValue(IParseNode parseNode) {
+            _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
+            return new CalendarGroup();
+        }
+        /// <summary>
         /// The deserialization information for the current model
         /// </summary>
         public new IDictionary<string, Action<T, IParseNode>> GetFieldDeserializers<T>() {
             return new Dictionary<string, Action<T, IParseNode>>(base.GetFieldDeserializers<T>()) {
-                {"calendars", (o,n) => { (o as CalendarGroup).Calendars = n.GetCollectionOfObjectValues<Calendar>().ToList(); } },
+                {"calendars", (o,n) => { (o as CalendarGroup).Calendars = n.GetCollectionOfObjectValues<Calendar>(Calendar.CreateFromDiscriminatorValue).ToList(); } },
                 {"changeKey", (o,n) => { (o as CalendarGroup).ChangeKey = n.GetStringValue(); } },
                 {"classId", (o,n) => { (o as CalendarGroup).ClassId = n.GetStringValue(); } },
                 {"name", (o,n) => { (o as CalendarGroup).Name = n.GetStringValue(); } },

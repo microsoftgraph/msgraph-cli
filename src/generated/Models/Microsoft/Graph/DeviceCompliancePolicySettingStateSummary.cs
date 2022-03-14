@@ -28,13 +28,21 @@ namespace ApiSdk.Models.Microsoft.Graph {
         /// <summary>Number of unknown devices</summary>
         public int? UnknownDeviceCount { get; set; }
         /// <summary>
+        /// Creates a new instance of the appropriate class based on discriminator value
+        /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
+        /// </summary>
+        public static new DeviceCompliancePolicySettingStateSummary CreateFromDiscriminatorValue(IParseNode parseNode) {
+            _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
+            return new DeviceCompliancePolicySettingStateSummary();
+        }
+        /// <summary>
         /// The deserialization information for the current model
         /// </summary>
         public new IDictionary<string, Action<T, IParseNode>> GetFieldDeserializers<T>() {
             return new Dictionary<string, Action<T, IParseNode>>(base.GetFieldDeserializers<T>()) {
                 {"compliantDeviceCount", (o,n) => { (o as DeviceCompliancePolicySettingStateSummary).CompliantDeviceCount = n.GetIntValue(); } },
                 {"conflictDeviceCount", (o,n) => { (o as DeviceCompliancePolicySettingStateSummary).ConflictDeviceCount = n.GetIntValue(); } },
-                {"deviceComplianceSettingStates", (o,n) => { (o as DeviceCompliancePolicySettingStateSummary).DeviceComplianceSettingStates = n.GetCollectionOfObjectValues<DeviceComplianceSettingState>().ToList(); } },
+                {"deviceComplianceSettingStates", (o,n) => { (o as DeviceCompliancePolicySettingStateSummary).DeviceComplianceSettingStates = n.GetCollectionOfObjectValues<DeviceComplianceSettingState>(DeviceComplianceSettingState.CreateFromDiscriminatorValue).ToList(); } },
                 {"errorDeviceCount", (o,n) => { (o as DeviceCompliancePolicySettingStateSummary).ErrorDeviceCount = n.GetIntValue(); } },
                 {"nonCompliantDeviceCount", (o,n) => { (o as DeviceCompliancePolicySettingStateSummary).NonCompliantDeviceCount = n.GetIntValue(); } },
                 {"notApplicableDeviceCount", (o,n) => { (o as DeviceCompliancePolicySettingStateSummary).NotApplicableDeviceCount = n.GetIntValue(); } },

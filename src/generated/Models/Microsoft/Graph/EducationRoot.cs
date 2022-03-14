@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 namespace ApiSdk.Models.Microsoft.Graph {
-    public class EducationRoot : IParsable {
+    public class EducationRoot : IAdditionalDataHolder, IParsable {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
         public List<EducationClass> Classes { get; set; }
@@ -18,14 +18,22 @@ namespace ApiSdk.Models.Microsoft.Graph {
             AdditionalData = new Dictionary<string, object>();
         }
         /// <summary>
+        /// Creates a new instance of the appropriate class based on discriminator value
+        /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
+        /// </summary>
+        public static EducationRoot CreateFromDiscriminatorValue(IParseNode parseNode) {
+            _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
+            return new EducationRoot();
+        }
+        /// <summary>
         /// The deserialization information for the current model
         /// </summary>
         public IDictionary<string, Action<T, IParseNode>> GetFieldDeserializers<T>() {
             return new Dictionary<string, Action<T, IParseNode>> {
-                {"classes", (o,n) => { (o as EducationRoot).Classes = n.GetCollectionOfObjectValues<EducationClass>().ToList(); } },
-                {"me", (o,n) => { (o as EducationRoot).Me = n.GetObjectValue<EducationUser>(); } },
-                {"schools", (o,n) => { (o as EducationRoot).Schools = n.GetCollectionOfObjectValues<EducationSchool>().ToList(); } },
-                {"users", (o,n) => { (o as EducationRoot).Users = n.GetCollectionOfObjectValues<EducationUser>().ToList(); } },
+                {"classes", (o,n) => { (o as EducationRoot).Classes = n.GetCollectionOfObjectValues<EducationClass>(EducationClass.CreateFromDiscriminatorValue).ToList(); } },
+                {"me", (o,n) => { (o as EducationRoot).Me = n.GetObjectValue<EducationUser>(EducationUser.CreateFromDiscriminatorValue); } },
+                {"schools", (o,n) => { (o as EducationRoot).Schools = n.GetCollectionOfObjectValues<EducationSchool>(EducationSchool.CreateFromDiscriminatorValue).ToList(); } },
+                {"users", (o,n) => { (o as EducationRoot).Users = n.GetCollectionOfObjectValues<EducationUser>(EducationUser.CreateFromDiscriminatorValue).ToList(); } },
             };
         }
         /// <summary>

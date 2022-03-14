@@ -21,18 +21,26 @@ namespace ApiSdk.Models.Microsoft.Graph.TermStore {
         /// <summary>All the terms under the set.</summary>
         public List<Term> Terms { get; set; }
         /// <summary>
+        /// Creates a new instance of the appropriate class based on discriminator value
+        /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
+        /// </summary>
+        public static new Set CreateFromDiscriminatorValue(IParseNode parseNode) {
+            _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
+            return new Set();
+        }
+        /// <summary>
         /// The deserialization information for the current model
         /// </summary>
         public new IDictionary<string, Action<T, IParseNode>> GetFieldDeserializers<T>() {
             return new Dictionary<string, Action<T, IParseNode>>(base.GetFieldDeserializers<T>()) {
-                {"children", (o,n) => { (o as Set).Children = n.GetCollectionOfObjectValues<Term>().ToList(); } },
+                {"children", (o,n) => { (o as Set).Children = n.GetCollectionOfObjectValues<Term>(Term.CreateFromDiscriminatorValue).ToList(); } },
                 {"createdDateTime", (o,n) => { (o as Set).CreatedDateTime = n.GetDateTimeOffsetValue(); } },
                 {"description", (o,n) => { (o as Set).Description = n.GetStringValue(); } },
-                {"localizedNames", (o,n) => { (o as Set).LocalizedNames = n.GetCollectionOfObjectValues<LocalizedName>().ToList(); } },
-                {"parentGroup", (o,n) => { (o as Set).ParentGroup = n.GetObjectValue<Group>(); } },
-                {"properties", (o,n) => { (o as Set).Properties = n.GetCollectionOfObjectValues<KeyValue>().ToList(); } },
-                {"relations", (o,n) => { (o as Set).Relations = n.GetCollectionOfObjectValues<Relation>().ToList(); } },
-                {"terms", (o,n) => { (o as Set).Terms = n.GetCollectionOfObjectValues<Term>().ToList(); } },
+                {"localizedNames", (o,n) => { (o as Set).LocalizedNames = n.GetCollectionOfObjectValues<LocalizedName>(LocalizedName.CreateFromDiscriminatorValue).ToList(); } },
+                {"parentGroup", (o,n) => { (o as Set).ParentGroup = n.GetObjectValue<Group>(Group.CreateFromDiscriminatorValue); } },
+                {"properties", (o,n) => { (o as Set).Properties = n.GetCollectionOfObjectValues<KeyValue>(KeyValue.CreateFromDiscriminatorValue).ToList(); } },
+                {"relations", (o,n) => { (o as Set).Relations = n.GetCollectionOfObjectValues<Relation>(Relation.CreateFromDiscriminatorValue).ToList(); } },
+                {"terms", (o,n) => { (o as Set).Terms = n.GetCollectionOfObjectValues<Term>(Term.CreateFromDiscriminatorValue).ToList(); } },
             };
         }
         /// <summary>

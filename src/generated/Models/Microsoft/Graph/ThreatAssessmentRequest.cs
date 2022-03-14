@@ -22,17 +22,25 @@ namespace ApiSdk.Models.Microsoft.Graph {
         /// <summary>The assessment process status. Possible values are: pending, completed.</summary>
         public ThreatAssessmentStatus? Status { get; set; }
         /// <summary>
+        /// Creates a new instance of the appropriate class based on discriminator value
+        /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
+        /// </summary>
+        public static new ThreatAssessmentRequest CreateFromDiscriminatorValue(IParseNode parseNode) {
+            _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
+            return new ThreatAssessmentRequest();
+        }
+        /// <summary>
         /// The deserialization information for the current model
         /// </summary>
         public new IDictionary<string, Action<T, IParseNode>> GetFieldDeserializers<T>() {
             return new Dictionary<string, Action<T, IParseNode>>(base.GetFieldDeserializers<T>()) {
                 {"category", (o,n) => { (o as ThreatAssessmentRequest).Category = n.GetEnumValue<ThreatCategory>(); } },
                 {"contentType", (o,n) => { (o as ThreatAssessmentRequest).ContentType = n.GetEnumValue<ThreatAssessmentContentType>(); } },
-                {"createdBy", (o,n) => { (o as ThreatAssessmentRequest).CreatedBy = n.GetObjectValue<IdentitySet>(); } },
+                {"createdBy", (o,n) => { (o as ThreatAssessmentRequest).CreatedBy = n.GetObjectValue<IdentitySet>(IdentitySet.CreateFromDiscriminatorValue); } },
                 {"createdDateTime", (o,n) => { (o as ThreatAssessmentRequest).CreatedDateTime = n.GetDateTimeOffsetValue(); } },
                 {"expectedAssessment", (o,n) => { (o as ThreatAssessmentRequest).ExpectedAssessment = n.GetEnumValue<ThreatExpectedAssessment>(); } },
                 {"requestSource", (o,n) => { (o as ThreatAssessmentRequest).RequestSource = n.GetEnumValue<ThreatAssessmentRequestSource>(); } },
-                {"results", (o,n) => { (o as ThreatAssessmentRequest).Results = n.GetCollectionOfObjectValues<ThreatAssessmentResult>().ToList(); } },
+                {"results", (o,n) => { (o as ThreatAssessmentRequest).Results = n.GetCollectionOfObjectValues<ThreatAssessmentResult>(ThreatAssessmentResult.CreateFromDiscriminatorValue).ToList(); } },
                 {"status", (o,n) => { (o as ThreatAssessmentRequest).Status = n.GetEnumValue<ThreatAssessmentStatus>(); } },
             };
         }

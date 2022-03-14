@@ -54,7 +54,7 @@ namespace ApiSdk.Sites.Item.Lists.Item.ContentTypes.Item.CopyToDefaultContentLoc
                 PathParameters.Add("contentType_id", contentTypeId);
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
-                var model = parseNode.GetObjectValue<CopyToDefaultContentLocationRequestBody>();
+                var model = parseNode.GetObjectValue<CopyToDefaultContentLocationRequestBody>(CopyToDefaultContentLocationRequestBody.CreateFromDiscriminatorValue);
                 var requestInfo = CreatePostRequestInformation(model, q => {
                 });
                 await RequestAdapter.SendNoContentAsync(requestInfo, errorMapping: default, cancellationToken: cancellationToken);

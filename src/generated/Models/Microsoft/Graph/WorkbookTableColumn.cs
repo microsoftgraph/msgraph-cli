@@ -14,14 +14,22 @@ namespace ApiSdk.Models.Microsoft.Graph {
         /// <summary>Represents the raw values of the specified range. The data returned could be of type string, number, or a boolean. Cell that contain an error will return the error string.</summary>
         public Json Values { get; set; }
         /// <summary>
+        /// Creates a new instance of the appropriate class based on discriminator value
+        /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
+        /// </summary>
+        public static new WorkbookTableColumn CreateFromDiscriminatorValue(IParseNode parseNode) {
+            _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
+            return new WorkbookTableColumn();
+        }
+        /// <summary>
         /// The deserialization information for the current model
         /// </summary>
         public new IDictionary<string, Action<T, IParseNode>> GetFieldDeserializers<T>() {
             return new Dictionary<string, Action<T, IParseNode>>(base.GetFieldDeserializers<T>()) {
-                {"filter", (o,n) => { (o as WorkbookTableColumn).Filter = n.GetObjectValue<WorkbookFilter>(); } },
+                {"filter", (o,n) => { (o as WorkbookTableColumn).Filter = n.GetObjectValue<WorkbookFilter>(WorkbookFilter.CreateFromDiscriminatorValue); } },
                 {"index", (o,n) => { (o as WorkbookTableColumn).Index = n.GetIntValue(); } },
                 {"name", (o,n) => { (o as WorkbookTableColumn).Name = n.GetStringValue(); } },
-                {"values", (o,n) => { (o as WorkbookTableColumn).Values = n.GetObjectValue<Json>(); } },
+                {"values", (o,n) => { (o as WorkbookTableColumn).Values = n.GetObjectValue<Json>(Json.CreateFromDiscriminatorValue); } },
             };
         }
         /// <summary>

@@ -45,15 +45,23 @@ namespace ApiSdk.Me.Insights.Trending.Item.Resource.WorkbookRange.ResizedRangeWi
             command.AddOption(outputOption);
             var queryOption = new Option<string>("--query");
             command.AddOption(queryOption);
+            var jsonNoIndentOption = new Option<bool>("--json-no-indent", r => {
+                if (bool.TryParse(r.Tokens.Select(t => t.Value).LastOrDefault(), out var value)) {
+                    return value;
+                }
+                return true;
+            }, description: "Disable indentation for the JSON output formatter.");
+            command.AddOption(jsonNoIndentOption);
             command.SetHandler(async (object[] parameters) => {
                 var trendingItemId = (string) parameters[0];
                 var deltaRows = (int?) parameters[1];
                 var deltaColumns = (int?) parameters[2];
                 var output = (FormatterType) parameters[3];
                 var query = (string) parameters[4];
-                var outputFilter = (IOutputFilter) parameters[5];
-                var outputFormatterFactory = (IOutputFormatterFactory) parameters[6];
-                var cancellationToken = (CancellationToken) parameters[7];
+                var jsonNoIndent = (bool) parameters[5];
+                var outputFilter = (IOutputFilter) parameters[6];
+                var outputFormatterFactory = (IOutputFormatterFactory) parameters[7];
+                var cancellationToken = (CancellationToken) parameters[8];
                 PathParameters.Clear();
                 PathParameters.Add("trendingItem_Id", trendingItemId);
                 PathParameters.Add("deltaRows", deltaRows);
@@ -62,9 +70,10 @@ namespace ApiSdk.Me.Insights.Trending.Item.Resource.WorkbookRange.ResizedRangeWi
                 });
                 var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: default, cancellationToken: cancellationToken);
                 var formatter = outputFormatterFactory.GetFormatter(output);
-                response = outputFilter?.FilterOutput(response, query) ?? response;
-                formatter.WriteOutput(response);
-            }, new CollectionBinding(trendingItemIdOption, deltaRowsOption, deltaColumnsOption, outputOption, queryOption, new TypeBinding(typeof(IOutputFilter)), new TypeBinding(typeof(IOutputFormatterFactory)), new TypeBinding(typeof(CancellationToken))));
+                response = await outputFilter?.FilterOutputAsync(response, query, cancellationToken) ?? response;
+                var formatterOptions = output.GetOutputFormatterOptions(new FormatterOptionsModel(!jsonNoIndent));
+                await formatter.WriteOutputAsync(response, formatterOptions, cancellationToken);
+            }, new CollectionBinding(trendingItemIdOption, deltaRowsOption, deltaColumnsOption, outputOption, queryOption, jsonNoIndentOption, new TypeBinding(typeof(IOutputFilter)), new TypeBinding(typeof(IOutputFormatterFactory)), new TypeBinding(typeof(CancellationToken))));
             return command;
         }
         /// <summary>
@@ -74,13 +83,13 @@ namespace ApiSdk.Me.Insights.Trending.Item.Resource.WorkbookRange.ResizedRangeWi
         /// <param name="pathParameters">Path parameters for the request</param>
         /// <param name="requestAdapter">The request adapter to use to execute the requests.</param>
         /// </summary>
-        public ResizedRangeWithDeltaRowsWithDeltaColumnsRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter, int? deltaRows = default, int? deltaColumns = default) {
+        public ResizedRangeWithDeltaRowsWithDeltaColumnsRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter, int? deltaColumns = default, int? deltaRows = default) {
             _ = pathParameters ?? throw new ArgumentNullException(nameof(pathParameters));
             _ = requestAdapter ?? throw new ArgumentNullException(nameof(requestAdapter));
             UrlTemplate = "{+baseurl}/me/insights/trending/{trendingItem_Id}/resource/microsoft.graph.workbookRange/microsoft.graph.resizedRange(deltaRows={deltaRows},deltaColumns={deltaColumns})";
             var urlTplParams = new Dictionary<string, object>(pathParameters);
-            urlTplParams.Add("deltaRows", deltaRows);
             urlTplParams.Add("deltaColumns", deltaColumns);
+            urlTplParams.Add("deltaRows", deltaRows);
             PathParameters = urlTplParams;
             RequestAdapter = requestAdapter;
         }
@@ -100,7 +109,7 @@ namespace ApiSdk.Me.Insights.Trending.Item.Resource.WorkbookRange.ResizedRangeWi
             return requestInfo;
         }
         /// <summary>Union type wrapper for classes workbookRange</summary>
-        public class ResizedRangeWithDeltaRowsWithDeltaColumnsResponse : IParsable {
+        public class ResizedRangeWithDeltaRowsWithDeltaColumnsResponse : IAdditionalDataHolder, IParsable {
             /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
             public IDictionary<string, object> AdditionalData { get; set; }
             /// <summary>Union type representation for type workbookRange</summary>
@@ -111,12 +120,16 @@ namespace ApiSdk.Me.Insights.Trending.Item.Resource.WorkbookRange.ResizedRangeWi
             public ResizedRangeWithDeltaRowsWithDeltaColumnsResponse() {
                 AdditionalData = new Dictionary<string, object>();
             }
+            public static ResizedRangeWithDeltaRowsWithDeltaColumnsResponse CreateFromDiscriminatorValue(IParseNode parseNode) {
+                _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
+                return new ResizedRangeWithDeltaRowsWithDeltaColumnsResponse();
+            }
             /// <summary>
             /// The deserialization information for the current model
             /// </summary>
             public IDictionary<string, Action<T, IParseNode>> GetFieldDeserializers<T>() {
                 return new Dictionary<string, Action<T, IParseNode>> {
-                    {"workbookRange", (o,n) => { (o as ResizedRangeWithDeltaRowsWithDeltaColumnsResponse).WorkbookRange = n.GetObjectValue<ApiSdk.Models.Microsoft.Graph.WorkbookRange>(); } },
+                    {"workbookRange", (o,n) => { (o as ResizedRangeWithDeltaRowsWithDeltaColumnsResponse).WorkbookRange = n.GetObjectValue<ApiSdk.Models.Microsoft.Graph.WorkbookRange>(ApiSdk.Models.Microsoft.Graph.WorkbookRange.CreateFromDiscriminatorValue); } },
                 };
             }
             /// <summary>

@@ -42,7 +42,7 @@ namespace ApiSdk.Applications.Item.RemovePassword {
                 PathParameters.Add("application_id", applicationId);
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
-                var model = parseNode.GetObjectValue<RemovePasswordRequestBody>();
+                var model = parseNode.GetObjectValue<RemovePasswordRequestBody>(RemovePasswordRequestBody.CreateFromDiscriminatorValue);
                 var requestInfo = CreatePostRequestInformation(model, q => {
                 });
                 await RequestAdapter.SendNoContentAsync(requestInfo, errorMapping: default, cancellationToken: cancellationToken);

@@ -12,11 +12,19 @@ namespace ApiSdk.Models.Microsoft.Graph {
         /// <summary>Unique SKU display name. Equal to the skuPartNumber on the related SubscribedSku object; for example: 'AAD_Premium'. Read-only</summary>
         public string SkuPartNumber { get; set; }
         /// <summary>
+        /// Creates a new instance of the appropriate class based on discriminator value
+        /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
+        /// </summary>
+        public static new LicenseDetails CreateFromDiscriminatorValue(IParseNode parseNode) {
+            _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
+            return new LicenseDetails();
+        }
+        /// <summary>
         /// The deserialization information for the current model
         /// </summary>
         public new IDictionary<string, Action<T, IParseNode>> GetFieldDeserializers<T>() {
             return new Dictionary<string, Action<T, IParseNode>>(base.GetFieldDeserializers<T>()) {
-                {"servicePlans", (o,n) => { (o as LicenseDetails).ServicePlans = n.GetCollectionOfObjectValues<ServicePlanInfo>().ToList(); } },
+                {"servicePlans", (o,n) => { (o as LicenseDetails).ServicePlans = n.GetCollectionOfObjectValues<ServicePlanInfo>(ServicePlanInfo.CreateFromDiscriminatorValue).ToList(); } },
                 {"skuId", (o,n) => { (o as LicenseDetails).SkuId = n.GetStringValue(); } },
                 {"skuPartNumber", (o,n) => { (o as LicenseDetails).SkuPartNumber = n.GetStringValue(); } },
             };

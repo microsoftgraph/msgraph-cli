@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 namespace ApiSdk.Teams.Item.Archive {
-    public class ArchiveRequestBody : IParsable {
+    public class ArchiveRequestBody : IAdditionalDataHolder, IParsable {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
         public bool? ShouldSetSpoSiteReadOnlyForMembers { get; set; }
@@ -13,6 +13,14 @@ namespace ApiSdk.Teams.Item.Archive {
         /// </summary>
         public ArchiveRequestBody() {
             AdditionalData = new Dictionary<string, object>();
+        }
+        /// <summary>
+        /// Creates a new instance of the appropriate class based on discriminator value
+        /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
+        /// </summary>
+        public static ArchiveRequestBody CreateFromDiscriminatorValue(IParseNode parseNode) {
+            _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
+            return new ArchiveRequestBody();
         }
         /// <summary>
         /// The deserialization information for the current model

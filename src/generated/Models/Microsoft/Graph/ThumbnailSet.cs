@@ -14,14 +14,22 @@ namespace ApiSdk.Models.Microsoft.Graph {
         /// <summary>A custom thumbnail image or the original image used to generate other thumbnails.</summary>
         public Thumbnail Source { get; set; }
         /// <summary>
+        /// Creates a new instance of the appropriate class based on discriminator value
+        /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
+        /// </summary>
+        public static new ThumbnailSet CreateFromDiscriminatorValue(IParseNode parseNode) {
+            _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
+            return new ThumbnailSet();
+        }
+        /// <summary>
         /// The deserialization information for the current model
         /// </summary>
         public new IDictionary<string, Action<T, IParseNode>> GetFieldDeserializers<T>() {
             return new Dictionary<string, Action<T, IParseNode>>(base.GetFieldDeserializers<T>()) {
-                {"large", (o,n) => { (o as ThumbnailSet).Large = n.GetObjectValue<Thumbnail>(); } },
-                {"medium", (o,n) => { (o as ThumbnailSet).Medium = n.GetObjectValue<Thumbnail>(); } },
-                {"small", (o,n) => { (o as ThumbnailSet).Small = n.GetObjectValue<Thumbnail>(); } },
-                {"source", (o,n) => { (o as ThumbnailSet).Source = n.GetObjectValue<Thumbnail>(); } },
+                {"large", (o,n) => { (o as ThumbnailSet).Large = n.GetObjectValue<Thumbnail>(Thumbnail.CreateFromDiscriminatorValue); } },
+                {"medium", (o,n) => { (o as ThumbnailSet).Medium = n.GetObjectValue<Thumbnail>(Thumbnail.CreateFromDiscriminatorValue); } },
+                {"small", (o,n) => { (o as ThumbnailSet).Small = n.GetObjectValue<Thumbnail>(Thumbnail.CreateFromDiscriminatorValue); } },
+                {"source", (o,n) => { (o as ThumbnailSet).Source = n.GetObjectValue<Thumbnail>(Thumbnail.CreateFromDiscriminatorValue); } },
             };
         }
         /// <summary>

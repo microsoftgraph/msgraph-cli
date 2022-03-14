@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 namespace ApiSdk.Models.Microsoft.Graph {
-    public class VisualInfo : IParsable {
+    public class VisualInfo : IAdditionalDataHolder, IParsable {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>Optional. JSON object used to represent an icon which represents the application used to generate the activity</summary>
@@ -24,13 +24,21 @@ namespace ApiSdk.Models.Microsoft.Graph {
             AdditionalData = new Dictionary<string, object>();
         }
         /// <summary>
+        /// Creates a new instance of the appropriate class based on discriminator value
+        /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
+        /// </summary>
+        public static VisualInfo CreateFromDiscriminatorValue(IParseNode parseNode) {
+            _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
+            return new VisualInfo();
+        }
+        /// <summary>
         /// The deserialization information for the current model
         /// </summary>
         public IDictionary<string, Action<T, IParseNode>> GetFieldDeserializers<T>() {
             return new Dictionary<string, Action<T, IParseNode>> {
-                {"attribution", (o,n) => { (o as VisualInfo).Attribution = n.GetObjectValue<ImageInfo>(); } },
+                {"attribution", (o,n) => { (o as VisualInfo).Attribution = n.GetObjectValue<ImageInfo>(ImageInfo.CreateFromDiscriminatorValue); } },
                 {"backgroundColor", (o,n) => { (o as VisualInfo).BackgroundColor = n.GetStringValue(); } },
-                {"content", (o,n) => { (o as VisualInfo).Content = n.GetObjectValue<Json>(); } },
+                {"content", (o,n) => { (o as VisualInfo).Content = n.GetObjectValue<Json>(Json.CreateFromDiscriminatorValue); } },
                 {"description", (o,n) => { (o as VisualInfo).Description = n.GetStringValue(); } },
                 {"displayText", (o,n) => { (o as VisualInfo).DisplayText = n.GetStringValue(); } },
             };

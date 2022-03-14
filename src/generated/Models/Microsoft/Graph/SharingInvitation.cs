@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 namespace ApiSdk.Models.Microsoft.Graph {
-    public class SharingInvitation : IParsable {
+    public class SharingInvitation : IAdditionalDataHolder, IParsable {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>The email address provided for the recipient of the sharing invitation. Read-only.</summary>
@@ -21,12 +21,20 @@ namespace ApiSdk.Models.Microsoft.Graph {
             AdditionalData = new Dictionary<string, object>();
         }
         /// <summary>
+        /// Creates a new instance of the appropriate class based on discriminator value
+        /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
+        /// </summary>
+        public static SharingInvitation CreateFromDiscriminatorValue(IParseNode parseNode) {
+            _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
+            return new SharingInvitation();
+        }
+        /// <summary>
         /// The deserialization information for the current model
         /// </summary>
         public IDictionary<string, Action<T, IParseNode>> GetFieldDeserializers<T>() {
             return new Dictionary<string, Action<T, IParseNode>> {
                 {"email", (o,n) => { (o as SharingInvitation).Email = n.GetStringValue(); } },
-                {"invitedBy", (o,n) => { (o as SharingInvitation).InvitedBy = n.GetObjectValue<IdentitySet>(); } },
+                {"invitedBy", (o,n) => { (o as SharingInvitation).InvitedBy = n.GetObjectValue<IdentitySet>(IdentitySet.CreateFromDiscriminatorValue); } },
                 {"redeemedBy", (o,n) => { (o as SharingInvitation).RedeemedBy = n.GetStringValue(); } },
                 {"signInRequired", (o,n) => { (o as SharingInvitation).SignInRequired = n.GetBoolValue(); } },
             };

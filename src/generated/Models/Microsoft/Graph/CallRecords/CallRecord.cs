@@ -26,6 +26,14 @@ namespace ApiSdk.Models.Microsoft.Graph.CallRecords {
         /// <summary>Monotonically increasing version of the call record. Higher version call records with the same ID includes additional data compared to the lower version.</summary>
         public long? Version { get; set; }
         /// <summary>
+        /// Creates a new instance of the appropriate class based on discriminator value
+        /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
+        /// </summary>
+        public static new CallRecord CreateFromDiscriminatorValue(IParseNode parseNode) {
+            _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
+            return new CallRecord();
+        }
+        /// <summary>
         /// The deserialization information for the current model
         /// </summary>
         public new IDictionary<string, Action<T, IParseNode>> GetFieldDeserializers<T>() {
@@ -34,9 +42,9 @@ namespace ApiSdk.Models.Microsoft.Graph.CallRecords {
                 {"joinWebUrl", (o,n) => { (o as CallRecord).JoinWebUrl = n.GetStringValue(); } },
                 {"lastModifiedDateTime", (o,n) => { (o as CallRecord).LastModifiedDateTime = n.GetDateTimeOffsetValue(); } },
                 {"modalities", (o,n) => { (o as CallRecord).Modalities = n.GetCollectionOfEnumValues<Modality>().ToList(); } },
-                {"organizer", (o,n) => { (o as CallRecord).Organizer = n.GetObjectValue<IdentitySet>(); } },
-                {"participants", (o,n) => { (o as CallRecord).Participants = n.GetCollectionOfObjectValues<IdentitySet>().ToList(); } },
-                {"sessions", (o,n) => { (o as CallRecord).Sessions = n.GetCollectionOfObjectValues<Session>().ToList(); } },
+                {"organizer", (o,n) => { (o as CallRecord).Organizer = n.GetObjectValue<IdentitySet>(IdentitySet.CreateFromDiscriminatorValue); } },
+                {"participants", (o,n) => { (o as CallRecord).Participants = n.GetCollectionOfObjectValues<IdentitySet>(IdentitySet.CreateFromDiscriminatorValue).ToList(); } },
+                {"sessions", (o,n) => { (o as CallRecord).Sessions = n.GetCollectionOfObjectValues<Session>(Session.CreateFromDiscriminatorValue).ToList(); } },
                 {"startDateTime", (o,n) => { (o as CallRecord).StartDateTime = n.GetDateTimeOffsetValue(); } },
                 {"type", (o,n) => { (o as CallRecord).Type = n.GetEnumValue<CallType>(); } },
                 {"version", (o,n) => { (o as CallRecord).Version = n.GetLongValue(); } },

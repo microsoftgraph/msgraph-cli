@@ -24,6 +24,14 @@ namespace ApiSdk.Models.Microsoft.Graph {
         /// <summary>The status of the service issue. Possible values are: serviceOperational, investigating, restoringService, verifyingService, serviceRestored, postIncidentReviewPublished, serviceDegradation, serviceInterruption, extendedRecovery, falsePositive, investigationSuspended, resolved, mitigatedExternal, mitigated, resolvedExternal, confirmed, reported, unknownFutureValue. For more details, see serviceHealthStatus values.</summary>
         public ServiceHealthStatus? Status { get; set; }
         /// <summary>
+        /// Creates a new instance of the appropriate class based on discriminator value
+        /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
+        /// </summary>
+        public static new ServiceHealthIssue CreateFromDiscriminatorValue(IParseNode parseNode) {
+            _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
+            return new ServiceHealthIssue();
+        }
+        /// <summary>
         /// The deserialization information for the current model
         /// </summary>
         public new IDictionary<string, Action<T, IParseNode>> GetFieldDeserializers<T>() {
@@ -34,7 +42,7 @@ namespace ApiSdk.Models.Microsoft.Graph {
                 {"impactDescription", (o,n) => { (o as ServiceHealthIssue).ImpactDescription = n.GetStringValue(); } },
                 {"isResolved", (o,n) => { (o as ServiceHealthIssue).IsResolved = n.GetBoolValue(); } },
                 {"origin", (o,n) => { (o as ServiceHealthIssue).Origin = n.GetEnumValue<ServiceHealthOrigin>(); } },
-                {"posts", (o,n) => { (o as ServiceHealthIssue).Posts = n.GetCollectionOfObjectValues<ServiceHealthIssuePost>().ToList(); } },
+                {"posts", (o,n) => { (o as ServiceHealthIssue).Posts = n.GetCollectionOfObjectValues<ServiceHealthIssuePost>(ServiceHealthIssuePost.CreateFromDiscriminatorValue).ToList(); } },
                 {"service", (o,n) => { (o as ServiceHealthIssue).Service = n.GetStringValue(); } },
                 {"status", (o,n) => { (o as ServiceHealthIssue).Status = n.GetEnumValue<ServiceHealthStatus>(); } },
             };

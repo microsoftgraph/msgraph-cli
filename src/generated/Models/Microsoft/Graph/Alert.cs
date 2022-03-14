@@ -79,18 +79,26 @@ namespace ApiSdk.Models.Microsoft.Graph {
         /// <summary>Threat intelligence pertaining to one or more vulnerabilities related to this alert.</summary>
         public List<VulnerabilityState> VulnerabilityStates { get; set; }
         /// <summary>
+        /// Creates a new instance of the appropriate class based on discriminator value
+        /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
+        /// </summary>
+        public static new Alert CreateFromDiscriminatorValue(IParseNode parseNode) {
+            _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
+            return new Alert();
+        }
+        /// <summary>
         /// The deserialization information for the current model
         /// </summary>
         public new IDictionary<string, Action<T, IParseNode>> GetFieldDeserializers<T>() {
             return new Dictionary<string, Action<T, IParseNode>>(base.GetFieldDeserializers<T>()) {
                 {"activityGroupName", (o,n) => { (o as Alert).ActivityGroupName = n.GetStringValue(); } },
-                {"alertDetections", (o,n) => { (o as Alert).AlertDetections = n.GetCollectionOfObjectValues<AlertDetection>().ToList(); } },
+                {"alertDetections", (o,n) => { (o as Alert).AlertDetections = n.GetCollectionOfObjectValues<AlertDetection>(AlertDetection.CreateFromDiscriminatorValue).ToList(); } },
                 {"assignedTo", (o,n) => { (o as Alert).AssignedTo = n.GetStringValue(); } },
                 {"azureSubscriptionId", (o,n) => { (o as Alert).AzureSubscriptionId = n.GetStringValue(); } },
                 {"azureTenantId", (o,n) => { (o as Alert).AzureTenantId = n.GetStringValue(); } },
                 {"category", (o,n) => { (o as Alert).Category = n.GetStringValue(); } },
                 {"closedDateTime", (o,n) => { (o as Alert).ClosedDateTime = n.GetDateTimeOffsetValue(); } },
-                {"cloudAppStates", (o,n) => { (o as Alert).CloudAppStates = n.GetCollectionOfObjectValues<CloudAppSecurityState>().ToList(); } },
+                {"cloudAppStates", (o,n) => { (o as Alert).CloudAppStates = n.GetCollectionOfObjectValues<CloudAppSecurityState>(CloudAppSecurityState.CreateFromDiscriminatorValue).ToList(); } },
                 {"comments", (o,n) => { (o as Alert).Comments = n.GetCollectionOfPrimitiveValues<string>().ToList(); } },
                 {"confidence", (o,n) => { (o as Alert).Confidence = n.GetIntValue(); } },
                 {"createdDateTime", (o,n) => { (o as Alert).CreatedDateTime = n.GetDateTimeOffsetValue(); } },
@@ -98,30 +106,30 @@ namespace ApiSdk.Models.Microsoft.Graph {
                 {"detectionIds", (o,n) => { (o as Alert).DetectionIds = n.GetCollectionOfPrimitiveValues<string>().ToList(); } },
                 {"eventDateTime", (o,n) => { (o as Alert).EventDateTime = n.GetDateTimeOffsetValue(); } },
                 {"feedback", (o,n) => { (o as Alert).Feedback = n.GetEnumValue<AlertFeedback>(); } },
-                {"fileStates", (o,n) => { (o as Alert).FileStates = n.GetCollectionOfObjectValues<FileSecurityState>().ToList(); } },
-                {"historyStates", (o,n) => { (o as Alert).HistoryStates = n.GetCollectionOfObjectValues<AlertHistoryState>().ToList(); } },
-                {"hostStates", (o,n) => { (o as Alert).HostStates = n.GetCollectionOfObjectValues<HostSecurityState>().ToList(); } },
+                {"fileStates", (o,n) => { (o as Alert).FileStates = n.GetCollectionOfObjectValues<FileSecurityState>(FileSecurityState.CreateFromDiscriminatorValue).ToList(); } },
+                {"historyStates", (o,n) => { (o as Alert).HistoryStates = n.GetCollectionOfObjectValues<AlertHistoryState>(AlertHistoryState.CreateFromDiscriminatorValue).ToList(); } },
+                {"hostStates", (o,n) => { (o as Alert).HostStates = n.GetCollectionOfObjectValues<HostSecurityState>(HostSecurityState.CreateFromDiscriminatorValue).ToList(); } },
                 {"incidentIds", (o,n) => { (o as Alert).IncidentIds = n.GetCollectionOfPrimitiveValues<string>().ToList(); } },
-                {"investigationSecurityStates", (o,n) => { (o as Alert).InvestigationSecurityStates = n.GetCollectionOfObjectValues<InvestigationSecurityState>().ToList(); } },
+                {"investigationSecurityStates", (o,n) => { (o as Alert).InvestigationSecurityStates = n.GetCollectionOfObjectValues<InvestigationSecurityState>(InvestigationSecurityState.CreateFromDiscriminatorValue).ToList(); } },
                 {"lastEventDateTime", (o,n) => { (o as Alert).LastEventDateTime = n.GetDateTimeOffsetValue(); } },
                 {"lastModifiedDateTime", (o,n) => { (o as Alert).LastModifiedDateTime = n.GetDateTimeOffsetValue(); } },
-                {"malwareStates", (o,n) => { (o as Alert).MalwareStates = n.GetCollectionOfObjectValues<MalwareState>().ToList(); } },
-                {"messageSecurityStates", (o,n) => { (o as Alert).MessageSecurityStates = n.GetCollectionOfObjectValues<MessageSecurityState>().ToList(); } },
-                {"networkConnections", (o,n) => { (o as Alert).NetworkConnections = n.GetCollectionOfObjectValues<NetworkConnection>().ToList(); } },
-                {"processes", (o,n) => { (o as Alert).Processes = n.GetCollectionOfObjectValues<Process>().ToList(); } },
+                {"malwareStates", (o,n) => { (o as Alert).MalwareStates = n.GetCollectionOfObjectValues<MalwareState>(MalwareState.CreateFromDiscriminatorValue).ToList(); } },
+                {"messageSecurityStates", (o,n) => { (o as Alert).MessageSecurityStates = n.GetCollectionOfObjectValues<MessageSecurityState>(MessageSecurityState.CreateFromDiscriminatorValue).ToList(); } },
+                {"networkConnections", (o,n) => { (o as Alert).NetworkConnections = n.GetCollectionOfObjectValues<NetworkConnection>(NetworkConnection.CreateFromDiscriminatorValue).ToList(); } },
+                {"processes", (o,n) => { (o as Alert).Processes = n.GetCollectionOfObjectValues<Process>(Process.CreateFromDiscriminatorValue).ToList(); } },
                 {"recommendedActions", (o,n) => { (o as Alert).RecommendedActions = n.GetCollectionOfPrimitiveValues<string>().ToList(); } },
-                {"registryKeyStates", (o,n) => { (o as Alert).RegistryKeyStates = n.GetCollectionOfObjectValues<RegistryKeyState>().ToList(); } },
-                {"securityResources", (o,n) => { (o as Alert).SecurityResources = n.GetCollectionOfObjectValues<SecurityResource>().ToList(); } },
+                {"registryKeyStates", (o,n) => { (o as Alert).RegistryKeyStates = n.GetCollectionOfObjectValues<RegistryKeyState>(RegistryKeyState.CreateFromDiscriminatorValue).ToList(); } },
+                {"securityResources", (o,n) => { (o as Alert).SecurityResources = n.GetCollectionOfObjectValues<SecurityResource>(SecurityResource.CreateFromDiscriminatorValue).ToList(); } },
                 {"severity", (o,n) => { (o as Alert).Severity = n.GetEnumValue<AlertSeverity>(); } },
                 {"sourceMaterials", (o,n) => { (o as Alert).SourceMaterials = n.GetCollectionOfPrimitiveValues<string>().ToList(); } },
                 {"status", (o,n) => { (o as Alert).Status = n.GetEnumValue<AlertStatus>(); } },
                 {"tags", (o,n) => { (o as Alert).Tags = n.GetCollectionOfPrimitiveValues<string>().ToList(); } },
                 {"title", (o,n) => { (o as Alert).Title = n.GetStringValue(); } },
-                {"triggers", (o,n) => { (o as Alert).Triggers = n.GetCollectionOfObjectValues<AlertTrigger>().ToList(); } },
-                {"uriClickSecurityStates", (o,n) => { (o as Alert).UriClickSecurityStates = n.GetCollectionOfObjectValues<UriClickSecurityState>().ToList(); } },
-                {"userStates", (o,n) => { (o as Alert).UserStates = n.GetCollectionOfObjectValues<UserSecurityState>().ToList(); } },
-                {"vendorInformation", (o,n) => { (o as Alert).VendorInformation = n.GetObjectValue<SecurityVendorInformation>(); } },
-                {"vulnerabilityStates", (o,n) => { (o as Alert).VulnerabilityStates = n.GetCollectionOfObjectValues<VulnerabilityState>().ToList(); } },
+                {"triggers", (o,n) => { (o as Alert).Triggers = n.GetCollectionOfObjectValues<AlertTrigger>(AlertTrigger.CreateFromDiscriminatorValue).ToList(); } },
+                {"uriClickSecurityStates", (o,n) => { (o as Alert).UriClickSecurityStates = n.GetCollectionOfObjectValues<UriClickSecurityState>(UriClickSecurityState.CreateFromDiscriminatorValue).ToList(); } },
+                {"userStates", (o,n) => { (o as Alert).UserStates = n.GetCollectionOfObjectValues<UserSecurityState>(UserSecurityState.CreateFromDiscriminatorValue).ToList(); } },
+                {"vendorInformation", (o,n) => { (o as Alert).VendorInformation = n.GetObjectValue<SecurityVendorInformation>(SecurityVendorInformation.CreateFromDiscriminatorValue); } },
+                {"vulnerabilityStates", (o,n) => { (o as Alert).VulnerabilityStates = n.GetCollectionOfObjectValues<VulnerabilityState>(VulnerabilityState.CreateFromDiscriminatorValue).ToList(); } },
             };
         }
         /// <summary>

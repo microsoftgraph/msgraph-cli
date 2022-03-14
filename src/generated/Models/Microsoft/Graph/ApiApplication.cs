@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 namespace ApiSdk.Models.Microsoft.Graph {
-    public class ApiApplication : IParsable {
+    public class ApiApplication : IAdditionalDataHolder, IParsable {
         /// <summary>When true, allows an application to use claims mapping without specifying a custom signing key.</summary>
         public bool? AcceptMappedClaims { get; set; }
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
@@ -24,14 +24,22 @@ namespace ApiSdk.Models.Microsoft.Graph {
             AdditionalData = new Dictionary<string, object>();
         }
         /// <summary>
+        /// Creates a new instance of the appropriate class based on discriminator value
+        /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
+        /// </summary>
+        public static ApiApplication CreateFromDiscriminatorValue(IParseNode parseNode) {
+            _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
+            return new ApiApplication();
+        }
+        /// <summary>
         /// The deserialization information for the current model
         /// </summary>
         public IDictionary<string, Action<T, IParseNode>> GetFieldDeserializers<T>() {
             return new Dictionary<string, Action<T, IParseNode>> {
                 {"acceptMappedClaims", (o,n) => { (o as ApiApplication).AcceptMappedClaims = n.GetBoolValue(); } },
                 {"knownClientApplications", (o,n) => { (o as ApiApplication).KnownClientApplications = n.GetCollectionOfPrimitiveValues<string>().ToList(); } },
-                {"oauth2PermissionScopes", (o,n) => { (o as ApiApplication).Oauth2PermissionScopes = n.GetCollectionOfObjectValues<PermissionScope>().ToList(); } },
-                {"preAuthorizedApplications", (o,n) => { (o as ApiApplication).PreAuthorizedApplications = n.GetCollectionOfObjectValues<PreAuthorizedApplication>().ToList(); } },
+                {"oauth2PermissionScopes", (o,n) => { (o as ApiApplication).Oauth2PermissionScopes = n.GetCollectionOfObjectValues<PermissionScope>(PermissionScope.CreateFromDiscriminatorValue).ToList(); } },
+                {"preAuthorizedApplications", (o,n) => { (o as ApiApplication).PreAuthorizedApplications = n.GetCollectionOfObjectValues<PreAuthorizedApplication>(PreAuthorizedApplication.CreateFromDiscriminatorValue).ToList(); } },
                 {"requestedAccessTokenVersion", (o,n) => { (o as ApiApplication).RequestedAccessTokenVersion = n.GetIntValue(); } },
             };
         }

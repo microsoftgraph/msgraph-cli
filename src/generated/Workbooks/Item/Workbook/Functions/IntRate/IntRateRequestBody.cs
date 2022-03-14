@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 namespace ApiSdk.Workbooks.Item.Workbook.Functions.IntRate {
-    public class IntRateRequestBody : IParsable {
+    public class IntRateRequestBody : IAdditionalDataHolder, IParsable {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
         public Json Basis { get; set; }
@@ -20,15 +20,23 @@ namespace ApiSdk.Workbooks.Item.Workbook.Functions.IntRate {
             AdditionalData = new Dictionary<string, object>();
         }
         /// <summary>
+        /// Creates a new instance of the appropriate class based on discriminator value
+        /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
+        /// </summary>
+        public static IntRateRequestBody CreateFromDiscriminatorValue(IParseNode parseNode) {
+            _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
+            return new IntRateRequestBody();
+        }
+        /// <summary>
         /// The deserialization information for the current model
         /// </summary>
         public IDictionary<string, Action<T, IParseNode>> GetFieldDeserializers<T>() {
             return new Dictionary<string, Action<T, IParseNode>> {
-                {"basis", (o,n) => { (o as IntRateRequestBody).Basis = n.GetObjectValue<Json>(); } },
-                {"investment", (o,n) => { (o as IntRateRequestBody).Investment = n.GetObjectValue<Json>(); } },
-                {"maturity", (o,n) => { (o as IntRateRequestBody).Maturity = n.GetObjectValue<Json>(); } },
-                {"redemption", (o,n) => { (o as IntRateRequestBody).Redemption = n.GetObjectValue<Json>(); } },
-                {"settlement", (o,n) => { (o as IntRateRequestBody).Settlement = n.GetObjectValue<Json>(); } },
+                {"basis", (o,n) => { (o as IntRateRequestBody).Basis = n.GetObjectValue<Json>(Json.CreateFromDiscriminatorValue); } },
+                {"investment", (o,n) => { (o as IntRateRequestBody).Investment = n.GetObjectValue<Json>(Json.CreateFromDiscriminatorValue); } },
+                {"maturity", (o,n) => { (o as IntRateRequestBody).Maturity = n.GetObjectValue<Json>(Json.CreateFromDiscriminatorValue); } },
+                {"redemption", (o,n) => { (o as IntRateRequestBody).Redemption = n.GetObjectValue<Json>(Json.CreateFromDiscriminatorValue); } },
+                {"settlement", (o,n) => { (o as IntRateRequestBody).Settlement = n.GetObjectValue<Json>(Json.CreateFromDiscriminatorValue); } },
             };
         }
         /// <summary>

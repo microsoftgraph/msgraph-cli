@@ -53,6 +53,13 @@ namespace ApiSdk.Users.Item.CalendarGroups.Item.Calendars.Item.CalendarView.Item
             command.AddOption(outputOption);
             var queryOption = new Option<string>("--query");
             command.AddOption(queryOption);
+            var jsonNoIndentOption = new Option<bool>("--json-no-indent", r => {
+                if (bool.TryParse(r.Tokens.Select(t => t.Value).LastOrDefault(), out var value)) {
+                    return value;
+                }
+                return true;
+            }, description: "Disable indentation for the JSON output formatter.");
+            command.AddOption(jsonNoIndentOption);
             command.SetHandler(async (object[] parameters) => {
                 var userId = (string) parameters[0];
                 var calendarGroupId = (string) parameters[1];
@@ -61,9 +68,10 @@ namespace ApiSdk.Users.Item.CalendarGroups.Item.Calendars.Item.CalendarView.Item
                 var body = (string) parameters[4];
                 var output = (FormatterType) parameters[5];
                 var query = (string) parameters[6];
-                var outputFilter = (IOutputFilter) parameters[7];
-                var outputFormatterFactory = (IOutputFormatterFactory) parameters[8];
-                var cancellationToken = (CancellationToken) parameters[9];
+                var jsonNoIndent = (bool) parameters[7];
+                var outputFilter = (IOutputFilter) parameters[8];
+                var outputFormatterFactory = (IOutputFormatterFactory) parameters[9];
+                var cancellationToken = (CancellationToken) parameters[10];
                 PathParameters.Clear();
                 PathParameters.Add("user_id", userId);
                 PathParameters.Add("calendarGroup_id", calendarGroupId);
@@ -71,14 +79,15 @@ namespace ApiSdk.Users.Item.CalendarGroups.Item.Calendars.Item.CalendarView.Item
                 PathParameters.Add("event_id", eventId);
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
-                var model = parseNode.GetObjectValue<CreateUploadSessionRequestBody>();
+                var model = parseNode.GetObjectValue<CreateUploadSessionRequestBody>(CreateUploadSessionRequestBody.CreateFromDiscriminatorValue);
                 var requestInfo = CreatePostRequestInformation(model, q => {
                 });
                 var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: default, cancellationToken: cancellationToken);
                 var formatter = outputFormatterFactory.GetFormatter(output);
-                response = outputFilter?.FilterOutput(response, query) ?? response;
-                formatter.WriteOutput(response);
-            }, new CollectionBinding(userIdOption, calendarGroupIdOption, calendarIdOption, eventIdOption, bodyOption, outputOption, queryOption, new TypeBinding(typeof(IOutputFilter)), new TypeBinding(typeof(IOutputFormatterFactory)), new TypeBinding(typeof(CancellationToken))));
+                response = await outputFilter?.FilterOutputAsync(response, query, cancellationToken) ?? response;
+                var formatterOptions = output.GetOutputFormatterOptions(new FormatterOptionsModel(!jsonNoIndent));
+                await formatter.WriteOutputAsync(response, formatterOptions, cancellationToken);
+            }, new CollectionBinding(userIdOption, calendarGroupIdOption, calendarIdOption, eventIdOption, bodyOption, outputOption, queryOption, jsonNoIndentOption, new TypeBinding(typeof(IOutputFilter)), new TypeBinding(typeof(IOutputFormatterFactory)), new TypeBinding(typeof(CancellationToken))));
             return command;
         }
         /// <summary>
@@ -113,23 +122,27 @@ namespace ApiSdk.Users.Item.CalendarGroups.Item.Calendars.Item.CalendarView.Item
             return requestInfo;
         }
         /// <summary>Union type wrapper for classes uploadSession</summary>
-        public class CreateUploadSessionResponse : IParsable {
+        public class CreateUploadSessionResponse : IAdditionalDataHolder, IParsable {
             /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
             public IDictionary<string, object> AdditionalData { get; set; }
             /// <summary>Union type representation for type uploadSession</summary>
-            public UploadSession UploadSession { get; set; }
+            public ApiSdk.Models.Microsoft.Graph.UploadSession UploadSession { get; set; }
             /// <summary>
             /// Instantiates a new createUploadSessionResponse and sets the default values.
             /// </summary>
             public CreateUploadSessionResponse() {
                 AdditionalData = new Dictionary<string, object>();
             }
+            public static CreateUploadSessionResponse CreateFromDiscriminatorValue(IParseNode parseNode) {
+                _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
+                return new CreateUploadSessionResponse();
+            }
             /// <summary>
             /// The deserialization information for the current model
             /// </summary>
             public IDictionary<string, Action<T, IParseNode>> GetFieldDeserializers<T>() {
                 return new Dictionary<string, Action<T, IParseNode>> {
-                    {"uploadSession", (o,n) => { (o as CreateUploadSessionResponse).UploadSession = n.GetObjectValue<UploadSession>(); } },
+                    {"uploadSession", (o,n) => { (o as CreateUploadSessionResponse).UploadSession = n.GetObjectValue<ApiSdk.Models.Microsoft.Graph.UploadSession>(ApiSdk.Models.Microsoft.Graph.UploadSession.CreateFromDiscriminatorValue); } },
                 };
             }
             /// <summary>
@@ -138,7 +151,7 @@ namespace ApiSdk.Users.Item.CalendarGroups.Item.Calendars.Item.CalendarView.Item
             /// </summary>
             public void Serialize(ISerializationWriter writer) {
                 _ = writer ?? throw new ArgumentNullException(nameof(writer));
-                writer.WriteObjectValue<UploadSession>("uploadSession", UploadSession);
+                writer.WriteObjectValue<ApiSdk.Models.Microsoft.Graph.UploadSession>("uploadSession", UploadSession);
                 writer.WriteAdditionalData(AdditionalData);
             }
         }

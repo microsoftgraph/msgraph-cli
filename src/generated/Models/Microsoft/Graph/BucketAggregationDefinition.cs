@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 namespace ApiSdk.Models.Microsoft.Graph {
-    public class BucketAggregationDefinition : IParsable {
+    public class BucketAggregationDefinition : IAdditionalDataHolder, IParsable {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>True to specify the sort order as descending. The default is false, with the sort order as ascending. Optional.</summary>
@@ -24,6 +24,14 @@ namespace ApiSdk.Models.Microsoft.Graph {
             AdditionalData = new Dictionary<string, object>();
         }
         /// <summary>
+        /// Creates a new instance of the appropriate class based on discriminator value
+        /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
+        /// </summary>
+        public static BucketAggregationDefinition CreateFromDiscriminatorValue(IParseNode parseNode) {
+            _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
+            return new BucketAggregationDefinition();
+        }
+        /// <summary>
         /// The deserialization information for the current model
         /// </summary>
         public IDictionary<string, Action<T, IParseNode>> GetFieldDeserializers<T>() {
@@ -31,7 +39,7 @@ namespace ApiSdk.Models.Microsoft.Graph {
                 {"isDescending", (o,n) => { (o as BucketAggregationDefinition).IsDescending = n.GetBoolValue(); } },
                 {"minimumCount", (o,n) => { (o as BucketAggregationDefinition).MinimumCount = n.GetIntValue(); } },
                 {"prefixFilter", (o,n) => { (o as BucketAggregationDefinition).PrefixFilter = n.GetStringValue(); } },
-                {"ranges", (o,n) => { (o as BucketAggregationDefinition).Ranges = n.GetCollectionOfObjectValues<BucketAggregationRange>().ToList(); } },
+                {"ranges", (o,n) => { (o as BucketAggregationDefinition).Ranges = n.GetCollectionOfObjectValues<BucketAggregationRange>(BucketAggregationRange.CreateFromDiscriminatorValue).ToList(); } },
                 {"sortBy", (o,n) => { (o as BucketAggregationDefinition).SortBy = n.GetEnumValue<BucketAggregationSortProperty>(); } },
             };
         }

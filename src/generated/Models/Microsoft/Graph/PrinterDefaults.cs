@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 namespace ApiSdk.Models.Microsoft.Graph {
-    public class PrinterDefaults : IParsable {
+    public class PrinterDefaults : IAdditionalDataHolder, IParsable {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>The default color mode to use when printing the document. Valid values are described in the following table.</summary>
@@ -46,6 +46,14 @@ namespace ApiSdk.Models.Microsoft.Graph {
         /// </summary>
         public PrinterDefaults() {
             AdditionalData = new Dictionary<string, object>();
+        }
+        /// <summary>
+        /// Creates a new instance of the appropriate class based on discriminator value
+        /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
+        /// </summary>
+        public static PrinterDefaults CreateFromDiscriminatorValue(IParseNode parseNode) {
+            _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
+            return new PrinterDefaults();
         }
         /// <summary>
         /// The deserialization information for the current model

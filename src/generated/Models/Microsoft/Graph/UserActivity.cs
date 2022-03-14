@@ -28,10 +28,18 @@ namespace ApiSdk.Models.Microsoft.Graph {
         /// <summary>Set by the server. DateTime in UTC when the object was modified on the server.</summary>
         public DateTimeOffset? LastModifiedDateTime { get; set; }
         /// <summary>Set by the server. A status code used to identify valid objects. Values: active, updated, deleted, ignored.</summary>
-        public Status? Status { get; set; }
+        public ApiSdk.Models.Microsoft.Graph.Status? Status { get; set; }
         /// <summary>Optional. The timezone in which the user's device used to generate the activity was located at activity creation time; values supplied as Olson IDs in order to support cross-platform representation.</summary>
         public string UserTimezone { get; set; }
         public VisualInfo VisualElements { get; set; }
+        /// <summary>
+        /// Creates a new instance of the appropriate class based on discriminator value
+        /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
+        /// </summary>
+        public static new UserActivity CreateFromDiscriminatorValue(IParseNode parseNode) {
+            _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
+            return new UserActivity();
+        }
         /// <summary>
         /// The deserialization information for the current model
         /// </summary>
@@ -41,16 +49,16 @@ namespace ApiSdk.Models.Microsoft.Graph {
                 {"activitySourceHost", (o,n) => { (o as UserActivity).ActivitySourceHost = n.GetStringValue(); } },
                 {"appActivityId", (o,n) => { (o as UserActivity).AppActivityId = n.GetStringValue(); } },
                 {"appDisplayName", (o,n) => { (o as UserActivity).AppDisplayName = n.GetStringValue(); } },
-                {"contentInfo", (o,n) => { (o as UserActivity).ContentInfo = n.GetObjectValue<Json>(); } },
+                {"contentInfo", (o,n) => { (o as UserActivity).ContentInfo = n.GetObjectValue<Json>(Json.CreateFromDiscriminatorValue); } },
                 {"contentUrl", (o,n) => { (o as UserActivity).ContentUrl = n.GetStringValue(); } },
                 {"createdDateTime", (o,n) => { (o as UserActivity).CreatedDateTime = n.GetDateTimeOffsetValue(); } },
                 {"expirationDateTime", (o,n) => { (o as UserActivity).ExpirationDateTime = n.GetDateTimeOffsetValue(); } },
                 {"fallbackUrl", (o,n) => { (o as UserActivity).FallbackUrl = n.GetStringValue(); } },
-                {"historyItems", (o,n) => { (o as UserActivity).HistoryItems = n.GetCollectionOfObjectValues<ActivityHistoryItem>().ToList(); } },
+                {"historyItems", (o,n) => { (o as UserActivity).HistoryItems = n.GetCollectionOfObjectValues<ActivityHistoryItem>(ActivityHistoryItem.CreateFromDiscriminatorValue).ToList(); } },
                 {"lastModifiedDateTime", (o,n) => { (o as UserActivity).LastModifiedDateTime = n.GetDateTimeOffsetValue(); } },
                 {"status", (o,n) => { (o as UserActivity).Status = n.GetEnumValue<Status>(); } },
                 {"userTimezone", (o,n) => { (o as UserActivity).UserTimezone = n.GetStringValue(); } },
-                {"visualElements", (o,n) => { (o as UserActivity).VisualElements = n.GetObjectValue<VisualInfo>(); } },
+                {"visualElements", (o,n) => { (o as UserActivity).VisualElements = n.GetObjectValue<VisualInfo>(VisualInfo.CreateFromDiscriminatorValue); } },
             };
         }
         /// <summary>

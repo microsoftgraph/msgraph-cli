@@ -14,17 +14,25 @@ namespace ApiSdk.Models.Microsoft.Graph {
         /// <summary>The DateTimeOffset when the printer share was created. Read-only.</summary>
         public DateTimeOffset? CreatedDateTime { get; set; }
         /// <summary>The printer that this printer share is related to.</summary>
-        public Printer Printer { get; set; }
+        public ApiSdk.Models.Microsoft.Graph.Printer Printer { get; set; }
+        /// <summary>
+        /// Creates a new instance of the appropriate class based on discriminator value
+        /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
+        /// </summary>
+        public static new PrinterShare CreateFromDiscriminatorValue(IParseNode parseNode) {
+            _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
+            return new PrinterShare();
+        }
         /// <summary>
         /// The deserialization information for the current model
         /// </summary>
         public new IDictionary<string, Action<T, IParseNode>> GetFieldDeserializers<T>() {
             return new Dictionary<string, Action<T, IParseNode>>(base.GetFieldDeserializers<T>()) {
                 {"allowAllUsers", (o,n) => { (o as PrinterShare).AllowAllUsers = n.GetBoolValue(); } },
-                {"allowedGroups", (o,n) => { (o as PrinterShare).AllowedGroups = n.GetCollectionOfObjectValues<Group>().ToList(); } },
-                {"allowedUsers", (o,n) => { (o as PrinterShare).AllowedUsers = n.GetCollectionOfObjectValues<User>().ToList(); } },
+                {"allowedGroups", (o,n) => { (o as PrinterShare).AllowedGroups = n.GetCollectionOfObjectValues<Group>(Group.CreateFromDiscriminatorValue).ToList(); } },
+                {"allowedUsers", (o,n) => { (o as PrinterShare).AllowedUsers = n.GetCollectionOfObjectValues<User>(User.CreateFromDiscriminatorValue).ToList(); } },
                 {"createdDateTime", (o,n) => { (o as PrinterShare).CreatedDateTime = n.GetDateTimeOffsetValue(); } },
-                {"printer", (o,n) => { (o as PrinterShare).Printer = n.GetObjectValue<Printer>(); } },
+                {"printer", (o,n) => { (o as PrinterShare).Printer = n.GetObjectValue<ApiSdk.Models.Microsoft.Graph.Printer>(ApiSdk.Models.Microsoft.Graph.Printer.CreateFromDiscriminatorValue); } },
             };
         }
         /// <summary>
@@ -38,7 +46,7 @@ namespace ApiSdk.Models.Microsoft.Graph {
             writer.WriteCollectionOfObjectValues<Group>("allowedGroups", AllowedGroups);
             writer.WriteCollectionOfObjectValues<User>("allowedUsers", AllowedUsers);
             writer.WriteDateTimeOffsetValue("createdDateTime", CreatedDateTime);
-            writer.WriteObjectValue<Printer>("printer", Printer);
+            writer.WriteObjectValue<ApiSdk.Models.Microsoft.Graph.Printer>("printer", Printer);
         }
     }
 }

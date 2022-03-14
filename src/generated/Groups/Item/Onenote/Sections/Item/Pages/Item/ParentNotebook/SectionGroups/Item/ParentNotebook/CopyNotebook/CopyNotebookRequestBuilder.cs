@@ -53,6 +53,13 @@ namespace ApiSdk.Groups.Item.Onenote.Sections.Item.Pages.Item.ParentNotebook.Sec
             command.AddOption(outputOption);
             var queryOption = new Option<string>("--query");
             command.AddOption(queryOption);
+            var jsonNoIndentOption = new Option<bool>("--json-no-indent", r => {
+                if (bool.TryParse(r.Tokens.Select(t => t.Value).LastOrDefault(), out var value)) {
+                    return value;
+                }
+                return true;
+            }, description: "Disable indentation for the JSON output formatter.");
+            command.AddOption(jsonNoIndentOption);
             command.SetHandler(async (object[] parameters) => {
                 var groupId = (string) parameters[0];
                 var onenoteSectionId = (string) parameters[1];
@@ -61,9 +68,10 @@ namespace ApiSdk.Groups.Item.Onenote.Sections.Item.Pages.Item.ParentNotebook.Sec
                 var body = (string) parameters[4];
                 var output = (FormatterType) parameters[5];
                 var query = (string) parameters[6];
-                var outputFilter = (IOutputFilter) parameters[7];
-                var outputFormatterFactory = (IOutputFormatterFactory) parameters[8];
-                var cancellationToken = (CancellationToken) parameters[9];
+                var jsonNoIndent = (bool) parameters[7];
+                var outputFilter = (IOutputFilter) parameters[8];
+                var outputFormatterFactory = (IOutputFormatterFactory) parameters[9];
+                var cancellationToken = (CancellationToken) parameters[10];
                 PathParameters.Clear();
                 PathParameters.Add("group_id", groupId);
                 PathParameters.Add("onenoteSection_id", onenoteSectionId);
@@ -71,14 +79,15 @@ namespace ApiSdk.Groups.Item.Onenote.Sections.Item.Pages.Item.ParentNotebook.Sec
                 PathParameters.Add("sectionGroup_id", sectionGroupId);
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
-                var model = parseNode.GetObjectValue<CopyNotebookRequestBody>();
+                var model = parseNode.GetObjectValue<CopyNotebookRequestBody>(CopyNotebookRequestBody.CreateFromDiscriminatorValue);
                 var requestInfo = CreatePostRequestInformation(model, q => {
                 });
                 var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: default, cancellationToken: cancellationToken);
                 var formatter = outputFormatterFactory.GetFormatter(output);
-                response = outputFilter?.FilterOutput(response, query) ?? response;
-                formatter.WriteOutput(response);
-            }, new CollectionBinding(groupIdOption, onenoteSectionIdOption, onenotePageIdOption, sectionGroupIdOption, bodyOption, outputOption, queryOption, new TypeBinding(typeof(IOutputFilter)), new TypeBinding(typeof(IOutputFormatterFactory)), new TypeBinding(typeof(CancellationToken))));
+                response = await outputFilter?.FilterOutputAsync(response, query, cancellationToken) ?? response;
+                var formatterOptions = output.GetOutputFormatterOptions(new FormatterOptionsModel(!jsonNoIndent));
+                await formatter.WriteOutputAsync(response, formatterOptions, cancellationToken);
+            }, new CollectionBinding(groupIdOption, onenoteSectionIdOption, onenotePageIdOption, sectionGroupIdOption, bodyOption, outputOption, queryOption, jsonNoIndentOption, new TypeBinding(typeof(IOutputFilter)), new TypeBinding(typeof(IOutputFormatterFactory)), new TypeBinding(typeof(CancellationToken))));
             return command;
         }
         /// <summary>
@@ -113,23 +122,27 @@ namespace ApiSdk.Groups.Item.Onenote.Sections.Item.Pages.Item.ParentNotebook.Sec
             return requestInfo;
         }
         /// <summary>Union type wrapper for classes onenoteOperation</summary>
-        public class CopyNotebookResponse : IParsable {
+        public class CopyNotebookResponse : IAdditionalDataHolder, IParsable {
             /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
             public IDictionary<string, object> AdditionalData { get; set; }
             /// <summary>Union type representation for type onenoteOperation</summary>
-            public OnenoteOperation OnenoteOperation { get; set; }
+            public ApiSdk.Models.Microsoft.Graph.OnenoteOperation OnenoteOperation { get; set; }
             /// <summary>
             /// Instantiates a new copyNotebookResponse and sets the default values.
             /// </summary>
             public CopyNotebookResponse() {
                 AdditionalData = new Dictionary<string, object>();
             }
+            public static CopyNotebookResponse CreateFromDiscriminatorValue(IParseNode parseNode) {
+                _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
+                return new CopyNotebookResponse();
+            }
             /// <summary>
             /// The deserialization information for the current model
             /// </summary>
             public IDictionary<string, Action<T, IParseNode>> GetFieldDeserializers<T>() {
                 return new Dictionary<string, Action<T, IParseNode>> {
-                    {"onenoteOperation", (o,n) => { (o as CopyNotebookResponse).OnenoteOperation = n.GetObjectValue<OnenoteOperation>(); } },
+                    {"onenoteOperation", (o,n) => { (o as CopyNotebookResponse).OnenoteOperation = n.GetObjectValue<ApiSdk.Models.Microsoft.Graph.OnenoteOperation>(ApiSdk.Models.Microsoft.Graph.OnenoteOperation.CreateFromDiscriminatorValue); } },
                 };
             }
             /// <summary>
@@ -138,7 +151,7 @@ namespace ApiSdk.Groups.Item.Onenote.Sections.Item.Pages.Item.ParentNotebook.Sec
             /// </summary>
             public void Serialize(ISerializationWriter writer) {
                 _ = writer ?? throw new ArgumentNullException(nameof(writer));
-                writer.WriteObjectValue<OnenoteOperation>("onenoteOperation", OnenoteOperation);
+                writer.WriteObjectValue<ApiSdk.Models.Microsoft.Graph.OnenoteOperation>("onenoteOperation", OnenoteOperation);
                 writer.WriteAdditionalData(AdditionalData);
             }
         }

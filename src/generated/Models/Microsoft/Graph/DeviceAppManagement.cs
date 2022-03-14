@@ -42,28 +42,36 @@ namespace ApiSdk.Models.Microsoft.Graph {
         /// <summary>Windows information protection for apps running on devices which are not MDM enrolled.</summary>
         public List<WindowsInformationProtectionPolicy> WindowsInformationProtectionPolicies { get; set; }
         /// <summary>
+        /// Creates a new instance of the appropriate class based on discriminator value
+        /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
+        /// </summary>
+        public static new DeviceAppManagement CreateFromDiscriminatorValue(IParseNode parseNode) {
+            _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
+            return new DeviceAppManagement();
+        }
+        /// <summary>
         /// The deserialization information for the current model
         /// </summary>
         public new IDictionary<string, Action<T, IParseNode>> GetFieldDeserializers<T>() {
             return new Dictionary<string, Action<T, IParseNode>>(base.GetFieldDeserializers<T>()) {
-                {"androidManagedAppProtections", (o,n) => { (o as DeviceAppManagement).AndroidManagedAppProtections = n.GetCollectionOfObjectValues<AndroidManagedAppProtection>().ToList(); } },
-                {"defaultManagedAppProtections", (o,n) => { (o as DeviceAppManagement).DefaultManagedAppProtections = n.GetCollectionOfObjectValues<DefaultManagedAppProtection>().ToList(); } },
-                {"iosManagedAppProtections", (o,n) => { (o as DeviceAppManagement).IosManagedAppProtections = n.GetCollectionOfObjectValues<IosManagedAppProtection>().ToList(); } },
+                {"androidManagedAppProtections", (o,n) => { (o as DeviceAppManagement).AndroidManagedAppProtections = n.GetCollectionOfObjectValues<AndroidManagedAppProtection>(AndroidManagedAppProtection.CreateFromDiscriminatorValue).ToList(); } },
+                {"defaultManagedAppProtections", (o,n) => { (o as DeviceAppManagement).DefaultManagedAppProtections = n.GetCollectionOfObjectValues<DefaultManagedAppProtection>(DefaultManagedAppProtection.CreateFromDiscriminatorValue).ToList(); } },
+                {"iosManagedAppProtections", (o,n) => { (o as DeviceAppManagement).IosManagedAppProtections = n.GetCollectionOfObjectValues<IosManagedAppProtection>(IosManagedAppProtection.CreateFromDiscriminatorValue).ToList(); } },
                 {"isEnabledForMicrosoftStoreForBusiness", (o,n) => { (o as DeviceAppManagement).IsEnabledForMicrosoftStoreForBusiness = n.GetBoolValue(); } },
-                {"managedAppPolicies", (o,n) => { (o as DeviceAppManagement).ManagedAppPolicies = n.GetCollectionOfObjectValues<ManagedAppPolicy>().ToList(); } },
-                {"managedAppRegistrations", (o,n) => { (o as DeviceAppManagement).ManagedAppRegistrations = n.GetCollectionOfObjectValues<ManagedAppRegistration>().ToList(); } },
-                {"managedAppStatuses", (o,n) => { (o as DeviceAppManagement).ManagedAppStatuses = n.GetCollectionOfObjectValues<ManagedAppStatus>().ToList(); } },
-                {"managedEBooks", (o,n) => { (o as DeviceAppManagement).ManagedEBooks = n.GetCollectionOfObjectValues<ManagedEBook>().ToList(); } },
-                {"mdmWindowsInformationProtectionPolicies", (o,n) => { (o as DeviceAppManagement).MdmWindowsInformationProtectionPolicies = n.GetCollectionOfObjectValues<MdmWindowsInformationProtectionPolicy>().ToList(); } },
+                {"managedAppPolicies", (o,n) => { (o as DeviceAppManagement).ManagedAppPolicies = n.GetCollectionOfObjectValues<ManagedAppPolicy>(ManagedAppPolicy.CreateFromDiscriminatorValue).ToList(); } },
+                {"managedAppRegistrations", (o,n) => { (o as DeviceAppManagement).ManagedAppRegistrations = n.GetCollectionOfObjectValues<ManagedAppRegistration>(ManagedAppRegistration.CreateFromDiscriminatorValue).ToList(); } },
+                {"managedAppStatuses", (o,n) => { (o as DeviceAppManagement).ManagedAppStatuses = n.GetCollectionOfObjectValues<ManagedAppStatus>(ManagedAppStatus.CreateFromDiscriminatorValue).ToList(); } },
+                {"managedEBooks", (o,n) => { (o as DeviceAppManagement).ManagedEBooks = n.GetCollectionOfObjectValues<ManagedEBook>(ManagedEBook.CreateFromDiscriminatorValue).ToList(); } },
+                {"mdmWindowsInformationProtectionPolicies", (o,n) => { (o as DeviceAppManagement).MdmWindowsInformationProtectionPolicies = n.GetCollectionOfObjectValues<MdmWindowsInformationProtectionPolicy>(MdmWindowsInformationProtectionPolicy.CreateFromDiscriminatorValue).ToList(); } },
                 {"microsoftStoreForBusinessLanguage", (o,n) => { (o as DeviceAppManagement).MicrosoftStoreForBusinessLanguage = n.GetStringValue(); } },
                 {"microsoftStoreForBusinessLastCompletedApplicationSyncTime", (o,n) => { (o as DeviceAppManagement).MicrosoftStoreForBusinessLastCompletedApplicationSyncTime = n.GetDateTimeOffsetValue(); } },
                 {"microsoftStoreForBusinessLastSuccessfulSyncDateTime", (o,n) => { (o as DeviceAppManagement).MicrosoftStoreForBusinessLastSuccessfulSyncDateTime = n.GetDateTimeOffsetValue(); } },
-                {"mobileAppCategories", (o,n) => { (o as DeviceAppManagement).MobileAppCategories = n.GetCollectionOfObjectValues<MobileAppCategory>().ToList(); } },
-                {"mobileAppConfigurations", (o,n) => { (o as DeviceAppManagement).MobileAppConfigurations = n.GetCollectionOfObjectValues<ManagedDeviceMobileAppConfiguration>().ToList(); } },
-                {"mobileApps", (o,n) => { (o as DeviceAppManagement).MobileApps = n.GetCollectionOfObjectValues<MobileApp>().ToList(); } },
-                {"targetedManagedAppConfigurations", (o,n) => { (o as DeviceAppManagement).TargetedManagedAppConfigurations = n.GetCollectionOfObjectValues<TargetedManagedAppConfiguration>().ToList(); } },
-                {"vppTokens", (o,n) => { (o as DeviceAppManagement).VppTokens = n.GetCollectionOfObjectValues<VppToken>().ToList(); } },
-                {"windowsInformationProtectionPolicies", (o,n) => { (o as DeviceAppManagement).WindowsInformationProtectionPolicies = n.GetCollectionOfObjectValues<WindowsInformationProtectionPolicy>().ToList(); } },
+                {"mobileAppCategories", (o,n) => { (o as DeviceAppManagement).MobileAppCategories = n.GetCollectionOfObjectValues<MobileAppCategory>(MobileAppCategory.CreateFromDiscriminatorValue).ToList(); } },
+                {"mobileAppConfigurations", (o,n) => { (o as DeviceAppManagement).MobileAppConfigurations = n.GetCollectionOfObjectValues<ManagedDeviceMobileAppConfiguration>(ManagedDeviceMobileAppConfiguration.CreateFromDiscriminatorValue).ToList(); } },
+                {"mobileApps", (o,n) => { (o as DeviceAppManagement).MobileApps = n.GetCollectionOfObjectValues<MobileApp>(MobileApp.CreateFromDiscriminatorValue).ToList(); } },
+                {"targetedManagedAppConfigurations", (o,n) => { (o as DeviceAppManagement).TargetedManagedAppConfigurations = n.GetCollectionOfObjectValues<TargetedManagedAppConfiguration>(TargetedManagedAppConfiguration.CreateFromDiscriminatorValue).ToList(); } },
+                {"vppTokens", (o,n) => { (o as DeviceAppManagement).VppTokens = n.GetCollectionOfObjectValues<VppToken>(VppToken.CreateFromDiscriminatorValue).ToList(); } },
+                {"windowsInformationProtectionPolicies", (o,n) => { (o as DeviceAppManagement).WindowsInformationProtectionPolicies = n.GetCollectionOfObjectValues<WindowsInformationProtectionPolicy>(WindowsInformationProtectionPolicy.CreateFromDiscriminatorValue).ToList(); } },
             };
         }
         /// <summary>

@@ -18,21 +18,29 @@ namespace ApiSdk.Models.Microsoft.Graph {
         /// <summary>Indicates whether the user has to expand the agreement before accepting.</summary>
         public bool? IsViewingBeforeAcceptanceRequired { get; set; }
         /// <summary>Expiration schedule and frequency of agreement for all users.</summary>
-        public TermsExpiration TermsExpiration { get; set; }
+        public ApiSdk.Models.Microsoft.Graph.TermsExpiration TermsExpiration { get; set; }
         /// <summary>The duration after which the user must re-accept the terms of use. The value is represented in ISO 8601 format for durations.</summary>
         public TimeSpan? UserReacceptRequiredFrequency { get; set; }
+        /// <summary>
+        /// Creates a new instance of the appropriate class based on discriminator value
+        /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
+        /// </summary>
+        public static new Agreement CreateFromDiscriminatorValue(IParseNode parseNode) {
+            _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
+            return new Agreement();
+        }
         /// <summary>
         /// The deserialization information for the current model
         /// </summary>
         public new IDictionary<string, Action<T, IParseNode>> GetFieldDeserializers<T>() {
             return new Dictionary<string, Action<T, IParseNode>>(base.GetFieldDeserializers<T>()) {
-                {"acceptances", (o,n) => { (o as Agreement).Acceptances = n.GetCollectionOfObjectValues<AgreementAcceptance>().ToList(); } },
+                {"acceptances", (o,n) => { (o as Agreement).Acceptances = n.GetCollectionOfObjectValues<AgreementAcceptance>(AgreementAcceptance.CreateFromDiscriminatorValue).ToList(); } },
                 {"displayName", (o,n) => { (o as Agreement).DisplayName = n.GetStringValue(); } },
-                {"file", (o,n) => { (o as Agreement).File = n.GetObjectValue<AgreementFile>(); } },
-                {"files", (o,n) => { (o as Agreement).Files = n.GetCollectionOfObjectValues<AgreementFileLocalization>().ToList(); } },
+                {"file", (o,n) => { (o as Agreement).File = n.GetObjectValue<AgreementFile>(AgreementFile.CreateFromDiscriminatorValue); } },
+                {"files", (o,n) => { (o as Agreement).Files = n.GetCollectionOfObjectValues<AgreementFileLocalization>(AgreementFileLocalization.CreateFromDiscriminatorValue).ToList(); } },
                 {"isPerDeviceAcceptanceRequired", (o,n) => { (o as Agreement).IsPerDeviceAcceptanceRequired = n.GetBoolValue(); } },
                 {"isViewingBeforeAcceptanceRequired", (o,n) => { (o as Agreement).IsViewingBeforeAcceptanceRequired = n.GetBoolValue(); } },
-                {"termsExpiration", (o,n) => { (o as Agreement).TermsExpiration = n.GetObjectValue<TermsExpiration>(); } },
+                {"termsExpiration", (o,n) => { (o as Agreement).TermsExpiration = n.GetObjectValue<ApiSdk.Models.Microsoft.Graph.TermsExpiration>(ApiSdk.Models.Microsoft.Graph.TermsExpiration.CreateFromDiscriminatorValue); } },
                 {"userReacceptRequiredFrequency", (o,n) => { (o as Agreement).UserReacceptRequiredFrequency = n.GetTimeSpanValue(); } },
             };
         }
@@ -49,7 +57,7 @@ namespace ApiSdk.Models.Microsoft.Graph {
             writer.WriteCollectionOfObjectValues<AgreementFileLocalization>("files", Files);
             writer.WriteBoolValue("isPerDeviceAcceptanceRequired", IsPerDeviceAcceptanceRequired);
             writer.WriteBoolValue("isViewingBeforeAcceptanceRequired", IsViewingBeforeAcceptanceRequired);
-            writer.WriteObjectValue<TermsExpiration>("termsExpiration", TermsExpiration);
+            writer.WriteObjectValue<ApiSdk.Models.Microsoft.Graph.TermsExpiration>("termsExpiration", TermsExpiration);
             writer.WriteTimeSpanValue("userReacceptRequiredFrequency", UserReacceptRequiredFrequency);
         }
     }

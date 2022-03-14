@@ -62,6 +62,13 @@ namespace ApiSdk.Groups.Item.Onenote.SectionGroups.Item.Sections.Item.Pages.Item
             command.AddOption(outputOption);
             var queryOption = new Option<string>("--query");
             command.AddOption(queryOption);
+            var jsonNoIndentOption = new Option<bool>("--json-no-indent", r => {
+                if (bool.TryParse(r.Tokens.Select(t => t.Value).LastOrDefault(), out var value)) {
+                    return value;
+                }
+                return true;
+            }, description: "Disable indentation for the JSON output formatter.");
+            command.AddOption(jsonNoIndentOption);
             command.SetHandler(async (object[] parameters) => {
                 var groupId = (string) parameters[0];
                 var sectionGroupId = (string) parameters[1];
@@ -70,9 +77,10 @@ namespace ApiSdk.Groups.Item.Onenote.SectionGroups.Item.Sections.Item.Pages.Item
                 var body = (string) parameters[4];
                 var output = (FormatterType) parameters[5];
                 var query = (string) parameters[6];
-                var outputFilter = (IOutputFilter) parameters[7];
-                var outputFormatterFactory = (IOutputFormatterFactory) parameters[8];
-                var cancellationToken = (CancellationToken) parameters[9];
+                var jsonNoIndent = (bool) parameters[7];
+                var outputFilter = (IOutputFilter) parameters[8];
+                var outputFormatterFactory = (IOutputFormatterFactory) parameters[9];
+                var cancellationToken = (CancellationToken) parameters[10];
                 PathParameters.Clear();
                 PathParameters.Add("group_id", groupId);
                 PathParameters.Add("sectionGroup_id", sectionGroupId);
@@ -80,14 +88,15 @@ namespace ApiSdk.Groups.Item.Onenote.SectionGroups.Item.Sections.Item.Pages.Item
                 PathParameters.Add("onenotePage_id", onenotePageId);
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
-                var model = parseNode.GetObjectValue<SectionGroup>();
+                var model = parseNode.GetObjectValue<SectionGroup>(SectionGroup.CreateFromDiscriminatorValue);
                 var requestInfo = CreatePostRequestInformation(model, q => {
                 });
                 var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: default, cancellationToken: cancellationToken);
                 var formatter = outputFormatterFactory.GetFormatter(output);
-                response = outputFilter?.FilterOutput(response, query) ?? response;
-                formatter.WriteOutput(response);
-            }, new CollectionBinding(groupIdOption, sectionGroupIdOption, onenoteSectionIdOption, onenotePageIdOption, bodyOption, outputOption, queryOption, new TypeBinding(typeof(IOutputFilter)), new TypeBinding(typeof(IOutputFormatterFactory)), new TypeBinding(typeof(CancellationToken))));
+                response = await outputFilter?.FilterOutputAsync(response, query, cancellationToken) ?? response;
+                var formatterOptions = output.GetOutputFormatterOptions(new FormatterOptionsModel(!jsonNoIndent));
+                await formatter.WriteOutputAsync(response, formatterOptions, cancellationToken);
+            }, new CollectionBinding(groupIdOption, sectionGroupIdOption, onenoteSectionIdOption, onenotePageIdOption, bodyOption, outputOption, queryOption, jsonNoIndentOption, new TypeBinding(typeof(IOutputFilter)), new TypeBinding(typeof(IOutputFormatterFactory)), new TypeBinding(typeof(CancellationToken))));
             return command;
         }
         /// <summary>
@@ -154,6 +163,13 @@ namespace ApiSdk.Groups.Item.Onenote.SectionGroups.Item.Sections.Item.Pages.Item
             command.AddOption(outputOption);
             var queryOption = new Option<string>("--query");
             command.AddOption(queryOption);
+            var jsonNoIndentOption = new Option<bool>("--json-no-indent", r => {
+                if (bool.TryParse(r.Tokens.Select(t => t.Value).LastOrDefault(), out var value)) {
+                    return value;
+                }
+                return true;
+            }, description: "Disable indentation for the JSON output formatter.");
+            command.AddOption(jsonNoIndentOption);
             command.SetHandler(async (object[] parameters) => {
                 var groupId = (string) parameters[0];
                 var sectionGroupId = (string) parameters[1];
@@ -169,9 +185,10 @@ namespace ApiSdk.Groups.Item.Onenote.SectionGroups.Item.Sections.Item.Pages.Item
                 var expand = (string[]) parameters[11];
                 var output = (FormatterType) parameters[12];
                 var query = (string) parameters[13];
-                var outputFilter = (IOutputFilter) parameters[14];
-                var outputFormatterFactory = (IOutputFormatterFactory) parameters[15];
-                var cancellationToken = (CancellationToken) parameters[16];
+                var jsonNoIndent = (bool) parameters[14];
+                var outputFilter = (IOutputFilter) parameters[15];
+                var outputFormatterFactory = (IOutputFormatterFactory) parameters[16];
+                var cancellationToken = (CancellationToken) parameters[17];
                 PathParameters.Clear();
                 PathParameters.Add("group_id", groupId);
                 PathParameters.Add("sectionGroup_id", sectionGroupId);
@@ -189,9 +206,10 @@ namespace ApiSdk.Groups.Item.Onenote.SectionGroups.Item.Sections.Item.Pages.Item
                 });
                 var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: default, cancellationToken: cancellationToken);
                 var formatter = outputFormatterFactory.GetFormatter(output);
-                response = outputFilter?.FilterOutput(response, query) ?? response;
-                formatter.WriteOutput(response);
-            }, new CollectionBinding(groupIdOption, sectionGroupIdOption, onenoteSectionIdOption, onenotePageIdOption, topOption, skipOption, searchOption, filterOption, countOption, orderbyOption, selectOption, expandOption, outputOption, queryOption, new TypeBinding(typeof(IOutputFilter)), new TypeBinding(typeof(IOutputFormatterFactory)), new TypeBinding(typeof(CancellationToken))));
+                response = await outputFilter?.FilterOutputAsync(response, query, cancellationToken) ?? response;
+                var formatterOptions = output.GetOutputFormatterOptions(new FormatterOptionsModel(!jsonNoIndent));
+                await formatter.WriteOutputAsync(response, formatterOptions, cancellationToken);
+            }, new CollectionBinding(groupIdOption, sectionGroupIdOption, onenoteSectionIdOption, onenotePageIdOption, topOption, skipOption, searchOption, filterOption, countOption, orderbyOption, selectOption, expandOption, outputOption, queryOption, jsonNoIndentOption, new TypeBinding(typeof(IOutputFilter)), new TypeBinding(typeof(IOutputFormatterFactory)), new TypeBinding(typeof(CancellationToken))));
             return command;
         }
         /// <summary>

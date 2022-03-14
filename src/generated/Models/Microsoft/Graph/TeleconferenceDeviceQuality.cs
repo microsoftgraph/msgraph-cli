@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 namespace ApiSdk.Models.Microsoft.Graph {
-    public class TeleconferenceDeviceQuality : IParsable {
+    public class TeleconferenceDeviceQuality : IAdditionalDataHolder, IParsable {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>A unique identifier for all  the participant calls in a conference or a unique identifier for two participant calls in P2P call. This needs to be copied over from Microsoft.Graph.Call.CallChainId.</summary>
@@ -34,6 +34,14 @@ namespace ApiSdk.Models.Microsoft.Graph {
             AdditionalData = new Dictionary<string, object>();
         }
         /// <summary>
+        /// Creates a new instance of the appropriate class based on discriminator value
+        /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
+        /// </summary>
+        public static TeleconferenceDeviceQuality CreateFromDiscriminatorValue(IParseNode parseNode) {
+            _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
+            return new TeleconferenceDeviceQuality();
+        }
+        /// <summary>
         /// The deserialization information for the current model
         /// </summary>
         public IDictionary<string, Action<T, IParseNode>> GetFieldDeserializers<T>() {
@@ -46,7 +54,7 @@ namespace ApiSdk.Models.Microsoft.Graph {
                 {"deviceDescription", (o,n) => { (o as TeleconferenceDeviceQuality).DeviceDescription = n.GetStringValue(); } },
                 {"deviceName", (o,n) => { (o as TeleconferenceDeviceQuality).DeviceName = n.GetStringValue(); } },
                 {"mediaLegId", (o,n) => { (o as TeleconferenceDeviceQuality).MediaLegId = n.GetStringValue(); } },
-                {"mediaQualityList", (o,n) => { (o as TeleconferenceDeviceQuality).MediaQualityList = n.GetCollectionOfObjectValues<TeleconferenceDeviceMediaQuality>().ToList(); } },
+                {"mediaQualityList", (o,n) => { (o as TeleconferenceDeviceQuality).MediaQualityList = n.GetCollectionOfObjectValues<TeleconferenceDeviceMediaQuality>(TeleconferenceDeviceMediaQuality.CreateFromDiscriminatorValue).ToList(); } },
                 {"participantId", (o,n) => { (o as TeleconferenceDeviceQuality).ParticipantId = n.GetStringValue(); } },
             };
         }

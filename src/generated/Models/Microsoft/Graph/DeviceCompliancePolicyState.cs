@@ -17,6 +17,14 @@ namespace ApiSdk.Models.Microsoft.Graph {
         /// <summary>The version of the policy</summary>
         public int? Version { get; set; }
         /// <summary>
+        /// Creates a new instance of the appropriate class based on discriminator value
+        /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
+        /// </summary>
+        public static new DeviceCompliancePolicyState CreateFromDiscriminatorValue(IParseNode parseNode) {
+            _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
+            return new DeviceCompliancePolicyState();
+        }
+        /// <summary>
         /// The deserialization information for the current model
         /// </summary>
         public new IDictionary<string, Action<T, IParseNode>> GetFieldDeserializers<T>() {
@@ -24,7 +32,7 @@ namespace ApiSdk.Models.Microsoft.Graph {
                 {"displayName", (o,n) => { (o as DeviceCompliancePolicyState).DisplayName = n.GetStringValue(); } },
                 {"platformType", (o,n) => { (o as DeviceCompliancePolicyState).PlatformType = n.GetEnumValue<PolicyPlatformType>(); } },
                 {"settingCount", (o,n) => { (o as DeviceCompliancePolicyState).SettingCount = n.GetIntValue(); } },
-                {"settingStates", (o,n) => { (o as DeviceCompliancePolicyState).SettingStates = n.GetCollectionOfObjectValues<DeviceCompliancePolicySettingState>().ToList(); } },
+                {"settingStates", (o,n) => { (o as DeviceCompliancePolicyState).SettingStates = n.GetCollectionOfObjectValues<DeviceCompliancePolicySettingState>(DeviceCompliancePolicySettingState.CreateFromDiscriminatorValue).ToList(); } },
                 {"state", (o,n) => { (o as DeviceCompliancePolicyState).State = n.GetEnumValue<ComplianceStatus>(); } },
                 {"version", (o,n) => { (o as DeviceCompliancePolicyState).Version = n.GetIntValue(); } },
             };

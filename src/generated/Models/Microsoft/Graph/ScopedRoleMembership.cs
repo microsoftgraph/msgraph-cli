@@ -11,13 +11,21 @@ namespace ApiSdk.Models.Microsoft.Graph {
         public string RoleId { get; set; }
         public Identity RoleMemberInfo { get; set; }
         /// <summary>
+        /// Creates a new instance of the appropriate class based on discriminator value
+        /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
+        /// </summary>
+        public static new ScopedRoleMembership CreateFromDiscriminatorValue(IParseNode parseNode) {
+            _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
+            return new ScopedRoleMembership();
+        }
+        /// <summary>
         /// The deserialization information for the current model
         /// </summary>
         public new IDictionary<string, Action<T, IParseNode>> GetFieldDeserializers<T>() {
             return new Dictionary<string, Action<T, IParseNode>>(base.GetFieldDeserializers<T>()) {
                 {"administrativeUnitId", (o,n) => { (o as ScopedRoleMembership).AdministrativeUnitId = n.GetStringValue(); } },
                 {"roleId", (o,n) => { (o as ScopedRoleMembership).RoleId = n.GetStringValue(); } },
-                {"roleMemberInfo", (o,n) => { (o as ScopedRoleMembership).RoleMemberInfo = n.GetObjectValue<Identity>(); } },
+                {"roleMemberInfo", (o,n) => { (o as ScopedRoleMembership).RoleMemberInfo = n.GetObjectValue<Identity>(Identity.CreateFromDiscriminatorValue); } },
             };
         }
         /// <summary>

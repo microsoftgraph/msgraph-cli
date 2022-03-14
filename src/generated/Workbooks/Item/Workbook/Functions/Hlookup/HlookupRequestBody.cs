@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 namespace ApiSdk.Workbooks.Item.Workbook.Functions.Hlookup {
-    public class HlookupRequestBody : IParsable {
+    public class HlookupRequestBody : IAdditionalDataHolder, IParsable {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
         public Json LookupValue { get; set; }
@@ -19,14 +19,22 @@ namespace ApiSdk.Workbooks.Item.Workbook.Functions.Hlookup {
             AdditionalData = new Dictionary<string, object>();
         }
         /// <summary>
+        /// Creates a new instance of the appropriate class based on discriminator value
+        /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
+        /// </summary>
+        public static HlookupRequestBody CreateFromDiscriminatorValue(IParseNode parseNode) {
+            _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
+            return new HlookupRequestBody();
+        }
+        /// <summary>
         /// The deserialization information for the current model
         /// </summary>
         public IDictionary<string, Action<T, IParseNode>> GetFieldDeserializers<T>() {
             return new Dictionary<string, Action<T, IParseNode>> {
-                {"lookupValue", (o,n) => { (o as HlookupRequestBody).LookupValue = n.GetObjectValue<Json>(); } },
-                {"rangeLookup", (o,n) => { (o as HlookupRequestBody).RangeLookup = n.GetObjectValue<Json>(); } },
-                {"rowIndexNum", (o,n) => { (o as HlookupRequestBody).RowIndexNum = n.GetObjectValue<Json>(); } },
-                {"tableArray", (o,n) => { (o as HlookupRequestBody).TableArray = n.GetObjectValue<Json>(); } },
+                {"lookupValue", (o,n) => { (o as HlookupRequestBody).LookupValue = n.GetObjectValue<Json>(Json.CreateFromDiscriminatorValue); } },
+                {"rangeLookup", (o,n) => { (o as HlookupRequestBody).RangeLookup = n.GetObjectValue<Json>(Json.CreateFromDiscriminatorValue); } },
+                {"rowIndexNum", (o,n) => { (o as HlookupRequestBody).RowIndexNum = n.GetObjectValue<Json>(Json.CreateFromDiscriminatorValue); } },
+                {"tableArray", (o,n) => { (o as HlookupRequestBody).TableArray = n.GetObjectValue<Json>(Json.CreateFromDiscriminatorValue); } },
             };
         }
         /// <summary>

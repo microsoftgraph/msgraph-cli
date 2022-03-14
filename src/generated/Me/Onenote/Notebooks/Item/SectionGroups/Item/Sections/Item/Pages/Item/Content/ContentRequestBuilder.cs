@@ -62,7 +62,7 @@ namespace ApiSdk.Me.Onenote.Notebooks.Item.SectionGroups.Item.Sections.Item.Page
                 if (file == null) {
                     using var reader = new StreamReader(response);
                     var strContent = reader.ReadToEnd();
-                    Console.WriteLine("strContent");
+                    Console.Write(strContent);
                 }
                 else {
                     using var writeStream = file.OpenWrite();

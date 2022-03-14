@@ -12,11 +12,19 @@ namespace ApiSdk.Models.Microsoft.Graph {
         /// <summary>Represents Chinese character ordering method last used to sort the table. Possible values are: PinYin, StrokeCount. Read-only.</summary>
         public string Method { get; set; }
         /// <summary>
+        /// Creates a new instance of the appropriate class based on discriminator value
+        /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
+        /// </summary>
+        public static new WorkbookTableSort CreateFromDiscriminatorValue(IParseNode parseNode) {
+            _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
+            return new WorkbookTableSort();
+        }
+        /// <summary>
         /// The deserialization information for the current model
         /// </summary>
         public new IDictionary<string, Action<T, IParseNode>> GetFieldDeserializers<T>() {
             return new Dictionary<string, Action<T, IParseNode>>(base.GetFieldDeserializers<T>()) {
-                {"fields", (o,n) => { (o as WorkbookTableSort).Fields = n.GetCollectionOfObjectValues<WorkbookSortField>().ToList(); } },
+                {"fields", (o,n) => { (o as WorkbookTableSort).Fields = n.GetCollectionOfObjectValues<WorkbookSortField>(WorkbookSortField.CreateFromDiscriminatorValue).ToList(); } },
                 {"matchCase", (o,n) => { (o as WorkbookTableSort).MatchCase = n.GetBoolValue(); } },
                 {"method", (o,n) => { (o as WorkbookTableSort).Method = n.GetStringValue(); } },
             };

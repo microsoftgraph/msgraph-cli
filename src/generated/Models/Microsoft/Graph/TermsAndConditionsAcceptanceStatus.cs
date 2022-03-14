@@ -10,11 +10,19 @@ namespace ApiSdk.Models.Microsoft.Graph {
         /// <summary>Most recent version number of the T&C accepted by the user.</summary>
         public int? AcceptedVersion { get; set; }
         /// <summary>Navigation link to the terms and conditions that are assigned.</summary>
-        public TermsAndConditions TermsAndConditions { get; set; }
+        public ApiSdk.Models.Microsoft.Graph.TermsAndConditions TermsAndConditions { get; set; }
         /// <summary>Display name of the user whose acceptance the entity represents.</summary>
         public string UserDisplayName { get; set; }
         /// <summary>The userPrincipalName of the User that accepted the term.</summary>
         public string UserPrincipalName { get; set; }
+        /// <summary>
+        /// Creates a new instance of the appropriate class based on discriminator value
+        /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
+        /// </summary>
+        public static new TermsAndConditionsAcceptanceStatus CreateFromDiscriminatorValue(IParseNode parseNode) {
+            _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
+            return new TermsAndConditionsAcceptanceStatus();
+        }
         /// <summary>
         /// The deserialization information for the current model
         /// </summary>
@@ -22,7 +30,7 @@ namespace ApiSdk.Models.Microsoft.Graph {
             return new Dictionary<string, Action<T, IParseNode>>(base.GetFieldDeserializers<T>()) {
                 {"acceptedDateTime", (o,n) => { (o as TermsAndConditionsAcceptanceStatus).AcceptedDateTime = n.GetDateTimeOffsetValue(); } },
                 {"acceptedVersion", (o,n) => { (o as TermsAndConditionsAcceptanceStatus).AcceptedVersion = n.GetIntValue(); } },
-                {"termsAndConditions", (o,n) => { (o as TermsAndConditionsAcceptanceStatus).TermsAndConditions = n.GetObjectValue<TermsAndConditions>(); } },
+                {"termsAndConditions", (o,n) => { (o as TermsAndConditionsAcceptanceStatus).TermsAndConditions = n.GetObjectValue<ApiSdk.Models.Microsoft.Graph.TermsAndConditions>(ApiSdk.Models.Microsoft.Graph.TermsAndConditions.CreateFromDiscriminatorValue); } },
                 {"userDisplayName", (o,n) => { (o as TermsAndConditionsAcceptanceStatus).UserDisplayName = n.GetStringValue(); } },
                 {"userPrincipalName", (o,n) => { (o as TermsAndConditionsAcceptanceStatus).UserPrincipalName = n.GetStringValue(); } },
             };
@@ -36,7 +44,7 @@ namespace ApiSdk.Models.Microsoft.Graph {
             base.Serialize(writer);
             writer.WriteDateTimeOffsetValue("acceptedDateTime", AcceptedDateTime);
             writer.WriteIntValue("acceptedVersion", AcceptedVersion);
-            writer.WriteObjectValue<TermsAndConditions>("termsAndConditions", TermsAndConditions);
+            writer.WriteObjectValue<ApiSdk.Models.Microsoft.Graph.TermsAndConditions>("termsAndConditions", TermsAndConditions);
             writer.WriteStringValue("userDisplayName", UserDisplayName);
             writer.WriteStringValue("userPrincipalName", UserPrincipalName);
         }

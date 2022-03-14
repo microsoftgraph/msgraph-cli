@@ -28,20 +28,28 @@ namespace ApiSdk.Models.Microsoft.Graph {
         /// <summary>Version of the device configuration.</summary>
         public int? Version { get; set; }
         /// <summary>
+        /// Creates a new instance of the appropriate class based on discriminator value
+        /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
+        /// </summary>
+        public static new DeviceConfiguration CreateFromDiscriminatorValue(IParseNode parseNode) {
+            _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
+            return new DeviceConfiguration();
+        }
+        /// <summary>
         /// The deserialization information for the current model
         /// </summary>
         public new IDictionary<string, Action<T, IParseNode>> GetFieldDeserializers<T>() {
             return new Dictionary<string, Action<T, IParseNode>>(base.GetFieldDeserializers<T>()) {
-                {"assignments", (o,n) => { (o as DeviceConfiguration).Assignments = n.GetCollectionOfObjectValues<DeviceConfigurationAssignment>().ToList(); } },
+                {"assignments", (o,n) => { (o as DeviceConfiguration).Assignments = n.GetCollectionOfObjectValues<DeviceConfigurationAssignment>(DeviceConfigurationAssignment.CreateFromDiscriminatorValue).ToList(); } },
                 {"createdDateTime", (o,n) => { (o as DeviceConfiguration).CreatedDateTime = n.GetDateTimeOffsetValue(); } },
                 {"description", (o,n) => { (o as DeviceConfiguration).Description = n.GetStringValue(); } },
-                {"deviceSettingStateSummaries", (o,n) => { (o as DeviceConfiguration).DeviceSettingStateSummaries = n.GetCollectionOfObjectValues<SettingStateDeviceSummary>().ToList(); } },
-                {"deviceStatuses", (o,n) => { (o as DeviceConfiguration).DeviceStatuses = n.GetCollectionOfObjectValues<DeviceConfigurationDeviceStatus>().ToList(); } },
-                {"deviceStatusOverview", (o,n) => { (o as DeviceConfiguration).DeviceStatusOverview = n.GetObjectValue<DeviceConfigurationDeviceOverview>(); } },
+                {"deviceSettingStateSummaries", (o,n) => { (o as DeviceConfiguration).DeviceSettingStateSummaries = n.GetCollectionOfObjectValues<SettingStateDeviceSummary>(SettingStateDeviceSummary.CreateFromDiscriminatorValue).ToList(); } },
+                {"deviceStatuses", (o,n) => { (o as DeviceConfiguration).DeviceStatuses = n.GetCollectionOfObjectValues<DeviceConfigurationDeviceStatus>(DeviceConfigurationDeviceStatus.CreateFromDiscriminatorValue).ToList(); } },
+                {"deviceStatusOverview", (o,n) => { (o as DeviceConfiguration).DeviceStatusOverview = n.GetObjectValue<DeviceConfigurationDeviceOverview>(DeviceConfigurationDeviceOverview.CreateFromDiscriminatorValue); } },
                 {"displayName", (o,n) => { (o as DeviceConfiguration).DisplayName = n.GetStringValue(); } },
                 {"lastModifiedDateTime", (o,n) => { (o as DeviceConfiguration).LastModifiedDateTime = n.GetDateTimeOffsetValue(); } },
-                {"userStatuses", (o,n) => { (o as DeviceConfiguration).UserStatuses = n.GetCollectionOfObjectValues<DeviceConfigurationUserStatus>().ToList(); } },
-                {"userStatusOverview", (o,n) => { (o as DeviceConfiguration).UserStatusOverview = n.GetObjectValue<DeviceConfigurationUserOverview>(); } },
+                {"userStatuses", (o,n) => { (o as DeviceConfiguration).UserStatuses = n.GetCollectionOfObjectValues<DeviceConfigurationUserStatus>(DeviceConfigurationUserStatus.CreateFromDiscriminatorValue).ToList(); } },
+                {"userStatusOverview", (o,n) => { (o as DeviceConfiguration).UserStatusOverview = n.GetObjectValue<DeviceConfigurationUserOverview>(DeviceConfigurationUserOverview.CreateFromDiscriminatorValue); } },
                 {"version", (o,n) => { (o as DeviceConfiguration).Version = n.GetIntValue(); } },
             };
         }

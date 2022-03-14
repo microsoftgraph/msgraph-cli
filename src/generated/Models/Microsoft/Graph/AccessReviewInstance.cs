@@ -22,16 +22,24 @@ namespace ApiSdk.Models.Microsoft.Graph {
         /// <summary>Specifies the status of an accessReview. Possible values: Initializing, NotStarted, Starting, InProgress, Completing, Completed, AutoReviewing, and AutoReviewed. Supports $select, $orderby, and $filter (eq only). Read-only.</summary>
         public string Status { get; set; }
         /// <summary>
+        /// Creates a new instance of the appropriate class based on discriminator value
+        /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
+        /// </summary>
+        public static new AccessReviewInstance CreateFromDiscriminatorValue(IParseNode parseNode) {
+            _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
+            return new AccessReviewInstance();
+        }
+        /// <summary>
         /// The deserialization information for the current model
         /// </summary>
         public new IDictionary<string, Action<T, IParseNode>> GetFieldDeserializers<T>() {
             return new Dictionary<string, Action<T, IParseNode>>(base.GetFieldDeserializers<T>()) {
-                {"contactedReviewers", (o,n) => { (o as AccessReviewInstance).ContactedReviewers = n.GetCollectionOfObjectValues<AccessReviewReviewer>().ToList(); } },
-                {"decisions", (o,n) => { (o as AccessReviewInstance).Decisions = n.GetCollectionOfObjectValues<AccessReviewInstanceDecisionItem>().ToList(); } },
+                {"contactedReviewers", (o,n) => { (o as AccessReviewInstance).ContactedReviewers = n.GetCollectionOfObjectValues<AccessReviewReviewer>(AccessReviewReviewer.CreateFromDiscriminatorValue).ToList(); } },
+                {"decisions", (o,n) => { (o as AccessReviewInstance).Decisions = n.GetCollectionOfObjectValues<AccessReviewInstanceDecisionItem>(AccessReviewInstanceDecisionItem.CreateFromDiscriminatorValue).ToList(); } },
                 {"endDateTime", (o,n) => { (o as AccessReviewInstance).EndDateTime = n.GetDateTimeOffsetValue(); } },
-                {"fallbackReviewers", (o,n) => { (o as AccessReviewInstance).FallbackReviewers = n.GetCollectionOfObjectValues<AccessReviewReviewerScope>().ToList(); } },
-                {"reviewers", (o,n) => { (o as AccessReviewInstance).Reviewers = n.GetCollectionOfObjectValues<AccessReviewReviewerScope>().ToList(); } },
-                {"scope", (o,n) => { (o as AccessReviewInstance).Scope = n.GetObjectValue<AccessReviewScope>(); } },
+                {"fallbackReviewers", (o,n) => { (o as AccessReviewInstance).FallbackReviewers = n.GetCollectionOfObjectValues<AccessReviewReviewerScope>(AccessReviewReviewerScope.CreateFromDiscriminatorValue).ToList(); } },
+                {"reviewers", (o,n) => { (o as AccessReviewInstance).Reviewers = n.GetCollectionOfObjectValues<AccessReviewReviewerScope>(AccessReviewReviewerScope.CreateFromDiscriminatorValue).ToList(); } },
+                {"scope", (o,n) => { (o as AccessReviewInstance).Scope = n.GetObjectValue<AccessReviewScope>(AccessReviewScope.CreateFromDiscriminatorValue); } },
                 {"startDateTime", (o,n) => { (o as AccessReviewInstance).StartDateTime = n.GetDateTimeOffsetValue(); } },
                 {"status", (o,n) => { (o as AccessReviewInstance).Status = n.GetStringValue(); } },
             };

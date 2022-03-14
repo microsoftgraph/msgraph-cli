@@ -54,33 +54,41 @@ namespace ApiSdk.Models.Microsoft.Graph {
         /// <summary>Type of trust for the joined device. Read-only. Possible values: Workplace (indicates bring your own personal devices), AzureAd (Cloud only joined devices), ServerAd (on-premises domain joined devices joined to Azure AD). For more details, see Introduction to device management in Azure Active Directory</summary>
         public string TrustType { get; set; }
         /// <summary>
+        /// Creates a new instance of the appropriate class based on discriminator value
+        /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
+        /// </summary>
+        public static new Device CreateFromDiscriminatorValue(IParseNode parseNode) {
+            _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
+            return new Device();
+        }
+        /// <summary>
         /// The deserialization information for the current model
         /// </summary>
         public new IDictionary<string, Action<T, IParseNode>> GetFieldDeserializers<T>() {
             return new Dictionary<string, Action<T, IParseNode>>(base.GetFieldDeserializers<T>()) {
                 {"accountEnabled", (o,n) => { (o as Device).AccountEnabled = n.GetBoolValue(); } },
-                {"alternativeSecurityIds", (o,n) => { (o as Device).AlternativeSecurityIds = n.GetCollectionOfObjectValues<AlternativeSecurityId>().ToList(); } },
+                {"alternativeSecurityIds", (o,n) => { (o as Device).AlternativeSecurityIds = n.GetCollectionOfObjectValues<AlternativeSecurityId>(AlternativeSecurityId.CreateFromDiscriminatorValue).ToList(); } },
                 {"approximateLastSignInDateTime", (o,n) => { (o as Device).ApproximateLastSignInDateTime = n.GetDateTimeOffsetValue(); } },
                 {"complianceExpirationDateTime", (o,n) => { (o as Device).ComplianceExpirationDateTime = n.GetDateTimeOffsetValue(); } },
                 {"deviceId", (o,n) => { (o as Device).DeviceId = n.GetStringValue(); } },
                 {"deviceMetadata", (o,n) => { (o as Device).DeviceMetadata = n.GetStringValue(); } },
                 {"deviceVersion", (o,n) => { (o as Device).DeviceVersion = n.GetIntValue(); } },
                 {"displayName", (o,n) => { (o as Device).DisplayName = n.GetStringValue(); } },
-                {"extensions", (o,n) => { (o as Device).Extensions = n.GetCollectionOfObjectValues<Extension>().ToList(); } },
+                {"extensions", (o,n) => { (o as Device).Extensions = n.GetCollectionOfObjectValues<Extension>(Extension.CreateFromDiscriminatorValue).ToList(); } },
                 {"isCompliant", (o,n) => { (o as Device).IsCompliant = n.GetBoolValue(); } },
                 {"isManaged", (o,n) => { (o as Device).IsManaged = n.GetBoolValue(); } },
                 {"mdmAppId", (o,n) => { (o as Device).MdmAppId = n.GetStringValue(); } },
-                {"memberOf", (o,n) => { (o as Device).MemberOf = n.GetCollectionOfObjectValues<DirectoryObject>().ToList(); } },
+                {"memberOf", (o,n) => { (o as Device).MemberOf = n.GetCollectionOfObjectValues<DirectoryObject>(DirectoryObject.CreateFromDiscriminatorValue).ToList(); } },
                 {"onPremisesLastSyncDateTime", (o,n) => { (o as Device).OnPremisesLastSyncDateTime = n.GetDateTimeOffsetValue(); } },
                 {"onPremisesSyncEnabled", (o,n) => { (o as Device).OnPremisesSyncEnabled = n.GetBoolValue(); } },
                 {"operatingSystem", (o,n) => { (o as Device).OperatingSystem = n.GetStringValue(); } },
                 {"operatingSystemVersion", (o,n) => { (o as Device).OperatingSystemVersion = n.GetStringValue(); } },
                 {"physicalIds", (o,n) => { (o as Device).PhysicalIds = n.GetCollectionOfPrimitiveValues<string>().ToList(); } },
                 {"profileType", (o,n) => { (o as Device).ProfileType = n.GetStringValue(); } },
-                {"registeredOwners", (o,n) => { (o as Device).RegisteredOwners = n.GetCollectionOfObjectValues<DirectoryObject>().ToList(); } },
-                {"registeredUsers", (o,n) => { (o as Device).RegisteredUsers = n.GetCollectionOfObjectValues<DirectoryObject>().ToList(); } },
+                {"registeredOwners", (o,n) => { (o as Device).RegisteredOwners = n.GetCollectionOfObjectValues<DirectoryObject>(DirectoryObject.CreateFromDiscriminatorValue).ToList(); } },
+                {"registeredUsers", (o,n) => { (o as Device).RegisteredUsers = n.GetCollectionOfObjectValues<DirectoryObject>(DirectoryObject.CreateFromDiscriminatorValue).ToList(); } },
                 {"systemLabels", (o,n) => { (o as Device).SystemLabels = n.GetCollectionOfPrimitiveValues<string>().ToList(); } },
-                {"transitiveMemberOf", (o,n) => { (o as Device).TransitiveMemberOf = n.GetCollectionOfObjectValues<DirectoryObject>().ToList(); } },
+                {"transitiveMemberOf", (o,n) => { (o as Device).TransitiveMemberOf = n.GetCollectionOfObjectValues<DirectoryObject>(DirectoryObject.CreateFromDiscriminatorValue).ToList(); } },
                 {"trustType", (o,n) => { (o as Device).TrustType = n.GetStringValue(); } },
             };
         }

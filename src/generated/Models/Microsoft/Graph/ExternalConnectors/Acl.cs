@@ -4,9 +4,9 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 namespace ApiSdk.Models.Microsoft.Graph.ExternalConnectors {
-    public class Acl : IParsable {
+    public class Acl : IAdditionalDataHolder, IParsable {
         /// <summary>The access granted to the identity. Possible values are: grant, deny.</summary>
-        public AccessType? AccessType { get; set; }
+        public ApiSdk.Models.Microsoft.Graph.ExternalConnectors.AccessType? AccessType { get; set; }
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>The type of identity. Possible values are: user, group, everyone, everyoneExceptGuests if the identitySource is azureActiveDirectory and just group if the identitySource is external.</summary>
@@ -18,6 +18,14 @@ namespace ApiSdk.Models.Microsoft.Graph.ExternalConnectors {
         /// </summary>
         public Acl() {
             AdditionalData = new Dictionary<string, object>();
+        }
+        /// <summary>
+        /// Creates a new instance of the appropriate class based on discriminator value
+        /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
+        /// </summary>
+        public static Acl CreateFromDiscriminatorValue(IParseNode parseNode) {
+            _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
+            return new Acl();
         }
         /// <summary>
         /// The deserialization information for the current model

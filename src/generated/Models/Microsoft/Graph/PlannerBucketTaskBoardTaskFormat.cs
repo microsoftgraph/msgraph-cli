@@ -8,6 +8,14 @@ namespace ApiSdk.Models.Microsoft.Graph {
         /// <summary>Hint used to order tasks in the Bucket view of the Task Board. The format is defined as outlined here.</summary>
         public string OrderHint { get; set; }
         /// <summary>
+        /// Creates a new instance of the appropriate class based on discriminator value
+        /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
+        /// </summary>
+        public static new PlannerBucketTaskBoardTaskFormat CreateFromDiscriminatorValue(IParseNode parseNode) {
+            _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
+            return new PlannerBucketTaskBoardTaskFormat();
+        }
+        /// <summary>
         /// The deserialization information for the current model
         /// </summary>
         public new IDictionary<string, Action<T, IParseNode>> GetFieldDeserializers<T>() {

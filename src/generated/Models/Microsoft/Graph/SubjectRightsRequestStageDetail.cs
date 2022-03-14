@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 namespace ApiSdk.Models.Microsoft.Graph {
-    public class SubjectRightsRequestStageDetail : IParsable {
+    public class SubjectRightsRequestStageDetail : IAdditionalDataHolder, IParsable {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>Describes the error, if any, for the current stage.</summary>
@@ -20,11 +20,19 @@ namespace ApiSdk.Models.Microsoft.Graph {
             AdditionalData = new Dictionary<string, object>();
         }
         /// <summary>
+        /// Creates a new instance of the appropriate class based on discriminator value
+        /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
+        /// </summary>
+        public static SubjectRightsRequestStageDetail CreateFromDiscriminatorValue(IParseNode parseNode) {
+            _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
+            return new SubjectRightsRequestStageDetail();
+        }
+        /// <summary>
         /// The deserialization information for the current model
         /// </summary>
         public IDictionary<string, Action<T, IParseNode>> GetFieldDeserializers<T>() {
             return new Dictionary<string, Action<T, IParseNode>> {
-                {"error", (o,n) => { (o as SubjectRightsRequestStageDetail).Error = n.GetObjectValue<PublicError>(); } },
+                {"error", (o,n) => { (o as SubjectRightsRequestStageDetail).Error = n.GetObjectValue<PublicError>(PublicError.CreateFromDiscriminatorValue); } },
                 {"stage", (o,n) => { (o as SubjectRightsRequestStageDetail).Stage = n.GetEnumValue<SubjectRightsRequestStage>(); } },
                 {"status", (o,n) => { (o as SubjectRightsRequestStageDetail).Status = n.GetEnumValue<SubjectRightsRequestStageStatus>(); } },
             };

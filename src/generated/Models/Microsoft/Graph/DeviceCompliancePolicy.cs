@@ -30,21 +30,29 @@ namespace ApiSdk.Models.Microsoft.Graph {
         /// <summary>Version of the device configuration.</summary>
         public int? Version { get; set; }
         /// <summary>
+        /// Creates a new instance of the appropriate class based on discriminator value
+        /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
+        /// </summary>
+        public static new DeviceCompliancePolicy CreateFromDiscriminatorValue(IParseNode parseNode) {
+            _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
+            return new DeviceCompliancePolicy();
+        }
+        /// <summary>
         /// The deserialization information for the current model
         /// </summary>
         public new IDictionary<string, Action<T, IParseNode>> GetFieldDeserializers<T>() {
             return new Dictionary<string, Action<T, IParseNode>>(base.GetFieldDeserializers<T>()) {
-                {"assignments", (o,n) => { (o as DeviceCompliancePolicy).Assignments = n.GetCollectionOfObjectValues<DeviceCompliancePolicyAssignment>().ToList(); } },
+                {"assignments", (o,n) => { (o as DeviceCompliancePolicy).Assignments = n.GetCollectionOfObjectValues<DeviceCompliancePolicyAssignment>(DeviceCompliancePolicyAssignment.CreateFromDiscriminatorValue).ToList(); } },
                 {"createdDateTime", (o,n) => { (o as DeviceCompliancePolicy).CreatedDateTime = n.GetDateTimeOffsetValue(); } },
                 {"description", (o,n) => { (o as DeviceCompliancePolicy).Description = n.GetStringValue(); } },
-                {"deviceSettingStateSummaries", (o,n) => { (o as DeviceCompliancePolicy).DeviceSettingStateSummaries = n.GetCollectionOfObjectValues<SettingStateDeviceSummary>().ToList(); } },
-                {"deviceStatuses", (o,n) => { (o as DeviceCompliancePolicy).DeviceStatuses = n.GetCollectionOfObjectValues<DeviceComplianceDeviceStatus>().ToList(); } },
-                {"deviceStatusOverview", (o,n) => { (o as DeviceCompliancePolicy).DeviceStatusOverview = n.GetObjectValue<DeviceComplianceDeviceOverview>(); } },
+                {"deviceSettingStateSummaries", (o,n) => { (o as DeviceCompliancePolicy).DeviceSettingStateSummaries = n.GetCollectionOfObjectValues<SettingStateDeviceSummary>(SettingStateDeviceSummary.CreateFromDiscriminatorValue).ToList(); } },
+                {"deviceStatuses", (o,n) => { (o as DeviceCompliancePolicy).DeviceStatuses = n.GetCollectionOfObjectValues<DeviceComplianceDeviceStatus>(DeviceComplianceDeviceStatus.CreateFromDiscriminatorValue).ToList(); } },
+                {"deviceStatusOverview", (o,n) => { (o as DeviceCompliancePolicy).DeviceStatusOverview = n.GetObjectValue<DeviceComplianceDeviceOverview>(DeviceComplianceDeviceOverview.CreateFromDiscriminatorValue); } },
                 {"displayName", (o,n) => { (o as DeviceCompliancePolicy).DisplayName = n.GetStringValue(); } },
                 {"lastModifiedDateTime", (o,n) => { (o as DeviceCompliancePolicy).LastModifiedDateTime = n.GetDateTimeOffsetValue(); } },
-                {"scheduledActionsForRule", (o,n) => { (o as DeviceCompliancePolicy).ScheduledActionsForRule = n.GetCollectionOfObjectValues<DeviceComplianceScheduledActionForRule>().ToList(); } },
-                {"userStatuses", (o,n) => { (o as DeviceCompliancePolicy).UserStatuses = n.GetCollectionOfObjectValues<DeviceComplianceUserStatus>().ToList(); } },
-                {"userStatusOverview", (o,n) => { (o as DeviceCompliancePolicy).UserStatusOverview = n.GetObjectValue<DeviceComplianceUserOverview>(); } },
+                {"scheduledActionsForRule", (o,n) => { (o as DeviceCompliancePolicy).ScheduledActionsForRule = n.GetCollectionOfObjectValues<DeviceComplianceScheduledActionForRule>(DeviceComplianceScheduledActionForRule.CreateFromDiscriminatorValue).ToList(); } },
+                {"userStatuses", (o,n) => { (o as DeviceCompliancePolicy).UserStatuses = n.GetCollectionOfObjectValues<DeviceComplianceUserStatus>(DeviceComplianceUserStatus.CreateFromDiscriminatorValue).ToList(); } },
+                {"userStatusOverview", (o,n) => { (o as DeviceCompliancePolicy).UserStatusOverview = n.GetObjectValue<DeviceComplianceUserOverview>(DeviceComplianceUserOverview.CreateFromDiscriminatorValue); } },
                 {"version", (o,n) => { (o as DeviceCompliancePolicy).Version = n.GetIntValue(); } },
             };
         }

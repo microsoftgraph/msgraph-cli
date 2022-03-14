@@ -41,28 +41,36 @@ namespace ApiSdk.Models.Microsoft.Graph {
         public string Surname { get; set; }
         public List<DirectoryObject> TransitiveMemberOf { get; set; }
         /// <summary>
+        /// Creates a new instance of the appropriate class based on discriminator value
+        /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
+        /// </summary>
+        public static new OrgContact CreateFromDiscriminatorValue(IParseNode parseNode) {
+            _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
+            return new OrgContact();
+        }
+        /// <summary>
         /// The deserialization information for the current model
         /// </summary>
         public new IDictionary<string, Action<T, IParseNode>> GetFieldDeserializers<T>() {
             return new Dictionary<string, Action<T, IParseNode>>(base.GetFieldDeserializers<T>()) {
-                {"addresses", (o,n) => { (o as OrgContact).Addresses = n.GetCollectionOfObjectValues<PhysicalOfficeAddress>().ToList(); } },
+                {"addresses", (o,n) => { (o as OrgContact).Addresses = n.GetCollectionOfObjectValues<PhysicalOfficeAddress>(PhysicalOfficeAddress.CreateFromDiscriminatorValue).ToList(); } },
                 {"companyName", (o,n) => { (o as OrgContact).CompanyName = n.GetStringValue(); } },
                 {"department", (o,n) => { (o as OrgContact).Department = n.GetStringValue(); } },
-                {"directReports", (o,n) => { (o as OrgContact).DirectReports = n.GetCollectionOfObjectValues<DirectoryObject>().ToList(); } },
+                {"directReports", (o,n) => { (o as OrgContact).DirectReports = n.GetCollectionOfObjectValues<DirectoryObject>(DirectoryObject.CreateFromDiscriminatorValue).ToList(); } },
                 {"displayName", (o,n) => { (o as OrgContact).DisplayName = n.GetStringValue(); } },
                 {"givenName", (o,n) => { (o as OrgContact).GivenName = n.GetStringValue(); } },
                 {"jobTitle", (o,n) => { (o as OrgContact).JobTitle = n.GetStringValue(); } },
                 {"mail", (o,n) => { (o as OrgContact).Mail = n.GetStringValue(); } },
                 {"mailNickname", (o,n) => { (o as OrgContact).MailNickname = n.GetStringValue(); } },
-                {"manager", (o,n) => { (o as OrgContact).Manager = n.GetObjectValue<DirectoryObject>(); } },
-                {"memberOf", (o,n) => { (o as OrgContact).MemberOf = n.GetCollectionOfObjectValues<DirectoryObject>().ToList(); } },
+                {"manager", (o,n) => { (o as OrgContact).Manager = n.GetObjectValue<DirectoryObject>(DirectoryObject.CreateFromDiscriminatorValue); } },
+                {"memberOf", (o,n) => { (o as OrgContact).MemberOf = n.GetCollectionOfObjectValues<DirectoryObject>(DirectoryObject.CreateFromDiscriminatorValue).ToList(); } },
                 {"onPremisesLastSyncDateTime", (o,n) => { (o as OrgContact).OnPremisesLastSyncDateTime = n.GetDateTimeOffsetValue(); } },
-                {"onPremisesProvisioningErrors", (o,n) => { (o as OrgContact).OnPremisesProvisioningErrors = n.GetCollectionOfObjectValues<OnPremisesProvisioningError>().ToList(); } },
+                {"onPremisesProvisioningErrors", (o,n) => { (o as OrgContact).OnPremisesProvisioningErrors = n.GetCollectionOfObjectValues<OnPremisesProvisioningError>(OnPremisesProvisioningError.CreateFromDiscriminatorValue).ToList(); } },
                 {"onPremisesSyncEnabled", (o,n) => { (o as OrgContact).OnPremisesSyncEnabled = n.GetBoolValue(); } },
-                {"phones", (o,n) => { (o as OrgContact).Phones = n.GetCollectionOfObjectValues<Phone>().ToList(); } },
+                {"phones", (o,n) => { (o as OrgContact).Phones = n.GetCollectionOfObjectValues<Phone>(Phone.CreateFromDiscriminatorValue).ToList(); } },
                 {"proxyAddresses", (o,n) => { (o as OrgContact).ProxyAddresses = n.GetCollectionOfPrimitiveValues<string>().ToList(); } },
                 {"surname", (o,n) => { (o as OrgContact).Surname = n.GetStringValue(); } },
-                {"transitiveMemberOf", (o,n) => { (o as OrgContact).TransitiveMemberOf = n.GetCollectionOfObjectValues<DirectoryObject>().ToList(); } },
+                {"transitiveMemberOf", (o,n) => { (o as OrgContact).TransitiveMemberOf = n.GetCollectionOfObjectValues<DirectoryObject>(DirectoryObject.CreateFromDiscriminatorValue).ToList(); } },
             };
         }
         /// <summary>

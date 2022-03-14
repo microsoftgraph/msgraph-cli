@@ -18,15 +18,23 @@ namespace ApiSdk.Models.Microsoft.Graph {
         /// <summary>The URL for the sections navigation property, which returns all the sections in the section group. Read-only.</summary>
         public string SectionsUrl { get; set; }
         /// <summary>
+        /// Creates a new instance of the appropriate class based on discriminator value
+        /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
+        /// </summary>
+        public static new SectionGroup CreateFromDiscriminatorValue(IParseNode parseNode) {
+            _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
+            return new SectionGroup();
+        }
+        /// <summary>
         /// The deserialization information for the current model
         /// </summary>
         public new IDictionary<string, Action<T, IParseNode>> GetFieldDeserializers<T>() {
             return new Dictionary<string, Action<T, IParseNode>>(base.GetFieldDeserializers<T>()) {
-                {"parentNotebook", (o,n) => { (o as SectionGroup).ParentNotebook = n.GetObjectValue<Notebook>(); } },
-                {"parentSectionGroup", (o,n) => { (o as SectionGroup).ParentSectionGroup = n.GetObjectValue<SectionGroup>(); } },
-                {"sectionGroups", (o,n) => { (o as SectionGroup).SectionGroups = n.GetCollectionOfObjectValues<SectionGroup>().ToList(); } },
+                {"parentNotebook", (o,n) => { (o as SectionGroup).ParentNotebook = n.GetObjectValue<Notebook>(Notebook.CreateFromDiscriminatorValue); } },
+                {"parentSectionGroup", (o,n) => { (o as SectionGroup).ParentSectionGroup = n.GetObjectValue<SectionGroup>(SectionGroup.CreateFromDiscriminatorValue); } },
+                {"sectionGroups", (o,n) => { (o as SectionGroup).SectionGroups = n.GetCollectionOfObjectValues<SectionGroup>(SectionGroup.CreateFromDiscriminatorValue).ToList(); } },
                 {"sectionGroupsUrl", (o,n) => { (o as SectionGroup).SectionGroupsUrl = n.GetStringValue(); } },
-                {"sections", (o,n) => { (o as SectionGroup).Sections = n.GetCollectionOfObjectValues<OnenoteSection>().ToList(); } },
+                {"sections", (o,n) => { (o as SectionGroup).Sections = n.GetCollectionOfObjectValues<OnenoteSection>(OnenoteSection.CreateFromDiscriminatorValue).ToList(); } },
                 {"sectionsUrl", (o,n) => { (o as SectionGroup).SectionsUrl = n.GetStringValue(); } },
             };
         }

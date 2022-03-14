@@ -10,11 +10,19 @@ namespace ApiSdk.Models.Microsoft.Graph.ExternalConnectors {
         /// <summary>Indicates the status of the asynchronous operation. Possible values are: unspecified, inprogress, completed, failed.</summary>
         public ConnectionOperationStatus? Status { get; set; }
         /// <summary>
+        /// Creates a new instance of the appropriate class based on discriminator value
+        /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
+        /// </summary>
+        public static new ConnectionOperation CreateFromDiscriminatorValue(IParseNode parseNode) {
+            _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
+            return new ConnectionOperation();
+        }
+        /// <summary>
         /// The deserialization information for the current model
         /// </summary>
         public new IDictionary<string, Action<T, IParseNode>> GetFieldDeserializers<T>() {
             return new Dictionary<string, Action<T, IParseNode>>(base.GetFieldDeserializers<T>()) {
-                {"error", (o,n) => { (o as ConnectionOperation).Error = n.GetObjectValue<PublicError>(); } },
+                {"error", (o,n) => { (o as ConnectionOperation).Error = n.GetObjectValue<PublicError>(PublicError.CreateFromDiscriminatorValue); } },
                 {"status", (o,n) => { (o as ConnectionOperation).Status = n.GetEnumValue<ConnectionOperationStatus>(); } },
             };
         }

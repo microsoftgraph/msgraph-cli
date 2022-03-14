@@ -12,14 +12,22 @@ namespace ApiSdk.Models.Microsoft.Graph {
         /// <summary>Read-only. Nullable.</summary>
         public List<SignIn> SignIns { get; set; }
         /// <summary>
+        /// Creates a new instance of the appropriate class based on discriminator value
+        /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
+        /// </summary>
+        public static new AuditLogRoot CreateFromDiscriminatorValue(IParseNode parseNode) {
+            _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
+            return new AuditLogRoot();
+        }
+        /// <summary>
         /// The deserialization information for the current model
         /// </summary>
         public new IDictionary<string, Action<T, IParseNode>> GetFieldDeserializers<T>() {
             return new Dictionary<string, Action<T, IParseNode>>(base.GetFieldDeserializers<T>()) {
-                {"directoryAudits", (o,n) => { (o as AuditLogRoot).DirectoryAudits = n.GetCollectionOfObjectValues<DirectoryAudit>().ToList(); } },
-                {"provisioning", (o,n) => { (o as AuditLogRoot).Provisioning = n.GetCollectionOfObjectValues<ProvisioningObjectSummary>().ToList(); } },
-                {"restrictedSignIns", (o,n) => { (o as AuditLogRoot).RestrictedSignIns = n.GetCollectionOfObjectValues<RestrictedSignIn>().ToList(); } },
-                {"signIns", (o,n) => { (o as AuditLogRoot).SignIns = n.GetCollectionOfObjectValues<SignIn>().ToList(); } },
+                {"directoryAudits", (o,n) => { (o as AuditLogRoot).DirectoryAudits = n.GetCollectionOfObjectValues<DirectoryAudit>(DirectoryAudit.CreateFromDiscriminatorValue).ToList(); } },
+                {"provisioning", (o,n) => { (o as AuditLogRoot).Provisioning = n.GetCollectionOfObjectValues<ProvisioningObjectSummary>(ProvisioningObjectSummary.CreateFromDiscriminatorValue).ToList(); } },
+                {"restrictedSignIns", (o,n) => { (o as AuditLogRoot).RestrictedSignIns = n.GetCollectionOfObjectValues<RestrictedSignIn>(RestrictedSignIn.CreateFromDiscriminatorValue).ToList(); } },
+                {"signIns", (o,n) => { (o as AuditLogRoot).SignIns = n.GetCollectionOfObjectValues<SignIn>(SignIn.CreateFromDiscriminatorValue).ToList(); } },
             };
         }
         /// <summary>

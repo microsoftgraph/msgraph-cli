@@ -42,7 +42,7 @@ namespace ApiSdk.Teams.Item.Clone {
                 PathParameters.Add("team_id", teamId);
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
-                var model = parseNode.GetObjectValue<CloneRequestBody>();
+                var model = parseNode.GetObjectValue<CloneRequestBody>(CloneRequestBody.CreateFromDiscriminatorValue);
                 var requestInfo = CreatePostRequestInformation(model, q => {
                 });
                 await RequestAdapter.SendNoContentAsync(requestInfo, errorMapping: default, cancellationToken: cancellationToken);

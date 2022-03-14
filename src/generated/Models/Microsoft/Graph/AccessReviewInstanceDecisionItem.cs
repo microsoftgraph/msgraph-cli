@@ -32,22 +32,30 @@ namespace ApiSdk.Models.Microsoft.Graph {
         /// <summary>The timestamp when the review decision occurred. Supports $select. Read-only.</summary>
         public DateTimeOffset? ReviewedDateTime { get; set; }
         /// <summary>
+        /// Creates a new instance of the appropriate class based on discriminator value
+        /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
+        /// </summary>
+        public static new AccessReviewInstanceDecisionItem CreateFromDiscriminatorValue(IParseNode parseNode) {
+            _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
+            return new AccessReviewInstanceDecisionItem();
+        }
+        /// <summary>
         /// The deserialization information for the current model
         /// </summary>
         public new IDictionary<string, Action<T, IParseNode>> GetFieldDeserializers<T>() {
             return new Dictionary<string, Action<T, IParseNode>>(base.GetFieldDeserializers<T>()) {
                 {"accessReviewId", (o,n) => { (o as AccessReviewInstanceDecisionItem).AccessReviewId = n.GetStringValue(); } },
-                {"appliedBy", (o,n) => { (o as AccessReviewInstanceDecisionItem).AppliedBy = n.GetObjectValue<UserIdentity>(); } },
+                {"appliedBy", (o,n) => { (o as AccessReviewInstanceDecisionItem).AppliedBy = n.GetObjectValue<UserIdentity>(UserIdentity.CreateFromDiscriminatorValue); } },
                 {"appliedDateTime", (o,n) => { (o as AccessReviewInstanceDecisionItem).AppliedDateTime = n.GetDateTimeOffsetValue(); } },
                 {"applyResult", (o,n) => { (o as AccessReviewInstanceDecisionItem).ApplyResult = n.GetStringValue(); } },
                 {"decision", (o,n) => { (o as AccessReviewInstanceDecisionItem).Decision = n.GetStringValue(); } },
                 {"justification", (o,n) => { (o as AccessReviewInstanceDecisionItem).Justification = n.GetStringValue(); } },
-                {"principal", (o,n) => { (o as AccessReviewInstanceDecisionItem).Principal = n.GetObjectValue<Identity>(); } },
+                {"principal", (o,n) => { (o as AccessReviewInstanceDecisionItem).Principal = n.GetObjectValue<Identity>(Identity.CreateFromDiscriminatorValue); } },
                 {"principalLink", (o,n) => { (o as AccessReviewInstanceDecisionItem).PrincipalLink = n.GetStringValue(); } },
                 {"recommendation", (o,n) => { (o as AccessReviewInstanceDecisionItem).Recommendation = n.GetStringValue(); } },
-                {"resource", (o,n) => { (o as AccessReviewInstanceDecisionItem).Resource = n.GetObjectValue<AccessReviewInstanceDecisionItemResource>(); } },
+                {"resource", (o,n) => { (o as AccessReviewInstanceDecisionItem).Resource = n.GetObjectValue<AccessReviewInstanceDecisionItemResource>(AccessReviewInstanceDecisionItemResource.CreateFromDiscriminatorValue); } },
                 {"resourceLink", (o,n) => { (o as AccessReviewInstanceDecisionItem).ResourceLink = n.GetStringValue(); } },
-                {"reviewedBy", (o,n) => { (o as AccessReviewInstanceDecisionItem).ReviewedBy = n.GetObjectValue<UserIdentity>(); } },
+                {"reviewedBy", (o,n) => { (o as AccessReviewInstanceDecisionItem).ReviewedBy = n.GetObjectValue<UserIdentity>(UserIdentity.CreateFromDiscriminatorValue); } },
                 {"reviewedDateTime", (o,n) => { (o as AccessReviewInstanceDecisionItem).ReviewedDateTime = n.GetDateTimeOffsetValue(); } },
             };
         }

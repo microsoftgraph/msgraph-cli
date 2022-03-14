@@ -12,13 +12,21 @@ namespace ApiSdk.Models.Microsoft.Graph.ExternalConnectors {
         /// <summary>A member added to an externalGroup. You can add Azure Active Directory users, Azure Active Directory groups, or other externalGroups as members.</summary>
         public List<Identity> Members { get; set; }
         /// <summary>
+        /// Creates a new instance of the appropriate class based on discriminator value
+        /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
+        /// </summary>
+        public static new ExternalGroup CreateFromDiscriminatorValue(IParseNode parseNode) {
+            _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
+            return new ExternalGroup();
+        }
+        /// <summary>
         /// The deserialization information for the current model
         /// </summary>
         public new IDictionary<string, Action<T, IParseNode>> GetFieldDeserializers<T>() {
             return new Dictionary<string, Action<T, IParseNode>>(base.GetFieldDeserializers<T>()) {
                 {"description", (o,n) => { (o as ExternalGroup).Description = n.GetStringValue(); } },
                 {"displayName", (o,n) => { (o as ExternalGroup).DisplayName = n.GetStringValue(); } },
-                {"members", (o,n) => { (o as ExternalGroup).Members = n.GetCollectionOfObjectValues<Identity>().ToList(); } },
+                {"members", (o,n) => { (o as ExternalGroup).Members = n.GetCollectionOfObjectValues<Identity>(Identity.CreateFromDiscriminatorValue).ToList(); } },
             };
         }
         /// <summary>

@@ -18,6 +18,14 @@ namespace ApiSdk.Models.Microsoft.Graph {
         /// <summary>All the users that sent a message to this Conversation.</summary>
         public List<string> UniqueSenders { get; set; }
         /// <summary>
+        /// Creates a new instance of the appropriate class based on discriminator value
+        /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
+        /// </summary>
+        public static new Conversation CreateFromDiscriminatorValue(IParseNode parseNode) {
+            _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
+            return new Conversation();
+        }
+        /// <summary>
         /// The deserialization information for the current model
         /// </summary>
         public new IDictionary<string, Action<T, IParseNode>> GetFieldDeserializers<T>() {
@@ -25,7 +33,7 @@ namespace ApiSdk.Models.Microsoft.Graph {
                 {"hasAttachments", (o,n) => { (o as Conversation).HasAttachments = n.GetBoolValue(); } },
                 {"lastDeliveredDateTime", (o,n) => { (o as Conversation).LastDeliveredDateTime = n.GetDateTimeOffsetValue(); } },
                 {"preview", (o,n) => { (o as Conversation).Preview = n.GetStringValue(); } },
-                {"threads", (o,n) => { (o as Conversation).Threads = n.GetCollectionOfObjectValues<ConversationThread>().ToList(); } },
+                {"threads", (o,n) => { (o as Conversation).Threads = n.GetCollectionOfObjectValues<ConversationThread>(ConversationThread.CreateFromDiscriminatorValue).ToList(); } },
                 {"topic", (o,n) => { (o as Conversation).Topic = n.GetStringValue(); } },
                 {"uniqueSenders", (o,n) => { (o as Conversation).UniqueSenders = n.GetCollectionOfPrimitiveValues<string>().ToList(); } },
             };

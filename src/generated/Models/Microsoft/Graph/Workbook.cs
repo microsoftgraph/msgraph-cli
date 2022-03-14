@@ -17,17 +17,25 @@ namespace ApiSdk.Models.Microsoft.Graph {
         /// <summary>Represents a collection of worksheets associated with the workbook. Read-only.</summary>
         public List<WorkbookWorksheet> Worksheets { get; set; }
         /// <summary>
+        /// Creates a new instance of the appropriate class based on discriminator value
+        /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
+        /// </summary>
+        public static new Workbook CreateFromDiscriminatorValue(IParseNode parseNode) {
+            _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
+            return new Workbook();
+        }
+        /// <summary>
         /// The deserialization information for the current model
         /// </summary>
         public new IDictionary<string, Action<T, IParseNode>> GetFieldDeserializers<T>() {
             return new Dictionary<string, Action<T, IParseNode>>(base.GetFieldDeserializers<T>()) {
-                {"application", (o,n) => { (o as Workbook).Application = n.GetObjectValue<WorkbookApplication>(); } },
-                {"comments", (o,n) => { (o as Workbook).Comments = n.GetCollectionOfObjectValues<WorkbookComment>().ToList(); } },
-                {"functions", (o,n) => { (o as Workbook).Functions = n.GetObjectValue<WorkbookFunctions>(); } },
-                {"names", (o,n) => { (o as Workbook).Names = n.GetCollectionOfObjectValues<WorkbookNamedItem>().ToList(); } },
-                {"operations", (o,n) => { (o as Workbook).Operations = n.GetCollectionOfObjectValues<WorkbookOperation>().ToList(); } },
-                {"tables", (o,n) => { (o as Workbook).Tables = n.GetCollectionOfObjectValues<WorkbookTable>().ToList(); } },
-                {"worksheets", (o,n) => { (o as Workbook).Worksheets = n.GetCollectionOfObjectValues<WorkbookWorksheet>().ToList(); } },
+                {"application", (o,n) => { (o as Workbook).Application = n.GetObjectValue<WorkbookApplication>(WorkbookApplication.CreateFromDiscriminatorValue); } },
+                {"comments", (o,n) => { (o as Workbook).Comments = n.GetCollectionOfObjectValues<WorkbookComment>(WorkbookComment.CreateFromDiscriminatorValue).ToList(); } },
+                {"functions", (o,n) => { (o as Workbook).Functions = n.GetObjectValue<WorkbookFunctions>(WorkbookFunctions.CreateFromDiscriminatorValue); } },
+                {"names", (o,n) => { (o as Workbook).Names = n.GetCollectionOfObjectValues<WorkbookNamedItem>(WorkbookNamedItem.CreateFromDiscriminatorValue).ToList(); } },
+                {"operations", (o,n) => { (o as Workbook).Operations = n.GetCollectionOfObjectValues<WorkbookOperation>(WorkbookOperation.CreateFromDiscriminatorValue).ToList(); } },
+                {"tables", (o,n) => { (o as Workbook).Tables = n.GetCollectionOfObjectValues<WorkbookTable>(WorkbookTable.CreateFromDiscriminatorValue).ToList(); } },
+                {"worksheets", (o,n) => { (o as Workbook).Worksheets = n.GetCollectionOfObjectValues<WorkbookWorksheet>(WorkbookWorksheet.CreateFromDiscriminatorValue).ToList(); } },
             };
         }
         /// <summary>

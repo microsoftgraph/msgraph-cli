@@ -10,12 +10,20 @@ namespace ApiSdk.Models.Microsoft.Graph {
         /// <summary>Represents the font attributes such as font name, font size, color, etc. of a chart legend. Read-only.</summary>
         public WorkbookChartFont Font { get; set; }
         /// <summary>
+        /// Creates a new instance of the appropriate class based on discriminator value
+        /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
+        /// </summary>
+        public static new WorkbookChartLegendFormat CreateFromDiscriminatorValue(IParseNode parseNode) {
+            _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
+            return new WorkbookChartLegendFormat();
+        }
+        /// <summary>
         /// The deserialization information for the current model
         /// </summary>
         public new IDictionary<string, Action<T, IParseNode>> GetFieldDeserializers<T>() {
             return new Dictionary<string, Action<T, IParseNode>>(base.GetFieldDeserializers<T>()) {
-                {"fill", (o,n) => { (o as WorkbookChartLegendFormat).Fill = n.GetObjectValue<WorkbookChartFill>(); } },
-                {"font", (o,n) => { (o as WorkbookChartLegendFormat).Font = n.GetObjectValue<WorkbookChartFont>(); } },
+                {"fill", (o,n) => { (o as WorkbookChartLegendFormat).Fill = n.GetObjectValue<WorkbookChartFill>(WorkbookChartFill.CreateFromDiscriminatorValue); } },
+                {"font", (o,n) => { (o as WorkbookChartLegendFormat).Font = n.GetObjectValue<WorkbookChartFont>(WorkbookChartFont.CreateFromDiscriminatorValue); } },
             };
         }
         /// <summary>

@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 namespace ApiSdk.Models.Microsoft.Graph {
-    public class ResourceAccess : IParsable {
+    public class ResourceAccess : IAdditionalDataHolder, IParsable {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>The unique identifier for one of the oauth2PermissionScopes or appRole instances that the resource application exposes.</summary>
@@ -16,6 +16,14 @@ namespace ApiSdk.Models.Microsoft.Graph {
         /// </summary>
         public ResourceAccess() {
             AdditionalData = new Dictionary<string, object>();
+        }
+        /// <summary>
+        /// Creates a new instance of the appropriate class based on discriminator value
+        /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
+        /// </summary>
+        public static ResourceAccess CreateFromDiscriminatorValue(IParseNode parseNode) {
+            _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
+            return new ResourceAccess();
         }
         /// <summary>
         /// The deserialization information for the current model

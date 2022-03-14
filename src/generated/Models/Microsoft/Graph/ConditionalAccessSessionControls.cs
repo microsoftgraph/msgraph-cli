@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 namespace ApiSdk.Models.Microsoft.Graph {
-    public class ConditionalAccessSessionControls : IParsable {
+    public class ConditionalAccessSessionControls : IAdditionalDataHolder, IParsable {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>Session control to enforce application restrictions. Only Exchange Online and Sharepoint Online support this session control.</summary>
@@ -24,15 +24,23 @@ namespace ApiSdk.Models.Microsoft.Graph {
             AdditionalData = new Dictionary<string, object>();
         }
         /// <summary>
+        /// Creates a new instance of the appropriate class based on discriminator value
+        /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
+        /// </summary>
+        public static ConditionalAccessSessionControls CreateFromDiscriminatorValue(IParseNode parseNode) {
+            _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
+            return new ConditionalAccessSessionControls();
+        }
+        /// <summary>
         /// The deserialization information for the current model
         /// </summary>
         public IDictionary<string, Action<T, IParseNode>> GetFieldDeserializers<T>() {
             return new Dictionary<string, Action<T, IParseNode>> {
-                {"applicationEnforcedRestrictions", (o,n) => { (o as ConditionalAccessSessionControls).ApplicationEnforcedRestrictions = n.GetObjectValue<ApplicationEnforcedRestrictionsSessionControl>(); } },
-                {"cloudAppSecurity", (o,n) => { (o as ConditionalAccessSessionControls).CloudAppSecurity = n.GetObjectValue<CloudAppSecuritySessionControl>(); } },
+                {"applicationEnforcedRestrictions", (o,n) => { (o as ConditionalAccessSessionControls).ApplicationEnforcedRestrictions = n.GetObjectValue<ApplicationEnforcedRestrictionsSessionControl>(ApplicationEnforcedRestrictionsSessionControl.CreateFromDiscriminatorValue); } },
+                {"cloudAppSecurity", (o,n) => { (o as ConditionalAccessSessionControls).CloudAppSecurity = n.GetObjectValue<CloudAppSecuritySessionControl>(CloudAppSecuritySessionControl.CreateFromDiscriminatorValue); } },
                 {"disableResilienceDefaults", (o,n) => { (o as ConditionalAccessSessionControls).DisableResilienceDefaults = n.GetBoolValue(); } },
-                {"persistentBrowser", (o,n) => { (o as ConditionalAccessSessionControls).PersistentBrowser = n.GetObjectValue<PersistentBrowserSessionControl>(); } },
-                {"signInFrequency", (o,n) => { (o as ConditionalAccessSessionControls).SignInFrequency = n.GetObjectValue<SignInFrequencySessionControl>(); } },
+                {"persistentBrowser", (o,n) => { (o as ConditionalAccessSessionControls).PersistentBrowser = n.GetObjectValue<PersistentBrowserSessionControl>(PersistentBrowserSessionControl.CreateFromDiscriminatorValue); } },
+                {"signInFrequency", (o,n) => { (o as ConditionalAccessSessionControls).SignInFrequency = n.GetObjectValue<SignInFrequencySessionControl>(SignInFrequencySessionControl.CreateFromDiscriminatorValue); } },
             };
         }
         /// <summary>

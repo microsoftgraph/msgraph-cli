@@ -42,7 +42,7 @@ namespace ApiSdk.Me.ManagedDevices.Item.UpdateWindowsDeviceAccount {
                 PathParameters.Add("managedDevice_id", managedDeviceId);
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
-                var model = parseNode.GetObjectValue<UpdateWindowsDeviceAccountRequestBody>();
+                var model = parseNode.GetObjectValue<UpdateWindowsDeviceAccountRequestBody>(UpdateWindowsDeviceAccountRequestBody.CreateFromDiscriminatorValue);
                 var requestInfo = CreatePostRequestInformation(model, q => {
                 });
                 await RequestAdapter.SendNoContentAsync(requestInfo, errorMapping: default, cancellationToken: cancellationToken);

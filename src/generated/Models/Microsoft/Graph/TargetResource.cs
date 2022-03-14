@@ -4,13 +4,13 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 namespace ApiSdk.Models.Microsoft.Graph {
-    public class TargetResource : IParsable {
+    public class TargetResource : IAdditionalDataHolder, IParsable {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>Indicates the visible name defined for the resource. Typically specified when the resource is created.</summary>
         public string DisplayName { get; set; }
         /// <summary>When type is set to Group, this indicates the group type.  Possible values are: unifiedGroups, azureAD, and unknownFutureValue</summary>
-        public GroupType? GroupType { get; set; }
+        public ApiSdk.Models.Microsoft.Graph.GroupType? GroupType { get; set; }
         /// <summary>Indicates the unique ID of the resource.</summary>
         public string Id { get; set; }
         /// <summary>Indicates name, old value and new value of each attribute that changed. Property values depend on the operation type.</summary>
@@ -26,6 +26,14 @@ namespace ApiSdk.Models.Microsoft.Graph {
             AdditionalData = new Dictionary<string, object>();
         }
         /// <summary>
+        /// Creates a new instance of the appropriate class based on discriminator value
+        /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
+        /// </summary>
+        public static TargetResource CreateFromDiscriminatorValue(IParseNode parseNode) {
+            _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
+            return new TargetResource();
+        }
+        /// <summary>
         /// The deserialization information for the current model
         /// </summary>
         public IDictionary<string, Action<T, IParseNode>> GetFieldDeserializers<T>() {
@@ -33,7 +41,7 @@ namespace ApiSdk.Models.Microsoft.Graph {
                 {"displayName", (o,n) => { (o as TargetResource).DisplayName = n.GetStringValue(); } },
                 {"groupType", (o,n) => { (o as TargetResource).GroupType = n.GetEnumValue<GroupType>(); } },
                 {"id", (o,n) => { (o as TargetResource).Id = n.GetStringValue(); } },
-                {"modifiedProperties", (o,n) => { (o as TargetResource).ModifiedProperties = n.GetCollectionOfObjectValues<ModifiedProperty>().ToList(); } },
+                {"modifiedProperties", (o,n) => { (o as TargetResource).ModifiedProperties = n.GetCollectionOfObjectValues<ModifiedProperty>(ModifiedProperty.CreateFromDiscriminatorValue).ToList(); } },
                 {"type", (o,n) => { (o as TargetResource).Type = n.GetStringValue(); } },
                 {"userPrincipalName", (o,n) => { (o as TargetResource).UserPrincipalName = n.GetStringValue(); } },
             };

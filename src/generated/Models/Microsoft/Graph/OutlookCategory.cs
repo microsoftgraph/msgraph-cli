@@ -10,6 +10,14 @@ namespace ApiSdk.Models.Microsoft.Graph {
         /// <summary>A unique name that identifies a category in the user's mailbox. After a category is created, the name cannot be changed. Read-only.</summary>
         public string DisplayName { get; set; }
         /// <summary>
+        /// Creates a new instance of the appropriate class based on discriminator value
+        /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
+        /// </summary>
+        public static new OutlookCategory CreateFromDiscriminatorValue(IParseNode parseNode) {
+            _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
+            return new OutlookCategory();
+        }
+        /// <summary>
         /// The deserialization information for the current model
         /// </summary>
         public new IDictionary<string, Action<T, IParseNode>> GetFieldDeserializers<T>() {

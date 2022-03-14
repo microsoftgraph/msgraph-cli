@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 namespace ApiSdk.Models.Microsoft.Graph {
-    public class SearchHit : IParsable {
+    public class SearchHit : IAdditionalDataHolder, IParsable {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>The name of the content source which the externalItem is part of .</summary>
@@ -23,6 +23,14 @@ namespace ApiSdk.Models.Microsoft.Graph {
             AdditionalData = new Dictionary<string, object>();
         }
         /// <summary>
+        /// Creates a new instance of the appropriate class based on discriminator value
+        /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
+        /// </summary>
+        public static SearchHit CreateFromDiscriminatorValue(IParseNode parseNode) {
+            _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
+            return new SearchHit();
+        }
+        /// <summary>
         /// The deserialization information for the current model
         /// </summary>
         public IDictionary<string, Action<T, IParseNode>> GetFieldDeserializers<T>() {
@@ -30,7 +38,7 @@ namespace ApiSdk.Models.Microsoft.Graph {
                 {"contentSource", (o,n) => { (o as SearchHit).ContentSource = n.GetStringValue(); } },
                 {"hitId", (o,n) => { (o as SearchHit).HitId = n.GetStringValue(); } },
                 {"rank", (o,n) => { (o as SearchHit).Rank = n.GetIntValue(); } },
-                {"resource", (o,n) => { (o as SearchHit).Resource = n.GetObjectValue<Entity>(); } },
+                {"resource", (o,n) => { (o as SearchHit).Resource = n.GetObjectValue<Entity>(Entity.CreateFromDiscriminatorValue); } },
                 {"summary", (o,n) => { (o as SearchHit).Summary = n.GetStringValue(); } },
             };
         }

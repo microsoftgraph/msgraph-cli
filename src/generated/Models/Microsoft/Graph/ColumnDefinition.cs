@@ -68,41 +68,49 @@ namespace ApiSdk.Models.Microsoft.Graph {
         /// <summary>This column stores validation formula and message for the column.</summary>
         public ColumnValidation Validation { get; set; }
         /// <summary>
+        /// Creates a new instance of the appropriate class based on discriminator value
+        /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
+        /// </summary>
+        public static new ColumnDefinition CreateFromDiscriminatorValue(IParseNode parseNode) {
+            _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
+            return new ColumnDefinition();
+        }
+        /// <summary>
         /// The deserialization information for the current model
         /// </summary>
         public new IDictionary<string, Action<T, IParseNode>> GetFieldDeserializers<T>() {
             return new Dictionary<string, Action<T, IParseNode>>(base.GetFieldDeserializers<T>()) {
-                {"boolean", (o,n) => { (o as ColumnDefinition).Boolean = n.GetObjectValue<BooleanColumn>(); } },
-                {"calculated", (o,n) => { (o as ColumnDefinition).Calculated = n.GetObjectValue<CalculatedColumn>(); } },
-                {"choice", (o,n) => { (o as ColumnDefinition).Choice = n.GetObjectValue<ChoiceColumn>(); } },
+                {"boolean", (o,n) => { (o as ColumnDefinition).Boolean = n.GetObjectValue<BooleanColumn>(BooleanColumn.CreateFromDiscriminatorValue); } },
+                {"calculated", (o,n) => { (o as ColumnDefinition).Calculated = n.GetObjectValue<CalculatedColumn>(CalculatedColumn.CreateFromDiscriminatorValue); } },
+                {"choice", (o,n) => { (o as ColumnDefinition).Choice = n.GetObjectValue<ChoiceColumn>(ChoiceColumn.CreateFromDiscriminatorValue); } },
                 {"columnGroup", (o,n) => { (o as ColumnDefinition).ColumnGroup = n.GetStringValue(); } },
-                {"contentApprovalStatus", (o,n) => { (o as ColumnDefinition).ContentApprovalStatus = n.GetObjectValue<ContentApprovalStatusColumn>(); } },
-                {"currency", (o,n) => { (o as ColumnDefinition).Currency = n.GetObjectValue<CurrencyColumn>(); } },
-                {"dateTime", (o,n) => { (o as ColumnDefinition).DateTime = n.GetObjectValue<DateTimeColumn>(); } },
-                {"defaultValue", (o,n) => { (o as ColumnDefinition).DefaultValue = n.GetObjectValue<DefaultColumnValue>(); } },
+                {"contentApprovalStatus", (o,n) => { (o as ColumnDefinition).ContentApprovalStatus = n.GetObjectValue<ContentApprovalStatusColumn>(ContentApprovalStatusColumn.CreateFromDiscriminatorValue); } },
+                {"currency", (o,n) => { (o as ColumnDefinition).Currency = n.GetObjectValue<CurrencyColumn>(CurrencyColumn.CreateFromDiscriminatorValue); } },
+                {"dateTime", (o,n) => { (o as ColumnDefinition).DateTime = n.GetObjectValue<DateTimeColumn>(DateTimeColumn.CreateFromDiscriminatorValue); } },
+                {"defaultValue", (o,n) => { (o as ColumnDefinition).DefaultValue = n.GetObjectValue<DefaultColumnValue>(DefaultColumnValue.CreateFromDiscriminatorValue); } },
                 {"description", (o,n) => { (o as ColumnDefinition).Description = n.GetStringValue(); } },
                 {"displayName", (o,n) => { (o as ColumnDefinition).DisplayName = n.GetStringValue(); } },
                 {"enforceUniqueValues", (o,n) => { (o as ColumnDefinition).EnforceUniqueValues = n.GetBoolValue(); } },
-                {"geolocation", (o,n) => { (o as ColumnDefinition).Geolocation = n.GetObjectValue<GeolocationColumn>(); } },
+                {"geolocation", (o,n) => { (o as ColumnDefinition).Geolocation = n.GetObjectValue<GeolocationColumn>(GeolocationColumn.CreateFromDiscriminatorValue); } },
                 {"hidden", (o,n) => { (o as ColumnDefinition).Hidden = n.GetBoolValue(); } },
-                {"hyperlinkOrPicture", (o,n) => { (o as ColumnDefinition).HyperlinkOrPicture = n.GetObjectValue<HyperlinkOrPictureColumn>(); } },
+                {"hyperlinkOrPicture", (o,n) => { (o as ColumnDefinition).HyperlinkOrPicture = n.GetObjectValue<HyperlinkOrPictureColumn>(HyperlinkOrPictureColumn.CreateFromDiscriminatorValue); } },
                 {"indexed", (o,n) => { (o as ColumnDefinition).Indexed = n.GetBoolValue(); } },
                 {"isDeletable", (o,n) => { (o as ColumnDefinition).IsDeletable = n.GetBoolValue(); } },
                 {"isReorderable", (o,n) => { (o as ColumnDefinition).IsReorderable = n.GetBoolValue(); } },
                 {"isSealed", (o,n) => { (o as ColumnDefinition).IsSealed = n.GetBoolValue(); } },
-                {"lookup", (o,n) => { (o as ColumnDefinition).Lookup = n.GetObjectValue<LookupColumn>(); } },
+                {"lookup", (o,n) => { (o as ColumnDefinition).Lookup = n.GetObjectValue<LookupColumn>(LookupColumn.CreateFromDiscriminatorValue); } },
                 {"name", (o,n) => { (o as ColumnDefinition).Name = n.GetStringValue(); } },
-                {"number", (o,n) => { (o as ColumnDefinition).Number = n.GetObjectValue<NumberColumn>(); } },
-                {"personOrGroup", (o,n) => { (o as ColumnDefinition).PersonOrGroup = n.GetObjectValue<PersonOrGroupColumn>(); } },
+                {"number", (o,n) => { (o as ColumnDefinition).Number = n.GetObjectValue<NumberColumn>(NumberColumn.CreateFromDiscriminatorValue); } },
+                {"personOrGroup", (o,n) => { (o as ColumnDefinition).PersonOrGroup = n.GetObjectValue<PersonOrGroupColumn>(PersonOrGroupColumn.CreateFromDiscriminatorValue); } },
                 {"propagateChanges", (o,n) => { (o as ColumnDefinition).PropagateChanges = n.GetBoolValue(); } },
                 {"readOnly", (o,n) => { (o as ColumnDefinition).ReadOnly = n.GetBoolValue(); } },
                 {"required", (o,n) => { (o as ColumnDefinition).Required = n.GetBoolValue(); } },
-                {"sourceColumn", (o,n) => { (o as ColumnDefinition).SourceColumn = n.GetObjectValue<ColumnDefinition>(); } },
-                {"term", (o,n) => { (o as ColumnDefinition).Term = n.GetObjectValue<TermColumn>(); } },
-                {"text", (o,n) => { (o as ColumnDefinition).Text = n.GetObjectValue<TextColumn>(); } },
-                {"thumbnail", (o,n) => { (o as ColumnDefinition).Thumbnail = n.GetObjectValue<ThumbnailColumn>(); } },
+                {"sourceColumn", (o,n) => { (o as ColumnDefinition).SourceColumn = n.GetObjectValue<ColumnDefinition>(ColumnDefinition.CreateFromDiscriminatorValue); } },
+                {"term", (o,n) => { (o as ColumnDefinition).Term = n.GetObjectValue<TermColumn>(TermColumn.CreateFromDiscriminatorValue); } },
+                {"text", (o,n) => { (o as ColumnDefinition).Text = n.GetObjectValue<TextColumn>(TextColumn.CreateFromDiscriminatorValue); } },
+                {"thumbnail", (o,n) => { (o as ColumnDefinition).Thumbnail = n.GetObjectValue<ThumbnailColumn>(ThumbnailColumn.CreateFromDiscriminatorValue); } },
                 {"type", (o,n) => { (o as ColumnDefinition).Type = n.GetEnumValue<ColumnTypes>(); } },
-                {"validation", (o,n) => { (o as ColumnDefinition).Validation = n.GetObjectValue<ColumnValidation>(); } },
+                {"validation", (o,n) => { (o as ColumnDefinition).Validation = n.GetObjectValue<ColumnValidation>(ColumnValidation.CreateFromDiscriminatorValue); } },
             };
         }
         /// <summary>

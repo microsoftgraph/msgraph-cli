@@ -10,18 +10,26 @@ namespace ApiSdk.Models.Microsoft.Graph.TermStore {
         /// <summary>The type of relation. Possible values are: pin, reuse.</summary>
         public RelationType? Relationship { get; set; }
         /// <summary>The [set] in which the relation is relevant.</summary>
-        public Set Set { get; set; }
+        public ApiSdk.Models.Microsoft.Graph.TermStore.Set Set { get; set; }
         /// <summary>The to [term] of the relation. The term to which the relationship is defined.</summary>
         public Term ToTerm { get; set; }
+        /// <summary>
+        /// Creates a new instance of the appropriate class based on discriminator value
+        /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
+        /// </summary>
+        public static new Relation CreateFromDiscriminatorValue(IParseNode parseNode) {
+            _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
+            return new Relation();
+        }
         /// <summary>
         /// The deserialization information for the current model
         /// </summary>
         public new IDictionary<string, Action<T, IParseNode>> GetFieldDeserializers<T>() {
             return new Dictionary<string, Action<T, IParseNode>>(base.GetFieldDeserializers<T>()) {
-                {"fromTerm", (o,n) => { (o as Relation).FromTerm = n.GetObjectValue<Term>(); } },
+                {"fromTerm", (o,n) => { (o as Relation).FromTerm = n.GetObjectValue<Term>(Term.CreateFromDiscriminatorValue); } },
                 {"relationship", (o,n) => { (o as Relation).Relationship = n.GetEnumValue<RelationType>(); } },
-                {"set", (o,n) => { (o as Relation).Set = n.GetObjectValue<Set>(); } },
-                {"toTerm", (o,n) => { (o as Relation).ToTerm = n.GetObjectValue<Term>(); } },
+                {"set", (o,n) => { (o as Relation).Set = n.GetObjectValue<ApiSdk.Models.Microsoft.Graph.TermStore.Set>(ApiSdk.Models.Microsoft.Graph.TermStore.Set.CreateFromDiscriminatorValue); } },
+                {"toTerm", (o,n) => { (o as Relation).ToTerm = n.GetObjectValue<Term>(Term.CreateFromDiscriminatorValue); } },
             };
         }
         /// <summary>
@@ -33,7 +41,7 @@ namespace ApiSdk.Models.Microsoft.Graph.TermStore {
             base.Serialize(writer);
             writer.WriteObjectValue<Term>("fromTerm", FromTerm);
             writer.WriteEnumValue<RelationType>("relationship", Relationship);
-            writer.WriteObjectValue<Set>("set", Set);
+            writer.WriteObjectValue<ApiSdk.Models.Microsoft.Graph.TermStore.Set>("set", Set);
             writer.WriteObjectValue<Term>("toTerm", ToTerm);
         }
     }

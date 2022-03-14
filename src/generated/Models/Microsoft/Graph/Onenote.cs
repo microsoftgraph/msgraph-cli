@@ -18,16 +18,24 @@ namespace ApiSdk.Models.Microsoft.Graph {
         /// <summary>The sections in all OneNote notebooks that are owned by the user or group.  Read-only. Nullable.</summary>
         public List<OnenoteSection> Sections { get; set; }
         /// <summary>
+        /// Creates a new instance of the appropriate class based on discriminator value
+        /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
+        /// </summary>
+        public static new Onenote CreateFromDiscriminatorValue(IParseNode parseNode) {
+            _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
+            return new Onenote();
+        }
+        /// <summary>
         /// The deserialization information for the current model
         /// </summary>
         public new IDictionary<string, Action<T, IParseNode>> GetFieldDeserializers<T>() {
             return new Dictionary<string, Action<T, IParseNode>>(base.GetFieldDeserializers<T>()) {
-                {"notebooks", (o,n) => { (o as Onenote).Notebooks = n.GetCollectionOfObjectValues<Notebook>().ToList(); } },
-                {"operations", (o,n) => { (o as Onenote).Operations = n.GetCollectionOfObjectValues<OnenoteOperation>().ToList(); } },
-                {"pages", (o,n) => { (o as Onenote).Pages = n.GetCollectionOfObjectValues<OnenotePage>().ToList(); } },
-                {"resources", (o,n) => { (o as Onenote).Resources = n.GetCollectionOfObjectValues<OnenoteResource>().ToList(); } },
-                {"sectionGroups", (o,n) => { (o as Onenote).SectionGroups = n.GetCollectionOfObjectValues<SectionGroup>().ToList(); } },
-                {"sections", (o,n) => { (o as Onenote).Sections = n.GetCollectionOfObjectValues<OnenoteSection>().ToList(); } },
+                {"notebooks", (o,n) => { (o as Onenote).Notebooks = n.GetCollectionOfObjectValues<Notebook>(Notebook.CreateFromDiscriminatorValue).ToList(); } },
+                {"operations", (o,n) => { (o as Onenote).Operations = n.GetCollectionOfObjectValues<OnenoteOperation>(OnenoteOperation.CreateFromDiscriminatorValue).ToList(); } },
+                {"pages", (o,n) => { (o as Onenote).Pages = n.GetCollectionOfObjectValues<OnenotePage>(OnenotePage.CreateFromDiscriminatorValue).ToList(); } },
+                {"resources", (o,n) => { (o as Onenote).Resources = n.GetCollectionOfObjectValues<OnenoteResource>(OnenoteResource.CreateFromDiscriminatorValue).ToList(); } },
+                {"sectionGroups", (o,n) => { (o as Onenote).SectionGroups = n.GetCollectionOfObjectValues<SectionGroup>(SectionGroup.CreateFromDiscriminatorValue).ToList(); } },
+                {"sections", (o,n) => { (o as Onenote).Sections = n.GetCollectionOfObjectValues<OnenoteSection>(OnenoteSection.CreateFromDiscriminatorValue).ToList(); } },
             };
         }
         /// <summary>

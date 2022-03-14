@@ -22,17 +22,25 @@ namespace ApiSdk.Models.Microsoft.Graph {
         /// <summary>The Visibility of the worksheet. The possible values are: Visible, Hidden, VeryHidden.</summary>
         public string Visibility { get; set; }
         /// <summary>
+        /// Creates a new instance of the appropriate class based on discriminator value
+        /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
+        /// </summary>
+        public static new WorkbookWorksheet CreateFromDiscriminatorValue(IParseNode parseNode) {
+            _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
+            return new WorkbookWorksheet();
+        }
+        /// <summary>
         /// The deserialization information for the current model
         /// </summary>
         public new IDictionary<string, Action<T, IParseNode>> GetFieldDeserializers<T>() {
             return new Dictionary<string, Action<T, IParseNode>>(base.GetFieldDeserializers<T>()) {
-                {"charts", (o,n) => { (o as WorkbookWorksheet).Charts = n.GetCollectionOfObjectValues<WorkbookChart>().ToList(); } },
+                {"charts", (o,n) => { (o as WorkbookWorksheet).Charts = n.GetCollectionOfObjectValues<WorkbookChart>(WorkbookChart.CreateFromDiscriminatorValue).ToList(); } },
                 {"name", (o,n) => { (o as WorkbookWorksheet).Name = n.GetStringValue(); } },
-                {"names", (o,n) => { (o as WorkbookWorksheet).Names = n.GetCollectionOfObjectValues<WorkbookNamedItem>().ToList(); } },
-                {"pivotTables", (o,n) => { (o as WorkbookWorksheet).PivotTables = n.GetCollectionOfObjectValues<WorkbookPivotTable>().ToList(); } },
+                {"names", (o,n) => { (o as WorkbookWorksheet).Names = n.GetCollectionOfObjectValues<WorkbookNamedItem>(WorkbookNamedItem.CreateFromDiscriminatorValue).ToList(); } },
+                {"pivotTables", (o,n) => { (o as WorkbookWorksheet).PivotTables = n.GetCollectionOfObjectValues<WorkbookPivotTable>(WorkbookPivotTable.CreateFromDiscriminatorValue).ToList(); } },
                 {"position", (o,n) => { (o as WorkbookWorksheet).Position = n.GetIntValue(); } },
-                {"protection", (o,n) => { (o as WorkbookWorksheet).Protection = n.GetObjectValue<WorkbookWorksheetProtection>(); } },
-                {"tables", (o,n) => { (o as WorkbookWorksheet).Tables = n.GetCollectionOfObjectValues<WorkbookTable>().ToList(); } },
+                {"protection", (o,n) => { (o as WorkbookWorksheet).Protection = n.GetObjectValue<WorkbookWorksheetProtection>(WorkbookWorksheetProtection.CreateFromDiscriminatorValue); } },
+                {"tables", (o,n) => { (o as WorkbookWorksheet).Tables = n.GetCollectionOfObjectValues<WorkbookTable>(WorkbookTable.CreateFromDiscriminatorValue).ToList(); } },
                 {"visibility", (o,n) => { (o as WorkbookWorksheet).Visibility = n.GetStringValue(); } },
             };
         }
