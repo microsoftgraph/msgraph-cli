@@ -53,6 +53,7 @@ namespace Microsoft.Graph.Cli
             var options = new GraphClientOptions {
                 GraphProductPrefix = "graph-cli",
                 GraphServiceLibraryClientVersion = $"{assemblyVersion.Major}.{assemblyVersion.Minor}.{assemblyVersion.Build}"
+                GraphServiceTargetVersion = "1.0"
             };
             using var httpClient = GraphCliClientFactory.GetDefaultClient(options);
             var core = new HttpClientRequestAdapter(authProvider, httpClient: httpClient);
