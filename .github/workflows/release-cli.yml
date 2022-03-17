@@ -2,6 +2,12 @@ name: "Release CLI"
 on:
   release:
     types: [published]
+  workflow_dispatch:
+    inputs:
+      tag:
+        description: 'The tag to build'
+        required: true
+        type: string
 jobs:
   package:
     runs-on: ubuntu-latest
@@ -11,7 +17,7 @@ jobs:
     env:
       MS_NUGET_URL: https://nuget.pkg.github.com/microsoft/index.json
       MSGRAPH_NUGET_URL: https://nuget.pkg.github.com/microsoftgraph/index.json
-      PACKAGE_VERSION: ${{github.ref_name || 'v0.1.0'}}
+      PACKAGE_VERSION: ${{github.ref_name || github.event.inputs.tag || 'v0.1.0'}}
       PACKAGE_ZIP_TEMPLATE: "msgraph-cli-{0}-{1}.zip"
       OUTPUT_DIR: /tmp/publish
     steps:
@@ -23,6 +29,7 @@ jobs:
         uses: actions/checkout@v3
         with:
           submodules: true
+          ref: ${{github.event.inputs.tag || ''}}
       - name: Setup .NET Core SDK 6
         uses: actions/setup-dotnet@v2
         with:

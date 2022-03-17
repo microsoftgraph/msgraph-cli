@@ -1,5 +1,9 @@
 name: "Build CLI"
-on: [push]
+on:
+  push:
+    paths:
+      - 'src/**'
+      - 'msgraph-cli-core'
 jobs:
   build:
     runs-on: ubuntu-latest
