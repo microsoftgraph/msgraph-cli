@@ -18,3 +18,4 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Fixed stream output being passed to output formatter when no file path is provided #38
 - Format JSON output by default. The formatting can be disabled per command through the CLI argument `--json-no-indent` #55
 - Use async OutputFormatter & OutputFilter APIs #55
+- Fix failing requests when adding options like `--select`, `--expand`, `--top` etc

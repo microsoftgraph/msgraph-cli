@@ -48,27 +48,14 @@ namespace Microsoft.Graph.Cli
 
             var credential = await authServiceFactory.GetTokenCredentialAsync(authStrategy, authSettings?.TenantId, authSettings?.ClientId);
             var authProvider = new AzureIdentityAuthenticationProvider(credential, new string[] {"graph.microsoft.com"});
-            var defaultHandlers = KiotaClientFactory.CreateDefaultHandlers();
 
             var assemblyVersion = Assembly.GetExecutingAssembly().GetName().Version;
-            var sdkVersionHeaderValue = string.Format(
-                SdkVersionHeaderValueFormatString,
-                "graph",
-                assemblyVersion.Major,
-                assemblyVersion.Minor,
-                assemblyVersion.Build);
-
-            var telemetryHandlerOption = new TelemetryHandlerOption {
-                TelemetryConfigurator = (request) => {
-                    request.Headers.Add("SdkVersion", sdkVersionHeaderValue);
-                    return request;
-                }
+            var options = new GraphClientOptions {
+                GraphProductPrefix = "graph-cli",
+                GraphServiceLibraryClientVersion = $"{assemblyVersion.Major}.{assemblyVersion.Minor}.{assemblyVersion.Build}",
+                GraphServiceTargetVersion = "1.0"
             };
-            var telemetryHandler = new TelemetryHandler(telemetryHandlerOption);
-            defaultHandlers.Add(telemetryHandler);
-            var finalHandler = KiotaClientFactory.ChainHandlersCollectionAndGetFirstLink(KiotaClientFactory.GetDefaultHttpMessageHandler(), defaultHandlers.ToArray());
-
-            using var httpClient = KiotaClientFactory.Create(finalHandler);
+            using var httpClient = GraphCliClientFactory.GetDefaultClient(options);
             var core = new HttpClientRequestAdapter(authProvider, httpClient: httpClient);
             var client = new GraphClient(core);
 
