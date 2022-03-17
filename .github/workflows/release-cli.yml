@@ -17,7 +17,7 @@ jobs:
     env:
       MS_NUGET_URL: https://nuget.pkg.github.com/microsoft/index.json
       MSGRAPH_NUGET_URL: https://nuget.pkg.github.com/microsoftgraph/index.json
-      PACKAGE_VERSION: ${{github.ref_name || github.event.inputs.tag || 'v0.1.0'}}
+      PACKAGE_VERSION: ${{github.event.inputs.tag || github.ref_name || 'v0.1.0'}}
       PACKAGE_ZIP_TEMPLATE: "msgraph-cli-{0}-{1}.zip"
       OUTPUT_DIR: /tmp/publish
     steps:
@@ -54,6 +54,6 @@ jobs:
           zip ${{format(env.PACKAGE_ZIP_TEMPLATE, matrix.rid, steps.get-version.outputs.version)}} $(ls -a)
       - name: Add to release
         run: |
-          gh release upload ${{github.ref_name}} ${{env.OUTPUT_DIR}}/${{format(env.PACKAGE_ZIP_TEMPLATE, matrix.rid, steps.get-version.outputs.version)}} --clobber
+          gh release upload ${{env.PACKAGE_VERSION}} ${{env.OUTPUT_DIR}}/${{format(env.PACKAGE_ZIP_TEMPLATE, matrix.rid, steps.get-version.outputs.version)}} --clobber
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
