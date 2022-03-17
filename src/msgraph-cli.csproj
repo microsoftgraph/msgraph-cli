@@ -10,7 +10,7 @@
     <SelfContained>false</SelfContained>
     <PublishReadyToRun>true</PublishReadyToRun>
     <AssemblyName>mgc</AssemblyName>
-    <Version>0.1.0-preview.2</Version>
+    <Version>0.1.0-preview.3</Version>
   </PropertyGroup>
 
   <ItemGroup>
