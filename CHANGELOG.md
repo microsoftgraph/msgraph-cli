@@ -9,6 +9,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+### Changed
+
+## [0.1.0-preview.3] - 2022-03-17
+
+### Added
+
 - Added support for JMESPath queries #35
 - Added clientId and tenantId parameters to the login command #40
 
