@@ -20,7 +20,7 @@ FROM mcr.microsoft.com/dotnet/runtime:6.0 as runtime
 
 WORKDIR /app
 
-COPY --from=build-env /app/msgraph-cli/src/bin/Release/net6.0/${RID}/ ./dist
+COPY --from=build-env /app/msgraph-cli/src/bin/Release/net6.0/ ./dist
 RUN echo 'export PATH=$PATH:/app/dist' > /app/.bash_profile
 
 ENV HOME=/app
