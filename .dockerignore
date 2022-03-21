@@ -1,0 +1,6 @@
+/.git/
+/.github/
+/.vs/
+/.vscode/
+/src/[Bb]in/
+/src/[Oo]bj/
