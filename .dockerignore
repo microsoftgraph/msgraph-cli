@@ -1,6 +1,6 @@
-/.git/
-/.github/
-/.vs/
-/.vscode/
-/src/[Bb]in/
-/src/[Oo]bj/
+**/.git/
+**/.github/
+**/.vs/
+**/.vscode/
+**/[Bb]in/
+**/[Oo]bj/
