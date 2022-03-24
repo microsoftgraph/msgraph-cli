@@ -43,9 +43,11 @@ USER mgc
 
 COPY --chown=mgc:mgc ./docker/* ./dist/
 
-RUN chmod +x /app/dist/init.sh
+RUN mkdir -p /app/.mgc /app/.local/share/.IdentityService /app/.local/share/keyrings &&\
+    chmod +x /app/dist/init.sh
 
-# CMD ["bash", "-l"]
+VOLUME [ "/app/.mgc", ".local/share/.IdentityService", "/app/.local/share/keyrings" ]
+
 ENTRYPOINT ["./dist/init.sh"]
 
 LABEL description="# Welcome to the Microsoft Graph CLI  \
