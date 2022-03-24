@@ -1,8 +1,7 @@
 {
     "AuthenticationOptions": {
         "ClientId": "client id",
-        "TenantId": "tenant id",
-        "AllowUnencryptedTokenCache": false
+        "TenantId": "tenant id"
     },
     "Logging": {
         "LogLevel": {

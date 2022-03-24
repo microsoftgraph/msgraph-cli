@@ -46,7 +46,7 @@ COPY --chown=mgc:mgc ./docker/* ./dist/
 RUN mkdir -p /app/.mgc /app/.local/share/.IdentityService /app/.local/share/keyrings &&\
     chmod +x /app/dist/init.sh
 
-VOLUME [ "/app/.mgc", ".local/share/.IdentityService", "/app/.local/share/keyrings" ]
+VOLUME [ "/app/.mgc", "/app/.local/share/.IdentityService", "/app/.local/share/keyrings" ]
 
 ENTRYPOINT ["./dist/init.sh"]
 

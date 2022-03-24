@@ -4,3 +4,7 @@
 **/.vscode/
 **/[Bb]in/
 **/[Oo]bj/
+**/*.sample.*
+tmp/
+**/.env
+**/*.md

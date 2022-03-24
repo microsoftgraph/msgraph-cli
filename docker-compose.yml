@@ -6,3 +6,9 @@ services:
     # https://man7.org/linux/man-pages/man7/capabilities.7.html
     # 
     - IPC_LOCK # Required by gnome-keyring daemon, the dbus secret service
+    environment:
+      - KEYRING_PASSWORD=changeit
+    volumes:
+      - ./tmp/.mgc:/app/.mgc
+      - ./tmp/.IdentityService:/app/.local/share/.IdentityService
+      - ./tmp/keyrings:/app/.local/share/keyrings

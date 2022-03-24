@@ -1,5 +1,7 @@
 #!/usr/bin/env sh
 
+set -e
+
 script="$0"
 DIR="$(dirname $script)"
 
@@ -10,4 +12,4 @@ else
     echo "dbus-daemon already running"
 fi
 
-dbus-run-session -- echo "$KEYRING_PASSWORD" | gnome-keyring-daemon --daemonize --components=secrets --unlock && $@
+dbus-run-session -- echo "$KEYRING_PASSWORD" | gnome-keyring-daemon --daemonize --components=secrets --unlock && "$@"
