@@ -34,7 +34,7 @@ jobs:
           password: ${{ secrets.GITHUB_TOKEN }}
           registry: docker.pkg.github.com
       - name: Push to GitHub Packages - Nightly
-        if: contains(github.ref, 'refs/head/main')
+        if: contains(github.ref, 'refs/head/main') || github.event.inputs.tag == ''
         uses: docker/build-push-action@v2.10.0
         with:
           push: true
@@ -43,7 +43,7 @@ jobs:
             "user=${{ secrets.NUGET_USER }}"
             "token=${{ secrets.NUGET_PASSWORD }}"
       - name: Push to GitHub Packages - Release
-        if: contains(github.ref, 'refs/tags/v')
+        if: contains(github.ref, 'refs/tags/v') || startsWith(github.event.inputs.tag, 'v')
         uses: docker/build-push-action@v2.10.0
         with:
           push: true
