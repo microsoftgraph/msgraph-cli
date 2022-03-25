@@ -1,0 +1,53 @@
+name: Publish Docker image
+on:
+  workflow_dispatch:
+    inputs:
+      tag:
+        description: 'The tag to build'
+        required: true
+        type: string
+  push:
+    branches: [main]
+    tags: ['v*']
+    paths: ['src/**', '.github/workflows/**']
+jobs:
+  push_to_registry:
+    name: Push Docker image to GitHub Packages
+    runs-on: ubuntu-latest
+    env:
+      MSGRAPH_DOCKER_REGISTRY_URL: docker.pkg.github.com
+      PACKAGE_VERSION: ${{github.event.inputs.tag || github.ref_name || 'v0.1.0'}}
+      NUGET_USER: ${{ secrets.NUGET_USER }}
+      NUGET_TOKEN: ${{ secrets.NUGET_PASSWORD }}
+    steps:
+      - id: get-version
+        run: |
+          PACKAGE_VERSION=$(echo $PACKAGE_VERSION | sed s/^v//)
+          echo "::set-output name=version::$PACKAGE_VERSION"
+      - name: Prepare secret files
+        run: |
+          echo $NUGET_USER > nuget_user.txt
+          echo $NUGET_TOKEN > nuget_token.txt
+      - name: Check out the repo
+        uses: actions/checkout@v3
+        with:
+          submodules: true
+          ref: ${{github.event.inputs.tag || ''}}
+      - name: Login to GitHub package feed
+        uses: docker/login-action@v1.14.1 
+        with:
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+          registry: docker.pkg.github.com
+      - name: Push to GitHub Packages - Nightly
+        if: contains(github.ref, 'refs/head/main')
+        uses: docker/build-push-action@v2.10.0
+        with:
+          push: true
+          tags: docker.pkg.github.com/microsoftgraph/msgraph-cli/msgraph-cli:nightly
+      - name: Push to GitHub Packages - Release
+        if: contains(github.ref, 'refs/tags/v')
+        uses: docker/build-push-action@v2.10.0
+        with:
+          push: true
+          tags: docker.pkg.github.com/microsoftgraph/msgraph-cli/msgraph-cli:latest,docker.pkg.github.com/microsoftgraph/msgraph-cli/msgraph-cli:${{ steps.get-version.outputs.version }}
