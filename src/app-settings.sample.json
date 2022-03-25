@@ -2,5 +2,10 @@
     "AuthenticationOptions": {
         "ClientId": "client id",
         "TenantId": "tenant id"
+    },
+    "Logging": {
+        "LogLevel": {
+            "Default": "Warning"
+        }
     }
 }

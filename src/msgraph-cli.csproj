@@ -14,10 +14,12 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Content Include="app-settings.json">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
+    <None Update="app-settings.json" CopyToOutputDirectory="Always" CopyToPublishDirectory="Always" />
   </ItemGroup>
+
+  <PropertyGroup>
+    <DefaultExcludesInProjectFolder>$(DefaultItemExcludes);**/*.sample.*</DefaultExcludesInProjectFolder>
+  </PropertyGroup>
 
   <ItemGroup>
     <PackageReference Include="Azure.Identity" Version="1.5.0" />

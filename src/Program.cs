@@ -8,20 +8,14 @@ using Microsoft.Graph.Cli.Core.Authentication;
 using Microsoft.Graph.Cli.Core.Commands.Authentication;
 using Microsoft.Graph.Cli.Core.Configuration;
 using Microsoft.Graph.Cli.Core.IO;
-using Microsoft.Graph.Cli.Core.Utils;
-using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Authentication.Azure;
 using Microsoft.Kiota.Cli.Commons.IO;
 using Microsoft.Kiota.Http.HttpClientLibrary;
-using Microsoft.Kiota.Http.HttpClientLibrary.Middleware;
-using Microsoft.Kiota.Http.HttpClientLibrary.Middleware.Options;
 using System.CommandLine;
 using System.CommandLine.Builder;
 using System.CommandLine.Hosting;
 using System.CommandLine.Parsing;
 using System.IO;
-using System.Linq;
-using System.Net.Http;
 using System.Reflection;
 using System.Threading.Tasks;
 using System.Collections.Generic;
@@ -123,7 +117,7 @@ namespace Microsoft.Graph.Cli
         
         static void ConfigureAppConfiguration(IConfigurationBuilder builder) {
             builder.Sources.Clear();
-            builder.AddJsonFile("app-settings.json", optional: false);
+            builder.AddJsonFile(Path.Combine(Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location), "app-settings.json"), optional: false);
             var pathUtil = new PathUtility();
             var authCache = new AuthenticationCacheUtility(pathUtil);
             var dataDir = pathUtil.GetApplicationDataDirectory();
