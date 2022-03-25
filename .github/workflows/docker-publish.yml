@@ -17,17 +17,11 @@ jobs:
     env:
       MSGRAPH_DOCKER_REGISTRY_URL: docker.pkg.github.com
       PACKAGE_VERSION: ${{github.event.inputs.tag || github.ref_name || 'v0.1.0'}}
-      NUGET_USER: ${{ secrets.NUGET_USER }}
-      NUGET_TOKEN: ${{ secrets.NUGET_PASSWORD }}
     steps:
       - id: get-version
         run: |
           PACKAGE_VERSION=$(echo $PACKAGE_VERSION | sed s/^v//)
           echo "::set-output name=version::$PACKAGE_VERSION"
-      - name: Prepare secret files
-        run: |
-          echo $NUGET_USER > nuget_user.txt
-          echo $NUGET_TOKEN > nuget_token.txt
       - name: Check out the repo
         uses: actions/checkout@v3
         with:
@@ -45,9 +39,15 @@ jobs:
         with:
           push: true
           tags: docker.pkg.github.com/microsoftgraph/msgraph-cli/msgraph-cli:nightly
+          secrets: |
+            "user=${{ secrets.NUGET_USER }}"
+            "token=${{ secrets.NUGET_PASSWORD }}"
       - name: Push to GitHub Packages - Release
         if: contains(github.ref, 'refs/tags/v')
         uses: docker/build-push-action@v2.10.0
         with:
           push: true
           tags: docker.pkg.github.com/microsoftgraph/msgraph-cli/msgraph-cli:latest,docker.pkg.github.com/microsoftgraph/msgraph-cli/msgraph-cli:${{ steps.get-version.outputs.version }}
+          secrets: |
+            "user=${{ secrets.NUGET_USER }}"
+            "token=${{ secrets.NUGET_PASSWORD }}"
