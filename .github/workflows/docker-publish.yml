@@ -4,7 +4,7 @@ on:
     inputs:
       tag:
         description: 'The tag to build'
-        required: true
+        required: false
         type: string
   push:
     branches: [main]
@@ -34,7 +34,7 @@ jobs:
           password: ${{ secrets.GITHUB_TOKEN }}
           registry: docker.pkg.github.com
       - name: Push to GitHub Packages - Nightly
-        if: contains(github.ref, 'refs/head/main')
+        if: contains(github.ref, 'refs/head/main') && github.event.inputs.tag == ''
         uses: docker/build-push-action@v2.10.0
         with:
           push: true
