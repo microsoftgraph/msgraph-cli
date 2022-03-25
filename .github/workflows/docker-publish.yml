@@ -34,7 +34,7 @@ jobs:
           password: ${{ secrets.GITHUB_TOKEN }}
           registry: docker.pkg.github.com
       - name: Push to GitHub Packages - Nightly
-        if: github.ref == 'refs/head/main' && github.event.inputs.tag == 'main'
+        if: github.ref == 'refs/head/main' || github.event.inputs.tag == 'main'
         uses: docker/build-push-action@v2.10.0
         with:
           push: true
