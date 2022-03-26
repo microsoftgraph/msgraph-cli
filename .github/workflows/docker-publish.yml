@@ -6,6 +6,7 @@ on:
         description: 'The tag to build'
         required: false
         type: string
+        default: 'main'
   push:
     branches: [main]
     tags: ['v*']
@@ -15,7 +16,6 @@ jobs:
     name: Push Docker image to GitHub Packages
     runs-on: ubuntu-latest
     env:
-      MSGRAPH_DOCKER_REGISTRY_URL: docker.pkg.github.com
       PACKAGE_VERSION: ${{github.event.inputs.tag || github.ref_name || 'v0.1.0'}}
     steps:
       - id: get-version
@@ -34,7 +34,7 @@ jobs:
           password: ${{ secrets.GITHUB_TOKEN }}
           registry: docker.pkg.github.com
       - name: Push to GitHub Packages - Nightly
-        if: contains(github.ref, 'refs/head/main') && github.event.inputs.tag == ''
+        if: github.ref == 'refs/head/main' || github.event.inputs.tag == 'main'
         uses: docker/build-push-action@v2.10.0
         with:
           push: true
@@ -43,7 +43,7 @@ jobs:
             "user=${{ secrets.NUGET_USER }}"
             "token=${{ secrets.NUGET_PASSWORD }}"
       - name: Push to GitHub Packages - Release
-        if: contains(github.ref, 'refs/tags/v')
+        if: startsWith(github.ref, 'refs/tags/v') || startsWith(github.event.inputs.tag, 'v')
         uses: docker/build-push-action@v2.10.0
         with:
           push: true
