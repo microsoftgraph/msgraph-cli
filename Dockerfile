@@ -6,7 +6,6 @@
 FROM mcr.microsoft.com/dotnet/sdk:6.0-alpine AS build-env
 
 ARG MS_NUGET_URL=https://nuget.pkg.github.com/microsoft/index.json
-ARG MSGRAPH_NUGET_URL=https://nuget.pkg.github.com/microsoftgraph/index.json
 
 WORKDIR /app
 
@@ -15,8 +14,7 @@ COPY ./msgraph-cli-core ./msgraph-cli/msgraph-cli-core
 WORKDIR /app/msgraph-cli
 
 RUN --mount=type=secret,id=user,required=true --mount=type=secret,id=token,required=true \
-    dotnet nuget add source ${MS_NUGET_URL} -n ms-gh -u $(cat /run/secrets/user) -p $(cat /run/secrets/token) --store-password-in-clear-text &&\
-    dotnet nuget add source ${MSGRAPH_NUGET_URL} -n msgraph-gh -u $(cat /run/secrets/user) -p $(cat /run/secrets/token) --store-password-in-clear-text
+    dotnet nuget add source ${MS_NUGET_URL} -n ms-gh -u $(cat /run/secrets/user) -p $(cat /run/secrets/token) --store-password-in-clear-text
 
 RUN dotnet publish -p:PublishSingleFile=false -p:PublishReadyToRun=true -p:PublishReadyToRunShowWarnings=true ./src/msgraph-cli.csproj --configuration Release --no-self-contained --runtime linux-musl-x64 --output /app/output
 

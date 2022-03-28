@@ -16,7 +16,6 @@ jobs:
         rid: ['win-x64', 'osx-x64', 'linux-x64']
     env:
       MS_NUGET_URL: https://nuget.pkg.github.com/microsoft/index.json
-      MSGRAPH_NUGET_URL: https://nuget.pkg.github.com/microsoftgraph/index.json
       PACKAGE_VERSION: ${{github.event.inputs.tag || github.ref_name || 'v0.1.0'}}
       PACKAGE_ZIP_TEMPLATE: "msgraph-cli-{0}-{1}.zip"
       OUTPUT_DIR: /tmp/publish
@@ -38,7 +37,6 @@ jobs:
         # NOTE: Password encryption is not supported for the linux platform (Encryption is only supported on Windows platforms.)
         run: |
           dotnet nuget add source ${{env.MS_NUGET_URL}} -n ms-gh -u ${{secrets.NUGET_USER}} -p ${{secrets.NUGET_PASSWORD}} --store-password-in-clear-text
-          dotnet nuget add source ${{env.MSGRAPH_NUGET_URL}} -n msgraph-gh -u ${{secrets.NUGET_USER}} -p ${{secrets.NUGET_PASSWORD}} --store-password-in-clear-text
       - uses: actions/cache@v3
         with:
           path: ~/.nuget/packages

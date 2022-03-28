@@ -2,9 +2,6 @@
 
 set -e
 
-script="$0"
-DIR="$(dirname $script)"
-
 capabilities=$(capsh --print | grep -e "Current: .*ipc_lock" | sed s/\n// | sed s/\ //)
 ipc_error="IPC_LOCK capability is not enabled. If you are running a docker container, add the capability using the '--cap-add' option."
 
