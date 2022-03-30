@@ -9,9 +9,9 @@ namespace ApiSdk.Models.Microsoft.Graph {
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>Optional. The altitude (height), in feet,  above sea level for the item. Read-only.</summary>
         public double? Altitude { get; set; }
-        /// <summary>Optional. The latitude, in decimal, for the item. Writable on OneDrive Personal.</summary>
+        /// <summary>Optional. The latitude, in decimal, for the item. Read-only.</summary>
         public double? Latitude { get; set; }
-        /// <summary>Optional. The longitude, in decimal, for the item. Writable on OneDrive Personal.</summary>
+        /// <summary>Optional. The longitude, in decimal, for the item. Read-only.</summary>
         public double? Longitude { get; set; }
         /// <summary>
         /// Instantiates a new geoCoordinates and sets the default values.
@@ -23,7 +23,7 @@ namespace ApiSdk.Models.Microsoft.Graph {
         /// Creates a new instance of the appropriate class based on discriminator value
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         /// </summary>
-        public static GeoCoordinates CreateFromDiscriminatorValue(IParseNode parseNode) {
+        public static ApiSdk.Models.Microsoft.Graph.GeoCoordinates CreateFromDiscriminatorValue(IParseNode parseNode) {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
             return new GeoCoordinates();
         }

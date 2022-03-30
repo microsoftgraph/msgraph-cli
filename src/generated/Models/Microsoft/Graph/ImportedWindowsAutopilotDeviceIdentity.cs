@@ -18,12 +18,12 @@ namespace ApiSdk.Models.Microsoft.Graph {
         /// <summary>Serial number of the Windows autopilot device.</summary>
         public string SerialNumber { get; set; }
         /// <summary>Current state of the imported device.</summary>
-        public ImportedWindowsAutopilotDeviceIdentityState State { get; set; }
+        public ApiSdk.Models.Microsoft.Graph.ImportedWindowsAutopilotDeviceIdentityState State { get; set; }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         /// </summary>
-        public static new ImportedWindowsAutopilotDeviceIdentity CreateFromDiscriminatorValue(IParseNode parseNode) {
+        public static new ApiSdk.Models.Microsoft.Graph.ImportedWindowsAutopilotDeviceIdentity CreateFromDiscriminatorValue(IParseNode parseNode) {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
             return new ImportedWindowsAutopilotDeviceIdentity();
         }
@@ -38,7 +38,7 @@ namespace ApiSdk.Models.Microsoft.Graph {
                 {"importId", (o,n) => { (o as ImportedWindowsAutopilotDeviceIdentity).ImportId = n.GetStringValue(); } },
                 {"productKey", (o,n) => { (o as ImportedWindowsAutopilotDeviceIdentity).ProductKey = n.GetStringValue(); } },
                 {"serialNumber", (o,n) => { (o as ImportedWindowsAutopilotDeviceIdentity).SerialNumber = n.GetStringValue(); } },
-                {"state", (o,n) => { (o as ImportedWindowsAutopilotDeviceIdentity).State = n.GetObjectValue<ImportedWindowsAutopilotDeviceIdentityState>(ImportedWindowsAutopilotDeviceIdentityState.CreateFromDiscriminatorValue); } },
+                {"state", (o,n) => { (o as ImportedWindowsAutopilotDeviceIdentity).State = n.GetObjectValue<ApiSdk.Models.Microsoft.Graph.ImportedWindowsAutopilotDeviceIdentityState>(ApiSdk.Models.Microsoft.Graph.ImportedWindowsAutopilotDeviceIdentityState.CreateFromDiscriminatorValue); } },
             };
         }
         /// <summary>
@@ -54,7 +54,7 @@ namespace ApiSdk.Models.Microsoft.Graph {
             writer.WriteStringValue("importId", ImportId);
             writer.WriteStringValue("productKey", ProductKey);
             writer.WriteStringValue("serialNumber", SerialNumber);
-            writer.WriteObjectValue<ImportedWindowsAutopilotDeviceIdentityState>("state", State);
+            writer.WriteObjectValue<ApiSdk.Models.Microsoft.Graph.ImportedWindowsAutopilotDeviceIdentityState>("state", State);
         }
     }
 }

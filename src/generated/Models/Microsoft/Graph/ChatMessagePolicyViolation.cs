@@ -12,7 +12,7 @@ namespace ApiSdk.Models.Microsoft.Graph {
         /// <summary>Justification text provided by the sender of the message when overriding a policy violation.</summary>
         public string JustificationText { get; set; }
         /// <summary>Information to display to the message sender about why the message was flagged as a violation.</summary>
-        public ChatMessagePolicyViolationPolicyTip PolicyTip { get; set; }
+        public ApiSdk.Models.Microsoft.Graph.ChatMessagePolicyViolationPolicyTip PolicyTip { get; set; }
         /// <summary>Indicates the action taken by the user on a message blocked by the DLP provider. Supported values are: NoneOverrideReportFalsePositiveWhen the DLP provider is updating the message for blocking sensitive content, userAction is not required.</summary>
         public ChatMessagePolicyViolationUserActionTypes? UserAction { get; set; }
         /// <summary>Indicates what actions the sender may take in response to the policy violation. Supported values are: NoneAllowFalsePositiveOverride -- Allows the sender to declare the policyViolation to be an error in the DLP app and its rules, and allow readers to see the message again if the dlpAction had hidden it.AllowOverrideWithoutJustification -- Allows the sender to overriide the DLP violation and allow readers to see the message again if the dlpAction had hidden it, without needing to provide an explanation for doing so. AllowOverrideWithJustification -- Allows the sender to overriide the DLP violation and allow readers to see the message again if the dlpAction had hidden it, after providing an explanation for doing so.AllowOverrideWithoutJustification and AllowOverrideWithJustification are mutually exclusive.</summary>
@@ -27,7 +27,7 @@ namespace ApiSdk.Models.Microsoft.Graph {
         /// Creates a new instance of the appropriate class based on discriminator value
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         /// </summary>
-        public static ChatMessagePolicyViolation CreateFromDiscriminatorValue(IParseNode parseNode) {
+        public static ApiSdk.Models.Microsoft.Graph.ChatMessagePolicyViolation CreateFromDiscriminatorValue(IParseNode parseNode) {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
             return new ChatMessagePolicyViolation();
         }
@@ -38,7 +38,7 @@ namespace ApiSdk.Models.Microsoft.Graph {
             return new Dictionary<string, Action<T, IParseNode>> {
                 {"dlpAction", (o,n) => { (o as ChatMessagePolicyViolation).DlpAction = n.GetEnumValue<ChatMessagePolicyViolationDlpActionTypes>(); } },
                 {"justificationText", (o,n) => { (o as ChatMessagePolicyViolation).JustificationText = n.GetStringValue(); } },
-                {"policyTip", (o,n) => { (o as ChatMessagePolicyViolation).PolicyTip = n.GetObjectValue<ChatMessagePolicyViolationPolicyTip>(ChatMessagePolicyViolationPolicyTip.CreateFromDiscriminatorValue); } },
+                {"policyTip", (o,n) => { (o as ChatMessagePolicyViolation).PolicyTip = n.GetObjectValue<ApiSdk.Models.Microsoft.Graph.ChatMessagePolicyViolationPolicyTip>(ApiSdk.Models.Microsoft.Graph.ChatMessagePolicyViolationPolicyTip.CreateFromDiscriminatorValue); } },
                 {"userAction", (o,n) => { (o as ChatMessagePolicyViolation).UserAction = n.GetEnumValue<ChatMessagePolicyViolationUserActionTypes>(); } },
                 {"verdictDetails", (o,n) => { (o as ChatMessagePolicyViolation).VerdictDetails = n.GetEnumValue<ChatMessagePolicyViolationVerdictDetailsTypes>(); } },
             };
@@ -51,7 +51,7 @@ namespace ApiSdk.Models.Microsoft.Graph {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             writer.WriteEnumValue<ChatMessagePolicyViolationDlpActionTypes>("dlpAction", DlpAction);
             writer.WriteStringValue("justificationText", JustificationText);
-            writer.WriteObjectValue<ChatMessagePolicyViolationPolicyTip>("policyTip", PolicyTip);
+            writer.WriteObjectValue<ApiSdk.Models.Microsoft.Graph.ChatMessagePolicyViolationPolicyTip>("policyTip", PolicyTip);
             writer.WriteEnumValue<ChatMessagePolicyViolationUserActionTypes>("userAction", UserAction);
             writer.WriteEnumValue<ChatMessagePolicyViolationVerdictDetailsTypes>("verdictDetails", VerdictDetails);
             writer.WriteAdditionalData(AdditionalData);

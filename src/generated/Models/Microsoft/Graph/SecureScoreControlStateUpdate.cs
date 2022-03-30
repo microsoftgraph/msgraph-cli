@@ -7,10 +7,15 @@ namespace ApiSdk.Models.Microsoft.Graph {
     public class SecureScoreControlStateUpdate : IAdditionalDataHolder, IParsable {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
+        /// <summary>Assigns the control to the user who will take the action.</summary>
         public string AssignedTo { get; set; }
+        /// <summary>Provides optional comment about the control.</summary>
         public string Comment { get; set; }
+        /// <summary>State of the control, which can be modified via a PATCH command (for example, ignored, thirdParty).</summary>
         public string State { get; set; }
+        /// <summary>ID of the user who updated tenant state.</summary>
         public string UpdatedBy { get; set; }
+        /// <summary>Time at which the control state was updated.</summary>
         public DateTimeOffset? UpdatedDateTime { get; set; }
         /// <summary>
         /// Instantiates a new secureScoreControlStateUpdate and sets the default values.
@@ -22,7 +27,7 @@ namespace ApiSdk.Models.Microsoft.Graph {
         /// Creates a new instance of the appropriate class based on discriminator value
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         /// </summary>
-        public static SecureScoreControlStateUpdate CreateFromDiscriminatorValue(IParseNode parseNode) {
+        public static ApiSdk.Models.Microsoft.Graph.SecureScoreControlStateUpdate CreateFromDiscriminatorValue(IParseNode parseNode) {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
             return new SecureScoreControlStateUpdate();
         }

@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 namespace ApiSdk.Sites.Item.Onenote.Notebooks.Item.Sections.Item.CopyToSectionGroup {
+    /// <summary>Provides operations to call the copyToSectionGroup method.</summary>
     public class CopyToSectionGroupRequestBody : IAdditionalDataHolder, IParsable {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
@@ -22,7 +23,7 @@ namespace ApiSdk.Sites.Item.Onenote.Notebooks.Item.Sections.Item.CopyToSectionGr
         /// Creates a new instance of the appropriate class based on discriminator value
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         /// </summary>
-        public static CopyToSectionGroupRequestBody CreateFromDiscriminatorValue(IParseNode parseNode) {
+        public static ApiSdk.Sites.Item.Onenote.Notebooks.Item.Sections.Item.CopyToSectionGroup.CopyToSectionGroupRequestBody CreateFromDiscriminatorValue(IParseNode parseNode) {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
             return new CopyToSectionGroupRequestBody();
         }

@@ -8,7 +8,7 @@ namespace ApiSdk.Models.Microsoft.Graph {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
         public string Id { get; set; }
-        public List<KeyValue> Properties { get; set; }
+        public List<ApiSdk.Models.Microsoft.Graph.KeyValue> Properties { get; set; }
         public string Type { get; set; }
         /// <summary>
         /// Instantiates a new addIn and sets the default values.
@@ -20,7 +20,7 @@ namespace ApiSdk.Models.Microsoft.Graph {
         /// Creates a new instance of the appropriate class based on discriminator value
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         /// </summary>
-        public static AddIn CreateFromDiscriminatorValue(IParseNode parseNode) {
+        public static ApiSdk.Models.Microsoft.Graph.AddIn CreateFromDiscriminatorValue(IParseNode parseNode) {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
             return new AddIn();
         }
@@ -30,7 +30,7 @@ namespace ApiSdk.Models.Microsoft.Graph {
         public IDictionary<string, Action<T, IParseNode>> GetFieldDeserializers<T>() {
             return new Dictionary<string, Action<T, IParseNode>> {
                 {"id", (o,n) => { (o as AddIn).Id = n.GetStringValue(); } },
-                {"properties", (o,n) => { (o as AddIn).Properties = n.GetCollectionOfObjectValues<KeyValue>(KeyValue.CreateFromDiscriminatorValue).ToList(); } },
+                {"properties", (o,n) => { (o as AddIn).Properties = n.GetCollectionOfObjectValues<ApiSdk.Models.Microsoft.Graph.KeyValue>(ApiSdk.Models.Microsoft.Graph.KeyValue.CreateFromDiscriminatorValue).ToList(); } },
                 {"type", (o,n) => { (o as AddIn).Type = n.GetStringValue(); } },
             };
         }
@@ -41,7 +41,7 @@ namespace ApiSdk.Models.Microsoft.Graph {
         public void Serialize(ISerializationWriter writer) {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             writer.WriteStringValue("id", Id);
-            writer.WriteCollectionOfObjectValues<KeyValue>("properties", Properties);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.Microsoft.Graph.KeyValue>("properties", Properties);
             writer.WriteStringValue("type", Type);
             writer.WriteAdditionalData(AdditionalData);
         }

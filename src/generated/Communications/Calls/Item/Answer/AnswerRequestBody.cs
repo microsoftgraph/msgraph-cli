@@ -5,11 +5,13 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 namespace ApiSdk.Communications.Calls.Item.Answer {
+    /// <summary>Provides operations to call the answer method.</summary>
     public class AnswerRequestBody : IAdditionalDataHolder, IParsable {
         public List<Modality?> AcceptedModalities { get; set; }
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
         public string CallbackUri { get; set; }
+        public IncomingCallOptions CallOptions { get; set; }
         public ApiSdk.Models.Microsoft.Graph.MediaConfig MediaConfig { get; set; }
         public int? ParticipantCapacity { get; set; }
         /// <summary>
@@ -22,7 +24,7 @@ namespace ApiSdk.Communications.Calls.Item.Answer {
         /// Creates a new instance of the appropriate class based on discriminator value
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         /// </summary>
-        public static AnswerRequestBody CreateFromDiscriminatorValue(IParseNode parseNode) {
+        public static ApiSdk.Communications.Calls.Item.Answer.AnswerRequestBody CreateFromDiscriminatorValue(IParseNode parseNode) {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
             return new AnswerRequestBody();
         }
@@ -33,6 +35,7 @@ namespace ApiSdk.Communications.Calls.Item.Answer {
             return new Dictionary<string, Action<T, IParseNode>> {
                 {"acceptedModalities", (o,n) => { (o as AnswerRequestBody).AcceptedModalities = n.GetCollectionOfEnumValues<Modality>().ToList(); } },
                 {"callbackUri", (o,n) => { (o as AnswerRequestBody).CallbackUri = n.GetStringValue(); } },
+                {"callOptions", (o,n) => { (o as AnswerRequestBody).CallOptions = n.GetObjectValue<IncomingCallOptions>(IncomingCallOptions.CreateFromDiscriminatorValue); } },
                 {"mediaConfig", (o,n) => { (o as AnswerRequestBody).MediaConfig = n.GetObjectValue<ApiSdk.Models.Microsoft.Graph.MediaConfig>(ApiSdk.Models.Microsoft.Graph.MediaConfig.CreateFromDiscriminatorValue); } },
                 {"participantCapacity", (o,n) => { (o as AnswerRequestBody).ParticipantCapacity = n.GetIntValue(); } },
             };
@@ -45,6 +48,7 @@ namespace ApiSdk.Communications.Calls.Item.Answer {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             writer.WriteCollectionOfEnumValues<Modality>("acceptedModalities", AcceptedModalities);
             writer.WriteStringValue("callbackUri", CallbackUri);
+            writer.WriteObjectValue<IncomingCallOptions>("callOptions", CallOptions);
             writer.WriteObjectValue<ApiSdk.Models.Microsoft.Graph.MediaConfig>("mediaConfig", MediaConfig);
             writer.WriteIntValue("participantCapacity", ParticipantCapacity);
             writer.WriteAdditionalData(AdditionalData);

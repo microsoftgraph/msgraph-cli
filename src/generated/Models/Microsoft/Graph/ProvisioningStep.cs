@@ -10,7 +10,7 @@ namespace ApiSdk.Models.Microsoft.Graph {
         /// <summary>Summary of what occurred during the step.</summary>
         public string Description { get; set; }
         /// <summary>Details of what occurred during the step.</summary>
-        public DetailsInfo Details { get; set; }
+        public ApiSdk.Models.Microsoft.Graph.DetailsInfo Details { get; set; }
         /// <summary>Name of the step.</summary>
         public string Name { get; set; }
         /// <summary>Type of step. Possible values are: import, scoping, matching, processing, referenceResolution, export, unknownFutureValue.</summary>
@@ -27,7 +27,7 @@ namespace ApiSdk.Models.Microsoft.Graph {
         /// Creates a new instance of the appropriate class based on discriminator value
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         /// </summary>
-        public static ProvisioningStep CreateFromDiscriminatorValue(IParseNode parseNode) {
+        public static ApiSdk.Models.Microsoft.Graph.ProvisioningStep CreateFromDiscriminatorValue(IParseNode parseNode) {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
             return new ProvisioningStep();
         }
@@ -37,7 +37,7 @@ namespace ApiSdk.Models.Microsoft.Graph {
         public IDictionary<string, Action<T, IParseNode>> GetFieldDeserializers<T>() {
             return new Dictionary<string, Action<T, IParseNode>> {
                 {"description", (o,n) => { (o as ProvisioningStep).Description = n.GetStringValue(); } },
-                {"details", (o,n) => { (o as ProvisioningStep).Details = n.GetObjectValue<DetailsInfo>(DetailsInfo.CreateFromDiscriminatorValue); } },
+                {"details", (o,n) => { (o as ProvisioningStep).Details = n.GetObjectValue<ApiSdk.Models.Microsoft.Graph.DetailsInfo>(ApiSdk.Models.Microsoft.Graph.DetailsInfo.CreateFromDiscriminatorValue); } },
                 {"name", (o,n) => { (o as ProvisioningStep).Name = n.GetStringValue(); } },
                 {"provisioningStepType", (o,n) => { (o as ProvisioningStep).ProvisioningStepType = n.GetEnumValue<ProvisioningStepType>(); } },
                 {"status", (o,n) => { (o as ProvisioningStep).Status = n.GetEnumValue<ProvisioningResult>(); } },
@@ -50,7 +50,7 @@ namespace ApiSdk.Models.Microsoft.Graph {
         public void Serialize(ISerializationWriter writer) {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             writer.WriteStringValue("description", Description);
-            writer.WriteObjectValue<DetailsInfo>("details", Details);
+            writer.WriteObjectValue<ApiSdk.Models.Microsoft.Graph.DetailsInfo>("details", Details);
             writer.WriteStringValue("name", Name);
             writer.WriteEnumValue<ProvisioningStepType>("provisioningStepType", ProvisioningStepType);
             writer.WriteEnumValue<ProvisioningResult>("status", Status);

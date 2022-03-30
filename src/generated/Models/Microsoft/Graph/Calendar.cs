@@ -8,14 +8,14 @@ namespace ApiSdk.Models.Microsoft.Graph {
         /// <summary>Represent the online meeting service providers that can be used to create online meetings in this calendar. Possible values are: unknown, skypeForBusiness, skypeForConsumer, teamsForBusiness.</summary>
         public List<OnlineMeetingProviderType?> AllowedOnlineMeetingProviders { get; set; }
         /// <summary>The permissions of the users with whom the calendar is shared.</summary>
-        public List<CalendarPermission> CalendarPermissions { get; set; }
+        public List<ApiSdk.Models.Microsoft.Graph.CalendarPermission> CalendarPermissions { get; set; }
         /// <summary>The calendar view for the calendar. Navigation property. Read-only.</summary>
-        public List<Event> CalendarView { get; set; }
-        /// <summary>true if the user can write to the calendar, false otherwise. This property is true for the user who created the calendar. This property is also true for a user who has been shared a calendar and granted write access, through an Outlook client or the corresponding calendarPermission resource. Read-only.</summary>
+        public List<ApiSdk.Models.Microsoft.Graph.Event> CalendarView { get; set; }
+        /// <summary>true if the user can write to the calendar, false otherwise. This property is true for the user who created the calendar. This property is also true for a user who has been shared a calendar and granted write access.</summary>
         public bool? CanEdit { get; set; }
-        /// <summary>true if the user has the permission to share the calendar, false otherwise. Only the user who created the calendar can share it. Read-only.</summary>
+        /// <summary>true if the user has the permission to share the calendar, false otherwise. Only the user who created the calendar can share it.</summary>
         public bool? CanShare { get; set; }
-        /// <summary>true if the user can read calendar items that have been marked private, false otherwise. This property is set through an Outlook client or the corresponding calendarPermission resource. Read-only.</summary>
+        /// <summary>true if the user can read calendar items that have been marked private, false otherwise.</summary>
         public bool? CanViewPrivateItems { get; set; }
         /// <summary>Identifies the version of the calendar object. Every time the calendar is changed, changeKey changes as well. This allows Exchange to apply changes to the correct version of the object. Read-only.</summary>
         public string ChangeKey { get; set; }
@@ -24,8 +24,8 @@ namespace ApiSdk.Models.Microsoft.Graph {
         /// <summary>The default online meeting provider for meetings sent from this calendar. Possible values are: unknown, skypeForBusiness, skypeForConsumer, teamsForBusiness.</summary>
         public OnlineMeetingProviderType? DefaultOnlineMeetingProvider { get; set; }
         /// <summary>The events in the calendar. Navigation property. Read-only.</summary>
-        public List<Event> Events { get; set; }
-        /// <summary>The calendar color, expressed in a hex color code of three hexadecimal values, each ranging from 00 to FF and representing the red, green, or blue components of the color in the RGB color space. If the user has never explicitly set a color for the calendar, this property is  empty.</summary>
+        public List<ApiSdk.Models.Microsoft.Graph.Event> Events { get; set; }
+        /// <summary>The calendar color, expressed in a hex color code of three hexadecimal values, each ranging from 00 to FF and representing the red, green, or blue components of the color in the RGB color space. If the user has never explicitly set a color for the calendar, this property is empty. Read-only.</summary>
         public string HexColor { get; set; }
         /// <summary>true if this is the default calendar where new events are created by default, false otherwise.</summary>
         public bool? IsDefaultCalendar { get; set; }
@@ -34,18 +34,18 @@ namespace ApiSdk.Models.Microsoft.Graph {
         /// <summary>Indicates whether this user calendar supports tracking of meeting responses. Only meeting invites sent from users' primary calendars support tracking of meeting responses.</summary>
         public bool? IsTallyingResponses { get; set; }
         /// <summary>The collection of multi-value extended properties defined for the calendar. Read-only. Nullable.</summary>
-        public List<MultiValueLegacyExtendedProperty> MultiValueExtendedProperties { get; set; }
+        public List<ApiSdk.Models.Microsoft.Graph.MultiValueLegacyExtendedProperty> MultiValueExtendedProperties { get; set; }
         /// <summary>The calendar name.</summary>
         public string Name { get; set; }
-        /// <summary>If set, this represents the user who created or added the calendar. For a calendar that the user created or added, the owner property is set to the user. For a calendar shared with the user, the owner property is set to the person who shared that calendar with the user. Read-only.</summary>
-        public EmailAddress Owner { get; set; }
+        /// <summary>If set, this represents the user who created or added the calendar. For a calendar that the user created or added, the owner property is set to the user. For a calendar shared with the user, the owner property is set to the person who shared that calendar with the user.</summary>
+        public ApiSdk.Models.Microsoft.Graph.EmailAddress Owner { get; set; }
         /// <summary>The collection of single-value extended properties defined for the calendar. Read-only. Nullable.</summary>
-        public List<SingleValueLegacyExtendedProperty> SingleValueExtendedProperties { get; set; }
+        public List<ApiSdk.Models.Microsoft.Graph.SingleValueLegacyExtendedProperty> SingleValueExtendedProperties { get; set; }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         /// </summary>
-        public static new Calendar CreateFromDiscriminatorValue(IParseNode parseNode) {
+        public static new ApiSdk.Models.Microsoft.Graph.Calendar CreateFromDiscriminatorValue(IParseNode parseNode) {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
             return new Calendar();
         }
@@ -55,23 +55,23 @@ namespace ApiSdk.Models.Microsoft.Graph {
         public new IDictionary<string, Action<T, IParseNode>> GetFieldDeserializers<T>() {
             return new Dictionary<string, Action<T, IParseNode>>(base.GetFieldDeserializers<T>()) {
                 {"allowedOnlineMeetingProviders", (o,n) => { (o as Calendar).AllowedOnlineMeetingProviders = n.GetCollectionOfEnumValues<OnlineMeetingProviderType>().ToList(); } },
-                {"calendarPermissions", (o,n) => { (o as Calendar).CalendarPermissions = n.GetCollectionOfObjectValues<CalendarPermission>(CalendarPermission.CreateFromDiscriminatorValue).ToList(); } },
-                {"calendarView", (o,n) => { (o as Calendar).CalendarView = n.GetCollectionOfObjectValues<Event>(Event.CreateFromDiscriminatorValue).ToList(); } },
+                {"calendarPermissions", (o,n) => { (o as Calendar).CalendarPermissions = n.GetCollectionOfObjectValues<ApiSdk.Models.Microsoft.Graph.CalendarPermission>(ApiSdk.Models.Microsoft.Graph.CalendarPermission.CreateFromDiscriminatorValue).ToList(); } },
+                {"calendarView", (o,n) => { (o as Calendar).CalendarView = n.GetCollectionOfObjectValues<ApiSdk.Models.Microsoft.Graph.Event>(ApiSdk.Models.Microsoft.Graph.Event.CreateFromDiscriminatorValue).ToList(); } },
                 {"canEdit", (o,n) => { (o as Calendar).CanEdit = n.GetBoolValue(); } },
                 {"canShare", (o,n) => { (o as Calendar).CanShare = n.GetBoolValue(); } },
                 {"canViewPrivateItems", (o,n) => { (o as Calendar).CanViewPrivateItems = n.GetBoolValue(); } },
                 {"changeKey", (o,n) => { (o as Calendar).ChangeKey = n.GetStringValue(); } },
                 {"color", (o,n) => { (o as Calendar).Color = n.GetEnumValue<CalendarColor>(); } },
                 {"defaultOnlineMeetingProvider", (o,n) => { (o as Calendar).DefaultOnlineMeetingProvider = n.GetEnumValue<OnlineMeetingProviderType>(); } },
-                {"events", (o,n) => { (o as Calendar).Events = n.GetCollectionOfObjectValues<Event>(Event.CreateFromDiscriminatorValue).ToList(); } },
+                {"events", (o,n) => { (o as Calendar).Events = n.GetCollectionOfObjectValues<ApiSdk.Models.Microsoft.Graph.Event>(ApiSdk.Models.Microsoft.Graph.Event.CreateFromDiscriminatorValue).ToList(); } },
                 {"hexColor", (o,n) => { (o as Calendar).HexColor = n.GetStringValue(); } },
                 {"isDefaultCalendar", (o,n) => { (o as Calendar).IsDefaultCalendar = n.GetBoolValue(); } },
                 {"isRemovable", (o,n) => { (o as Calendar).IsRemovable = n.GetBoolValue(); } },
                 {"isTallyingResponses", (o,n) => { (o as Calendar).IsTallyingResponses = n.GetBoolValue(); } },
-                {"multiValueExtendedProperties", (o,n) => { (o as Calendar).MultiValueExtendedProperties = n.GetCollectionOfObjectValues<MultiValueLegacyExtendedProperty>(MultiValueLegacyExtendedProperty.CreateFromDiscriminatorValue).ToList(); } },
+                {"multiValueExtendedProperties", (o,n) => { (o as Calendar).MultiValueExtendedProperties = n.GetCollectionOfObjectValues<ApiSdk.Models.Microsoft.Graph.MultiValueLegacyExtendedProperty>(ApiSdk.Models.Microsoft.Graph.MultiValueLegacyExtendedProperty.CreateFromDiscriminatorValue).ToList(); } },
                 {"name", (o,n) => { (o as Calendar).Name = n.GetStringValue(); } },
-                {"owner", (o,n) => { (o as Calendar).Owner = n.GetObjectValue<EmailAddress>(EmailAddress.CreateFromDiscriminatorValue); } },
-                {"singleValueExtendedProperties", (o,n) => { (o as Calendar).SingleValueExtendedProperties = n.GetCollectionOfObjectValues<SingleValueLegacyExtendedProperty>(SingleValueLegacyExtendedProperty.CreateFromDiscriminatorValue).ToList(); } },
+                {"owner", (o,n) => { (o as Calendar).Owner = n.GetObjectValue<ApiSdk.Models.Microsoft.Graph.EmailAddress>(ApiSdk.Models.Microsoft.Graph.EmailAddress.CreateFromDiscriminatorValue); } },
+                {"singleValueExtendedProperties", (o,n) => { (o as Calendar).SingleValueExtendedProperties = n.GetCollectionOfObjectValues<ApiSdk.Models.Microsoft.Graph.SingleValueLegacyExtendedProperty>(ApiSdk.Models.Microsoft.Graph.SingleValueLegacyExtendedProperty.CreateFromDiscriminatorValue).ToList(); } },
             };
         }
         /// <summary>
@@ -82,23 +82,23 @@ namespace ApiSdk.Models.Microsoft.Graph {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             base.Serialize(writer);
             writer.WriteCollectionOfEnumValues<OnlineMeetingProviderType>("allowedOnlineMeetingProviders", AllowedOnlineMeetingProviders);
-            writer.WriteCollectionOfObjectValues<CalendarPermission>("calendarPermissions", CalendarPermissions);
-            writer.WriteCollectionOfObjectValues<Event>("calendarView", CalendarView);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.Microsoft.Graph.CalendarPermission>("calendarPermissions", CalendarPermissions);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.Microsoft.Graph.Event>("calendarView", CalendarView);
             writer.WriteBoolValue("canEdit", CanEdit);
             writer.WriteBoolValue("canShare", CanShare);
             writer.WriteBoolValue("canViewPrivateItems", CanViewPrivateItems);
             writer.WriteStringValue("changeKey", ChangeKey);
             writer.WriteEnumValue<CalendarColor>("color", Color);
             writer.WriteEnumValue<OnlineMeetingProviderType>("defaultOnlineMeetingProvider", DefaultOnlineMeetingProvider);
-            writer.WriteCollectionOfObjectValues<Event>("events", Events);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.Microsoft.Graph.Event>("events", Events);
             writer.WriteStringValue("hexColor", HexColor);
             writer.WriteBoolValue("isDefaultCalendar", IsDefaultCalendar);
             writer.WriteBoolValue("isRemovable", IsRemovable);
             writer.WriteBoolValue("isTallyingResponses", IsTallyingResponses);
-            writer.WriteCollectionOfObjectValues<MultiValueLegacyExtendedProperty>("multiValueExtendedProperties", MultiValueExtendedProperties);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.Microsoft.Graph.MultiValueLegacyExtendedProperty>("multiValueExtendedProperties", MultiValueExtendedProperties);
             writer.WriteStringValue("name", Name);
-            writer.WriteObjectValue<EmailAddress>("owner", Owner);
-            writer.WriteCollectionOfObjectValues<SingleValueLegacyExtendedProperty>("singleValueExtendedProperties", SingleValueExtendedProperties);
+            writer.WriteObjectValue<ApiSdk.Models.Microsoft.Graph.EmailAddress>("owner", Owner);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.Microsoft.Graph.SingleValueLegacyExtendedProperty>("singleValueExtendedProperties", SingleValueExtendedProperties);
         }
     }
 }

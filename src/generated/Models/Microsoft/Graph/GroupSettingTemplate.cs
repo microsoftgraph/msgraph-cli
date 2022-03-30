@@ -7,15 +7,15 @@ namespace ApiSdk.Models.Microsoft.Graph {
     public class GroupSettingTemplate : DirectoryObject, IParsable {
         /// <summary>Description of the template.</summary>
         public string Description { get; set; }
-        /// <summary>Display name of the template.</summary>
+        /// <summary>Display name of the template. The template named Group.Unified can be used to configure tenant-wide Microsoft 365 group settings, while the template named Group.Unified.Guest can be used to configure group-specific settings.</summary>
         public string DisplayName { get; set; }
         /// <summary>Collection of settingTemplateValues that list the set of available settings, defaults and types that make up this template.</summary>
-        public List<SettingTemplateValue> Values { get; set; }
+        public List<ApiSdk.Models.Microsoft.Graph.SettingTemplateValue> Values { get; set; }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         /// </summary>
-        public static new GroupSettingTemplate CreateFromDiscriminatorValue(IParseNode parseNode) {
+        public static new ApiSdk.Models.Microsoft.Graph.GroupSettingTemplate CreateFromDiscriminatorValue(IParseNode parseNode) {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
             return new GroupSettingTemplate();
         }
@@ -26,7 +26,7 @@ namespace ApiSdk.Models.Microsoft.Graph {
             return new Dictionary<string, Action<T, IParseNode>>(base.GetFieldDeserializers<T>()) {
                 {"description", (o,n) => { (o as GroupSettingTemplate).Description = n.GetStringValue(); } },
                 {"displayName", (o,n) => { (o as GroupSettingTemplate).DisplayName = n.GetStringValue(); } },
-                {"values", (o,n) => { (o as GroupSettingTemplate).Values = n.GetCollectionOfObjectValues<SettingTemplateValue>(SettingTemplateValue.CreateFromDiscriminatorValue).ToList(); } },
+                {"values", (o,n) => { (o as GroupSettingTemplate).Values = n.GetCollectionOfObjectValues<ApiSdk.Models.Microsoft.Graph.SettingTemplateValue>(ApiSdk.Models.Microsoft.Graph.SettingTemplateValue.CreateFromDiscriminatorValue).ToList(); } },
             };
         }
         /// <summary>
@@ -38,7 +38,7 @@ namespace ApiSdk.Models.Microsoft.Graph {
             base.Serialize(writer);
             writer.WriteStringValue("description", Description);
             writer.WriteStringValue("displayName", DisplayName);
-            writer.WriteCollectionOfObjectValues<SettingTemplateValue>("values", Values);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.Microsoft.Graph.SettingTemplateValue>("values", Values);
         }
     }
 }

@@ -12,12 +12,12 @@ namespace ApiSdk.Models.Microsoft.Graph {
         /// <summary>A percentage that represents the likelhood of all the attendees attending.</summary>
         public double? Confidence { get; set; }
         /// <summary>An array that specifies the name and geographic location of each meeting location for this meeting suggestion.</summary>
-        public List<Location> Locations { get; set; }
+        public List<ApiSdk.Models.Microsoft.Graph.Location> Locations { get; set; }
         /// <summary>A time period suggested for the meeting.</summary>
-        public TimeSlot MeetingTimeSlot { get; set; }
+        public ApiSdk.Models.Microsoft.Graph.TimeSlot MeetingTimeSlot { get; set; }
         /// <summary>Order of meeting time suggestions sorted by their computed confidence value from high to low, then by chronology if there are suggestions with the same confidence.</summary>
         public int? Order { get; set; }
-        /// <summary>Availability of the meeting organizer for this meeting suggestion. Possible values are: free, tentative, busy, oof, workingElsewhere, unknown.</summary>
+        /// <summary>Availability of the meeting organizer for this meeting suggestion. The possible values are: free, tentative, busy, oof, workingElsewhere, unknown.</summary>
         public FreeBusyStatus? OrganizerAvailability { get; set; }
         /// <summary>Reason for suggesting the meeting time.</summary>
         public string SuggestionReason { get; set; }
@@ -31,7 +31,7 @@ namespace ApiSdk.Models.Microsoft.Graph {
         /// Creates a new instance of the appropriate class based on discriminator value
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         /// </summary>
-        public static MeetingTimeSuggestion CreateFromDiscriminatorValue(IParseNode parseNode) {
+        public static ApiSdk.Models.Microsoft.Graph.MeetingTimeSuggestion CreateFromDiscriminatorValue(IParseNode parseNode) {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
             return new MeetingTimeSuggestion();
         }
@@ -42,8 +42,8 @@ namespace ApiSdk.Models.Microsoft.Graph {
             return new Dictionary<string, Action<T, IParseNode>> {
                 {"attendeeAvailability", (o,n) => { (o as MeetingTimeSuggestion).AttendeeAvailability = n.GetCollectionOfObjectValues<ApiSdk.Models.Microsoft.Graph.AttendeeAvailability>(ApiSdk.Models.Microsoft.Graph.AttendeeAvailability.CreateFromDiscriminatorValue).ToList(); } },
                 {"confidence", (o,n) => { (o as MeetingTimeSuggestion).Confidence = n.GetDoubleValue(); } },
-                {"locations", (o,n) => { (o as MeetingTimeSuggestion).Locations = n.GetCollectionOfObjectValues<Location>(Location.CreateFromDiscriminatorValue).ToList(); } },
-                {"meetingTimeSlot", (o,n) => { (o as MeetingTimeSuggestion).MeetingTimeSlot = n.GetObjectValue<TimeSlot>(TimeSlot.CreateFromDiscriminatorValue); } },
+                {"locations", (o,n) => { (o as MeetingTimeSuggestion).Locations = n.GetCollectionOfObjectValues<ApiSdk.Models.Microsoft.Graph.Location>(ApiSdk.Models.Microsoft.Graph.Location.CreateFromDiscriminatorValue).ToList(); } },
+                {"meetingTimeSlot", (o,n) => { (o as MeetingTimeSuggestion).MeetingTimeSlot = n.GetObjectValue<ApiSdk.Models.Microsoft.Graph.TimeSlot>(ApiSdk.Models.Microsoft.Graph.TimeSlot.CreateFromDiscriminatorValue); } },
                 {"order", (o,n) => { (o as MeetingTimeSuggestion).Order = n.GetIntValue(); } },
                 {"organizerAvailability", (o,n) => { (o as MeetingTimeSuggestion).OrganizerAvailability = n.GetEnumValue<FreeBusyStatus>(); } },
                 {"suggestionReason", (o,n) => { (o as MeetingTimeSuggestion).SuggestionReason = n.GetStringValue(); } },
@@ -57,8 +57,8 @@ namespace ApiSdk.Models.Microsoft.Graph {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             writer.WriteCollectionOfObjectValues<ApiSdk.Models.Microsoft.Graph.AttendeeAvailability>("attendeeAvailability", AttendeeAvailability);
             writer.WriteDoubleValue("confidence", Confidence);
-            writer.WriteCollectionOfObjectValues<Location>("locations", Locations);
-            writer.WriteObjectValue<TimeSlot>("meetingTimeSlot", MeetingTimeSlot);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.Microsoft.Graph.Location>("locations", Locations);
+            writer.WriteObjectValue<ApiSdk.Models.Microsoft.Graph.TimeSlot>("meetingTimeSlot", MeetingTimeSlot);
             writer.WriteIntValue("order", Order);
             writer.WriteEnumValue<FreeBusyStatus>("organizerAvailability", OrganizerAvailability);
             writer.WriteStringValue("suggestionReason", SuggestionReason);

@@ -10,7 +10,7 @@ namespace ApiSdk.Models.Microsoft.Graph {
         /// <summary>Localized display name of the policy file of an agreement. The localized display name is shown to end users who view the agreement.</summary>
         public string DisplayName { get; set; }
         /// <summary>Data that represents the terms of use PDF document. Read-only.</summary>
-        public AgreementFileData FileData { get; set; }
+        public ApiSdk.Models.Microsoft.Graph.AgreementFileData FileData { get; set; }
         /// <summary>Name of the agreement file (for example, TOU.pdf). Read-only.</summary>
         public string FileName { get; set; }
         /// <summary>If none of the languages matches the client preference, indicates whether this is the default agreement file . If none of the files are marked as default, the first one is treated as the default. Read-only.</summary>
@@ -23,7 +23,7 @@ namespace ApiSdk.Models.Microsoft.Graph {
         /// Creates a new instance of the appropriate class based on discriminator value
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         /// </summary>
-        public static new AgreementFileProperties CreateFromDiscriminatorValue(IParseNode parseNode) {
+        public static new ApiSdk.Models.Microsoft.Graph.AgreementFileProperties CreateFromDiscriminatorValue(IParseNode parseNode) {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
             return new AgreementFileProperties();
         }
@@ -34,7 +34,7 @@ namespace ApiSdk.Models.Microsoft.Graph {
             return new Dictionary<string, Action<T, IParseNode>>(base.GetFieldDeserializers<T>()) {
                 {"createdDateTime", (o,n) => { (o as AgreementFileProperties).CreatedDateTime = n.GetDateTimeOffsetValue(); } },
                 {"displayName", (o,n) => { (o as AgreementFileProperties).DisplayName = n.GetStringValue(); } },
-                {"fileData", (o,n) => { (o as AgreementFileProperties).FileData = n.GetObjectValue<AgreementFileData>(AgreementFileData.CreateFromDiscriminatorValue); } },
+                {"fileData", (o,n) => { (o as AgreementFileProperties).FileData = n.GetObjectValue<ApiSdk.Models.Microsoft.Graph.AgreementFileData>(ApiSdk.Models.Microsoft.Graph.AgreementFileData.CreateFromDiscriminatorValue); } },
                 {"fileName", (o,n) => { (o as AgreementFileProperties).FileName = n.GetStringValue(); } },
                 {"isDefault", (o,n) => { (o as AgreementFileProperties).IsDefault = n.GetBoolValue(); } },
                 {"isMajorVersion", (o,n) => { (o as AgreementFileProperties).IsMajorVersion = n.GetBoolValue(); } },
@@ -50,7 +50,7 @@ namespace ApiSdk.Models.Microsoft.Graph {
             base.Serialize(writer);
             writer.WriteDateTimeOffsetValue("createdDateTime", CreatedDateTime);
             writer.WriteStringValue("displayName", DisplayName);
-            writer.WriteObjectValue<AgreementFileData>("fileData", FileData);
+            writer.WriteObjectValue<ApiSdk.Models.Microsoft.Graph.AgreementFileData>("fileData", FileData);
             writer.WriteStringValue("fileName", FileName);
             writer.WriteBoolValue("isDefault", IsDefault);
             writer.WriteBoolValue("isMajorVersion", IsMajorVersion);

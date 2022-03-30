@@ -10,11 +10,11 @@ namespace ApiSdk.Models.Microsoft.Graph {
         /// <summary>The automatic reply message.</summary>
         public string Message { get; set; }
         /// <summary>The language that the automatic reply message is in.</summary>
-        public LocaleInfo MessageLanguage { get; set; }
+        public ApiSdk.Models.Microsoft.Graph.LocaleInfo MessageLanguage { get; set; }
         /// <summary>The date and time that automatic replies are set to end.</summary>
-        public DateTimeTimeZone ScheduledEndTime { get; set; }
+        public ApiSdk.Models.Microsoft.Graph.DateTimeTimeZone ScheduledEndTime { get; set; }
         /// <summary>The date and time that automatic replies are set to begin.</summary>
-        public DateTimeTimeZone ScheduledStartTime { get; set; }
+        public ApiSdk.Models.Microsoft.Graph.DateTimeTimeZone ScheduledStartTime { get; set; }
         /// <summary>
         /// Instantiates a new automaticRepliesMailTips and sets the default values.
         /// </summary>
@@ -25,7 +25,7 @@ namespace ApiSdk.Models.Microsoft.Graph {
         /// Creates a new instance of the appropriate class based on discriminator value
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         /// </summary>
-        public static AutomaticRepliesMailTips CreateFromDiscriminatorValue(IParseNode parseNode) {
+        public static ApiSdk.Models.Microsoft.Graph.AutomaticRepliesMailTips CreateFromDiscriminatorValue(IParseNode parseNode) {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
             return new AutomaticRepliesMailTips();
         }
@@ -35,9 +35,9 @@ namespace ApiSdk.Models.Microsoft.Graph {
         public IDictionary<string, Action<T, IParseNode>> GetFieldDeserializers<T>() {
             return new Dictionary<string, Action<T, IParseNode>> {
                 {"message", (o,n) => { (o as AutomaticRepliesMailTips).Message = n.GetStringValue(); } },
-                {"messageLanguage", (o,n) => { (o as AutomaticRepliesMailTips).MessageLanguage = n.GetObjectValue<LocaleInfo>(LocaleInfo.CreateFromDiscriminatorValue); } },
-                {"scheduledEndTime", (o,n) => { (o as AutomaticRepliesMailTips).ScheduledEndTime = n.GetObjectValue<DateTimeTimeZone>(DateTimeTimeZone.CreateFromDiscriminatorValue); } },
-                {"scheduledStartTime", (o,n) => { (o as AutomaticRepliesMailTips).ScheduledStartTime = n.GetObjectValue<DateTimeTimeZone>(DateTimeTimeZone.CreateFromDiscriminatorValue); } },
+                {"messageLanguage", (o,n) => { (o as AutomaticRepliesMailTips).MessageLanguage = n.GetObjectValue<ApiSdk.Models.Microsoft.Graph.LocaleInfo>(ApiSdk.Models.Microsoft.Graph.LocaleInfo.CreateFromDiscriminatorValue); } },
+                {"scheduledEndTime", (o,n) => { (o as AutomaticRepliesMailTips).ScheduledEndTime = n.GetObjectValue<ApiSdk.Models.Microsoft.Graph.DateTimeTimeZone>(ApiSdk.Models.Microsoft.Graph.DateTimeTimeZone.CreateFromDiscriminatorValue); } },
+                {"scheduledStartTime", (o,n) => { (o as AutomaticRepliesMailTips).ScheduledStartTime = n.GetObjectValue<ApiSdk.Models.Microsoft.Graph.DateTimeTimeZone>(ApiSdk.Models.Microsoft.Graph.DateTimeTimeZone.CreateFromDiscriminatorValue); } },
             };
         }
         /// <summary>
@@ -47,9 +47,9 @@ namespace ApiSdk.Models.Microsoft.Graph {
         public void Serialize(ISerializationWriter writer) {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             writer.WriteStringValue("message", Message);
-            writer.WriteObjectValue<LocaleInfo>("messageLanguage", MessageLanguage);
-            writer.WriteObjectValue<DateTimeTimeZone>("scheduledEndTime", ScheduledEndTime);
-            writer.WriteObjectValue<DateTimeTimeZone>("scheduledStartTime", ScheduledStartTime);
+            writer.WriteObjectValue<ApiSdk.Models.Microsoft.Graph.LocaleInfo>("messageLanguage", MessageLanguage);
+            writer.WriteObjectValue<ApiSdk.Models.Microsoft.Graph.DateTimeTimeZone>("scheduledEndTime", ScheduledEndTime);
+            writer.WriteObjectValue<ApiSdk.Models.Microsoft.Graph.DateTimeTimeZone>("scheduledStartTime", ScheduledStartTime);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

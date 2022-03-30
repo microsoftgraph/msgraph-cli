@@ -7,9 +7,9 @@ namespace ApiSdk.Models.Microsoft.Graph {
     public class BookingQuestionAssignment : IAdditionalDataHolder, IParsable {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
-        /// <summary>Indicates whether it is mandatory to answer the custom question.</summary>
+        /// <summary>The ID of the custom question.</summary>
         public bool? IsRequired { get; set; }
-        /// <summary>If it is mandatory to answer the custom question.</summary>
+        /// <summary>Indicates whether it is mandatory to answer the custom question.</summary>
         public string QuestionId { get; set; }
         /// <summary>
         /// Instantiates a new bookingQuestionAssignment and sets the default values.
@@ -21,7 +21,7 @@ namespace ApiSdk.Models.Microsoft.Graph {
         /// Creates a new instance of the appropriate class based on discriminator value
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         /// </summary>
-        public static BookingQuestionAssignment CreateFromDiscriminatorValue(IParseNode parseNode) {
+        public static ApiSdk.Models.Microsoft.Graph.BookingQuestionAssignment CreateFromDiscriminatorValue(IParseNode parseNode) {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
             return new BookingQuestionAssignment();
         }

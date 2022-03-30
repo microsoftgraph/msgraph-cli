@@ -8,7 +8,7 @@ namespace ApiSdk.Models.Microsoft.Graph {
         /// <summary>Not yet documented</summary>
         public int? ConfigurationDeployedUserCount { get; set; }
         /// <summary>Not yet documented</summary>
-        public List<ManagedAppPolicyDeploymentSummaryPerApp> ConfigurationDeploymentSummaryPerApp { get; set; }
+        public List<ApiSdk.Models.Microsoft.Graph.ManagedAppPolicyDeploymentSummaryPerApp> ConfigurationDeploymentSummaryPerApp { get; set; }
         /// <summary>Not yet documented</summary>
         public string DisplayName { get; set; }
         /// <summary>Not yet documented</summary>
@@ -19,7 +19,7 @@ namespace ApiSdk.Models.Microsoft.Graph {
         /// Creates a new instance of the appropriate class based on discriminator value
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         /// </summary>
-        public static new ManagedAppPolicyDeploymentSummary CreateFromDiscriminatorValue(IParseNode parseNode) {
+        public static new ApiSdk.Models.Microsoft.Graph.ManagedAppPolicyDeploymentSummary CreateFromDiscriminatorValue(IParseNode parseNode) {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
             return new ManagedAppPolicyDeploymentSummary();
         }
@@ -29,7 +29,7 @@ namespace ApiSdk.Models.Microsoft.Graph {
         public new IDictionary<string, Action<T, IParseNode>> GetFieldDeserializers<T>() {
             return new Dictionary<string, Action<T, IParseNode>>(base.GetFieldDeserializers<T>()) {
                 {"configurationDeployedUserCount", (o,n) => { (o as ManagedAppPolicyDeploymentSummary).ConfigurationDeployedUserCount = n.GetIntValue(); } },
-                {"configurationDeploymentSummaryPerApp", (o,n) => { (o as ManagedAppPolicyDeploymentSummary).ConfigurationDeploymentSummaryPerApp = n.GetCollectionOfObjectValues<ManagedAppPolicyDeploymentSummaryPerApp>(ManagedAppPolicyDeploymentSummaryPerApp.CreateFromDiscriminatorValue).ToList(); } },
+                {"configurationDeploymentSummaryPerApp", (o,n) => { (o as ManagedAppPolicyDeploymentSummary).ConfigurationDeploymentSummaryPerApp = n.GetCollectionOfObjectValues<ApiSdk.Models.Microsoft.Graph.ManagedAppPolicyDeploymentSummaryPerApp>(ApiSdk.Models.Microsoft.Graph.ManagedAppPolicyDeploymentSummaryPerApp.CreateFromDiscriminatorValue).ToList(); } },
                 {"displayName", (o,n) => { (o as ManagedAppPolicyDeploymentSummary).DisplayName = n.GetStringValue(); } },
                 {"lastRefreshTime", (o,n) => { (o as ManagedAppPolicyDeploymentSummary).LastRefreshTime = n.GetDateTimeOffsetValue(); } },
                 {"version", (o,n) => { (o as ManagedAppPolicyDeploymentSummary).Version = n.GetStringValue(); } },
@@ -43,7 +43,7 @@ namespace ApiSdk.Models.Microsoft.Graph {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             base.Serialize(writer);
             writer.WriteIntValue("configurationDeployedUserCount", ConfigurationDeployedUserCount);
-            writer.WriteCollectionOfObjectValues<ManagedAppPolicyDeploymentSummaryPerApp>("configurationDeploymentSummaryPerApp", ConfigurationDeploymentSummaryPerApp);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.Microsoft.Graph.ManagedAppPolicyDeploymentSummaryPerApp>("configurationDeploymentSummaryPerApp", ConfigurationDeploymentSummaryPerApp);
             writer.WriteStringValue("displayName", DisplayName);
             writer.WriteDateTimeOffsetValue("lastRefreshTime", LastRefreshTime);
             writer.WriteStringValue("version", Version);

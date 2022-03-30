@@ -7,7 +7,7 @@ namespace ApiSdk.Models.Microsoft.Graph {
     public class WindowsHelloForBusinessAuthenticationMethod : AuthenticationMethod, IParsable {
         /// <summary>The date and time that this Windows Hello for Business key was registered.</summary>
         public DateTimeOffset? CreatedDateTime { get; set; }
-        /// <summary>The registered device on which this Windows Hello for Business key resides.</summary>
+        /// <summary>The registered device on which this Windows Hello for Business key resides. Supports $expand. When you get a user's Windows Hello for Business registration information, this property is returned only on a single GET and when you specify ?$expand. For example, GET /users/admin@contoso.com/authentication/windowsHelloForBusinessMethods/_jpuR-TGZtk6aQCLF3BQjA2?$expand=device.</summary>
         public ApiSdk.Models.Microsoft.Graph.Device Device { get; set; }
         /// <summary>The name of the device on which Windows Hello for Business is registered</summary>
         public string DisplayName { get; set; }
@@ -17,7 +17,7 @@ namespace ApiSdk.Models.Microsoft.Graph {
         /// Creates a new instance of the appropriate class based on discriminator value
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         /// </summary>
-        public static new WindowsHelloForBusinessAuthenticationMethod CreateFromDiscriminatorValue(IParseNode parseNode) {
+        public static new ApiSdk.Models.Microsoft.Graph.WindowsHelloForBusinessAuthenticationMethod CreateFromDiscriminatorValue(IParseNode parseNode) {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
             return new WindowsHelloForBusinessAuthenticationMethod();
         }

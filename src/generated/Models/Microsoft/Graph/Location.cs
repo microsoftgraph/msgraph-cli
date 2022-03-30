@@ -8,14 +8,14 @@ namespace ApiSdk.Models.Microsoft.Graph {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>The street address of the location.</summary>
-        public PhysicalAddress Address { get; set; }
+        public ApiSdk.Models.Microsoft.Graph.PhysicalAddress Address { get; set; }
         /// <summary>The geographic coordinates and elevation of the location.</summary>
-        public OutlookGeoCoordinates Coordinates { get; set; }
+        public ApiSdk.Models.Microsoft.Graph.OutlookGeoCoordinates Coordinates { get; set; }
         /// <summary>The name associated with the location.</summary>
         public string DisplayName { get; set; }
         /// <summary>Optional email address of the location.</summary>
         public string LocationEmailAddress { get; set; }
-        /// <summary>The type of location. Possible values are: default, conferenceRoom, homeAddress, businessAddress,geoCoordinates, streetAddress, hotel, restaurant, localBusiness, postalAddress. Read-only.</summary>
+        /// <summary>The type of location. The possible values are: default, conferenceRoom, homeAddress, businessAddress,geoCoordinates, streetAddress, hotel, restaurant, localBusiness, postalAddress. Read-only.</summary>
         public ApiSdk.Models.Microsoft.Graph.LocationType? LocationType { get; set; }
         /// <summary>Optional URI representing the location.</summary>
         public string LocationUri { get; set; }
@@ -33,7 +33,7 @@ namespace ApiSdk.Models.Microsoft.Graph {
         /// Creates a new instance of the appropriate class based on discriminator value
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         /// </summary>
-        public static Location CreateFromDiscriminatorValue(IParseNode parseNode) {
+        public static ApiSdk.Models.Microsoft.Graph.Location CreateFromDiscriminatorValue(IParseNode parseNode) {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
             return new Location();
         }
@@ -42,8 +42,8 @@ namespace ApiSdk.Models.Microsoft.Graph {
         /// </summary>
         public IDictionary<string, Action<T, IParseNode>> GetFieldDeserializers<T>() {
             return new Dictionary<string, Action<T, IParseNode>> {
-                {"address", (o,n) => { (o as Location).Address = n.GetObjectValue<PhysicalAddress>(PhysicalAddress.CreateFromDiscriminatorValue); } },
-                {"coordinates", (o,n) => { (o as Location).Coordinates = n.GetObjectValue<OutlookGeoCoordinates>(OutlookGeoCoordinates.CreateFromDiscriminatorValue); } },
+                {"address", (o,n) => { (o as Location).Address = n.GetObjectValue<ApiSdk.Models.Microsoft.Graph.PhysicalAddress>(ApiSdk.Models.Microsoft.Graph.PhysicalAddress.CreateFromDiscriminatorValue); } },
+                {"coordinates", (o,n) => { (o as Location).Coordinates = n.GetObjectValue<ApiSdk.Models.Microsoft.Graph.OutlookGeoCoordinates>(ApiSdk.Models.Microsoft.Graph.OutlookGeoCoordinates.CreateFromDiscriminatorValue); } },
                 {"displayName", (o,n) => { (o as Location).DisplayName = n.GetStringValue(); } },
                 {"locationEmailAddress", (o,n) => { (o as Location).LocationEmailAddress = n.GetStringValue(); } },
                 {"locationType", (o,n) => { (o as Location).LocationType = n.GetEnumValue<LocationType>(); } },
@@ -58,8 +58,8 @@ namespace ApiSdk.Models.Microsoft.Graph {
         /// </summary>
         public void Serialize(ISerializationWriter writer) {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
-            writer.WriteObjectValue<PhysicalAddress>("address", Address);
-            writer.WriteObjectValue<OutlookGeoCoordinates>("coordinates", Coordinates);
+            writer.WriteObjectValue<ApiSdk.Models.Microsoft.Graph.PhysicalAddress>("address", Address);
+            writer.WriteObjectValue<ApiSdk.Models.Microsoft.Graph.OutlookGeoCoordinates>("coordinates", Coordinates);
             writer.WriteStringValue("displayName", DisplayName);
             writer.WriteStringValue("locationEmailAddress", LocationEmailAddress);
             writer.WriteEnumValue<LocationType>("locationType", LocationType);

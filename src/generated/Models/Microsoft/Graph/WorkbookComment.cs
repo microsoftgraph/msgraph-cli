@@ -5,17 +5,17 @@ using System.IO;
 using System.Linq;
 namespace ApiSdk.Models.Microsoft.Graph {
     public class WorkbookComment : Entity, IParsable {
-        /// <summary>The content of the comment.</summary>
+        /// <summary>The content of comment.</summary>
         public string Content { get; set; }
         /// <summary>Indicates the type for the comment.</summary>
         public string ContentType { get; set; }
         /// <summary>Read-only. Nullable.</summary>
-        public List<WorkbookCommentReply> Replies { get; set; }
+        public List<ApiSdk.Models.Microsoft.Graph.WorkbookCommentReply> Replies { get; set; }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         /// </summary>
-        public static new WorkbookComment CreateFromDiscriminatorValue(IParseNode parseNode) {
+        public static new ApiSdk.Models.Microsoft.Graph.WorkbookComment CreateFromDiscriminatorValue(IParseNode parseNode) {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
             return new WorkbookComment();
         }
@@ -26,7 +26,7 @@ namespace ApiSdk.Models.Microsoft.Graph {
             return new Dictionary<string, Action<T, IParseNode>>(base.GetFieldDeserializers<T>()) {
                 {"content", (o,n) => { (o as WorkbookComment).Content = n.GetStringValue(); } },
                 {"contentType", (o,n) => { (o as WorkbookComment).ContentType = n.GetStringValue(); } },
-                {"replies", (o,n) => { (o as WorkbookComment).Replies = n.GetCollectionOfObjectValues<WorkbookCommentReply>(WorkbookCommentReply.CreateFromDiscriminatorValue).ToList(); } },
+                {"replies", (o,n) => { (o as WorkbookComment).Replies = n.GetCollectionOfObjectValues<ApiSdk.Models.Microsoft.Graph.WorkbookCommentReply>(ApiSdk.Models.Microsoft.Graph.WorkbookCommentReply.CreateFromDiscriminatorValue).ToList(); } },
             };
         }
         /// <summary>
@@ -38,7 +38,7 @@ namespace ApiSdk.Models.Microsoft.Graph {
             base.Serialize(writer);
             writer.WriteStringValue("content", Content);
             writer.WriteStringValue("contentType", ContentType);
-            writer.WriteCollectionOfObjectValues<WorkbookCommentReply>("replies", Replies);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.Microsoft.Graph.WorkbookCommentReply>("replies", Replies);
         }
     }
 }

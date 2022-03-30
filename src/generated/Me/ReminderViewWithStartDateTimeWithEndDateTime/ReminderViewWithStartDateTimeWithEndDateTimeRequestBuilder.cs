@@ -1,4 +1,3 @@
-using ApiSdk.Models.Microsoft.Graph;
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
 using Microsoft.Kiota.Cli.Commons.Binding;
@@ -12,7 +11,7 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 namespace ApiSdk.Me.ReminderViewWithStartDateTimeWithEndDateTime {
-    /// <summary>Builds and executes requests for operations under \me\microsoft.graph.reminderView(StartDateTime='{StartDateTime}',EndDateTime='{EndDateTime}')</summary>
+    /// <summary>Provides operations to call the reminderView method.</summary>
     public class ReminderViewWithStartDateTimeWithEndDateTimeRequestBuilder {
         /// <summary>Path parameters for the request</summary>
         private Dictionary<string, object> PathParameters { get; set; }
@@ -27,11 +26,11 @@ namespace ApiSdk.Me.ReminderViewWithStartDateTimeWithEndDateTime {
             var command = new Command("get");
             command.Description = "Invoke function reminderView";
             // Create options for all the parameters
-            var StartDateTimeOption = new Option<string>("--start-date-time", description: "Usage: StartDateTime={StartDateTime}") {
+            var StartDateTimeOption = new Option<string>("--start-date-time", description: "Usage: StartDateTime='{StartDateTime}'") {
             };
             StartDateTimeOption.IsRequired = true;
             command.AddOption(StartDateTimeOption);
-            var EndDateTimeOption = new Option<string>("--end-date-time", description: "Usage: EndDateTime={EndDateTime}") {
+            var EndDateTimeOption = new Option<string>("--end-date-time", description: "Usage: EndDateTime='{EndDateTime}'") {
             };
             EndDateTimeOption.IsRequired = true;
             command.AddOption(EndDateTimeOption);
@@ -63,19 +62,19 @@ namespace ApiSdk.Me.ReminderViewWithStartDateTimeWithEndDateTime {
                 var requestInfo = CreateGetRequestInformation(q => {
                 });
                 var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: default, cancellationToken: cancellationToken);
-                var formatter = outputFormatterFactory.GetFormatter(output);
                 response = await outputFilter?.FilterOutputAsync(response, query, cancellationToken) ?? response;
                 var formatterOptions = output.GetOutputFormatterOptions(new FormatterOptionsModel(!jsonNoIndent));
+                var formatter = outputFormatterFactory.GetFormatter(output);
                 await formatter.WriteOutputAsync(response, formatterOptions, cancellationToken);
             }, new CollectionBinding(StartDateTimeOption, EndDateTimeOption, outputOption, queryOption, jsonNoIndentOption, new TypeBinding(typeof(IOutputFilter)), new TypeBinding(typeof(IOutputFormatterFactory)), new TypeBinding(typeof(CancellationToken))));
             return command;
         }
         /// <summary>
         /// Instantiates a new ReminderViewWithStartDateTimeWithEndDateTimeRequestBuilder and sets the default values.
-        /// <param name="EndDateTime">Usage: EndDateTime={EndDateTime}</param>
+        /// <param name="EndDateTime">Usage: EndDateTime='{EndDateTime}'</param>
         /// <param name="pathParameters">Path parameters for the request</param>
         /// <param name="requestAdapter">The request adapter to use to execute the requests.</param>
-        /// <param name="StartDateTime">Usage: StartDateTime={StartDateTime}</param>
+        /// <param name="StartDateTime">Usage: StartDateTime='{StartDateTime}'</param>
         /// </summary>
         public ReminderViewWithStartDateTimeWithEndDateTimeRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter, string endDateTime = default, string startDateTime = default) {
             _ = pathParameters ?? throw new ArgumentNullException(nameof(pathParameters));
@@ -89,17 +88,17 @@ namespace ApiSdk.Me.ReminderViewWithStartDateTimeWithEndDateTime {
         }
         /// <summary>
         /// Invoke function reminderView
-        /// <param name="h">Request headers</param>
-        /// <param name="o">Request options</param>
+        /// <param name="headers">Request headers</param>
+        /// <param name="options">Request options</param>
         /// </summary>
-        public RequestInformation CreateGetRequestInformation(Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
+        public RequestInformation CreateGetRequestInformation(Action<IDictionary<string, string>> headers = default, IEnumerable<IRequestOption> options = default) {
             var requestInfo = new RequestInformation {
                 HttpMethod = Method.GET,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };
-            h?.Invoke(requestInfo.Headers);
-            requestInfo.AddRequestOptions(o?.ToArray());
+            headers?.Invoke(requestInfo.Headers);
+            requestInfo.AddRequestOptions(options?.ToArray());
             return requestInfo;
         }
     }

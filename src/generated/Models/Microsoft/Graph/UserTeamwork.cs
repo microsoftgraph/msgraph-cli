@@ -6,12 +6,12 @@ using System.Linq;
 namespace ApiSdk.Models.Microsoft.Graph {
     public class UserTeamwork : Entity, IParsable {
         /// <summary>The apps installed in the personal scope of this user.</summary>
-        public List<UserScopeTeamsAppInstallation> InstalledApps { get; set; }
+        public List<ApiSdk.Models.Microsoft.Graph.UserScopeTeamsAppInstallation> InstalledApps { get; set; }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         /// </summary>
-        public static new UserTeamwork CreateFromDiscriminatorValue(IParseNode parseNode) {
+        public static new ApiSdk.Models.Microsoft.Graph.UserTeamwork CreateFromDiscriminatorValue(IParseNode parseNode) {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
             return new UserTeamwork();
         }
@@ -20,7 +20,7 @@ namespace ApiSdk.Models.Microsoft.Graph {
         /// </summary>
         public new IDictionary<string, Action<T, IParseNode>> GetFieldDeserializers<T>() {
             return new Dictionary<string, Action<T, IParseNode>>(base.GetFieldDeserializers<T>()) {
-                {"installedApps", (o,n) => { (o as UserTeamwork).InstalledApps = n.GetCollectionOfObjectValues<UserScopeTeamsAppInstallation>(UserScopeTeamsAppInstallation.CreateFromDiscriminatorValue).ToList(); } },
+                {"installedApps", (o,n) => { (o as UserTeamwork).InstalledApps = n.GetCollectionOfObjectValues<ApiSdk.Models.Microsoft.Graph.UserScopeTeamsAppInstallation>(ApiSdk.Models.Microsoft.Graph.UserScopeTeamsAppInstallation.CreateFromDiscriminatorValue).ToList(); } },
             };
         }
         /// <summary>
@@ -30,7 +30,7 @@ namespace ApiSdk.Models.Microsoft.Graph {
         public new void Serialize(ISerializationWriter writer) {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             base.Serialize(writer);
-            writer.WriteCollectionOfObjectValues<UserScopeTeamsAppInstallation>("installedApps", InstalledApps);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.Microsoft.Graph.UserScopeTeamsAppInstallation>("installedApps", InstalledApps);
         }
     }
 }

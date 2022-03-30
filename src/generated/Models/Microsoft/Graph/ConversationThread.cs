@@ -6,28 +6,28 @@ using System.Linq;
 namespace ApiSdk.Models.Microsoft.Graph {
     public class ConversationThread : Entity, IParsable {
         /// <summary>The Cc: recipients for the thread. Returned only on $select.</summary>
-        public List<Recipient> CcRecipients { get; set; }
+        public List<ApiSdk.Models.Microsoft.Graph.Recipient> CcRecipients { get; set; }
         /// <summary>Indicates whether any of the posts within this thread has at least one attachment. Returned by default.</summary>
         public bool? HasAttachments { get; set; }
         /// <summary>Indicates if the thread is locked. Returned by default.</summary>
         public bool? IsLocked { get; set; }
-        /// <summary>The Timestamp type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z. Returned by default.</summary>
+        /// <summary>The Timestamp type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z.Returned by default.</summary>
         public DateTimeOffset? LastDeliveredDateTime { get; set; }
         /// <summary>Read-only. Nullable.</summary>
-        public List<Post> Posts { get; set; }
+        public List<ApiSdk.Models.Microsoft.Graph.Post> Posts { get; set; }
         /// <summary>A short summary from the body of the latest post in this conversation. Returned by default.</summary>
         public string Preview { get; set; }
         /// <summary>The topic of the conversation. This property can be set when the conversation is created, but it cannot be updated. Returned by default.</summary>
         public string Topic { get; set; }
         /// <summary>The To: recipients for the thread. Returned only on $select.</summary>
-        public List<Recipient> ToRecipients { get; set; }
+        public List<ApiSdk.Models.Microsoft.Graph.Recipient> ToRecipients { get; set; }
         /// <summary>All the users that sent a message to this thread. Returned by default.</summary>
         public List<string> UniqueSenders { get; set; }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         /// </summary>
-        public static new ConversationThread CreateFromDiscriminatorValue(IParseNode parseNode) {
+        public static new ApiSdk.Models.Microsoft.Graph.ConversationThread CreateFromDiscriminatorValue(IParseNode parseNode) {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
             return new ConversationThread();
         }
@@ -36,14 +36,14 @@ namespace ApiSdk.Models.Microsoft.Graph {
         /// </summary>
         public new IDictionary<string, Action<T, IParseNode>> GetFieldDeserializers<T>() {
             return new Dictionary<string, Action<T, IParseNode>>(base.GetFieldDeserializers<T>()) {
-                {"ccRecipients", (o,n) => { (o as ConversationThread).CcRecipients = n.GetCollectionOfObjectValues<Recipient>(Recipient.CreateFromDiscriminatorValue).ToList(); } },
+                {"ccRecipients", (o,n) => { (o as ConversationThread).CcRecipients = n.GetCollectionOfObjectValues<ApiSdk.Models.Microsoft.Graph.Recipient>(ApiSdk.Models.Microsoft.Graph.Recipient.CreateFromDiscriminatorValue).ToList(); } },
                 {"hasAttachments", (o,n) => { (o as ConversationThread).HasAttachments = n.GetBoolValue(); } },
                 {"isLocked", (o,n) => { (o as ConversationThread).IsLocked = n.GetBoolValue(); } },
                 {"lastDeliveredDateTime", (o,n) => { (o as ConversationThread).LastDeliveredDateTime = n.GetDateTimeOffsetValue(); } },
-                {"posts", (o,n) => { (o as ConversationThread).Posts = n.GetCollectionOfObjectValues<Post>(Post.CreateFromDiscriminatorValue).ToList(); } },
+                {"posts", (o,n) => { (o as ConversationThread).Posts = n.GetCollectionOfObjectValues<ApiSdk.Models.Microsoft.Graph.Post>(ApiSdk.Models.Microsoft.Graph.Post.CreateFromDiscriminatorValue).ToList(); } },
                 {"preview", (o,n) => { (o as ConversationThread).Preview = n.GetStringValue(); } },
                 {"topic", (o,n) => { (o as ConversationThread).Topic = n.GetStringValue(); } },
-                {"toRecipients", (o,n) => { (o as ConversationThread).ToRecipients = n.GetCollectionOfObjectValues<Recipient>(Recipient.CreateFromDiscriminatorValue).ToList(); } },
+                {"toRecipients", (o,n) => { (o as ConversationThread).ToRecipients = n.GetCollectionOfObjectValues<ApiSdk.Models.Microsoft.Graph.Recipient>(ApiSdk.Models.Microsoft.Graph.Recipient.CreateFromDiscriminatorValue).ToList(); } },
                 {"uniqueSenders", (o,n) => { (o as ConversationThread).UniqueSenders = n.GetCollectionOfPrimitiveValues<string>().ToList(); } },
             };
         }
@@ -54,14 +54,14 @@ namespace ApiSdk.Models.Microsoft.Graph {
         public new void Serialize(ISerializationWriter writer) {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             base.Serialize(writer);
-            writer.WriteCollectionOfObjectValues<Recipient>("ccRecipients", CcRecipients);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.Microsoft.Graph.Recipient>("ccRecipients", CcRecipients);
             writer.WriteBoolValue("hasAttachments", HasAttachments);
             writer.WriteBoolValue("isLocked", IsLocked);
             writer.WriteDateTimeOffsetValue("lastDeliveredDateTime", LastDeliveredDateTime);
-            writer.WriteCollectionOfObjectValues<Post>("posts", Posts);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.Microsoft.Graph.Post>("posts", Posts);
             writer.WriteStringValue("preview", Preview);
             writer.WriteStringValue("topic", Topic);
-            writer.WriteCollectionOfObjectValues<Recipient>("toRecipients", ToRecipients);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.Microsoft.Graph.Recipient>("toRecipients", ToRecipients);
             writer.WriteCollectionOfPrimitiveValues<string>("uniqueSenders", UniqueSenders);
         }
     }

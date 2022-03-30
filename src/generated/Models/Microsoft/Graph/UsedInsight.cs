@@ -6,9 +6,9 @@ using System.Linq;
 namespace ApiSdk.Models.Microsoft.Graph {
     public class UsedInsight : Entity, IParsable {
         /// <summary>Information about when the item was last viewed or modified by the user. Read only.</summary>
-        public UsageDetails LastUsed { get; set; }
+        public ApiSdk.Models.Microsoft.Graph.UsageDetails LastUsed { get; set; }
         /// <summary>Used for navigating to the item that was used. For file attachments, the type is fileAttachment. For linked attachments, the type is driveItem.</summary>
-        public Entity Resource { get; set; }
+        public ApiSdk.Models.Microsoft.Graph.Entity Resource { get; set; }
         /// <summary>Reference properties of the used document, such as the url and type of the document. Read-only</summary>
         public ApiSdk.Models.Microsoft.Graph.ResourceReference ResourceReference { get; set; }
         /// <summary>Properties that you can use to visualize the document in your experience. Read-only</summary>
@@ -17,7 +17,7 @@ namespace ApiSdk.Models.Microsoft.Graph {
         /// Creates a new instance of the appropriate class based on discriminator value
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         /// </summary>
-        public static new UsedInsight CreateFromDiscriminatorValue(IParseNode parseNode) {
+        public static new ApiSdk.Models.Microsoft.Graph.UsedInsight CreateFromDiscriminatorValue(IParseNode parseNode) {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
             return new UsedInsight();
         }
@@ -26,8 +26,8 @@ namespace ApiSdk.Models.Microsoft.Graph {
         /// </summary>
         public new IDictionary<string, Action<T, IParseNode>> GetFieldDeserializers<T>() {
             return new Dictionary<string, Action<T, IParseNode>>(base.GetFieldDeserializers<T>()) {
-                {"lastUsed", (o,n) => { (o as UsedInsight).LastUsed = n.GetObjectValue<UsageDetails>(UsageDetails.CreateFromDiscriminatorValue); } },
-                {"resource", (o,n) => { (o as UsedInsight).Resource = n.GetObjectValue<Entity>(Entity.CreateFromDiscriminatorValue); } },
+                {"lastUsed", (o,n) => { (o as UsedInsight).LastUsed = n.GetObjectValue<ApiSdk.Models.Microsoft.Graph.UsageDetails>(ApiSdk.Models.Microsoft.Graph.UsageDetails.CreateFromDiscriminatorValue); } },
+                {"resource", (o,n) => { (o as UsedInsight).Resource = n.GetObjectValue<ApiSdk.Models.Microsoft.Graph.Entity>(ApiSdk.Models.Microsoft.Graph.Entity.CreateFromDiscriminatorValue); } },
                 {"resourceReference", (o,n) => { (o as UsedInsight).ResourceReference = n.GetObjectValue<ApiSdk.Models.Microsoft.Graph.ResourceReference>(ApiSdk.Models.Microsoft.Graph.ResourceReference.CreateFromDiscriminatorValue); } },
                 {"resourceVisualization", (o,n) => { (o as UsedInsight).ResourceVisualization = n.GetObjectValue<ApiSdk.Models.Microsoft.Graph.ResourceVisualization>(ApiSdk.Models.Microsoft.Graph.ResourceVisualization.CreateFromDiscriminatorValue); } },
             };
@@ -39,8 +39,8 @@ namespace ApiSdk.Models.Microsoft.Graph {
         public new void Serialize(ISerializationWriter writer) {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             base.Serialize(writer);
-            writer.WriteObjectValue<UsageDetails>("lastUsed", LastUsed);
-            writer.WriteObjectValue<Entity>("resource", Resource);
+            writer.WriteObjectValue<ApiSdk.Models.Microsoft.Graph.UsageDetails>("lastUsed", LastUsed);
+            writer.WriteObjectValue<ApiSdk.Models.Microsoft.Graph.Entity>("resource", Resource);
             writer.WriteObjectValue<ApiSdk.Models.Microsoft.Graph.ResourceReference>("resourceReference", ResourceReference);
             writer.WriteObjectValue<ApiSdk.Models.Microsoft.Graph.ResourceVisualization>("resourceVisualization", ResourceVisualization);
         }

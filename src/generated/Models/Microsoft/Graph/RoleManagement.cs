@@ -8,9 +8,9 @@ namespace ApiSdk.Models.Microsoft.Graph {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>Read-only. Nullable.</summary>
-        public RbacApplication Directory { get; set; }
-        /// <summary>Container for all entitlement management resources in Azure AD identity governance.</summary>
-        public RbacApplication EntitlementManagement { get; set; }
+        public ApiSdk.Models.Microsoft.Graph.RbacApplication Directory { get; set; }
+        /// <summary>Container for roles and assignments for entitlement management resources.</summary>
+        public ApiSdk.Models.Microsoft.Graph.RbacApplication EntitlementManagement { get; set; }
         /// <summary>
         /// Instantiates a new RoleManagement and sets the default values.
         /// </summary>
@@ -21,7 +21,7 @@ namespace ApiSdk.Models.Microsoft.Graph {
         /// Creates a new instance of the appropriate class based on discriminator value
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         /// </summary>
-        public static RoleManagement CreateFromDiscriminatorValue(IParseNode parseNode) {
+        public static ApiSdk.Models.Microsoft.Graph.RoleManagement CreateFromDiscriminatorValue(IParseNode parseNode) {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
             return new RoleManagement();
         }
@@ -30,8 +30,8 @@ namespace ApiSdk.Models.Microsoft.Graph {
         /// </summary>
         public IDictionary<string, Action<T, IParseNode>> GetFieldDeserializers<T>() {
             return new Dictionary<string, Action<T, IParseNode>> {
-                {"directory", (o,n) => { (o as RoleManagement).Directory = n.GetObjectValue<RbacApplication>(RbacApplication.CreateFromDiscriminatorValue); } },
-                {"entitlementManagement", (o,n) => { (o as RoleManagement).EntitlementManagement = n.GetObjectValue<RbacApplication>(RbacApplication.CreateFromDiscriminatorValue); } },
+                {"directory", (o,n) => { (o as RoleManagement).Directory = n.GetObjectValue<ApiSdk.Models.Microsoft.Graph.RbacApplication>(ApiSdk.Models.Microsoft.Graph.RbacApplication.CreateFromDiscriminatorValue); } },
+                {"entitlementManagement", (o,n) => { (o as RoleManagement).EntitlementManagement = n.GetObjectValue<ApiSdk.Models.Microsoft.Graph.RbacApplication>(ApiSdk.Models.Microsoft.Graph.RbacApplication.CreateFromDiscriminatorValue); } },
             };
         }
         /// <summary>
@@ -40,8 +40,8 @@ namespace ApiSdk.Models.Microsoft.Graph {
         /// </summary>
         public void Serialize(ISerializationWriter writer) {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
-            writer.WriteObjectValue<RbacApplication>("directory", Directory);
-            writer.WriteObjectValue<RbacApplication>("entitlementManagement", EntitlementManagement);
+            writer.WriteObjectValue<ApiSdk.Models.Microsoft.Graph.RbacApplication>("directory", Directory);
+            writer.WriteObjectValue<ApiSdk.Models.Microsoft.Graph.RbacApplication>("entitlementManagement", EntitlementManagement);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

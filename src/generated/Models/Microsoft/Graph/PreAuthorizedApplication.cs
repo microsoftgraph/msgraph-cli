@@ -9,6 +9,7 @@ namespace ApiSdk.Models.Microsoft.Graph {
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>The unique identifier for the application.</summary>
         public string AppId { get; set; }
+        /// <summary>The unique identifier for the oauth2PermissionScopes the application requires.</summary>
         public List<string> DelegatedPermissionIds { get; set; }
         /// <summary>
         /// Instantiates a new preAuthorizedApplication and sets the default values.
@@ -20,7 +21,7 @@ namespace ApiSdk.Models.Microsoft.Graph {
         /// Creates a new instance of the appropriate class based on discriminator value
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         /// </summary>
-        public static PreAuthorizedApplication CreateFromDiscriminatorValue(IParseNode parseNode) {
+        public static ApiSdk.Models.Microsoft.Graph.PreAuthorizedApplication CreateFromDiscriminatorValue(IParseNode parseNode) {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
             return new PreAuthorizedApplication();
         }

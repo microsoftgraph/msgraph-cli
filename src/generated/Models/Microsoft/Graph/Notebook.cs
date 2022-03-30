@@ -10,13 +10,13 @@ namespace ApiSdk.Models.Microsoft.Graph {
         /// <summary>Indicates whether the notebook is shared. If true, the contents of the notebook can be seen by people other than the owner. Read-only.</summary>
         public bool? IsShared { get; set; }
         /// <summary>Links for opening the notebook. The oneNoteClientURL link opens the notebook in the OneNote native client if it's installed. The oneNoteWebURL link opens the notebook in OneNote on the web.</summary>
-        public NotebookLinks Links { get; set; }
+        public ApiSdk.Models.Microsoft.Graph.NotebookLinks Links { get; set; }
         /// <summary>The section groups in the notebook. Read-only. Nullable.</summary>
-        public List<SectionGroup> SectionGroups { get; set; }
+        public List<ApiSdk.Models.Microsoft.Graph.SectionGroup> SectionGroups { get; set; }
         /// <summary>The URL for the sectionGroups navigation property, which returns all the section groups in the notebook. Read-only.</summary>
         public string SectionGroupsUrl { get; set; }
         /// <summary>The sections in the notebook. Read-only. Nullable.</summary>
-        public List<OnenoteSection> Sections { get; set; }
+        public List<ApiSdk.Models.Microsoft.Graph.OnenoteSection> Sections { get; set; }
         /// <summary>The URL for the sections navigation property, which returns all the sections in the notebook. Read-only.</summary>
         public string SectionsUrl { get; set; }
         /// <summary>Possible values are: Owner, Contributor, Reader, None. Owner represents owner-level access to the notebook. Contributor represents read/write access to the notebook. Reader represents read-only access to the notebook. Read-only.</summary>
@@ -25,7 +25,7 @@ namespace ApiSdk.Models.Microsoft.Graph {
         /// Creates a new instance of the appropriate class based on discriminator value
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         /// </summary>
-        public static new Notebook CreateFromDiscriminatorValue(IParseNode parseNode) {
+        public static new ApiSdk.Models.Microsoft.Graph.Notebook CreateFromDiscriminatorValue(IParseNode parseNode) {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
             return new Notebook();
         }
@@ -36,10 +36,10 @@ namespace ApiSdk.Models.Microsoft.Graph {
             return new Dictionary<string, Action<T, IParseNode>>(base.GetFieldDeserializers<T>()) {
                 {"isDefault", (o,n) => { (o as Notebook).IsDefault = n.GetBoolValue(); } },
                 {"isShared", (o,n) => { (o as Notebook).IsShared = n.GetBoolValue(); } },
-                {"links", (o,n) => { (o as Notebook).Links = n.GetObjectValue<NotebookLinks>(NotebookLinks.CreateFromDiscriminatorValue); } },
-                {"sectionGroups", (o,n) => { (o as Notebook).SectionGroups = n.GetCollectionOfObjectValues<SectionGroup>(SectionGroup.CreateFromDiscriminatorValue).ToList(); } },
+                {"links", (o,n) => { (o as Notebook).Links = n.GetObjectValue<ApiSdk.Models.Microsoft.Graph.NotebookLinks>(ApiSdk.Models.Microsoft.Graph.NotebookLinks.CreateFromDiscriminatorValue); } },
+                {"sectionGroups", (o,n) => { (o as Notebook).SectionGroups = n.GetCollectionOfObjectValues<ApiSdk.Models.Microsoft.Graph.SectionGroup>(ApiSdk.Models.Microsoft.Graph.SectionGroup.CreateFromDiscriminatorValue).ToList(); } },
                 {"sectionGroupsUrl", (o,n) => { (o as Notebook).SectionGroupsUrl = n.GetStringValue(); } },
-                {"sections", (o,n) => { (o as Notebook).Sections = n.GetCollectionOfObjectValues<OnenoteSection>(OnenoteSection.CreateFromDiscriminatorValue).ToList(); } },
+                {"sections", (o,n) => { (o as Notebook).Sections = n.GetCollectionOfObjectValues<ApiSdk.Models.Microsoft.Graph.OnenoteSection>(ApiSdk.Models.Microsoft.Graph.OnenoteSection.CreateFromDiscriminatorValue).ToList(); } },
                 {"sectionsUrl", (o,n) => { (o as Notebook).SectionsUrl = n.GetStringValue(); } },
                 {"userRole", (o,n) => { (o as Notebook).UserRole = n.GetEnumValue<OnenoteUserRole>(); } },
             };
@@ -53,10 +53,10 @@ namespace ApiSdk.Models.Microsoft.Graph {
             base.Serialize(writer);
             writer.WriteBoolValue("isDefault", IsDefault);
             writer.WriteBoolValue("isShared", IsShared);
-            writer.WriteObjectValue<NotebookLinks>("links", Links);
-            writer.WriteCollectionOfObjectValues<SectionGroup>("sectionGroups", SectionGroups);
+            writer.WriteObjectValue<ApiSdk.Models.Microsoft.Graph.NotebookLinks>("links", Links);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.Microsoft.Graph.SectionGroup>("sectionGroups", SectionGroups);
             writer.WriteStringValue("sectionGroupsUrl", SectionGroupsUrl);
-            writer.WriteCollectionOfObjectValues<OnenoteSection>("sections", Sections);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.Microsoft.Graph.OnenoteSection>("sections", Sections);
             writer.WriteStringValue("sectionsUrl", SectionsUrl);
             writer.WriteEnumValue<OnenoteUserRole>("userRole", UserRole);
         }

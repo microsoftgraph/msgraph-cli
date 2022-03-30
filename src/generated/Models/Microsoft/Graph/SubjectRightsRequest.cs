@@ -6,11 +6,11 @@ using System.Linq;
 namespace ApiSdk.Models.Microsoft.Graph {
     public class SubjectRightsRequest : Entity, IParsable {
         /// <summary>Identity that the request is assigned to.</summary>
-        public Identity AssignedTo { get; set; }
+        public ApiSdk.Models.Microsoft.Graph.Identity AssignedTo { get; set; }
         /// <summary>The date and time when the request was closed. The Timestamp type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z.</summary>
         public DateTimeOffset? ClosedDateTime { get; set; }
         /// <summary>Identity information for the entity that created the request.</summary>
-        public IdentitySet CreatedBy { get; set; }
+        public ApiSdk.Models.Microsoft.Graph.IdentitySet CreatedBy { get; set; }
         /// <summary>The date and time when the request was created. The Timestamp type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z.</summary>
         public DateTimeOffset? CreatedDateTime { get; set; }
         /// <summary>Information about the data subject.</summary>
@@ -22,21 +22,21 @@ namespace ApiSdk.Models.Microsoft.Graph {
         /// <summary>The name of the request.</summary>
         public string DisplayName { get; set; }
         /// <summary>Collection of history change events.</summary>
-        public List<SubjectRightsRequestHistory> History { get; set; }
+        public List<ApiSdk.Models.Microsoft.Graph.SubjectRightsRequestHistory> History { get; set; }
         /// <summary>Insight about the request.</summary>
-        public SubjectRightsRequestDetail Insight { get; set; }
+        public ApiSdk.Models.Microsoft.Graph.SubjectRightsRequestDetail Insight { get; set; }
         /// <summary>The date and time when the request is internally due. The Timestamp type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z.</summary>
         public DateTimeOffset? InternalDueDateTime { get; set; }
         /// <summary>Identity information for the entity that last modified the request.</summary>
-        public IdentitySet LastModifiedBy { get; set; }
+        public ApiSdk.Models.Microsoft.Graph.IdentitySet LastModifiedBy { get; set; }
         /// <summary>The date and time when the request was last modified. The Timestamp type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z.</summary>
         public DateTimeOffset? LastModifiedDateTime { get; set; }
         /// <summary>List of notes associcated with the request.</summary>
-        public List<AuthoredNote> Notes { get; set; }
+        public List<ApiSdk.Models.Microsoft.Graph.AuthoredNote> Notes { get; set; }
         /// <summary>List of regulations that this request will fulfill.</summary>
         public List<string> Regulations { get; set; }
         /// <summary>Information about the different stages for the request.</summary>
-        public List<SubjectRightsRequestStageDetail> Stages { get; set; }
+        public List<ApiSdk.Models.Microsoft.Graph.SubjectRightsRequestStageDetail> Stages { get; set; }
         /// <summary>The status of the request.. Possible values are: active, closed, unknownFutureValue.</summary>
         public SubjectRightsRequestStatus? Status { get; set; }
         /// <summary>Information about the Microsoft Teams team that was created for the request.</summary>
@@ -47,7 +47,7 @@ namespace ApiSdk.Models.Microsoft.Graph {
         /// Creates a new instance of the appropriate class based on discriminator value
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         /// </summary>
-        public static new SubjectRightsRequest CreateFromDiscriminatorValue(IParseNode parseNode) {
+        public static new ApiSdk.Models.Microsoft.Graph.SubjectRightsRequest CreateFromDiscriminatorValue(IParseNode parseNode) {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
             return new SubjectRightsRequest();
         }
@@ -56,22 +56,22 @@ namespace ApiSdk.Models.Microsoft.Graph {
         /// </summary>
         public new IDictionary<string, Action<T, IParseNode>> GetFieldDeserializers<T>() {
             return new Dictionary<string, Action<T, IParseNode>>(base.GetFieldDeserializers<T>()) {
-                {"assignedTo", (o,n) => { (o as SubjectRightsRequest).AssignedTo = n.GetObjectValue<Identity>(Identity.CreateFromDiscriminatorValue); } },
+                {"assignedTo", (o,n) => { (o as SubjectRightsRequest).AssignedTo = n.GetObjectValue<ApiSdk.Models.Microsoft.Graph.Identity>(ApiSdk.Models.Microsoft.Graph.Identity.CreateFromDiscriminatorValue); } },
                 {"closedDateTime", (o,n) => { (o as SubjectRightsRequest).ClosedDateTime = n.GetDateTimeOffsetValue(); } },
-                {"createdBy", (o,n) => { (o as SubjectRightsRequest).CreatedBy = n.GetObjectValue<IdentitySet>(IdentitySet.CreateFromDiscriminatorValue); } },
+                {"createdBy", (o,n) => { (o as SubjectRightsRequest).CreatedBy = n.GetObjectValue<ApiSdk.Models.Microsoft.Graph.IdentitySet>(ApiSdk.Models.Microsoft.Graph.IdentitySet.CreateFromDiscriminatorValue); } },
                 {"createdDateTime", (o,n) => { (o as SubjectRightsRequest).CreatedDateTime = n.GetDateTimeOffsetValue(); } },
                 {"dataSubject", (o,n) => { (o as SubjectRightsRequest).DataSubject = n.GetObjectValue<ApiSdk.Models.Microsoft.Graph.DataSubject>(ApiSdk.Models.Microsoft.Graph.DataSubject.CreateFromDiscriminatorValue); } },
                 {"dataSubjectType", (o,n) => { (o as SubjectRightsRequest).DataSubjectType = n.GetEnumValue<DataSubjectType>(); } },
                 {"description", (o,n) => { (o as SubjectRightsRequest).Description = n.GetStringValue(); } },
                 {"displayName", (o,n) => { (o as SubjectRightsRequest).DisplayName = n.GetStringValue(); } },
-                {"history", (o,n) => { (o as SubjectRightsRequest).History = n.GetCollectionOfObjectValues<SubjectRightsRequestHistory>(SubjectRightsRequestHistory.CreateFromDiscriminatorValue).ToList(); } },
-                {"insight", (o,n) => { (o as SubjectRightsRequest).Insight = n.GetObjectValue<SubjectRightsRequestDetail>(SubjectRightsRequestDetail.CreateFromDiscriminatorValue); } },
+                {"history", (o,n) => { (o as SubjectRightsRequest).History = n.GetCollectionOfObjectValues<ApiSdk.Models.Microsoft.Graph.SubjectRightsRequestHistory>(ApiSdk.Models.Microsoft.Graph.SubjectRightsRequestHistory.CreateFromDiscriminatorValue).ToList(); } },
+                {"insight", (o,n) => { (o as SubjectRightsRequest).Insight = n.GetObjectValue<ApiSdk.Models.Microsoft.Graph.SubjectRightsRequestDetail>(ApiSdk.Models.Microsoft.Graph.SubjectRightsRequestDetail.CreateFromDiscriminatorValue); } },
                 {"internalDueDateTime", (o,n) => { (o as SubjectRightsRequest).InternalDueDateTime = n.GetDateTimeOffsetValue(); } },
-                {"lastModifiedBy", (o,n) => { (o as SubjectRightsRequest).LastModifiedBy = n.GetObjectValue<IdentitySet>(IdentitySet.CreateFromDiscriminatorValue); } },
+                {"lastModifiedBy", (o,n) => { (o as SubjectRightsRequest).LastModifiedBy = n.GetObjectValue<ApiSdk.Models.Microsoft.Graph.IdentitySet>(ApiSdk.Models.Microsoft.Graph.IdentitySet.CreateFromDiscriminatorValue); } },
                 {"lastModifiedDateTime", (o,n) => { (o as SubjectRightsRequest).LastModifiedDateTime = n.GetDateTimeOffsetValue(); } },
-                {"notes", (o,n) => { (o as SubjectRightsRequest).Notes = n.GetCollectionOfObjectValues<AuthoredNote>(AuthoredNote.CreateFromDiscriminatorValue).ToList(); } },
+                {"notes", (o,n) => { (o as SubjectRightsRequest).Notes = n.GetCollectionOfObjectValues<ApiSdk.Models.Microsoft.Graph.AuthoredNote>(ApiSdk.Models.Microsoft.Graph.AuthoredNote.CreateFromDiscriminatorValue).ToList(); } },
                 {"regulations", (o,n) => { (o as SubjectRightsRequest).Regulations = n.GetCollectionOfPrimitiveValues<string>().ToList(); } },
-                {"stages", (o,n) => { (o as SubjectRightsRequest).Stages = n.GetCollectionOfObjectValues<SubjectRightsRequestStageDetail>(SubjectRightsRequestStageDetail.CreateFromDiscriminatorValue).ToList(); } },
+                {"stages", (o,n) => { (o as SubjectRightsRequest).Stages = n.GetCollectionOfObjectValues<ApiSdk.Models.Microsoft.Graph.SubjectRightsRequestStageDetail>(ApiSdk.Models.Microsoft.Graph.SubjectRightsRequestStageDetail.CreateFromDiscriminatorValue).ToList(); } },
                 {"status", (o,n) => { (o as SubjectRightsRequest).Status = n.GetEnumValue<SubjectRightsRequestStatus>(); } },
                 {"team", (o,n) => { (o as SubjectRightsRequest).Team = n.GetObjectValue<ApiSdk.Models.Microsoft.Graph.Team>(ApiSdk.Models.Microsoft.Graph.Team.CreateFromDiscriminatorValue); } },
                 {"type", (o,n) => { (o as SubjectRightsRequest).Type = n.GetEnumValue<SubjectRightsRequestType>(); } },
@@ -84,22 +84,22 @@ namespace ApiSdk.Models.Microsoft.Graph {
         public new void Serialize(ISerializationWriter writer) {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             base.Serialize(writer);
-            writer.WriteObjectValue<Identity>("assignedTo", AssignedTo);
+            writer.WriteObjectValue<ApiSdk.Models.Microsoft.Graph.Identity>("assignedTo", AssignedTo);
             writer.WriteDateTimeOffsetValue("closedDateTime", ClosedDateTime);
-            writer.WriteObjectValue<IdentitySet>("createdBy", CreatedBy);
+            writer.WriteObjectValue<ApiSdk.Models.Microsoft.Graph.IdentitySet>("createdBy", CreatedBy);
             writer.WriteDateTimeOffsetValue("createdDateTime", CreatedDateTime);
             writer.WriteObjectValue<ApiSdk.Models.Microsoft.Graph.DataSubject>("dataSubject", DataSubject);
             writer.WriteEnumValue<DataSubjectType>("dataSubjectType", DataSubjectType);
             writer.WriteStringValue("description", Description);
             writer.WriteStringValue("displayName", DisplayName);
-            writer.WriteCollectionOfObjectValues<SubjectRightsRequestHistory>("history", History);
-            writer.WriteObjectValue<SubjectRightsRequestDetail>("insight", Insight);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.Microsoft.Graph.SubjectRightsRequestHistory>("history", History);
+            writer.WriteObjectValue<ApiSdk.Models.Microsoft.Graph.SubjectRightsRequestDetail>("insight", Insight);
             writer.WriteDateTimeOffsetValue("internalDueDateTime", InternalDueDateTime);
-            writer.WriteObjectValue<IdentitySet>("lastModifiedBy", LastModifiedBy);
+            writer.WriteObjectValue<ApiSdk.Models.Microsoft.Graph.IdentitySet>("lastModifiedBy", LastModifiedBy);
             writer.WriteDateTimeOffsetValue("lastModifiedDateTime", LastModifiedDateTime);
-            writer.WriteCollectionOfObjectValues<AuthoredNote>("notes", Notes);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.Microsoft.Graph.AuthoredNote>("notes", Notes);
             writer.WriteCollectionOfPrimitiveValues<string>("regulations", Regulations);
-            writer.WriteCollectionOfObjectValues<SubjectRightsRequestStageDetail>("stages", Stages);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.Microsoft.Graph.SubjectRightsRequestStageDetail>("stages", Stages);
             writer.WriteEnumValue<SubjectRightsRequestStatus>("status", Status);
             writer.WriteObjectValue<ApiSdk.Models.Microsoft.Graph.Team>("team", Team);
             writer.WriteEnumValue<SubjectRightsRequestType>("type", Type);

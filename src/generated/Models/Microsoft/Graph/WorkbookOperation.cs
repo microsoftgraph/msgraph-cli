@@ -6,16 +6,16 @@ using System.Linq;
 namespace ApiSdk.Models.Microsoft.Graph {
     public class WorkbookOperation : Entity, IParsable {
         /// <summary>The error returned by the operation.</summary>
-        public WorkbookOperationError Error { get; set; }
+        public ApiSdk.Models.Microsoft.Graph.WorkbookOperationError Error { get; set; }
         /// <summary>The resource URI for the result.</summary>
         public string ResourceLocation { get; set; }
-        /// <summary>The current status of the operation. Possible values are: notStarted, running, succeeded, failed.</summary>
+        /// <summary>The current status of the operation. Possible values are: NotStarted, Running, Completed, Failed.</summary>
         public WorkbookOperationStatus? Status { get; set; }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         /// </summary>
-        public static new WorkbookOperation CreateFromDiscriminatorValue(IParseNode parseNode) {
+        public static new ApiSdk.Models.Microsoft.Graph.WorkbookOperation CreateFromDiscriminatorValue(IParseNode parseNode) {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
             return new WorkbookOperation();
         }
@@ -24,7 +24,7 @@ namespace ApiSdk.Models.Microsoft.Graph {
         /// </summary>
         public new IDictionary<string, Action<T, IParseNode>> GetFieldDeserializers<T>() {
             return new Dictionary<string, Action<T, IParseNode>>(base.GetFieldDeserializers<T>()) {
-                {"error", (o,n) => { (o as WorkbookOperation).Error = n.GetObjectValue<WorkbookOperationError>(WorkbookOperationError.CreateFromDiscriminatorValue); } },
+                {"error", (o,n) => { (o as WorkbookOperation).Error = n.GetObjectValue<ApiSdk.Models.Microsoft.Graph.WorkbookOperationError>(ApiSdk.Models.Microsoft.Graph.WorkbookOperationError.CreateFromDiscriminatorValue); } },
                 {"resourceLocation", (o,n) => { (o as WorkbookOperation).ResourceLocation = n.GetStringValue(); } },
                 {"status", (o,n) => { (o as WorkbookOperation).Status = n.GetEnumValue<WorkbookOperationStatus>(); } },
             };
@@ -36,7 +36,7 @@ namespace ApiSdk.Models.Microsoft.Graph {
         public new void Serialize(ISerializationWriter writer) {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             base.Serialize(writer);
-            writer.WriteObjectValue<WorkbookOperationError>("error", Error);
+            writer.WriteObjectValue<ApiSdk.Models.Microsoft.Graph.WorkbookOperationError>("error", Error);
             writer.WriteStringValue("resourceLocation", ResourceLocation);
             writer.WriteEnumValue<WorkbookOperationStatus>("status", Status);
         }

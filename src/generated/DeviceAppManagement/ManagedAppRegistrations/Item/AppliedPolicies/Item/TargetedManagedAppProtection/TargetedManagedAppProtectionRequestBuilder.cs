@@ -21,13 +21,13 @@ namespace ApiSdk.DeviceAppManagement.ManagedAppRegistrations.Item.AppliedPolicie
         private string UrlTemplate { get; set; }
         public Command BuildAssignCommand() {
             var command = new Command("assign");
-            var builder = new ApiSdk.DeviceAppManagement.ManagedAppRegistrations.Item.AppliedPolicies.Item.TargetedManagedAppProtection.Assign.AssignRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new AssignRequestBuilder(PathParameters, RequestAdapter);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
         public Command BuildTargetAppsCommand() {
             var command = new Command("target-apps");
-            var builder = new ApiSdk.DeviceAppManagement.ManagedAppRegistrations.Item.AppliedPolicies.Item.TargetedManagedAppProtection.TargetApps.TargetAppsRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new TargetAppsRequestBuilder(PathParameters, RequestAdapter);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }

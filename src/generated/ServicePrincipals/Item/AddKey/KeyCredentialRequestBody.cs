@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 namespace ApiSdk.ServicePrincipals.Item.AddKey {
+    /// <summary>Provides operations to call the addKey method.</summary>
     public class KeyCredentialRequestBody : IAdditionalDataHolder, IParsable {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
@@ -21,7 +22,7 @@ namespace ApiSdk.ServicePrincipals.Item.AddKey {
         /// Creates a new instance of the appropriate class based on discriminator value
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         /// </summary>
-        public static KeyCredentialRequestBody CreateFromDiscriminatorValue(IParseNode parseNode) {
+        public static ApiSdk.ServicePrincipals.Item.AddKey.KeyCredentialRequestBody CreateFromDiscriminatorValue(IParseNode parseNode) {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
             return new KeyCredentialRequestBody();
         }

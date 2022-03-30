@@ -12,9 +12,9 @@ namespace ApiSdk.Models.Microsoft.Graph {
         /// <summary>The number of licenses that have been assigned.</summary>
         public int? ConsumedUnits { get; set; }
         /// <summary>Information about the number and status of prepaid licenses.</summary>
-        public LicenseUnitsDetail PrepaidUnits { get; set; }
+        public ApiSdk.Models.Microsoft.Graph.LicenseUnitsDetail PrepaidUnits { get; set; }
         /// <summary>Information about the service plans that are available with the SKU. Not nullable</summary>
-        public List<ServicePlanInfo> ServicePlans { get; set; }
+        public List<ApiSdk.Models.Microsoft.Graph.ServicePlanInfo> ServicePlans { get; set; }
         /// <summary>The unique identifier (GUID) for the service SKU.</summary>
         public string SkuId { get; set; }
         /// <summary>The SKU part number; for example: 'AAD_PREMIUM' or 'RMSBASIC'. To get a list of commercial subscriptions that an organization has acquired, see List subscribedSkus.</summary>
@@ -23,7 +23,7 @@ namespace ApiSdk.Models.Microsoft.Graph {
         /// Creates a new instance of the appropriate class based on discriminator value
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         /// </summary>
-        public static new SubscribedSku CreateFromDiscriminatorValue(IParseNode parseNode) {
+        public static new ApiSdk.Models.Microsoft.Graph.SubscribedSku CreateFromDiscriminatorValue(IParseNode parseNode) {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
             return new SubscribedSku();
         }
@@ -35,8 +35,8 @@ namespace ApiSdk.Models.Microsoft.Graph {
                 {"appliesTo", (o,n) => { (o as SubscribedSku).AppliesTo = n.GetStringValue(); } },
                 {"capabilityStatus", (o,n) => { (o as SubscribedSku).CapabilityStatus = n.GetStringValue(); } },
                 {"consumedUnits", (o,n) => { (o as SubscribedSku).ConsumedUnits = n.GetIntValue(); } },
-                {"prepaidUnits", (o,n) => { (o as SubscribedSku).PrepaidUnits = n.GetObjectValue<LicenseUnitsDetail>(LicenseUnitsDetail.CreateFromDiscriminatorValue); } },
-                {"servicePlans", (o,n) => { (o as SubscribedSku).ServicePlans = n.GetCollectionOfObjectValues<ServicePlanInfo>(ServicePlanInfo.CreateFromDiscriminatorValue).ToList(); } },
+                {"prepaidUnits", (o,n) => { (o as SubscribedSku).PrepaidUnits = n.GetObjectValue<ApiSdk.Models.Microsoft.Graph.LicenseUnitsDetail>(ApiSdk.Models.Microsoft.Graph.LicenseUnitsDetail.CreateFromDiscriminatorValue); } },
+                {"servicePlans", (o,n) => { (o as SubscribedSku).ServicePlans = n.GetCollectionOfObjectValues<ApiSdk.Models.Microsoft.Graph.ServicePlanInfo>(ApiSdk.Models.Microsoft.Graph.ServicePlanInfo.CreateFromDiscriminatorValue).ToList(); } },
                 {"skuId", (o,n) => { (o as SubscribedSku).SkuId = n.GetStringValue(); } },
                 {"skuPartNumber", (o,n) => { (o as SubscribedSku).SkuPartNumber = n.GetStringValue(); } },
             };
@@ -51,8 +51,8 @@ namespace ApiSdk.Models.Microsoft.Graph {
             writer.WriteStringValue("appliesTo", AppliesTo);
             writer.WriteStringValue("capabilityStatus", CapabilityStatus);
             writer.WriteIntValue("consumedUnits", ConsumedUnits);
-            writer.WriteObjectValue<LicenseUnitsDetail>("prepaidUnits", PrepaidUnits);
-            writer.WriteCollectionOfObjectValues<ServicePlanInfo>("servicePlans", ServicePlans);
+            writer.WriteObjectValue<ApiSdk.Models.Microsoft.Graph.LicenseUnitsDetail>("prepaidUnits", PrepaidUnits);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.Microsoft.Graph.ServicePlanInfo>("servicePlans", ServicePlans);
             writer.WriteStringValue("skuId", SkuId);
             writer.WriteStringValue("skuPartNumber", SkuPartNumber);
         }

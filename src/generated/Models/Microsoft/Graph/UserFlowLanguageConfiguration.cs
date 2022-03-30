@@ -6,18 +6,18 @@ using System.Linq;
 namespace ApiSdk.Models.Microsoft.Graph {
     public class UserFlowLanguageConfiguration : Entity, IParsable {
         /// <summary>Collection of pages with the default content to display in a user flow for a specified language. This collection does not allow any kind of modification.</summary>
-        public List<UserFlowLanguagePage> DefaultPages { get; set; }
+        public List<ApiSdk.Models.Microsoft.Graph.UserFlowLanguagePage> DefaultPages { get; set; }
         /// <summary>The language name to display. This property is read-only.</summary>
         public string DisplayName { get; set; }
         /// <summary>Indicates whether the language is enabled within the user flow.</summary>
         public bool? IsEnabled { get; set; }
         /// <summary>Collection of pages with the overrides messages to display in a user flow for a specified language. This collection only allows to modify the content of the page, any other modification is not allowed (creation or deletion of pages).</summary>
-        public List<UserFlowLanguagePage> OverridesPages { get; set; }
+        public List<ApiSdk.Models.Microsoft.Graph.UserFlowLanguagePage> OverridesPages { get; set; }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         /// </summary>
-        public static new UserFlowLanguageConfiguration CreateFromDiscriminatorValue(IParseNode parseNode) {
+        public static new ApiSdk.Models.Microsoft.Graph.UserFlowLanguageConfiguration CreateFromDiscriminatorValue(IParseNode parseNode) {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
             return new UserFlowLanguageConfiguration();
         }
@@ -26,10 +26,10 @@ namespace ApiSdk.Models.Microsoft.Graph {
         /// </summary>
         public new IDictionary<string, Action<T, IParseNode>> GetFieldDeserializers<T>() {
             return new Dictionary<string, Action<T, IParseNode>>(base.GetFieldDeserializers<T>()) {
-                {"defaultPages", (o,n) => { (o as UserFlowLanguageConfiguration).DefaultPages = n.GetCollectionOfObjectValues<UserFlowLanguagePage>(UserFlowLanguagePage.CreateFromDiscriminatorValue).ToList(); } },
+                {"defaultPages", (o,n) => { (o as UserFlowLanguageConfiguration).DefaultPages = n.GetCollectionOfObjectValues<ApiSdk.Models.Microsoft.Graph.UserFlowLanguagePage>(ApiSdk.Models.Microsoft.Graph.UserFlowLanguagePage.CreateFromDiscriminatorValue).ToList(); } },
                 {"displayName", (o,n) => { (o as UserFlowLanguageConfiguration).DisplayName = n.GetStringValue(); } },
                 {"isEnabled", (o,n) => { (o as UserFlowLanguageConfiguration).IsEnabled = n.GetBoolValue(); } },
-                {"overridesPages", (o,n) => { (o as UserFlowLanguageConfiguration).OverridesPages = n.GetCollectionOfObjectValues<UserFlowLanguagePage>(UserFlowLanguagePage.CreateFromDiscriminatorValue).ToList(); } },
+                {"overridesPages", (o,n) => { (o as UserFlowLanguageConfiguration).OverridesPages = n.GetCollectionOfObjectValues<ApiSdk.Models.Microsoft.Graph.UserFlowLanguagePage>(ApiSdk.Models.Microsoft.Graph.UserFlowLanguagePage.CreateFromDiscriminatorValue).ToList(); } },
             };
         }
         /// <summary>
@@ -39,10 +39,10 @@ namespace ApiSdk.Models.Microsoft.Graph {
         public new void Serialize(ISerializationWriter writer) {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             base.Serialize(writer);
-            writer.WriteCollectionOfObjectValues<UserFlowLanguagePage>("defaultPages", DefaultPages);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.Microsoft.Graph.UserFlowLanguagePage>("defaultPages", DefaultPages);
             writer.WriteStringValue("displayName", DisplayName);
             writer.WriteBoolValue("isEnabled", IsEnabled);
-            writer.WriteCollectionOfObjectValues<UserFlowLanguagePage>("overridesPages", OverridesPages);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.Microsoft.Graph.UserFlowLanguagePage>("overridesPages", OverridesPages);
         }
     }
 }

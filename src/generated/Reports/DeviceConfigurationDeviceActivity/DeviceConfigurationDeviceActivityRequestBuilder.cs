@@ -12,7 +12,7 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 namespace ApiSdk.Reports.DeviceConfigurationDeviceActivity {
-    /// <summary>Builds and executes requests for operations under \reports\microsoft.graph.deviceConfigurationDeviceActivity()</summary>
+    /// <summary>Provides operations to call the deviceConfigurationDeviceActivity method.</summary>
     public class DeviceConfigurationDeviceActivityRequestBuilder {
         /// <summary>Path parameters for the request</summary>
         private Dictionary<string, object> PathParameters { get; set; }
@@ -50,9 +50,9 @@ namespace ApiSdk.Reports.DeviceConfigurationDeviceActivity {
                 var requestInfo = CreateGetRequestInformation(q => {
                 });
                 var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: default, cancellationToken: cancellationToken);
-                var formatter = outputFormatterFactory.GetFormatter(output);
                 response = await outputFilter?.FilterOutputAsync(response, query, cancellationToken) ?? response;
                 var formatterOptions = output.GetOutputFormatterOptions(new FormatterOptionsModel(!jsonNoIndent));
+                var formatter = outputFormatterFactory.GetFormatter(output);
                 await formatter.WriteOutputAsync(response, formatterOptions, cancellationToken);
             }, new CollectionBinding(outputOption, queryOption, jsonNoIndentOption, new TypeBinding(typeof(IOutputFilter)), new TypeBinding(typeof(IOutputFormatterFactory)), new TypeBinding(typeof(CancellationToken))));
             return command;
@@ -72,52 +72,18 @@ namespace ApiSdk.Reports.DeviceConfigurationDeviceActivity {
         }
         /// <summary>
         /// Metadata for the device configuration device activity report
-        /// <param name="h">Request headers</param>
-        /// <param name="o">Request options</param>
+        /// <param name="headers">Request headers</param>
+        /// <param name="options">Request options</param>
         /// </summary>
-        public RequestInformation CreateGetRequestInformation(Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
+        public RequestInformation CreateGetRequestInformation(Action<IDictionary<string, string>> headers = default, IEnumerable<IRequestOption> options = default) {
             var requestInfo = new RequestInformation {
                 HttpMethod = Method.GET,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };
-            h?.Invoke(requestInfo.Headers);
-            requestInfo.AddRequestOptions(o?.ToArray());
+            headers?.Invoke(requestInfo.Headers);
+            requestInfo.AddRequestOptions(options?.ToArray());
             return requestInfo;
-        }
-        /// <summary>Union type wrapper for classes report</summary>
-        public class DeviceConfigurationDeviceActivityResponse : IAdditionalDataHolder, IParsable {
-            /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
-            public IDictionary<string, object> AdditionalData { get; set; }
-            /// <summary>Union type representation for type report</summary>
-            public ApiSdk.Models.Microsoft.Graph.Report Report { get; set; }
-            /// <summary>
-            /// Instantiates a new deviceConfigurationDeviceActivityResponse and sets the default values.
-            /// </summary>
-            public DeviceConfigurationDeviceActivityResponse() {
-                AdditionalData = new Dictionary<string, object>();
-            }
-            public static DeviceConfigurationDeviceActivityResponse CreateFromDiscriminatorValue(IParseNode parseNode) {
-                _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-                return new DeviceConfigurationDeviceActivityResponse();
-            }
-            /// <summary>
-            /// The deserialization information for the current model
-            /// </summary>
-            public IDictionary<string, Action<T, IParseNode>> GetFieldDeserializers<T>() {
-                return new Dictionary<string, Action<T, IParseNode>> {
-                    {"report", (o,n) => { (o as DeviceConfigurationDeviceActivityResponse).Report = n.GetObjectValue<ApiSdk.Models.Microsoft.Graph.Report>(ApiSdk.Models.Microsoft.Graph.Report.CreateFromDiscriminatorValue); } },
-                };
-            }
-            /// <summary>
-            /// Serializes information the current object
-            /// <param name="writer">Serialization writer to use to serialize this model</param>
-            /// </summary>
-            public void Serialize(ISerializationWriter writer) {
-                _ = writer ?? throw new ArgumentNullException(nameof(writer));
-                writer.WriteObjectValue<ApiSdk.Models.Microsoft.Graph.Report>("report", Report);
-                writer.WriteAdditionalData(AdditionalData);
-            }
         }
     }
 }

@@ -8,7 +8,7 @@ namespace ApiSdk.Models.Microsoft.Graph {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>The description of this criterion.</summary>
-        public EducationItemBody Description { get; set; }
+        public ApiSdk.Models.Microsoft.Graph.EducationItemBody Description { get; set; }
         /// <summary>
         /// Instantiates a new rubricCriterion and sets the default values.
         /// </summary>
@@ -19,7 +19,7 @@ namespace ApiSdk.Models.Microsoft.Graph {
         /// Creates a new instance of the appropriate class based on discriminator value
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         /// </summary>
-        public static RubricCriterion CreateFromDiscriminatorValue(IParseNode parseNode) {
+        public static ApiSdk.Models.Microsoft.Graph.RubricCriterion CreateFromDiscriminatorValue(IParseNode parseNode) {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
             return new RubricCriterion();
         }
@@ -28,7 +28,7 @@ namespace ApiSdk.Models.Microsoft.Graph {
         /// </summary>
         public IDictionary<string, Action<T, IParseNode>> GetFieldDeserializers<T>() {
             return new Dictionary<string, Action<T, IParseNode>> {
-                {"description", (o,n) => { (o as RubricCriterion).Description = n.GetObjectValue<EducationItemBody>(EducationItemBody.CreateFromDiscriminatorValue); } },
+                {"description", (o,n) => { (o as RubricCriterion).Description = n.GetObjectValue<ApiSdk.Models.Microsoft.Graph.EducationItemBody>(ApiSdk.Models.Microsoft.Graph.EducationItemBody.CreateFromDiscriminatorValue); } },
             };
         }
         /// <summary>
@@ -37,7 +37,7 @@ namespace ApiSdk.Models.Microsoft.Graph {
         /// </summary>
         public void Serialize(ISerializationWriter writer) {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
-            writer.WriteObjectValue<EducationItemBody>("description", Description);
+            writer.WriteObjectValue<ApiSdk.Models.Microsoft.Graph.EducationItemBody>("description", Description);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

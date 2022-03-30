@@ -8,9 +8,9 @@ namespace ApiSdk.Models.Microsoft.Graph {
         /// <summary>Administrator-supplied explanation of the terms and conditions, typically describing what it means to accept the terms and conditions set out in the T&C policy. This is shown to the user on prompts to accept the T&C policy.</summary>
         public string AcceptanceStatement { get; set; }
         /// <summary>The list of acceptance statuses for this T&C policy.</summary>
-        public List<TermsAndConditionsAcceptanceStatus> AcceptanceStatuses { get; set; }
+        public List<ApiSdk.Models.Microsoft.Graph.TermsAndConditionsAcceptanceStatus> AcceptanceStatuses { get; set; }
         /// <summary>The list of assignments for this T&C policy.</summary>
-        public List<TermsAndConditionsAssignment> Assignments { get; set; }
+        public List<ApiSdk.Models.Microsoft.Graph.TermsAndConditionsAssignment> Assignments { get; set; }
         /// <summary>Administrator-supplied body text of the terms and conditions, typically the terms themselves. This is shown to the user on prompts to accept the T&C policy.</summary>
         public string BodyText { get; set; }
         /// <summary>DateTime the object was created.</summary>
@@ -29,7 +29,7 @@ namespace ApiSdk.Models.Microsoft.Graph {
         /// Creates a new instance of the appropriate class based on discriminator value
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         /// </summary>
-        public static new TermsAndConditions CreateFromDiscriminatorValue(IParseNode parseNode) {
+        public static new ApiSdk.Models.Microsoft.Graph.TermsAndConditions CreateFromDiscriminatorValue(IParseNode parseNode) {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
             return new TermsAndConditions();
         }
@@ -39,8 +39,8 @@ namespace ApiSdk.Models.Microsoft.Graph {
         public new IDictionary<string, Action<T, IParseNode>> GetFieldDeserializers<T>() {
             return new Dictionary<string, Action<T, IParseNode>>(base.GetFieldDeserializers<T>()) {
                 {"acceptanceStatement", (o,n) => { (o as TermsAndConditions).AcceptanceStatement = n.GetStringValue(); } },
-                {"acceptanceStatuses", (o,n) => { (o as TermsAndConditions).AcceptanceStatuses = n.GetCollectionOfObjectValues<TermsAndConditionsAcceptanceStatus>(TermsAndConditionsAcceptanceStatus.CreateFromDiscriminatorValue).ToList(); } },
-                {"assignments", (o,n) => { (o as TermsAndConditions).Assignments = n.GetCollectionOfObjectValues<TermsAndConditionsAssignment>(TermsAndConditionsAssignment.CreateFromDiscriminatorValue).ToList(); } },
+                {"acceptanceStatuses", (o,n) => { (o as TermsAndConditions).AcceptanceStatuses = n.GetCollectionOfObjectValues<ApiSdk.Models.Microsoft.Graph.TermsAndConditionsAcceptanceStatus>(ApiSdk.Models.Microsoft.Graph.TermsAndConditionsAcceptanceStatus.CreateFromDiscriminatorValue).ToList(); } },
+                {"assignments", (o,n) => { (o as TermsAndConditions).Assignments = n.GetCollectionOfObjectValues<ApiSdk.Models.Microsoft.Graph.TermsAndConditionsAssignment>(ApiSdk.Models.Microsoft.Graph.TermsAndConditionsAssignment.CreateFromDiscriminatorValue).ToList(); } },
                 {"bodyText", (o,n) => { (o as TermsAndConditions).BodyText = n.GetStringValue(); } },
                 {"createdDateTime", (o,n) => { (o as TermsAndConditions).CreatedDateTime = n.GetDateTimeOffsetValue(); } },
                 {"description", (o,n) => { (o as TermsAndConditions).Description = n.GetStringValue(); } },
@@ -58,8 +58,8 @@ namespace ApiSdk.Models.Microsoft.Graph {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             base.Serialize(writer);
             writer.WriteStringValue("acceptanceStatement", AcceptanceStatement);
-            writer.WriteCollectionOfObjectValues<TermsAndConditionsAcceptanceStatus>("acceptanceStatuses", AcceptanceStatuses);
-            writer.WriteCollectionOfObjectValues<TermsAndConditionsAssignment>("assignments", Assignments);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.Microsoft.Graph.TermsAndConditionsAcceptanceStatus>("acceptanceStatuses", AcceptanceStatuses);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.Microsoft.Graph.TermsAndConditionsAssignment>("assignments", Assignments);
             writer.WriteStringValue("bodyText", BodyText);
             writer.WriteDateTimeOffsetValue("createdDateTime", CreatedDateTime);
             writer.WriteStringValue("description", Description);

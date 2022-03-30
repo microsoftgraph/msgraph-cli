@@ -7,8 +7,8 @@ namespace ApiSdk.Models.Microsoft.Graph {
     public class ConditionalAccessDevices : IAdditionalDataHolder, IParsable {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
-        /// <summary>Filter that defines the dynamic-device-syntax rule to include/exclude devices. A filter can use device properties (such as extension attributes) to include/exclude them. Cannot be set if includeDevices or excludeDevices is set.</summary>
-        public ConditionalAccessFilter DeviceFilter { get; set; }
+        /// <summary>Filter that defines the dynamic-device-syntax rule to include/exclude devices. A filter can use device properties (such as extension attributes) to include/exclude them.</summary>
+        public ApiSdk.Models.Microsoft.Graph.ConditionalAccessFilter DeviceFilter { get; set; }
         /// <summary>
         /// Instantiates a new conditionalAccessDevices and sets the default values.
         /// </summary>
@@ -19,7 +19,7 @@ namespace ApiSdk.Models.Microsoft.Graph {
         /// Creates a new instance of the appropriate class based on discriminator value
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         /// </summary>
-        public static ConditionalAccessDevices CreateFromDiscriminatorValue(IParseNode parseNode) {
+        public static ApiSdk.Models.Microsoft.Graph.ConditionalAccessDevices CreateFromDiscriminatorValue(IParseNode parseNode) {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
             return new ConditionalAccessDevices();
         }
@@ -28,7 +28,7 @@ namespace ApiSdk.Models.Microsoft.Graph {
         /// </summary>
         public IDictionary<string, Action<T, IParseNode>> GetFieldDeserializers<T>() {
             return new Dictionary<string, Action<T, IParseNode>> {
-                {"deviceFilter", (o,n) => { (o as ConditionalAccessDevices).DeviceFilter = n.GetObjectValue<ConditionalAccessFilter>(ConditionalAccessFilter.CreateFromDiscriminatorValue); } },
+                {"deviceFilter", (o,n) => { (o as ConditionalAccessDevices).DeviceFilter = n.GetObjectValue<ApiSdk.Models.Microsoft.Graph.ConditionalAccessFilter>(ApiSdk.Models.Microsoft.Graph.ConditionalAccessFilter.CreateFromDiscriminatorValue); } },
             };
         }
         /// <summary>
@@ -37,7 +37,7 @@ namespace ApiSdk.Models.Microsoft.Graph {
         /// </summary>
         public void Serialize(ISerializationWriter writer) {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
-            writer.WriteObjectValue<ConditionalAccessFilter>("deviceFilter", DeviceFilter);
+            writer.WriteObjectValue<ApiSdk.Models.Microsoft.Graph.ConditionalAccessFilter>("deviceFilter", DeviceFilter);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

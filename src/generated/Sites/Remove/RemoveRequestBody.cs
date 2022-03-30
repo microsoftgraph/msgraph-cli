@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 namespace ApiSdk.Sites.Remove {
+    /// <summary>Provides operations to call the remove method.</summary>
     public class RemoveRequestBody : IAdditionalDataHolder, IParsable {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
@@ -19,7 +20,7 @@ namespace ApiSdk.Sites.Remove {
         /// Creates a new instance of the appropriate class based on discriminator value
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         /// </summary>
-        public static RemoveRequestBody CreateFromDiscriminatorValue(IParseNode parseNode) {
+        public static ApiSdk.Sites.Remove.RemoveRequestBody CreateFromDiscriminatorValue(IParseNode parseNode) {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
             return new RemoveRequestBody();
         }

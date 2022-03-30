@@ -8,11 +8,11 @@ namespace ApiSdk.Models.Microsoft.Graph {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>Optional. The application associated with this action.</summary>
-        public Identity Application { get; set; }
+        public ApiSdk.Models.Microsoft.Graph.Identity Application { get; set; }
         /// <summary>Optional. The device associated with this action.</summary>
-        public Identity Device { get; set; }
+        public ApiSdk.Models.Microsoft.Graph.Identity Device { get; set; }
         /// <summary>Optional. The user associated with this action.</summary>
-        public Identity User { get; set; }
+        public ApiSdk.Models.Microsoft.Graph.Identity User { get; set; }
         /// <summary>
         /// Instantiates a new identitySet and sets the default values.
         /// </summary>
@@ -23,7 +23,7 @@ namespace ApiSdk.Models.Microsoft.Graph {
         /// Creates a new instance of the appropriate class based on discriminator value
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         /// </summary>
-        public static IdentitySet CreateFromDiscriminatorValue(IParseNode parseNode) {
+        public static ApiSdk.Models.Microsoft.Graph.IdentitySet CreateFromDiscriminatorValue(IParseNode parseNode) {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
             return new IdentitySet();
         }
@@ -32,9 +32,9 @@ namespace ApiSdk.Models.Microsoft.Graph {
         /// </summary>
         public IDictionary<string, Action<T, IParseNode>> GetFieldDeserializers<T>() {
             return new Dictionary<string, Action<T, IParseNode>> {
-                {"application", (o,n) => { (o as IdentitySet).Application = n.GetObjectValue<Identity>(Identity.CreateFromDiscriminatorValue); } },
-                {"device", (o,n) => { (o as IdentitySet).Device = n.GetObjectValue<Identity>(Identity.CreateFromDiscriminatorValue); } },
-                {"user", (o,n) => { (o as IdentitySet).User = n.GetObjectValue<Identity>(Identity.CreateFromDiscriminatorValue); } },
+                {"application", (o,n) => { (o as IdentitySet).Application = n.GetObjectValue<ApiSdk.Models.Microsoft.Graph.Identity>(ApiSdk.Models.Microsoft.Graph.Identity.CreateFromDiscriminatorValue); } },
+                {"device", (o,n) => { (o as IdentitySet).Device = n.GetObjectValue<ApiSdk.Models.Microsoft.Graph.Identity>(ApiSdk.Models.Microsoft.Graph.Identity.CreateFromDiscriminatorValue); } },
+                {"user", (o,n) => { (o as IdentitySet).User = n.GetObjectValue<ApiSdk.Models.Microsoft.Graph.Identity>(ApiSdk.Models.Microsoft.Graph.Identity.CreateFromDiscriminatorValue); } },
             };
         }
         /// <summary>
@@ -43,9 +43,9 @@ namespace ApiSdk.Models.Microsoft.Graph {
         /// </summary>
         public void Serialize(ISerializationWriter writer) {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
-            writer.WriteObjectValue<Identity>("application", Application);
-            writer.WriteObjectValue<Identity>("device", Device);
-            writer.WriteObjectValue<Identity>("user", User);
+            writer.WriteObjectValue<ApiSdk.Models.Microsoft.Graph.Identity>("application", Application);
+            writer.WriteObjectValue<ApiSdk.Models.Microsoft.Graph.Identity>("device", Device);
+            writer.WriteObjectValue<ApiSdk.Models.Microsoft.Graph.Identity>("user", User);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

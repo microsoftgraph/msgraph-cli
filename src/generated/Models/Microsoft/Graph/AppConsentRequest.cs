@@ -9,15 +9,15 @@ namespace ApiSdk.Models.Microsoft.Graph {
         public string AppDisplayName { get; set; }
         /// <summary>The identifier of the application. Required. Supports $filter (eq only) and $orderby.</summary>
         public string AppId { get; set; }
-        /// <summary>A list of pending scopes waiting for approval. This is empty if the consentType is Static. Required.</summary>
-        public List<AppConsentRequestScope> PendingScopes { get; set; }
+        /// <summary>A list of pending scopes waiting for approval. Required.</summary>
+        public List<ApiSdk.Models.Microsoft.Graph.AppConsentRequestScope> PendingScopes { get; set; }
         /// <summary>A list of pending user consent requests.</summary>
-        public List<UserConsentRequest> UserConsentRequests { get; set; }
+        public List<ApiSdk.Models.Microsoft.Graph.UserConsentRequest> UserConsentRequests { get; set; }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         /// </summary>
-        public static new AppConsentRequest CreateFromDiscriminatorValue(IParseNode parseNode) {
+        public static new ApiSdk.Models.Microsoft.Graph.AppConsentRequest CreateFromDiscriminatorValue(IParseNode parseNode) {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
             return new AppConsentRequest();
         }
@@ -28,8 +28,8 @@ namespace ApiSdk.Models.Microsoft.Graph {
             return new Dictionary<string, Action<T, IParseNode>>(base.GetFieldDeserializers<T>()) {
                 {"appDisplayName", (o,n) => { (o as AppConsentRequest).AppDisplayName = n.GetStringValue(); } },
                 {"appId", (o,n) => { (o as AppConsentRequest).AppId = n.GetStringValue(); } },
-                {"pendingScopes", (o,n) => { (o as AppConsentRequest).PendingScopes = n.GetCollectionOfObjectValues<AppConsentRequestScope>(AppConsentRequestScope.CreateFromDiscriminatorValue).ToList(); } },
-                {"userConsentRequests", (o,n) => { (o as AppConsentRequest).UserConsentRequests = n.GetCollectionOfObjectValues<UserConsentRequest>(UserConsentRequest.CreateFromDiscriminatorValue).ToList(); } },
+                {"pendingScopes", (o,n) => { (o as AppConsentRequest).PendingScopes = n.GetCollectionOfObjectValues<ApiSdk.Models.Microsoft.Graph.AppConsentRequestScope>(ApiSdk.Models.Microsoft.Graph.AppConsentRequestScope.CreateFromDiscriminatorValue).ToList(); } },
+                {"userConsentRequests", (o,n) => { (o as AppConsentRequest).UserConsentRequests = n.GetCollectionOfObjectValues<ApiSdk.Models.Microsoft.Graph.UserConsentRequest>(ApiSdk.Models.Microsoft.Graph.UserConsentRequest.CreateFromDiscriminatorValue).ToList(); } },
             };
         }
         /// <summary>
@@ -41,8 +41,8 @@ namespace ApiSdk.Models.Microsoft.Graph {
             base.Serialize(writer);
             writer.WriteStringValue("appDisplayName", AppDisplayName);
             writer.WriteStringValue("appId", AppId);
-            writer.WriteCollectionOfObjectValues<AppConsentRequestScope>("pendingScopes", PendingScopes);
-            writer.WriteCollectionOfObjectValues<UserConsentRequest>("userConsentRequests", UserConsentRequests);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.Microsoft.Graph.AppConsentRequestScope>("pendingScopes", PendingScopes);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.Microsoft.Graph.UserConsentRequest>("userConsentRequests", UserConsentRequests);
         }
     }
 }

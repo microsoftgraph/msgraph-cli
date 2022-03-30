@@ -10,7 +10,7 @@ namespace ApiSdk.Models.Microsoft.Graph {
         /// <summary>Contains one or more filters to obtain search results aggregated and filtered to a specific value of a field. Optional.Build this filter based on a prior search that aggregates by the same field. From the response of the prior search, identify the searchBucket that filters results to the specific value of the field, use the string in its aggregationFilterToken property, and build an aggregation filter string in the format '{field}:/'{aggregationFilterToken}/''. If multiple values for the same field need to be provided, use the strings in its aggregationFilterToken property and build an aggregation filter string in the format '{field}:or(/'{aggregationFilterToken1}/',/'{aggregationFilterToken2}/')'. For example, searching and aggregating drive items by file type returns a searchBucket for the file type docx in the response. You can conveniently use the aggregationFilterToken returned for this searchBucket in a subsequent search query and filter matches down to drive items of the docx file type. Example 1 and example 2 show the actual requests and responses.</summary>
         public List<string> AggregationFilters { get; set; }
         /// <summary>Specifies aggregations (also known as refiners) to be returned alongside search results. Optional.</summary>
-        public List<AggregationOption> Aggregations { get; set; }
+        public List<ApiSdk.Models.Microsoft.Graph.AggregationOption> Aggregations { get; set; }
         /// <summary>Contains the connection to be targeted. Respects the following format : /external/connections/connectionid where connectionid is the ConnectionId defined in the Connectors Administration.  Note: contentSource is only applicable when entityType=externalItem. Optional.</summary>
         public List<string> ContentSources { get; set; }
         /// <summary>This triggers hybrid sort for messages: the first 3 messages are the most relevant. This property is only applicable to entityType=message. Optional.</summary>
@@ -21,11 +21,15 @@ namespace ApiSdk.Models.Microsoft.Graph {
         public List<string> Fields { get; set; }
         /// <summary>Specifies the offset for the search results. Offset 0 returns the very first result. Optional.</summary>
         public int? From { get; set; }
-        public SearchQuery Query { get; set; }
+        public ApiSdk.Models.Microsoft.Graph.SearchQuery Query { get; set; }
+        /// <summary>Provides query alteration options formatted as a JSON blob that contains two optional flags related to spelling correction. Optional.</summary>
+        public ApiSdk.Models.Microsoft.Graph.SearchAlterationOptions QueryAlterationOptions { get; set; }
+        /// <summary>Provides the search result templates options for rendering connectors search results.</summary>
+        public ApiSdk.Models.Microsoft.Graph.ResultTemplateOption ResultTemplateOptions { get; set; }
         /// <summary>The size of the page to be retrieved. Optional.</summary>
         public int? Size { get; set; }
         /// <summary>Contains the ordered collection of fields and direction to sort results. There can be at most 5 sort properties in the collection. Optional.</summary>
-        public List<SortProperty> SortProperties { get; set; }
+        public List<ApiSdk.Models.Microsoft.Graph.SortProperty> SortProperties { get; set; }
         /// <summary>
         /// Instantiates a new searchRequest and sets the default values.
         /// </summary>
@@ -36,7 +40,7 @@ namespace ApiSdk.Models.Microsoft.Graph {
         /// Creates a new instance of the appropriate class based on discriminator value
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         /// </summary>
-        public static SearchRequest CreateFromDiscriminatorValue(IParseNode parseNode) {
+        public static ApiSdk.Models.Microsoft.Graph.SearchRequest CreateFromDiscriminatorValue(IParseNode parseNode) {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
             return new SearchRequest();
         }
@@ -46,15 +50,17 @@ namespace ApiSdk.Models.Microsoft.Graph {
         public IDictionary<string, Action<T, IParseNode>> GetFieldDeserializers<T>() {
             return new Dictionary<string, Action<T, IParseNode>> {
                 {"aggregationFilters", (o,n) => { (o as SearchRequest).AggregationFilters = n.GetCollectionOfPrimitiveValues<string>().ToList(); } },
-                {"aggregations", (o,n) => { (o as SearchRequest).Aggregations = n.GetCollectionOfObjectValues<AggregationOption>(AggregationOption.CreateFromDiscriminatorValue).ToList(); } },
+                {"aggregations", (o,n) => { (o as SearchRequest).Aggregations = n.GetCollectionOfObjectValues<ApiSdk.Models.Microsoft.Graph.AggregationOption>(ApiSdk.Models.Microsoft.Graph.AggregationOption.CreateFromDiscriminatorValue).ToList(); } },
                 {"contentSources", (o,n) => { (o as SearchRequest).ContentSources = n.GetCollectionOfPrimitiveValues<string>().ToList(); } },
                 {"enableTopResults", (o,n) => { (o as SearchRequest).EnableTopResults = n.GetBoolValue(); } },
                 {"entityTypes", (o,n) => { (o as SearchRequest).EntityTypes = n.GetCollectionOfEnumValues<EntityType>().ToList(); } },
                 {"fields", (o,n) => { (o as SearchRequest).Fields = n.GetCollectionOfPrimitiveValues<string>().ToList(); } },
                 {"from", (o,n) => { (o as SearchRequest).From = n.GetIntValue(); } },
-                {"query", (o,n) => { (o as SearchRequest).Query = n.GetObjectValue<SearchQuery>(SearchQuery.CreateFromDiscriminatorValue); } },
+                {"query", (o,n) => { (o as SearchRequest).Query = n.GetObjectValue<ApiSdk.Models.Microsoft.Graph.SearchQuery>(ApiSdk.Models.Microsoft.Graph.SearchQuery.CreateFromDiscriminatorValue); } },
+                {"queryAlterationOptions", (o,n) => { (o as SearchRequest).QueryAlterationOptions = n.GetObjectValue<ApiSdk.Models.Microsoft.Graph.SearchAlterationOptions>(ApiSdk.Models.Microsoft.Graph.SearchAlterationOptions.CreateFromDiscriminatorValue); } },
+                {"resultTemplateOptions", (o,n) => { (o as SearchRequest).ResultTemplateOptions = n.GetObjectValue<ApiSdk.Models.Microsoft.Graph.ResultTemplateOption>(ApiSdk.Models.Microsoft.Graph.ResultTemplateOption.CreateFromDiscriminatorValue); } },
                 {"size", (o,n) => { (o as SearchRequest).Size = n.GetIntValue(); } },
-                {"sortProperties", (o,n) => { (o as SearchRequest).SortProperties = n.GetCollectionOfObjectValues<SortProperty>(SortProperty.CreateFromDiscriminatorValue).ToList(); } },
+                {"sortProperties", (o,n) => { (o as SearchRequest).SortProperties = n.GetCollectionOfObjectValues<ApiSdk.Models.Microsoft.Graph.SortProperty>(ApiSdk.Models.Microsoft.Graph.SortProperty.CreateFromDiscriminatorValue).ToList(); } },
             };
         }
         /// <summary>
@@ -64,15 +70,17 @@ namespace ApiSdk.Models.Microsoft.Graph {
         public void Serialize(ISerializationWriter writer) {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             writer.WriteCollectionOfPrimitiveValues<string>("aggregationFilters", AggregationFilters);
-            writer.WriteCollectionOfObjectValues<AggregationOption>("aggregations", Aggregations);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.Microsoft.Graph.AggregationOption>("aggregations", Aggregations);
             writer.WriteCollectionOfPrimitiveValues<string>("contentSources", ContentSources);
             writer.WriteBoolValue("enableTopResults", EnableTopResults);
             writer.WriteCollectionOfEnumValues<EntityType>("entityTypes", EntityTypes);
             writer.WriteCollectionOfPrimitiveValues<string>("fields", Fields);
             writer.WriteIntValue("from", From);
-            writer.WriteObjectValue<SearchQuery>("query", Query);
+            writer.WriteObjectValue<ApiSdk.Models.Microsoft.Graph.SearchQuery>("query", Query);
+            writer.WriteObjectValue<ApiSdk.Models.Microsoft.Graph.SearchAlterationOptions>("queryAlterationOptions", QueryAlterationOptions);
+            writer.WriteObjectValue<ApiSdk.Models.Microsoft.Graph.ResultTemplateOption>("resultTemplateOptions", ResultTemplateOptions);
             writer.WriteIntValue("size", Size);
-            writer.WriteCollectionOfObjectValues<SortProperty>("sortProperties", SortProperties);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.Microsoft.Graph.SortProperty>("sortProperties", SortProperties);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

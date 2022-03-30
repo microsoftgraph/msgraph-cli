@@ -8,13 +8,13 @@ namespace ApiSdk.Models.Microsoft.Graph {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>An error object indicating the reason for the conversion failure. This value is not present if the conversion succeeded.</summary>
-        public GenericError ErrorDetails { get; set; }
+        public ApiSdk.Models.Microsoft.Graph.GenericError ErrorDetails { get; set; }
         /// <summary>The identifier that was converted. This value is the original, un-converted identifier.</summary>
         public string SourceId { get; set; }
         /// <summary>The converted identifier. This value is not present if the conversion failed.</summary>
         public string TargetId { get; set; }
         /// <summary>
-        /// Instantiates a new ConvertIdResult and sets the default values.
+        /// Instantiates a new convertIdResult and sets the default values.
         /// </summary>
         public ConvertIdResult() {
             AdditionalData = new Dictionary<string, object>();
@@ -23,7 +23,7 @@ namespace ApiSdk.Models.Microsoft.Graph {
         /// Creates a new instance of the appropriate class based on discriminator value
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         /// </summary>
-        public static ConvertIdResult CreateFromDiscriminatorValue(IParseNode parseNode) {
+        public static ApiSdk.Models.Microsoft.Graph.ConvertIdResult CreateFromDiscriminatorValue(IParseNode parseNode) {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
             return new ConvertIdResult();
         }
@@ -32,7 +32,7 @@ namespace ApiSdk.Models.Microsoft.Graph {
         /// </summary>
         public IDictionary<string, Action<T, IParseNode>> GetFieldDeserializers<T>() {
             return new Dictionary<string, Action<T, IParseNode>> {
-                {"errorDetails", (o,n) => { (o as ConvertIdResult).ErrorDetails = n.GetObjectValue<GenericError>(GenericError.CreateFromDiscriminatorValue); } },
+                {"errorDetails", (o,n) => { (o as ConvertIdResult).ErrorDetails = n.GetObjectValue<ApiSdk.Models.Microsoft.Graph.GenericError>(ApiSdk.Models.Microsoft.Graph.GenericError.CreateFromDiscriminatorValue); } },
                 {"sourceId", (o,n) => { (o as ConvertIdResult).SourceId = n.GetStringValue(); } },
                 {"targetId", (o,n) => { (o as ConvertIdResult).TargetId = n.GetStringValue(); } },
             };
@@ -43,7 +43,7 @@ namespace ApiSdk.Models.Microsoft.Graph {
         /// </summary>
         public void Serialize(ISerializationWriter writer) {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
-            writer.WriteObjectValue<GenericError>("errorDetails", ErrorDetails);
+            writer.WriteObjectValue<ApiSdk.Models.Microsoft.Graph.GenericError>("errorDetails", ErrorDetails);
             writer.WriteStringValue("sourceId", SourceId);
             writer.WriteStringValue("targetId", TargetId);
             writer.WriteAdditionalData(AdditionalData);

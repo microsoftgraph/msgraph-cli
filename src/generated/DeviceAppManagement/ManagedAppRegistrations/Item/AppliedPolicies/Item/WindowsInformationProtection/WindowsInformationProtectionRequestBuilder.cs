@@ -20,7 +20,7 @@ namespace ApiSdk.DeviceAppManagement.ManagedAppRegistrations.Item.AppliedPolicie
         private string UrlTemplate { get; set; }
         public Command BuildAssignCommand() {
             var command = new Command("assign");
-            var builder = new ApiSdk.DeviceAppManagement.ManagedAppRegistrations.Item.AppliedPolicies.Item.WindowsInformationProtection.Assign.AssignRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new AssignRequestBuilder(PathParameters, RequestAdapter);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }

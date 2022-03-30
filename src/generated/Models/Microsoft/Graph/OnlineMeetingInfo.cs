@@ -12,7 +12,7 @@ namespace ApiSdk.Models.Microsoft.Graph {
         /// <summary>The external link that launches the online meeting. This is a URL that clients will launch into a browser and will redirect the user to join the meeting.</summary>
         public string JoinUrl { get; set; }
         /// <summary>All of the phone numbers associated with this conference.</summary>
-        public List<Phone> Phones { get; set; }
+        public List<ApiSdk.Models.Microsoft.Graph.Phone> Phones { get; set; }
         /// <summary>The pre-formatted quickdial for this call.</summary>
         public string QuickDial { get; set; }
         /// <summary>The toll free numbers that can be used to join the conference.</summary>
@@ -29,7 +29,7 @@ namespace ApiSdk.Models.Microsoft.Graph {
         /// Creates a new instance of the appropriate class based on discriminator value
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         /// </summary>
-        public static OnlineMeetingInfo CreateFromDiscriminatorValue(IParseNode parseNode) {
+        public static ApiSdk.Models.Microsoft.Graph.OnlineMeetingInfo CreateFromDiscriminatorValue(IParseNode parseNode) {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
             return new OnlineMeetingInfo();
         }
@@ -40,7 +40,7 @@ namespace ApiSdk.Models.Microsoft.Graph {
             return new Dictionary<string, Action<T, IParseNode>> {
                 {"conferenceId", (o,n) => { (o as OnlineMeetingInfo).ConferenceId = n.GetStringValue(); } },
                 {"joinUrl", (o,n) => { (o as OnlineMeetingInfo).JoinUrl = n.GetStringValue(); } },
-                {"phones", (o,n) => { (o as OnlineMeetingInfo).Phones = n.GetCollectionOfObjectValues<Phone>(Phone.CreateFromDiscriminatorValue).ToList(); } },
+                {"phones", (o,n) => { (o as OnlineMeetingInfo).Phones = n.GetCollectionOfObjectValues<ApiSdk.Models.Microsoft.Graph.Phone>(ApiSdk.Models.Microsoft.Graph.Phone.CreateFromDiscriminatorValue).ToList(); } },
                 {"quickDial", (o,n) => { (o as OnlineMeetingInfo).QuickDial = n.GetStringValue(); } },
                 {"tollFreeNumbers", (o,n) => { (o as OnlineMeetingInfo).TollFreeNumbers = n.GetCollectionOfPrimitiveValues<string>().ToList(); } },
                 {"tollNumber", (o,n) => { (o as OnlineMeetingInfo).TollNumber = n.GetStringValue(); } },
@@ -54,7 +54,7 @@ namespace ApiSdk.Models.Microsoft.Graph {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             writer.WriteStringValue("conferenceId", ConferenceId);
             writer.WriteStringValue("joinUrl", JoinUrl);
-            writer.WriteCollectionOfObjectValues<Phone>("phones", Phones);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.Microsoft.Graph.Phone>("phones", Phones);
             writer.WriteStringValue("quickDial", QuickDial);
             writer.WriteCollectionOfPrimitiveValues<string>("tollFreeNumbers", TollFreeNumbers);
             writer.WriteStringValue("tollNumber", TollNumber);

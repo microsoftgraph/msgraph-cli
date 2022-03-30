@@ -6,19 +6,19 @@ using System.Linq;
 namespace ApiSdk.Models.Microsoft.Graph {
     public class ComplianceManagementPartner : Entity, IParsable {
         /// <summary>User groups which enroll Android devices through partner.</summary>
-        public List<ComplianceManagementPartnerAssignment> AndroidEnrollmentAssignments { get; set; }
+        public List<ApiSdk.Models.Microsoft.Graph.ComplianceManagementPartnerAssignment> AndroidEnrollmentAssignments { get; set; }
         /// <summary>Partner onboarded for Android devices.</summary>
         public bool? AndroidOnboarded { get; set; }
         /// <summary>Partner display name</summary>
         public string DisplayName { get; set; }
         /// <summary>User groups which enroll ios devices through partner.</summary>
-        public List<ComplianceManagementPartnerAssignment> IosEnrollmentAssignments { get; set; }
+        public List<ApiSdk.Models.Microsoft.Graph.ComplianceManagementPartnerAssignment> IosEnrollmentAssignments { get; set; }
         /// <summary>Partner onboarded for ios devices.</summary>
         public bool? IosOnboarded { get; set; }
         /// <summary>Timestamp of last heartbeat after admin onboarded to the compliance management partner</summary>
         public DateTimeOffset? LastHeartbeatDateTime { get; set; }
         /// <summary>User groups which enroll Mac devices through partner.</summary>
-        public List<ComplianceManagementPartnerAssignment> MacOsEnrollmentAssignments { get; set; }
+        public List<ApiSdk.Models.Microsoft.Graph.ComplianceManagementPartnerAssignment> MacOsEnrollmentAssignments { get; set; }
         /// <summary>Partner onboarded for Mac devices.</summary>
         public bool? MacOsOnboarded { get; set; }
         /// <summary>Partner state of this tenant. Possible values are: unknown, unavailable, enabled, terminated, rejected, unresponsive.</summary>
@@ -27,7 +27,7 @@ namespace ApiSdk.Models.Microsoft.Graph {
         /// Creates a new instance of the appropriate class based on discriminator value
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         /// </summary>
-        public static new ComplianceManagementPartner CreateFromDiscriminatorValue(IParseNode parseNode) {
+        public static new ApiSdk.Models.Microsoft.Graph.ComplianceManagementPartner CreateFromDiscriminatorValue(IParseNode parseNode) {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
             return new ComplianceManagementPartner();
         }
@@ -36,13 +36,13 @@ namespace ApiSdk.Models.Microsoft.Graph {
         /// </summary>
         public new IDictionary<string, Action<T, IParseNode>> GetFieldDeserializers<T>() {
             return new Dictionary<string, Action<T, IParseNode>>(base.GetFieldDeserializers<T>()) {
-                {"androidEnrollmentAssignments", (o,n) => { (o as ComplianceManagementPartner).AndroidEnrollmentAssignments = n.GetCollectionOfObjectValues<ComplianceManagementPartnerAssignment>(ComplianceManagementPartnerAssignment.CreateFromDiscriminatorValue).ToList(); } },
+                {"androidEnrollmentAssignments", (o,n) => { (o as ComplianceManagementPartner).AndroidEnrollmentAssignments = n.GetCollectionOfObjectValues<ApiSdk.Models.Microsoft.Graph.ComplianceManagementPartnerAssignment>(ApiSdk.Models.Microsoft.Graph.ComplianceManagementPartnerAssignment.CreateFromDiscriminatorValue).ToList(); } },
                 {"androidOnboarded", (o,n) => { (o as ComplianceManagementPartner).AndroidOnboarded = n.GetBoolValue(); } },
                 {"displayName", (o,n) => { (o as ComplianceManagementPartner).DisplayName = n.GetStringValue(); } },
-                {"iosEnrollmentAssignments", (o,n) => { (o as ComplianceManagementPartner).IosEnrollmentAssignments = n.GetCollectionOfObjectValues<ComplianceManagementPartnerAssignment>(ComplianceManagementPartnerAssignment.CreateFromDiscriminatorValue).ToList(); } },
+                {"iosEnrollmentAssignments", (o,n) => { (o as ComplianceManagementPartner).IosEnrollmentAssignments = n.GetCollectionOfObjectValues<ApiSdk.Models.Microsoft.Graph.ComplianceManagementPartnerAssignment>(ApiSdk.Models.Microsoft.Graph.ComplianceManagementPartnerAssignment.CreateFromDiscriminatorValue).ToList(); } },
                 {"iosOnboarded", (o,n) => { (o as ComplianceManagementPartner).IosOnboarded = n.GetBoolValue(); } },
                 {"lastHeartbeatDateTime", (o,n) => { (o as ComplianceManagementPartner).LastHeartbeatDateTime = n.GetDateTimeOffsetValue(); } },
-                {"macOsEnrollmentAssignments", (o,n) => { (o as ComplianceManagementPartner).MacOsEnrollmentAssignments = n.GetCollectionOfObjectValues<ComplianceManagementPartnerAssignment>(ComplianceManagementPartnerAssignment.CreateFromDiscriminatorValue).ToList(); } },
+                {"macOsEnrollmentAssignments", (o,n) => { (o as ComplianceManagementPartner).MacOsEnrollmentAssignments = n.GetCollectionOfObjectValues<ApiSdk.Models.Microsoft.Graph.ComplianceManagementPartnerAssignment>(ApiSdk.Models.Microsoft.Graph.ComplianceManagementPartnerAssignment.CreateFromDiscriminatorValue).ToList(); } },
                 {"macOsOnboarded", (o,n) => { (o as ComplianceManagementPartner).MacOsOnboarded = n.GetBoolValue(); } },
                 {"partnerState", (o,n) => { (o as ComplianceManagementPartner).PartnerState = n.GetEnumValue<DeviceManagementPartnerTenantState>(); } },
             };
@@ -54,13 +54,13 @@ namespace ApiSdk.Models.Microsoft.Graph {
         public new void Serialize(ISerializationWriter writer) {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             base.Serialize(writer);
-            writer.WriteCollectionOfObjectValues<ComplianceManagementPartnerAssignment>("androidEnrollmentAssignments", AndroidEnrollmentAssignments);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.Microsoft.Graph.ComplianceManagementPartnerAssignment>("androidEnrollmentAssignments", AndroidEnrollmentAssignments);
             writer.WriteBoolValue("androidOnboarded", AndroidOnboarded);
             writer.WriteStringValue("displayName", DisplayName);
-            writer.WriteCollectionOfObjectValues<ComplianceManagementPartnerAssignment>("iosEnrollmentAssignments", IosEnrollmentAssignments);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.Microsoft.Graph.ComplianceManagementPartnerAssignment>("iosEnrollmentAssignments", IosEnrollmentAssignments);
             writer.WriteBoolValue("iosOnboarded", IosOnboarded);
             writer.WriteDateTimeOffsetValue("lastHeartbeatDateTime", LastHeartbeatDateTime);
-            writer.WriteCollectionOfObjectValues<ComplianceManagementPartnerAssignment>("macOsEnrollmentAssignments", MacOsEnrollmentAssignments);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.Microsoft.Graph.ComplianceManagementPartnerAssignment>("macOsEnrollmentAssignments", MacOsEnrollmentAssignments);
             writer.WriteBoolValue("macOsOnboarded", MacOsOnboarded);
             writer.WriteEnumValue<DeviceManagementPartnerTenantState>("partnerState", PartnerState);
         }

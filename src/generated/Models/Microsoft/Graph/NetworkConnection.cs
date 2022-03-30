@@ -7,7 +7,7 @@ namespace ApiSdk.Models.Microsoft.Graph {
     public class NetworkConnection : IAdditionalDataHolder, IParsable {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
-        /// <summary>Name of the application managing the network connection (for example, Facebook, SMTP, etc.).</summary>
+        /// <summary>Name of the application managing the network connection (for example, Facebook or SMTP).</summary>
         public string ApplicationName { get; set; }
         /// <summary>Destination IP address (of the network connection).</summary>
         public string DestinationAddress { get; set; }
@@ -57,7 +57,7 @@ namespace ApiSdk.Models.Microsoft.Graph {
         /// Creates a new instance of the appropriate class based on discriminator value
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         /// </summary>
-        public static NetworkConnection CreateFromDiscriminatorValue(IParseNode parseNode) {
+        public static ApiSdk.Models.Microsoft.Graph.NetworkConnection CreateFromDiscriminatorValue(IParseNode parseNode) {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
             return new NetworkConnection();
         }

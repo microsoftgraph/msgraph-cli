@@ -13,15 +13,15 @@ namespace ApiSdk.Models.Microsoft.Graph {
         public bool? RemindersEnabled { get; set; }
         /// <summary>Specifies the duration the request is active before it automatically expires if no decision is applied.</summary>
         public int? RequestDurationInDays { get; set; }
-        /// <summary>Required.</summary>
-        public List<AccessReviewReviewerScope> Reviewers { get; set; }
+        /// <summary>The list of reviewers for the admin consent. Required.</summary>
+        public List<ApiSdk.Models.Microsoft.Graph.AccessReviewReviewerScope> Reviewers { get; set; }
         /// <summary>Specifies the version of this policy. When the policy is updated, this version is updated. Read-only.</summary>
         public int? Version { get; set; }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         /// </summary>
-        public static new AdminConsentRequestPolicy CreateFromDiscriminatorValue(IParseNode parseNode) {
+        public static new ApiSdk.Models.Microsoft.Graph.AdminConsentRequestPolicy CreateFromDiscriminatorValue(IParseNode parseNode) {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
             return new AdminConsentRequestPolicy();
         }
@@ -34,7 +34,7 @@ namespace ApiSdk.Models.Microsoft.Graph {
                 {"notifyReviewers", (o,n) => { (o as AdminConsentRequestPolicy).NotifyReviewers = n.GetBoolValue(); } },
                 {"remindersEnabled", (o,n) => { (o as AdminConsentRequestPolicy).RemindersEnabled = n.GetBoolValue(); } },
                 {"requestDurationInDays", (o,n) => { (o as AdminConsentRequestPolicy).RequestDurationInDays = n.GetIntValue(); } },
-                {"reviewers", (o,n) => { (o as AdminConsentRequestPolicy).Reviewers = n.GetCollectionOfObjectValues<AccessReviewReviewerScope>(AccessReviewReviewerScope.CreateFromDiscriminatorValue).ToList(); } },
+                {"reviewers", (o,n) => { (o as AdminConsentRequestPolicy).Reviewers = n.GetCollectionOfObjectValues<ApiSdk.Models.Microsoft.Graph.AccessReviewReviewerScope>(ApiSdk.Models.Microsoft.Graph.AccessReviewReviewerScope.CreateFromDiscriminatorValue).ToList(); } },
                 {"version", (o,n) => { (o as AdminConsentRequestPolicy).Version = n.GetIntValue(); } },
             };
         }
@@ -49,7 +49,7 @@ namespace ApiSdk.Models.Microsoft.Graph {
             writer.WriteBoolValue("notifyReviewers", NotifyReviewers);
             writer.WriteBoolValue("remindersEnabled", RemindersEnabled);
             writer.WriteIntValue("requestDurationInDays", RequestDurationInDays);
-            writer.WriteCollectionOfObjectValues<AccessReviewReviewerScope>("reviewers", Reviewers);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.Microsoft.Graph.AccessReviewReviewerScope>("reviewers", Reviewers);
             writer.WriteIntValue("version", Version);
         }
     }

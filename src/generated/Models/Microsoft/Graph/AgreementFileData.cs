@@ -7,6 +7,7 @@ namespace ApiSdk.Models.Microsoft.Graph {
     public class AgreementFileData : IAdditionalDataHolder, IParsable {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
+        /// <summary>Data that represents the terms of use PDF document. Read-only.</summary>
         public byte[] Data { get; set; }
         /// <summary>
         /// Instantiates a new agreementFileData and sets the default values.
@@ -18,7 +19,7 @@ namespace ApiSdk.Models.Microsoft.Graph {
         /// Creates a new instance of the appropriate class based on discriminator value
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         /// </summary>
-        public static AgreementFileData CreateFromDiscriminatorValue(IParseNode parseNode) {
+        public static ApiSdk.Models.Microsoft.Graph.AgreementFileData CreateFromDiscriminatorValue(IParseNode parseNode) {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
             return new AgreementFileData();
         }

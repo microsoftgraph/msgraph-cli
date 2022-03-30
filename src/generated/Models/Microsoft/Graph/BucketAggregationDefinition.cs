@@ -14,7 +14,7 @@ namespace ApiSdk.Models.Microsoft.Graph {
         /// <summary>A filter to define a matching criteria. The key should start with the specified prefix to be returned in the response. Optional.</summary>
         public string PrefixFilter { get; set; }
         /// <summary>Specifies the manual ranges to compute the aggregations. This is only valid for non-string refiners of date or numeric type. Optional.</summary>
-        public List<BucketAggregationRange> Ranges { get; set; }
+        public List<ApiSdk.Models.Microsoft.Graph.BucketAggregationRange> Ranges { get; set; }
         /// <summary>The possible values are count to sort by the number of matches in the aggregation, keyAsStringto sort alphabeticaly based on the key in the aggregation, keyAsNumber for numerical sorting based on the key in the aggregation. Required.</summary>
         public BucketAggregationSortProperty? SortBy { get; set; }
         /// <summary>
@@ -27,7 +27,7 @@ namespace ApiSdk.Models.Microsoft.Graph {
         /// Creates a new instance of the appropriate class based on discriminator value
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         /// </summary>
-        public static BucketAggregationDefinition CreateFromDiscriminatorValue(IParseNode parseNode) {
+        public static ApiSdk.Models.Microsoft.Graph.BucketAggregationDefinition CreateFromDiscriminatorValue(IParseNode parseNode) {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
             return new BucketAggregationDefinition();
         }
@@ -39,7 +39,7 @@ namespace ApiSdk.Models.Microsoft.Graph {
                 {"isDescending", (o,n) => { (o as BucketAggregationDefinition).IsDescending = n.GetBoolValue(); } },
                 {"minimumCount", (o,n) => { (o as BucketAggregationDefinition).MinimumCount = n.GetIntValue(); } },
                 {"prefixFilter", (o,n) => { (o as BucketAggregationDefinition).PrefixFilter = n.GetStringValue(); } },
-                {"ranges", (o,n) => { (o as BucketAggregationDefinition).Ranges = n.GetCollectionOfObjectValues<BucketAggregationRange>(BucketAggregationRange.CreateFromDiscriminatorValue).ToList(); } },
+                {"ranges", (o,n) => { (o as BucketAggregationDefinition).Ranges = n.GetCollectionOfObjectValues<ApiSdk.Models.Microsoft.Graph.BucketAggregationRange>(ApiSdk.Models.Microsoft.Graph.BucketAggregationRange.CreateFromDiscriminatorValue).ToList(); } },
                 {"sortBy", (o,n) => { (o as BucketAggregationDefinition).SortBy = n.GetEnumValue<BucketAggregationSortProperty>(); } },
             };
         }
@@ -52,7 +52,7 @@ namespace ApiSdk.Models.Microsoft.Graph {
             writer.WriteBoolValue("isDescending", IsDescending);
             writer.WriteIntValue("minimumCount", MinimumCount);
             writer.WriteStringValue("prefixFilter", PrefixFilter);
-            writer.WriteCollectionOfObjectValues<BucketAggregationRange>("ranges", Ranges);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.Microsoft.Graph.BucketAggregationRange>("ranges", Ranges);
             writer.WriteEnumValue<BucketAggregationSortProperty>("sortBy", SortBy);
             writer.WriteAdditionalData(AdditionalData);
         }

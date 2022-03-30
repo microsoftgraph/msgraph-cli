@@ -6,16 +6,16 @@ using System.Linq;
 namespace ApiSdk.Models.Microsoft.Graph {
     public class TimeOff : ChangeTrackedEntity, IParsable {
         /// <summary>The draft version of this timeOff that is viewable by managers. Required.</summary>
-        public TimeOffItem DraftTimeOff { get; set; }
+        public ApiSdk.Models.Microsoft.Graph.TimeOffItem DraftTimeOff { get; set; }
         /// <summary>The shared version of this timeOff that is viewable by both employees and managers. Required.</summary>
-        public TimeOffItem SharedTimeOff { get; set; }
+        public ApiSdk.Models.Microsoft.Graph.TimeOffItem SharedTimeOff { get; set; }
         /// <summary>ID of the user assigned to the timeOff. Required.</summary>
         public string UserId { get; set; }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         /// </summary>
-        public static new TimeOff CreateFromDiscriminatorValue(IParseNode parseNode) {
+        public static new ApiSdk.Models.Microsoft.Graph.TimeOff CreateFromDiscriminatorValue(IParseNode parseNode) {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
             return new TimeOff();
         }
@@ -24,8 +24,8 @@ namespace ApiSdk.Models.Microsoft.Graph {
         /// </summary>
         public new IDictionary<string, Action<T, IParseNode>> GetFieldDeserializers<T>() {
             return new Dictionary<string, Action<T, IParseNode>>(base.GetFieldDeserializers<T>()) {
-                {"draftTimeOff", (o,n) => { (o as TimeOff).DraftTimeOff = n.GetObjectValue<TimeOffItem>(TimeOffItem.CreateFromDiscriminatorValue); } },
-                {"sharedTimeOff", (o,n) => { (o as TimeOff).SharedTimeOff = n.GetObjectValue<TimeOffItem>(TimeOffItem.CreateFromDiscriminatorValue); } },
+                {"draftTimeOff", (o,n) => { (o as TimeOff).DraftTimeOff = n.GetObjectValue<ApiSdk.Models.Microsoft.Graph.TimeOffItem>(ApiSdk.Models.Microsoft.Graph.TimeOffItem.CreateFromDiscriminatorValue); } },
+                {"sharedTimeOff", (o,n) => { (o as TimeOff).SharedTimeOff = n.GetObjectValue<ApiSdk.Models.Microsoft.Graph.TimeOffItem>(ApiSdk.Models.Microsoft.Graph.TimeOffItem.CreateFromDiscriminatorValue); } },
                 {"userId", (o,n) => { (o as TimeOff).UserId = n.GetStringValue(); } },
             };
         }
@@ -36,8 +36,8 @@ namespace ApiSdk.Models.Microsoft.Graph {
         public new void Serialize(ISerializationWriter writer) {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             base.Serialize(writer);
-            writer.WriteObjectValue<TimeOffItem>("draftTimeOff", DraftTimeOff);
-            writer.WriteObjectValue<TimeOffItem>("sharedTimeOff", SharedTimeOff);
+            writer.WriteObjectValue<ApiSdk.Models.Microsoft.Graph.TimeOffItem>("draftTimeOff", DraftTimeOff);
+            writer.WriteObjectValue<ApiSdk.Models.Microsoft.Graph.TimeOffItem>("sharedTimeOff", SharedTimeOff);
             writer.WriteStringValue("userId", UserId);
         }
     }

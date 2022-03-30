@@ -6,7 +6,7 @@ using System.Linq;
 namespace ApiSdk.Models.Microsoft.Graph {
     public class LicenseDetails : Entity, IParsable {
         /// <summary>Information about the service plans assigned with the license. Read-only, Not nullable</summary>
-        public List<ServicePlanInfo> ServicePlans { get; set; }
+        public List<ApiSdk.Models.Microsoft.Graph.ServicePlanInfo> ServicePlans { get; set; }
         /// <summary>Unique identifier (GUID) for the service SKU. Equal to the skuId property on the related SubscribedSku object. Read-only</summary>
         public string SkuId { get; set; }
         /// <summary>Unique SKU display name. Equal to the skuPartNumber on the related SubscribedSku object; for example: 'AAD_Premium'. Read-only</summary>
@@ -15,7 +15,7 @@ namespace ApiSdk.Models.Microsoft.Graph {
         /// Creates a new instance of the appropriate class based on discriminator value
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         /// </summary>
-        public static new LicenseDetails CreateFromDiscriminatorValue(IParseNode parseNode) {
+        public static new ApiSdk.Models.Microsoft.Graph.LicenseDetails CreateFromDiscriminatorValue(IParseNode parseNode) {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
             return new LicenseDetails();
         }
@@ -24,7 +24,7 @@ namespace ApiSdk.Models.Microsoft.Graph {
         /// </summary>
         public new IDictionary<string, Action<T, IParseNode>> GetFieldDeserializers<T>() {
             return new Dictionary<string, Action<T, IParseNode>>(base.GetFieldDeserializers<T>()) {
-                {"servicePlans", (o,n) => { (o as LicenseDetails).ServicePlans = n.GetCollectionOfObjectValues<ServicePlanInfo>(ServicePlanInfo.CreateFromDiscriminatorValue).ToList(); } },
+                {"servicePlans", (o,n) => { (o as LicenseDetails).ServicePlans = n.GetCollectionOfObjectValues<ApiSdk.Models.Microsoft.Graph.ServicePlanInfo>(ApiSdk.Models.Microsoft.Graph.ServicePlanInfo.CreateFromDiscriminatorValue).ToList(); } },
                 {"skuId", (o,n) => { (o as LicenseDetails).SkuId = n.GetStringValue(); } },
                 {"skuPartNumber", (o,n) => { (o as LicenseDetails).SkuPartNumber = n.GetStringValue(); } },
             };
@@ -36,7 +36,7 @@ namespace ApiSdk.Models.Microsoft.Graph {
         public new void Serialize(ISerializationWriter writer) {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             base.Serialize(writer);
-            writer.WriteCollectionOfObjectValues<ServicePlanInfo>("servicePlans", ServicePlans);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.Microsoft.Graph.ServicePlanInfo>("servicePlans", ServicePlans);
             writer.WriteStringValue("skuId", SkuId);
             writer.WriteStringValue("skuPartNumber", SkuPartNumber);
         }

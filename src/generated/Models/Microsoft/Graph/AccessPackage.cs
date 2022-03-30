@@ -5,8 +5,9 @@ using System.IO;
 using System.Linq;
 namespace ApiSdk.Models.Microsoft.Graph {
     public class AccessPackage : Entity, IParsable {
+        public List<ApiSdk.Models.Microsoft.Graph.AccessPackageAssignmentPolicy> AssignmentPolicies { get; set; }
         /// <summary>Read-only. Nullable.</summary>
-        public AccessPackageCatalog Catalog { get; set; }
+        public ApiSdk.Models.Microsoft.Graph.AccessPackageCatalog Catalog { get; set; }
         /// <summary>The Timestamp type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z. Read-only.</summary>
         public DateTimeOffset? CreatedDateTime { get; set; }
         /// <summary>The description of the access package.</summary>
@@ -21,7 +22,7 @@ namespace ApiSdk.Models.Microsoft.Graph {
         /// Creates a new instance of the appropriate class based on discriminator value
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         /// </summary>
-        public static new AccessPackage CreateFromDiscriminatorValue(IParseNode parseNode) {
+        public static new ApiSdk.Models.Microsoft.Graph.AccessPackage CreateFromDiscriminatorValue(IParseNode parseNode) {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
             return new AccessPackage();
         }
@@ -30,7 +31,8 @@ namespace ApiSdk.Models.Microsoft.Graph {
         /// </summary>
         public new IDictionary<string, Action<T, IParseNode>> GetFieldDeserializers<T>() {
             return new Dictionary<string, Action<T, IParseNode>>(base.GetFieldDeserializers<T>()) {
-                {"catalog", (o,n) => { (o as AccessPackage).Catalog = n.GetObjectValue<AccessPackageCatalog>(AccessPackageCatalog.CreateFromDiscriminatorValue); } },
+                {"assignmentPolicies", (o,n) => { (o as AccessPackage).AssignmentPolicies = n.GetCollectionOfObjectValues<ApiSdk.Models.Microsoft.Graph.AccessPackageAssignmentPolicy>(ApiSdk.Models.Microsoft.Graph.AccessPackageAssignmentPolicy.CreateFromDiscriminatorValue).ToList(); } },
+                {"catalog", (o,n) => { (o as AccessPackage).Catalog = n.GetObjectValue<ApiSdk.Models.Microsoft.Graph.AccessPackageCatalog>(ApiSdk.Models.Microsoft.Graph.AccessPackageCatalog.CreateFromDiscriminatorValue); } },
                 {"createdDateTime", (o,n) => { (o as AccessPackage).CreatedDateTime = n.GetDateTimeOffsetValue(); } },
                 {"description", (o,n) => { (o as AccessPackage).Description = n.GetStringValue(); } },
                 {"displayName", (o,n) => { (o as AccessPackage).DisplayName = n.GetStringValue(); } },
@@ -45,7 +47,8 @@ namespace ApiSdk.Models.Microsoft.Graph {
         public new void Serialize(ISerializationWriter writer) {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             base.Serialize(writer);
-            writer.WriteObjectValue<AccessPackageCatalog>("catalog", Catalog);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.Microsoft.Graph.AccessPackageAssignmentPolicy>("assignmentPolicies", AssignmentPolicies);
+            writer.WriteObjectValue<ApiSdk.Models.Microsoft.Graph.AccessPackageCatalog>("catalog", Catalog);
             writer.WriteDateTimeOffsetValue("createdDateTime", CreatedDateTime);
             writer.WriteStringValue("description", Description);
             writer.WriteStringValue("displayName", DisplayName);

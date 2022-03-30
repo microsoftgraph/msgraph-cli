@@ -8,11 +8,11 @@ namespace ApiSdk.Models.Microsoft.Graph {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>The identity of the owner of the shared item. Read-only.</summary>
-        public IdentitySet Owner { get; set; }
+        public ApiSdk.Models.Microsoft.Graph.IdentitySet Owner { get; set; }
         /// <summary>Indicates the scope of how the item is shared: anonymous, organization, or users. Read-only.</summary>
         public string Scope { get; set; }
         /// <summary>The identity of the user who shared the item. Read-only.</summary>
-        public IdentitySet SharedBy { get; set; }
+        public ApiSdk.Models.Microsoft.Graph.IdentitySet SharedBy { get; set; }
         /// <summary>The UTC date and time when the item was shared. Read-only.</summary>
         public DateTimeOffset? SharedDateTime { get; set; }
         /// <summary>
@@ -25,7 +25,7 @@ namespace ApiSdk.Models.Microsoft.Graph {
         /// Creates a new instance of the appropriate class based on discriminator value
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         /// </summary>
-        public static Shared CreateFromDiscriminatorValue(IParseNode parseNode) {
+        public static ApiSdk.Models.Microsoft.Graph.Shared CreateFromDiscriminatorValue(IParseNode parseNode) {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
             return new Shared();
         }
@@ -34,9 +34,9 @@ namespace ApiSdk.Models.Microsoft.Graph {
         /// </summary>
         public IDictionary<string, Action<T, IParseNode>> GetFieldDeserializers<T>() {
             return new Dictionary<string, Action<T, IParseNode>> {
-                {"owner", (o,n) => { (o as Shared).Owner = n.GetObjectValue<IdentitySet>(IdentitySet.CreateFromDiscriminatorValue); } },
+                {"owner", (o,n) => { (o as Shared).Owner = n.GetObjectValue<ApiSdk.Models.Microsoft.Graph.IdentitySet>(ApiSdk.Models.Microsoft.Graph.IdentitySet.CreateFromDiscriminatorValue); } },
                 {"scope", (o,n) => { (o as Shared).Scope = n.GetStringValue(); } },
-                {"sharedBy", (o,n) => { (o as Shared).SharedBy = n.GetObjectValue<IdentitySet>(IdentitySet.CreateFromDiscriminatorValue); } },
+                {"sharedBy", (o,n) => { (o as Shared).SharedBy = n.GetObjectValue<ApiSdk.Models.Microsoft.Graph.IdentitySet>(ApiSdk.Models.Microsoft.Graph.IdentitySet.CreateFromDiscriminatorValue); } },
                 {"sharedDateTime", (o,n) => { (o as Shared).SharedDateTime = n.GetDateTimeOffsetValue(); } },
             };
         }
@@ -46,9 +46,9 @@ namespace ApiSdk.Models.Microsoft.Graph {
         /// </summary>
         public void Serialize(ISerializationWriter writer) {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
-            writer.WriteObjectValue<IdentitySet>("owner", Owner);
+            writer.WriteObjectValue<ApiSdk.Models.Microsoft.Graph.IdentitySet>("owner", Owner);
             writer.WriteStringValue("scope", Scope);
-            writer.WriteObjectValue<IdentitySet>("sharedBy", SharedBy);
+            writer.WriteObjectValue<ApiSdk.Models.Microsoft.Graph.IdentitySet>("sharedBy", SharedBy);
             writer.WriteDateTimeOffsetValue("sharedDateTime", SharedDateTime);
             writer.WriteAdditionalData(AdditionalData);
         }

@@ -5,19 +5,19 @@ using System.IO;
 using System.Linq;
 namespace ApiSdk.Models.Microsoft.Graph {
     public class BitlockerRecoveryKey : Entity, IParsable {
-        /// <summary>The date and time when the key was originally backed up to Azure Active Directory.</summary>
+        /// <summary>The date and time when the key was originally backed up to Azure Active Directory. Not nullable.</summary>
         public DateTimeOffset? CreatedDateTime { get; set; }
-        /// <summary>ID of the device the BitLocker key is originally backed up from.</summary>
+        /// <summary>Identifier of the device the BitLocker key is originally backed up from. Supports $filter (eq).</summary>
         public string DeviceId { get; set; }
-        /// <summary>The BitLocker recovery key.</summary>
+        /// <summary>The BitLocker recovery key. Returned only on $select. Not nullable.</summary>
         public string Key { get; set; }
-        /// <summary>Indicates the type of volume the BitLocker key is associated with. Possible values are: operatingSystemVolume, fixedDataVolume, removableDataVolume, unknownFutureValue.</summary>
+        /// <summary>Indicates the type of volume the BitLocker key is associated with. The possible values are: 1 (for operatingSystemVolume), 2 (for fixedDataVolume), 3 (for removableDataVolume), and 4 (for unknownFutureValue).</summary>
         public ApiSdk.Models.Microsoft.Graph.VolumeType? VolumeType { get; set; }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         /// </summary>
-        public static new BitlockerRecoveryKey CreateFromDiscriminatorValue(IParseNode parseNode) {
+        public static new ApiSdk.Models.Microsoft.Graph.BitlockerRecoveryKey CreateFromDiscriminatorValue(IParseNode parseNode) {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
             return new BitlockerRecoveryKey();
         }

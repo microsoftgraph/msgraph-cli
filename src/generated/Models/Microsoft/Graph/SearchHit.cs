@@ -13,7 +13,9 @@ namespace ApiSdk.Models.Microsoft.Graph {
         public string HitId { get; set; }
         /// <summary>The rank or the order of the result.</summary>
         public int? Rank { get; set; }
-        public Entity Resource { get; set; }
+        public ApiSdk.Models.Microsoft.Graph.Entity Resource { get; set; }
+        /// <summary>ID of the result template used to render the search result. This ID must map to a display layout in the resultTemplates dictionary that is also included in the searchResponse.</summary>
+        public string ResultTemplateId { get; set; }
         /// <summary>A summary of the result, if a summary is available.</summary>
         public string Summary { get; set; }
         /// <summary>
@@ -26,7 +28,7 @@ namespace ApiSdk.Models.Microsoft.Graph {
         /// Creates a new instance of the appropriate class based on discriminator value
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         /// </summary>
-        public static SearchHit CreateFromDiscriminatorValue(IParseNode parseNode) {
+        public static ApiSdk.Models.Microsoft.Graph.SearchHit CreateFromDiscriminatorValue(IParseNode parseNode) {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
             return new SearchHit();
         }
@@ -38,7 +40,8 @@ namespace ApiSdk.Models.Microsoft.Graph {
                 {"contentSource", (o,n) => { (o as SearchHit).ContentSource = n.GetStringValue(); } },
                 {"hitId", (o,n) => { (o as SearchHit).HitId = n.GetStringValue(); } },
                 {"rank", (o,n) => { (o as SearchHit).Rank = n.GetIntValue(); } },
-                {"resource", (o,n) => { (o as SearchHit).Resource = n.GetObjectValue<Entity>(Entity.CreateFromDiscriminatorValue); } },
+                {"resource", (o,n) => { (o as SearchHit).Resource = n.GetObjectValue<ApiSdk.Models.Microsoft.Graph.Entity>(ApiSdk.Models.Microsoft.Graph.Entity.CreateFromDiscriminatorValue); } },
+                {"resultTemplateId", (o,n) => { (o as SearchHit).ResultTemplateId = n.GetStringValue(); } },
                 {"summary", (o,n) => { (o as SearchHit).Summary = n.GetStringValue(); } },
             };
         }
@@ -51,7 +54,8 @@ namespace ApiSdk.Models.Microsoft.Graph {
             writer.WriteStringValue("contentSource", ContentSource);
             writer.WriteStringValue("hitId", HitId);
             writer.WriteIntValue("rank", Rank);
-            writer.WriteObjectValue<Entity>("resource", Resource);
+            writer.WriteObjectValue<ApiSdk.Models.Microsoft.Graph.Entity>("resource", Resource);
+            writer.WriteStringValue("resultTemplateId", ResultTemplateId);
             writer.WriteStringValue("summary", Summary);
             writer.WriteAdditionalData(AdditionalData);
         }

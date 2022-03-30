@@ -10,7 +10,7 @@ namespace ApiSdk.Models.Microsoft.Graph {
         /// <summary>The error code.</summary>
         public string Code { get; set; }
         /// <summary>A collection of error details.</summary>
-        public List<PublicErrorDetail> Details { get; set; }
+        public List<ApiSdk.Models.Microsoft.Graph.PublicErrorDetail> Details { get; set; }
         /// <summary>The error message.</summary>
         public string Message { get; set; }
         /// <summary>The target of the error.</summary>
@@ -25,7 +25,7 @@ namespace ApiSdk.Models.Microsoft.Graph {
         /// Creates a new instance of the appropriate class based on discriminator value
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         /// </summary>
-        public static PublicInnerError CreateFromDiscriminatorValue(IParseNode parseNode) {
+        public static ApiSdk.Models.Microsoft.Graph.PublicInnerError CreateFromDiscriminatorValue(IParseNode parseNode) {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
             return new PublicInnerError();
         }
@@ -35,7 +35,7 @@ namespace ApiSdk.Models.Microsoft.Graph {
         public IDictionary<string, Action<T, IParseNode>> GetFieldDeserializers<T>() {
             return new Dictionary<string, Action<T, IParseNode>> {
                 {"code", (o,n) => { (o as PublicInnerError).Code = n.GetStringValue(); } },
-                {"details", (o,n) => { (o as PublicInnerError).Details = n.GetCollectionOfObjectValues<PublicErrorDetail>(PublicErrorDetail.CreateFromDiscriminatorValue).ToList(); } },
+                {"details", (o,n) => { (o as PublicInnerError).Details = n.GetCollectionOfObjectValues<ApiSdk.Models.Microsoft.Graph.PublicErrorDetail>(ApiSdk.Models.Microsoft.Graph.PublicErrorDetail.CreateFromDiscriminatorValue).ToList(); } },
                 {"message", (o,n) => { (o as PublicInnerError).Message = n.GetStringValue(); } },
                 {"target", (o,n) => { (o as PublicInnerError).Target = n.GetStringValue(); } },
             };
@@ -47,7 +47,7 @@ namespace ApiSdk.Models.Microsoft.Graph {
         public void Serialize(ISerializationWriter writer) {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             writer.WriteStringValue("code", Code);
-            writer.WriteCollectionOfObjectValues<PublicErrorDetail>("details", Details);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.Microsoft.Graph.PublicErrorDetail>("details", Details);
             writer.WriteStringValue("message", Message);
             writer.WriteStringValue("target", Target);
             writer.WriteAdditionalData(AdditionalData);

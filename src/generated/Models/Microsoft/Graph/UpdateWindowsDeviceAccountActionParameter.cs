@@ -10,7 +10,7 @@ namespace ApiSdk.Models.Microsoft.Graph {
         /// <summary>Not yet documented</summary>
         public bool? CalendarSyncEnabled { get; set; }
         /// <summary>Not yet documented</summary>
-        public WindowsDeviceAccount DeviceAccount { get; set; }
+        public ApiSdk.Models.Microsoft.Graph.WindowsDeviceAccount DeviceAccount { get; set; }
         /// <summary>Not yet documented</summary>
         public string DeviceAccountEmail { get; set; }
         /// <summary>Not yet documented</summary>
@@ -29,7 +29,7 @@ namespace ApiSdk.Models.Microsoft.Graph {
         /// Creates a new instance of the appropriate class based on discriminator value
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         /// </summary>
-        public static UpdateWindowsDeviceAccountActionParameter CreateFromDiscriminatorValue(IParseNode parseNode) {
+        public static ApiSdk.Models.Microsoft.Graph.UpdateWindowsDeviceAccountActionParameter CreateFromDiscriminatorValue(IParseNode parseNode) {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
             return new UpdateWindowsDeviceAccountActionParameter();
         }
@@ -39,7 +39,7 @@ namespace ApiSdk.Models.Microsoft.Graph {
         public IDictionary<string, Action<T, IParseNode>> GetFieldDeserializers<T>() {
             return new Dictionary<string, Action<T, IParseNode>> {
                 {"calendarSyncEnabled", (o,n) => { (o as UpdateWindowsDeviceAccountActionParameter).CalendarSyncEnabled = n.GetBoolValue(); } },
-                {"deviceAccount", (o,n) => { (o as UpdateWindowsDeviceAccountActionParameter).DeviceAccount = n.GetObjectValue<WindowsDeviceAccount>(WindowsDeviceAccount.CreateFromDiscriminatorValue); } },
+                {"deviceAccount", (o,n) => { (o as UpdateWindowsDeviceAccountActionParameter).DeviceAccount = n.GetObjectValue<ApiSdk.Models.Microsoft.Graph.WindowsDeviceAccount>(ApiSdk.Models.Microsoft.Graph.WindowsDeviceAccount.CreateFromDiscriminatorValue); } },
                 {"deviceAccountEmail", (o,n) => { (o as UpdateWindowsDeviceAccountActionParameter).DeviceAccountEmail = n.GetStringValue(); } },
                 {"exchangeServer", (o,n) => { (o as UpdateWindowsDeviceAccountActionParameter).ExchangeServer = n.GetStringValue(); } },
                 {"passwordRotationEnabled", (o,n) => { (o as UpdateWindowsDeviceAccountActionParameter).PasswordRotationEnabled = n.GetBoolValue(); } },
@@ -53,7 +53,7 @@ namespace ApiSdk.Models.Microsoft.Graph {
         public void Serialize(ISerializationWriter writer) {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             writer.WriteBoolValue("calendarSyncEnabled", CalendarSyncEnabled);
-            writer.WriteObjectValue<WindowsDeviceAccount>("deviceAccount", DeviceAccount);
+            writer.WriteObjectValue<ApiSdk.Models.Microsoft.Graph.WindowsDeviceAccount>("deviceAccount", DeviceAccount);
             writer.WriteStringValue("deviceAccountEmail", DeviceAccountEmail);
             writer.WriteStringValue("exchangeServer", ExchangeServer);
             writer.WriteBoolValue("passwordRotationEnabled", PasswordRotationEnabled);

@@ -5,15 +5,15 @@ using System.IO;
 using System.Linq;
 namespace ApiSdk.Models.Microsoft.Graph.ExternalConnectors {
     public class Schema : Entity, IParsable {
-        /// <summary>Must be set to microsoft.graph.externalItem. Required.</summary>
+        /// <summary>Must be set to microsoft.graph.externalConnector.externalItem. Required.</summary>
         public string BaseType { get; set; }
         /// <summary>The properties defined for the items in the connection. The minimum number of properties is one, the maximum is 128.</summary>
-        public List<Property> Properties { get; set; }
+        public List<ApiSdk.Models.Microsoft.Graph.ExternalConnectors.Property> Properties { get; set; }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         /// </summary>
-        public static new Schema CreateFromDiscriminatorValue(IParseNode parseNode) {
+        public static new ApiSdk.Models.Microsoft.Graph.ExternalConnectors.Schema CreateFromDiscriminatorValue(IParseNode parseNode) {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
             return new Schema();
         }
@@ -23,7 +23,7 @@ namespace ApiSdk.Models.Microsoft.Graph.ExternalConnectors {
         public new IDictionary<string, Action<T, IParseNode>> GetFieldDeserializers<T>() {
             return new Dictionary<string, Action<T, IParseNode>>(base.GetFieldDeserializers<T>()) {
                 {"baseType", (o,n) => { (o as Schema).BaseType = n.GetStringValue(); } },
-                {"properties", (o,n) => { (o as Schema).Properties = n.GetCollectionOfObjectValues<Property>(Property.CreateFromDiscriminatorValue).ToList(); } },
+                {"properties", (o,n) => { (o as Schema).Properties = n.GetCollectionOfObjectValues<ApiSdk.Models.Microsoft.Graph.ExternalConnectors.Property>(ApiSdk.Models.Microsoft.Graph.ExternalConnectors.Property.CreateFromDiscriminatorValue).ToList(); } },
             };
         }
         /// <summary>
@@ -34,7 +34,7 @@ namespace ApiSdk.Models.Microsoft.Graph.ExternalConnectors {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             base.Serialize(writer);
             writer.WriteStringValue("baseType", BaseType);
-            writer.WriteCollectionOfObjectValues<Property>("properties", Properties);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.Microsoft.Graph.ExternalConnectors.Property>("properties", Properties);
         }
     }
 }

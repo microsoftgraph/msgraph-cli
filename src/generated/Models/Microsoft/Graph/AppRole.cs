@@ -13,7 +13,7 @@ namespace ApiSdk.Models.Microsoft.Graph {
         public string Description { get; set; }
         /// <summary>Display name for the permission that appears in the app role assignment and consent experiences.</summary>
         public string DisplayName { get; set; }
-        /// <summary>Unique role identifier inside the appRoles collection. When creating a new app role, a new Guid identifier must be provided.</summary>
+        /// <summary>Unique role identifier inside the appRoles collection. When creating a new app role, a new GUID identifier must be provided.</summary>
         public string Id { get; set; }
         /// <summary>When creating or updating an app role, this must be set to true (which is the default). To delete a role, this must first be set to false.  At that point, in a subsequent call, this role may be removed.</summary>
         public bool? IsEnabled { get; set; }
@@ -31,7 +31,7 @@ namespace ApiSdk.Models.Microsoft.Graph {
         /// Creates a new instance of the appropriate class based on discriminator value
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         /// </summary>
-        public static AppRole CreateFromDiscriminatorValue(IParseNode parseNode) {
+        public static ApiSdk.Models.Microsoft.Graph.AppRole CreateFromDiscriminatorValue(IParseNode parseNode) {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
             return new AppRole();
         }

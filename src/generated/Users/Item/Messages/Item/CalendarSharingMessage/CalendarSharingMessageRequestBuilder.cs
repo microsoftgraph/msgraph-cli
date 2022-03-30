@@ -20,7 +20,7 @@ namespace ApiSdk.Users.Item.Messages.Item.CalendarSharingMessage {
         private string UrlTemplate { get; set; }
         public Command BuildAcceptCommand() {
             var command = new Command("accept");
-            var builder = new ApiSdk.Users.Item.Messages.Item.CalendarSharingMessage.Accept.AcceptRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new AcceptRequestBuilder(PathParameters, RequestAdapter);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }

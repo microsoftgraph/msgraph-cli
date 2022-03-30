@@ -24,7 +24,7 @@ namespace ApiSdk.Models.Microsoft.Graph {
         /// <summary>A unique identifier for a specific media leg of a participant in a conference.  One participant can have multiple media leg identifiers if retargeting happens. CVI partner assigns this value.</summary>
         public string MediaLegId { get; set; }
         /// <summary>The list of media qualities in a media session (call), such as audio quality, video quality, and/or screen sharing quality.</summary>
-        public List<TeleconferenceDeviceMediaQuality> MediaQualityList { get; set; }
+        public List<ApiSdk.Models.Microsoft.Graph.TeleconferenceDeviceMediaQuality> MediaQualityList { get; set; }
         /// <summary>A unique identifier for a specific participant in a conference. The CVI partner needs to copy over Call.MyParticipantId to this property.</summary>
         public string ParticipantId { get; set; }
         /// <summary>
@@ -37,7 +37,7 @@ namespace ApiSdk.Models.Microsoft.Graph {
         /// Creates a new instance of the appropriate class based on discriminator value
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         /// </summary>
-        public static TeleconferenceDeviceQuality CreateFromDiscriminatorValue(IParseNode parseNode) {
+        public static ApiSdk.Models.Microsoft.Graph.TeleconferenceDeviceQuality CreateFromDiscriminatorValue(IParseNode parseNode) {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
             return new TeleconferenceDeviceQuality();
         }
@@ -54,7 +54,7 @@ namespace ApiSdk.Models.Microsoft.Graph {
                 {"deviceDescription", (o,n) => { (o as TeleconferenceDeviceQuality).DeviceDescription = n.GetStringValue(); } },
                 {"deviceName", (o,n) => { (o as TeleconferenceDeviceQuality).DeviceName = n.GetStringValue(); } },
                 {"mediaLegId", (o,n) => { (o as TeleconferenceDeviceQuality).MediaLegId = n.GetStringValue(); } },
-                {"mediaQualityList", (o,n) => { (o as TeleconferenceDeviceQuality).MediaQualityList = n.GetCollectionOfObjectValues<TeleconferenceDeviceMediaQuality>(TeleconferenceDeviceMediaQuality.CreateFromDiscriminatorValue).ToList(); } },
+                {"mediaQualityList", (o,n) => { (o as TeleconferenceDeviceQuality).MediaQualityList = n.GetCollectionOfObjectValues<ApiSdk.Models.Microsoft.Graph.TeleconferenceDeviceMediaQuality>(ApiSdk.Models.Microsoft.Graph.TeleconferenceDeviceMediaQuality.CreateFromDiscriminatorValue).ToList(); } },
                 {"participantId", (o,n) => { (o as TeleconferenceDeviceQuality).ParticipantId = n.GetStringValue(); } },
             };
         }
@@ -72,7 +72,7 @@ namespace ApiSdk.Models.Microsoft.Graph {
             writer.WriteStringValue("deviceDescription", DeviceDescription);
             writer.WriteStringValue("deviceName", DeviceName);
             writer.WriteStringValue("mediaLegId", MediaLegId);
-            writer.WriteCollectionOfObjectValues<TeleconferenceDeviceMediaQuality>("mediaQualityList", MediaQualityList);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.Microsoft.Graph.TeleconferenceDeviceMediaQuality>("mediaQualityList", MediaQualityList);
             writer.WriteStringValue("participantId", ParticipantId);
             writer.WriteAdditionalData(AdditionalData);
         }

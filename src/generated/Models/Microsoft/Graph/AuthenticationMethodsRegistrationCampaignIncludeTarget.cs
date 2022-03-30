@@ -7,7 +7,7 @@ namespace ApiSdk.Models.Microsoft.Graph {
     public class AuthenticationMethodsRegistrationCampaignIncludeTarget : IAdditionalDataHolder, IParsable {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
-        /// <summary>The object identifier of an Azure AD user or group.</summary>
+        /// <summary>The object identifier of an Azure Active Directory user or group.</summary>
         public string Id { get; set; }
         /// <summary>The authentication method that the user is prompted to register. The value must be microsoftAuthenticator.</summary>
         public string TargetedAuthenticationMethod { get; set; }
@@ -23,7 +23,7 @@ namespace ApiSdk.Models.Microsoft.Graph {
         /// Creates a new instance of the appropriate class based on discriminator value
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         /// </summary>
-        public static AuthenticationMethodsRegistrationCampaignIncludeTarget CreateFromDiscriminatorValue(IParseNode parseNode) {
+        public static ApiSdk.Models.Microsoft.Graph.AuthenticationMethodsRegistrationCampaignIncludeTarget CreateFromDiscriminatorValue(IParseNode parseNode) {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
             return new AuthenticationMethodsRegistrationCampaignIncludeTarget();
         }

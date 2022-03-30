@@ -7,7 +7,7 @@ namespace ApiSdk.Models.Microsoft.Graph {
     public class AssignmentOrder : IAdditionalDataHolder, IParsable {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
-        /// <summary>A list of identityUserFlowAttribute IDs provided to determine the order in which attributes should be collected within a user flow.</summary>
+        /// <summary>A list of identityUserFlowAttribute object identifiers that determine the order in which attributes should be collected within a user flow.</summary>
         public List<string> Order { get; set; }
         /// <summary>
         /// Instantiates a new assignmentOrder and sets the default values.
@@ -19,7 +19,7 @@ namespace ApiSdk.Models.Microsoft.Graph {
         /// Creates a new instance of the appropriate class based on discriminator value
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         /// </summary>
-        public static AssignmentOrder CreateFromDiscriminatorValue(IParseNode parseNode) {
+        public static ApiSdk.Models.Microsoft.Graph.AssignmentOrder CreateFromDiscriminatorValue(IParseNode parseNode) {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
             return new AssignmentOrder();
         }

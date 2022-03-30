@@ -8,7 +8,7 @@ namespace ApiSdk.Models.Microsoft.Graph {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>Identity information of the participant.</summary>
-        public IdentitySet Identity { get; set; }
+        public ApiSdk.Models.Microsoft.Graph.IdentitySet Identity { get; set; }
         /// <summary>Specifies the participant's role in the meeting.  Possible values are attendee, presenter, producer, and unknownFutureValue.</summary>
         public OnlineMeetingRole? Role { get; set; }
         /// <summary>User principal name of the participant.</summary>
@@ -23,7 +23,7 @@ namespace ApiSdk.Models.Microsoft.Graph {
         /// Creates a new instance of the appropriate class based on discriminator value
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         /// </summary>
-        public static MeetingParticipantInfo CreateFromDiscriminatorValue(IParseNode parseNode) {
+        public static ApiSdk.Models.Microsoft.Graph.MeetingParticipantInfo CreateFromDiscriminatorValue(IParseNode parseNode) {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
             return new MeetingParticipantInfo();
         }
@@ -32,7 +32,7 @@ namespace ApiSdk.Models.Microsoft.Graph {
         /// </summary>
         public IDictionary<string, Action<T, IParseNode>> GetFieldDeserializers<T>() {
             return new Dictionary<string, Action<T, IParseNode>> {
-                {"identity", (o,n) => { (o as MeetingParticipantInfo).Identity = n.GetObjectValue<IdentitySet>(IdentitySet.CreateFromDiscriminatorValue); } },
+                {"identity", (o,n) => { (o as MeetingParticipantInfo).Identity = n.GetObjectValue<ApiSdk.Models.Microsoft.Graph.IdentitySet>(ApiSdk.Models.Microsoft.Graph.IdentitySet.CreateFromDiscriminatorValue); } },
                 {"role", (o,n) => { (o as MeetingParticipantInfo).Role = n.GetEnumValue<OnlineMeetingRole>(); } },
                 {"upn", (o,n) => { (o as MeetingParticipantInfo).Upn = n.GetStringValue(); } },
             };
@@ -43,7 +43,7 @@ namespace ApiSdk.Models.Microsoft.Graph {
         /// </summary>
         public void Serialize(ISerializationWriter writer) {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
-            writer.WriteObjectValue<IdentitySet>("identity", Identity);
+            writer.WriteObjectValue<ApiSdk.Models.Microsoft.Graph.IdentitySet>("identity", Identity);
             writer.WriteEnumValue<OnlineMeetingRole>("role", Role);
             writer.WriteStringValue("upn", Upn);
             writer.WriteAdditionalData(AdditionalData);

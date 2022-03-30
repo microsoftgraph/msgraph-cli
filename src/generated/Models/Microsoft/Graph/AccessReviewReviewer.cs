@@ -9,13 +9,13 @@ namespace ApiSdk.Models.Microsoft.Graph {
         public DateTimeOffset? CreatedDateTime { get; set; }
         /// <summary>Name of reviewer.</summary>
         public string DisplayName { get; set; }
-        /// <summary>User principal name of the user.</summary>
+        /// <summary>User principal name of the reviewer.</summary>
         public string UserPrincipalName { get; set; }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         /// </summary>
-        public static new AccessReviewReviewer CreateFromDiscriminatorValue(IParseNode parseNode) {
+        public static new ApiSdk.Models.Microsoft.Graph.AccessReviewReviewer CreateFromDiscriminatorValue(IParseNode parseNode) {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
             return new AccessReviewReviewer();
         }

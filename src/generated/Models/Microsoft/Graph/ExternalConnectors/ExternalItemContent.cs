@@ -7,7 +7,7 @@ namespace ApiSdk.Models.Microsoft.Graph.ExternalConnectors {
     public class ExternalItemContent : IAdditionalDataHolder, IParsable {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
-        /// <summary>The type of content in the value property. Possible values are text and html. Required.</summary>
+        /// <summary>The type of content in the value property. Possible values are: text, html, unknownFutureValue. These are the content types that the indexer supports, and not the file extension types allowed.</summary>
         public ExternalItemContentType? Type { get; set; }
         /// <summary>The content for the externalItem. Required.</summary>
         public string Value { get; set; }
@@ -21,7 +21,7 @@ namespace ApiSdk.Models.Microsoft.Graph.ExternalConnectors {
         /// Creates a new instance of the appropriate class based on discriminator value
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         /// </summary>
-        public static ExternalItemContent CreateFromDiscriminatorValue(IParseNode parseNode) {
+        public static ApiSdk.Models.Microsoft.Graph.ExternalConnectors.ExternalItemContent CreateFromDiscriminatorValue(IParseNode parseNode) {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
             return new ExternalItemContent();
         }

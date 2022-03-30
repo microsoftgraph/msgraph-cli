@@ -8,11 +8,11 @@ namespace ApiSdk.Models.Microsoft.Graph {
         /// <summary>Active user count of the given tenant.</summary>
         public int? ActiveUserCount { get; set; }
         /// <summary>Average score by different scopes (for example, average by industry, average by seating) and control category (Identity, Data, Device, Apps, Infrastructure) within the scope.</summary>
-        public List<AverageComparativeScore> AverageComparativeScores { get; set; }
+        public List<ApiSdk.Models.Microsoft.Graph.AverageComparativeScore> AverageComparativeScores { get; set; }
         /// <summary>GUID string for tenant ID.</summary>
         public string AzureTenantId { get; set; }
         /// <summary>Contains tenant scores for a set of controls.</summary>
-        public List<ControlScore> ControlScores { get; set; }
+        public List<ApiSdk.Models.Microsoft.Graph.ControlScore> ControlScores { get; set; }
         /// <summary>The date when the entity is created.</summary>
         public DateTimeOffset? CreatedDateTime { get; set; }
         /// <summary>Tenant current attained score on specified date.</summary>
@@ -24,12 +24,12 @@ namespace ApiSdk.Models.Microsoft.Graph {
         /// <summary>Tenant maximum possible score on specified date.</summary>
         public double? MaxScore { get; set; }
         /// <summary>Complex type containing details about the security product/service vendor, provider, and subprovider (for example, vendor=Microsoft; provider=SecureScore). Required.</summary>
-        public SecurityVendorInformation VendorInformation { get; set; }
+        public ApiSdk.Models.Microsoft.Graph.SecurityVendorInformation VendorInformation { get; set; }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         /// </summary>
-        public static new SecureScore CreateFromDiscriminatorValue(IParseNode parseNode) {
+        public static new ApiSdk.Models.Microsoft.Graph.SecureScore CreateFromDiscriminatorValue(IParseNode parseNode) {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
             return new SecureScore();
         }
@@ -39,15 +39,15 @@ namespace ApiSdk.Models.Microsoft.Graph {
         public new IDictionary<string, Action<T, IParseNode>> GetFieldDeserializers<T>() {
             return new Dictionary<string, Action<T, IParseNode>>(base.GetFieldDeserializers<T>()) {
                 {"activeUserCount", (o,n) => { (o as SecureScore).ActiveUserCount = n.GetIntValue(); } },
-                {"averageComparativeScores", (o,n) => { (o as SecureScore).AverageComparativeScores = n.GetCollectionOfObjectValues<AverageComparativeScore>(AverageComparativeScore.CreateFromDiscriminatorValue).ToList(); } },
+                {"averageComparativeScores", (o,n) => { (o as SecureScore).AverageComparativeScores = n.GetCollectionOfObjectValues<ApiSdk.Models.Microsoft.Graph.AverageComparativeScore>(ApiSdk.Models.Microsoft.Graph.AverageComparativeScore.CreateFromDiscriminatorValue).ToList(); } },
                 {"azureTenantId", (o,n) => { (o as SecureScore).AzureTenantId = n.GetStringValue(); } },
-                {"controlScores", (o,n) => { (o as SecureScore).ControlScores = n.GetCollectionOfObjectValues<ControlScore>(ControlScore.CreateFromDiscriminatorValue).ToList(); } },
+                {"controlScores", (o,n) => { (o as SecureScore).ControlScores = n.GetCollectionOfObjectValues<ApiSdk.Models.Microsoft.Graph.ControlScore>(ApiSdk.Models.Microsoft.Graph.ControlScore.CreateFromDiscriminatorValue).ToList(); } },
                 {"createdDateTime", (o,n) => { (o as SecureScore).CreatedDateTime = n.GetDateTimeOffsetValue(); } },
                 {"currentScore", (o,n) => { (o as SecureScore).CurrentScore = n.GetDoubleValue(); } },
                 {"enabledServices", (o,n) => { (o as SecureScore).EnabledServices = n.GetCollectionOfPrimitiveValues<string>().ToList(); } },
                 {"licensedUserCount", (o,n) => { (o as SecureScore).LicensedUserCount = n.GetIntValue(); } },
                 {"maxScore", (o,n) => { (o as SecureScore).MaxScore = n.GetDoubleValue(); } },
-                {"vendorInformation", (o,n) => { (o as SecureScore).VendorInformation = n.GetObjectValue<SecurityVendorInformation>(SecurityVendorInformation.CreateFromDiscriminatorValue); } },
+                {"vendorInformation", (o,n) => { (o as SecureScore).VendorInformation = n.GetObjectValue<ApiSdk.Models.Microsoft.Graph.SecurityVendorInformation>(ApiSdk.Models.Microsoft.Graph.SecurityVendorInformation.CreateFromDiscriminatorValue); } },
             };
         }
         /// <summary>
@@ -58,15 +58,15 @@ namespace ApiSdk.Models.Microsoft.Graph {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             base.Serialize(writer);
             writer.WriteIntValue("activeUserCount", ActiveUserCount);
-            writer.WriteCollectionOfObjectValues<AverageComparativeScore>("averageComparativeScores", AverageComparativeScores);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.Microsoft.Graph.AverageComparativeScore>("averageComparativeScores", AverageComparativeScores);
             writer.WriteStringValue("azureTenantId", AzureTenantId);
-            writer.WriteCollectionOfObjectValues<ControlScore>("controlScores", ControlScores);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.Microsoft.Graph.ControlScore>("controlScores", ControlScores);
             writer.WriteDateTimeOffsetValue("createdDateTime", CreatedDateTime);
             writer.WriteDoubleValue("currentScore", CurrentScore);
             writer.WriteCollectionOfPrimitiveValues<string>("enabledServices", EnabledServices);
             writer.WriteIntValue("licensedUserCount", LicensedUserCount);
             writer.WriteDoubleValue("maxScore", MaxScore);
-            writer.WriteObjectValue<SecurityVendorInformation>("vendorInformation", VendorInformation);
+            writer.WriteObjectValue<ApiSdk.Models.Microsoft.Graph.SecurityVendorInformation>("vendorInformation", VendorInformation);
         }
     }
 }

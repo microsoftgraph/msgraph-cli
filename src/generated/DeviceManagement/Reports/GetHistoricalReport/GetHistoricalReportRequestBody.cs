@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 namespace ApiSdk.DeviceManagement.Reports.GetHistoricalReport {
+    /// <summary>Provides operations to call the getHistoricalReport method.</summary>
     public class GetHistoricalReportRequestBody : IAdditionalDataHolder, IParsable {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
@@ -25,7 +26,7 @@ namespace ApiSdk.DeviceManagement.Reports.GetHistoricalReport {
         /// Creates a new instance of the appropriate class based on discriminator value
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         /// </summary>
-        public static GetHistoricalReportRequestBody CreateFromDiscriminatorValue(IParseNode parseNode) {
+        public static ApiSdk.DeviceManagement.Reports.GetHistoricalReport.GetHistoricalReportRequestBody CreateFromDiscriminatorValue(IParseNode parseNode) {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
             return new GetHistoricalReportRequestBody();
         }

@@ -12,12 +12,12 @@ namespace ApiSdk.Models.Microsoft.Graph {
         /// <summary>Plan ID to which the bucket belongs.</summary>
         public string PlanId { get; set; }
         /// <summary>Read-only. Nullable. The collection of tasks in the bucket.</summary>
-        public List<PlannerTask> Tasks { get; set; }
+        public List<ApiSdk.Models.Microsoft.Graph.PlannerTask> Tasks { get; set; }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         /// </summary>
-        public static new PlannerBucket CreateFromDiscriminatorValue(IParseNode parseNode) {
+        public static new ApiSdk.Models.Microsoft.Graph.PlannerBucket CreateFromDiscriminatorValue(IParseNode parseNode) {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
             return new PlannerBucket();
         }
@@ -29,7 +29,7 @@ namespace ApiSdk.Models.Microsoft.Graph {
                 {"name", (o,n) => { (o as PlannerBucket).Name = n.GetStringValue(); } },
                 {"orderHint", (o,n) => { (o as PlannerBucket).OrderHint = n.GetStringValue(); } },
                 {"planId", (o,n) => { (o as PlannerBucket).PlanId = n.GetStringValue(); } },
-                {"tasks", (o,n) => { (o as PlannerBucket).Tasks = n.GetCollectionOfObjectValues<PlannerTask>(PlannerTask.CreateFromDiscriminatorValue).ToList(); } },
+                {"tasks", (o,n) => { (o as PlannerBucket).Tasks = n.GetCollectionOfObjectValues<ApiSdk.Models.Microsoft.Graph.PlannerTask>(ApiSdk.Models.Microsoft.Graph.PlannerTask.CreateFromDiscriminatorValue).ToList(); } },
             };
         }
         /// <summary>
@@ -42,7 +42,7 @@ namespace ApiSdk.Models.Microsoft.Graph {
             writer.WriteStringValue("name", Name);
             writer.WriteStringValue("orderHint", OrderHint);
             writer.WriteStringValue("planId", PlanId);
-            writer.WriteCollectionOfObjectValues<PlannerTask>("tasks", Tasks);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.Microsoft.Graph.PlannerTask>("tasks", Tasks);
         }
     }
 }

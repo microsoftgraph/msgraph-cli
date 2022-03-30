@@ -6,14 +6,14 @@ using System.Linq;
 namespace ApiSdk.Models.Microsoft.Graph {
     public class ConditionalAccessRoot : Entity, IParsable {
         /// <summary>Read-only. Nullable. Returns a collection of the specified named locations.</summary>
-        public List<NamedLocation> NamedLocations { get; set; }
-        /// <summary>Read-only. Nullable. Returns a collection of the specified Conditional Access policies.</summary>
-        public List<ConditionalAccessPolicy> Policies { get; set; }
+        public List<ApiSdk.Models.Microsoft.Graph.NamedLocation> NamedLocations { get; set; }
+        /// <summary>Read-only. Nullable. Returns a collection of the specified Conditional Access (CA) policies.</summary>
+        public List<ApiSdk.Models.Microsoft.Graph.ConditionalAccessPolicy> Policies { get; set; }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         /// </summary>
-        public static new ConditionalAccessRoot CreateFromDiscriminatorValue(IParseNode parseNode) {
+        public static new ApiSdk.Models.Microsoft.Graph.ConditionalAccessRoot CreateFromDiscriminatorValue(IParseNode parseNode) {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
             return new ConditionalAccessRoot();
         }
@@ -22,8 +22,8 @@ namespace ApiSdk.Models.Microsoft.Graph {
         /// </summary>
         public new IDictionary<string, Action<T, IParseNode>> GetFieldDeserializers<T>() {
             return new Dictionary<string, Action<T, IParseNode>>(base.GetFieldDeserializers<T>()) {
-                {"namedLocations", (o,n) => { (o as ConditionalAccessRoot).NamedLocations = n.GetCollectionOfObjectValues<NamedLocation>(NamedLocation.CreateFromDiscriminatorValue).ToList(); } },
-                {"policies", (o,n) => { (o as ConditionalAccessRoot).Policies = n.GetCollectionOfObjectValues<ConditionalAccessPolicy>(ConditionalAccessPolicy.CreateFromDiscriminatorValue).ToList(); } },
+                {"namedLocations", (o,n) => { (o as ConditionalAccessRoot).NamedLocations = n.GetCollectionOfObjectValues<ApiSdk.Models.Microsoft.Graph.NamedLocation>(ApiSdk.Models.Microsoft.Graph.NamedLocation.CreateFromDiscriminatorValue).ToList(); } },
+                {"policies", (o,n) => { (o as ConditionalAccessRoot).Policies = n.GetCollectionOfObjectValues<ApiSdk.Models.Microsoft.Graph.ConditionalAccessPolicy>(ApiSdk.Models.Microsoft.Graph.ConditionalAccessPolicy.CreateFromDiscriminatorValue).ToList(); } },
             };
         }
         /// <summary>
@@ -33,8 +33,8 @@ namespace ApiSdk.Models.Microsoft.Graph {
         public new void Serialize(ISerializationWriter writer) {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             base.Serialize(writer);
-            writer.WriteCollectionOfObjectValues<NamedLocation>("namedLocations", NamedLocations);
-            writer.WriteCollectionOfObjectValues<ConditionalAccessPolicy>("policies", Policies);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.Microsoft.Graph.NamedLocation>("namedLocations", NamedLocations);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.Microsoft.Graph.ConditionalAccessPolicy>("policies", Policies);
         }
     }
 }

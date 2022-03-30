@@ -20,7 +20,7 @@ namespace ApiSdk.Users.Item.MailFolders.Item.Messages.Item.CalendarSharingMessag
         private string UrlTemplate { get; set; }
         public Command BuildAcceptCommand() {
             var command = new Command("accept");
-            var builder = new ApiSdk.Users.Item.MailFolders.Item.Messages.Item.CalendarSharingMessage.Accept.AcceptRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new AcceptRequestBuilder(PathParameters, RequestAdapter);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }

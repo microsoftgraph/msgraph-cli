@@ -8,10 +8,10 @@ namespace ApiSdk.Models.Microsoft.Graph {
         /// <summary>The expected deadline of the action for the message.</summary>
         public DateTimeOffset? ActionRequiredByDateTime { get; set; }
         /// <summary>A collection of serviceAnnouncementAttachments.</summary>
-        public List<ServiceAnnouncementAttachment> Attachments { get; set; }
-        /// <summary>The zip file of all attachments for a message.</summary>
+        public List<ApiSdk.Models.Microsoft.Graph.ServiceAnnouncementAttachment> Attachments { get; set; }
+        /// <summary>The zip file that contains all attachments for a message.</summary>
         public byte[] AttachmentsArchive { get; set; }
-        public ItemBody Body { get; set; }
+        public ApiSdk.Models.Microsoft.Graph.ItemBody Body { get; set; }
         /// <summary>The service message category. Possible values are: preventOrFixIssue, planForChange, stayInformed, unknownFutureValue.</summary>
         public ServiceUpdateCategory? Category { get; set; }
         /// <summary>Indicates whether the message has any attachment.</summary>
@@ -25,12 +25,12 @@ namespace ApiSdk.Models.Microsoft.Graph {
         /// <summary>A collection of tags for the service message. Tags are provided by the service team/support team who post the message to tell whether this message contains privacy data, or whether this message is for a service new feature update, and so on.</summary>
         public List<string> Tags { get; set; }
         /// <summary>Represents user viewpoints data of the service message. This data includes message status such as whether the user has archived, read, or marked the message as favorite. This property is null when accessed with application permissions.</summary>
-        public ServiceUpdateMessageViewpoint ViewPoint { get; set; }
+        public ApiSdk.Models.Microsoft.Graph.ServiceUpdateMessageViewpoint ViewPoint { get; set; }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         /// </summary>
-        public static new ServiceUpdateMessage CreateFromDiscriminatorValue(IParseNode parseNode) {
+        public static new ApiSdk.Models.Microsoft.Graph.ServiceUpdateMessage CreateFromDiscriminatorValue(IParseNode parseNode) {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
             return new ServiceUpdateMessage();
         }
@@ -40,16 +40,16 @@ namespace ApiSdk.Models.Microsoft.Graph {
         public new IDictionary<string, Action<T, IParseNode>> GetFieldDeserializers<T>() {
             return new Dictionary<string, Action<T, IParseNode>>(base.GetFieldDeserializers<T>()) {
                 {"actionRequiredByDateTime", (o,n) => { (o as ServiceUpdateMessage).ActionRequiredByDateTime = n.GetDateTimeOffsetValue(); } },
-                {"attachments", (o,n) => { (o as ServiceUpdateMessage).Attachments = n.GetCollectionOfObjectValues<ServiceAnnouncementAttachment>(ServiceAnnouncementAttachment.CreateFromDiscriminatorValue).ToList(); } },
+                {"attachments", (o,n) => { (o as ServiceUpdateMessage).Attachments = n.GetCollectionOfObjectValues<ApiSdk.Models.Microsoft.Graph.ServiceAnnouncementAttachment>(ApiSdk.Models.Microsoft.Graph.ServiceAnnouncementAttachment.CreateFromDiscriminatorValue).ToList(); } },
                 {"attachmentsArchive", (o,n) => { (o as ServiceUpdateMessage).AttachmentsArchive = n.GetByteArrayValue(); } },
-                {"body", (o,n) => { (o as ServiceUpdateMessage).Body = n.GetObjectValue<ItemBody>(ItemBody.CreateFromDiscriminatorValue); } },
+                {"body", (o,n) => { (o as ServiceUpdateMessage).Body = n.GetObjectValue<ApiSdk.Models.Microsoft.Graph.ItemBody>(ApiSdk.Models.Microsoft.Graph.ItemBody.CreateFromDiscriminatorValue); } },
                 {"category", (o,n) => { (o as ServiceUpdateMessage).Category = n.GetEnumValue<ServiceUpdateCategory>(); } },
                 {"hasAttachments", (o,n) => { (o as ServiceUpdateMessage).HasAttachments = n.GetBoolValue(); } },
                 {"isMajorChange", (o,n) => { (o as ServiceUpdateMessage).IsMajorChange = n.GetBoolValue(); } },
                 {"services", (o,n) => { (o as ServiceUpdateMessage).Services = n.GetCollectionOfPrimitiveValues<string>().ToList(); } },
                 {"severity", (o,n) => { (o as ServiceUpdateMessage).Severity = n.GetEnumValue<ServiceUpdateSeverity>(); } },
                 {"tags", (o,n) => { (o as ServiceUpdateMessage).Tags = n.GetCollectionOfPrimitiveValues<string>().ToList(); } },
-                {"viewPoint", (o,n) => { (o as ServiceUpdateMessage).ViewPoint = n.GetObjectValue<ServiceUpdateMessageViewpoint>(ServiceUpdateMessageViewpoint.CreateFromDiscriminatorValue); } },
+                {"viewPoint", (o,n) => { (o as ServiceUpdateMessage).ViewPoint = n.GetObjectValue<ApiSdk.Models.Microsoft.Graph.ServiceUpdateMessageViewpoint>(ApiSdk.Models.Microsoft.Graph.ServiceUpdateMessageViewpoint.CreateFromDiscriminatorValue); } },
             };
         }
         /// <summary>
@@ -60,16 +60,16 @@ namespace ApiSdk.Models.Microsoft.Graph {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             base.Serialize(writer);
             writer.WriteDateTimeOffsetValue("actionRequiredByDateTime", ActionRequiredByDateTime);
-            writer.WriteCollectionOfObjectValues<ServiceAnnouncementAttachment>("attachments", Attachments);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.Microsoft.Graph.ServiceAnnouncementAttachment>("attachments", Attachments);
             writer.WriteByteArrayValue("attachmentsArchive", AttachmentsArchive);
-            writer.WriteObjectValue<ItemBody>("body", Body);
+            writer.WriteObjectValue<ApiSdk.Models.Microsoft.Graph.ItemBody>("body", Body);
             writer.WriteEnumValue<ServiceUpdateCategory>("category", Category);
             writer.WriteBoolValue("hasAttachments", HasAttachments);
             writer.WriteBoolValue("isMajorChange", IsMajorChange);
             writer.WriteCollectionOfPrimitiveValues<string>("services", Services);
             writer.WriteEnumValue<ServiceUpdateSeverity>("severity", Severity);
             writer.WriteCollectionOfPrimitiveValues<string>("tags", Tags);
-            writer.WriteObjectValue<ServiceUpdateMessageViewpoint>("viewPoint", ViewPoint);
+            writer.WriteObjectValue<ApiSdk.Models.Microsoft.Graph.ServiceUpdateMessageViewpoint>("viewPoint", ViewPoint);
         }
     }
 }

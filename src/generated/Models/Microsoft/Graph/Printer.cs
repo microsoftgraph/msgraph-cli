@@ -6,7 +6,7 @@ using System.Linq;
 namespace ApiSdk.Models.Microsoft.Graph {
     public class Printer : PrinterBase, IParsable {
         /// <summary>The connectors that are associated with the printer.</summary>
-        public List<PrintConnector> Connectors { get; set; }
+        public List<ApiSdk.Models.Microsoft.Graph.PrintConnector> Connectors { get; set; }
         /// <summary>True if the printer has a physical device for printing. Read-only.</summary>
         public bool? HasPhysicalDevice { get; set; }
         /// <summary>True if the printer is shared; false otherwise. Read-only.</summary>
@@ -16,14 +16,14 @@ namespace ApiSdk.Models.Microsoft.Graph {
         /// <summary>The DateTimeOffset when the printer was registered. Read-only.</summary>
         public DateTimeOffset? RegisteredDateTime { get; set; }
         /// <summary>The list of printerShares that are associated with the printer. Currently, only one printerShare can be associated with the printer. Read-only. Nullable.</summary>
-        public List<PrinterShare> Shares { get; set; }
+        public List<ApiSdk.Models.Microsoft.Graph.PrinterShare> Shares { get; set; }
         /// <summary>A list of task triggers that are associated with the printer.</summary>
-        public List<PrintTaskTrigger> TaskTriggers { get; set; }
+        public List<ApiSdk.Models.Microsoft.Graph.PrintTaskTrigger> TaskTriggers { get; set; }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         /// </summary>
-        public static new Printer CreateFromDiscriminatorValue(IParseNode parseNode) {
+        public static new ApiSdk.Models.Microsoft.Graph.Printer CreateFromDiscriminatorValue(IParseNode parseNode) {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
             return new Printer();
         }
@@ -32,13 +32,13 @@ namespace ApiSdk.Models.Microsoft.Graph {
         /// </summary>
         public new IDictionary<string, Action<T, IParseNode>> GetFieldDeserializers<T>() {
             return new Dictionary<string, Action<T, IParseNode>>(base.GetFieldDeserializers<T>()) {
-                {"connectors", (o,n) => { (o as Printer).Connectors = n.GetCollectionOfObjectValues<PrintConnector>(PrintConnector.CreateFromDiscriminatorValue).ToList(); } },
+                {"connectors", (o,n) => { (o as Printer).Connectors = n.GetCollectionOfObjectValues<ApiSdk.Models.Microsoft.Graph.PrintConnector>(ApiSdk.Models.Microsoft.Graph.PrintConnector.CreateFromDiscriminatorValue).ToList(); } },
                 {"hasPhysicalDevice", (o,n) => { (o as Printer).HasPhysicalDevice = n.GetBoolValue(); } },
                 {"isShared", (o,n) => { (o as Printer).IsShared = n.GetBoolValue(); } },
                 {"lastSeenDateTime", (o,n) => { (o as Printer).LastSeenDateTime = n.GetDateTimeOffsetValue(); } },
                 {"registeredDateTime", (o,n) => { (o as Printer).RegisteredDateTime = n.GetDateTimeOffsetValue(); } },
-                {"shares", (o,n) => { (o as Printer).Shares = n.GetCollectionOfObjectValues<PrinterShare>(PrinterShare.CreateFromDiscriminatorValue).ToList(); } },
-                {"taskTriggers", (o,n) => { (o as Printer).TaskTriggers = n.GetCollectionOfObjectValues<PrintTaskTrigger>(PrintTaskTrigger.CreateFromDiscriminatorValue).ToList(); } },
+                {"shares", (o,n) => { (o as Printer).Shares = n.GetCollectionOfObjectValues<ApiSdk.Models.Microsoft.Graph.PrinterShare>(ApiSdk.Models.Microsoft.Graph.PrinterShare.CreateFromDiscriminatorValue).ToList(); } },
+                {"taskTriggers", (o,n) => { (o as Printer).TaskTriggers = n.GetCollectionOfObjectValues<ApiSdk.Models.Microsoft.Graph.PrintTaskTrigger>(ApiSdk.Models.Microsoft.Graph.PrintTaskTrigger.CreateFromDiscriminatorValue).ToList(); } },
             };
         }
         /// <summary>
@@ -48,13 +48,13 @@ namespace ApiSdk.Models.Microsoft.Graph {
         public new void Serialize(ISerializationWriter writer) {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             base.Serialize(writer);
-            writer.WriteCollectionOfObjectValues<PrintConnector>("connectors", Connectors);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.Microsoft.Graph.PrintConnector>("connectors", Connectors);
             writer.WriteBoolValue("hasPhysicalDevice", HasPhysicalDevice);
             writer.WriteBoolValue("isShared", IsShared);
             writer.WriteDateTimeOffsetValue("lastSeenDateTime", LastSeenDateTime);
             writer.WriteDateTimeOffsetValue("registeredDateTime", RegisteredDateTime);
-            writer.WriteCollectionOfObjectValues<PrinterShare>("shares", Shares);
-            writer.WriteCollectionOfObjectValues<PrintTaskTrigger>("taskTriggers", TaskTriggers);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.Microsoft.Graph.PrinterShare>("shares", Shares);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.Microsoft.Graph.PrintTaskTrigger>("taskTriggers", TaskTriggers);
         }
     }
 }

@@ -8,7 +8,7 @@ namespace ApiSdk.Models.Microsoft.Graph {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>Describes the error, if any, for the current stage.</summary>
-        public PublicError Error { get; set; }
+        public ApiSdk.Models.Microsoft.Graph.PublicError Error { get; set; }
         /// <summary>The stage of the subject rights request. Possible values are: contentRetrieval, contentReview, generateReport, contentDeletion, caseResolved, unknownFutureValue.</summary>
         public SubjectRightsRequestStage? Stage { get; set; }
         /// <summary>Status of the current stage. Possible values are: notStarted, current, completed, failed, unknownFutureValue.</summary>
@@ -23,7 +23,7 @@ namespace ApiSdk.Models.Microsoft.Graph {
         /// Creates a new instance of the appropriate class based on discriminator value
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         /// </summary>
-        public static SubjectRightsRequestStageDetail CreateFromDiscriminatorValue(IParseNode parseNode) {
+        public static ApiSdk.Models.Microsoft.Graph.SubjectRightsRequestStageDetail CreateFromDiscriminatorValue(IParseNode parseNode) {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
             return new SubjectRightsRequestStageDetail();
         }
@@ -32,7 +32,7 @@ namespace ApiSdk.Models.Microsoft.Graph {
         /// </summary>
         public IDictionary<string, Action<T, IParseNode>> GetFieldDeserializers<T>() {
             return new Dictionary<string, Action<T, IParseNode>> {
-                {"error", (o,n) => { (o as SubjectRightsRequestStageDetail).Error = n.GetObjectValue<PublicError>(PublicError.CreateFromDiscriminatorValue); } },
+                {"error", (o,n) => { (o as SubjectRightsRequestStageDetail).Error = n.GetObjectValue<ApiSdk.Models.Microsoft.Graph.PublicError>(ApiSdk.Models.Microsoft.Graph.PublicError.CreateFromDiscriminatorValue); } },
                 {"stage", (o,n) => { (o as SubjectRightsRequestStageDetail).Stage = n.GetEnumValue<SubjectRightsRequestStage>(); } },
                 {"status", (o,n) => { (o as SubjectRightsRequestStageDetail).Status = n.GetEnumValue<SubjectRightsRequestStageStatus>(); } },
             };
@@ -43,7 +43,7 @@ namespace ApiSdk.Models.Microsoft.Graph {
         /// </summary>
         public void Serialize(ISerializationWriter writer) {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
-            writer.WriteObjectValue<PublicError>("error", Error);
+            writer.WriteObjectValue<ApiSdk.Models.Microsoft.Graph.PublicError>("error", Error);
             writer.WriteEnumValue<SubjectRightsRequestStage>("stage", Stage);
             writer.WriteEnumValue<SubjectRightsRequestStageStatus>("status", Status);
             writer.WriteAdditionalData(AdditionalData);

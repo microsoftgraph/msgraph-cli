@@ -11,7 +11,7 @@ namespace ApiSdk.Models.Microsoft.Graph {
         public string Address { get; set; }
         /// <summary>The display name of the web site.</summary>
         public string DisplayName { get; set; }
-        /// <summary>Possible values are: other, home, work, blog, profile.</summary>
+        /// <summary>The possible values are: other, home, work, blog, profile.</summary>
         public WebsiteType? Type { get; set; }
         /// <summary>
         /// Instantiates a new website and sets the default values.
@@ -23,7 +23,7 @@ namespace ApiSdk.Models.Microsoft.Graph {
         /// Creates a new instance of the appropriate class based on discriminator value
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         /// </summary>
-        public static Website CreateFromDiscriminatorValue(IParseNode parseNode) {
+        public static ApiSdk.Models.Microsoft.Graph.Website CreateFromDiscriminatorValue(IParseNode parseNode) {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
             return new Website();
         }

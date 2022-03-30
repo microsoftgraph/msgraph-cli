@@ -12,14 +12,14 @@ namespace ApiSdk.Models.Microsoft.Graph {
         /// <summary>Type of Role. Set to True if it is built-in, or set to False if it is a custom role definition.</summary>
         public bool? IsBuiltIn { get; set; }
         /// <summary>List of Role assignments for this role definition.</summary>
-        public List<RoleAssignment> RoleAssignments { get; set; }
+        public List<ApiSdk.Models.Microsoft.Graph.RoleAssignment> RoleAssignments { get; set; }
         /// <summary>List of Role Permissions this role is allowed to perform. These must match the actionName that is defined as part of the rolePermission.</summary>
-        public List<RolePermission> RolePermissions { get; set; }
+        public List<ApiSdk.Models.Microsoft.Graph.RolePermission> RolePermissions { get; set; }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         /// </summary>
-        public static new RoleDefinition CreateFromDiscriminatorValue(IParseNode parseNode) {
+        public static new ApiSdk.Models.Microsoft.Graph.RoleDefinition CreateFromDiscriminatorValue(IParseNode parseNode) {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
             return new RoleDefinition();
         }
@@ -31,8 +31,8 @@ namespace ApiSdk.Models.Microsoft.Graph {
                 {"description", (o,n) => { (o as RoleDefinition).Description = n.GetStringValue(); } },
                 {"displayName", (o,n) => { (o as RoleDefinition).DisplayName = n.GetStringValue(); } },
                 {"isBuiltIn", (o,n) => { (o as RoleDefinition).IsBuiltIn = n.GetBoolValue(); } },
-                {"roleAssignments", (o,n) => { (o as RoleDefinition).RoleAssignments = n.GetCollectionOfObjectValues<RoleAssignment>(RoleAssignment.CreateFromDiscriminatorValue).ToList(); } },
-                {"rolePermissions", (o,n) => { (o as RoleDefinition).RolePermissions = n.GetCollectionOfObjectValues<RolePermission>(RolePermission.CreateFromDiscriminatorValue).ToList(); } },
+                {"roleAssignments", (o,n) => { (o as RoleDefinition).RoleAssignments = n.GetCollectionOfObjectValues<ApiSdk.Models.Microsoft.Graph.RoleAssignment>(ApiSdk.Models.Microsoft.Graph.RoleAssignment.CreateFromDiscriminatorValue).ToList(); } },
+                {"rolePermissions", (o,n) => { (o as RoleDefinition).RolePermissions = n.GetCollectionOfObjectValues<ApiSdk.Models.Microsoft.Graph.RolePermission>(ApiSdk.Models.Microsoft.Graph.RolePermission.CreateFromDiscriminatorValue).ToList(); } },
             };
         }
         /// <summary>
@@ -45,8 +45,8 @@ namespace ApiSdk.Models.Microsoft.Graph {
             writer.WriteStringValue("description", Description);
             writer.WriteStringValue("displayName", DisplayName);
             writer.WriteBoolValue("isBuiltIn", IsBuiltIn);
-            writer.WriteCollectionOfObjectValues<RoleAssignment>("roleAssignments", RoleAssignments);
-            writer.WriteCollectionOfObjectValues<RolePermission>("rolePermissions", RolePermissions);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.Microsoft.Graph.RoleAssignment>("roleAssignments", RoleAssignments);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.Microsoft.Graph.RolePermission>("rolePermissions", RolePermissions);
         }
     }
 }

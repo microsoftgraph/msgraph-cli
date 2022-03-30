@@ -14,7 +14,7 @@ namespace ApiSdk.Models.Microsoft.Graph {
         /// <summary>Represents the categories that an incoming message should be labeled with in order for the condition or exception to apply.</summary>
         public List<string> Categories { get; set; }
         /// <summary>Represents the specific sender email addresses of an incoming message in order for the condition or exception to apply.</summary>
-        public List<Recipient> FromAddresses { get; set; }
+        public List<ApiSdk.Models.Microsoft.Graph.Recipient> FromAddresses { get; set; }
         /// <summary>Indicates whether an incoming message must have attachments in order for the condition or exception to apply.</summary>
         public bool? HasAttachments { get; set; }
         /// <summary>Represents the strings that appear in the headers of an incoming message in order for the condition or exception to apply.</summary>
@@ -58,7 +58,7 @@ namespace ApiSdk.Models.Microsoft.Graph {
         /// <summary>Indicates whether the owner of the mailbox must be the only recipient in an incoming message in order for the condition or exception to apply.</summary>
         public bool? SentOnlyToMe { get; set; }
         /// <summary>Represents the email addresses that an incoming message must have been sent to in order for the condition or exception to apply.</summary>
-        public List<Recipient> SentToAddresses { get; set; }
+        public List<ApiSdk.Models.Microsoft.Graph.Recipient> SentToAddresses { get; set; }
         /// <summary>Indicates whether the owner of the mailbox must be in the toRecipients property of an incoming message in order for the condition or exception to apply.</summary>
         public bool? SentToMe { get; set; }
         /// <summary>Indicates whether the owner of the mailbox must be in either a toRecipients or ccRecipients property of an incoming message in order for the condition or exception to apply.</summary>
@@ -66,7 +66,7 @@ namespace ApiSdk.Models.Microsoft.Graph {
         /// <summary>Represents the strings that appear in the subject of an incoming message in order for the condition or exception to apply.</summary>
         public List<string> SubjectContains { get; set; }
         /// <summary>Represents the minimum and maximum sizes (in kilobytes) that an incoming message must fall in between in order for the condition or exception to apply.</summary>
-        public SizeRange WithinSizeRange { get; set; }
+        public ApiSdk.Models.Microsoft.Graph.SizeRange WithinSizeRange { get; set; }
         /// <summary>
         /// Instantiates a new messageRulePredicates and sets the default values.
         /// </summary>
@@ -77,7 +77,7 @@ namespace ApiSdk.Models.Microsoft.Graph {
         /// Creates a new instance of the appropriate class based on discriminator value
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         /// </summary>
-        public static MessageRulePredicates CreateFromDiscriminatorValue(IParseNode parseNode) {
+        public static ApiSdk.Models.Microsoft.Graph.MessageRulePredicates CreateFromDiscriminatorValue(IParseNode parseNode) {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
             return new MessageRulePredicates();
         }
@@ -89,7 +89,7 @@ namespace ApiSdk.Models.Microsoft.Graph {
                 {"bodyContains", (o,n) => { (o as MessageRulePredicates).BodyContains = n.GetCollectionOfPrimitiveValues<string>().ToList(); } },
                 {"bodyOrSubjectContains", (o,n) => { (o as MessageRulePredicates).BodyOrSubjectContains = n.GetCollectionOfPrimitiveValues<string>().ToList(); } },
                 {"categories", (o,n) => { (o as MessageRulePredicates).Categories = n.GetCollectionOfPrimitiveValues<string>().ToList(); } },
-                {"fromAddresses", (o,n) => { (o as MessageRulePredicates).FromAddresses = n.GetCollectionOfObjectValues<Recipient>(Recipient.CreateFromDiscriminatorValue).ToList(); } },
+                {"fromAddresses", (o,n) => { (o as MessageRulePredicates).FromAddresses = n.GetCollectionOfObjectValues<ApiSdk.Models.Microsoft.Graph.Recipient>(ApiSdk.Models.Microsoft.Graph.Recipient.CreateFromDiscriminatorValue).ToList(); } },
                 {"hasAttachments", (o,n) => { (o as MessageRulePredicates).HasAttachments = n.GetBoolValue(); } },
                 {"headerContains", (o,n) => { (o as MessageRulePredicates).HeaderContains = n.GetCollectionOfPrimitiveValues<string>().ToList(); } },
                 {"importance", (o,n) => { (o as MessageRulePredicates).Importance = n.GetEnumValue<Importance>(); } },
@@ -111,11 +111,11 @@ namespace ApiSdk.Models.Microsoft.Graph {
                 {"sensitivity", (o,n) => { (o as MessageRulePredicates).Sensitivity = n.GetEnumValue<Sensitivity>(); } },
                 {"sentCcMe", (o,n) => { (o as MessageRulePredicates).SentCcMe = n.GetBoolValue(); } },
                 {"sentOnlyToMe", (o,n) => { (o as MessageRulePredicates).SentOnlyToMe = n.GetBoolValue(); } },
-                {"sentToAddresses", (o,n) => { (o as MessageRulePredicates).SentToAddresses = n.GetCollectionOfObjectValues<Recipient>(Recipient.CreateFromDiscriminatorValue).ToList(); } },
+                {"sentToAddresses", (o,n) => { (o as MessageRulePredicates).SentToAddresses = n.GetCollectionOfObjectValues<ApiSdk.Models.Microsoft.Graph.Recipient>(ApiSdk.Models.Microsoft.Graph.Recipient.CreateFromDiscriminatorValue).ToList(); } },
                 {"sentToMe", (o,n) => { (o as MessageRulePredicates).SentToMe = n.GetBoolValue(); } },
                 {"sentToOrCcMe", (o,n) => { (o as MessageRulePredicates).SentToOrCcMe = n.GetBoolValue(); } },
                 {"subjectContains", (o,n) => { (o as MessageRulePredicates).SubjectContains = n.GetCollectionOfPrimitiveValues<string>().ToList(); } },
-                {"withinSizeRange", (o,n) => { (o as MessageRulePredicates).WithinSizeRange = n.GetObjectValue<SizeRange>(SizeRange.CreateFromDiscriminatorValue); } },
+                {"withinSizeRange", (o,n) => { (o as MessageRulePredicates).WithinSizeRange = n.GetObjectValue<ApiSdk.Models.Microsoft.Graph.SizeRange>(ApiSdk.Models.Microsoft.Graph.SizeRange.CreateFromDiscriminatorValue); } },
             };
         }
         /// <summary>
@@ -127,7 +127,7 @@ namespace ApiSdk.Models.Microsoft.Graph {
             writer.WriteCollectionOfPrimitiveValues<string>("bodyContains", BodyContains);
             writer.WriteCollectionOfPrimitiveValues<string>("bodyOrSubjectContains", BodyOrSubjectContains);
             writer.WriteCollectionOfPrimitiveValues<string>("categories", Categories);
-            writer.WriteCollectionOfObjectValues<Recipient>("fromAddresses", FromAddresses);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.Microsoft.Graph.Recipient>("fromAddresses", FromAddresses);
             writer.WriteBoolValue("hasAttachments", HasAttachments);
             writer.WriteCollectionOfPrimitiveValues<string>("headerContains", HeaderContains);
             writer.WriteEnumValue<Importance>("importance", Importance);
@@ -149,11 +149,11 @@ namespace ApiSdk.Models.Microsoft.Graph {
             writer.WriteEnumValue<Sensitivity>("sensitivity", Sensitivity);
             writer.WriteBoolValue("sentCcMe", SentCcMe);
             writer.WriteBoolValue("sentOnlyToMe", SentOnlyToMe);
-            writer.WriteCollectionOfObjectValues<Recipient>("sentToAddresses", SentToAddresses);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.Microsoft.Graph.Recipient>("sentToAddresses", SentToAddresses);
             writer.WriteBoolValue("sentToMe", SentToMe);
             writer.WriteBoolValue("sentToOrCcMe", SentToOrCcMe);
             writer.WriteCollectionOfPrimitiveValues<string>("subjectContains", SubjectContains);
-            writer.WriteObjectValue<SizeRange>("withinSizeRange", WithinSizeRange);
+            writer.WriteObjectValue<ApiSdk.Models.Microsoft.Graph.SizeRange>("withinSizeRange", WithinSizeRange);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

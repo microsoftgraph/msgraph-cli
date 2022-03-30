@@ -5,13 +5,13 @@ using System.IO;
 using System.Linq;
 namespace ApiSdk.Models.Microsoft.Graph {
     public class Approval : Entity, IParsable {
-        /// <summary>Used for the approvalStages property of approval settings in the requestApprovalSettings property of an access package assignment policy. Specifies the primary, fallback, and escalation approvers of each stage.</summary>
-        public List<ApprovalStage> Stages { get; set; }
+        /// <summary>A collection of stages in the approval decision.</summary>
+        public List<ApiSdk.Models.Microsoft.Graph.ApprovalStage> Stages { get; set; }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         /// </summary>
-        public static new Approval CreateFromDiscriminatorValue(IParseNode parseNode) {
+        public static new ApiSdk.Models.Microsoft.Graph.Approval CreateFromDiscriminatorValue(IParseNode parseNode) {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
             return new Approval();
         }
@@ -20,7 +20,7 @@ namespace ApiSdk.Models.Microsoft.Graph {
         /// </summary>
         public new IDictionary<string, Action<T, IParseNode>> GetFieldDeserializers<T>() {
             return new Dictionary<string, Action<T, IParseNode>>(base.GetFieldDeserializers<T>()) {
-                {"stages", (o,n) => { (o as Approval).Stages = n.GetCollectionOfObjectValues<ApprovalStage>(ApprovalStage.CreateFromDiscriminatorValue).ToList(); } },
+                {"stages", (o,n) => { (o as Approval).Stages = n.GetCollectionOfObjectValues<ApiSdk.Models.Microsoft.Graph.ApprovalStage>(ApiSdk.Models.Microsoft.Graph.ApprovalStage.CreateFromDiscriminatorValue).ToList(); } },
             };
         }
         /// <summary>
@@ -30,7 +30,7 @@ namespace ApiSdk.Models.Microsoft.Graph {
         public new void Serialize(ISerializationWriter writer) {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             base.Serialize(writer);
-            writer.WriteCollectionOfObjectValues<ApprovalStage>("stages", Stages);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.Microsoft.Graph.ApprovalStage>("stages", Stages);
         }
     }
 }

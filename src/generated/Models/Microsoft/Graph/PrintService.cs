@@ -6,12 +6,12 @@ using System.Linq;
 namespace ApiSdk.Models.Microsoft.Graph {
     public class PrintService : Entity, IParsable {
         /// <summary>Endpoints that can be used to access the service. Read-only. Nullable.</summary>
-        public List<PrintServiceEndpoint> Endpoints { get; set; }
+        public List<ApiSdk.Models.Microsoft.Graph.PrintServiceEndpoint> Endpoints { get; set; }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         /// </summary>
-        public static new PrintService CreateFromDiscriminatorValue(IParseNode parseNode) {
+        public static new ApiSdk.Models.Microsoft.Graph.PrintService CreateFromDiscriminatorValue(IParseNode parseNode) {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
             return new PrintService();
         }
@@ -20,7 +20,7 @@ namespace ApiSdk.Models.Microsoft.Graph {
         /// </summary>
         public new IDictionary<string, Action<T, IParseNode>> GetFieldDeserializers<T>() {
             return new Dictionary<string, Action<T, IParseNode>>(base.GetFieldDeserializers<T>()) {
-                {"endpoints", (o,n) => { (o as PrintService).Endpoints = n.GetCollectionOfObjectValues<PrintServiceEndpoint>(PrintServiceEndpoint.CreateFromDiscriminatorValue).ToList(); } },
+                {"endpoints", (o,n) => { (o as PrintService).Endpoints = n.GetCollectionOfObjectValues<ApiSdk.Models.Microsoft.Graph.PrintServiceEndpoint>(ApiSdk.Models.Microsoft.Graph.PrintServiceEndpoint.CreateFromDiscriminatorValue).ToList(); } },
             };
         }
         /// <summary>
@@ -30,7 +30,7 @@ namespace ApiSdk.Models.Microsoft.Graph {
         public new void Serialize(ISerializationWriter writer) {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             base.Serialize(writer);
-            writer.WriteCollectionOfObjectValues<PrintServiceEndpoint>("endpoints", Endpoints);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.Microsoft.Graph.PrintServiceEndpoint>("endpoints", Endpoints);
         }
     }
 }

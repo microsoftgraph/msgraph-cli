@@ -23,7 +23,7 @@ namespace ApiSdk.Models.Microsoft.Graph {
         public int? Iso { get; set; }
         /// <summary>The orientation value from the camera. Writable on OneDrive Personal.</summary>
         public int? Orientation { get; set; }
-        /// <summary>The date and time the photo was taken in UTC time. Read-only.</summary>
+        /// <summary>Represents the date and time the photo was taken. Read-only.</summary>
         public DateTimeOffset? TakenDateTime { get; set; }
         /// <summary>
         /// Instantiates a new photo and sets the default values.
@@ -35,7 +35,7 @@ namespace ApiSdk.Models.Microsoft.Graph {
         /// Creates a new instance of the appropriate class based on discriminator value
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         /// </summary>
-        public static Photo CreateFromDiscriminatorValue(IParseNode parseNode) {
+        public static ApiSdk.Models.Microsoft.Graph.Photo CreateFromDiscriminatorValue(IParseNode parseNode) {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
             return new Photo();
         }

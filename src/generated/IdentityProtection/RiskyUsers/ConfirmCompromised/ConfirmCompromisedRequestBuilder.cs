@@ -11,7 +11,7 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 namespace ApiSdk.IdentityProtection.RiskyUsers.ConfirmCompromised {
-    /// <summary>Builds and executes requests for operations under \identityProtection\riskyUsers\microsoft.graph.confirmCompromised</summary>
+    /// <summary>Provides operations to call the confirmCompromised method.</summary>
     public class ConfirmCompromisedRequestBuilder {
         /// <summary>Path parameters for the request</summary>
         private Dictionary<string, object> PathParameters { get; set; }
@@ -35,7 +35,7 @@ namespace ApiSdk.IdentityProtection.RiskyUsers.ConfirmCompromised {
                 var cancellationToken = (CancellationToken) parameters[1];
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
-                var model = parseNode.GetObjectValue<ConfirmCompromisedRequestBody>(ConfirmCompromisedRequestBody.CreateFromDiscriminatorValue);
+                var model = parseNode.GetObjectValue<ApiSdk.IdentityProtection.RiskyUsers.ConfirmCompromised.ConfirmCompromisedRequestBody>(ApiSdk.IdentityProtection.RiskyUsers.ConfirmCompromised.ConfirmCompromisedRequestBody.CreateFromDiscriminatorValue);
                 var requestInfo = CreatePostRequestInformation(model, q => {
                 });
                 await RequestAdapter.SendNoContentAsync(requestInfo, errorMapping: default, cancellationToken: cancellationToken);
@@ -59,10 +59,10 @@ namespace ApiSdk.IdentityProtection.RiskyUsers.ConfirmCompromised {
         /// <summary>
         /// Invoke action confirmCompromised
         /// <param name="body"></param>
-        /// <param name="h">Request headers</param>
-        /// <param name="o">Request options</param>
+        /// <param name="headers">Request headers</param>
+        /// <param name="options">Request options</param>
         /// </summary>
-        public RequestInformation CreatePostRequestInformation(ConfirmCompromisedRequestBody body, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
+        public RequestInformation CreatePostRequestInformation(ApiSdk.IdentityProtection.RiskyUsers.ConfirmCompromised.ConfirmCompromisedRequestBody body, Action<IDictionary<string, string>> headers = default, IEnumerable<IRequestOption> options = default) {
             _ = body ?? throw new ArgumentNullException(nameof(body));
             var requestInfo = new RequestInformation {
                 HttpMethod = Method.POST,
@@ -70,8 +70,8 @@ namespace ApiSdk.IdentityProtection.RiskyUsers.ConfirmCompromised {
                 PathParameters = PathParameters,
             };
             requestInfo.SetContentFromParsable(RequestAdapter, "application/json", body);
-            h?.Invoke(requestInfo.Headers);
-            requestInfo.AddRequestOptions(o?.ToArray());
+            headers?.Invoke(requestInfo.Headers);
+            requestInfo.AddRequestOptions(options?.ToArray());
             return requestInfo;
         }
     }

@@ -7,7 +7,7 @@ namespace ApiSdk.Models.Microsoft.Graph {
     public class Privacy : IAdditionalDataHolder, IParsable {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
-        public List<SubjectRightsRequest> SubjectRightsRequests { get; set; }
+        public List<ApiSdk.Models.Microsoft.Graph.SubjectRightsRequest> SubjectRightsRequests { get; set; }
         /// <summary>
         /// Instantiates a new Privacy and sets the default values.
         /// </summary>
@@ -18,7 +18,7 @@ namespace ApiSdk.Models.Microsoft.Graph {
         /// Creates a new instance of the appropriate class based on discriminator value
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         /// </summary>
-        public static Privacy CreateFromDiscriminatorValue(IParseNode parseNode) {
+        public static ApiSdk.Models.Microsoft.Graph.Privacy CreateFromDiscriminatorValue(IParseNode parseNode) {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
             return new Privacy();
         }
@@ -27,7 +27,7 @@ namespace ApiSdk.Models.Microsoft.Graph {
         /// </summary>
         public IDictionary<string, Action<T, IParseNode>> GetFieldDeserializers<T>() {
             return new Dictionary<string, Action<T, IParseNode>> {
-                {"subjectRightsRequests", (o,n) => { (o as Privacy).SubjectRightsRequests = n.GetCollectionOfObjectValues<SubjectRightsRequest>(SubjectRightsRequest.CreateFromDiscriminatorValue).ToList(); } },
+                {"subjectRightsRequests", (o,n) => { (o as Privacy).SubjectRightsRequests = n.GetCollectionOfObjectValues<ApiSdk.Models.Microsoft.Graph.SubjectRightsRequest>(ApiSdk.Models.Microsoft.Graph.SubjectRightsRequest.CreateFromDiscriminatorValue).ToList(); } },
             };
         }
         /// <summary>
@@ -36,7 +36,7 @@ namespace ApiSdk.Models.Microsoft.Graph {
         /// </summary>
         public void Serialize(ISerializationWriter writer) {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
-            writer.WriteCollectionOfObjectValues<SubjectRightsRequest>("subjectRightsRequests", SubjectRightsRequests);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.Microsoft.Graph.SubjectRightsRequest>("subjectRightsRequests", SubjectRightsRequests);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

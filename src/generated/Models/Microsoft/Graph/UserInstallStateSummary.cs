@@ -6,7 +6,7 @@ using System.Linq;
 namespace ApiSdk.Models.Microsoft.Graph {
     public class UserInstallStateSummary : Entity, IParsable {
         /// <summary>The install state of the eBook.</summary>
-        public List<DeviceInstallState> DeviceStates { get; set; }
+        public List<ApiSdk.Models.Microsoft.Graph.DeviceInstallState> DeviceStates { get; set; }
         /// <summary>Failed Device Count.</summary>
         public int? FailedDeviceCount { get; set; }
         /// <summary>Installed Device Count.</summary>
@@ -19,7 +19,7 @@ namespace ApiSdk.Models.Microsoft.Graph {
         /// Creates a new instance of the appropriate class based on discriminator value
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         /// </summary>
-        public static new UserInstallStateSummary CreateFromDiscriminatorValue(IParseNode parseNode) {
+        public static new ApiSdk.Models.Microsoft.Graph.UserInstallStateSummary CreateFromDiscriminatorValue(IParseNode parseNode) {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
             return new UserInstallStateSummary();
         }
@@ -28,7 +28,7 @@ namespace ApiSdk.Models.Microsoft.Graph {
         /// </summary>
         public new IDictionary<string, Action<T, IParseNode>> GetFieldDeserializers<T>() {
             return new Dictionary<string, Action<T, IParseNode>>(base.GetFieldDeserializers<T>()) {
-                {"deviceStates", (o,n) => { (o as UserInstallStateSummary).DeviceStates = n.GetCollectionOfObjectValues<DeviceInstallState>(DeviceInstallState.CreateFromDiscriminatorValue).ToList(); } },
+                {"deviceStates", (o,n) => { (o as UserInstallStateSummary).DeviceStates = n.GetCollectionOfObjectValues<ApiSdk.Models.Microsoft.Graph.DeviceInstallState>(ApiSdk.Models.Microsoft.Graph.DeviceInstallState.CreateFromDiscriminatorValue).ToList(); } },
                 {"failedDeviceCount", (o,n) => { (o as UserInstallStateSummary).FailedDeviceCount = n.GetIntValue(); } },
                 {"installedDeviceCount", (o,n) => { (o as UserInstallStateSummary).InstalledDeviceCount = n.GetIntValue(); } },
                 {"notInstalledDeviceCount", (o,n) => { (o as UserInstallStateSummary).NotInstalledDeviceCount = n.GetIntValue(); } },
@@ -42,7 +42,7 @@ namespace ApiSdk.Models.Microsoft.Graph {
         public new void Serialize(ISerializationWriter writer) {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             base.Serialize(writer);
-            writer.WriteCollectionOfObjectValues<DeviceInstallState>("deviceStates", DeviceStates);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.Microsoft.Graph.DeviceInstallState>("deviceStates", DeviceStates);
             writer.WriteIntValue("failedDeviceCount", FailedDeviceCount);
             writer.WriteIntValue("installedDeviceCount", InstalledDeviceCount);
             writer.WriteIntValue("notInstalledDeviceCount", NotInstalledDeviceCount);

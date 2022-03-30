@@ -11,7 +11,7 @@ namespace ApiSdk.Models.Microsoft.Graph {
         public PolicyPlatformType? PlatformType { get; set; }
         /// <summary>Count of how many setting a policy holds</summary>
         public int? SettingCount { get; set; }
-        public List<DeviceConfigurationSettingState> SettingStates { get; set; }
+        public List<ApiSdk.Models.Microsoft.Graph.DeviceConfigurationSettingState> SettingStates { get; set; }
         /// <summary>The compliance state of the policy</summary>
         public ComplianceStatus? State { get; set; }
         /// <summary>The version of the policy</summary>
@@ -20,7 +20,7 @@ namespace ApiSdk.Models.Microsoft.Graph {
         /// Creates a new instance of the appropriate class based on discriminator value
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         /// </summary>
-        public static new DeviceConfigurationState CreateFromDiscriminatorValue(IParseNode parseNode) {
+        public static new ApiSdk.Models.Microsoft.Graph.DeviceConfigurationState CreateFromDiscriminatorValue(IParseNode parseNode) {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
             return new DeviceConfigurationState();
         }
@@ -32,7 +32,7 @@ namespace ApiSdk.Models.Microsoft.Graph {
                 {"displayName", (o,n) => { (o as DeviceConfigurationState).DisplayName = n.GetStringValue(); } },
                 {"platformType", (o,n) => { (o as DeviceConfigurationState).PlatformType = n.GetEnumValue<PolicyPlatformType>(); } },
                 {"settingCount", (o,n) => { (o as DeviceConfigurationState).SettingCount = n.GetIntValue(); } },
-                {"settingStates", (o,n) => { (o as DeviceConfigurationState).SettingStates = n.GetCollectionOfObjectValues<DeviceConfigurationSettingState>(DeviceConfigurationSettingState.CreateFromDiscriminatorValue).ToList(); } },
+                {"settingStates", (o,n) => { (o as DeviceConfigurationState).SettingStates = n.GetCollectionOfObjectValues<ApiSdk.Models.Microsoft.Graph.DeviceConfigurationSettingState>(ApiSdk.Models.Microsoft.Graph.DeviceConfigurationSettingState.CreateFromDiscriminatorValue).ToList(); } },
                 {"state", (o,n) => { (o as DeviceConfigurationState).State = n.GetEnumValue<ComplianceStatus>(); } },
                 {"version", (o,n) => { (o as DeviceConfigurationState).Version = n.GetIntValue(); } },
             };
@@ -47,7 +47,7 @@ namespace ApiSdk.Models.Microsoft.Graph {
             writer.WriteStringValue("displayName", DisplayName);
             writer.WriteEnumValue<PolicyPlatformType>("platformType", PlatformType);
             writer.WriteIntValue("settingCount", SettingCount);
-            writer.WriteCollectionOfObjectValues<DeviceConfigurationSettingState>("settingStates", SettingStates);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.Microsoft.Graph.DeviceConfigurationSettingState>("settingStates", SettingStates);
             writer.WriteEnumValue<ComplianceStatus>("state", State);
             writer.WriteIntValue("version", Version);
         }

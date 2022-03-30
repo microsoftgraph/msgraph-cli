@@ -7,7 +7,7 @@ namespace ApiSdk.Models.Microsoft.Graph {
     public class OnenotePagePreviewLinks : IAdditionalDataHolder, IParsable {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
-        public ExternalLink PreviewImageUrl { get; set; }
+        public ApiSdk.Models.Microsoft.Graph.ExternalLink PreviewImageUrl { get; set; }
         /// <summary>
         /// Instantiates a new onenotePagePreviewLinks and sets the default values.
         /// </summary>
@@ -18,7 +18,7 @@ namespace ApiSdk.Models.Microsoft.Graph {
         /// Creates a new instance of the appropriate class based on discriminator value
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         /// </summary>
-        public static OnenotePagePreviewLinks CreateFromDiscriminatorValue(IParseNode parseNode) {
+        public static ApiSdk.Models.Microsoft.Graph.OnenotePagePreviewLinks CreateFromDiscriminatorValue(IParseNode parseNode) {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
             return new OnenotePagePreviewLinks();
         }
@@ -27,7 +27,7 @@ namespace ApiSdk.Models.Microsoft.Graph {
         /// </summary>
         public IDictionary<string, Action<T, IParseNode>> GetFieldDeserializers<T>() {
             return new Dictionary<string, Action<T, IParseNode>> {
-                {"previewImageUrl", (o,n) => { (o as OnenotePagePreviewLinks).PreviewImageUrl = n.GetObjectValue<ExternalLink>(ExternalLink.CreateFromDiscriminatorValue); } },
+                {"previewImageUrl", (o,n) => { (o as OnenotePagePreviewLinks).PreviewImageUrl = n.GetObjectValue<ApiSdk.Models.Microsoft.Graph.ExternalLink>(ApiSdk.Models.Microsoft.Graph.ExternalLink.CreateFromDiscriminatorValue); } },
             };
         }
         /// <summary>
@@ -36,7 +36,7 @@ namespace ApiSdk.Models.Microsoft.Graph {
         /// </summary>
         public void Serialize(ISerializationWriter writer) {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
-            writer.WriteObjectValue<ExternalLink>("previewImageUrl", PreviewImageUrl);
+            writer.WriteObjectValue<ApiSdk.Models.Microsoft.Graph.ExternalLink>("previewImageUrl", PreviewImageUrl);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

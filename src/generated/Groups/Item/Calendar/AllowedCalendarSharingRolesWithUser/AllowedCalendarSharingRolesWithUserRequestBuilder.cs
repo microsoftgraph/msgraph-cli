@@ -11,7 +11,7 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 namespace ApiSdk.Groups.Item.Calendar.AllowedCalendarSharingRolesWithUser {
-    /// <summary>Builds and executes requests for operations under \groups\{group-id}\calendar\microsoft.graph.allowedCalendarSharingRoles(User='{User}')</summary>
+    /// <summary>Provides operations to call the allowedCalendarSharingRoles method.</summary>
     public class AllowedCalendarSharingRolesWithUserRequestBuilder {
         /// <summary>Path parameters for the request</summary>
         private Dictionary<string, object> PathParameters { get; set; }
@@ -30,7 +30,7 @@ namespace ApiSdk.Groups.Item.Calendar.AllowedCalendarSharingRolesWithUser {
             };
             groupIdOption.IsRequired = true;
             command.AddOption(groupIdOption);
-            var UserOption = new Option<string>("--user", description: "Usage: User={User}") {
+            var UserOption = new Option<string>("--user", description: "Usage: User='{User}'") {
             };
             UserOption.IsRequired = true;
             command.AddOption(UserOption);
@@ -62,9 +62,9 @@ namespace ApiSdk.Groups.Item.Calendar.AllowedCalendarSharingRolesWithUser {
                 var requestInfo = CreateGetRequestInformation(q => {
                 });
                 var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: default, cancellationToken: cancellationToken);
-                var formatter = outputFormatterFactory.GetFormatter(output);
                 response = await outputFilter?.FilterOutputAsync(response, query, cancellationToken) ?? response;
                 var formatterOptions = output.GetOutputFormatterOptions(new FormatterOptionsModel(!jsonNoIndent));
+                var formatter = outputFormatterFactory.GetFormatter(output);
                 await formatter.WriteOutputAsync(response, formatterOptions, cancellationToken);
             }, new CollectionBinding(groupIdOption, UserOption, outputOption, queryOption, jsonNoIndentOption, new TypeBinding(typeof(IOutputFilter)), new TypeBinding(typeof(IOutputFormatterFactory)), new TypeBinding(typeof(CancellationToken))));
             return command;
@@ -73,7 +73,7 @@ namespace ApiSdk.Groups.Item.Calendar.AllowedCalendarSharingRolesWithUser {
         /// Instantiates a new AllowedCalendarSharingRolesWithUserRequestBuilder and sets the default values.
         /// <param name="pathParameters">Path parameters for the request</param>
         /// <param name="requestAdapter">The request adapter to use to execute the requests.</param>
-        /// <param name="User">Usage: User={User}</param>
+        /// <param name="User">Usage: User='{User}'</param>
         /// </summary>
         public AllowedCalendarSharingRolesWithUserRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter, string user = default) {
             _ = pathParameters ?? throw new ArgumentNullException(nameof(pathParameters));
@@ -86,17 +86,17 @@ namespace ApiSdk.Groups.Item.Calendar.AllowedCalendarSharingRolesWithUser {
         }
         /// <summary>
         /// Invoke function allowedCalendarSharingRoles
-        /// <param name="h">Request headers</param>
-        /// <param name="o">Request options</param>
+        /// <param name="headers">Request headers</param>
+        /// <param name="options">Request options</param>
         /// </summary>
-        public RequestInformation CreateGetRequestInformation(Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
+        public RequestInformation CreateGetRequestInformation(Action<IDictionary<string, string>> headers = default, IEnumerable<IRequestOption> options = default) {
             var requestInfo = new RequestInformation {
                 HttpMethod = Method.GET,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };
-            h?.Invoke(requestInfo.Headers);
-            requestInfo.AddRequestOptions(o?.ToArray());
+            headers?.Invoke(requestInfo.Headers);
+            requestInfo.AddRequestOptions(options?.ToArray());
             return requestInfo;
         }
     }

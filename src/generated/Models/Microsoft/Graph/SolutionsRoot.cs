@@ -7,8 +7,8 @@ namespace ApiSdk.Models.Microsoft.Graph {
     public class SolutionsRoot : IAdditionalDataHolder, IParsable {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
-        public List<BookingBusiness> BookingBusinesses { get; set; }
-        public List<BookingCurrency> BookingCurrencies { get; set; }
+        public List<ApiSdk.Models.Microsoft.Graph.BookingBusiness> BookingBusinesses { get; set; }
+        public List<ApiSdk.Models.Microsoft.Graph.BookingCurrency> BookingCurrencies { get; set; }
         /// <summary>
         /// Instantiates a new SolutionsRoot and sets the default values.
         /// </summary>
@@ -19,7 +19,7 @@ namespace ApiSdk.Models.Microsoft.Graph {
         /// Creates a new instance of the appropriate class based on discriminator value
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         /// </summary>
-        public static SolutionsRoot CreateFromDiscriminatorValue(IParseNode parseNode) {
+        public static ApiSdk.Models.Microsoft.Graph.SolutionsRoot CreateFromDiscriminatorValue(IParseNode parseNode) {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
             return new SolutionsRoot();
         }
@@ -28,8 +28,8 @@ namespace ApiSdk.Models.Microsoft.Graph {
         /// </summary>
         public IDictionary<string, Action<T, IParseNode>> GetFieldDeserializers<T>() {
             return new Dictionary<string, Action<T, IParseNode>> {
-                {"bookingBusinesses", (o,n) => { (o as SolutionsRoot).BookingBusinesses = n.GetCollectionOfObjectValues<BookingBusiness>(BookingBusiness.CreateFromDiscriminatorValue).ToList(); } },
-                {"bookingCurrencies", (o,n) => { (o as SolutionsRoot).BookingCurrencies = n.GetCollectionOfObjectValues<BookingCurrency>(BookingCurrency.CreateFromDiscriminatorValue).ToList(); } },
+                {"bookingBusinesses", (o,n) => { (o as SolutionsRoot).BookingBusinesses = n.GetCollectionOfObjectValues<ApiSdk.Models.Microsoft.Graph.BookingBusiness>(ApiSdk.Models.Microsoft.Graph.BookingBusiness.CreateFromDiscriminatorValue).ToList(); } },
+                {"bookingCurrencies", (o,n) => { (o as SolutionsRoot).BookingCurrencies = n.GetCollectionOfObjectValues<ApiSdk.Models.Microsoft.Graph.BookingCurrency>(ApiSdk.Models.Microsoft.Graph.BookingCurrency.CreateFromDiscriminatorValue).ToList(); } },
             };
         }
         /// <summary>
@@ -38,8 +38,8 @@ namespace ApiSdk.Models.Microsoft.Graph {
         /// </summary>
         public void Serialize(ISerializationWriter writer) {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
-            writer.WriteCollectionOfObjectValues<BookingBusiness>("bookingBusinesses", BookingBusinesses);
-            writer.WriteCollectionOfObjectValues<BookingCurrency>("bookingCurrencies", BookingCurrencies);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.Microsoft.Graph.BookingBusiness>("bookingBusinesses", BookingBusinesses);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.Microsoft.Graph.BookingCurrency>("bookingCurrencies", BookingCurrencies);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

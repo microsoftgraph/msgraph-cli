@@ -9,12 +9,12 @@ namespace ApiSdk.Models.Microsoft.Graph {
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>Indicates the visible name defined for the resource. Typically specified when the resource is created.</summary>
         public string DisplayName { get; set; }
-        /// <summary>When type is set to Group, this indicates the group type.  Possible values are: unifiedGroups, azureAD, and unknownFutureValue</summary>
+        /// <summary>When type is set to Group, this indicates the group type. Possible values are: unifiedGroups, azureAD, and unknownFutureValue</summary>
         public ApiSdk.Models.Microsoft.Graph.GroupType? GroupType { get; set; }
         /// <summary>Indicates the unique ID of the resource.</summary>
         public string Id { get; set; }
         /// <summary>Indicates name, old value and new value of each attribute that changed. Property values depend on the operation type.</summary>
-        public List<ModifiedProperty> ModifiedProperties { get; set; }
+        public List<ApiSdk.Models.Microsoft.Graph.ModifiedProperty> ModifiedProperties { get; set; }
         /// <summary>Describes the resource type.  Example values include Application, Group, ServicePrincipal, and User.</summary>
         public string Type { get; set; }
         /// <summary>When type is set to User, this includes the user name that initiated the action; null for other types.</summary>
@@ -29,7 +29,7 @@ namespace ApiSdk.Models.Microsoft.Graph {
         /// Creates a new instance of the appropriate class based on discriminator value
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         /// </summary>
-        public static TargetResource CreateFromDiscriminatorValue(IParseNode parseNode) {
+        public static ApiSdk.Models.Microsoft.Graph.TargetResource CreateFromDiscriminatorValue(IParseNode parseNode) {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
             return new TargetResource();
         }
@@ -41,7 +41,7 @@ namespace ApiSdk.Models.Microsoft.Graph {
                 {"displayName", (o,n) => { (o as TargetResource).DisplayName = n.GetStringValue(); } },
                 {"groupType", (o,n) => { (o as TargetResource).GroupType = n.GetEnumValue<GroupType>(); } },
                 {"id", (o,n) => { (o as TargetResource).Id = n.GetStringValue(); } },
-                {"modifiedProperties", (o,n) => { (o as TargetResource).ModifiedProperties = n.GetCollectionOfObjectValues<ModifiedProperty>(ModifiedProperty.CreateFromDiscriminatorValue).ToList(); } },
+                {"modifiedProperties", (o,n) => { (o as TargetResource).ModifiedProperties = n.GetCollectionOfObjectValues<ApiSdk.Models.Microsoft.Graph.ModifiedProperty>(ApiSdk.Models.Microsoft.Graph.ModifiedProperty.CreateFromDiscriminatorValue).ToList(); } },
                 {"type", (o,n) => { (o as TargetResource).Type = n.GetStringValue(); } },
                 {"userPrincipalName", (o,n) => { (o as TargetResource).UserPrincipalName = n.GetStringValue(); } },
             };
@@ -55,7 +55,7 @@ namespace ApiSdk.Models.Microsoft.Graph {
             writer.WriteStringValue("displayName", DisplayName);
             writer.WriteEnumValue<GroupType>("groupType", GroupType);
             writer.WriteStringValue("id", Id);
-            writer.WriteCollectionOfObjectValues<ModifiedProperty>("modifiedProperties", ModifiedProperties);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.Microsoft.Graph.ModifiedProperty>("modifiedProperties", ModifiedProperties);
             writer.WriteStringValue("type", Type);
             writer.WriteStringValue("userPrincipalName", UserPrincipalName);
             writer.WriteAdditionalData(AdditionalData);

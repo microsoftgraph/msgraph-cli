@@ -12,7 +12,7 @@ namespace ApiSdk.Models.Microsoft.Graph {
         /// <summary>The connector machine's hostname.</summary>
         public string FullyQualifiedDomainName { get; set; }
         /// <summary>The physical and/or organizational location of the connector.</summary>
-        public PrinterLocation Location { get; set; }
+        public ApiSdk.Models.Microsoft.Graph.PrinterLocation Location { get; set; }
         /// <summary>The connector machine's operating system version.</summary>
         public string OperatingSystem { get; set; }
         /// <summary>The DateTimeOffset when the connector was registered.</summary>
@@ -21,7 +21,7 @@ namespace ApiSdk.Models.Microsoft.Graph {
         /// Creates a new instance of the appropriate class based on discriminator value
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         /// </summary>
-        public static new PrintConnector CreateFromDiscriminatorValue(IParseNode parseNode) {
+        public static new ApiSdk.Models.Microsoft.Graph.PrintConnector CreateFromDiscriminatorValue(IParseNode parseNode) {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
             return new PrintConnector();
         }
@@ -33,7 +33,7 @@ namespace ApiSdk.Models.Microsoft.Graph {
                 {"appVersion", (o,n) => { (o as PrintConnector).AppVersion = n.GetStringValue(); } },
                 {"displayName", (o,n) => { (o as PrintConnector).DisplayName = n.GetStringValue(); } },
                 {"fullyQualifiedDomainName", (o,n) => { (o as PrintConnector).FullyQualifiedDomainName = n.GetStringValue(); } },
-                {"location", (o,n) => { (o as PrintConnector).Location = n.GetObjectValue<PrinterLocation>(PrinterLocation.CreateFromDiscriminatorValue); } },
+                {"location", (o,n) => { (o as PrintConnector).Location = n.GetObjectValue<ApiSdk.Models.Microsoft.Graph.PrinterLocation>(ApiSdk.Models.Microsoft.Graph.PrinterLocation.CreateFromDiscriminatorValue); } },
                 {"operatingSystem", (o,n) => { (o as PrintConnector).OperatingSystem = n.GetStringValue(); } },
                 {"registeredDateTime", (o,n) => { (o as PrintConnector).RegisteredDateTime = n.GetDateTimeOffsetValue(); } },
             };
@@ -48,7 +48,7 @@ namespace ApiSdk.Models.Microsoft.Graph {
             writer.WriteStringValue("appVersion", AppVersion);
             writer.WriteStringValue("displayName", DisplayName);
             writer.WriteStringValue("fullyQualifiedDomainName", FullyQualifiedDomainName);
-            writer.WriteObjectValue<PrinterLocation>("location", Location);
+            writer.WriteObjectValue<ApiSdk.Models.Microsoft.Graph.PrinterLocation>("location", Location);
             writer.WriteStringValue("operatingSystem", OperatingSystem);
             writer.WriteDateTimeOffsetValue("registeredDateTime", RegisteredDateTime);
         }

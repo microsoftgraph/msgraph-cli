@@ -5,14 +5,14 @@ using System.IO;
 using System.Linq;
 namespace ApiSdk.Models.Microsoft.Graph {
     public class PrintTaskTrigger : Entity, IParsable {
-        public PrintTaskDefinition Definition { get; set; }
+        public ApiSdk.Models.Microsoft.Graph.PrintTaskDefinition Definition { get; set; }
         /// <summary>The Universal Print event that will cause a new printTask to be triggered. Valid values are described in the following table.</summary>
         public PrintEvent? Event { get; set; }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         /// </summary>
-        public static new PrintTaskTrigger CreateFromDiscriminatorValue(IParseNode parseNode) {
+        public static new ApiSdk.Models.Microsoft.Graph.PrintTaskTrigger CreateFromDiscriminatorValue(IParseNode parseNode) {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
             return new PrintTaskTrigger();
         }
@@ -21,7 +21,7 @@ namespace ApiSdk.Models.Microsoft.Graph {
         /// </summary>
         public new IDictionary<string, Action<T, IParseNode>> GetFieldDeserializers<T>() {
             return new Dictionary<string, Action<T, IParseNode>>(base.GetFieldDeserializers<T>()) {
-                {"definition", (o,n) => { (o as PrintTaskTrigger).Definition = n.GetObjectValue<PrintTaskDefinition>(PrintTaskDefinition.CreateFromDiscriminatorValue); } },
+                {"definition", (o,n) => { (o as PrintTaskTrigger).Definition = n.GetObjectValue<ApiSdk.Models.Microsoft.Graph.PrintTaskDefinition>(ApiSdk.Models.Microsoft.Graph.PrintTaskDefinition.CreateFromDiscriminatorValue); } },
                 {"event", (o,n) => { (o as PrintTaskTrigger).Event = n.GetEnumValue<PrintEvent>(); } },
             };
         }
@@ -32,7 +32,7 @@ namespace ApiSdk.Models.Microsoft.Graph {
         public new void Serialize(ISerializationWriter writer) {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             base.Serialize(writer);
-            writer.WriteObjectValue<PrintTaskDefinition>("definition", Definition);
+            writer.WriteObjectValue<ApiSdk.Models.Microsoft.Graph.PrintTaskDefinition>("definition", Definition);
             writer.WriteEnumValue<PrintEvent>("event", Event);
         }
     }

@@ -7,8 +7,8 @@ namespace ApiSdk.Models.Microsoft.Graph {
     public class RecordingInfo : IAdditionalDataHolder, IParsable {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
-        /// <summary>The identities of recording initiator.</summary>
-        public IdentitySet Initiator { get; set; }
+        /// <summary>The identities of the recording initiator.</summary>
+        public ApiSdk.Models.Microsoft.Graph.IdentitySet Initiator { get; set; }
         /// <summary>Possible values are: unknown, notRecording, recording, or failed.</summary>
         public ApiSdk.Models.Microsoft.Graph.RecordingStatus? RecordingStatus { get; set; }
         /// <summary>
@@ -21,7 +21,7 @@ namespace ApiSdk.Models.Microsoft.Graph {
         /// Creates a new instance of the appropriate class based on discriminator value
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         /// </summary>
-        public static RecordingInfo CreateFromDiscriminatorValue(IParseNode parseNode) {
+        public static ApiSdk.Models.Microsoft.Graph.RecordingInfo CreateFromDiscriminatorValue(IParseNode parseNode) {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
             return new RecordingInfo();
         }
@@ -30,7 +30,7 @@ namespace ApiSdk.Models.Microsoft.Graph {
         /// </summary>
         public IDictionary<string, Action<T, IParseNode>> GetFieldDeserializers<T>() {
             return new Dictionary<string, Action<T, IParseNode>> {
-                {"initiator", (o,n) => { (o as RecordingInfo).Initiator = n.GetObjectValue<IdentitySet>(IdentitySet.CreateFromDiscriminatorValue); } },
+                {"initiator", (o,n) => { (o as RecordingInfo).Initiator = n.GetObjectValue<ApiSdk.Models.Microsoft.Graph.IdentitySet>(ApiSdk.Models.Microsoft.Graph.IdentitySet.CreateFromDiscriminatorValue); } },
                 {"recordingStatus", (o,n) => { (o as RecordingInfo).RecordingStatus = n.GetEnumValue<RecordingStatus>(); } },
             };
         }
@@ -40,7 +40,7 @@ namespace ApiSdk.Models.Microsoft.Graph {
         /// </summary>
         public void Serialize(ISerializationWriter writer) {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
-            writer.WriteObjectValue<IdentitySet>("initiator", Initiator);
+            writer.WriteObjectValue<ApiSdk.Models.Microsoft.Graph.IdentitySet>("initiator", Initiator);
             writer.WriteEnumValue<RecordingStatus>("recordingStatus", RecordingStatus);
             writer.WriteAdditionalData(AdditionalData);
         }

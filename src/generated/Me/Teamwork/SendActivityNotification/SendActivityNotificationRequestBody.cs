@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 namespace ApiSdk.Me.Teamwork.SendActivityNotification {
+    /// <summary>Provides operations to call the sendActivityNotification method.</summary>
     public class SendActivityNotificationRequestBody : IAdditionalDataHolder, IParsable {
         public string ActivityType { get; set; }
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
@@ -23,7 +24,7 @@ namespace ApiSdk.Me.Teamwork.SendActivityNotification {
         /// Creates a new instance of the appropriate class based on discriminator value
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         /// </summary>
-        public static SendActivityNotificationRequestBody CreateFromDiscriminatorValue(IParseNode parseNode) {
+        public static ApiSdk.Me.Teamwork.SendActivityNotification.SendActivityNotificationRequestBody CreateFromDiscriminatorValue(IParseNode parseNode) {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
             return new SendActivityNotificationRequestBody();
         }

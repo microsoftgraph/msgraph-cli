@@ -10,7 +10,7 @@ namespace ApiSdk.Models.Microsoft.Graph {
         /// <summary>Name of the discovered application. Read-only</summary>
         public string DisplayName { get; set; }
         /// <summary>The devices that have the discovered application installed</summary>
-        public List<ManagedDevice> ManagedDevices { get; set; }
+        public List<ApiSdk.Models.Microsoft.Graph.ManagedDevice> ManagedDevices { get; set; }
         /// <summary>Discovered application size in bytes. Read-only</summary>
         public long? SizeInByte { get; set; }
         /// <summary>Version of the discovered application. Read-only</summary>
@@ -19,7 +19,7 @@ namespace ApiSdk.Models.Microsoft.Graph {
         /// Creates a new instance of the appropriate class based on discriminator value
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         /// </summary>
-        public static new DetectedApp CreateFromDiscriminatorValue(IParseNode parseNode) {
+        public static new ApiSdk.Models.Microsoft.Graph.DetectedApp CreateFromDiscriminatorValue(IParseNode parseNode) {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
             return new DetectedApp();
         }
@@ -30,7 +30,7 @@ namespace ApiSdk.Models.Microsoft.Graph {
             return new Dictionary<string, Action<T, IParseNode>>(base.GetFieldDeserializers<T>()) {
                 {"deviceCount", (o,n) => { (o as DetectedApp).DeviceCount = n.GetIntValue(); } },
                 {"displayName", (o,n) => { (o as DetectedApp).DisplayName = n.GetStringValue(); } },
-                {"managedDevices", (o,n) => { (o as DetectedApp).ManagedDevices = n.GetCollectionOfObjectValues<ManagedDevice>(ManagedDevice.CreateFromDiscriminatorValue).ToList(); } },
+                {"managedDevices", (o,n) => { (o as DetectedApp).ManagedDevices = n.GetCollectionOfObjectValues<ApiSdk.Models.Microsoft.Graph.ManagedDevice>(ApiSdk.Models.Microsoft.Graph.ManagedDevice.CreateFromDiscriminatorValue).ToList(); } },
                 {"sizeInByte", (o,n) => { (o as DetectedApp).SizeInByte = n.GetLongValue(); } },
                 {"version", (o,n) => { (o as DetectedApp).Version = n.GetStringValue(); } },
             };
@@ -44,7 +44,7 @@ namespace ApiSdk.Models.Microsoft.Graph {
             base.Serialize(writer);
             writer.WriteIntValue("deviceCount", DeviceCount);
             writer.WriteStringValue("displayName", DisplayName);
-            writer.WriteCollectionOfObjectValues<ManagedDevice>("managedDevices", ManagedDevices);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.Microsoft.Graph.ManagedDevice>("managedDevices", ManagedDevices);
             writer.WriteLongValue("sizeInByte", SizeInByte);
             writer.WriteStringValue("version", Version);
         }

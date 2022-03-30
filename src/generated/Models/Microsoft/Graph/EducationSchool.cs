@@ -6,13 +6,13 @@ using System.Linq;
 namespace ApiSdk.Models.Microsoft.Graph {
     public class EducationSchool : EducationOrganization, IParsable {
         /// <summary>Address of the school.</summary>
-        public PhysicalAddress Address { get; set; }
+        public ApiSdk.Models.Microsoft.Graph.PhysicalAddress Address { get; set; }
         /// <summary>The underlying administrativeUnit for this school.</summary>
         public ApiSdk.Models.Microsoft.Graph.AdministrativeUnit AdministrativeUnit { get; set; }
         /// <summary>Classes taught at the school. Nullable.</summary>
-        public List<EducationClass> Classes { get; set; }
+        public List<ApiSdk.Models.Microsoft.Graph.EducationClass> Classes { get; set; }
         /// <summary>Entity who created the school.</summary>
-        public IdentitySet CreatedBy { get; set; }
+        public ApiSdk.Models.Microsoft.Graph.IdentitySet CreatedBy { get; set; }
         /// <summary>ID of school in syncing system.</summary>
         public string ExternalId { get; set; }
         /// <summary>ID of principal in syncing system.</summary>
@@ -31,12 +31,12 @@ namespace ApiSdk.Models.Microsoft.Graph {
         /// <summary>School Number.</summary>
         public string SchoolNumber { get; set; }
         /// <summary>Users in the school. Nullable.</summary>
-        public List<EducationUser> Users { get; set; }
+        public List<ApiSdk.Models.Microsoft.Graph.EducationUser> Users { get; set; }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         /// </summary>
-        public static new EducationSchool CreateFromDiscriminatorValue(IParseNode parseNode) {
+        public static new ApiSdk.Models.Microsoft.Graph.EducationSchool CreateFromDiscriminatorValue(IParseNode parseNode) {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
             return new EducationSchool();
         }
@@ -45,10 +45,10 @@ namespace ApiSdk.Models.Microsoft.Graph {
         /// </summary>
         public new IDictionary<string, Action<T, IParseNode>> GetFieldDeserializers<T>() {
             return new Dictionary<string, Action<T, IParseNode>>(base.GetFieldDeserializers<T>()) {
-                {"address", (o,n) => { (o as EducationSchool).Address = n.GetObjectValue<PhysicalAddress>(PhysicalAddress.CreateFromDiscriminatorValue); } },
+                {"address", (o,n) => { (o as EducationSchool).Address = n.GetObjectValue<ApiSdk.Models.Microsoft.Graph.PhysicalAddress>(ApiSdk.Models.Microsoft.Graph.PhysicalAddress.CreateFromDiscriminatorValue); } },
                 {"administrativeUnit", (o,n) => { (o as EducationSchool).AdministrativeUnit = n.GetObjectValue<ApiSdk.Models.Microsoft.Graph.AdministrativeUnit>(ApiSdk.Models.Microsoft.Graph.AdministrativeUnit.CreateFromDiscriminatorValue); } },
-                {"classes", (o,n) => { (o as EducationSchool).Classes = n.GetCollectionOfObjectValues<EducationClass>(EducationClass.CreateFromDiscriminatorValue).ToList(); } },
-                {"createdBy", (o,n) => { (o as EducationSchool).CreatedBy = n.GetObjectValue<IdentitySet>(IdentitySet.CreateFromDiscriminatorValue); } },
+                {"classes", (o,n) => { (o as EducationSchool).Classes = n.GetCollectionOfObjectValues<ApiSdk.Models.Microsoft.Graph.EducationClass>(ApiSdk.Models.Microsoft.Graph.EducationClass.CreateFromDiscriminatorValue).ToList(); } },
+                {"createdBy", (o,n) => { (o as EducationSchool).CreatedBy = n.GetObjectValue<ApiSdk.Models.Microsoft.Graph.IdentitySet>(ApiSdk.Models.Microsoft.Graph.IdentitySet.CreateFromDiscriminatorValue); } },
                 {"externalId", (o,n) => { (o as EducationSchool).ExternalId = n.GetStringValue(); } },
                 {"externalPrincipalId", (o,n) => { (o as EducationSchool).ExternalPrincipalId = n.GetStringValue(); } },
                 {"fax", (o,n) => { (o as EducationSchool).Fax = n.GetStringValue(); } },
@@ -58,7 +58,7 @@ namespace ApiSdk.Models.Microsoft.Graph {
                 {"principalEmail", (o,n) => { (o as EducationSchool).PrincipalEmail = n.GetStringValue(); } },
                 {"principalName", (o,n) => { (o as EducationSchool).PrincipalName = n.GetStringValue(); } },
                 {"schoolNumber", (o,n) => { (o as EducationSchool).SchoolNumber = n.GetStringValue(); } },
-                {"users", (o,n) => { (o as EducationSchool).Users = n.GetCollectionOfObjectValues<EducationUser>(EducationUser.CreateFromDiscriminatorValue).ToList(); } },
+                {"users", (o,n) => { (o as EducationSchool).Users = n.GetCollectionOfObjectValues<ApiSdk.Models.Microsoft.Graph.EducationUser>(ApiSdk.Models.Microsoft.Graph.EducationUser.CreateFromDiscriminatorValue).ToList(); } },
             };
         }
         /// <summary>
@@ -68,10 +68,10 @@ namespace ApiSdk.Models.Microsoft.Graph {
         public new void Serialize(ISerializationWriter writer) {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             base.Serialize(writer);
-            writer.WriteObjectValue<PhysicalAddress>("address", Address);
+            writer.WriteObjectValue<ApiSdk.Models.Microsoft.Graph.PhysicalAddress>("address", Address);
             writer.WriteObjectValue<ApiSdk.Models.Microsoft.Graph.AdministrativeUnit>("administrativeUnit", AdministrativeUnit);
-            writer.WriteCollectionOfObjectValues<EducationClass>("classes", Classes);
-            writer.WriteObjectValue<IdentitySet>("createdBy", CreatedBy);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.Microsoft.Graph.EducationClass>("classes", Classes);
+            writer.WriteObjectValue<ApiSdk.Models.Microsoft.Graph.IdentitySet>("createdBy", CreatedBy);
             writer.WriteStringValue("externalId", ExternalId);
             writer.WriteStringValue("externalPrincipalId", ExternalPrincipalId);
             writer.WriteStringValue("fax", Fax);
@@ -81,7 +81,7 @@ namespace ApiSdk.Models.Microsoft.Graph {
             writer.WriteStringValue("principalEmail", PrincipalEmail);
             writer.WriteStringValue("principalName", PrincipalName);
             writer.WriteStringValue("schoolNumber", SchoolNumber);
-            writer.WriteCollectionOfObjectValues<EducationUser>("users", Users);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.Microsoft.Graph.EducationUser>("users", Users);
         }
     }
 }

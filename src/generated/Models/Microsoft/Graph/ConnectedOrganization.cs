@@ -12,20 +12,20 @@ namespace ApiSdk.Models.Microsoft.Graph {
         /// <summary>The display name of the connected organization. Supports $filter (eq).</summary>
         public string DisplayName { get; set; }
         /// <summary>Nullable.</summary>
-        public List<DirectoryObject> ExternalSponsors { get; set; }
+        public List<ApiSdk.Models.Microsoft.Graph.DirectoryObject> ExternalSponsors { get; set; }
         /// <summary>The identity sources in this connected organization, one of azureActiveDirectoryTenant, domainIdentitySource or externalDomainFederation. Nullable.</summary>
-        public List<IdentitySource> IdentitySources { get; set; }
+        public List<ApiSdk.Models.Microsoft.Graph.IdentitySource> IdentitySources { get; set; }
         /// <summary>Nullable.</summary>
-        public List<DirectoryObject> InternalSponsors { get; set; }
+        public List<ApiSdk.Models.Microsoft.Graph.DirectoryObject> InternalSponsors { get; set; }
         /// <summary>The Timestamp type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z. Read-only.</summary>
         public DateTimeOffset? ModifiedDateTime { get; set; }
-        /// <summary>The state of a connected organization defines whether assignment policies with requestor scope type AllConfiguredConnectedOrganizationSubjects are applicable or not. Possible values are: configured, proposed.</summary>
+        /// <summary>The state of a connected organization defines whether assignment policies with requestor scope type AllConfiguredConnectedOrganizationSubjects are applicable or not.  The possible values are: configured, proposed, unknownFutureValue.</summary>
         public ConnectedOrganizationState? State { get; set; }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         /// </summary>
-        public static new ConnectedOrganization CreateFromDiscriminatorValue(IParseNode parseNode) {
+        public static new ApiSdk.Models.Microsoft.Graph.ConnectedOrganization CreateFromDiscriminatorValue(IParseNode parseNode) {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
             return new ConnectedOrganization();
         }
@@ -37,9 +37,9 @@ namespace ApiSdk.Models.Microsoft.Graph {
                 {"createdDateTime", (o,n) => { (o as ConnectedOrganization).CreatedDateTime = n.GetDateTimeOffsetValue(); } },
                 {"description", (o,n) => { (o as ConnectedOrganization).Description = n.GetStringValue(); } },
                 {"displayName", (o,n) => { (o as ConnectedOrganization).DisplayName = n.GetStringValue(); } },
-                {"externalSponsors", (o,n) => { (o as ConnectedOrganization).ExternalSponsors = n.GetCollectionOfObjectValues<DirectoryObject>(DirectoryObject.CreateFromDiscriminatorValue).ToList(); } },
-                {"identitySources", (o,n) => { (o as ConnectedOrganization).IdentitySources = n.GetCollectionOfObjectValues<IdentitySource>(IdentitySource.CreateFromDiscriminatorValue).ToList(); } },
-                {"internalSponsors", (o,n) => { (o as ConnectedOrganization).InternalSponsors = n.GetCollectionOfObjectValues<DirectoryObject>(DirectoryObject.CreateFromDiscriminatorValue).ToList(); } },
+                {"externalSponsors", (o,n) => { (o as ConnectedOrganization).ExternalSponsors = n.GetCollectionOfObjectValues<ApiSdk.Models.Microsoft.Graph.DirectoryObject>(ApiSdk.Models.Microsoft.Graph.DirectoryObject.CreateFromDiscriminatorValue).ToList(); } },
+                {"identitySources", (o,n) => { (o as ConnectedOrganization).IdentitySources = n.GetCollectionOfObjectValues<ApiSdk.Models.Microsoft.Graph.IdentitySource>(ApiSdk.Models.Microsoft.Graph.IdentitySource.CreateFromDiscriminatorValue).ToList(); } },
+                {"internalSponsors", (o,n) => { (o as ConnectedOrganization).InternalSponsors = n.GetCollectionOfObjectValues<ApiSdk.Models.Microsoft.Graph.DirectoryObject>(ApiSdk.Models.Microsoft.Graph.DirectoryObject.CreateFromDiscriminatorValue).ToList(); } },
                 {"modifiedDateTime", (o,n) => { (o as ConnectedOrganization).ModifiedDateTime = n.GetDateTimeOffsetValue(); } },
                 {"state", (o,n) => { (o as ConnectedOrganization).State = n.GetEnumValue<ConnectedOrganizationState>(); } },
             };
@@ -54,9 +54,9 @@ namespace ApiSdk.Models.Microsoft.Graph {
             writer.WriteDateTimeOffsetValue("createdDateTime", CreatedDateTime);
             writer.WriteStringValue("description", Description);
             writer.WriteStringValue("displayName", DisplayName);
-            writer.WriteCollectionOfObjectValues<DirectoryObject>("externalSponsors", ExternalSponsors);
-            writer.WriteCollectionOfObjectValues<IdentitySource>("identitySources", IdentitySources);
-            writer.WriteCollectionOfObjectValues<DirectoryObject>("internalSponsors", InternalSponsors);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.Microsoft.Graph.DirectoryObject>("externalSponsors", ExternalSponsors);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.Microsoft.Graph.IdentitySource>("identitySources", IdentitySources);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.Microsoft.Graph.DirectoryObject>("internalSponsors", InternalSponsors);
             writer.WriteDateTimeOffsetValue("modifiedDateTime", ModifiedDateTime);
             writer.WriteEnumValue<ConnectedOrganizationState>("state", State);
         }

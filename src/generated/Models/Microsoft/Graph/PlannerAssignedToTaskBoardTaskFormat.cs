@@ -6,14 +6,14 @@ using System.Linq;
 namespace ApiSdk.Models.Microsoft.Graph {
     public class PlannerAssignedToTaskBoardTaskFormat : Entity, IParsable {
         /// <summary>Dictionary of hints used to order tasks on the AssignedTo view of the Task Board. The key of each entry is one of the users the task is assigned to and the value is the order hint. The format of each value is defined as outlined here.</summary>
-        public PlannerOrderHintsByAssignee OrderHintsByAssignee { get; set; }
+        public ApiSdk.Models.Microsoft.Graph.PlannerOrderHintsByAssignee OrderHintsByAssignee { get; set; }
         /// <summary>Hint value used to order the task on the AssignedTo view of the Task Board when the task is not assigned to anyone, or if the orderHintsByAssignee dictionary does not provide an order hint for the user the task is assigned to. The format is defined as outlined here.</summary>
         public string UnassignedOrderHint { get; set; }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         /// </summary>
-        public static new PlannerAssignedToTaskBoardTaskFormat CreateFromDiscriminatorValue(IParseNode parseNode) {
+        public static new ApiSdk.Models.Microsoft.Graph.PlannerAssignedToTaskBoardTaskFormat CreateFromDiscriminatorValue(IParseNode parseNode) {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
             return new PlannerAssignedToTaskBoardTaskFormat();
         }
@@ -22,7 +22,7 @@ namespace ApiSdk.Models.Microsoft.Graph {
         /// </summary>
         public new IDictionary<string, Action<T, IParseNode>> GetFieldDeserializers<T>() {
             return new Dictionary<string, Action<T, IParseNode>>(base.GetFieldDeserializers<T>()) {
-                {"orderHintsByAssignee", (o,n) => { (o as PlannerAssignedToTaskBoardTaskFormat).OrderHintsByAssignee = n.GetObjectValue<PlannerOrderHintsByAssignee>(PlannerOrderHintsByAssignee.CreateFromDiscriminatorValue); } },
+                {"orderHintsByAssignee", (o,n) => { (o as PlannerAssignedToTaskBoardTaskFormat).OrderHintsByAssignee = n.GetObjectValue<ApiSdk.Models.Microsoft.Graph.PlannerOrderHintsByAssignee>(ApiSdk.Models.Microsoft.Graph.PlannerOrderHintsByAssignee.CreateFromDiscriminatorValue); } },
                 {"unassignedOrderHint", (o,n) => { (o as PlannerAssignedToTaskBoardTaskFormat).UnassignedOrderHint = n.GetStringValue(); } },
             };
         }
@@ -33,7 +33,7 @@ namespace ApiSdk.Models.Microsoft.Graph {
         public new void Serialize(ISerializationWriter writer) {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             base.Serialize(writer);
-            writer.WriteObjectValue<PlannerOrderHintsByAssignee>("orderHintsByAssignee", OrderHintsByAssignee);
+            writer.WriteObjectValue<ApiSdk.Models.Microsoft.Graph.PlannerOrderHintsByAssignee>("orderHintsByAssignee", OrderHintsByAssignee);
             writer.WriteStringValue("unassignedOrderHint", UnassignedOrderHint);
         }
     }

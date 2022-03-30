@@ -6,18 +6,18 @@ using System.Linq;
 namespace ApiSdk.Models.Microsoft.Graph {
     public class Place : Entity, IParsable {
         /// <summary>The street address of the place.</summary>
-        public PhysicalAddress Address { get; set; }
+        public ApiSdk.Models.Microsoft.Graph.PhysicalAddress Address { get; set; }
         /// <summary>The name associated with the place.</summary>
         public string DisplayName { get; set; }
         /// <summary>Specifies the place location in latitude, longitude and (optionally) altitude coordinates.</summary>
-        public OutlookGeoCoordinates GeoCoordinates { get; set; }
+        public ApiSdk.Models.Microsoft.Graph.OutlookGeoCoordinates GeoCoordinates { get; set; }
         /// <summary>The phone number of the place.</summary>
         public string Phone { get; set; }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         /// </summary>
-        public static new Place CreateFromDiscriminatorValue(IParseNode parseNode) {
+        public static new ApiSdk.Models.Microsoft.Graph.Place CreateFromDiscriminatorValue(IParseNode parseNode) {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
             return new Place();
         }
@@ -26,9 +26,9 @@ namespace ApiSdk.Models.Microsoft.Graph {
         /// </summary>
         public new IDictionary<string, Action<T, IParseNode>> GetFieldDeserializers<T>() {
             return new Dictionary<string, Action<T, IParseNode>>(base.GetFieldDeserializers<T>()) {
-                {"address", (o,n) => { (o as Place).Address = n.GetObjectValue<PhysicalAddress>(PhysicalAddress.CreateFromDiscriminatorValue); } },
+                {"address", (o,n) => { (o as Place).Address = n.GetObjectValue<ApiSdk.Models.Microsoft.Graph.PhysicalAddress>(ApiSdk.Models.Microsoft.Graph.PhysicalAddress.CreateFromDiscriminatorValue); } },
                 {"displayName", (o,n) => { (o as Place).DisplayName = n.GetStringValue(); } },
-                {"geoCoordinates", (o,n) => { (o as Place).GeoCoordinates = n.GetObjectValue<OutlookGeoCoordinates>(OutlookGeoCoordinates.CreateFromDiscriminatorValue); } },
+                {"geoCoordinates", (o,n) => { (o as Place).GeoCoordinates = n.GetObjectValue<ApiSdk.Models.Microsoft.Graph.OutlookGeoCoordinates>(ApiSdk.Models.Microsoft.Graph.OutlookGeoCoordinates.CreateFromDiscriminatorValue); } },
                 {"phone", (o,n) => { (o as Place).Phone = n.GetStringValue(); } },
             };
         }
@@ -39,9 +39,9 @@ namespace ApiSdk.Models.Microsoft.Graph {
         public new void Serialize(ISerializationWriter writer) {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             base.Serialize(writer);
-            writer.WriteObjectValue<PhysicalAddress>("address", Address);
+            writer.WriteObjectValue<ApiSdk.Models.Microsoft.Graph.PhysicalAddress>("address", Address);
             writer.WriteStringValue("displayName", DisplayName);
-            writer.WriteObjectValue<OutlookGeoCoordinates>("geoCoordinates", GeoCoordinates);
+            writer.WriteObjectValue<ApiSdk.Models.Microsoft.Graph.OutlookGeoCoordinates>("geoCoordinates", GeoCoordinates);
             writer.WriteStringValue("phone", Phone);
         }
     }

@@ -18,16 +18,16 @@ namespace ApiSdk.Models.Microsoft.Graph {
         /// <summary>Indicates the origin of the service issue. Possible values are: microsoft, thirdParty, customer, unknownFutureValue.</summary>
         public ServiceHealthOrigin? Origin { get; set; }
         /// <summary>Collection of historical posts for the service issue.</summary>
-        public List<ServiceHealthIssuePost> Posts { get; set; }
+        public List<ApiSdk.Models.Microsoft.Graph.ServiceHealthIssuePost> Posts { get; set; }
         /// <summary>Indicates the service affected by the issue.</summary>
         public string Service { get; set; }
-        /// <summary>The status of the service issue. Possible values are: serviceOperational, investigating, restoringService, verifyingService, serviceRestored, postIncidentReviewPublished, serviceDegradation, serviceInterruption, extendedRecovery, falsePositive, investigationSuspended, resolved, mitigatedExternal, mitigated, resolvedExternal, confirmed, reported, unknownFutureValue. For more details, see serviceHealthStatus values.</summary>
+        /// <summary>The status of the service issue. Possible values are: serviceOperational, investigating, restoringService, verifyingService, serviceRestored, postIncidentReviewPublished, serviceDegradation, serviceInterruption, extendedRecovery, falsePositive, investigationSuspended, resolved, mitigatedExternal, mitigated, resolvedExternal, confirmed, reported, unknownFutureValue. See more in the table below.</summary>
         public ServiceHealthStatus? Status { get; set; }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         /// </summary>
-        public static new ServiceHealthIssue CreateFromDiscriminatorValue(IParseNode parseNode) {
+        public static new ApiSdk.Models.Microsoft.Graph.ServiceHealthIssue CreateFromDiscriminatorValue(IParseNode parseNode) {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
             return new ServiceHealthIssue();
         }
@@ -42,7 +42,7 @@ namespace ApiSdk.Models.Microsoft.Graph {
                 {"impactDescription", (o,n) => { (o as ServiceHealthIssue).ImpactDescription = n.GetStringValue(); } },
                 {"isResolved", (o,n) => { (o as ServiceHealthIssue).IsResolved = n.GetBoolValue(); } },
                 {"origin", (o,n) => { (o as ServiceHealthIssue).Origin = n.GetEnumValue<ServiceHealthOrigin>(); } },
-                {"posts", (o,n) => { (o as ServiceHealthIssue).Posts = n.GetCollectionOfObjectValues<ServiceHealthIssuePost>(ServiceHealthIssuePost.CreateFromDiscriminatorValue).ToList(); } },
+                {"posts", (o,n) => { (o as ServiceHealthIssue).Posts = n.GetCollectionOfObjectValues<ApiSdk.Models.Microsoft.Graph.ServiceHealthIssuePost>(ApiSdk.Models.Microsoft.Graph.ServiceHealthIssuePost.CreateFromDiscriminatorValue).ToList(); } },
                 {"service", (o,n) => { (o as ServiceHealthIssue).Service = n.GetStringValue(); } },
                 {"status", (o,n) => { (o as ServiceHealthIssue).Status = n.GetEnumValue<ServiceHealthStatus>(); } },
             };
@@ -60,7 +60,7 @@ namespace ApiSdk.Models.Microsoft.Graph {
             writer.WriteStringValue("impactDescription", ImpactDescription);
             writer.WriteBoolValue("isResolved", IsResolved);
             writer.WriteEnumValue<ServiceHealthOrigin>("origin", Origin);
-            writer.WriteCollectionOfObjectValues<ServiceHealthIssuePost>("posts", Posts);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.Microsoft.Graph.ServiceHealthIssuePost>("posts", Posts);
             writer.WriteStringValue("service", Service);
             writer.WriteEnumValue<ServiceHealthStatus>("status", Status);
         }

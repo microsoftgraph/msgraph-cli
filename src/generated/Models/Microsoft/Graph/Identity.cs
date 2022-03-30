@@ -7,9 +7,9 @@ namespace ApiSdk.Models.Microsoft.Graph {
     public class Identity : IAdditionalDataHolder, IParsable {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
-        /// <summary>The display name of the identity. This property is read-only.</summary>
+        /// <summary>The identity's display name. Note that this may not always be available or up to date. For example, if a user changes their display name, the API may show the new value in a future response, but the items associated with the user won't show up as having changed when using delta.</summary>
         public string DisplayName { get; set; }
-        /// <summary>The identifier of the identity. This property is read-only.</summary>
+        /// <summary>Unique identifier for the identity.</summary>
         public string Id { get; set; }
         /// <summary>
         /// Instantiates a new identity and sets the default values.
@@ -21,7 +21,7 @@ namespace ApiSdk.Models.Microsoft.Graph {
         /// Creates a new instance of the appropriate class based on discriminator value
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         /// </summary>
-        public static Identity CreateFromDiscriminatorValue(IParseNode parseNode) {
+        public static ApiSdk.Models.Microsoft.Graph.Identity CreateFromDiscriminatorValue(IParseNode parseNode) {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
             return new Identity();
         }

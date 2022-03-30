@@ -7,7 +7,7 @@ namespace ApiSdk.Models.Microsoft.Graph {
     public class RegistrationEnforcement : IAdditionalDataHolder, IParsable {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
-        /// <summary>Run campaigns to remind users to setup targeted authentication methods.</summary>
+        /// <summary>Run campaigns to remind users to set up targeted authentication methods.</summary>
         public ApiSdk.Models.Microsoft.Graph.AuthenticationMethodsRegistrationCampaign AuthenticationMethodsRegistrationCampaign { get; set; }
         /// <summary>
         /// Instantiates a new registrationEnforcement and sets the default values.
@@ -19,7 +19,7 @@ namespace ApiSdk.Models.Microsoft.Graph {
         /// Creates a new instance of the appropriate class based on discriminator value
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         /// </summary>
-        public static RegistrationEnforcement CreateFromDiscriminatorValue(IParseNode parseNode) {
+        public static ApiSdk.Models.Microsoft.Graph.RegistrationEnforcement CreateFromDiscriminatorValue(IParseNode parseNode) {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
             return new RegistrationEnforcement();
         }

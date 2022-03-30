@@ -6,25 +6,25 @@ using System.Linq;
 namespace ApiSdk.Models.Microsoft.Graph.TermStore {
     public class Set : Entity, IParsable {
         /// <summary>Children terms of set in term [store].</summary>
-        public List<Term> Children { get; set; }
+        public List<ApiSdk.Models.Microsoft.Graph.TermStore.Term> Children { get; set; }
         /// <summary>Date and time of set creation. Read-only.</summary>
         public DateTimeOffset? CreatedDateTime { get; set; }
-        /// <summary>Description giving details on the term usage.</summary>
+        /// <summary>Description that gives details on the term usage.</summary>
         public string Description { get; set; }
         /// <summary>Name of the set for each languageTag.</summary>
-        public List<LocalizedName> LocalizedNames { get; set; }
-        public Group ParentGroup { get; set; }
+        public List<ApiSdk.Models.Microsoft.Graph.TermStore.LocalizedName> LocalizedNames { get; set; }
+        public ApiSdk.Models.Microsoft.Graph.TermStore.Group ParentGroup { get; set; }
         /// <summary>Custom properties for the set.</summary>
-        public List<KeyValue> Properties { get; set; }
+        public List<ApiSdk.Models.Microsoft.Graph.KeyValue> Properties { get; set; }
         /// <summary>Indicates which terms have been pinned or reused directly under the set.</summary>
-        public List<Relation> Relations { get; set; }
+        public List<ApiSdk.Models.Microsoft.Graph.TermStore.Relation> Relations { get; set; }
         /// <summary>All the terms under the set.</summary>
-        public List<Term> Terms { get; set; }
+        public List<ApiSdk.Models.Microsoft.Graph.TermStore.Term> Terms { get; set; }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         /// </summary>
-        public static new Set CreateFromDiscriminatorValue(IParseNode parseNode) {
+        public static new ApiSdk.Models.Microsoft.Graph.TermStore.Set CreateFromDiscriminatorValue(IParseNode parseNode) {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
             return new Set();
         }
@@ -33,14 +33,14 @@ namespace ApiSdk.Models.Microsoft.Graph.TermStore {
         /// </summary>
         public new IDictionary<string, Action<T, IParseNode>> GetFieldDeserializers<T>() {
             return new Dictionary<string, Action<T, IParseNode>>(base.GetFieldDeserializers<T>()) {
-                {"children", (o,n) => { (o as Set).Children = n.GetCollectionOfObjectValues<Term>(Term.CreateFromDiscriminatorValue).ToList(); } },
+                {"children", (o,n) => { (o as Set).Children = n.GetCollectionOfObjectValues<ApiSdk.Models.Microsoft.Graph.TermStore.Term>(ApiSdk.Models.Microsoft.Graph.TermStore.Term.CreateFromDiscriminatorValue).ToList(); } },
                 {"createdDateTime", (o,n) => { (o as Set).CreatedDateTime = n.GetDateTimeOffsetValue(); } },
                 {"description", (o,n) => { (o as Set).Description = n.GetStringValue(); } },
-                {"localizedNames", (o,n) => { (o as Set).LocalizedNames = n.GetCollectionOfObjectValues<LocalizedName>(LocalizedName.CreateFromDiscriminatorValue).ToList(); } },
-                {"parentGroup", (o,n) => { (o as Set).ParentGroup = n.GetObjectValue<Group>(Group.CreateFromDiscriminatorValue); } },
-                {"properties", (o,n) => { (o as Set).Properties = n.GetCollectionOfObjectValues<KeyValue>(KeyValue.CreateFromDiscriminatorValue).ToList(); } },
-                {"relations", (o,n) => { (o as Set).Relations = n.GetCollectionOfObjectValues<Relation>(Relation.CreateFromDiscriminatorValue).ToList(); } },
-                {"terms", (o,n) => { (o as Set).Terms = n.GetCollectionOfObjectValues<Term>(Term.CreateFromDiscriminatorValue).ToList(); } },
+                {"localizedNames", (o,n) => { (o as Set).LocalizedNames = n.GetCollectionOfObjectValues<ApiSdk.Models.Microsoft.Graph.TermStore.LocalizedName>(ApiSdk.Models.Microsoft.Graph.TermStore.LocalizedName.CreateFromDiscriminatorValue).ToList(); } },
+                {"parentGroup", (o,n) => { (o as Set).ParentGroup = n.GetObjectValue<ApiSdk.Models.Microsoft.Graph.TermStore.Group>(ApiSdk.Models.Microsoft.Graph.TermStore.Group.CreateFromDiscriminatorValue); } },
+                {"properties", (o,n) => { (o as Set).Properties = n.GetCollectionOfObjectValues<ApiSdk.Models.Microsoft.Graph.KeyValue>(ApiSdk.Models.Microsoft.Graph.KeyValue.CreateFromDiscriminatorValue).ToList(); } },
+                {"relations", (o,n) => { (o as Set).Relations = n.GetCollectionOfObjectValues<ApiSdk.Models.Microsoft.Graph.TermStore.Relation>(ApiSdk.Models.Microsoft.Graph.TermStore.Relation.CreateFromDiscriminatorValue).ToList(); } },
+                {"terms", (o,n) => { (o as Set).Terms = n.GetCollectionOfObjectValues<ApiSdk.Models.Microsoft.Graph.TermStore.Term>(ApiSdk.Models.Microsoft.Graph.TermStore.Term.CreateFromDiscriminatorValue).ToList(); } },
             };
         }
         /// <summary>
@@ -50,14 +50,14 @@ namespace ApiSdk.Models.Microsoft.Graph.TermStore {
         public new void Serialize(ISerializationWriter writer) {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             base.Serialize(writer);
-            writer.WriteCollectionOfObjectValues<Term>("children", Children);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.Microsoft.Graph.TermStore.Term>("children", Children);
             writer.WriteDateTimeOffsetValue("createdDateTime", CreatedDateTime);
             writer.WriteStringValue("description", Description);
-            writer.WriteCollectionOfObjectValues<LocalizedName>("localizedNames", LocalizedNames);
-            writer.WriteObjectValue<Group>("parentGroup", ParentGroup);
-            writer.WriteCollectionOfObjectValues<KeyValue>("properties", Properties);
-            writer.WriteCollectionOfObjectValues<Relation>("relations", Relations);
-            writer.WriteCollectionOfObjectValues<Term>("terms", Terms);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.Microsoft.Graph.TermStore.LocalizedName>("localizedNames", LocalizedNames);
+            writer.WriteObjectValue<ApiSdk.Models.Microsoft.Graph.TermStore.Group>("parentGroup", ParentGroup);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.Microsoft.Graph.KeyValue>("properties", Properties);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.Microsoft.Graph.TermStore.Relation>("relations", Relations);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.Microsoft.Graph.TermStore.Term>("terms", Terms);
         }
     }
 }

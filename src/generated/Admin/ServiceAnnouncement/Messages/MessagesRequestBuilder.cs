@@ -1,4 +1,5 @@
 using ApiSdk.Admin.ServiceAnnouncement.Messages.Archive;
+using ApiSdk.Admin.ServiceAnnouncement.Messages.Count;
 using ApiSdk.Admin.ServiceAnnouncement.Messages.Favorite;
 using ApiSdk.Admin.ServiceAnnouncement.Messages.Item;
 using ApiSdk.Admin.ServiceAnnouncement.Messages.MarkRead;
@@ -6,6 +7,7 @@ using ApiSdk.Admin.ServiceAnnouncement.Messages.MarkUnread;
 using ApiSdk.Admin.ServiceAnnouncement.Messages.Unarchive;
 using ApiSdk.Admin.ServiceAnnouncement.Messages.Unfavorite;
 using ApiSdk.Models.Microsoft.Graph;
+using ApiSdk.Models.Microsoft.Graph.ODataErrors;
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
 using Microsoft.Kiota.Cli.Commons.Binding;
@@ -19,7 +21,7 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 namespace ApiSdk.Admin.ServiceAnnouncement.Messages {
-    /// <summary>Builds and executes requests for operations under \admin\serviceAnnouncement\messages</summary>
+    /// <summary>Provides operations to manage the messages property of the microsoft.graph.serviceAnnouncement entity.</summary>
     public class MessagesRequestBuilder {
         /// <summary>Path parameters for the request</summary>
         private Dictionary<string, object> PathParameters { get; set; }
@@ -29,7 +31,7 @@ namespace ApiSdk.Admin.ServiceAnnouncement.Messages {
         private string UrlTemplate { get; set; }
         public Command BuildArchiveCommand() {
             var command = new Command("archive");
-            var builder = new ApiSdk.Admin.ServiceAnnouncement.Messages.Archive.ArchiveRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new ArchiveRequestBuilder(PathParameters, RequestAdapter);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
@@ -43,12 +45,18 @@ namespace ApiSdk.Admin.ServiceAnnouncement.Messages {
             commands.Add(builder.BuildPatchCommand());
             return commands;
         }
+        public Command BuildCountCommand() {
+            var command = new Command("count");
+            var builder = new CountRequestBuilder(PathParameters, RequestAdapter);
+            command.AddCommand(builder.BuildGetCommand());
+            return command;
+        }
         /// <summary>
-        /// A collection of service messages for tenant. This property is a contained navigation property, it is nullable and readonly.
+        /// Create new navigation property to messages for admin
         /// </summary>
         public Command BuildCreateCommand() {
             var command = new Command("create");
-            command.Description = "A collection of service messages for tenant. This property is a contained navigation property, it is nullable and readonly.";
+            command.Description = "Create new navigation property to messages for admin";
             // Create options for all the parameters
             var bodyOption = new Option<string>("--body") {
             };
@@ -80,17 +88,21 @@ namespace ApiSdk.Admin.ServiceAnnouncement.Messages {
                 var model = parseNode.GetObjectValue<ServiceUpdateMessage>(ServiceUpdateMessage.CreateFromDiscriminatorValue);
                 var requestInfo = CreatePostRequestInformation(model, q => {
                 });
-                var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: default, cancellationToken: cancellationToken);
-                var formatter = outputFormatterFactory.GetFormatter(output);
+                var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
+                    {"4XX", ODataError.CreateFromDiscriminatorValue},
+                    {"5XX", ODataError.CreateFromDiscriminatorValue},
+                };
+                var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken);
                 response = await outputFilter?.FilterOutputAsync(response, query, cancellationToken) ?? response;
                 var formatterOptions = output.GetOutputFormatterOptions(new FormatterOptionsModel(!jsonNoIndent));
+                var formatter = outputFormatterFactory.GetFormatter(output);
                 await formatter.WriteOutputAsync(response, formatterOptions, cancellationToken);
             }, new CollectionBinding(bodyOption, outputOption, queryOption, jsonNoIndentOption, new TypeBinding(typeof(IOutputFilter)), new TypeBinding(typeof(IOutputFormatterFactory)), new TypeBinding(typeof(CancellationToken))));
             return command;
         }
         public Command BuildFavoriteCommand() {
             var command = new Command("favorite");
-            var builder = new ApiSdk.Admin.ServiceAnnouncement.Messages.Favorite.FavoriteRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new FavoriteRequestBuilder(PathParameters, RequestAdapter);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
@@ -174,35 +186,39 @@ namespace ApiSdk.Admin.ServiceAnnouncement.Messages {
                     q.Select = select;
                     q.Expand = expand;
                 });
-                var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: default, cancellationToken: cancellationToken);
-                var formatter = outputFormatterFactory.GetFormatter(output);
+                var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
+                    {"4XX", ODataError.CreateFromDiscriminatorValue},
+                    {"5XX", ODataError.CreateFromDiscriminatorValue},
+                };
+                var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken);
                 response = await outputFilter?.FilterOutputAsync(response, query, cancellationToken) ?? response;
                 var formatterOptions = output.GetOutputFormatterOptions(new FormatterOptionsModel(!jsonNoIndent));
+                var formatter = outputFormatterFactory.GetFormatter(output);
                 await formatter.WriteOutputAsync(response, formatterOptions, cancellationToken);
             }, new CollectionBinding(topOption, skipOption, searchOption, filterOption, countOption, orderbyOption, selectOption, expandOption, outputOption, queryOption, jsonNoIndentOption, new TypeBinding(typeof(IOutputFilter)), new TypeBinding(typeof(IOutputFormatterFactory)), new TypeBinding(typeof(CancellationToken))));
             return command;
         }
         public Command BuildMarkReadCommand() {
             var command = new Command("mark-read");
-            var builder = new ApiSdk.Admin.ServiceAnnouncement.Messages.MarkRead.MarkReadRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new MarkReadRequestBuilder(PathParameters, RequestAdapter);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
         public Command BuildMarkUnreadCommand() {
             var command = new Command("mark-unread");
-            var builder = new ApiSdk.Admin.ServiceAnnouncement.Messages.MarkUnread.MarkUnreadRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new MarkUnreadRequestBuilder(PathParameters, RequestAdapter);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
         public Command BuildUnarchiveCommand() {
             var command = new Command("unarchive");
-            var builder = new ApiSdk.Admin.ServiceAnnouncement.Messages.Unarchive.UnarchiveRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new UnarchiveRequestBuilder(PathParameters, RequestAdapter);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
         public Command BuildUnfavoriteCommand() {
             var command = new Command("unfavorite");
-            var builder = new ApiSdk.Admin.ServiceAnnouncement.Messages.Unfavorite.UnfavoriteRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new UnfavoriteRequestBuilder(PathParameters, RequestAdapter);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
@@ -221,32 +237,32 @@ namespace ApiSdk.Admin.ServiceAnnouncement.Messages {
         }
         /// <summary>
         /// A collection of service messages for tenant. This property is a contained navigation property, it is nullable and readonly.
-        /// <param name="h">Request headers</param>
-        /// <param name="o">Request options</param>
-        /// <param name="q">Request query parameters</param>
+        /// <param name="headers">Request headers</param>
+        /// <param name="options">Request options</param>
+        /// <param name="queryParameters">Request query parameters</param>
         /// </summary>
-        public RequestInformation CreateGetRequestInformation(Action<GetQueryParameters> q = default, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
+        public RequestInformation CreateGetRequestInformation(Action<GetQueryParameters> queryParameters = default, Action<IDictionary<string, string>> headers = default, IEnumerable<IRequestOption> options = default) {
             var requestInfo = new RequestInformation {
                 HttpMethod = Method.GET,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };
-            if (q != null) {
+            if (queryParameters != null) {
                 var qParams = new GetQueryParameters();
-                q.Invoke(qParams);
+                queryParameters.Invoke(qParams);
                 qParams.AddQueryParameters(requestInfo.QueryParameters);
             }
-            h?.Invoke(requestInfo.Headers);
-            requestInfo.AddRequestOptions(o?.ToArray());
+            headers?.Invoke(requestInfo.Headers);
+            requestInfo.AddRequestOptions(options?.ToArray());
             return requestInfo;
         }
         /// <summary>
-        /// A collection of service messages for tenant. This property is a contained navigation property, it is nullable and readonly.
+        /// Create new navigation property to messages for admin
         /// <param name="body"></param>
-        /// <param name="h">Request headers</param>
-        /// <param name="o">Request options</param>
+        /// <param name="headers">Request headers</param>
+        /// <param name="options">Request options</param>
         /// </summary>
-        public RequestInformation CreatePostRequestInformation(ServiceUpdateMessage body, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
+        public RequestInformation CreatePostRequestInformation(ServiceUpdateMessage body, Action<IDictionary<string, string>> headers = default, IEnumerable<IRequestOption> options = default) {
             _ = body ?? throw new ArgumentNullException(nameof(body));
             var requestInfo = new RequestInformation {
                 HttpMethod = Method.POST,
@@ -254,8 +270,8 @@ namespace ApiSdk.Admin.ServiceAnnouncement.Messages {
                 PathParameters = PathParameters,
             };
             requestInfo.SetContentFromParsable(RequestAdapter, "application/json", body);
-            h?.Invoke(requestInfo.Headers);
-            requestInfo.AddRequestOptions(o?.ToArray());
+            headers?.Invoke(requestInfo.Headers);
+            requestInfo.AddRequestOptions(options?.ToArray());
             return requestInfo;
         }
         /// <summary>A collection of service messages for tenant. This property is a contained navigation property, it is nullable and readonly.</summary>

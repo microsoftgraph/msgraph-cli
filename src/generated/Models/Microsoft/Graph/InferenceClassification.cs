@@ -6,12 +6,12 @@ using System.Linq;
 namespace ApiSdk.Models.Microsoft.Graph {
     public class InferenceClassification : Entity, IParsable {
         /// <summary>A set of overrides for a user to always classify messages from specific senders in certain ways: focused, or other. Read-only. Nullable.</summary>
-        public List<InferenceClassificationOverride> Overrides { get; set; }
+        public List<ApiSdk.Models.Microsoft.Graph.InferenceClassificationOverride> Overrides { get; set; }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         /// </summary>
-        public static new InferenceClassification CreateFromDiscriminatorValue(IParseNode parseNode) {
+        public static new ApiSdk.Models.Microsoft.Graph.InferenceClassification CreateFromDiscriminatorValue(IParseNode parseNode) {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
             return new InferenceClassification();
         }
@@ -20,7 +20,7 @@ namespace ApiSdk.Models.Microsoft.Graph {
         /// </summary>
         public new IDictionary<string, Action<T, IParseNode>> GetFieldDeserializers<T>() {
             return new Dictionary<string, Action<T, IParseNode>>(base.GetFieldDeserializers<T>()) {
-                {"overrides", (o,n) => { (o as InferenceClassification).Overrides = n.GetCollectionOfObjectValues<InferenceClassificationOverride>(InferenceClassificationOverride.CreateFromDiscriminatorValue).ToList(); } },
+                {"overrides", (o,n) => { (o as InferenceClassification).Overrides = n.GetCollectionOfObjectValues<ApiSdk.Models.Microsoft.Graph.InferenceClassificationOverride>(ApiSdk.Models.Microsoft.Graph.InferenceClassificationOverride.CreateFromDiscriminatorValue).ToList(); } },
             };
         }
         /// <summary>
@@ -30,7 +30,7 @@ namespace ApiSdk.Models.Microsoft.Graph {
         public new void Serialize(ISerializationWriter writer) {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             base.Serialize(writer);
-            writer.WriteCollectionOfObjectValues<InferenceClassificationOverride>("overrides", Overrides);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.Microsoft.Graph.InferenceClassificationOverride>("overrides", Overrides);
         }
     }
 }

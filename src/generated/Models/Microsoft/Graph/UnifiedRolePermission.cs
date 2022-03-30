@@ -7,7 +7,7 @@ namespace ApiSdk.Models.Microsoft.Graph {
     public class UnifiedRolePermission : IAdditionalDataHolder, IParsable {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
-        /// <summary>Set of tasks that can be performed on a resource.</summary>
+        /// <summary>Set of tasks that can be performed on a resource. Required.</summary>
         public List<string> AllowedResourceActions { get; set; }
         /// <summary>Optional constraints that must be met for the permission to be effective.</summary>
         public string Condition { get; set; }
@@ -23,7 +23,7 @@ namespace ApiSdk.Models.Microsoft.Graph {
         /// Creates a new instance of the appropriate class based on discriminator value
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         /// </summary>
-        public static UnifiedRolePermission CreateFromDiscriminatorValue(IParseNode parseNode) {
+        public static ApiSdk.Models.Microsoft.Graph.UnifiedRolePermission CreateFromDiscriminatorValue(IParseNode parseNode) {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
             return new UnifiedRolePermission();
         }

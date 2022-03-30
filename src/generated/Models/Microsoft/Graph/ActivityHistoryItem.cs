@@ -7,7 +7,7 @@ namespace ApiSdk.Models.Microsoft.Graph {
     public class ActivityHistoryItem : Entity, IParsable {
         /// <summary>Optional. The duration of active user engagement. if not supplied, this is calculated from the startedDateTime and lastActiveDateTime.</summary>
         public int? ActiveDurationSeconds { get; set; }
-        public UserActivity Activity { get; set; }
+        public ApiSdk.Models.Microsoft.Graph.UserActivity Activity { get; set; }
         /// <summary>Set by the server. DateTime in UTC when the object was created on the server.</summary>
         public DateTimeOffset? CreatedDateTime { get; set; }
         /// <summary>Optional. UTC DateTime when the historyItem will undergo hard-delete. Can be set by the client.</summary>
@@ -26,7 +26,7 @@ namespace ApiSdk.Models.Microsoft.Graph {
         /// Creates a new instance of the appropriate class based on discriminator value
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         /// </summary>
-        public static new ActivityHistoryItem CreateFromDiscriminatorValue(IParseNode parseNode) {
+        public static new ApiSdk.Models.Microsoft.Graph.ActivityHistoryItem CreateFromDiscriminatorValue(IParseNode parseNode) {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
             return new ActivityHistoryItem();
         }
@@ -36,7 +36,7 @@ namespace ApiSdk.Models.Microsoft.Graph {
         public new IDictionary<string, Action<T, IParseNode>> GetFieldDeserializers<T>() {
             return new Dictionary<string, Action<T, IParseNode>>(base.GetFieldDeserializers<T>()) {
                 {"activeDurationSeconds", (o,n) => { (o as ActivityHistoryItem).ActiveDurationSeconds = n.GetIntValue(); } },
-                {"activity", (o,n) => { (o as ActivityHistoryItem).Activity = n.GetObjectValue<UserActivity>(UserActivity.CreateFromDiscriminatorValue); } },
+                {"activity", (o,n) => { (o as ActivityHistoryItem).Activity = n.GetObjectValue<ApiSdk.Models.Microsoft.Graph.UserActivity>(ApiSdk.Models.Microsoft.Graph.UserActivity.CreateFromDiscriminatorValue); } },
                 {"createdDateTime", (o,n) => { (o as ActivityHistoryItem).CreatedDateTime = n.GetDateTimeOffsetValue(); } },
                 {"expirationDateTime", (o,n) => { (o as ActivityHistoryItem).ExpirationDateTime = n.GetDateTimeOffsetValue(); } },
                 {"lastActiveDateTime", (o,n) => { (o as ActivityHistoryItem).LastActiveDateTime = n.GetDateTimeOffsetValue(); } },
@@ -54,7 +54,7 @@ namespace ApiSdk.Models.Microsoft.Graph {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             base.Serialize(writer);
             writer.WriteIntValue("activeDurationSeconds", ActiveDurationSeconds);
-            writer.WriteObjectValue<UserActivity>("activity", Activity);
+            writer.WriteObjectValue<ApiSdk.Models.Microsoft.Graph.UserActivity>("activity", Activity);
             writer.WriteDateTimeOffsetValue("createdDateTime", CreatedDateTime);
             writer.WriteDateTimeOffsetValue("expirationDateTime", ExpirationDateTime);
             writer.WriteDateTimeOffsetValue("lastActiveDateTime", LastActiveDateTime);

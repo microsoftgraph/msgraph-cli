@@ -11,7 +11,7 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 namespace ApiSdk.Workbooks.Item.DeltaWithToken {
-    /// <summary>Builds and executes requests for operations under \workbooks\{driveItem-id}\microsoft.graph.delta(token='{token}')</summary>
+    /// <summary>Provides operations to call the delta method.</summary>
     public class DeltaWithTokenRequestBuilder {
         /// <summary>Path parameters for the request</summary>
         private Dictionary<string, object> PathParameters { get; set; }
@@ -30,7 +30,7 @@ namespace ApiSdk.Workbooks.Item.DeltaWithToken {
             };
             driveItemIdOption.IsRequired = true;
             command.AddOption(driveItemIdOption);
-            var tokenOption = new Option<string>("--token", description: "Usage: token={token}") {
+            var tokenOption = new Option<string>("--token", description: "Usage: token='{token}'") {
             };
             tokenOption.IsRequired = true;
             command.AddOption(tokenOption);
@@ -62,9 +62,9 @@ namespace ApiSdk.Workbooks.Item.DeltaWithToken {
                 var requestInfo = CreateGetRequestInformation(q => {
                 });
                 var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: default, cancellationToken: cancellationToken);
-                var formatter = outputFormatterFactory.GetFormatter(output);
                 response = await outputFilter?.FilterOutputAsync(response, query, cancellationToken) ?? response;
                 var formatterOptions = output.GetOutputFormatterOptions(new FormatterOptionsModel(!jsonNoIndent));
+                var formatter = outputFormatterFactory.GetFormatter(output);
                 await formatter.WriteOutputAsync(response, formatterOptions, cancellationToken);
             }, new CollectionBinding(driveItemIdOption, tokenOption, outputOption, queryOption, jsonNoIndentOption, new TypeBinding(typeof(IOutputFilter)), new TypeBinding(typeof(IOutputFormatterFactory)), new TypeBinding(typeof(CancellationToken))));
             return command;
@@ -73,7 +73,7 @@ namespace ApiSdk.Workbooks.Item.DeltaWithToken {
         /// Instantiates a new DeltaWithTokenRequestBuilder and sets the default values.
         /// <param name="pathParameters">Path parameters for the request</param>
         /// <param name="requestAdapter">The request adapter to use to execute the requests.</param>
-        /// <param name="token">Usage: token={token}</param>
+        /// <param name="token">Usage: token='{token}'</param>
         /// </summary>
         public DeltaWithTokenRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter, string token = default) {
             _ = pathParameters ?? throw new ArgumentNullException(nameof(pathParameters));
@@ -86,17 +86,17 @@ namespace ApiSdk.Workbooks.Item.DeltaWithToken {
         }
         /// <summary>
         /// Invoke function delta
-        /// <param name="h">Request headers</param>
-        /// <param name="o">Request options</param>
+        /// <param name="headers">Request headers</param>
+        /// <param name="options">Request options</param>
         /// </summary>
-        public RequestInformation CreateGetRequestInformation(Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
+        public RequestInformation CreateGetRequestInformation(Action<IDictionary<string, string>> headers = default, IEnumerable<IRequestOption> options = default) {
             var requestInfo = new RequestInformation {
                 HttpMethod = Method.GET,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };
-            h?.Invoke(requestInfo.Headers);
-            requestInfo.AddRequestOptions(o?.ToArray());
+            headers?.Invoke(requestInfo.Headers);
+            requestInfo.AddRequestOptions(options?.ToArray());
             return requestInfo;
         }
     }

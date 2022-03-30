@@ -8,8 +8,8 @@ namespace ApiSdk.Models.Microsoft.Graph {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>The email address and type of attendee - whether it's a person or a resource, and whether required or optional if it's a person.</summary>
-        public AttendeeBase Attendee { get; set; }
-        /// <summary>The availability status of the attendee. Possible values are: free, tentative, busy, oof, workingElsewhere, unknown.</summary>
+        public ApiSdk.Models.Microsoft.Graph.AttendeeBase Attendee { get; set; }
+        /// <summary>The availability status of the attendee. The possible values are: free, tentative, busy, oof, workingElsewhere, unknown.</summary>
         public FreeBusyStatus? Availability { get; set; }
         /// <summary>
         /// Instantiates a new attendeeAvailability and sets the default values.
@@ -21,7 +21,7 @@ namespace ApiSdk.Models.Microsoft.Graph {
         /// Creates a new instance of the appropriate class based on discriminator value
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         /// </summary>
-        public static AttendeeAvailability CreateFromDiscriminatorValue(IParseNode parseNode) {
+        public static ApiSdk.Models.Microsoft.Graph.AttendeeAvailability CreateFromDiscriminatorValue(IParseNode parseNode) {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
             return new AttendeeAvailability();
         }
@@ -30,7 +30,7 @@ namespace ApiSdk.Models.Microsoft.Graph {
         /// </summary>
         public IDictionary<string, Action<T, IParseNode>> GetFieldDeserializers<T>() {
             return new Dictionary<string, Action<T, IParseNode>> {
-                {"attendee", (o,n) => { (o as AttendeeAvailability).Attendee = n.GetObjectValue<AttendeeBase>(AttendeeBase.CreateFromDiscriminatorValue); } },
+                {"attendee", (o,n) => { (o as AttendeeAvailability).Attendee = n.GetObjectValue<ApiSdk.Models.Microsoft.Graph.AttendeeBase>(ApiSdk.Models.Microsoft.Graph.AttendeeBase.CreateFromDiscriminatorValue); } },
                 {"availability", (o,n) => { (o as AttendeeAvailability).Availability = n.GetEnumValue<FreeBusyStatus>(); } },
             };
         }
@@ -40,7 +40,7 @@ namespace ApiSdk.Models.Microsoft.Graph {
         /// </summary>
         public void Serialize(ISerializationWriter writer) {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
-            writer.WriteObjectValue<AttendeeBase>("attendee", Attendee);
+            writer.WriteObjectValue<ApiSdk.Models.Microsoft.Graph.AttendeeBase>("attendee", Attendee);
             writer.WriteEnumValue<FreeBusyStatus>("availability", Availability);
             writer.WriteAdditionalData(AdditionalData);
         }

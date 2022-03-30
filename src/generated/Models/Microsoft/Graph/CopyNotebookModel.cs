@@ -8,15 +8,15 @@ namespace ApiSdk.Models.Microsoft.Graph {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
         public string CreatedBy { get; set; }
-        public IdentitySet CreatedByIdentity { get; set; }
+        public ApiSdk.Models.Microsoft.Graph.IdentitySet CreatedByIdentity { get; set; }
         public DateTimeOffset? CreatedTime { get; set; }
         public string Id { get; set; }
         public bool? IsDefault { get; set; }
         public bool? IsShared { get; set; }
         public string LastModifiedBy { get; set; }
-        public IdentitySet LastModifiedByIdentity { get; set; }
+        public ApiSdk.Models.Microsoft.Graph.IdentitySet LastModifiedByIdentity { get; set; }
         public DateTimeOffset? LastModifiedTime { get; set; }
-        public NotebookLinks Links { get; set; }
+        public ApiSdk.Models.Microsoft.Graph.NotebookLinks Links { get; set; }
         public string Name { get; set; }
         public string SectionGroupsUrl { get; set; }
         public string SectionsUrl { get; set; }
@@ -32,7 +32,7 @@ namespace ApiSdk.Models.Microsoft.Graph {
         /// Creates a new instance of the appropriate class based on discriminator value
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         /// </summary>
-        public static CopyNotebookModel CreateFromDiscriminatorValue(IParseNode parseNode) {
+        public static ApiSdk.Models.Microsoft.Graph.CopyNotebookModel CreateFromDiscriminatorValue(IParseNode parseNode) {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
             return new CopyNotebookModel();
         }
@@ -42,15 +42,15 @@ namespace ApiSdk.Models.Microsoft.Graph {
         public IDictionary<string, Action<T, IParseNode>> GetFieldDeserializers<T>() {
             return new Dictionary<string, Action<T, IParseNode>> {
                 {"createdBy", (o,n) => { (o as CopyNotebookModel).CreatedBy = n.GetStringValue(); } },
-                {"createdByIdentity", (o,n) => { (o as CopyNotebookModel).CreatedByIdentity = n.GetObjectValue<IdentitySet>(IdentitySet.CreateFromDiscriminatorValue); } },
+                {"createdByIdentity", (o,n) => { (o as CopyNotebookModel).CreatedByIdentity = n.GetObjectValue<ApiSdk.Models.Microsoft.Graph.IdentitySet>(ApiSdk.Models.Microsoft.Graph.IdentitySet.CreateFromDiscriminatorValue); } },
                 {"createdTime", (o,n) => { (o as CopyNotebookModel).CreatedTime = n.GetDateTimeOffsetValue(); } },
                 {"id", (o,n) => { (o as CopyNotebookModel).Id = n.GetStringValue(); } },
                 {"isDefault", (o,n) => { (o as CopyNotebookModel).IsDefault = n.GetBoolValue(); } },
                 {"isShared", (o,n) => { (o as CopyNotebookModel).IsShared = n.GetBoolValue(); } },
                 {"lastModifiedBy", (o,n) => { (o as CopyNotebookModel).LastModifiedBy = n.GetStringValue(); } },
-                {"lastModifiedByIdentity", (o,n) => { (o as CopyNotebookModel).LastModifiedByIdentity = n.GetObjectValue<IdentitySet>(IdentitySet.CreateFromDiscriminatorValue); } },
+                {"lastModifiedByIdentity", (o,n) => { (o as CopyNotebookModel).LastModifiedByIdentity = n.GetObjectValue<ApiSdk.Models.Microsoft.Graph.IdentitySet>(ApiSdk.Models.Microsoft.Graph.IdentitySet.CreateFromDiscriminatorValue); } },
                 {"lastModifiedTime", (o,n) => { (o as CopyNotebookModel).LastModifiedTime = n.GetDateTimeOffsetValue(); } },
-                {"links", (o,n) => { (o as CopyNotebookModel).Links = n.GetObjectValue<NotebookLinks>(NotebookLinks.CreateFromDiscriminatorValue); } },
+                {"links", (o,n) => { (o as CopyNotebookModel).Links = n.GetObjectValue<ApiSdk.Models.Microsoft.Graph.NotebookLinks>(ApiSdk.Models.Microsoft.Graph.NotebookLinks.CreateFromDiscriminatorValue); } },
                 {"name", (o,n) => { (o as CopyNotebookModel).Name = n.GetStringValue(); } },
                 {"sectionGroupsUrl", (o,n) => { (o as CopyNotebookModel).SectionGroupsUrl = n.GetStringValue(); } },
                 {"sectionsUrl", (o,n) => { (o as CopyNotebookModel).SectionsUrl = n.GetStringValue(); } },
@@ -65,15 +65,15 @@ namespace ApiSdk.Models.Microsoft.Graph {
         public void Serialize(ISerializationWriter writer) {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             writer.WriteStringValue("createdBy", CreatedBy);
-            writer.WriteObjectValue<IdentitySet>("createdByIdentity", CreatedByIdentity);
+            writer.WriteObjectValue<ApiSdk.Models.Microsoft.Graph.IdentitySet>("createdByIdentity", CreatedByIdentity);
             writer.WriteDateTimeOffsetValue("createdTime", CreatedTime);
             writer.WriteStringValue("id", Id);
             writer.WriteBoolValue("isDefault", IsDefault);
             writer.WriteBoolValue("isShared", IsShared);
             writer.WriteStringValue("lastModifiedBy", LastModifiedBy);
-            writer.WriteObjectValue<IdentitySet>("lastModifiedByIdentity", LastModifiedByIdentity);
+            writer.WriteObjectValue<ApiSdk.Models.Microsoft.Graph.IdentitySet>("lastModifiedByIdentity", LastModifiedByIdentity);
             writer.WriteDateTimeOffsetValue("lastModifiedTime", LastModifiedTime);
-            writer.WriteObjectValue<NotebookLinks>("links", Links);
+            writer.WriteObjectValue<ApiSdk.Models.Microsoft.Graph.NotebookLinks>("links", Links);
             writer.WriteStringValue("name", Name);
             writer.WriteStringValue("sectionGroupsUrl", SectionGroupsUrl);
             writer.WriteStringValue("sectionsUrl", SectionsUrl);

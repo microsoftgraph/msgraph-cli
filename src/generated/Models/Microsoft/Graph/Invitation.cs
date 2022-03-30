@@ -6,28 +6,28 @@ using System.Linq;
 namespace ApiSdk.Models.Microsoft.Graph {
     public class Invitation : Entity, IParsable {
         /// <summary>The user created as part of the invitation creation. Read-Only</summary>
-        public User InvitedUser { get; set; }
+        public ApiSdk.Models.Microsoft.Graph.User InvitedUser { get; set; }
         /// <summary>The display name of the user being invited.</summary>
         public string InvitedUserDisplayName { get; set; }
-        /// <summary>The email address of the user being invited. Required. The following special characters are not permitted in the email address:Tilde (~)Exclamation point (!)At sign (@)Number sign (#)Dollar sign ($)Percent (%)Circumflex (^)Ampersand (&)Asterisk (*)Parentheses (( ))Hyphen (-)Plus sign (+)Equal sign (=)Brackets ([ ])Braces ({ })Backslash (/)Slash mark (/)Pipe (`</summary>
+        /// <summary>The email address of the user being invited. Required. The following special characters are not permitted in the email address:Tilde (~)Exclamation point (!)Number sign (#)Dollar sign ($)Percent (%)Circumflex (^)Ampersand (&)Asterisk (*)Parentheses (( ))Plus sign (+)Equal sign (=)Brackets ([ ])Braces ({ })Backslash (/)Slash mark (/)Pipe (/|)Semicolon (;)Colon (:)Quotation marks (')Angle brackets (< >)Question mark (?)Comma (,)However, the following exceptions apply:A period (.) or a hyphen (-) is permitted anywhere in the user name, except at the beginning or end of the name.An underscore (_) is permitted anywhere in the user name. This includes at the beginning or end of the name.</summary>
         public string InvitedUserEmailAddress { get; set; }
         /// <summary>Additional configuration for the message being sent to the invited user, including customizing message text, language and cc recipient list.</summary>
         public ApiSdk.Models.Microsoft.Graph.InvitedUserMessageInfo InvitedUserMessageInfo { get; set; }
-        /// <summary>The userType of the user being invited. By default, this is Guest. You can invite as Member if you're are company administrator. The default is false.</summary>
+        /// <summary>The userType of the user being invited. By default, this is Guest. You can invite as Member if you are a company administrator.</summary>
         public string InvitedUserType { get; set; }
         /// <summary>The URL the user can use to redeem their invitation. Read-only.</summary>
         public string InviteRedeemUrl { get; set; }
-        /// <summary>The URL user should be redirected to once the invitation is redeemed. Required.</summary>
+        /// <summary>The URL the user should be redirected to once the invitation is redeemed. Required.</summary>
         public string InviteRedirectUrl { get; set; }
         /// <summary>Indicates whether an email should be sent to the user being invited. The default is false.</summary>
         public bool? SendInvitationMessage { get; set; }
-        /// <summary>The status of the invitation. Possible values: PendingAcceptance, Completed, InProgress, and Error</summary>
+        /// <summary>The status of the invitation. Possible values are: PendingAcceptance, Completed, InProgress, and Error.</summary>
         public string Status { get; set; }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         /// </summary>
-        public static new Invitation CreateFromDiscriminatorValue(IParseNode parseNode) {
+        public static new ApiSdk.Models.Microsoft.Graph.Invitation CreateFromDiscriminatorValue(IParseNode parseNode) {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
             return new Invitation();
         }
@@ -36,7 +36,7 @@ namespace ApiSdk.Models.Microsoft.Graph {
         /// </summary>
         public new IDictionary<string, Action<T, IParseNode>> GetFieldDeserializers<T>() {
             return new Dictionary<string, Action<T, IParseNode>>(base.GetFieldDeserializers<T>()) {
-                {"invitedUser", (o,n) => { (o as Invitation).InvitedUser = n.GetObjectValue<User>(User.CreateFromDiscriminatorValue); } },
+                {"invitedUser", (o,n) => { (o as Invitation).InvitedUser = n.GetObjectValue<ApiSdk.Models.Microsoft.Graph.User>(ApiSdk.Models.Microsoft.Graph.User.CreateFromDiscriminatorValue); } },
                 {"invitedUserDisplayName", (o,n) => { (o as Invitation).InvitedUserDisplayName = n.GetStringValue(); } },
                 {"invitedUserEmailAddress", (o,n) => { (o as Invitation).InvitedUserEmailAddress = n.GetStringValue(); } },
                 {"invitedUserMessageInfo", (o,n) => { (o as Invitation).InvitedUserMessageInfo = n.GetObjectValue<ApiSdk.Models.Microsoft.Graph.InvitedUserMessageInfo>(ApiSdk.Models.Microsoft.Graph.InvitedUserMessageInfo.CreateFromDiscriminatorValue); } },
@@ -54,7 +54,7 @@ namespace ApiSdk.Models.Microsoft.Graph {
         public new void Serialize(ISerializationWriter writer) {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             base.Serialize(writer);
-            writer.WriteObjectValue<User>("invitedUser", InvitedUser);
+            writer.WriteObjectValue<ApiSdk.Models.Microsoft.Graph.User>("invitedUser", InvitedUser);
             writer.WriteStringValue("invitedUserDisplayName", InvitedUserDisplayName);
             writer.WriteStringValue("invitedUserEmailAddress", InvitedUserEmailAddress);
             writer.WriteObjectValue<ApiSdk.Models.Microsoft.Graph.InvitedUserMessageInfo>("invitedUserMessageInfo", InvitedUserMessageInfo);

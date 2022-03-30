@@ -8,8 +8,8 @@ namespace ApiSdk.Models.Microsoft.Graph {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>Content type information of the file.</summary>
-        public ContentTypeInfo ContentType { get; set; }
-        /// <summary>Name of the file in resource folder that should be added as a default content or a template in the document set</summary>
+        public ApiSdk.Models.Microsoft.Graph.ContentTypeInfo ContentType { get; set; }
+        /// <summary>Name of the file in resource folder that should be added as a default content or a template in the document set.</summary>
         public string FileName { get; set; }
         /// <summary>Folder name in which the file will be placed when a new document set is created in the library.</summary>
         public string FolderName { get; set; }
@@ -23,7 +23,7 @@ namespace ApiSdk.Models.Microsoft.Graph {
         /// Creates a new instance of the appropriate class based on discriminator value
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         /// </summary>
-        public static DocumentSetContent CreateFromDiscriminatorValue(IParseNode parseNode) {
+        public static ApiSdk.Models.Microsoft.Graph.DocumentSetContent CreateFromDiscriminatorValue(IParseNode parseNode) {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
             return new DocumentSetContent();
         }
@@ -32,7 +32,7 @@ namespace ApiSdk.Models.Microsoft.Graph {
         /// </summary>
         public IDictionary<string, Action<T, IParseNode>> GetFieldDeserializers<T>() {
             return new Dictionary<string, Action<T, IParseNode>> {
-                {"contentType", (o,n) => { (o as DocumentSetContent).ContentType = n.GetObjectValue<ContentTypeInfo>(ContentTypeInfo.CreateFromDiscriminatorValue); } },
+                {"contentType", (o,n) => { (o as DocumentSetContent).ContentType = n.GetObjectValue<ApiSdk.Models.Microsoft.Graph.ContentTypeInfo>(ApiSdk.Models.Microsoft.Graph.ContentTypeInfo.CreateFromDiscriminatorValue); } },
                 {"fileName", (o,n) => { (o as DocumentSetContent).FileName = n.GetStringValue(); } },
                 {"folderName", (o,n) => { (o as DocumentSetContent).FolderName = n.GetStringValue(); } },
             };
@@ -43,7 +43,7 @@ namespace ApiSdk.Models.Microsoft.Graph {
         /// </summary>
         public void Serialize(ISerializationWriter writer) {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
-            writer.WriteObjectValue<ContentTypeInfo>("contentType", ContentType);
+            writer.WriteObjectValue<ApiSdk.Models.Microsoft.Graph.ContentTypeInfo>("contentType", ContentType);
             writer.WriteStringValue("fileName", FileName);
             writer.WriteStringValue("folderName", FolderName);
             writer.WriteAdditionalData(AdditionalData);

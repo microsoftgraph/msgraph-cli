@@ -16,13 +16,13 @@ namespace ApiSdk.Models.Microsoft.Graph {
         /// <summary>The indentation level of the page. Read-only.</summary>
         public int? Level { get; set; }
         /// <summary>Links for opening the page. The oneNoteClientURL link opens the page in the OneNote native client if it 's installed. The oneNoteWebUrl link opens the page in OneNote on the web. Read-only.</summary>
-        public PageLinks Links { get; set; }
+        public ApiSdk.Models.Microsoft.Graph.PageLinks Links { get; set; }
         /// <summary>The order of the page within its parent section. Read-only.</summary>
         public int? Order { get; set; }
         /// <summary>The notebook that contains the page.  Read-only.</summary>
-        public Notebook ParentNotebook { get; set; }
+        public ApiSdk.Models.Microsoft.Graph.Notebook ParentNotebook { get; set; }
         /// <summary>The section that contains the page. Read-only.</summary>
-        public OnenoteSection ParentSection { get; set; }
+        public ApiSdk.Models.Microsoft.Graph.OnenoteSection ParentSection { get; set; }
         /// <summary>The title of the page.</summary>
         public string Title { get; set; }
         public List<string> UserTags { get; set; }
@@ -30,7 +30,7 @@ namespace ApiSdk.Models.Microsoft.Graph {
         /// Creates a new instance of the appropriate class based on discriminator value
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         /// </summary>
-        public static new OnenotePage CreateFromDiscriminatorValue(IParseNode parseNode) {
+        public static new ApiSdk.Models.Microsoft.Graph.OnenotePage CreateFromDiscriminatorValue(IParseNode parseNode) {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
             return new OnenotePage();
         }
@@ -44,10 +44,10 @@ namespace ApiSdk.Models.Microsoft.Graph {
                 {"createdByAppId", (o,n) => { (o as OnenotePage).CreatedByAppId = n.GetStringValue(); } },
                 {"lastModifiedDateTime", (o,n) => { (o as OnenotePage).LastModifiedDateTime = n.GetDateTimeOffsetValue(); } },
                 {"level", (o,n) => { (o as OnenotePage).Level = n.GetIntValue(); } },
-                {"links", (o,n) => { (o as OnenotePage).Links = n.GetObjectValue<PageLinks>(PageLinks.CreateFromDiscriminatorValue); } },
+                {"links", (o,n) => { (o as OnenotePage).Links = n.GetObjectValue<ApiSdk.Models.Microsoft.Graph.PageLinks>(ApiSdk.Models.Microsoft.Graph.PageLinks.CreateFromDiscriminatorValue); } },
                 {"order", (o,n) => { (o as OnenotePage).Order = n.GetIntValue(); } },
-                {"parentNotebook", (o,n) => { (o as OnenotePage).ParentNotebook = n.GetObjectValue<Notebook>(Notebook.CreateFromDiscriminatorValue); } },
-                {"parentSection", (o,n) => { (o as OnenotePage).ParentSection = n.GetObjectValue<OnenoteSection>(OnenoteSection.CreateFromDiscriminatorValue); } },
+                {"parentNotebook", (o,n) => { (o as OnenotePage).ParentNotebook = n.GetObjectValue<ApiSdk.Models.Microsoft.Graph.Notebook>(ApiSdk.Models.Microsoft.Graph.Notebook.CreateFromDiscriminatorValue); } },
+                {"parentSection", (o,n) => { (o as OnenotePage).ParentSection = n.GetObjectValue<ApiSdk.Models.Microsoft.Graph.OnenoteSection>(ApiSdk.Models.Microsoft.Graph.OnenoteSection.CreateFromDiscriminatorValue); } },
                 {"title", (o,n) => { (o as OnenotePage).Title = n.GetStringValue(); } },
                 {"userTags", (o,n) => { (o as OnenotePage).UserTags = n.GetCollectionOfPrimitiveValues<string>().ToList(); } },
             };
@@ -64,10 +64,10 @@ namespace ApiSdk.Models.Microsoft.Graph {
             writer.WriteStringValue("createdByAppId", CreatedByAppId);
             writer.WriteDateTimeOffsetValue("lastModifiedDateTime", LastModifiedDateTime);
             writer.WriteIntValue("level", Level);
-            writer.WriteObjectValue<PageLinks>("links", Links);
+            writer.WriteObjectValue<ApiSdk.Models.Microsoft.Graph.PageLinks>("links", Links);
             writer.WriteIntValue("order", Order);
-            writer.WriteObjectValue<Notebook>("parentNotebook", ParentNotebook);
-            writer.WriteObjectValue<OnenoteSection>("parentSection", ParentSection);
+            writer.WriteObjectValue<ApiSdk.Models.Microsoft.Graph.Notebook>("parentNotebook", ParentNotebook);
+            writer.WriteObjectValue<ApiSdk.Models.Microsoft.Graph.OnenoteSection>("parentSection", ParentSection);
             writer.WriteStringValue("title", Title);
             writer.WriteCollectionOfPrimitiveValues<string>("userTags", UserTags);
         }

@@ -12,7 +12,7 @@ namespace ApiSdk.Models.Microsoft.Graph {
         public Date? BirthDate { get; set; }
         /// <summary>ID of the student in the source system.</summary>
         public string ExternalId { get; set; }
-        /// <summary>Possible values are: female, male, other.</summary>
+        /// <summary>The possible values are: female, male, other, unknownFutureValue.</summary>
         public EducationGender? Gender { get; set; }
         /// <summary>Current grade level of the student.</summary>
         public string Grade { get; set; }
@@ -30,7 +30,7 @@ namespace ApiSdk.Models.Microsoft.Graph {
         /// Creates a new instance of the appropriate class based on discriminator value
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         /// </summary>
-        public static EducationStudent CreateFromDiscriminatorValue(IParseNode parseNode) {
+        public static ApiSdk.Models.Microsoft.Graph.EducationStudent CreateFromDiscriminatorValue(IParseNode parseNode) {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
             return new EducationStudent();
         }

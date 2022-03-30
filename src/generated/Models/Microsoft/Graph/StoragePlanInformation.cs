@@ -7,7 +7,7 @@ namespace ApiSdk.Models.Microsoft.Graph {
     public class StoragePlanInformation : IAdditionalDataHolder, IParsable {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
-        /// <summary>Indicates if there are higher storage quota plans available. Read-only.</summary>
+        /// <summary>Indicates whether there are higher storage quota plans available. Read-only.</summary>
         public bool? UpgradeAvailable { get; set; }
         /// <summary>
         /// Instantiates a new storagePlanInformation and sets the default values.
@@ -19,7 +19,7 @@ namespace ApiSdk.Models.Microsoft.Graph {
         /// Creates a new instance of the appropriate class based on discriminator value
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         /// </summary>
-        public static StoragePlanInformation CreateFromDiscriminatorValue(IParseNode parseNode) {
+        public static ApiSdk.Models.Microsoft.Graph.StoragePlanInformation CreateFromDiscriminatorValue(IParseNode parseNode) {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
             return new StoragePlanInformation();
         }

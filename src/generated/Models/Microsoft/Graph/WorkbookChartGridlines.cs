@@ -6,14 +6,14 @@ using System.Linq;
 namespace ApiSdk.Models.Microsoft.Graph {
     public class WorkbookChartGridlines : Entity, IParsable {
         /// <summary>Represents the formatting of chart gridlines. Read-only.</summary>
-        public WorkbookChartGridlinesFormat Format { get; set; }
+        public ApiSdk.Models.Microsoft.Graph.WorkbookChartGridlinesFormat Format { get; set; }
         /// <summary>Boolean value representing if the axis gridlines are visible or not.</summary>
         public bool? Visible { get; set; }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         /// </summary>
-        public static new WorkbookChartGridlines CreateFromDiscriminatorValue(IParseNode parseNode) {
+        public static new ApiSdk.Models.Microsoft.Graph.WorkbookChartGridlines CreateFromDiscriminatorValue(IParseNode parseNode) {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
             return new WorkbookChartGridlines();
         }
@@ -22,7 +22,7 @@ namespace ApiSdk.Models.Microsoft.Graph {
         /// </summary>
         public new IDictionary<string, Action<T, IParseNode>> GetFieldDeserializers<T>() {
             return new Dictionary<string, Action<T, IParseNode>>(base.GetFieldDeserializers<T>()) {
-                {"format", (o,n) => { (o as WorkbookChartGridlines).Format = n.GetObjectValue<WorkbookChartGridlinesFormat>(WorkbookChartGridlinesFormat.CreateFromDiscriminatorValue); } },
+                {"format", (o,n) => { (o as WorkbookChartGridlines).Format = n.GetObjectValue<ApiSdk.Models.Microsoft.Graph.WorkbookChartGridlinesFormat>(ApiSdk.Models.Microsoft.Graph.WorkbookChartGridlinesFormat.CreateFromDiscriminatorValue); } },
                 {"visible", (o,n) => { (o as WorkbookChartGridlines).Visible = n.GetBoolValue(); } },
             };
         }
@@ -33,7 +33,7 @@ namespace ApiSdk.Models.Microsoft.Graph {
         public new void Serialize(ISerializationWriter writer) {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             base.Serialize(writer);
-            writer.WriteObjectValue<WorkbookChartGridlinesFormat>("format", Format);
+            writer.WriteObjectValue<ApiSdk.Models.Microsoft.Graph.WorkbookChartGridlinesFormat>("format", Format);
             writer.WriteBoolValue("visible", Visible);
         }
     }
