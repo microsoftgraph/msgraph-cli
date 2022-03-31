@@ -11,6 +11,9 @@ on:
     branches: [main]
     tags: ['v*']
     paths: ['src/**', '.github/workflows/**']
+env:
+  IMAGE_NAME: ${{ github.repository }}
+  REGISTRY: ghcr.io
 jobs:
   push_to_registry:
     name: Push Docker image to GitHub Packages
@@ -27,18 +30,18 @@ jobs:
         with:
           submodules: true
           ref: ${{github.event.inputs.tag || ''}}
-      - name: Login to GitHub package feed
+      - name: Login to docker registry
         uses: docker/login-action@v1.14.1 
         with:
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
-          registry: docker.pkg.github.com
+          registry: ${{ env.REGISTRY }}
       - name: Push to GitHub Packages - Nightly
         if: github.ref == 'refs/heads/main' || github.event.inputs.tag == 'main'
         uses: docker/build-push-action@v2.10.0
         with:
           push: true
-          tags: docker.pkg.github.com/microsoftgraph/msgraph-cli/msgraph-cli:nightly
+          tags: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:nightly
           secrets: |
             "user=${{ secrets.NUGET_USER }}"
             "token=${{ secrets.NUGET_PASSWORD }}"
@@ -47,7 +50,7 @@ jobs:
         uses: docker/build-push-action@v2.10.0
         with:
           push: true
-          tags: docker.pkg.github.com/microsoftgraph/msgraph-cli/msgraph-cli:latest,docker.pkg.github.com/microsoftgraph/msgraph-cli/msgraph-cli:${{ steps.get-version.outputs.version }}
+          tags: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:latest,${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${{ steps.get-version.outputs.version }}
           secrets: |
             "user=${{ secrets.NUGET_USER }}"
             "token=${{ secrets.NUGET_PASSWORD }}"
