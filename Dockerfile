@@ -6,6 +6,7 @@
 FROM mcr.microsoft.com/dotnet/sdk:6.0-alpine AS build-env
 
 ARG MS_NUGET_URL=https://nuget.pkg.github.com/microsoft/index.json
+ARG MSGRAPH_NUGET_URL=https://nuget.pkg.github.com/microsoftgraph/index.json
 
 WORKDIR /app
 
