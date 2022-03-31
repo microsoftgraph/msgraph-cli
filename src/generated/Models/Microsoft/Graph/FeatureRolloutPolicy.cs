@@ -6,7 +6,7 @@ using System.Linq;
 namespace ApiSdk.Models.Microsoft.Graph {
     public class FeatureRolloutPolicy : Entity, IParsable {
         /// <summary>Nullable. Specifies a list of directoryObjects that feature is enabled for.</summary>
-        public List<DirectoryObject> AppliesTo { get; set; }
+        public List<ApiSdk.Models.Microsoft.Graph.DirectoryObject> AppliesTo { get; set; }
         /// <summary>A description for this feature rollout policy.</summary>
         public string Description { get; set; }
         /// <summary>The display name for this  feature rollout policy.</summary>
@@ -21,7 +21,7 @@ namespace ApiSdk.Models.Microsoft.Graph {
         /// Creates a new instance of the appropriate class based on discriminator value
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         /// </summary>
-        public static new FeatureRolloutPolicy CreateFromDiscriminatorValue(IParseNode parseNode) {
+        public static new ApiSdk.Models.Microsoft.Graph.FeatureRolloutPolicy CreateFromDiscriminatorValue(IParseNode parseNode) {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
             return new FeatureRolloutPolicy();
         }
@@ -30,7 +30,7 @@ namespace ApiSdk.Models.Microsoft.Graph {
         /// </summary>
         public new IDictionary<string, Action<T, IParseNode>> GetFieldDeserializers<T>() {
             return new Dictionary<string, Action<T, IParseNode>>(base.GetFieldDeserializers<T>()) {
-                {"appliesTo", (o,n) => { (o as FeatureRolloutPolicy).AppliesTo = n.GetCollectionOfObjectValues<DirectoryObject>(DirectoryObject.CreateFromDiscriminatorValue).ToList(); } },
+                {"appliesTo", (o,n) => { (o as FeatureRolloutPolicy).AppliesTo = n.GetCollectionOfObjectValues<ApiSdk.Models.Microsoft.Graph.DirectoryObject>(ApiSdk.Models.Microsoft.Graph.DirectoryObject.CreateFromDiscriminatorValue).ToList(); } },
                 {"description", (o,n) => { (o as FeatureRolloutPolicy).Description = n.GetStringValue(); } },
                 {"displayName", (o,n) => { (o as FeatureRolloutPolicy).DisplayName = n.GetStringValue(); } },
                 {"feature", (o,n) => { (o as FeatureRolloutPolicy).Feature = n.GetEnumValue<StagedFeatureName>(); } },
@@ -45,7 +45,7 @@ namespace ApiSdk.Models.Microsoft.Graph {
         public new void Serialize(ISerializationWriter writer) {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             base.Serialize(writer);
-            writer.WriteCollectionOfObjectValues<DirectoryObject>("appliesTo", AppliesTo);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.Microsoft.Graph.DirectoryObject>("appliesTo", AppliesTo);
             writer.WriteStringValue("description", Description);
             writer.WriteStringValue("displayName", DisplayName);
             writer.WriteEnumValue<StagedFeatureName>("feature", Feature);

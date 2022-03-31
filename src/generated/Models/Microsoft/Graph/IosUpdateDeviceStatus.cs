@@ -13,7 +13,7 @@ namespace ApiSdk.Models.Microsoft.Graph {
         public string DeviceId { get; set; }
         /// <summary>The device model that is being reported</summary>
         public string DeviceModel { get; set; }
-        /// <summary>The installation status of the policy report. Possible values are: success, available, idle, unknown, mdmClientCrashed, timeout, downloading, downloadFailed, downloadRequiresComputer, downloadInsufficientSpace, downloadInsufficientPower, downloadInsufficientNetwork, installing, installInsufficientSpace, installInsufficientPower, installPhoneCallInProgress, installFailed, notSupportedOperation, sharedDeviceUserLoggedInError, updateError, deviceOsHigherThanDesiredOsVersion, updateScanFailed.</summary>
+        /// <summary>The installation status of the policy report. Possible values are: success, available, idle, unknown, downloading, downloadFailed, downloadRequiresComputer, downloadInsufficientSpace, downloadInsufficientPower, downloadInsufficientNetwork, installing, installInsufficientSpace, installInsufficientPower, installPhoneCallInProgress, installFailed, notSupportedOperation, sharedDeviceUserLoggedInError, deviceOsHigherThanDesiredOsVersion.</summary>
         public IosUpdatesInstallStatus? InstallStatus { get; set; }
         /// <summary>Last modified date time of the policy report.</summary>
         public DateTimeOffset? LastReportedDateTime { get; set; }
@@ -31,7 +31,7 @@ namespace ApiSdk.Models.Microsoft.Graph {
         /// Creates a new instance of the appropriate class based on discriminator value
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         /// </summary>
-        public static new IosUpdateDeviceStatus CreateFromDiscriminatorValue(IParseNode parseNode) {
+        public static new ApiSdk.Models.Microsoft.Graph.IosUpdateDeviceStatus CreateFromDiscriminatorValue(IParseNode parseNode) {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
             return new IosUpdateDeviceStatus();
         }

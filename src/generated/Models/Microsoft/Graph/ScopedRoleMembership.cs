@@ -9,12 +9,12 @@ namespace ApiSdk.Models.Microsoft.Graph {
         public string AdministrativeUnitId { get; set; }
         /// <summary>Unique identifier for the directory role that the member is in.</summary>
         public string RoleId { get; set; }
-        public Identity RoleMemberInfo { get; set; }
+        public ApiSdk.Models.Microsoft.Graph.Identity RoleMemberInfo { get; set; }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         /// </summary>
-        public static new ScopedRoleMembership CreateFromDiscriminatorValue(IParseNode parseNode) {
+        public static new ApiSdk.Models.Microsoft.Graph.ScopedRoleMembership CreateFromDiscriminatorValue(IParseNode parseNode) {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
             return new ScopedRoleMembership();
         }
@@ -25,7 +25,7 @@ namespace ApiSdk.Models.Microsoft.Graph {
             return new Dictionary<string, Action<T, IParseNode>>(base.GetFieldDeserializers<T>()) {
                 {"administrativeUnitId", (o,n) => { (o as ScopedRoleMembership).AdministrativeUnitId = n.GetStringValue(); } },
                 {"roleId", (o,n) => { (o as ScopedRoleMembership).RoleId = n.GetStringValue(); } },
-                {"roleMemberInfo", (o,n) => { (o as ScopedRoleMembership).RoleMemberInfo = n.GetObjectValue<Identity>(Identity.CreateFromDiscriminatorValue); } },
+                {"roleMemberInfo", (o,n) => { (o as ScopedRoleMembership).RoleMemberInfo = n.GetObjectValue<ApiSdk.Models.Microsoft.Graph.Identity>(ApiSdk.Models.Microsoft.Graph.Identity.CreateFromDiscriminatorValue); } },
             };
         }
         /// <summary>
@@ -37,7 +37,7 @@ namespace ApiSdk.Models.Microsoft.Graph {
             base.Serialize(writer);
             writer.WriteStringValue("administrativeUnitId", AdministrativeUnitId);
             writer.WriteStringValue("roleId", RoleId);
-            writer.WriteObjectValue<Identity>("roleMemberInfo", RoleMemberInfo);
+            writer.WriteObjectValue<ApiSdk.Models.Microsoft.Graph.Identity>("roleMemberInfo", RoleMemberInfo);
         }
     }
 }

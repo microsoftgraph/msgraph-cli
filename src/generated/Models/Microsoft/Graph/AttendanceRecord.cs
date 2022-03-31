@@ -6,7 +6,7 @@ using System.Linq;
 namespace ApiSdk.Models.Microsoft.Graph {
     public class AttendanceRecord : Entity, IParsable {
         /// <summary>List of time periods between joining and leaving a meeting.</summary>
-        public List<AttendanceInterval> AttendanceIntervals { get; set; }
+        public List<ApiSdk.Models.Microsoft.Graph.AttendanceInterval> AttendanceIntervals { get; set; }
         /// <summary>Email address of the user associated with this atttendance record.</summary>
         public string EmailAddress { get; set; }
         /// <summary>Identity of the user associated with this atttendance record.</summary>
@@ -19,7 +19,7 @@ namespace ApiSdk.Models.Microsoft.Graph {
         /// Creates a new instance of the appropriate class based on discriminator value
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         /// </summary>
-        public static new AttendanceRecord CreateFromDiscriminatorValue(IParseNode parseNode) {
+        public static new ApiSdk.Models.Microsoft.Graph.AttendanceRecord CreateFromDiscriminatorValue(IParseNode parseNode) {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
             return new AttendanceRecord();
         }
@@ -28,7 +28,7 @@ namespace ApiSdk.Models.Microsoft.Graph {
         /// </summary>
         public new IDictionary<string, Action<T, IParseNode>> GetFieldDeserializers<T>() {
             return new Dictionary<string, Action<T, IParseNode>>(base.GetFieldDeserializers<T>()) {
-                {"attendanceIntervals", (o,n) => { (o as AttendanceRecord).AttendanceIntervals = n.GetCollectionOfObjectValues<AttendanceInterval>(AttendanceInterval.CreateFromDiscriminatorValue).ToList(); } },
+                {"attendanceIntervals", (o,n) => { (o as AttendanceRecord).AttendanceIntervals = n.GetCollectionOfObjectValues<ApiSdk.Models.Microsoft.Graph.AttendanceInterval>(ApiSdk.Models.Microsoft.Graph.AttendanceInterval.CreateFromDiscriminatorValue).ToList(); } },
                 {"emailAddress", (o,n) => { (o as AttendanceRecord).EmailAddress = n.GetStringValue(); } },
                 {"identity", (o,n) => { (o as AttendanceRecord).Identity = n.GetObjectValue<ApiSdk.Models.Microsoft.Graph.Identity>(ApiSdk.Models.Microsoft.Graph.Identity.CreateFromDiscriminatorValue); } },
                 {"role", (o,n) => { (o as AttendanceRecord).Role = n.GetStringValue(); } },
@@ -42,7 +42,7 @@ namespace ApiSdk.Models.Microsoft.Graph {
         public new void Serialize(ISerializationWriter writer) {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             base.Serialize(writer);
-            writer.WriteCollectionOfObjectValues<AttendanceInterval>("attendanceIntervals", AttendanceIntervals);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.Microsoft.Graph.AttendanceInterval>("attendanceIntervals", AttendanceIntervals);
             writer.WriteStringValue("emailAddress", EmailAddress);
             writer.WriteObjectValue<ApiSdk.Models.Microsoft.Graph.Identity>("identity", Identity);
             writer.WriteStringValue("role", Role);

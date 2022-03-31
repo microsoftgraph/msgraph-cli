@@ -11,7 +11,7 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 namespace ApiSdk.Organization.Item.SetMobileDeviceManagementAuthority {
-    /// <summary>Builds and executes requests for operations under \organization\{organizationItem-Id}\microsoft.graph.setMobileDeviceManagementAuthority</summary>
+    /// <summary>Provides operations to call the setMobileDeviceManagementAuthority method.</summary>
     public class SetMobileDeviceManagementAuthorityRequestBuilder {
         /// <summary>Path parameters for the request</summary>
         private Dictionary<string, object> PathParameters { get; set; }
@@ -26,10 +26,10 @@ namespace ApiSdk.Organization.Item.SetMobileDeviceManagementAuthority {
             var command = new Command("post");
             command.Description = "Set mobile device management authority";
             // Create options for all the parameters
-            var organizationItemIdOption = new Option<string>("--organization-item-id", description: "key: id of organization") {
+            var organizationIdOption = new Option<string>("--organization-id", description: "key: id of organization") {
             };
-            organizationItemIdOption.IsRequired = true;
-            command.AddOption(organizationItemIdOption);
+            organizationIdOption.IsRequired = true;
+            command.AddOption(organizationIdOption);
             var outputOption = new Option<FormatterType>("--output", () => FormatterType.JSON){
                 IsRequired = true
             };
@@ -44,7 +44,7 @@ namespace ApiSdk.Organization.Item.SetMobileDeviceManagementAuthority {
             }, description: "Disable indentation for the JSON output formatter.");
             command.AddOption(jsonNoIndentOption);
             command.SetHandler(async (object[] parameters) => {
-                var organizationItemId = (string) parameters[0];
+                var organizationId = (string) parameters[0];
                 var output = (FormatterType) parameters[1];
                 var query = (string) parameters[2];
                 var jsonNoIndent = (bool) parameters[3];
@@ -52,15 +52,15 @@ namespace ApiSdk.Organization.Item.SetMobileDeviceManagementAuthority {
                 var outputFormatterFactory = (IOutputFormatterFactory) parameters[5];
                 var cancellationToken = (CancellationToken) parameters[6];
                 PathParameters.Clear();
-                PathParameters.Add("organizationItem_Id", organizationItemId);
+                PathParameters.Add("organization_id", organizationId);
                 var requestInfo = CreatePostRequestInformation(q => {
                 });
                 var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: default, cancellationToken: cancellationToken);
-                var formatter = outputFormatterFactory.GetFormatter(output);
                 response = await outputFilter?.FilterOutputAsync(response, query, cancellationToken) ?? response;
                 var formatterOptions = output.GetOutputFormatterOptions(new FormatterOptionsModel(!jsonNoIndent));
+                var formatter = outputFormatterFactory.GetFormatter(output);
                 await formatter.WriteOutputAsync(response, formatterOptions, cancellationToken);
-            }, new CollectionBinding(organizationItemIdOption, outputOption, queryOption, jsonNoIndentOption, new TypeBinding(typeof(IOutputFilter)), new TypeBinding(typeof(IOutputFormatterFactory)), new TypeBinding(typeof(CancellationToken))));
+            }, new CollectionBinding(organizationIdOption, outputOption, queryOption, jsonNoIndentOption, new TypeBinding(typeof(IOutputFilter)), new TypeBinding(typeof(IOutputFormatterFactory)), new TypeBinding(typeof(CancellationToken))));
             return command;
         }
         /// <summary>
@@ -71,24 +71,24 @@ namespace ApiSdk.Organization.Item.SetMobileDeviceManagementAuthority {
         public SetMobileDeviceManagementAuthorityRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) {
             _ = pathParameters ?? throw new ArgumentNullException(nameof(pathParameters));
             _ = requestAdapter ?? throw new ArgumentNullException(nameof(requestAdapter));
-            UrlTemplate = "{+baseurl}/organization/{organizationItem_Id}/microsoft.graph.setMobileDeviceManagementAuthority";
+            UrlTemplate = "{+baseurl}/organization/{organization_id}/microsoft.graph.setMobileDeviceManagementAuthority";
             var urlTplParams = new Dictionary<string, object>(pathParameters);
             PathParameters = urlTplParams;
             RequestAdapter = requestAdapter;
         }
         /// <summary>
         /// Set mobile device management authority
-        /// <param name="h">Request headers</param>
-        /// <param name="o">Request options</param>
+        /// <param name="headers">Request headers</param>
+        /// <param name="options">Request options</param>
         /// </summary>
-        public RequestInformation CreatePostRequestInformation(Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
+        public RequestInformation CreatePostRequestInformation(Action<IDictionary<string, string>> headers = default, IEnumerable<IRequestOption> options = default) {
             var requestInfo = new RequestInformation {
                 HttpMethod = Method.POST,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };
-            h?.Invoke(requestInfo.Headers);
-            requestInfo.AddRequestOptions(o?.ToArray());
+            headers?.Invoke(requestInfo.Headers);
+            requestInfo.AddRequestOptions(options?.ToArray());
             return requestInfo;
         }
     }

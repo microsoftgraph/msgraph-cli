@@ -1,9 +1,15 @@
 using ApiSdk.Models.Microsoft.Graph;
+using ApiSdk.Models.Microsoft.Graph.ODataErrors;
 using ApiSdk.Users.Item.Calendars.Item.CalendarView.Item.Instances.Item.Accept;
+using ApiSdk.Users.Item.Calendars.Item.CalendarView.Item.Instances.Item.Attachments;
+using ApiSdk.Users.Item.Calendars.Item.CalendarView.Item.Instances.Item.Calendar;
 using ApiSdk.Users.Item.Calendars.Item.CalendarView.Item.Instances.Item.Cancel;
 using ApiSdk.Users.Item.Calendars.Item.CalendarView.Item.Instances.Item.Decline;
 using ApiSdk.Users.Item.Calendars.Item.CalendarView.Item.Instances.Item.DismissReminder;
+using ApiSdk.Users.Item.Calendars.Item.CalendarView.Item.Instances.Item.Extensions;
 using ApiSdk.Users.Item.Calendars.Item.CalendarView.Item.Instances.Item.Forward;
+using ApiSdk.Users.Item.Calendars.Item.CalendarView.Item.Instances.Item.MultiValueExtendedProperties;
+using ApiSdk.Users.Item.Calendars.Item.CalendarView.Item.Instances.Item.SingleValueExtendedProperties;
 using ApiSdk.Users.Item.Calendars.Item.CalendarView.Item.Instances.Item.SnoozeReminder;
 using ApiSdk.Users.Item.Calendars.Item.CalendarView.Item.Instances.Item.TentativelyAccept;
 using Microsoft.Kiota.Abstractions;
@@ -19,7 +25,7 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 namespace ApiSdk.Users.Item.Calendars.Item.CalendarView.Item.Instances.Item {
-    /// <summary>Builds and executes requests for operations under \users\{user-id}\calendars\{calendar-id}\calendarView\{event-id}\instances\{event-id1}</summary>
+    /// <summary>Provides operations to manage the instances property of the microsoft.graph.event entity.</summary>
     public class EventItemRequestBuilder {
         /// <summary>Path parameters for the request</summary>
         private Dictionary<string, object> PathParameters { get; set; }
@@ -29,28 +35,46 @@ namespace ApiSdk.Users.Item.Calendars.Item.CalendarView.Item.Instances.Item {
         private string UrlTemplate { get; set; }
         public Command BuildAcceptCommand() {
             var command = new Command("accept");
-            var builder = new ApiSdk.Users.Item.Calendars.Item.CalendarView.Item.Instances.Item.Accept.AcceptRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new AcceptRequestBuilder(PathParameters, RequestAdapter);
             command.AddCommand(builder.BuildPostCommand());
+            return command;
+        }
+        public Command BuildAttachmentsCommand() {
+            var command = new Command("attachments");
+            var builder = new AttachmentsRequestBuilder(PathParameters, RequestAdapter);
+            foreach (var cmd in builder.BuildCommand()) {
+                command.AddCommand(cmd);
+            }
+            command.AddCommand(builder.BuildCountCommand());
+            command.AddCommand(builder.BuildCreateCommand());
+            command.AddCommand(builder.BuildCreateUploadSessionCommand());
+            command.AddCommand(builder.BuildListCommand());
+            return command;
+        }
+        public Command BuildCalendarCommand() {
+            var command = new Command("calendar");
+            var builder = new CalendarRequestBuilder(PathParameters, RequestAdapter);
+            command.AddCommand(builder.BuildGetCommand());
             return command;
         }
         public Command BuildCancelCommand() {
             var command = new Command("cancel");
-            var builder = new ApiSdk.Users.Item.Calendars.Item.CalendarView.Item.Instances.Item.Cancel.CancelRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new CancelRequestBuilder(PathParameters, RequestAdapter);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
         public Command BuildDeclineCommand() {
             var command = new Command("decline");
-            var builder = new ApiSdk.Users.Item.Calendars.Item.CalendarView.Item.Instances.Item.Decline.DeclineRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new DeclineRequestBuilder(PathParameters, RequestAdapter);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
         /// <summary>
-        /// The occurrences of a recurring series, if the event is a series master. This property includes occurrences that are part of the recurrence pattern, and exceptions that have been modified, but does not include occurrences that have been cancelled from the series. Navigation property. Read-only. Nullable.
+        /// Delete navigation property instances for users
         /// </summary>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
-            command.Description = "The occurrences of a recurring series, if the event is a series master. This property includes occurrences that are part of the recurrence pattern, and exceptions that have been modified, but does not include occurrences that have been cancelled from the series. Navigation property. Read-only. Nullable.";
+            command.Description = "Delete navigation property instances for users";
             // Create options for all the parameters
             var userIdOption = new Option<string>("--user-id", description: "key: id of user") {
             };
@@ -81,20 +105,35 @@ namespace ApiSdk.Users.Item.Calendars.Item.CalendarView.Item.Instances.Item {
                 PathParameters.Add("event_id1", eventId1);
                 var requestInfo = CreateDeleteRequestInformation(q => {
                 });
-                await RequestAdapter.SendNoContentAsync(requestInfo, errorMapping: default, cancellationToken: cancellationToken);
+                var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
+                    {"4XX", ODataError.CreateFromDiscriminatorValue},
+                    {"5XX", ODataError.CreateFromDiscriminatorValue},
+                };
+                await RequestAdapter.SendNoContentAsync(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken);
                 Console.WriteLine("Success");
             }, new CollectionBinding(userIdOption, calendarIdOption, eventIdOption, eventId1Option, new TypeBinding(typeof(CancellationToken))));
             return command;
         }
         public Command BuildDismissReminderCommand() {
             var command = new Command("dismiss-reminder");
-            var builder = new ApiSdk.Users.Item.Calendars.Item.CalendarView.Item.Instances.Item.DismissReminder.DismissReminderRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new DismissReminderRequestBuilder(PathParameters, RequestAdapter);
             command.AddCommand(builder.BuildPostCommand());
+            return command;
+        }
+        public Command BuildExtensionsCommand() {
+            var command = new Command("extensions");
+            var builder = new ExtensionsRequestBuilder(PathParameters, RequestAdapter);
+            foreach (var cmd in builder.BuildCommand()) {
+                command.AddCommand(cmd);
+            }
+            command.AddCommand(builder.BuildCountCommand());
+            command.AddCommand(builder.BuildCreateCommand());
+            command.AddCommand(builder.BuildListCommand());
             return command;
         }
         public Command BuildForwardCommand() {
             var command = new Command("forward");
-            var builder = new ApiSdk.Users.Item.Calendars.Item.CalendarView.Item.Instances.Item.Forward.ForwardRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new ForwardRequestBuilder(PathParameters, RequestAdapter);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
@@ -159,20 +198,35 @@ namespace ApiSdk.Users.Item.Calendars.Item.CalendarView.Item.Instances.Item {
                 var requestInfo = CreateGetRequestInformation(q => {
                     q.Select = select;
                 });
-                var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: default, cancellationToken: cancellationToken);
-                var formatter = outputFormatterFactory.GetFormatter(output);
+                var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
+                    {"4XX", ODataError.CreateFromDiscriminatorValue},
+                    {"5XX", ODataError.CreateFromDiscriminatorValue},
+                };
+                var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken);
                 response = await outputFilter?.FilterOutputAsync(response, query, cancellationToken) ?? response;
                 var formatterOptions = output.GetOutputFormatterOptions(new FormatterOptionsModel(!jsonNoIndent));
+                var formatter = outputFormatterFactory.GetFormatter(output);
                 await formatter.WriteOutputAsync(response, formatterOptions, cancellationToken);
             }, new CollectionBinding(userIdOption, calendarIdOption, eventIdOption, eventId1Option, selectOption, outputOption, queryOption, jsonNoIndentOption, new TypeBinding(typeof(IOutputFilter)), new TypeBinding(typeof(IOutputFormatterFactory)), new TypeBinding(typeof(CancellationToken))));
             return command;
         }
+        public Command BuildMultiValueExtendedPropertiesCommand() {
+            var command = new Command("multi-value-extended-properties");
+            var builder = new MultiValueExtendedPropertiesRequestBuilder(PathParameters, RequestAdapter);
+            foreach (var cmd in builder.BuildCommand()) {
+                command.AddCommand(cmd);
+            }
+            command.AddCommand(builder.BuildCountCommand());
+            command.AddCommand(builder.BuildCreateCommand());
+            command.AddCommand(builder.BuildListCommand());
+            return command;
+        }
         /// <summary>
-        /// The occurrences of a recurring series, if the event is a series master. This property includes occurrences that are part of the recurrence pattern, and exceptions that have been modified, but does not include occurrences that have been cancelled from the series. Navigation property. Read-only. Nullable.
+        /// Update the navigation property instances in users
         /// </summary>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
-            command.Description = "The occurrences of a recurring series, if the event is a series master. This property includes occurrences that are part of the recurrence pattern, and exceptions that have been modified, but does not include occurrences that have been cancelled from the series. Navigation property. Read-only. Nullable.";
+            command.Description = "Update the navigation property instances in users";
             // Create options for all the parameters
             var userIdOption = new Option<string>("--user-id", description: "key: id of user") {
             };
@@ -211,20 +265,35 @@ namespace ApiSdk.Users.Item.Calendars.Item.CalendarView.Item.Instances.Item {
                 var model = parseNode.GetObjectValue<Event>(Event.CreateFromDiscriminatorValue);
                 var requestInfo = CreatePatchRequestInformation(model, q => {
                 });
-                await RequestAdapter.SendNoContentAsync(requestInfo, errorMapping: default, cancellationToken: cancellationToken);
+                var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
+                    {"4XX", ODataError.CreateFromDiscriminatorValue},
+                    {"5XX", ODataError.CreateFromDiscriminatorValue},
+                };
+                await RequestAdapter.SendNoContentAsync(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken);
                 Console.WriteLine("Success");
             }, new CollectionBinding(userIdOption, calendarIdOption, eventIdOption, eventId1Option, bodyOption, new TypeBinding(typeof(CancellationToken))));
             return command;
         }
+        public Command BuildSingleValueExtendedPropertiesCommand() {
+            var command = new Command("single-value-extended-properties");
+            var builder = new SingleValueExtendedPropertiesRequestBuilder(PathParameters, RequestAdapter);
+            foreach (var cmd in builder.BuildCommand()) {
+                command.AddCommand(cmd);
+            }
+            command.AddCommand(builder.BuildCountCommand());
+            command.AddCommand(builder.BuildCreateCommand());
+            command.AddCommand(builder.BuildListCommand());
+            return command;
+        }
         public Command BuildSnoozeReminderCommand() {
             var command = new Command("snooze-reminder");
-            var builder = new ApiSdk.Users.Item.Calendars.Item.CalendarView.Item.Instances.Item.SnoozeReminder.SnoozeReminderRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new SnoozeReminderRequestBuilder(PathParameters, RequestAdapter);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
         public Command BuildTentativelyAcceptCommand() {
             var command = new Command("tentatively-accept");
-            var builder = new ApiSdk.Users.Item.Calendars.Item.CalendarView.Item.Instances.Item.TentativelyAccept.TentativelyAcceptRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new TentativelyAcceptRequestBuilder(PathParameters, RequestAdapter);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
@@ -242,48 +311,48 @@ namespace ApiSdk.Users.Item.Calendars.Item.CalendarView.Item.Instances.Item {
             RequestAdapter = requestAdapter;
         }
         /// <summary>
-        /// The occurrences of a recurring series, if the event is a series master. This property includes occurrences that are part of the recurrence pattern, and exceptions that have been modified, but does not include occurrences that have been cancelled from the series. Navigation property. Read-only. Nullable.
-        /// <param name="h">Request headers</param>
-        /// <param name="o">Request options</param>
+        /// Delete navigation property instances for users
+        /// <param name="headers">Request headers</param>
+        /// <param name="options">Request options</param>
         /// </summary>
-        public RequestInformation CreateDeleteRequestInformation(Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
+        public RequestInformation CreateDeleteRequestInformation(Action<IDictionary<string, string>> headers = default, IEnumerable<IRequestOption> options = default) {
             var requestInfo = new RequestInformation {
                 HttpMethod = Method.DELETE,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };
-            h?.Invoke(requestInfo.Headers);
-            requestInfo.AddRequestOptions(o?.ToArray());
+            headers?.Invoke(requestInfo.Headers);
+            requestInfo.AddRequestOptions(options?.ToArray());
             return requestInfo;
         }
         /// <summary>
         /// The occurrences of a recurring series, if the event is a series master. This property includes occurrences that are part of the recurrence pattern, and exceptions that have been modified, but does not include occurrences that have been cancelled from the series. Navigation property. Read-only. Nullable.
-        /// <param name="h">Request headers</param>
-        /// <param name="o">Request options</param>
-        /// <param name="q">Request query parameters</param>
+        /// <param name="headers">Request headers</param>
+        /// <param name="options">Request options</param>
+        /// <param name="queryParameters">Request query parameters</param>
         /// </summary>
-        public RequestInformation CreateGetRequestInformation(Action<GetQueryParameters> q = default, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
+        public RequestInformation CreateGetRequestInformation(Action<GetQueryParameters> queryParameters = default, Action<IDictionary<string, string>> headers = default, IEnumerable<IRequestOption> options = default) {
             var requestInfo = new RequestInformation {
                 HttpMethod = Method.GET,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };
-            if (q != null) {
+            if (queryParameters != null) {
                 var qParams = new GetQueryParameters();
-                q.Invoke(qParams);
+                queryParameters.Invoke(qParams);
                 qParams.AddQueryParameters(requestInfo.QueryParameters);
             }
-            h?.Invoke(requestInfo.Headers);
-            requestInfo.AddRequestOptions(o?.ToArray());
+            headers?.Invoke(requestInfo.Headers);
+            requestInfo.AddRequestOptions(options?.ToArray());
             return requestInfo;
         }
         /// <summary>
-        /// The occurrences of a recurring series, if the event is a series master. This property includes occurrences that are part of the recurrence pattern, and exceptions that have been modified, but does not include occurrences that have been cancelled from the series. Navigation property. Read-only. Nullable.
+        /// Update the navigation property instances in users
         /// <param name="body"></param>
-        /// <param name="h">Request headers</param>
-        /// <param name="o">Request options</param>
+        /// <param name="headers">Request headers</param>
+        /// <param name="options">Request options</param>
         /// </summary>
-        public RequestInformation CreatePatchRequestInformation(Event body, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
+        public RequestInformation CreatePatchRequestInformation(Event body, Action<IDictionary<string, string>> headers = default, IEnumerable<IRequestOption> options = default) {
             _ = body ?? throw new ArgumentNullException(nameof(body));
             var requestInfo = new RequestInformation {
                 HttpMethod = Method.PATCH,
@@ -291,8 +360,8 @@ namespace ApiSdk.Users.Item.Calendars.Item.CalendarView.Item.Instances.Item {
                 PathParameters = PathParameters,
             };
             requestInfo.SetContentFromParsable(RequestAdapter, "application/json", body);
-            h?.Invoke(requestInfo.Headers);
-            requestInfo.AddRequestOptions(o?.ToArray());
+            headers?.Invoke(requestInfo.Headers);
+            requestInfo.AddRequestOptions(options?.ToArray());
             return requestInfo;
         }
         /// <summary>The occurrences of a recurring series, if the event is a series master. This property includes occurrences that are part of the recurrence pattern, and exceptions that have been modified, but does not include occurrences that have been cancelled from the series. Navigation property. Read-only. Nullable.</summary>

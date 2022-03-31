@@ -8,16 +8,16 @@ namespace ApiSdk.Models.Microsoft.Graph.TermStore {
         /// <summary>Default language of the term store.</summary>
         public string DefaultLanguageTag { get; set; }
         /// <summary>Collection of all groups available in the term store.</summary>
-        public List<Group> Groups { get; set; }
+        public List<ApiSdk.Models.Microsoft.Graph.TermStore.Group> Groups { get; set; }
         /// <summary>List of languages for the term store.</summary>
         public List<string> LanguageTags { get; set; }
         /// <summary>Collection of all sets available in the term store.</summary>
-        public List<Set> Sets { get; set; }
+        public List<ApiSdk.Models.Microsoft.Graph.TermStore.Set> Sets { get; set; }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         /// </summary>
-        public static new Store CreateFromDiscriminatorValue(IParseNode parseNode) {
+        public static new ApiSdk.Models.Microsoft.Graph.TermStore.Store CreateFromDiscriminatorValue(IParseNode parseNode) {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
             return new Store();
         }
@@ -27,9 +27,9 @@ namespace ApiSdk.Models.Microsoft.Graph.TermStore {
         public new IDictionary<string, Action<T, IParseNode>> GetFieldDeserializers<T>() {
             return new Dictionary<string, Action<T, IParseNode>>(base.GetFieldDeserializers<T>()) {
                 {"defaultLanguageTag", (o,n) => { (o as Store).DefaultLanguageTag = n.GetStringValue(); } },
-                {"groups", (o,n) => { (o as Store).Groups = n.GetCollectionOfObjectValues<Group>(Group.CreateFromDiscriminatorValue).ToList(); } },
+                {"groups", (o,n) => { (o as Store).Groups = n.GetCollectionOfObjectValues<ApiSdk.Models.Microsoft.Graph.TermStore.Group>(ApiSdk.Models.Microsoft.Graph.TermStore.Group.CreateFromDiscriminatorValue).ToList(); } },
                 {"languageTags", (o,n) => { (o as Store).LanguageTags = n.GetCollectionOfPrimitiveValues<string>().ToList(); } },
-                {"sets", (o,n) => { (o as Store).Sets = n.GetCollectionOfObjectValues<Set>(Set.CreateFromDiscriminatorValue).ToList(); } },
+                {"sets", (o,n) => { (o as Store).Sets = n.GetCollectionOfObjectValues<ApiSdk.Models.Microsoft.Graph.TermStore.Set>(ApiSdk.Models.Microsoft.Graph.TermStore.Set.CreateFromDiscriminatorValue).ToList(); } },
             };
         }
         /// <summary>
@@ -40,9 +40,9 @@ namespace ApiSdk.Models.Microsoft.Graph.TermStore {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             base.Serialize(writer);
             writer.WriteStringValue("defaultLanguageTag", DefaultLanguageTag);
-            writer.WriteCollectionOfObjectValues<Group>("groups", Groups);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.Microsoft.Graph.TermStore.Group>("groups", Groups);
             writer.WriteCollectionOfPrimitiveValues<string>("languageTags", LanguageTags);
-            writer.WriteCollectionOfObjectValues<Set>("sets", Sets);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.Microsoft.Graph.TermStore.Set>("sets", Sets);
         }
     }
 }

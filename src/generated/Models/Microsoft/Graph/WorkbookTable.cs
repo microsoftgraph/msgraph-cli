@@ -6,7 +6,7 @@ using System.Linq;
 namespace ApiSdk.Models.Microsoft.Graph {
     public class WorkbookTable : Entity, IParsable {
         /// <summary>Represents a collection of all the columns in the table. Read-only.</summary>
-        public List<WorkbookTableColumn> Columns { get; set; }
+        public List<ApiSdk.Models.Microsoft.Graph.WorkbookTableColumn> Columns { get; set; }
         /// <summary>Indicates whether the first column contains special formatting.</summary>
         public bool? HighlightFirstColumn { get; set; }
         /// <summary>Indicates whether the last column contains special formatting.</summary>
@@ -16,7 +16,7 @@ namespace ApiSdk.Models.Microsoft.Graph {
         /// <summary>Name of the table.</summary>
         public string Name { get; set; }
         /// <summary>Represents a collection of all the rows in the table. Read-only.</summary>
-        public List<WorkbookTableRow> Rows { get; set; }
+        public List<ApiSdk.Models.Microsoft.Graph.WorkbookTableRow> Rows { get; set; }
         /// <summary>Indicates whether the columns show banded formatting in which odd columns are highlighted differently from even ones to make reading the table easier.</summary>
         public bool? ShowBandedColumns { get; set; }
         /// <summary>Indicates whether the rows show banded formatting in which odd rows are highlighted differently from even ones to make reading the table easier.</summary>
@@ -28,16 +28,16 @@ namespace ApiSdk.Models.Microsoft.Graph {
         /// <summary>Indicates whether the total row is visible or not. This value can be set to show or remove the total row.</summary>
         public bool? ShowTotals { get; set; }
         /// <summary>Represents the sorting for the table. Read-only.</summary>
-        public WorkbookTableSort Sort { get; set; }
-        /// <summary>Constant value that represents the Table style. Possible values are: TableStyleLight1 thru TableStyleLight21, TableStyleMedium1 thru TableStyleMedium28, TableStyleStyleDark1 thru TableStyleStyleDark11. A custom user-defined style present in the workbook can also be specified.</summary>
+        public ApiSdk.Models.Microsoft.Graph.WorkbookTableSort Sort { get; set; }
+        /// <summary>Constant value that represents the Table style. The possible values are: TableStyleLight1 thru TableStyleLight21, TableStyleMedium1 thru TableStyleMedium28, TableStyleStyleDark1 thru TableStyleStyleDark11. A custom user-defined style present in the workbook can also be specified.</summary>
         public string Style { get; set; }
         /// <summary>The worksheet containing the current table. Read-only.</summary>
-        public WorkbookWorksheet Worksheet { get; set; }
+        public ApiSdk.Models.Microsoft.Graph.WorkbookWorksheet Worksheet { get; set; }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         /// </summary>
-        public static new WorkbookTable CreateFromDiscriminatorValue(IParseNode parseNode) {
+        public static new ApiSdk.Models.Microsoft.Graph.WorkbookTable CreateFromDiscriminatorValue(IParseNode parseNode) {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
             return new WorkbookTable();
         }
@@ -46,20 +46,20 @@ namespace ApiSdk.Models.Microsoft.Graph {
         /// </summary>
         public new IDictionary<string, Action<T, IParseNode>> GetFieldDeserializers<T>() {
             return new Dictionary<string, Action<T, IParseNode>>(base.GetFieldDeserializers<T>()) {
-                {"columns", (o,n) => { (o as WorkbookTable).Columns = n.GetCollectionOfObjectValues<WorkbookTableColumn>(WorkbookTableColumn.CreateFromDiscriminatorValue).ToList(); } },
+                {"columns", (o,n) => { (o as WorkbookTable).Columns = n.GetCollectionOfObjectValues<ApiSdk.Models.Microsoft.Graph.WorkbookTableColumn>(ApiSdk.Models.Microsoft.Graph.WorkbookTableColumn.CreateFromDiscriminatorValue).ToList(); } },
                 {"highlightFirstColumn", (o,n) => { (o as WorkbookTable).HighlightFirstColumn = n.GetBoolValue(); } },
                 {"highlightLastColumn", (o,n) => { (o as WorkbookTable).HighlightLastColumn = n.GetBoolValue(); } },
                 {"legacyId", (o,n) => { (o as WorkbookTable).LegacyId = n.GetStringValue(); } },
                 {"name", (o,n) => { (o as WorkbookTable).Name = n.GetStringValue(); } },
-                {"rows", (o,n) => { (o as WorkbookTable).Rows = n.GetCollectionOfObjectValues<WorkbookTableRow>(WorkbookTableRow.CreateFromDiscriminatorValue).ToList(); } },
+                {"rows", (o,n) => { (o as WorkbookTable).Rows = n.GetCollectionOfObjectValues<ApiSdk.Models.Microsoft.Graph.WorkbookTableRow>(ApiSdk.Models.Microsoft.Graph.WorkbookTableRow.CreateFromDiscriminatorValue).ToList(); } },
                 {"showBandedColumns", (o,n) => { (o as WorkbookTable).ShowBandedColumns = n.GetBoolValue(); } },
                 {"showBandedRows", (o,n) => { (o as WorkbookTable).ShowBandedRows = n.GetBoolValue(); } },
                 {"showFilterButton", (o,n) => { (o as WorkbookTable).ShowFilterButton = n.GetBoolValue(); } },
                 {"showHeaders", (o,n) => { (o as WorkbookTable).ShowHeaders = n.GetBoolValue(); } },
                 {"showTotals", (o,n) => { (o as WorkbookTable).ShowTotals = n.GetBoolValue(); } },
-                {"sort", (o,n) => { (o as WorkbookTable).Sort = n.GetObjectValue<WorkbookTableSort>(WorkbookTableSort.CreateFromDiscriminatorValue); } },
+                {"sort", (o,n) => { (o as WorkbookTable).Sort = n.GetObjectValue<ApiSdk.Models.Microsoft.Graph.WorkbookTableSort>(ApiSdk.Models.Microsoft.Graph.WorkbookTableSort.CreateFromDiscriminatorValue); } },
                 {"style", (o,n) => { (o as WorkbookTable).Style = n.GetStringValue(); } },
-                {"worksheet", (o,n) => { (o as WorkbookTable).Worksheet = n.GetObjectValue<WorkbookWorksheet>(WorkbookWorksheet.CreateFromDiscriminatorValue); } },
+                {"worksheet", (o,n) => { (o as WorkbookTable).Worksheet = n.GetObjectValue<ApiSdk.Models.Microsoft.Graph.WorkbookWorksheet>(ApiSdk.Models.Microsoft.Graph.WorkbookWorksheet.CreateFromDiscriminatorValue); } },
             };
         }
         /// <summary>
@@ -69,20 +69,20 @@ namespace ApiSdk.Models.Microsoft.Graph {
         public new void Serialize(ISerializationWriter writer) {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             base.Serialize(writer);
-            writer.WriteCollectionOfObjectValues<WorkbookTableColumn>("columns", Columns);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.Microsoft.Graph.WorkbookTableColumn>("columns", Columns);
             writer.WriteBoolValue("highlightFirstColumn", HighlightFirstColumn);
             writer.WriteBoolValue("highlightLastColumn", HighlightLastColumn);
             writer.WriteStringValue("legacyId", LegacyId);
             writer.WriteStringValue("name", Name);
-            writer.WriteCollectionOfObjectValues<WorkbookTableRow>("rows", Rows);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.Microsoft.Graph.WorkbookTableRow>("rows", Rows);
             writer.WriteBoolValue("showBandedColumns", ShowBandedColumns);
             writer.WriteBoolValue("showBandedRows", ShowBandedRows);
             writer.WriteBoolValue("showFilterButton", ShowFilterButton);
             writer.WriteBoolValue("showHeaders", ShowHeaders);
             writer.WriteBoolValue("showTotals", ShowTotals);
-            writer.WriteObjectValue<WorkbookTableSort>("sort", Sort);
+            writer.WriteObjectValue<ApiSdk.Models.Microsoft.Graph.WorkbookTableSort>("sort", Sort);
             writer.WriteStringValue("style", Style);
-            writer.WriteObjectValue<WorkbookWorksheet>("worksheet", Worksheet);
+            writer.WriteObjectValue<ApiSdk.Models.Microsoft.Graph.WorkbookWorksheet>("worksheet", Worksheet);
         }
     }
 }

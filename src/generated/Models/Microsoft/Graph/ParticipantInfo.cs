@@ -11,12 +11,12 @@ namespace ApiSdk.Models.Microsoft.Graph {
         public string CountryCode { get; set; }
         /// <summary>The type of endpoint the participant is using. Possible values are: default, skypeForBusiness, or skypeForBusinessVoipPhone. Read-only.</summary>
         public ApiSdk.Models.Microsoft.Graph.EndpointType? EndpointType { get; set; }
-        public IdentitySet Identity { get; set; }
+        public ApiSdk.Models.Microsoft.Graph.IdentitySet Identity { get; set; }
         /// <summary>The language culture string. Read-only.</summary>
         public string LanguageId { get; set; }
         /// <summary>The participant ID of the participant. Read-only.</summary>
         public string ParticipantId { get; set; }
-        /// <summary>The home region of the participant. This can be a country, a continent, or a larger geographic region. This does not change based on the participant's current physical location, unlike countryCode. Read-only.</summary>
+        /// <summary>The home region of the participant. This can be a country, a continent, or a larger geographic region. This does not change based on the participant's current physical location. Read-only.</summary>
         public string Region { get; set; }
         /// <summary>
         /// Instantiates a new participantInfo and sets the default values.
@@ -28,7 +28,7 @@ namespace ApiSdk.Models.Microsoft.Graph {
         /// Creates a new instance of the appropriate class based on discriminator value
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         /// </summary>
-        public static ParticipantInfo CreateFromDiscriminatorValue(IParseNode parseNode) {
+        public static ApiSdk.Models.Microsoft.Graph.ParticipantInfo CreateFromDiscriminatorValue(IParseNode parseNode) {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
             return new ParticipantInfo();
         }
@@ -39,7 +39,7 @@ namespace ApiSdk.Models.Microsoft.Graph {
             return new Dictionary<string, Action<T, IParseNode>> {
                 {"countryCode", (o,n) => { (o as ParticipantInfo).CountryCode = n.GetStringValue(); } },
                 {"endpointType", (o,n) => { (o as ParticipantInfo).EndpointType = n.GetEnumValue<EndpointType>(); } },
-                {"identity", (o,n) => { (o as ParticipantInfo).Identity = n.GetObjectValue<IdentitySet>(IdentitySet.CreateFromDiscriminatorValue); } },
+                {"identity", (o,n) => { (o as ParticipantInfo).Identity = n.GetObjectValue<ApiSdk.Models.Microsoft.Graph.IdentitySet>(ApiSdk.Models.Microsoft.Graph.IdentitySet.CreateFromDiscriminatorValue); } },
                 {"languageId", (o,n) => { (o as ParticipantInfo).LanguageId = n.GetStringValue(); } },
                 {"participantId", (o,n) => { (o as ParticipantInfo).ParticipantId = n.GetStringValue(); } },
                 {"region", (o,n) => { (o as ParticipantInfo).Region = n.GetStringValue(); } },
@@ -53,7 +53,7 @@ namespace ApiSdk.Models.Microsoft.Graph {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             writer.WriteStringValue("countryCode", CountryCode);
             writer.WriteEnumValue<EndpointType>("endpointType", EndpointType);
-            writer.WriteObjectValue<IdentitySet>("identity", Identity);
+            writer.WriteObjectValue<ApiSdk.Models.Microsoft.Graph.IdentitySet>("identity", Identity);
             writer.WriteStringValue("languageId", LanguageId);
             writer.WriteStringValue("participantId", ParticipantId);
             writer.WriteStringValue("region", Region);

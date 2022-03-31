@@ -14,22 +14,22 @@ namespace ApiSdk.Models.Microsoft.Graph.CallRecords {
         /// <summary>List of all the modalities used in the call. Possible values are: unknown, audio, video, videoBasedScreenSharing, data, screenSharing, unknownFutureValue.</summary>
         public List<Modality?> Modalities { get; set; }
         /// <summary>The organizing party's identity.</summary>
-        public IdentitySet Organizer { get; set; }
+        public ApiSdk.Models.Microsoft.Graph.IdentitySet Organizer { get; set; }
         /// <summary>List of distinct identities involved in the call.</summary>
-        public List<IdentitySet> Participants { get; set; }
+        public List<ApiSdk.Models.Microsoft.Graph.IdentitySet> Participants { get; set; }
         /// <summary>List of sessions involved in the call. Peer-to-peer calls typically only have one session, whereas group calls typically have at least one session per participant. Read-only. Nullable.</summary>
-        public List<Session> Sessions { get; set; }
-        /// <summary>UTC time when the first user joined the call. The DatetimeOffset type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z</summary>
+        public List<ApiSdk.Models.Microsoft.Graph.CallRecords.Session> Sessions { get; set; }
+        /// <summary>UTC time when the first user joined the call. The DatetimeOffset type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z.</summary>
         public DateTimeOffset? StartDateTime { get; set; }
         /// <summary>Indicates the type of the call. Possible values are: unknown, groupCall, peerToPeer, unknownFutureValue.</summary>
         public CallType? Type { get; set; }
-        /// <summary>Monotonically increasing version of the call record. Higher version call records with the same ID includes additional data compared to the lower version.</summary>
+        /// <summary>Monotonically increasing version of the call record. Higher version call records with the same id includes additional data compared to the lower version.</summary>
         public long? Version { get; set; }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         /// </summary>
-        public static new CallRecord CreateFromDiscriminatorValue(IParseNode parseNode) {
+        public static new ApiSdk.Models.Microsoft.Graph.CallRecords.CallRecord CreateFromDiscriminatorValue(IParseNode parseNode) {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
             return new CallRecord();
         }
@@ -42,9 +42,9 @@ namespace ApiSdk.Models.Microsoft.Graph.CallRecords {
                 {"joinWebUrl", (o,n) => { (o as CallRecord).JoinWebUrl = n.GetStringValue(); } },
                 {"lastModifiedDateTime", (o,n) => { (o as CallRecord).LastModifiedDateTime = n.GetDateTimeOffsetValue(); } },
                 {"modalities", (o,n) => { (o as CallRecord).Modalities = n.GetCollectionOfEnumValues<Modality>().ToList(); } },
-                {"organizer", (o,n) => { (o as CallRecord).Organizer = n.GetObjectValue<IdentitySet>(IdentitySet.CreateFromDiscriminatorValue); } },
-                {"participants", (o,n) => { (o as CallRecord).Participants = n.GetCollectionOfObjectValues<IdentitySet>(IdentitySet.CreateFromDiscriminatorValue).ToList(); } },
-                {"sessions", (o,n) => { (o as CallRecord).Sessions = n.GetCollectionOfObjectValues<Session>(Session.CreateFromDiscriminatorValue).ToList(); } },
+                {"organizer", (o,n) => { (o as CallRecord).Organizer = n.GetObjectValue<ApiSdk.Models.Microsoft.Graph.IdentitySet>(ApiSdk.Models.Microsoft.Graph.IdentitySet.CreateFromDiscriminatorValue); } },
+                {"participants", (o,n) => { (o as CallRecord).Participants = n.GetCollectionOfObjectValues<ApiSdk.Models.Microsoft.Graph.IdentitySet>(ApiSdk.Models.Microsoft.Graph.IdentitySet.CreateFromDiscriminatorValue).ToList(); } },
+                {"sessions", (o,n) => { (o as CallRecord).Sessions = n.GetCollectionOfObjectValues<ApiSdk.Models.Microsoft.Graph.CallRecords.Session>(ApiSdk.Models.Microsoft.Graph.CallRecords.Session.CreateFromDiscriminatorValue).ToList(); } },
                 {"startDateTime", (o,n) => { (o as CallRecord).StartDateTime = n.GetDateTimeOffsetValue(); } },
                 {"type", (o,n) => { (o as CallRecord).Type = n.GetEnumValue<CallType>(); } },
                 {"version", (o,n) => { (o as CallRecord).Version = n.GetLongValue(); } },
@@ -61,9 +61,9 @@ namespace ApiSdk.Models.Microsoft.Graph.CallRecords {
             writer.WriteStringValue("joinWebUrl", JoinWebUrl);
             writer.WriteDateTimeOffsetValue("lastModifiedDateTime", LastModifiedDateTime);
             writer.WriteCollectionOfEnumValues<Modality>("modalities", Modalities);
-            writer.WriteObjectValue<IdentitySet>("organizer", Organizer);
-            writer.WriteCollectionOfObjectValues<IdentitySet>("participants", Participants);
-            writer.WriteCollectionOfObjectValues<Session>("sessions", Sessions);
+            writer.WriteObjectValue<ApiSdk.Models.Microsoft.Graph.IdentitySet>("organizer", Organizer);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.Microsoft.Graph.IdentitySet>("participants", Participants);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.Microsoft.Graph.CallRecords.Session>("sessions", Sessions);
             writer.WriteDateTimeOffsetValue("startDateTime", StartDateTime);
             writer.WriteEnumValue<CallType>("type", Type);
             writer.WriteLongValue("version", Version);

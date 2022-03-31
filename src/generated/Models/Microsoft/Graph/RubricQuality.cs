@@ -8,9 +8,9 @@ namespace ApiSdk.Models.Microsoft.Graph {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>The collection of criteria for this rubric quality.</summary>
-        public List<RubricCriterion> Criteria { get; set; }
+        public List<ApiSdk.Models.Microsoft.Graph.RubricCriterion> Criteria { get; set; }
         /// <summary>The description of this rubric quality.</summary>
-        public EducationItemBody Description { get; set; }
+        public ApiSdk.Models.Microsoft.Graph.EducationItemBody Description { get; set; }
         /// <summary>The name of this rubric quality.</summary>
         public string DisplayName { get; set; }
         /// <summary>The ID of this resource.</summary>
@@ -27,7 +27,7 @@ namespace ApiSdk.Models.Microsoft.Graph {
         /// Creates a new instance of the appropriate class based on discriminator value
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         /// </summary>
-        public static RubricQuality CreateFromDiscriminatorValue(IParseNode parseNode) {
+        public static ApiSdk.Models.Microsoft.Graph.RubricQuality CreateFromDiscriminatorValue(IParseNode parseNode) {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
             return new RubricQuality();
         }
@@ -36,8 +36,8 @@ namespace ApiSdk.Models.Microsoft.Graph {
         /// </summary>
         public IDictionary<string, Action<T, IParseNode>> GetFieldDeserializers<T>() {
             return new Dictionary<string, Action<T, IParseNode>> {
-                {"criteria", (o,n) => { (o as RubricQuality).Criteria = n.GetCollectionOfObjectValues<RubricCriterion>(RubricCriterion.CreateFromDiscriminatorValue).ToList(); } },
-                {"description", (o,n) => { (o as RubricQuality).Description = n.GetObjectValue<EducationItemBody>(EducationItemBody.CreateFromDiscriminatorValue); } },
+                {"criteria", (o,n) => { (o as RubricQuality).Criteria = n.GetCollectionOfObjectValues<ApiSdk.Models.Microsoft.Graph.RubricCriterion>(ApiSdk.Models.Microsoft.Graph.RubricCriterion.CreateFromDiscriminatorValue).ToList(); } },
+                {"description", (o,n) => { (o as RubricQuality).Description = n.GetObjectValue<ApiSdk.Models.Microsoft.Graph.EducationItemBody>(ApiSdk.Models.Microsoft.Graph.EducationItemBody.CreateFromDiscriminatorValue); } },
                 {"displayName", (o,n) => { (o as RubricQuality).DisplayName = n.GetStringValue(); } },
                 {"qualityId", (o,n) => { (o as RubricQuality).QualityId = n.GetStringValue(); } },
                 {"weight", (o,n) => { (o as RubricQuality).Weight = n.GetFloatValue(); } },
@@ -49,8 +49,8 @@ namespace ApiSdk.Models.Microsoft.Graph {
         /// </summary>
         public void Serialize(ISerializationWriter writer) {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
-            writer.WriteCollectionOfObjectValues<RubricCriterion>("criteria", Criteria);
-            writer.WriteObjectValue<EducationItemBody>("description", Description);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.Microsoft.Graph.RubricCriterion>("criteria", Criteria);
+            writer.WriteObjectValue<ApiSdk.Models.Microsoft.Graph.EducationItemBody>("description", Description);
             writer.WriteStringValue("displayName", DisplayName);
             writer.WriteStringValue("qualityId", QualityId);
             writer.WriteFloatValue("weight", Weight);

@@ -12,7 +12,7 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 namespace ApiSdk.Workbooks.Item.Preview {
-    /// <summary>Builds and executes requests for operations under \workbooks\{driveItem-id}\microsoft.graph.preview</summary>
+    /// <summary>Provides operations to call the preview method.</summary>
     public class PreviewRequestBuilder {
         /// <summary>Path parameters for the request</summary>
         private Dictionary<string, object> PathParameters { get; set; }
@@ -61,13 +61,13 @@ namespace ApiSdk.Workbooks.Item.Preview {
                 PathParameters.Add("driveItem_id", driveItemId);
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
-                var model = parseNode.GetObjectValue<PreviewRequestBody>(PreviewRequestBody.CreateFromDiscriminatorValue);
+                var model = parseNode.GetObjectValue<ApiSdk.Workbooks.Item.Preview.PreviewRequestBody>(ApiSdk.Workbooks.Item.Preview.PreviewRequestBody.CreateFromDiscriminatorValue);
                 var requestInfo = CreatePostRequestInformation(model, q => {
                 });
                 var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: default, cancellationToken: cancellationToken);
-                var formatter = outputFormatterFactory.GetFormatter(output);
                 response = await outputFilter?.FilterOutputAsync(response, query, cancellationToken) ?? response;
                 var formatterOptions = output.GetOutputFormatterOptions(new FormatterOptionsModel(!jsonNoIndent));
+                var formatter = outputFormatterFactory.GetFormatter(output);
                 await formatter.WriteOutputAsync(response, formatterOptions, cancellationToken);
             }, new CollectionBinding(driveItemIdOption, bodyOption, outputOption, queryOption, jsonNoIndentOption, new TypeBinding(typeof(IOutputFilter)), new TypeBinding(typeof(IOutputFormatterFactory)), new TypeBinding(typeof(CancellationToken))));
             return command;
@@ -88,10 +88,10 @@ namespace ApiSdk.Workbooks.Item.Preview {
         /// <summary>
         /// Invoke action preview
         /// <param name="body"></param>
-        /// <param name="h">Request headers</param>
-        /// <param name="o">Request options</param>
+        /// <param name="headers">Request headers</param>
+        /// <param name="options">Request options</param>
         /// </summary>
-        public RequestInformation CreatePostRequestInformation(PreviewRequestBody body, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
+        public RequestInformation CreatePostRequestInformation(ApiSdk.Workbooks.Item.Preview.PreviewRequestBody body, Action<IDictionary<string, string>> headers = default, IEnumerable<IRequestOption> options = default) {
             _ = body ?? throw new ArgumentNullException(nameof(body));
             var requestInfo = new RequestInformation {
                 HttpMethod = Method.POST,
@@ -99,43 +99,9 @@ namespace ApiSdk.Workbooks.Item.Preview {
                 PathParameters = PathParameters,
             };
             requestInfo.SetContentFromParsable(RequestAdapter, "application/json", body);
-            h?.Invoke(requestInfo.Headers);
-            requestInfo.AddRequestOptions(o?.ToArray());
+            headers?.Invoke(requestInfo.Headers);
+            requestInfo.AddRequestOptions(options?.ToArray());
             return requestInfo;
-        }
-        /// <summary>Union type wrapper for classes itemPreviewInfo</summary>
-        public class PreviewResponse : IAdditionalDataHolder, IParsable {
-            /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
-            public IDictionary<string, object> AdditionalData { get; set; }
-            /// <summary>Union type representation for type itemPreviewInfo</summary>
-            public ApiSdk.Models.Microsoft.Graph.ItemPreviewInfo ItemPreviewInfo { get; set; }
-            /// <summary>
-            /// Instantiates a new previewResponse and sets the default values.
-            /// </summary>
-            public PreviewResponse() {
-                AdditionalData = new Dictionary<string, object>();
-            }
-            public static PreviewResponse CreateFromDiscriminatorValue(IParseNode parseNode) {
-                _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-                return new PreviewResponse();
-            }
-            /// <summary>
-            /// The deserialization information for the current model
-            /// </summary>
-            public IDictionary<string, Action<T, IParseNode>> GetFieldDeserializers<T>() {
-                return new Dictionary<string, Action<T, IParseNode>> {
-                    {"itemPreviewInfo", (o,n) => { (o as PreviewResponse).ItemPreviewInfo = n.GetObjectValue<ApiSdk.Models.Microsoft.Graph.ItemPreviewInfo>(ApiSdk.Models.Microsoft.Graph.ItemPreviewInfo.CreateFromDiscriminatorValue); } },
-                };
-            }
-            /// <summary>
-            /// Serializes information the current object
-            /// <param name="writer">Serialization writer to use to serialize this model</param>
-            /// </summary>
-            public void Serialize(ISerializationWriter writer) {
-                _ = writer ?? throw new ArgumentNullException(nameof(writer));
-                writer.WriteObjectValue<ApiSdk.Models.Microsoft.Graph.ItemPreviewInfo>("itemPreviewInfo", ItemPreviewInfo);
-                writer.WriteAdditionalData(AdditionalData);
-            }
         }
     }
 }

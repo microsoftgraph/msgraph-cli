@@ -6,16 +6,16 @@ using System.Linq;
 namespace ApiSdk.Models.Microsoft.Graph {
     public class RiskyUser : Entity, IParsable {
         /// <summary>The activity related to user risk level change</summary>
-        public List<RiskyUserHistoryItem> History { get; set; }
+        public List<ApiSdk.Models.Microsoft.Graph.RiskyUserHistoryItem> History { get; set; }
         /// <summary>Indicates whether the user is deleted. Possible values are: true, false.</summary>
         public bool? IsDeleted { get; set; }
         /// <summary>Indicates whether a user's risky state is being processed by the backend.</summary>
         public bool? IsProcessing { get; set; }
-        /// <summary>The possible values are none, adminGeneratedTemporaryPassword, userPerformedSecuredPasswordChange, userPerformedSecuredPasswordReset, adminConfirmedSigninSafe, aiConfirmedSigninSafe, userPassedMFADrivenByRiskBasedPolicy, adminDismissedAllRiskForUser, adminConfirmedSigninCompromised, hidden, adminConfirmedUserCompromised, unknownFutureValue.</summary>
+        /// <summary>Details of the detected risk. Possible values are: none, adminGeneratedTemporaryPassword, userPerformedSecuredPasswordChange, userPerformedSecuredPasswordReset, adminConfirmedSigninSafe, aiConfirmedSigninSafe, userPassedMFADrivenByRiskBasedPolicy, adminDismissedAllRiskForUser, adminConfirmedSigninCompromised, hidden, adminConfirmedUserCompromised, unknownFutureValue.</summary>
         public ApiSdk.Models.Microsoft.Graph.RiskDetail? RiskDetail { get; set; }
         /// <summary>The date and time that the risky user was last updated.  The DateTimeOffset type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z.</summary>
         public DateTimeOffset? RiskLastUpdatedDateTime { get; set; }
-        /// <summary>Level of the detected risky user. The possible values are low, medium, high, hidden, none, unknownFutureValue.</summary>
+        /// <summary>Level of the detected risky user. Possible values are: low, medium, high, hidden, none, unknownFutureValue.</summary>
         public ApiSdk.Models.Microsoft.Graph.RiskLevel? RiskLevel { get; set; }
         /// <summary>State of the user's risk. Possible values are: none, confirmedSafe, remediated, dismissed, atRisk, confirmedCompromised, unknownFutureValue.</summary>
         public ApiSdk.Models.Microsoft.Graph.RiskState? RiskState { get; set; }
@@ -27,7 +27,7 @@ namespace ApiSdk.Models.Microsoft.Graph {
         /// Creates a new instance of the appropriate class based on discriminator value
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         /// </summary>
-        public static new RiskyUser CreateFromDiscriminatorValue(IParseNode parseNode) {
+        public static new ApiSdk.Models.Microsoft.Graph.RiskyUser CreateFromDiscriminatorValue(IParseNode parseNode) {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
             return new RiskyUser();
         }
@@ -36,7 +36,7 @@ namespace ApiSdk.Models.Microsoft.Graph {
         /// </summary>
         public new IDictionary<string, Action<T, IParseNode>> GetFieldDeserializers<T>() {
             return new Dictionary<string, Action<T, IParseNode>>(base.GetFieldDeserializers<T>()) {
-                {"history", (o,n) => { (o as RiskyUser).History = n.GetCollectionOfObjectValues<RiskyUserHistoryItem>(RiskyUserHistoryItem.CreateFromDiscriminatorValue).ToList(); } },
+                {"history", (o,n) => { (o as RiskyUser).History = n.GetCollectionOfObjectValues<ApiSdk.Models.Microsoft.Graph.RiskyUserHistoryItem>(ApiSdk.Models.Microsoft.Graph.RiskyUserHistoryItem.CreateFromDiscriminatorValue).ToList(); } },
                 {"isDeleted", (o,n) => { (o as RiskyUser).IsDeleted = n.GetBoolValue(); } },
                 {"isProcessing", (o,n) => { (o as RiskyUser).IsProcessing = n.GetBoolValue(); } },
                 {"riskDetail", (o,n) => { (o as RiskyUser).RiskDetail = n.GetEnumValue<RiskDetail>(); } },
@@ -54,7 +54,7 @@ namespace ApiSdk.Models.Microsoft.Graph {
         public new void Serialize(ISerializationWriter writer) {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             base.Serialize(writer);
-            writer.WriteCollectionOfObjectValues<RiskyUserHistoryItem>("history", History);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.Microsoft.Graph.RiskyUserHistoryItem>("history", History);
             writer.WriteBoolValue("isDeleted", IsDeleted);
             writer.WriteBoolValue("isProcessing", IsProcessing);
             writer.WriteEnumValue<RiskDetail>("riskDetail", RiskDetail);

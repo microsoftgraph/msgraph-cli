@@ -11,7 +11,7 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 namespace ApiSdk.Sites.Item.GetApplicableContentTypesForListWithListId {
-    /// <summary>Builds and executes requests for operations under \sites\{site-id}\microsoft.graph.getApplicableContentTypesForList(listId='{listId}')</summary>
+    /// <summary>Provides operations to call the getApplicableContentTypesForList method.</summary>
     public class GetApplicableContentTypesForListWithListIdRequestBuilder {
         /// <summary>Path parameters for the request</summary>
         private Dictionary<string, object> PathParameters { get; set; }
@@ -30,7 +30,7 @@ namespace ApiSdk.Sites.Item.GetApplicableContentTypesForListWithListId {
             };
             siteIdOption.IsRequired = true;
             command.AddOption(siteIdOption);
-            var listIdOption = new Option<string>("--list-id", description: "Usage: listId={listId}") {
+            var listIdOption = new Option<string>("--list-id", description: "Usage: listId='{listId}'") {
             };
             listIdOption.IsRequired = true;
             command.AddOption(listIdOption);
@@ -62,16 +62,16 @@ namespace ApiSdk.Sites.Item.GetApplicableContentTypesForListWithListId {
                 var requestInfo = CreateGetRequestInformation(q => {
                 });
                 var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: default, cancellationToken: cancellationToken);
-                var formatter = outputFormatterFactory.GetFormatter(output);
                 response = await outputFilter?.FilterOutputAsync(response, query, cancellationToken) ?? response;
                 var formatterOptions = output.GetOutputFormatterOptions(new FormatterOptionsModel(!jsonNoIndent));
+                var formatter = outputFormatterFactory.GetFormatter(output);
                 await formatter.WriteOutputAsync(response, formatterOptions, cancellationToken);
             }, new CollectionBinding(siteIdOption, listIdOption, outputOption, queryOption, jsonNoIndentOption, new TypeBinding(typeof(IOutputFilter)), new TypeBinding(typeof(IOutputFormatterFactory)), new TypeBinding(typeof(CancellationToken))));
             return command;
         }
         /// <summary>
         /// Instantiates a new GetApplicableContentTypesForListWithListIdRequestBuilder and sets the default values.
-        /// <param name="listId">Usage: listId={listId}</param>
+        /// <param name="listId">Usage: listId='{listId}'</param>
         /// <param name="pathParameters">Path parameters for the request</param>
         /// <param name="requestAdapter">The request adapter to use to execute the requests.</param>
         /// </summary>
@@ -86,17 +86,17 @@ namespace ApiSdk.Sites.Item.GetApplicableContentTypesForListWithListId {
         }
         /// <summary>
         /// Invoke function getApplicableContentTypesForList
-        /// <param name="h">Request headers</param>
-        /// <param name="o">Request options</param>
+        /// <param name="headers">Request headers</param>
+        /// <param name="options">Request options</param>
         /// </summary>
-        public RequestInformation CreateGetRequestInformation(Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
+        public RequestInformation CreateGetRequestInformation(Action<IDictionary<string, string>> headers = default, IEnumerable<IRequestOption> options = default) {
             var requestInfo = new RequestInformation {
                 HttpMethod = Method.GET,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };
-            h?.Invoke(requestInfo.Headers);
-            requestInfo.AddRequestOptions(o?.ToArray());
+            headers?.Invoke(requestInfo.Headers);
+            requestInfo.AddRequestOptions(options?.ToArray());
             return requestInfo;
         }
     }

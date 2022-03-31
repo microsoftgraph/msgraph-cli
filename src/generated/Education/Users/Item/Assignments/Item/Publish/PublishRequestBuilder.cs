@@ -12,7 +12,7 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 namespace ApiSdk.Education.Users.Item.Assignments.Item.Publish {
-    /// <summary>Builds and executes requests for operations under \education\users\{educationUser-id}\assignments\{educationAssignment-id}\microsoft.graph.publish</summary>
+    /// <summary>Provides operations to call the publish method.</summary>
     public class PublishRequestBuilder {
         /// <summary>Path parameters for the request</summary>
         private Dictionary<string, object> PathParameters { get; set; }
@@ -63,9 +63,9 @@ namespace ApiSdk.Education.Users.Item.Assignments.Item.Publish {
                 var requestInfo = CreatePostRequestInformation(q => {
                 });
                 var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: default, cancellationToken: cancellationToken);
-                var formatter = outputFormatterFactory.GetFormatter(output);
                 response = await outputFilter?.FilterOutputAsync(response, query, cancellationToken) ?? response;
                 var formatterOptions = output.GetOutputFormatterOptions(new FormatterOptionsModel(!jsonNoIndent));
+                var formatter = outputFormatterFactory.GetFormatter(output);
                 await formatter.WriteOutputAsync(response, formatterOptions, cancellationToken);
             }, new CollectionBinding(educationUserIdOption, educationAssignmentIdOption, outputOption, queryOption, jsonNoIndentOption, new TypeBinding(typeof(IOutputFilter)), new TypeBinding(typeof(IOutputFormatterFactory)), new TypeBinding(typeof(CancellationToken))));
             return command;
@@ -85,52 +85,18 @@ namespace ApiSdk.Education.Users.Item.Assignments.Item.Publish {
         }
         /// <summary>
         /// Invoke action publish
-        /// <param name="h">Request headers</param>
-        /// <param name="o">Request options</param>
+        /// <param name="headers">Request headers</param>
+        /// <param name="options">Request options</param>
         /// </summary>
-        public RequestInformation CreatePostRequestInformation(Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
+        public RequestInformation CreatePostRequestInformation(Action<IDictionary<string, string>> headers = default, IEnumerable<IRequestOption> options = default) {
             var requestInfo = new RequestInformation {
                 HttpMethod = Method.POST,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };
-            h?.Invoke(requestInfo.Headers);
-            requestInfo.AddRequestOptions(o?.ToArray());
+            headers?.Invoke(requestInfo.Headers);
+            requestInfo.AddRequestOptions(options?.ToArray());
             return requestInfo;
-        }
-        /// <summary>Union type wrapper for classes educationAssignment</summary>
-        public class PublishResponse : IAdditionalDataHolder, IParsable {
-            /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
-            public IDictionary<string, object> AdditionalData { get; set; }
-            /// <summary>Union type representation for type educationAssignment</summary>
-            public ApiSdk.Models.Microsoft.Graph.EducationAssignment EducationAssignment { get; set; }
-            /// <summary>
-            /// Instantiates a new publishResponse and sets the default values.
-            /// </summary>
-            public PublishResponse() {
-                AdditionalData = new Dictionary<string, object>();
-            }
-            public static PublishResponse CreateFromDiscriminatorValue(IParseNode parseNode) {
-                _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-                return new PublishResponse();
-            }
-            /// <summary>
-            /// The deserialization information for the current model
-            /// </summary>
-            public IDictionary<string, Action<T, IParseNode>> GetFieldDeserializers<T>() {
-                return new Dictionary<string, Action<T, IParseNode>> {
-                    {"educationAssignment", (o,n) => { (o as PublishResponse).EducationAssignment = n.GetObjectValue<ApiSdk.Models.Microsoft.Graph.EducationAssignment>(ApiSdk.Models.Microsoft.Graph.EducationAssignment.CreateFromDiscriminatorValue); } },
-                };
-            }
-            /// <summary>
-            /// Serializes information the current object
-            /// <param name="writer">Serialization writer to use to serialize this model</param>
-            /// </summary>
-            public void Serialize(ISerializationWriter writer) {
-                _ = writer ?? throw new ArgumentNullException(nameof(writer));
-                writer.WriteObjectValue<ApiSdk.Models.Microsoft.Graph.EducationAssignment>("educationAssignment", EducationAssignment);
-                writer.WriteAdditionalData(AdditionalData);
-            }
         }
     }
 }

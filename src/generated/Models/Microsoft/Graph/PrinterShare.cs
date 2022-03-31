@@ -8,9 +8,9 @@ namespace ApiSdk.Models.Microsoft.Graph {
         /// <summary>If true, all users and groups will be granted access to this printer share. This supersedes the allow lists defined by the allowedUsers and allowedGroups navigation properties.</summary>
         public bool? AllowAllUsers { get; set; }
         /// <summary>The groups whose users have access to print using the printer.</summary>
-        public List<Group> AllowedGroups { get; set; }
+        public List<ApiSdk.Models.Microsoft.Graph.Group> AllowedGroups { get; set; }
         /// <summary>The users who have access to print using the printer.</summary>
-        public List<User> AllowedUsers { get; set; }
+        public List<ApiSdk.Models.Microsoft.Graph.User> AllowedUsers { get; set; }
         /// <summary>The DateTimeOffset when the printer share was created. Read-only.</summary>
         public DateTimeOffset? CreatedDateTime { get; set; }
         /// <summary>The printer that this printer share is related to.</summary>
@@ -19,7 +19,7 @@ namespace ApiSdk.Models.Microsoft.Graph {
         /// Creates a new instance of the appropriate class based on discriminator value
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         /// </summary>
-        public static new PrinterShare CreateFromDiscriminatorValue(IParseNode parseNode) {
+        public static new ApiSdk.Models.Microsoft.Graph.PrinterShare CreateFromDiscriminatorValue(IParseNode parseNode) {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
             return new PrinterShare();
         }
@@ -29,8 +29,8 @@ namespace ApiSdk.Models.Microsoft.Graph {
         public new IDictionary<string, Action<T, IParseNode>> GetFieldDeserializers<T>() {
             return new Dictionary<string, Action<T, IParseNode>>(base.GetFieldDeserializers<T>()) {
                 {"allowAllUsers", (o,n) => { (o as PrinterShare).AllowAllUsers = n.GetBoolValue(); } },
-                {"allowedGroups", (o,n) => { (o as PrinterShare).AllowedGroups = n.GetCollectionOfObjectValues<Group>(Group.CreateFromDiscriminatorValue).ToList(); } },
-                {"allowedUsers", (o,n) => { (o as PrinterShare).AllowedUsers = n.GetCollectionOfObjectValues<User>(User.CreateFromDiscriminatorValue).ToList(); } },
+                {"allowedGroups", (o,n) => { (o as PrinterShare).AllowedGroups = n.GetCollectionOfObjectValues<ApiSdk.Models.Microsoft.Graph.Group>(ApiSdk.Models.Microsoft.Graph.Group.CreateFromDiscriminatorValue).ToList(); } },
+                {"allowedUsers", (o,n) => { (o as PrinterShare).AllowedUsers = n.GetCollectionOfObjectValues<ApiSdk.Models.Microsoft.Graph.User>(ApiSdk.Models.Microsoft.Graph.User.CreateFromDiscriminatorValue).ToList(); } },
                 {"createdDateTime", (o,n) => { (o as PrinterShare).CreatedDateTime = n.GetDateTimeOffsetValue(); } },
                 {"printer", (o,n) => { (o as PrinterShare).Printer = n.GetObjectValue<ApiSdk.Models.Microsoft.Graph.Printer>(ApiSdk.Models.Microsoft.Graph.Printer.CreateFromDiscriminatorValue); } },
             };
@@ -43,8 +43,8 @@ namespace ApiSdk.Models.Microsoft.Graph {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             base.Serialize(writer);
             writer.WriteBoolValue("allowAllUsers", AllowAllUsers);
-            writer.WriteCollectionOfObjectValues<Group>("allowedGroups", AllowedGroups);
-            writer.WriteCollectionOfObjectValues<User>("allowedUsers", AllowedUsers);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.Microsoft.Graph.Group>("allowedGroups", AllowedGroups);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.Microsoft.Graph.User>("allowedUsers", AllowedUsers);
             writer.WriteDateTimeOffsetValue("createdDateTime", CreatedDateTime);
             writer.WriteObjectValue<ApiSdk.Models.Microsoft.Graph.Printer>("printer", Printer);
         }

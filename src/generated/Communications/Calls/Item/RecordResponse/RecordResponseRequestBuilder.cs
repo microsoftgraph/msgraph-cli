@@ -12,7 +12,7 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 namespace ApiSdk.Communications.Calls.Item.RecordResponse {
-    /// <summary>Builds and executes requests for operations under \communications\calls\{call-id}\microsoft.graph.recordResponse</summary>
+    /// <summary>Provides operations to call the recordResponse method.</summary>
     public class RecordResponseRequestBuilder {
         /// <summary>Path parameters for the request</summary>
         private Dictionary<string, object> PathParameters { get; set; }
@@ -61,13 +61,13 @@ namespace ApiSdk.Communications.Calls.Item.RecordResponse {
                 PathParameters.Add("call_id", callId);
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
-                var model = parseNode.GetObjectValue<RecordResponseRequestBody>(RecordResponseRequestBody.CreateFromDiscriminatorValue);
+                var model = parseNode.GetObjectValue<ApiSdk.Communications.Calls.Item.RecordResponse.RecordResponseRequestBody>(ApiSdk.Communications.Calls.Item.RecordResponse.RecordResponseRequestBody.CreateFromDiscriminatorValue);
                 var requestInfo = CreatePostRequestInformation(model, q => {
                 });
                 var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: default, cancellationToken: cancellationToken);
-                var formatter = outputFormatterFactory.GetFormatter(output);
                 response = await outputFilter?.FilterOutputAsync(response, query, cancellationToken) ?? response;
                 var formatterOptions = output.GetOutputFormatterOptions(new FormatterOptionsModel(!jsonNoIndent));
+                var formatter = outputFormatterFactory.GetFormatter(output);
                 await formatter.WriteOutputAsync(response, formatterOptions, cancellationToken);
             }, new CollectionBinding(callIdOption, bodyOption, outputOption, queryOption, jsonNoIndentOption, new TypeBinding(typeof(IOutputFilter)), new TypeBinding(typeof(IOutputFormatterFactory)), new TypeBinding(typeof(CancellationToken))));
             return command;
@@ -88,10 +88,10 @@ namespace ApiSdk.Communications.Calls.Item.RecordResponse {
         /// <summary>
         /// Invoke action recordResponse
         /// <param name="body"></param>
-        /// <param name="h">Request headers</param>
-        /// <param name="o">Request options</param>
+        /// <param name="headers">Request headers</param>
+        /// <param name="options">Request options</param>
         /// </summary>
-        public RequestInformation CreatePostRequestInformation(RecordResponseRequestBody body, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
+        public RequestInformation CreatePostRequestInformation(ApiSdk.Communications.Calls.Item.RecordResponse.RecordResponseRequestBody body, Action<IDictionary<string, string>> headers = default, IEnumerable<IRequestOption> options = default) {
             _ = body ?? throw new ArgumentNullException(nameof(body));
             var requestInfo = new RequestInformation {
                 HttpMethod = Method.POST,
@@ -99,43 +99,9 @@ namespace ApiSdk.Communications.Calls.Item.RecordResponse {
                 PathParameters = PathParameters,
             };
             requestInfo.SetContentFromParsable(RequestAdapter, "application/json", body);
-            h?.Invoke(requestInfo.Headers);
-            requestInfo.AddRequestOptions(o?.ToArray());
+            headers?.Invoke(requestInfo.Headers);
+            requestInfo.AddRequestOptions(options?.ToArray());
             return requestInfo;
-        }
-        /// <summary>Union type wrapper for classes recordOperation</summary>
-        public class RecordResponseResponse : IAdditionalDataHolder, IParsable {
-            /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
-            public IDictionary<string, object> AdditionalData { get; set; }
-            /// <summary>Union type representation for type recordOperation</summary>
-            public ApiSdk.Models.Microsoft.Graph.RecordOperation RecordOperation { get; set; }
-            /// <summary>
-            /// Instantiates a new recordResponseResponse and sets the default values.
-            /// </summary>
-            public RecordResponseResponse() {
-                AdditionalData = new Dictionary<string, object>();
-            }
-            public static RecordResponseResponse CreateFromDiscriminatorValue(IParseNode parseNode) {
-                _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-                return new RecordResponseResponse();
-            }
-            /// <summary>
-            /// The deserialization information for the current model
-            /// </summary>
-            public IDictionary<string, Action<T, IParseNode>> GetFieldDeserializers<T>() {
-                return new Dictionary<string, Action<T, IParseNode>> {
-                    {"recordOperation", (o,n) => { (o as RecordResponseResponse).RecordOperation = n.GetObjectValue<ApiSdk.Models.Microsoft.Graph.RecordOperation>(ApiSdk.Models.Microsoft.Graph.RecordOperation.CreateFromDiscriminatorValue); } },
-                };
-            }
-            /// <summary>
-            /// Serializes information the current object
-            /// <param name="writer">Serialization writer to use to serialize this model</param>
-            /// </summary>
-            public void Serialize(ISerializationWriter writer) {
-                _ = writer ?? throw new ArgumentNullException(nameof(writer));
-                writer.WriteObjectValue<ApiSdk.Models.Microsoft.Graph.RecordOperation>("recordOperation", RecordOperation);
-                writer.WriteAdditionalData(AdditionalData);
-            }
         }
     }
 }

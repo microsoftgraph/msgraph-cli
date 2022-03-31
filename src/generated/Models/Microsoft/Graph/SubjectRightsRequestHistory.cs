@@ -8,7 +8,7 @@ namespace ApiSdk.Models.Microsoft.Graph {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>Identity of the user who changed the  subject rights request.</summary>
-        public IdentitySet ChangedBy { get; set; }
+        public ApiSdk.Models.Microsoft.Graph.IdentitySet ChangedBy { get; set; }
         /// <summary>Data and time when the entity was changed.</summary>
         public DateTimeOffset? EventDateTime { get; set; }
         /// <summary>The stage when the entity was changed. Possible values are: contentRetrieval, contentReview, generateReport, contentDeletion, caseResolved, unknownFutureValue.</summary>
@@ -27,7 +27,7 @@ namespace ApiSdk.Models.Microsoft.Graph {
         /// Creates a new instance of the appropriate class based on discriminator value
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         /// </summary>
-        public static SubjectRightsRequestHistory CreateFromDiscriminatorValue(IParseNode parseNode) {
+        public static ApiSdk.Models.Microsoft.Graph.SubjectRightsRequestHistory CreateFromDiscriminatorValue(IParseNode parseNode) {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
             return new SubjectRightsRequestHistory();
         }
@@ -36,7 +36,7 @@ namespace ApiSdk.Models.Microsoft.Graph {
         /// </summary>
         public IDictionary<string, Action<T, IParseNode>> GetFieldDeserializers<T>() {
             return new Dictionary<string, Action<T, IParseNode>> {
-                {"changedBy", (o,n) => { (o as SubjectRightsRequestHistory).ChangedBy = n.GetObjectValue<IdentitySet>(IdentitySet.CreateFromDiscriminatorValue); } },
+                {"changedBy", (o,n) => { (o as SubjectRightsRequestHistory).ChangedBy = n.GetObjectValue<ApiSdk.Models.Microsoft.Graph.IdentitySet>(ApiSdk.Models.Microsoft.Graph.IdentitySet.CreateFromDiscriminatorValue); } },
                 {"eventDateTime", (o,n) => { (o as SubjectRightsRequestHistory).EventDateTime = n.GetDateTimeOffsetValue(); } },
                 {"stage", (o,n) => { (o as SubjectRightsRequestHistory).Stage = n.GetEnumValue<SubjectRightsRequestStage>(); } },
                 {"stageStatus", (o,n) => { (o as SubjectRightsRequestHistory).StageStatus = n.GetEnumValue<SubjectRightsRequestStageStatus>(); } },
@@ -49,7 +49,7 @@ namespace ApiSdk.Models.Microsoft.Graph {
         /// </summary>
         public void Serialize(ISerializationWriter writer) {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
-            writer.WriteObjectValue<IdentitySet>("changedBy", ChangedBy);
+            writer.WriteObjectValue<ApiSdk.Models.Microsoft.Graph.IdentitySet>("changedBy", ChangedBy);
             writer.WriteDateTimeOffsetValue("eventDateTime", EventDateTime);
             writer.WriteEnumValue<SubjectRightsRequestStage>("stage", Stage);
             writer.WriteEnumValue<SubjectRightsRequestStageStatus>("stageStatus", StageStatus);

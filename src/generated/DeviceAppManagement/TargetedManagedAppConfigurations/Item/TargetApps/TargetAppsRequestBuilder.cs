@@ -11,7 +11,7 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 namespace ApiSdk.DeviceAppManagement.TargetedManagedAppConfigurations.Item.TargetApps {
-    /// <summary>Builds and executes requests for operations under \deviceAppManagement\targetedManagedAppConfigurations\{targetedManagedAppConfiguration-id}\microsoft.graph.targetApps</summary>
+    /// <summary>Provides operations to call the targetApps method.</summary>
     public class TargetAppsRequestBuilder {
         /// <summary>Path parameters for the request</summary>
         private Dictionary<string, object> PathParameters { get; set; }
@@ -42,7 +42,7 @@ namespace ApiSdk.DeviceAppManagement.TargetedManagedAppConfigurations.Item.Targe
                 PathParameters.Add("targetedManagedAppConfiguration_id", targetedManagedAppConfigurationId);
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
-                var model = parseNode.GetObjectValue<TargetAppsRequestBody>(TargetAppsRequestBody.CreateFromDiscriminatorValue);
+                var model = parseNode.GetObjectValue<ApiSdk.DeviceAppManagement.TargetedManagedAppConfigurations.Item.TargetApps.TargetAppsRequestBody>(ApiSdk.DeviceAppManagement.TargetedManagedAppConfigurations.Item.TargetApps.TargetAppsRequestBody.CreateFromDiscriminatorValue);
                 var requestInfo = CreatePostRequestInformation(model, q => {
                 });
                 await RequestAdapter.SendNoContentAsync(requestInfo, errorMapping: default, cancellationToken: cancellationToken);
@@ -66,10 +66,10 @@ namespace ApiSdk.DeviceAppManagement.TargetedManagedAppConfigurations.Item.Targe
         /// <summary>
         /// Invoke action targetApps
         /// <param name="body"></param>
-        /// <param name="h">Request headers</param>
-        /// <param name="o">Request options</param>
+        /// <param name="headers">Request headers</param>
+        /// <param name="options">Request options</param>
         /// </summary>
-        public RequestInformation CreatePostRequestInformation(TargetAppsRequestBody body, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
+        public RequestInformation CreatePostRequestInformation(ApiSdk.DeviceAppManagement.TargetedManagedAppConfigurations.Item.TargetApps.TargetAppsRequestBody body, Action<IDictionary<string, string>> headers = default, IEnumerable<IRequestOption> options = default) {
             _ = body ?? throw new ArgumentNullException(nameof(body));
             var requestInfo = new RequestInformation {
                 HttpMethod = Method.POST,
@@ -77,8 +77,8 @@ namespace ApiSdk.DeviceAppManagement.TargetedManagedAppConfigurations.Item.Targe
                 PathParameters = PathParameters,
             };
             requestInfo.SetContentFromParsable(RequestAdapter, "application/json", body);
-            h?.Invoke(requestInfo.Headers);
-            requestInfo.AddRequestOptions(o?.ToArray());
+            headers?.Invoke(requestInfo.Headers);
+            requestInfo.AddRequestOptions(options?.ToArray());
             return requestInfo;
         }
     }

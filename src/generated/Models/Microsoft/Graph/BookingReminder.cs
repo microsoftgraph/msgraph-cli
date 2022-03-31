@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 namespace ApiSdk.Models.Microsoft.Graph {
+    /// <summary>This type represents when and to whom to send an e-mail reminder.</summary>
     public class BookingReminder : IAdditionalDataHolder, IParsable {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
@@ -11,7 +12,7 @@ namespace ApiSdk.Models.Microsoft.Graph {
         public string Message { get; set; }
         /// <summary>The amount of time before the start of an appointment that the reminder should be sent. It's denoted in ISO 8601 format.</summary>
         public TimeSpan? Offset { get; set; }
-        /// <summary>The persons who should receive the reminder. Possible values are: allAttendees, staff, customer and unknownFutureValue.</summary>
+        /// <summary>The persons who should receive the reminder. Possible values are: allAttendees, staff, customer, unknownFutureValue.</summary>
         public BookingReminderRecipients? Recipients { get; set; }
         /// <summary>
         /// Instantiates a new bookingReminder and sets the default values.
@@ -23,7 +24,7 @@ namespace ApiSdk.Models.Microsoft.Graph {
         /// Creates a new instance of the appropriate class based on discriminator value
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         /// </summary>
-        public static BookingReminder CreateFromDiscriminatorValue(IParseNode parseNode) {
+        public static ApiSdk.Models.Microsoft.Graph.BookingReminder CreateFromDiscriminatorValue(IParseNode parseNode) {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
             return new BookingReminder();
         }

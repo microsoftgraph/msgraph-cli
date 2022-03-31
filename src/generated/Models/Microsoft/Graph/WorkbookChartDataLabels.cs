@@ -6,7 +6,7 @@ using System.Linq;
 namespace ApiSdk.Models.Microsoft.Graph {
     public class WorkbookChartDataLabels : Entity, IParsable {
         /// <summary>Represents the format of chart data labels, which includes fill and font formatting. Read-only.</summary>
-        public WorkbookChartDataLabelFormat Format { get; set; }
+        public ApiSdk.Models.Microsoft.Graph.WorkbookChartDataLabelFormat Format { get; set; }
         /// <summary>DataLabelPosition value that represents the position of the data label. The possible values are: None, Center, InsideEnd, InsideBase, OutsideEnd, Left, Right, Top, Bottom, BestFit, Callout.</summary>
         public string Position { get; set; }
         /// <summary>String representing the separator used for the data labels on a chart.</summary>
@@ -27,7 +27,7 @@ namespace ApiSdk.Models.Microsoft.Graph {
         /// Creates a new instance of the appropriate class based on discriminator value
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         /// </summary>
-        public static new WorkbookChartDataLabels CreateFromDiscriminatorValue(IParseNode parseNode) {
+        public static new ApiSdk.Models.Microsoft.Graph.WorkbookChartDataLabels CreateFromDiscriminatorValue(IParseNode parseNode) {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
             return new WorkbookChartDataLabels();
         }
@@ -36,7 +36,7 @@ namespace ApiSdk.Models.Microsoft.Graph {
         /// </summary>
         public new IDictionary<string, Action<T, IParseNode>> GetFieldDeserializers<T>() {
             return new Dictionary<string, Action<T, IParseNode>>(base.GetFieldDeserializers<T>()) {
-                {"format", (o,n) => { (o as WorkbookChartDataLabels).Format = n.GetObjectValue<WorkbookChartDataLabelFormat>(WorkbookChartDataLabelFormat.CreateFromDiscriminatorValue); } },
+                {"format", (o,n) => { (o as WorkbookChartDataLabels).Format = n.GetObjectValue<ApiSdk.Models.Microsoft.Graph.WorkbookChartDataLabelFormat>(ApiSdk.Models.Microsoft.Graph.WorkbookChartDataLabelFormat.CreateFromDiscriminatorValue); } },
                 {"position", (o,n) => { (o as WorkbookChartDataLabels).Position = n.GetStringValue(); } },
                 {"separator", (o,n) => { (o as WorkbookChartDataLabels).Separator = n.GetStringValue(); } },
                 {"showBubbleSize", (o,n) => { (o as WorkbookChartDataLabels).ShowBubbleSize = n.GetBoolValue(); } },
@@ -54,7 +54,7 @@ namespace ApiSdk.Models.Microsoft.Graph {
         public new void Serialize(ISerializationWriter writer) {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             base.Serialize(writer);
-            writer.WriteObjectValue<WorkbookChartDataLabelFormat>("format", Format);
+            writer.WriteObjectValue<ApiSdk.Models.Microsoft.Graph.WorkbookChartDataLabelFormat>("format", Format);
             writer.WriteStringValue("position", Position);
             writer.WriteStringValue("separator", Separator);
             writer.WriteBoolValue("showBubbleSize", ShowBubbleSize);

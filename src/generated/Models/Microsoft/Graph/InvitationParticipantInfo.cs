@@ -8,10 +8,10 @@ namespace ApiSdk.Models.Microsoft.Graph {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
         public bool? Hidden { get; set; }
-        public IdentitySet Identity { get; set; }
+        public ApiSdk.Models.Microsoft.Graph.IdentitySet Identity { get; set; }
         public string ParticipantId { get; set; }
         public bool? RemoveFromDefaultAudioRoutingGroup { get; set; }
-        /// <summary>Optional. The call which the target idenity is currently a part of. This call will be dropped once the participant is added.</summary>
+        /// <summary>Optional. The call which the target identity is currently a part of. This call will be dropped once the participant is added.</summary>
         public string ReplacesCallId { get; set; }
         /// <summary>
         /// Instantiates a new invitationParticipantInfo and sets the default values.
@@ -23,7 +23,7 @@ namespace ApiSdk.Models.Microsoft.Graph {
         /// Creates a new instance of the appropriate class based on discriminator value
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         /// </summary>
-        public static InvitationParticipantInfo CreateFromDiscriminatorValue(IParseNode parseNode) {
+        public static ApiSdk.Models.Microsoft.Graph.InvitationParticipantInfo CreateFromDiscriminatorValue(IParseNode parseNode) {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
             return new InvitationParticipantInfo();
         }
@@ -33,7 +33,7 @@ namespace ApiSdk.Models.Microsoft.Graph {
         public IDictionary<string, Action<T, IParseNode>> GetFieldDeserializers<T>() {
             return new Dictionary<string, Action<T, IParseNode>> {
                 {"hidden", (o,n) => { (o as InvitationParticipantInfo).Hidden = n.GetBoolValue(); } },
-                {"identity", (o,n) => { (o as InvitationParticipantInfo).Identity = n.GetObjectValue<IdentitySet>(IdentitySet.CreateFromDiscriminatorValue); } },
+                {"identity", (o,n) => { (o as InvitationParticipantInfo).Identity = n.GetObjectValue<ApiSdk.Models.Microsoft.Graph.IdentitySet>(ApiSdk.Models.Microsoft.Graph.IdentitySet.CreateFromDiscriminatorValue); } },
                 {"participantId", (o,n) => { (o as InvitationParticipantInfo).ParticipantId = n.GetStringValue(); } },
                 {"removeFromDefaultAudioRoutingGroup", (o,n) => { (o as InvitationParticipantInfo).RemoveFromDefaultAudioRoutingGroup = n.GetBoolValue(); } },
                 {"replacesCallId", (o,n) => { (o as InvitationParticipantInfo).ReplacesCallId = n.GetStringValue(); } },
@@ -46,7 +46,7 @@ namespace ApiSdk.Models.Microsoft.Graph {
         public void Serialize(ISerializationWriter writer) {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             writer.WriteBoolValue("hidden", Hidden);
-            writer.WriteObjectValue<IdentitySet>("identity", Identity);
+            writer.WriteObjectValue<ApiSdk.Models.Microsoft.Graph.IdentitySet>("identity", Identity);
             writer.WriteStringValue("participantId", ParticipantId);
             writer.WriteBoolValue("removeFromDefaultAudioRoutingGroup", RemoveFromDefaultAudioRoutingGroup);
             writer.WriteStringValue("replacesCallId", ReplacesCallId);

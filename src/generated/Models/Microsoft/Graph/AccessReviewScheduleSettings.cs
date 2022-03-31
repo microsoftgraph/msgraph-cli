@@ -8,10 +8,10 @@ namespace ApiSdk.Models.Microsoft.Graph {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>Optional field. Describes the  actions to take once a review is complete. There are two types that are currently supported: removeAccessApplyAction (default) and disableAndDeleteUserApplyAction. Field only needs to be specified in the case of disableAndDeleteUserApplyAction.</summary>
-        public List<AccessReviewApplyAction> ApplyActions { get; set; }
+        public List<ApiSdk.Models.Microsoft.Graph.AccessReviewApplyAction> ApplyActions { get; set; }
         /// <summary>Indicates whether decisions are automatically applied. When set to false, an admin must apply the decisions manually once the reviewer completes the access review. When set to true, decisions are applied automatically after the access review instance duration ends, whether or not the reviewers have responded. Default value is false.</summary>
         public bool? AutoApplyDecisionsEnabled { get; set; }
-        /// <summary>Decision chosen if defaultDecisionEnabled is enabled. Can be one of Approve, Deny, or Recommendation.</summary>
+        /// <summary>Decision chosen if defaultDecisionEnabled is true. Can be one of Approve, Deny, or Recommendation.</summary>
         public string DefaultDecision { get; set; }
         /// <summary>Indicates whether the default decision is enabled or disabled when reviewers do not respond. Default value is false.</summary>
         public bool? DefaultDecisionEnabled { get; set; }
@@ -23,8 +23,8 @@ namespace ApiSdk.Models.Microsoft.Graph {
         public bool? MailNotificationsEnabled { get; set; }
         /// <summary>Indicates whether decision recommendations are enabled or disabled.</summary>
         public bool? RecommendationsEnabled { get; set; }
-        /// <summary>Detailed settings for recurrence using the standard Outlook recurrence object. Note: Only dayOfMonth, interval, and type (weekly, absoluteMonthly) properties are supported. Use the property startDate on recurrenceRange to determine the day the review starts.</summary>
-        public PatternedRecurrence Recurrence { get; set; }
+        /// <summary>Detailed settings for recurrence using the standard Outlook recurrence object.  Note: Only dayOfMonth, interval, and type (weekly, absoluteMonthly) properties are supported. Use the property startDate on recurrenceRange to determine the day the review starts.</summary>
+        public ApiSdk.Models.Microsoft.Graph.PatternedRecurrence Recurrence { get; set; }
         /// <summary>Indicates whether reminders are enabled or disabled. Default value is false.</summary>
         public bool? ReminderNotificationsEnabled { get; set; }
         /// <summary>
@@ -37,7 +37,7 @@ namespace ApiSdk.Models.Microsoft.Graph {
         /// Creates a new instance of the appropriate class based on discriminator value
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         /// </summary>
-        public static AccessReviewScheduleSettings CreateFromDiscriminatorValue(IParseNode parseNode) {
+        public static ApiSdk.Models.Microsoft.Graph.AccessReviewScheduleSettings CreateFromDiscriminatorValue(IParseNode parseNode) {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
             return new AccessReviewScheduleSettings();
         }
@@ -46,7 +46,7 @@ namespace ApiSdk.Models.Microsoft.Graph {
         /// </summary>
         public IDictionary<string, Action<T, IParseNode>> GetFieldDeserializers<T>() {
             return new Dictionary<string, Action<T, IParseNode>> {
-                {"applyActions", (o,n) => { (o as AccessReviewScheduleSettings).ApplyActions = n.GetCollectionOfObjectValues<AccessReviewApplyAction>(AccessReviewApplyAction.CreateFromDiscriminatorValue).ToList(); } },
+                {"applyActions", (o,n) => { (o as AccessReviewScheduleSettings).ApplyActions = n.GetCollectionOfObjectValues<ApiSdk.Models.Microsoft.Graph.AccessReviewApplyAction>(ApiSdk.Models.Microsoft.Graph.AccessReviewApplyAction.CreateFromDiscriminatorValue).ToList(); } },
                 {"autoApplyDecisionsEnabled", (o,n) => { (o as AccessReviewScheduleSettings).AutoApplyDecisionsEnabled = n.GetBoolValue(); } },
                 {"defaultDecision", (o,n) => { (o as AccessReviewScheduleSettings).DefaultDecision = n.GetStringValue(); } },
                 {"defaultDecisionEnabled", (o,n) => { (o as AccessReviewScheduleSettings).DefaultDecisionEnabled = n.GetBoolValue(); } },
@@ -54,7 +54,7 @@ namespace ApiSdk.Models.Microsoft.Graph {
                 {"justificationRequiredOnApproval", (o,n) => { (o as AccessReviewScheduleSettings).JustificationRequiredOnApproval = n.GetBoolValue(); } },
                 {"mailNotificationsEnabled", (o,n) => { (o as AccessReviewScheduleSettings).MailNotificationsEnabled = n.GetBoolValue(); } },
                 {"recommendationsEnabled", (o,n) => { (o as AccessReviewScheduleSettings).RecommendationsEnabled = n.GetBoolValue(); } },
-                {"recurrence", (o,n) => { (o as AccessReviewScheduleSettings).Recurrence = n.GetObjectValue<PatternedRecurrence>(PatternedRecurrence.CreateFromDiscriminatorValue); } },
+                {"recurrence", (o,n) => { (o as AccessReviewScheduleSettings).Recurrence = n.GetObjectValue<ApiSdk.Models.Microsoft.Graph.PatternedRecurrence>(ApiSdk.Models.Microsoft.Graph.PatternedRecurrence.CreateFromDiscriminatorValue); } },
                 {"reminderNotificationsEnabled", (o,n) => { (o as AccessReviewScheduleSettings).ReminderNotificationsEnabled = n.GetBoolValue(); } },
             };
         }
@@ -64,7 +64,7 @@ namespace ApiSdk.Models.Microsoft.Graph {
         /// </summary>
         public void Serialize(ISerializationWriter writer) {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
-            writer.WriteCollectionOfObjectValues<AccessReviewApplyAction>("applyActions", ApplyActions);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.Microsoft.Graph.AccessReviewApplyAction>("applyActions", ApplyActions);
             writer.WriteBoolValue("autoApplyDecisionsEnabled", AutoApplyDecisionsEnabled);
             writer.WriteStringValue("defaultDecision", DefaultDecision);
             writer.WriteBoolValue("defaultDecisionEnabled", DefaultDecisionEnabled);
@@ -72,7 +72,7 @@ namespace ApiSdk.Models.Microsoft.Graph {
             writer.WriteBoolValue("justificationRequiredOnApproval", JustificationRequiredOnApproval);
             writer.WriteBoolValue("mailNotificationsEnabled", MailNotificationsEnabled);
             writer.WriteBoolValue("recommendationsEnabled", RecommendationsEnabled);
-            writer.WriteObjectValue<PatternedRecurrence>("recurrence", Recurrence);
+            writer.WriteObjectValue<ApiSdk.Models.Microsoft.Graph.PatternedRecurrence>("recurrence", Recurrence);
             writer.WriteBoolValue("reminderNotificationsEnabled", ReminderNotificationsEnabled);
             writer.WriteAdditionalData(AdditionalData);
         }

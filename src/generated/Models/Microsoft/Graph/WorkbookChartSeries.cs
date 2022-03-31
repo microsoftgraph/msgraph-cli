@@ -6,16 +6,16 @@ using System.Linq;
 namespace ApiSdk.Models.Microsoft.Graph {
     public class WorkbookChartSeries : Entity, IParsable {
         /// <summary>Represents the formatting of a chart series, which includes fill and line formatting. Read-only.</summary>
-        public WorkbookChartSeriesFormat Format { get; set; }
+        public ApiSdk.Models.Microsoft.Graph.WorkbookChartSeriesFormat Format { get; set; }
         /// <summary>Represents the name of a series in a chart.</summary>
         public string Name { get; set; }
         /// <summary>Represents a collection of all points in the series. Read-only.</summary>
-        public List<WorkbookChartPoint> Points { get; set; }
+        public List<ApiSdk.Models.Microsoft.Graph.WorkbookChartPoint> Points { get; set; }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         /// </summary>
-        public static new WorkbookChartSeries CreateFromDiscriminatorValue(IParseNode parseNode) {
+        public static new ApiSdk.Models.Microsoft.Graph.WorkbookChartSeries CreateFromDiscriminatorValue(IParseNode parseNode) {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
             return new WorkbookChartSeries();
         }
@@ -24,9 +24,9 @@ namespace ApiSdk.Models.Microsoft.Graph {
         /// </summary>
         public new IDictionary<string, Action<T, IParseNode>> GetFieldDeserializers<T>() {
             return new Dictionary<string, Action<T, IParseNode>>(base.GetFieldDeserializers<T>()) {
-                {"format", (o,n) => { (o as WorkbookChartSeries).Format = n.GetObjectValue<WorkbookChartSeriesFormat>(WorkbookChartSeriesFormat.CreateFromDiscriminatorValue); } },
+                {"format", (o,n) => { (o as WorkbookChartSeries).Format = n.GetObjectValue<ApiSdk.Models.Microsoft.Graph.WorkbookChartSeriesFormat>(ApiSdk.Models.Microsoft.Graph.WorkbookChartSeriesFormat.CreateFromDiscriminatorValue); } },
                 {"name", (o,n) => { (o as WorkbookChartSeries).Name = n.GetStringValue(); } },
-                {"points", (o,n) => { (o as WorkbookChartSeries).Points = n.GetCollectionOfObjectValues<WorkbookChartPoint>(WorkbookChartPoint.CreateFromDiscriminatorValue).ToList(); } },
+                {"points", (o,n) => { (o as WorkbookChartSeries).Points = n.GetCollectionOfObjectValues<ApiSdk.Models.Microsoft.Graph.WorkbookChartPoint>(ApiSdk.Models.Microsoft.Graph.WorkbookChartPoint.CreateFromDiscriminatorValue).ToList(); } },
             };
         }
         /// <summary>
@@ -36,9 +36,9 @@ namespace ApiSdk.Models.Microsoft.Graph {
         public new void Serialize(ISerializationWriter writer) {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             base.Serialize(writer);
-            writer.WriteObjectValue<WorkbookChartSeriesFormat>("format", Format);
+            writer.WriteObjectValue<ApiSdk.Models.Microsoft.Graph.WorkbookChartSeriesFormat>("format", Format);
             writer.WriteStringValue("name", Name);
-            writer.WriteCollectionOfObjectValues<WorkbookChartPoint>("points", Points);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.Microsoft.Graph.WorkbookChartPoint>("points", Points);
         }
     }
 }

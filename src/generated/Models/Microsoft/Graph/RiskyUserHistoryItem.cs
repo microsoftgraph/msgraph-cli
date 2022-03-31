@@ -6,7 +6,7 @@ using System.Linq;
 namespace ApiSdk.Models.Microsoft.Graph {
     public class RiskyUserHistoryItem : RiskyUser, IParsable {
         /// <summary>The activity related to user risk level change.</summary>
-        public RiskUserActivity Activity { get; set; }
+        public ApiSdk.Models.Microsoft.Graph.RiskUserActivity Activity { get; set; }
         /// <summary>The id of actor that does the operation.</summary>
         public string InitiatedBy { get; set; }
         /// <summary>The id of the user.</summary>
@@ -15,7 +15,7 @@ namespace ApiSdk.Models.Microsoft.Graph {
         /// Creates a new instance of the appropriate class based on discriminator value
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         /// </summary>
-        public static new RiskyUserHistoryItem CreateFromDiscriminatorValue(IParseNode parseNode) {
+        public static new ApiSdk.Models.Microsoft.Graph.RiskyUserHistoryItem CreateFromDiscriminatorValue(IParseNode parseNode) {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
             return new RiskyUserHistoryItem();
         }
@@ -24,7 +24,7 @@ namespace ApiSdk.Models.Microsoft.Graph {
         /// </summary>
         public new IDictionary<string, Action<T, IParseNode>> GetFieldDeserializers<T>() {
             return new Dictionary<string, Action<T, IParseNode>>(base.GetFieldDeserializers<T>()) {
-                {"activity", (o,n) => { (o as RiskyUserHistoryItem).Activity = n.GetObjectValue<RiskUserActivity>(RiskUserActivity.CreateFromDiscriminatorValue); } },
+                {"activity", (o,n) => { (o as RiskyUserHistoryItem).Activity = n.GetObjectValue<ApiSdk.Models.Microsoft.Graph.RiskUserActivity>(ApiSdk.Models.Microsoft.Graph.RiskUserActivity.CreateFromDiscriminatorValue); } },
                 {"initiatedBy", (o,n) => { (o as RiskyUserHistoryItem).InitiatedBy = n.GetStringValue(); } },
                 {"userId", (o,n) => { (o as RiskyUserHistoryItem).UserId = n.GetStringValue(); } },
             };
@@ -36,7 +36,7 @@ namespace ApiSdk.Models.Microsoft.Graph {
         public new void Serialize(ISerializationWriter writer) {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             base.Serialize(writer);
-            writer.WriteObjectValue<RiskUserActivity>("activity", Activity);
+            writer.WriteObjectValue<ApiSdk.Models.Microsoft.Graph.RiskUserActivity>("activity", Activity);
             writer.WriteStringValue("initiatedBy", InitiatedBy);
             writer.WriteStringValue("userId", UserId);
         }

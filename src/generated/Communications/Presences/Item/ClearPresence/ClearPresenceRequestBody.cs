@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 namespace ApiSdk.Communications.Presences.Item.ClearPresence {
+    /// <summary>Provides operations to call the clearPresence method.</summary>
     public class ClearPresenceRequestBody : IAdditionalDataHolder, IParsable {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
@@ -18,7 +19,7 @@ namespace ApiSdk.Communications.Presences.Item.ClearPresence {
         /// Creates a new instance of the appropriate class based on discriminator value
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         /// </summary>
-        public static ClearPresenceRequestBody CreateFromDiscriminatorValue(IParseNode parseNode) {
+        public static ApiSdk.Communications.Presences.Item.ClearPresence.ClearPresenceRequestBody CreateFromDiscriminatorValue(IParseNode parseNode) {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
             return new ClearPresenceRequestBody();
         }

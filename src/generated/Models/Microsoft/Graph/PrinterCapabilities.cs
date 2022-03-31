@@ -16,7 +16,7 @@ namespace ApiSdk.Models.Microsoft.Graph {
         /// <summary>A list of supported content (MIME) types that the printer supports. It is not guaranteed that the Universal Print service supports printing all of these MIME types.</summary>
         public List<string> ContentTypes { get; set; }
         /// <summary>The range of copies per job supported by the printer.</summary>
-        public IntegerRange CopiesPerJob { get; set; }
+        public ApiSdk.Models.Microsoft.Graph.IntegerRange CopiesPerJob { get; set; }
         /// <summary>The list of print resolutions in DPI that are supported by the printer.</summary>
         public List<int?> Dpis { get; set; }
         /// <summary>The list of duplex modes that are supported by the printer. Valid values are described in the following table.</summary>
@@ -67,7 +67,7 @@ namespace ApiSdk.Models.Microsoft.Graph {
         /// Creates a new instance of the appropriate class based on discriminator value
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         /// </summary>
-        public static PrinterCapabilities CreateFromDiscriminatorValue(IParseNode parseNode) {
+        public static ApiSdk.Models.Microsoft.Graph.PrinterCapabilities CreateFromDiscriminatorValue(IParseNode parseNode) {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
             return new PrinterCapabilities();
         }
@@ -80,7 +80,7 @@ namespace ApiSdk.Models.Microsoft.Graph {
                 {"collation", (o,n) => { (o as PrinterCapabilities).Collation = n.GetBoolValue(); } },
                 {"colorModes", (o,n) => { (o as PrinterCapabilities).ColorModes = n.GetCollectionOfEnumValues<PrintColorMode>().ToList(); } },
                 {"contentTypes", (o,n) => { (o as PrinterCapabilities).ContentTypes = n.GetCollectionOfPrimitiveValues<string>().ToList(); } },
-                {"copiesPerJob", (o,n) => { (o as PrinterCapabilities).CopiesPerJob = n.GetObjectValue<IntegerRange>(IntegerRange.CreateFromDiscriminatorValue); } },
+                {"copiesPerJob", (o,n) => { (o as PrinterCapabilities).CopiesPerJob = n.GetObjectValue<ApiSdk.Models.Microsoft.Graph.IntegerRange>(ApiSdk.Models.Microsoft.Graph.IntegerRange.CreateFromDiscriminatorValue); } },
                 {"dpis", (o,n) => { (o as PrinterCapabilities).Dpis = n.GetCollectionOfPrimitiveValues<int?>().ToList(); } },
                 {"duplexModes", (o,n) => { (o as PrinterCapabilities).DuplexModes = n.GetCollectionOfEnumValues<PrintDuplexMode>().ToList(); } },
                 {"feedOrientations", (o,n) => { (o as PrinterCapabilities).FeedOrientations = n.GetCollectionOfEnumValues<PrinterFeedOrientation>().ToList(); } },
@@ -113,7 +113,7 @@ namespace ApiSdk.Models.Microsoft.Graph {
             writer.WriteBoolValue("collation", Collation);
             writer.WriteCollectionOfEnumValues<PrintColorMode>("colorModes", ColorModes);
             writer.WriteCollectionOfPrimitiveValues<string>("contentTypes", ContentTypes);
-            writer.WriteObjectValue<IntegerRange>("copiesPerJob", CopiesPerJob);
+            writer.WriteObjectValue<ApiSdk.Models.Microsoft.Graph.IntegerRange>("copiesPerJob", CopiesPerJob);
             writer.WriteCollectionOfPrimitiveValues<int?>("dpis", Dpis);
             writer.WriteCollectionOfEnumValues<PrintDuplexMode>("duplexModes", DuplexModes);
             writer.WriteCollectionOfEnumValues<PrinterFeedOrientation>("feedOrientations", FeedOrientations);

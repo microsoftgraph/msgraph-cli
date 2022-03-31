@@ -10,7 +10,7 @@ namespace ApiSdk.Models.Microsoft.Graph {
         /// <summary>The email address provided for the recipient of the sharing invitation. Read-only.</summary>
         public string Email { get; set; }
         /// <summary>Provides information about who sent the invitation that created this permission, if that information is available. Read-only.</summary>
-        public IdentitySet InvitedBy { get; set; }
+        public ApiSdk.Models.Microsoft.Graph.IdentitySet InvitedBy { get; set; }
         public string RedeemedBy { get; set; }
         /// <summary>If true the recipient of the invitation needs to sign in in order to access the shared item. Read-only.</summary>
         public bool? SignInRequired { get; set; }
@@ -24,7 +24,7 @@ namespace ApiSdk.Models.Microsoft.Graph {
         /// Creates a new instance of the appropriate class based on discriminator value
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         /// </summary>
-        public static SharingInvitation CreateFromDiscriminatorValue(IParseNode parseNode) {
+        public static ApiSdk.Models.Microsoft.Graph.SharingInvitation CreateFromDiscriminatorValue(IParseNode parseNode) {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
             return new SharingInvitation();
         }
@@ -34,7 +34,7 @@ namespace ApiSdk.Models.Microsoft.Graph {
         public IDictionary<string, Action<T, IParseNode>> GetFieldDeserializers<T>() {
             return new Dictionary<string, Action<T, IParseNode>> {
                 {"email", (o,n) => { (o as SharingInvitation).Email = n.GetStringValue(); } },
-                {"invitedBy", (o,n) => { (o as SharingInvitation).InvitedBy = n.GetObjectValue<IdentitySet>(IdentitySet.CreateFromDiscriminatorValue); } },
+                {"invitedBy", (o,n) => { (o as SharingInvitation).InvitedBy = n.GetObjectValue<ApiSdk.Models.Microsoft.Graph.IdentitySet>(ApiSdk.Models.Microsoft.Graph.IdentitySet.CreateFromDiscriminatorValue); } },
                 {"redeemedBy", (o,n) => { (o as SharingInvitation).RedeemedBy = n.GetStringValue(); } },
                 {"signInRequired", (o,n) => { (o as SharingInvitation).SignInRequired = n.GetBoolValue(); } },
             };
@@ -46,7 +46,7 @@ namespace ApiSdk.Models.Microsoft.Graph {
         public void Serialize(ISerializationWriter writer) {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             writer.WriteStringValue("email", Email);
-            writer.WriteObjectValue<IdentitySet>("invitedBy", InvitedBy);
+            writer.WriteObjectValue<ApiSdk.Models.Microsoft.Graph.IdentitySet>("invitedBy", InvitedBy);
             writer.WriteStringValue("redeemedBy", RedeemedBy);
             writer.WriteBoolValue("signInRequired", SignInRequired);
             writer.WriteAdditionalData(AdditionalData);

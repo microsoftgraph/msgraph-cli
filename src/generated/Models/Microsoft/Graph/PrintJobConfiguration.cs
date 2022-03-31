@@ -25,8 +25,8 @@ namespace ApiSdk.Models.Microsoft.Graph {
         /// <summary>The input bin (tray) to use when printing. See the printer's capabilities for a list of supported input bins.</summary>
         public string InputBin { get; set; }
         /// <summary>The margin settings to use when printing.</summary>
-        public PrintMargin Margin { get; set; }
-        /// <summary>The media sizeto use when printing. Supports standard size names for ISO and ANSI media sizes. Valid values are listed in the printerCapabilities topic.</summary>
+        public ApiSdk.Models.Microsoft.Graph.PrintMargin Margin { get; set; }
+        /// <summary>The media size to use when printing. Supports standard size names for ISO and ANSI media sizes. Valid values listed in the printerCapabilities topic.</summary>
         public string MediaSize { get; set; }
         /// <summary>The default media (such as paper) type to print the document on.</summary>
         public string MediaType { get; set; }
@@ -37,7 +37,7 @@ namespace ApiSdk.Models.Microsoft.Graph {
         /// <summary>The output bin to place completed prints into. See the printer's capabilities for a list of supported output bins.</summary>
         public string OutputBin { get; set; }
         /// <summary>The page ranges to print. Read-only.</summary>
-        public List<IntegerRange> PageRanges { get; set; }
+        public List<ApiSdk.Models.Microsoft.Graph.IntegerRange> PageRanges { get; set; }
         /// <summary>The number of document pages to print on each sheet.</summary>
         public int? PagesPerSheet { get; set; }
         /// <summary>The print quality to use when printing the job. Valid values are described in the table below. Read-only.</summary>
@@ -54,7 +54,7 @@ namespace ApiSdk.Models.Microsoft.Graph {
         /// Creates a new instance of the appropriate class based on discriminator value
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         /// </summary>
-        public static PrintJobConfiguration CreateFromDiscriminatorValue(IParseNode parseNode) {
+        public static ApiSdk.Models.Microsoft.Graph.PrintJobConfiguration CreateFromDiscriminatorValue(IParseNode parseNode) {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
             return new PrintJobConfiguration();
         }
@@ -72,13 +72,13 @@ namespace ApiSdk.Models.Microsoft.Graph {
                 {"finishings", (o,n) => { (o as PrintJobConfiguration).Finishings = n.GetCollectionOfEnumValues<PrintFinishing>().ToList(); } },
                 {"fitPdfToPage", (o,n) => { (o as PrintJobConfiguration).FitPdfToPage = n.GetBoolValue(); } },
                 {"inputBin", (o,n) => { (o as PrintJobConfiguration).InputBin = n.GetStringValue(); } },
-                {"margin", (o,n) => { (o as PrintJobConfiguration).Margin = n.GetObjectValue<PrintMargin>(PrintMargin.CreateFromDiscriminatorValue); } },
+                {"margin", (o,n) => { (o as PrintJobConfiguration).Margin = n.GetObjectValue<ApiSdk.Models.Microsoft.Graph.PrintMargin>(ApiSdk.Models.Microsoft.Graph.PrintMargin.CreateFromDiscriminatorValue); } },
                 {"mediaSize", (o,n) => { (o as PrintJobConfiguration).MediaSize = n.GetStringValue(); } },
                 {"mediaType", (o,n) => { (o as PrintJobConfiguration).MediaType = n.GetStringValue(); } },
                 {"multipageLayout", (o,n) => { (o as PrintJobConfiguration).MultipageLayout = n.GetEnumValue<PrintMultipageLayout>(); } },
                 {"orientation", (o,n) => { (o as PrintJobConfiguration).Orientation = n.GetEnumValue<PrintOrientation>(); } },
                 {"outputBin", (o,n) => { (o as PrintJobConfiguration).OutputBin = n.GetStringValue(); } },
-                {"pageRanges", (o,n) => { (o as PrintJobConfiguration).PageRanges = n.GetCollectionOfObjectValues<IntegerRange>(IntegerRange.CreateFromDiscriminatorValue).ToList(); } },
+                {"pageRanges", (o,n) => { (o as PrintJobConfiguration).PageRanges = n.GetCollectionOfObjectValues<ApiSdk.Models.Microsoft.Graph.IntegerRange>(ApiSdk.Models.Microsoft.Graph.IntegerRange.CreateFromDiscriminatorValue).ToList(); } },
                 {"pagesPerSheet", (o,n) => { (o as PrintJobConfiguration).PagesPerSheet = n.GetIntValue(); } },
                 {"quality", (o,n) => { (o as PrintJobConfiguration).Quality = n.GetEnumValue<PrintQuality>(); } },
                 {"scaling", (o,n) => { (o as PrintJobConfiguration).Scaling = n.GetEnumValue<PrintScaling>(); } },
@@ -99,13 +99,13 @@ namespace ApiSdk.Models.Microsoft.Graph {
             writer.WriteCollectionOfEnumValues<PrintFinishing>("finishings", Finishings);
             writer.WriteBoolValue("fitPdfToPage", FitPdfToPage);
             writer.WriteStringValue("inputBin", InputBin);
-            writer.WriteObjectValue<PrintMargin>("margin", Margin);
+            writer.WriteObjectValue<ApiSdk.Models.Microsoft.Graph.PrintMargin>("margin", Margin);
             writer.WriteStringValue("mediaSize", MediaSize);
             writer.WriteStringValue("mediaType", MediaType);
             writer.WriteEnumValue<PrintMultipageLayout>("multipageLayout", MultipageLayout);
             writer.WriteEnumValue<PrintOrientation>("orientation", Orientation);
             writer.WriteStringValue("outputBin", OutputBin);
-            writer.WriteCollectionOfObjectValues<IntegerRange>("pageRanges", PageRanges);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.Microsoft.Graph.IntegerRange>("pageRanges", PageRanges);
             writer.WriteIntValue("pagesPerSheet", PagesPerSheet);
             writer.WriteEnumValue<PrintQuality>("quality", Quality);
             writer.WriteEnumValue<PrintScaling>("scaling", Scaling);

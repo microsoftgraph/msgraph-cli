@@ -8,20 +8,20 @@ namespace ApiSdk.Models.Microsoft.Graph {
         /// <summary>The name of the task list.</summary>
         public string DisplayName { get; set; }
         /// <summary>The collection of open extensions defined for the task list. Nullable.</summary>
-        public List<Extension> Extensions { get; set; }
+        public List<ApiSdk.Models.Microsoft.Graph.Extension> Extensions { get; set; }
         /// <summary>True if the user is owner of the given task list.</summary>
         public bool? IsOwner { get; set; }
         /// <summary>True if the task list is shared with other users</summary>
         public bool? IsShared { get; set; }
         /// <summary>The tasks in this task list. Read-only. Nullable.</summary>
-        public List<TodoTask> Tasks { get; set; }
+        public List<ApiSdk.Models.Microsoft.Graph.TodoTask> Tasks { get; set; }
         /// <summary>Property indicating the list name if the given list is a well-known list. Possible values are: none, defaultList, flaggedEmails, unknownFutureValue.</summary>
         public ApiSdk.Models.Microsoft.Graph.WellknownListName? WellknownListName { get; set; }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         /// </summary>
-        public static new TodoTaskList CreateFromDiscriminatorValue(IParseNode parseNode) {
+        public static new ApiSdk.Models.Microsoft.Graph.TodoTaskList CreateFromDiscriminatorValue(IParseNode parseNode) {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
             return new TodoTaskList();
         }
@@ -31,10 +31,10 @@ namespace ApiSdk.Models.Microsoft.Graph {
         public new IDictionary<string, Action<T, IParseNode>> GetFieldDeserializers<T>() {
             return new Dictionary<string, Action<T, IParseNode>>(base.GetFieldDeserializers<T>()) {
                 {"displayName", (o,n) => { (o as TodoTaskList).DisplayName = n.GetStringValue(); } },
-                {"extensions", (o,n) => { (o as TodoTaskList).Extensions = n.GetCollectionOfObjectValues<Extension>(Extension.CreateFromDiscriminatorValue).ToList(); } },
+                {"extensions", (o,n) => { (o as TodoTaskList).Extensions = n.GetCollectionOfObjectValues<ApiSdk.Models.Microsoft.Graph.Extension>(ApiSdk.Models.Microsoft.Graph.Extension.CreateFromDiscriminatorValue).ToList(); } },
                 {"isOwner", (o,n) => { (o as TodoTaskList).IsOwner = n.GetBoolValue(); } },
                 {"isShared", (o,n) => { (o as TodoTaskList).IsShared = n.GetBoolValue(); } },
-                {"tasks", (o,n) => { (o as TodoTaskList).Tasks = n.GetCollectionOfObjectValues<TodoTask>(TodoTask.CreateFromDiscriminatorValue).ToList(); } },
+                {"tasks", (o,n) => { (o as TodoTaskList).Tasks = n.GetCollectionOfObjectValues<ApiSdk.Models.Microsoft.Graph.TodoTask>(ApiSdk.Models.Microsoft.Graph.TodoTask.CreateFromDiscriminatorValue).ToList(); } },
                 {"wellknownListName", (o,n) => { (o as TodoTaskList).WellknownListName = n.GetEnumValue<WellknownListName>(); } },
             };
         }
@@ -46,10 +46,10 @@ namespace ApiSdk.Models.Microsoft.Graph {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             base.Serialize(writer);
             writer.WriteStringValue("displayName", DisplayName);
-            writer.WriteCollectionOfObjectValues<Extension>("extensions", Extensions);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.Microsoft.Graph.Extension>("extensions", Extensions);
             writer.WriteBoolValue("isOwner", IsOwner);
             writer.WriteBoolValue("isShared", IsShared);
-            writer.WriteCollectionOfObjectValues<TodoTask>("tasks", Tasks);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.Microsoft.Graph.TodoTask>("tasks", Tasks);
             writer.WriteEnumValue<WellknownListName>("wellknownListName", WellknownListName);
         }
     }

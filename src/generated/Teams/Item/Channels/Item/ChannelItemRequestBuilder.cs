@@ -1,4 +1,5 @@
 using ApiSdk.Models.Microsoft.Graph;
+using ApiSdk.Models.Microsoft.Graph.ODataErrors;
 using ApiSdk.Teams.Item.Channels.Item.CompleteMigration;
 using ApiSdk.Teams.Item.Channels.Item.FilesFolder;
 using ApiSdk.Teams.Item.Channels.Item.Members;
@@ -19,7 +20,7 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 namespace ApiSdk.Teams.Item.Channels.Item {
-    /// <summary>Builds and executes requests for operations under \teams\{team-id}\channels\{channel-id}</summary>
+    /// <summary>Provides operations to manage the channels property of the microsoft.graph.team entity.</summary>
     public class ChannelItemRequestBuilder {
         /// <summary>Path parameters for the request</summary>
         private Dictionary<string, object> PathParameters { get; set; }
@@ -29,16 +30,16 @@ namespace ApiSdk.Teams.Item.Channels.Item {
         private string UrlTemplate { get; set; }
         public Command BuildCompleteMigrationCommand() {
             var command = new Command("complete-migration");
-            var builder = new ApiSdk.Teams.Item.Channels.Item.CompleteMigration.CompleteMigrationRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new CompleteMigrationRequestBuilder(PathParameters, RequestAdapter);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
         /// <summary>
-        /// The collection of channels & messages associated with the team.
+        /// Delete navigation property channels for teams
         /// </summary>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
-            command.Description = "The collection of channels & messages associated with the team.";
+            command.Description = "Delete navigation property channels for teams";
             // Create options for all the parameters
             var teamIdOption = new Option<string>("--team-id", description: "key: id of team") {
             };
@@ -57,26 +58,28 @@ namespace ApiSdk.Teams.Item.Channels.Item {
                 PathParameters.Add("channel_id", channelId);
                 var requestInfo = CreateDeleteRequestInformation(q => {
                 });
-                await RequestAdapter.SendNoContentAsync(requestInfo, errorMapping: default, cancellationToken: cancellationToken);
+                var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
+                    {"4XX", ODataError.CreateFromDiscriminatorValue},
+                    {"5XX", ODataError.CreateFromDiscriminatorValue},
+                };
+                await RequestAdapter.SendNoContentAsync(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken);
                 Console.WriteLine("Success");
             }, new CollectionBinding(teamIdOption, channelIdOption, new TypeBinding(typeof(CancellationToken))));
             return command;
         }
         public Command BuildFilesFolderCommand() {
             var command = new Command("files-folder");
-            var builder = new ApiSdk.Teams.Item.Channels.Item.FilesFolder.FilesFolderRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new FilesFolderRequestBuilder(PathParameters, RequestAdapter);
             command.AddCommand(builder.BuildContentCommand());
-            command.AddCommand(builder.BuildDeleteCommand());
             command.AddCommand(builder.BuildGetCommand());
-            command.AddCommand(builder.BuildPatchCommand());
             return command;
         }
         /// <summary>
-        /// The collection of channels & messages associated with the team.
+        /// The collection of channels and messages associated with the team.
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "The collection of channels & messages associated with the team.";
+            command.Description = "The collection of channels and messages associated with the team.";
             // Create options for all the parameters
             var teamIdOption = new Option<string>("--team-id", description: "key: id of team") {
             };
@@ -127,41 +130,47 @@ namespace ApiSdk.Teams.Item.Channels.Item {
                     q.Select = select;
                     q.Expand = expand;
                 });
-                var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: default, cancellationToken: cancellationToken);
-                var formatter = outputFormatterFactory.GetFormatter(output);
+                var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
+                    {"4XX", ODataError.CreateFromDiscriminatorValue},
+                    {"5XX", ODataError.CreateFromDiscriminatorValue},
+                };
+                var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken);
                 response = await outputFilter?.FilterOutputAsync(response, query, cancellationToken) ?? response;
                 var formatterOptions = output.GetOutputFormatterOptions(new FormatterOptionsModel(!jsonNoIndent));
+                var formatter = outputFormatterFactory.GetFormatter(output);
                 await formatter.WriteOutputAsync(response, formatterOptions, cancellationToken);
             }, new CollectionBinding(teamIdOption, channelIdOption, selectOption, expandOption, outputOption, queryOption, jsonNoIndentOption, new TypeBinding(typeof(IOutputFilter)), new TypeBinding(typeof(IOutputFormatterFactory)), new TypeBinding(typeof(CancellationToken))));
             return command;
         }
         public Command BuildMembersCommand() {
             var command = new Command("members");
-            var builder = new ApiSdk.Teams.Item.Channels.Item.Members.MembersRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new MembersRequestBuilder(PathParameters, RequestAdapter);
             command.AddCommand(builder.BuildAddCommand());
             foreach (var cmd in builder.BuildCommand()) {
                 command.AddCommand(cmd);
             }
+            command.AddCommand(builder.BuildCountCommand());
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;
         }
         public Command BuildMessagesCommand() {
             var command = new Command("messages");
-            var builder = new ApiSdk.Teams.Item.Channels.Item.Messages.MessagesRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new MessagesRequestBuilder(PathParameters, RequestAdapter);
             foreach (var cmd in builder.BuildCommand()) {
                 command.AddCommand(cmd);
             }
+            command.AddCommand(builder.BuildCountCommand());
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;
         }
         /// <summary>
-        /// The collection of channels & messages associated with the team.
+        /// Update the navigation property channels in teams
         /// </summary>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
-            command.Description = "The collection of channels & messages associated with the team.";
+            command.Description = "Update the navigation property channels in teams";
             // Create options for all the parameters
             var teamIdOption = new Option<string>("--team-id", description: "key: id of team") {
             };
@@ -188,29 +197,34 @@ namespace ApiSdk.Teams.Item.Channels.Item {
                 var model = parseNode.GetObjectValue<Channel>(Channel.CreateFromDiscriminatorValue);
                 var requestInfo = CreatePatchRequestInformation(model, q => {
                 });
-                await RequestAdapter.SendNoContentAsync(requestInfo, errorMapping: default, cancellationToken: cancellationToken);
+                var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
+                    {"4XX", ODataError.CreateFromDiscriminatorValue},
+                    {"5XX", ODataError.CreateFromDiscriminatorValue},
+                };
+                await RequestAdapter.SendNoContentAsync(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken);
                 Console.WriteLine("Success");
             }, new CollectionBinding(teamIdOption, channelIdOption, bodyOption, new TypeBinding(typeof(CancellationToken))));
             return command;
         }
         public Command BuildProvisionEmailCommand() {
             var command = new Command("provision-email");
-            var builder = new ApiSdk.Teams.Item.Channels.Item.ProvisionEmail.ProvisionEmailRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new ProvisionEmailRequestBuilder(PathParameters, RequestAdapter);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
         public Command BuildRemoveEmailCommand() {
             var command = new Command("remove-email");
-            var builder = new ApiSdk.Teams.Item.Channels.Item.RemoveEmail.RemoveEmailRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new RemoveEmailRequestBuilder(PathParameters, RequestAdapter);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
         public Command BuildTabsCommand() {
             var command = new Command("tabs");
-            var builder = new ApiSdk.Teams.Item.Channels.Item.Tabs.TabsRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new TabsRequestBuilder(PathParameters, RequestAdapter);
             foreach (var cmd in builder.BuildCommand()) {
                 command.AddCommand(cmd);
             }
+            command.AddCommand(builder.BuildCountCommand());
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;
@@ -229,48 +243,48 @@ namespace ApiSdk.Teams.Item.Channels.Item {
             RequestAdapter = requestAdapter;
         }
         /// <summary>
-        /// The collection of channels & messages associated with the team.
-        /// <param name="h">Request headers</param>
-        /// <param name="o">Request options</param>
+        /// Delete navigation property channels for teams
+        /// <param name="headers">Request headers</param>
+        /// <param name="options">Request options</param>
         /// </summary>
-        public RequestInformation CreateDeleteRequestInformation(Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
+        public RequestInformation CreateDeleteRequestInformation(Action<IDictionary<string, string>> headers = default, IEnumerable<IRequestOption> options = default) {
             var requestInfo = new RequestInformation {
                 HttpMethod = Method.DELETE,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };
-            h?.Invoke(requestInfo.Headers);
-            requestInfo.AddRequestOptions(o?.ToArray());
+            headers?.Invoke(requestInfo.Headers);
+            requestInfo.AddRequestOptions(options?.ToArray());
             return requestInfo;
         }
         /// <summary>
-        /// The collection of channels & messages associated with the team.
-        /// <param name="h">Request headers</param>
-        /// <param name="o">Request options</param>
-        /// <param name="q">Request query parameters</param>
+        /// The collection of channels and messages associated with the team.
+        /// <param name="headers">Request headers</param>
+        /// <param name="options">Request options</param>
+        /// <param name="queryParameters">Request query parameters</param>
         /// </summary>
-        public RequestInformation CreateGetRequestInformation(Action<GetQueryParameters> q = default, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
+        public RequestInformation CreateGetRequestInformation(Action<GetQueryParameters> queryParameters = default, Action<IDictionary<string, string>> headers = default, IEnumerable<IRequestOption> options = default) {
             var requestInfo = new RequestInformation {
                 HttpMethod = Method.GET,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };
-            if (q != null) {
+            if (queryParameters != null) {
                 var qParams = new GetQueryParameters();
-                q.Invoke(qParams);
+                queryParameters.Invoke(qParams);
                 qParams.AddQueryParameters(requestInfo.QueryParameters);
             }
-            h?.Invoke(requestInfo.Headers);
-            requestInfo.AddRequestOptions(o?.ToArray());
+            headers?.Invoke(requestInfo.Headers);
+            requestInfo.AddRequestOptions(options?.ToArray());
             return requestInfo;
         }
         /// <summary>
-        /// The collection of channels & messages associated with the team.
+        /// Update the navigation property channels in teams
         /// <param name="body"></param>
-        /// <param name="h">Request headers</param>
-        /// <param name="o">Request options</param>
+        /// <param name="headers">Request headers</param>
+        /// <param name="options">Request options</param>
         /// </summary>
-        public RequestInformation CreatePatchRequestInformation(Channel body, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
+        public RequestInformation CreatePatchRequestInformation(Channel body, Action<IDictionary<string, string>> headers = default, IEnumerable<IRequestOption> options = default) {
             _ = body ?? throw new ArgumentNullException(nameof(body));
             var requestInfo = new RequestInformation {
                 HttpMethod = Method.PATCH,
@@ -278,11 +292,11 @@ namespace ApiSdk.Teams.Item.Channels.Item {
                 PathParameters = PathParameters,
             };
             requestInfo.SetContentFromParsable(RequestAdapter, "application/json", body);
-            h?.Invoke(requestInfo.Headers);
-            requestInfo.AddRequestOptions(o?.ToArray());
+            headers?.Invoke(requestInfo.Headers);
+            requestInfo.AddRequestOptions(options?.ToArray());
             return requestInfo;
         }
-        /// <summary>The collection of channels & messages associated with the team.</summary>
+        /// <summary>The collection of channels and messages associated with the team.</summary>
         public class GetQueryParameters : QueryParametersBase {
             /// <summary>Expand related entities</summary>
             public string[] Expand { get; set; }

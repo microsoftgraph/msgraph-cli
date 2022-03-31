@@ -8,17 +8,17 @@ namespace ApiSdk.Models.Microsoft.Graph.CallRecords {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>Device information associated with the callee endpoint of this media.</summary>
-        public DeviceInfo CalleeDevice { get; set; }
+        public ApiSdk.Models.Microsoft.Graph.CallRecords.DeviceInfo CalleeDevice { get; set; }
         /// <summary>Network information associated with the callee endpoint of this media.</summary>
-        public NetworkInfo CalleeNetwork { get; set; }
+        public ApiSdk.Models.Microsoft.Graph.CallRecords.NetworkInfo CalleeNetwork { get; set; }
         /// <summary>Device information associated with the caller endpoint of this media.</summary>
-        public DeviceInfo CallerDevice { get; set; }
+        public ApiSdk.Models.Microsoft.Graph.CallRecords.DeviceInfo CallerDevice { get; set; }
         /// <summary>Network information associated with the caller endpoint of this media.</summary>
-        public NetworkInfo CallerNetwork { get; set; }
+        public ApiSdk.Models.Microsoft.Graph.CallRecords.NetworkInfo CallerNetwork { get; set; }
         /// <summary>How the media was identified during media negotiation stage.</summary>
         public string Label { get; set; }
         /// <summary>Network streams associated with this media.</summary>
-        public List<MediaStream> Streams { get; set; }
+        public List<ApiSdk.Models.Microsoft.Graph.CallRecords.MediaStream> Streams { get; set; }
         /// <summary>
         /// Instantiates a new media and sets the default values.
         /// </summary>
@@ -29,7 +29,7 @@ namespace ApiSdk.Models.Microsoft.Graph.CallRecords {
         /// Creates a new instance of the appropriate class based on discriminator value
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         /// </summary>
-        public static Media CreateFromDiscriminatorValue(IParseNode parseNode) {
+        public static ApiSdk.Models.Microsoft.Graph.CallRecords.Media CreateFromDiscriminatorValue(IParseNode parseNode) {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
             return new Media();
         }
@@ -38,12 +38,12 @@ namespace ApiSdk.Models.Microsoft.Graph.CallRecords {
         /// </summary>
         public IDictionary<string, Action<T, IParseNode>> GetFieldDeserializers<T>() {
             return new Dictionary<string, Action<T, IParseNode>> {
-                {"calleeDevice", (o,n) => { (o as Media).CalleeDevice = n.GetObjectValue<DeviceInfo>(DeviceInfo.CreateFromDiscriminatorValue); } },
-                {"calleeNetwork", (o,n) => { (o as Media).CalleeNetwork = n.GetObjectValue<NetworkInfo>(NetworkInfo.CreateFromDiscriminatorValue); } },
-                {"callerDevice", (o,n) => { (o as Media).CallerDevice = n.GetObjectValue<DeviceInfo>(DeviceInfo.CreateFromDiscriminatorValue); } },
-                {"callerNetwork", (o,n) => { (o as Media).CallerNetwork = n.GetObjectValue<NetworkInfo>(NetworkInfo.CreateFromDiscriminatorValue); } },
+                {"calleeDevice", (o,n) => { (o as Media).CalleeDevice = n.GetObjectValue<ApiSdk.Models.Microsoft.Graph.CallRecords.DeviceInfo>(ApiSdk.Models.Microsoft.Graph.CallRecords.DeviceInfo.CreateFromDiscriminatorValue); } },
+                {"calleeNetwork", (o,n) => { (o as Media).CalleeNetwork = n.GetObjectValue<ApiSdk.Models.Microsoft.Graph.CallRecords.NetworkInfo>(ApiSdk.Models.Microsoft.Graph.CallRecords.NetworkInfo.CreateFromDiscriminatorValue); } },
+                {"callerDevice", (o,n) => { (o as Media).CallerDevice = n.GetObjectValue<ApiSdk.Models.Microsoft.Graph.CallRecords.DeviceInfo>(ApiSdk.Models.Microsoft.Graph.CallRecords.DeviceInfo.CreateFromDiscriminatorValue); } },
+                {"callerNetwork", (o,n) => { (o as Media).CallerNetwork = n.GetObjectValue<ApiSdk.Models.Microsoft.Graph.CallRecords.NetworkInfo>(ApiSdk.Models.Microsoft.Graph.CallRecords.NetworkInfo.CreateFromDiscriminatorValue); } },
                 {"label", (o,n) => { (o as Media).Label = n.GetStringValue(); } },
-                {"streams", (o,n) => { (o as Media).Streams = n.GetCollectionOfObjectValues<MediaStream>(MediaStream.CreateFromDiscriminatorValue).ToList(); } },
+                {"streams", (o,n) => { (o as Media).Streams = n.GetCollectionOfObjectValues<ApiSdk.Models.Microsoft.Graph.CallRecords.MediaStream>(ApiSdk.Models.Microsoft.Graph.CallRecords.MediaStream.CreateFromDiscriminatorValue).ToList(); } },
             };
         }
         /// <summary>
@@ -52,12 +52,12 @@ namespace ApiSdk.Models.Microsoft.Graph.CallRecords {
         /// </summary>
         public void Serialize(ISerializationWriter writer) {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
-            writer.WriteObjectValue<DeviceInfo>("calleeDevice", CalleeDevice);
-            writer.WriteObjectValue<NetworkInfo>("calleeNetwork", CalleeNetwork);
-            writer.WriteObjectValue<DeviceInfo>("callerDevice", CallerDevice);
-            writer.WriteObjectValue<NetworkInfo>("callerNetwork", CallerNetwork);
+            writer.WriteObjectValue<ApiSdk.Models.Microsoft.Graph.CallRecords.DeviceInfo>("calleeDevice", CalleeDevice);
+            writer.WriteObjectValue<ApiSdk.Models.Microsoft.Graph.CallRecords.NetworkInfo>("calleeNetwork", CalleeNetwork);
+            writer.WriteObjectValue<ApiSdk.Models.Microsoft.Graph.CallRecords.DeviceInfo>("callerDevice", CallerDevice);
+            writer.WriteObjectValue<ApiSdk.Models.Microsoft.Graph.CallRecords.NetworkInfo>("callerNetwork", CallerNetwork);
             writer.WriteStringValue("label", Label);
-            writer.WriteCollectionOfObjectValues<MediaStream>("streams", Streams);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.Microsoft.Graph.CallRecords.MediaStream>("streams", Streams);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

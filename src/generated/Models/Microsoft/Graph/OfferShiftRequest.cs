@@ -9,15 +9,15 @@ namespace ApiSdk.Models.Microsoft.Graph {
         public DateTimeOffset? RecipientActionDateTime { get; set; }
         /// <summary>Custom message sent by recipient of the offer shift request.</summary>
         public string RecipientActionMessage { get; set; }
-        /// <summary>User id of the recipient of the offer shift request.</summary>
+        /// <summary>User ID of the recipient of the offer shift request.</summary>
         public string RecipientUserId { get; set; }
-        /// <summary>User id of the sender of the offer shift request.</summary>
+        /// <summary>User ID of the sender of the offer shift request.</summary>
         public string SenderShiftId { get; set; }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         /// </summary>
-        public static new OfferShiftRequest CreateFromDiscriminatorValue(IParseNode parseNode) {
+        public static new ApiSdk.Models.Microsoft.Graph.OfferShiftRequest CreateFromDiscriminatorValue(IParseNode parseNode) {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
             return new OfferShiftRequest();
         }

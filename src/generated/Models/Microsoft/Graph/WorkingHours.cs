@@ -15,7 +15,7 @@ namespace ApiSdk.Models.Microsoft.Graph {
         /// <summary>The time of the day that the user starts working.</summary>
         public Time? StartTime { get; set; }
         /// <summary>The time zone to which the working hours apply.</summary>
-        public TimeZoneBase TimeZone { get; set; }
+        public ApiSdk.Models.Microsoft.Graph.TimeZoneBase TimeZone { get; set; }
         /// <summary>
         /// Instantiates a new workingHours and sets the default values.
         /// </summary>
@@ -26,7 +26,7 @@ namespace ApiSdk.Models.Microsoft.Graph {
         /// Creates a new instance of the appropriate class based on discriminator value
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         /// </summary>
-        public static WorkingHours CreateFromDiscriminatorValue(IParseNode parseNode) {
+        public static ApiSdk.Models.Microsoft.Graph.WorkingHours CreateFromDiscriminatorValue(IParseNode parseNode) {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
             return new WorkingHours();
         }
@@ -38,7 +38,7 @@ namespace ApiSdk.Models.Microsoft.Graph {
                 {"daysOfWeek", (o,n) => { (o as WorkingHours).DaysOfWeek = n.GetCollectionOfEnumValues<DayOfWeek>().ToList(); } },
                 {"endTime", (o,n) => { (o as WorkingHours).EndTime = n.GetTimeValue(); } },
                 {"startTime", (o,n) => { (o as WorkingHours).StartTime = n.GetTimeValue(); } },
-                {"timeZone", (o,n) => { (o as WorkingHours).TimeZone = n.GetObjectValue<TimeZoneBase>(TimeZoneBase.CreateFromDiscriminatorValue); } },
+                {"timeZone", (o,n) => { (o as WorkingHours).TimeZone = n.GetObjectValue<ApiSdk.Models.Microsoft.Graph.TimeZoneBase>(ApiSdk.Models.Microsoft.Graph.TimeZoneBase.CreateFromDiscriminatorValue); } },
             };
         }
         /// <summary>
@@ -50,7 +50,7 @@ namespace ApiSdk.Models.Microsoft.Graph {
             writer.WriteCollectionOfEnumValues<DayOfWeek>("daysOfWeek", DaysOfWeek);
             writer.WriteTimeValue("endTime", EndTime);
             writer.WriteTimeValue("startTime", StartTime);
-            writer.WriteObjectValue<TimeZoneBase>("timeZone", TimeZone);
+            writer.WriteObjectValue<ApiSdk.Models.Microsoft.Graph.TimeZoneBase>("timeZone", TimeZone);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

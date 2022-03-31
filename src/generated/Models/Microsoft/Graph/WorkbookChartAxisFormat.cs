@@ -6,14 +6,14 @@ using System.Linq;
 namespace ApiSdk.Models.Microsoft.Graph {
     public class WorkbookChartAxisFormat : Entity, IParsable {
         /// <summary>Represents the font attributes (font name, font size, color, etc.) for a chart axis element. Read-only.</summary>
-        public WorkbookChartFont Font { get; set; }
+        public ApiSdk.Models.Microsoft.Graph.WorkbookChartFont Font { get; set; }
         /// <summary>Represents chart line formatting. Read-only.</summary>
-        public WorkbookChartLineFormat Line { get; set; }
+        public ApiSdk.Models.Microsoft.Graph.WorkbookChartLineFormat Line { get; set; }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         /// </summary>
-        public static new WorkbookChartAxisFormat CreateFromDiscriminatorValue(IParseNode parseNode) {
+        public static new ApiSdk.Models.Microsoft.Graph.WorkbookChartAxisFormat CreateFromDiscriminatorValue(IParseNode parseNode) {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
             return new WorkbookChartAxisFormat();
         }
@@ -22,8 +22,8 @@ namespace ApiSdk.Models.Microsoft.Graph {
         /// </summary>
         public new IDictionary<string, Action<T, IParseNode>> GetFieldDeserializers<T>() {
             return new Dictionary<string, Action<T, IParseNode>>(base.GetFieldDeserializers<T>()) {
-                {"font", (o,n) => { (o as WorkbookChartAxisFormat).Font = n.GetObjectValue<WorkbookChartFont>(WorkbookChartFont.CreateFromDiscriminatorValue); } },
-                {"line", (o,n) => { (o as WorkbookChartAxisFormat).Line = n.GetObjectValue<WorkbookChartLineFormat>(WorkbookChartLineFormat.CreateFromDiscriminatorValue); } },
+                {"font", (o,n) => { (o as WorkbookChartAxisFormat).Font = n.GetObjectValue<ApiSdk.Models.Microsoft.Graph.WorkbookChartFont>(ApiSdk.Models.Microsoft.Graph.WorkbookChartFont.CreateFromDiscriminatorValue); } },
+                {"line", (o,n) => { (o as WorkbookChartAxisFormat).Line = n.GetObjectValue<ApiSdk.Models.Microsoft.Graph.WorkbookChartLineFormat>(ApiSdk.Models.Microsoft.Graph.WorkbookChartLineFormat.CreateFromDiscriminatorValue); } },
             };
         }
         /// <summary>
@@ -33,8 +33,8 @@ namespace ApiSdk.Models.Microsoft.Graph {
         public new void Serialize(ISerializationWriter writer) {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             base.Serialize(writer);
-            writer.WriteObjectValue<WorkbookChartFont>("font", Font);
-            writer.WriteObjectValue<WorkbookChartLineFormat>("line", Line);
+            writer.WriteObjectValue<ApiSdk.Models.Microsoft.Graph.WorkbookChartFont>("font", Font);
+            writer.WriteObjectValue<ApiSdk.Models.Microsoft.Graph.WorkbookChartLineFormat>("line", Line);
         }
     }
 }

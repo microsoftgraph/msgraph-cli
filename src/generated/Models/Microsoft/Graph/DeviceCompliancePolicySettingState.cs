@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 namespace ApiSdk.Models.Microsoft.Graph {
+    /// <summary>Device Compilance Policy Setting State for a given device.</summary>
     public class DeviceCompliancePolicySettingState : IAdditionalDataHolder, IParsable {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
@@ -20,7 +21,7 @@ namespace ApiSdk.Models.Microsoft.Graph {
         /// <summary>Localized/user friendly setting name that is being reported</summary>
         public string SettingName { get; set; }
         /// <summary>Contributing policies</summary>
-        public List<SettingSource> Sources { get; set; }
+        public List<ApiSdk.Models.Microsoft.Graph.SettingSource> Sources { get; set; }
         /// <summary>The compliance state of the setting. Possible values are: unknown, notApplicable, compliant, remediated, nonCompliant, error, conflict, notAssigned.</summary>
         public ComplianceStatus? State { get; set; }
         /// <summary>UserEmail</summary>
@@ -41,7 +42,7 @@ namespace ApiSdk.Models.Microsoft.Graph {
         /// Creates a new instance of the appropriate class based on discriminator value
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         /// </summary>
-        public static DeviceCompliancePolicySettingState CreateFromDiscriminatorValue(IParseNode parseNode) {
+        public static ApiSdk.Models.Microsoft.Graph.DeviceCompliancePolicySettingState CreateFromDiscriminatorValue(IParseNode parseNode) {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
             return new DeviceCompliancePolicySettingState();
         }
@@ -56,7 +57,7 @@ namespace ApiSdk.Models.Microsoft.Graph {
                 {"instanceDisplayName", (o,n) => { (o as DeviceCompliancePolicySettingState).InstanceDisplayName = n.GetStringValue(); } },
                 {"setting", (o,n) => { (o as DeviceCompliancePolicySettingState).Setting = n.GetStringValue(); } },
                 {"settingName", (o,n) => { (o as DeviceCompliancePolicySettingState).SettingName = n.GetStringValue(); } },
-                {"sources", (o,n) => { (o as DeviceCompliancePolicySettingState).Sources = n.GetCollectionOfObjectValues<SettingSource>(SettingSource.CreateFromDiscriminatorValue).ToList(); } },
+                {"sources", (o,n) => { (o as DeviceCompliancePolicySettingState).Sources = n.GetCollectionOfObjectValues<ApiSdk.Models.Microsoft.Graph.SettingSource>(ApiSdk.Models.Microsoft.Graph.SettingSource.CreateFromDiscriminatorValue).ToList(); } },
                 {"state", (o,n) => { (o as DeviceCompliancePolicySettingState).State = n.GetEnumValue<ComplianceStatus>(); } },
                 {"userEmail", (o,n) => { (o as DeviceCompliancePolicySettingState).UserEmail = n.GetStringValue(); } },
                 {"userId", (o,n) => { (o as DeviceCompliancePolicySettingState).UserId = n.GetStringValue(); } },
@@ -76,7 +77,7 @@ namespace ApiSdk.Models.Microsoft.Graph {
             writer.WriteStringValue("instanceDisplayName", InstanceDisplayName);
             writer.WriteStringValue("setting", Setting);
             writer.WriteStringValue("settingName", SettingName);
-            writer.WriteCollectionOfObjectValues<SettingSource>("sources", Sources);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.Microsoft.Graph.SettingSource>("sources", Sources);
             writer.WriteEnumValue<ComplianceStatus>("state", State);
             writer.WriteStringValue("userEmail", UserEmail);
             writer.WriteStringValue("userId", UserId);

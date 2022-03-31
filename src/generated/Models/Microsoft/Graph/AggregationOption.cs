@@ -7,7 +7,7 @@ namespace ApiSdk.Models.Microsoft.Graph {
     public class AggregationOption : IAdditionalDataHolder, IParsable {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
-        public BucketAggregationDefinition BucketDefinition { get; set; }
+        public ApiSdk.Models.Microsoft.Graph.BucketAggregationDefinition BucketDefinition { get; set; }
         /// <summary>Computes aggregation on the field while the field exists in current entity type. Required.</summary>
         public string Field { get; set; }
         /// <summary>The number of searchBucket resources to be returned. This is not required when the range is provided manually in the search request. Optional.</summary>
@@ -22,7 +22,7 @@ namespace ApiSdk.Models.Microsoft.Graph {
         /// Creates a new instance of the appropriate class based on discriminator value
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         /// </summary>
-        public static AggregationOption CreateFromDiscriminatorValue(IParseNode parseNode) {
+        public static ApiSdk.Models.Microsoft.Graph.AggregationOption CreateFromDiscriminatorValue(IParseNode parseNode) {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
             return new AggregationOption();
         }
@@ -31,7 +31,7 @@ namespace ApiSdk.Models.Microsoft.Graph {
         /// </summary>
         public IDictionary<string, Action<T, IParseNode>> GetFieldDeserializers<T>() {
             return new Dictionary<string, Action<T, IParseNode>> {
-                {"bucketDefinition", (o,n) => { (o as AggregationOption).BucketDefinition = n.GetObjectValue<BucketAggregationDefinition>(BucketAggregationDefinition.CreateFromDiscriminatorValue); } },
+                {"bucketDefinition", (o,n) => { (o as AggregationOption).BucketDefinition = n.GetObjectValue<ApiSdk.Models.Microsoft.Graph.BucketAggregationDefinition>(ApiSdk.Models.Microsoft.Graph.BucketAggregationDefinition.CreateFromDiscriminatorValue); } },
                 {"field", (o,n) => { (o as AggregationOption).Field = n.GetStringValue(); } },
                 {"size", (o,n) => { (o as AggregationOption).Size = n.GetIntValue(); } },
             };
@@ -42,7 +42,7 @@ namespace ApiSdk.Models.Microsoft.Graph {
         /// </summary>
         public void Serialize(ISerializationWriter writer) {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
-            writer.WriteObjectValue<BucketAggregationDefinition>("bucketDefinition", BucketDefinition);
+            writer.WriteObjectValue<ApiSdk.Models.Microsoft.Graph.BucketAggregationDefinition>("bucketDefinition", BucketDefinition);
             writer.WriteStringValue("field", Field);
             writer.WriteIntValue("size", Size);
             writer.WriteAdditionalData(AdditionalData);

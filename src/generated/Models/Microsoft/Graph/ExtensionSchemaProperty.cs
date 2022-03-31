@@ -7,7 +7,7 @@ namespace ApiSdk.Models.Microsoft.Graph {
     public class ExtensionSchemaProperty : IAdditionalDataHolder, IParsable {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
-        /// <summary>The name of the strongly typed property defined as part of a schema extension.</summary>
+        /// <summary>The name of the strongly-typed property defined as part of a schema extension.</summary>
         public string Name { get; set; }
         /// <summary>The type of the property that is defined as part of a schema extension.  Allowed values are Binary, Boolean, DateTime, Integer or String.  See the table below for more details.</summary>
         public string Type { get; set; }
@@ -21,7 +21,7 @@ namespace ApiSdk.Models.Microsoft.Graph {
         /// Creates a new instance of the appropriate class based on discriminator value
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         /// </summary>
-        public static ExtensionSchemaProperty CreateFromDiscriminatorValue(IParseNode parseNode) {
+        public static ApiSdk.Models.Microsoft.Graph.ExtensionSchemaProperty CreateFromDiscriminatorValue(IParseNode parseNode) {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
             return new ExtensionSchemaProperty();
         }

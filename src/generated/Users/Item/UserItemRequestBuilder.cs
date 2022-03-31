@@ -1,4 +1,5 @@
 using ApiSdk.Models.Microsoft.Graph;
+using ApiSdk.Models.Microsoft.Graph.ODataErrors;
 using ApiSdk.Users.Item.Activities;
 using ApiSdk.Users.Item.AgreementAcceptances;
 using ApiSdk.Users.Item.AppRoleAssignments;
@@ -77,7 +78,7 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 namespace ApiSdk.Users.Item {
-    /// <summary>Builds and executes requests for operations under \users\{user-id}</summary>
+    /// <summary>Provides operations to manage the collection of user entities.</summary>
     public class UserItemRequestBuilder {
         /// <summary>Path parameters for the request</summary>
         private Dictionary<string, object> PathParameters { get; set; }
@@ -87,40 +88,45 @@ namespace ApiSdk.Users.Item {
         private string UrlTemplate { get; set; }
         public Command BuildActivitiesCommand() {
             var command = new Command("activities");
-            var builder = new ApiSdk.Users.Item.Activities.ActivitiesRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new ActivitiesRequestBuilder(PathParameters, RequestAdapter);
             foreach (var cmd in builder.BuildCommand()) {
                 command.AddCommand(cmd);
             }
+            command.AddCommand(builder.BuildCountCommand());
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;
         }
         public Command BuildAgreementAcceptancesCommand() {
             var command = new Command("agreement-acceptances");
-            var builder = new ApiSdk.Users.Item.AgreementAcceptances.AgreementAcceptancesRequestBuilder(PathParameters, RequestAdapter);
-            command.AddCommand(builder.BuildGetCommand());
-            command.AddCommand(builder.BuildRefCommand());
+            var builder = new AgreementAcceptancesRequestBuilder(PathParameters, RequestAdapter);
+            foreach (var cmd in builder.BuildCommand()) {
+                command.AddCommand(cmd);
+            }
+            command.AddCommand(builder.BuildCountCommand());
+            command.AddCommand(builder.BuildListCommand());
             return command;
         }
         public Command BuildAppRoleAssignmentsCommand() {
             var command = new Command("app-role-assignments");
-            var builder = new ApiSdk.Users.Item.AppRoleAssignments.AppRoleAssignmentsRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new AppRoleAssignmentsRequestBuilder(PathParameters, RequestAdapter);
             foreach (var cmd in builder.BuildCommand()) {
                 command.AddCommand(cmd);
             }
+            command.AddCommand(builder.BuildCountCommand());
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;
         }
         public Command BuildAssignLicenseCommand() {
             var command = new Command("assign-license");
-            var builder = new ApiSdk.Users.Item.AssignLicense.AssignLicenseRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new AssignLicenseRequestBuilder(PathParameters, RequestAdapter);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
         public Command BuildAuthenticationCommand() {
             var command = new Command("authentication");
-            var builder = new ApiSdk.Users.Item.Authentication.AuthenticationRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new AuthenticationRequestBuilder(PathParameters, RequestAdapter);
             command.AddCommand(builder.BuildDeleteCommand());
             command.AddCommand(builder.BuildFido2MethodsCommand());
             command.AddCommand(builder.BuildGetCommand());
@@ -132,7 +138,7 @@ namespace ApiSdk.Users.Item {
         }
         public Command BuildCalendarCommand() {
             var command = new Command("calendar");
-            var builder = new ApiSdk.Users.Item.Calendar.CalendarRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new CalendarRequestBuilder(PathParameters, RequestAdapter);
             command.AddCommand(builder.BuildCalendarPermissionsCommand());
             command.AddCommand(builder.BuildCalendarViewCommand());
             command.AddCommand(builder.BuildDeleteCommand());
@@ -146,87 +152,96 @@ namespace ApiSdk.Users.Item {
         }
         public Command BuildCalendarGroupsCommand() {
             var command = new Command("calendar-groups");
-            var builder = new ApiSdk.Users.Item.CalendarGroups.CalendarGroupsRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new CalendarGroupsRequestBuilder(PathParameters, RequestAdapter);
             foreach (var cmd in builder.BuildCommand()) {
                 command.AddCommand(cmd);
             }
+            command.AddCommand(builder.BuildCountCommand());
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;
         }
         public Command BuildCalendarsCommand() {
             var command = new Command("calendars");
-            var builder = new ApiSdk.Users.Item.Calendars.CalendarsRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new CalendarsRequestBuilder(PathParameters, RequestAdapter);
             foreach (var cmd in builder.BuildCommand()) {
                 command.AddCommand(cmd);
             }
+            command.AddCommand(builder.BuildCountCommand());
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;
         }
         public Command BuildCalendarViewCommand() {
             var command = new Command("calendar-view");
-            var builder = new ApiSdk.Users.Item.CalendarView.CalendarViewRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new CalendarViewRequestBuilder(PathParameters, RequestAdapter);
             foreach (var cmd in builder.BuildCommand()) {
                 command.AddCommand(cmd);
             }
+            command.AddCommand(builder.BuildCountCommand());
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;
         }
         public Command BuildChangePasswordCommand() {
             var command = new Command("change-password");
-            var builder = new ApiSdk.Users.Item.ChangePassword.ChangePasswordRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new ChangePasswordRequestBuilder(PathParameters, RequestAdapter);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
         public Command BuildChatsCommand() {
             var command = new Command("chats");
-            var builder = new ApiSdk.Users.Item.Chats.ChatsRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new ChatsRequestBuilder(PathParameters, RequestAdapter);
             foreach (var cmd in builder.BuildCommand()) {
                 command.AddCommand(cmd);
             }
+            command.AddCommand(builder.BuildCountCommand());
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;
         }
         public Command BuildCheckMemberGroupsCommand() {
             var command = new Command("check-member-groups");
-            var builder = new ApiSdk.Users.Item.CheckMemberGroups.CheckMemberGroupsRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new CheckMemberGroupsRequestBuilder(PathParameters, RequestAdapter);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
         public Command BuildCheckMemberObjectsCommand() {
             var command = new Command("check-member-objects");
-            var builder = new ApiSdk.Users.Item.CheckMemberObjects.CheckMemberObjectsRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new CheckMemberObjectsRequestBuilder(PathParameters, RequestAdapter);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
         public Command BuildContactFoldersCommand() {
             var command = new Command("contact-folders");
-            var builder = new ApiSdk.Users.Item.ContactFolders.ContactFoldersRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new ContactFoldersRequestBuilder(PathParameters, RequestAdapter);
             foreach (var cmd in builder.BuildCommand()) {
                 command.AddCommand(cmd);
             }
+            command.AddCommand(builder.BuildCountCommand());
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;
         }
         public Command BuildContactsCommand() {
             var command = new Command("contacts");
-            var builder = new ApiSdk.Users.Item.Contacts.ContactsRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new ContactsRequestBuilder(PathParameters, RequestAdapter);
             foreach (var cmd in builder.BuildCommand()) {
                 command.AddCommand(cmd);
             }
+            command.AddCommand(builder.BuildCountCommand());
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;
         }
         public Command BuildCreatedObjectsCommand() {
             var command = new Command("created-objects");
-            var builder = new ApiSdk.Users.Item.CreatedObjects.CreatedObjectsRequestBuilder(PathParameters, RequestAdapter);
-            command.AddCommand(builder.BuildGetCommand());
-            command.AddCommand(builder.BuildRefCommand());
+            var builder = new CreatedObjectsRequestBuilder(PathParameters, RequestAdapter);
+            foreach (var cmd in builder.BuildCommand()) {
+                command.AddCommand(cmd);
+            }
+            command.AddCommand(builder.BuildCountCommand());
+            command.AddCommand(builder.BuildListCommand());
             return command;
         }
         /// <summary>
@@ -247,83 +262,95 @@ namespace ApiSdk.Users.Item {
                 PathParameters.Add("user_id", userId);
                 var requestInfo = CreateDeleteRequestInformation(q => {
                 });
-                await RequestAdapter.SendNoContentAsync(requestInfo, errorMapping: default, cancellationToken: cancellationToken);
+                var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
+                    {"4XX", ODataError.CreateFromDiscriminatorValue},
+                    {"5XX", ODataError.CreateFromDiscriminatorValue},
+                };
+                await RequestAdapter.SendNoContentAsync(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken);
                 Console.WriteLine("Success");
             }, new CollectionBinding(userIdOption, new TypeBinding(typeof(CancellationToken))));
             return command;
         }
         public Command BuildDeviceManagementTroubleshootingEventsCommand() {
             var command = new Command("device-management-troubleshooting-events");
-            var builder = new ApiSdk.Users.Item.DeviceManagementTroubleshootingEvents.DeviceManagementTroubleshootingEventsRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new DeviceManagementTroubleshootingEventsRequestBuilder(PathParameters, RequestAdapter);
             foreach (var cmd in builder.BuildCommand()) {
                 command.AddCommand(cmd);
             }
+            command.AddCommand(builder.BuildCountCommand());
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;
         }
         public Command BuildDirectReportsCommand() {
             var command = new Command("direct-reports");
-            var builder = new ApiSdk.Users.Item.DirectReports.DirectReportsRequestBuilder(PathParameters, RequestAdapter);
-            command.AddCommand(builder.BuildGetCommand());
-            command.AddCommand(builder.BuildRefCommand());
+            var builder = new DirectReportsRequestBuilder(PathParameters, RequestAdapter);
+            foreach (var cmd in builder.BuildCommand()) {
+                command.AddCommand(cmd);
+            }
+            command.AddCommand(builder.BuildCountCommand());
+            command.AddCommand(builder.BuildListCommand());
             return command;
         }
         public Command BuildDriveCommand() {
             var command = new Command("drive");
-            var builder = new ApiSdk.Users.Item.Drive.DriveRequestBuilder(PathParameters, RequestAdapter);
-            command.AddCommand(builder.BuildDeleteCommand());
+            var builder = new DriveRequestBuilder(PathParameters, RequestAdapter);
             command.AddCommand(builder.BuildGetCommand());
-            command.AddCommand(builder.BuildPatchCommand());
             return command;
         }
         public Command BuildDrivesCommand() {
             var command = new Command("drives");
-            var builder = new ApiSdk.Users.Item.Drives.DrivesRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new DrivesRequestBuilder(PathParameters, RequestAdapter);
             foreach (var cmd in builder.BuildCommand()) {
                 command.AddCommand(cmd);
             }
+            command.AddCommand(builder.BuildCountCommand());
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;
         }
         public Command BuildEventsCommand() {
             var command = new Command("events");
-            var builder = new ApiSdk.Users.Item.Events.EventsRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new EventsRequestBuilder(PathParameters, RequestAdapter);
             foreach (var cmd in builder.BuildCommand()) {
                 command.AddCommand(cmd);
             }
+            command.AddCommand(builder.BuildCountCommand());
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;
         }
         public Command BuildExportPersonalDataCommand() {
             var command = new Command("export-personal-data");
-            var builder = new ApiSdk.Users.Item.ExportPersonalData.ExportPersonalDataRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new ExportPersonalDataRequestBuilder(PathParameters, RequestAdapter);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
         public Command BuildExtensionsCommand() {
             var command = new Command("extensions");
-            var builder = new ApiSdk.Users.Item.Extensions.ExtensionsRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new ExtensionsRequestBuilder(PathParameters, RequestAdapter);
             foreach (var cmd in builder.BuildCommand()) {
                 command.AddCommand(cmd);
             }
+            command.AddCommand(builder.BuildCountCommand());
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;
         }
         public Command BuildFindMeetingTimesCommand() {
             var command = new Command("find-meeting-times");
-            var builder = new ApiSdk.Users.Item.FindMeetingTimes.FindMeetingTimesRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new FindMeetingTimesRequestBuilder(PathParameters, RequestAdapter);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
         public Command BuildFollowedSitesCommand() {
             var command = new Command("followed-sites");
-            var builder = new ApiSdk.Users.Item.FollowedSites.FollowedSitesRequestBuilder(PathParameters, RequestAdapter);
-            command.AddCommand(builder.BuildGetCommand());
-            command.AddCommand(builder.BuildRefCommand());
+            var builder = new FollowedSitesRequestBuilder(PathParameters, RequestAdapter);
+            foreach (var cmd in builder.BuildCommand()) {
+                command.AddCommand(cmd);
+            }
+            command.AddCommand(builder.BuildCountCommand());
+            command.AddCommand(builder.BuildListCommand());
             return command;
         }
         /// <summary>
@@ -376,35 +403,39 @@ namespace ApiSdk.Users.Item {
                     q.Select = select;
                     q.Expand = expand;
                 });
-                var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: default, cancellationToken: cancellationToken);
-                var formatter = outputFormatterFactory.GetFormatter(output);
+                var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
+                    {"4XX", ODataError.CreateFromDiscriminatorValue},
+                    {"5XX", ODataError.CreateFromDiscriminatorValue},
+                };
+                var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken);
                 response = await outputFilter?.FilterOutputAsync(response, query, cancellationToken) ?? response;
                 var formatterOptions = output.GetOutputFormatterOptions(new FormatterOptionsModel(!jsonNoIndent));
+                var formatter = outputFormatterFactory.GetFormatter(output);
                 await formatter.WriteOutputAsync(response, formatterOptions, cancellationToken);
             }, new CollectionBinding(userIdOption, selectOption, expandOption, outputOption, queryOption, jsonNoIndentOption, new TypeBinding(typeof(IOutputFilter)), new TypeBinding(typeof(IOutputFormatterFactory)), new TypeBinding(typeof(CancellationToken))));
             return command;
         }
         public Command BuildGetMailTipsCommand() {
             var command = new Command("get-mail-tips");
-            var builder = new ApiSdk.Users.Item.GetMailTips.GetMailTipsRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new GetMailTipsRequestBuilder(PathParameters, RequestAdapter);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
         public Command BuildGetMemberGroupsCommand() {
             var command = new Command("get-member-groups");
-            var builder = new ApiSdk.Users.Item.GetMemberGroups.GetMemberGroupsRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new GetMemberGroupsRequestBuilder(PathParameters, RequestAdapter);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
         public Command BuildGetMemberObjectsCommand() {
             var command = new Command("get-member-objects");
-            var builder = new ApiSdk.Users.Item.GetMemberObjects.GetMemberObjectsRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new GetMemberObjectsRequestBuilder(PathParameters, RequestAdapter);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
         public Command BuildInferenceClassificationCommand() {
             var command = new Command("inference-classification");
-            var builder = new ApiSdk.Users.Item.InferenceClassification.InferenceClassificationRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new InferenceClassificationRequestBuilder(PathParameters, RequestAdapter);
             command.AddCommand(builder.BuildDeleteCommand());
             command.AddCommand(builder.BuildGetCommand());
             command.AddCommand(builder.BuildOverridesCommand());
@@ -413,7 +444,7 @@ namespace ApiSdk.Users.Item {
         }
         public Command BuildInsightsCommand() {
             var command = new Command("insights");
-            var builder = new ApiSdk.Users.Item.Insights.InsightsRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new InsightsRequestBuilder(PathParameters, RequestAdapter);
             command.AddCommand(builder.BuildDeleteCommand());
             command.AddCommand(builder.BuildGetCommand());
             command.AddCommand(builder.BuildPatchCommand());
@@ -424,85 +455,98 @@ namespace ApiSdk.Users.Item {
         }
         public Command BuildJoinedTeamsCommand() {
             var command = new Command("joined-teams");
-            var builder = new ApiSdk.Users.Item.JoinedTeams.JoinedTeamsRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new JoinedTeamsRequestBuilder(PathParameters, RequestAdapter);
             foreach (var cmd in builder.BuildCommand()) {
                 command.AddCommand(cmd);
             }
+            command.AddCommand(builder.BuildCountCommand());
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;
         }
         public Command BuildLicenseDetailsCommand() {
             var command = new Command("license-details");
-            var builder = new ApiSdk.Users.Item.LicenseDetails.LicenseDetailsRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new LicenseDetailsRequestBuilder(PathParameters, RequestAdapter);
             foreach (var cmd in builder.BuildCommand()) {
                 command.AddCommand(cmd);
             }
+            command.AddCommand(builder.BuildCountCommand());
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;
         }
         public Command BuildMailFoldersCommand() {
             var command = new Command("mail-folders");
-            var builder = new ApiSdk.Users.Item.MailFolders.MailFoldersRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new MailFoldersRequestBuilder(PathParameters, RequestAdapter);
             foreach (var cmd in builder.BuildCommand()) {
                 command.AddCommand(cmd);
             }
+            command.AddCommand(builder.BuildCountCommand());
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;
         }
         public Command BuildManagedAppRegistrationsCommand() {
             var command = new Command("managed-app-registrations");
-            var builder = new ApiSdk.Users.Item.ManagedAppRegistrations.ManagedAppRegistrationsRequestBuilder(PathParameters, RequestAdapter);
-            command.AddCommand(builder.BuildGetCommand());
-            command.AddCommand(builder.BuildRefCommand());
+            var builder = new ManagedAppRegistrationsRequestBuilder(PathParameters, RequestAdapter);
+            foreach (var cmd in builder.BuildCommand()) {
+                command.AddCommand(cmd);
+            }
+            command.AddCommand(builder.BuildCountCommand());
+            command.AddCommand(builder.BuildListCommand());
             return command;
         }
         public Command BuildManagedDevicesCommand() {
             var command = new Command("managed-devices");
-            var builder = new ApiSdk.Users.Item.ManagedDevices.ManagedDevicesRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new ManagedDevicesRequestBuilder(PathParameters, RequestAdapter);
             foreach (var cmd in builder.BuildCommand()) {
                 command.AddCommand(cmd);
             }
+            command.AddCommand(builder.BuildCountCommand());
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;
         }
         public Command BuildManagerCommand() {
             var command = new Command("manager");
-            var builder = new ApiSdk.Users.Item.Manager.ManagerRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new ManagerRequestBuilder(PathParameters, RequestAdapter);
             command.AddCommand(builder.BuildGetCommand());
-            command.AddCommand(builder.BuildRefCommand());
             return command;
         }
         public Command BuildMemberOfCommand() {
             var command = new Command("member-of");
-            var builder = new ApiSdk.Users.Item.MemberOf.MemberOfRequestBuilder(PathParameters, RequestAdapter);
-            command.AddCommand(builder.BuildGetCommand());
-            command.AddCommand(builder.BuildRefCommand());
+            var builder = new MemberOfRequestBuilder(PathParameters, RequestAdapter);
+            foreach (var cmd in builder.BuildCommand()) {
+                command.AddCommand(cmd);
+            }
+            command.AddCommand(builder.BuildCountCommand());
+            command.AddCommand(builder.BuildListCommand());
             return command;
         }
         public Command BuildMessagesCommand() {
             var command = new Command("messages");
-            var builder = new ApiSdk.Users.Item.Messages.MessagesRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new MessagesRequestBuilder(PathParameters, RequestAdapter);
             foreach (var cmd in builder.BuildCommand()) {
                 command.AddCommand(cmd);
             }
+            command.AddCommand(builder.BuildCountCommand());
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;
         }
         public Command BuildOauth2PermissionGrantsCommand() {
             var command = new Command("oauth2-permission-grants");
-            var builder = new ApiSdk.Users.Item.Oauth2PermissionGrants.Oauth2PermissionGrantsRequestBuilder(PathParameters, RequestAdapter);
-            command.AddCommand(builder.BuildGetCommand());
-            command.AddCommand(builder.BuildRefCommand());
+            var builder = new Oauth2PermissionGrantsRequestBuilder(PathParameters, RequestAdapter);
+            foreach (var cmd in builder.BuildCommand()) {
+                command.AddCommand(cmd);
+            }
+            command.AddCommand(builder.BuildCountCommand());
+            command.AddCommand(builder.BuildListCommand());
             return command;
         }
         public Command BuildOnenoteCommand() {
             var command = new Command("onenote");
-            var builder = new ApiSdk.Users.Item.Onenote.OnenoteRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new OnenoteRequestBuilder(PathParameters, RequestAdapter);
             command.AddCommand(builder.BuildDeleteCommand());
             command.AddCommand(builder.BuildGetCommand());
             command.AddCommand(builder.BuildNotebooksCommand());
@@ -516,10 +560,11 @@ namespace ApiSdk.Users.Item {
         }
         public Command BuildOnlineMeetingsCommand() {
             var command = new Command("online-meetings");
-            var builder = new ApiSdk.Users.Item.OnlineMeetings.OnlineMeetingsRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new OnlineMeetingsRequestBuilder(PathParameters, RequestAdapter);
             foreach (var cmd in builder.BuildCommand()) {
                 command.AddCommand(cmd);
             }
+            command.AddCommand(builder.BuildCountCommand());
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildCreateOrGetCommand());
             command.AddCommand(builder.BuildListCommand());
@@ -527,7 +572,7 @@ namespace ApiSdk.Users.Item {
         }
         public Command BuildOutlookCommand() {
             var command = new Command("outlook");
-            var builder = new ApiSdk.Users.Item.Outlook.OutlookRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new OutlookRequestBuilder(PathParameters, RequestAdapter);
             command.AddCommand(builder.BuildDeleteCommand());
             command.AddCommand(builder.BuildGetCommand());
             command.AddCommand(builder.BuildMasterCategoriesCommand());
@@ -536,16 +581,22 @@ namespace ApiSdk.Users.Item {
         }
         public Command BuildOwnedDevicesCommand() {
             var command = new Command("owned-devices");
-            var builder = new ApiSdk.Users.Item.OwnedDevices.OwnedDevicesRequestBuilder(PathParameters, RequestAdapter);
-            command.AddCommand(builder.BuildGetCommand());
-            command.AddCommand(builder.BuildRefCommand());
+            var builder = new OwnedDevicesRequestBuilder(PathParameters, RequestAdapter);
+            foreach (var cmd in builder.BuildCommand()) {
+                command.AddCommand(cmd);
+            }
+            command.AddCommand(builder.BuildCountCommand());
+            command.AddCommand(builder.BuildListCommand());
             return command;
         }
         public Command BuildOwnedObjectsCommand() {
             var command = new Command("owned-objects");
-            var builder = new ApiSdk.Users.Item.OwnedObjects.OwnedObjectsRequestBuilder(PathParameters, RequestAdapter);
-            command.AddCommand(builder.BuildGetCommand());
-            command.AddCommand(builder.BuildRefCommand());
+            var builder = new OwnedObjectsRequestBuilder(PathParameters, RequestAdapter);
+            foreach (var cmd in builder.BuildCommand()) {
+                command.AddCommand(cmd);
+            }
+            command.AddCommand(builder.BuildCountCommand());
+            command.AddCommand(builder.BuildListCommand());
             return command;
         }
         /// <summary>
@@ -574,24 +625,29 @@ namespace ApiSdk.Users.Item {
                 var model = parseNode.GetObjectValue<ApiSdk.Models.Microsoft.Graph.User>(ApiSdk.Models.Microsoft.Graph.User.CreateFromDiscriminatorValue);
                 var requestInfo = CreatePatchRequestInformation(model, q => {
                 });
-                await RequestAdapter.SendNoContentAsync(requestInfo, errorMapping: default, cancellationToken: cancellationToken);
+                var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
+                    {"4XX", ODataError.CreateFromDiscriminatorValue},
+                    {"5XX", ODataError.CreateFromDiscriminatorValue},
+                };
+                await RequestAdapter.SendNoContentAsync(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken);
                 Console.WriteLine("Success");
             }, new CollectionBinding(userIdOption, bodyOption, new TypeBinding(typeof(CancellationToken))));
             return command;
         }
         public Command BuildPeopleCommand() {
             var command = new Command("people");
-            var builder = new ApiSdk.Users.Item.People.PeopleRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new PeopleRequestBuilder(PathParameters, RequestAdapter);
             foreach (var cmd in builder.BuildCommand()) {
                 command.AddCommand(cmd);
             }
+            command.AddCommand(builder.BuildCountCommand());
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;
         }
         public Command BuildPhotoCommand() {
             var command = new Command("photo");
-            var builder = new ApiSdk.Users.Item.Photo.PhotoRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new PhotoRequestBuilder(PathParameters, RequestAdapter);
             command.AddCommand(builder.BuildContentCommand());
             command.AddCommand(builder.BuildDeleteCommand());
             command.AddCommand(builder.BuildGetCommand());
@@ -600,17 +656,18 @@ namespace ApiSdk.Users.Item {
         }
         public Command BuildPhotosCommand() {
             var command = new Command("photos");
-            var builder = new ApiSdk.Users.Item.Photos.PhotosRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new PhotosRequestBuilder(PathParameters, RequestAdapter);
             foreach (var cmd in builder.BuildCommand()) {
                 command.AddCommand(cmd);
             }
+            command.AddCommand(builder.BuildCountCommand());
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;
         }
         public Command BuildPlannerCommand() {
             var command = new Command("planner");
-            var builder = new ApiSdk.Users.Item.Planner.PlannerRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new PlannerRequestBuilder(PathParameters, RequestAdapter);
             command.AddCommand(builder.BuildDeleteCommand());
             command.AddCommand(builder.BuildGetCommand());
             command.AddCommand(builder.BuildPatchCommand());
@@ -620,7 +677,7 @@ namespace ApiSdk.Users.Item {
         }
         public Command BuildPresenceCommand() {
             var command = new Command("presence");
-            var builder = new ApiSdk.Users.Item.Presence.PresenceRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new PresenceRequestBuilder(PathParameters, RequestAdapter);
             command.AddCommand(builder.BuildClearPresenceCommand());
             command.AddCommand(builder.BuildDeleteCommand());
             command.AddCommand(builder.BuildGetCommand());
@@ -630,54 +687,58 @@ namespace ApiSdk.Users.Item {
         }
         public Command BuildRegisteredDevicesCommand() {
             var command = new Command("registered-devices");
-            var builder = new ApiSdk.Users.Item.RegisteredDevices.RegisteredDevicesRequestBuilder(PathParameters, RequestAdapter);
-            command.AddCommand(builder.BuildGetCommand());
-            command.AddCommand(builder.BuildRefCommand());
+            var builder = new RegisteredDevicesRequestBuilder(PathParameters, RequestAdapter);
+            foreach (var cmd in builder.BuildCommand()) {
+                command.AddCommand(cmd);
+            }
+            command.AddCommand(builder.BuildCountCommand());
+            command.AddCommand(builder.BuildListCommand());
             return command;
         }
         public Command BuildRemoveAllDevicesFromManagementCommand() {
             var command = new Command("remove-all-devices-from-management");
-            var builder = new ApiSdk.Users.Item.RemoveAllDevicesFromManagement.RemoveAllDevicesFromManagementRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new RemoveAllDevicesFromManagementRequestBuilder(PathParameters, RequestAdapter);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
         public Command BuildReprocessLicenseAssignmentCommand() {
             var command = new Command("reprocess-license-assignment");
-            var builder = new ApiSdk.Users.Item.ReprocessLicenseAssignment.ReprocessLicenseAssignmentRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new ReprocessLicenseAssignmentRequestBuilder(PathParameters, RequestAdapter);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
         public Command BuildRestoreCommand() {
             var command = new Command("restore");
-            var builder = new ApiSdk.Users.Item.Restore.RestoreRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new RestoreRequestBuilder(PathParameters, RequestAdapter);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
         public Command BuildRevokeSignInSessionsCommand() {
             var command = new Command("revoke-sign-in-sessions");
-            var builder = new ApiSdk.Users.Item.RevokeSignInSessions.RevokeSignInSessionsRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new RevokeSignInSessionsRequestBuilder(PathParameters, RequestAdapter);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
         public Command BuildScopedRoleMemberOfCommand() {
             var command = new Command("scoped-role-member-of");
-            var builder = new ApiSdk.Users.Item.ScopedRoleMemberOf.ScopedRoleMemberOfRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new ScopedRoleMemberOfRequestBuilder(PathParameters, RequestAdapter);
             foreach (var cmd in builder.BuildCommand()) {
                 command.AddCommand(cmd);
             }
+            command.AddCommand(builder.BuildCountCommand());
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;
         }
         public Command BuildSendMailCommand() {
             var command = new Command("send-mail");
-            var builder = new ApiSdk.Users.Item.SendMail.SendMailRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new SendMailRequestBuilder(PathParameters, RequestAdapter);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
         public Command BuildSettingsCommand() {
             var command = new Command("settings");
-            var builder = new ApiSdk.Users.Item.Settings.SettingsRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new SettingsRequestBuilder(PathParameters, RequestAdapter);
             command.AddCommand(builder.BuildDeleteCommand());
             command.AddCommand(builder.BuildGetCommand());
             command.AddCommand(builder.BuildPatchCommand());
@@ -686,7 +747,7 @@ namespace ApiSdk.Users.Item {
         }
         public Command BuildTeamworkCommand() {
             var command = new Command("teamwork");
-            var builder = new ApiSdk.Users.Item.Teamwork.TeamworkRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new TeamworkRequestBuilder(PathParameters, RequestAdapter);
             command.AddCommand(builder.BuildDeleteCommand());
             command.AddCommand(builder.BuildGetCommand());
             command.AddCommand(builder.BuildInstalledAppsCommand());
@@ -696,7 +757,7 @@ namespace ApiSdk.Users.Item {
         }
         public Command BuildTodoCommand() {
             var command = new Command("todo");
-            var builder = new ApiSdk.Users.Item.Todo.TodoRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new TodoRequestBuilder(PathParameters, RequestAdapter);
             command.AddCommand(builder.BuildDeleteCommand());
             command.AddCommand(builder.BuildGetCommand());
             command.AddCommand(builder.BuildListsCommand());
@@ -705,20 +766,23 @@ namespace ApiSdk.Users.Item {
         }
         public Command BuildTransitiveMemberOfCommand() {
             var command = new Command("transitive-member-of");
-            var builder = new ApiSdk.Users.Item.TransitiveMemberOf.TransitiveMemberOfRequestBuilder(PathParameters, RequestAdapter);
-            command.AddCommand(builder.BuildGetCommand());
-            command.AddCommand(builder.BuildRefCommand());
+            var builder = new TransitiveMemberOfRequestBuilder(PathParameters, RequestAdapter);
+            foreach (var cmd in builder.BuildCommand()) {
+                command.AddCommand(cmd);
+            }
+            command.AddCommand(builder.BuildCountCommand());
+            command.AddCommand(builder.BuildListCommand());
             return command;
         }
         public Command BuildTranslateExchangeIdsCommand() {
             var command = new Command("translate-exchange-ids");
-            var builder = new ApiSdk.Users.Item.TranslateExchangeIds.TranslateExchangeIdsRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new TranslateExchangeIdsRequestBuilder(PathParameters, RequestAdapter);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
         public Command BuildWipeManagedAppRegistrationsByDeviceTagCommand() {
             var command = new Command("wipe-managed-app-registrations-by-device-tag");
-            var builder = new ApiSdk.Users.Item.WipeManagedAppRegistrationsByDeviceTag.WipeManagedAppRegistrationsByDeviceTagRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new WipeManagedAppRegistrationsByDeviceTagRequestBuilder(PathParameters, RequestAdapter);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
@@ -737,47 +801,47 @@ namespace ApiSdk.Users.Item {
         }
         /// <summary>
         /// Delete entity from users
-        /// <param name="h">Request headers</param>
-        /// <param name="o">Request options</param>
+        /// <param name="headers">Request headers</param>
+        /// <param name="options">Request options</param>
         /// </summary>
-        public RequestInformation CreateDeleteRequestInformation(Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
+        public RequestInformation CreateDeleteRequestInformation(Action<IDictionary<string, string>> headers = default, IEnumerable<IRequestOption> options = default) {
             var requestInfo = new RequestInformation {
                 HttpMethod = Method.DELETE,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };
-            h?.Invoke(requestInfo.Headers);
-            requestInfo.AddRequestOptions(o?.ToArray());
+            headers?.Invoke(requestInfo.Headers);
+            requestInfo.AddRequestOptions(options?.ToArray());
             return requestInfo;
         }
         /// <summary>
         /// Get entity from users by key
-        /// <param name="h">Request headers</param>
-        /// <param name="o">Request options</param>
-        /// <param name="q">Request query parameters</param>
+        /// <param name="headers">Request headers</param>
+        /// <param name="options">Request options</param>
+        /// <param name="queryParameters">Request query parameters</param>
         /// </summary>
-        public RequestInformation CreateGetRequestInformation(Action<GetQueryParameters> q = default, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
+        public RequestInformation CreateGetRequestInformation(Action<GetQueryParameters> queryParameters = default, Action<IDictionary<string, string>> headers = default, IEnumerable<IRequestOption> options = default) {
             var requestInfo = new RequestInformation {
                 HttpMethod = Method.GET,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };
-            if (q != null) {
+            if (queryParameters != null) {
                 var qParams = new GetQueryParameters();
-                q.Invoke(qParams);
+                queryParameters.Invoke(qParams);
                 qParams.AddQueryParameters(requestInfo.QueryParameters);
             }
-            h?.Invoke(requestInfo.Headers);
-            requestInfo.AddRequestOptions(o?.ToArray());
+            headers?.Invoke(requestInfo.Headers);
+            requestInfo.AddRequestOptions(options?.ToArray());
             return requestInfo;
         }
         /// <summary>
         /// Update entity in users
         /// <param name="body"></param>
-        /// <param name="h">Request headers</param>
-        /// <param name="o">Request options</param>
+        /// <param name="headers">Request headers</param>
+        /// <param name="options">Request options</param>
         /// </summary>
-        public RequestInformation CreatePatchRequestInformation(ApiSdk.Models.Microsoft.Graph.User body, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
+        public RequestInformation CreatePatchRequestInformation(ApiSdk.Models.Microsoft.Graph.User body, Action<IDictionary<string, string>> headers = default, IEnumerable<IRequestOption> options = default) {
             _ = body ?? throw new ArgumentNullException(nameof(body));
             var requestInfo = new RequestInformation {
                 HttpMethod = Method.PATCH,
@@ -785,26 +849,26 @@ namespace ApiSdk.Users.Item {
                 PathParameters = PathParameters,
             };
             requestInfo.SetContentFromParsable(RequestAdapter, "application/json", body);
-            h?.Invoke(requestInfo.Headers);
-            requestInfo.AddRequestOptions(o?.ToArray());
+            headers?.Invoke(requestInfo.Headers);
+            requestInfo.AddRequestOptions(options?.ToArray());
             return requestInfo;
         }
         /// <summary>
-        /// Builds and executes requests for operations under \users\{user-id}\microsoft.graph.getManagedAppDiagnosticStatuses()
+        /// Provides operations to call the getManagedAppDiagnosticStatuses method.
         /// </summary>
         public GetManagedAppDiagnosticStatusesRequestBuilder GetManagedAppDiagnosticStatuses() {
             return new GetManagedAppDiagnosticStatusesRequestBuilder(PathParameters, RequestAdapter);
         }
         /// <summary>
-        /// Builds and executes requests for operations under \users\{user-id}\microsoft.graph.getManagedAppPolicies()
+        /// Provides operations to call the getManagedAppPolicies method.
         /// </summary>
         public GetManagedAppPoliciesRequestBuilder GetManagedAppPolicies() {
             return new GetManagedAppPoliciesRequestBuilder(PathParameters, RequestAdapter);
         }
         /// <summary>
-        /// Builds and executes requests for operations under \users\{user-id}\microsoft.graph.reminderView(StartDateTime='{StartDateTime}',EndDateTime='{EndDateTime}')
-        /// <param name="EndDateTime">Usage: EndDateTime={EndDateTime}</param>
-        /// <param name="StartDateTime">Usage: StartDateTime={StartDateTime}</param>
+        /// Provides operations to call the reminderView method.
+        /// <param name="EndDateTime">Usage: EndDateTime='{EndDateTime}'</param>
+        /// <param name="StartDateTime">Usage: StartDateTime='{StartDateTime}'</param>
         /// </summary>
         public ReminderViewWithStartDateTimeWithEndDateTimeRequestBuilder ReminderViewWithStartDateTimeWithEndDateTime(string endDateTime, string startDateTime) {
             if(string.IsNullOrEmpty(endDateTime)) throw new ArgumentNullException(nameof(endDateTime));

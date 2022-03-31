@@ -1,3 +1,4 @@
+using ApiSdk.Models.Microsoft.Graph.ODataErrors;
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
 using Microsoft.Kiota.Cli.Commons.Binding;
@@ -11,7 +12,7 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 namespace ApiSdk.Me.Contacts.Item.Photo.Value {
-    /// <summary>Builds and executes requests for operations under \me\contacts\{contact-id}\photo\$value</summary>
+    /// <summary>Provides operations to manage the media for the user entity.</summary>
     public class ContentRequestBuilder {
         /// <summary>Path parameters for the request</summary>
         private Dictionary<string, object> PathParameters { get; set; }
@@ -20,11 +21,11 @@ namespace ApiSdk.Me.Contacts.Item.Photo.Value {
         /// <summary>Url template to use to build the URL for the current request builder</summary>
         private string UrlTemplate { get; set; }
         /// <summary>
-        /// The user's profile photo. Read-only.
+        /// Get media content for the navigation property photo from me
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "The user's profile photo. Read-only.";
+            command.Description = "Get media content for the navigation property photo from me";
             // Create options for all the parameters
             var contactIdOption = new Option<string>("--contact-id", description: "key: id of contact") {
             };
@@ -40,7 +41,11 @@ namespace ApiSdk.Me.Contacts.Item.Photo.Value {
                 PathParameters.Add("contact_id", contactId);
                 var requestInfo = CreateGetRequestInformation(q => {
                 });
-                var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: default, cancellationToken: cancellationToken);
+                var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
+                    {"4XX", ODataError.CreateFromDiscriminatorValue},
+                    {"5XX", ODataError.CreateFromDiscriminatorValue},
+                };
+                var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken);
                 if (file == null) {
                     using var reader = new StreamReader(response);
                     var strContent = reader.ReadToEnd();
@@ -55,11 +60,11 @@ namespace ApiSdk.Me.Contacts.Item.Photo.Value {
             return command;
         }
         /// <summary>
-        /// The user's profile photo. Read-only.
+        /// Update media content for the navigation property photo in me
         /// </summary>
         public Command BuildPutCommand() {
             var command = new Command("put");
-            command.Description = "The user's profile photo. Read-only.";
+            command.Description = "Update media content for the navigation property photo in me";
             // Create options for all the parameters
             var contactIdOption = new Option<string>("--contact-id", description: "key: id of contact") {
             };
@@ -78,7 +83,11 @@ namespace ApiSdk.Me.Contacts.Item.Photo.Value {
                 using var stream = file.OpenRead();
                 var requestInfo = CreatePutRequestInformation(stream, q => {
                 });
-                await RequestAdapter.SendNoContentAsync(requestInfo, errorMapping: default, cancellationToken: cancellationToken);
+                var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
+                    {"4XX", ODataError.CreateFromDiscriminatorValue},
+                    {"5XX", ODataError.CreateFromDiscriminatorValue},
+                };
+                await RequestAdapter.SendNoContentAsync(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken);
                 Console.WriteLine("Success");
             }, new CollectionBinding(contactIdOption, bodyOption, new TypeBinding(typeof(CancellationToken))));
             return command;
@@ -97,27 +106,27 @@ namespace ApiSdk.Me.Contacts.Item.Photo.Value {
             RequestAdapter = requestAdapter;
         }
         /// <summary>
-        /// The user's profile photo. Read-only.
-        /// <param name="h">Request headers</param>
-        /// <param name="o">Request options</param>
+        /// Get media content for the navigation property photo from me
+        /// <param name="headers">Request headers</param>
+        /// <param name="options">Request options</param>
         /// </summary>
-        public RequestInformation CreateGetRequestInformation(Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
+        public RequestInformation CreateGetRequestInformation(Action<IDictionary<string, string>> headers = default, IEnumerable<IRequestOption> options = default) {
             var requestInfo = new RequestInformation {
                 HttpMethod = Method.GET,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };
-            h?.Invoke(requestInfo.Headers);
-            requestInfo.AddRequestOptions(o?.ToArray());
+            headers?.Invoke(requestInfo.Headers);
+            requestInfo.AddRequestOptions(options?.ToArray());
             return requestInfo;
         }
         /// <summary>
-        /// The user's profile photo. Read-only.
+        /// Update media content for the navigation property photo in me
         /// <param name="body">Binary request body</param>
-        /// <param name="h">Request headers</param>
-        /// <param name="o">Request options</param>
+        /// <param name="headers">Request headers</param>
+        /// <param name="options">Request options</param>
         /// </summary>
-        public RequestInformation CreatePutRequestInformation(Stream body, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
+        public RequestInformation CreatePutRequestInformation(Stream body, Action<IDictionary<string, string>> headers = default, IEnumerable<IRequestOption> options = default) {
             _ = body ?? throw new ArgumentNullException(nameof(body));
             var requestInfo = new RequestInformation {
                 HttpMethod = Method.PUT,
@@ -125,8 +134,8 @@ namespace ApiSdk.Me.Contacts.Item.Photo.Value {
                 PathParameters = PathParameters,
             };
             requestInfo.SetStreamContent(body);
-            h?.Invoke(requestInfo.Headers);
-            requestInfo.AddRequestOptions(o?.ToArray());
+            headers?.Invoke(requestInfo.Headers);
+            requestInfo.AddRequestOptions(options?.ToArray());
             return requestInfo;
         }
     }

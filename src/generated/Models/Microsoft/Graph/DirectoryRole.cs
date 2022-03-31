@@ -10,16 +10,16 @@ namespace ApiSdk.Models.Microsoft.Graph {
         /// <summary>The display name for the directory role. Read-only. Supports $filter (eq), $search, $select.</summary>
         public string DisplayName { get; set; }
         /// <summary>Users that are members of this directory role. HTTP Methods: GET, POST, DELETE. Read-only. Nullable. Supports $expand.</summary>
-        public List<DirectoryObject> Members { get; set; }
+        public List<ApiSdk.Models.Microsoft.Graph.DirectoryObject> Members { get; set; }
         /// <summary>The id of the directoryRoleTemplate that this role is based on. The property must be specified when activating a directory role in a tenant with a POST operation. After the directory role has been activated, the property is read only. Supports $filter (eq), $select.</summary>
         public string RoleTemplateId { get; set; }
         /// <summary>Members of this directory role that are scoped to administrative units. Read-only. Nullable.</summary>
-        public List<ScopedRoleMembership> ScopedMembers { get; set; }
+        public List<ApiSdk.Models.Microsoft.Graph.ScopedRoleMembership> ScopedMembers { get; set; }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         /// </summary>
-        public static new DirectoryRole CreateFromDiscriminatorValue(IParseNode parseNode) {
+        public static new ApiSdk.Models.Microsoft.Graph.DirectoryRole CreateFromDiscriminatorValue(IParseNode parseNode) {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
             return new DirectoryRole();
         }
@@ -30,9 +30,9 @@ namespace ApiSdk.Models.Microsoft.Graph {
             return new Dictionary<string, Action<T, IParseNode>>(base.GetFieldDeserializers<T>()) {
                 {"description", (o,n) => { (o as DirectoryRole).Description = n.GetStringValue(); } },
                 {"displayName", (o,n) => { (o as DirectoryRole).DisplayName = n.GetStringValue(); } },
-                {"members", (o,n) => { (o as DirectoryRole).Members = n.GetCollectionOfObjectValues<DirectoryObject>(DirectoryObject.CreateFromDiscriminatorValue).ToList(); } },
+                {"members", (o,n) => { (o as DirectoryRole).Members = n.GetCollectionOfObjectValues<ApiSdk.Models.Microsoft.Graph.DirectoryObject>(ApiSdk.Models.Microsoft.Graph.DirectoryObject.CreateFromDiscriminatorValue).ToList(); } },
                 {"roleTemplateId", (o,n) => { (o as DirectoryRole).RoleTemplateId = n.GetStringValue(); } },
-                {"scopedMembers", (o,n) => { (o as DirectoryRole).ScopedMembers = n.GetCollectionOfObjectValues<ScopedRoleMembership>(ScopedRoleMembership.CreateFromDiscriminatorValue).ToList(); } },
+                {"scopedMembers", (o,n) => { (o as DirectoryRole).ScopedMembers = n.GetCollectionOfObjectValues<ApiSdk.Models.Microsoft.Graph.ScopedRoleMembership>(ApiSdk.Models.Microsoft.Graph.ScopedRoleMembership.CreateFromDiscriminatorValue).ToList(); } },
             };
         }
         /// <summary>
@@ -44,9 +44,9 @@ namespace ApiSdk.Models.Microsoft.Graph {
             base.Serialize(writer);
             writer.WriteStringValue("description", Description);
             writer.WriteStringValue("displayName", DisplayName);
-            writer.WriteCollectionOfObjectValues<DirectoryObject>("members", Members);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.Microsoft.Graph.DirectoryObject>("members", Members);
             writer.WriteStringValue("roleTemplateId", RoleTemplateId);
-            writer.WriteCollectionOfObjectValues<ScopedRoleMembership>("scopedMembers", ScopedMembers);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.Microsoft.Graph.ScopedRoleMembership>("scopedMembers", ScopedMembers);
         }
     }
 }

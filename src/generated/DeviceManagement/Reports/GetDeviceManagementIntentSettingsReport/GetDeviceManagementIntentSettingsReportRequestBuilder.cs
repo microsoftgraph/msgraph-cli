@@ -11,7 +11,7 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 namespace ApiSdk.DeviceManagement.Reports.GetDeviceManagementIntentSettingsReport {
-    /// <summary>Builds and executes requests for operations under \deviceManagement\reports\microsoft.graph.getDeviceManagementIntentSettingsReport</summary>
+    /// <summary>Provides operations to call the getDeviceManagementIntentSettingsReport method.</summary>
     public class GetDeviceManagementIntentSettingsReportRequestBuilder {
         /// <summary>Path parameters for the request</summary>
         private Dictionary<string, object> PathParameters { get; set; }
@@ -30,29 +30,38 @@ namespace ApiSdk.DeviceManagement.Reports.GetDeviceManagementIntentSettingsRepor
             };
             bodyOption.IsRequired = true;
             command.AddOption(bodyOption);
-            var fileOption = new Option<FileInfo>("--file");
-            command.AddOption(fileOption);
+            var outputOption = new Option<FormatterType>("--output", () => FormatterType.JSON){
+                IsRequired = true
+            };
+            command.AddOption(outputOption);
+            var queryOption = new Option<string>("--query");
+            command.AddOption(queryOption);
+            var jsonNoIndentOption = new Option<bool>("--json-no-indent", r => {
+                if (bool.TryParse(r.Tokens.Select(t => t.Value).LastOrDefault(), out var value)) {
+                    return value;
+                }
+                return true;
+            }, description: "Disable indentation for the JSON output formatter.");
+            command.AddOption(jsonNoIndentOption);
             command.SetHandler(async (object[] parameters) => {
                 var body = (string) parameters[0];
-                var file = (FileInfo) parameters[1];
-                var cancellationToken = (CancellationToken) parameters[2];
+                var output = (FormatterType) parameters[1];
+                var query = (string) parameters[2];
+                var jsonNoIndent = (bool) parameters[3];
+                var outputFilter = (IOutputFilter) parameters[4];
+                var outputFormatterFactory = (IOutputFormatterFactory) parameters[5];
+                var cancellationToken = (CancellationToken) parameters[6];
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
-                var model = parseNode.GetObjectValue<GetDeviceManagementIntentSettingsReportRequestBody>(GetDeviceManagementIntentSettingsReportRequestBody.CreateFromDiscriminatorValue);
+                var model = parseNode.GetObjectValue<ApiSdk.DeviceManagement.Reports.GetDeviceManagementIntentSettingsReport.GetDeviceManagementIntentSettingsReportRequestBody>(ApiSdk.DeviceManagement.Reports.GetDeviceManagementIntentSettingsReport.GetDeviceManagementIntentSettingsReportRequestBody.CreateFromDiscriminatorValue);
                 var requestInfo = CreatePostRequestInformation(model, q => {
                 });
                 var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: default, cancellationToken: cancellationToken);
-                if (file == null) {
-                    using var reader = new StreamReader(response);
-                    var strContent = reader.ReadToEnd();
-                    Console.Write(strContent);
-                }
-                else {
-                    using var writeStream = file.OpenWrite();
-                    await response.CopyToAsync(writeStream);
-                    Console.WriteLine($"Content written to {file.FullName}.");
-                }
-            }, new CollectionBinding(bodyOption, fileOption, new TypeBinding(typeof(CancellationToken))));
+                response = await outputFilter?.FilterOutputAsync(response, query, cancellationToken) ?? response;
+                var formatterOptions = output.GetOutputFormatterOptions(new FormatterOptionsModel(!jsonNoIndent));
+                var formatter = outputFormatterFactory.GetFormatter(output);
+                await formatter.WriteOutputAsync(response, formatterOptions, cancellationToken);
+            }, new CollectionBinding(bodyOption, outputOption, queryOption, jsonNoIndentOption, new TypeBinding(typeof(IOutputFilter)), new TypeBinding(typeof(IOutputFormatterFactory)), new TypeBinding(typeof(CancellationToken))));
             return command;
         }
         /// <summary>
@@ -71,10 +80,10 @@ namespace ApiSdk.DeviceManagement.Reports.GetDeviceManagementIntentSettingsRepor
         /// <summary>
         /// Invoke action getDeviceManagementIntentSettingsReport
         /// <param name="body"></param>
-        /// <param name="h">Request headers</param>
-        /// <param name="o">Request options</param>
+        /// <param name="headers">Request headers</param>
+        /// <param name="options">Request options</param>
         /// </summary>
-        public RequestInformation CreatePostRequestInformation(GetDeviceManagementIntentSettingsReportRequestBody body, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
+        public RequestInformation CreatePostRequestInformation(ApiSdk.DeviceManagement.Reports.GetDeviceManagementIntentSettingsReport.GetDeviceManagementIntentSettingsReportRequestBody body, Action<IDictionary<string, string>> headers = default, IEnumerable<IRequestOption> options = default) {
             _ = body ?? throw new ArgumentNullException(nameof(body));
             var requestInfo = new RequestInformation {
                 HttpMethod = Method.POST,
@@ -82,8 +91,8 @@ namespace ApiSdk.DeviceManagement.Reports.GetDeviceManagementIntentSettingsRepor
                 PathParameters = PathParameters,
             };
             requestInfo.SetContentFromParsable(RequestAdapter, "application/json", body);
-            h?.Invoke(requestInfo.Headers);
-            requestInfo.AddRequestOptions(o?.ToArray());
+            headers?.Invoke(requestInfo.Headers);
+            requestInfo.AddRequestOptions(options?.ToArray());
             return requestInfo;
         }
     }

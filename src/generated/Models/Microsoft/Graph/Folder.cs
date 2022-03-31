@@ -10,7 +10,7 @@ namespace ApiSdk.Models.Microsoft.Graph {
         /// <summary>Number of children contained immediately within this container.</summary>
         public int? ChildCount { get; set; }
         /// <summary>A collection of properties defining the recommended view for the folder.</summary>
-        public FolderView View { get; set; }
+        public ApiSdk.Models.Microsoft.Graph.FolderView View { get; set; }
         /// <summary>
         /// Instantiates a new folder and sets the default values.
         /// </summary>
@@ -21,7 +21,7 @@ namespace ApiSdk.Models.Microsoft.Graph {
         /// Creates a new instance of the appropriate class based on discriminator value
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         /// </summary>
-        public static Folder CreateFromDiscriminatorValue(IParseNode parseNode) {
+        public static ApiSdk.Models.Microsoft.Graph.Folder CreateFromDiscriminatorValue(IParseNode parseNode) {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
             return new Folder();
         }
@@ -31,7 +31,7 @@ namespace ApiSdk.Models.Microsoft.Graph {
         public IDictionary<string, Action<T, IParseNode>> GetFieldDeserializers<T>() {
             return new Dictionary<string, Action<T, IParseNode>> {
                 {"childCount", (o,n) => { (o as Folder).ChildCount = n.GetIntValue(); } },
-                {"view", (o,n) => { (o as Folder).View = n.GetObjectValue<FolderView>(FolderView.CreateFromDiscriminatorValue); } },
+                {"view", (o,n) => { (o as Folder).View = n.GetObjectValue<ApiSdk.Models.Microsoft.Graph.FolderView>(ApiSdk.Models.Microsoft.Graph.FolderView.CreateFromDiscriminatorValue); } },
             };
         }
         /// <summary>
@@ -41,7 +41,7 @@ namespace ApiSdk.Models.Microsoft.Graph {
         public void Serialize(ISerializationWriter writer) {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             writer.WriteIntValue("childCount", ChildCount);
-            writer.WriteObjectValue<FolderView>("view", View);
+            writer.WriteObjectValue<ApiSdk.Models.Microsoft.Graph.FolderView>("view", View);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

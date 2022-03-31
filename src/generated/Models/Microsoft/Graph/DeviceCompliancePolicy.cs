@@ -6,34 +6,34 @@ using System.Linq;
 namespace ApiSdk.Models.Microsoft.Graph {
     public class DeviceCompliancePolicy : Entity, IParsable {
         /// <summary>The collection of assignments for this compliance policy.</summary>
-        public List<DeviceCompliancePolicyAssignment> Assignments { get; set; }
+        public List<ApiSdk.Models.Microsoft.Graph.DeviceCompliancePolicyAssignment> Assignments { get; set; }
         /// <summary>DateTime the object was created.</summary>
         public DateTimeOffset? CreatedDateTime { get; set; }
         /// <summary>Admin provided description of the Device Configuration.</summary>
         public string Description { get; set; }
         /// <summary>Compliance Setting State Device Summary</summary>
-        public List<SettingStateDeviceSummary> DeviceSettingStateSummaries { get; set; }
+        public List<ApiSdk.Models.Microsoft.Graph.SettingStateDeviceSummary> DeviceSettingStateSummaries { get; set; }
         /// <summary>List of DeviceComplianceDeviceStatus.</summary>
-        public List<DeviceComplianceDeviceStatus> DeviceStatuses { get; set; }
+        public List<ApiSdk.Models.Microsoft.Graph.DeviceComplianceDeviceStatus> DeviceStatuses { get; set; }
         /// <summary>Device compliance devices status overview</summary>
-        public DeviceComplianceDeviceOverview DeviceStatusOverview { get; set; }
+        public ApiSdk.Models.Microsoft.Graph.DeviceComplianceDeviceOverview DeviceStatusOverview { get; set; }
         /// <summary>Admin provided name of the device configuration.</summary>
         public string DisplayName { get; set; }
         /// <summary>DateTime the object was last modified.</summary>
         public DateTimeOffset? LastModifiedDateTime { get; set; }
-        /// <summary>The list of scheduled action for this rule</summary>
-        public List<DeviceComplianceScheduledActionForRule> ScheduledActionsForRule { get; set; }
+        /// <summary>The list of scheduled action per rule for this compliance policy. This is a required property when creating any individual per-platform compliance policies.</summary>
+        public List<ApiSdk.Models.Microsoft.Graph.DeviceComplianceScheduledActionForRule> ScheduledActionsForRule { get; set; }
         /// <summary>List of DeviceComplianceUserStatus.</summary>
-        public List<DeviceComplianceUserStatus> UserStatuses { get; set; }
+        public List<ApiSdk.Models.Microsoft.Graph.DeviceComplianceUserStatus> UserStatuses { get; set; }
         /// <summary>Device compliance users status overview</summary>
-        public DeviceComplianceUserOverview UserStatusOverview { get; set; }
+        public ApiSdk.Models.Microsoft.Graph.DeviceComplianceUserOverview UserStatusOverview { get; set; }
         /// <summary>Version of the device configuration.</summary>
         public int? Version { get; set; }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         /// </summary>
-        public static new DeviceCompliancePolicy CreateFromDiscriminatorValue(IParseNode parseNode) {
+        public static new ApiSdk.Models.Microsoft.Graph.DeviceCompliancePolicy CreateFromDiscriminatorValue(IParseNode parseNode) {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
             return new DeviceCompliancePolicy();
         }
@@ -42,17 +42,17 @@ namespace ApiSdk.Models.Microsoft.Graph {
         /// </summary>
         public new IDictionary<string, Action<T, IParseNode>> GetFieldDeserializers<T>() {
             return new Dictionary<string, Action<T, IParseNode>>(base.GetFieldDeserializers<T>()) {
-                {"assignments", (o,n) => { (o as DeviceCompliancePolicy).Assignments = n.GetCollectionOfObjectValues<DeviceCompliancePolicyAssignment>(DeviceCompliancePolicyAssignment.CreateFromDiscriminatorValue).ToList(); } },
+                {"assignments", (o,n) => { (o as DeviceCompliancePolicy).Assignments = n.GetCollectionOfObjectValues<ApiSdk.Models.Microsoft.Graph.DeviceCompliancePolicyAssignment>(ApiSdk.Models.Microsoft.Graph.DeviceCompliancePolicyAssignment.CreateFromDiscriminatorValue).ToList(); } },
                 {"createdDateTime", (o,n) => { (o as DeviceCompliancePolicy).CreatedDateTime = n.GetDateTimeOffsetValue(); } },
                 {"description", (o,n) => { (o as DeviceCompliancePolicy).Description = n.GetStringValue(); } },
-                {"deviceSettingStateSummaries", (o,n) => { (o as DeviceCompliancePolicy).DeviceSettingStateSummaries = n.GetCollectionOfObjectValues<SettingStateDeviceSummary>(SettingStateDeviceSummary.CreateFromDiscriminatorValue).ToList(); } },
-                {"deviceStatuses", (o,n) => { (o as DeviceCompliancePolicy).DeviceStatuses = n.GetCollectionOfObjectValues<DeviceComplianceDeviceStatus>(DeviceComplianceDeviceStatus.CreateFromDiscriminatorValue).ToList(); } },
-                {"deviceStatusOverview", (o,n) => { (o as DeviceCompliancePolicy).DeviceStatusOverview = n.GetObjectValue<DeviceComplianceDeviceOverview>(DeviceComplianceDeviceOverview.CreateFromDiscriminatorValue); } },
+                {"deviceSettingStateSummaries", (o,n) => { (o as DeviceCompliancePolicy).DeviceSettingStateSummaries = n.GetCollectionOfObjectValues<ApiSdk.Models.Microsoft.Graph.SettingStateDeviceSummary>(ApiSdk.Models.Microsoft.Graph.SettingStateDeviceSummary.CreateFromDiscriminatorValue).ToList(); } },
+                {"deviceStatuses", (o,n) => { (o as DeviceCompliancePolicy).DeviceStatuses = n.GetCollectionOfObjectValues<ApiSdk.Models.Microsoft.Graph.DeviceComplianceDeviceStatus>(ApiSdk.Models.Microsoft.Graph.DeviceComplianceDeviceStatus.CreateFromDiscriminatorValue).ToList(); } },
+                {"deviceStatusOverview", (o,n) => { (o as DeviceCompliancePolicy).DeviceStatusOverview = n.GetObjectValue<ApiSdk.Models.Microsoft.Graph.DeviceComplianceDeviceOverview>(ApiSdk.Models.Microsoft.Graph.DeviceComplianceDeviceOverview.CreateFromDiscriminatorValue); } },
                 {"displayName", (o,n) => { (o as DeviceCompliancePolicy).DisplayName = n.GetStringValue(); } },
                 {"lastModifiedDateTime", (o,n) => { (o as DeviceCompliancePolicy).LastModifiedDateTime = n.GetDateTimeOffsetValue(); } },
-                {"scheduledActionsForRule", (o,n) => { (o as DeviceCompliancePolicy).ScheduledActionsForRule = n.GetCollectionOfObjectValues<DeviceComplianceScheduledActionForRule>(DeviceComplianceScheduledActionForRule.CreateFromDiscriminatorValue).ToList(); } },
-                {"userStatuses", (o,n) => { (o as DeviceCompliancePolicy).UserStatuses = n.GetCollectionOfObjectValues<DeviceComplianceUserStatus>(DeviceComplianceUserStatus.CreateFromDiscriminatorValue).ToList(); } },
-                {"userStatusOverview", (o,n) => { (o as DeviceCompliancePolicy).UserStatusOverview = n.GetObjectValue<DeviceComplianceUserOverview>(DeviceComplianceUserOverview.CreateFromDiscriminatorValue); } },
+                {"scheduledActionsForRule", (o,n) => { (o as DeviceCompliancePolicy).ScheduledActionsForRule = n.GetCollectionOfObjectValues<ApiSdk.Models.Microsoft.Graph.DeviceComplianceScheduledActionForRule>(ApiSdk.Models.Microsoft.Graph.DeviceComplianceScheduledActionForRule.CreateFromDiscriminatorValue).ToList(); } },
+                {"userStatuses", (o,n) => { (o as DeviceCompliancePolicy).UserStatuses = n.GetCollectionOfObjectValues<ApiSdk.Models.Microsoft.Graph.DeviceComplianceUserStatus>(ApiSdk.Models.Microsoft.Graph.DeviceComplianceUserStatus.CreateFromDiscriminatorValue).ToList(); } },
+                {"userStatusOverview", (o,n) => { (o as DeviceCompliancePolicy).UserStatusOverview = n.GetObjectValue<ApiSdk.Models.Microsoft.Graph.DeviceComplianceUserOverview>(ApiSdk.Models.Microsoft.Graph.DeviceComplianceUserOverview.CreateFromDiscriminatorValue); } },
                 {"version", (o,n) => { (o as DeviceCompliancePolicy).Version = n.GetIntValue(); } },
             };
         }
@@ -63,17 +63,17 @@ namespace ApiSdk.Models.Microsoft.Graph {
         public new void Serialize(ISerializationWriter writer) {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             base.Serialize(writer);
-            writer.WriteCollectionOfObjectValues<DeviceCompliancePolicyAssignment>("assignments", Assignments);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.Microsoft.Graph.DeviceCompliancePolicyAssignment>("assignments", Assignments);
             writer.WriteDateTimeOffsetValue("createdDateTime", CreatedDateTime);
             writer.WriteStringValue("description", Description);
-            writer.WriteCollectionOfObjectValues<SettingStateDeviceSummary>("deviceSettingStateSummaries", DeviceSettingStateSummaries);
-            writer.WriteCollectionOfObjectValues<DeviceComplianceDeviceStatus>("deviceStatuses", DeviceStatuses);
-            writer.WriteObjectValue<DeviceComplianceDeviceOverview>("deviceStatusOverview", DeviceStatusOverview);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.Microsoft.Graph.SettingStateDeviceSummary>("deviceSettingStateSummaries", DeviceSettingStateSummaries);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.Microsoft.Graph.DeviceComplianceDeviceStatus>("deviceStatuses", DeviceStatuses);
+            writer.WriteObjectValue<ApiSdk.Models.Microsoft.Graph.DeviceComplianceDeviceOverview>("deviceStatusOverview", DeviceStatusOverview);
             writer.WriteStringValue("displayName", DisplayName);
             writer.WriteDateTimeOffsetValue("lastModifiedDateTime", LastModifiedDateTime);
-            writer.WriteCollectionOfObjectValues<DeviceComplianceScheduledActionForRule>("scheduledActionsForRule", ScheduledActionsForRule);
-            writer.WriteCollectionOfObjectValues<DeviceComplianceUserStatus>("userStatuses", UserStatuses);
-            writer.WriteObjectValue<DeviceComplianceUserOverview>("userStatusOverview", UserStatusOverview);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.Microsoft.Graph.DeviceComplianceScheduledActionForRule>("scheduledActionsForRule", ScheduledActionsForRule);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.Microsoft.Graph.DeviceComplianceUserStatus>("userStatuses", UserStatuses);
+            writer.WriteObjectValue<ApiSdk.Models.Microsoft.Graph.DeviceComplianceUserOverview>("userStatusOverview", UserStatusOverview);
             writer.WriteIntValue("version", Version);
         }
     }

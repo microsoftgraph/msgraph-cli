@@ -8,7 +8,7 @@ namespace ApiSdk.Models.Microsoft.Graph {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>Additional recipients the invitation message should be sent to. Currently only 1 additional recipient is supported.</summary>
-        public List<Recipient> CcRecipients { get; set; }
+        public List<ApiSdk.Models.Microsoft.Graph.Recipient> CcRecipients { get; set; }
         /// <summary>Customized message body you want to send if you don't want the default message.</summary>
         public string CustomizedMessageBody { get; set; }
         /// <summary>The language you want to send the default message in. If the customizedMessageBody is specified, this property is ignored, and the message is sent using the customizedMessageBody. The language format should be in ISO 639. The default is en-US.</summary>
@@ -23,7 +23,7 @@ namespace ApiSdk.Models.Microsoft.Graph {
         /// Creates a new instance of the appropriate class based on discriminator value
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         /// </summary>
-        public static InvitedUserMessageInfo CreateFromDiscriminatorValue(IParseNode parseNode) {
+        public static ApiSdk.Models.Microsoft.Graph.InvitedUserMessageInfo CreateFromDiscriminatorValue(IParseNode parseNode) {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
             return new InvitedUserMessageInfo();
         }
@@ -32,7 +32,7 @@ namespace ApiSdk.Models.Microsoft.Graph {
         /// </summary>
         public IDictionary<string, Action<T, IParseNode>> GetFieldDeserializers<T>() {
             return new Dictionary<string, Action<T, IParseNode>> {
-                {"ccRecipients", (o,n) => { (o as InvitedUserMessageInfo).CcRecipients = n.GetCollectionOfObjectValues<Recipient>(Recipient.CreateFromDiscriminatorValue).ToList(); } },
+                {"ccRecipients", (o,n) => { (o as InvitedUserMessageInfo).CcRecipients = n.GetCollectionOfObjectValues<ApiSdk.Models.Microsoft.Graph.Recipient>(ApiSdk.Models.Microsoft.Graph.Recipient.CreateFromDiscriminatorValue).ToList(); } },
                 {"customizedMessageBody", (o,n) => { (o as InvitedUserMessageInfo).CustomizedMessageBody = n.GetStringValue(); } },
                 {"messageLanguage", (o,n) => { (o as InvitedUserMessageInfo).MessageLanguage = n.GetStringValue(); } },
             };
@@ -43,7 +43,7 @@ namespace ApiSdk.Models.Microsoft.Graph {
         /// </summary>
         public void Serialize(ISerializationWriter writer) {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
-            writer.WriteCollectionOfObjectValues<Recipient>("ccRecipients", CcRecipients);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.Microsoft.Graph.Recipient>("ccRecipients", CcRecipients);
             writer.WriteStringValue("customizedMessageBody", CustomizedMessageBody);
             writer.WriteStringValue("messageLanguage", MessageLanguage);
             writer.WriteAdditionalData(AdditionalData);

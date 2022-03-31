@@ -7,7 +7,7 @@ namespace ApiSdk.Models.Microsoft.Graph {
     public class ProvisioningStatusInfo : IAdditionalDataHolder, IParsable {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
-        public ProvisioningErrorInfo ErrorInformation { get; set; }
+        public ApiSdk.Models.Microsoft.Graph.ProvisioningErrorInfo ErrorInformation { get; set; }
         /// <summary>Possible values are: success, warning, failure, skipped, unknownFutureValue.</summary>
         public ProvisioningResult? Status { get; set; }
         /// <summary>
@@ -20,7 +20,7 @@ namespace ApiSdk.Models.Microsoft.Graph {
         /// Creates a new instance of the appropriate class based on discriminator value
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         /// </summary>
-        public static ProvisioningStatusInfo CreateFromDiscriminatorValue(IParseNode parseNode) {
+        public static ApiSdk.Models.Microsoft.Graph.ProvisioningStatusInfo CreateFromDiscriminatorValue(IParseNode parseNode) {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
             return new ProvisioningStatusInfo();
         }
@@ -29,7 +29,7 @@ namespace ApiSdk.Models.Microsoft.Graph {
         /// </summary>
         public IDictionary<string, Action<T, IParseNode>> GetFieldDeserializers<T>() {
             return new Dictionary<string, Action<T, IParseNode>> {
-                {"errorInformation", (o,n) => { (o as ProvisioningStatusInfo).ErrorInformation = n.GetObjectValue<ProvisioningErrorInfo>(ProvisioningErrorInfo.CreateFromDiscriminatorValue); } },
+                {"errorInformation", (o,n) => { (o as ProvisioningStatusInfo).ErrorInformation = n.GetObjectValue<ApiSdk.Models.Microsoft.Graph.ProvisioningErrorInfo>(ApiSdk.Models.Microsoft.Graph.ProvisioningErrorInfo.CreateFromDiscriminatorValue); } },
                 {"status", (o,n) => { (o as ProvisioningStatusInfo).Status = n.GetEnumValue<ProvisioningResult>(); } },
             };
         }
@@ -39,7 +39,7 @@ namespace ApiSdk.Models.Microsoft.Graph {
         /// </summary>
         public void Serialize(ISerializationWriter writer) {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
-            writer.WriteObjectValue<ProvisioningErrorInfo>("errorInformation", ErrorInformation);
+            writer.WriteObjectValue<ApiSdk.Models.Microsoft.Graph.ProvisioningErrorInfo>("errorInformation", ErrorInformation);
             writer.WriteEnumValue<ProvisioningResult>("status", Status);
             writer.WriteAdditionalData(AdditionalData);
         }

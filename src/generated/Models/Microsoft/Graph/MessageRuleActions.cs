@@ -14,9 +14,9 @@ namespace ApiSdk.Models.Microsoft.Graph {
         /// <summary>Indicates whether a message should be moved to the Deleted Items folder.</summary>
         public bool? Delete { get; set; }
         /// <summary>The email addresses of the recipients to which a message should be forwarded as an attachment.</summary>
-        public List<Recipient> ForwardAsAttachmentTo { get; set; }
+        public List<ApiSdk.Models.Microsoft.Graph.Recipient> ForwardAsAttachmentTo { get; set; }
         /// <summary>The email addresses of the recipients to which a message should be forwarded.</summary>
-        public List<Recipient> ForwardTo { get; set; }
+        public List<ApiSdk.Models.Microsoft.Graph.Recipient> ForwardTo { get; set; }
         /// <summary>Indicates whether a message should be marked as read.</summary>
         public bool? MarkAsRead { get; set; }
         /// <summary>Sets the importance of the message, which can be: low, normal, high.</summary>
@@ -25,8 +25,8 @@ namespace ApiSdk.Models.Microsoft.Graph {
         public string MoveToFolder { get; set; }
         /// <summary>Indicates whether a message should be permanently deleted and not saved to the Deleted Items folder.</summary>
         public bool? PermanentDelete { get; set; }
-        /// <summary>The email address to which a message should be redirected.</summary>
-        public List<Recipient> RedirectTo { get; set; }
+        /// <summary>The email addresses to which a message should be redirected.</summary>
+        public List<ApiSdk.Models.Microsoft.Graph.Recipient> RedirectTo { get; set; }
         /// <summary>Indicates whether subsequent rules should be evaluated.</summary>
         public bool? StopProcessingRules { get; set; }
         /// <summary>
@@ -39,7 +39,7 @@ namespace ApiSdk.Models.Microsoft.Graph {
         /// Creates a new instance of the appropriate class based on discriminator value
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         /// </summary>
-        public static MessageRuleActions CreateFromDiscriminatorValue(IParseNode parseNode) {
+        public static ApiSdk.Models.Microsoft.Graph.MessageRuleActions CreateFromDiscriminatorValue(IParseNode parseNode) {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
             return new MessageRuleActions();
         }
@@ -51,13 +51,13 @@ namespace ApiSdk.Models.Microsoft.Graph {
                 {"assignCategories", (o,n) => { (o as MessageRuleActions).AssignCategories = n.GetCollectionOfPrimitiveValues<string>().ToList(); } },
                 {"copyToFolder", (o,n) => { (o as MessageRuleActions).CopyToFolder = n.GetStringValue(); } },
                 {"delete", (o,n) => { (o as MessageRuleActions).Delete = n.GetBoolValue(); } },
-                {"forwardAsAttachmentTo", (o,n) => { (o as MessageRuleActions).ForwardAsAttachmentTo = n.GetCollectionOfObjectValues<Recipient>(Recipient.CreateFromDiscriminatorValue).ToList(); } },
-                {"forwardTo", (o,n) => { (o as MessageRuleActions).ForwardTo = n.GetCollectionOfObjectValues<Recipient>(Recipient.CreateFromDiscriminatorValue).ToList(); } },
+                {"forwardAsAttachmentTo", (o,n) => { (o as MessageRuleActions).ForwardAsAttachmentTo = n.GetCollectionOfObjectValues<ApiSdk.Models.Microsoft.Graph.Recipient>(ApiSdk.Models.Microsoft.Graph.Recipient.CreateFromDiscriminatorValue).ToList(); } },
+                {"forwardTo", (o,n) => { (o as MessageRuleActions).ForwardTo = n.GetCollectionOfObjectValues<ApiSdk.Models.Microsoft.Graph.Recipient>(ApiSdk.Models.Microsoft.Graph.Recipient.CreateFromDiscriminatorValue).ToList(); } },
                 {"markAsRead", (o,n) => { (o as MessageRuleActions).MarkAsRead = n.GetBoolValue(); } },
                 {"markImportance", (o,n) => { (o as MessageRuleActions).MarkImportance = n.GetEnumValue<Importance>(); } },
                 {"moveToFolder", (o,n) => { (o as MessageRuleActions).MoveToFolder = n.GetStringValue(); } },
                 {"permanentDelete", (o,n) => { (o as MessageRuleActions).PermanentDelete = n.GetBoolValue(); } },
-                {"redirectTo", (o,n) => { (o as MessageRuleActions).RedirectTo = n.GetCollectionOfObjectValues<Recipient>(Recipient.CreateFromDiscriminatorValue).ToList(); } },
+                {"redirectTo", (o,n) => { (o as MessageRuleActions).RedirectTo = n.GetCollectionOfObjectValues<ApiSdk.Models.Microsoft.Graph.Recipient>(ApiSdk.Models.Microsoft.Graph.Recipient.CreateFromDiscriminatorValue).ToList(); } },
                 {"stopProcessingRules", (o,n) => { (o as MessageRuleActions).StopProcessingRules = n.GetBoolValue(); } },
             };
         }
@@ -70,13 +70,13 @@ namespace ApiSdk.Models.Microsoft.Graph {
             writer.WriteCollectionOfPrimitiveValues<string>("assignCategories", AssignCategories);
             writer.WriteStringValue("copyToFolder", CopyToFolder);
             writer.WriteBoolValue("delete", Delete);
-            writer.WriteCollectionOfObjectValues<Recipient>("forwardAsAttachmentTo", ForwardAsAttachmentTo);
-            writer.WriteCollectionOfObjectValues<Recipient>("forwardTo", ForwardTo);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.Microsoft.Graph.Recipient>("forwardAsAttachmentTo", ForwardAsAttachmentTo);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.Microsoft.Graph.Recipient>("forwardTo", ForwardTo);
             writer.WriteBoolValue("markAsRead", MarkAsRead);
             writer.WriteEnumValue<Importance>("markImportance", MarkImportance);
             writer.WriteStringValue("moveToFolder", MoveToFolder);
             writer.WriteBoolValue("permanentDelete", PermanentDelete);
-            writer.WriteCollectionOfObjectValues<Recipient>("redirectTo", RedirectTo);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.Microsoft.Graph.Recipient>("redirectTo", RedirectTo);
             writer.WriteBoolValue("stopProcessingRules", StopProcessingRules);
             writer.WriteAdditionalData(AdditionalData);
         }

@@ -8,9 +8,9 @@ namespace ApiSdk.Models.Microsoft.Graph {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>Specifies the pattern for recurrence</summary>
-        public PatternedRecurrence Recurrence { get; set; }
+        public ApiSdk.Models.Microsoft.Graph.PatternedRecurrence Recurrence { get; set; }
         /// <summary>The time slot(s) preferred by the user.</summary>
-        public List<TimeRange> TimeSlots { get; set; }
+        public List<ApiSdk.Models.Microsoft.Graph.TimeRange> TimeSlots { get; set; }
         /// <summary>Specifies the time zone for the indicated time.</summary>
         public string TimeZone { get; set; }
         /// <summary>
@@ -23,7 +23,7 @@ namespace ApiSdk.Models.Microsoft.Graph {
         /// Creates a new instance of the appropriate class based on discriminator value
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         /// </summary>
-        public static ShiftAvailability CreateFromDiscriminatorValue(IParseNode parseNode) {
+        public static ApiSdk.Models.Microsoft.Graph.ShiftAvailability CreateFromDiscriminatorValue(IParseNode parseNode) {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
             return new ShiftAvailability();
         }
@@ -32,8 +32,8 @@ namespace ApiSdk.Models.Microsoft.Graph {
         /// </summary>
         public IDictionary<string, Action<T, IParseNode>> GetFieldDeserializers<T>() {
             return new Dictionary<string, Action<T, IParseNode>> {
-                {"recurrence", (o,n) => { (o as ShiftAvailability).Recurrence = n.GetObjectValue<PatternedRecurrence>(PatternedRecurrence.CreateFromDiscriminatorValue); } },
-                {"timeSlots", (o,n) => { (o as ShiftAvailability).TimeSlots = n.GetCollectionOfObjectValues<TimeRange>(TimeRange.CreateFromDiscriminatorValue).ToList(); } },
+                {"recurrence", (o,n) => { (o as ShiftAvailability).Recurrence = n.GetObjectValue<ApiSdk.Models.Microsoft.Graph.PatternedRecurrence>(ApiSdk.Models.Microsoft.Graph.PatternedRecurrence.CreateFromDiscriminatorValue); } },
+                {"timeSlots", (o,n) => { (o as ShiftAvailability).TimeSlots = n.GetCollectionOfObjectValues<ApiSdk.Models.Microsoft.Graph.TimeRange>(ApiSdk.Models.Microsoft.Graph.TimeRange.CreateFromDiscriminatorValue).ToList(); } },
                 {"timeZone", (o,n) => { (o as ShiftAvailability).TimeZone = n.GetStringValue(); } },
             };
         }
@@ -43,8 +43,8 @@ namespace ApiSdk.Models.Microsoft.Graph {
         /// </summary>
         public void Serialize(ISerializationWriter writer) {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
-            writer.WriteObjectValue<PatternedRecurrence>("recurrence", Recurrence);
-            writer.WriteCollectionOfObjectValues<TimeRange>("timeSlots", TimeSlots);
+            writer.WriteObjectValue<ApiSdk.Models.Microsoft.Graph.PatternedRecurrence>("recurrence", Recurrence);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.Microsoft.Graph.TimeRange>("timeSlots", TimeSlots);
             writer.WriteStringValue("timeZone", TimeZone);
             writer.WriteAdditionalData(AdditionalData);
         }

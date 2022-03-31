@@ -20,7 +20,7 @@ namespace ApiSdk.DeviceAppManagement.ManagedAppRegistrations.Item.IntendedPolici
         private string UrlTemplate { get; set; }
         public Command BuildTargetAppsCommand() {
             var command = new Command("target-apps");
-            var builder = new ApiSdk.DeviceAppManagement.ManagedAppRegistrations.Item.IntendedPolicies.Item.ManagedAppProtection.TargetApps.TargetAppsRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new TargetAppsRequestBuilder(PathParameters, RequestAdapter);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }

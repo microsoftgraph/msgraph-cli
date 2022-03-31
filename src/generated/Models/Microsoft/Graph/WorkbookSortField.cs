@@ -11,13 +11,13 @@ namespace ApiSdk.Models.Microsoft.Graph {
         public bool? Ascending { get; set; }
         /// <summary>Represents the color that is the target of the condition if the sorting is on font or cell color.</summary>
         public string Color { get; set; }
-        /// <summary>Represents additional sorting options for this field. Possible values are: Normal, TextAsNumber.</summary>
+        /// <summary>Represents additional sorting options for this field. The possible values are: Normal, TextAsNumber.</summary>
         public string DataOption { get; set; }
         /// <summary>Represents the icon that is the target of the condition if the sorting is on the cell's icon.</summary>
-        public WorkbookIcon Icon { get; set; }
+        public ApiSdk.Models.Microsoft.Graph.WorkbookIcon Icon { get; set; }
         /// <summary>Represents the column (or row, depending on the sort orientation) that the condition is on. Represented as an offset from the first column (or row).</summary>
         public int? Key { get; set; }
-        /// <summary>Represents the type of sorting of this condition. Possible values are: Value, CellColor, FontColor, Icon.</summary>
+        /// <summary>Represents the type of sorting of this condition. The possible values are: Value, CellColor, FontColor, Icon.</summary>
         public string SortOn { get; set; }
         /// <summary>
         /// Instantiates a new workbookSortField and sets the default values.
@@ -29,7 +29,7 @@ namespace ApiSdk.Models.Microsoft.Graph {
         /// Creates a new instance of the appropriate class based on discriminator value
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         /// </summary>
-        public static WorkbookSortField CreateFromDiscriminatorValue(IParseNode parseNode) {
+        public static ApiSdk.Models.Microsoft.Graph.WorkbookSortField CreateFromDiscriminatorValue(IParseNode parseNode) {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
             return new WorkbookSortField();
         }
@@ -41,7 +41,7 @@ namespace ApiSdk.Models.Microsoft.Graph {
                 {"ascending", (o,n) => { (o as WorkbookSortField).Ascending = n.GetBoolValue(); } },
                 {"color", (o,n) => { (o as WorkbookSortField).Color = n.GetStringValue(); } },
                 {"dataOption", (o,n) => { (o as WorkbookSortField).DataOption = n.GetStringValue(); } },
-                {"icon", (o,n) => { (o as WorkbookSortField).Icon = n.GetObjectValue<WorkbookIcon>(WorkbookIcon.CreateFromDiscriminatorValue); } },
+                {"icon", (o,n) => { (o as WorkbookSortField).Icon = n.GetObjectValue<ApiSdk.Models.Microsoft.Graph.WorkbookIcon>(ApiSdk.Models.Microsoft.Graph.WorkbookIcon.CreateFromDiscriminatorValue); } },
                 {"key", (o,n) => { (o as WorkbookSortField).Key = n.GetIntValue(); } },
                 {"sortOn", (o,n) => { (o as WorkbookSortField).SortOn = n.GetStringValue(); } },
             };
@@ -55,7 +55,7 @@ namespace ApiSdk.Models.Microsoft.Graph {
             writer.WriteBoolValue("ascending", Ascending);
             writer.WriteStringValue("color", Color);
             writer.WriteStringValue("dataOption", DataOption);
-            writer.WriteObjectValue<WorkbookIcon>("icon", Icon);
+            writer.WriteObjectValue<ApiSdk.Models.Microsoft.Graph.WorkbookIcon>("icon", Icon);
             writer.WriteIntValue("key", Key);
             writer.WriteStringValue("sortOn", SortOn);
             writer.WriteAdditionalData(AdditionalData);

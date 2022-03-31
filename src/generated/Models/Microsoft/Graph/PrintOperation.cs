@@ -7,12 +7,12 @@ namespace ApiSdk.Models.Microsoft.Graph {
     public class PrintOperation : Entity, IParsable {
         /// <summary>The DateTimeOffset when the operation was created. Read-only.</summary>
         public DateTimeOffset? CreatedDateTime { get; set; }
-        public PrintOperationStatus Status { get; set; }
+        public ApiSdk.Models.Microsoft.Graph.PrintOperationStatus Status { get; set; }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         /// </summary>
-        public static new PrintOperation CreateFromDiscriminatorValue(IParseNode parseNode) {
+        public static new ApiSdk.Models.Microsoft.Graph.PrintOperation CreateFromDiscriminatorValue(IParseNode parseNode) {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
             return new PrintOperation();
         }
@@ -22,7 +22,7 @@ namespace ApiSdk.Models.Microsoft.Graph {
         public new IDictionary<string, Action<T, IParseNode>> GetFieldDeserializers<T>() {
             return new Dictionary<string, Action<T, IParseNode>>(base.GetFieldDeserializers<T>()) {
                 {"createdDateTime", (o,n) => { (o as PrintOperation).CreatedDateTime = n.GetDateTimeOffsetValue(); } },
-                {"status", (o,n) => { (o as PrintOperation).Status = n.GetObjectValue<PrintOperationStatus>(PrintOperationStatus.CreateFromDiscriminatorValue); } },
+                {"status", (o,n) => { (o as PrintOperation).Status = n.GetObjectValue<ApiSdk.Models.Microsoft.Graph.PrintOperationStatus>(ApiSdk.Models.Microsoft.Graph.PrintOperationStatus.CreateFromDiscriminatorValue); } },
             };
         }
         /// <summary>
@@ -33,7 +33,7 @@ namespace ApiSdk.Models.Microsoft.Graph {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             base.Serialize(writer);
             writer.WriteDateTimeOffsetValue("createdDateTime", CreatedDateTime);
-            writer.WriteObjectValue<PrintOperationStatus>("status", Status);
+            writer.WriteObjectValue<ApiSdk.Models.Microsoft.Graph.PrintOperationStatus>("status", Status);
         }
     }
 }

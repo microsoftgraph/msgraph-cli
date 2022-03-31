@@ -11,11 +11,11 @@ namespace ApiSdk.Models.Microsoft.Graph {
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>Name of the contact. Required.</summary>
         public string DisplayName { get; set; }
-        /// <summary>Email address of the contact.</summary>
+        /// <summary>Primary email address of the contact.</summary>
         public string EmailAddress { get; set; }
         /// <summary>Mobile phone number of the contact.</summary>
         public string MobilePhone { get; set; }
-        /// <summary>Relationship to the user. Possible values are: parent, relative, aide, doctor, guardian, child, other, unknownFutureValue.</summary>
+        /// <summary>Relationship to the user. Possible values are parent, relative, aide, doctor, guardian, child, other, unknownFutureValue.</summary>
         public ContactRelationship? Relationship { get; set; }
         /// <summary>
         /// Instantiates a new relatedContact and sets the default values.
@@ -27,7 +27,7 @@ namespace ApiSdk.Models.Microsoft.Graph {
         /// Creates a new instance of the appropriate class based on discriminator value
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         /// </summary>
-        public static RelatedContact CreateFromDiscriminatorValue(IParseNode parseNode) {
+        public static ApiSdk.Models.Microsoft.Graph.RelatedContact CreateFromDiscriminatorValue(IParseNode parseNode) {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
             return new RelatedContact();
         }

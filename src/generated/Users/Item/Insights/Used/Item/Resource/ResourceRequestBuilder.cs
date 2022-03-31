@@ -1,18 +1,5 @@
 using ApiSdk.Models.Microsoft.Graph;
-using ApiSdk.Users.Item.Insights.Used.Item.Resource.CalendarSharingMessage;
-using ApiSdk.Users.Item.Insights.Used.Item.Resource.ManagedAppProtection;
-using ApiSdk.Users.Item.Insights.Used.Item.Resource.MobileAppContentFile;
-using ApiSdk.Users.Item.Insights.Used.Item.Resource.PrintDocument;
-using ApiSdk.Users.Item.Insights.Used.Item.Resource.PrintJob;
-using ApiSdk.Users.Item.Insights.Used.Item.Resource.Ref;
-using ApiSdk.Users.Item.Insights.Used.Item.Resource.ScheduleChangeRequest;
-using ApiSdk.Users.Item.Insights.Used.Item.Resource.TargetedManagedAppProtection;
-using ApiSdk.Users.Item.Insights.Used.Item.Resource.WindowsInformationProtection;
-using ApiSdk.Users.Item.Insights.Used.Item.Resource.WorkbookRange;
-using ApiSdk.Users.Item.Insights.Used.Item.Resource.WorkbookRangeFill;
-using ApiSdk.Users.Item.Insights.Used.Item.Resource.WorkbookRangeFormat;
-using ApiSdk.Users.Item.Insights.Used.Item.Resource.WorkbookRangeSort;
-using ApiSdk.Users.Item.Insights.Used.Item.Resource.WorkbookRangeView;
+using ApiSdk.Models.Microsoft.Graph.ODataErrors;
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
 using Microsoft.Kiota.Cli.Commons.Binding;
@@ -26,7 +13,7 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 namespace ApiSdk.Users.Item.Insights.Used.Item.Resource {
-    /// <summary>Builds and executes requests for operations under \users\{user-id}\insights\used\{usedInsight-id}\resource</summary>
+    /// <summary>Provides operations to manage the resource property of the microsoft.graph.usedInsight entity.</summary>
     public class ResourceRequestBuilder {
         /// <summary>Path parameters for the request</summary>
         private Dictionary<string, object> PathParameters { get; set; }
@@ -34,12 +21,6 @@ namespace ApiSdk.Users.Item.Insights.Used.Item.Resource {
         private IRequestAdapter RequestAdapter { get; set; }
         /// <summary>Url template to use to build the URL for the current request builder</summary>
         private string UrlTemplate { get; set; }
-        public Command BuildCalendarSharingMessageCommand() {
-            var command = new Command("calendar-sharing-message");
-            var builder = new ApiSdk.Users.Item.Insights.Used.Item.Resource.CalendarSharingMessage.CalendarSharingMessageRequestBuilder(PathParameters, RequestAdapter);
-            command.AddCommand(builder.BuildAcceptCommand());
-            return command;
-        }
         /// <summary>
         /// Used for navigating to the item that was used. For file attachments, the type is fileAttachment. For linked attachments, the type is driveItem.
         /// </summary>
@@ -96,102 +77,16 @@ namespace ApiSdk.Users.Item.Insights.Used.Item.Resource {
                     q.Select = select;
                     q.Expand = expand;
                 });
-                var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: default, cancellationToken: cancellationToken);
-                var formatter = outputFormatterFactory.GetFormatter(output);
+                var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
+                    {"4XX", ODataError.CreateFromDiscriminatorValue},
+                    {"5XX", ODataError.CreateFromDiscriminatorValue},
+                };
+                var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken);
                 response = await outputFilter?.FilterOutputAsync(response, query, cancellationToken) ?? response;
                 var formatterOptions = output.GetOutputFormatterOptions(new FormatterOptionsModel(!jsonNoIndent));
+                var formatter = outputFormatterFactory.GetFormatter(output);
                 await formatter.WriteOutputAsync(response, formatterOptions, cancellationToken);
             }, new CollectionBinding(userIdOption, usedInsightIdOption, selectOption, expandOption, outputOption, queryOption, jsonNoIndentOption, new TypeBinding(typeof(IOutputFilter)), new TypeBinding(typeof(IOutputFormatterFactory)), new TypeBinding(typeof(CancellationToken))));
-            return command;
-        }
-        public Command BuildManagedAppProtectionCommand() {
-            var command = new Command("managed-app-protection");
-            var builder = new ApiSdk.Users.Item.Insights.Used.Item.Resource.ManagedAppProtection.ManagedAppProtectionRequestBuilder(PathParameters, RequestAdapter);
-            command.AddCommand(builder.BuildTargetAppsCommand());
-            return command;
-        }
-        public Command BuildMobileAppContentFileCommand() {
-            var command = new Command("mobile-app-content-file");
-            var builder = new ApiSdk.Users.Item.Insights.Used.Item.Resource.MobileAppContentFile.MobileAppContentFileRequestBuilder(PathParameters, RequestAdapter);
-            command.AddCommand(builder.BuildCommitCommand());
-            command.AddCommand(builder.BuildRenewUploadCommand());
-            return command;
-        }
-        public Command BuildPrintDocumentCommand() {
-            var command = new Command("print-document");
-            var builder = new ApiSdk.Users.Item.Insights.Used.Item.Resource.PrintDocument.PrintDocumentRequestBuilder(PathParameters, RequestAdapter);
-            command.AddCommand(builder.BuildCreateUploadSessionCommand());
-            return command;
-        }
-        public Command BuildPrintJobCommand() {
-            var command = new Command("print-job");
-            var builder = new ApiSdk.Users.Item.Insights.Used.Item.Resource.PrintJob.PrintJobRequestBuilder(PathParameters, RequestAdapter);
-            command.AddCommand(builder.BuildAbortCommand());
-            command.AddCommand(builder.BuildCancelCommand());
-            command.AddCommand(builder.BuildRedirectCommand());
-            command.AddCommand(builder.BuildStartCommand());
-            return command;
-        }
-        public Command BuildRefCommand() {
-            var command = new Command("ref");
-            var builder = new ApiSdk.Users.Item.Insights.Used.Item.Resource.Ref.RefRequestBuilder(PathParameters, RequestAdapter);
-            command.AddCommand(builder.BuildDeleteCommand());
-            command.AddCommand(builder.BuildGetCommand());
-            command.AddCommand(builder.BuildPutCommand());
-            return command;
-        }
-        public Command BuildScheduleChangeRequestCommand() {
-            var command = new Command("schedule-change-request");
-            var builder = new ApiSdk.Users.Item.Insights.Used.Item.Resource.ScheduleChangeRequest.ScheduleChangeRequestRequestBuilder(PathParameters, RequestAdapter);
-            command.AddCommand(builder.BuildApproveCommand());
-            command.AddCommand(builder.BuildDeclineCommand());
-            return command;
-        }
-        public Command BuildTargetedManagedAppProtectionCommand() {
-            var command = new Command("targeted-managed-app-protection");
-            var builder = new ApiSdk.Users.Item.Insights.Used.Item.Resource.TargetedManagedAppProtection.TargetedManagedAppProtectionRequestBuilder(PathParameters, RequestAdapter);
-            command.AddCommand(builder.BuildAssignCommand());
-            command.AddCommand(builder.BuildTargetAppsCommand());
-            return command;
-        }
-        public Command BuildWindowsInformationProtectionCommand() {
-            var command = new Command("windows-information-protection");
-            var builder = new ApiSdk.Users.Item.Insights.Used.Item.Resource.WindowsInformationProtection.WindowsInformationProtectionRequestBuilder(PathParameters, RequestAdapter);
-            command.AddCommand(builder.BuildAssignCommand());
-            return command;
-        }
-        public Command BuildWorkbookRangeCommand() {
-            var command = new Command("workbook-range");
-            var builder = new ApiSdk.Users.Item.Insights.Used.Item.Resource.WorkbookRange.WorkbookRangeRequestBuilder(PathParameters, RequestAdapter);
-            command.AddCommand(builder.BuildClearCommand());
-            command.AddCommand(builder.BuildDeleteCommand());
-            command.AddCommand(builder.BuildInsertCommand());
-            command.AddCommand(builder.BuildMergeCommand());
-            command.AddCommand(builder.BuildUnmergeCommand());
-            return command;
-        }
-        public Command BuildWorkbookRangeFillCommand() {
-            var command = new Command("workbook-range-fill");
-            var builder = new ApiSdk.Users.Item.Insights.Used.Item.Resource.WorkbookRangeFill.WorkbookRangeFillRequestBuilder(PathParameters, RequestAdapter);
-            command.AddCommand(builder.BuildClearCommand());
-            return command;
-        }
-        public Command BuildWorkbookRangeFormatCommand() {
-            var command = new Command("workbook-range-format");
-            var builder = new ApiSdk.Users.Item.Insights.Used.Item.Resource.WorkbookRangeFormat.WorkbookRangeFormatRequestBuilder(PathParameters, RequestAdapter);
-            command.AddCommand(builder.BuildAutofitColumnsCommand());
-            command.AddCommand(builder.BuildAutofitRowsCommand());
-            return command;
-        }
-        public Command BuildWorkbookRangeSortCommand() {
-            var command = new Command("workbook-range-sort");
-            var builder = new ApiSdk.Users.Item.Insights.Used.Item.Resource.WorkbookRangeSort.WorkbookRangeSortRequestBuilder(PathParameters, RequestAdapter);
-            command.AddCommand(builder.BuildApplyCommand());
-            return command;
-        }
-        public Command BuildWorkbookRangeViewCommand() {
-            var command = new Command("workbook-range-view");
-            var builder = new ApiSdk.Users.Item.Insights.Used.Item.Resource.WorkbookRangeView.WorkbookRangeViewRequestBuilder(PathParameters, RequestAdapter);
             return command;
         }
         /// <summary>
@@ -209,23 +104,23 @@ namespace ApiSdk.Users.Item.Insights.Used.Item.Resource {
         }
         /// <summary>
         /// Used for navigating to the item that was used. For file attachments, the type is fileAttachment. For linked attachments, the type is driveItem.
-        /// <param name="h">Request headers</param>
-        /// <param name="o">Request options</param>
-        /// <param name="q">Request query parameters</param>
+        /// <param name="headers">Request headers</param>
+        /// <param name="options">Request options</param>
+        /// <param name="queryParameters">Request query parameters</param>
         /// </summary>
-        public RequestInformation CreateGetRequestInformation(Action<GetQueryParameters> q = default, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
+        public RequestInformation CreateGetRequestInformation(Action<GetQueryParameters> queryParameters = default, Action<IDictionary<string, string>> headers = default, IEnumerable<IRequestOption> options = default) {
             var requestInfo = new RequestInformation {
                 HttpMethod = Method.GET,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };
-            if (q != null) {
+            if (queryParameters != null) {
                 var qParams = new GetQueryParameters();
-                q.Invoke(qParams);
+                queryParameters.Invoke(qParams);
                 qParams.AddQueryParameters(requestInfo.QueryParameters);
             }
-            h?.Invoke(requestInfo.Headers);
-            requestInfo.AddRequestOptions(o?.ToArray());
+            headers?.Invoke(requestInfo.Headers);
+            requestInfo.AddRequestOptions(options?.ToArray());
             return requestInfo;
         }
         /// <summary>Used for navigating to the item that was used. For file attachments, the type is fileAttachment. For linked attachments, the type is driveItem.</summary>

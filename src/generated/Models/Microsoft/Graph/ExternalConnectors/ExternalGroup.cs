@@ -9,13 +9,13 @@ namespace ApiSdk.Models.Microsoft.Graph.ExternalConnectors {
         public string Description { get; set; }
         /// <summary>The friendly name of the external group. Optional.</summary>
         public string DisplayName { get; set; }
-        /// <summary>A member added to an externalGroup. You can add Azure Active Directory users, Azure Active Directory groups, or other externalGroups as members.</summary>
-        public List<Identity> Members { get; set; }
+        /// <summary>A member added to an externalGroup. You can add Azure Active Directory users, Azure Active Directory groups, or an externalGroup as members.</summary>
+        public List<ApiSdk.Models.Microsoft.Graph.ExternalConnectors.Identity> Members { get; set; }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         /// </summary>
-        public static new ExternalGroup CreateFromDiscriminatorValue(IParseNode parseNode) {
+        public static new ApiSdk.Models.Microsoft.Graph.ExternalConnectors.ExternalGroup CreateFromDiscriminatorValue(IParseNode parseNode) {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
             return new ExternalGroup();
         }
@@ -26,7 +26,7 @@ namespace ApiSdk.Models.Microsoft.Graph.ExternalConnectors {
             return new Dictionary<string, Action<T, IParseNode>>(base.GetFieldDeserializers<T>()) {
                 {"description", (o,n) => { (o as ExternalGroup).Description = n.GetStringValue(); } },
                 {"displayName", (o,n) => { (o as ExternalGroup).DisplayName = n.GetStringValue(); } },
-                {"members", (o,n) => { (o as ExternalGroup).Members = n.GetCollectionOfObjectValues<Identity>(Identity.CreateFromDiscriminatorValue).ToList(); } },
+                {"members", (o,n) => { (o as ExternalGroup).Members = n.GetCollectionOfObjectValues<ApiSdk.Models.Microsoft.Graph.ExternalConnectors.Identity>(ApiSdk.Models.Microsoft.Graph.ExternalConnectors.Identity.CreateFromDiscriminatorValue).ToList(); } },
             };
         }
         /// <summary>
@@ -38,7 +38,7 @@ namespace ApiSdk.Models.Microsoft.Graph.ExternalConnectors {
             base.Serialize(writer);
             writer.WriteStringValue("description", Description);
             writer.WriteStringValue("displayName", DisplayName);
-            writer.WriteCollectionOfObjectValues<Identity>("members", Members);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.Microsoft.Graph.ExternalConnectors.Identity>("members", Members);
         }
     }
 }

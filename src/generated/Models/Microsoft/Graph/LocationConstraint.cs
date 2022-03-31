@@ -10,7 +10,7 @@ namespace ApiSdk.Models.Microsoft.Graph {
         /// <summary>The client requests the service to include in the response a meeting location for the meeting. If this is true and all the resources are busy, findMeetingTimes will not return any meeting time suggestions. If this is false and all the resources are busy, findMeetingTimes would still look for meeting times without locations.</summary>
         public bool? IsRequired { get; set; }
         /// <summary>Constraint information for one or more locations that the client requests for the meeting.</summary>
-        public List<LocationConstraintItem> Locations { get; set; }
+        public List<ApiSdk.Models.Microsoft.Graph.LocationConstraintItem> Locations { get; set; }
         /// <summary>The client requests the service to suggest one or more meeting locations.</summary>
         public bool? SuggestLocation { get; set; }
         /// <summary>
@@ -23,7 +23,7 @@ namespace ApiSdk.Models.Microsoft.Graph {
         /// Creates a new instance of the appropriate class based on discriminator value
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         /// </summary>
-        public static LocationConstraint CreateFromDiscriminatorValue(IParseNode parseNode) {
+        public static ApiSdk.Models.Microsoft.Graph.LocationConstraint CreateFromDiscriminatorValue(IParseNode parseNode) {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
             return new LocationConstraint();
         }
@@ -33,7 +33,7 @@ namespace ApiSdk.Models.Microsoft.Graph {
         public IDictionary<string, Action<T, IParseNode>> GetFieldDeserializers<T>() {
             return new Dictionary<string, Action<T, IParseNode>> {
                 {"isRequired", (o,n) => { (o as LocationConstraint).IsRequired = n.GetBoolValue(); } },
-                {"locations", (o,n) => { (o as LocationConstraint).Locations = n.GetCollectionOfObjectValues<LocationConstraintItem>(LocationConstraintItem.CreateFromDiscriminatorValue).ToList(); } },
+                {"locations", (o,n) => { (o as LocationConstraint).Locations = n.GetCollectionOfObjectValues<ApiSdk.Models.Microsoft.Graph.LocationConstraintItem>(ApiSdk.Models.Microsoft.Graph.LocationConstraintItem.CreateFromDiscriminatorValue).ToList(); } },
                 {"suggestLocation", (o,n) => { (o as LocationConstraint).SuggestLocation = n.GetBoolValue(); } },
             };
         }
@@ -44,7 +44,7 @@ namespace ApiSdk.Models.Microsoft.Graph {
         public void Serialize(ISerializationWriter writer) {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             writer.WriteBoolValue("isRequired", IsRequired);
-            writer.WriteCollectionOfObjectValues<LocationConstraintItem>("locations", Locations);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.Microsoft.Graph.LocationConstraintItem>("locations", Locations);
             writer.WriteBoolValue("suggestLocation", SuggestLocation);
             writer.WriteAdditionalData(AdditionalData);
         }

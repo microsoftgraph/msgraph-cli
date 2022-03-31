@@ -3,6 +3,7 @@ using ApiSdk.DeviceAppManagement.ManagedAppPolicies.Item.TargetApps;
 using ApiSdk.DeviceAppManagement.ManagedAppPolicies.Item.TargetedManagedAppProtection;
 using ApiSdk.DeviceAppManagement.ManagedAppPolicies.Item.WindowsInformationProtection;
 using ApiSdk.Models.Microsoft.Graph;
+using ApiSdk.Models.Microsoft.Graph.ODataErrors;
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
 using Microsoft.Kiota.Cli.Commons.Binding;
@@ -16,7 +17,7 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 namespace ApiSdk.DeviceAppManagement.ManagedAppPolicies.Item {
-    /// <summary>Builds and executes requests for operations under \deviceAppManagement\managedAppPolicies\{managedAppPolicy-id}</summary>
+    /// <summary>Provides operations to manage the managedAppPolicies property of the microsoft.graph.deviceAppManagement entity.</summary>
     public class ManagedAppPolicyItemRequestBuilder {
         /// <summary>Path parameters for the request</summary>
         private Dictionary<string, object> PathParameters { get; set; }
@@ -25,11 +26,11 @@ namespace ApiSdk.DeviceAppManagement.ManagedAppPolicies.Item {
         /// <summary>Url template to use to build the URL for the current request builder</summary>
         private string UrlTemplate { get; set; }
         /// <summary>
-        /// Managed app policies.
+        /// Delete navigation property managedAppPolicies for deviceAppManagement
         /// </summary>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
-            command.Description = "Managed app policies.";
+            command.Description = "Delete navigation property managedAppPolicies for deviceAppManagement";
             // Create options for all the parameters
             var managedAppPolicyIdOption = new Option<string>("--managed-app-policy-id", description: "key: id of managedAppPolicy") {
             };
@@ -42,7 +43,11 @@ namespace ApiSdk.DeviceAppManagement.ManagedAppPolicies.Item {
                 PathParameters.Add("managedAppPolicy_id", managedAppPolicyId);
                 var requestInfo = CreateDeleteRequestInformation(q => {
                 });
-                await RequestAdapter.SendNoContentAsync(requestInfo, errorMapping: default, cancellationToken: cancellationToken);
+                var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
+                    {"4XX", ODataError.CreateFromDiscriminatorValue},
+                    {"5XX", ODataError.CreateFromDiscriminatorValue},
+                };
+                await RequestAdapter.SendNoContentAsync(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken);
                 Console.WriteLine("Success");
             }, new CollectionBinding(managedAppPolicyIdOption, new TypeBinding(typeof(CancellationToken))));
             return command;
@@ -97,26 +102,30 @@ namespace ApiSdk.DeviceAppManagement.ManagedAppPolicies.Item {
                     q.Select = select;
                     q.Expand = expand;
                 });
-                var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: default, cancellationToken: cancellationToken);
-                var formatter = outputFormatterFactory.GetFormatter(output);
+                var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
+                    {"4XX", ODataError.CreateFromDiscriminatorValue},
+                    {"5XX", ODataError.CreateFromDiscriminatorValue},
+                };
+                var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken);
                 response = await outputFilter?.FilterOutputAsync(response, query, cancellationToken) ?? response;
                 var formatterOptions = output.GetOutputFormatterOptions(new FormatterOptionsModel(!jsonNoIndent));
+                var formatter = outputFormatterFactory.GetFormatter(output);
                 await formatter.WriteOutputAsync(response, formatterOptions, cancellationToken);
             }, new CollectionBinding(managedAppPolicyIdOption, selectOption, expandOption, outputOption, queryOption, jsonNoIndentOption, new TypeBinding(typeof(IOutputFilter)), new TypeBinding(typeof(IOutputFormatterFactory)), new TypeBinding(typeof(CancellationToken))));
             return command;
         }
         public Command BuildManagedAppProtectionCommand() {
             var command = new Command("managed-app-protection");
-            var builder = new ApiSdk.DeviceAppManagement.ManagedAppPolicies.Item.ManagedAppProtection.ManagedAppProtectionRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new ManagedAppProtectionRequestBuilder(PathParameters, RequestAdapter);
             command.AddCommand(builder.BuildTargetAppsCommand());
             return command;
         }
         /// <summary>
-        /// Managed app policies.
+        /// Update the navigation property managedAppPolicies in deviceAppManagement
         /// </summary>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
-            command.Description = "Managed app policies.";
+            command.Description = "Update the navigation property managedAppPolicies in deviceAppManagement";
             // Create options for all the parameters
             var managedAppPolicyIdOption = new Option<string>("--managed-app-policy-id", description: "key: id of managedAppPolicy") {
             };
@@ -137,27 +146,31 @@ namespace ApiSdk.DeviceAppManagement.ManagedAppPolicies.Item {
                 var model = parseNode.GetObjectValue<ManagedAppPolicy>(ManagedAppPolicy.CreateFromDiscriminatorValue);
                 var requestInfo = CreatePatchRequestInformation(model, q => {
                 });
-                await RequestAdapter.SendNoContentAsync(requestInfo, errorMapping: default, cancellationToken: cancellationToken);
+                var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
+                    {"4XX", ODataError.CreateFromDiscriminatorValue},
+                    {"5XX", ODataError.CreateFromDiscriminatorValue},
+                };
+                await RequestAdapter.SendNoContentAsync(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken);
                 Console.WriteLine("Success");
             }, new CollectionBinding(managedAppPolicyIdOption, bodyOption, new TypeBinding(typeof(CancellationToken))));
             return command;
         }
         public Command BuildTargetAppsCommand() {
             var command = new Command("target-apps");
-            var builder = new ApiSdk.DeviceAppManagement.ManagedAppPolicies.Item.TargetApps.TargetAppsRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new TargetAppsRequestBuilder(PathParameters, RequestAdapter);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
         public Command BuildTargetedManagedAppProtectionCommand() {
             var command = new Command("targeted-managed-app-protection");
-            var builder = new ApiSdk.DeviceAppManagement.ManagedAppPolicies.Item.TargetedManagedAppProtection.TargetedManagedAppProtectionRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new TargetedManagedAppProtectionRequestBuilder(PathParameters, RequestAdapter);
             command.AddCommand(builder.BuildAssignCommand());
             command.AddCommand(builder.BuildTargetAppsCommand());
             return command;
         }
         public Command BuildWindowsInformationProtectionCommand() {
             var command = new Command("windows-information-protection");
-            var builder = new ApiSdk.DeviceAppManagement.ManagedAppPolicies.Item.WindowsInformationProtection.WindowsInformationProtectionRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new WindowsInformationProtectionRequestBuilder(PathParameters, RequestAdapter);
             command.AddCommand(builder.BuildAssignCommand());
             return command;
         }
@@ -175,48 +188,48 @@ namespace ApiSdk.DeviceAppManagement.ManagedAppPolicies.Item {
             RequestAdapter = requestAdapter;
         }
         /// <summary>
-        /// Managed app policies.
-        /// <param name="h">Request headers</param>
-        /// <param name="o">Request options</param>
+        /// Delete navigation property managedAppPolicies for deviceAppManagement
+        /// <param name="headers">Request headers</param>
+        /// <param name="options">Request options</param>
         /// </summary>
-        public RequestInformation CreateDeleteRequestInformation(Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
+        public RequestInformation CreateDeleteRequestInformation(Action<IDictionary<string, string>> headers = default, IEnumerable<IRequestOption> options = default) {
             var requestInfo = new RequestInformation {
                 HttpMethod = Method.DELETE,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };
-            h?.Invoke(requestInfo.Headers);
-            requestInfo.AddRequestOptions(o?.ToArray());
+            headers?.Invoke(requestInfo.Headers);
+            requestInfo.AddRequestOptions(options?.ToArray());
             return requestInfo;
         }
         /// <summary>
         /// Managed app policies.
-        /// <param name="h">Request headers</param>
-        /// <param name="o">Request options</param>
-        /// <param name="q">Request query parameters</param>
+        /// <param name="headers">Request headers</param>
+        /// <param name="options">Request options</param>
+        /// <param name="queryParameters">Request query parameters</param>
         /// </summary>
-        public RequestInformation CreateGetRequestInformation(Action<GetQueryParameters> q = default, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
+        public RequestInformation CreateGetRequestInformation(Action<GetQueryParameters> queryParameters = default, Action<IDictionary<string, string>> headers = default, IEnumerable<IRequestOption> options = default) {
             var requestInfo = new RequestInformation {
                 HttpMethod = Method.GET,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };
-            if (q != null) {
+            if (queryParameters != null) {
                 var qParams = new GetQueryParameters();
-                q.Invoke(qParams);
+                queryParameters.Invoke(qParams);
                 qParams.AddQueryParameters(requestInfo.QueryParameters);
             }
-            h?.Invoke(requestInfo.Headers);
-            requestInfo.AddRequestOptions(o?.ToArray());
+            headers?.Invoke(requestInfo.Headers);
+            requestInfo.AddRequestOptions(options?.ToArray());
             return requestInfo;
         }
         /// <summary>
-        /// Managed app policies.
+        /// Update the navigation property managedAppPolicies in deviceAppManagement
         /// <param name="body"></param>
-        /// <param name="h">Request headers</param>
-        /// <param name="o">Request options</param>
+        /// <param name="headers">Request headers</param>
+        /// <param name="options">Request options</param>
         /// </summary>
-        public RequestInformation CreatePatchRequestInformation(ManagedAppPolicy body, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
+        public RequestInformation CreatePatchRequestInformation(ManagedAppPolicy body, Action<IDictionary<string, string>> headers = default, IEnumerable<IRequestOption> options = default) {
             _ = body ?? throw new ArgumentNullException(nameof(body));
             var requestInfo = new RequestInformation {
                 HttpMethod = Method.PATCH,
@@ -224,8 +237,8 @@ namespace ApiSdk.DeviceAppManagement.ManagedAppPolicies.Item {
                 PathParameters = PathParameters,
             };
             requestInfo.SetContentFromParsable(RequestAdapter, "application/json", body);
-            h?.Invoke(requestInfo.Headers);
-            requestInfo.AddRequestOptions(o?.ToArray());
+            headers?.Invoke(requestInfo.Headers);
+            requestInfo.AddRequestOptions(options?.ToArray());
             return requestInfo;
         }
         /// <summary>Managed app policies.</summary>

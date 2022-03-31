@@ -6,11 +6,11 @@ using System.Linq;
 namespace ApiSdk.Models.Microsoft.Graph {
     public class ManagedAppRegistration : Entity, IParsable {
         /// <summary>The app package Identifier</summary>
-        public MobileAppIdentifier AppIdentifier { get; set; }
+        public ApiSdk.Models.Microsoft.Graph.MobileAppIdentifier AppIdentifier { get; set; }
         /// <summary>App version</summary>
         public string ApplicationVersion { get; set; }
         /// <summary>Zero or more policys already applied on the registered app when it last synchronized with managment service.</summary>
-        public List<ManagedAppPolicy> AppliedPolicies { get; set; }
+        public List<ApiSdk.Models.Microsoft.Graph.ManagedAppPolicy> AppliedPolicies { get; set; }
         /// <summary>Date and time of creation</summary>
         public DateTimeOffset? CreatedDateTime { get; set; }
         /// <summary>Host device name</summary>
@@ -22,13 +22,13 @@ namespace ApiSdk.Models.Microsoft.Graph {
         /// <summary>Zero or more reasons an app registration is flagged. E.g. app running on rooted device</summary>
         public List<ManagedAppFlaggedReason?> FlaggedReasons { get; set; }
         /// <summary>Zero or more policies admin intended for the app as of now.</summary>
-        public List<ManagedAppPolicy> IntendedPolicies { get; set; }
+        public List<ApiSdk.Models.Microsoft.Graph.ManagedAppPolicy> IntendedPolicies { get; set; }
         /// <summary>Date and time of last the app synced with management service.</summary>
         public DateTimeOffset? LastSyncDateTime { get; set; }
         /// <summary>App management SDK version</summary>
         public string ManagementSdkVersion { get; set; }
         /// <summary>Zero or more long running operations triggered on the app registration.</summary>
-        public List<ManagedAppOperation> Operations { get; set; }
+        public List<ApiSdk.Models.Microsoft.Graph.ManagedAppOperation> Operations { get; set; }
         /// <summary>Operating System version</summary>
         public string PlatformVersion { get; set; }
         /// <summary>The user Id to who this app registration belongs.</summary>
@@ -39,7 +39,7 @@ namespace ApiSdk.Models.Microsoft.Graph {
         /// Creates a new instance of the appropriate class based on discriminator value
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         /// </summary>
-        public static new ManagedAppRegistration CreateFromDiscriminatorValue(IParseNode parseNode) {
+        public static new ApiSdk.Models.Microsoft.Graph.ManagedAppRegistration CreateFromDiscriminatorValue(IParseNode parseNode) {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
             return new ManagedAppRegistration();
         }
@@ -48,18 +48,18 @@ namespace ApiSdk.Models.Microsoft.Graph {
         /// </summary>
         public new IDictionary<string, Action<T, IParseNode>> GetFieldDeserializers<T>() {
             return new Dictionary<string, Action<T, IParseNode>>(base.GetFieldDeserializers<T>()) {
-                {"appIdentifier", (o,n) => { (o as ManagedAppRegistration).AppIdentifier = n.GetObjectValue<MobileAppIdentifier>(MobileAppIdentifier.CreateFromDiscriminatorValue); } },
+                {"appIdentifier", (o,n) => { (o as ManagedAppRegistration).AppIdentifier = n.GetObjectValue<ApiSdk.Models.Microsoft.Graph.MobileAppIdentifier>(ApiSdk.Models.Microsoft.Graph.MobileAppIdentifier.CreateFromDiscriminatorValue); } },
                 {"applicationVersion", (o,n) => { (o as ManagedAppRegistration).ApplicationVersion = n.GetStringValue(); } },
-                {"appliedPolicies", (o,n) => { (o as ManagedAppRegistration).AppliedPolicies = n.GetCollectionOfObjectValues<ManagedAppPolicy>(ManagedAppPolicy.CreateFromDiscriminatorValue).ToList(); } },
+                {"appliedPolicies", (o,n) => { (o as ManagedAppRegistration).AppliedPolicies = n.GetCollectionOfObjectValues<ApiSdk.Models.Microsoft.Graph.ManagedAppPolicy>(ApiSdk.Models.Microsoft.Graph.ManagedAppPolicy.CreateFromDiscriminatorValue).ToList(); } },
                 {"createdDateTime", (o,n) => { (o as ManagedAppRegistration).CreatedDateTime = n.GetDateTimeOffsetValue(); } },
                 {"deviceName", (o,n) => { (o as ManagedAppRegistration).DeviceName = n.GetStringValue(); } },
                 {"deviceTag", (o,n) => { (o as ManagedAppRegistration).DeviceTag = n.GetStringValue(); } },
                 {"deviceType", (o,n) => { (o as ManagedAppRegistration).DeviceType = n.GetStringValue(); } },
                 {"flaggedReasons", (o,n) => { (o as ManagedAppRegistration).FlaggedReasons = n.GetCollectionOfEnumValues<ManagedAppFlaggedReason>().ToList(); } },
-                {"intendedPolicies", (o,n) => { (o as ManagedAppRegistration).IntendedPolicies = n.GetCollectionOfObjectValues<ManagedAppPolicy>(ManagedAppPolicy.CreateFromDiscriminatorValue).ToList(); } },
+                {"intendedPolicies", (o,n) => { (o as ManagedAppRegistration).IntendedPolicies = n.GetCollectionOfObjectValues<ApiSdk.Models.Microsoft.Graph.ManagedAppPolicy>(ApiSdk.Models.Microsoft.Graph.ManagedAppPolicy.CreateFromDiscriminatorValue).ToList(); } },
                 {"lastSyncDateTime", (o,n) => { (o as ManagedAppRegistration).LastSyncDateTime = n.GetDateTimeOffsetValue(); } },
                 {"managementSdkVersion", (o,n) => { (o as ManagedAppRegistration).ManagementSdkVersion = n.GetStringValue(); } },
-                {"operations", (o,n) => { (o as ManagedAppRegistration).Operations = n.GetCollectionOfObjectValues<ManagedAppOperation>(ManagedAppOperation.CreateFromDiscriminatorValue).ToList(); } },
+                {"operations", (o,n) => { (o as ManagedAppRegistration).Operations = n.GetCollectionOfObjectValues<ApiSdk.Models.Microsoft.Graph.ManagedAppOperation>(ApiSdk.Models.Microsoft.Graph.ManagedAppOperation.CreateFromDiscriminatorValue).ToList(); } },
                 {"platformVersion", (o,n) => { (o as ManagedAppRegistration).PlatformVersion = n.GetStringValue(); } },
                 {"userId", (o,n) => { (o as ManagedAppRegistration).UserId = n.GetStringValue(); } },
                 {"version", (o,n) => { (o as ManagedAppRegistration).Version = n.GetStringValue(); } },
@@ -72,18 +72,18 @@ namespace ApiSdk.Models.Microsoft.Graph {
         public new void Serialize(ISerializationWriter writer) {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             base.Serialize(writer);
-            writer.WriteObjectValue<MobileAppIdentifier>("appIdentifier", AppIdentifier);
+            writer.WriteObjectValue<ApiSdk.Models.Microsoft.Graph.MobileAppIdentifier>("appIdentifier", AppIdentifier);
             writer.WriteStringValue("applicationVersion", ApplicationVersion);
-            writer.WriteCollectionOfObjectValues<ManagedAppPolicy>("appliedPolicies", AppliedPolicies);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.Microsoft.Graph.ManagedAppPolicy>("appliedPolicies", AppliedPolicies);
             writer.WriteDateTimeOffsetValue("createdDateTime", CreatedDateTime);
             writer.WriteStringValue("deviceName", DeviceName);
             writer.WriteStringValue("deviceTag", DeviceTag);
             writer.WriteStringValue("deviceType", DeviceType);
             writer.WriteCollectionOfEnumValues<ManagedAppFlaggedReason>("flaggedReasons", FlaggedReasons);
-            writer.WriteCollectionOfObjectValues<ManagedAppPolicy>("intendedPolicies", IntendedPolicies);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.Microsoft.Graph.ManagedAppPolicy>("intendedPolicies", IntendedPolicies);
             writer.WriteDateTimeOffsetValue("lastSyncDateTime", LastSyncDateTime);
             writer.WriteStringValue("managementSdkVersion", ManagementSdkVersion);
-            writer.WriteCollectionOfObjectValues<ManagedAppOperation>("operations", Operations);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.Microsoft.Graph.ManagedAppOperation>("operations", Operations);
             writer.WriteStringValue("platformVersion", PlatformVersion);
             writer.WriteStringValue("userId", UserId);
             writer.WriteStringValue("version", Version);

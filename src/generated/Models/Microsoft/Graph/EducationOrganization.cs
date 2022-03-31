@@ -9,7 +9,7 @@ namespace ApiSdk.Models.Microsoft.Graph {
         public string Description { get; set; }
         /// <summary>Organization display name.</summary>
         public string DisplayName { get; set; }
-        /// <summary>Where this user was created from. Possible values are: sis, lms, or manual.</summary>
+        /// <summary>Source where this organization was created from. Possible values are: sis, manual.</summary>
         public EducationExternalSource? ExternalSource { get; set; }
         /// <summary>The name of the external source this resources was generated from.</summary>
         public string ExternalSourceDetail { get; set; }
@@ -17,7 +17,7 @@ namespace ApiSdk.Models.Microsoft.Graph {
         /// Creates a new instance of the appropriate class based on discriminator value
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         /// </summary>
-        public static new EducationOrganization CreateFromDiscriminatorValue(IParseNode parseNode) {
+        public static new ApiSdk.Models.Microsoft.Graph.EducationOrganization CreateFromDiscriminatorValue(IParseNode parseNode) {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
             return new EducationOrganization();
         }

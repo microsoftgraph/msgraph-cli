@@ -6,16 +6,16 @@ using System.Linq;
 namespace ApiSdk.Models.Microsoft.Graph {
     public class OpenShift : ChangeTrackedEntity, IParsable {
         /// <summary>An unpublished open shift.</summary>
-        public OpenShiftItem DraftOpenShift { get; set; }
+        public ApiSdk.Models.Microsoft.Graph.OpenShiftItem DraftOpenShift { get; set; }
         /// <summary>ID for the scheduling group that the open shift belongs to.</summary>
         public string SchedulingGroupId { get; set; }
         /// <summary>A published open shift.</summary>
-        public OpenShiftItem SharedOpenShift { get; set; }
+        public ApiSdk.Models.Microsoft.Graph.OpenShiftItem SharedOpenShift { get; set; }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         /// </summary>
-        public static new OpenShift CreateFromDiscriminatorValue(IParseNode parseNode) {
+        public static new ApiSdk.Models.Microsoft.Graph.OpenShift CreateFromDiscriminatorValue(IParseNode parseNode) {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
             return new OpenShift();
         }
@@ -24,9 +24,9 @@ namespace ApiSdk.Models.Microsoft.Graph {
         /// </summary>
         public new IDictionary<string, Action<T, IParseNode>> GetFieldDeserializers<T>() {
             return new Dictionary<string, Action<T, IParseNode>>(base.GetFieldDeserializers<T>()) {
-                {"draftOpenShift", (o,n) => { (o as OpenShift).DraftOpenShift = n.GetObjectValue<OpenShiftItem>(OpenShiftItem.CreateFromDiscriminatorValue); } },
+                {"draftOpenShift", (o,n) => { (o as OpenShift).DraftOpenShift = n.GetObjectValue<ApiSdk.Models.Microsoft.Graph.OpenShiftItem>(ApiSdk.Models.Microsoft.Graph.OpenShiftItem.CreateFromDiscriminatorValue); } },
                 {"schedulingGroupId", (o,n) => { (o as OpenShift).SchedulingGroupId = n.GetStringValue(); } },
-                {"sharedOpenShift", (o,n) => { (o as OpenShift).SharedOpenShift = n.GetObjectValue<OpenShiftItem>(OpenShiftItem.CreateFromDiscriminatorValue); } },
+                {"sharedOpenShift", (o,n) => { (o as OpenShift).SharedOpenShift = n.GetObjectValue<ApiSdk.Models.Microsoft.Graph.OpenShiftItem>(ApiSdk.Models.Microsoft.Graph.OpenShiftItem.CreateFromDiscriminatorValue); } },
             };
         }
         /// <summary>
@@ -36,9 +36,9 @@ namespace ApiSdk.Models.Microsoft.Graph {
         public new void Serialize(ISerializationWriter writer) {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             base.Serialize(writer);
-            writer.WriteObjectValue<OpenShiftItem>("draftOpenShift", DraftOpenShift);
+            writer.WriteObjectValue<ApiSdk.Models.Microsoft.Graph.OpenShiftItem>("draftOpenShift", DraftOpenShift);
             writer.WriteStringValue("schedulingGroupId", SchedulingGroupId);
-            writer.WriteObjectValue<OpenShiftItem>("sharedOpenShift", SharedOpenShift);
+            writer.WriteObjectValue<ApiSdk.Models.Microsoft.Graph.OpenShiftItem>("sharedOpenShift", SharedOpenShift);
         }
     }
 }

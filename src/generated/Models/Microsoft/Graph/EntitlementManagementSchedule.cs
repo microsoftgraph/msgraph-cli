@@ -8,9 +8,9 @@ namespace ApiSdk.Models.Microsoft.Graph {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>When the access should expire.</summary>
-        public ExpirationPattern Expiration { get; set; }
+        public ApiSdk.Models.Microsoft.Graph.ExpirationPattern Expiration { get; set; }
         /// <summary>For recurring access. Not used at present.</summary>
-        public PatternedRecurrence Recurrence { get; set; }
+        public ApiSdk.Models.Microsoft.Graph.PatternedRecurrence Recurrence { get; set; }
         /// <summary>The Timestamp type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z.</summary>
         public DateTimeOffset? StartDateTime { get; set; }
         /// <summary>
@@ -23,7 +23,7 @@ namespace ApiSdk.Models.Microsoft.Graph {
         /// Creates a new instance of the appropriate class based on discriminator value
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         /// </summary>
-        public static EntitlementManagementSchedule CreateFromDiscriminatorValue(IParseNode parseNode) {
+        public static ApiSdk.Models.Microsoft.Graph.EntitlementManagementSchedule CreateFromDiscriminatorValue(IParseNode parseNode) {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
             return new EntitlementManagementSchedule();
         }
@@ -32,8 +32,8 @@ namespace ApiSdk.Models.Microsoft.Graph {
         /// </summary>
         public IDictionary<string, Action<T, IParseNode>> GetFieldDeserializers<T>() {
             return new Dictionary<string, Action<T, IParseNode>> {
-                {"expiration", (o,n) => { (o as EntitlementManagementSchedule).Expiration = n.GetObjectValue<ExpirationPattern>(ExpirationPattern.CreateFromDiscriminatorValue); } },
-                {"recurrence", (o,n) => { (o as EntitlementManagementSchedule).Recurrence = n.GetObjectValue<PatternedRecurrence>(PatternedRecurrence.CreateFromDiscriminatorValue); } },
+                {"expiration", (o,n) => { (o as EntitlementManagementSchedule).Expiration = n.GetObjectValue<ApiSdk.Models.Microsoft.Graph.ExpirationPattern>(ApiSdk.Models.Microsoft.Graph.ExpirationPattern.CreateFromDiscriminatorValue); } },
+                {"recurrence", (o,n) => { (o as EntitlementManagementSchedule).Recurrence = n.GetObjectValue<ApiSdk.Models.Microsoft.Graph.PatternedRecurrence>(ApiSdk.Models.Microsoft.Graph.PatternedRecurrence.CreateFromDiscriminatorValue); } },
                 {"startDateTime", (o,n) => { (o as EntitlementManagementSchedule).StartDateTime = n.GetDateTimeOffsetValue(); } },
             };
         }
@@ -43,8 +43,8 @@ namespace ApiSdk.Models.Microsoft.Graph {
         /// </summary>
         public void Serialize(ISerializationWriter writer) {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
-            writer.WriteObjectValue<ExpirationPattern>("expiration", Expiration);
-            writer.WriteObjectValue<PatternedRecurrence>("recurrence", Recurrence);
+            writer.WriteObjectValue<ApiSdk.Models.Microsoft.Graph.ExpirationPattern>("expiration", Expiration);
+            writer.WriteObjectValue<ApiSdk.Models.Microsoft.Graph.PatternedRecurrence>("recurrence", Recurrence);
             writer.WriteDateTimeOffsetValue("startDateTime", StartDateTime);
             writer.WriteAdditionalData(AdditionalData);
         }

@@ -7,11 +7,11 @@ namespace ApiSdk.Models.Microsoft.Graph {
     public class ModifiedProperty : IAdditionalDataHolder, IParsable {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
-        /// <summary>Name of property that was modified.</summary>
+        /// <summary>Indicates the property name of the target attribute that was changed.</summary>
         public string DisplayName { get; set; }
-        /// <summary>New property value.</summary>
+        /// <summary>Indicates the updated value for the propery.</summary>
         public string NewValue { get; set; }
-        /// <summary>Old property value.</summary>
+        /// <summary>Indicates the previous value (before the update) for the property.</summary>
         public string OldValue { get; set; }
         /// <summary>
         /// Instantiates a new modifiedProperty and sets the default values.
@@ -23,7 +23,7 @@ namespace ApiSdk.Models.Microsoft.Graph {
         /// Creates a new instance of the appropriate class based on discriminator value
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         /// </summary>
-        public static ModifiedProperty CreateFromDiscriminatorValue(IParseNode parseNode) {
+        public static ApiSdk.Models.Microsoft.Graph.ModifiedProperty CreateFromDiscriminatorValue(IParseNode parseNode) {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
             return new ModifiedProperty();
         }

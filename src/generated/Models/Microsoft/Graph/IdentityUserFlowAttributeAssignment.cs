@@ -12,16 +12,16 @@ namespace ApiSdk.Models.Microsoft.Graph {
         /// <summary>Determines whether the identityUserFlowAttribute requires verification. This is only used for verifying the user's phone number or email address.</summary>
         public bool? RequiresVerification { get; set; }
         /// <summary>The user attribute that you want to add to your user flow.</summary>
-        public IdentityUserFlowAttribute UserAttribute { get; set; }
+        public ApiSdk.Models.Microsoft.Graph.IdentityUserFlowAttribute UserAttribute { get; set; }
         /// <summary>The input options for the user flow attribute. Only applicable when the userInputType is radioSingleSelect, dropdownSingleSelect, or checkboxMultiSelect.</summary>
-        public List<UserAttributeValuesItem> UserAttributeValues { get; set; }
+        public List<ApiSdk.Models.Microsoft.Graph.UserAttributeValuesItem> UserAttributeValues { get; set; }
         /// <summary>The input type of the user flow attribute. Possible values are: textBox, dateTimeDropdown, radioSingleSelect, dropdownSingleSelect, emailBox, checkboxMultiSelect.</summary>
         public IdentityUserFlowAttributeInputType? UserInputType { get; set; }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         /// </summary>
-        public static new IdentityUserFlowAttributeAssignment CreateFromDiscriminatorValue(IParseNode parseNode) {
+        public static new ApiSdk.Models.Microsoft.Graph.IdentityUserFlowAttributeAssignment CreateFromDiscriminatorValue(IParseNode parseNode) {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
             return new IdentityUserFlowAttributeAssignment();
         }
@@ -33,8 +33,8 @@ namespace ApiSdk.Models.Microsoft.Graph {
                 {"displayName", (o,n) => { (o as IdentityUserFlowAttributeAssignment).DisplayName = n.GetStringValue(); } },
                 {"isOptional", (o,n) => { (o as IdentityUserFlowAttributeAssignment).IsOptional = n.GetBoolValue(); } },
                 {"requiresVerification", (o,n) => { (o as IdentityUserFlowAttributeAssignment).RequiresVerification = n.GetBoolValue(); } },
-                {"userAttribute", (o,n) => { (o as IdentityUserFlowAttributeAssignment).UserAttribute = n.GetObjectValue<IdentityUserFlowAttribute>(IdentityUserFlowAttribute.CreateFromDiscriminatorValue); } },
-                {"userAttributeValues", (o,n) => { (o as IdentityUserFlowAttributeAssignment).UserAttributeValues = n.GetCollectionOfObjectValues<UserAttributeValuesItem>(UserAttributeValuesItem.CreateFromDiscriminatorValue).ToList(); } },
+                {"userAttribute", (o,n) => { (o as IdentityUserFlowAttributeAssignment).UserAttribute = n.GetObjectValue<ApiSdk.Models.Microsoft.Graph.IdentityUserFlowAttribute>(ApiSdk.Models.Microsoft.Graph.IdentityUserFlowAttribute.CreateFromDiscriminatorValue); } },
+                {"userAttributeValues", (o,n) => { (o as IdentityUserFlowAttributeAssignment).UserAttributeValues = n.GetCollectionOfObjectValues<ApiSdk.Models.Microsoft.Graph.UserAttributeValuesItem>(ApiSdk.Models.Microsoft.Graph.UserAttributeValuesItem.CreateFromDiscriminatorValue).ToList(); } },
                 {"userInputType", (o,n) => { (o as IdentityUserFlowAttributeAssignment).UserInputType = n.GetEnumValue<IdentityUserFlowAttributeInputType>(); } },
             };
         }
@@ -48,8 +48,8 @@ namespace ApiSdk.Models.Microsoft.Graph {
             writer.WriteStringValue("displayName", DisplayName);
             writer.WriteBoolValue("isOptional", IsOptional);
             writer.WriteBoolValue("requiresVerification", RequiresVerification);
-            writer.WriteObjectValue<IdentityUserFlowAttribute>("userAttribute", UserAttribute);
-            writer.WriteCollectionOfObjectValues<UserAttributeValuesItem>("userAttributeValues", UserAttributeValues);
+            writer.WriteObjectValue<ApiSdk.Models.Microsoft.Graph.IdentityUserFlowAttribute>("userAttribute", UserAttribute);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.Microsoft.Graph.UserAttributeValuesItem>("userAttributeValues", UserAttributeValues);
             writer.WriteEnumValue<IdentityUserFlowAttributeInputType>("userInputType", UserInputType);
         }
     }

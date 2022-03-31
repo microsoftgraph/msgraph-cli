@@ -12,7 +12,7 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 namespace ApiSdk.Sites.Item.GetByPathWithPath {
-    /// <summary>Builds and executes requests for operations under \sites\{site-id}\microsoft.graph.getByPath(path='{path}')</summary>
+    /// <summary>Provides operations to call the getByPath method.</summary>
     public class GetByPathWithPathRequestBuilder {
         /// <summary>Path parameters for the request</summary>
         private Dictionary<string, object> PathParameters { get; set; }
@@ -31,7 +31,7 @@ namespace ApiSdk.Sites.Item.GetByPathWithPath {
             };
             siteIdOption.IsRequired = true;
             command.AddOption(siteIdOption);
-            var pathOption = new Option<string>("--path", description: "Usage: path={path}") {
+            var pathOption = new Option<string>("--path", description: "Usage: path='{path}'") {
             };
             pathOption.IsRequired = true;
             command.AddOption(pathOption);
@@ -63,16 +63,16 @@ namespace ApiSdk.Sites.Item.GetByPathWithPath {
                 var requestInfo = CreateGetRequestInformation(q => {
                 });
                 var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: default, cancellationToken: cancellationToken);
-                var formatter = outputFormatterFactory.GetFormatter(output);
                 response = await outputFilter?.FilterOutputAsync(response, query, cancellationToken) ?? response;
                 var formatterOptions = output.GetOutputFormatterOptions(new FormatterOptionsModel(!jsonNoIndent));
+                var formatter = outputFormatterFactory.GetFormatter(output);
                 await formatter.WriteOutputAsync(response, formatterOptions, cancellationToken);
             }, new CollectionBinding(siteIdOption, pathOption, outputOption, queryOption, jsonNoIndentOption, new TypeBinding(typeof(IOutputFilter)), new TypeBinding(typeof(IOutputFormatterFactory)), new TypeBinding(typeof(CancellationToken))));
             return command;
         }
         /// <summary>
         /// Instantiates a new GetByPathWithPathRequestBuilder and sets the default values.
-        /// <param name="path">Usage: path={path}</param>
+        /// <param name="path">Usage: path='{path}'</param>
         /// <param name="pathParameters">Path parameters for the request</param>
         /// <param name="requestAdapter">The request adapter to use to execute the requests.</param>
         /// </summary>
@@ -87,52 +87,18 @@ namespace ApiSdk.Sites.Item.GetByPathWithPath {
         }
         /// <summary>
         /// Invoke function getByPath
-        /// <param name="h">Request headers</param>
-        /// <param name="o">Request options</param>
+        /// <param name="headers">Request headers</param>
+        /// <param name="options">Request options</param>
         /// </summary>
-        public RequestInformation CreateGetRequestInformation(Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
+        public RequestInformation CreateGetRequestInformation(Action<IDictionary<string, string>> headers = default, IEnumerable<IRequestOption> options = default) {
             var requestInfo = new RequestInformation {
                 HttpMethod = Method.GET,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };
-            h?.Invoke(requestInfo.Headers);
-            requestInfo.AddRequestOptions(o?.ToArray());
+            headers?.Invoke(requestInfo.Headers);
+            requestInfo.AddRequestOptions(options?.ToArray());
             return requestInfo;
-        }
-        /// <summary>Union type wrapper for classes site</summary>
-        public class GetByPathWithPathResponse : IAdditionalDataHolder, IParsable {
-            /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
-            public IDictionary<string, object> AdditionalData { get; set; }
-            /// <summary>Union type representation for type site</summary>
-            public ApiSdk.Models.Microsoft.Graph.Site Site { get; set; }
-            /// <summary>
-            /// Instantiates a new getByPathWithPathResponse and sets the default values.
-            /// </summary>
-            public GetByPathWithPathResponse() {
-                AdditionalData = new Dictionary<string, object>();
-            }
-            public static GetByPathWithPathResponse CreateFromDiscriminatorValue(IParseNode parseNode) {
-                _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-                return new GetByPathWithPathResponse();
-            }
-            /// <summary>
-            /// The deserialization information for the current model
-            /// </summary>
-            public IDictionary<string, Action<T, IParseNode>> GetFieldDeserializers<T>() {
-                return new Dictionary<string, Action<T, IParseNode>> {
-                    {"site", (o,n) => { (o as GetByPathWithPathResponse).Site = n.GetObjectValue<ApiSdk.Models.Microsoft.Graph.Site>(ApiSdk.Models.Microsoft.Graph.Site.CreateFromDiscriminatorValue); } },
-                };
-            }
-            /// <summary>
-            /// Serializes information the current object
-            /// <param name="writer">Serialization writer to use to serialize this model</param>
-            /// </summary>
-            public void Serialize(ISerializationWriter writer) {
-                _ = writer ?? throw new ArgumentNullException(nameof(writer));
-                writer.WriteObjectValue<ApiSdk.Models.Microsoft.Graph.Site>("site", Site);
-                writer.WriteAdditionalData(AdditionalData);
-            }
         }
     }
 }

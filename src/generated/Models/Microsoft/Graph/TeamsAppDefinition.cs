@@ -6,8 +6,8 @@ using System.Linq;
 namespace ApiSdk.Models.Microsoft.Graph {
     public class TeamsAppDefinition : Entity, IParsable {
         /// <summary>The details of the bot specified in the Teams app manifest.</summary>
-        public TeamworkBot Bot { get; set; }
-        public IdentitySet CreatedBy { get; set; }
+        public ApiSdk.Models.Microsoft.Graph.TeamworkBot Bot { get; set; }
+        public ApiSdk.Models.Microsoft.Graph.IdentitySet CreatedBy { get; set; }
         /// <summary>Verbose description of the application.</summary>
         public string Description { get; set; }
         /// <summary>The name of the app provided by the app developer.</summary>
@@ -25,7 +25,7 @@ namespace ApiSdk.Models.Microsoft.Graph {
         /// Creates a new instance of the appropriate class based on discriminator value
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         /// </summary>
-        public static new TeamsAppDefinition CreateFromDiscriminatorValue(IParseNode parseNode) {
+        public static new ApiSdk.Models.Microsoft.Graph.TeamsAppDefinition CreateFromDiscriminatorValue(IParseNode parseNode) {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
             return new TeamsAppDefinition();
         }
@@ -34,8 +34,8 @@ namespace ApiSdk.Models.Microsoft.Graph {
         /// </summary>
         public new IDictionary<string, Action<T, IParseNode>> GetFieldDeserializers<T>() {
             return new Dictionary<string, Action<T, IParseNode>>(base.GetFieldDeserializers<T>()) {
-                {"bot", (o,n) => { (o as TeamsAppDefinition).Bot = n.GetObjectValue<TeamworkBot>(TeamworkBot.CreateFromDiscriminatorValue); } },
-                {"createdBy", (o,n) => { (o as TeamsAppDefinition).CreatedBy = n.GetObjectValue<IdentitySet>(IdentitySet.CreateFromDiscriminatorValue); } },
+                {"bot", (o,n) => { (o as TeamsAppDefinition).Bot = n.GetObjectValue<ApiSdk.Models.Microsoft.Graph.TeamworkBot>(ApiSdk.Models.Microsoft.Graph.TeamworkBot.CreateFromDiscriminatorValue); } },
+                {"createdBy", (o,n) => { (o as TeamsAppDefinition).CreatedBy = n.GetObjectValue<ApiSdk.Models.Microsoft.Graph.IdentitySet>(ApiSdk.Models.Microsoft.Graph.IdentitySet.CreateFromDiscriminatorValue); } },
                 {"description", (o,n) => { (o as TeamsAppDefinition).Description = n.GetStringValue(); } },
                 {"displayName", (o,n) => { (o as TeamsAppDefinition).DisplayName = n.GetStringValue(); } },
                 {"lastModifiedDateTime", (o,n) => { (o as TeamsAppDefinition).LastModifiedDateTime = n.GetDateTimeOffsetValue(); } },
@@ -52,8 +52,8 @@ namespace ApiSdk.Models.Microsoft.Graph {
         public new void Serialize(ISerializationWriter writer) {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             base.Serialize(writer);
-            writer.WriteObjectValue<TeamworkBot>("bot", Bot);
-            writer.WriteObjectValue<IdentitySet>("createdBy", CreatedBy);
+            writer.WriteObjectValue<ApiSdk.Models.Microsoft.Graph.TeamworkBot>("bot", Bot);
+            writer.WriteObjectValue<ApiSdk.Models.Microsoft.Graph.IdentitySet>("createdBy", CreatedBy);
             writer.WriteStringValue("description", Description);
             writer.WriteStringValue("displayName", DisplayName);
             writer.WriteDateTimeOffsetValue("lastModifiedDateTime", LastModifiedDateTime);

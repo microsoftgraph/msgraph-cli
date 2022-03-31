@@ -7,15 +7,15 @@ namespace ApiSdk.Models.Microsoft.Graph {
     public class GroupSetting : Entity, IParsable {
         /// <summary>Display name of this group of settings, which comes from the associated template.</summary>
         public string DisplayName { get; set; }
-        /// <summary>Unique identifier for the template used to create this group of settings. Read-only.</summary>
+        /// <summary>Unique identifier for the tenant-level groupSettingTemplates object that's been customized for this group-level settings object. Read-only.</summary>
         public string TemplateId { get; set; }
-        /// <summary>Collection of name value pairs. Must contain and set all the settings defined in the template.</summary>
-        public List<SettingValue> Values { get; set; }
+        /// <summary>Collection of name-value pairs corresponding to the name and defaultValue properties in the referenced groupSettingTemplates object.</summary>
+        public List<ApiSdk.Models.Microsoft.Graph.SettingValue> Values { get; set; }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         /// </summary>
-        public static new GroupSetting CreateFromDiscriminatorValue(IParseNode parseNode) {
+        public static new ApiSdk.Models.Microsoft.Graph.GroupSetting CreateFromDiscriminatorValue(IParseNode parseNode) {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
             return new GroupSetting();
         }
@@ -26,7 +26,7 @@ namespace ApiSdk.Models.Microsoft.Graph {
             return new Dictionary<string, Action<T, IParseNode>>(base.GetFieldDeserializers<T>()) {
                 {"displayName", (o,n) => { (o as GroupSetting).DisplayName = n.GetStringValue(); } },
                 {"templateId", (o,n) => { (o as GroupSetting).TemplateId = n.GetStringValue(); } },
-                {"values", (o,n) => { (o as GroupSetting).Values = n.GetCollectionOfObjectValues<SettingValue>(SettingValue.CreateFromDiscriminatorValue).ToList(); } },
+                {"values", (o,n) => { (o as GroupSetting).Values = n.GetCollectionOfObjectValues<ApiSdk.Models.Microsoft.Graph.SettingValue>(ApiSdk.Models.Microsoft.Graph.SettingValue.CreateFromDiscriminatorValue).ToList(); } },
             };
         }
         /// <summary>
@@ -38,7 +38,7 @@ namespace ApiSdk.Models.Microsoft.Graph {
             base.Serialize(writer);
             writer.WriteStringValue("displayName", DisplayName);
             writer.WriteStringValue("templateId", TemplateId);
-            writer.WriteCollectionOfObjectValues<SettingValue>("values", Values);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.Microsoft.Graph.SettingValue>("values", Values);
         }
     }
 }

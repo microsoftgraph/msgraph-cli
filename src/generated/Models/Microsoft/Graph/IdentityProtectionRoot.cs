@@ -8,9 +8,9 @@ namespace ApiSdk.Models.Microsoft.Graph {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>Risk detection in Azure AD Identity Protection and the associated information about the detection.</summary>
-        public List<RiskDetection> RiskDetections { get; set; }
+        public List<ApiSdk.Models.Microsoft.Graph.RiskDetection> RiskDetections { get; set; }
         /// <summary>Users that are flagged as at-risk by Azure AD Identity Protection.</summary>
-        public List<RiskyUser> RiskyUsers { get; set; }
+        public List<ApiSdk.Models.Microsoft.Graph.RiskyUser> RiskyUsers { get; set; }
         /// <summary>
         /// Instantiates a new IdentityProtectionRoot and sets the default values.
         /// </summary>
@@ -21,7 +21,7 @@ namespace ApiSdk.Models.Microsoft.Graph {
         /// Creates a new instance of the appropriate class based on discriminator value
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         /// </summary>
-        public static IdentityProtectionRoot CreateFromDiscriminatorValue(IParseNode parseNode) {
+        public static ApiSdk.Models.Microsoft.Graph.IdentityProtectionRoot CreateFromDiscriminatorValue(IParseNode parseNode) {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
             return new IdentityProtectionRoot();
         }
@@ -30,8 +30,8 @@ namespace ApiSdk.Models.Microsoft.Graph {
         /// </summary>
         public IDictionary<string, Action<T, IParseNode>> GetFieldDeserializers<T>() {
             return new Dictionary<string, Action<T, IParseNode>> {
-                {"riskDetections", (o,n) => { (o as IdentityProtectionRoot).RiskDetections = n.GetCollectionOfObjectValues<RiskDetection>(RiskDetection.CreateFromDiscriminatorValue).ToList(); } },
-                {"riskyUsers", (o,n) => { (o as IdentityProtectionRoot).RiskyUsers = n.GetCollectionOfObjectValues<RiskyUser>(RiskyUser.CreateFromDiscriminatorValue).ToList(); } },
+                {"riskDetections", (o,n) => { (o as IdentityProtectionRoot).RiskDetections = n.GetCollectionOfObjectValues<ApiSdk.Models.Microsoft.Graph.RiskDetection>(ApiSdk.Models.Microsoft.Graph.RiskDetection.CreateFromDiscriminatorValue).ToList(); } },
+                {"riskyUsers", (o,n) => { (o as IdentityProtectionRoot).RiskyUsers = n.GetCollectionOfObjectValues<ApiSdk.Models.Microsoft.Graph.RiskyUser>(ApiSdk.Models.Microsoft.Graph.RiskyUser.CreateFromDiscriminatorValue).ToList(); } },
             };
         }
         /// <summary>
@@ -40,8 +40,8 @@ namespace ApiSdk.Models.Microsoft.Graph {
         /// </summary>
         public void Serialize(ISerializationWriter writer) {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
-            writer.WriteCollectionOfObjectValues<RiskDetection>("riskDetections", RiskDetections);
-            writer.WriteCollectionOfObjectValues<RiskyUser>("riskyUsers", RiskyUsers);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.Microsoft.Graph.RiskDetection>("riskDetections", RiskDetections);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.Microsoft.Graph.RiskyUser>("riskyUsers", RiskyUsers);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

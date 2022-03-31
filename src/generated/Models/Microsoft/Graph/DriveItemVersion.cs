@@ -5,6 +5,7 @@ using System.IO;
 using System.Linq;
 namespace ApiSdk.Models.Microsoft.Graph {
     public class DriveItemVersion : BaseItemVersion, IParsable {
+        /// <summary>The content stream for this version of the item.</summary>
         public byte[] Content { get; set; }
         /// <summary>Indicates the size of the content stream for this version of the item.</summary>
         public long? Size { get; set; }
@@ -12,7 +13,7 @@ namespace ApiSdk.Models.Microsoft.Graph {
         /// Creates a new instance of the appropriate class based on discriminator value
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         /// </summary>
-        public static new DriveItemVersion CreateFromDiscriminatorValue(IParseNode parseNode) {
+        public static new ApiSdk.Models.Microsoft.Graph.DriveItemVersion CreateFromDiscriminatorValue(IParseNode parseNode) {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
             return new DriveItemVersion();
         }

@@ -7,7 +7,7 @@ namespace ApiSdk.Models.Microsoft.Graph.ExternalConnectors {
     public class External : IAdditionalDataHolder, IParsable {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
-        public List<ExternalConnection> Connections { get; set; }
+        public List<ApiSdk.Models.Microsoft.Graph.ExternalConnectors.ExternalConnection> Connections { get; set; }
         /// <summary>
         /// Instantiates a new External and sets the default values.
         /// </summary>
@@ -18,7 +18,7 @@ namespace ApiSdk.Models.Microsoft.Graph.ExternalConnectors {
         /// Creates a new instance of the appropriate class based on discriminator value
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         /// </summary>
-        public static External CreateFromDiscriminatorValue(IParseNode parseNode) {
+        public static ApiSdk.Models.Microsoft.Graph.ExternalConnectors.External CreateFromDiscriminatorValue(IParseNode parseNode) {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
             return new External();
         }
@@ -27,7 +27,7 @@ namespace ApiSdk.Models.Microsoft.Graph.ExternalConnectors {
         /// </summary>
         public IDictionary<string, Action<T, IParseNode>> GetFieldDeserializers<T>() {
             return new Dictionary<string, Action<T, IParseNode>> {
-                {"connections", (o,n) => { (o as External).Connections = n.GetCollectionOfObjectValues<ExternalConnection>(ExternalConnection.CreateFromDiscriminatorValue).ToList(); } },
+                {"connections", (o,n) => { (o as External).Connections = n.GetCollectionOfObjectValues<ApiSdk.Models.Microsoft.Graph.ExternalConnectors.ExternalConnection>(ApiSdk.Models.Microsoft.Graph.ExternalConnectors.ExternalConnection.CreateFromDiscriminatorValue).ToList(); } },
             };
         }
         /// <summary>
@@ -36,7 +36,7 @@ namespace ApiSdk.Models.Microsoft.Graph.ExternalConnectors {
         /// </summary>
         public void Serialize(ISerializationWriter writer) {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
-            writer.WriteCollectionOfObjectValues<ExternalConnection>("connections", Connections);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.Microsoft.Graph.ExternalConnectors.ExternalConnection>("connections", Connections);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

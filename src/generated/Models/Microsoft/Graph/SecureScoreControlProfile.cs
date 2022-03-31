@@ -13,17 +13,17 @@ namespace ApiSdk.Models.Microsoft.Graph {
         public string AzureTenantId { get; set; }
         /// <summary>The collection of compliance information associated with secure score control</summary>
         public List<ApiSdk.Models.Microsoft.Graph.ComplianceInformation> ComplianceInformation { get; set; }
-        /// <summary>Control action category (Account, Data, Device, Apps, Infrastructure).</summary>
+        /// <summary>Control action category (Identity, Data, Device, Apps, Infrastructure).</summary>
         public string ControlCategory { get; set; }
         /// <summary>Flag to indicate where the tenant has marked a control (ignore, thirdParty, reviewed) (supports update).</summary>
-        public List<SecureScoreControlStateUpdate> ControlStateUpdates { get; set; }
+        public List<ApiSdk.Models.Microsoft.Graph.SecureScoreControlStateUpdate> ControlStateUpdates { get; set; }
         /// <summary>Flag to indicate if a control is depreciated.</summary>
         public bool? Deprecated { get; set; }
         /// <summary>Resource cost of implemmentating control (low, moderate, high).</summary>
         public string ImplementationCost { get; set; }
         /// <summary>Time at which the control profile entity was last modified. The Timestamp type represents date and time</summary>
         public DateTimeOffset? LastModifiedDateTime { get; set; }
-        /// <summary>Current obtained max score on specified date.</summary>
+        /// <summary>max attainable score for the control.</summary>
         public double? MaxScore { get; set; }
         /// <summary>Microsoft's stack ranking of control.</summary>
         public int? Rank { get; set; }
@@ -33,7 +33,7 @@ namespace ApiSdk.Models.Microsoft.Graph {
         public string RemediationImpact { get; set; }
         /// <summary>Service that owns the control (Exchange, Sharepoint, Azure AD).</summary>
         public string Service { get; set; }
-        /// <summary>List of threats the control mitigates (accountBreach,dataDeletion,dataExfiltration,dataSpillage,elevationOfPrivilege,maliciousInsider,passwordCracking,phishingOrWhaling,spoofing).</summary>
+        /// <summary>List of threats the control mitigates (accountBreach,dataDeletion,dataExfiltration,dataSpillage,</summary>
         public List<string> Threats { get; set; }
         /// <summary>Control tier (Core, Defense in Depth, Advanced.)</summary>
         public string Tier { get; set; }
@@ -41,12 +41,12 @@ namespace ApiSdk.Models.Microsoft.Graph {
         public string Title { get; set; }
         /// <summary>User impact of implementing control (low, moderate, high).</summary>
         public string UserImpact { get; set; }
-        public SecurityVendorInformation VendorInformation { get; set; }
+        public ApiSdk.Models.Microsoft.Graph.SecurityVendorInformation VendorInformation { get; set; }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         /// </summary>
-        public static new SecureScoreControlProfile CreateFromDiscriminatorValue(IParseNode parseNode) {
+        public static new ApiSdk.Models.Microsoft.Graph.SecureScoreControlProfile CreateFromDiscriminatorValue(IParseNode parseNode) {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
             return new SecureScoreControlProfile();
         }
@@ -60,7 +60,7 @@ namespace ApiSdk.Models.Microsoft.Graph {
                 {"azureTenantId", (o,n) => { (o as SecureScoreControlProfile).AzureTenantId = n.GetStringValue(); } },
                 {"complianceInformation", (o,n) => { (o as SecureScoreControlProfile).ComplianceInformation = n.GetCollectionOfObjectValues<ApiSdk.Models.Microsoft.Graph.ComplianceInformation>(ApiSdk.Models.Microsoft.Graph.ComplianceInformation.CreateFromDiscriminatorValue).ToList(); } },
                 {"controlCategory", (o,n) => { (o as SecureScoreControlProfile).ControlCategory = n.GetStringValue(); } },
-                {"controlStateUpdates", (o,n) => { (o as SecureScoreControlProfile).ControlStateUpdates = n.GetCollectionOfObjectValues<SecureScoreControlStateUpdate>(SecureScoreControlStateUpdate.CreateFromDiscriminatorValue).ToList(); } },
+                {"controlStateUpdates", (o,n) => { (o as SecureScoreControlProfile).ControlStateUpdates = n.GetCollectionOfObjectValues<ApiSdk.Models.Microsoft.Graph.SecureScoreControlStateUpdate>(ApiSdk.Models.Microsoft.Graph.SecureScoreControlStateUpdate.CreateFromDiscriminatorValue).ToList(); } },
                 {"deprecated", (o,n) => { (o as SecureScoreControlProfile).Deprecated = n.GetBoolValue(); } },
                 {"implementationCost", (o,n) => { (o as SecureScoreControlProfile).ImplementationCost = n.GetStringValue(); } },
                 {"lastModifiedDateTime", (o,n) => { (o as SecureScoreControlProfile).LastModifiedDateTime = n.GetDateTimeOffsetValue(); } },
@@ -73,7 +73,7 @@ namespace ApiSdk.Models.Microsoft.Graph {
                 {"tier", (o,n) => { (o as SecureScoreControlProfile).Tier = n.GetStringValue(); } },
                 {"title", (o,n) => { (o as SecureScoreControlProfile).Title = n.GetStringValue(); } },
                 {"userImpact", (o,n) => { (o as SecureScoreControlProfile).UserImpact = n.GetStringValue(); } },
-                {"vendorInformation", (o,n) => { (o as SecureScoreControlProfile).VendorInformation = n.GetObjectValue<SecurityVendorInformation>(SecurityVendorInformation.CreateFromDiscriminatorValue); } },
+                {"vendorInformation", (o,n) => { (o as SecureScoreControlProfile).VendorInformation = n.GetObjectValue<ApiSdk.Models.Microsoft.Graph.SecurityVendorInformation>(ApiSdk.Models.Microsoft.Graph.SecurityVendorInformation.CreateFromDiscriminatorValue); } },
             };
         }
         /// <summary>
@@ -88,7 +88,7 @@ namespace ApiSdk.Models.Microsoft.Graph {
             writer.WriteStringValue("azureTenantId", AzureTenantId);
             writer.WriteCollectionOfObjectValues<ApiSdk.Models.Microsoft.Graph.ComplianceInformation>("complianceInformation", ComplianceInformation);
             writer.WriteStringValue("controlCategory", ControlCategory);
-            writer.WriteCollectionOfObjectValues<SecureScoreControlStateUpdate>("controlStateUpdates", ControlStateUpdates);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.Microsoft.Graph.SecureScoreControlStateUpdate>("controlStateUpdates", ControlStateUpdates);
             writer.WriteBoolValue("deprecated", Deprecated);
             writer.WriteStringValue("implementationCost", ImplementationCost);
             writer.WriteDateTimeOffsetValue("lastModifiedDateTime", LastModifiedDateTime);
@@ -101,7 +101,7 @@ namespace ApiSdk.Models.Microsoft.Graph {
             writer.WriteStringValue("tier", Tier);
             writer.WriteStringValue("title", Title);
             writer.WriteStringValue("userImpact", UserImpact);
-            writer.WriteObjectValue<SecurityVendorInformation>("vendorInformation", VendorInformation);
+            writer.WriteObjectValue<ApiSdk.Models.Microsoft.Graph.SecurityVendorInformation>("vendorInformation", VendorInformation);
         }
     }
 }

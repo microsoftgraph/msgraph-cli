@@ -8,7 +8,7 @@ namespace ApiSdk.Models.Microsoft.Graph {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>Collection of the certification controls associated with certification</summary>
-        public List<CertificationControl> CertificationControls { get; set; }
+        public List<ApiSdk.Models.Microsoft.Graph.CertificationControl> CertificationControls { get; set; }
         /// <summary>Compliance certification name (for example, ISO 27018:2014, GDPR, FedRAMP, NIST 800-171)</summary>
         public string CertificationName { get; set; }
         /// <summary>
@@ -21,7 +21,7 @@ namespace ApiSdk.Models.Microsoft.Graph {
         /// Creates a new instance of the appropriate class based on discriminator value
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         /// </summary>
-        public static ComplianceInformation CreateFromDiscriminatorValue(IParseNode parseNode) {
+        public static ApiSdk.Models.Microsoft.Graph.ComplianceInformation CreateFromDiscriminatorValue(IParseNode parseNode) {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
             return new ComplianceInformation();
         }
@@ -30,7 +30,7 @@ namespace ApiSdk.Models.Microsoft.Graph {
         /// </summary>
         public IDictionary<string, Action<T, IParseNode>> GetFieldDeserializers<T>() {
             return new Dictionary<string, Action<T, IParseNode>> {
-                {"certificationControls", (o,n) => { (o as ComplianceInformation).CertificationControls = n.GetCollectionOfObjectValues<CertificationControl>(CertificationControl.CreateFromDiscriminatorValue).ToList(); } },
+                {"certificationControls", (o,n) => { (o as ComplianceInformation).CertificationControls = n.GetCollectionOfObjectValues<ApiSdk.Models.Microsoft.Graph.CertificationControl>(ApiSdk.Models.Microsoft.Graph.CertificationControl.CreateFromDiscriminatorValue).ToList(); } },
                 {"certificationName", (o,n) => { (o as ComplianceInformation).CertificationName = n.GetStringValue(); } },
             };
         }
@@ -40,7 +40,7 @@ namespace ApiSdk.Models.Microsoft.Graph {
         /// </summary>
         public void Serialize(ISerializationWriter writer) {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
-            writer.WriteCollectionOfObjectValues<CertificationControl>("certificationControls", CertificationControls);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.Microsoft.Graph.CertificationControl>("certificationControls", CertificationControls);
             writer.WriteStringValue("certificationName", CertificationName);
             writer.WriteAdditionalData(AdditionalData);
         }

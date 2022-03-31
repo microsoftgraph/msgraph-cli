@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 namespace ApiSdk.Communications.Calls.Item.PlayPrompt {
+    /// <summary>Provides operations to call the playPrompt method.</summary>
     public class PlayPromptRequestBody : IAdditionalDataHolder, IParsable {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
@@ -20,7 +21,7 @@ namespace ApiSdk.Communications.Calls.Item.PlayPrompt {
         /// Creates a new instance of the appropriate class based on discriminator value
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         /// </summary>
-        public static PlayPromptRequestBody CreateFromDiscriminatorValue(IParseNode parseNode) {
+        public static ApiSdk.Communications.Calls.Item.PlayPrompt.PlayPromptRequestBody CreateFromDiscriminatorValue(IParseNode parseNode) {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
             return new PlayPromptRequestBody();
         }

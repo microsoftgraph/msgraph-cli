@@ -8,10 +8,10 @@ namespace ApiSdk.Models.Microsoft.Graph {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>The user who shared the document.</summary>
-        public InsightIdentity SharedBy { get; set; }
+        public ApiSdk.Models.Microsoft.Graph.InsightIdentity SharedBy { get; set; }
         /// <summary>The date and time the file was last shared. The timestamp represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z. Read-only.</summary>
         public DateTimeOffset? SharedDateTime { get; set; }
-        public ResourceReference SharingReference { get; set; }
+        public ApiSdk.Models.Microsoft.Graph.ResourceReference SharingReference { get; set; }
         /// <summary>The subject with which the document was shared.</summary>
         public string SharingSubject { get; set; }
         /// <summary>Determines the way the document was shared, can be by a 'Link', 'Attachment', 'Group', 'Site'.</summary>
@@ -26,7 +26,7 @@ namespace ApiSdk.Models.Microsoft.Graph {
         /// Creates a new instance of the appropriate class based on discriminator value
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         /// </summary>
-        public static SharingDetail CreateFromDiscriminatorValue(IParseNode parseNode) {
+        public static ApiSdk.Models.Microsoft.Graph.SharingDetail CreateFromDiscriminatorValue(IParseNode parseNode) {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
             return new SharingDetail();
         }
@@ -35,9 +35,9 @@ namespace ApiSdk.Models.Microsoft.Graph {
         /// </summary>
         public IDictionary<string, Action<T, IParseNode>> GetFieldDeserializers<T>() {
             return new Dictionary<string, Action<T, IParseNode>> {
-                {"sharedBy", (o,n) => { (o as SharingDetail).SharedBy = n.GetObjectValue<InsightIdentity>(InsightIdentity.CreateFromDiscriminatorValue); } },
+                {"sharedBy", (o,n) => { (o as SharingDetail).SharedBy = n.GetObjectValue<ApiSdk.Models.Microsoft.Graph.InsightIdentity>(ApiSdk.Models.Microsoft.Graph.InsightIdentity.CreateFromDiscriminatorValue); } },
                 {"sharedDateTime", (o,n) => { (o as SharingDetail).SharedDateTime = n.GetDateTimeOffsetValue(); } },
-                {"sharingReference", (o,n) => { (o as SharingDetail).SharingReference = n.GetObjectValue<ResourceReference>(ResourceReference.CreateFromDiscriminatorValue); } },
+                {"sharingReference", (o,n) => { (o as SharingDetail).SharingReference = n.GetObjectValue<ApiSdk.Models.Microsoft.Graph.ResourceReference>(ApiSdk.Models.Microsoft.Graph.ResourceReference.CreateFromDiscriminatorValue); } },
                 {"sharingSubject", (o,n) => { (o as SharingDetail).SharingSubject = n.GetStringValue(); } },
                 {"sharingType", (o,n) => { (o as SharingDetail).SharingType = n.GetStringValue(); } },
             };
@@ -48,9 +48,9 @@ namespace ApiSdk.Models.Microsoft.Graph {
         /// </summary>
         public void Serialize(ISerializationWriter writer) {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
-            writer.WriteObjectValue<InsightIdentity>("sharedBy", SharedBy);
+            writer.WriteObjectValue<ApiSdk.Models.Microsoft.Graph.InsightIdentity>("sharedBy", SharedBy);
             writer.WriteDateTimeOffsetValue("sharedDateTime", SharedDateTime);
-            writer.WriteObjectValue<ResourceReference>("sharingReference", SharingReference);
+            writer.WriteObjectValue<ApiSdk.Models.Microsoft.Graph.ResourceReference>("sharingReference", SharingReference);
             writer.WriteStringValue("sharingSubject", SharingSubject);
             writer.WriteStringValue("sharingType", SharingType);
             writer.WriteAdditionalData(AdditionalData);

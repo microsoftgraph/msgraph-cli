@@ -12,9 +12,9 @@ namespace ApiSdk.Models.Microsoft.Graph {
         public string Criterion2 { get; set; }
         public string DynamicCriteria { get; set; }
         public string FilterOn { get; set; }
-        public WorkbookIcon Icon { get; set; }
+        public ApiSdk.Models.Microsoft.Graph.WorkbookIcon Icon { get; set; }
         public string Operator { get; set; }
-        public Json Values { get; set; }
+        public ApiSdk.Models.Microsoft.Graph.Json Values { get; set; }
         /// <summary>
         /// Instantiates a new workbookFilterCriteria and sets the default values.
         /// </summary>
@@ -25,7 +25,7 @@ namespace ApiSdk.Models.Microsoft.Graph {
         /// Creates a new instance of the appropriate class based on discriminator value
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         /// </summary>
-        public static WorkbookFilterCriteria CreateFromDiscriminatorValue(IParseNode parseNode) {
+        public static ApiSdk.Models.Microsoft.Graph.WorkbookFilterCriteria CreateFromDiscriminatorValue(IParseNode parseNode) {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
             return new WorkbookFilterCriteria();
         }
@@ -39,9 +39,9 @@ namespace ApiSdk.Models.Microsoft.Graph {
                 {"criterion2", (o,n) => { (o as WorkbookFilterCriteria).Criterion2 = n.GetStringValue(); } },
                 {"dynamicCriteria", (o,n) => { (o as WorkbookFilterCriteria).DynamicCriteria = n.GetStringValue(); } },
                 {"filterOn", (o,n) => { (o as WorkbookFilterCriteria).FilterOn = n.GetStringValue(); } },
-                {"icon", (o,n) => { (o as WorkbookFilterCriteria).Icon = n.GetObjectValue<WorkbookIcon>(WorkbookIcon.CreateFromDiscriminatorValue); } },
+                {"icon", (o,n) => { (o as WorkbookFilterCriteria).Icon = n.GetObjectValue<ApiSdk.Models.Microsoft.Graph.WorkbookIcon>(ApiSdk.Models.Microsoft.Graph.WorkbookIcon.CreateFromDiscriminatorValue); } },
                 {"operator", (o,n) => { (o as WorkbookFilterCriteria).Operator = n.GetStringValue(); } },
-                {"values", (o,n) => { (o as WorkbookFilterCriteria).Values = n.GetObjectValue<Json>(Json.CreateFromDiscriminatorValue); } },
+                {"values", (o,n) => { (o as WorkbookFilterCriteria).Values = n.GetObjectValue<ApiSdk.Models.Microsoft.Graph.Json>(ApiSdk.Models.Microsoft.Graph.Json.CreateFromDiscriminatorValue); } },
             };
         }
         /// <summary>
@@ -55,9 +55,9 @@ namespace ApiSdk.Models.Microsoft.Graph {
             writer.WriteStringValue("criterion2", Criterion2);
             writer.WriteStringValue("dynamicCriteria", DynamicCriteria);
             writer.WriteStringValue("filterOn", FilterOn);
-            writer.WriteObjectValue<WorkbookIcon>("icon", Icon);
+            writer.WriteObjectValue<ApiSdk.Models.Microsoft.Graph.WorkbookIcon>("icon", Icon);
             writer.WriteStringValue("operator", Operator);
-            writer.WriteObjectValue<Json>("values", Values);
+            writer.WriteObjectValue<ApiSdk.Models.Microsoft.Graph.Json>("values", Values);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

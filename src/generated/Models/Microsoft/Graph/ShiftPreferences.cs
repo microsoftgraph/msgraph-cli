@@ -6,12 +6,12 @@ using System.Linq;
 namespace ApiSdk.Models.Microsoft.Graph {
     public class ShiftPreferences : ChangeTrackedEntity, IParsable {
         /// <summary>Availability of the user to be scheduled for work and its recurrence pattern.</summary>
-        public List<ShiftAvailability> Availability { get; set; }
+        public List<ApiSdk.Models.Microsoft.Graph.ShiftAvailability> Availability { get; set; }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         /// </summary>
-        public static new ShiftPreferences CreateFromDiscriminatorValue(IParseNode parseNode) {
+        public static new ApiSdk.Models.Microsoft.Graph.ShiftPreferences CreateFromDiscriminatorValue(IParseNode parseNode) {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
             return new ShiftPreferences();
         }
@@ -20,7 +20,7 @@ namespace ApiSdk.Models.Microsoft.Graph {
         /// </summary>
         public new IDictionary<string, Action<T, IParseNode>> GetFieldDeserializers<T>() {
             return new Dictionary<string, Action<T, IParseNode>>(base.GetFieldDeserializers<T>()) {
-                {"availability", (o,n) => { (o as ShiftPreferences).Availability = n.GetCollectionOfObjectValues<ShiftAvailability>(ShiftAvailability.CreateFromDiscriminatorValue).ToList(); } },
+                {"availability", (o,n) => { (o as ShiftPreferences).Availability = n.GetCollectionOfObjectValues<ApiSdk.Models.Microsoft.Graph.ShiftAvailability>(ApiSdk.Models.Microsoft.Graph.ShiftAvailability.CreateFromDiscriminatorValue).ToList(); } },
             };
         }
         /// <summary>
@@ -30,7 +30,7 @@ namespace ApiSdk.Models.Microsoft.Graph {
         public new void Serialize(ISerializationWriter writer) {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             base.Serialize(writer);
-            writer.WriteCollectionOfObjectValues<ShiftAvailability>("availability", Availability);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.Microsoft.Graph.ShiftAvailability>("availability", Availability);
         }
     }
 }

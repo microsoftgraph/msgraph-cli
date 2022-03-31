@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 namespace ApiSdk.Admin.ServiceAnnouncement.Messages.Favorite {
+    /// <summary>Provides operations to call the favorite method.</summary>
     public class FavoriteRequestBody : IAdditionalDataHolder, IParsable {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
@@ -18,7 +19,7 @@ namespace ApiSdk.Admin.ServiceAnnouncement.Messages.Favorite {
         /// Creates a new instance of the appropriate class based on discriminator value
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         /// </summary>
-        public static FavoriteRequestBody CreateFromDiscriminatorValue(IParseNode parseNode) {
+        public static ApiSdk.Admin.ServiceAnnouncement.Messages.Favorite.FavoriteRequestBody CreateFromDiscriminatorValue(IParseNode parseNode) {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
             return new FavoriteRequestBody();
         }

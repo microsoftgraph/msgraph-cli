@@ -6,12 +6,12 @@ using System.Linq;
 namespace ApiSdk.Models.Microsoft.Graph {
     public class OutlookUser : Entity, IParsable {
         /// <summary>A list of categories defined for the user.</summary>
-        public List<OutlookCategory> MasterCategories { get; set; }
+        public List<ApiSdk.Models.Microsoft.Graph.OutlookCategory> MasterCategories { get; set; }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         /// </summary>
-        public static new OutlookUser CreateFromDiscriminatorValue(IParseNode parseNode) {
+        public static new ApiSdk.Models.Microsoft.Graph.OutlookUser CreateFromDiscriminatorValue(IParseNode parseNode) {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
             return new OutlookUser();
         }
@@ -20,7 +20,7 @@ namespace ApiSdk.Models.Microsoft.Graph {
         /// </summary>
         public new IDictionary<string, Action<T, IParseNode>> GetFieldDeserializers<T>() {
             return new Dictionary<string, Action<T, IParseNode>>(base.GetFieldDeserializers<T>()) {
-                {"masterCategories", (o,n) => { (o as OutlookUser).MasterCategories = n.GetCollectionOfObjectValues<OutlookCategory>(OutlookCategory.CreateFromDiscriminatorValue).ToList(); } },
+                {"masterCategories", (o,n) => { (o as OutlookUser).MasterCategories = n.GetCollectionOfObjectValues<ApiSdk.Models.Microsoft.Graph.OutlookCategory>(ApiSdk.Models.Microsoft.Graph.OutlookCategory.CreateFromDiscriminatorValue).ToList(); } },
             };
         }
         /// <summary>
@@ -30,7 +30,7 @@ namespace ApiSdk.Models.Microsoft.Graph {
         public new void Serialize(ISerializationWriter writer) {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             base.Serialize(writer);
-            writer.WriteCollectionOfObjectValues<OutlookCategory>("masterCategories", MasterCategories);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.Microsoft.Graph.OutlookCategory>("masterCategories", MasterCategories);
         }
     }
 }

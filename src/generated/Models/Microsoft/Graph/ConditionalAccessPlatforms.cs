@@ -7,9 +7,9 @@ namespace ApiSdk.Models.Microsoft.Graph {
     public class ConditionalAccessPlatforms : IAdditionalDataHolder, IParsable {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
-        /// <summary>Possible values are: android, iOS, windows, windowsPhone, macOS, all, unknownFutureValue.</summary>
+        /// <summary>Possible values are: android, iOS, windows, windowsPhone, macOS, linux, all, unknownFutureValue.</summary>
         public List<ConditionalAccessDevicePlatform?> ExcludePlatforms { get; set; }
-        /// <summary>Possible values are: android, iOS, windows, windowsPhone, macOS, all, unknownFutureValue.</summary>
+        /// <summary>Possible values are: android, iOS, windows, windowsPhone, macOS, linux, all, unknownFutureValue.</summary>
         public List<ConditionalAccessDevicePlatform?> IncludePlatforms { get; set; }
         /// <summary>
         /// Instantiates a new conditionalAccessPlatforms and sets the default values.
@@ -21,7 +21,7 @@ namespace ApiSdk.Models.Microsoft.Graph {
         /// Creates a new instance of the appropriate class based on discriminator value
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         /// </summary>
-        public static ConditionalAccessPlatforms CreateFromDiscriminatorValue(IParseNode parseNode) {
+        public static ApiSdk.Models.Microsoft.Graph.ConditionalAccessPlatforms CreateFromDiscriminatorValue(IParseNode parseNode) {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
             return new ConditionalAccessPlatforms();
         }

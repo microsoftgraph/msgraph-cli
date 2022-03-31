@@ -8,12 +8,12 @@ namespace ApiSdk.Models.Microsoft.Graph {
         /// <summary>Name of the rule which this scheduled action applies to. Currently scheduled actions are created per policy instead of per rule, thus RuleName is always set to default value PasswordRequired.</summary>
         public string RuleName { get; set; }
         /// <summary>The list of scheduled action configurations for this compliance policy. Compliance policy must have one and only one block scheduled action.</summary>
-        public List<DeviceComplianceActionItem> ScheduledActionConfigurations { get; set; }
+        public List<ApiSdk.Models.Microsoft.Graph.DeviceComplianceActionItem> ScheduledActionConfigurations { get; set; }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         /// </summary>
-        public static new DeviceComplianceScheduledActionForRule CreateFromDiscriminatorValue(IParseNode parseNode) {
+        public static new ApiSdk.Models.Microsoft.Graph.DeviceComplianceScheduledActionForRule CreateFromDiscriminatorValue(IParseNode parseNode) {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
             return new DeviceComplianceScheduledActionForRule();
         }
@@ -23,7 +23,7 @@ namespace ApiSdk.Models.Microsoft.Graph {
         public new IDictionary<string, Action<T, IParseNode>> GetFieldDeserializers<T>() {
             return new Dictionary<string, Action<T, IParseNode>>(base.GetFieldDeserializers<T>()) {
                 {"ruleName", (o,n) => { (o as DeviceComplianceScheduledActionForRule).RuleName = n.GetStringValue(); } },
-                {"scheduledActionConfigurations", (o,n) => { (o as DeviceComplianceScheduledActionForRule).ScheduledActionConfigurations = n.GetCollectionOfObjectValues<DeviceComplianceActionItem>(DeviceComplianceActionItem.CreateFromDiscriminatorValue).ToList(); } },
+                {"scheduledActionConfigurations", (o,n) => { (o as DeviceComplianceScheduledActionForRule).ScheduledActionConfigurations = n.GetCollectionOfObjectValues<ApiSdk.Models.Microsoft.Graph.DeviceComplianceActionItem>(ApiSdk.Models.Microsoft.Graph.DeviceComplianceActionItem.CreateFromDiscriminatorValue).ToList(); } },
             };
         }
         /// <summary>
@@ -34,7 +34,7 @@ namespace ApiSdk.Models.Microsoft.Graph {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             base.Serialize(writer);
             writer.WriteStringValue("ruleName", RuleName);
-            writer.WriteCollectionOfObjectValues<DeviceComplianceActionItem>("scheduledActionConfigurations", ScheduledActionConfigurations);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.Microsoft.Graph.DeviceComplianceActionItem>("scheduledActionConfigurations", ScheduledActionConfigurations);
         }
     }
 }

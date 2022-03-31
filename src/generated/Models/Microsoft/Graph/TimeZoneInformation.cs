@@ -12,7 +12,7 @@ namespace ApiSdk.Models.Microsoft.Graph {
         /// <summary>A display string that represents the time zone.</summary>
         public string DisplayName { get; set; }
         /// <summary>
-        /// Instantiates a new TimeZoneInformation and sets the default values.
+        /// Instantiates a new timeZoneInformation and sets the default values.
         /// </summary>
         public TimeZoneInformation() {
             AdditionalData = new Dictionary<string, object>();
@@ -21,7 +21,7 @@ namespace ApiSdk.Models.Microsoft.Graph {
         /// Creates a new instance of the appropriate class based on discriminator value
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         /// </summary>
-        public static TimeZoneInformation CreateFromDiscriminatorValue(IParseNode parseNode) {
+        public static ApiSdk.Models.Microsoft.Graph.TimeZoneInformation CreateFromDiscriminatorValue(IParseNode parseNode) {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
             return new TimeZoneInformation();
         }

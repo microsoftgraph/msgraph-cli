@@ -6,7 +6,7 @@ using System.Linq;
 namespace ApiSdk.Models.Microsoft.Graph {
     public class CalendarGroup : Entity, IParsable {
         /// <summary>The calendars in the calendar group. Navigation property. Read-only. Nullable.</summary>
-        public List<Calendar> Calendars { get; set; }
+        public List<ApiSdk.Models.Microsoft.Graph.Calendar> Calendars { get; set; }
         /// <summary>Identifies the version of the calendar group. Every time the calendar group is changed, ChangeKey changes as well. This allows Exchange to apply changes to the correct version of the object. Read-only.</summary>
         public string ChangeKey { get; set; }
         /// <summary>The class identifier. Read-only.</summary>
@@ -17,7 +17,7 @@ namespace ApiSdk.Models.Microsoft.Graph {
         /// Creates a new instance of the appropriate class based on discriminator value
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         /// </summary>
-        public static new CalendarGroup CreateFromDiscriminatorValue(IParseNode parseNode) {
+        public static new ApiSdk.Models.Microsoft.Graph.CalendarGroup CreateFromDiscriminatorValue(IParseNode parseNode) {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
             return new CalendarGroup();
         }
@@ -26,7 +26,7 @@ namespace ApiSdk.Models.Microsoft.Graph {
         /// </summary>
         public new IDictionary<string, Action<T, IParseNode>> GetFieldDeserializers<T>() {
             return new Dictionary<string, Action<T, IParseNode>>(base.GetFieldDeserializers<T>()) {
-                {"calendars", (o,n) => { (o as CalendarGroup).Calendars = n.GetCollectionOfObjectValues<Calendar>(Calendar.CreateFromDiscriminatorValue).ToList(); } },
+                {"calendars", (o,n) => { (o as CalendarGroup).Calendars = n.GetCollectionOfObjectValues<ApiSdk.Models.Microsoft.Graph.Calendar>(ApiSdk.Models.Microsoft.Graph.Calendar.CreateFromDiscriminatorValue).ToList(); } },
                 {"changeKey", (o,n) => { (o as CalendarGroup).ChangeKey = n.GetStringValue(); } },
                 {"classId", (o,n) => { (o as CalendarGroup).ClassId = n.GetStringValue(); } },
                 {"name", (o,n) => { (o as CalendarGroup).Name = n.GetStringValue(); } },
@@ -39,7 +39,7 @@ namespace ApiSdk.Models.Microsoft.Graph {
         public new void Serialize(ISerializationWriter writer) {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             base.Serialize(writer);
-            writer.WriteCollectionOfObjectValues<Calendar>("calendars", Calendars);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.Microsoft.Graph.Calendar>("calendars", Calendars);
             writer.WriteStringValue("changeKey", ChangeKey);
             writer.WriteStringValue("classId", ClassId);
             writer.WriteStringValue("name", Name);

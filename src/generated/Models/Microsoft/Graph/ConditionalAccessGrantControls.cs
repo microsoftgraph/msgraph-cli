@@ -9,7 +9,7 @@ namespace ApiSdk.Models.Microsoft.Graph {
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>List of values of built-in controls required by the policy. Possible values: block, mfa, compliantDevice, domainJoinedDevice, approvedApplication, compliantApplication, passwordChange, unknownFutureValue.</summary>
         public List<ConditionalAccessGrantControl?> BuiltInControls { get; set; }
-        /// <summary>List of custom controls IDs required by the policy. To learn more about custom control, see Custom controls (preview).</summary>
+        /// <summary>List of custom controls IDs required by the policy. For more information, see Custom controls.</summary>
         public List<string> CustomAuthenticationFactors { get; set; }
         /// <summary>Defines the relationship of the grant controls. Possible values: AND, OR.</summary>
         public string Operator { get; set; }
@@ -25,7 +25,7 @@ namespace ApiSdk.Models.Microsoft.Graph {
         /// Creates a new instance of the appropriate class based on discriminator value
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         /// </summary>
-        public static ConditionalAccessGrantControls CreateFromDiscriminatorValue(IParseNode parseNode) {
+        public static ApiSdk.Models.Microsoft.Graph.ConditionalAccessGrantControls CreateFromDiscriminatorValue(IParseNode parseNode) {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
             return new ConditionalAccessGrantControls();
         }

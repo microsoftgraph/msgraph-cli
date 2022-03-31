@@ -6,21 +6,21 @@ using System.Linq;
 namespace ApiSdk.Models.Microsoft.Graph {
     public class ManagedEBook : Entity, IParsable {
         /// <summary>The list of assignments for this eBook.</summary>
-        public List<ManagedEBookAssignment> Assignments { get; set; }
+        public List<ApiSdk.Models.Microsoft.Graph.ManagedEBookAssignment> Assignments { get; set; }
         /// <summary>The date and time when the eBook file was created.</summary>
         public DateTimeOffset? CreatedDateTime { get; set; }
         /// <summary>Description.</summary>
         public string Description { get; set; }
         /// <summary>The list of installation states for this eBook.</summary>
-        public List<DeviceInstallState> DeviceStates { get; set; }
+        public List<ApiSdk.Models.Microsoft.Graph.DeviceInstallState> DeviceStates { get; set; }
         /// <summary>Name of the eBook.</summary>
         public string DisplayName { get; set; }
         /// <summary>The more information Url.</summary>
         public string InformationUrl { get; set; }
         /// <summary>Mobile App Install Summary.</summary>
-        public EBookInstallSummary InstallSummary { get; set; }
+        public ApiSdk.Models.Microsoft.Graph.EBookInstallSummary InstallSummary { get; set; }
         /// <summary>Book cover.</summary>
-        public MimeContent LargeCover { get; set; }
+        public ApiSdk.Models.Microsoft.Graph.MimeContent LargeCover { get; set; }
         /// <summary>The date and time when the eBook was last modified.</summary>
         public DateTimeOffset? LastModifiedDateTime { get; set; }
         /// <summary>The privacy statement Url.</summary>
@@ -30,12 +30,12 @@ namespace ApiSdk.Models.Microsoft.Graph {
         /// <summary>Publisher.</summary>
         public string Publisher { get; set; }
         /// <summary>The list of installation states for this eBook.</summary>
-        public List<UserInstallStateSummary> UserStateSummary { get; set; }
+        public List<ApiSdk.Models.Microsoft.Graph.UserInstallStateSummary> UserStateSummary { get; set; }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         /// </summary>
-        public static new ManagedEBook CreateFromDiscriminatorValue(IParseNode parseNode) {
+        public static new ApiSdk.Models.Microsoft.Graph.ManagedEBook CreateFromDiscriminatorValue(IParseNode parseNode) {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
             return new ManagedEBook();
         }
@@ -44,19 +44,19 @@ namespace ApiSdk.Models.Microsoft.Graph {
         /// </summary>
         public new IDictionary<string, Action<T, IParseNode>> GetFieldDeserializers<T>() {
             return new Dictionary<string, Action<T, IParseNode>>(base.GetFieldDeserializers<T>()) {
-                {"assignments", (o,n) => { (o as ManagedEBook).Assignments = n.GetCollectionOfObjectValues<ManagedEBookAssignment>(ManagedEBookAssignment.CreateFromDiscriminatorValue).ToList(); } },
+                {"assignments", (o,n) => { (o as ManagedEBook).Assignments = n.GetCollectionOfObjectValues<ApiSdk.Models.Microsoft.Graph.ManagedEBookAssignment>(ApiSdk.Models.Microsoft.Graph.ManagedEBookAssignment.CreateFromDiscriminatorValue).ToList(); } },
                 {"createdDateTime", (o,n) => { (o as ManagedEBook).CreatedDateTime = n.GetDateTimeOffsetValue(); } },
                 {"description", (o,n) => { (o as ManagedEBook).Description = n.GetStringValue(); } },
-                {"deviceStates", (o,n) => { (o as ManagedEBook).DeviceStates = n.GetCollectionOfObjectValues<DeviceInstallState>(DeviceInstallState.CreateFromDiscriminatorValue).ToList(); } },
+                {"deviceStates", (o,n) => { (o as ManagedEBook).DeviceStates = n.GetCollectionOfObjectValues<ApiSdk.Models.Microsoft.Graph.DeviceInstallState>(ApiSdk.Models.Microsoft.Graph.DeviceInstallState.CreateFromDiscriminatorValue).ToList(); } },
                 {"displayName", (o,n) => { (o as ManagedEBook).DisplayName = n.GetStringValue(); } },
                 {"informationUrl", (o,n) => { (o as ManagedEBook).InformationUrl = n.GetStringValue(); } },
-                {"installSummary", (o,n) => { (o as ManagedEBook).InstallSummary = n.GetObjectValue<EBookInstallSummary>(EBookInstallSummary.CreateFromDiscriminatorValue); } },
-                {"largeCover", (o,n) => { (o as ManagedEBook).LargeCover = n.GetObjectValue<MimeContent>(MimeContent.CreateFromDiscriminatorValue); } },
+                {"installSummary", (o,n) => { (o as ManagedEBook).InstallSummary = n.GetObjectValue<ApiSdk.Models.Microsoft.Graph.EBookInstallSummary>(ApiSdk.Models.Microsoft.Graph.EBookInstallSummary.CreateFromDiscriminatorValue); } },
+                {"largeCover", (o,n) => { (o as ManagedEBook).LargeCover = n.GetObjectValue<ApiSdk.Models.Microsoft.Graph.MimeContent>(ApiSdk.Models.Microsoft.Graph.MimeContent.CreateFromDiscriminatorValue); } },
                 {"lastModifiedDateTime", (o,n) => { (o as ManagedEBook).LastModifiedDateTime = n.GetDateTimeOffsetValue(); } },
                 {"privacyInformationUrl", (o,n) => { (o as ManagedEBook).PrivacyInformationUrl = n.GetStringValue(); } },
                 {"publishedDateTime", (o,n) => { (o as ManagedEBook).PublishedDateTime = n.GetDateTimeOffsetValue(); } },
                 {"publisher", (o,n) => { (o as ManagedEBook).Publisher = n.GetStringValue(); } },
-                {"userStateSummary", (o,n) => { (o as ManagedEBook).UserStateSummary = n.GetCollectionOfObjectValues<UserInstallStateSummary>(UserInstallStateSummary.CreateFromDiscriminatorValue).ToList(); } },
+                {"userStateSummary", (o,n) => { (o as ManagedEBook).UserStateSummary = n.GetCollectionOfObjectValues<ApiSdk.Models.Microsoft.Graph.UserInstallStateSummary>(ApiSdk.Models.Microsoft.Graph.UserInstallStateSummary.CreateFromDiscriminatorValue).ToList(); } },
             };
         }
         /// <summary>
@@ -66,19 +66,19 @@ namespace ApiSdk.Models.Microsoft.Graph {
         public new void Serialize(ISerializationWriter writer) {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             base.Serialize(writer);
-            writer.WriteCollectionOfObjectValues<ManagedEBookAssignment>("assignments", Assignments);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.Microsoft.Graph.ManagedEBookAssignment>("assignments", Assignments);
             writer.WriteDateTimeOffsetValue("createdDateTime", CreatedDateTime);
             writer.WriteStringValue("description", Description);
-            writer.WriteCollectionOfObjectValues<DeviceInstallState>("deviceStates", DeviceStates);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.Microsoft.Graph.DeviceInstallState>("deviceStates", DeviceStates);
             writer.WriteStringValue("displayName", DisplayName);
             writer.WriteStringValue("informationUrl", InformationUrl);
-            writer.WriteObjectValue<EBookInstallSummary>("installSummary", InstallSummary);
-            writer.WriteObjectValue<MimeContent>("largeCover", LargeCover);
+            writer.WriteObjectValue<ApiSdk.Models.Microsoft.Graph.EBookInstallSummary>("installSummary", InstallSummary);
+            writer.WriteObjectValue<ApiSdk.Models.Microsoft.Graph.MimeContent>("largeCover", LargeCover);
             writer.WriteDateTimeOffsetValue("lastModifiedDateTime", LastModifiedDateTime);
             writer.WriteStringValue("privacyInformationUrl", PrivacyInformationUrl);
             writer.WriteDateTimeOffsetValue("publishedDateTime", PublishedDateTime);
             writer.WriteStringValue("publisher", Publisher);
-            writer.WriteCollectionOfObjectValues<UserInstallStateSummary>("userStateSummary", UserStateSummary);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.Microsoft.Graph.UserInstallStateSummary>("userStateSummary", UserStateSummary);
         }
     }
 }

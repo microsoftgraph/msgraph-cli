@@ -6,12 +6,12 @@ using System.Linq;
 namespace ApiSdk.Models.Microsoft.Graph {
     public class WorkbookFilter : Entity, IParsable {
         /// <summary>The currently applied filter on the given column. Read-only.</summary>
-        public WorkbookFilterCriteria Criteria { get; set; }
+        public ApiSdk.Models.Microsoft.Graph.WorkbookFilterCriteria Criteria { get; set; }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         /// </summary>
-        public static new WorkbookFilter CreateFromDiscriminatorValue(IParseNode parseNode) {
+        public static new ApiSdk.Models.Microsoft.Graph.WorkbookFilter CreateFromDiscriminatorValue(IParseNode parseNode) {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
             return new WorkbookFilter();
         }
@@ -20,7 +20,7 @@ namespace ApiSdk.Models.Microsoft.Graph {
         /// </summary>
         public new IDictionary<string, Action<T, IParseNode>> GetFieldDeserializers<T>() {
             return new Dictionary<string, Action<T, IParseNode>>(base.GetFieldDeserializers<T>()) {
-                {"criteria", (o,n) => { (o as WorkbookFilter).Criteria = n.GetObjectValue<WorkbookFilterCriteria>(WorkbookFilterCriteria.CreateFromDiscriminatorValue); } },
+                {"criteria", (o,n) => { (o as WorkbookFilter).Criteria = n.GetObjectValue<ApiSdk.Models.Microsoft.Graph.WorkbookFilterCriteria>(ApiSdk.Models.Microsoft.Graph.WorkbookFilterCriteria.CreateFromDiscriminatorValue); } },
             };
         }
         /// <summary>
@@ -30,7 +30,7 @@ namespace ApiSdk.Models.Microsoft.Graph {
         public new void Serialize(ISerializationWriter writer) {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             base.Serialize(writer);
-            writer.WriteObjectValue<WorkbookFilterCriteria>("criteria", Criteria);
+            writer.WriteObjectValue<ApiSdk.Models.Microsoft.Graph.WorkbookFilterCriteria>("criteria", Criteria);
         }
     }
 }

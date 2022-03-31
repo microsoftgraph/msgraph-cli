@@ -4,13 +4,14 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 namespace ApiSdk.Models.Microsoft.Graph {
+    /// <summary>This type represents the set of working hours in a single day of the week.</summary>
     public class BookingWorkHours : IAdditionalDataHolder, IParsable {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>The day of the week represented by this instance. Possible values are: sunday, monday, tuesday, wednesday, thursday, friday, saturday.</summary>
         public DayOfWeek? Day { get; set; }
         /// <summary>A list of start/end times during a day.</summary>
-        public List<BookingWorkTimeSlot> TimeSlots { get; set; }
+        public List<ApiSdk.Models.Microsoft.Graph.BookingWorkTimeSlot> TimeSlots { get; set; }
         /// <summary>
         /// Instantiates a new bookingWorkHours and sets the default values.
         /// </summary>
@@ -21,7 +22,7 @@ namespace ApiSdk.Models.Microsoft.Graph {
         /// Creates a new instance of the appropriate class based on discriminator value
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         /// </summary>
-        public static BookingWorkHours CreateFromDiscriminatorValue(IParseNode parseNode) {
+        public static ApiSdk.Models.Microsoft.Graph.BookingWorkHours CreateFromDiscriminatorValue(IParseNode parseNode) {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
             return new BookingWorkHours();
         }
@@ -31,7 +32,7 @@ namespace ApiSdk.Models.Microsoft.Graph {
         public IDictionary<string, Action<T, IParseNode>> GetFieldDeserializers<T>() {
             return new Dictionary<string, Action<T, IParseNode>> {
                 {"day", (o,n) => { (o as BookingWorkHours).Day = n.GetEnumValue<DayOfWeek>(); } },
-                {"timeSlots", (o,n) => { (o as BookingWorkHours).TimeSlots = n.GetCollectionOfObjectValues<BookingWorkTimeSlot>(BookingWorkTimeSlot.CreateFromDiscriminatorValue).ToList(); } },
+                {"timeSlots", (o,n) => { (o as BookingWorkHours).TimeSlots = n.GetCollectionOfObjectValues<ApiSdk.Models.Microsoft.Graph.BookingWorkTimeSlot>(ApiSdk.Models.Microsoft.Graph.BookingWorkTimeSlot.CreateFromDiscriminatorValue).ToList(); } },
             };
         }
         /// <summary>
@@ -41,7 +42,7 @@ namespace ApiSdk.Models.Microsoft.Graph {
         public void Serialize(ISerializationWriter writer) {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             writer.WriteEnumValue<DayOfWeek>("day", Day);
-            writer.WriteCollectionOfObjectValues<BookingWorkTimeSlot>("timeSlots", TimeSlots);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.Microsoft.Graph.BookingWorkTimeSlot>("timeSlots", TimeSlots);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

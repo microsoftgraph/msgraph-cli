@@ -9,7 +9,7 @@ namespace ApiSdk.Models.Microsoft.Graph {
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>The error code.</summary>
         public string Code { get; set; }
-        public WorkbookOperationError InnerError { get; set; }
+        public ApiSdk.Models.Microsoft.Graph.WorkbookOperationError InnerError { get; set; }
         /// <summary>The error message.</summary>
         public string Message { get; set; }
         /// <summary>
@@ -22,7 +22,7 @@ namespace ApiSdk.Models.Microsoft.Graph {
         /// Creates a new instance of the appropriate class based on discriminator value
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         /// </summary>
-        public static WorkbookOperationError CreateFromDiscriminatorValue(IParseNode parseNode) {
+        public static ApiSdk.Models.Microsoft.Graph.WorkbookOperationError CreateFromDiscriminatorValue(IParseNode parseNode) {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
             return new WorkbookOperationError();
         }
@@ -32,7 +32,7 @@ namespace ApiSdk.Models.Microsoft.Graph {
         public IDictionary<string, Action<T, IParseNode>> GetFieldDeserializers<T>() {
             return new Dictionary<string, Action<T, IParseNode>> {
                 {"code", (o,n) => { (o as WorkbookOperationError).Code = n.GetStringValue(); } },
-                {"innerError", (o,n) => { (o as WorkbookOperationError).InnerError = n.GetObjectValue<WorkbookOperationError>(WorkbookOperationError.CreateFromDiscriminatorValue); } },
+                {"innerError", (o,n) => { (o as WorkbookOperationError).InnerError = n.GetObjectValue<ApiSdk.Models.Microsoft.Graph.WorkbookOperationError>(ApiSdk.Models.Microsoft.Graph.WorkbookOperationError.CreateFromDiscriminatorValue); } },
                 {"message", (o,n) => { (o as WorkbookOperationError).Message = n.GetStringValue(); } },
             };
         }
@@ -43,7 +43,7 @@ namespace ApiSdk.Models.Microsoft.Graph {
         public void Serialize(ISerializationWriter writer) {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             writer.WriteStringValue("code", Code);
-            writer.WriteObjectValue<WorkbookOperationError>("innerError", InnerError);
+            writer.WriteObjectValue<ApiSdk.Models.Microsoft.Graph.WorkbookOperationError>("innerError", InnerError);
             writer.WriteStringValue("message", Message);
             writer.WriteAdditionalData(AdditionalData);
         }

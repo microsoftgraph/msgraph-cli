@@ -6,8 +6,8 @@ using System.Linq;
 namespace ApiSdk.Models.Microsoft.Graph {
     public class Organization : DirectoryObject, IParsable {
         /// <summary>The collection of service plans associated with the tenant. Not nullable.</summary>
-        public List<AssignedPlan> AssignedPlans { get; set; }
-        public OrganizationalBranding Branding { get; set; }
+        public List<ApiSdk.Models.Microsoft.Graph.AssignedPlan> AssignedPlans { get; set; }
+        public ApiSdk.Models.Microsoft.Graph.OrganizationalBranding Branding { get; set; }
         /// <summary>Telephone number for the organization. Although this is a string collection, only one number can be set for this property.</summary>
         public List<string> BusinessPhones { get; set; }
         /// <summary>Navigation property to manage certificate-based authentication configuration. Only a single instance of certificateBasedAuthConfiguration can be created in the collection.</summary>
@@ -22,24 +22,24 @@ namespace ApiSdk.Models.Microsoft.Graph {
         public DateTimeOffset? CreatedDateTime { get; set; }
         /// <summary>The display name for the tenant.</summary>
         public string DisplayName { get; set; }
-        /// <summary>The collection of open extensions defined for the organization resource. Nullable.</summary>
-        public List<Extension> Extensions { get; set; }
+        /// <summary>The collection of open extensions defined for the organization. Read-only. Nullable.</summary>
+        public List<ApiSdk.Models.Microsoft.Graph.Extension> Extensions { get; set; }
         /// <summary>Not nullable.</summary>
         public List<string> MarketingNotificationEmails { get; set; }
         /// <summary>Mobile device management authority. Possible values are: unknown, intune, sccm, office365.</summary>
         public MdmAuthority? MobileDeviceManagementAuthority { get; set; }
-        /// <summary>The time and date at which the tenant was last synced with the on-premises directory. The Timestamp type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z.</summary>
+        /// <summary>The time and date at which the tenant was last synced with the on-premises directory. The Timestamp type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z. Read-only.</summary>
         public DateTimeOffset? OnPremisesLastSyncDateTime { get; set; }
-        /// <summary>true if this object is synced from an on-premises directory; false if this object was originally synced from an on-premises directory but is no longer synced; Nullable. null if this object has never been synced from an on-premises directory (default).</summary>
+        /// <summary>true if this object is synced from an on-premises directory; false if this object was originally synced from an on-premises directory but is no longer synced. Nullable. null if this object has never been synced from an on-premises directory (default).</summary>
         public bool? OnPremisesSyncEnabled { get; set; }
         /// <summary>Postal code of the address for the organization.</summary>
         public string PostalCode { get; set; }
-        /// <summary>The preferred language for the organization. Should follow ISO 639-1 Code; for example en.</summary>
+        /// <summary>The preferred language for the organization. Should follow ISO 639-1 Code; for example, en.</summary>
         public string PreferredLanguage { get; set; }
         /// <summary>The privacy profile of an organization.</summary>
         public ApiSdk.Models.Microsoft.Graph.PrivacyProfile PrivacyProfile { get; set; }
         /// <summary>Not nullable.</summary>
-        public List<ProvisionedPlan> ProvisionedPlans { get; set; }
+        public List<ApiSdk.Models.Microsoft.Graph.ProvisionedPlan> ProvisionedPlans { get; set; }
         public List<string> SecurityComplianceNotificationMails { get; set; }
         public List<string> SecurityComplianceNotificationPhones { get; set; }
         /// <summary>State name of the address for the organization.</summary>
@@ -50,12 +50,12 @@ namespace ApiSdk.Models.Microsoft.Graph {
         public List<string> TechnicalNotificationMails { get; set; }
         public string TenantType { get; set; }
         /// <summary>The collection of domains associated with this tenant. Not nullable.</summary>
-        public List<VerifiedDomain> VerifiedDomains { get; set; }
+        public List<ApiSdk.Models.Microsoft.Graph.VerifiedDomain> VerifiedDomains { get; set; }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         /// </summary>
-        public static new Organization CreateFromDiscriminatorValue(IParseNode parseNode) {
+        public static new ApiSdk.Models.Microsoft.Graph.Organization CreateFromDiscriminatorValue(IParseNode parseNode) {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
             return new Organization();
         }
@@ -64,8 +64,8 @@ namespace ApiSdk.Models.Microsoft.Graph {
         /// </summary>
         public new IDictionary<string, Action<T, IParseNode>> GetFieldDeserializers<T>() {
             return new Dictionary<string, Action<T, IParseNode>>(base.GetFieldDeserializers<T>()) {
-                {"assignedPlans", (o,n) => { (o as Organization).AssignedPlans = n.GetCollectionOfObjectValues<AssignedPlan>(AssignedPlan.CreateFromDiscriminatorValue).ToList(); } },
-                {"branding", (o,n) => { (o as Organization).Branding = n.GetObjectValue<OrganizationalBranding>(OrganizationalBranding.CreateFromDiscriminatorValue); } },
+                {"assignedPlans", (o,n) => { (o as Organization).AssignedPlans = n.GetCollectionOfObjectValues<ApiSdk.Models.Microsoft.Graph.AssignedPlan>(ApiSdk.Models.Microsoft.Graph.AssignedPlan.CreateFromDiscriminatorValue).ToList(); } },
+                {"branding", (o,n) => { (o as Organization).Branding = n.GetObjectValue<ApiSdk.Models.Microsoft.Graph.OrganizationalBranding>(ApiSdk.Models.Microsoft.Graph.OrganizationalBranding.CreateFromDiscriminatorValue); } },
                 {"businessPhones", (o,n) => { (o as Organization).BusinessPhones = n.GetCollectionOfPrimitiveValues<string>().ToList(); } },
                 {"certificateBasedAuthConfiguration", (o,n) => { (o as Organization).CertificateBasedAuthConfiguration = n.GetCollectionOfObjectValues<ApiSdk.Models.Microsoft.Graph.CertificateBasedAuthConfiguration>(ApiSdk.Models.Microsoft.Graph.CertificateBasedAuthConfiguration.CreateFromDiscriminatorValue).ToList(); } },
                 {"city", (o,n) => { (o as Organization).City = n.GetStringValue(); } },
@@ -73,7 +73,7 @@ namespace ApiSdk.Models.Microsoft.Graph {
                 {"countryLetterCode", (o,n) => { (o as Organization).CountryLetterCode = n.GetStringValue(); } },
                 {"createdDateTime", (o,n) => { (o as Organization).CreatedDateTime = n.GetDateTimeOffsetValue(); } },
                 {"displayName", (o,n) => { (o as Organization).DisplayName = n.GetStringValue(); } },
-                {"extensions", (o,n) => { (o as Organization).Extensions = n.GetCollectionOfObjectValues<Extension>(Extension.CreateFromDiscriminatorValue).ToList(); } },
+                {"extensions", (o,n) => { (o as Organization).Extensions = n.GetCollectionOfObjectValues<ApiSdk.Models.Microsoft.Graph.Extension>(ApiSdk.Models.Microsoft.Graph.Extension.CreateFromDiscriminatorValue).ToList(); } },
                 {"marketingNotificationEmails", (o,n) => { (o as Organization).MarketingNotificationEmails = n.GetCollectionOfPrimitiveValues<string>().ToList(); } },
                 {"mobileDeviceManagementAuthority", (o,n) => { (o as Organization).MobileDeviceManagementAuthority = n.GetEnumValue<MdmAuthority>(); } },
                 {"onPremisesLastSyncDateTime", (o,n) => { (o as Organization).OnPremisesLastSyncDateTime = n.GetDateTimeOffsetValue(); } },
@@ -81,14 +81,14 @@ namespace ApiSdk.Models.Microsoft.Graph {
                 {"postalCode", (o,n) => { (o as Organization).PostalCode = n.GetStringValue(); } },
                 {"preferredLanguage", (o,n) => { (o as Organization).PreferredLanguage = n.GetStringValue(); } },
                 {"privacyProfile", (o,n) => { (o as Organization).PrivacyProfile = n.GetObjectValue<ApiSdk.Models.Microsoft.Graph.PrivacyProfile>(ApiSdk.Models.Microsoft.Graph.PrivacyProfile.CreateFromDiscriminatorValue); } },
-                {"provisionedPlans", (o,n) => { (o as Organization).ProvisionedPlans = n.GetCollectionOfObjectValues<ProvisionedPlan>(ProvisionedPlan.CreateFromDiscriminatorValue).ToList(); } },
+                {"provisionedPlans", (o,n) => { (o as Organization).ProvisionedPlans = n.GetCollectionOfObjectValues<ApiSdk.Models.Microsoft.Graph.ProvisionedPlan>(ApiSdk.Models.Microsoft.Graph.ProvisionedPlan.CreateFromDiscriminatorValue).ToList(); } },
                 {"securityComplianceNotificationMails", (o,n) => { (o as Organization).SecurityComplianceNotificationMails = n.GetCollectionOfPrimitiveValues<string>().ToList(); } },
                 {"securityComplianceNotificationPhones", (o,n) => { (o as Organization).SecurityComplianceNotificationPhones = n.GetCollectionOfPrimitiveValues<string>().ToList(); } },
                 {"state", (o,n) => { (o as Organization).State = n.GetStringValue(); } },
                 {"street", (o,n) => { (o as Organization).Street = n.GetStringValue(); } },
                 {"technicalNotificationMails", (o,n) => { (o as Organization).TechnicalNotificationMails = n.GetCollectionOfPrimitiveValues<string>().ToList(); } },
                 {"tenantType", (o,n) => { (o as Organization).TenantType = n.GetStringValue(); } },
-                {"verifiedDomains", (o,n) => { (o as Organization).VerifiedDomains = n.GetCollectionOfObjectValues<VerifiedDomain>(VerifiedDomain.CreateFromDiscriminatorValue).ToList(); } },
+                {"verifiedDomains", (o,n) => { (o as Organization).VerifiedDomains = n.GetCollectionOfObjectValues<ApiSdk.Models.Microsoft.Graph.VerifiedDomain>(ApiSdk.Models.Microsoft.Graph.VerifiedDomain.CreateFromDiscriminatorValue).ToList(); } },
             };
         }
         /// <summary>
@@ -98,8 +98,8 @@ namespace ApiSdk.Models.Microsoft.Graph {
         public new void Serialize(ISerializationWriter writer) {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             base.Serialize(writer);
-            writer.WriteCollectionOfObjectValues<AssignedPlan>("assignedPlans", AssignedPlans);
-            writer.WriteObjectValue<OrganizationalBranding>("branding", Branding);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.Microsoft.Graph.AssignedPlan>("assignedPlans", AssignedPlans);
+            writer.WriteObjectValue<ApiSdk.Models.Microsoft.Graph.OrganizationalBranding>("branding", Branding);
             writer.WriteCollectionOfPrimitiveValues<string>("businessPhones", BusinessPhones);
             writer.WriteCollectionOfObjectValues<ApiSdk.Models.Microsoft.Graph.CertificateBasedAuthConfiguration>("certificateBasedAuthConfiguration", CertificateBasedAuthConfiguration);
             writer.WriteStringValue("city", City);
@@ -107,7 +107,7 @@ namespace ApiSdk.Models.Microsoft.Graph {
             writer.WriteStringValue("countryLetterCode", CountryLetterCode);
             writer.WriteDateTimeOffsetValue("createdDateTime", CreatedDateTime);
             writer.WriteStringValue("displayName", DisplayName);
-            writer.WriteCollectionOfObjectValues<Extension>("extensions", Extensions);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.Microsoft.Graph.Extension>("extensions", Extensions);
             writer.WriteCollectionOfPrimitiveValues<string>("marketingNotificationEmails", MarketingNotificationEmails);
             writer.WriteEnumValue<MdmAuthority>("mobileDeviceManagementAuthority", MobileDeviceManagementAuthority);
             writer.WriteDateTimeOffsetValue("onPremisesLastSyncDateTime", OnPremisesLastSyncDateTime);
@@ -115,14 +115,14 @@ namespace ApiSdk.Models.Microsoft.Graph {
             writer.WriteStringValue("postalCode", PostalCode);
             writer.WriteStringValue("preferredLanguage", PreferredLanguage);
             writer.WriteObjectValue<ApiSdk.Models.Microsoft.Graph.PrivacyProfile>("privacyProfile", PrivacyProfile);
-            writer.WriteCollectionOfObjectValues<ProvisionedPlan>("provisionedPlans", ProvisionedPlans);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.Microsoft.Graph.ProvisionedPlan>("provisionedPlans", ProvisionedPlans);
             writer.WriteCollectionOfPrimitiveValues<string>("securityComplianceNotificationMails", SecurityComplianceNotificationMails);
             writer.WriteCollectionOfPrimitiveValues<string>("securityComplianceNotificationPhones", SecurityComplianceNotificationPhones);
             writer.WriteStringValue("state", State);
             writer.WriteStringValue("street", Street);
             writer.WriteCollectionOfPrimitiveValues<string>("technicalNotificationMails", TechnicalNotificationMails);
             writer.WriteStringValue("tenantType", TenantType);
-            writer.WriteCollectionOfObjectValues<VerifiedDomain>("verifiedDomains", VerifiedDomains);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.Microsoft.Graph.VerifiedDomain>("verifiedDomains", VerifiedDomains);
         }
     }
 }

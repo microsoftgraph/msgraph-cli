@@ -9,7 +9,7 @@ namespace ApiSdk.Models.Microsoft.Graph {
         public string AaGuid { get; set; }
         /// <summary>The attestation certificate(s) attached to this security key.</summary>
         public List<string> AttestationCertificates { get; set; }
-        /// <summary>The attestation level of this FIDO2 security key. Possible values are: attested, notAttested, unknownFutureValue.</summary>
+        /// <summary>The attestation level of this FIDO2 security key. Possible values are: attested, or notAttested.</summary>
         public ApiSdk.Models.Microsoft.Graph.AttestationLevel? AttestationLevel { get; set; }
         /// <summary>The timestamp when this key was registered to the user.</summary>
         public DateTimeOffset? CreatedDateTime { get; set; }
@@ -21,7 +21,7 @@ namespace ApiSdk.Models.Microsoft.Graph {
         /// Creates a new instance of the appropriate class based on discriminator value
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         /// </summary>
-        public static new Fido2AuthenticationMethod CreateFromDiscriminatorValue(IParseNode parseNode) {
+        public static new ApiSdk.Models.Microsoft.Graph.Fido2AuthenticationMethod CreateFromDiscriminatorValue(IParseNode parseNode) {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
             return new Fido2AuthenticationMethod();
         }

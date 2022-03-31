@@ -7,13 +7,13 @@ namespace ApiSdk.Models.Microsoft.Graph {
     public class TeamworkHostedContent : Entity, IParsable {
         /// <summary>Write only. Bytes for the hosted content (such as images).</summary>
         public byte[] ContentBytes { get; set; }
-        /// <summary>Write only. Content type, such as image/png, image/jpg.</summary>
+        /// <summary>Write only. Content type. sicj as image/png, image/jpg.</summary>
         public string ContentType { get; set; }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         /// </summary>
-        public static new TeamworkHostedContent CreateFromDiscriminatorValue(IParseNode parseNode) {
+        public static new ApiSdk.Models.Microsoft.Graph.TeamworkHostedContent CreateFromDiscriminatorValue(IParseNode parseNode) {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
             return new TeamworkHostedContent();
         }

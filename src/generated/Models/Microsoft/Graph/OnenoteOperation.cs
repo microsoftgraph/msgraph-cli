@@ -6,7 +6,7 @@ using System.Linq;
 namespace ApiSdk.Models.Microsoft.Graph {
     public class OnenoteOperation : Operation, IParsable {
         /// <summary>The error returned by the operation.</summary>
-        public OnenoteOperationError Error { get; set; }
+        public ApiSdk.Models.Microsoft.Graph.OnenoteOperationError Error { get; set; }
         /// <summary>The operation percent complete if the operation is still in running status.</summary>
         public string PercentComplete { get; set; }
         /// <summary>The resource id.</summary>
@@ -17,7 +17,7 @@ namespace ApiSdk.Models.Microsoft.Graph {
         /// Creates a new instance of the appropriate class based on discriminator value
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         /// </summary>
-        public static new OnenoteOperation CreateFromDiscriminatorValue(IParseNode parseNode) {
+        public static new ApiSdk.Models.Microsoft.Graph.OnenoteOperation CreateFromDiscriminatorValue(IParseNode parseNode) {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
             return new OnenoteOperation();
         }
@@ -26,7 +26,7 @@ namespace ApiSdk.Models.Microsoft.Graph {
         /// </summary>
         public new IDictionary<string, Action<T, IParseNode>> GetFieldDeserializers<T>() {
             return new Dictionary<string, Action<T, IParseNode>>(base.GetFieldDeserializers<T>()) {
-                {"error", (o,n) => { (o as OnenoteOperation).Error = n.GetObjectValue<OnenoteOperationError>(OnenoteOperationError.CreateFromDiscriminatorValue); } },
+                {"error", (o,n) => { (o as OnenoteOperation).Error = n.GetObjectValue<ApiSdk.Models.Microsoft.Graph.OnenoteOperationError>(ApiSdk.Models.Microsoft.Graph.OnenoteOperationError.CreateFromDiscriminatorValue); } },
                 {"percentComplete", (o,n) => { (o as OnenoteOperation).PercentComplete = n.GetStringValue(); } },
                 {"resourceId", (o,n) => { (o as OnenoteOperation).ResourceId = n.GetStringValue(); } },
                 {"resourceLocation", (o,n) => { (o as OnenoteOperation).ResourceLocation = n.GetStringValue(); } },
@@ -39,7 +39,7 @@ namespace ApiSdk.Models.Microsoft.Graph {
         public new void Serialize(ISerializationWriter writer) {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             base.Serialize(writer);
-            writer.WriteObjectValue<OnenoteOperationError>("error", Error);
+            writer.WriteObjectValue<ApiSdk.Models.Microsoft.Graph.OnenoteOperationError>("error", Error);
             writer.WriteStringValue("percentComplete", PercentComplete);
             writer.WriteStringValue("resourceId", ResourceId);
             writer.WriteStringValue("resourceLocation", ResourceLocation);

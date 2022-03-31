@@ -6,13 +6,13 @@ using System.Linq;
 namespace ApiSdk.Models.Microsoft.Graph {
     public class MessageRule : Entity, IParsable {
         /// <summary>Actions to be taken on a message when the corresponding conditions are fulfilled.</summary>
-        public MessageRuleActions Actions { get; set; }
+        public ApiSdk.Models.Microsoft.Graph.MessageRuleActions Actions { get; set; }
         /// <summary>Conditions that when fulfilled, will trigger the corresponding actions for that rule.</summary>
-        public MessageRulePredicates Conditions { get; set; }
+        public ApiSdk.Models.Microsoft.Graph.MessageRulePredicates Conditions { get; set; }
         /// <summary>The display name of the rule.</summary>
         public string DisplayName { get; set; }
         /// <summary>Exception conditions for the rule.</summary>
-        public MessageRulePredicates Exceptions { get; set; }
+        public ApiSdk.Models.Microsoft.Graph.MessageRulePredicates Exceptions { get; set; }
         /// <summary>Indicates whether the rule is in an error condition. Read-only.</summary>
         public bool? HasError { get; set; }
         /// <summary>Indicates whether the rule is enabled to be applied to messages.</summary>
@@ -25,7 +25,7 @@ namespace ApiSdk.Models.Microsoft.Graph {
         /// Creates a new instance of the appropriate class based on discriminator value
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         /// </summary>
-        public static new MessageRule CreateFromDiscriminatorValue(IParseNode parseNode) {
+        public static new ApiSdk.Models.Microsoft.Graph.MessageRule CreateFromDiscriminatorValue(IParseNode parseNode) {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
             return new MessageRule();
         }
@@ -34,10 +34,10 @@ namespace ApiSdk.Models.Microsoft.Graph {
         /// </summary>
         public new IDictionary<string, Action<T, IParseNode>> GetFieldDeserializers<T>() {
             return new Dictionary<string, Action<T, IParseNode>>(base.GetFieldDeserializers<T>()) {
-                {"actions", (o,n) => { (o as MessageRule).Actions = n.GetObjectValue<MessageRuleActions>(MessageRuleActions.CreateFromDiscriminatorValue); } },
-                {"conditions", (o,n) => { (o as MessageRule).Conditions = n.GetObjectValue<MessageRulePredicates>(MessageRulePredicates.CreateFromDiscriminatorValue); } },
+                {"actions", (o,n) => { (o as MessageRule).Actions = n.GetObjectValue<ApiSdk.Models.Microsoft.Graph.MessageRuleActions>(ApiSdk.Models.Microsoft.Graph.MessageRuleActions.CreateFromDiscriminatorValue); } },
+                {"conditions", (o,n) => { (o as MessageRule).Conditions = n.GetObjectValue<ApiSdk.Models.Microsoft.Graph.MessageRulePredicates>(ApiSdk.Models.Microsoft.Graph.MessageRulePredicates.CreateFromDiscriminatorValue); } },
                 {"displayName", (o,n) => { (o as MessageRule).DisplayName = n.GetStringValue(); } },
-                {"exceptions", (o,n) => { (o as MessageRule).Exceptions = n.GetObjectValue<MessageRulePredicates>(MessageRulePredicates.CreateFromDiscriminatorValue); } },
+                {"exceptions", (o,n) => { (o as MessageRule).Exceptions = n.GetObjectValue<ApiSdk.Models.Microsoft.Graph.MessageRulePredicates>(ApiSdk.Models.Microsoft.Graph.MessageRulePredicates.CreateFromDiscriminatorValue); } },
                 {"hasError", (o,n) => { (o as MessageRule).HasError = n.GetBoolValue(); } },
                 {"isEnabled", (o,n) => { (o as MessageRule).IsEnabled = n.GetBoolValue(); } },
                 {"isReadOnly", (o,n) => { (o as MessageRule).IsReadOnly = n.GetBoolValue(); } },
@@ -51,10 +51,10 @@ namespace ApiSdk.Models.Microsoft.Graph {
         public new void Serialize(ISerializationWriter writer) {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             base.Serialize(writer);
-            writer.WriteObjectValue<MessageRuleActions>("actions", Actions);
-            writer.WriteObjectValue<MessageRulePredicates>("conditions", Conditions);
+            writer.WriteObjectValue<ApiSdk.Models.Microsoft.Graph.MessageRuleActions>("actions", Actions);
+            writer.WriteObjectValue<ApiSdk.Models.Microsoft.Graph.MessageRulePredicates>("conditions", Conditions);
             writer.WriteStringValue("displayName", DisplayName);
-            writer.WriteObjectValue<MessageRulePredicates>("exceptions", Exceptions);
+            writer.WriteObjectValue<ApiSdk.Models.Microsoft.Graph.MessageRulePredicates>("exceptions", Exceptions);
             writer.WriteBoolValue("hasError", HasError);
             writer.WriteBoolValue("isEnabled", IsEnabled);
             writer.WriteBoolValue("isReadOnly", IsReadOnly);

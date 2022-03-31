@@ -6,9 +6,9 @@ using System.Linq;
 namespace ApiSdk.Models.Microsoft.Graph {
     public class MobileApp : Entity, IParsable {
         /// <summary>The list of group assignments for this mobile app.</summary>
-        public List<MobileAppAssignment> Assignments { get; set; }
+        public List<ApiSdk.Models.Microsoft.Graph.MobileAppAssignment> Assignments { get; set; }
         /// <summary>The list of categories for this app.</summary>
-        public List<MobileAppCategory> Categories { get; set; }
+        public List<ApiSdk.Models.Microsoft.Graph.MobileAppCategory> Categories { get; set; }
         /// <summary>The date and time the app was created.</summary>
         public DateTimeOffset? CreatedDateTime { get; set; }
         /// <summary>The description of the app.</summary>
@@ -22,7 +22,7 @@ namespace ApiSdk.Models.Microsoft.Graph {
         /// <summary>The value indicating whether the app is marked as featured by the admin.</summary>
         public bool? IsFeatured { get; set; }
         /// <summary>The large icon, to be displayed in the app details and used for upload of the icon.</summary>
-        public MimeContent LargeIcon { get; set; }
+        public ApiSdk.Models.Microsoft.Graph.MimeContent LargeIcon { get; set; }
         /// <summary>The date and time the app was last modified.</summary>
         public DateTimeOffset? LastModifiedDateTime { get; set; }
         /// <summary>Notes for the app.</summary>
@@ -39,7 +39,7 @@ namespace ApiSdk.Models.Microsoft.Graph {
         /// Creates a new instance of the appropriate class based on discriminator value
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         /// </summary>
-        public static new MobileApp CreateFromDiscriminatorValue(IParseNode parseNode) {
+        public static new ApiSdk.Models.Microsoft.Graph.MobileApp CreateFromDiscriminatorValue(IParseNode parseNode) {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
             return new MobileApp();
         }
@@ -48,15 +48,15 @@ namespace ApiSdk.Models.Microsoft.Graph {
         /// </summary>
         public new IDictionary<string, Action<T, IParseNode>> GetFieldDeserializers<T>() {
             return new Dictionary<string, Action<T, IParseNode>>(base.GetFieldDeserializers<T>()) {
-                {"assignments", (o,n) => { (o as MobileApp).Assignments = n.GetCollectionOfObjectValues<MobileAppAssignment>(MobileAppAssignment.CreateFromDiscriminatorValue).ToList(); } },
-                {"categories", (o,n) => { (o as MobileApp).Categories = n.GetCollectionOfObjectValues<MobileAppCategory>(MobileAppCategory.CreateFromDiscriminatorValue).ToList(); } },
+                {"assignments", (o,n) => { (o as MobileApp).Assignments = n.GetCollectionOfObjectValues<ApiSdk.Models.Microsoft.Graph.MobileAppAssignment>(ApiSdk.Models.Microsoft.Graph.MobileAppAssignment.CreateFromDiscriminatorValue).ToList(); } },
+                {"categories", (o,n) => { (o as MobileApp).Categories = n.GetCollectionOfObjectValues<ApiSdk.Models.Microsoft.Graph.MobileAppCategory>(ApiSdk.Models.Microsoft.Graph.MobileAppCategory.CreateFromDiscriminatorValue).ToList(); } },
                 {"createdDateTime", (o,n) => { (o as MobileApp).CreatedDateTime = n.GetDateTimeOffsetValue(); } },
                 {"description", (o,n) => { (o as MobileApp).Description = n.GetStringValue(); } },
                 {"developer", (o,n) => { (o as MobileApp).Developer = n.GetStringValue(); } },
                 {"displayName", (o,n) => { (o as MobileApp).DisplayName = n.GetStringValue(); } },
                 {"informationUrl", (o,n) => { (o as MobileApp).InformationUrl = n.GetStringValue(); } },
                 {"isFeatured", (o,n) => { (o as MobileApp).IsFeatured = n.GetBoolValue(); } },
-                {"largeIcon", (o,n) => { (o as MobileApp).LargeIcon = n.GetObjectValue<MimeContent>(MimeContent.CreateFromDiscriminatorValue); } },
+                {"largeIcon", (o,n) => { (o as MobileApp).LargeIcon = n.GetObjectValue<ApiSdk.Models.Microsoft.Graph.MimeContent>(ApiSdk.Models.Microsoft.Graph.MimeContent.CreateFromDiscriminatorValue); } },
                 {"lastModifiedDateTime", (o,n) => { (o as MobileApp).LastModifiedDateTime = n.GetDateTimeOffsetValue(); } },
                 {"notes", (o,n) => { (o as MobileApp).Notes = n.GetStringValue(); } },
                 {"owner", (o,n) => { (o as MobileApp).Owner = n.GetStringValue(); } },
@@ -72,15 +72,15 @@ namespace ApiSdk.Models.Microsoft.Graph {
         public new void Serialize(ISerializationWriter writer) {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             base.Serialize(writer);
-            writer.WriteCollectionOfObjectValues<MobileAppAssignment>("assignments", Assignments);
-            writer.WriteCollectionOfObjectValues<MobileAppCategory>("categories", Categories);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.Microsoft.Graph.MobileAppAssignment>("assignments", Assignments);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.Microsoft.Graph.MobileAppCategory>("categories", Categories);
             writer.WriteDateTimeOffsetValue("createdDateTime", CreatedDateTime);
             writer.WriteStringValue("description", Description);
             writer.WriteStringValue("developer", Developer);
             writer.WriteStringValue("displayName", DisplayName);
             writer.WriteStringValue("informationUrl", InformationUrl);
             writer.WriteBoolValue("isFeatured", IsFeatured);
-            writer.WriteObjectValue<MimeContent>("largeIcon", LargeIcon);
+            writer.WriteObjectValue<ApiSdk.Models.Microsoft.Graph.MimeContent>("largeIcon", LargeIcon);
             writer.WriteDateTimeOffsetValue("lastModifiedDateTime", LastModifiedDateTime);
             writer.WriteStringValue("notes", Notes);
             writer.WriteStringValue("owner", Owner);

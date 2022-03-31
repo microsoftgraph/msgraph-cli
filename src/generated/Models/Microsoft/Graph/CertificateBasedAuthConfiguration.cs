@@ -6,12 +6,12 @@ using System.Linq;
 namespace ApiSdk.Models.Microsoft.Graph {
     public class CertificateBasedAuthConfiguration : Entity, IParsable {
         /// <summary>Collection of certificate authorities which creates a trusted certificate chain.</summary>
-        public List<CertificateAuthority> CertificateAuthorities { get; set; }
+        public List<ApiSdk.Models.Microsoft.Graph.CertificateAuthority> CertificateAuthorities { get; set; }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         /// </summary>
-        public static new CertificateBasedAuthConfiguration CreateFromDiscriminatorValue(IParseNode parseNode) {
+        public static new ApiSdk.Models.Microsoft.Graph.CertificateBasedAuthConfiguration CreateFromDiscriminatorValue(IParseNode parseNode) {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
             return new CertificateBasedAuthConfiguration();
         }
@@ -20,7 +20,7 @@ namespace ApiSdk.Models.Microsoft.Graph {
         /// </summary>
         public new IDictionary<string, Action<T, IParseNode>> GetFieldDeserializers<T>() {
             return new Dictionary<string, Action<T, IParseNode>>(base.GetFieldDeserializers<T>()) {
-                {"certificateAuthorities", (o,n) => { (o as CertificateBasedAuthConfiguration).CertificateAuthorities = n.GetCollectionOfObjectValues<CertificateAuthority>(CertificateAuthority.CreateFromDiscriminatorValue).ToList(); } },
+                {"certificateAuthorities", (o,n) => { (o as CertificateBasedAuthConfiguration).CertificateAuthorities = n.GetCollectionOfObjectValues<ApiSdk.Models.Microsoft.Graph.CertificateAuthority>(ApiSdk.Models.Microsoft.Graph.CertificateAuthority.CreateFromDiscriminatorValue).ToList(); } },
             };
         }
         /// <summary>
@@ -30,7 +30,7 @@ namespace ApiSdk.Models.Microsoft.Graph {
         public new void Serialize(ISerializationWriter writer) {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             base.Serialize(writer);
-            writer.WriteCollectionOfObjectValues<CertificateAuthority>("certificateAuthorities", CertificateAuthorities);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.Microsoft.Graph.CertificateAuthority>("certificateAuthorities", CertificateAuthorities);
         }
     }
 }

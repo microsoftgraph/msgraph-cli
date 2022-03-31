@@ -6,22 +6,22 @@ using System.Linq;
 namespace ApiSdk.Models.Microsoft.Graph {
     public class ContactFolder : Entity, IParsable {
         /// <summary>The collection of child folders in the folder. Navigation property. Read-only. Nullable.</summary>
-        public List<ContactFolder> ChildFolders { get; set; }
+        public List<ApiSdk.Models.Microsoft.Graph.ContactFolder> ChildFolders { get; set; }
         /// <summary>The contacts in the folder. Navigation property. Read-only. Nullable.</summary>
-        public List<Contact> Contacts { get; set; }
+        public List<ApiSdk.Models.Microsoft.Graph.Contact> Contacts { get; set; }
         /// <summary>The folder's display name.</summary>
         public string DisplayName { get; set; }
         /// <summary>The collection of multi-value extended properties defined for the contactFolder. Read-only. Nullable.</summary>
-        public List<MultiValueLegacyExtendedProperty> MultiValueExtendedProperties { get; set; }
+        public List<ApiSdk.Models.Microsoft.Graph.MultiValueLegacyExtendedProperty> MultiValueExtendedProperties { get; set; }
         /// <summary>The ID of the folder's parent folder.</summary>
         public string ParentFolderId { get; set; }
         /// <summary>The collection of single-value extended properties defined for the contactFolder. Read-only. Nullable.</summary>
-        public List<SingleValueLegacyExtendedProperty> SingleValueExtendedProperties { get; set; }
+        public List<ApiSdk.Models.Microsoft.Graph.SingleValueLegacyExtendedProperty> SingleValueExtendedProperties { get; set; }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         /// </summary>
-        public static new ContactFolder CreateFromDiscriminatorValue(IParseNode parseNode) {
+        public static new ApiSdk.Models.Microsoft.Graph.ContactFolder CreateFromDiscriminatorValue(IParseNode parseNode) {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
             return new ContactFolder();
         }
@@ -30,12 +30,12 @@ namespace ApiSdk.Models.Microsoft.Graph {
         /// </summary>
         public new IDictionary<string, Action<T, IParseNode>> GetFieldDeserializers<T>() {
             return new Dictionary<string, Action<T, IParseNode>>(base.GetFieldDeserializers<T>()) {
-                {"childFolders", (o,n) => { (o as ContactFolder).ChildFolders = n.GetCollectionOfObjectValues<ContactFolder>(ContactFolder.CreateFromDiscriminatorValue).ToList(); } },
-                {"contacts", (o,n) => { (o as ContactFolder).Contacts = n.GetCollectionOfObjectValues<Contact>(Contact.CreateFromDiscriminatorValue).ToList(); } },
+                {"childFolders", (o,n) => { (o as ContactFolder).ChildFolders = n.GetCollectionOfObjectValues<ApiSdk.Models.Microsoft.Graph.ContactFolder>(ApiSdk.Models.Microsoft.Graph.ContactFolder.CreateFromDiscriminatorValue).ToList(); } },
+                {"contacts", (o,n) => { (o as ContactFolder).Contacts = n.GetCollectionOfObjectValues<ApiSdk.Models.Microsoft.Graph.Contact>(ApiSdk.Models.Microsoft.Graph.Contact.CreateFromDiscriminatorValue).ToList(); } },
                 {"displayName", (o,n) => { (o as ContactFolder).DisplayName = n.GetStringValue(); } },
-                {"multiValueExtendedProperties", (o,n) => { (o as ContactFolder).MultiValueExtendedProperties = n.GetCollectionOfObjectValues<MultiValueLegacyExtendedProperty>(MultiValueLegacyExtendedProperty.CreateFromDiscriminatorValue).ToList(); } },
+                {"multiValueExtendedProperties", (o,n) => { (o as ContactFolder).MultiValueExtendedProperties = n.GetCollectionOfObjectValues<ApiSdk.Models.Microsoft.Graph.MultiValueLegacyExtendedProperty>(ApiSdk.Models.Microsoft.Graph.MultiValueLegacyExtendedProperty.CreateFromDiscriminatorValue).ToList(); } },
                 {"parentFolderId", (o,n) => { (o as ContactFolder).ParentFolderId = n.GetStringValue(); } },
-                {"singleValueExtendedProperties", (o,n) => { (o as ContactFolder).SingleValueExtendedProperties = n.GetCollectionOfObjectValues<SingleValueLegacyExtendedProperty>(SingleValueLegacyExtendedProperty.CreateFromDiscriminatorValue).ToList(); } },
+                {"singleValueExtendedProperties", (o,n) => { (o as ContactFolder).SingleValueExtendedProperties = n.GetCollectionOfObjectValues<ApiSdk.Models.Microsoft.Graph.SingleValueLegacyExtendedProperty>(ApiSdk.Models.Microsoft.Graph.SingleValueLegacyExtendedProperty.CreateFromDiscriminatorValue).ToList(); } },
             };
         }
         /// <summary>
@@ -45,12 +45,12 @@ namespace ApiSdk.Models.Microsoft.Graph {
         public new void Serialize(ISerializationWriter writer) {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             base.Serialize(writer);
-            writer.WriteCollectionOfObjectValues<ContactFolder>("childFolders", ChildFolders);
-            writer.WriteCollectionOfObjectValues<Contact>("contacts", Contacts);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.Microsoft.Graph.ContactFolder>("childFolders", ChildFolders);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.Microsoft.Graph.Contact>("contacts", Contacts);
             writer.WriteStringValue("displayName", DisplayName);
-            writer.WriteCollectionOfObjectValues<MultiValueLegacyExtendedProperty>("multiValueExtendedProperties", MultiValueExtendedProperties);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.Microsoft.Graph.MultiValueLegacyExtendedProperty>("multiValueExtendedProperties", MultiValueExtendedProperties);
             writer.WriteStringValue("parentFolderId", ParentFolderId);
-            writer.WriteCollectionOfObjectValues<SingleValueLegacyExtendedProperty>("singleValueExtendedProperties", SingleValueExtendedProperties);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.Microsoft.Graph.SingleValueLegacyExtendedProperty>("singleValueExtendedProperties", SingleValueExtendedProperties);
         }
     }
 }

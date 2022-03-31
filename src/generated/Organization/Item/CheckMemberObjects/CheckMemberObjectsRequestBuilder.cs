@@ -11,7 +11,7 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 namespace ApiSdk.Organization.Item.CheckMemberObjects {
-    /// <summary>Builds and executes requests for operations under \organization\{organizationItem-Id}\microsoft.graph.checkMemberObjects</summary>
+    /// <summary>Provides operations to call the checkMemberObjects method.</summary>
     public class CheckMemberObjectsRequestBuilder {
         /// <summary>Path parameters for the request</summary>
         private Dictionary<string, object> PathParameters { get; set; }
@@ -26,10 +26,10 @@ namespace ApiSdk.Organization.Item.CheckMemberObjects {
             var command = new Command("post");
             command.Description = "Invoke action checkMemberObjects";
             // Create options for all the parameters
-            var organizationItemIdOption = new Option<string>("--organization-item-id", description: "key: id of organization") {
+            var organizationIdOption = new Option<string>("--organization-id", description: "key: id of organization") {
             };
-            organizationItemIdOption.IsRequired = true;
-            command.AddOption(organizationItemIdOption);
+            organizationIdOption.IsRequired = true;
+            command.AddOption(organizationIdOption);
             var bodyOption = new Option<string>("--body") {
             };
             bodyOption.IsRequired = true;
@@ -48,7 +48,7 @@ namespace ApiSdk.Organization.Item.CheckMemberObjects {
             }, description: "Disable indentation for the JSON output formatter.");
             command.AddOption(jsonNoIndentOption);
             command.SetHandler(async (object[] parameters) => {
-                var organizationItemId = (string) parameters[0];
+                var organizationId = (string) parameters[0];
                 var body = (string) parameters[1];
                 var output = (FormatterType) parameters[2];
                 var query = (string) parameters[3];
@@ -57,18 +57,18 @@ namespace ApiSdk.Organization.Item.CheckMemberObjects {
                 var outputFormatterFactory = (IOutputFormatterFactory) parameters[6];
                 var cancellationToken = (CancellationToken) parameters[7];
                 PathParameters.Clear();
-                PathParameters.Add("organizationItem_Id", organizationItemId);
+                PathParameters.Add("organization_id", organizationId);
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
-                var model = parseNode.GetObjectValue<CheckMemberObjectsRequestBody>(CheckMemberObjectsRequestBody.CreateFromDiscriminatorValue);
+                var model = parseNode.GetObjectValue<ApiSdk.Organization.Item.CheckMemberObjects.CheckMemberObjectsRequestBody>(ApiSdk.Organization.Item.CheckMemberObjects.CheckMemberObjectsRequestBody.CreateFromDiscriminatorValue);
                 var requestInfo = CreatePostRequestInformation(model, q => {
                 });
                 var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: default, cancellationToken: cancellationToken);
-                var formatter = outputFormatterFactory.GetFormatter(output);
                 response = await outputFilter?.FilterOutputAsync(response, query, cancellationToken) ?? response;
                 var formatterOptions = output.GetOutputFormatterOptions(new FormatterOptionsModel(!jsonNoIndent));
+                var formatter = outputFormatterFactory.GetFormatter(output);
                 await formatter.WriteOutputAsync(response, formatterOptions, cancellationToken);
-            }, new CollectionBinding(organizationItemIdOption, bodyOption, outputOption, queryOption, jsonNoIndentOption, new TypeBinding(typeof(IOutputFilter)), new TypeBinding(typeof(IOutputFormatterFactory)), new TypeBinding(typeof(CancellationToken))));
+            }, new CollectionBinding(organizationIdOption, bodyOption, outputOption, queryOption, jsonNoIndentOption, new TypeBinding(typeof(IOutputFilter)), new TypeBinding(typeof(IOutputFormatterFactory)), new TypeBinding(typeof(CancellationToken))));
             return command;
         }
         /// <summary>
@@ -79,7 +79,7 @@ namespace ApiSdk.Organization.Item.CheckMemberObjects {
         public CheckMemberObjectsRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) {
             _ = pathParameters ?? throw new ArgumentNullException(nameof(pathParameters));
             _ = requestAdapter ?? throw new ArgumentNullException(nameof(requestAdapter));
-            UrlTemplate = "{+baseurl}/organization/{organizationItem_Id}/microsoft.graph.checkMemberObjects";
+            UrlTemplate = "{+baseurl}/organization/{organization_id}/microsoft.graph.checkMemberObjects";
             var urlTplParams = new Dictionary<string, object>(pathParameters);
             PathParameters = urlTplParams;
             RequestAdapter = requestAdapter;
@@ -87,10 +87,10 @@ namespace ApiSdk.Organization.Item.CheckMemberObjects {
         /// <summary>
         /// Invoke action checkMemberObjects
         /// <param name="body"></param>
-        /// <param name="h">Request headers</param>
-        /// <param name="o">Request options</param>
+        /// <param name="headers">Request headers</param>
+        /// <param name="options">Request options</param>
         /// </summary>
-        public RequestInformation CreatePostRequestInformation(CheckMemberObjectsRequestBody body, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
+        public RequestInformation CreatePostRequestInformation(ApiSdk.Organization.Item.CheckMemberObjects.CheckMemberObjectsRequestBody body, Action<IDictionary<string, string>> headers = default, IEnumerable<IRequestOption> options = default) {
             _ = body ?? throw new ArgumentNullException(nameof(body));
             var requestInfo = new RequestInformation {
                 HttpMethod = Method.POST,
@@ -98,8 +98,8 @@ namespace ApiSdk.Organization.Item.CheckMemberObjects {
                 PathParameters = PathParameters,
             };
             requestInfo.SetContentFromParsable(RequestAdapter, "application/json", body);
-            h?.Invoke(requestInfo.Headers);
-            requestInfo.AddRequestOptions(o?.ToArray());
+            headers?.Invoke(requestInfo.Headers);
+            requestInfo.AddRequestOptions(options?.ToArray());
             return requestInfo;
         }
     }

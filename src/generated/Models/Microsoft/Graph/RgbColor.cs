@@ -4,15 +4,16 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 namespace ApiSdk.Models.Microsoft.Graph {
+    /// <summary>Color in RGB.</summary>
     public class RgbColor : IAdditionalDataHolder, IParsable {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>Blue value</summary>
-        public int? B { get; set; }
+        public byte? B { get; set; }
         /// <summary>Green value</summary>
-        public int? G { get; set; }
+        public byte? G { get; set; }
         /// <summary>Red value</summary>
-        public int? R { get; set; }
+        public byte? R { get; set; }
         /// <summary>
         /// Instantiates a new rgbColor and sets the default values.
         /// </summary>
@@ -23,7 +24,7 @@ namespace ApiSdk.Models.Microsoft.Graph {
         /// Creates a new instance of the appropriate class based on discriminator value
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         /// </summary>
-        public static RgbColor CreateFromDiscriminatorValue(IParseNode parseNode) {
+        public static ApiSdk.Models.Microsoft.Graph.RgbColor CreateFromDiscriminatorValue(IParseNode parseNode) {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
             return new RgbColor();
         }
@@ -32,9 +33,9 @@ namespace ApiSdk.Models.Microsoft.Graph {
         /// </summary>
         public IDictionary<string, Action<T, IParseNode>> GetFieldDeserializers<T>() {
             return new Dictionary<string, Action<T, IParseNode>> {
-                {"b", (o,n) => { (o as RgbColor).B = n.GetIntValue(); } },
-                {"g", (o,n) => { (o as RgbColor).G = n.GetIntValue(); } },
-                {"r", (o,n) => { (o as RgbColor).R = n.GetIntValue(); } },
+                {"b", (o,n) => { (o as RgbColor).B = n.GetByteValue(); } },
+                {"g", (o,n) => { (o as RgbColor).G = n.GetByteValue(); } },
+                {"r", (o,n) => { (o as RgbColor).R = n.GetByteValue(); } },
             };
         }
         /// <summary>
@@ -43,9 +44,9 @@ namespace ApiSdk.Models.Microsoft.Graph {
         /// </summary>
         public void Serialize(ISerializationWriter writer) {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
-            writer.WriteIntValue("b", B);
-            writer.WriteIntValue("g", G);
-            writer.WriteIntValue("r", R);
+            writer.WriteByteValue("b", B);
+            writer.WriteByteValue("g", G);
+            writer.WriteByteValue("r", R);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

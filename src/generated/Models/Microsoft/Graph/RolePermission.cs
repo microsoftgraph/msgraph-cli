@@ -4,11 +4,12 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 namespace ApiSdk.Models.Microsoft.Graph {
+    /// <summary>Contains the set of ResourceActions determining the allowed and not allowed permissions for each role.</summary>
     public class RolePermission : IAdditionalDataHolder, IParsable {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>Resource Actions each containing a set of allowed and not allowed permissions.</summary>
-        public List<ResourceAction> ResourceActions { get; set; }
+        public List<ApiSdk.Models.Microsoft.Graph.ResourceAction> ResourceActions { get; set; }
         /// <summary>
         /// Instantiates a new rolePermission and sets the default values.
         /// </summary>
@@ -19,7 +20,7 @@ namespace ApiSdk.Models.Microsoft.Graph {
         /// Creates a new instance of the appropriate class based on discriminator value
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         /// </summary>
-        public static RolePermission CreateFromDiscriminatorValue(IParseNode parseNode) {
+        public static ApiSdk.Models.Microsoft.Graph.RolePermission CreateFromDiscriminatorValue(IParseNode parseNode) {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
             return new RolePermission();
         }
@@ -28,7 +29,7 @@ namespace ApiSdk.Models.Microsoft.Graph {
         /// </summary>
         public IDictionary<string, Action<T, IParseNode>> GetFieldDeserializers<T>() {
             return new Dictionary<string, Action<T, IParseNode>> {
-                {"resourceActions", (o,n) => { (o as RolePermission).ResourceActions = n.GetCollectionOfObjectValues<ResourceAction>(ResourceAction.CreateFromDiscriminatorValue).ToList(); } },
+                {"resourceActions", (o,n) => { (o as RolePermission).ResourceActions = n.GetCollectionOfObjectValues<ApiSdk.Models.Microsoft.Graph.ResourceAction>(ApiSdk.Models.Microsoft.Graph.ResourceAction.CreateFromDiscriminatorValue).ToList(); } },
             };
         }
         /// <summary>
@@ -37,7 +38,7 @@ namespace ApiSdk.Models.Microsoft.Graph {
         /// </summary>
         public void Serialize(ISerializationWriter writer) {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
-            writer.WriteCollectionOfObjectValues<ResourceAction>("resourceActions", ResourceActions);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.Microsoft.Graph.ResourceAction>("resourceActions", ResourceActions);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

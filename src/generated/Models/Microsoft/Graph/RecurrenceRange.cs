@@ -16,7 +16,7 @@ namespace ApiSdk.Models.Microsoft.Graph {
         public string RecurrenceTimeZone { get; set; }
         /// <summary>The date to start applying the recurrence pattern. The first occurrence of the meeting may be this date or later, depending on the recurrence pattern of the event. Must be the same value as the start property of the recurring event. Required.</summary>
         public Date? StartDate { get; set; }
-        /// <summary>The recurrence range. Possible values are: endDate, noEnd, numbered. Required.</summary>
+        /// <summary>The recurrence range. The possible values are: endDate, noEnd, numbered. Required.</summary>
         public RecurrenceRangeType? Type { get; set; }
         /// <summary>
         /// Instantiates a new recurrenceRange and sets the default values.
@@ -28,7 +28,7 @@ namespace ApiSdk.Models.Microsoft.Graph {
         /// Creates a new instance of the appropriate class based on discriminator value
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         /// </summary>
-        public static RecurrenceRange CreateFromDiscriminatorValue(IParseNode parseNode) {
+        public static ApiSdk.Models.Microsoft.Graph.RecurrenceRange CreateFromDiscriminatorValue(IParseNode parseNode) {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
             return new RecurrenceRange();
         }

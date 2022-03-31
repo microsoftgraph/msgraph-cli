@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 namespace ApiSdk.Models.Microsoft.Graph {
+    /// <summary>intuneBrand contains data which is used in customizing the appearance of the Company Portal applications as well as the end user web portal.</summary>
     public class IntuneBrand : IAdditionalDataHolder, IParsable {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
@@ -16,11 +17,11 @@ namespace ApiSdk.Models.Microsoft.Graph {
         /// <summary>Phone number of the person/organization responsible for IT support.</summary>
         public string ContactITPhoneNumber { get; set; }
         /// <summary>Logo image displayed in Company Portal apps which have a dark background behind the logo.</summary>
-        public MimeContent DarkBackgroundLogo { get; set; }
+        public ApiSdk.Models.Microsoft.Graph.MimeContent DarkBackgroundLogo { get; set; }
         /// <summary>Company/organization name that is displayed to end users.</summary>
         public string DisplayName { get; set; }
         /// <summary>Logo image displayed in Company Portal apps which have a light background behind the logo.</summary>
-        public MimeContent LightBackgroundLogo { get; set; }
+        public ApiSdk.Models.Microsoft.Graph.MimeContent LightBackgroundLogo { get; set; }
         /// <summary>Display name of the company/organization’s IT helpdesk site.</summary>
         public string OnlineSupportSiteName { get; set; }
         /// <summary>URL to the company/organization’s IT helpdesk site.</summary>
@@ -34,7 +35,7 @@ namespace ApiSdk.Models.Microsoft.Graph {
         /// <summary>Boolean that represents whether the administrator-supplied display name will be shown next to the logo image.</summary>
         public bool? ShowNameNextToLogo { get; set; }
         /// <summary>Primary theme color used in the Company Portal applications and web portal.</summary>
-        public RgbColor ThemeColor { get; set; }
+        public ApiSdk.Models.Microsoft.Graph.RgbColor ThemeColor { get; set; }
         /// <summary>
         /// Instantiates a new intuneBrand and sets the default values.
         /// </summary>
@@ -45,7 +46,7 @@ namespace ApiSdk.Models.Microsoft.Graph {
         /// Creates a new instance of the appropriate class based on discriminator value
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         /// </summary>
-        public static IntuneBrand CreateFromDiscriminatorValue(IParseNode parseNode) {
+        public static ApiSdk.Models.Microsoft.Graph.IntuneBrand CreateFromDiscriminatorValue(IParseNode parseNode) {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
             return new IntuneBrand();
         }
@@ -58,16 +59,16 @@ namespace ApiSdk.Models.Microsoft.Graph {
                 {"contactITName", (o,n) => { (o as IntuneBrand).ContactITName = n.GetStringValue(); } },
                 {"contactITNotes", (o,n) => { (o as IntuneBrand).ContactITNotes = n.GetStringValue(); } },
                 {"contactITPhoneNumber", (o,n) => { (o as IntuneBrand).ContactITPhoneNumber = n.GetStringValue(); } },
-                {"darkBackgroundLogo", (o,n) => { (o as IntuneBrand).DarkBackgroundLogo = n.GetObjectValue<MimeContent>(MimeContent.CreateFromDiscriminatorValue); } },
+                {"darkBackgroundLogo", (o,n) => { (o as IntuneBrand).DarkBackgroundLogo = n.GetObjectValue<ApiSdk.Models.Microsoft.Graph.MimeContent>(ApiSdk.Models.Microsoft.Graph.MimeContent.CreateFromDiscriminatorValue); } },
                 {"displayName", (o,n) => { (o as IntuneBrand).DisplayName = n.GetStringValue(); } },
-                {"lightBackgroundLogo", (o,n) => { (o as IntuneBrand).LightBackgroundLogo = n.GetObjectValue<MimeContent>(MimeContent.CreateFromDiscriminatorValue); } },
+                {"lightBackgroundLogo", (o,n) => { (o as IntuneBrand).LightBackgroundLogo = n.GetObjectValue<ApiSdk.Models.Microsoft.Graph.MimeContent>(ApiSdk.Models.Microsoft.Graph.MimeContent.CreateFromDiscriminatorValue); } },
                 {"onlineSupportSiteName", (o,n) => { (o as IntuneBrand).OnlineSupportSiteName = n.GetStringValue(); } },
                 {"onlineSupportSiteUrl", (o,n) => { (o as IntuneBrand).OnlineSupportSiteUrl = n.GetStringValue(); } },
                 {"privacyUrl", (o,n) => { (o as IntuneBrand).PrivacyUrl = n.GetStringValue(); } },
                 {"showDisplayNameNextToLogo", (o,n) => { (o as IntuneBrand).ShowDisplayNameNextToLogo = n.GetBoolValue(); } },
                 {"showLogo", (o,n) => { (o as IntuneBrand).ShowLogo = n.GetBoolValue(); } },
                 {"showNameNextToLogo", (o,n) => { (o as IntuneBrand).ShowNameNextToLogo = n.GetBoolValue(); } },
-                {"themeColor", (o,n) => { (o as IntuneBrand).ThemeColor = n.GetObjectValue<RgbColor>(RgbColor.CreateFromDiscriminatorValue); } },
+                {"themeColor", (o,n) => { (o as IntuneBrand).ThemeColor = n.GetObjectValue<ApiSdk.Models.Microsoft.Graph.RgbColor>(ApiSdk.Models.Microsoft.Graph.RgbColor.CreateFromDiscriminatorValue); } },
             };
         }
         /// <summary>
@@ -80,16 +81,16 @@ namespace ApiSdk.Models.Microsoft.Graph {
             writer.WriteStringValue("contactITName", ContactITName);
             writer.WriteStringValue("contactITNotes", ContactITNotes);
             writer.WriteStringValue("contactITPhoneNumber", ContactITPhoneNumber);
-            writer.WriteObjectValue<MimeContent>("darkBackgroundLogo", DarkBackgroundLogo);
+            writer.WriteObjectValue<ApiSdk.Models.Microsoft.Graph.MimeContent>("darkBackgroundLogo", DarkBackgroundLogo);
             writer.WriteStringValue("displayName", DisplayName);
-            writer.WriteObjectValue<MimeContent>("lightBackgroundLogo", LightBackgroundLogo);
+            writer.WriteObjectValue<ApiSdk.Models.Microsoft.Graph.MimeContent>("lightBackgroundLogo", LightBackgroundLogo);
             writer.WriteStringValue("onlineSupportSiteName", OnlineSupportSiteName);
             writer.WriteStringValue("onlineSupportSiteUrl", OnlineSupportSiteUrl);
             writer.WriteStringValue("privacyUrl", PrivacyUrl);
             writer.WriteBoolValue("showDisplayNameNextToLogo", ShowDisplayNameNextToLogo);
             writer.WriteBoolValue("showLogo", ShowLogo);
             writer.WriteBoolValue("showNameNextToLogo", ShowNameNextToLogo);
-            writer.WriteObjectValue<RgbColor>("themeColor", ThemeColor);
+            writer.WriteObjectValue<ApiSdk.Models.Microsoft.Graph.RgbColor>("themeColor", ThemeColor);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

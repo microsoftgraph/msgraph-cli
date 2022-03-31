@@ -6,12 +6,12 @@ using System.Linq;
 namespace ApiSdk.Models.Microsoft.Graph {
     public class Bitlocker : Entity, IParsable {
         /// <summary>The recovery keys associated with the bitlocker entity.</summary>
-        public List<BitlockerRecoveryKey> RecoveryKeys { get; set; }
+        public List<ApiSdk.Models.Microsoft.Graph.BitlockerRecoveryKey> RecoveryKeys { get; set; }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         /// </summary>
-        public static new Bitlocker CreateFromDiscriminatorValue(IParseNode parseNode) {
+        public static new ApiSdk.Models.Microsoft.Graph.Bitlocker CreateFromDiscriminatorValue(IParseNode parseNode) {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
             return new Bitlocker();
         }
@@ -20,7 +20,7 @@ namespace ApiSdk.Models.Microsoft.Graph {
         /// </summary>
         public new IDictionary<string, Action<T, IParseNode>> GetFieldDeserializers<T>() {
             return new Dictionary<string, Action<T, IParseNode>>(base.GetFieldDeserializers<T>()) {
-                {"recoveryKeys", (o,n) => { (o as Bitlocker).RecoveryKeys = n.GetCollectionOfObjectValues<BitlockerRecoveryKey>(BitlockerRecoveryKey.CreateFromDiscriminatorValue).ToList(); } },
+                {"recoveryKeys", (o,n) => { (o as Bitlocker).RecoveryKeys = n.GetCollectionOfObjectValues<ApiSdk.Models.Microsoft.Graph.BitlockerRecoveryKey>(ApiSdk.Models.Microsoft.Graph.BitlockerRecoveryKey.CreateFromDiscriminatorValue).ToList(); } },
             };
         }
         /// <summary>
@@ -30,7 +30,7 @@ namespace ApiSdk.Models.Microsoft.Graph {
         public new void Serialize(ISerializationWriter writer) {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             base.Serialize(writer);
-            writer.WriteCollectionOfObjectValues<BitlockerRecoveryKey>("recoveryKeys", RecoveryKeys);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.Microsoft.Graph.BitlockerRecoveryKey>("recoveryKeys", RecoveryKeys);
         }
     }
 }

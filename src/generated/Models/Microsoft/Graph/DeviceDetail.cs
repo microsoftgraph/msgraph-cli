@@ -7,19 +7,19 @@ namespace ApiSdk.Models.Microsoft.Graph {
     public class DeviceDetail : IAdditionalDataHolder, IParsable {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
-        /// <summary>Indicates the browser information of the used for signing-in.</summary>
+        /// <summary>Indicates the browser information of the used for signing in.</summary>
         public string Browser { get; set; }
-        /// <summary>Refers to the UniqueID of the device used for signing-in.</summary>
+        /// <summary>Refers to the UniqueID of the device used for signing in.</summary>
         public string DeviceId { get; set; }
-        /// <summary>Refers to the name of the device used for signing-in.</summary>
+        /// <summary>Refers to the name of the device used for signing in.</summary>
         public string DisplayName { get; set; }
-        /// <summary>Indicates whether the device is compliant or not.</summary>
+        /// <summary>Indicates whether the device is compliant.</summary>
         public bool? IsCompliant { get; set; }
-        /// <summary>Indicates if the device is managed or not.</summary>
+        /// <summary>Indicates whether the device is managed.</summary>
         public bool? IsManaged { get; set; }
-        /// <summary>Indicates the OS name and version used for signing-in.</summary>
+        /// <summary>Indicates the operating system name and version used for signing in.</summary>
         public string OperatingSystem { get; set; }
-        /// <summary>Indicates information on whether the signed-in device is Workplace Joined, AzureAD Joined, Domain Joined.</summary>
+        /// <summary>Provides information about whether the signed-in device is Workplace Joined, AzureAD Joined, Domain Joined.</summary>
         public string TrustType { get; set; }
         /// <summary>
         /// Instantiates a new deviceDetail and sets the default values.
@@ -31,7 +31,7 @@ namespace ApiSdk.Models.Microsoft.Graph {
         /// Creates a new instance of the appropriate class based on discriminator value
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         /// </summary>
-        public static DeviceDetail CreateFromDiscriminatorValue(IParseNode parseNode) {
+        public static ApiSdk.Models.Microsoft.Graph.DeviceDetail CreateFromDiscriminatorValue(IParseNode parseNode) {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
             return new DeviceDetail();
         }

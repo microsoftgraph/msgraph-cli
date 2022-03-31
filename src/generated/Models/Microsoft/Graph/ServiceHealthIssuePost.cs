@@ -10,7 +10,7 @@ namespace ApiSdk.Models.Microsoft.Graph {
         /// <summary>The published time of the post.</summary>
         public DateTimeOffset? CreatedDateTime { get; set; }
         /// <summary>The content of the service issue post.</summary>
-        public ItemBody Description { get; set; }
+        public ApiSdk.Models.Microsoft.Graph.ItemBody Description { get; set; }
         /// <summary>The post type of the service issue historical post. Possible values are: regular, quick, strategic, unknownFutureValue.</summary>
         public ApiSdk.Models.Microsoft.Graph.PostType? PostType { get; set; }
         /// <summary>
@@ -23,7 +23,7 @@ namespace ApiSdk.Models.Microsoft.Graph {
         /// Creates a new instance of the appropriate class based on discriminator value
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         /// </summary>
-        public static ServiceHealthIssuePost CreateFromDiscriminatorValue(IParseNode parseNode) {
+        public static ApiSdk.Models.Microsoft.Graph.ServiceHealthIssuePost CreateFromDiscriminatorValue(IParseNode parseNode) {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
             return new ServiceHealthIssuePost();
         }
@@ -33,7 +33,7 @@ namespace ApiSdk.Models.Microsoft.Graph {
         public IDictionary<string, Action<T, IParseNode>> GetFieldDeserializers<T>() {
             return new Dictionary<string, Action<T, IParseNode>> {
                 {"createdDateTime", (o,n) => { (o as ServiceHealthIssuePost).CreatedDateTime = n.GetDateTimeOffsetValue(); } },
-                {"description", (o,n) => { (o as ServiceHealthIssuePost).Description = n.GetObjectValue<ItemBody>(ItemBody.CreateFromDiscriminatorValue); } },
+                {"description", (o,n) => { (o as ServiceHealthIssuePost).Description = n.GetObjectValue<ApiSdk.Models.Microsoft.Graph.ItemBody>(ApiSdk.Models.Microsoft.Graph.ItemBody.CreateFromDiscriminatorValue); } },
                 {"postType", (o,n) => { (o as ServiceHealthIssuePost).PostType = n.GetEnumValue<PostType>(); } },
             };
         }
@@ -44,7 +44,7 @@ namespace ApiSdk.Models.Microsoft.Graph {
         public void Serialize(ISerializationWriter writer) {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             writer.WriteDateTimeOffsetValue("createdDateTime", CreatedDateTime);
-            writer.WriteObjectValue<ItemBody>("description", Description);
+            writer.WriteObjectValue<ApiSdk.Models.Microsoft.Graph.ItemBody>("description", Description);
             writer.WriteEnumValue<PostType>("postType", PostType);
             writer.WriteAdditionalData(AdditionalData);
         }

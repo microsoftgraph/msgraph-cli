@@ -13,7 +13,7 @@ namespace ApiSdk.Models.Microsoft.Graph {
         public string Label { get; set; }
         /// <summary>The media type. The possible value are unknown, audio, video, videoBasedScreenSharing, data.</summary>
         public Modality? MediaType { get; set; }
-        /// <summary>Indicates whether the media is muted by the server.</summary>
+        /// <summary>If the media is muted by the server.</summary>
         public bool? ServerMuted { get; set; }
         /// <summary>The source ID.</summary>
         public string SourceId { get; set; }
@@ -27,7 +27,7 @@ namespace ApiSdk.Models.Microsoft.Graph {
         /// Creates a new instance of the appropriate class based on discriminator value
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         /// </summary>
-        public static MediaStream CreateFromDiscriminatorValue(IParseNode parseNode) {
+        public static ApiSdk.Models.Microsoft.Graph.MediaStream CreateFromDiscriminatorValue(IParseNode parseNode) {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
             return new MediaStream();
         }

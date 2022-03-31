@@ -12,7 +12,7 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 namespace ApiSdk.Identity.ApiConnectors.Item.UploadClientCertificate {
-    /// <summary>Builds and executes requests for operations under \identity\apiConnectors\{identityApiConnector-id}\microsoft.graph.uploadClientCertificate</summary>
+    /// <summary>Provides operations to call the uploadClientCertificate method.</summary>
     public class UploadClientCertificateRequestBuilder {
         /// <summary>Path parameters for the request</summary>
         private Dictionary<string, object> PathParameters { get; set; }
@@ -61,13 +61,13 @@ namespace ApiSdk.Identity.ApiConnectors.Item.UploadClientCertificate {
                 PathParameters.Add("identityApiConnector_id", identityApiConnectorId);
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
-                var model = parseNode.GetObjectValue<UploadClientCertificateRequestBody>(UploadClientCertificateRequestBody.CreateFromDiscriminatorValue);
+                var model = parseNode.GetObjectValue<ApiSdk.Identity.ApiConnectors.Item.UploadClientCertificate.UploadClientCertificateRequestBody>(ApiSdk.Identity.ApiConnectors.Item.UploadClientCertificate.UploadClientCertificateRequestBody.CreateFromDiscriminatorValue);
                 var requestInfo = CreatePostRequestInformation(model, q => {
                 });
                 var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: default, cancellationToken: cancellationToken);
-                var formatter = outputFormatterFactory.GetFormatter(output);
                 response = await outputFilter?.FilterOutputAsync(response, query, cancellationToken) ?? response;
                 var formatterOptions = output.GetOutputFormatterOptions(new FormatterOptionsModel(!jsonNoIndent));
+                var formatter = outputFormatterFactory.GetFormatter(output);
                 await formatter.WriteOutputAsync(response, formatterOptions, cancellationToken);
             }, new CollectionBinding(identityApiConnectorIdOption, bodyOption, outputOption, queryOption, jsonNoIndentOption, new TypeBinding(typeof(IOutputFilter)), new TypeBinding(typeof(IOutputFormatterFactory)), new TypeBinding(typeof(CancellationToken))));
             return command;
@@ -88,10 +88,10 @@ namespace ApiSdk.Identity.ApiConnectors.Item.UploadClientCertificate {
         /// <summary>
         /// Invoke action uploadClientCertificate
         /// <param name="body"></param>
-        /// <param name="h">Request headers</param>
-        /// <param name="o">Request options</param>
+        /// <param name="headers">Request headers</param>
+        /// <param name="options">Request options</param>
         /// </summary>
-        public RequestInformation CreatePostRequestInformation(UploadClientCertificateRequestBody body, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
+        public RequestInformation CreatePostRequestInformation(ApiSdk.Identity.ApiConnectors.Item.UploadClientCertificate.UploadClientCertificateRequestBody body, Action<IDictionary<string, string>> headers = default, IEnumerable<IRequestOption> options = default) {
             _ = body ?? throw new ArgumentNullException(nameof(body));
             var requestInfo = new RequestInformation {
                 HttpMethod = Method.POST,
@@ -99,43 +99,9 @@ namespace ApiSdk.Identity.ApiConnectors.Item.UploadClientCertificate {
                 PathParameters = PathParameters,
             };
             requestInfo.SetContentFromParsable(RequestAdapter, "application/json", body);
-            h?.Invoke(requestInfo.Headers);
-            requestInfo.AddRequestOptions(o?.ToArray());
+            headers?.Invoke(requestInfo.Headers);
+            requestInfo.AddRequestOptions(options?.ToArray());
             return requestInfo;
-        }
-        /// <summary>Union type wrapper for classes identityApiConnector</summary>
-        public class UploadClientCertificateResponse : IAdditionalDataHolder, IParsable {
-            /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
-            public IDictionary<string, object> AdditionalData { get; set; }
-            /// <summary>Union type representation for type identityApiConnector</summary>
-            public ApiSdk.Models.Microsoft.Graph.IdentityApiConnector IdentityApiConnector { get; set; }
-            /// <summary>
-            /// Instantiates a new uploadClientCertificateResponse and sets the default values.
-            /// </summary>
-            public UploadClientCertificateResponse() {
-                AdditionalData = new Dictionary<string, object>();
-            }
-            public static UploadClientCertificateResponse CreateFromDiscriminatorValue(IParseNode parseNode) {
-                _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-                return new UploadClientCertificateResponse();
-            }
-            /// <summary>
-            /// The deserialization information for the current model
-            /// </summary>
-            public IDictionary<string, Action<T, IParseNode>> GetFieldDeserializers<T>() {
-                return new Dictionary<string, Action<T, IParseNode>> {
-                    {"identityApiConnector", (o,n) => { (o as UploadClientCertificateResponse).IdentityApiConnector = n.GetObjectValue<ApiSdk.Models.Microsoft.Graph.IdentityApiConnector>(ApiSdk.Models.Microsoft.Graph.IdentityApiConnector.CreateFromDiscriminatorValue); } },
-                };
-            }
-            /// <summary>
-            /// Serializes information the current object
-            /// <param name="writer">Serialization writer to use to serialize this model</param>
-            /// </summary>
-            public void Serialize(ISerializationWriter writer) {
-                _ = writer ?? throw new ArgumentNullException(nameof(writer));
-                writer.WriteObjectValue<ApiSdk.Models.Microsoft.Graph.IdentityApiConnector>("identityApiConnector", IdentityApiConnector);
-                writer.WriteAdditionalData(AdditionalData);
-            }
         }
     }
 }

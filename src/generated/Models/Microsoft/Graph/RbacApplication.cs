@@ -6,14 +6,14 @@ using System.Linq;
 namespace ApiSdk.Models.Microsoft.Graph {
     public class RbacApplication : Entity, IParsable {
         /// <summary>Resource to grant access to users or groups.</summary>
-        public List<UnifiedRoleAssignment> RoleAssignments { get; set; }
+        public List<ApiSdk.Models.Microsoft.Graph.UnifiedRoleAssignment> RoleAssignments { get; set; }
         /// <summary>Resource representing the roles allowed by RBAC providers and the permissions assigned to the roles.</summary>
-        public List<UnifiedRoleDefinition> RoleDefinitions { get; set; }
+        public List<ApiSdk.Models.Microsoft.Graph.UnifiedRoleDefinition> RoleDefinitions { get; set; }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         /// </summary>
-        public static new RbacApplication CreateFromDiscriminatorValue(IParseNode parseNode) {
+        public static new ApiSdk.Models.Microsoft.Graph.RbacApplication CreateFromDiscriminatorValue(IParseNode parseNode) {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
             return new RbacApplication();
         }
@@ -22,8 +22,8 @@ namespace ApiSdk.Models.Microsoft.Graph {
         /// </summary>
         public new IDictionary<string, Action<T, IParseNode>> GetFieldDeserializers<T>() {
             return new Dictionary<string, Action<T, IParseNode>>(base.GetFieldDeserializers<T>()) {
-                {"roleAssignments", (o,n) => { (o as RbacApplication).RoleAssignments = n.GetCollectionOfObjectValues<UnifiedRoleAssignment>(UnifiedRoleAssignment.CreateFromDiscriminatorValue).ToList(); } },
-                {"roleDefinitions", (o,n) => { (o as RbacApplication).RoleDefinitions = n.GetCollectionOfObjectValues<UnifiedRoleDefinition>(UnifiedRoleDefinition.CreateFromDiscriminatorValue).ToList(); } },
+                {"roleAssignments", (o,n) => { (o as RbacApplication).RoleAssignments = n.GetCollectionOfObjectValues<ApiSdk.Models.Microsoft.Graph.UnifiedRoleAssignment>(ApiSdk.Models.Microsoft.Graph.UnifiedRoleAssignment.CreateFromDiscriminatorValue).ToList(); } },
+                {"roleDefinitions", (o,n) => { (o as RbacApplication).RoleDefinitions = n.GetCollectionOfObjectValues<ApiSdk.Models.Microsoft.Graph.UnifiedRoleDefinition>(ApiSdk.Models.Microsoft.Graph.UnifiedRoleDefinition.CreateFromDiscriminatorValue).ToList(); } },
             };
         }
         /// <summary>
@@ -33,8 +33,8 @@ namespace ApiSdk.Models.Microsoft.Graph {
         public new void Serialize(ISerializationWriter writer) {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             base.Serialize(writer);
-            writer.WriteCollectionOfObjectValues<UnifiedRoleAssignment>("roleAssignments", RoleAssignments);
-            writer.WriteCollectionOfObjectValues<UnifiedRoleDefinition>("roleDefinitions", RoleDefinitions);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.Microsoft.Graph.UnifiedRoleAssignment>("roleAssignments", RoleAssignments);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.Microsoft.Graph.UnifiedRoleDefinition>("roleDefinitions", RoleDefinitions);
         }
     }
 }

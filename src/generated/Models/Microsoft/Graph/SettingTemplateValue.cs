@@ -7,13 +7,13 @@ namespace ApiSdk.Models.Microsoft.Graph {
     public class SettingTemplateValue : IAdditionalDataHolder, IParsable {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
-        /// <summary>Default value for the setting. Read-only.</summary>
+        /// <summary>Default value for the setting.</summary>
         public string DefaultValue { get; set; }
-        /// <summary>Description of the setting. Read-only.</summary>
+        /// <summary>Description of the setting.</summary>
         public string Description { get; set; }
-        /// <summary>Name of the setting. Read-only.</summary>
+        /// <summary>Name of the setting.</summary>
         public string Name { get; set; }
-        /// <summary>Type of the setting. Read-only.</summary>
+        /// <summary>Type of the setting.</summary>
         public string Type { get; set; }
         /// <summary>
         /// Instantiates a new settingTemplateValue and sets the default values.
@@ -25,7 +25,7 @@ namespace ApiSdk.Models.Microsoft.Graph {
         /// Creates a new instance of the appropriate class based on discriminator value
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         /// </summary>
-        public static SettingTemplateValue CreateFromDiscriminatorValue(IParseNode parseNode) {
+        public static ApiSdk.Models.Microsoft.Graph.SettingTemplateValue CreateFromDiscriminatorValue(IParseNode parseNode) {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
             return new SettingTemplateValue();
         }

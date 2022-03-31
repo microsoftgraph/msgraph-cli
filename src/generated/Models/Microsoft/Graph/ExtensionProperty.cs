@@ -9,7 +9,7 @@ namespace ApiSdk.Models.Microsoft.Graph {
         public string AppDisplayName { get; set; }
         /// <summary>Specifies the data type of the value the extension property can hold. Following values are supported. Not nullable. Binary - 256 bytes maximumBooleanDateTime - Must be specified in ISO 8601 format. Will be stored in UTC.Integer - 32-bit value.LargeInteger - 64-bit value.String - 256 characters maximum</summary>
         public string DataType { get; set; }
-        /// <summary>Indicates if this extension property was sycned from onpremises directory using Azure AD Connect. Read-only.</summary>
+        /// <summary>Indicates if this extension property was synced from on-premises active directory using Azure AD Connect. Read-only.</summary>
         public bool? IsSyncedFromOnPremises { get; set; }
         /// <summary>Name of the extension property. Not nullable.</summary>
         public string Name { get; set; }
@@ -19,7 +19,7 @@ namespace ApiSdk.Models.Microsoft.Graph {
         /// Creates a new instance of the appropriate class based on discriminator value
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         /// </summary>
-        public static new ExtensionProperty CreateFromDiscriminatorValue(IParseNode parseNode) {
+        public static new ApiSdk.Models.Microsoft.Graph.ExtensionProperty CreateFromDiscriminatorValue(IParseNode parseNode) {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
             return new ExtensionProperty();
         }

@@ -8,9 +8,9 @@ namespace ApiSdk.Models.Microsoft.Graph {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>Opens the section in the OneNote native client if it's installed.</summary>
-        public ExternalLink OneNoteClientUrl { get; set; }
+        public ApiSdk.Models.Microsoft.Graph.ExternalLink OneNoteClientUrl { get; set; }
         /// <summary>Opens the section in OneNote on the web.</summary>
-        public ExternalLink OneNoteWebUrl { get; set; }
+        public ApiSdk.Models.Microsoft.Graph.ExternalLink OneNoteWebUrl { get; set; }
         /// <summary>
         /// Instantiates a new sectionLinks and sets the default values.
         /// </summary>
@@ -21,7 +21,7 @@ namespace ApiSdk.Models.Microsoft.Graph {
         /// Creates a new instance of the appropriate class based on discriminator value
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         /// </summary>
-        public static SectionLinks CreateFromDiscriminatorValue(IParseNode parseNode) {
+        public static ApiSdk.Models.Microsoft.Graph.SectionLinks CreateFromDiscriminatorValue(IParseNode parseNode) {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
             return new SectionLinks();
         }
@@ -30,8 +30,8 @@ namespace ApiSdk.Models.Microsoft.Graph {
         /// </summary>
         public IDictionary<string, Action<T, IParseNode>> GetFieldDeserializers<T>() {
             return new Dictionary<string, Action<T, IParseNode>> {
-                {"oneNoteClientUrl", (o,n) => { (o as SectionLinks).OneNoteClientUrl = n.GetObjectValue<ExternalLink>(ExternalLink.CreateFromDiscriminatorValue); } },
-                {"oneNoteWebUrl", (o,n) => { (o as SectionLinks).OneNoteWebUrl = n.GetObjectValue<ExternalLink>(ExternalLink.CreateFromDiscriminatorValue); } },
+                {"oneNoteClientUrl", (o,n) => { (o as SectionLinks).OneNoteClientUrl = n.GetObjectValue<ApiSdk.Models.Microsoft.Graph.ExternalLink>(ApiSdk.Models.Microsoft.Graph.ExternalLink.CreateFromDiscriminatorValue); } },
+                {"oneNoteWebUrl", (o,n) => { (o as SectionLinks).OneNoteWebUrl = n.GetObjectValue<ApiSdk.Models.Microsoft.Graph.ExternalLink>(ApiSdk.Models.Microsoft.Graph.ExternalLink.CreateFromDiscriminatorValue); } },
             };
         }
         /// <summary>
@@ -40,8 +40,8 @@ namespace ApiSdk.Models.Microsoft.Graph {
         /// </summary>
         public void Serialize(ISerializationWriter writer) {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
-            writer.WriteObjectValue<ExternalLink>("oneNoteClientUrl", OneNoteClientUrl);
-            writer.WriteObjectValue<ExternalLink>("oneNoteWebUrl", OneNoteWebUrl);
+            writer.WriteObjectValue<ApiSdk.Models.Microsoft.Graph.ExternalLink>("oneNoteClientUrl", OneNoteClientUrl);
+            writer.WriteObjectValue<ApiSdk.Models.Microsoft.Graph.ExternalLink>("oneNoteWebUrl", OneNoteWebUrl);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

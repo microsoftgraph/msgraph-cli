@@ -11,7 +11,7 @@ namespace ApiSdk.Models.Microsoft.Graph {
         public bool? AllowAddRemoveApps { get; set; }
         /// <summary>If set to true, members can add and update private channels.</summary>
         public bool? AllowCreatePrivateChannels { get; set; }
-        /// <summary>If set to true, members can add and update any channels.</summary>
+        /// <summary>If set to true, members can add and update channels.</summary>
         public bool? AllowCreateUpdateChannels { get; set; }
         /// <summary>If set to true, members can add, update, and remove connectors.</summary>
         public bool? AllowCreateUpdateRemoveConnectors { get; set; }
@@ -29,7 +29,7 @@ namespace ApiSdk.Models.Microsoft.Graph {
         /// Creates a new instance of the appropriate class based on discriminator value
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         /// </summary>
-        public static TeamMemberSettings CreateFromDiscriminatorValue(IParseNode parseNode) {
+        public static ApiSdk.Models.Microsoft.Graph.TeamMemberSettings CreateFromDiscriminatorValue(IParseNode parseNode) {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
             return new TeamMemberSettings();
         }

@@ -1,4 +1,5 @@
 using ApiSdk.Models.Microsoft.Graph;
+using ApiSdk.Models.Microsoft.Graph.ODataErrors;
 using ApiSdk.Workbooks.Item.Analytics;
 using ApiSdk.Workbooks.Item.Checkin;
 using ApiSdk.Workbooks.Item.Checkout;
@@ -23,7 +24,6 @@ using ApiSdk.Workbooks.Item.Thumbnails;
 using ApiSdk.Workbooks.Item.Unfollow;
 using ApiSdk.Workbooks.Item.ValidatePermission;
 using ApiSdk.Workbooks.Item.Versions;
-using ApiSdk.Workbooks.Item.Workbook;
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
 using Microsoft.Kiota.Cli.Commons.Binding;
@@ -37,7 +37,7 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 namespace ApiSdk.Workbooks.Item {
-    /// <summary>Builds and executes requests for operations under \workbooks\{driveItem-id}</summary>
+    /// <summary>Provides operations to manage the collection of driveItem entities.</summary>
     public class DriveItemItemRequestBuilder {
         /// <summary>Path parameters for the request</summary>
         private Dictionary<string, object> PathParameters { get; set; }
@@ -47,55 +47,54 @@ namespace ApiSdk.Workbooks.Item {
         private string UrlTemplate { get; set; }
         public Command BuildAnalyticsCommand() {
             var command = new Command("analytics");
-            var builder = new ApiSdk.Workbooks.Item.Analytics.AnalyticsRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new AnalyticsRequestBuilder(PathParameters, RequestAdapter);
             command.AddCommand(builder.BuildGetCommand());
-            command.AddCommand(builder.BuildRefCommand());
             return command;
         }
         public Command BuildCheckinCommand() {
             var command = new Command("checkin");
-            var builder = new ApiSdk.Workbooks.Item.Checkin.CheckinRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new CheckinRequestBuilder(PathParameters, RequestAdapter);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
         public Command BuildCheckoutCommand() {
             var command = new Command("checkout");
-            var builder = new ApiSdk.Workbooks.Item.Checkout.CheckoutRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new CheckoutRequestBuilder(PathParameters, RequestAdapter);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
         public Command BuildChildrenCommand() {
             var command = new Command("children");
-            var builder = new ApiSdk.Workbooks.Item.Children.ChildrenRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new ChildrenRequestBuilder(PathParameters, RequestAdapter);
             foreach (var cmd in builder.BuildCommand()) {
                 command.AddCommand(cmd);
             }
-            command.AddCommand(builder.BuildCreateCommand());
+            command.AddCommand(builder.BuildCountCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;
         }
         public Command BuildContentCommand() {
             var command = new Command("content");
-            var builder = new ApiSdk.Workbooks.Item.Content.ContentRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new ContentRequestBuilder(PathParameters, RequestAdapter);
             command.AddCommand(builder.BuildGetCommand());
             command.AddCommand(builder.BuildPutCommand());
             return command;
         }
         public Command BuildCopyCommand() {
             var command = new Command("copy");
-            var builder = new ApiSdk.Workbooks.Item.Copy.CopyRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new CopyRequestBuilder(PathParameters, RequestAdapter);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
         public Command BuildCreateLinkCommand() {
             var command = new Command("create-link");
-            var builder = new ApiSdk.Workbooks.Item.CreateLink.CreateLinkRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new CreateLinkRequestBuilder(PathParameters, RequestAdapter);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
         public Command BuildCreateUploadSessionCommand() {
             var command = new Command("create-upload-session");
-            var builder = new ApiSdk.Workbooks.Item.CreateUploadSession.CreateUploadSessionRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new CreateUploadSessionRequestBuilder(PathParameters, RequestAdapter);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
@@ -117,14 +116,18 @@ namespace ApiSdk.Workbooks.Item {
                 PathParameters.Add("driveItem_id", driveItemId);
                 var requestInfo = CreateDeleteRequestInformation(q => {
                 });
-                await RequestAdapter.SendNoContentAsync(requestInfo, errorMapping: default, cancellationToken: cancellationToken);
+                var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
+                    {"4XX", ODataError.CreateFromDiscriminatorValue},
+                    {"5XX", ODataError.CreateFromDiscriminatorValue},
+                };
+                await RequestAdapter.SendNoContentAsync(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken);
                 Console.WriteLine("Success");
             }, new CollectionBinding(driveItemIdOption, new TypeBinding(typeof(CancellationToken))));
             return command;
         }
         public Command BuildFollowCommand() {
             var command = new Command("follow");
-            var builder = new ApiSdk.Workbooks.Item.Follow.FollowRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new FollowRequestBuilder(PathParameters, RequestAdapter);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
@@ -178,23 +181,27 @@ namespace ApiSdk.Workbooks.Item {
                     q.Select = select;
                     q.Expand = expand;
                 });
-                var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: default, cancellationToken: cancellationToken);
-                var formatter = outputFormatterFactory.GetFormatter(output);
+                var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
+                    {"4XX", ODataError.CreateFromDiscriminatorValue},
+                    {"5XX", ODataError.CreateFromDiscriminatorValue},
+                };
+                var response = await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken);
                 response = await outputFilter?.FilterOutputAsync(response, query, cancellationToken) ?? response;
                 var formatterOptions = output.GetOutputFormatterOptions(new FormatterOptionsModel(!jsonNoIndent));
+                var formatter = outputFormatterFactory.GetFormatter(output);
                 await formatter.WriteOutputAsync(response, formatterOptions, cancellationToken);
             }, new CollectionBinding(driveItemIdOption, selectOption, expandOption, outputOption, queryOption, jsonNoIndentOption, new TypeBinding(typeof(IOutputFilter)), new TypeBinding(typeof(IOutputFormatterFactory)), new TypeBinding(typeof(CancellationToken))));
             return command;
         }
         public Command BuildInviteCommand() {
             var command = new Command("invite");
-            var builder = new ApiSdk.Workbooks.Item.Invite.InviteRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new InviteRequestBuilder(PathParameters, RequestAdapter);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
         public Command BuildListItemCommand() {
             var command = new Command("list-item");
-            var builder = new ApiSdk.Workbooks.Item.ListItem.ListItemRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new ListItemRequestBuilder(PathParameters, RequestAdapter);
             command.AddCommand(builder.BuildAnalyticsCommand());
             command.AddCommand(builder.BuildDeleteCommand());
             command.AddCommand(builder.BuildDriveItemCommand());
@@ -230,91 +237,81 @@ namespace ApiSdk.Workbooks.Item {
                 var model = parseNode.GetObjectValue<ApiSdk.Models.Microsoft.Graph.DriveItem>(ApiSdk.Models.Microsoft.Graph.DriveItem.CreateFromDiscriminatorValue);
                 var requestInfo = CreatePatchRequestInformation(model, q => {
                 });
-                await RequestAdapter.SendNoContentAsync(requestInfo, errorMapping: default, cancellationToken: cancellationToken);
+                var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
+                    {"4XX", ODataError.CreateFromDiscriminatorValue},
+                    {"5XX", ODataError.CreateFromDiscriminatorValue},
+                };
+                await RequestAdapter.SendNoContentAsync(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken);
                 Console.WriteLine("Success");
             }, new CollectionBinding(driveItemIdOption, bodyOption, new TypeBinding(typeof(CancellationToken))));
             return command;
         }
         public Command BuildPermissionsCommand() {
             var command = new Command("permissions");
-            var builder = new ApiSdk.Workbooks.Item.Permissions.PermissionsRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new PermissionsRequestBuilder(PathParameters, RequestAdapter);
             foreach (var cmd in builder.BuildCommand()) {
                 command.AddCommand(cmd);
             }
+            command.AddCommand(builder.BuildCountCommand());
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;
         }
         public Command BuildPreviewCommand() {
             var command = new Command("preview");
-            var builder = new ApiSdk.Workbooks.Item.Preview.PreviewRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new PreviewRequestBuilder(PathParameters, RequestAdapter);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
         public Command BuildRestoreCommand() {
             var command = new Command("restore");
-            var builder = new ApiSdk.Workbooks.Item.Restore.RestoreRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new RestoreRequestBuilder(PathParameters, RequestAdapter);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
         public Command BuildSubscriptionsCommand() {
             var command = new Command("subscriptions");
-            var builder = new ApiSdk.Workbooks.Item.Subscriptions.SubscriptionsRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new SubscriptionsRequestBuilder(PathParameters, RequestAdapter);
             foreach (var cmd in builder.BuildCommand()) {
                 command.AddCommand(cmd);
             }
+            command.AddCommand(builder.BuildCountCommand());
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;
         }
         public Command BuildThumbnailsCommand() {
             var command = new Command("thumbnails");
-            var builder = new ApiSdk.Workbooks.Item.Thumbnails.ThumbnailsRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new ThumbnailsRequestBuilder(PathParameters, RequestAdapter);
             foreach (var cmd in builder.BuildCommand()) {
                 command.AddCommand(cmd);
             }
+            command.AddCommand(builder.BuildCountCommand());
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;
         }
         public Command BuildUnfollowCommand() {
             var command = new Command("unfollow");
-            var builder = new ApiSdk.Workbooks.Item.Unfollow.UnfollowRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new UnfollowRequestBuilder(PathParameters, RequestAdapter);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
         public Command BuildValidatePermissionCommand() {
             var command = new Command("validate-permission");
-            var builder = new ApiSdk.Workbooks.Item.ValidatePermission.ValidatePermissionRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new ValidatePermissionRequestBuilder(PathParameters, RequestAdapter);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
         public Command BuildVersionsCommand() {
             var command = new Command("versions");
-            var builder = new ApiSdk.Workbooks.Item.Versions.VersionsRequestBuilder(PathParameters, RequestAdapter);
+            var builder = new VersionsRequestBuilder(PathParameters, RequestAdapter);
             foreach (var cmd in builder.BuildCommand()) {
                 command.AddCommand(cmd);
             }
+            command.AddCommand(builder.BuildCountCommand());
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
-            return command;
-        }
-        public Command BuildWorkbookCommand() {
-            var command = new Command("workbook");
-            var builder = new ApiSdk.Workbooks.Item.Workbook.WorkbookRequestBuilder(PathParameters, RequestAdapter);
-            command.AddCommand(builder.BuildApplicationCommand());
-            command.AddCommand(builder.BuildCloseSessionCommand());
-            command.AddCommand(builder.BuildCommentsCommand());
-            command.AddCommand(builder.BuildCreateSessionCommand());
-            command.AddCommand(builder.BuildDeleteCommand());
-            command.AddCommand(builder.BuildFunctionsCommand());
-            command.AddCommand(builder.BuildGetCommand());
-            command.AddCommand(builder.BuildNamesCommand());
-            command.AddCommand(builder.BuildOperationsCommand());
-            command.AddCommand(builder.BuildPatchCommand());
-            command.AddCommand(builder.BuildRefreshSessionCommand());
-            command.AddCommand(builder.BuildTablesCommand());
-            command.AddCommand(builder.BuildWorksheetsCommand());
             return command;
         }
         /// <summary>
@@ -332,47 +329,47 @@ namespace ApiSdk.Workbooks.Item {
         }
         /// <summary>
         /// Delete entity from workbooks
-        /// <param name="h">Request headers</param>
-        /// <param name="o">Request options</param>
+        /// <param name="headers">Request headers</param>
+        /// <param name="options">Request options</param>
         /// </summary>
-        public RequestInformation CreateDeleteRequestInformation(Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
+        public RequestInformation CreateDeleteRequestInformation(Action<IDictionary<string, string>> headers = default, IEnumerable<IRequestOption> options = default) {
             var requestInfo = new RequestInformation {
                 HttpMethod = Method.DELETE,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };
-            h?.Invoke(requestInfo.Headers);
-            requestInfo.AddRequestOptions(o?.ToArray());
+            headers?.Invoke(requestInfo.Headers);
+            requestInfo.AddRequestOptions(options?.ToArray());
             return requestInfo;
         }
         /// <summary>
         /// Get entity from workbooks by key
-        /// <param name="h">Request headers</param>
-        /// <param name="o">Request options</param>
-        /// <param name="q">Request query parameters</param>
+        /// <param name="headers">Request headers</param>
+        /// <param name="options">Request options</param>
+        /// <param name="queryParameters">Request query parameters</param>
         /// </summary>
-        public RequestInformation CreateGetRequestInformation(Action<GetQueryParameters> q = default, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
+        public RequestInformation CreateGetRequestInformation(Action<GetQueryParameters> queryParameters = default, Action<IDictionary<string, string>> headers = default, IEnumerable<IRequestOption> options = default) {
             var requestInfo = new RequestInformation {
                 HttpMethod = Method.GET,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };
-            if (q != null) {
+            if (queryParameters != null) {
                 var qParams = new GetQueryParameters();
-                q.Invoke(qParams);
+                queryParameters.Invoke(qParams);
                 qParams.AddQueryParameters(requestInfo.QueryParameters);
             }
-            h?.Invoke(requestInfo.Headers);
-            requestInfo.AddRequestOptions(o?.ToArray());
+            headers?.Invoke(requestInfo.Headers);
+            requestInfo.AddRequestOptions(options?.ToArray());
             return requestInfo;
         }
         /// <summary>
         /// Update entity in workbooks
         /// <param name="body"></param>
-        /// <param name="h">Request headers</param>
-        /// <param name="o">Request options</param>
+        /// <param name="headers">Request headers</param>
+        /// <param name="options">Request options</param>
         /// </summary>
-        public RequestInformation CreatePatchRequestInformation(ApiSdk.Models.Microsoft.Graph.DriveItem body, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
+        public RequestInformation CreatePatchRequestInformation(ApiSdk.Models.Microsoft.Graph.DriveItem body, Action<IDictionary<string, string>> headers = default, IEnumerable<IRequestOption> options = default) {
             _ = body ?? throw new ArgumentNullException(nameof(body));
             var requestInfo = new RequestInformation {
                 HttpMethod = Method.PATCH,
@@ -380,35 +377,35 @@ namespace ApiSdk.Workbooks.Item {
                 PathParameters = PathParameters,
             };
             requestInfo.SetContentFromParsable(RequestAdapter, "application/json", body);
-            h?.Invoke(requestInfo.Headers);
-            requestInfo.AddRequestOptions(o?.ToArray());
+            headers?.Invoke(requestInfo.Headers);
+            requestInfo.AddRequestOptions(options?.ToArray());
             return requestInfo;
         }
         /// <summary>
-        /// Builds and executes requests for operations under \workbooks\{driveItem-id}\microsoft.graph.delta()
+        /// Provides operations to call the delta method.
         /// </summary>
         public DeltaRequestBuilder Delta() {
             return new DeltaRequestBuilder(PathParameters, RequestAdapter);
         }
         /// <summary>
-        /// Builds and executes requests for operations under \workbooks\{driveItem-id}\microsoft.graph.delta(token='{token}')
-        /// <param name="token">Usage: token={token}</param>
+        /// Provides operations to call the delta method.
+        /// <param name="token">Usage: token='{token}'</param>
         /// </summary>
         public DeltaWithTokenRequestBuilder DeltaWithToken(string token) {
             if(string.IsNullOrEmpty(token)) throw new ArgumentNullException(nameof(token));
             return new DeltaWithTokenRequestBuilder(PathParameters, RequestAdapter, token);
         }
         /// <summary>
-        /// Builds and executes requests for operations under \workbooks\{driveItem-id}\microsoft.graph.getActivitiesByInterval()
+        /// Provides operations to call the getActivitiesByInterval method.
         /// </summary>
         public GetActivitiesByIntervalRequestBuilder GetActivitiesByInterval() {
             return new GetActivitiesByIntervalRequestBuilder(PathParameters, RequestAdapter);
         }
         /// <summary>
-        /// Builds and executes requests for operations under \workbooks\{driveItem-id}\microsoft.graph.getActivitiesByInterval(startDateTime='{startDateTime}',endDateTime='{endDateTime}',interval='{interval}')
-        /// <param name="endDateTime">Usage: endDateTime={endDateTime}</param>
-        /// <param name="interval">Usage: interval={interval}</param>
-        /// <param name="startDateTime">Usage: startDateTime={startDateTime}</param>
+        /// Provides operations to call the getActivitiesByInterval method.
+        /// <param name="endDateTime">Usage: endDateTime='{endDateTime}'</param>
+        /// <param name="interval">Usage: interval='{interval}'</param>
+        /// <param name="startDateTime">Usage: startDateTime='{startDateTime}'</param>
         /// </summary>
         public GetActivitiesByIntervalWithStartDateTimeWithEndDateTimeWithIntervalRequestBuilder GetActivitiesByIntervalWithStartDateTimeWithEndDateTimeWithInterval(string endDateTime, string interval, string startDateTime) {
             if(string.IsNullOrEmpty(endDateTime)) throw new ArgumentNullException(nameof(endDateTime));
@@ -417,8 +414,8 @@ namespace ApiSdk.Workbooks.Item {
             return new GetActivitiesByIntervalWithStartDateTimeWithEndDateTimeWithIntervalRequestBuilder(PathParameters, RequestAdapter, endDateTime, interval, startDateTime);
         }
         /// <summary>
-        /// Builds and executes requests for operations under \workbooks\{driveItem-id}\microsoft.graph.search(q='{q}')
-        /// <param name="q">Usage: q={q}</param>
+        /// Provides operations to call the search method.
+        /// <param name="q">Usage: q='{q}'</param>
         /// </summary>
         public SearchWithQRequestBuilder SearchWithQ(string q) {
             if(string.IsNullOrEmpty(q)) throw new ArgumentNullException(nameof(q));

@@ -8,12 +8,12 @@ namespace ApiSdk.Models.Microsoft.Graph {
         /// <summary>Indicates whether this resource should be copied to each student submission for modification and submission. Required</summary>
         public bool? DistributeForStudentWork { get; set; }
         /// <summary>Resource object that has been associated with this assignment.</summary>
-        public EducationResource Resource { get; set; }
+        public ApiSdk.Models.Microsoft.Graph.EducationResource Resource { get; set; }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         /// </summary>
-        public static new EducationAssignmentResource CreateFromDiscriminatorValue(IParseNode parseNode) {
+        public static new ApiSdk.Models.Microsoft.Graph.EducationAssignmentResource CreateFromDiscriminatorValue(IParseNode parseNode) {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
             return new EducationAssignmentResource();
         }
@@ -23,7 +23,7 @@ namespace ApiSdk.Models.Microsoft.Graph {
         public new IDictionary<string, Action<T, IParseNode>> GetFieldDeserializers<T>() {
             return new Dictionary<string, Action<T, IParseNode>>(base.GetFieldDeserializers<T>()) {
                 {"distributeForStudentWork", (o,n) => { (o as EducationAssignmentResource).DistributeForStudentWork = n.GetBoolValue(); } },
-                {"resource", (o,n) => { (o as EducationAssignmentResource).Resource = n.GetObjectValue<EducationResource>(EducationResource.CreateFromDiscriminatorValue); } },
+                {"resource", (o,n) => { (o as EducationAssignmentResource).Resource = n.GetObjectValue<ApiSdk.Models.Microsoft.Graph.EducationResource>(ApiSdk.Models.Microsoft.Graph.EducationResource.CreateFromDiscriminatorValue); } },
             };
         }
         /// <summary>
@@ -34,7 +34,7 @@ namespace ApiSdk.Models.Microsoft.Graph {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             base.Serialize(writer);
             writer.WriteBoolValue("distributeForStudentWork", DistributeForStudentWork);
-            writer.WriteObjectValue<EducationResource>("resource", Resource);
+            writer.WriteObjectValue<ApiSdk.Models.Microsoft.Graph.EducationResource>("resource", Resource);
         }
     }
 }

@@ -8,7 +8,7 @@ namespace ApiSdk.Models.Microsoft.Graph {
     public class TermColumn : IAdditionalDataHolder, IParsable {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
-        /// <summary>Specifies whether the column will allow more than one value</summary>
+        /// <summary>Specifies whether the column will allow more than one value.</summary>
         public bool? AllowMultipleValues { get; set; }
         public Term ParentTerm { get; set; }
         /// <summary>Specifies whether to display the entire term path or only the term label.</summary>
@@ -24,7 +24,7 @@ namespace ApiSdk.Models.Microsoft.Graph {
         /// Creates a new instance of the appropriate class based on discriminator value
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         /// </summary>
-        public static TermColumn CreateFromDiscriminatorValue(IParseNode parseNode) {
+        public static ApiSdk.Models.Microsoft.Graph.TermColumn CreateFromDiscriminatorValue(IParseNode parseNode) {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
             return new TermColumn();
         }

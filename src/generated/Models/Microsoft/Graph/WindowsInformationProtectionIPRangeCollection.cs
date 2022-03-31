@@ -4,13 +4,14 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 namespace ApiSdk.Models.Microsoft.Graph {
+    /// <summary>Windows Information Protection IP Range Collection</summary>
     public class WindowsInformationProtectionIPRangeCollection : IAdditionalDataHolder, IParsable {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>Display name</summary>
         public string DisplayName { get; set; }
         /// <summary>Collection of ip ranges</summary>
-        public List<IpRange> Ranges { get; set; }
+        public List<ApiSdk.Models.Microsoft.Graph.IpRange> Ranges { get; set; }
         /// <summary>
         /// Instantiates a new windowsInformationProtectionIPRangeCollection and sets the default values.
         /// </summary>
@@ -21,7 +22,7 @@ namespace ApiSdk.Models.Microsoft.Graph {
         /// Creates a new instance of the appropriate class based on discriminator value
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         /// </summary>
-        public static WindowsInformationProtectionIPRangeCollection CreateFromDiscriminatorValue(IParseNode parseNode) {
+        public static ApiSdk.Models.Microsoft.Graph.WindowsInformationProtectionIPRangeCollection CreateFromDiscriminatorValue(IParseNode parseNode) {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
             return new WindowsInformationProtectionIPRangeCollection();
         }
@@ -31,7 +32,7 @@ namespace ApiSdk.Models.Microsoft.Graph {
         public IDictionary<string, Action<T, IParseNode>> GetFieldDeserializers<T>() {
             return new Dictionary<string, Action<T, IParseNode>> {
                 {"displayName", (o,n) => { (o as WindowsInformationProtectionIPRangeCollection).DisplayName = n.GetStringValue(); } },
-                {"ranges", (o,n) => { (o as WindowsInformationProtectionIPRangeCollection).Ranges = n.GetCollectionOfObjectValues<IpRange>(IpRange.CreateFromDiscriminatorValue).ToList(); } },
+                {"ranges", (o,n) => { (o as WindowsInformationProtectionIPRangeCollection).Ranges = n.GetCollectionOfObjectValues<ApiSdk.Models.Microsoft.Graph.IpRange>(ApiSdk.Models.Microsoft.Graph.IpRange.CreateFromDiscriminatorValue).ToList(); } },
             };
         }
         /// <summary>
@@ -41,7 +42,7 @@ namespace ApiSdk.Models.Microsoft.Graph {
         public void Serialize(ISerializationWriter writer) {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             writer.WriteStringValue("displayName", DisplayName);
-            writer.WriteCollectionOfObjectValues<IpRange>("ranges", Ranges);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.Microsoft.Graph.IpRange>("ranges", Ranges);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

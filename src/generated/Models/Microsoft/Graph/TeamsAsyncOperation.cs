@@ -10,10 +10,10 @@ namespace ApiSdk.Models.Microsoft.Graph {
         /// <summary>Time when the operation was created.</summary>
         public DateTimeOffset? CreatedDateTime { get; set; }
         /// <summary>Any error that causes the async operation to fail.</summary>
-        public OperationError Error { get; set; }
+        public ApiSdk.Models.Microsoft.Graph.OperationError Error { get; set; }
         /// <summary>Time when the async operation was last updated.</summary>
         public DateTimeOffset? LastActionDateTime { get; set; }
-        /// <summary>Denotes the type of operation being described.</summary>
+        /// <summary>Denotes which type of operation is being described.</summary>
         public TeamsAsyncOperationType? OperationType { get; set; }
         /// <summary>Operation status.</summary>
         public TeamsAsyncOperationStatus? Status { get; set; }
@@ -25,7 +25,7 @@ namespace ApiSdk.Models.Microsoft.Graph {
         /// Creates a new instance of the appropriate class based on discriminator value
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         /// </summary>
-        public static new TeamsAsyncOperation CreateFromDiscriminatorValue(IParseNode parseNode) {
+        public static new ApiSdk.Models.Microsoft.Graph.TeamsAsyncOperation CreateFromDiscriminatorValue(IParseNode parseNode) {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
             return new TeamsAsyncOperation();
         }
@@ -36,7 +36,7 @@ namespace ApiSdk.Models.Microsoft.Graph {
             return new Dictionary<string, Action<T, IParseNode>>(base.GetFieldDeserializers<T>()) {
                 {"attemptsCount", (o,n) => { (o as TeamsAsyncOperation).AttemptsCount = n.GetIntValue(); } },
                 {"createdDateTime", (o,n) => { (o as TeamsAsyncOperation).CreatedDateTime = n.GetDateTimeOffsetValue(); } },
-                {"error", (o,n) => { (o as TeamsAsyncOperation).Error = n.GetObjectValue<OperationError>(OperationError.CreateFromDiscriminatorValue); } },
+                {"error", (o,n) => { (o as TeamsAsyncOperation).Error = n.GetObjectValue<ApiSdk.Models.Microsoft.Graph.OperationError>(ApiSdk.Models.Microsoft.Graph.OperationError.CreateFromDiscriminatorValue); } },
                 {"lastActionDateTime", (o,n) => { (o as TeamsAsyncOperation).LastActionDateTime = n.GetDateTimeOffsetValue(); } },
                 {"operationType", (o,n) => { (o as TeamsAsyncOperation).OperationType = n.GetEnumValue<TeamsAsyncOperationType>(); } },
                 {"status", (o,n) => { (o as TeamsAsyncOperation).Status = n.GetEnumValue<TeamsAsyncOperationStatus>(); } },
@@ -53,7 +53,7 @@ namespace ApiSdk.Models.Microsoft.Graph {
             base.Serialize(writer);
             writer.WriteIntValue("attemptsCount", AttemptsCount);
             writer.WriteDateTimeOffsetValue("createdDateTime", CreatedDateTime);
-            writer.WriteObjectValue<OperationError>("error", Error);
+            writer.WriteObjectValue<ApiSdk.Models.Microsoft.Graph.OperationError>("error", Error);
             writer.WriteDateTimeOffsetValue("lastActionDateTime", LastActionDateTime);
             writer.WriteEnumValue<TeamsAsyncOperationType>("operationType", OperationType);
             writer.WriteEnumValue<TeamsAsyncOperationStatus>("status", Status);

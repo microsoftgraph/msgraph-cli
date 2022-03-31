@@ -8,12 +8,12 @@ namespace ApiSdk.Models.Microsoft.Graph {
         /// <summary>Pointer to the assignment from which this resource was copied. If this is null, the student uploaded the resource.</summary>
         public string AssignmentResourceUrl { get; set; }
         /// <summary>Resource object.</summary>
-        public EducationResource Resource { get; set; }
+        public ApiSdk.Models.Microsoft.Graph.EducationResource Resource { get; set; }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         /// </summary>
-        public static new EducationSubmissionResource CreateFromDiscriminatorValue(IParseNode parseNode) {
+        public static new ApiSdk.Models.Microsoft.Graph.EducationSubmissionResource CreateFromDiscriminatorValue(IParseNode parseNode) {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
             return new EducationSubmissionResource();
         }
@@ -23,7 +23,7 @@ namespace ApiSdk.Models.Microsoft.Graph {
         public new IDictionary<string, Action<T, IParseNode>> GetFieldDeserializers<T>() {
             return new Dictionary<string, Action<T, IParseNode>>(base.GetFieldDeserializers<T>()) {
                 {"assignmentResourceUrl", (o,n) => { (o as EducationSubmissionResource).AssignmentResourceUrl = n.GetStringValue(); } },
-                {"resource", (o,n) => { (o as EducationSubmissionResource).Resource = n.GetObjectValue<EducationResource>(EducationResource.CreateFromDiscriminatorValue); } },
+                {"resource", (o,n) => { (o as EducationSubmissionResource).Resource = n.GetObjectValue<ApiSdk.Models.Microsoft.Graph.EducationResource>(ApiSdk.Models.Microsoft.Graph.EducationResource.CreateFromDiscriminatorValue); } },
             };
         }
         /// <summary>
@@ -34,7 +34,7 @@ namespace ApiSdk.Models.Microsoft.Graph {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             base.Serialize(writer);
             writer.WriteStringValue("assignmentResourceUrl", AssignmentResourceUrl);
-            writer.WriteObjectValue<EducationResource>("resource", Resource);
+            writer.WriteObjectValue<ApiSdk.Models.Microsoft.Graph.EducationResource>("resource", Resource);
         }
     }
 }

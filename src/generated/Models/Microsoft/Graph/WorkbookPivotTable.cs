@@ -8,12 +8,12 @@ namespace ApiSdk.Models.Microsoft.Graph {
         /// <summary>Name of the PivotTable.</summary>
         public string Name { get; set; }
         /// <summary>The worksheet containing the current PivotTable. Read-only.</summary>
-        public WorkbookWorksheet Worksheet { get; set; }
+        public ApiSdk.Models.Microsoft.Graph.WorkbookWorksheet Worksheet { get; set; }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         /// </summary>
-        public static new WorkbookPivotTable CreateFromDiscriminatorValue(IParseNode parseNode) {
+        public static new ApiSdk.Models.Microsoft.Graph.WorkbookPivotTable CreateFromDiscriminatorValue(IParseNode parseNode) {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
             return new WorkbookPivotTable();
         }
@@ -23,7 +23,7 @@ namespace ApiSdk.Models.Microsoft.Graph {
         public new IDictionary<string, Action<T, IParseNode>> GetFieldDeserializers<T>() {
             return new Dictionary<string, Action<T, IParseNode>>(base.GetFieldDeserializers<T>()) {
                 {"name", (o,n) => { (o as WorkbookPivotTable).Name = n.GetStringValue(); } },
-                {"worksheet", (o,n) => { (o as WorkbookPivotTable).Worksheet = n.GetObjectValue<WorkbookWorksheet>(WorkbookWorksheet.CreateFromDiscriminatorValue); } },
+                {"worksheet", (o,n) => { (o as WorkbookPivotTable).Worksheet = n.GetObjectValue<ApiSdk.Models.Microsoft.Graph.WorkbookWorksheet>(ApiSdk.Models.Microsoft.Graph.WorkbookWorksheet.CreateFromDiscriminatorValue); } },
             };
         }
         /// <summary>
@@ -34,7 +34,7 @@ namespace ApiSdk.Models.Microsoft.Graph {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             base.Serialize(writer);
             writer.WriteStringValue("name", Name);
-            writer.WriteObjectValue<WorkbookWorksheet>("worksheet", Worksheet);
+            writer.WriteObjectValue<ApiSdk.Models.Microsoft.Graph.WorkbookWorksheet>("worksheet", Worksheet);
         }
     }
 }

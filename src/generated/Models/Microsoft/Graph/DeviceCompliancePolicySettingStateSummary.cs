@@ -10,14 +10,14 @@ namespace ApiSdk.Models.Microsoft.Graph {
         /// <summary>Number of conflict devices</summary>
         public int? ConflictDeviceCount { get; set; }
         /// <summary>Not yet documented</summary>
-        public List<DeviceComplianceSettingState> DeviceComplianceSettingStates { get; set; }
+        public List<ApiSdk.Models.Microsoft.Graph.DeviceComplianceSettingState> DeviceComplianceSettingStates { get; set; }
         /// <summary>Number of error devices</summary>
         public int? ErrorDeviceCount { get; set; }
         /// <summary>Number of NonCompliant devices</summary>
         public int? NonCompliantDeviceCount { get; set; }
         /// <summary>Number of not applicable devices</summary>
         public int? NotApplicableDeviceCount { get; set; }
-        /// <summary>Setting platform. Possible values are: android, androidForWork, iOS, macOS, windowsPhone81, windows81AndLater, windows10AndLater, androidWorkProfile, windows10XProfile, androidAOSP, all.</summary>
+        /// <summary>Setting platform. Possible values are: android, iOS, macOS, windowsPhone81, windows81AndLater, windows10AndLater, androidWorkProfile, all.</summary>
         public PolicyPlatformType? PlatformType { get; set; }
         /// <summary>Number of remediated devices</summary>
         public int? RemediatedDeviceCount { get; set; }
@@ -31,7 +31,7 @@ namespace ApiSdk.Models.Microsoft.Graph {
         /// Creates a new instance of the appropriate class based on discriminator value
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         /// </summary>
-        public static new DeviceCompliancePolicySettingStateSummary CreateFromDiscriminatorValue(IParseNode parseNode) {
+        public static new ApiSdk.Models.Microsoft.Graph.DeviceCompliancePolicySettingStateSummary CreateFromDiscriminatorValue(IParseNode parseNode) {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
             return new DeviceCompliancePolicySettingStateSummary();
         }
@@ -42,7 +42,7 @@ namespace ApiSdk.Models.Microsoft.Graph {
             return new Dictionary<string, Action<T, IParseNode>>(base.GetFieldDeserializers<T>()) {
                 {"compliantDeviceCount", (o,n) => { (o as DeviceCompliancePolicySettingStateSummary).CompliantDeviceCount = n.GetIntValue(); } },
                 {"conflictDeviceCount", (o,n) => { (o as DeviceCompliancePolicySettingStateSummary).ConflictDeviceCount = n.GetIntValue(); } },
-                {"deviceComplianceSettingStates", (o,n) => { (o as DeviceCompliancePolicySettingStateSummary).DeviceComplianceSettingStates = n.GetCollectionOfObjectValues<DeviceComplianceSettingState>(DeviceComplianceSettingState.CreateFromDiscriminatorValue).ToList(); } },
+                {"deviceComplianceSettingStates", (o,n) => { (o as DeviceCompliancePolicySettingStateSummary).DeviceComplianceSettingStates = n.GetCollectionOfObjectValues<ApiSdk.Models.Microsoft.Graph.DeviceComplianceSettingState>(ApiSdk.Models.Microsoft.Graph.DeviceComplianceSettingState.CreateFromDiscriminatorValue).ToList(); } },
                 {"errorDeviceCount", (o,n) => { (o as DeviceCompliancePolicySettingStateSummary).ErrorDeviceCount = n.GetIntValue(); } },
                 {"nonCompliantDeviceCount", (o,n) => { (o as DeviceCompliancePolicySettingStateSummary).NonCompliantDeviceCount = n.GetIntValue(); } },
                 {"notApplicableDeviceCount", (o,n) => { (o as DeviceCompliancePolicySettingStateSummary).NotApplicableDeviceCount = n.GetIntValue(); } },
@@ -62,7 +62,7 @@ namespace ApiSdk.Models.Microsoft.Graph {
             base.Serialize(writer);
             writer.WriteIntValue("compliantDeviceCount", CompliantDeviceCount);
             writer.WriteIntValue("conflictDeviceCount", ConflictDeviceCount);
-            writer.WriteCollectionOfObjectValues<DeviceComplianceSettingState>("deviceComplianceSettingStates", DeviceComplianceSettingStates);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.Microsoft.Graph.DeviceComplianceSettingState>("deviceComplianceSettingStates", DeviceComplianceSettingStates);
             writer.WriteIntValue("errorDeviceCount", ErrorDeviceCount);
             writer.WriteIntValue("nonCompliantDeviceCount", NonCompliantDeviceCount);
             writer.WriteIntValue("notApplicableDeviceCount", NotApplicableDeviceCount);

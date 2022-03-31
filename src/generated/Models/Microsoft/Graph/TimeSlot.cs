@@ -7,8 +7,8 @@ namespace ApiSdk.Models.Microsoft.Graph {
     public class TimeSlot : IAdditionalDataHolder, IParsable {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
-        public DateTimeTimeZone End { get; set; }
-        public DateTimeTimeZone Start { get; set; }
+        public ApiSdk.Models.Microsoft.Graph.DateTimeTimeZone End { get; set; }
+        public ApiSdk.Models.Microsoft.Graph.DateTimeTimeZone Start { get; set; }
         /// <summary>
         /// Instantiates a new timeSlot and sets the default values.
         /// </summary>
@@ -19,7 +19,7 @@ namespace ApiSdk.Models.Microsoft.Graph {
         /// Creates a new instance of the appropriate class based on discriminator value
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         /// </summary>
-        public static TimeSlot CreateFromDiscriminatorValue(IParseNode parseNode) {
+        public static ApiSdk.Models.Microsoft.Graph.TimeSlot CreateFromDiscriminatorValue(IParseNode parseNode) {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
             return new TimeSlot();
         }
@@ -28,8 +28,8 @@ namespace ApiSdk.Models.Microsoft.Graph {
         /// </summary>
         public IDictionary<string, Action<T, IParseNode>> GetFieldDeserializers<T>() {
             return new Dictionary<string, Action<T, IParseNode>> {
-                {"end", (o,n) => { (o as TimeSlot).End = n.GetObjectValue<DateTimeTimeZone>(DateTimeTimeZone.CreateFromDiscriminatorValue); } },
-                {"start", (o,n) => { (o as TimeSlot).Start = n.GetObjectValue<DateTimeTimeZone>(DateTimeTimeZone.CreateFromDiscriminatorValue); } },
+                {"end", (o,n) => { (o as TimeSlot).End = n.GetObjectValue<ApiSdk.Models.Microsoft.Graph.DateTimeTimeZone>(ApiSdk.Models.Microsoft.Graph.DateTimeTimeZone.CreateFromDiscriminatorValue); } },
+                {"start", (o,n) => { (o as TimeSlot).Start = n.GetObjectValue<ApiSdk.Models.Microsoft.Graph.DateTimeTimeZone>(ApiSdk.Models.Microsoft.Graph.DateTimeTimeZone.CreateFromDiscriminatorValue); } },
             };
         }
         /// <summary>
@@ -38,8 +38,8 @@ namespace ApiSdk.Models.Microsoft.Graph {
         /// </summary>
         public void Serialize(ISerializationWriter writer) {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
-            writer.WriteObjectValue<DateTimeTimeZone>("end", End);
-            writer.WriteObjectValue<DateTimeTimeZone>("start", Start);
+            writer.WriteObjectValue<ApiSdk.Models.Microsoft.Graph.DateTimeTimeZone>("end", End);
+            writer.WriteObjectValue<ApiSdk.Models.Microsoft.Graph.DateTimeTimeZone>("start", Start);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

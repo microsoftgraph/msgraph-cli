@@ -7,7 +7,7 @@ namespace ApiSdk.Models.Microsoft.Graph {
     public class OnenotePagePreview : IAdditionalDataHolder, IParsable {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
-        public OnenotePagePreviewLinks Links { get; set; }
+        public ApiSdk.Models.Microsoft.Graph.OnenotePagePreviewLinks Links { get; set; }
         public string PreviewText { get; set; }
         /// <summary>
         /// Instantiates a new onenotePagePreview and sets the default values.
@@ -19,7 +19,7 @@ namespace ApiSdk.Models.Microsoft.Graph {
         /// Creates a new instance of the appropriate class based on discriminator value
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         /// </summary>
-        public static OnenotePagePreview CreateFromDiscriminatorValue(IParseNode parseNode) {
+        public static ApiSdk.Models.Microsoft.Graph.OnenotePagePreview CreateFromDiscriminatorValue(IParseNode parseNode) {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
             return new OnenotePagePreview();
         }
@@ -28,7 +28,7 @@ namespace ApiSdk.Models.Microsoft.Graph {
         /// </summary>
         public IDictionary<string, Action<T, IParseNode>> GetFieldDeserializers<T>() {
             return new Dictionary<string, Action<T, IParseNode>> {
-                {"links", (o,n) => { (o as OnenotePagePreview).Links = n.GetObjectValue<OnenotePagePreviewLinks>(OnenotePagePreviewLinks.CreateFromDiscriminatorValue); } },
+                {"links", (o,n) => { (o as OnenotePagePreview).Links = n.GetObjectValue<ApiSdk.Models.Microsoft.Graph.OnenotePagePreviewLinks>(ApiSdk.Models.Microsoft.Graph.OnenotePagePreviewLinks.CreateFromDiscriminatorValue); } },
                 {"previewText", (o,n) => { (o as OnenotePagePreview).PreviewText = n.GetStringValue(); } },
             };
         }
@@ -38,7 +38,7 @@ namespace ApiSdk.Models.Microsoft.Graph {
         /// </summary>
         public void Serialize(ISerializationWriter writer) {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
-            writer.WriteObjectValue<OnenotePagePreviewLinks>("links", Links);
+            writer.WriteObjectValue<ApiSdk.Models.Microsoft.Graph.OnenotePagePreviewLinks>("links", Links);
             writer.WriteStringValue("previewText", PreviewText);
             writer.WriteAdditionalData(AdditionalData);
         }

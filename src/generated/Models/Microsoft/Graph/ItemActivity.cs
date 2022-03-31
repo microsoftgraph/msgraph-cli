@@ -6,18 +6,18 @@ using System.Linq;
 namespace ApiSdk.Models.Microsoft.Graph {
     public class ItemActivity : Entity, IParsable {
         /// <summary>An item was accessed.</summary>
-        public AccessAction Access { get; set; }
+        public ApiSdk.Models.Microsoft.Graph.AccessAction Access { get; set; }
         /// <summary>Details about when the activity took place. Read-only.</summary>
         public DateTimeOffset? ActivityDateTime { get; set; }
         /// <summary>Identity of who performed the action. Read-only.</summary>
-        public IdentitySet Actor { get; set; }
+        public ApiSdk.Models.Microsoft.Graph.IdentitySet Actor { get; set; }
         /// <summary>Exposes the driveItem that was the target of this activity.</summary>
         public ApiSdk.Models.Microsoft.Graph.DriveItem DriveItem { get; set; }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         /// </summary>
-        public static new ItemActivity CreateFromDiscriminatorValue(IParseNode parseNode) {
+        public static new ApiSdk.Models.Microsoft.Graph.ItemActivity CreateFromDiscriminatorValue(IParseNode parseNode) {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
             return new ItemActivity();
         }
@@ -26,9 +26,9 @@ namespace ApiSdk.Models.Microsoft.Graph {
         /// </summary>
         public new IDictionary<string, Action<T, IParseNode>> GetFieldDeserializers<T>() {
             return new Dictionary<string, Action<T, IParseNode>>(base.GetFieldDeserializers<T>()) {
-                {"access", (o,n) => { (o as ItemActivity).Access = n.GetObjectValue<AccessAction>(AccessAction.CreateFromDiscriminatorValue); } },
+                {"access", (o,n) => { (o as ItemActivity).Access = n.GetObjectValue<ApiSdk.Models.Microsoft.Graph.AccessAction>(ApiSdk.Models.Microsoft.Graph.AccessAction.CreateFromDiscriminatorValue); } },
                 {"activityDateTime", (o,n) => { (o as ItemActivity).ActivityDateTime = n.GetDateTimeOffsetValue(); } },
-                {"actor", (o,n) => { (o as ItemActivity).Actor = n.GetObjectValue<IdentitySet>(IdentitySet.CreateFromDiscriminatorValue); } },
+                {"actor", (o,n) => { (o as ItemActivity).Actor = n.GetObjectValue<ApiSdk.Models.Microsoft.Graph.IdentitySet>(ApiSdk.Models.Microsoft.Graph.IdentitySet.CreateFromDiscriminatorValue); } },
                 {"driveItem", (o,n) => { (o as ItemActivity).DriveItem = n.GetObjectValue<ApiSdk.Models.Microsoft.Graph.DriveItem>(ApiSdk.Models.Microsoft.Graph.DriveItem.CreateFromDiscriminatorValue); } },
             };
         }
@@ -39,9 +39,9 @@ namespace ApiSdk.Models.Microsoft.Graph {
         public new void Serialize(ISerializationWriter writer) {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             base.Serialize(writer);
-            writer.WriteObjectValue<AccessAction>("access", Access);
+            writer.WriteObjectValue<ApiSdk.Models.Microsoft.Graph.AccessAction>("access", Access);
             writer.WriteDateTimeOffsetValue("activityDateTime", ActivityDateTime);
-            writer.WriteObjectValue<IdentitySet>("actor", Actor);
+            writer.WriteObjectValue<ApiSdk.Models.Microsoft.Graph.IdentitySet>("actor", Actor);
             writer.WriteObjectValue<ApiSdk.Models.Microsoft.Graph.DriveItem>("driveItem", DriveItem);
         }
     }

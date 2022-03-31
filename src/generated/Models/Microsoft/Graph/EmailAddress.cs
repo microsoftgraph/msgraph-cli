@@ -7,9 +7,9 @@ namespace ApiSdk.Models.Microsoft.Graph {
     public class EmailAddress : IAdditionalDataHolder, IParsable {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
-        /// <summary>The email address of an entity instance.</summary>
+        /// <summary>The email address of the person or entity.</summary>
         public string Address { get; set; }
-        /// <summary>The display name of an entity instance.</summary>
+        /// <summary>The display name of the person or entity.</summary>
         public string Name { get; set; }
         /// <summary>
         /// Instantiates a new emailAddress and sets the default values.
@@ -21,7 +21,7 @@ namespace ApiSdk.Models.Microsoft.Graph {
         /// Creates a new instance of the appropriate class based on discriminator value
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         /// </summary>
-        public static EmailAddress CreateFromDiscriminatorValue(IParseNode parseNode) {
+        public static ApiSdk.Models.Microsoft.Graph.EmailAddress CreateFromDiscriminatorValue(IParseNode parseNode) {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
             return new EmailAddress();
         }

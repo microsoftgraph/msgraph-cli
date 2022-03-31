@@ -11,7 +11,7 @@ namespace ApiSdk.Models.Microsoft.Graph {
         public DateTimeOffset? CreatedDateTime { get; set; }
         /// <summary>Supported values are like, angry, sad, laugh, heart, surprised.</summary>
         public string ReactionType { get; set; }
-        public ChatMessageReactionIdentitySet User { get; set; }
+        public ApiSdk.Models.Microsoft.Graph.ChatMessageReactionIdentitySet User { get; set; }
         /// <summary>
         /// Instantiates a new chatMessageReaction and sets the default values.
         /// </summary>
@@ -22,7 +22,7 @@ namespace ApiSdk.Models.Microsoft.Graph {
         /// Creates a new instance of the appropriate class based on discriminator value
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         /// </summary>
-        public static ChatMessageReaction CreateFromDiscriminatorValue(IParseNode parseNode) {
+        public static ApiSdk.Models.Microsoft.Graph.ChatMessageReaction CreateFromDiscriminatorValue(IParseNode parseNode) {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
             return new ChatMessageReaction();
         }
@@ -33,7 +33,7 @@ namespace ApiSdk.Models.Microsoft.Graph {
             return new Dictionary<string, Action<T, IParseNode>> {
                 {"createdDateTime", (o,n) => { (o as ChatMessageReaction).CreatedDateTime = n.GetDateTimeOffsetValue(); } },
                 {"reactionType", (o,n) => { (o as ChatMessageReaction).ReactionType = n.GetStringValue(); } },
-                {"user", (o,n) => { (o as ChatMessageReaction).User = n.GetObjectValue<ChatMessageReactionIdentitySet>(ChatMessageReactionIdentitySet.CreateFromDiscriminatorValue); } },
+                {"user", (o,n) => { (o as ChatMessageReaction).User = n.GetObjectValue<ApiSdk.Models.Microsoft.Graph.ChatMessageReactionIdentitySet>(ApiSdk.Models.Microsoft.Graph.ChatMessageReactionIdentitySet.CreateFromDiscriminatorValue); } },
             };
         }
         /// <summary>
@@ -44,7 +44,7 @@ namespace ApiSdk.Models.Microsoft.Graph {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             writer.WriteDateTimeOffsetValue("createdDateTime", CreatedDateTime);
             writer.WriteStringValue("reactionType", ReactionType);
-            writer.WriteObjectValue<ChatMessageReactionIdentitySet>("user", User);
+            writer.WriteObjectValue<ApiSdk.Models.Microsoft.Graph.ChatMessageReactionIdentitySet>("user", User);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

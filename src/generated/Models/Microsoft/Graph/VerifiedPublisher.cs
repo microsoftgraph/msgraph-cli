@@ -9,7 +9,7 @@ namespace ApiSdk.Models.Microsoft.Graph {
         public DateTimeOffset? AddedDateTime { get; set; }
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
-        /// <summary>The verified publisher name from the app publisher's Microsoft Partner Network (MPN) account.</summary>
+        /// <summary>The verified publisher name from the app publisher's Partner Center account.</summary>
         public string DisplayName { get; set; }
         /// <summary>The ID of the verified publisher from the app publisher's Partner Center account.</summary>
         public string VerifiedPublisherId { get; set; }
@@ -23,7 +23,7 @@ namespace ApiSdk.Models.Microsoft.Graph {
         /// Creates a new instance of the appropriate class based on discriminator value
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         /// </summary>
-        public static VerifiedPublisher CreateFromDiscriminatorValue(IParseNode parseNode) {
+        public static ApiSdk.Models.Microsoft.Graph.VerifiedPublisher CreateFromDiscriminatorValue(IParseNode parseNode) {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
             return new VerifiedPublisher();
         }

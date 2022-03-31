@@ -7,9 +7,9 @@ namespace ApiSdk.Models.Microsoft.Graph {
     public class UserAttributeValuesItem : IAdditionalDataHolder, IParsable {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
-        /// <summary>Used to set the value as the default.</summary>
+        /// <summary>Determines whether the value is set as the default.</summary>
         public bool? IsDefault { get; set; }
-        /// <summary>The display name of the property displayed to the end user in the user flow.</summary>
+        /// <summary>The display name of the property displayed to the user in the user flow.</summary>
         public string Name { get; set; }
         /// <summary>The value that is set when this item is selected.</summary>
         public string Value { get; set; }
@@ -23,7 +23,7 @@ namespace ApiSdk.Models.Microsoft.Graph {
         /// Creates a new instance of the appropriate class based on discriminator value
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         /// </summary>
-        public static UserAttributeValuesItem CreateFromDiscriminatorValue(IParseNode parseNode) {
+        public static ApiSdk.Models.Microsoft.Graph.UserAttributeValuesItem CreateFromDiscriminatorValue(IParseNode parseNode) {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
             return new UserAttributeValuesItem();
         }

@@ -11,7 +11,7 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 namespace ApiSdk.Drive.List.ContentTypes.Item.AssociateWithHubSites {
-    /// <summary>Builds and executes requests for operations under \drive\list\contentTypes\{contentType-id}\microsoft.graph.associateWithHubSites</summary>
+    /// <summary>Provides operations to call the associateWithHubSites method.</summary>
     public class AssociateWithHubSitesRequestBuilder {
         /// <summary>Path parameters for the request</summary>
         private Dictionary<string, object> PathParameters { get; set; }
@@ -42,7 +42,7 @@ namespace ApiSdk.Drive.List.ContentTypes.Item.AssociateWithHubSites {
                 PathParameters.Add("contentType_id", contentTypeId);
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
-                var model = parseNode.GetObjectValue<AssociateWithHubSitesRequestBody>(AssociateWithHubSitesRequestBody.CreateFromDiscriminatorValue);
+                var model = parseNode.GetObjectValue<ApiSdk.Drive.List.ContentTypes.Item.AssociateWithHubSites.AssociateWithHubSitesRequestBody>(ApiSdk.Drive.List.ContentTypes.Item.AssociateWithHubSites.AssociateWithHubSitesRequestBody.CreateFromDiscriminatorValue);
                 var requestInfo = CreatePostRequestInformation(model, q => {
                 });
                 await RequestAdapter.SendNoContentAsync(requestInfo, errorMapping: default, cancellationToken: cancellationToken);
@@ -66,10 +66,10 @@ namespace ApiSdk.Drive.List.ContentTypes.Item.AssociateWithHubSites {
         /// <summary>
         /// Invoke action associateWithHubSites
         /// <param name="body"></param>
-        /// <param name="h">Request headers</param>
-        /// <param name="o">Request options</param>
+        /// <param name="headers">Request headers</param>
+        /// <param name="options">Request options</param>
         /// </summary>
-        public RequestInformation CreatePostRequestInformation(AssociateWithHubSitesRequestBody body, Action<IDictionary<string, string>> h = default, IEnumerable<IRequestOption> o = default) {
+        public RequestInformation CreatePostRequestInformation(ApiSdk.Drive.List.ContentTypes.Item.AssociateWithHubSites.AssociateWithHubSitesRequestBody body, Action<IDictionary<string, string>> headers = default, IEnumerable<IRequestOption> options = default) {
             _ = body ?? throw new ArgumentNullException(nameof(body));
             var requestInfo = new RequestInformation {
                 HttpMethod = Method.POST,
@@ -77,8 +77,8 @@ namespace ApiSdk.Drive.List.ContentTypes.Item.AssociateWithHubSites {
                 PathParameters = PathParameters,
             };
             requestInfo.SetContentFromParsable(RequestAdapter, "application/json", body);
-            h?.Invoke(requestInfo.Headers);
-            requestInfo.AddRequestOptions(o?.ToArray());
+            headers?.Invoke(requestInfo.Headers);
+            requestInfo.AddRequestOptions(options?.ToArray());
             return requestInfo;
         }
     }
