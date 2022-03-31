@@ -26,8 +26,6 @@ namespace Microsoft.Graph.Cli
 {
     class Program
     {
-        const string SdkVersionHeaderValueFormatString = "{0}-cli/{1}.{2}.{3}";
-
         static async Task<int> Main(string[] args)
         {
             // We don't have access to a built host yet. Get configuration settings using a configuration builder.
