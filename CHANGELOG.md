@@ -8,8 +8,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 
 ### Added
+- Add default app id & tenant id
 
 ### Changed
+- Make app settings configuration file optional
 
 ## [0.1.0-preview.3] - 2022-03-17
 

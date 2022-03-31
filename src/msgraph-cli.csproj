@@ -13,10 +13,6 @@
     <Version>0.1.0-preview.3</Version>
   </PropertyGroup>
 
-  <ItemGroup>
-    <None Update="app-settings.json" CopyToOutputDirectory="Always" CopyToPublishDirectory="Always" />
-  </ItemGroup>
-
   <PropertyGroup>
     <DefaultExcludesInProjectFolder>$(DefaultItemExcludes);**/*.sample.*</DefaultExcludesInProjectFolder>
   </PropertyGroup>
